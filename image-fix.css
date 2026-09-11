@@ -1,0 +1,3 @@
+/* Production image path normalization and cache-busting. */
+.logo-mark,.logo-wordmark{background-image:url('/assets/kaito-logo-transparent.webp?v=20260911-2')!important}
+.photo{background-image:url('/assets/editorial.webp?v=20260911-2')!important}
