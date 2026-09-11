@@ -1,16 +1,124 @@
 <!doctype html>
 <html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>K. Aito</title>
-  <meta name="description" content="K. Aitoの個人メディア。旅行、酒、税務、制作物、調査メモ、事業アイデアなどを蓄積するデジタル物置です。">
-</head>
-<body>
-  <main>
-    <h1>K. Aito</h1>
-    <p>DIGITAL STORAGE</p>
-    <p>k-aito.com is under construction.</p>
-  </main>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#193f32" />
+    <meta name="description" content="考えたもの、拾ったもの、作りかけのもの。旅、酒、学び、ものづくり。K. Aitoのデジタル物置。" />
+    <title>K. Aito — DIGITAL STORAGE</title>
+    <link rel="stylesheet" href="styles.css?v=2" />
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#recent">最近置いたものへ</a>
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand" href="#home" aria-label="K. Aito ホーム">
+          <span class="brand-kite logo-mark" aria-hidden="true"></span>
+          <span class="brand-lockup"><span class="logo-wordmark" aria-hidden="true"></span><span class="sr-only">K. Aito</span><small>風にのせて、もっと先へ。</small></span>
+        </a>
+        <nav class="main-nav" aria-label="メインナビゲーション">
+          <a href="#home" class="current">HOME</a>
+          <a href="storage/">SHELVES</a>
+          <a href="projects/">PROJECTS</a>
+          <a href="archive/">ARCHIVE</a>
+          <a href="about/">ABOUT</a>
+        </nav>
+        <form id="search-form" class="header-search" role="search">
+          <label for="site-search" class="sr-only">記事を検索</label>
+          <input type="search" id="site-search" placeholder="気になるものを探す…" autocomplete="off" />
+          <button type="submit" aria-label="検索する"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 4.5 4.5"/></svg></button>
+        </form>
+      </div>
+    </header>
+
+    <main id="home">
+      <section class="hero" aria-labelledby="hero-title">
+        <img class="hero-background" src="assets/study.webp" alt="窓辺に古い本、地球儀、カメラが並ぶ木の書斎" fetchpriority="high" />
+        <div class="hero-inner">
+          <div class="hero-poster paper">
+            <span class="poster-label">A PERSONAL COLLECTION</span>
+            <span class="poster-kite logo-mark" aria-hidden="true"></span>
+            <h1 id="hero-title" class="poster-brandname"><span class="logo-wordmark" aria-hidden="true"></span><span class="sr-only">K. Aito</span></h1>
+            <p class="poster-tagline">風にのせて、もっと先へ。</p>
+            <p class="poster-subtitle">DIGITAL STORAGE</p>
+            <div class="poster-rule"></div>
+            <p class="poster-copy">考えたもの、拾ったもの。<br />作りかけのものを、<br />置いておく場所。</p>
+            <p class="handwritten poster-hand">Good ideas,<br /><span>for a brighter tomorrow.</span></p>
+          </div>
+          <p class="hero-thought">まだ、<br />どこにもない景色を<br />つくるために。</p>
+          <a class="hero-polaroid paper" href="/notes/site-launch-trouble/" aria-label="最初の記事を読む">
+            <span class="photo photo-notebook" role="img" aria-label="ノートとペンのイメージ"></span>
+            <span class="polaroid-caption">公開しようとしたら、<br />早速つまずいた。</span>
+            <span class="polaroid-meta">FIRST NOTE / 2026.09.11</span>
+          </a>
+          <a class="hero-note paper" href="/notes/site-launch-trouble/" aria-label="公開トラブルの記録を読む">
+            <span class="note-tape">2026.09.11</span>
+            <span class="note-date">FIRST NOTE</span>
+            <span class="note-text">最初の記事は、<br />サイト公開で<br />つまずいた記録。</span>
+            <span class="note-sign">→ READ</span>
+          </a>
+          <a class="hero-index" href="#recent">OPEN THE STORAGE <span>↓</span></a>
+        </div>
+      </section>
+
+      <div class="storage-content">
+        <section id="recent" class="section recent-section" aria-labelledby="recent-title">
+          <div class="section-heading">
+            <h2 id="recent-title">最近置いたもの <span>/ Recent</span></h2>
+            <span class="section-note">ひとまず、ここに。</span>
+          </div>
+          <div id="recent-grid" class="recent-grid"></div>
+          <div class="section-tail"><button class="text-link" type="button" data-open-archive>もっと覗く <span>→</span></button></div>
+        </section>
+
+        <section id="shelves" class="section shelves-section" aria-labelledby="shelves-title">
+          <div class="section-heading"><h2 id="shelves-title">棚から探す <span>/ Shelves</span></h2><span class="section-note">好きなところから、どうぞ。</span></div>
+          <div id="shelves-grid" class="shelves-grid"></div>
+        </section>
+
+        <section id="projects" class="section projects-section" aria-labelledby="projects-title">
+          <div class="section-heading"><h2 id="projects-title">進行中のプロジェクト <span>/ On Going</span></h2><a class="text-link small-link" href="/projects/">VIEW ALL <span>→</span></a></div>
+          <div id="projects-grid" class="projects-grid"></div>
+        </section>
+
+        <div class="bottom-columns">
+          <section class="section random-section" aria-labelledby="random-title">
+            <div class="section-heading"><h2 id="random-title">箱の中から <span>/ Random Picks</span></h2><button type="button" id="shuffle-button" class="shuffle-button" aria-label="箱の中を入れ替える" title="箱の中を入れ替える"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m18 2 4 4-4 4M2 18 7 18 17 6 22 6M2 6h5l3 4M14 14l3 4h5m-4-4 4 4-4 4"/></svg></button></div>
+            <div id="random-grid" class="random-grid" aria-live="polite"></div>
+          </section>
+          <section class="section words-section" aria-labelledby="words-title">
+            <div class="section-heading"><h2 id="words-title">ことば <span>/ Words</span></h2></div>
+            <blockquote class="words-paper paper"><p>小さな風が、<br />大きな未来をつくる。</p><cite>— K. Aito</cite></blockquote>
+          </section>
+        </div>
+      </div>
+    </main>
+
+    <footer id="about" class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-intro">
+          <a href="#home" class="brand footer-brand" aria-label="K. Aito ホーム"><span class="brand-kite logo-mark" aria-hidden="true"></span><span class="brand-lockup"><span class="logo-wordmark" aria-hidden="true"></span><span class="sr-only">K. Aito</span><small>風にのせて、もっと先へ。</small></span></a>
+          <p>旅の記録。気になったこと。まだ名前のないアイデア。<br />完成する前も、そのあとも。ここに置いて、育てていく。</p>
+        </div>
+        <nav class="footer-nav" aria-label="フッターナビゲーション"><a href="#home">HOME</a><a href="storage/">SHELVES</a><a href="projects/">PROJECTS</a><a href="archive/">ARCHIVE</a><a href="links/">LINKS</a><a href="about/">ABOUT</a></nav>
+        <p class="footer-hand handwritten">Keep what inspires you.</p>
+      </div>
+      <div class="footer-bottom"><span>公開した記録を、少しずつ追加していきます。</span><span>© 2026 K. Aito</span></div>
+    </footer>
+
+    <dialog id="archive-dialog" class="archive-dialog" aria-labelledby="archive-title">
+      <div class="dialog-heading"><div><p class="eyebrow">THE COLLECTION</p><h2 id="archive-title">物置の中を探す</h2></div><button class="close-button" type="button" data-close-dialog aria-label="一覧を閉じる">×</button></div>
+      <form id="archive-search-form" role="search" class="archive-search"><label class="sr-only" for="archive-search">物置を検索</label><input id="archive-search" type="search" placeholder="タイトル、ことば、タグで探す" autocomplete="off" /><button class="green-button" type="submit">検索</button></form>
+      <div class="archive-controls"><label>棚<select id="shelf-select"><option value="all">すべての棚</option></select></label><label>状態<select id="state-select"><option value="all">すべての状態</option><option>MEMO</option><option>FOUND</option><option>THINK</option><option>RESEARCH</option><option>MAKING</option><option>PROJECT</option><option>DONE</option><option>ARCHIVE</option></select></label><button type="button" class="text-link" id="reset-filters">条件をリセット</button></div>
+      <p class="results-count" id="results-count" role="status"></p>
+      <div id="archive-results" class="archive-results"></div>
+    </dialog>
+
+    <dialog id="entry-dialog" class="entry-dialog" aria-labelledby="entry-title">
+      <div class="entry-toolbar"><span class="eyebrow">A PIECE FROM THE STORAGE</span><button class="close-button" type="button" data-close-dialog aria-label="記事を閉じる">×</button></div>
+      <article id="entry-content"></article>
+    </dialog>
+    <noscript><p class="noscript-message">記事一覧や検索を使うには、ブラウザのJavaScriptを有効にしてください。</p></noscript>
+  </body>
 </html>
