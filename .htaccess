@@ -1,7 +1,7 @@
 # XServer Static configuration
 RewriteEngine On
 
-# Backward-compatible image routes: redirect broken legacy WebP/PNG assets to verified SVG assets.
+# Backward-compatible image routes for cached HTML/CSS.
 RewriteRule ^assets/study\.(?:webp|png)$ /study.svg [R=302,L,NE]
-RewriteRule ^assets/editorial\.(?:webp|png)$ /editorial.svg [R=302,L,NE]
-RewriteRule ^assets/kaito-logo-transparent\.(?:webp|png)$ /kaito-logo.svg [R=302,L,NE]
+RewriteRule ^assets/editorial\.(?:webp|png)$ /editorial-legacy.svg [R=302,L,NE]
+RewriteRule ^assets/kaito-logo-transparent\.(?:webp|png)$ /kaito-logo-legacy.svg [R=302,L,NE]
