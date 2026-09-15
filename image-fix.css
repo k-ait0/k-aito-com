@@ -1,2 +1,3 @@
 @import url('/cards.css?v=1');
+@import url('/home-layout.css?v=1');
 .logo-mark,.logo-wordmark{background-image:url('/assets/kaito-logo-transparent.png?v=7')!important}.photo{background-image:url('/assets/editorial.jpg?v=7')!important}.hero{background-image:none!important}.hero-background{display:block!important}.project-cover{background-image:none!important}.project-cover>img{display:block!important}
