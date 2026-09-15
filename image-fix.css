@@ -1,3 +1,3 @@
 @import url('/cards.css?v=1');
 @import url('/home-layout.css?v=2');
-.logo-mark,.logo-wordmark{background-image:url('/assets/kaito-logo-transparent.png?v=7')!important}.photo{background-image:url('/assets/editorial.jpg?v=7')!important}.hero{background-image:none!important}.hero-background{display:block!important}.project-cover{background-image:none!important}.project-cover>img{display:block!important}
+.logo-mark,.logo-wordmark{background-image:url('/assets/kaito-logo-transparent.png?v=7')!important}.photo{background-image:url('/assets/editorial.jpg?v=7')!important}.hero{background-image:url('/assets/hero-study.jpg?v=1')!important;background-size:cover!important;background-position:center 52%!important}.hero-background{display:none!important}.project-cover{background-image:url('/assets/hero-study.jpg?v=1')!important;background-size:cover!important;background-position:center 52%!important}.project-cover>img{display:none!important}
