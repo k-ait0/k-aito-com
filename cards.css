@@ -1,0 +1,382 @@
+/* K. Aito card system — layout and typography stay in CSS; images are content only. */
+:root{
+  --card-paper:#fbf8ee;
+  --card-paper-deep:#f1ead7;
+  --card-ink:#213c31;
+  --card-muted:#6b746b;
+  --card-line:rgba(33,60,49,.16);
+  --card-green:#234f3e;
+  --card-green-dark:#15382c;
+  --card-gold:#c5a45d;
+}
+
+/* Shared states --------------------------------------------------------- */
+.state{
+  display:inline-flex;
+  align-items:center;
+  width:max-content;
+  min-height:24px;
+  padding:3px 10px;
+  border:0;
+  border-radius:2px;
+  color:#18342a;
+  font:600 .68rem/1.4 Arial,sans-serif;
+  letter-spacing:.13em;
+  box-shadow:none;
+}
+.state-memo{background:#a9bf73;color:#173526}
+.state-found{background:#e3cf98}
+.state-think{background:#9ebdcb}
+.state-research{background:#c8c8c1}
+.state-making{background:#aab47b}
+.state-project{background:#8ea956}
+.state-done{background:#ca8a58;color:#fff}
+.state-archive{background:#486557;color:#fff}
+
+/* A. STANDARD / LATEST -------------------------------------------------- */
+.recent-grid{
+  display:block;
+  padding:0;
+}
+.recent-section .entry-card,
+.archive-results .entry-card{
+  --tilt:0deg;
+  display:grid;
+  grid-template-columns:128px minmax(0,1fr) 36px;
+  align-items:center;
+  gap:19px;
+  width:100%;
+  min-height:116px;
+  padding:14px 0;
+  margin:0;
+  border:0;
+  border-bottom:1px solid var(--card-line);
+  background:transparent;
+  box-shadow:none;
+  transform:none;
+  text-align:left;
+}
+.recent-section .entry-card:first-child,
+.archive-results .entry-card:first-child{border-top:1px solid var(--card-line)}
+.recent-section .entry-card:hover,
+.archive-results .entry-card:hover{
+  z-index:auto;
+  transform:none;
+  box-shadow:none;
+  background:rgba(255,253,245,.48);
+}
+.recent-section .entry-card>.state,
+.archive-results .entry-card>.state{
+  position:absolute;
+  top:19px;
+  left:147px;
+  z-index:2;
+  transform:none;
+  box-shadow:none;
+}
+.recent-section .card-photo,
+.archive-results .card-photo{
+  grid-column:1;
+  grid-row:1;
+  width:128px;
+  height:86px;
+  border-radius:2px;
+  overflow:hidden;
+  align-self:center;
+}
+.recent-section .card-copy,
+.archive-results .card-copy{
+  grid-column:2;
+  grid-row:1;
+  display:grid;
+  grid-template-columns:auto 1fr;
+  grid-template-areas:
+    "date date"
+    "title title"
+    "summary summary"
+    "tags tags";
+  align-content:center;
+  min-width:0;
+  padding:23px 0 0;
+}
+.recent-section .card-date,
+.archive-results .card-date{
+  grid-area:date;
+  display:block!important;
+  margin:0 0 5px 82px;
+  color:#7a8179;
+  font:400 .72rem/1.4 Georgia,serif;
+  letter-spacing:.10em;
+}
+.recent-section .card-title,
+.archive-results .card-title{
+  grid-area:title;
+  color:var(--card-ink);
+  font-family:var(--serif);
+  font-size:1.02rem;
+  font-weight:600;
+  line-height:1.55;
+  letter-spacing:.025em;
+}
+.recent-section .card-summary,
+.archive-results .card-summary{
+  grid-area:summary;
+  margin-top:4px;
+  color:#687268;
+  font-size:.77rem;
+  line-height:1.65;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.recent-section .card-tags,
+.archive-results .card-tags{
+  grid-area:tags;
+  margin:0;
+  padding:3px 0 0;
+  color:#849083;
+  font-size:.68rem;
+  line-height:1.5;
+}
+.recent-section .card-arrow,
+.archive-results .card-arrow{
+  grid-column:3;
+  grid-row:1;
+  align-self:center;
+  justify-self:end;
+  margin:0;
+  padding:0 7px 0 0;
+  color:#758175;
+  font:400 1.35rem/1 Georgia,serif;
+  transition:transform .2s,color .2s;
+}
+.recent-section .entry-card:hover .card-arrow,
+.archive-results .entry-card:hover .card-arrow{
+  color:var(--card-green);
+  transform:translateX(4px);
+}
+
+/* Text-only standard rows: reserve the same visual rhythm. */
+.recent-section .text-card,
+.archive-results .text-card{padding-top:14px}
+.recent-section .text-card .card-copy,
+.archive-results .text-card .card-copy{grid-column:1/3;padding-left:0}
+.recent-section .text-card>.state,
+.archive-results .text-card>.state{left:0}
+.recent-section .text-card .card-date,
+.archive-results .text-card .card-date{margin-left:82px}
+
+/* B. MEMO / NOTE -------------------------------------------------------- */
+.random-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:22px;
+}
+.random-section .entry-card{
+  --tilt:-.65deg;
+  position:relative;
+  display:flex;
+  min-height:214px;
+  padding:34px 27px 25px;
+  border:1px solid #e0d7be;
+  border-radius:1px;
+  background:
+    linear-gradient(rgba(255,255,255,.12),rgba(255,255,255,.12)),
+    var(--card-paper-deep);
+  box-shadow:0 12px 25px rgba(39,49,35,.10),0 2px 4px rgba(39,49,35,.08);
+  transform:rotate(var(--tilt));
+  overflow:visible;
+}
+.random-section .entry-card:nth-child(even){--tilt:.55deg}
+.random-section .entry-card:hover{
+  transform:translateY(-4px) rotate(0deg);
+  box-shadow:0 16px 30px rgba(39,49,35,.14),0 3px 6px rgba(39,49,35,.08);
+}
+.random-section .entry-card::before{
+  content:"";
+  position:absolute;
+  top:-9px;
+  left:50%;
+  width:76px;
+  height:20px;
+  transform:translateX(-50%) rotate(-2deg);
+  background:rgba(199,176,108,.72);
+  box-shadow:0 2px 3px rgba(54,44,25,.08);
+}
+.random-section .entry-card>.state{
+  position:static;
+  align-self:flex-start;
+  margin-bottom:16px;
+  transform:none;
+  box-shadow:none;
+}
+.random-section .card-photo{
+  width:100%;
+  height:88px;
+  margin:0 0 14px;
+  border:5px solid #fffdf6;
+  box-shadow:0 3px 8px rgba(31,42,30,.09);
+}
+.random-section .card-copy{padding:0;display:flex;min-width:0}
+.random-section .card-date{display:block!important;margin:0 0 7px;color:#868276;font-size:.7rem;letter-spacing:.10em}
+.random-section .card-title{
+  font-family:var(--serif);
+  font-size:1rem;
+  line-height:1.65;
+  font-weight:600;
+  letter-spacing:.035em;
+}
+.random-section .card-summary{display:none}
+.random-section .card-tags{
+  margin-top:auto;
+  padding-top:17px;
+  color:#778174;
+  font-size:.7rem;
+}
+.random-section .card-arrow{
+  padding-top:10px;
+  color:#596c5e;
+  font-size:1.25rem;
+}
+
+/* C. PROJECT / FEATURE -------------------------------------------------- */
+.projects-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:18px;
+}
+.project-card{
+  position:relative;
+  display:grid;
+  grid-template-rows:240px;
+  min-height:240px;
+  padding:0;
+  overflow:hidden;
+  border:0;
+  background:var(--card-green-dark);
+  color:white;
+  box-shadow:0 5px 14px rgba(23,46,36,.16);
+  isolation:isolate;
+}
+.project-card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 12px 24px rgba(23,46,36,.22);
+}
+.project-card .project-image{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  z-index:-2;
+  background-size:cover;
+  background-position:center;
+  transition:transform .45s ease;
+}
+.project-card:hover .project-image{transform:scale(1.025)}
+.project-card::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:-1;
+  background:linear-gradient(90deg,rgba(12,42,31,.78) 0%,rgba(12,42,31,.45) 48%,rgba(12,42,31,.08) 100%);
+}
+.project-card .project-title{
+  position:absolute;
+  left:24px;
+  bottom:78px;
+  width:min(72%,520px);
+  padding:0;
+  color:white;
+  font-family:var(--serif);
+  font-size:1.35rem;
+  font-weight:600;
+  line-height:1.55;
+  letter-spacing:.045em;
+  text-shadow:0 2px 7px rgba(0,0,0,.28);
+}
+.project-card .project-tags{
+  position:absolute;
+  top:22px;
+  left:24px;
+  padding:0;
+  gap:7px;
+}
+.project-card .project-tags span{
+  padding:3px 8px;
+  background:rgba(141,169,86,.92);
+  color:white;
+  font:600 .68rem/1.4 Arial,sans-serif;
+  letter-spacing:.08em;
+}
+.project-card .project-description{
+  position:absolute;
+  left:24px;
+  bottom:29px;
+  width:min(68%,500px);
+  padding:0;
+  color:rgba(255,255,255,.85);
+  font-size:.76rem;
+  line-height:1.65;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.project-card .project-status{
+  right:18px;
+  bottom:18px;
+  width:58px;
+  height:58px;
+  border:1px solid rgba(255,255,255,.68);
+  background:rgba(17,50,38,.42);
+  color:white;
+  backdrop-filter:blur(2px);
+  box-shadow:none;
+}
+.project-card .project-status small{font-size:.55rem;color:rgba(255,255,255,.75)}
+.project-card .project-status span{font-size:.88rem}
+.project-card .project-end{display:none}
+
+/* Archive uses the standard system even when it is a responsive grid upstream. */
+.archive-results{display:block!important}
+
+/* Responsive ----------------------------------------------------------- */
+@media (max-width:900px){
+  .recent-section .entry-card,
+  .archive-results .entry-card{grid-template-columns:112px minmax(0,1fr) 28px;gap:15px}
+  .recent-section .card-photo,
+  .archive-results .card-photo{width:112px;height:78px}
+  .recent-section .entry-card>.state,
+  .archive-results .entry-card>.state{left:127px}
+  .projects-grid{grid-template-columns:1fr}
+  .project-card{grid-template-rows:220px;min-height:220px}
+}
+
+@media (max-width:640px){
+  .recent-section .entry-card,
+  .archive-results .entry-card{
+    grid-template-columns:86px minmax(0,1fr) 22px;
+    gap:12px;
+    min-height:104px;
+    padding:12px 0;
+  }
+  .recent-section .card-photo,
+  .archive-results .card-photo{width:86px;height:68px}
+  .recent-section .entry-card>.state,
+  .archive-results .entry-card>.state{top:14px;left:98px;padding:2px 7px;font-size:.6rem}
+  .recent-section .card-copy,
+  .archive-results .card-copy{padding-top:20px}
+  .recent-section .card-date,
+  .archive-results .card-date{margin-left:67px;font-size:.62rem}
+  .recent-section .card-title,
+  .archive-results .card-title{font-size:.9rem;line-height:1.5}
+  .recent-section .card-summary,
+  .archive-results .card-summary{display:none}
+  .recent-section .card-tags,
+  .archive-results .card-tags{display:none}
+  .random-grid{grid-template-columns:1fr;gap:18px}
+  .random-section .entry-card{min-height:180px;padding:31px 23px 22px}
+  .project-card{grid-template-rows:205px;min-height:205px}
+  .project-card .project-title{left:19px;bottom:68px;font-size:1.12rem;width:75%}
+  .project-card .project-description{left:19px;bottom:23px;width:70%}
+  .project-card .project-tags{left:19px;top:18px}
+}
