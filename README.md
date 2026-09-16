@@ -1,2 +1,1 @@
-# k-aito-com
-Source code for k-aito.com
+K. Aito / DIGITAL STORAGE
