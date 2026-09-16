@@ -11,6 +11,16 @@
     thinking:'/archive/'
   };
 
+  const shelfImages={
+    travel:'/assets/shelf-b64/travel.b64?v=2',
+    sake:'/assets/shelf-b64/drink.b64?v=2',
+    money:'/assets/shelf-b64/moneytax.b64?v=2',
+    create:'/assets/shelf-b64/study.b64?v=2',
+    technology:'/assets/shelf-b64/create.b64?v=1',
+    business:'/assets/shelf-b64/project.b64?v=1',
+    thinking:'/assets/shelf-b64/archive.b64?v=1'
+  };
+
   document.addEventListener('click',event=>{
     const shelf=event.target.closest('.shelf[data-shelf]');
     if(!shelf)return;
@@ -55,11 +65,26 @@
     return (await response.text()).trim();
   }
 
+  async function loadShelfImages(){
+    const shelves=[...document.querySelectorAll('.shelf[data-shelf]')];
+    await Promise.allSettled(shelves.map(async shelf=>{
+      const path=shelfImages[shelf.dataset.shelf];
+      if(!path)return;
+      const data=await fetchText(path);
+      if(!data.startsWith('/9j/'))throw new Error(`invalid shelf image: ${path}`);
+      shelf.style.setProperty('background-image',`url("data:image/jpeg;base64,${data}")`,'important');
+      shelf.style.setProperty('background-size','cover','important');
+      shelf.style.setProperty('background-position','center','important');
+      shelf.style.setProperty('background-repeat','no-repeat','important');
+      shelf.classList.add('shelf-image-ready');
+    }));
+  }
+
   async function loadHighQualityHero(){
     const visualTargets=[...document.querySelectorAll('.hero,.project-cover')];
     const feature=document.querySelector('.project-feature-link');
     if(!visualTargets.length&&!feature)return;
-    const paths=[0,1,2,3].map(i=>`/assets/hero-tiles/v2-col-${i}.b64?v=2`);
+    const paths=[0,1,2,3].map(i=>`/assets/hero-tiles/v2-col-${i}.b64?v=3`);
     try{
       const encoded=await Promise.all(paths.map(fetchText));
       const images=await Promise.all(encoded.map(data=>new Promise((resolve,reject)=>{
@@ -76,7 +101,7 @@
       context.fillStyle='#203226';
       context.fillRect(0,0,1200,800);
       images.forEach((image,index)=>context.drawImage(image,index*300,0,300,800));
-      const url=canvas.toDataURL('image/jpeg',0.90);
+      const url=canvas.toDataURL('image/jpeg',0.92);
       visualTargets.forEach(element=>{
         element.style.setProperty('background-image',`url("${url}")`,'important');
         element.style.setProperty('background-size','cover','important');
@@ -113,6 +138,7 @@
     }
   }
 
+  loadShelfImages();
   loadHighQualityHero();
   loadHighQualityNotebook();
 })();
