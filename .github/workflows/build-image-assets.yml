@@ -6,6 +6,7 @@ on:
       - 'assets/hero-tiles/**'
       - 'assets/shelf-b64/**'
       - 'assets/editorial-notebook.b64'
+      - 'assets/article-b64/**'
       - '.github/workflows/build-image-assets.yml'
   workflow_dispatch:
 
@@ -32,7 +33,7 @@ jobs:
           python - <<'PY'
           from pathlib import Path
           from PIL import Image, ImageOps, ImageFile
-          import base64, io, re
+          import base64, io, re, zipfile
 
           ImageFile.LOAD_TRUNCATED_IMAGES = True
           root = Path('.')
@@ -42,6 +43,11 @@ jobs:
           def source_chars(src: Path):
               raw = src.read_text(encoding='utf-8')
               return re.sub(r'[^A-Za-z0-9+/=]', '', raw).replace('=', '')
+
+          def decode_base64_text(src: Path):
+              chars = source_chars(src)
+              padded = chars + '=' * ((4 - len(chars) % 4) % 4)
+              return base64.b64decode(padded, validate=False)
 
           def try_image(chars: str):
               if not chars: return None
@@ -64,7 +70,7 @@ jobs:
                   for index in range(len(chars)):
                       data = try_image(chars[:index] + chars[index + 1:])
                       if data is not None: return data
-              raise RuntimeError(f'FAILED {src}: source cannot be repaired as a JPEG')
+              raise RuntimeError(f'FAILED {src}: source cannot be repaired as an image')
 
           def decode_b64(src: Path, dst: Path):
               data = repaired_image(src)
@@ -95,6 +101,31 @@ jobs:
                   print(f'WARN {src}: {exc}; keeping fallback column {i}')
           hero.save(root/'assets'/'hero-hq.jpg','JPEG',quality=88,optimize=True,progressive=True)
           print(f'OK assets/hero-hq.jpg: recovered_columns={recovered}/4')
+
+          article_out = root/'assets'/'articles'/'web-ui-tool-selection'
+          article_out.mkdir(parents=True, exist_ok=True)
+          for bundle_name in ('web-ui-tool-selection-1.zip.b64','web-ui-tool-selection-2.zip.b64'):
+              bundle_path = root/'assets'/'article-b64'/bundle_name
+              if not bundle_path.exists():
+                  continue
+              bundle = decode_base64_text(bundle_path)
+              with zipfile.ZipFile(io.BytesIO(bundle)) as archive:
+                  for member in archive.namelist():
+                      filename = Path(member).name
+                      if not re.fullmatch(r'manga-\d{2}\.webp', filename):
+                          continue
+                      target = article_out/filename
+                      target.write_bytes(archive.read(member))
+                      with Image.open(target) as im:
+                          im.verify()
+                      with Image.open(target) as im:
+                          if im.size != (760,1074):
+                              raise RuntimeError(f'FAILED {target}: unexpected size {im.size}')
+                          print(f'OK {target}: {im.size[0]}x{im.size[1]} {im.format}')
+          expected = {f'manga-{i:02d}.webp' for i in range(1,9)}
+          actual = {p.name for p in article_out.glob('manga-*.webp')}
+          if expected != actual:
+              raise RuntimeError(f'Article manga assets incomplete: missing={sorted(expected-actual)} extra={sorted(actual-expected)}')
           PY
 
       - name: Refresh production asset versions
@@ -118,12 +149,12 @@ jobs:
 
       - name: Commit production assets
         run: |
-          if [ -z "$(git status --porcelain -- assets/hero-hq.jpg assets/notebook-hq.jpg assets/shelves '*.html')" ]; then
+          if [ -z "$(git status --porcelain -- assets/hero-hq.jpg assets/notebook-hq.jpg assets/shelves assets/articles '*.html')" ]; then
             echo 'No production asset changes.'
             exit 0
           fi
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add assets/hero-hq.jpg assets/notebook-hq.jpg assets/shelves '*.html'
-          git commit -m 'Activate final hero alignment'
+          git add assets/hero-hq.jpg assets/notebook-hq.jpg assets/shelves assets/articles '*.html'
+          git commit -m 'Build production image assets'
           git push
