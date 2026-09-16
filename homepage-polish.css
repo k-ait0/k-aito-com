@@ -23,9 +23,10 @@
 /* Shelves: photo on top, editorial metadata underneath. */
 .shelves-grid{gap:10px!important}
 .shelves-grid .shelf{display:flex!important;flex-direction:column!important;align-items:flex-start!important;justify-content:flex-start!important;aspect-ratio:1/1.18!important;padding:59% 9px 9px!important;background-color:#faf9f2!important;border-bottom:1px solid rgba(35,57,47,.08)!important;overflow:hidden!important}
-.shelves-grid .shelf-symbol{display:none!important}
-.shelves-grid .shelf strong{display:block!important;margin:0!important;font-size:.84rem!important;line-height:1.35!important;letter-spacing:.045em!important}
-.shelves-grid .shelf small{display:block!important;margin:1px 0 0!important;font-size:.56rem!important;line-height:1.3!important;letter-spacing:.09em!important;color:#6d776d!important}
+.shelves-grid .shelf-symbol{display:inline-flex!important;position:absolute!important;left:9px!important;top:calc(59% + 7px)!important;width:16px!important;height:16px!important;align-items:center!important;justify-content:center!important;color:#243c31!important;margin:0!important}
+.shelves-grid .shelf-symbol svg{width:16px!important;height:16px!important;fill:none!important;stroke:currentColor!important;stroke-width:1.6!important;stroke-linecap:round!important;stroke-linejoin:round!important}
+.shelves-grid .shelf strong{display:block!important;margin:0 0 0 22px!important;font-size:.84rem!important;line-height:1.35!important;letter-spacing:.045em!important}
+.shelves-grid .shelf small{display:block!important;margin:1px 0 0 22px!important;font-size:.56rem!important;line-height:1.3!important;letter-spacing:.09em!important;color:#6d776d!important}
 .shelf-description{display:block;margin-top:5px;color:#687268;font-family:var(--serif);font-size:.61rem;line-height:1.45;letter-spacing:.015em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
 .shelf-count{display:block;margin-top:auto;padding-top:5px;color:#7a8279;font-family:Georgia,serif;font-size:.58rem;line-height:1.3;letter-spacing:.04em}
 .shelves-grid .shelf .shelf-arrow{display:none!important}
@@ -78,6 +79,7 @@
   .project-feature-link{min-height:214px!important}
   .shelves-grid{grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:12px!important}
   .shelves-grid .shelf{aspect-ratio:1/1.08!important;padding-top:57%!important}
+  .shelves-grid .shelf-symbol{top:calc(57% + 7px)!important}
 }
 
 @media(max-width:900px){
@@ -110,6 +112,7 @@
   .hero-polaroid .photo{height:150px!important}
   .hero-note{position:relative!important;right:auto!important;top:auto!important;width:min(60vw,196px)!important}
   .shelves-grid .shelf{aspect-ratio:1/1.08!important;padding-top:58%!important}
+  .shelves-grid .shelf-symbol{top:calc(58% + 8px)!important}
   .recent-section .entry-card{grid-template-columns:82px minmax(0,1fr) 18px!important;gap:10px!important;min-height:92px!important}
   .recent-section .card-photo{width:82px!important;height:62px!important}
   .recent-section .entry-card>.state{left:92px!important;top:10px!important}
