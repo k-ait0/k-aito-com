@@ -5,6 +5,7 @@ on:
     paths:
       - 'assets/hero-tiles/**'
       - 'assets/shelf-b64/**'
+      - 'assets/shelves/*.webp.b64'
       - 'assets/editorial-notebook.b64'
       - '.github/workflows/build-image-assets.yml'
   workflow_dispatch:
@@ -32,23 +33,51 @@ jobs:
           python - <<'PY'
           from pathlib import Path
           from PIL import Image, ImageOps, ImageFile
-          import base64, io, re
+          import base64, hashlib, io, re
 
-          ImageFile.LOAD_TRUNCATED_IMAGES = True
           root = Path('.')
           out = root / 'assets' / 'shelves'
           out.mkdir(parents=True, exist_ok=True)
 
+          # New production shelf assets: strict decode + cryptographic verification.
+          expected = {
+              'travel': 'b8226bca3a25f8e972b20fe9624be708ec098606dc72e98d5ca2a109f79fefc3',
+              'drink': 'fadd2739163226a69994bd2b162a39550f99241459d7b202549802c0ffa33785',
+              'moneytax': 'f586dbe36f1a7c6248efcfad805e94fd85067d32c3f978b34c2bb1d7f6718431',
+              'study': '7e5ac47f4a06e83312af3f3fe0a1332158006a9b2e312930a4f7e98c050b65be',
+              'create': '42d0b599662fed774471b5bc7243e1b21d77681268aa433d6a38de824813af71',
+              'project': 'ef276c336635575155b612b69cbdab4b9a9f08c4e7e53e500c844f24ad1fe2a9',
+              'archive': '1162864db832ec612d73b9728e51c9bc4a6ec5ebfbcda3c3c70980e9c498a9f',
+          }
+          for name, wanted in expected.items():
+              src = out / f'{name}.webp.b64'
+              data = base64.b64decode(src.read_text(encoding='utf-8').strip(), validate=True)
+              got = hashlib.sha256(data).hexdigest()
+              if got != wanted:
+                  raise RuntimeError(f'{name}: SHA-256 mismatch: {got} != {wanted}')
+              with Image.open(io.BytesIO(data)) as im:
+                  im.verify()
+              with Image.open(io.BytesIO(data)) as im:
+                  if im.format != 'WEBP' or im.size != (420, 236):
+                      raise RuntimeError(f'{name}: unexpected asset {im.format} {im.size}')
+              dst = out / f'{name}.webp'
+              dst.write_bytes(data)
+              print(f'OK {dst}: 420x236 WEBP sha256={got}')
+
+          # Keep the legacy sources buildable while they are still used elsewhere.
+          ImageFile.LOAD_TRUNCATED_IMAGES = True
           def source_chars(src: Path):
               raw = src.read_text(encoding='utf-8')
               return re.sub(r'[^A-Za-z0-9+/=]', '', raw).replace('=', '')
 
           def try_image(chars: str):
-              if not chars: return None
+              if not chars:
+                  return None
               padded = chars + '=' * ((4 - len(chars) % 4) % 4)
               try:
                   data = base64.b64decode(padded, validate=False)
-                  with Image.open(io.BytesIO(data)) as im: im.verify()
+                  with Image.open(io.BytesIO(data)) as im:
+                      im.verify()
                   return data
               except Exception:
                   return None
@@ -56,15 +85,18 @@ jobs:
           def repaired_image(src: Path):
               chars = source_chars(src)
               data = try_image(chars)
-              if data is not None: return data
+              if data is not None:
+                  return data
               for trim in range(1, 9):
                   data = try_image(chars[:-trim])
-                  if data is not None: return data
+                  if data is not None:
+                      return data
               if len(chars) % 4 == 1:
                   for index in range(len(chars)):
                       data = try_image(chars[:index] + chars[index + 1:])
-                      if data is not None: return data
-              raise RuntimeError(f'FAILED {src}: source cannot be repaired as a JPEG')
+                      if data is not None:
+                          return data
+              raise RuntimeError(f'FAILED {src}: source cannot be repaired as an image')
 
           def decode_b64(src: Path, dst: Path):
               data = repaired_image(src)
@@ -88,23 +120,42 @@ jobs:
               src = root/'assets'/'hero-tiles'/f'v2-col-{i}.b64'
               try:
                   data = repaired_image(src)
-                  with Image.open(io.BytesIO(data)) as src_im: im = src_im.convert('RGB')
-                  if im.size != (300,800): raise ValueError(f'unexpected size {im.size}')
-                  hero.paste(im,(i*300,0)); recovered += 1
+                  with Image.open(io.BytesIO(data)) as src_im:
+                      im = src_im.convert('RGB')
+                  if im.size != (300,800):
+                      raise ValueError(f'unexpected size {im.size}')
+                  hero.paste(im,(i*300,0))
+                  recovered += 1
               except Exception as exc:
                   print(f'WARN {src}: {exc}; keeping fallback column {i}')
           hero.save(root/'assets'/'hero-hq.jpg','JPEG',quality=88,optimize=True,progressive=True)
           print(f'OK assets/hero-hq.jpg: recovered_columns={recovered}/4')
           PY
 
-      - name: Refresh production asset versions
+      - name: Switch production references to verified WebP assets
         run: |
           python - <<'PY'
           from pathlib import Path
           import re
+
+          enhance = Path('enhance.css')
+          text = enhance.read_text(encoding='utf-8')
+          for name in ('travel','drink','moneytax','study','create','project','archive'):
+              text = re.sub(
+                  rf"/assets/shelves/{name}\.jpg\?v=\d+",
+                  f'/assets/shelves/{name}.webp?v=2',
+                  text,
+              )
+          enhance.write_text(text, encoding='utf-8')
+
+          image_fix = Path('image-fix.css')
+          text = image_fix.read_text(encoding='utf-8')
+          text = re.sub(r'/enhance\.css\?v=\d+', '/enhance.css?v=8', text)
+          image_fix.write_text(text, encoding='utf-8')
+
           for path in Path('.').rglob('*.html'):
               text = path.read_text(encoding='utf-8')
-              updated = re.sub(r'/image-fix\.css\?v=\d+', '/image-fix.css?v=23', text)
+              updated = re.sub(r'/image-fix\.css\?v=\d+', '/image-fix.css?v=24', text)
               if path == Path('index.html'):
                   updated = re.sub(r'/app\.js\?v=\d+', '/app.js?v=5', updated)
                   updated = re.sub(r'/site-enhance\.js\?v=\d+', '/site-enhance.js?v=13', updated)
@@ -118,12 +169,12 @@ jobs:
 
       - name: Commit production assets
         run: |
-          if [ -z "$(git status --porcelain -- assets/hero-hq.jpg assets/notebook-hq.jpg assets/shelves '*.html')" ]; then
+          if [ -z "$(git status --porcelain -- assets/hero-hq.jpg assets/notebook-hq.jpg assets/shelves enhance.css image-fix.css '*.html')" ]; then
             echo 'No production asset changes.'
             exit 0
           fi
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add assets/hero-hq.jpg assets/notebook-hq.jpg assets/shelves '*.html'
-          git commit -m 'Activate shelf icons and final homepage spacing'
+          git add assets/hero-hq.jpg assets/notebook-hq.jpg assets/shelves enhance.css image-fix.css '*.html'
+          git commit -m 'Activate verified shelf WebP assets'
           git push
