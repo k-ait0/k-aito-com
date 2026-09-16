@@ -1,7 +1,7 @@
 /* Shared visual asset layer */
 @import url('/cards.css?v=1');
 @import url('/home-layout.css?v=3');
-@import url('/responsive.css?v=1');
+@import url('/responsive.css?v=2');
 @import url('/enhance.css?v=1');
 
 .logo-mark{
@@ -15,6 +15,10 @@
   background-size:contain!important;
   background-position:center!important;
   background-repeat:no-repeat!important;
+}
+.photo{
+  background-image:url('/assets/editorial.jpg?v=7')!important;
+  background-color:#d9dfd0;
 }
 .photo-notebook{
   background-image:url('/assets/editorial.jpg?v=7')!important;
