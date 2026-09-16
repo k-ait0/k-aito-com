@@ -11,8 +11,11 @@
 @media(min-width:1181px){.header-inner:after{flex-basis:150px!important;font-size:.7rem!important}}
 
 /* Main content density. */
-.storage-content{padding-top:24px!important;padding-bottom:48px!important;row-gap:26px!important}
+.storage-content{padding-top:24px!important;padding-bottom:48px!important;row-gap:22px!important;column-gap:30px!important}
 .section-heading{margin-bottom:10px!important}
+.shelves-section{margin-bottom:2px!important}
+.recent-section,.projects-section{align-self:start!important}
+.bottom-columns{margin-top:2px!important;gap:30px!important}
 .shelves-section .section-heading h2:before,.recent-section .section-heading h2:before,.projects-section .section-heading h2:before,.random-section .section-heading h2:before{font-size:1.16rem!important;letter-spacing:.075em!important}
 .section-view-all{margin-left:auto!important;align-self:center!important;font-family:Arial,sans-serif!important;font-size:.61rem!important;letter-spacing:.08em!important;white-space:nowrap!important}
 .section-view-all span{font-size:.95rem!important;margin-left:2px!important}
@@ -40,55 +43,58 @@
 .recent-section .section-tail{margin-top:7px!important}
 
 /* Pick-up: keep one real project visual large rather than manufacturing dummy cards. */
-.project-feature-link{min-height:272px!important;padding:25px!important}
-.project-feature-kicker{left:22px!important;top:20px!important;font-size:.61rem!important}
-.project-feature-copy strong{font-size:1.18rem!important}
-.project-feature-copy>span{font-size:.75rem!important;line-height:1.65!important}
-.project-feature-copy em{margin-top:14px!important;font-size:.61rem!important}
+.project-feature-link{min-height:238px!important;padding:23px!important}
+.project-feature-kicker{left:20px!important;top:18px!important;font-size:.6rem!important}
+.project-feature-copy strong{font-size:1.12rem!important}
+.project-feature-copy>span{font-size:.73rem!important;line-height:1.62!important}
+.project-feature-copy em{margin-top:13px!important;font-size:.6rem!important}
 
-/* Desktop hero: tighten the collage toward the approved editorial composition. */
+/* Desktop hero alignment: tighter, slightly overlapping editorial composition. */
 @media(min-width:1181px){
-  .hero{height:500px!important}
-  .hero-poster{left:5.4%!important;top:28px!important;width:292px!important;min-height:424px!important;padding:21px 18px 22px!important;transform:rotate(-1.6deg)!important;box-shadow:3px 10px 18px rgba(8,24,14,.20)!important}
-  .poster-kite{width:104px!important;height:104px!important;margin-top:13px!important}
-  .poster-copy{font-size:.94rem!important;line-height:1.9!important}
-  .poster-hand{margin-top:12px!important}
-  .hero-thought{left:32.7%!important;top:74px!important;max-width:360px!important;font-size:1.42rem!important;line-height:1.7!important;letter-spacing:.13em!important}
-  .hero-thought:after{margin-top:16px!important;font-size:.66rem!important;line-height:1.68!important;letter-spacing:.09em!important}
-  .hero-polaroid{right:12.4%!important;top:52px!important;width:222px!important;transform:rotate(3.4deg)!important;box-shadow:4px 8px 17px rgba(20,36,23,.24)!important}
-  .hero-polaroid .photo{height:160px!important}
-  .hero-note{right:2.4%!important;top:254px!important;width:178px!important;transform:rotate(-3.6deg)!important;box-shadow:3px 5px 13px rgba(22,37,16,.24)!important}
+  .hero-poster{left:5.8%!important;top:27px!important;width:286px!important;min-height:414px!important;transform:rotate(-1.55deg)!important}
+  .hero-thought{left:31.5%!important;top:78px!important;max-width:350px!important}
+  .hero-polaroid{right:12.2%!important;top:47px!important;width:224px!important;transform:rotate(3.2deg)!important;box-shadow:4px 8px 16px rgba(20,36,23,.24)!important}
+  .hero-note{right:2.7%!important;top:246px!important;width:176px!important;transform:rotate(-3.2deg)!important;box-shadow:3px 5px 13px rgba(22,37,16,.25)!important}
 }
 
-/* Tablet landscape: preserve the same hierarchy without letting the hero dominate the screen. */
+/* Tablet landscape: retain editorial two-column lower layout. */
 @media(min-width:901px) and (max-width:1180px){
+  .storage-content{display:grid!important;grid-template-columns:minmax(0,1.22fr) minmax(292px,.78fr)!important;column-gap:24px!important;row-gap:22px!important;padding-left:34px!important;padding-right:34px!important}
+  .shelves-section{grid-column:1/-1!important;grid-row:1!important;margin-bottom:0!important}
+  .recent-section{grid-column:1!important;grid-row:2!important;margin-bottom:0!important}
+  .projects-section{grid-column:2!important;grid-row:2!important;margin-bottom:0!important}
+  .bottom-columns{grid-column:1/-1!important;grid-row:3!important;display:grid!important;grid-template-columns:minmax(0,1.18fr) minmax(250px,.82fr)!important;gap:24px!important}
   .hero{height:468px!important}
-  .hero-poster{left:3.4%!important;top:25px!important;width:254px!important;min-height:388px!important;padding:19px 17px 20px!important;transform:rotate(-1.5deg)!important}
-  .poster-kite{width:92px!important;height:92px!important;margin-top:10px!important}
-  .poster-copy{font-size:.87rem!important;line-height:1.84!important}
-  .poster-hand{font-size:.81rem!important;margin-top:9px!important}
-  .hero-thought{left:30.8%!important;top:60px!important;max-width:294px!important;font-size:1.15rem!important;line-height:1.7!important}
-  .hero-thought:after{margin-top:13px!important;font-size:.59rem!important;line-height:1.6!important}
-  .hero-polaroid{right:8.2%!important;top:49px!important;width:190px!important;transform:rotate(3.2deg)!important}
-  .hero-polaroid .photo{height:133px!important}
-  .hero-note{right:1.9%!important;top:244px!important;width:151px!important;padding:20px 13px 18px!important;transform:rotate(-3.3deg)!important}
-  .note-text{font-size:.82rem!important;line-height:1.82!important}
-  .storage-content{padding-left:34px!important;padding-right:34px!important}
+  .hero-poster{left:3.6%!important;top:25px!important;width:252px!important;min-height:384px!important;padding:18px 16px 19px!important;transform:rotate(-1.45deg)!important}
+  .poster-kite{width:91px!important;height:91px!important;margin-top:10px!important}
+  .poster-copy{font-size:.86rem!important;line-height:1.82!important}
+  .poster-hand{font-size:.8rem!important;margin-top:9px!important}
+  .hero-thought{left:30.8%!important;top:64px!important;max-width:294px!important;font-size:1.15rem!important;line-height:1.68!important}
+  .hero-thought:after{margin-top:13px!important;font-size:.59rem!important;line-height:1.58!important}
+  .hero-polaroid{right:9.8%!important;top:48px!important;width:190px!important;transform:rotate(2.8deg)!important;box-shadow:4px 7px 14px rgba(20,36,23,.22)!important}
+  .hero-polaroid .photo{height:134px!important}
+  .hero-note{right:2.3%!important;top:241px!important;width:150px!important;padding:20px 12px 17px!important;transform:rotate(-3deg)!important;box-shadow:3px 5px 12px rgba(22,37,16,.22)!important}
+  .note-text{font-size:.82rem!important;line-height:1.8!important}
+  .project-feature-link{min-height:214px!important}
+  .shelves-grid{grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:12px!important}
+  .shelves-grid .shelf{aspect-ratio:1/1.08!important;padding-top:57%!important}
 }
 
 @media(max-width:900px){
   .header-inner{padding:9px 18px!important;min-height:74px!important}
-  .hero{height:486px!important}
-  .hero-poster{left:2.7%!important;top:26px!important;width:226px!important;min-height:356px!important;padding:17px 15px 18px!important}
-  .poster-kite{width:82px!important;height:82px!important}
-  .poster-copy{font-size:.81rem!important;line-height:1.78!important}
-  .hero-thought{left:31.4%!important;top:50px!important;max-width:220px!important;font-size:.99rem!important;line-height:1.7!important}
-  .hero-thought:after{font-size:.54rem!important;line-height:1.52!important;margin-top:11px!important}
-  .hero-polaroid{right:3.2%!important;top:112px!important;width:168px!important}
-  .hero-polaroid .photo{height:114px!important}
-  .hero-note{right:1.5%!important;top:294px!important;width:141px!important}
+  .storage-content{display:block!important}
+  .hero{height:500px!important}
+  .hero-poster{left:2.5%!important;top:28px!important;width:232px!important;min-height:365px!important;padding:18px 15px 19px!important}
+  .poster-kite{width:84px!important;height:84px!important}
+  .poster-copy{font-size:.82rem!important;line-height:1.8!important}
+  .hero-thought{left:31%!important;top:48px!important;max-width:230px!important;font-size:1.02rem!important;line-height:1.72!important}
+  .hero-thought:after{font-size:.56rem!important;line-height:1.55!important;margin-top:12px!important}
+  .hero-polaroid{right:3.5%!important;top:118px!important;width:174px!important}
+  .hero-polaroid .photo{height:118px!important}
+  .hero-note{right:1.5%!important;top:305px!important;width:145px!important}
   .shelf-description{font-size:.66rem}
   .shelf-count{font-size:.62rem}
+  .project-feature-link{min-height:220px!important}
 }
 
 @media(max-width:700px){
