@@ -38,23 +38,52 @@ jobs:
           out = root / 'assets' / 'shelves'
           out.mkdir(parents=True, exist_ok=True)
 
-          def cleaned_b64(src: Path):
+          def source_chars(src: Path):
               raw = src.read_text(encoding='utf-8')
-              clean = re.sub(r'[^A-Za-z0-9+/=]', '', raw)
-              clean += '=' * ((4 - len(clean) % 4) % 4)
-              print(f'{src}: raw={len(raw)} clean={len(clean)}')
+              clean = re.sub(r'[^A-Za-z0-9+/=]', '', raw).replace('=', '')
+              print(f'{src}: raw={len(raw)} data_chars={len(clean)}')
               return clean
 
-          def decode_b64(src: Path, dst: Path):
+          def try_image(chars: str):
+              if not chars:
+                  return None
+              padded = chars + '=' * ((4 - len(chars) % 4) % 4)
               try:
-                  data = base64.b64decode(cleaned_b64(src), validate=False)
+                  data = base64.b64decode(padded, validate=False)
                   with Image.open(io.BytesIO(data)) as im:
                       im.verify()
-                  dst.write_bytes(data)
-                  with Image.open(dst) as im:
-                      print(f'OK {dst}: {im.size[0]}x{im.size[1]} {im.format}')
-              except Exception as exc:
-                  raise RuntimeError(f'FAILED {src}: {exc}') from exc
+                  return data
+              except Exception:
+                  return None
+
+          def repaired_image(src: Path):
+              chars = source_chars(src)
+              data = try_image(chars)
+              if data is not None:
+                  return data
+
+              # Common corruption from the previous text upload path: trailing junk.
+              for trim in range(1, 9):
+                  data = try_image(chars[:-trim])
+                  if data is not None:
+                      print(f'REPAIRED {src}: removed {trim} trailing base64 char(s)')
+                      return data
+
+              # If one extra base64 character was inserted somewhere, locate and remove it.
+              if len(chars) % 4 == 1:
+                  for index in range(len(chars)):
+                      data = try_image(chars[:index] + chars[index + 1:])
+                      if data is not None:
+                          print(f'REPAIRED {src}: removed extra char at index {index}')
+                          return data
+
+              raise RuntimeError(f'FAILED {src}: source cannot be repaired as a JPEG')
+
+          def decode_b64(src: Path, dst: Path):
+              data = repaired_image(src)
+              dst.write_bytes(data)
+              with Image.open(dst) as im:
+                  print(f'OK {dst}: {im.size[0]}x{im.size[1]} {im.format}')
 
           shelves = {
               'travel': 'travel.b64',
@@ -73,15 +102,12 @@ jobs:
           cols = []
           for i in range(4):
               src = root / 'assets' / 'hero-tiles' / f'v2-col-{i}.b64'
-              try:
-                  data = base64.b64decode(cleaned_b64(src), validate=False)
-                  im = Image.open(io.BytesIO(data)).convert('RGB')
-                  if im.size != (300, 800):
-                      raise ValueError(f'unexpected size {im.size}')
-                  cols.append(im)
-                  print(f'OK {src}: {im.size[0]}x{im.size[1]} JPEG')
-              except Exception as exc:
-                  raise RuntimeError(f'FAILED {src}: {exc}') from exc
+              data = repaired_image(src)
+              im = Image.open(io.BytesIO(data)).convert('RGB')
+              if im.size != (300, 800):
+                  raise RuntimeError(f'FAILED {src}: unexpected size {im.size}')
+              cols.append(im)
+              print(f'OK {src}: {im.size[0]}x{im.size[1]} JPEG')
 
           hero = Image.new('RGB', (1200, 800))
           for i, im in enumerate(cols):
