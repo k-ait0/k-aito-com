@@ -10,20 +10,14 @@
 .project-feature-copy em{margin-top:20px;font:600 .69rem/1.4 Arial,sans-serif;letter-spacing:.14em;font-style:normal;color:#fff}
 .project-feature-copy b{font-size:1rem;margin-left:10px;font-weight:400}
 
-/* Keep the hero usable before/after the HQ JavaScript enhancement. */
+/* Stable hero fallback while the higher-quality source is reconstructed. */
 .hero{background-color:#203226!important;background-size:cover!important;background-position:center 52%!important;background-repeat:no-repeat!important}
 .hero-thought{left:37%!important;top:62px!important;max-width:360px;padding:16px 20px;background:rgba(13,34,26,.62);color:#fff9e6!important;text-shadow:0 2px 8px rgba(0,0,0,.42)!important;transform:none!important;box-shadow:0 8px 28px rgba(0,0,0,.10)}
 
-/* Base styles use higher-specificity nth-child background shorthands.
-   Reassert the photographic shelf sprite after those rules. */
-.shelves-grid .shelf{background-image:url('/assets/shelves.jpg?v=1')!important;background-size:400% 200%!important;background-repeat:no-repeat!important;background-color:#6c7868!important}
-.shelves-grid .shelf[data-shelf="travel"]{background-position:0 0!important}
-.shelves-grid .shelf[data-shelf="sake"]{background-position:33.333% 0!important}
-.shelves-grid .shelf[data-shelf="money"]{background-position:66.666% 0!important}
-.shelves-grid .shelf[data-shelf="create"]{background-position:100% 0!important}
-.shelves-grid .shelf[data-shelf="technology"]{background-position:0 100%!important}
-.shelves-grid .shelf[data-shelf="business"]{background-position:33.333% 100%!important}
-.shelves-grid .shelf[data-shelf="thinking"]{background-position:66.666% 100%!important}
+/* Shelf photos are supplied individually by site-enhance.js.
+   Keep only a restrained placeholder before those assets arrive. */
+.shelves-grid .shelf{background-image:linear-gradient(145deg,#6f7c68,#3f5547)!important;background-size:cover!important;background-position:center!important;background-repeat:no-repeat!important;background-color:#526354!important}
+.shelves-grid .shelf.shelf-image-ready{filter:none}
 
 .small-notes-empty{grid-column:1/-1;min-height:170px;display:flex;flex-direction:column;justify-content:center;padding:30px 32px;background:#f4efdf;border:1px solid #ded5ba;box-shadow:2px 5px 14px rgba(35,57,47,.08);transform:rotate(-.35deg)}
 .small-notes-empty strong{font-family:var(--serif);font-size:1.05rem;letter-spacing:.05em}
