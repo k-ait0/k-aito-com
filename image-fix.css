@@ -3,6 +3,7 @@
 @import url('/home-layout.css?v=3');
 @import url('/responsive.css?v=2');
 @import url('/enhance.css?v=7');
+@import url('/homepage-polish.css?v=1');
 
 .logo-mark{
   background-image:url('/kite-mark.svg?v=2')!important;
