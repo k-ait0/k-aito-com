@@ -40,7 +40,7 @@ jobs:
           out = root / 'assets' / 'shelves'
           out.mkdir(parents=True, exist_ok=True)
 
-          # New production shelf assets: strict decode + cryptographic verification.
+          # New production shelf assets: strict binary verification after normalizing only Base64 padding.
           expected = {
               'travel': 'b8226bca3a25f8e972b20fe9624be708ec098606dc72e98d5ca2a109f79fefc3',
               'drink': 'fadd2739163226a69994bd2b162a39550f99241459d7b202549802c0ffa33785',
@@ -52,7 +52,9 @@ jobs:
           }
           for name, wanted in expected.items():
               src = out / f'{name}.webp.b64'
-              data = base64.b64decode(src.read_text(encoding='utf-8').strip(), validate=True)
+              encoded = src.read_text(encoding='utf-8').strip().rstrip('=')
+              encoded += '=' * ((4 - len(encoded) % 4) % 4)
+              data = base64.b64decode(encoded, validate=True)
               got = hashlib.sha256(data).hexdigest()
               if got != wanted:
                   raise RuntimeError(f'{name}: SHA-256 mismatch: {got} != {wanted}')
