@@ -42,17 +42,14 @@ jobs:
           def source_chars(src: Path):
               raw = src.read_text(encoding='utf-8')
               clean = re.sub(r'[^A-Za-z0-9+/=]', '', raw).replace('=', '')
-              print(f'{src}: raw={len(raw)} data_chars={len(clean)}')
               return clean
 
           def try_image(chars: str):
-              if not chars:
-                  return None
+              if not chars: return None
               padded = chars + '=' * ((4 - len(chars) % 4) % 4)
               try:
                   data = base64.b64decode(padded, validate=False)
-                  with Image.open(io.BytesIO(data)) as im:
-                      im.verify()
+                  with Image.open(io.BytesIO(data)) as im: im.verify()
                   return data
               except Exception:
                   return None
@@ -60,19 +57,14 @@ jobs:
           def repaired_image(src: Path):
               chars = source_chars(src)
               data = try_image(chars)
-              if data is not None:
-                  return data
+              if data is not None: return data
               for trim in range(1, 9):
                   data = try_image(chars[:-trim])
-                  if data is not None:
-                      print(f'REPAIRED {src}: removed {trim} trailing base64 char(s)')
-                      return data
+                  if data is not None: return data
               if len(chars) % 4 == 1:
                   for index in range(len(chars)):
                       data = try_image(chars[:index] + chars[index + 1:])
-                      if data is not None:
-                          print(f'REPAIRED {src}: removed extra char at index {index}')
-                          return data
+                      if data is not None: return data
               raise RuntimeError(f'FAILED {src}: source cannot be repaired as a JPEG')
 
           def decode_b64(src: Path, dst: Path):
@@ -82,49 +74,55 @@ jobs:
                   print(f'OK {dst}: {im.size[0]}x{im.size[1]} {im.format}')
 
           shelves = {
-              'travel': 'travel.b64',
-              'drink': 'drink.b64',
-              'moneytax': 'moneytax.b64',
-              'study': 'study.b64',
-              'create': 'create.b64',
-              'project': 'project.b64',
-              'archive': 'archive.b64',
+              'travel':'travel.b64','drink':'drink.b64','moneytax':'moneytax.b64',
+              'study':'study.b64','create':'create.b64','project':'project.b64','archive':'archive.b64'
           }
           for name, src in shelves.items():
-              decode_b64(root / 'assets' / 'shelf-b64' / src, out / f'{name}.jpg')
+              decode_b64(root/'assets'/'shelf-b64'/src, out/f'{name}.jpg')
+          decode_b64(root/'assets'/'editorial-notebook.b64', root/'assets'/'notebook-hq.jpg')
 
-          decode_b64(root / 'assets' / 'editorial-notebook.b64', root / 'assets' / 'notebook-hq.jpg')
-
-          with Image.open(root / 'assets' / 'hero-study.jpg') as fallback_src:
+          with Image.open(root/'assets'/'hero-study.jpg') as fallback_src:
               fallback = fallback_src.convert('RGB')
-          hero = ImageOps.fit(fallback, (1200, 800), method=Image.Resampling.LANCZOS)
+          hero = ImageOps.fit(fallback,(1200,800),method=Image.Resampling.LANCZOS)
           recovered = 0
           for i in range(4):
-              src = root / 'assets' / 'hero-tiles' / f'v2-col-{i}.b64'
+              src = root/'assets'/'hero-tiles'/f'v2-col-{i}.b64'
               try:
                   data = repaired_image(src)
-                  with Image.open(io.BytesIO(data)) as src_im:
-                      im = src_im.convert('RGB')
-                  if im.size != (300, 800):
-                      raise ValueError(f'unexpected size {im.size}')
-                  hero.paste(im, (i * 300, 0))
-                  recovered += 1
-                  print(f'OK {src}: {im.size[0]}x{im.size[1]} JPEG')
+                  with Image.open(io.BytesIO(data)) as src_im: im = src_im.convert('RGB')
+                  if im.size != (300,800): raise ValueError(f'unexpected size {im.size}')
+                  hero.paste(im,(i*300,0)); recovered += 1
               except Exception as exc:
                   print(f'WARN {src}: {exc}; keeping fallback column {i}')
-
-          hero.save(root / 'assets' / 'hero-hq.jpg', 'JPEG', quality=88, optimize=True, progressive=True)
-          print(f'OK assets/hero-hq.jpg: 1200x800 JPEG; recovered_columns={recovered}/4')
+          hero.save(root/'assets'/'hero-hq.jpg','JPEG',quality=88,optimize=True,progressive=True)
+          print(f'OK assets/hero-hq.jpg: recovered_columns={recovered}/4')
           PY
 
-      - name: Commit generated images
+      - name: Refresh production asset versions
         run: |
-          if [ -z "$(git status --porcelain -- assets/hero-hq.jpg assets/notebook-hq.jpg assets/shelves)" ]; then
-            echo 'No generated image changes.'
+          python - <<'PY'
+          from pathlib import Path
+          import re
+          for path in Path('.').rglob('*.html'):
+              text = path.read_text(encoding='utf-8')
+              updated = re.sub(r'/image-fix\.css\?v=\d+', '/image-fix.css?v=17', text)
+              if path == Path('index.html'):
+                  updated = re.sub(r'/site-enhance\.js\?v=\d+', '/site-enhance.js?v=11', updated)
+              else:
+                  updated = re.sub(r'<script src="/site-enhance\.js\?v=\d+" defer></script>', '', updated)
+              if updated != text:
+                  path.write_text(updated, encoding='utf-8')
+                  print(f'Updated {path}')
+          PY
+
+      - name: Commit production assets
+        run: |
+          if [ -z "$(git status --porcelain -- assets/hero-hq.jpg assets/notebook-hq.jpg assets/shelves '*.html')" ]; then
+            echo 'No production asset changes.'
             exit 0
           fi
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add assets/hero-hq.jpg assets/notebook-hq.jpg assets/shelves
-          git commit -m 'Generate production image assets'
+          git add assets/hero-hq.jpg assets/notebook-hq.jpg assets/shelves '*.html'
+          git commit -m 'Activate production image assets'
           git push
