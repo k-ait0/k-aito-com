@@ -31,7 +31,7 @@ jobs:
         run: |
           python - <<'PY'
           from pathlib import Path
-          from PIL import Image
+          from PIL import Image, ImageOps
           import base64, io, re
 
           root = Path('.')
@@ -62,14 +62,12 @@ jobs:
               if data is not None:
                   return data
 
-              # Common corruption from the previous text upload path: trailing junk.
               for trim in range(1, 9):
                   data = try_image(chars[:-trim])
                   if data is not None:
                       print(f'REPAIRED {src}: removed {trim} trailing base64 char(s)')
                       return data
 
-              # If one extra base64 character was inserted somewhere, locate and remove it.
               if len(chars) % 4 == 1:
                   for index in range(len(chars)):
                       data = try_image(chars[:index] + chars[index + 1:])
@@ -99,21 +97,24 @@ jobs:
 
           decode_b64(root / 'assets' / 'editorial-notebook.b64', root / 'assets' / 'notebook-hq.jpg')
 
-          cols = []
+          fallback = Image.open(root / 'assets' / 'hero-study.jpg').convert('RGB')
+          hero = ImageOps.fit(fallback, (1200, 800), method=Image.Resampling.LANCZOS)
+          recovered = 0
           for i in range(4):
               src = root / 'assets' / 'hero-tiles' / f'v2-col-{i}.b64'
-              data = repaired_image(src)
-              im = Image.open(io.BytesIO(data)).convert('RGB')
-              if im.size != (300, 800):
-                  raise RuntimeError(f'FAILED {src}: unexpected size {im.size}')
-              cols.append(im)
-              print(f'OK {src}: {im.size[0]}x{im.size[1]} JPEG')
+              try:
+                  data = repaired_image(src)
+                  im = Image.open(io.BytesIO(data)).convert('RGB')
+                  if im.size != (300, 800):
+                      raise ValueError(f'unexpected size {im.size}')
+                  hero.paste(im, (i * 300, 0))
+                  recovered += 1
+                  print(f'OK {src}: {im.size[0]}x{im.size[1]} JPEG')
+              except Exception as exc:
+                  print(f'WARN {src}: {exc}; keeping fallback column {i}')
 
-          hero = Image.new('RGB', (1200, 800))
-          for i, im in enumerate(cols):
-              hero.paste(im, (i * 300, 0))
           hero.save(root / 'assets' / 'hero-hq.jpg', 'JPEG', quality=88, optimize=True, progressive=True)
-          print('OK assets/hero-hq.jpg: 1200x800 JPEG')
+          print(f'OK assets/hero-hq.jpg: 1200x800 JPEG; recovered_columns={recovered}/4')
           PY
 
       - name: Commit generated images
