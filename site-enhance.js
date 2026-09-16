@@ -75,10 +75,10 @@
       canvas.toBlob(blob=>{
         if(!blob)return;
         const url=URL.createObjectURL(blob);
-        hero.style.backgroundImage=`url("${url}")`;
+        hero.style.setProperty('background-image',`url("${url}")`,'important');
         hero.classList.add('hero-hq-ready');
         document.querySelectorAll('.project-cover').forEach(element=>{
-          element.style.backgroundImage=`url("${url}")`;
+          element.style.setProperty('background-image',`url("${url}")`,'important');
         });
       },'image/jpeg',0.9);
     }catch(error){
