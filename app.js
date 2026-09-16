@@ -1,13 +1,13 @@
 "use strict";
 
 const shelves = [
-  {id:"travel", name:"旅", en:"TRAVEL", symbol:"旅"},
-  {id:"sake", name:"酒", en:"DRINK", symbol:"酒"},
-  {id:"money", name:"お金・税務", en:"MONEY / TAX", symbol:"¥"},
-  {id:"create", name:"学び・資格", en:"STUDY", symbol:"学"},
-  {id:"technology", name:"制作・開発", en:"CREATE", symbol:"⌘"},
-  {id:"business", name:"事業・プロジェクト", en:"PROJECT", symbol:"事"},
-  {id:"thinking", name:"その他", en:"ARCHIVE", symbol:"…"}
+  {id:"travel", name:"旅", en:"TRAVEL", symbol:"旅", description:"まだ見ぬ景色を探して"},
+  {id:"sake", name:"酒", en:"DRINK", symbol:"酒", description:"理想の1杯のために"},
+  {id:"money", name:"お金・税務", en:"MONEY / TAX", symbol:"¥", description:"仕組みで自由度を高める"},
+  {id:"create", name:"学び・資格", en:"STUDY", symbol:"学", description:"積み上げて、選べる未来を"},
+  {id:"technology", name:"制作・開発", en:"CREATE", symbol:"⌘", description:"つくるを楽しむ"},
+  {id:"business", name:"事業・プロジェクト", en:"PROJECT", symbol:"事", description:"小さく始めて、大きく育てる"},
+  {id:"thinking", name:"その他", en:"ARCHIVE", symbol:"…", description:"思いつきから記録まで"}
 ];
 
 const entries = [
@@ -35,15 +35,18 @@ const photoAlt = {travel:"列車と海のイメージ",sake:"日本酒と料理�
 
 function entryCard(entry, compact=false){
   const photo=entry.image || "notebook";
-  const picture=entry.image || compact ? `<span class="card-photo photo photo-${photo}" role="img" aria-label="${photoAlt[photo]}"></span>` : "";
+  const picture=entry.image || compact ? `<span class="card-photo photo photo-${photo}" role="img" aria-label="${photoAlt[photo]||"記事イメージ"}"></span>` : "";
   return `<button type="button" class="entry-card ${!entry.image&&!compact?'text-card':''}" data-entry="${entry.id}" aria-label="${esc(entry.title)}を読む">
     ${compact?picture+stateTag(entry.state):stateTag(entry.state)+picture}
-    <span class="card-copy">${!entry.image&&!compact?`<span class="card-date">${entry.date}</span>`:''}<span class="card-title">${esc(entry.title)}</span>${compact?'':`<span class="card-summary">${esc(entry.summary)}</span>`}<span class="card-tags">${entry.tags.map(tag=>'#'+esc(tag)).join('　')}</span><span class="card-arrow" aria-hidden="true">→</span></span>
+    <span class="card-copy"><span class="card-date">${entry.date}</span><span class="card-title">${esc(entry.title)}</span>${compact?'':`<span class="card-summary">${esc(entry.summary)}</span>`}<span class="card-tags">${entry.tags.map(tag=>'#'+esc(tag)).join('　')}</span><span class="card-arrow" aria-hidden="true">→</span></span>
   </button>`;
 }
 
 document.getElementById("recent-grid").innerHTML=entries.slice(0,5).map(entry=>entryCard(entry)).join("");
-document.getElementById("shelves-grid").innerHTML=shelves.map(shelf=>`<button type="button" class="shelf" data-shelf="${shelf.id}" aria-label="${shelf.name}の棚を見る"><span class="shelf-symbol" aria-hidden="true">${shelf.symbol}</span><strong>${shelf.name}</strong><small>${shelf.en}</small><span class="shelf-arrow" aria-hidden="true">→</span></button>`).join("");
+document.getElementById("shelves-grid").innerHTML=shelves.map(shelf=>{
+  const count=entries.filter(entry=>entry.shelf===shelf.id).length;
+  return `<button type="button" class="shelf" data-shelf="${shelf.id}" aria-label="${shelf.name}の棚を見る"><span class="shelf-symbol" aria-hidden="true">${shelf.symbol}</span><strong>${shelf.name}</strong><small>${shelf.en}</small><span class="shelf-description">${esc(shelf.description)}</span><span class="shelf-count">${count?`記事 ${count}`:'準備中'}</span><span class="shelf-arrow" aria-hidden="true">→</span></button>`;
+}).join("");
 document.getElementById("shelf-select").insertAdjacentHTML("beforeend",shelves.map(shelf=>`<option value="${shelf.id}">${shelf.name}</option>`).join(""));
 const projectEntries=entries.filter(entry=>entry.project);
 document.getElementById("projects-grid").innerHTML=projectEntries.length?projectEntries.map(entry=>`<button type="button" class="project-card" data-entry="${entry.id}" aria-label="${esc(entry.projectTitle||entry.title)}の詳細を読む"><span class="project-title">${esc(entry.projectTitle||entry.title)}</span><span class="project-image photo photo-${entry.image}" role="img" aria-label="${photoAlt[entry.image]}"><span class="project-status"><small>ON GOING</small><span>${entry.progress}</span></span></span><span class="project-tags">${entry.tags.map(tag=>`<span>#${esc(tag)}</span>`).join('')}</span><span class="project-description">${esc(entry.projectDescription)}</span><span class="project-end"><span>PROJECT NOTE</span><span aria-hidden="true">→</span></span></button>`).join(""):`<div class="empty-state"><strong>公開中のプロジェクトノートはまだありません。</strong><p>準備が整ったものから追加します。</p></div>`;
