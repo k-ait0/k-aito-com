@@ -14,6 +14,8 @@
 .storage-content{padding-top:24px!important;padding-bottom:48px!important;row-gap:26px!important}
 .section-heading{margin-bottom:10px!important}
 .shelves-section .section-heading h2:before,.recent-section .section-heading h2:before,.projects-section .section-heading h2:before,.random-section .section-heading h2:before{font-size:1.16rem!important;letter-spacing:.075em!important}
+.section-view-all{margin-left:auto!important;align-self:center!important;font-family:Arial,sans-serif!important;font-size:.61rem!important;letter-spacing:.08em!important;white-space:nowrap!important}
+.section-view-all span{font-size:.95rem!important;margin-left:2px!important}
 
 /* Shelves: photo on top, editorial metadata underneath. */
 .shelves-grid{gap:10px!important}
@@ -44,20 +46,49 @@
 .project-feature-copy>span{font-size:.75rem!important;line-height:1.65!important}
 .project-feature-copy em{margin-top:14px!important;font-size:.61rem!important}
 
-@media(max-width:1180px){
-  .header-inner{padding:9px 24px!important}
-  .shelves-grid{gap:13px!important}
-  .shelves-grid .shelf{aspect-ratio:1/1.12!important;padding-top:58%!important}
+/* Tablet landscape: preserve the same hierarchy without letting the hero dominate the screen. */
+@media(min-width:901px) and (max-width:1180px){
+  .hero{height:480px!important}
+  .hero-poster{left:3.2%!important;top:26px!important;width:258px!important;min-height:392px!important;padding:19px 17px 20px!important}
+  .poster-kite{width:94px!important;height:94px!important;margin-top:11px!important}
+  .poster-copy{font-size:.88rem!important;line-height:1.85!important}
+  .poster-hand{font-size:.82rem!important;margin-top:10px!important}
+  .hero-thought{left:30.5%!important;top:58px!important;max-width:305px!important;font-size:1.18rem!important;line-height:1.72!important}
+  .hero-thought:after{margin-top:14px!important;font-size:.61rem!important;line-height:1.62!important}
+  .hero-polaroid{right:8.5%!important;top:52px!important;width:196px!important}
+  .hero-polaroid .photo{height:138px!important}
+  .hero-note{right:1.7%!important;top:252px!important;width:154px!important;padding:21px 13px 18px!important}
+  .note-text{font-size:.84rem!important;line-height:1.85!important}
+  .storage-content{padding-left:34px!important;padding-right:34px!important}
 }
+
 @media(max-width:900px){
-  .header-inner{min-height:78px!important}
+  .header-inner{padding:9px 18px!important;min-height:74px!important}
+  .hero{height:500px!important}
+  .hero-poster{left:2.5%!important;top:28px!important;width:232px!important;min-height:365px!important;padding:18px 15px 19px!important}
+  .poster-kite{width:84px!important;height:84px!important}
+  .poster-copy{font-size:.82rem!important;line-height:1.8!important}
+  .hero-thought{left:31%!important;top:48px!important;max-width:230px!important;font-size:1.02rem!important;line-height:1.72!important}
+  .hero-thought:after{font-size:.56rem!important;line-height:1.55!important;margin-top:12px!important}
+  .hero-polaroid{right:3.5%!important;top:118px!important;width:174px!important}
+  .hero-polaroid .photo{height:118px!important}
+  .hero-note{right:1.5%!important;top:305px!important;width:145px!important}
   .shelf-description{font-size:.66rem}
   .shelf-count{font-size:.62rem}
 }
+
 @media(max-width:700px){
   .header-inner{min-height:68px!important;padding:8px 16px!important}
   .brand-kite{width:42px!important;height:42px!important}
   .storage-content{padding-top:24px!important}
+  .hero{height:auto!important}
+  .hero-inner{gap:14px!important;padding-top:22px!important;padding-bottom:48px!important}
+  .hero-poster{position:relative!important;left:auto!important;top:auto!important;width:min(82vw,318px)!important;min-height:0!important}
+  .hero-thought{position:relative!important;left:auto!important;top:auto!important;max-width:none!important;padding:16px 20px!important;background:rgba(15,37,28,.70)!important;font-size:.96rem!important;line-height:1.9!important;transform:none!important}
+  .hero-thought:after{display:none!important}
+  .hero-polaroid{position:relative!important;right:auto!important;top:auto!important;width:min(68vw,238px)!important}
+  .hero-polaroid .photo{height:150px!important}
+  .hero-note{position:relative!important;right:auto!important;top:auto!important;width:min(60vw,196px)!important}
   .shelves-grid .shelf{aspect-ratio:1/1.08!important;padding-top:58%!important}
   .recent-section .entry-card{grid-template-columns:82px minmax(0,1fr) 18px!important;gap:10px!important;min-height:92px!important}
   .recent-section .card-photo{width:82px!important;height:62px!important}
@@ -66,6 +97,7 @@
   .recent-section .card-date{margin-left:66px!important;font-size:.59rem!important}
   .recent-section .card-title{font-size:.84rem!important}
   .recent-section .card-summary{display:none!important}
+  .section-view-all{font-size:.58rem!important}
 }
 @media(max-width:430px){
   .shelves-grid .shelf{aspect-ratio:16/10!important;padding:58% 12px 10px!important}
