@@ -1,3 +1,4 @@
+# Trigger rebuild after all seven verified shelf payloads are present.
 name: Build image assets
 
 on:
