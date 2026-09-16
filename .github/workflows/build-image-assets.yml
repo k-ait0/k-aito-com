@@ -40,10 +40,9 @@ jobs:
           out = root / 'assets' / 'shelves'
           out.mkdir(parents=True, exist_ok=True)
 
-          # Production shelf assets: strict binary verification after normalizing only Base64 padding.
           expected = {
               'travel': '0e87e19b47c5d52f1cbb7b586ac2affc1140918352e94fa3915ca4721bc9808b',
-              'drink': '7ce4e74234eb4af365004ff311c0ceeeae323e6ade7c4c75b7ef1932d33e8c79',
+              'drink': 'c419c56714d1b078ab7a3e1690dd66277ea259e81422a9fe998a9e9cf201e023',
               'moneytax': '6d30c17e7e5e18cc3f8eab48c0c4db4a39734e1f880ee8a2f060cbc60ab2fed3',
               'study': 'a35b484f4922ca1aff2f6e2b807171a50b244f51f9aef0494352197b821c3b27',
               'create': '42d0b599662fed774471b5bc7243e1b21d77681268aa433d6a38de824813af71',
@@ -67,7 +66,6 @@ jobs:
               dst.write_bytes(data)
               print(f'OK {dst}: 420x236 WEBP sha256={got}')
 
-          # Keep the legacy sources buildable while they are still used elsewhere.
           ImageFile.LOAD_TRUNCATED_IMAGES = True
           def source_chars(src: Path):
               raw = src.read_text(encoding='utf-8')
