@@ -32,20 +32,29 @@ jobs:
           python - <<'PY'
           from pathlib import Path
           from PIL import Image
-          import base64, io
+          import base64, io, re
 
           root = Path('.')
           out = root / 'assets' / 'shelves'
           out.mkdir(parents=True, exist_ok=True)
 
+          def cleaned_b64(src: Path):
+              raw = src.read_text(encoding='utf-8')
+              clean = re.sub(r'[^A-Za-z0-9+/=]', '', raw)
+              clean += '=' * ((4 - len(clean) % 4) % 4)
+              print(f'{src}: raw={len(raw)} clean={len(clean)}')
+              return clean
+
           def decode_b64(src: Path, dst: Path):
-              raw = ''.join(src.read_text(encoding='utf-8').split())
-              data = base64.b64decode(raw, validate=True)
-              with Image.open(io.BytesIO(data)) as im:
-                  im.verify()
-              dst.write_bytes(data)
-              with Image.open(dst) as im:
-                  print(f'{dst}: {im.size[0]}x{im.size[1]} {im.format}')
+              try:
+                  data = base64.b64decode(cleaned_b64(src), validate=False)
+                  with Image.open(io.BytesIO(data)) as im:
+                      im.verify()
+                  dst.write_bytes(data)
+                  with Image.open(dst) as im:
+                      print(f'OK {dst}: {im.size[0]}x{im.size[1]} {im.format}')
+              except Exception as exc:
+                  raise RuntimeError(f'FAILED {src}: {exc}') from exc
 
           shelves = {
               'travel': 'travel.b64',
@@ -64,18 +73,21 @@ jobs:
           cols = []
           for i in range(4):
               src = root / 'assets' / 'hero-tiles' / f'v2-col-{i}.b64'
-              raw = ''.join(src.read_text(encoding='utf-8').split())
-              data = base64.b64decode(raw, validate=True)
-              im = Image.open(io.BytesIO(data)).convert('RGB')
-              if im.size != (300, 800):
-                  raise ValueError(f'{src} has unexpected size {im.size}')
-              cols.append(im)
+              try:
+                  data = base64.b64decode(cleaned_b64(src), validate=False)
+                  im = Image.open(io.BytesIO(data)).convert('RGB')
+                  if im.size != (300, 800):
+                      raise ValueError(f'unexpected size {im.size}')
+                  cols.append(im)
+                  print(f'OK {src}: {im.size[0]}x{im.size[1]} JPEG')
+              except Exception as exc:
+                  raise RuntimeError(f'FAILED {src}: {exc}') from exc
 
           hero = Image.new('RGB', (1200, 800))
           for i, im in enumerate(cols):
               hero.paste(im, (i * 300, 0))
           hero.save(root / 'assets' / 'hero-hq.jpg', 'JPEG', quality=88, optimize=True, progressive=True)
-          print('assets/hero-hq.jpg: 1200x800 JPEG')
+          print('OK assets/hero-hq.jpg: 1200x800 JPEG')
           PY
 
       - name: Commit generated images
