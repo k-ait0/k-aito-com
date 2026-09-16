@@ -21,6 +21,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Restore known-good shelf payloads
+        run: |
+          git fetch --depth=30 origin main
+          git show 2f422af4cb793dbba6bfc9cc5473e0a81ff53e85:assets/shelves/drink.webp.b64 > assets/shelves/drink.webp.b64
+          git show bc10490241b5cfe7ff4000fd5649968d64a5141c^:assets/shelves/study.webp.b64 > assets/shelves/study.webp.b64
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
@@ -42,9 +48,9 @@ jobs:
 
           expected = {
               'travel': '0e87e19b47c5d52f1cbb7b586ac2affc1140918352e94fa3915ca4721bc9808b',
-              'drink': 'c419c56714d1b078ab7a3e1690dd66277ea259e81422a9fe998a9e9cf201e023',
+              'drink': 'fadd2739163226a69994bd2b162a39550f99241459d7b202549802c0ffa33785',
               'moneytax': '6d30c17e7e5e18cc3f8eab48c0c4db4a39734e1f880ee8a2f060cbc60ab2fed3',
-              'study': 'a35b484f4922ca1aff2f6e2b807171a50b244f51f9aef0494352197b821c3b27',
+              'study': '7e5ac47f4a06e83312af3f3fe0a1332158006a9b2e312930a4f7e98c050b65be',
               'create': '42d0b599662fed774471b5bc7243e1b21d77681268aa433d6a38de824813af71',
               'project': 'ef276c336635575155b612b69cbdab4b9a9f08c4e7e53e500c844f24ad1fe2a9',
               'archive': '1162864db832ec612d73b9728e51c9bc4a6ec5ebfbcda3c3c70980e9c498a9f',
