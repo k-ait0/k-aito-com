@@ -32,13 +32,13 @@
 .shelves-grid .shelf{position:relative!important;height:auto!important;min-height:0!important;aspect-ratio:1/1.02!important;padding:62% 10px 10px!important;align-items:flex-start!important;justify-content:flex-start!important;text-align:left!important;border:0!important;border-radius:0!important;background-size:100% auto!important;background-position:center top!important;background-repeat:no-repeat!important;background-color:#faf9f2!important;box-shadow:none!important;filter:none!important;overflow:hidden!important;transition:transform .2s ease!important}
 .shelves-grid .shelf:hover{transform:translateY(-3px)!important;filter:none!important}
 .shelves-grid .shelf:before,.shelves-grid .shelf:after{display:none!important}
-.shelves-grid .shelf[data-shelf="travel"]{background-image:url('/assets/shelves/travel.jpg?v=1')!important}
-.shelves-grid .shelf[data-shelf="sake"]{background-image:url('/assets/shelves/drink.jpg?v=1')!important}
-.shelves-grid .shelf[data-shelf="money"]{background-image:url('/assets/shelves/moneytax.jpg?v=1')!important}
-.shelves-grid .shelf[data-shelf="create"]{background-image:url('/assets/shelves/study.jpg?v=1')!important}
-.shelves-grid .shelf[data-shelf="technology"]{background-image:url('/assets/shelves/create.jpg?v=1')!important}
-.shelves-grid .shelf[data-shelf="business"]{background-image:url('/assets/shelves/project.jpg?v=1')!important}
-.shelves-grid .shelf[data-shelf="thinking"]{background-image:url('/assets/shelves/archive.jpg?v=1')!important}
+.shelves-grid .shelf[data-shelf="travel"]{background-image:url('/assets/shelves/travel.webp?v=2')!important}
+.shelves-grid .shelf[data-shelf="sake"]{background-image:url('/assets/shelves/drink.webp?v=2')!important}
+.shelves-grid .shelf[data-shelf="money"]{background-image:url('/assets/shelves/moneytax.webp?v=2')!important}
+.shelves-grid .shelf[data-shelf="create"]{background-image:url('/assets/shelves/study.webp?v=2')!important}
+.shelves-grid .shelf[data-shelf="technology"]{background-image:url('/assets/shelves/create.webp?v=2')!important}
+.shelves-grid .shelf[data-shelf="business"]{background-image:url('/assets/shelves/project.webp?v=2')!important}
+.shelves-grid .shelf[data-shelf="thinking"]{background-image:url('/assets/shelves/archive.webp?v=2')!important}
 .shelves-grid .shelf strong,.shelves-grid .shelf small,.shelves-grid .shelf .shelf-arrow{position:relative!important;z-index:1!important;color:var(--ink)!important;text-shadow:none!important}
 .shelves-grid .shelf strong{font-family:var(--serif)!important;font-size:.88rem!important;line-height:1.4!important;letter-spacing:.055em!important;white-space:normal!important}
 .shelves-grid .shelf small{margin-top:2px!important;font-family:Arial,sans-serif!important;font-size:.61rem!important;line-height:1.35!important;letter-spacing:.08em!important;color:#667060!important}
