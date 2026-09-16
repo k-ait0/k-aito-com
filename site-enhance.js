@@ -49,4 +49,42 @@
     link.innerHTML='VIEW ALL <span>→</span>';
     viewAll.replaceWith(link);
   }
+
+  async function loadHighQualityHero(){
+    const hero=document.querySelector('.hero');
+    if(!hero)return;
+    const paths=[0,1,2,3].map(i=>`/assets/hero-tiles/v2-col-${i}.b64?v=1`);
+    try{
+      const encoded=await Promise.all(paths.map(async path=>{
+        const response=await fetch(path,{cache:'force-cache'});
+        if(!response.ok)throw new Error(`hero tile: ${path}`);
+        return (await response.text()).trim();
+      }));
+      const images=await Promise.all(encoded.map(data=>new Promise((resolve,reject)=>{
+        const image=new Image();
+        image.onload=()=>resolve(image);
+        image.onerror=reject;
+        image.src=`data:image/jpeg;base64,${data}`;
+      })));
+      const canvas=document.createElement('canvas');
+      canvas.width=1200;
+      canvas.height=800;
+      const context=canvas.getContext('2d');
+      if(!context)throw new Error('canvas unsupported');
+      images.forEach((image,index)=>context.drawImage(image,index*300,0,300,800));
+      canvas.toBlob(blob=>{
+        if(!blob)return;
+        const url=URL.createObjectURL(blob);
+        hero.style.backgroundImage=`url("${url}")`;
+        hero.classList.add('hero-hq-ready');
+        document.querySelectorAll('.project-cover').forEach(element=>{
+          element.style.backgroundImage=`url("${url}")`;
+        });
+      },'image/jpeg',0.9);
+    }catch(error){
+      console.warn('High-quality hero fallback is being used.',error);
+    }
+  }
+
+  loadHighQualityHero();
 })();
