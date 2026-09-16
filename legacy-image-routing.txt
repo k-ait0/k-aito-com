@@ -1,1 +1,0 @@
-Legacy image routing enabled via .htaccess. Broken /assets/*.webp and matching PNG paths redirect to verified root-level SVG assets.
