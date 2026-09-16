@@ -50,16 +50,18 @@
     viewAll.replaceWith(link);
   }
 
+  async function fetchText(path){
+    const response=await fetch(path,{cache:'force-cache'});
+    if(!response.ok)throw new Error(path);
+    return (await response.text()).trim();
+  }
+
   async function loadHighQualityHero(){
     const hero=document.querySelector('.hero');
     if(!hero)return;
     const paths=[0,1,2,3].map(i=>`/assets/hero-tiles/v2-col-${i}.b64?v=1`);
     try{
-      const encoded=await Promise.all(paths.map(async path=>{
-        const response=await fetch(path,{cache:'force-cache'});
-        if(!response.ok)throw new Error(`hero tile: ${path}`);
-        return (await response.text()).trim();
-      }));
+      const encoded=await Promise.all(paths.map(fetchText));
       const images=await Promise.all(encoded.map(data=>new Promise((resolve,reject)=>{
         const image=new Image();
         image.onload=()=>resolve(image);
@@ -86,5 +88,18 @@
     }
   }
 
+  async function loadHighQualityNotebook(){
+    try{
+      const data=await fetchText('/assets/editorial-notebook.b64?v=1');
+      const style=document.createElement('style');
+      style.dataset.asset='hq-notebook';
+      style.textContent=`.photo-notebook{background-image:url("data:image/jpeg;base64,${data}")!important;background-size:cover!important;background-position:center!important;background-repeat:no-repeat!important}`;
+      document.head.appendChild(style);
+    }catch(error){
+      console.warn('High-quality notebook fallback is being used.',error);
+    }
+  }
+
   loadHighQualityHero();
+  loadHighQualityNotebook();
 })();
