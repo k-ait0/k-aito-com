@@ -104,7 +104,7 @@ jobs:
           import re
           for path in Path('.').rglob('*.html'):
               text = path.read_text(encoding='utf-8')
-              updated = re.sub(r'/image-fix\.css\?v=\d+', '/image-fix.css?v=21', text)
+              updated = re.sub(r'/image-fix\.css\?v=\d+', '/image-fix.css?v=22', text)
               if path == Path('index.html'):
                   updated = re.sub(r'/app\.js\?v=\d+', '/app.js?v=5', updated)
                   updated = re.sub(r'/site-enhance\.js\?v=\d+', '/site-enhance.js?v=12', updated)
@@ -125,5 +125,5 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add assets/hero-hq.jpg assets/notebook-hq.jpg assets/shelves '*.html'
-          git commit -m 'Activate final hero alignment'
+          git commit -m 'Activate lower homepage layout refinement'
           git push
