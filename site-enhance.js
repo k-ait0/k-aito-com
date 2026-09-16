@@ -1,6 +1,26 @@
 "use strict";
 
 (function(){
+  const shelfRoutes={
+    travel:'/travel/',
+    sake:'/drink/',
+    money:'/money/',
+    create:'/study/',
+    technology:'/works/',
+    business:'/projects/',
+    thinking:'/archive/'
+  };
+
+  document.addEventListener('click',event=>{
+    const shelf=event.target.closest('.shelf[data-shelf]');
+    if(!shelf)return;
+    const route=shelfRoutes[shelf.dataset.shelf];
+    if(!route)return;
+    event.preventDefault();
+    event.stopImmediatePropagation();
+    window.location.href=route;
+  },true);
+
   const projects=document.getElementById('projects-grid');
   if(projects && projects.querySelector('.empty-state')){
     projects.innerHTML=`<a class="project-feature-link" href="/projects/digital-storage/" aria-label="K. Aito / DIGITAL STORAGE プロジェクトを見る">
@@ -20,6 +40,13 @@
     link.href='/projects/';
     link.innerHTML='VIEW ALL <span>→</span>';
     viewAll.replaceWith(link);
+  }
+
+  const randomGrid=document.getElementById('random-grid');
+  if(randomGrid && randomGrid.querySelectorAll('.entry-card').length<2){
+    randomGrid.innerHTML='<div class="small-notes-empty"><strong>断片メモは、まだありません。</strong><p>短いメモが増えたら、ここに少しずつ並べます。</p></div>';
+    const shuffle=document.getElementById('shuffle-button');
+    if(shuffle)shuffle.hidden=true;
   }
 
   async function fetchText(path){
