@@ -1,10 +1,5 @@
 # XServer Static configuration
 RewriteEngine On
 
-# Backward-compatible routes for cached references to the broken WebP files.
-RewriteRule ^assets/study\.webp$ /assets/study.jpg [R=302,L,NE]
-RewriteRule ^assets/editorial\.webp$ /assets/editorial.jpg [R=302,L,NE]
-RewriteRule ^assets/kaito-logo-transparent\.webp$ /assets/kaito-logo-transparent.png [R=302,L,NE]
-
-# Social thumbnail compatibility.
+# Backward compatibility for previously shared social thumbnail URLs.
 RewriteRule ^og-image\.svg$ /og-image.png [R=302,L,NE]
