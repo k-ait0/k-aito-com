@@ -119,7 +119,7 @@ jobs:
 
       - name: Commit generated images
         run: |
-          if git diff --quiet -- assets/hero-hq.jpg assets/notebook-hq.jpg assets/shelves; then
+          if [ -z "$(git status --porcelain -- assets/hero-hq.jpg assets/notebook-hq.jpg assets/shelves)" ]; then
             echo 'No generated image changes.'
             exit 0
           fi
