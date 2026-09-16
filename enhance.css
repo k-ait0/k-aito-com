@@ -10,6 +10,10 @@
 .project-feature-copy em{margin-top:20px;font:600 .69rem/1.4 Arial,sans-serif;letter-spacing:.14em;font-style:normal;color:#fff}
 .project-feature-copy b{font-size:1rem;margin-left:10px;font-weight:400}
 
+.small-notes-empty{grid-column:1/-1;min-height:170px;display:flex;flex-direction:column;justify-content:center;padding:30px 32px;background:#f4efdf;border:1px solid #ded5ba;box-shadow:2px 5px 14px rgba(35,57,47,.08);transform:rotate(-.35deg)}
+.small-notes-empty strong{font-family:var(--serif);font-size:1.05rem;letter-spacing:.05em}
+.small-notes-empty p{margin-top:8px;color:#697369;font-size:.82rem;line-height:1.8}
+
 /* Once JavaScript has supplied semantic labels, do not replace them with CSS-generated text. */
 .shelf strong:before,.shelf small:before{content:none!important}
 .shelf[data-shelf="sake"] strong,.shelf[data-shelf="money"] strong,.shelf[data-shelf="create"] strong,.shelf[data-shelf="technology"] strong,.shelf[data-shelf="business"] strong,.shelf[data-shelf="thinking"] strong{font-size:1rem!important}
@@ -21,4 +25,5 @@
   .project-feature-copy{max-width:96%}
   .project-feature-copy strong{font-size:1.22rem}
   .shelf[data-shelf] strong{font-size:.9rem!important}
+  .small-notes-empty{min-height:140px;padding:24px}
 }
