@@ -1,5 +1,5 @@
 /* Interactive refinements layered over the base homepage styles. */
-.project-feature-link{position:relative;display:flex;min-height:315px;overflow:hidden;padding:30px;color:#fff;background:linear-gradient(180deg,rgba(16,41,32,.08),rgba(16,41,32,.88)),url('/assets/hero-study.jpg?v=2') center/cover no-repeat;box-shadow:0 10px 28px rgba(27,49,39,.16);isolation:isolate;transition:transform .24s ease,box-shadow .24s ease}
+.project-feature-link{position:relative;display:flex;min-height:315px;overflow:hidden;padding:30px;color:#fff;background:linear-gradient(180deg,rgba(16,41,32,.08),rgba(16,41,32,.88)),url('/assets/hero-hq.jpg?v=1') center/cover no-repeat;box-shadow:0 10px 28px rgba(27,49,39,.16);isolation:isolate;transition:transform .24s ease,box-shadow .24s ease}
 .project-feature-link:after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,rgba(15,42,32,.08),rgba(15,42,32,.24));z-index:-1;transition:opacity .24s ease}
 .project-feature-link:hover{transform:translateY(-4px);box-shadow:0 15px 34px rgba(27,49,39,.22)}
 .project-feature-link:hover:after{opacity:.65}
@@ -10,20 +10,23 @@
 .project-feature-copy em{margin-top:20px;font:600 .69rem/1.4 Arial,sans-serif;letter-spacing:.14em;font-style:normal;color:#fff}
 .project-feature-copy b{font-size:1rem;margin-left:10px;font-weight:400}
 
-/* Stable hero fallback while the higher-quality source is reconstructed. */
 .hero{background-color:#203226!important;background-size:cover!important;background-position:center 52%!important;background-repeat:no-repeat!important}
 .hero-thought{left:37%!important;top:62px!important;max-width:360px;padding:16px 20px;background:rgba(13,34,26,.62);color:#fff9e6!important;text-shadow:0 2px 8px rgba(0,0,0,.42)!important;transform:none!important;box-shadow:0 8px 28px rgba(0,0,0,.10)}
 
-/* Shelf photos are supplied individually by site-enhance.js.
-   Keep only a restrained placeholder before those assets arrive. */
-.shelves-grid .shelf{background-image:linear-gradient(145deg,#6f7c68,#3f5547)!important;background-size:cover!important;background-position:center!important;background-repeat:no-repeat!important;background-color:#526354!important}
-.shelves-grid .shelf.shelf-image-ready{filter:none}
+/* Production shelf images: direct JPEGs, no browser-side base64 reconstruction. */
+.shelves-grid .shelf{background-size:cover!important;background-position:center!important;background-repeat:no-repeat!important;background-color:#526354!important}
+.shelves-grid .shelf[data-shelf="travel"]{background-image:url('/assets/shelves/travel.jpg?v=1')!important}
+.shelves-grid .shelf[data-shelf="sake"]{background-image:url('/assets/shelves/drink.jpg?v=1')!important}
+.shelves-grid .shelf[data-shelf="money"]{background-image:url('/assets/shelves/moneytax.jpg?v=1')!important}
+.shelves-grid .shelf[data-shelf="create"]{background-image:url('/assets/shelves/study.jpg?v=1')!important}
+.shelves-grid .shelf[data-shelf="technology"]{background-image:url('/assets/shelves/create.jpg?v=1')!important}
+.shelves-grid .shelf[data-shelf="business"]{background-image:url('/assets/shelves/project.jpg?v=1')!important}
+.shelves-grid .shelf[data-shelf="thinking"]{background-image:url('/assets/shelves/archive.jpg?v=1')!important}
 
 .small-notes-empty{grid-column:1/-1;min-height:170px;display:flex;flex-direction:column;justify-content:center;padding:30px 32px;background:#f4efdf;border:1px solid #ded5ba;box-shadow:2px 5px 14px rgba(35,57,47,.08);transform:rotate(-.35deg)}
 .small-notes-empty strong{font-family:var(--serif);font-size:1.05rem;letter-spacing:.05em}
 .small-notes-empty p{margin-top:8px;color:#697369;font-size:.82rem;line-height:1.8}
 
-/* Once JavaScript has supplied semantic labels, do not replace them with CSS-generated text. */
 .shelf strong:before,.shelf small:before{content:none!important}
 .shelf[data-shelf="sake"] strong,.shelf[data-shelf="money"] strong,.shelf[data-shelf="create"] strong,.shelf[data-shelf="technology"] strong,.shelf[data-shelf="business"] strong,.shelf[data-shelf="thinking"] strong{font-size:1rem!important}
 .shelf[data-shelf="sake"] small,.shelf[data-shelf="money"] small,.shelf[data-shelf="create"] small,.shelf[data-shelf="technology"] small,.shelf[data-shelf="business"] small,.shelf[data-shelf="thinking"] small{font-size:.66rem!important}
