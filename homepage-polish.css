@@ -1,0 +1,72 @@
+/* Final homepage proportion pass against the approved K. Aito reference. */
+
+/* Header: the reference is deliberately compact so the hero dominates. */
+.header-inner{max-width:1280px!important;min-height:72px!important;padding:8px 38px!important;gap:24px!important}
+.brand-kite{width:46px!important;height:46px!important}
+.brand small{font-size:.66rem!important;margin-top:2px!important}
+.main-nav{gap:26px!important}
+.main-nav a,.main-nav button{font-size:.7rem!important;padding:7px 0!important}
+.header-search{width:210px!important;padding:3px 7px 3px 14px!important}
+.header-search input{font-size:.75rem!important}
+@media(min-width:1181px){.header-inner:after{flex-basis:150px!important;font-size:.7rem!important}}
+
+/* Main content density. */
+.storage-content{padding-top:24px!important;padding-bottom:48px!important;row-gap:26px!important}
+.section-heading{margin-bottom:10px!important}
+.shelves-section .section-heading h2:before,.recent-section .section-heading h2:before,.projects-section .section-heading h2:before,.random-section .section-heading h2:before{font-size:1.16rem!important;letter-spacing:.075em!important}
+
+/* Shelves: photo on top, editorial metadata underneath. */
+.shelves-grid{gap:10px!important}
+.shelves-grid .shelf{display:flex!important;flex-direction:column!important;align-items:flex-start!important;justify-content:flex-start!important;aspect-ratio:1/1.18!important;padding:59% 9px 9px!important;background-color:#faf9f2!important;border-bottom:1px solid rgba(35,57,47,.08)!important;overflow:hidden!important}
+.shelves-grid .shelf-symbol{display:none!important}
+.shelves-grid .shelf strong{display:block!important;margin:0!important;font-size:.84rem!important;line-height:1.35!important;letter-spacing:.045em!important}
+.shelves-grid .shelf small{display:block!important;margin:1px 0 0!important;font-size:.56rem!important;line-height:1.3!important;letter-spacing:.09em!important;color:#6d776d!important}
+.shelf-description{display:block;margin-top:5px;color:#687268;font-family:var(--serif);font-size:.61rem;line-height:1.45;letter-spacing:.015em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+.shelf-count{display:block;margin-top:auto;padding-top:5px;color:#7a8279;font-family:Georgia,serif;font-size:.58rem;line-height:1.3;letter-spacing:.04em}
+.shelves-grid .shelf .shelf-arrow{display:none!important}
+
+/* Latest: flatter magazine rows, with state and date on the same visual line. */
+.recent-section .entry-card{grid-template-columns:124px minmax(0,1fr) 26px!important;gap:16px!important;min-height:102px!important;padding:9px 0!important}
+.recent-section .card-photo{width:124px!important;height:80px!important}
+.recent-section .entry-card>.state{top:14px!important;left:140px!important;min-height:20px!important;padding:2px 8px!important;font-size:.61rem!important}
+.recent-section .card-copy{padding-top:20px!important}
+.recent-section .card-date{margin:0 0 4px 78px!important;font-size:.65rem!important;line-height:1.3!important}
+.recent-section .card-title{font-size:.94rem!important;line-height:1.45!important}
+.recent-section .card-summary{margin-top:2px!important;font-size:.7rem!important;line-height:1.55!important}
+.recent-section .card-tags{display:none!important}
+.recent-section .card-arrow{font-size:1.15rem!important;padding-right:2px!important}
+.recent-section .section-tail{margin-top:7px!important}
+
+/* Pick-up: keep one real project visual large rather than manufacturing dummy cards. */
+.project-feature-link{min-height:272px!important;padding:25px!important}
+.project-feature-kicker{left:22px!important;top:20px!important;font-size:.61rem!important}
+.project-feature-copy strong{font-size:1.18rem!important}
+.project-feature-copy>span{font-size:.75rem!important;line-height:1.65!important}
+.project-feature-copy em{margin-top:14px!important;font-size:.61rem!important}
+
+@media(max-width:1180px){
+  .header-inner{padding:9px 24px!important}
+  .shelves-grid{gap:13px!important}
+  .shelves-grid .shelf{aspect-ratio:1/1.12!important;padding-top:58%!important}
+}
+@media(max-width:900px){
+  .header-inner{min-height:78px!important}
+  .shelf-description{font-size:.66rem}
+  .shelf-count{font-size:.62rem}
+}
+@media(max-width:700px){
+  .header-inner{min-height:68px!important;padding:8px 16px!important}
+  .brand-kite{width:42px!important;height:42px!important}
+  .storage-content{padding-top:24px!important}
+  .shelves-grid .shelf{aspect-ratio:1/1.08!important;padding-top:58%!important}
+  .recent-section .entry-card{grid-template-columns:82px minmax(0,1fr) 18px!important;gap:10px!important;min-height:92px!important}
+  .recent-section .card-photo{width:82px!important;height:62px!important}
+  .recent-section .entry-card>.state{left:92px!important;top:10px!important}
+  .recent-section .card-copy{padding-top:18px!important}
+  .recent-section .card-date{margin-left:66px!important;font-size:.59rem!important}
+  .recent-section .card-title{font-size:.84rem!important}
+  .recent-section .card-summary{display:none!important}
+}
+@media(max-width:430px){
+  .shelves-grid .shelf{aspect-ratio:16/10!important;padding:58% 12px 10px!important}
+}
