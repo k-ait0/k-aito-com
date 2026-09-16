@@ -1,0 +1,22 @@
+.comic-article{max-width:800px}
+.comic-article .article-copy>h2{font-size:27px;line-height:1.55;margin:56px 0 18px;color:#193f32}
+.comic-article .article-copy>h2:first-child{margin-top:36px}
+.comic-article .article-copy blockquote{margin:28px 0;padding:20px 24px;border-left:4px solid #8da641;background:#eff3dc;font-weight:700}
+.comic-article .article-copy strong{color:#193f32}
+.comic-article .article-copy .key-line{font-weight:700;background:linear-gradient(transparent 64%,#dbe895 64%)}
+.comic-figure{margin:36px 0 52px}
+.comic-figure img{display:block;width:100%;height:auto;background:#fff;border:1px solid #b5c1b0;box-shadow:0 14px 34px rgba(25,63,50,.11)}
+.comic-figure figcaption{margin-top:10px;color:#586358;font-size:13px;line-height:1.8;text-align:center}
+.tool-stack{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:24px 0}
+.tool-stack>div{border:1px solid #b5c1b0;background:#fffef9;padding:18px}
+.tool-stack strong{display:block;margin-bottom:4px}
+.operation-rules{counter-reset:operation-rule;list-style:none;padding:0!important;margin:24px 0!important}
+.operation-rules li{counter-increment:operation-rule;border-top:1px solid #b5c1b0;padding:18px 0;margin:0!important}
+.operation-rules li::before{content:"RULE " counter(operation-rule);display:block;color:#547427;font-size:12px;font-weight:700;letter-spacing:.08em;margin-bottom:6px}
+.article-callout{border-left:4px solid #193f32;padding:16px 0 16px 22px;margin:32px 0}
+.article-callout p{margin:0}
+@media(max-width:760px){
+  .comic-article .article-copy>h2{font-size:23px;margin-top:44px}
+  .comic-figure{margin:28px 0 42px}
+  .tool-stack{grid-template-columns:1fr}
+}
