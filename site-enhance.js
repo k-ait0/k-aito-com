@@ -59,7 +59,7 @@
     const visualTargets=[...document.querySelectorAll('.hero,.project-cover')];
     const feature=document.querySelector('.project-feature-link');
     if(!visualTargets.length&&!feature)return;
-    const paths=[0,1,2,3].map(i=>`/assets/hero-tiles/v2-col-${i}.b64?v=1`);
+    const paths=[0,1,2,3].map(i=>`/assets/hero-tiles/v2-col-${i}.b64?v=2`);
     try{
       const encoded=await Promise.all(paths.map(fetchText));
       const images=await Promise.all(encoded.map(data=>new Promise((resolve,reject)=>{
@@ -73,31 +73,41 @@
       canvas.height=800;
       const context=canvas.getContext('2d');
       if(!context)throw new Error('canvas unsupported');
+      context.fillStyle='#203226';
+      context.fillRect(0,0,1200,800);
       images.forEach((image,index)=>context.drawImage(image,index*300,0,300,800));
-      canvas.toBlob(blob=>{
-        if(!blob)return;
-        const url=URL.createObjectURL(blob);
-        visualTargets.forEach(element=>{
-          element.style.setProperty('background-image',`url("${url}")`,'important');
-        });
-        document.querySelectorAll('.hero').forEach(element=>element.classList.add('hero-hq-ready'));
-        if(feature){
-          feature.style.setProperty('background-image',`linear-gradient(180deg,rgba(16,41,32,.08),rgba(16,41,32,.88)),url("${url}")`,'important');
-        }
-      },'image/jpeg',0.9);
+      const url=canvas.toDataURL('image/jpeg',0.90);
+      visualTargets.forEach(element=>{
+        element.style.setProperty('background-image',`url("${url}")`,'important');
+        element.style.setProperty('background-size','cover','important');
+        element.style.setProperty('background-position','center 52%','important');
+        element.style.setProperty('background-repeat','no-repeat','important');
+        element.style.setProperty('background-color','#203226','important');
+      });
+      document.querySelectorAll('.hero').forEach(element=>element.classList.add('hero-hq-ready'));
+      if(feature){
+        feature.style.setProperty('background-image',`linear-gradient(180deg,rgba(16,41,32,.08),rgba(16,41,32,.88)),url("${url}")`,'important');
+        feature.style.setProperty('background-size','cover','important');
+        feature.style.setProperty('background-position','center','important');
+        feature.style.setProperty('background-repeat','no-repeat','important');
+      }
     }catch(error){
       console.warn('High-quality hero fallback is being used.',error);
     }
   }
 
   async function loadHighQualityNotebook(){
-    if(!document.querySelector('.photo-notebook'))return;
+    const targets=[...document.querySelectorAll('.photo-notebook')];
+    if(!targets.length)return;
     try{
-      const data=await fetchText('/assets/editorial-notebook.b64?v=1');
-      const style=document.createElement('style');
-      style.dataset.asset='hq-notebook';
-      style.textContent=`.photo-notebook{background-image:url("data:image/jpeg;base64,${data}")!important;background-size:cover!important;background-position:center!important;background-repeat:no-repeat!important}`;
-      document.head.appendChild(style);
+      const data=await fetchText('/assets/editorial-notebook.b64?v=2');
+      const image=`url("data:image/jpeg;base64,${data}")`;
+      targets.forEach(element=>{
+        element.style.setProperty('background-image',image,'important');
+        element.style.setProperty('background-size','cover','important');
+        element.style.setProperty('background-position','center','important');
+        element.style.setProperty('background-repeat','no-repeat','important');
+      });
     }catch(error){
       console.warn('High-quality notebook fallback is being used.',error);
     }
