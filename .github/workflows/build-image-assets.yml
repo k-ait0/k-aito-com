@@ -1,0 +1,91 @@
+name: Build image assets
+
+on:
+  push:
+    paths:
+      - 'assets/hero-tiles/**'
+      - 'assets/shelf-b64/**'
+      - 'assets/editorial-notebook.b64'
+      - '.github/workflows/build-image-assets.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-images:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install Pillow
+        run: python -m pip install --disable-pip-version-check pillow
+
+      - name: Decode and validate image assets
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from PIL import Image
+          import base64, io
+
+          root = Path('.')
+          out = root / 'assets' / 'shelves'
+          out.mkdir(parents=True, exist_ok=True)
+
+          def decode_b64(src: Path, dst: Path):
+              raw = ''.join(src.read_text(encoding='utf-8').split())
+              data = base64.b64decode(raw, validate=True)
+              with Image.open(io.BytesIO(data)) as im:
+                  im.verify()
+              dst.write_bytes(data)
+              with Image.open(dst) as im:
+                  print(f'{dst}: {im.size[0]}x{im.size[1]} {im.format}')
+
+          shelves = {
+              'travel': 'travel.b64',
+              'drink': 'drink.b64',
+              'moneytax': 'moneytax.b64',
+              'study': 'study.b64',
+              'create': 'create.b64',
+              'project': 'project.b64',
+              'archive': 'archive.b64',
+          }
+          for name, src in shelves.items():
+              decode_b64(root / 'assets' / 'shelf-b64' / src, out / f'{name}.jpg')
+
+          decode_b64(root / 'assets' / 'editorial-notebook.b64', root / 'assets' / 'notebook-hq.jpg')
+
+          cols = []
+          for i in range(4):
+              src = root / 'assets' / 'hero-tiles' / f'v2-col-{i}.b64'
+              raw = ''.join(src.read_text(encoding='utf-8').split())
+              data = base64.b64decode(raw, validate=True)
+              im = Image.open(io.BytesIO(data)).convert('RGB')
+              if im.size != (300, 800):
+                  raise ValueError(f'{src} has unexpected size {im.size}')
+              cols.append(im)
+
+          hero = Image.new('RGB', (1200, 800))
+          for i, im in enumerate(cols):
+              hero.paste(im, (i * 300, 0))
+          hero.save(root / 'assets' / 'hero-hq.jpg', 'JPEG', quality=88, optimize=True, progressive=True)
+          print('assets/hero-hq.jpg: 1200x800 JPEG')
+          PY
+
+      - name: Commit generated images
+        run: |
+          if git diff --quiet -- assets/hero-hq.jpg assets/notebook-hq.jpg assets/shelves; then
+            echo 'No generated image changes.'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add assets/hero-hq.jpg assets/notebook-hq.jpg assets/shelves
+          git commit -m 'Generate production image assets'
+          git push
