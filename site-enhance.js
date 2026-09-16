@@ -29,8 +29,9 @@
   }
 
   async function loadHighQualityHero(){
-    const hero=document.querySelector('.hero');
-    if(!hero)return;
+    const visualTargets=[...document.querySelectorAll('.hero,.project-cover')];
+    const feature=document.querySelector('.project-feature-link');
+    if(!visualTargets.length&&!feature)return;
     const paths=[0,1,2,3].map(i=>`/assets/hero-tiles/v2-col-${i}.b64?v=1`);
     try{
       const encoded=await Promise.all(paths.map(fetchText));
@@ -49,11 +50,13 @@
       canvas.toBlob(blob=>{
         if(!blob)return;
         const url=URL.createObjectURL(blob);
-        hero.style.setProperty('background-image',`url("${url}")`,'important');
-        hero.classList.add('hero-hq-ready');
-        document.querySelectorAll('.project-cover').forEach(element=>{
+        visualTargets.forEach(element=>{
           element.style.setProperty('background-image',`url("${url}")`,'important');
         });
+        document.querySelectorAll('.hero').forEach(element=>element.classList.add('hero-hq-ready'));
+        if(feature){
+          feature.style.setProperty('background-image',`linear-gradient(180deg,rgba(16,41,32,.08),rgba(16,41,32,.88)),url("${url}")`,'important');
+        }
       },'image/jpeg',0.9);
     }catch(error){
       console.warn('High-quality hero fallback is being used.',error);
@@ -61,6 +64,7 @@
   }
 
   async function loadHighQualityNotebook(){
+    if(!document.querySelector('.photo-notebook'))return;
     try{
       const data=await fetchText('/assets/editorial-notebook.b64?v=1');
       const style=document.createElement('style');
