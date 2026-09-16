@@ -31,9 +31,10 @@ jobs:
         run: |
           python - <<'PY'
           from pathlib import Path
-          from PIL import Image, ImageOps
+          from PIL import Image, ImageOps, ImageFile
           import base64, io, re
 
+          ImageFile.LOAD_TRUNCATED_IMAGES = True
           root = Path('.')
           out = root / 'assets' / 'shelves'
           out.mkdir(parents=True, exist_ok=True)
@@ -61,20 +62,17 @@ jobs:
               data = try_image(chars)
               if data is not None:
                   return data
-
               for trim in range(1, 9):
                   data = try_image(chars[:-trim])
                   if data is not None:
                       print(f'REPAIRED {src}: removed {trim} trailing base64 char(s)')
                       return data
-
               if len(chars) % 4 == 1:
                   for index in range(len(chars)):
                       data = try_image(chars[:index] + chars[index + 1:])
                       if data is not None:
                           print(f'REPAIRED {src}: removed extra char at index {index}')
                           return data
-
               raise RuntimeError(f'FAILED {src}: source cannot be repaired as a JPEG')
 
           def decode_b64(src: Path, dst: Path):
@@ -97,14 +95,16 @@ jobs:
 
           decode_b64(root / 'assets' / 'editorial-notebook.b64', root / 'assets' / 'notebook-hq.jpg')
 
-          fallback = Image.open(root / 'assets' / 'hero-study.jpg').convert('RGB')
+          with Image.open(root / 'assets' / 'hero-study.jpg') as fallback_src:
+              fallback = fallback_src.convert('RGB')
           hero = ImageOps.fit(fallback, (1200, 800), method=Image.Resampling.LANCZOS)
           recovered = 0
           for i in range(4):
               src = root / 'assets' / 'hero-tiles' / f'v2-col-{i}.b64'
               try:
                   data = repaired_image(src)
-                  im = Image.open(io.BytesIO(data)).convert('RGB')
+                  with Image.open(io.BytesIO(data)) as src_im:
+                      im = src_im.convert('RGB')
                   if im.size != (300, 800):
                       raise ValueError(f'unexpected size {im.size}')
                   hero.paste(im, (i * 300, 0))
