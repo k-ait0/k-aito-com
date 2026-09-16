@@ -22,8 +22,8 @@
 }
 .photo-notebook{
   background-image:url('/assets/editorial.jpg?v=7')!important;
-  background-size:cover!important;
-  background-position:center!important;
+  background-size:200% 200%!important;
+  background-position:right bottom!important;
   background-repeat:no-repeat!important;
 }
 .hero{
