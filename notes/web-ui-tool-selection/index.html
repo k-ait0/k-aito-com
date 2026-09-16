@@ -1,0 +1,43 @@
+<!doctype html><html lang="ja"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Web制作ツールを探していたら、結局「HTML/CSSを原本にする」に戻ってきた | K. Aito</title><meta name="description" content="直感操作できるWeb制作ツールを探し、FramerやWeWebを検討した末に、HTML/CSS/JSを原本にする運用へ戻ってきた制作ログ。漫画8ページ付き。"><link rel="stylesheet" href="/styles.css?v=3"><link rel="stylesheet" href="/image-fix.css?v=21"><link rel="stylesheet" href="/pages.css?v=3"><link rel="stylesheet" href="/article-comic.css?v=1"></head><body><a class="skip-link" href="#content">本文へ</a><header class="site-header"><div class="header-inner"><a class="brand" href="/" aria-label="K. Aito ホーム"><span class="brand-kite logo-mark" aria-hidden="true"></span><span class="brand-lockup"><span class="logo-wordmark" aria-hidden="true"></span><span class="sr-only">K. Aito</span><small>風にのせて、もっと先へ。</small></span></a><nav class="main-nav" aria-label="メインナビゲーション"><a href="/">HOME</a><a href="/storage/">SHELVES</a><a href="/projects/">PROJECTS</a><a href="/archive/">ARCHIVE</a><a href="/about/">ABOUT</a></nav></div></header><main id="content" class="page-wrap"><div class="breadcrumb"><a href="/">HOME</a><span>/</span><a href="/archive/">ARCHIVE</a><span>/</span>2026.09.16</div><article class="article-page comic-article"><div class="note-meta"><span>MAKING</span><time datetime="2026-09-16">2026.09.16</time></div><h1>Web制作ツールを探していたら、結局「HTML/CSSを原本にする」に戻ってきた</h1><p class="page-lead">直感操作できるツールを探していたはずが、最後は「何を原本として残したいか」という話になった。</p><div class="article-copy">
+<p>AIにHTMLやCSSを書いてもらえば、Webサイトの初期制作はかなり速い。ただ、その後の細かなUI調整になると少し面倒だった。</p>
+<h2>微調整を毎回AIに説明するのが面倒だった</h2>
+<p>「ここの余白を少し狭く」「カードをもう少し右に」「スマホでは1列に」。こうした変更を毎回文章で説明して、結果を見て、また説明する。できなくはないけれど、自分で画面を直接触った方が速い場面が多い。</p>
+<p><span class="key-line">自分で画面を直接触れた方が早いのでは？</span></p>
+<figure class="comic-figure"><img src="/assets/articles/web-ui-tool-selection/manga-01.webp" width="1055" height="1491" fetchpriority="high" alt="Web制作ツール探しのきっかけを描いた漫画1ページ目"><figcaption>AIで速く作れる時代だからこそ、微調整のやり方が次の課題になった。</figcaption></figure>
+<h2>最初はFramerがかなり良さそうだった</h2>
+<p>最初に気になったのはFramer。見たまま要素を動かし、余白や配置、文字サイズを調整できる感覚はかなり分かりやすい。LPや一般的なWebサイトなら、これで十分快適になりそうだった。</p>
+<blockquote>でも、今後作りたいのは本当に「Webサイトだけ」なのか？</blockquote>
+<figure class="comic-figure"><img src="/assets/articles/web-ui-tool-selection/manga-02.webp" width="1055" height="1491" loading="lazy" alt="Framerを候補として検討する様子を描いた漫画2ページ目"><figcaption>最初はFramerがかなり有力に見えた。</figcaption></figure>
+<h2>でも、作りたいものはもっと広かった</h2>
+<p>記事サイトだけではなく、シミュレーター、診断ツール、データベース、家系図エディター、管理画面のようなものも作りたい。そこでWeWebやBubbleのような、Webアプリまでまとめて扱える環境が気になり始めた。</p>
+<p>一度は、<span class="key-line">「1つのツールに集約した方が楽なのでは？」</span>という方向に考えが進んだ。</p>
+<figure class="comic-figure"><img src="/assets/articles/web-ui-tool-selection/manga-03.webp" width="1055" height="1491" loading="lazy" alt="サイト以外のツール制作も考え始めた様子を描いた漫画3ページ目"><figcaption>記事サイトだけでなく、ツールや管理画面まで考えると候補が変わってくる。</figcaption></figure>
+<h2>「1ツール」と「簡単」は同じではない</h2>
+<p>統合型ツールはできることが多い。その一方で、データベース、ワークフロー、API、認証、条件分岐、状態管理など、そのツールの中で理解することも増える。</p>
+<p><strong>「1つのツールを使う」ことと「1つのツールだけ覚えれば済む」ことは違う。</strong></p>
+<p>自分が求めているのは、全部入りそのものより、普段触る操作方法を統一することなのかもしれない。</p>
+<figure class="comic-figure"><img src="/assets/articles/web-ui-tool-selection/manga-04.webp" width="1055" height="1491" loading="lazy" alt="1つのツールでも学ぶことは多いと気づく漫画4ページ目"><figcaption>ツールの数と、学習量は同じではなかった。</figcaption></figure>
+<h2>決定打は「コードを原本にしたい」だった</h2>
+<p>さらに考えていくと、もう一つ条件が出てきた。</p>
+<blockquote>HTML / CSS / JavaScriptを、最終的な原本として残したい。</blockquote>
+<p>GUIで調整しても変更は普通のコードとして残る。逆にAIがコードを直接変更しても、GUI側で同じ結果を確認できる。この往復が理想だった。</p>
+<p>つまり欲しかったのは、GUIからコードを書き出すツールではなく、<strong>GUIでもコードでも同じ成果物を直接編集できる環境</strong>だった。</p>
+<figure class="comic-figure"><img src="/assets/articles/web-ui-tool-selection/manga-05.webp" width="1055" height="1491" loading="lazy" alt="HTML CSS JavaScriptを原本にしたいと考える漫画5ページ目"><figcaption>比較軸が「便利そう」から「何を原本として残すか」に変わった。</figcaption></figure>
+<h2>欲しかったのは、コードを視覚編集する環境だった</h2>
+<p>ここまで条件を整理すると、一般的なビジュアルビルダーとは少し違うものを探していたことが分かった。そこでPinegrowがかなり有力になった。</p>
+<p>HTML/CSS/JSを中心に置きながら、自分はビジュアル側から触り、AIはコード側から触る。両者が別々の成果物を持たなくていい。</p>
+<figure class="comic-figure"><img src="/assets/articles/web-ui-tool-selection/manga-06.webp" width="1055" height="1491" loading="lazy" alt="Pinegrowが有力候補になった経緯を描く漫画6ページ目"><figcaption>欲しかったのは「ノーコード」より、コードを視覚的に触れる環境だった。</figcaption></figure>
+<h2>ツールだけでなく、運用もセットで決める</h2>
+<p>最終的には、ツール単体ではなく制作フロー全体をセットで決めることにした。</p>
+<div class="tool-stack"><div><strong>Pinegrow</strong>自分が画面を見ながら直感操作する場所。</div><div><strong>HTML / CSS / JavaScript</strong>唯一の原本として残す。</div><div><strong>GitHub</strong>変更履歴とバックアップを管理する。</div><div><strong>ChatGPT / Codex</strong>複雑な実装やコード修正を担当する。</div></div>
+<ol class="operation-rules"><li><strong>コードを唯一の原本にする。</strong><br>GUIはコードを扱うための操作面として考える。</li><li><strong>PinegrowとAIが同じファイルを同時編集しない。</strong><br>片方の変更を確定・反映してから、もう片方が作業する。</li></ol>
+<p>これなら、自分は画面を触れる。AIはコードを触れる。そして、最終的に残る資産は同じになる。</p>
+<figure class="comic-figure"><img src="/assets/articles/web-ui-tool-selection/manga-07.webp" width="1055" height="1491" loading="lazy" alt="制作環境と運用ルールを決める漫画7ページ目"><figcaption>ツール選びだけでなく、運用ルールまで一緒に固定した。</figcaption></figure>
+<h2>まとめ</h2>
+<p>今回、Framer、統合型のWeb制作環境、Pinegrowと候補が変わった。一見すると迷走しているようにも見える。でも比較するたびに、自分が求めている条件が一段ずつ具体化していった。</p>
+<div class="article-callout"><p><strong>先に決めるべきだったのは、「最高のツールは何か」ではなく「何を原本として残したいか」だった。</strong></p></div>
+<p>だから現在の答えは、「Pinegrowが最高だから使う」ではない。</p>
+<p><span class="key-line">HTML/CSS/JSを原本にする運用に、一番合わせやすかったから使う。</span></p>
+<figure class="comic-figure"><img src="/assets/articles/web-ui-tool-selection/manga-08.webp" width="1055" height="1491" loading="lazy" alt="結論として原本の考え方をまとめた漫画8ページ目"><figcaption>ツール選びの話に見えて、最後は「何を資産として残すか」の話になった。</figcaption></figure>
+<p>これは2026年9月時点の制作環境を決めるための記録。実際に運用して問題が出れば、その経緯もまた残していく。</p>
+</div><section class="article-related"><h2>関連するノート</h2><div class="notes-grid"><a class="note-link" href="/notes/site-launch-trouble/"><div class="note-meta"><span>MAKING</span><time>2026.09.11</time></div><h3>サイトを公開しようとしたら、早速つまずいた。</h3><p>独自ドメイン公開で止まった原因は、.htaccessだった。</p><small>#Web #XServer #GitHub</small></a><a class="note-link" href="/projects/digital-storage/"><div class="note-meta"><span>PROJECT</span><span>DIGITAL STORAGE</span></div><h3>K. Aito / DIGITAL STORAGE</h3><p>完成品だけでなく、途中のメモや制作過程も置いていく。</p><small>#Web #Making</small></a></div></section></article><section class="related-band"><h2>次に見る</h2><div><a href="/storage/">7つの棚 <span aria-hidden="true">→</span></a><a href="/projects/digital-storage/">DIGITAL STORAGEプロジェクト <span aria-hidden="true">→</span></a><a href="/archive/">記録のアーカイブ <span aria-hidden="true">→</span></a></div></section></main><footer class="page-footer"><strong>K. Aito / DIGITAL STORAGE</strong><nav aria-label="フッターナビゲーション"><a href="/">HOME</a><a href="/storage/">SHELVES</a><a href="/projects/">PROJECTS</a><a href="/archive/">ARCHIVE</a><a href="/about/">ABOUT</a></nav><small>内容は随時更新しています。</small></footer></body></html>
