@@ -41,8 +41,7 @@ jobs:
 
           def source_chars(src: Path):
               raw = src.read_text(encoding='utf-8')
-              clean = re.sub(r'[^A-Za-z0-9+/=]', '', raw).replace('=', '')
-              return clean
+              return re.sub(r'[^A-Za-z0-9+/=]', '', raw).replace('=', '')
 
           def try_image(chars: str):
               if not chars: return None
@@ -105,8 +104,9 @@ jobs:
           import re
           for path in Path('.').rglob('*.html'):
               text = path.read_text(encoding='utf-8')
-              updated = re.sub(r'/image-fix\.css\?v=\d+', '/image-fix.css?v=18', text)
+              updated = re.sub(r'/image-fix\.css\?v=\d+', '/image-fix.css?v=19', text)
               if path == Path('index.html'):
+                  updated = re.sub(r'/app\.js\?v=\d+', '/app.js?v=5', updated)
                   updated = re.sub(r'/site-enhance\.js\?v=\d+', '/site-enhance.js?v=11', updated)
               else:
                   updated = re.sub(r'<script src="/site-enhance\.js\?v=\d+" defer></script>', '', updated)
@@ -124,5 +124,5 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add assets/hero-hq.jpg assets/notebook-hq.jpg assets/shelves '*.html'
-          git commit -m 'Activate approved homepage layout'
+          git commit -m 'Activate shelf metadata and homepage polish'
           git push
