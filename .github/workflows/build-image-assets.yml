@@ -26,6 +26,9 @@ jobs:
           git fetch --depth=30 origin main
           git show 2f422af4cb793dbba6bfc9cc5473e0a81ff53e85:assets/shelves/drink.webp.b64 > assets/shelves/drink.webp.b64
           git show bc10490241b5cfe7ff4000fd5649968d64a5141c^:assets/shelves/study.webp.b64 > assets/shelves/study.webp.b64
+          git show 2f422af4cb793dbba6bfc9cc5473e0a81ff53e85:assets/shelves/create.webp.b64 > assets/shelves/create.webp.b64
+          git show 2f422af4cb793dbba6bfc9cc5473e0a81ff53e85:assets/shelves/project.webp.b64 > assets/shelves/project.webp.b64
+          git show 2f422af4cb793dbba6bfc9cc5473e0a81ff53e85:assets/shelves/archive.webp.b64 > assets/shelves/archive.webp.b64
 
       - name: Set up Python
         uses: actions/setup-python@v5
