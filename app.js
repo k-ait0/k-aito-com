@@ -1,14 +1,13 @@
 "use strict";
 
 const shelves = [
-  {id:"travel", name:"旅", en:"Travel", symbol:"旅"},
-  {id:"sake", name:"酒・食", en:"Sake & Food", symbol:"酒"},
-  {id:"money", name:"お金", en:"Money", symbol:"¥"},
-  {id:"tax", name:"税・会計", en:"Tax & Accounting", symbol:"税"},
-  {id:"business", name:"商売", en:"Business", symbol:"商"},
-  {id:"create", name:"つくる", en:"Create", symbol:"＋"},
-  {id:"technology", name:"テクノロジー", en:"Technology", symbol:"⌘"},
-  {id:"thinking", name:"考えごと", en:"Thinking", symbol:"?"}
+  {id:"travel", name:"旅", en:"TRAVEL", symbol:"旅"},
+  {id:"sake", name:"酒", en:"DRINK", symbol:"酒"},
+  {id:"money", name:"お金・税務", en:"MONEY / TAX", symbol:"¥"},
+  {id:"create", name:"学び・資格", en:"STUDY", symbol:"学"},
+  {id:"technology", name:"制作・開発", en:"CREATE", symbol:"⌘"},
+  {id:"business", name:"事業・プロジェクト", en:"PROJECT", symbol:"事"},
+  {id:"thinking", name:"その他", en:"ARCHIVE", symbol:"…"}
 ];
 
 const entries = [
