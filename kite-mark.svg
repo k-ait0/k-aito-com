@@ -1,1 +1,16 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160"><path d="M80 8 148 80 80 152 12 80Z" fill="#a8c95d" stroke="#193f32" stroke-width="9"/><path d="M80 8v144M12 80h136" stroke="#193f32" stroke-width="6"/><circle cx="80" cy="80" r="9" fill="#193f32"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 260" role="img" aria-label="K. Aito kite mark">
+  <g fill="none" stroke-linejoin="round">
+    <path d="M118 16 34 77 111 101Z" fill="#0f5a3a"/>
+    <path d="M118 16 111 101 184 38Z" fill="#7bd600"/>
+    <path d="M34 77 88 127 111 101Z" fill="#62c41a"/>
+    <path d="M111 101 88 127 151 180Z" fill="#05613f"/>
+    <path d="M111 101 151 180 184 38Z" fill="#79d500"/>
+    <path d="M88 127 111 101 97 132Z" fill="#fffdf5"/>
+    <path d="M88 127C69 154 50 169 22 181 45 151 66 139 88 127Z" fill="#6bca12"/>
+    <path d="M90 129C72 169 47 188 13 205 40 169 64 149 90 129Z" fill="#075d3e"/>
+    <path d="M93 131C79 183 52 211 21 239 43 194 65 161 93 131Z" fill="#76d000"/>
+    <path d="M34 77 111 101 184 38" stroke="#fffdf5" stroke-width="5"/>
+    <path d="M111 101 151 180" stroke="#fffdf5" stroke-width="5"/>
+    <path d="M88 127C65 154 43 168 22 181M90 129C65 169 40 191 13 205M93 131C73 184 47 215 21 239" stroke="#fffdf5" stroke-width="4"/>
+  </g>
+</svg>
