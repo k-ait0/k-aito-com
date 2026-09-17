@@ -19,31 +19,45 @@ jobs:
           python - <<'PY'
           from pathlib import Path
           from PIL import Image
-          import hashlib, io
+          import base64, hashlib, io, struct
 
-          files = sorted(Path('assets/probe').glob('*.webp'))
-          blobs = {}
-          for p in files:
-              data = p.read_bytes()
-              blobs[p.name] = data
-              print(f'FILE {p} bytes={len(data)} sha256={hashlib.sha256(data).hexdigest()}')
-              print(f'HEAD {p.name} {data[:32].hex()} ASCII={data[:32]!r}')
-              print(f'TAIL {p.name} {data[-32:].hex()} ASCII={data[-32:]!r}')
+          def inspect(label, data):
+              print(f'ITEM {label} bytes={len(data)} sha256={hashlib.sha256(data).hexdigest()}')
+              for sig in (b'RIFF', b'WEBP', b'UklG'):
+                  pos = data.find(sig)
+                  print(f'SIG {label} {sig!r} pos={pos}')
+              if data.startswith(b'RIFF') and len(data) >= 12:
+                  declared = struct.unpack('<I', data[4:8])[0] + 8
+                  print(f'RIFF_SIZE {label} declared_total={declared} actual={len(data)} delta={declared-len(data)}')
               try:
                   with Image.open(io.BytesIO(data)) as im:
                       im.load()
-                      print(f'IMAGE {p} format={im.format} size={im.size} mode={im.mode}')
+                      print(f'IMAGE {label} format={im.format} size={im.size} mode={im.mode}')
               except Exception as e:
-                  print(f'ERROR {p}: {type(e).__name__}: {e}')
+                  print(f'ERROR {label}: {type(e).__name__}: {e}')
 
-          # Test whether the two invalid staged blobs are sequential fragments.
-          for order in [('probe-3.webp','probe-4.webp'), ('probe-4.webp','probe-3.webp')]:
-              data = blobs[order[0]] + blobs[order[1]]
-              print(f'CONCAT {order[0]}+{order[1]} bytes={len(data)} sha256={hashlib.sha256(data).hexdigest()}')
-              try:
-                  with Image.open(io.BytesIO(data)) as im:
-                      im.load()
-                      print(f'CONCAT_IMAGE {order[0]}+{order[1]} format={im.format} size={im.size} mode={im.mode}')
-              except Exception as e:
-                  print(f'CONCAT_ERROR {order[0]}+{order[1]}: {type(e).__name__}: {e}')
+          p3 = Path('assets/probe/probe-3.webp').read_bytes()
+          p4 = Path('assets/probe/probe-4.webp').read_bytes()
+          inspect('probe3', p3)
+          inspect('probe4-raw', p4)
+
+          # Probe 4 is visibly ASCII Base64. Decode it even if padding is absent.
+          try:
+              txt = p4.decode('ascii').strip()
+              txt += '=' * ((4 - len(txt) % 4) % 4)
+              d4 = base64.b64decode(txt, validate=True)
+              inspect('probe4-decoded', d4)
+              inspect('probe4-decoded+probe3', d4 + p3)
+              inspect('probe3+probe4-decoded', p3 + d4)
+          except Exception as e:
+              print(f'BASE64_ERROR probe4: {type(e).__name__}: {e}')
+
+          # Search probe3 for embedded RIFF chunks and inspect any candidate suffix.
+          start = 0
+          while True:
+              pos = p3.find(b'RIFF', start)
+              if pos < 0:
+                  break
+              inspect(f'probe3-suffix@{pos}', p3[pos:])
+              start = pos + 1
           PY
