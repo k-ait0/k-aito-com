@@ -1,0 +1,10 @@
+/* Canonical homepage stylesheet entry point.
+ * Keep homepage-specific layers behind this single import so image-fix.css
+ * does not need to know their internal order. Until the visual design is
+ * frozen, the three legacy layer files remain as implementation details.
+ * New homepage-only overrides should be added through this entry point,
+ * not by adding another stylesheet to index.html or image-fix.css.
+ */
+@import url('/home-layout.css?v=4');
+@import url('/enhance.css?v=9');
+@import url('/homepage-polish.css?v=5');

@@ -1,18 +1,16 @@
 /* Shared visual asset layer */
 @import url('/cards.css?v=1');
-@import url('/home-layout.css?v=3');
 @import url('/responsive.css?v=2');
-@import url('/enhance.css?v=9');
-@import url('/homepage-polish.css?v=5');
+@import url('/homepage.css?v=1');
 
 .logo-mark{
-  background-image:url('/kite-mark.svg?v=3')!important;
+  background-image:url('/assets/brand/kite-mark.svg?v=1')!important;
   background-size:contain!important;
   background-position:center!important;
   background-repeat:no-repeat!important;
 }
 .logo-wordmark{
-  background-image:url('/wordmark.svg?v=2')!important;
+  background-image:url('/assets/brand/wordmark.svg?v=1')!important;
   background-size:contain!important;
   background-position:center!important;
   background-repeat:no-repeat!important;
@@ -28,7 +26,7 @@
   background-repeat:no-repeat!important;
 }
 .hero{
-  background-image:url('/assets/hero-study.jpg?v=2')!important;
+  background-image:url('/assets/hero/hero-bg.jpg?v=1')!important;
   background-size:cover!important;
   background-position:center 52%!important;
   background-repeat:no-repeat!important;
@@ -36,7 +34,7 @@
 }
 .hero-background{display:none!important}
 .project-cover{
-  background-image:url('/assets/hero-study.jpg?v=2')!important;
+  background-image:url('/assets/hero/hero-bg.jpg?v=1')!important;
   background-size:cover!important;
   background-position:center 52%!important;
   background-repeat:no-repeat!important;
