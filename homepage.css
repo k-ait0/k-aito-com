@@ -4,7 +4,10 @@
  * frozen, the three legacy layer files remain as implementation details.
  * New homepage-only overrides should be added through this entry point,
  * not by adding another stylesheet to index.html or image-fix.css.
+ *
+ * Cache-bust note: import versions were advanced on 2026-09-17 so deployed
+ * clients cannot keep the pre-consolidation top-page layers.
  */
-@import url('/home-layout.css?v=4');
-@import url('/enhance.css?v=9');
-@import url('/homepage-polish.css?v=5');
+@import url('/home-layout.css?v=5');
+@import url('/enhance.css?v=10');
+@import url('/homepage-polish.css?v=6');
