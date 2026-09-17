@@ -5,7 +5,9 @@ on:
     branches:
       - hero-transfer
     paths:
-      - 'assets/transfer/hero/READY'
+      - 'assets/transfer/hero-q10.b64'
+      - '.github/workflows/rebuild-hero-transfer.yml'
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -27,9 +29,9 @@ jobs:
       - name: Install Pillow
         run: python -m pip install --disable-pip-version-check pillow
 
-      - name: Rebuild and verify hero
+      - name: Decode and verify hero
         run: |
-          cat assets/transfer/hero/part-*.txt | tr -d '\n\r ' | base64 --decode > assets/hero/hero-bg.jpg
+          tr -d '\n\r ' < assets/transfer/hero-q10.b64 | base64 --decode > assets/hero/hero-bg.jpg
           python - <<'PY'
           from pathlib import Path
           from PIL import Image
@@ -38,7 +40,7 @@ jobs:
           p = Path('assets/hero/hero-bg.jpg')
           data = p.read_bytes()
           digest = hashlib.sha256(data).hexdigest()
-          wanted = '54cb345ed0599137be25b304da4bcf886aee64d1aad7e492c6cfcb47381386a2'
+          wanted = '607e8f2e7bec8447c987eeb05f20b203201f9cd2f4672f88fdcdebe33fc70806'
           if digest != wanted:
               raise RuntimeError(f'hash mismatch: {digest}')
           with Image.open(p) as im:
@@ -49,7 +51,7 @@ jobs:
           print(f'OK {len(data)} bytes {digest}')
           PY
 
-      - name: Commit exact hero
+      - name: Commit hero only
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -58,5 +60,5 @@ jobs:
             echo "No hero change needed"
             exit 0
           fi
-          git commit -m "Rebuild sharp hero background"
+          git commit -m "Rebuild higher-quality hero background"
           git push origin HEAD:hero-transfer
