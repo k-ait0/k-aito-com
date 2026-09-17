@@ -55,11 +55,21 @@ jobs:
           with Image.open(hero) as im:
               im.verify()
           with Image.open(hero) as im:
-              if im.format != 'JPEG' or im.width < 1000 or im.height < 600:
+              if im.format != 'JPEG' or im.width < 1200 or im.height < 480:
                   raise RuntimeError(f'{hero}: unexpected image {im.format} {im.size}')
               print(f'OK {hero}: {im.size}')
 
-          for path in (Path('assets/brand/kite-mark.svg'), Path('assets/brand/wordmark.svg'), Path('assets/brand/favicon.svg')):
+          mark = Path('assets/brand/kite-mark.png')
+          if not mark.is_file():
+              raise RuntimeError(f'missing brand mark: {mark}')
+          with Image.open(mark) as im:
+              im.verify()
+          with Image.open(mark) as im:
+              if im.format != 'PNG' or im.width < 128 or im.height < 128:
+                  raise RuntimeError(f'{mark}: unexpected image {im.format} {im.size}')
+              print(f'OK {mark}: {im.size}')
+
+          for path in (Path('assets/brand/wordmark.svg'), Path('assets/brand/favicon.svg')):
               text = path.read_text(encoding='utf-8')
               if '<svg' not in text:
                   raise RuntimeError(f'{path}: invalid SVG')
@@ -68,7 +78,7 @@ jobs:
           css = Path('image-fix.css').read_text(encoding='utf-8')
           required_patterns = (
               r"@import url\('/homepage\.css\?v=\d+'\)",
-              r"/assets/brand/kite-mark\.svg\?v=\d+",
+              r"/assets/brand/kite-mark\.png\?v=\d+",
               r"/assets/brand/wordmark\.svg\?v=\d+",
               r"/assets/hero/hero-bg\.jpg\?v=\d+",
           )

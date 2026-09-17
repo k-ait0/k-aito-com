@@ -4,13 +4,13 @@
 @import url('/homepage.css?v=3');
 
 .logo-mark{
-  background-image:url('/assets/brand/kite-mark.svg?v=3')!important;
+  background-image:url('/assets/brand/kite-mark.png?v=1')!important;
   background-size:contain!important;
   background-position:center!important;
   background-repeat:no-repeat!important;
 }
 .logo-wordmark{
-  background-image:url('/assets/brand/wordmark.svg?v=3')!important;
+  background-image:url('/assets/brand/wordmark.svg?v=2')!important;
   background-size:contain!important;
   background-position:center!important;
   background-repeat:no-repeat!important;
