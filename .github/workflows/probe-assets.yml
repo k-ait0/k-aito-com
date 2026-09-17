@@ -19,14 +19,31 @@ jobs:
           python - <<'PY'
           from pathlib import Path
           from PIL import Image
-          import hashlib
-          for p in sorted(Path('assets/probe').glob('*.webp')):
-              data=p.read_bytes()
+          import hashlib, io
+
+          files = sorted(Path('assets/probe').glob('*.webp'))
+          blobs = {}
+          for p in files:
+              data = p.read_bytes()
+              blobs[p.name] = data
               print(f'FILE {p} bytes={len(data)} sha256={hashlib.sha256(data).hexdigest()}')
+              print(f'HEAD {p.name} {data[:32].hex()} ASCII={data[:32]!r}')
+              print(f'TAIL {p.name} {data[-32:].hex()} ASCII={data[-32:]!r}')
               try:
-                  with Image.open(p) as im:
+                  with Image.open(io.BytesIO(data)) as im:
                       im.load()
                       print(f'IMAGE {p} format={im.format} size={im.size} mode={im.mode}')
               except Exception as e:
                   print(f'ERROR {p}: {type(e).__name__}: {e}')
+
+          # Test whether the two invalid staged blobs are sequential fragments.
+          for order in [('probe-3.webp','probe-4.webp'), ('probe-4.webp','probe-3.webp')]:
+              data = blobs[order[0]] + blobs[order[1]]
+              print(f'CONCAT {order[0]}+{order[1]} bytes={len(data)} sha256={hashlib.sha256(data).hexdigest()}')
+              try:
+                  with Image.open(io.BytesIO(data)) as im:
+                      im.load()
+                      print(f'CONCAT_IMAGE {order[0]}+{order[1]} format={im.format} size={im.size} mode={im.mode}')
+              except Exception as e:
+                  print(f'CONCAT_ERROR {order[0]}+{order[1]}: {type(e).__name__}: {e}')
           PY
