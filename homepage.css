@@ -4,10 +4,70 @@
  * frozen, the three legacy layer files remain as implementation details.
  * New homepage-only overrides should be added through this entry point,
  * not by adding another stylesheet to index.html or image-fix.css.
- *
- * Cache-bust note: import versions were advanced on 2026-09-17 so deployed
- * clients cannot keep the pre-consolidation top-page layers.
  */
 @import url('/home-layout.css?v=5');
 @import url('/enhance.css?v=10');
 @import url('/homepage-polish.css?v=6');
+
+/* Approved top-page visual pass: make the hero read as one continuous editorial scene. */
+.brand-lockup{display:block;min-width:138px}
+.brand .logo-wordmark{display:block;width:138px;height:32px}
+.footer-brand .logo-wordmark{width:132px;height:31px}
+.hero-poster .poster-brandname{display:block;height:44px;margin:0 auto}
+.hero-poster .poster-brandname .logo-wordmark{display:block;width:184px;height:44px;margin:0 auto}
+
+.hero{height:520px!important;isolation:isolate}
+.hero:before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background:linear-gradient(90deg,rgba(8,19,13,.10) 0%,rgba(7,18,12,.26) 24%,rgba(7,18,12,.48) 38%,rgba(7,18,12,.32) 53%,rgba(7,18,12,.08) 72%,rgba(7,18,12,.12) 100%)}
+.hero:after{z-index:0!important;background:linear-gradient(90deg,rgba(10,22,15,.10),transparent 72%,rgba(10,22,15,.18))!important}
+.hero-inner{max-width:1470px!important;z-index:1!important}
+
+.hero-poster{left:4.7%!important;top:34px!important;width:304px!important;min-height:438px!important;padding:24px 22px 25px!important;background:rgba(248,243,224,.97)!important;transform:rotate(-1.8deg)!important;box-shadow:5px 13px 24px rgba(8,24,14,.30)!important}
+.poster-kite{width:96px!important;height:116px!important;margin:13px auto 2px!important}
+.poster-label{font-size:.70rem!important;letter-spacing:.20em!important}
+.poster-tagline{font-family:var(--serif)!important;font-size:.86rem!important;letter-spacing:.075em!important;margin-top:1px!important}
+.poster-subtitle{font-size:.73rem!important;letter-spacing:.23em!important;margin-top:8px!important}
+.poster-rule{margin:18px auto 15px!important}
+.poster-copy{font-size:.91rem!important;line-height:1.92!important;letter-spacing:.085em!important}
+.poster-hand{font-size:.86rem!important;line-height:1.42!important;margin-top:14px!important}
+
+.hero-thought{left:31.2%!important;top:92px!important;max-width:410px!important;font-size:1.72rem!important;line-height:1.62!important;letter-spacing:.13em!important;color:#fffdf2!important;text-shadow:0 3px 16px rgba(0,0,0,.78),0 1px 4px rgba(0,0,0,.78)!important}
+.hero-thought:after{margin-top:20px!important;font-size:.72rem!important;line-height:1.76!important;letter-spacing:.09em!important;color:#fffdf3!important;text-shadow:0 2px 7px rgba(0,0,0,.78)!important}
+
+.hero-polaroid{right:11.5%!important;top:48px!important;width:232px!important;padding:12px 12px 19px!important;transform:rotate(3.2deg)!important;box-shadow:5px 10px 20px rgba(17,33,22,.28)!important}
+.hero-polaroid .photo{height:166px!important}
+.polaroid-caption{font-size:.97rem!important;line-height:1.75!important;padding:12px 0 8px!important}
+.polaroid-meta{font-size:.67rem!important}
+.hero-note{right:2.0%!important;top:270px!important;width:181px!important;padding:23px 14px 20px!important;transform:rotate(-3.6deg)!important;box-shadow:4px 8px 17px rgba(17,33,22,.28)!important}
+.note-tape{left:22px!important;min-width:122px!important;font-size:.80rem!important}
+.note-text{font-size:.91rem!important;line-height:1.93!important}
+.note-sign{font-size:.98rem!important}
+
+/* Shelves stay visible as one editorial row on desktop. */
+@media(min-width:1200px){
+  .shelves-grid{grid-template-columns:repeat(7,minmax(0,1fr))!important;gap:11px!important}
+  .shelves-grid .shelf{aspect-ratio:1/1.08!important;padding:58% 10px 10px!important}
+  .shelves-grid .shelf-symbol{top:calc(58% + 7px)!important}
+}
+
+@media(min-width:768px) and (max-width:1199px){
+  .brand .logo-wordmark{width:126px;height:29px}
+  .hero{height:485px!important}
+  .hero-poster{left:3.1%!important;top:28px!important;width:258px!important;min-height:392px!important}
+  .poster-kite{width:82px!important;height:98px!important}
+  .hero-poster .poster-brandname{height:38px}
+  .hero-poster .poster-brandname .logo-wordmark{width:160px;height:38px}
+  .hero-thought{left:30.5%!important;top:68px!important;max-width:300px!important;font-size:1.22rem!important}
+  .hero-thought:after{font-size:.60rem!important;margin-top:13px!important}
+  .hero-polaroid{right:8.7%!important;top:50px!important;width:192px!important}
+  .hero-polaroid .photo{height:132px!important}
+  .hero-note{right:1.8%!important;top:244px!important;width:151px!important}
+  .note-text{font-size:.80rem!important}
+  .shelves-grid{grid-template-columns:repeat(4,minmax(0,1fr))!important}
+}
+
+@media(max-width:767px){
+  .brand-lockup{min-width:108px}
+  .brand .logo-wordmark{width:108px;height:25px}
+  .hero:before{background:linear-gradient(180deg,rgba(7,18,12,.12),rgba(7,18,12,.42))}
+  .hero-poster .poster-brandname .logo-wordmark{width:170px;height:40px}
+}
