@@ -8,6 +8,7 @@ on:
       - 'assets/brand/**'
       - 'homepage.css'
       - 'image-fix.css'
+      - 'index.html'
       - '.github/workflows/build-image-assets.yml'
   workflow_dispatch:
 
@@ -34,6 +35,7 @@ jobs:
           python - <<'PY'
           from pathlib import Path
           from PIL import Image
+          import re
 
           shelves = ('travel','drink','moneytax','study','create','project','archive')
           for name in shelves:
@@ -64,14 +66,24 @@ jobs:
               print(f'OK {path}')
 
           css = Path('image-fix.css').read_text(encoding='utf-8')
-          required = (
-              "@import url('/homepage.css?v=1')",
-              "/assets/brand/kite-mark.svg?v=1",
-              "/assets/brand/wordmark.svg?v=1",
-              "/assets/hero/hero-bg.jpg?v=1",
+          required_patterns = (
+              r"@import url\('/homepage\.css\?v=\d+'\)",
+              r"/assets/brand/kite-mark\.svg\?v=\d+",
+              r"/assets/brand/wordmark\.svg\?v=\d+",
+              r"/assets/hero/hero-bg\.jpg\?v=\d+",
           )
-          for token in required:
-              if token not in css:
-                  raise RuntimeError(f'image-fix.css missing canonical reference: {token}')
-          print('OK canonical CSS references')
+          for pattern in required_patterns:
+              if not re.search(pattern, css):
+                  raise RuntimeError(f'image-fix.css missing canonical reference matching: {pattern}')
+
+          homepage = Path('homepage.css').read_text(encoding='utf-8')
+          for path in ('home-layout.css','enhance.css','homepage-polish.css'):
+              if not re.search(rf"@import url\('/{re.escape(path)}\?v=\d+'\)", homepage):
+                  raise RuntimeError(f'homepage.css missing versioned import: {path}')
+
+          html = Path('index.html').read_text(encoding='utf-8')
+          if not re.search(r'href="/image-fix\.css\?v=\d+"', html):
+              raise RuntimeError('index.html missing versioned image-fix.css reference')
+
+          print('OK canonical CSS and HTML references')
           PY
