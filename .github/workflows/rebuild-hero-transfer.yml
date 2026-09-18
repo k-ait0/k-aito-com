@@ -1,4 +1,4 @@
-name: Validate complete hero transfer candidate
+name: Repair exact high-resolution hero asset
 
 on:
   push:
@@ -12,7 +12,7 @@ permissions:
   contents: write
 
 jobs:
-  validate:
+  repair:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout transfer branch
@@ -29,21 +29,76 @@ jobs:
       - name: Install Pillow
         run: python -m pip install --disable-pip-version-check pillow
 
-      - name: Rebuild complete candidate and fully decode
+      - name: Exhaustive two-character repair and verify
         run: |
           python - <<'PY'
           from pathlib import Path
           from PIL import Image
-          import base64, hashlib, subprocess
+          import base64, hashlib, multiprocessing as mp
 
-          ref='269056ed3fe31f009f88cc462ddf1f70a7977f99'
-          chunks=[]
-          for i in range(1,9):
-              path=f'assets/transfer/hero/part-{i:02d}.txt'
-              s=subprocess.check_output(['git','show',f'{ref}:{path}'], text=True)
-              chunks.append(''.join(s.split()))
-          payload=''.join(chunks)
-          data=base64.b64decode(payload, validate=True)
+          TARGET='54cb345ed0599137be25b304da4bcf886aee64d1aad7e492c6cfcb47381386a2'
+          ALPHABET='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'
+
+          def clean(path):
+              return ''.join(Path(path).read_text().split())
+
+          parts=[clean(f'assets/transfer/hero/part-{i:02d}.txt') for i in range(1,9)]
+          p1=parts[0]
+          p2=parts[1]
+          prefix64=p1+p2[:4880]
+          mid=p2[4880:5758]
+          suffix64=p2[5758:]+''.join(parts[2:])
+
+          assert len(prefix64)%4==0
+          assert len(mid)==878
+          assert len(suffix64)%4==0
+
+          prefix=base64.b64decode(prefix64, validate=True)
+          suffix=base64.b64decode(suffix64, validate=True)
+          pairs=[a+b for a in ALPHABET for b in ALPHABET]
+
+          def search_range(bounds):
+              lo,hi=bounds
+              base=hashlib.sha256(prefix)
+              for pos in range(lo,hi):
+                  left=mid[:pos]
+                  right=mid[pos:]
+                  for pair in pairs:
+                      repaired=left+pair+right
+                      middle=base64.b64decode(repaired, validate=True)
+                      h=base.copy()
+                      h.update(middle)
+                      h.update(suffix)
+                      if h.hexdigest()==TARGET:
+                          return pos,pair,middle
+              return None
+
+          workers=min(4, mp.cpu_count())
+          spans=[]
+          total=len(mid)+1
+          step=(total+workers-1)//workers
+          for lo in range(0,total,step):
+              spans.append((lo,min(total,lo+step)))
+
+          print('SEARCH', total, 'positions x', len(pairs), 'pairs with', len(spans), 'workers')
+          with mp.Pool(len(spans)) as pool:
+              for result in pool.imap_unordered(search_range, spans):
+                  if result is not None:
+                      found=result
+                      pool.terminate()
+                      break
+              else:
+                  found=None
+
+          if found is None:
+              raise RuntimeError('No exact SHA match for any two-character insertion in the corrected transfer segment')
+
+          pos,pair,middle=found
+          data=prefix+middle+suffix
+          digest=hashlib.sha256(data).hexdigest()
+          if digest!=TARGET:
+              raise RuntimeError(f'internal hash mismatch: {digest}')
+
           out=Path('assets/hero/hero-hq-new-opt.jpg')
           out.parent.mkdir(parents=True, exist_ok=True)
           out.write_bytes(data)
@@ -52,13 +107,12 @@ jobs:
               if im.format!='JPEG' or im.size!=(1440,500):
                   raise RuntimeError(f'unexpected image: {im.format} {im.size}')
               im.load()
-              print('FULL-DECODE OK', im.mode, im.size)
 
-          print('BYTES', len(data))
-          print('SHA256', hashlib.sha256(data).hexdigest())
+          print('FOUND position', pos, 'pair', repr(pair))
+          print('OK', len(data), 'bytes', digest)
           PY
 
-      - name: Commit validated candidate only
+      - name: Commit verified hero only
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -67,5 +121,5 @@ jobs:
             echo "No hero change needed"
             exit 0
           fi
-          git commit -m "Restore validated high-resolution hero candidate"
+          git commit -m "Restore verified high-resolution hero asset"
           git push origin HEAD:hero-transfer
