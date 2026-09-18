@@ -1,11 +1,10 @@
-name: Rebuild sharp hero asset
+name: Repair high-resolution hero asset
 
 on:
   push:
     branches:
       - hero-transfer
     paths:
-      - 'assets/transfer/hero-q10.b64'
       - '.github/workflows/rebuild-hero-transfer.yml'
   workflow_dispatch:
 
@@ -13,13 +12,14 @@ permissions:
   contents: write
 
 jobs:
-  rebuild:
+  repair:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout transfer branch
         uses: actions/checkout@v4
         with:
           ref: hero-transfer
+          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -29,36 +29,82 @@ jobs:
       - name: Install Pillow
         run: python -m pip install --disable-pip-version-check pillow
 
-      - name: Decode and verify hero
+      - name: Repair and verify exact hero
+        shell: bash
         run: |
-          tr -d '\n\r ' < assets/transfer/hero-q10.b64 | base64 --decode > assets/hero/hero-bg.jpg
           python - <<'PY'
           from pathlib import Path
           from PIL import Image
-          import hashlib
+          import base64, hashlib, subprocess
 
-          p = Path('assets/hero/hero-bg.jpg')
-          data = p.read_bytes()
-          digest = hashlib.sha256(data).hexdigest()
-          wanted = '607e8f2e7bec8447c987eeb05f20b203201f9cd2f4672f88fdcdebe33fc70806'
-          if digest != wanted:
-              raise RuntimeError(f'hash mismatch: {digest}')
-          with Image.open(p) as im:
+          TARGET = '54cb345ed0599137be25b304da4bcf886aee64d1aad7e492c6cfcb47381386a2'
+          ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'
+
+          def clean(s: str) -> str:
+              return ''.join(s.split())
+
+          parts = [clean(Path(f'assets/transfer/hero/part-{i:02d}.txt').read_text()) for i in range(1, 9)]
+          current_p1 = parts[0]
+          old_p1 = clean(subprocess.check_output([
+              'git','show',
+              '269056ed3fe31f009f88cc462ddf1f70a7977f99:assets/transfer/hero/part-01.txt'
+          ], text=True))
+
+          p2 = parts[1]
+          prefix2 = p2[:4880]
+          inserted = p2[4880:5758]
+          suffix = p2[5758:] + ''.join(parts[2:])
+
+          print('current_p1', len(current_p1), 'old_p1', len(old_p1))
+          print('inserted', len(inserted), 'suffix', len(suffix))
+
+          found = None
+          for p1_name, p1 in [('current', current_p1), ('old', old_p1)]:
+              for where in ('start', 'end'):
+                  for a in ALPHABET:
+                      for b in ALPHABET:
+                          pair = a + b
+                          repaired_mid = pair + inserted if where == 'start' else inserted + pair
+                          payload = p1 + prefix2 + repaired_mid + suffix
+                          try:
+                              data = base64.b64decode(payload, validate=True)
+                          except Exception:
+                              continue
+                          if hashlib.sha256(data).hexdigest() == TARGET:
+                              found = (p1_name, where, pair, payload, data)
+                              break
+                      if found:
+                          break
+                  if found:
+                      break
+              if found:
+                  break
+
+          if not found:
+              raise RuntimeError('No exact SHA match at the tested transfer boundaries')
+
+          p1_name, where, pair, payload, data = found
+          out = Path('assets/hero/hero-hq-new-opt.jpg')
+          out.parent.mkdir(parents=True, exist_ok=True)
+          out.write_bytes(data)
+
+          with Image.open(out) as im:
               im.verify()
-          with Image.open(p) as im:
+          with Image.open(out) as im:
               if im.format != 'JPEG' or im.size != (1440, 500):
                   raise RuntimeError(f'unexpected image: {im.format} {im.size}')
-          print(f'OK {len(data)} bytes {digest}')
+
+          print('FOUND', p1_name, where, repr(pair), len(data), hashlib.sha256(data).hexdigest())
           PY
 
-      - name: Commit hero only
+      - name: Commit verified hero only
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add assets/hero/hero-bg.jpg
+          git add assets/hero/hero-hq-new-opt.jpg
           if git diff --cached --quiet; then
             echo "No hero change needed"
             exit 0
           fi
-          git commit -m "Rebuild higher-quality hero background"
+          git commit -m "Restore verified high-resolution hero asset"
           git push origin HEAD:hero-transfer
