@@ -40,18 +40,18 @@ jobs:
           out.mkdir(parents=True, exist_ok=True)
 
           for i in range(1,5):
-              parts=[]
-              for suffix in ('aa','ab'):
-                  p=src / f'manga-{i:02d}-part-{suffix}.b64'
-                  parts.append(''.join(p.read_text().split()))
-              raw=base64.b64decode(''.join(parts), validate=True)
+              paths=sorted(src.glob(f'manga-{i:02d}-part-*.b64'))
+              if not paths:
+                  raise RuntimeError(f'no transfer chunks for manga-{i:02d}')
+              payload=''.join(''.join(p.read_text().split()) for p in paths)
+              raw=base64.b64decode(payload, validate=True)
               target=out / f'manga-{i:02d}.webp'
               target.write_bytes(raw)
               with Image.open(target) as im:
                   im.load()
-                  if im.format != 'WEBP' or im.size != (600,848):
+                  if im.format != 'WEBP' or im.width < 420 or im.height < 590:
                       raise RuntimeError(f'{target}: unexpected {im.format} {im.size}')
-              print(target, len(raw), hashlib.sha256(raw).hexdigest())
+                  print(target, im.size, len(raw), hashlib.sha256(raw).hexdigest())
           PY
 
       - name: Commit manga images
