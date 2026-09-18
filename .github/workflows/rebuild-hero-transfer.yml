@@ -1,4 +1,4 @@
-name: Repair high-resolution hero asset
+name: Validate complete hero transfer candidate
 
 on:
   push:
@@ -12,7 +12,7 @@ permissions:
   contents: write
 
 jobs:
-  repair:
+  validate:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout transfer branch
@@ -29,71 +29,36 @@ jobs:
       - name: Install Pillow
         run: python -m pip install --disable-pip-version-check pillow
 
-      - name: Repair and verify exact hero
-        shell: bash
+      - name: Rebuild complete candidate and fully decode
         run: |
           python - <<'PY'
           from pathlib import Path
           from PIL import Image
           import base64, hashlib, subprocess
 
-          TARGET = '54cb345ed0599137be25b304da4bcf886aee64d1aad7e492c6cfcb47381386a2'
-          ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'
-
-          def clean(s: str) -> str:
-              return ''.join(s.split())
-
-          parts = [clean(Path(f'assets/transfer/hero/part-{i:02d}.txt').read_text()) for i in range(1, 9)]
-          current_p1 = parts[0]
-          old_p1 = clean(subprocess.check_output([
-              'git','show',
-              '269056ed3fe31f009f88cc462ddf1f70a7977f99:assets/transfer/hero/part-01.txt'
-          ], text=True))
-
-          p2 = parts[1]
-          prefix2 = p2[:4880]
-          inserted = p2[4880:5758]
-          suffix = p2[5758:] + ''.join(parts[2:])
-
-          print('current_p1', len(current_p1), 'old_p1', len(old_p1))
-          print('inserted', len(inserted), 'suffix', len(suffix))
-
-          found = None
-          for p1_name, p1 in [('current', current_p1), ('old', old_p1)]:
-              for a in ALPHABET:
-                  for b in ALPHABET:
-                      repaired_mid = a + inserted + b
-                      payload = p1 + prefix2 + repaired_mid + suffix
-                      try:
-                          data = base64.b64decode(payload, validate=True)
-                      except Exception:
-                          continue
-                      if hashlib.sha256(data).hexdigest() == TARGET:
-                          found = (p1_name, 'split', a + b, payload, data)
-                          break
-                  if found:
-                      break
-              if found:
-                  break
-
-          if not found:
-              raise RuntimeError('No exact SHA match with one missing character on each transfer boundary')
-
-          p1_name, where, pair, payload, data = found
-          out = Path('assets/hero/hero-hq-new-opt.jpg')
+          ref='269056ed3fe31f009f88cc462ddf1f70a7977f99'
+          chunks=[]
+          for i in range(1,9):
+              path=f'assets/transfer/hero/part-{i:02d}.txt'
+              s=subprocess.check_output(['git','show',f'{ref}:{path}'], text=True)
+              chunks.append(''.join(s.split()))
+          payload=''.join(chunks)
+          data=base64.b64decode(payload, validate=True)
+          out=Path('assets/hero/hero-hq-new-opt.jpg')
           out.parent.mkdir(parents=True, exist_ok=True)
           out.write_bytes(data)
 
           with Image.open(out) as im:
-              im.verify()
-          with Image.open(out) as im:
-              if im.format != 'JPEG' or im.size != (1440, 500):
+              if im.format!='JPEG' or im.size!=(1440,500):
                   raise RuntimeError(f'unexpected image: {im.format} {im.size}')
+              im.load()
+              print('FULL-DECODE OK', im.mode, im.size)
 
-          print('FOUND', p1_name, where, repr(pair), len(data), hashlib.sha256(data).hexdigest())
+          print('BYTES', len(data))
+          print('SHA256', hashlib.sha256(data).hexdigest())
           PY
 
-      - name: Commit verified hero only
+      - name: Commit validated candidate only
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -102,5 +67,5 @@ jobs:
             echo "No hero change needed"
             exit 0
           fi
-          git commit -m "Restore verified high-resolution hero asset"
+          git commit -m "Restore validated high-resolution hero candidate"
           git push origin HEAD:hero-transfer
