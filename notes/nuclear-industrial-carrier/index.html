@@ -13,11 +13,11 @@
 <meta property="og:title" content="原子力加工船という妄想｜輸送中に工場を動かせないか考えた">
 <meta property="og:description" content="輸送という『何も作っていない時間』を、価値を作る時間に変えられないか。原子力加工船を妄想してみた。">
 <meta property="og:url" content="https://k-aito.com/notes/nuclear-industrial-carrier/">
-<meta property="og:image" content="https://k-aito.com/assets/notes/nuclear-industrial-carrier/manga-01.webp">
+<meta property="og:image" content="https://k-aito.com/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="原子力加工船という妄想">
 <meta name="twitter:description" content="輸送中に工場を動かしたらどうなる？ 往復物流まで含めて考えた妄想メモ。">
-<meta name="twitter:image" content="https://k-aito.com/assets/notes/nuclear-industrial-carrier/manga-01.webp">
+<meta name="twitter:image" content="https://k-aito.com/og-image.png">
 <link rel="stylesheet" href="/styles.css?v=4">
 <link rel="stylesheet" href="/image-fix.css?v=28">
 <link rel="stylesheet" href="/pages.css?v=4">
@@ -34,16 +34,22 @@
 <p class="page-lead">「なんで誰もやってないんだろう？」から始まって、気づけば原子力船、海上工場、往復物流、銅精鉱と硫酸、油脂の循環まで調べていた。</p>
 <aside class="thought-note"><strong>これは事業計画ではなく、思考実験です。</strong><p>「こんなのあったら面白くない？」から始まった妄想に、現実の物流・技術・制度を混ぜながら、どこまで筋が通るのか考えてみました。</p></aside>
 
-<section class="manga-section" aria-labelledby="manga-title">
-<p class="eyebrow">4-PAGE MANGA / 3 MINUTES</p>
-<h2 id="manga-title">まずは4ページ漫画で</h2>
-<p>先に流れだけ見るなら、ここでだいたい分かります。</p>
-<div class="manga-stack">
-<figure><img src="/assets/notes/nuclear-industrial-carrier/manga-01.webp" width="500" height="707" loading="eager" fetchpriority="high" alt="原子力工場船の発想に至る第1ページ"><figcaption>01｜“運ぶだけ”でいいのか？</figcaption></figure>
-<figure><img src="/assets/notes/nuclear-industrial-carrier/manga-02.avif" width="500" height="707" loading="lazy" alt="日本とチリの硫酸と銅精鉱の往復物流を描いた第2ページ"><figcaption>02｜すでにある往復物流</figcaption></figure>
-<figure><img src="/assets/notes/nuclear-industrial-carrier/manga-03.avif" width="500" height="707" loading="lazy" alt="油脂類を往復で加工する構想を描いた第3ページ"><figcaption>03｜往復で同じ設備を回せるか？</figcaption></figure>
-<figure><img src="/assets/notes/nuclear-industrial-carrier/manga-04.avif" width="500" height="707" loading="lazy" alt="原子力工場船の課題と未来を描いた第4ページ"><figcaption>04｜それでも課題は大きい――でも未来はある</figcaption></figure>
+<section class="article-visual article-visual-concept" aria-labelledby="concept-title">
+<p class="eyebrow">CONCEPT / まず全体像</p>
+<h2 id="concept-title">「運ぶ」と「つくる」を同時にする</h2>
+<div class="concept-compare">
+  <div class="concept-lane">
+    <span class="diagram-label">いまの物流</span>
+    <div class="diagram-flow"><span>原料を積む</span><b>→</b><span>海上輸送</span><b>→</b><span>荷揚げ</span><b>→</b><span>陸上工場</span><b>→</b><span>加工</span></div>
+    <small>輸送時間と加工時間が別々に発生する</small>
+  </div>
+  <div class="concept-lane is-idea">
+    <span class="diagram-label">原子力加工船の妄想</span>
+    <div class="diagram-flow"><span>原料を積む</span><b>→</b><span>航海＋加工</span><b>→</b><span>半製品・製品で到着</span></div>
+    <small>輸送時間そのものを生産時間へ変える</small>
+  </div>
 </div>
+<figcaption>図解1｜この発想の核は「船に工場を載せる」ことより、輸送と加工を並列化すること。</figcaption>
 </section>
 
 <div class="article-copy">
@@ -61,7 +67,15 @@
 
 <h2>原子力なら「船を動かす」以外にも使える</h2>
 <p>原子炉が作るエネルギーを、推進だけでなく船内電力やポンプ、圧縮機、蒸気、プロセス熱へ配分することも考えられる。</p>
-<div class="energy-grid"><div><strong>推進</strong><span>船を動かす</span></div><div><strong>電力</strong><span>ポンプ・圧縮機など</span></div><div><strong>プロセス熱</strong><span>加熱・蒸気・反応工程</span></div></div>
+<figure class="article-visual reactor-diagram">
+<div class="reactor-core"><span>原子炉</span><small>熱エネルギー</small></div>
+<div class="reactor-branches">
+  <div><b>01</b><strong>推進</strong><span>電動推進・船内システム</span></div>
+  <div><b>02</b><strong>発電</strong><span>ポンプ・圧縮機・水素製造など</span></div>
+  <div><b>03</b><strong>プロセス熱</strong><span>蒸気・加熱・反応工程</span></div>
+</div>
+<figcaption>図解2｜原子炉を「推進専用」にせず、船と工場でエネルギー源を共有する。</figcaption>
+</figure>
 <p>もちろん「発電後に捨てる高温熱が全部タダで使える」という話ではない。高い温度の熱を加工へ回せば、その分は発電や推進との配分になる。それでも、<strong>1つの原子炉を船＋発電所＋工場のエネルギー源として共用する</strong>という構造にはできる。</p>
 <p class="article-pull">「原子力船に工場を載せる」より、<strong>「原子力工場に移動能力を持たせる」</strong>と考えた方が近い。</p>
 
@@ -75,18 +89,38 @@
 
 <h2>実際にあった「日本→チリは硫酸、チリ→日本は銅精鉱」</h2>
 <p>調べると、かなり都合のいい実例が見つかった。日本マリンは、日本―チリ間で<strong>往航に硫酸、復航に銅精鉱</strong>を運ぶ特殊船を実際に運航している。</p>
-<div class="process-flow is-vertical"><span>チリで銅精鉱を積む</span><b>↓</b><span>日本へ航海しながら乾燥・一部処理</span><b>↓</b><span>硫黄分を含む工程からガスを回収</span><b>↓</b><span>硫酸製造まで組み合わせる</span><b>↓</b><span>次の日本→チリ便で硫酸を運ぶ</span></div>
+<figure class="article-visual roundtrip-diagram">
+<div class="roundtrip-head"><span>日本</span><b>⇄</b><span>チリ</span></div>
+<div class="roundtrip-route outbound"><strong>日本 → チリ</strong><span class="route-cargo">硫酸</span><span class="route-arrow">→</span><small>既存の往航貨物</small></div>
+<div class="roundtrip-route inbound"><strong>チリ → 日本</strong><span class="route-cargo">銅精鉱</span><span class="route-arrow">→</span><small>航海中に一部加工できないか</small></div>
+<div class="roundtrip-loop"><span>銅精鉱</span><b>→</b><span>乾燥・部分処理</span><b>→</b><span>SO₂等を回収</span><b>→</b><span>硫酸</span><b>↺</b></div>
+<figcaption>図解3｜すでにある往復物流に「加工」を挟む。新しい貨物を無理に作らないのがポイント。</figcaption>
+</figure>
 <p>実際の製錬工程や環境設備をそのまま船へ載せられるわけではない。それでも面白いのは、<strong>存在しない物流をゼロから作る必要がない</strong>ことだ。すでにある往復物流へ加工工程を差し込めないか、という話になる。</p>
 
 <h2>もう一つ相性が良さそうなのが「油⇄油」</h2>
 <p>銅精鉱と硫酸は面白いが、固体鉱物と液体酸では必要設備がかなり違う。「往復で同じ設備を使う」という視点では、油の方がきれいかもしれない。</p>
-<div class="route-pair"><div><h3>日本 → 東南アジア</h3><p>廃食油・廃油 → 脱水 → ろ過 → 前処理 → 必要なら水素化</p></div><div><h3>東南アジア → 日本</h3><p>植物油 → 脱ガム → 脱酸 → 脱臭 → 分別</p></div></div>
+<figure class="article-visual shared-equipment-diagram">
+<div class="shared-route"><div><span class="diagram-label">日本 → 東南アジア</span><strong>廃食油・廃油</strong><p>脱水 → ろ過 → 前処理 → 必要なら水素化</p></div><div><span class="diagram-label">東南アジア → 日本</span><strong>植物油</strong><p>脱ガム → 脱酸 → 脱臭 → 分別</p></div></div>
+<div class="shared-core"><span>往復で共用したい設備</span><div><b>タンク</b><b>ポンプ</b><b>配管</b><b>熱交換器</b><b>蒸気系</b><b>真空系</b></div></div>
+<figcaption>図解4｜加工船の経済性は「何を加工できるか」より、往復で設備を休ませないことが重要かもしれない。</figcaption>
+</figure>
 <p>どちらも液体だから、タンク、ポンプ、配管、熱交換器、蒸気系、真空系、一部の反応設備を共用しやすい。加工船では、<strong>何を加工できるか以上に「同じ設備を往復で使えるか」</strong>が重要なのかもしれない。</p>
 
 <h2>逆に「船で加工しない方がいい原料」もある</h2>
 <p>例えば水分が多く、乾燥すると重量が大きく減る原料なら、原産地で乾燥してから積んだ方が合理的な場合が多い。大量の尾鉱や残渣が出る鉱石も同じだ。</p>
 <p>そういうものは航海する加工船より、<strong>資源産地の沖に浮かべた固定式の海上工場</strong>の方が向くかもしれない。</p>
 <p class="article-pull">大事なのは、<strong>「船で加工できるか」ではなく「移動しながら加工する理由があるか」</strong>。</p>
+
+<figure class="article-visual architecture-diagram">
+<h3>どこで加工するのが合理的か？</h3>
+<div class="architecture-grid">
+  <div><span class="arch-no">A</span><strong>移動する加工船</strong><p>輸送時間を加工時間に変える。往復で設備を使える液体・連続工程向き。</p><small>強み：時間の並列化</small></div>
+  <div><span class="arch-no">B</span><strong>産地沖の海上工場</strong><p>水分や残渣を産地側で落とす。大量に重量が減る原料はこちらが有利。</p><small>強み：無駄な輸送を減らす</small></div>
+  <div><span class="arch-no">C</span><strong>従来の陸上工場</strong><p>設備稼働率・保守・規制対応では依然として最も素直。</p><small>強み：既存インフラ</small></div>
+</div>
+<figcaption>図解5｜「海で加工できるか」ではなく、A・B・Cのどこに置くのが最も合理的かを比較する。</figcaption>
+</figure>
 
 <h2>原子力船なのに、速すぎても困るという矛盾</h2>
 <p>加工船では、航海時間そのものが加工時間になる。10万トンを20日で処理するなら1日5,000トンだが、10日で着けば1日1万トンの加工設備が必要になる。</p>
