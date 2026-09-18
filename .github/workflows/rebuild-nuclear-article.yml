@@ -1,0 +1,67 @@
+name: Rebuild nuclear article manga
+
+on:
+  push:
+    branches:
+      - article/nuclear-industrial-carrier
+    paths:
+      - 'assets/transfer/nuclear-industrial-carrier/READY'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout article branch
+        uses: actions/checkout@v4
+        with:
+          ref: article/nuclear-industrial-carrier
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install Pillow
+        run: python -m pip install --disable-pip-version-check pillow
+
+      - name: Rebuild manga images
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from PIL import Image
+          import base64, hashlib
+
+          src=Path('assets/transfer/nuclear-industrial-carrier')
+          out=Path('assets/notes/nuclear-industrial-carrier')
+          out.mkdir(parents=True, exist_ok=True)
+
+          for i in range(1,5):
+              parts=[]
+              for suffix in ('aa','ab'):
+                  p=src / f'manga-{i:02d}-part-{suffix}.b64'
+                  parts.append(''.join(p.read_text().split()))
+              raw=base64.b64decode(''.join(parts), validate=True)
+              target=out / f'manga-{i:02d}.webp'
+              target.write_bytes(raw)
+              with Image.open(target) as im:
+                  im.load()
+                  if im.format != 'WEBP' or im.size != (600,848):
+                      raise RuntimeError(f'{target}: unexpected {im.format} {im.size}')
+              print(target, len(raw), hashlib.sha256(raw).hexdigest())
+          PY
+
+      - name: Commit manga images
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/notes/nuclear-industrial-carrier/*.webp
+          if git diff --cached --quiet; then
+            echo "No image change needed"
+            exit 0
+          fi
+          git commit -m "Build nuclear article manga assets"
+          git push origin HEAD:article/nuclear-industrial-carrier
