@@ -10,11 +10,12 @@
 @import url('/homepage-polish.css?v=6');
 
 /* Approved top-page visual pass: make the hero read as one continuous editorial scene. */
-.brand-lockup{display:block;min-width:138px}
-.brand .logo-wordmark{display:block;width:138px;height:32px}
+.brand-lockup{display:block;min-width:150px}
+.brand .brand-kite.logo-mark{width:52px!important;height:auto!important}
+.brand .logo-wordmark{display:block;width:150px;height:35px}
 .footer-brand .logo-wordmark{width:132px;height:31px}
 .hero-poster .poster-brandname{display:block;height:44px;margin:0 auto}
-.hero-poster .poster-brandname .logo-wordmark{display:block;width:184px;height:44px;margin:0 auto}
+.hero-poster .poster-brandname .logo-wordmark{display:block;width:196px;height:47px;margin:0 auto}
 
 .hero{height:520px!important;isolation:isolate}
 .hero:before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background:linear-gradient(90deg,rgba(8,19,13,.08) 0%,rgba(7,18,12,.20) 24%,rgba(7,18,12,.38) 38%,rgba(7,18,12,.24) 53%,rgba(7,18,12,.06) 72%,rgba(7,18,12,.10) 100%)}
@@ -22,7 +23,7 @@
 .hero-inner{max-width:1470px!important;z-index:1!important}
 
 .hero-poster{left:4.7%!important;top:34px!important;width:304px!important;min-height:438px!important;padding:24px 22px 25px!important;background:rgba(248,243,224,.97)!important;transform:rotate(-1.8deg)!important;box-shadow:5px 13px 24px rgba(8,24,14,.30)!important}
-.poster-kite{width:96px!important;height:116px!important;margin:13px auto 2px!important}
+.poster-kite{width:106px!important;height:128px!important;margin:11px auto 2px!important}
 .poster-label{font-size:.70rem!important;letter-spacing:.20em!important}
 .poster-tagline{font-family:var(--serif)!important;font-size:.86rem!important;letter-spacing:.075em!important;margin-top:1px!important}
 .poster-subtitle{font-size:.73rem!important;letter-spacing:.23em!important;margin-top:8px!important}
@@ -33,11 +34,11 @@
 .hero-thought{left:31.2%!important;top:92px!important;max-width:410px!important;font-size:1.72rem!important;line-height:1.62!important;letter-spacing:.13em!important;color:#fffdf2!important;text-shadow:0 3px 16px rgba(0,0,0,.78),0 1px 4px rgba(0,0,0,.78)!important}
 .hero-thought:after{margin-top:20px!important;font-size:.72rem!important;line-height:1.76!important;letter-spacing:.09em!important;color:#fffdf3!important;text-shadow:0 2px 7px rgba(0,0,0,.78)!important}
 
-.hero-polaroid{right:11.5%!important;top:48px!important;width:232px!important;padding:12px 12px 19px!important;transform:rotate(3.2deg)!important;box-shadow:5px 10px 20px rgba(17,33,22,.28)!important}
+.hero-polaroid{right:12.4%!important;top:44px!important;width:232px!important;padding:12px 12px 19px!important;transform:rotate(3.2deg)!important;box-shadow:5px 10px 20px rgba(17,33,22,.28)!important}
 .hero-polaroid .photo{height:166px!important}
 .polaroid-caption{font-size:.97rem!important;line-height:1.75!important;padding:12px 0 8px!important}
 .polaroid-meta{font-size:.67rem!important}
-.hero-note{right:2.0%!important;top:270px!important;width:181px!important;padding:23px 14px 20px!important;transform:rotate(-3.6deg)!important;box-shadow:4px 8px 17px rgba(17,33,22,.28)!important}
+.hero-note{right:1.6%!important;top:292px!important;width:181px!important;padding:23px 14px 20px!important;transform:rotate(-3.2deg)!important;box-shadow:4px 8px 17px rgba(17,33,22,.28)!important}
 .note-tape{left:22px!important;min-width:122px!important;font-size:.80rem!important}
 .note-text{font-size:.91rem!important;line-height:1.93!important}
 .note-sign{font-size:.98rem!important}
@@ -50,7 +51,8 @@
 }
 
 @media(min-width:768px) and (max-width:1199px){
-  .brand .logo-wordmark{width:126px;height:29px}
+  .brand .brand-kite.logo-mark{width:48px!important;height:auto!important}
+  .brand .logo-wordmark{width:132px;height:30px}
   .hero{height:485px!important}
   .hero-poster{left:3.1%!important;top:28px!important;width:258px!important;min-height:392px!important}
   .poster-kite{width:82px!important;height:98px!important}
@@ -58,9 +60,9 @@
   .hero-poster .poster-brandname .logo-wordmark{width:160px;height:38px}
   .hero-thought{left:30.5%!important;top:68px!important;max-width:300px!important;font-size:1.22rem!important}
   .hero-thought:after{font-size:.60rem!important;margin-top:13px!important}
-  .hero-polaroid{right:8.7%!important;top:50px!important;width:192px!important}
+  .hero-polaroid{right:9.5%!important;top:46px!important;width:192px!important}
   .hero-polaroid .photo{height:132px!important}
-  .hero-note{right:1.8%!important;top:244px!important;width:151px!important}
+  .hero-note{right:1.2%!important;top:260px!important;width:151px!important}
   .note-text{font-size:.80rem!important}
   .shelves-grid{grid-template-columns:repeat(4,minmax(0,1fr))!important}
 }
