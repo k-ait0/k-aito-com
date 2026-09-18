@@ -43,7 +43,8 @@ jobs:
               return ''.join(Path(path).read_text().split())
 
           parts=[clean(f'assets/transfer/hero/part-{i:02d}.txt') for i in range(1,9)]
-          p1=parts[0]
+          import subprocess
+          p1=''.join(subprocess.check_output(['git','show','269056ed3fe31f009f88cc462ddf1f70a7977f99:assets/transfer/hero/part-01.txt'], text=True).split())
           p2=parts[1]
           prefix64=p1+p2[:4880]
           mid=p2[4880:5758]
