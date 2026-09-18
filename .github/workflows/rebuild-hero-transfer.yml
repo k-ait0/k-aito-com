@@ -60,20 +60,16 @@ jobs:
 
           found = None
           for p1_name, p1 in [('current', current_p1), ('old', old_p1)]:
-              for where in ('start', 'end'):
-                  for a in ALPHABET:
-                      for b in ALPHABET:
-                          pair = a + b
-                          repaired_mid = pair + inserted if where == 'start' else inserted + pair
-                          payload = p1 + prefix2 + repaired_mid + suffix
-                          try:
-                              data = base64.b64decode(payload, validate=True)
-                          except Exception:
-                              continue
-                          if hashlib.sha256(data).hexdigest() == TARGET:
-                              found = (p1_name, where, pair, payload, data)
-                              break
-                      if found:
+              for a in ALPHABET:
+                  for b in ALPHABET:
+                      repaired_mid = a + inserted + b
+                      payload = p1 + prefix2 + repaired_mid + suffix
+                      try:
+                          data = base64.b64decode(payload, validate=True)
+                      except Exception:
+                          continue
+                      if hashlib.sha256(data).hexdigest() == TARGET:
+                          found = (p1_name, 'split', a + b, payload, data)
                           break
                   if found:
                       break
@@ -81,7 +77,7 @@ jobs:
                   break
 
           if not found:
-              raise RuntimeError('No exact SHA match at the tested transfer boundaries')
+              raise RuntimeError('No exact SHA match with one missing character on each transfer boundary')
 
           p1_name, where, pair, payload, data = found
           out = Path('assets/hero/hero-hq-new-opt.jpg')
