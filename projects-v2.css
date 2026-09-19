@@ -7,3 +7,19 @@
 .coming-soon{position:relative;padding:23px 24px;border:1px dashed #9aa996;background:#faf9f2;line-height:1.8;color:#526157}.coming-soon:before{content:"NEXT SLOT";display:block;margin-bottom:7px;font-size:.58rem;font-weight:700;letter-spacing:.16em;color:#547427}.coming-soon strong{display:block;font-size:1rem;margin-bottom:4px;color:#193f32}
 .related-band{margin-top:42px!important;padding-top:22px!important;border-top:2px solid #193f32!important}.related-band h2{font-family:var(--serif);margin:0 0 13px!important}.related-band>div{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px!important}.related-band a{display:flex;justify-content:space-between;align-items:center;padding:13px 14px!important;border:1px solid #d0d8cd;text-decoration:none;background:#fffef9;font-size:.86rem!important;transition:background .16s ease,transform .16s ease}.related-band a:hover{background:#eff3dc;transform:translateY(-1px)}
 @media(max-width:760px){.page-wrap{padding-top:22px!important}.breadcrumb{margin-bottom:20px!important}.page-intro{padding-bottom:20px!important;margin-bottom:22px!important}.portfolio-section-head{display:block}.portfolio-section-head p{margin-top:7px}.portfolio-grid,.portfolio-rule,.related-band>div{grid-template-columns:1fr!important}.portfolio-card{min-height:auto}}
+
+/* Pass 2: project identity and lifecycle hierarchy. */
+.portfolio-card{overflow:hidden}
+.project-no{position:absolute;right:18px;top:16px;font-family:var(--serif);font-size:2.1rem;line-height:1;color:rgba(25,63,50,.12);font-weight:700}
+.portfolio-card.is-live{border-color:#aebda7;background:linear-gradient(145deg,#fffef9 0%,#f7f9ed 100%)}
+.portfolio-card.is-live .project-state{background:#547427}
+.portfolio-card.static .project-state:after{content:" · PREVIEW";opacity:.72}
+.portfolio-card.static{background:#fbfaf5}
+.portfolio-card.static:after{content:"DETAIL PAGE / PREPARING";display:block;margin-top:12px;font-size:.55rem;letter-spacing:.13em;color:#879286}
+.portfolio-card h3{padding-right:28px}
+.portfolio-rule>div{min-height:126px;display:flex;flex-direction:column}
+.portfolio-rule>div>b{font-family:var(--serif);font-size:1.35rem;line-height:1;color:#aab6a6;margin-bottom:10px}
+.portfolio-rule>div:first-child>b{color:#78923b}
+.portfolio-rule>div>small{display:block;margin-top:auto;padding-top:10px;font-size:.55rem;letter-spacing:.10em;color:#7b897e;border-top:1px solid #d7ddd4}
+.portfolio-rule>div:first-child>small{border-top-color:#ccd8a8}
+@media(max-width:760px){.project-no{font-size:1.8rem}.portfolio-rule>div{min-height:auto}.portfolio-rule>div>small{margin-top:10px}}
