@@ -23,3 +23,44 @@
 .portfolio-rule>div>small{display:block;margin-top:auto;padding-top:10px;font-size:.55rem;letter-spacing:.10em;color:#7b897e;border-top:1px solid #d7ddd4}
 .portfolio-rule>div:first-child>small{border-top-color:#ccd8a8}
 @media(max-width:760px){.project-no{font-size:1.8rem}.portfolio-rule>div{min-height:auto}.portfolio-rule>div>small{margin-top:10px}}
+
+/* Pass 3: reference mockup — visual hero and compact public-project index. */
+.projects-hero{position:relative;min-height:292px;overflow:hidden;background-image:linear-gradient(90deg,rgba(249,247,237,.97) 0%,rgba(249,247,237,.88) 32%,rgba(249,247,237,.16) 58%,rgba(13,30,20,.10) 100%),url('/assets/hero/hero-bg.jpg?v=4');background-size:cover;background-position:center 50%;border-bottom:1px solid #cbd3c8}
+.projects-hero-inner{position:relative;max-width:1120px;min-height:292px;margin:auto;padding:24px 28px 30px}
+.projects-hero .breadcrumb{margin-bottom:22px!important}
+.projects-hero-copy{max-width:520px}
+.projects-hero-copy .eyebrow{font-size:.68rem;letter-spacing:.18em}
+.projects-hero-copy h1{font-family:var(--serif);font-size:2.35rem;line-height:1.35;margin:8px 0 10px;color:#193f32}
+.projects-hero-copy>p{font-size:.96rem;line-height:1.78;margin:0;color:#425349}
+.projects-hero-copy>small{display:block;margin-top:16px;font-family:var(--serif);font-style:italic;font-size:.72rem;letter-spacing:.05em;color:#6c786e}
+.projects-hero-note{position:absolute;right:48px;top:42px;width:154px;padding:19px 17px 16px;background:#f5edc9;box-shadow:4px 7px 14px rgba(20,35,25,.18);transform:rotate(-2deg);font-family:var(--serif);font-size:.78rem;line-height:1.85;color:#38463d}
+.projects-hero-note:before{content:"";position:absolute;top:-8px;left:45px;width:62px;height:16px;background:rgba(222,211,167,.72);transform:rotate(1deg)}
+.projects-hero-note b{display:block;margin-top:7px;text-align:right;font-size:.72rem;font-weight:500;font-style:italic}
+
+.projects-body{padding-top:0!important}
+.project-index{display:grid;grid-template-columns:1.7fr 1.35fr .52fr;align-items:center;gap:26px;margin:0 0 28px;padding:19px 0;border-bottom:1px solid #cbd3c8}
+.index-copy{display:flex;gap:16px;align-items:flex-start;padding-right:22px;border-right:1px solid #d5dcd2}
+.index-mark{flex:0 0 28px;width:28px;height:34px}
+.index-copy .eyebrow{margin:0 0 5px;font-size:.61rem;letter-spacing:.16em}
+.index-copy p:last-child{margin:0;font-size:.76rem;line-height:1.65;color:#59665d}
+.project-index dl{display:grid;grid-template-columns:repeat(3,1fr);margin:0}
+.project-index dl>div{padding:0 16px;border-right:1px solid #d5dcd2}
+.project-index dt{font-family:var(--serif);font-size:1.45rem;line-height:1.1;color:#193f32}
+.project-index dd{margin:5px 0 0;font-size:.61rem;color:#59665d;white-space:nowrap}
+.index-side{margin:0;font-size:.56rem;line-height:1.6;letter-spacing:.13em;color:#7a867d}
+.projects-body>.portfolio-section:first-of-type{border-top:0;padding-top:10px}
+
+@media(max-width:760px){
+ .projects-hero,.projects-hero-inner{min-height:310px}
+ .projects-hero{background-image:linear-gradient(90deg,rgba(249,247,237,.96),rgba(249,247,237,.75)),url('/assets/hero/hero-bg.jpg?v=4')}
+ .projects-hero-inner{padding:20px}
+ .projects-hero-copy h1{font-size:1.85rem}
+ .projects-hero-note{display:none}
+ .project-index{grid-template-columns:1fr;gap:15px;padding:18px 0 22px}
+ .index-copy{border-right:0;padding-right:0}
+ .project-index dl{border-top:1px solid #d5dcd2;padding-top:14px}
+ .project-index dl>div{padding:0 10px 0 0}
+ .project-index dl>div:last-child{border-right:0}
+ .project-index dd{white-space:normal}
+ .index-side{display:none}
+}
