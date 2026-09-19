@@ -1,8 +1,23 @@
 /* Storage hub aligned with the seven-category top-page taxonomy */
 .storage-shelves{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
-.storage-shelf{position:relative;min-height:230px;padding:20px;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;border:0!important;background-image:url('/assets/shelves.jpg?v=1');background-size:400% 200%;background-repeat:no-repeat;color:#fff!important;isolation:isolate;box-shadow:none!important}
-.storage-shelf:before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(16,36,28,.02) 25%,rgba(15,38,29,.86) 100%);z-index:-1}
-.storage-shelf .eyebrow,.storage-shelf h2,.storage-shelf p,.storage-shelf small,.storage-shelf .storage-arrow{position:relative;z-index:1;color:#fff!important;text-shadow:0 1px 7px rgba(0,0,0,.45)}
-.storage-shelf .eyebrow{font-size:.68rem;letter-spacing:.14em}.storage-shelf h2{margin:7px 0 7px;font-size:1.18rem}.storage-shelf p{font-size:.82rem;line-height:1.7;max-width:24em}.storage-shelf small{margin-top:10px;font-size:.7rem}.storage-shelf .storage-arrow{position:absolute;right:18px;bottom:18px;font-size:1.35rem}.storage-shelf:hover{transform:translateY(-4px);filter:saturate(1.04) contrast(1.03)}
-.storage-shelf:nth-child(1){background-position:0 0}.storage-shelf:nth-child(2){background-position:33.333% 0}.storage-shelf:nth-child(3){background-position:66.666% 0}.storage-shelf:nth-child(4){background-position:100% 0}.storage-shelf:nth-child(5){background-position:0 100%}.storage-shelf:nth-child(6){background-position:33.333% 100%}.storage-shelf:nth-child(7){background-position:66.666% 100%}
-@media(max-width:1000px){.storage-shelves{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:620px){.storage-shelves{grid-template-columns:1fr}.storage-shelf{min-height:190px}}
+.storage-shelf{position:relative;min-height:230px;padding:20px;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;border:1px solid rgba(31,61,48,.10)!important;background-size:cover!important;background-position:center!important;background-repeat:no-repeat!important;color:#fff!important;isolation:isolate;box-shadow:0 5px 16px rgba(25,45,34,.08)!important;transition:transform .22s ease,filter .22s ease,box-shadow .22s ease}
+.storage-shelf:before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(9,25,17,.03) 18%,rgba(10,29,20,.16) 48%,rgba(10,29,20,.84) 100%);z-index:-1}
+.storage-shelf .eyebrow,.storage-shelf h2,.storage-shelf p,.storage-shelf small,.storage-shelf .storage-arrow{position:relative;z-index:1;color:#fff!important;text-shadow:0 1px 5px rgba(0,0,0,.58)}
+.storage-shelf .eyebrow{font-size:.66rem;letter-spacing:.15em;font-weight:600}
+.storage-shelf h2{margin:7px 0 6px;font-size:1.17rem;line-height:1.35}
+.storage-shelf p{font-size:.78rem;line-height:1.58;max-width:22em;margin:0}
+.storage-shelf small{margin-top:8px;font-size:.62rem;letter-spacing:.04em;opacity:.70}
+.storage-shelf .storage-arrow{position:absolute;right:18px;bottom:17px;font-size:1.28rem}
+.storage-shelf:hover{transform:translateY(-3px);filter:saturate(1.03) contrast(1.02);box-shadow:0 10px 22px rgba(25,45,34,.13)!important}
+
+/* Use the dedicated shelf artwork instead of the low-resolution sprite. */
+.storage-shelf:nth-child(1){background-image:url('/assets/shelves/travel.webp?v=3')!important}
+.storage-shelf:nth-child(2){background-image:url('/assets/shelves/drink.webp?v=3')!important}
+.storage-shelf:nth-child(3){background-image:url('/assets/shelves/moneytax.webp?v=3')!important}
+.storage-shelf:nth-child(4){background-image:url('/assets/shelves/study.webp?v=3')!important}
+.storage-shelf:nth-child(5){background-image:url('/assets/shelves/create.webp?v=3')!important}
+.storage-shelf:nth-child(6){background-image:url('/assets/shelves/project.webp?v=3')!important}
+.storage-shelf:nth-child(7){background-image:url('/assets/shelves/archive.webp?v=3')!important}
+
+@media(max-width:1000px){.storage-shelves{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:620px){.storage-shelves{grid-template-columns:1fr}.storage-shelf{min-height:190px}}
