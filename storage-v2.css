@@ -21,3 +21,31 @@
 
 @media(max-width:1000px){.storage-shelves{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:620px){.storage-shelves{grid-template-columns:1fr}.storage-shelf{min-height:190px}}
+
+/* Storage page pass 2: compress the introduction and balance the 4+3 shelf layout. */
+.page-wrap{padding-top:26px!important}
+.breadcrumb{margin-bottom:24px!important}
+.page-intro{padding-bottom:24px!important;margin-bottom:24px!important}
+.page-intro h1{margin:8px 0 8px!important}
+.page-intro .page-lead{margin:0!important;line-height:1.75!important}
+.storage-guide>h2{margin:0 0 4px!important}
+.storage-guide>p{margin:0!important;line-height:1.7!important}
+.storage-shelves{margin:22px 0 48px!important}
+
+/* On wide screens the second row becomes a centered three-card band instead of
+   leaving a visually accidental empty fourth slot. */
+@media(min-width:1001px){
+  .storage-shelves{grid-template-columns:repeat(12,minmax(0,1fr))!important}
+  .storage-shelf{grid-column:span 3}
+  .storage-shelf:nth-child(5){grid-column:2/span 3}
+  .storage-shelf:nth-child(6){grid-column:5/span 3}
+  .storage-shelf:nth-child(7){grid-column:8/span 3}
+}
+
+@media(max-width:760px){
+  .page-wrap{padding-top:22px!important}
+  .breadcrumb{margin-bottom:20px!important}
+  .page-intro{padding-bottom:20px!important;margin-bottom:22px!important}
+  .page-intro .page-lead{line-height:1.7!important}
+  .storage-shelves{margin-top:18px!important}
+}
