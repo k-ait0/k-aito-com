@@ -82,3 +82,40 @@
   .storage-shelf{min-height:200px!important}
   .storage-shelf h2,.storage-shelf p,.storage-shelf small{min-height:0}
 }
+
+/* Storage page pass 4: carry the shelf language through labels, recent notes and onward navigation. */
+.status-guide{position:relative;grid-template-columns:.78fr 1.45fr!important;gap:42px!important;margin:8px 0 42px!important;padding:32px 0 34px!important;border-top:2px solid #193f32!important;border-bottom:1px solid #b9c4b6!important}
+.status-guide:before{content:"STATUS INDEX";position:absolute;top:-9px;left:0;padding-right:10px;background:#fffdf7;font-size:.58rem;font-weight:700;letter-spacing:.18em;color:#547427}
+.status-guide>div>p:last-child{max-width:28em;color:#526157}
+.status-guide dl{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:24px!important}
+.status-guide dl>div{grid-template-columns:88px 1fr!important;gap:14px!important;padding:11px 0!important;border-top:1px solid #d5ddd2!important}
+.status-guide dl>div:nth-child(-n+2){border-top:0!important}
+.status-guide dt{font-size:.72rem!important;letter-spacing:.08em;color:#345b44}
+.status-guide dd{font-size:.86rem!important;line-height:1.62!important;color:#526157}
+
+.listing-heading{margin-bottom:16px!important;padding-bottom:10px;border-bottom:1px solid #cbd4c8}
+.listing-heading h2{font-family:var(--serif);margin:0!important}
+.listing-heading>span{font-size:.68rem!important;letter-spacing:.12em;color:#547427}
+.notes-grid{gap:16px!important}
+.note-link{position:relative;padding:21px 22px!important;border:1px solid #c2cdc0!important;border-radius:3px!important;background:#fffef9!important;box-shadow:0 4px 14px rgba(25,45,34,.05);transition:transform .18s ease,box-shadow .18s ease,background .18s ease!important}
+.note-link:before{content:"";position:absolute;left:22px;top:0;width:34px;height:2px;background:#8bc34a}
+.note-link:hover{transform:translateY(-2px);background:#f7f8ed!important;box-shadow:0 8px 18px rgba(25,45,34,.09)}
+.note-link h3{font-size:1.08rem!important;line-height:1.58!important;margin:14px 0 8px!important}
+.note-link p{font-size:.88rem!important;line-height:1.7!important;margin-bottom:15px!important;color:#526157}
+.note-link small{font-size:.70rem!important;color:#547427}
+.note-meta{font-size:.69rem!important;letter-spacing:.04em}
+
+.related-band{margin-top:46px!important;padding-top:22px!important;border-top:2px solid #193f32!important}
+.related-band h2{font-family:var(--serif);margin:0 0 13px!important}
+.related-band>div{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px!important}
+.related-band a{display:flex;justify-content:space-between;align-items:center;padding:13px 14px!important;border:1px solid #d0d8cd;text-decoration:none;background:#fffef9;font-size:.86rem!important;transition:background .16s ease,transform .16s ease}
+.related-band a:hover{background:#eff3dc;transform:translateY(-1px)}
+.related-band a span{font-size:1.05rem}
+
+@media(max-width:760px){
+  .status-guide{grid-template-columns:1fr!important;gap:18px!important;padding:28px 0!important}
+  .status-guide dl{grid-template-columns:1fr}
+  .status-guide dl>div:nth-child(2){border-top:1px solid #d5ddd2!important}
+  .notes-grid{grid-template-columns:1fr!important}
+  .related-band>div{grid-template-columns:1fr!important}
+}
