@@ -121,3 +121,50 @@
 .project-coming-card>b{display:inline-block;margin-top:6px;padding:4px 7px;border:1px solid #b9c5b6;font-size:.58rem;letter-spacing:.13em;color:#6e7c71}
 .project-coming-card>p{margin:16px 0 0;font-size:.76rem;line-height:1.6;color:#7b867e}
 @media(max-width:760px){.project-coming-grid{grid-template-columns:1fr}.project-coming-card{min-height:96px}}
+
+/* Pass 6: finish lifecycle flow and project notes. */
+.project-flow-section{position:relative}
+.project-flow-section .portfolio-rule{position:relative;gap:0;border:1px solid #d0d8cd;background:#f8f7f0}
+.project-flow-section .portfolio-rule:before{content:"";position:absolute;left:12.5%;right:12.5%;top:37px;height:1px;background:#aebba9}
+.project-flow-section .portfolio-rule>div{position:relative;z-index:1;min-height:146px;border:0!important;border-right:1px solid #d0d8cd!important;background:transparent;padding:18px 18px 15px}
+.project-flow-section .portfolio-rule>div:last-child{border-right:0!important}
+.project-flow-section .portfolio-rule>div>b{display:grid;place-items:center;width:38px;height:38px;margin:0 0 14px;border:1px solid #aebba9;border-radius:50%;background:#f8f7f0;font-family:var(--sans);font-size:.66rem;color:#68766c}
+.project-flow-section .portfolio-rule>div.is-current{background:#eff3dc}
+.project-flow-section .portfolio-rule>div.is-current>b{border-color:#78923b;background:#78923b;color:#fff}
+.project-flow-section .portfolio-rule strong{font-family:var(--serif);font-size:.9rem}
+.flow-caption{margin:12px 0 0;text-align:right;font-size:.65rem;line-height:1.6;color:#7b867e}
+
+.project-notes-layout{display:grid;grid-template-columns:1.4fr .8fr;gap:16px}
+.project-note-feature{position:relative;display:grid;grid-template-columns:140px 1fr;gap:22px;min-height:210px;padding:25px 26px;border:1px solid #bdc9b9;background:linear-gradient(135deg,#f0f4dc 0%,#fffef9 68%);color:#193f32;text-decoration:none;box-shadow:0 5px 16px rgba(25,45,34,.05)}
+.project-note-feature:before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:#8bc34a}
+.note-label{align-self:start;padding:12px 10px;border:1px solid #c8d2b4;background:rgba(255,255,255,.55);font-family:var(--serif);font-size:.72rem;line-height:1.5;letter-spacing:.06em}
+.project-note-feature small{font-size:.58rem;letter-spacing:.13em;color:#66813c}
+.project-note-feature h3{font-family:var(--serif);font-size:1.2rem;line-height:1.55;margin:8px 0}
+.project-note-feature p{font-size:.78rem;line-height:1.75;margin:0;color:#536157}
+.project-note-feature>b{position:absolute;right:24px;bottom:18px;font-size:.58rem;letter-spacing:.11em}
+.project-note-feature:hover{background:linear-gradient(135deg,#eaf1cf 0%,#fffef9 68%)}
+.project-note-queue{display:grid;gap:10px}
+.project-note-queue article{display:grid;grid-template-columns:38px 1fr auto;align-items:center;gap:12px;padding:16px;border:1px dashed #b9c5b6;background:#faf9f2}
+.project-note-queue article>span{font-family:var(--serif);font-size:1.3rem;color:#b1bcb1}
+.project-note-queue small{display:block;margin-bottom:4px;font-size:.55rem;letter-spacing:.11em;color:#6d7b70}
+.project-note-queue strong{font-size:.72rem;font-weight:500;color:#405046}
+.project-note-queue em{font-size:.52rem;font-style:normal;letter-spacing:.11em;color:#879286}
+
+@media(max-width:760px){
+ .project-flow-section .portfolio-rule{display:grid!important;grid-template-columns:1fr 1fr!important}
+ .project-flow-section .portfolio-rule:before{display:none}
+ .project-flow-section .portfolio-rule>div{min-height:128px;border-bottom:1px solid #d0d8cd!important}
+ .project-flow-section .portfolio-rule>div:nth-child(2n){border-right:0!important}
+ .project-flow-section .portfolio-rule>div:nth-last-child(-n+2){border-bottom:0!important}
+ .flow-caption{text-align:left}
+ .project-notes-layout{grid-template-columns:1fr}
+ .project-note-feature{grid-template-columns:1fr;gap:13px;padding:22px 20px 48px}
+ .note-label{width:max-content}
+}
+@media(max-width:460px){
+ .project-flow-section .portfolio-rule{grid-template-columns:1fr!important}
+ .project-flow-section .portfolio-rule>div{min-height:auto;border-right:0!important;border-bottom:1px solid #d0d8cd!important}
+ .project-flow-section .portfolio-rule>div:last-child{border-bottom:0!important}
+ .project-note-queue article{grid-template-columns:34px 1fr}
+ .project-note-queue em{grid-column:2}
+}
