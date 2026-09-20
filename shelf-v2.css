@@ -11,7 +11,7 @@
 .shelf-toc{grid-template-columns:repeat(3,1fr);gap:0;padding:0;margin-bottom:12px;border:1px solid #c4cec1}
 .shelf-toc a{position:relative;padding:14px 16px;border-right:1px solid #d2d9d0;font-family:var(--serif);font-size:.76rem;line-height:1.55}
 .shelf-toc a:last-child{border-right:0}.shelf-toc a:hover{background:#eff3dc}
-.shelf-toc span{font-family:var(--sans);font-size:.54rem;letter-spacing:.12em}
+.shelf-toc span{font-family:var(--font);font-size:.54rem;letter-spacing:.12em}
 .shelf-group{grid-template-columns:.72fr 1.28fr;gap:34px;padding:27px 0}
 .shelf-group h2{font-family:var(--serif);font-size:1.15rem;margin-bottom:8px}
 .shelf-group-heading p{font-size:.75rem;line-height:1.75;color:#59665d}
@@ -42,3 +42,9 @@
 
 /* Money / tax shelf uses the existing dedicated shelf visual. */
 .money-shelf-photo{background-image:url('/assets/shelves/moneytax.webp?v=3')!important;background-color:#e9e8dd!important}
+
+/* Use the actual shelf artwork instead of cropped editorial sprite placeholders. */
+.shelf-page .shelf-figure .photo-travel{background-image:url('/assets/shelves/travel.webp?v=3')!important;background-size:cover!important;background-position:center!important}
+.shelf-page .shelf-figure .photo-sake{background-image:url('/assets/shelves/drink.webp?v=3')!important;background-size:cover!important;background-position:center!important}
+.shelf-page .shelf-figure .photo-notebook{background-image:url('/assets/shelves/study.webp?v=3')!important;background-size:cover!important;background-position:center!important}
+.shelf-page .shelf-figure .photo-house{background-image:url('/assets/shelves/create.webp?v=3')!important;background-size:cover!important;background-position:center!important}
