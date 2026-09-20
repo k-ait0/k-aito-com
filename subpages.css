@@ -300,3 +300,81 @@
   .subpage .archive-feature-photo{margin-top:16px}
   .subpage .archive-feature-photo img{aspect-ratio:2.05;object-position:56% 47%}
 }
+
+
+/* ABOUT: approved mobile editorial ordering, photographed shelf cards. */
+.subpage .about-page .about-hero{
+  display:block;
+  padding-bottom:8px;
+  border-bottom:0;
+}
+.subpage .about-page .about-hero-copy{
+  padding:0;
+  max-width:none;
+}
+.subpage .about-page .about-feature-photo{
+  margin:19px 0 0;
+}
+.subpage .about-page .about-feature-photo img{
+  aspect-ratio:2.18;
+  object-position:center 54%;
+}
+.subpage .about-page>.about-copy:first-of-type{
+  padding-top:24px;
+}
+.subpage .about-page>.about-hero-card{
+  min-height:0;
+  margin:18px 0 34px;
+  padding:20px 23px 44px;
+  transform:none;
+}
+.subpage .about-page>.about-hero-card .logo-mark{
+  width:39px;
+  height:48px;
+  margin-bottom:6px;
+}
+.subpage .about-page .profile-shelves{
+  padding-top:23px;
+  margin-top:20px;
+}
+.subpage .about-page .profile-shelves .note-link{
+  overflow:hidden;
+  min-height:0;
+  padding:0!important;
+  background:#fffef9;
+  border:1px solid #cbd3c8;
+}
+.subpage .about-page .profile-shelves .about-shelf-image{
+  display:block;
+  width:100%;
+  height:auto;
+  aspect-ratio:1.9;
+  object-fit:cover;
+  object-position:center;
+}
+.subpage .about-page .profile-shelves .note-link .eyebrow{
+  display:block;
+  margin:9px 11px 0;
+  font-size:.6875rem!important;
+}
+.subpage .about-page .profile-shelves .note-link h3{
+  margin:3px 11px 5px!important;
+  font-size:1rem!important;
+}
+.subpage .about-page .profile-shelves .note-link p{
+  margin:0 11px 12px!important;
+  font-size:.8125rem!important;
+  line-height:1.6!important;
+}
+@media(max-width:760px){
+  .subpage .about-page .about-hero{gap:0}
+  .subpage .about-page .about-feature-photo img{aspect-ratio:1.62;object-position:center 55%}
+  .subpage .about-page>.about-copy:first-of-type{padding-top:21px}
+  .subpage .about-page>.about-hero-card{padding:17px 20px 40px;margin:14px 0 25px}
+  .subpage .about-page .profile-shelves .notes-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important}
+}
+@media(max-width:380px){
+  .subpage .about-page .profile-shelves .note-link .eyebrow{margin-left:9px;margin-right:9px}
+  .subpage .about-page .profile-shelves .note-link h3{margin-left:9px!important;margin-right:9px!important}
+  .subpage .about-page .profile-shelves .note-link p{margin-left:9px!important;margin-right:9px!important}
+}
