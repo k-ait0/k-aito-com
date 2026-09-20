@@ -80,6 +80,40 @@
     viewAll.replaceWith(link);
   }
 
+  // Mobile search remains an icon until the user activates it.
+  const mobileSearch=document.getElementById('search-form');
+  if(mobileSearch){
+    const input=mobileSearch.querySelector('#site-search');
+    const submit=mobileSearch.querySelector('button[type="submit"]');
+    const close=mobileSearch.querySelector('.mobile-search-close');
+    const mobile=()=>window.matchMedia('(max-width:700px)').matches;
+    if(submit&&input){
+      submit.addEventListener('click',event=>{
+        if(!mobile()||mobileSearch.classList.contains('is-open'))return;
+        event.preventDefault();
+        mobileSearch.classList.add('is-open');
+        input.focus();
+      });
+    }
+    if(close&&input){
+      close.addEventListener('click',()=>{
+        mobileSearch.classList.remove('is-open');
+        input.blur();
+        submit.focus({preventScroll:true});
+      });
+    }
+    document.addEventListener('keydown',event=>{
+      if(event.key==='Escape'&&mobileSearch.classList.contains('is-open')){
+        mobileSearch.classList.remove('is-open');
+        input.blur();
+        submit.focus({preventScroll:true});
+      }
+    });
+    window.addEventListener('resize',()=>{
+      if(!mobile())mobileSearch.classList.remove('is-open');
+    });
+  }
+
   const randomGrid=document.getElementById('random-grid');
   if(randomGrid){
     randomGrid.innerHTML='<div class="small-notes-empty"><strong>物置の記録を、時間からたどる。</strong><p>旅も、酒も、学びも。公開した記録を、時間からたどれます。<br><a href="/archive/">ARCHIVEを見る →</a></p></div>';
