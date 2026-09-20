@@ -141,3 +141,67 @@
  .subpage .reactor-branches>div{grid-template-columns:32px minmax(0,1fr);gap:7px}
  .subpage .reactor-branches>div span{grid-column:2}
 }
+
+
+/* Visual parity pass: real image elements remain visible in mobile PDF exports. */
+.subpage .storage-shelf{isolation:isolate;background-image:none!important;background-color:#172f25!important}
+.subpage .storage-shelf>.storage-shelf-image{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:0;display:block}
+.subpage .storage-shelf:before{z-index:1;pointer-events:none}
+.subpage .storage-shelf:after{z-index:2}
+.subpage .storage-shelf .eyebrow,.subpage .storage-shelf h2,.subpage .storage-shelf p,.subpage .storage-shelf small,.subpage .storage-shelf .storage-arrow{z-index:2}
+.subpage .storage-shelf .storage-arrow{top:auto}
+.subpage .storage-shelf:focus-visible,.subpage .portfolio-card:focus-visible{outline:3px solid #8da641;outline-offset:3px}
+.subpage .project-visual{isolation:isolate;display:block;background-color:#244033}
+.subpage .project-visual>.project-visual-image{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:cover;object-position:center;z-index:0}
+.subpage .project-visual:after{z-index:1;pointer-events:none}
+.subpage .project-visual>span{z-index:2}
+.subpage .project-visual-storage>.project-visual-image{object-position:center 52%}
+.subpage .project-visual-travel>.project-visual-image{object-position:center}
+.subpage .project-visual-finowa>.project-visual-image{filter:saturate(.85)}
+/* Remove the card-width constraints inherited from desktop and keep the original 1+2 hierarchy. */
+@media(max-width:760px){
+ .subpage .storage-guide{min-width:0}
+ .subpage .storage-guide>h2{font-size:1.5rem;line-height:1.45}
+ .subpage .storage-guide>p{font-size:1rem;line-height:1.8}
+ .subpage .storage-shelves{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:12px!important;margin:20px 0 34px!important}
+ .subpage .storage-shelf{min-width:0;min-height:218px!important;padding:16px 14px 34px!important;justify-content:flex-end!important}
+ .subpage .storage-shelf .eyebrow{font-size:.75rem!important;letter-spacing:.09em}
+ .subpage .storage-shelf h2{font-size:1.125rem;line-height:1.35;min-height:0}
+ .subpage .storage-shelf p{font-size:.8125rem;line-height:1.6;min-height:0}
+ .subpage .storage-shelf small{font-size:.75rem;min-height:0}
+ .subpage .storage-shelf:last-child{grid-column:1/-1;min-height:172px!important}
+ .subpage .status-guide{margin:8px 0 27px!important}
+ .subpage .status-guide>div>p:last-child{font-size:1rem}
+ .subpage .notes-grid{gap:12px!important}
+ .subpage .note-link{padding:17px 18px!important}
+ .subpage .listing-heading{align-items:center;gap:8px}
+ .subpage .listing-heading>span{white-space:normal;text-align:right}
+ .subpage .project-secondary-grid .portfolio-card{display:grid;grid-template-columns:minmax(0,1fr)!important}
+ .subpage .featured-project-card{grid-template-columns:minmax(0,1fr)!important}
+ .subpage .featured-project-card .project-visual{min-height:204px}
+ .subpage .project-secondary-grid .project-visual{min-height:154px;height:154px}
+ .subpage .project-index{min-width:0}
+ .subpage .project-card-copy{min-width:0}
+ .subpage .project-card-copy h3{font-size:1.2rem!important;overflow-wrap:anywhere}
+ .subpage .project-notes-layout{min-width:0}
+ .subpage .project-flow-section .portfolio-rule{min-width:0}
+ .subpage .archive-period .note-link{gap:8px;padding:17px 19px!important}
+ .subpage .archive-period .note-link:after{right:9px}
+ .subpage .archive-guide nav{flex-wrap:wrap}
+ .subpage .archive-tools>div:first-child{flex-wrap:wrap}
+ .subpage .about-hero h1{line-height:1.4}
+ .subpage .about-page .editorial-principles li{padding:19px}
+ .subpage .about-page .editorial-principles p{font-size:.9375rem}
+}
+@media(max-width:359px){
+ .subpage .storage-shelves{grid-template-columns:1fr!important}
+ .subpage .storage-shelf{min-height:185px!important}
+ .subpage .storage-shelf:last-child{grid-column:auto}
+}
+/* Print/export: images are content, not optional CSS wallpaper. */
+@media print{
+ .subpage .storage-shelf,.subpage .project-visual{print-color-adjust:exact;-webkit-print-color-adjust:exact}
+ .subpage .storage-shelf>.storage-shelf-image,.subpage .project-visual>.project-visual-image{print-color-adjust:exact;-webkit-print-color-adjust:exact}
+ .subpage .storage-shelf{break-inside:avoid;page-break-inside:avoid}
+ .subpage .portfolio-card{break-inside:avoid;page-break-inside:avoid}
+}
