@@ -310,3 +310,20 @@
   .home-v2 .shelves-grid .shelf strong,.home-v2 .shelves-grid .shelf[data-shelf] strong:before{font-size:.76rem!important}
   .home-v2 .home-project-card{grid-template-columns:30% minmax(0,1fr)!important}
 }
+
+
+/* Compact mobile search: icon at rest, full-width field only while focused. */
+.header-search .mobile-search-close{display:none}
+@media(max-width:700px){
+  .header-inner{position:relative!important}
+  .header-search{box-sizing:border-box!important;position:relative!important;order:2!important;flex:0 0 40px!important;width:40px!important;min-width:40px!important;height:40px!important;margin-left:auto!important;padding:0!important;border-radius:50%!important;justify-content:center!important;box-shadow:none!important;z-index:5}
+  .header-search>input{display:none!important}
+  .header-search>button[type="submit"]{display:grid!important;place-items:center!important;width:38px!important;height:38px!important;min-width:38px!important;padding:9px!important;cursor:pointer}
+  .header-search>button[type="submit"] svg{width:20px!important;height:20px!important}
+  .header-search:focus-within{position:relative!important;left:auto!important;right:auto!important;top:auto!important}
+  .header-search.is-open{position:absolute!important;top:9px!important;left:12px!important;right:12px!important;width:auto!important;min-width:0!important;height:46px!important;flex:initial!important;margin:0!important;padding:0 4px 0 13px!important;border-radius:24px!important;background:#fff!important;justify-content:stretch!important;box-shadow:0 4px 14px rgba(20,40,28,.15)!important;z-index:30!important}
+  .header-search.is-open>input{display:block!important;flex:1!important;min-width:0!important;width:100%!important;font-size:16px!important;line-height:1.4!important}
+  .header-search.is-open>button[type="submit"]{width:38px!important;min-width:38px!important;order:2!important}
+  .header-search.is-open>.mobile-search-close{display:grid!important;place-items:center!important;order:3!important;width:34px!important;min-width:34px!important;height:38px!important;padding:0!important;font:400 24px/1 Arial,sans-serif!important;color:#53645a!important;cursor:pointer}
+  .header-search:not(.is-open)>.mobile-search-close{display:none!important}
+}
