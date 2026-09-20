@@ -207,3 +207,40 @@
 .home-closing-inner>div a:hover{background:#f8f5e9;color:#193f32;text-shadow:none}
 @media(min-width:1200px){.home-v2 .home-project-grid{gap:18px!important}}
 @media(max-width:700px){.home-v2 .home-project-card,.home-v2 .home-project-image{min-height:138px}.home-v2 .small-notes-empty{min-height:112px;padding:22px 20px}}
+
+/* Mobile HOME refinement: legible cards and a shorter opening sequence. */
+@media(max-width:700px){
+  .hero-inner{gap:13px!important;padding:20px 16px 40px!important}
+  .hero-poster{width:min(78vw,286px)!important;min-height:0!important;padding:15px 16px 17px!important}
+  .hero-poster .poster-kite{width:74px!important;height:82px!important;margin:5px auto 0!important}
+  .hero-poster .poster-brandname{height:36px!important}
+  .hero-poster .poster-brandname .logo-wordmark{width:148px!important;height:36px!important}
+  .hero-poster .poster-label{font-size:.6rem!important}
+  .hero-poster .poster-tagline{font-size:.77rem!important}
+  .hero-poster .poster-subtitle{font-size:.64rem!important;margin-top:4px!important}
+  .hero-poster .poster-rule{margin:10px auto!important}
+  .hero-poster .poster-copy{font-size:.84rem!important;line-height:1.75!important}
+  .hero-poster .poster-hand{font-size:.76rem!important;margin-top:8px!important}
+  .hero-thought{width:min(86vw,430px)!important;padding:14px 17px!important;font-size:1.02rem!important;line-height:1.75!important}
+  .hero-thought:after{font-size:.72rem!important;line-height:1.7!important;margin-top:10px!important}
+  .hero-polaroid{width:min(58vw,225px)!important;margin-right:6%!important}
+  .hero-polaroid .photo{height:135px!important}
+  .hero-note{width:min(52vw,188px)!important;margin-top:-34px!important;padding:19px 13px 15px!important}
+  .hero-index{margin-top:0!important}
+  .home-v2 .section-heading h2{font-size:1.13rem!important}
+  .home-v2 .section-heading h2 span{font-size:.75rem!important;white-space:normal}
+  .home-v2 .section-heading .small-link{font-size:.7rem!important;white-space:nowrap}
+  .home-v2 .recent-grid .recent-card{min-height:0!important}
+  .home-v2 .recent-grid .recent-card .card-title{font-size:1rem!important;line-height:1.6!important}
+  .home-v2 .recent-grid .recent-card .card-summary{font-size:.82rem!important;line-height:1.75!important}
+  .home-v2 .recent-grid .recent-card .card-date,.home-v2 .recent-grid .recent-card .card-tags{font-size:.73rem!important}
+  .home-v2 .home-project-copy{padding:14px 13px!important}
+  .home-v2 .home-project-copy strong{font-size:.94rem!important}
+  .home-v2 .home-project-copy em{font-size:.78rem!important;line-height:1.6!important}
+  .home-v2 .home-project-copy small,.home-v2 .home-project-card.is-preparing .home-project-copy b{font-size:.67rem!important}
+  .home-v2 .small-notes-empty strong{font-size:.94rem!important}
+  .home-v2 .small-notes-empty p{font-size:.79rem!important;line-height:1.7!important}
+  .home-v2 .small-notes-empty a{text-decoration:underline;text-underline-offset:3px;color:#193f32;font-weight:700}
+  .home-closing-inner>div p{font-size:.87rem!important}
+  .home-closing-inner>div a{font-size:.76rem!important}
+}
