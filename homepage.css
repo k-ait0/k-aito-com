@@ -186,3 +186,24 @@
 .home-v2 .home-project-finowa:after{content:"FINOWA";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-family:Georgia,serif;font-size:clamp(.8rem,1.5vw,1.15rem);letter-spacing:.09em;color:#f7f4e8;border:1px solid rgba(247,244,232,.55);padding:9px 7px}
 .home-v2 .home-project-card:not(a) .home-project-copy b{background:#b4bfb0}
 @media(max-width:700px){.home-v2 .recent-grid:has(> :nth-child(2):last-child){grid-template-columns:1fr!important;max-width:none!important}}
+
+/* Home v2 final desktop polish from rendered-page review. */
+.home-v2 .section{margin-bottom:28px!important}
+.home-v2 .home-latest{padding-bottom:24px!important}
+.home-v2 .home-projects{padding-top:14px!important}
+.home-v2 .home-storage-picks{padding-top:14px!important}
+.home-v2 .home-project-card{min-height:166px}
+.home-v2 .home-project-image{min-height:166px}
+.home-v2 .home-project-copy{padding:18px 18px 16px}
+.home-v2 .home-project-copy strong{font-size:1.05rem}
+.home-v2 .home-project-card.is-preparing{background:#faf9f3}
+.home-v2 .home-project-card.is-preparing .home-project-copy b{position:static;display:block;width:auto;height:auto;margin-top:auto;padding-top:12px;border-radius:0;background:transparent!important;color:#7b877e;font-size:.52rem;font-weight:600;letter-spacing:.12em}
+.home-v2 .small-notes-empty{grid-column:1/-1;min-height:128px;display:flex;flex-direction:column;justify-content:center;padding:26px 30px;border:1px solid #ddd8c8;background:linear-gradient(110deg,#f8f3e3,#f6f4ea);box-shadow:0 3px 10px rgba(25,45,34,.04)}
+.home-v2 .small-notes-empty strong{font-family:var(--serif);font-size:.88rem;letter-spacing:.04em}
+.home-v2 .small-notes-empty p{margin-top:7px;font-size:.69rem;color:#738077}
+.home-closing{background-position:center 56%}
+.home-closing-inner{min-height:244px}
+.home-closing-inner>div a{transition:background .18s ease,color .18s ease}
+.home-closing-inner>div a:hover{background:#f8f5e9;color:#193f32;text-shadow:none}
+@media(min-width:1200px){.home-v2 .home-project-grid{gap:18px!important}}
+@media(max-width:700px){.home-v2 .home-project-card,.home-v2 .home-project-image{min-height:138px}.home-v2 .small-notes-empty{min-height:112px;padding:22px 20px}}
