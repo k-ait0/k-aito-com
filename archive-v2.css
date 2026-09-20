@@ -30,3 +30,17 @@
 .archive-period .note-link small{grid-column:2;font-size:.59rem;color:#78847b}
 .archive-page .related-band{margin-top:34px}
 @media(max-width:760px){.archive-page .page-intro,.archive-guide{grid-template-columns:1fr;gap:12px}.archive-guide nav{grid-column:1;margin-top:4px}.archive-timeline:before{left:13px}.archive-period{grid-template-columns:1fr;gap:8px;padding-left:32px}.archive-period:before{left:8px}.archive-period>header{text-align:left}.archive-period>header span{display:inline;margin-left:8px}.archive-period .note-link{grid-template-columns:1fr;padding:17px 38px 17px 16px}.archive-period .note-meta{border-right:0;padding-right:0}.archive-period .note-meta time{display:inline;margin-left:8px}.archive-period .note-link small{grid-column:1}.archive-page .page-intro h1{font-size:1.9rem}}
+
+/* Archive pass 2 — scalable year/month navigation. */
+.archive-tools{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:28px;padding:18px 0;border-bottom:1px solid #cbd3c8}
+.archive-tools>div:first-child{display:flex;align-items:center;gap:13px}
+.archive-tools .eyebrow{margin:0;font-size:.56rem;letter-spacing:.14em}
+.archive-tools>div:first-child>strong{font-family:var(--serif);font-size:1rem}
+.archive-tools>div:first-child>a{display:flex;align-items:center;gap:8px;padding:5px 9px;background:#193f32;color:#fff;text-decoration:none;font-size:.62rem;letter-spacing:.1em}
+.archive-tools>div:first-child>a span{font-size:.5rem;color:#dbe895}
+.archive-stats{display:flex;gap:18px;padding:0 22px;border-left:1px solid #d2d9d0;border-right:1px solid #d2d9d0}
+.archive-stats span{font-size:.52rem;letter-spacing:.1em;color:#758179;white-space:nowrap}
+.archive-stats b{display:block;font-family:var(--serif);font-size:.9rem;color:#193f32;letter-spacing:0}
+.archive-tools>p{margin:0;font-size:.62rem;line-height:1.6;color:#758179}
+.archive-timeline[id]{scroll-margin-top:100px}
+@media(max-width:760px){.archive-tools{grid-template-columns:1fr;gap:12px}.archive-stats{padding:12px 0;border-left:0;border-right:0;border-top:1px solid #d2d9d0;border-bottom:1px solid #d2d9d0}.archive-tools>p{font-size:.65rem}}
