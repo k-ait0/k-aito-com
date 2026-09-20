@@ -82,7 +82,7 @@
 
   const randomGrid=document.getElementById('random-grid');
   if(randomGrid&&randomGrid.querySelectorAll('.entry-card').length<2){
-    randomGrid.innerHTML='<div class="small-notes-empty"><strong>断片メモは、まだありません。</strong><p>短いメモが増えたら、ここに少しずつ並べます。</p></div>';
+    randomGrid.innerHTML='<div class="small-notes-empty"><strong>物置の記録を、時間からたどる。</strong><p>公開したノートはアーカイブにまとめています。<a href="/archive/">記録を見る →</a></p></div>';
     const shuffle=document.getElementById('shuffle-button');
     if(shuffle)shuffle.hidden=true;
   }
