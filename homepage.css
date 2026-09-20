@@ -150,3 +150,31 @@
 .home-closing-inner>div a span{margin-left:18px}
 @media(max-width:980px){.home-project-grid{grid-template-columns:1fr}.home-project-card{grid-template-columns:32% 68%}.home-storage-picks .random-grid{grid-template-columns:repeat(2,1fr)!important}}
 @media(max-width:767px){.home-v2 .section{padding-top:18px!important}.home-latest .recent-grid,.home-storage-picks .random-grid{grid-template-columns:1fr!important}.home-project-card{grid-template-columns:38% 62%;min-height:132px}.home-project-image{min-height:132px}.home-closing,.home-closing-inner{min-height:260px}.home-closing-inner{padding:30px 22px;display:block}.home-closing blockquote p{font-size:1.35rem}.home-closing-inner>div{margin-top:24px;text-align:left}}
+
+/* Home v2 repair: legacy home-layout.css still makes .storage-content a two-column grid. */
+.storage-content.home-v2{display:block!important;max-width:1410px!important;margin:0 auto!important;padding-left:32px!important;padding-right:32px!important}
+.home-v2>.section{display:block!important;width:100%!important;grid-column:auto!important;grid-row:auto!important}
+.home-v2 .section-heading{display:flex!important;align-items:flex-end!important;justify-content:space-between!important;gap:18px!important}
+.home-v2 .section-heading h2{font-size:1.14rem!important}
+.home-v2 .section-heading h2:before{content:none!important}
+.home-v2 .section-heading h2 span{display:inline!important}
+.home-v2 .recent-grid{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:16px!important;width:100%!important}
+.home-v2 .recent-grid>*{width:auto!important;max-width:none!important;margin:0!important}
+.home-v2 .home-project-grid{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;width:100%!important}
+.home-v2 .home-project-card{display:grid!important}
+.home-v2 .home-project-image{display:block!important}
+.home-v2 .home-project-copy{display:flex!important}
+.home-v2 .random-grid{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;width:100%!important}
+.home-v2 .random-grid>*{width:auto!important;max-width:none!important;margin:0!important}
+@media(max-width:1050px){
+ .storage-content.home-v2{display:block!important}
+ .home-v2 .recent-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+ .home-v2 .home-project-grid{grid-template-columns:1fr!important}
+ .home-v2 .random-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+}
+@media(max-width:700px){
+ .storage-content.home-v2{padding:24px 18px 36px!important}
+ .home-v2 .section-heading{align-items:center!important}
+ .home-v2 .recent-grid,.home-v2 .random-grid{grid-template-columns:1fr!important}
+ .home-v2 .home-project-card{grid-template-columns:38% 62%!important}
+}
