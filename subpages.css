@@ -253,3 +253,50 @@
   .subpage .archive-period{padding-top:10px;padding-bottom:18px}
   .subpage .archive-period .note-link{padding:14px 15px!important}
 }
+
+
+/* Additional editorial images for the approved K. Aito mobile UI.
+   Loaded after the existing subpages.css rules. Only .subpage pages are affected. */
+.subpage .about-feature-photo{
+  margin:20px 0 0;
+  border:1px solid #cbd3c8;
+  background:#e9ebe3;
+  overflow:hidden;
+}
+.subpage .about-feature-photo img{
+  display:block;
+  width:100%;
+  aspect-ratio:1.9;
+  height:auto;
+  object-fit:cover;
+  object-position:center 59%;
+}
+.subpage .archive-feature-photo{
+  margin:18px 0 0;
+  border:1px solid #cbd3c8;
+  background:#e8e8dc;
+  overflow:hidden;
+}
+.subpage .archive-feature-photo img{
+  display:block;
+  width:100%;
+  height:auto;
+  aspect-ratio:2.8;
+  object-fit:cover;
+  object-position:center 46%;
+}
+.subpage .archive-page .archive-guide{
+  margin-top:0;
+}
+.subpage .project-visual-travel>.project-visual-image{
+  object-position:center 52%;
+}
+.subpage .project-visual-finowa>.project-visual-image{
+  object-position:center 50%;
+}
+@media(max-width:760px){
+  .subpage .about-feature-photo{margin-top:16px}
+  .subpage .about-feature-photo img{aspect-ratio:1.62;object-position:47% 57%}
+  .subpage .archive-feature-photo{margin-top:16px}
+  .subpage .archive-feature-photo img{aspect-ratio:2.05;object-position:56% 47%}
+}
