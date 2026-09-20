@@ -1,0 +1,41 @@
+/* Shared shelf template — K. Aito editorial system */
+.shelf-page{max-width:1120px}
+.shelf-page .breadcrumb{margin-bottom:22px}
+.shelf-page .page-intro{display:grid;grid-template-columns:1fr .8fr;gap:34px;align-items:end;margin-bottom:22px;padding-bottom:24px}
+.shelf-page .page-intro h1{font-family:var(--serif);font-size:2.35rem;margin:7px 0}
+.shelf-page .page-lead{font-size:.9rem;color:#59665d}
+.shelf-intro{max-width:780px;margin:0 0 22px;font-size:.82rem;line-height:1.85;color:#536157}
+.shelf-figure{position:relative;margin:0 0 22px}
+.shelf-figure .shelf-photo{height:245px;margin:0;background-size:cover!important;background-position:center!important;border:1px solid #c5cec2}
+.shelf-figure figcaption{position:absolute;right:10px;bottom:9px;margin:0;padding:5px 8px;background:rgba(249,247,237,.88);font-size:.53rem;letter-spacing:.04em}
+.shelf-toc{grid-template-columns:repeat(3,1fr);gap:0;padding:0;margin-bottom:12px;border:1px solid #c4cec1}
+.shelf-toc a{position:relative;padding:14px 16px;border-right:1px solid #d2d9d0;font-family:var(--serif);font-size:.76rem;line-height:1.55}
+.shelf-toc a:last-child{border-right:0}.shelf-toc a:hover{background:#eff3dc}
+.shelf-toc span{font-family:var(--sans);font-size:.54rem;letter-spacing:.12em}
+.shelf-group{grid-template-columns:.72fr 1.28fr;gap:34px;padding:27px 0}
+.shelf-group h2{font-family:var(--serif);font-size:1.15rem;margin-bottom:8px}
+.shelf-group-heading p{font-size:.75rem;line-height:1.75;color:#59665d}
+.shelf-group-heading small{display:inline-block;margin-top:6px;padding:3px 7px;background:#eef1e4;font-size:.53rem;letter-spacing:.1em}
+.shelf-empty{margin:0;padding:20px 22px;border:1px dashed #bdc7ba;background:#faf9f3;font-size:.72rem;line-height:1.75}
+.shelf-group-content .note-link{padding:18px;border-radius:0}
+.shelf-group-content .note-link h3{font-family:var(--serif);font-size:.95rem;margin:10px 0 6px}
+.shelf-group-content .note-link p{font-size:.7rem;line-height:1.7;margin-bottom:9px}
+.record-guide{padding:30px 0;border-top:2px solid #193f32}
+.record-guide h2{font-family:var(--serif);font-size:1.25rem;margin-top:0}
+.record-guide dl{grid-template-columns:repeat(4,1fr);gap:10px}
+.record-guide dl>div{padding:16px;border:1px solid #cbd3c8;background:#fffef9}
+.record-guide dt{font-family:var(--serif);font-size:.78rem}
+.record-guide dd{font-size:.66rem;line-height:1.7;margin-top:7px;color:#647168}
+.shelf-bridge{display:grid;grid-template-columns:1fr auto;gap:16px 28px;align-items:end;padding:24px 0;border-top:1px solid #cbd3c8}
+.shelf-bridge .eyebrow{grid-column:1/-1;margin:0}
+.shelf-bridge h2{font-family:var(--serif);font-size:1.25rem;margin:0}
+.shelf-bridge p{font-size:.72rem;line-height:1.75;margin:5px 0 0}
+.shelf-bridge .project-primary-link{grid-column:2;grid-row:2/4;margin:0;font-size:.67rem;padding:10px 14px}
+.shelf-page .related-band{margin-top:28px}
+.shelf-page.is-preparing .shelf-empty-state{display:grid;grid-template-columns:.75fr 1.25fr;gap:34px;margin:22px 0 34px;padding:28px 0;border-top:2px solid #193f32;border-bottom:1px solid #cbd3c8}
+.shelf-empty-state .empty-visual{min-height:220px;background-size:cover;background-position:center;border:1px solid #c5cec2}
+.shelf-empty-state .empty-copy{align-self:center}
+.shelf-empty-state h2{font-family:var(--serif);font-size:1.4rem}
+.shelf-empty-state p{font-size:.78rem;line-height:1.85;color:#59665d}
+@media(max-width:760px){.shelf-page .page-intro{grid-template-columns:1fr;gap:8px}.shelf-page .page-intro h1{font-size:1.9rem}.shelf-toc{grid-template-columns:1fr}.shelf-toc a{border-right:0;border-bottom:1px solid #d2d9d0}.shelf-toc a:last-child{border-bottom:0}.shelf-group{grid-template-columns:1fr;gap:10px}.record-guide dl{grid-template-columns:1fr 1fr}.shelf-bridge{grid-template-columns:1fr}.shelf-bridge .project-primary-link{grid-column:1;grid-row:auto;width:max-content}.shelf-page.is-preparing .shelf-empty-state{grid-template-columns:1fr}.shelf-figure .shelf-photo{height:200px}}
+@media(max-width:460px){.record-guide dl{grid-template-columns:1fr}}
