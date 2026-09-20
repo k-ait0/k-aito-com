@@ -1,0 +1,143 @@
+/* K. Aito / DIGITAL STORAGE — subpage readability and responsive alignment.
+   Loaded after each page's existing CSS. HOME is deliberately excluded. */
+.subpage .site-header{z-index:5}
+.subpage .main-nav a[aria-current="page"]{color:#193f32;border-bottom:2px solid #193f32;font-weight:700}
+.subpage .breadcrumb{line-height:1.65}
+.subpage .breadcrumb a{text-decoration:underline;text-underline-offset:3px;text-decoration-color:#aab7a5}
+.subpage .page-lead{overflow-wrap:anywhere}
+.subpage .page-footer nav a{display:inline-flex;align-items:center;min-height:40px}
+.subpage .page-footer a:focus-visible,.subpage .main-nav a:focus-visible{outline:2px solid #8da641;outline-offset:4px}
+.subpage .note-link,.subpage .portfolio-card,.subpage .storage-shelf{min-width:0}
+.subpage .note-link h3,.subpage .portfolio-card h3,.subpage .storage-shelf h2{overflow-wrap:anywhere}
+.subpage .note-link small,.subpage .note-meta{line-height:1.6}
+.subpage .article-copy figure,.subpage .article-copy pre,.subpage .article-copy table{max-width:100%}
+.subpage .article-copy pre,.subpage .article-copy table{overflow-x:auto}
+
+/* ABOUT: keep the existing editorial composition and restore readable annotations. */
+.subpage .about-hero-card p{font-size:.9375rem;line-height:1.8}
+.subpage .about-hero-card small{font-size:.8125rem}
+.subpage .about-copy p{font-size:1rem;line-height:1.95}
+.subpage .profile-shelves .note-link p{font-size:.875rem;line-height:1.75}
+.subpage .profile-shelves .eyebrow{font-size:.75rem}
+.subpage .about-page .editorial-principles strong{font-size:1rem}
+.subpage .about-page .editorial-principles p{font-size:.875rem;line-height:1.8}
+
+/* SHELVES index and category pages. */
+.subpage .storage-shelf .eyebrow{font-size:.75rem}
+.subpage .storage-shelf h2{font-size:1.25rem}
+.subpage .storage-shelf p{font-size:.9375rem;line-height:1.65}
+.subpage .storage-shelf small{font-size:.75rem;opacity:1}
+.subpage .status-guide dt{font-size:.8125rem!important}
+.subpage .status-guide dd{font-size:.9375rem!important;line-height:1.75!important}
+.subpage .listing-heading>span{font-size:.75rem!important}
+.subpage .note-meta{font-size:.75rem!important}
+.subpage .note-link small{font-size:.75rem!important}
+.subpage .shelf-page .page-lead{font-size:1rem}
+.subpage .shelf-intro{font-size:1rem;line-height:1.9}
+.subpage .shelf-figure figcaption{font-size:.75rem}
+.subpage .shelf-toc a{font-size:.9375rem;line-height:1.6}
+.subpage .shelf-toc span{font-size:.75rem}
+.subpage .shelf-group-heading p{font-size:.9375rem;line-height:1.8}
+.subpage .shelf-group-heading small{font-size:.75rem}
+.subpage .shelf-empty{font-size:.9375rem}
+.subpage .shelf-group-content .note-link p{font-size:.9375rem;line-height:1.75}
+.subpage .record-guide dt{font-size:1rem}
+.subpage .record-guide dd{font-size:.9375rem;line-height:1.8}
+.subpage .shelf-bridge p,.subpage .shelf-empty-state p{font-size:.9375rem;line-height:1.8}
+.subpage .shelf-bridge .project-primary-link{font-size:.875rem}
+
+/* ARCHIVE: dates and meta labels should not be miniature on phones. */
+.subpage .archive-page .page-lead{font-size:1rem}
+.subpage .archive-guide>div>p{font-size:.9375rem;line-height:1.8}
+.subpage .archive-guide nav a{font-size:.875rem}
+.subpage .archive-period>header time{font-size:1rem}
+.subpage .archive-period>header span{font-size:.75rem}
+.subpage .archive-period .note-meta span,.subpage .archive-period .note-meta time{font-size:.75rem}
+.subpage .archive-period .note-link h3{font-size:1.0625rem}
+.subpage .archive-period .note-link p{font-size:.9375rem;line-height:1.8}
+.subpage .archive-period .note-link small{font-size:.75rem!important}
+.subpage .archive-tools .eyebrow,.subpage .archive-tools>div:first-child>a,.subpage .archive-stats span,.subpage .archive-tools>p{font-size:.75rem}
+
+/* PROJECTS index and case-study. */
+.subpage .projects-hero-copy>p{font-size:1rem}
+.subpage .portfolio-section-head p,.subpage .portfolio-card p{font-size:.9375rem}
+.subpage .portfolio-card .project-state,.subpage .project-phase{font-size:.75rem}
+.subpage .portfolio-card small,.subpage .project-card-copy>small{font-size:.75rem}
+.subpage .project-meta>div{font-size:.875rem}
+.subpage .project-cta{font-size:.875rem}
+.subpage .project-index .eyebrow,.subpage .project-index dd,.subpage .index-copy p:last-child,.subpage .index-side{font-size:.75rem}
+.subpage .project-coming-card>b,.subpage .project-coming-card>p{font-size:.8125rem}
+.subpage .project-flow-section .portfolio-rule strong{font-size:1rem}
+.subpage .portfolio-rule span,.subpage .flow-caption{font-size:.8125rem}
+.subpage .project-note-feature small,.subpage .project-note-queue small,.subpage .project-note-queue em{font-size:.75rem}
+.subpage .project-note-feature p,.subpage .project-note-queue strong{font-size:.9375rem}
+.subpage .project-detail .project-status,.subpage .project-detail .project-status strong{font-size:.75rem}
+.subpage .project-detail .project-local-nav a{font-size:.9375rem}
+.subpage .project-detail .about-copy p,.subpage .project-detail .project-columns p{font-size:1rem}
+.subpage .project-detail .project-columns a{font-size:.9375rem}
+.subpage .project-detail .progress-list dt,.subpage .project-detail .next-list strong{font-size:1rem}
+.subpage .project-detail .progress-list dd{font-size:.9375rem;line-height:1.85}
+
+/* Full articles: body copy, reading navigation, captions and cross-links. */
+.subpage .article-page .note-meta,.subpage .article-page .note-meta>span,.subpage .article-page .note-meta time{font-size:.8125rem}
+.subpage .article-page>.page-lead{font-size:1.125rem}
+.subpage .article-reading-guide{font-size:.875rem;line-height:1.7}
+.subpage .article-copy{font-size:1.0625rem;line-height:1.95}
+.subpage .article-page .article-related .note-link p{font-size:.9375rem;line-height:1.8}
+.subpage .article-page .article-related .note-link small{font-size:.75rem}
+.subpage .article-next small{font-size:.75rem}
+.subpage .article-next strong{font-size:1rem}
+.subpage .article-visual figcaption,.subpage .manga-stack figcaption,.subpage .article-sources p{font-size:.875rem;line-height:1.8}
+.subpage .diagram-label,.subpage .reactor-core small,.subpage .reactor-branches b,.subpage .shared-core b,.subpage .architecture-grid small{font-size:.75rem}
+
+/* Tablet / phone: align the header with the HOME's two-tier navigation. */
+@media(max-width:900px){
+ .subpage .header-inner{display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px;min-width:0}
+ .subpage .brand{min-width:0}
+ .subpage .brand-lockup{min-width:0}
+ .subpage .main-nav{order:3;flex:0 0 100%;width:100%;min-width:0;justify-content:flex-start;flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;gap:clamp(14px,4vw,30px);border-top:1px solid #deded1}
+ .subpage .main-nav::-webkit-scrollbar{display:none}
+ .subpage .main-nav a{flex:0 0 auto;min-height:40px;display:inline-flex;align-items:center}
+}
+@media(max-width:760px){
+ .subpage .page-wrap{padding-left:20px;padding-right:20px}
+ .subpage .breadcrumb{font-size:.8125rem}
+ .subpage .page-lead{font-size:1rem}
+ .subpage .page-intro h1{font-size:clamp(1.8rem,7vw,2.1rem)}
+ .subpage .about-hero{gap:16px}
+ .subpage .about-hero-card{transform:none;padding:22px 22px 45px}
+ .subpage .about-hero-card small{bottom:16px;right:20px}
+ .subpage .profile-shelves .notes-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .subpage .storage-shelves{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .subpage .storage-shelf{min-height:215px!important;padding:18px 15px!important}
+ .subpage .storage-shelf .storage-arrow{bottom:10px!important;right:12px!important}
+ .subpage .status-guide dl>div{grid-template-columns:100px minmax(0,1fr)!important}
+ .subpage .archive-period{padding-left:27px}
+ .subpage .archive-period .note-link{min-width:0}
+ .subpage .article-page h1{font-size:clamp(1.8rem,7vw,2.1rem);line-height:1.45}
+ .subpage .article-copy{font-size:1rem;line-height:1.95}
+ .subpage .article-page .article-related .notes-grid{grid-template-columns:1fr}
+ .subpage .project-detail .project-cover-copy{padding:28px 22px}
+ .subpage .project-detail .project-status{height:auto;min-width:0}
+ .subpage .project-detail .project-status span{font-size:.75rem}
+ .subpage .project-detail .project-local-nav a{min-height:40px;display:inline-flex;align-items:center}
+ .subpage .page-footer nav{gap:4px 18px}
+ .subpage .page-footer small{font-size:.8125rem}
+}
+@media(max-width:480px){
+ .subpage .header-inner{padding:10px 16px}
+ .subpage .brand .brand-kite.logo-mark{width:42px}
+ .subpage .brand .logo-wordmark{width:136px}
+ .subpage .brand-lockup small{font-size:.75rem}
+ .subpage .main-nav{gap:16px}
+ .subpage .main-nav a{font-size:.75rem;letter-spacing:.04em}
+ .subpage .page-wrap{padding-left:16px;padding-right:16px}
+ .subpage .profile-shelves .notes-grid{grid-template-columns:1fr}
+ .subpage .storage-shelves{grid-template-columns:1fr}
+ .subpage .storage-shelf{min-height:205px!important}
+ .subpage .shelf-toc{grid-template-columns:1fr}
+ .subpage .record-guide dl{grid-template-columns:1fr}
+ .subpage .article-next{grid-template-columns:1fr}
+ .subpage .reactor-branches>div{grid-template-columns:32px minmax(0,1fr);gap:7px}
+ .subpage .reactor-branches>div span{grid-column:2}
+}
