@@ -7,10 +7,10 @@
 .project-detail .project-cover-copy{padding:42px 46px}
 .project-detail .project-cover h1{font-family:var(--serif);font-size:clamp(2rem,4vw,3rem);line-height:1.28}
 .project-detail .project-cover-copy>p:last-child{font-family:var(--serif);font-size:1rem}
-.project-status{display:flex;gap:10px;flex-wrap:wrap;align-items:center;padding:14px 0;border-bottom:1px solid #bdc9bd;font-size:.64rem;color:#647168}
-.project-status strong{padding:5px 10px;background:#dce7c7;color:#193f32;font-size:.6rem;letter-spacing:.1em}
-.project-status span{padding-right:12px;border-right:1px solid #bdc9bd}
-.project-status span:last-child{border:0}
+.project-detail .project-status{position:static;inset:auto;width:auto;height:auto;border-radius:0;box-shadow:none;background:transparent;display:flex;flex-direction:row;justify-content:flex-start;text-align:left;gap:10px;flex-wrap:wrap;align-items:center;padding:14px 0;border-bottom:1px solid #bdc9bd;font-size:.64rem;color:#647168}
+.project-detail .project-status strong{padding:5px 10px;background:#dce7c7;color:#193f32;font-size:.6rem;letter-spacing:.1em}
+.project-detail .project-status span{padding-right:12px;border-right:1px solid #bdc9bd}
+.project-detail .project-status span:last-child{border:0}
 .project-detail .project-local-nav{position:relative;margin:0 0 24px;padding:14px 0;gap:10px 22px}
 .project-detail .project-local-nav a{font-size:.72rem;text-decoration:none;border-bottom:1px solid transparent}
 .project-detail .project-local-nav a:hover{border-color:#8da641}
