@@ -43,7 +43,7 @@
   const shelvesSection=document.querySelector('.shelves-section');
   if(shelvesSection){
     const heading=shelvesSection.querySelector('.section-heading');
-    if(heading&&!heading.querySelector('.section-view-all')){
+    if(heading&&!heading.querySelector('.section-view-all')&&!heading.querySelector('a[href="/storage/"]')){
       const link=document.createElement('a');
       link.className='text-link small-link section-view-all';
       link.href='/storage/';
