@@ -117,3 +117,36 @@
   .hero:after{background:linear-gradient(180deg,transparent 70%,rgba(7,18,12,.12))!important}
   .hero-poster .poster-brandname .logo-wordmark{width:170px;height:40px}
 }
+
+/* Home v2 — clear gateway hierarchy: shelves, latest, projects, storage, closing. */
+.home-v2{max-width:1410px!important;padding-bottom:28px!important}
+.home-v2 .section{padding-top:22px!important;padding-bottom:18px!important}
+.home-v2 .section-heading{margin-bottom:13px!important;border-bottom:1px solid rgba(25,63,50,.13);padding-bottom:9px}
+.home-v2 .section-heading h2{font-family:var(--serif);font-size:1.14rem!important;letter-spacing:.06em}
+.home-v2 .section-heading h2 span{font-family:var(--sans);font-size:.72rem!important;font-weight:400;letter-spacing:.06em;color:#66736a}
+.home-latest .recent-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:18px!important}
+.home-latest .recent-card{min-height:116px!important}
+.home-project-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.home-project-card{display:grid;grid-template-columns:42% 58%;min-height:154px;border:1px solid #d0d8cd;background:#fffef9;color:#193f32;text-decoration:none;box-shadow:0 3px 10px rgba(25,45,34,.045);overflow:hidden}
+.home-project-image{display:block;min-height:154px;background-size:cover;background-position:center}
+.home-project-storage{background-image:url('/assets/hero/hero-bg.jpg?v=4')}
+.home-project-travel{background-image:url('/assets/shelves/travel.webp?v=3')}
+.home-project-finowa{background-image:linear-gradient(rgba(14,40,29,.12),rgba(14,40,29,.22)),url('/assets/shelves/create.webp?v=3')}
+.home-project-copy{position:relative;display:flex;flex-direction:column;padding:18px 17px}
+.home-project-copy small{font-size:.58rem;letter-spacing:.13em;color:#66813c}
+.home-project-copy strong{margin:9px 0 7px;font-family:var(--serif);font-size:1.02rem;line-height:1.4}
+.home-project-copy em{font-size:.69rem;font-style:normal;line-height:1.6;color:#657168}
+.home-project-copy b{position:absolute;right:14px;bottom:12px;display:grid;place-items:center;width:25px;height:25px;border-radius:50%;background:#78923b;color:#fff;font-weight:400}
+.home-storage-picks .random-grid{grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:12px!important}
+.home-storage-picks .random-card{min-height:142px!important}
+.home-closing{position:relative;min-height:230px;background-image:linear-gradient(90deg,rgba(11,32,23,.40),rgba(11,32,23,.08),rgba(11,32,23,.42)),url('/assets/hero/hero-bg.jpg?v=4');background-size:cover;background-position:center 62%;color:#fff}
+.home-closing-inner{max-width:1410px;min-height:230px;margin:auto;padding:38px 34px;display:flex;align-items:center;justify-content:space-between;gap:40px}
+.home-closing blockquote{margin:0;font-family:var(--serif);text-shadow:0 2px 9px rgba(0,0,0,.45)}
+.home-closing blockquote p{margin:0;font-size:1.62rem;line-height:1.75;letter-spacing:.08em}
+.home-closing blockquote cite{display:block;margin-top:7px;font-size:.86rem;font-style:italic}
+.home-closing-inner>div{text-align:right;text-shadow:0 2px 8px rgba(0,0,0,.52)}
+.home-closing-inner>div p{font-family:var(--serif);font-size:.79rem;line-height:1.8}
+.home-closing-inner>div a{display:inline-block;margin-top:12px;padding:11px 18px;border:1px solid rgba(255,255,255,.8);color:#fff;text-decoration:none;font-size:.67rem;letter-spacing:.12em;background:rgba(10,31,22,.26)}
+.home-closing-inner>div a span{margin-left:18px}
+@media(max-width:980px){.home-project-grid{grid-template-columns:1fr}.home-project-card{grid-template-columns:32% 68%}.home-storage-picks .random-grid{grid-template-columns:repeat(2,1fr)!important}}
+@media(max-width:767px){.home-v2 .section{padding-top:18px!important}.home-latest .recent-grid,.home-storage-picks .random-grid{grid-template-columns:1fr!important}.home-project-card{grid-template-columns:38% 62%;min-height:132px}.home-project-image{min-height:132px}.home-closing,.home-closing-inner{min-height:260px}.home-closing-inner{padding:30px 22px;display:block}.home-closing blockquote p{font-size:1.35rem}.home-closing-inner>div{margin-top:24px;text-align:left}}
