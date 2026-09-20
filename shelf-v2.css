@@ -39,3 +39,6 @@
 .shelf-empty-state p{font-size:.78rem;line-height:1.85;color:#59665d}
 @media(max-width:760px){.shelf-page .page-intro{grid-template-columns:1fr;gap:8px}.shelf-page .page-intro h1{font-size:1.9rem}.shelf-toc{grid-template-columns:1fr}.shelf-toc a{border-right:0;border-bottom:1px solid #d2d9d0}.shelf-toc a:last-child{border-bottom:0}.shelf-group{grid-template-columns:1fr;gap:10px}.record-guide dl{grid-template-columns:1fr 1fr}.shelf-bridge{grid-template-columns:1fr}.shelf-bridge .project-primary-link{grid-column:1;grid-row:auto;width:max-content}.shelf-page.is-preparing .shelf-empty-state{grid-template-columns:1fr}.shelf-figure .shelf-photo{height:200px}}
 @media(max-width:460px){.record-guide dl{grid-template-columns:1fr}}
+
+/* Money / tax shelf uses the existing dedicated shelf visual. */
+.money-shelf-photo{background-image:url('/assets/shelves/moneytax.webp?v=3')!important;background-color:#e9e8dd!important}
