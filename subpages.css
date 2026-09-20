@@ -205,3 +205,51 @@
  .subpage .storage-shelf{break-inside:avoid;page-break-inside:avoid}
  .subpage .portfolio-card{break-inside:avoid;page-break-inside:avoid}
 }
+
+
+/* Mobile composition pass 3 — match the approved compact HOME rhythm at 393px. */
+@media(max-width:480px){
+  .subpage .profile-shelves .notes-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important}
+  .subpage .profile-shelves .note-link{min-height:132px;padding:14px!important}
+  .subpage .profile-shelves .note-link h3{font-size:1rem!important;margin:7px 0 5px!important}
+  .subpage .profile-shelves .note-link p{font-size:.8125rem!important;line-height:1.65!important}
+  .subpage .storage-shelves{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important}
+  .subpage .storage-shelf{min-height:176px!important;padding:13px 12px 31px!important}
+  .subpage .storage-shelf:last-child{grid-column:1/-1;min-height:148px!important}
+  .subpage .storage-shelf h2{font-size:1.02rem!important}
+  .subpage .storage-shelf p{font-size:.75rem!important;line-height:1.52!important}
+  .subpage .storage-shelf small{font-size:.6875rem!important}
+  .subpage .storage-shelf .storage-arrow{font-size:1rem!important}
+  .subpage .status-guide dl>div{grid-template-columns:82px minmax(0,1fr)!important;gap:10px!important}
+  .subpage .status-guide dt{font-size:.75rem!important}
+  .subpage .status-guide dd{font-size:.875rem!important}
+  .subpage .about-page .editorial-principles{gap:10px}
+  .subpage .about-page .editorial-principles li{padding:17px 16px}
+}
+/* Keep real project photography visible instead of reading as black bars. */
+.subpage .project-visual:after{background:linear-gradient(180deg,rgba(10,28,19,.03) 35%,rgba(10,28,19,.30) 100%)!important}
+.subpage .project-visual-storage span{background:rgba(250,248,238,.88);color:#193f32;text-shadow:none;padding:7px 9px;border-radius:2px}
+.subpage .project-visual-finowa span{background:rgba(250,248,238,.92)}
+@media(max-width:760px){
+  .subpage .featured-project-card .project-visual{min-height:188px!important}
+  .subpage .project-secondary-grid .project-visual{height:146px!important;min-height:146px!important}
+  .subpage .project-visual>.project-visual-image{filter:none!important}
+  .subpage .project-visual-finowa>.project-visual-image{filter:saturate(.92) brightness(1.05)!important}
+  .subpage .project-secondary-grid{gap:10px!important}
+  .subpage .project-secondary-grid .portfolio-card{padding:8px!important}
+  .subpage .project-card-copy{padding:12px 9px 9px!important}
+  .subpage .project-card-copy>p{font-size:.875rem!important;line-height:1.68!important}
+  .subpage .project-meta>div{font-size:.8125rem!important}
+  .subpage .project-coming-grid{gap:8px!important}
+  .subpage .project-coming-card{min-height:88px!important;padding:14px 15px!important}
+  .subpage .project-flow-section .portfolio-rule>div{min-height:112px!important;padding:14px!important}
+  .subpage .project-note-feature{min-height:0!important}
+}
+/* ARCHIVE is structurally sound; only tighten mobile spacing. */
+@media(max-width:480px){
+  .subpage .archive-guide{padding-top:18px;padding-bottom:22px}
+  .subpage .archive-tools{padding:14px 0}
+  .subpage .archive-year{font-size:1.35rem}
+  .subpage .archive-period{padding-top:10px;padding-bottom:18px}
+  .subpage .archive-period .note-link{padding:14px 15px!important}
+}
