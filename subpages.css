@@ -378,3 +378,21 @@
   .subpage .about-page .profile-shelves .note-link h3{margin-left:9px!important;margin-right:9px!important}
   .subpage .about-page .profile-shelves .note-link p{margin-left:9px!important;margin-right:9px!important}
 }
+
+
+/* Catalogue-driven topical shelf listings. Preserve the existing editorial grid. */
+.subpage .shelf-published{border-top:2px solid #193f32;margin-top:19px}
+.subpage .shelf-published .shelf-group-heading h2{font-family:var(--serif);font-size:1.35rem;line-height:1.5}
+.subpage .shelf-published .shelf-group-content.notes-grid,
+.subpage .shelf-group-content .notes-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;min-width:0}
+.subpage .shelf-published .shelf-group-content .note-link,
+.subpage .shelf-group-content .notes-grid .note-link{min-width:0}
+.subpage .project-published{border-top:2px solid #193f32}
+.subpage .project-published .portfolio-section-head>small{flex:0 0 auto;font-size:.75rem;letter-spacing:.08em;color:#65804a}
+.subpage .project-published-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+@media(max-width:760px){
+ .subpage .shelf-published .shelf-group-content.notes-grid,
+ .subpage .shelf-group-content .notes-grid,
+ .subpage .project-published-grid{grid-template-columns:1fr}
+ .subpage .project-published .portfolio-section-head>small{display:block;margin-top:7px}
+}
