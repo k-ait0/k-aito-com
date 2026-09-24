@@ -168,3 +168,18 @@
  .project-note-queue article{grid-template-columns:34px 1fr}
  .project-note-queue em{grid-column:2}
 }
+
+
+/* Mobile first-fold polish: bring the first project into view sooner.
+   Preserve the photo and index; allow text to grow without clipping. */
+@media(max-width:760px){
+  .projects-hero,.projects-hero-inner{min-height:260px}
+  .projects-hero-inner{padding:16px 20px 21px}
+  .projects-hero .breadcrumb{margin-bottom:13px!important}
+  .projects-hero-copy h1{font-size:clamp(1.7rem,6vw,1.85rem);line-height:1.37;margin:7px 0 8px}
+  .projects-hero-copy>p{line-height:1.65}
+  .projects-hero-copy>small{margin-top:9px}
+  .project-index{gap:9px;margin-bottom:14px;padding:12px 0 15px}
+  .project-index dl{padding-top:10px}
+  .projects-body>.portfolio-section:first-of-type{padding-top:5px}
+}
