@@ -92,7 +92,7 @@
     const isProjects=window.location.pathname==="/projects/";
     const insertionPoint=isProjects
       ?document.querySelector(".project-flow-section")
-      :document.querySelector(".shelf-page .shelf-group");
+      :document.querySelector(".shelf-group");
     if(insertionPoint){
       const section=document.createElement("section");
       section.className=isProjects?"portfolio-section project-published":"shelf-group shelf-published";
