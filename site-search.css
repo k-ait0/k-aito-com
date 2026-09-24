@@ -1,0 +1,75 @@
+/* Shared header search and results dialog for K. Aito subpages.
+   Loaded after subpages.css; does not change the HOME header. */
+.subpage .site-wide-search{
+  box-sizing:border-box;order:2;flex:0 0 42px;
+  width:42px;min-width:42px;height:42px;
+  margin-left:auto;padding:0;
+  display:flex;align-items:center;justify-content:center;
+  border:1px solid #d7d9cf;border-radius:22px;background:#fff;
+  box-shadow:0 2px 5px rgba(40,58,35,.06);position:relative;
+}
+.subpage .site-wide-search>input{display:none;min-width:0;border:0;background:transparent;color:#193f32;font-size:16px;outline:0}
+.subpage .site-wide-search>button[type="submit"]{width:40px;height:40px;min-width:40px;padding:9px;display:grid;place-items:center;cursor:pointer}
+.subpage .site-wide-search svg{width:20px;height:20px;fill:none;stroke:#193f32;stroke-width:1.8;stroke-linecap:round}
+.subpage .site-wide-search>.mobile-search-close{display:none;align-items:center;justify-content:center;background:transparent;color:#53645a;font:400 24px/1 Arial,sans-serif;cursor:pointer}
+.subpage .site-wide-search.is-open{flex:0 0 258px;width:258px;min-width:0;justify-content:stretch;padding:0 3px 0 14px}
+.subpage .site-wide-search.is-open>input{display:block;flex:1;width:100%;height:38px;opacity:1;pointer-events:auto}
+.subpage .site-wide-search.is-open>button[type="submit"]{width:38px;min-width:38px}
+.subpage .site-wide-search.is-open>.mobile-search-close{display:flex;width:32px;min-width:32px;height:38px}
+.subpage .site-wide-search:focus-within{outline:2px solid #91a85a;outline-offset:2px}
+.subpage .site-wide-search>button:focus-visible,.site-search-dialog button:focus-visible,.site-search-dialog input:focus-visible,
+.site-search-dialog a:focus-visible{outline:2px solid #547427;outline-offset:2px}
+@media(max-width:900px){
+  .subpage .header-inner{position:relative}
+}
+@media(max-width:760px){
+  .subpage .site-wide-search,.subpage .site-wide-search:focus-within{
+    position:relative;inset:auto;grid-column:auto;
+    flex:0 0 40px!important;width:40px!important;min-width:40px!important;height:40px!important;
+    margin-left:auto!important;padding:0!important;
+    border-radius:22px!important;justify-content:center!important;z-index:5;
+  }
+  .subpage .site-wide-search>input{display:none!important}
+  .subpage .site-wide-search.is-open,.subpage .site-wide-search.is-open:focus-within{
+    position:absolute!important;top:7px!important;left:12px!important;right:12px!important;
+    width:auto!important;min-width:0!important;height:46px!important;flex:initial!important;
+    margin:0!important;padding:0 4px 0 13px!important;
+    border-radius:24px!important;justify-content:stretch!important;
+    background:#fff!important;box-shadow:0 4px 14px rgba(20,40,28,.15)!important;z-index:30!important;
+  }
+  .subpage .site-wide-search.is-open>input{display:block!important;flex:1!important;width:100%!important;height:42px!important;font-size:16px!important;opacity:1!important;pointer-events:auto!important}
+  .subpage .site-wide-search.is-open>.mobile-search-close{display:flex!important}
+}
+.site-search-dialog{
+  box-sizing:border-box;position:fixed;inset:0;margin:auto;
+  width:min(660px,calc(100vw - 24px));max-height:min(90dvh,800px);
+  padding:0;border:1px solid #cbd3c8;border-radius:4px;
+  color:#193f32;background:#faf9f3;box-shadow:0 22px 64px rgba(9,29,20,.25);
+  overflow-y:auto;
+}
+.site-search-dialog::backdrop{background:rgba(10,29,20,.58)}
+.site-search-panel{padding:25px 25px 30px}
+.site-search-heading{display:flex;align-items:start;justify-content:space-between;gap:14px;border-bottom:1px solid #cbd3c8;padding-bottom:16px;margin-bottom:17px}
+.site-search-heading .eyebrow{margin:0;font-size:.7rem;letter-spacing:.15em;color:#67813d}
+.site-search-heading h2{font-family:Georgia,"Noto Serif JP",serif;font-size:1.45rem;margin:5px 0 0;line-height:1.4}
+.site-search-dismiss{flex:0 0 40px;width:40px;height:40px;font:400 27px/1 Arial,sans-serif;cursor:pointer;color:#193f32}
+.site-search-dialog input[type="search"]{
+  display:block;box-sizing:border-box;width:100%;min-height:45px;
+  border:1px solid #9dab9b;background:#fffef9;border-radius:3px;
+  padding:11px 14px;font-size:16px;color:#193f32;
+}
+.site-search-count{font-size:.82rem;color:#526157;margin:15px 0 12px}
+.site-search-results{display:grid;gap:11px}
+.site-search-result{display:flex;flex-direction:column;gap:8px;padding:16px 17px;
+  background:#fffef9;border:1px solid #d1dacd;color:#193f32;text-decoration:none}
+.site-search-result:hover{background:#eff3dc}
+.site-search-result-meta{color:#65804a;font:600 .69rem/1.5 Arial,sans-serif;letter-spacing:.08em}
+.site-search-result strong{font-family:Georgia,"Noto Serif JP",serif;font-size:1.02rem;line-height:1.55}
+.site-search-result-summary{font-size:.85rem;line-height:1.7;color:#526157}
+.site-search-result small{font-size:.74rem;line-height:1.5;color:#5d7656}
+.site-search-empty{font-size:.9rem;line-height:1.8;background:#fffef9;padding:23px 18px;border:1px solid #d1dacd}
+@media(max-width:700px){
+  .site-search-panel{padding:20px 16px 23px}
+  .site-search-heading h2{font-size:1.27rem}
+  .site-search-result{padding:14px 13px}
+}
