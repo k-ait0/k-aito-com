@@ -107,7 +107,7 @@ for (const note of notes) {
 flushDay();
 if (!notes.length) timeline = '<p class="shelf-empty">公開済みの記事はまだありません。</p>';
 archive = archive.slice(0, c) + '<section class="archive-timeline" id="archive-' +
-  firstMonth + '">' + timeline + archive.slice(d);
+  firstMonth + '" data-catalogue-timeline>' + timeline + archive.slice(d);
 if (notes.length) {
   archive = archive.replace(/(<a href="#archive-)[^"]+(">)\s*[A-Z]{3}\s*<span>[^<]*<\/span>/,
     (_, begin, end) => begin + firstMonth + end +
