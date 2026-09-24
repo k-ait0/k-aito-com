@@ -1,37 +1,7 @@
 "use strict";
 
-const shelves = [
-  {id:"travel", name:"旅", en:"TRAVEL", symbol:"旅", description:"まだ見ぬ景色を探して"},
-  {id:"sake", name:"酒", en:"DRINK", symbol:"酒", description:"理想の1杯のために"},
-  {id:"money", name:"お金・税務", en:"MONEY / TAX", symbol:"¥", description:"仕組みで自由度を高める"},
-  {id:"create", name:"学び・資格", en:"STUDY", symbol:"学", description:"積み上げて、選べる未来を"},
-  {id:"technology", name:"制作・開発", en:"CREATE", symbol:"⌘", description:"つくるを楽しむ"},
-  {id:"business", name:"事業・プロジェクト", en:"PROJECT", symbol:"事", description:"小さく始めて、大きく育てる"},
-  {id:"thinking", name:"その他", en:"ARCHIVE", symbol:"…", description:"思いつきから記録まで"}
-];
-
-const entries = [
-  {id:"nuclear-industrial-carrier",title:"海の上で工場を動かしたらどうなる？――原子力加工船という妄想",state:"THINK",shelf:"thinking",date:"2026.09.18",url:"/notes/nuclear-industrial-carrier/",tags:["原子力","海運","物流","工場船"],summary:"輸送という「何も作っていない時間」を、価値を作る時間に変えられないか。原子力加工船を妄想してみた。",body:[
-    ["p","公海上で加工したら税金も変わるのでは、という素朴な疑問から始まった思考実験。"],
-    ["p","原子炉を推進・電力・プロセス熱に配分し、輸送時間そのものを加工時間へ変えられないか考えた。"],
-    ["p","日本とチリの硫酸・銅精鉱の往復物流や、油脂を往復で加工する可能性まで掘り下げている。"]
-  ]},
-  {id:"site-launch-trouble",title:"サイトを公開しようとしたら、早速つまずいた。",state:"MAKING",shelf:"technology",date:"2026.09.11",image:"notebook",tags:["Web","XServer","GitHub"],summary:"独自ドメイン公開で止まった原因は、.htaccessだった。",body:[
-    ["p","K. Aitoの「デジタル物置」を作ることにした。旅行や酒の記録、勉強のメモ、制作物、思いついた事業のアイデア。あちこちに散らばっているものを、少しずつ置いていく場所だ。"],
-    ["p","ドメインを取得して、GitHubに仮のトップページを用意。XServer Staticの初期URLで表示できたので、あとは独自ドメインに切り替えるだけ。そう思っていた。"],
-    ["h3","「設定ファイルの取得に失敗しました。」"],
-    ["p","URL変更の画面で止まった。ネームサーバーの設定は合っていそう。時間を置いても、ブラウザを変えても同じだった。このメッセージだけでは、どのファイルが足りないのか分からない。"],
-    ["p","そこでサポートに問い合わせた。今回案内されたのは、サーバーの .htaccess が存在しないということだった。"],
-    ["h3","今回確認したのは3つ"],
-    ["p","サポートの案内では、.htaccess が存在すること、中身が空でないこと、パーミッションが644であることが確認点だった。中身はコメントだけでもよいとのこと。"],
-    ["p","今回はGitHubに .htaccess を作り、「# XServer Static configuration」というコメントを入れた。"],
-    ["p","反映後にURL変更をやり直すと、今度は進められた。なお、GitHub上でのファイル作成だけでサーバー上の権限まで保証されるわけではない。同じ状況なら、必要に応じてサーバー側の644も確認したい。"],
-    ["p","これは今回の環境で解決した記録で、同じエラーが必ず同じ原因とは限らない。また、すでに .htaccess がある場合は、設定を消してこのコメントだけに置き換えないこと。まず中身を確認する。"],
-    ["h3","次の自分のために残す"],
-    ["p","表示できたら終わりにせず、手順も残しておくことにした。仮URLでの表示確認、独自ドメインへの切り替え、設定ファイルの確認。次に似た作業をするとき、また同じところで迷わないように。"],
-    ["p","最初に置くものが、公開でつまずいた記録になるとは思っていなかった。でも、途中のメモも残す場所にしたかったので、ちょうどいいのかもしれない。"]
-  ]}
-];
+// The published catalogue is shared with subpage search.
+const {shelves,entries}=window.KAitoContent;
 
 const byId = new Map(entries.map(entry=>[entry.id,entry]));
 const esc = value => String(value).replace(/[&<>"']/g, char=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
@@ -54,7 +24,8 @@ document.getElementById("shelves-grid").innerHTML=shelves.map(shelf=>{
 }).join("");
 document.getElementById("shelf-select").insertAdjacentHTML("beforeend",shelves.map(shelf=>`<option value="${shelf.id}">${shelf.name}</option>`).join(""));
 const projectEntries=entries.filter(entry=>entry.project);
-document.getElementById("projects-grid").innerHTML=projectEntries.length?projectEntries.map(entry=>`<button type="button" class="project-card" data-entry="${entry.id}" aria-label="${esc(entry.projectTitle||entry.title)}の詳細を読む"><span class="project-title">${esc(entry.projectTitle||entry.title)}</span><span class="project-image photo photo-${entry.image}" role="img" aria-label="${photoAlt[entry.image]}"><span class="project-status"><small>ON GOING</small><span>${entry.progress}</span></span></span><span class="project-tags">${entry.tags.map(tag=>`<span>#${esc(tag)}</span>`).join('')}</span><span class="project-description">${esc(entry.projectDescription)}</span><span class="project-end"><span>PROJECT NOTE</span><span aria-hidden="true">→</span></span></button>`).join(""):`<div class="empty-state"><strong>公開中のプロジェクトノートはまだありません。</strong><p>準備が整ったものから追加します。</p></div>`;
+const projectsGrid=document.getElementById("projects-grid");
+if(projectsGrid)projectsGrid.innerHTML=projectEntries.length?projectEntries.map(entry=>`<button type="button" class="project-card" data-entry="${entry.id}" aria-label="${esc(entry.projectTitle||entry.title)}の詳細を読む"><span class="project-title">${esc(entry.projectTitle||entry.title)}</span><span class="project-image photo photo-${entry.image}" role="img" aria-label="${photoAlt[entry.image]}"><span class="project-status"><small>ON GOING</small><span>${entry.progress}</span></span></span><span class="project-tags">${entry.tags.map(tag=>`<span>#${esc(tag)}</span>`).join('')}</span><span class="project-description">${esc(entry.projectDescription)}</span><span class="project-end"><span>PROJECT NOTE</span><span aria-hidden="true">→</span></span></button>`).join(""):`<div class="empty-state"><strong>公開中のプロジェクトノートはまだありません。</strong><p>準備が整ったものから追加します。</p></div>`;
 
 let lastRandom=[];
 function renderRandom(first=false){
@@ -101,7 +72,7 @@ function matchingEntries(){
     if(shelfSelect.value!=="all"&&entry.shelf!==shelfSelect.value)return false;
     if(stateSelect.value!=="all"&&entry.state!==stateSelect.value)return false;
     const shelf=shelves.find(s=>s.id===entry.shelf);
-    const haystack=normalize([entry.title,entry.projectTitle||'',entry.summary,...entry.tags,shelf.name,shelf.en,entry.state,...entry.body.map(part=>typeof part[1]==='string'?part[1]:Array.isArray(part[1])?part[1].join(' '):part[1].text)].join(' '));
+    const haystack=normalize([entry.title,entry.projectTitle||'',entry.summary,...entry.tags,shelf.name,shelf.en,entry.state,entry.searchText||'',...entry.body.map(part=>typeof part[1]==='string'?part[1]:Array.isArray(part[1])?part[1].join(' '):part[1].text)].join(' '));
     return words.every(word=>haystack.includes(word));
   });
 }
