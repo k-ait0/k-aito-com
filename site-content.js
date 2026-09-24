@@ -38,7 +38,7 @@
     if(count)count.textContent=noteCount(notes.length);
     const routeShelves={
       "/travel/":"travel","/drink/":"sake","/money/":"money",
-      "/study/":"create","/works/":"technology"
+      "/study/":"create","/works/":"technology","/business/":"business"
     };
     for(const tile of document.querySelectorAll(".storage-shelf")){
       const label=tile.querySelector("small");
@@ -50,6 +50,75 @@
         const total=notes.filter(note=>note.shelf===routeShelves[pathname]).length;
         label.textContent=total?noteCount(total):"準備中";
       }
+    }
+  }
+
+
+  /* Topic shelves are derived from the same published catalogue.
+     Existing sections remain in the HTML as a no-JavaScript fallback. */
+  const shelfByPath={
+    "/travel/":"travel","/drink/":"sake","/money/":"money",
+    "/study/":"create","/works/":"technology","/business/":"business",
+    "/projects/":"business"
+  };
+  const currentShelf=shelfByPath[window.location.pathname];
+  const shelfNotes=currentShelf?notes.filter(note=>note.shelf===currentShelf):[];
+  if(currentShelf&&window.location.pathname==="/works/"){
+    // Keep the three existing development-stage headings meaningful.
+    const buckets={
+      released:shelfNotes.filter(note=>["DONE","ARCHIVE"].includes(note.state)),
+      making:shelfNotes.filter(note=>!["DONE","ARCHIVE","MEMO","THINK","RESEARCH"].includes(note.state)),
+      concepts:shelfNotes.filter(note=>["MEMO","THINK","RESEARCH"].includes(note.state))
+    };
+    for(const [id,groupNotes] of Object.entries(buckets)){
+      const group=document.getElementById(id);
+      const list=group&&group.querySelector(".shelf-group-content");
+      const label=group&&group.querySelector(".shelf-group-heading small");
+      if(!list)continue;
+      if(label)label.textContent=noteCount(groupNotes.length);
+      if(groupNotes.length){
+        const grid=document.createElement("div");
+        grid.className="notes-grid";
+        grid.append(...groupNotes.map(noteCard));
+        list.replaceChildren(grid);
+      }else{
+        const empty=document.createElement("p");
+        empty.className="shelf-empty";
+        empty.textContent="公開済みの記録は準備中です。";
+        list.replaceChildren(empty);
+      }
+    }
+  }else if(shelfNotes.length){
+    const isProjects=window.location.pathname==="/projects/";
+    const insertionPoint=isProjects
+      ?document.querySelector(".project-flow-section")
+      :document.querySelector(".shelf-page .shelf-group");
+    if(insertionPoint){
+      const section=document.createElement("section");
+      section.className=isProjects?"portfolio-section project-published":"shelf-group shelf-published";
+      section.id="published-notes";
+      const heading=document.createElement("div");
+      heading.className=isProjects?"portfolio-section-head":"shelf-group-heading";
+      const headingCopy=document.createElement("div");
+      if(isProjects){
+        const eyebrow=document.createElement("p");
+        eyebrow.className="eyebrow";
+        eyebrow.textContent="PUBLISHED NOTES";
+        headingCopy.append(eyebrow);
+      }
+      const title=document.createElement("h2");
+      title.textContent=isProjects?"事業・プロジェクトの公開記録":"公開した記録";
+      const explanation=document.createElement("p");
+      explanation.textContent="このテーマで公開した記事を、新しい順にまとめています。";
+      headingCopy.append(title,explanation);
+      const label=document.createElement("small");
+      label.textContent=noteCount(shelfNotes.length);
+      heading.append(headingCopy,label);
+      const grid=document.createElement("div");
+      grid.className=isProjects?"notes-grid project-published-grid":"shelf-group-content notes-grid";
+      grid.append(...shelfNotes.map(noteCard));
+      section.append(heading,grid);
+      insertionPoint.parentElement.insertBefore(section,insertionPoint);
     }
   }
 
