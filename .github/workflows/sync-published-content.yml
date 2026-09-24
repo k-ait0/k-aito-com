@@ -1,0 +1,52 @@
+name: Sync published article index
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'content-index.js'
+      - 'scripts/sync-published-content.cjs'
+      - '.github/workflows/sync-published-content.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: published-index-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  update-index:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out latest main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          persist-credentials: true
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Validate scripts and generate site index
+        run: |
+          node --check content-index.js
+          node --check site-content.js
+          node --check scripts/sync-published-content.cjs
+          node scripts/sync-published-content.cjs
+          git diff --check
+
+      - name: Commit generated output when changed
+        run: |
+          if git diff --quiet; then
+            echo "Article index already synchronized."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -u
+          git commit -m "Sync sitemap and article index from published catalogue"
+          git push origin HEAD:main
