@@ -33,3 +33,13 @@
 .article-next a:last-child{text-align:right}
 .article-layout .related-band{max-width:860px}
 @media(max-width:760px){.article-page h1{font-size:1.85rem}.article-copy{font-size:.86rem;line-height:1.95}.article-page .article-related .notes-grid,.article-next{grid-template-columns:1fr}.article-next a:last-child{text-align:left}.article-reading-guide{gap:8px}}
+
+
+/* Opening image for the first published note; native 1680×1120 WebP. */
+.article-page .article-cover{margin:25px 0 32px;max-width:100%;padding:0}
+.article-page .article-cover img{display:block;width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;border-radius:3px;border:1px solid #d3d6cc}
+.article-page .article-cover figcaption{margin-top:7px;text-align:right;color:#697469;font-size:.7rem;line-height:1.6}
+.article-page .article-cover figcaption a{color:inherit;text-underline-offset:3px}
+@media(max-width:700px){
+  .article-page .article-cover{margin:18px 0 25px}
+}
