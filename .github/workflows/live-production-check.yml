@@ -1,0 +1,28 @@
+name: Live XServer deployment verification
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/live-production-check.cjs'
+      - '.github/workflows/live-production-check.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  compare-production:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - name: Check out expected revision
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check script syntax
+        run: node --check scripts/live-production-check.cjs
+      - name: Compare live site against GitHub
+        run: node scripts/live-production-check.cjs
