@@ -20,7 +20,7 @@ const resources=[
   "/subpages.css","/og-image.png","/assets/brand/kite-mark.png",
   "/assets/editorial/about-profile.webp","/assets/editorial/archive-library.webp",
   "/assets/editorial/tabi-route.webp","/assets/editorial/finowa-workspace.webp",
-  "/sitemap.xml","/robots.txt"
+  "/sitemap.xml","/robots.txt","/assets/notebook-photo.webp","/article-v2.css"
 ];
 const digest=body=>crypto.createHash("sha256").update(body).digest("hex");
 const local=route=>fs.readFileSync(path.join(root,route.replace(/^\//,"")+(route.endsWith("/")?"index.html":"")));
@@ -66,6 +66,21 @@ async function fetchLive(route){
     console.log("PASS sitemap contains all "+pages.length+" public routes");
     verified++;
   }catch(e){errors.push("sitemap integrity: "+e.message);console.error("FAIL sitemap integrity: "+e.message);}
+  // The FINOWA card must lead to a reachable separate site.
+  try{
+    const destination="https://finowa.jp/";
+    const result=await fetch(destination,{
+      redirect:"follow",signal:AbortSignal.timeout(15000),
+      headers:{"User-Agent":"Kaito-Production-QA/1.0"}
+    });
+    if(result.status!==200||new URL(result.url).protocol!=="https:"){
+      throw Error("FINOWA destination HTTP "+result.status+" / "+result.url);
+    }
+    const html=await result.text();
+    if(!html.includes("FINOWA"))throw Error("FINOWA destination lacks expected site identity");
+    console.log("PASS FINOWA external destination "+destination+" HTTP 200");
+    verified++;
+  }catch(e){errors.push("FINOWA destination: "+e.message);console.error("FAIL FINOWA destination: "+e.message);}
   console.log("PRODUCTION RESULT "+verified+" passed; "+errors.length+" failed");
   if(errors.length)process.exitCode=1;
 })().catch(e=>{console.error(e.stack||String(e));process.exitCode=1;});
