@@ -1,37 +1,28 @@
-"""Build the first-note cover image from a licensed high-resolution source.
+"""Build the first-note photo from a genuinely high-resolution licensed source.
 
-Photo: Clay Banks / Unsplash
-https://unsplash.com/photos/open-notebook-with-pen-and-pencils-on-desk-n9AaeihA9HI
-Unsplash license: https://unsplash.com/license
+Photo by Kaboompics / Pexels:
+https://www.pexels.com/photo/wooden-table-with-coffee-and-notebook-with-pen-4195334/
+Pexels license: https://www.pexels.com/license/
 """
-import json
 from io import BytesIO
 from pathlib import Path
-from urllib.parse import parse_qsl, urlencode, urlsplit, urlunsplit
 from urllib.request import Request, urlopen
 from PIL import Image, ImageOps
 
 ROOT=Path(__file__).resolve().parent.parent
 OUT=ROOT/"assets"/"notebook-photo.webp"
-HEADERS={"User-Agent":"Mozilla/5.0","Accept":"application/json"}
-with urlopen(Request("https://unsplash.com/napi/photos/n9AaeihA9HI",headers=HEADERS),timeout=35) as response:
-    data=json.load(response)
-photo_url=data["urls"]["raw"]
-parts=urlsplit(photo_url)
-params=dict(parse_qsl(parts.query))
-params.update({"w":"1920","q":"90","fit":"max"})
-photo_url=urlunsplit((parts.scheme,parts.netloc,parts.path,urlencode(params),""))
-with urlopen(Request(photo_url,headers={"User-Agent":"Mozilla/5.0"}),timeout=35) as response:
+URL="https://images.pexels.com/photos/4195334/pexels-photo-4195334.jpeg?auto=compress&cs=tinysrgb&w=1920"
+with urlopen(Request(URL,headers={"User-Agent":"Mozilla/5.0"}),timeout=35) as response:
     blob=response.read()
 if len(blob)<20000:
-    raise RuntimeError("Downloaded photo is unexpectedly small")
+    raise RuntimeError("Downloaded image unusually small")
 with Image.open(BytesIO(blob)) as original:
     image=ImageOps.exif_transpose(original).convert("RGB")
 if image.width<1600 or image.height<1050:
-    raise RuntimeError(f"Source lacks native high resolution: {image.size}")
+    raise RuntimeError(f"Photo lacks native resolution: {image.size}")
 source_size=image.size
 image=ImageOps.fit(image,(1680,1120),method=Image.Resampling.LANCZOS,centering=(0.5,0.5))
-image.save(OUT,"WEBP",quality=88,method=6)
+image.save(OUT,"WEBP",quality=90,method=6)
 with Image.open(OUT) as check:
     assert check.size==(1680,1120)
-print(f"PASS high-resolution notebook: source {source_size}, output {image.size}, {OUT.stat().st_size} bytes")
+print(f"PASS notebook photo {source_size} -> {image.size}, {OUT.stat().st_size} bytes")
