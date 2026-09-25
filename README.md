@@ -37,3 +37,14 @@ JavaScriptが無効の場合に備え、SHELVES一覧とARCHIVEの静的記事�
 - `.htaccess` は既存設定を確認せず変更・上書きしない。
 - 新しい記事の本文と `searchText` の内容を一致させる。
 - GitHubのワークフローが成功しただけでは、実際の端末での表示確認が完了したことにはならない。
+
+
+## FINOWAの導線と最初の記事画像
+
+- K. AitoのHOME・PROJECTS・ABOUTから、別サイトの `https://finowa.jp/` へリンクする。別リポジトリのFINOWAコードはここでは編集しない。
+- 第1記事 `/notes/site-launch-trouble/` の記事内画像・HOMEのFIRST NOTEサムネイルは `assets/notebook-photo.webp` を使う（1680×1120）。
+- 元サムネイル `assets/notebook-hq.jpg` は420×280であるため、単なるピクセル拡大ではなく高解像度の別写真に差し替えた。
+- 写真: Kaboompics / Pexels「Wooden table with coffee and notebook with pen」
+  https://www.pexels.com/photo/wooden-table-with-coffee-and-notebook-with-pen-4195334/
+  Pexels License: https://www.pexels.com/license/
+- `scripts/build-notebook-photo.py` と `.github/workflows/build-notebook-photo.yml` が画像をローカルWebP化する（画像差し替え・再生成時には出典・ライセンスを再確認する）。
