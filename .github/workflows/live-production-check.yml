@@ -14,7 +14,7 @@ permissions:
 jobs:
   compare-production:
     runs-on: ubuntu-latest
-    timeout-minutes: 8
+    timeout-minutes: 15
     steps:
       - name: Check out expected revision
         uses: actions/checkout@v4
@@ -26,3 +26,21 @@ jobs:
         run: node --check scripts/live-production-check.cjs
       - name: Compare live site against GitHub
         run: node scripts/live-production-check.cjs
+      - name: Install browser test runtime
+        run: |
+          npm install --prefix /tmp/kaito-qa --no-audit --no-fund --no-save playwright@1.56.1
+          PLAYWRIGHT_BROWSERS_PATH=/tmp/kaito-browsers /tmp/kaito-qa/node_modules/.bin/playwright install --with-deps chromium
+      - name: Exercise live site on desktop and mobile Chromium
+        env:
+          KAITO_BASE_URL: https://k-aito.com
+          NODE_PATH: /tmp/kaito-qa/node_modules
+          PLAYWRIGHT_BROWSERS_PATH: /tmp/kaito-browsers
+        run: node scripts/browser-smoke.cjs
+      - name: Upload production browser screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: kaito-production-mobile-desktop
+          path: qa-screenshots/*.png
+          if-no-files-found: ignore
+          retention-days: 7
