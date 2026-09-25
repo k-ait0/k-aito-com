@@ -327,3 +327,11 @@
   .header-search.is-open>.mobile-search-close{display:grid!important;place-items:center!important;order:3!important;width:34px!important;min-width:34px!important;height:38px!important;padding:0!important;font:400 24px/1 Arial,sans-serif!important;color:#53645a!important;cursor:pointer}
   .header-search:not(.is-open)>.mobile-search-close{display:none!important}
 }
+
+
+/* Fix touch activation: responsive.css made :focus-within span the full grid,
+   moving the icon between pointerdown and click on mobile. */
+@media(max-width:700px){
+  .header-search:not(.is-open):focus-within{grid-column:2!important}
+  .header-search.is-open:focus-within{grid-column:auto!important}
+}
