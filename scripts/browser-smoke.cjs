@@ -33,8 +33,10 @@ const server=http.createServer((req,res)=>{
 const listen=()=>new Promise(resolve=>server.listen(0,"127.0.0.1",resolve));
 const stop=()=>new Promise(resolve=>server.close(resolve));
 (async()=>{
-  await listen();
-  const url="http://127.0.0.1:"+server.address().port;
+  const externalUrl=process.env.KAITO_BASE_URL?.replace(/\/$/,"");
+  if(!externalUrl)await listen();
+  const url=externalUrl||"http://127.0.0.1:"+server.address().port;
+  console.log("BROWSER TEST TARGET",url);
   const browser=await chromium.launch({headless:true,args:["--no-sandbox"]});
   fs.mkdirSync(screens,{recursive:true});
   let failures=[],passed=0;
@@ -127,7 +129,7 @@ const stop=()=>new Promise(resolve=>server.close(resolve));
       finally{await home.close();}
       await context.close();
     }
-  }finally{await browser.close();await stop();}
+  }finally{await browser.close();if(!externalUrl)await stop();}
   console.log("RESULT "+passed+" assertions passed; "+failures.length+" failed");
   if(failures.length){for(const failure of failures)console.error("FAILED "+failure);process.exitCode=1;}
 })().catch(e=>{console.error(e.stack||e);process.exitCode=1;server.close();});
