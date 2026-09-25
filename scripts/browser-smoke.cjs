@@ -58,13 +58,6 @@ const stop=()=>new Promise(resolve=>server.close(resolve));
           const response=await page.goto(url+slug,{waitUntil:"networkidle",timeout:30000});
           await page.waitForTimeout(100);
           check(response.status()===200,mode.name+" "+slug+" response "+response.status());
-          const state=await page.evaluate(()=>({
-            h1:[...document.querySelectorAll("h1")].filter(e=>e.getClientRects().length).length,
-            overflow:document.documentElement.scrollWidth-window.innerWidth,
-            header:!!document.querySelector(".site-header"),
-            search:!!document.querySelector(slugNoop())
-          }).catch(()=>({broken:true})));
-          // Explicitly avoid relying on source selectors alone.
           const valid=await page.evaluate(()=>({
             visibleH1:[...document.querySelectorAll("h1")].filter(e=>e.getClientRects().length).length,
             overflow:document.documentElement.scrollWidth-window.innerWidth,
@@ -119,6 +112,8 @@ const stop=()=>new Promise(resolve=>server.close(resolve));
       try{
         await home.goto(url+"/",{waitUntil:"networkidle"});
         if(mode.name==="mobile")await home.locator("#search-form button[type=submit]").click();
+        console.log("HOME SEARCH STATE",mode.name,await home.locator("#search-form").evaluate(f=>({className:f.className,inputDisplay:getComputedStyle(f.querySelector("#site-search")).display,formDisplay:getComputedStyle(f).display,formWidth:f.getBoundingClientRect().width,inputWidth:f.querySelector("#site-search").getBoundingClientRect().width})));
+        await home.locator("#site-search").waitFor({state:"visible",timeout:3000});
         await home.locator("#site-search").fill("原子炉");
         await home.locator("#site-search").press("Enter");
         check(await home.locator("#archive-dialog").evaluate(e=>e.open),
