@@ -70,6 +70,30 @@ const stop=()=>new Promise(resolve=>server.close(resolve));
           check(valid.overflow<=2,mode.name+" "+slug+" no horizontal overflow",JSON.stringify(valid));
           check(valid.header&&valid.search,mode.name+" "+slug+" header and search",JSON.stringify(valid));
           check(errors.length===0,mode.name+" "+slug+" no script/asset errors",errors.join("; "));
+          if(slug==="/"){
+            const link=page.locator(".home-project-finowa-link");
+            check(await link.count()===1 &&
+              await link.getAttribute("href")==="https://finowa.jp/" &&
+              await link.getAttribute("target")==="_blank",
+              mode.name+" HOME has FINOWA external link");
+            const photo=await page.locator(".hero-polaroid .photo-notebook").evaluate(node=>
+              getComputedStyle(node).backgroundImage.includes("/assets/notebook-photo.webp"));
+            check(photo,mode.name+" HOME first note uses sharp photo");
+          }
+          if(slug==="/projects/"){
+            const link=page.locator(".project-secondary-grid a.external-project");
+            check(await link.count()===1 &&
+              await link.getAttribute("href")==="https://finowa.jp/",
+              mode.name+" PROJECTS links to FINOWA");
+          }
+          if(slug==="/notes/site-launch-trouble/"){
+            const cover=await page.locator(".article-cover img").evaluate(img=>({
+              width:img.naturalWidth,height:img.naturalHeight,complete:img.complete
+            }));
+            check(cover.complete&&cover.width>=1600&&cover.height>=1000,
+              mode.name+" first article cover has native high-resolution image",
+              JSON.stringify(cover));
+          }
           if(["/","/about/","/archive/","/projects/"].includes(slug)){
             const label=slug==="/"?"home":slug.slice(1,-1);
             await page.screenshot({path:path.join(screens,mode.name+"-"+label+".png"),fullPage:false});
