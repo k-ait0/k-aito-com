@@ -111,21 +111,11 @@ const stop=()=>new Promise(resolve=>server.close(resolve));
       const home=await context.newPage();
       try{
         await home.goto(url+"/",{waitUntil:"networkidle"});
-        await home.evaluate(()=>{
-          window.__searchEvents=[];
-          const form=document.getElementById("search-form");
-          form.addEventListener("click",e=>window.__searchEvents.push("form-click "+e.target.tagName),true);
-          form.addEventListener("submit",e=>window.__searchEvents.push("form-submit "+e.defaultPrevented),true);
-          document.addEventListener("click",e=>{
-            window.__searchEvents.push("document-click "+e.target.tagName+" "+(e.target.id||e.target.className?.baseVal||e.target.className||""));
-          },true);
-          document.addEventListener("pointerdown",e=>{
-            window.__searchEvents.push("pointerdown "+e.target.tagName+" "+(e.target.id||""));
-          },true);
-        });
-        if(mode.name==="mobile")await home.locator("#search-form button[type=submit]").tap();
-        console.log("HOME SEARCH EVENTS",mode.name,home.url(),await home.evaluate(()=>window.__searchEvents));
-        console.log("HOME SEARCH STATE",mode.name,await home.locator("#search-form").evaluate(f=>({className:f.className,inputDisplay:getComputedStyle(f.querySelector("#site-search")).display,formDisplay:getComputedStyle(f).display,formWidth:f.getBoundingClientRect().width,inputWidth:f.querySelector("#site-search").getBoundingClientRect().width,innerWidth:innerWidth,media700:matchMedia("(max-width:700px)").matches,archiveDialogOpen:document.querySelector("#archive-dialog").open,enhanced:!!document.querySelector("#random-grid .small-notes-empty"),buttonHit:document.elementFromPoint(...Object.values(f.querySelector("button[type=submit]").getBoundingClientRect().toJSON()).slice(0,2))?.tagName})));
+        if(mode.name==="mobile"){
+          await home.locator("#search-form button[type=submit]").tap();
+          check(await home.locator("#search-form").evaluate(e=>e.classList.contains("is-open")),
+            "mobile HOME search expands on tap");
+        }
         await home.locator("#site-search").waitFor({state:"visible",timeout:3000});
         await home.locator("#site-search").fill("原子炉");
         await home.locator("#site-search").press("Enter");
