@@ -86,6 +86,28 @@ const stop=()=>new Promise(resolve=>server.close(resolve));
               await link.getAttribute("href")==="https://finowa.jp/",
               mode.name+" PROJECTS links to FINOWA");
           }
+          if(slug==="/archive/"){
+            const layout=await page.evaluate(()=>{
+              const heading=document.querySelector(".archive-page .page-intro h1");
+              const eyebrow=document.querySelector(".archive-page .page-intro .eyebrow");
+              const summary=document.querySelector(".archive-period .note-link p");
+              const title=document.querySelector(".archive-period .note-link h3");
+              return {
+                headingLeft:heading.getBoundingClientRect().left,
+                eyebrowLeft:eyebrow.getBoundingClientRect().left,
+                summaryLeft:summary.getBoundingClientRect().left,
+                titleLeft:title.getBoundingClientRect().left,
+                summaryWidth:summary.getBoundingClientRect().width
+              };
+            });
+            check(Math.abs(layout.headingLeft-layout.eyebrowLeft)<8,
+              mode.name+" ARCHIVE heading follows the approved left alignment",
+              JSON.stringify(layout));
+            check(Math.abs(layout.summaryLeft-layout.titleLeft)<8 &&
+              layout.summaryWidth>mode.width*.30,
+              mode.name+" ARCHIVE note summaries use the article column",
+              JSON.stringify(layout));
+          }
           if(slug==="/notes/site-launch-trouble/"){
             const cover=await page.locator(".article-cover img").evaluate(img=>({
               width:img.naturalWidth,height:img.naturalHeight,complete:img.complete
