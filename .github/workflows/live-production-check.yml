@@ -4,28 +4,61 @@ on:
   push:
     branches: [main]
     paths:
-      - 'scripts/live-production-check.cjs'
+      - '*.html'
+      - '**/*.html'
+      - '*.css'
+      - '**/*.css'
+      - '*.js'
+      - '**/*.js'
+      - 'assets/**'
+      - 'sitemap.xml'
+      - 'robots.txt'
+      - 'og-image.png'
       - '.github/workflows/live-production-check.yml'
+  workflow_run:
+    workflows: ['Sync published article index']
+    types: [completed]
+    branches: [main]
   workflow_dispatch:
 
 permissions:
   contents: read
 
+concurrency:
+  group: kaito-live-verification
+  cancel-in-progress: true
+
 jobs:
   compare-production:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
       - name: Check out expected revision
         uses: actions/checkout@v4
+        with:
+          ref: main
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '22'
       - name: Check script syntax
         run: node --check scripts/live-production-check.cjs
-      - name: Compare live site against GitHub
-        run: node scripts/live-production-check.cjs
+      - name: Wait for XServer and compare deployed files
+        shell: bash
+        run: |
+          for attempt in 1 2 3 4 5 6; do
+            if node scripts/live-production-check.cjs; then
+              echo "Live deployment matches GitHub main."
+              exit 0
+            fi
+            if [ "$attempt" -eq 6 ]; then
+              echo "Live deployment did not match after six checks." >&2
+              exit 1
+            fi
+            echo "Deployment not ready; retrying in 20 seconds ($attempt/6)."
+            sleep 20
+          done
       - name: Install browser test runtime
         run: |
           npm install --prefix /tmp/kaito-qa --no-audit --no-fund --no-save playwright@1.56.1
