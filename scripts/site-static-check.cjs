@@ -60,6 +60,22 @@ for(const file of html){
   }
   checked++;
 }
+// Keep the beta's initial card inventory stable across content edits.
+const rouletteSrc=fs.readFileSync(path.join(root,"tools/want-roulette/index.html"),"utf8");
+const cardsMatch=rouletteSrc.match(/const CARDS=(\[[^\n]*\]);<\/script>/);
+assert.ok(cardsMatch,"Roulette card master not found");
+const cards=JSON.parse(cardsMatch[1]);
+assert.equal(cards.length,200,"Roulette initial card count changed");
+assert.equal(new Set(cards.map(c=>c.id)).size,200,"Roulette duplicate card IDs");
+const byCategory=new Map();
+for(const card of cards){
+  assert.match(card.id,/^W\d{3}$/,"Roulette card ID format");
+  assert.ok(card.text&&card.category&&card.categoryId,"Roulette card incomplete "+card.id);
+  byCategory.set(card.categoryId,(byCategory.get(card.categoryId)||0)+1);
+}
+assert.equal(byCategory.size,20,"Roulette category count changed");
+for(const [id,count] of byCategory)assert.equal(count,10,"Roulette category size "+id);
+console.log("PASS roulette card inventory: 200 unique IDs in 20 categories of 10");
 assert.ok(fs.existsSync(path.join(root,"og-image.png")),"OG image missing");
 console.log("PASS "+checked+" HTML files, "+listed.length+" unique sitemap URLs, "+
   localRefs+" local references, all canonical/social metadata and anchors");
