@@ -26,10 +26,10 @@
 .archive-period .note-meta span{display:inline-block;padding:3px 7px;background:#d8e1bd;font-size:.58rem;letter-spacing:.1em}
 .archive-period .note-meta time{display:block;margin-top:9px;font-size:.62rem;color:#718077}
 .archive-period .note-link h3{font-family:var(--serif);font-size:1rem;margin:0 0 5px}
-.archive-period .note-link p{font-size:.72rem;line-height:1.7;margin:0;color:#5d6961}
+.archive-period .note-link p{grid-column:2;font-size:.72rem;line-height:1.7;margin:0;color:#5d6961}
 .archive-period .note-link small{grid-column:2;font-size:.59rem;color:#78847b}
 .archive-page .related-band{margin-top:34px}
-@media(max-width:760px){.archive-page .page-intro,.archive-guide{grid-template-columns:1fr;gap:12px}.archive-guide nav{grid-column:1;margin-top:4px}.archive-timeline:before{left:13px}.archive-period{grid-template-columns:1fr;gap:8px;padding-left:32px}.archive-period:before{left:8px}.archive-period>header{text-align:left}.archive-period>header span{display:inline;margin-left:8px}.archive-period .note-link{grid-template-columns:1fr;padding:17px 38px 17px 16px}.archive-period .note-meta{border-right:0;padding-right:0}.archive-period .note-meta time{display:inline;margin-left:8px}.archive-period .note-link small{grid-column:1}.archive-page .page-intro h1{font-size:1.9rem}}
+@media(max-width:760px){.archive-page .page-intro,.archive-guide{grid-template-columns:1fr;gap:12px}.archive-guide nav{grid-column:1;margin-top:4px}.archive-timeline:before{left:13px}.archive-period{grid-template-columns:1fr;gap:8px;padding-left:32px}.archive-period:before{left:8px}.archive-period>header{text-align:left}.archive-period>header span{display:inline;margin-left:8px}.archive-period .note-link{grid-template-columns:1fr;padding:17px 38px 17px 16px}.archive-period .note-meta{border-right:0;padding-right:0}.archive-period .note-meta time{display:inline;margin-left:8px}.archive-period .note-link p{grid-column:1}.archive-period .note-link small{grid-column:1}.archive-page .page-intro h1{font-size:1.9rem}}
 
 /* Archive pass 2 — scalable year/month navigation. */
 .archive-tools{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:28px;padding:18px 0;border-bottom:1px solid #cbd3c8}
