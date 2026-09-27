@@ -9,11 +9,20 @@ const path=require("node:path");
 const crypto=require("node:crypto");
 const root=path.resolve(__dirname,"..");
 const origin=process.env.KAITO_LIVE_ORIGIN||"https://k-aito.com";
-const pages=[
-  "/","/about/","/archive/","/business/","/drink/","/links/","/money/",
-  "/notes/nuclear-industrial-carrier/","/notes/site-launch-trouble/",
-  "/projects/","/projects/digital-storage/","/storage/","/study/","/travel/","/works/"
-];
+// Read routes from the published sitemap so newly added notes are verified too.
+const sitemap=fs.readFileSync(path.join(root,"sitemap.xml"),"utf8");
+const pages=[...sitemap.matchAll(/<loc>\\s*([^<]+)\\s*<\\/loc>/g)].map(match=>{
+  const value=match[1].trim();
+  const url=new URL(value);
+  if(url.origin!==origin||!/^\\/[a-z0-9\\/-]*\\/$/.test(url.pathname)||
+      url.search||url.hash||url.href!==origin+url.pathname){
+    throw Error("Unexpected public sitemap URL: "+value);
+  }
+  return url.pathname;
+});
+if(!pages.length||new Set(pages).size!==pages.length){
+  throw Error("Sitemap has no pages or contains duplicate public URLs");
+}
 const resources=[
   "/content-index.js","/app.js","/site-enhance.js","/site-content.js",
   "/site-search.js","/site-search.css","/image-fix.css","/homepage.css",
