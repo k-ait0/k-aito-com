@@ -29,8 +29,12 @@ const resources=[
   "/subpages.css","/og-image.png","/assets/brand/kite-mark.png",
   "/assets/editorial/about-profile.webp","/assets/editorial/archive-library.webp",
   "/assets/editorial/tabi-route.webp","/assets/editorial/finowa-workspace.webp",
-  "/sitemap.xml","/robots.txt","/assets/notebook-photo.webp","/article-v2.css"
+  "/sitemap.xml","/robots.txt","/assets/notebook-photo.webp","/article-v2.css",
+  // Isolated noindex beta, verified without adding the URL to the public sitemap.
+  "/tools/want-roulette/index.html","/tools/want-roulette/manifest.webmanifest",
+  "/tools/want-roulette/app-icon.svg","/tools/want-roulette/sw.js"
 ];
+const betaPages=["/tools/want-roulette/"];
 const digest=body=>crypto.createHash("sha256").update(body).digest("hex");
 const local=route=>fs.readFileSync(path.join(root,route.replace(/^\//,"")+(route.endsWith("/")?"index.html":"")));
 const wait=ms=>new Promise(resolve=>setTimeout(resolve,ms));
@@ -51,7 +55,7 @@ async function fetchLive(route){
 (async()=>{
   const errors=[];
   let verified=0;
-  for(const route of [...pages,...resources]){
+  for(const route of [...pages,...betaPages,...resources]){
     try{
       const live=await fetchLive(route);
       const expected=local(route);
