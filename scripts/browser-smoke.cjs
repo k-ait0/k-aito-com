@@ -94,9 +94,9 @@ const stop=()=>new Promise(resolve=>server.close(resolve));
               mode.name+" first article cover has native high-resolution image",
               JSON.stringify(cover));
           }
-          if(["/","/about/","/archive/","/projects/"].includes(slug)){
-            const label=slug==="/"?"home":slug.slice(1,-1);
-            await page.screenshot({path:path.join(screens,mode.name+"-"+label+".png"),fullPage:false});
+          if(["/","/storage/","/about/","/archive/","/projects/"].includes(slug)){
+            const label=slug==="/"?"home":slug==="/storage/"?"shelves":slug.slice(1,-1);
+            await page.screenshot({path:path.join(screens,mode.name+"-"+label+".png"),fullPage:true});
           }
           if(mode.name==="mobile"){
             const dimensions=await page.locator(slug==="/"
