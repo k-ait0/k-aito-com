@@ -10,6 +10,8 @@ on:
       - '**/*.css'
       - '*.js'
       - '**/*.js'
+      - 'scripts/browser-smoke.cjs'
+      - 'scripts/live-production-check.cjs'
       - 'assets/**'
       - 'sitemap.xml'
       - 'robots.txt'
