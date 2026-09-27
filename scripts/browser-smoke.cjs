@@ -15,9 +15,21 @@ const types = {".html":"text/html; charset=utf-8",".js":"text/javascript; charse
   ".css":"text/css; charset=utf-8",".svg":"image/svg+xml",".webp":"image/webp",
   ".jpg":"image/jpeg",".jpeg":"image/jpeg",".png":"image/png",".txt":"text/plain",
   ".xml":"application/xml"};
-const pages = ["/","/about/","/archive/","/business/","/drink/","/links/","/money/",
-  "/notes/nuclear-industrial-carrier/","/notes/site-launch-trouble/",
-  "/projects/","/projects/digital-storage/","/storage/","/study/","/travel/","/works/"];
+// Derive browser coverage from the published sitemap, including newly added notes.
+const sitemap=fs.readFileSync(path.join(root,"sitemap.xml"),"utf8");
+const pages=[...sitemap.matchAll(/<loc>\s*([^<]+)\s*<\/loc>/g)].map(match=>{
+  const value=match[1].trim();
+  const url=new URL(value);
+  if(url.origin!=="https://k-aito.com"||
+      !(url.pathname==="/"||/^\/[a-z0-9/-]+\/$/.test(url.pathname))||
+      url.search||url.hash||url.href!=="https://k-aito.com"+url.pathname){
+    throw Error("Unexpected public sitemap URL: "+value);
+  }
+  return url.pathname;
+});
+if(!pages.length||new Set(pages).size!==pages.length){
+  throw Error("Sitemap has no pages or contains duplicate public URLs");
+}
 const server=http.createServer((req,res)=>{
   let pathname;
   try{pathname=decodeURIComponent(new URL(req.url,"http://localhost").pathname);}catch{
