@@ -193,6 +193,74 @@ const stop=()=>new Promise(resolve=>server.close(resolve));
           mode.name+" HOME full-text search matches");
       }catch(e){failures.push(mode.name+" HOME search: "+e.message);}
       finally{await home.close();}
+      // Test the noindex roulette beta separately from public sitemap pages.
+      const roulette=await context.newPage();
+      const rouletteErrors=[];
+      roulette.on("pageerror",e=>rouletteErrors.push(e.message));
+      roulette.on("response",r=>{
+        if(r.url().startsWith(url+"/tools/want-roulette/")&&r.status()>=400)
+          rouletteErrors.push("HTTP "+r.status()+" "+r.url());
+      });
+      try{
+        const response=await roulette.goto(url+"/tools/want-roulette/",{
+          waitUntil:"networkidle",timeout:30000
+        });
+        check(response?.status()===200,mode.name+" roulette beta HTTP 200");
+        check((await roulette.locator("#runtimeBanner").innerText()).includes("操作機能を読み込みました"),
+          mode.name+" roulette JavaScript initialized");
+        const first=await roulette.locator("#cardText").innerText();
+        const box=await roulette.locator("#swipeCard").boundingBox();
+        if(!box)throw Error("Swipe card has no bounding box");
+        const x=Math.round(box.x+Math.min(box.width*.28,100));
+        const y=Math.round(box.y+box.height*.50);
+        if(mode.name==="mobile"){
+          const cdp=await context.newCDPSession(roulette);
+          await cdp.send("Input.dispatchTouchEvent",{
+            type:"touchStart",touchPoints:[{x,y}]
+          });
+          for(let i=1;i<=8;i++){
+            await cdp.send("Input.dispatchTouchEvent",{
+              type:"touchMove",touchPoints:[{x:x+i*17,y}]
+            });
+          }
+          await cdp.send("Input.dispatchTouchEvent",{type:"touchEnd",touchPoints:[]});
+          await cdp.detach();
+        }else{
+          await roulette.mouse.move(x,y);
+          await roulette.mouse.down();
+          await roulette.mouse.move(x+136,y,{steps:8});
+          await roulette.mouse.up();
+        }
+        check((await roulette.locator("#statYes").innerText())==="1",
+          mode.name+" roulette right-swipe adds candidate");
+        await roulette.locator("#yesBtn").click();
+        check((await roulette.locator("#statYes").innerText())==="2",
+          mode.name+" roulette add button responds");
+        await roulette.locator('.tab[data-tab="list"]').click();
+        check((await roulette.locator("#listGrid").innerText()).includes(first),
+          mode.name+" roulette swipe candidate appears in list");
+        await roulette.locator("#customText").fill("QA テスト用のやりたいこと");
+        await roulette.locator('#addForm button[type="submit"]').click();
+        check((await roulette.locator("#listGrid").innerText()).includes("QA テスト用のやりたいこと"),
+          mode.name+" roulette accepts custom candidate");
+        await roulette.reload({waitUntil:"networkidle"});
+        await roulette.locator('.tab[data-tab="list"]').click();
+        check((await roulette.locator("#listGrid").innerText()).includes("QA テスト用のやりたいこと"),
+          mode.name+" roulette local data survives reload");
+        await roulette.locator('.tab[data-tab="wheel"]').click();
+        check(Number(await roulette.locator("#wheelEligible").innerText())===3,
+          mode.name+" roulette wheel uses three saved candidates");
+        await roulette.locator("#spinBtn").click();
+        await roulette.locator("#result.show").waitFor({timeout:8000});
+        check((await roulette.locator("#resultText").innerText()).trim().length>2,
+          mode.name+" roulette returns selected result");
+        check(rouletteErrors.length===0,mode.name+" roulette no script/asset errors",
+          rouletteErrors.join("; "));
+        await roulette.screenshot({
+          path:path.join(screens,mode.name+"-want-roulette.png"),fullPage:true
+        });
+      }catch(e){failures.push(mode.name+" roulette: "+e.message);console.error("FAIL roulette",mode.name,e);}
+      finally{await roulette.close();}
       await context.close();
     }
   }finally{await browser.close();if(!externalUrl)await stop();}
