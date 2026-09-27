@@ -209,6 +209,7 @@ const stop=()=>new Promise(resolve=>server.close(resolve));
         check((await roulette.locator("#runtimeBanner").innerText()).includes("操作機能を読み込みました"),
           mode.name+" roulette JavaScript initialized");
         const first=await roulette.locator("#cardText").innerText();
+        await roulette.locator("#swipeCard").scrollIntoViewIfNeeded();
         const box=await roulette.locator("#swipeCard").boundingBox();
         if(!box)throw Error("Swipe card has no bounding box");
         const x=Math.round(box.x+Math.min(box.width*.28,100));
