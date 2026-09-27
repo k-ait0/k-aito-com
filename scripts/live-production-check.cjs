@@ -14,7 +14,7 @@ const sitemap=fs.readFileSync(path.join(root,"sitemap.xml"),"utf8");
 const pages=[...sitemap.matchAll(/<loc>\s*([^<]+)\s*<\/loc>/g)].map(match=>{
   const value=match[1].trim();
   const url=new URL(value);
-  if(url.origin!==origin||!/^\/[a-z0-9/-]*\/$/.test(url.pathname)||
+  if(url.origin!==origin||!(url.pathname==="/"||/^\/[a-z0-9/-]+\/$/.test(url.pathname))||
       url.search||url.hash||url.href!==origin+url.pathname){
     throw Error("Unexpected public sitemap URL: "+value);
   }
