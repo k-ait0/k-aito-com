@@ -93,10 +93,18 @@ const stop=()=>new Promise(resolve=>server.close(resolve));
             check(photo,mode.name+" HOME first note uses sharp photo");
           }
           if(slug==="/projects/"){
+            check(await page.locator(".featured-project-card .project-meta").innerText()
+              .then(text=>text.includes("公開済み / 運用・記事拡充中")),
+              mode.name+" PROJECTS reflects DIGITAL STORAGE operations status");
             const link=page.locator(".project-secondary-grid a.external-project");
             check(await link.count()===1 &&
               await link.getAttribute("href")==="https://finowa.jp/",
               mode.name+" PROJECTS links to FINOWA");
+          }
+          if(slug==="/projects/digital-storage/"){
+            check(await page.locator(".project-status strong").innerText()
+              .then(text=>text.includes("公開・運用中")),
+              mode.name+" project detail reflects live operations");
           }
           if(slug==="/archive/"){
             const layout=await page.evaluate(()=>{
