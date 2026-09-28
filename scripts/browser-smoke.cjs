@@ -268,10 +268,19 @@ const stop=()=>new Promise(resolve=>server.close(resolve));
           mode.name+" roulette migrates persisted state to v2");
         await roulette.locator("#doneBtn").click();
         const storedAfter=await roulette.evaluate(()=>JSON.parse(localStorage.getItem("kaito.wants.roulette.v1")));
-        check(storedAfter?.done?.length===1,
-          mode.name+" roulette progress action persists completion");
+        check(isCustom?storedAfter?.done?.length===1:storedAfter?.done?.length===0,
+          mode.name+" roulette separates built-in progress from completion");
         check(isCustom||storedAfter.progressEvents?.length===1,
           mode.name+" roulette built-in progress event is recorded");
+        if(!isCustom){
+          await roulette.locator("#doneBtn").click();
+          const repeated=await roulette.evaluate(()=>JSON.parse(localStorage.getItem("kaito.wants.roulette.v1")));
+          check(repeated.progressEvents?.length===2&&repeated.done?.length===0,
+            mode.name+" roulette can record repeated progress without completing goal");
+          await roulette.locator('[data-tab="list"]').first().click();
+          check((await roulette.locator("#progressHistory").innerText()).trim().length>0,
+            mode.name+" roulette list shows recent progress history");
+        }
         check(rouletteErrors.length===0,mode.name+" roulette no script/asset errors",
           rouletteErrors.join("; "));
         await roulette.screenshot({
