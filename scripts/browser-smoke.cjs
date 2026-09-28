@@ -255,6 +255,23 @@ const stop=()=>new Promise(resolve=>server.close(resolve));
         await roulette.locator("#result.show").waitFor({timeout:8000});
         check((await roulette.locator("#resultText").innerText()).trim().length>2,
           mode.name+" roulette returns selected result");
+        const winnerText=(await roulette.locator("#resultText").innerText()).trim();
+        const isCustom=winnerText.includes("QA テスト用のやりたいこと");
+        if(!isCustom){
+          check((await roulette.locator("#resultMeta").innerText()).trim().length>0,
+            mode.name+" roulette built-in result shows action type");
+          check((await roulette.locator("#firstStepText").innerText()).trim().length>=5,
+            mode.name+" roulette built-in result shows first step");
+        }
+        const storedBefore=await roulette.evaluate(()=>JSON.parse(localStorage.getItem("kaito.wants.roulette.v1")));
+        check(storedBefore?.version===2&&Array.isArray(storedBefore.progressEvents),
+          mode.name+" roulette migrates persisted state to v2");
+        await roulette.locator("#doneBtn").click();
+        const storedAfter=await roulette.evaluate(()=>JSON.parse(localStorage.getItem("kaito.wants.roulette.v1")));
+        check(storedAfter?.done?.length===1,
+          mode.name+" roulette progress action persists completion");
+        check(isCustom||storedAfter.progressEvents?.length===1,
+          mode.name+" roulette built-in progress event is recorded");
         check(rouletteErrors.length===0,mode.name+" roulette no script/asset errors",
           rouletteErrors.join("; "));
         await roulette.screenshot({
