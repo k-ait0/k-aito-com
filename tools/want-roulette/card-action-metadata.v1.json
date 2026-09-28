@@ -1,0 +1,1015 @@
+{
+  "schemaVersion": 1,
+  "status": "draft-review",
+  "reviewedAt": "2026-09-28",
+  "notes": "Editorial classification draft. Card IDs and app data remain unchanged.",
+  "counts": {
+    "NOW": 24,
+    "PREP": 57,
+    "GOAL": 77,
+    "HABIT": 27,
+    "REL": 15
+  },
+  "cards": [
+    {
+      "id": "W001",
+      "actionType": "GOAL",
+      "timeHorizon": "months"
+    },
+    {
+      "id": "W019",
+      "actionType": "PREP",
+      "timeHorizon": "weeks"
+    },
+    {
+      "id": "W020",
+      "actionType": "PREP",
+      "timeHorizon": "weeks"
+    },
+    {
+      "id": "W021",
+      "actionType": "PREP",
+      "timeHorizon": "weeks"
+    },
+    {
+      "id": "W022",
+      "actionType": "PREP",
+      "timeHorizon": "weeks"
+    },
+    {
+      "id": "W023",
+      "actionType": "NOW",
+      "timeHorizon": "days"
+    },
+    {
+      "id": "W024",
+      "actionType": "PREP",
+      "timeHorizon": "weeks"
+    },
+    {
+      "id": "W025",
+      "actionType": "PREP",
+      "timeHorizon": "weeks"
+    },
+    {
+      "id": "W026",
+      "actionType": "PREP",
+      "timeHorizon": "weeks"
+    },
+    {
+      "id": "W027",
+      "actionType": "PREP",
+      "timeHorizon": "weeks"
+    },
+    {
+      "id": "W003",
+      "actionType": "PREP",
+      "timeHorizon": "weeks"
+    },
+    {
+      "id": "W028",
+      "actionType": "PREP",
+      "timeHorizon": "weeks"
+    },
+    {
+      "id": "W029",
+      "actionType": "PREP",
+      "timeHorizon": "weeks"
+    },
+    {
+      "id": "W030",
+      "actionType": "PREP",
+      "timeHorizon": "weeks"
+    },
+    {
+      "id": "W031",
+      "actionType": "PREP",
+      "timeHorizon": "weeks"
+    },
+    {
+      "id": "W032",
+      "actionType": "PREP",
+      "timeHorizon": "weeks"
+    },
+    {
+      "id": "W033",
+      "actionType": "PREP",
+      "timeHorizon": "weeks"
+    },
+    {
+      "id": "W034",
+      "actionType": "PREP",
+      "timeHorizon": "weeks"
+    },
+    {
+      "id": "W035",
+      "actionType": "PREP",
+      "timeHorizon": "weeks"
+    },
+    {
+      "id": "W036",
+      "actionType": "PREP",
+      "timeHorizon": "weeks"
+    },
+    {
+      "id": "W005",
+      "actionType": "GOAL",
+      "timeHorizon": "years"
+    },
+    {
+      "id": "W016",
+      "actionType": "NOW",
+      "timeHorizon": "days"
+    },
+    {
+      "id": "W037",
+      "actionType": "GOAL",
+      "timeHorizon": "years"
+    },
+    {
+      "id": "W038",
+      "actionType": "GOAL",
+      "timeHorizon": "months"
+    },
+    {
+      "id": "W039",
+      "actionType": "GOAL",
+      "timeHorizon": "months"
+    },
+    {
+      "id": "W040",
+      "actionType": "GOAL",
+      "timeHorizon": "months"
+    },
+    {
+      "id": "W041",
+      "actionType": "GOAL",
+      "timeHorizon": "months"
+    },
+    {
+      "id": "W042",
+      "actionType": "GOAL",
+      "timeHorizon": "months"
+    },
+    {
+      "id": "W043",
+      "actionType": "GOAL",
+      "timeHorizon": "years"
+    },
+    {
+      "id": "W044",
+      "actionType": "GOAL",
+      "timeHorizon": "months"
+    },
+    {
+      "id": "W008",
+      "actionType": "NOW",
+      "timeHorizon": "days"
+    },
+    {
+      "id": "W045",
+      "actionType": "NOW",
+      "timeHorizon": "days"
+    },
+    {
+      "id": "W046",
+      "actionType": "HABIT",
+      "timeHorizon": "ongoing"
+    },
+    {
+      "id": "W047",
+      "actionType": "HABIT",
+      "timeHorizon": "ongoing"
+    },
+    {
+      "id": "W048",
+      "actionType": "GOAL",
+      "timeHorizon": "months"
+    },
+    {
+      "id": "W049",
+      "actionType": "HABIT",
+      "timeHorizon": "ongoing"
+    },
+    {
+      "id": "W050",
+      "actionType": "NOW",
+      "timeHorizon": "days"
+    },
+    {
+      "id": "W051",
+      "actionType": "HABIT",
+      "timeHorizon": "ongoing"
+    },
+    {
+      "id": "W052",
+      "actionType": "HABIT",
+      "timeHorizon": "ongoing"
+    },
+    {
+      "id": "W053",
+      "actionType": "NOW",
+      "timeHorizon": "days"
+    },
+    {
+      "id": "W013",
+      "actionType": "GOAL",
+      "timeHorizon": "months"
+    },
+    {
+      "id": "W017",
+      "actionType": "GOAL",
+      "timeHorizon": "months"
+    },
+    {
+      "id": "W054",
+      "actionType": "GOAL",
+      "timeHorizon": "months"
+    },
+    {
+      "id": "W055",
+      "actionType": "GOAL",
+      "timeHorizon": "months"
+    },
+    {
+      "id": "W056",
+      "actionType": "GOAL",
+      "timeHorizon": "months"
+    },
+    {
+      "id": "W057",
+      "actionType": "GOAL",
+      "timeHorizon": "months"
+    },
+    {
+      "id": "W058",
+      "actionType": "GOAL",
+      "timeHorizon": "months"
+    },
+    {
+      "id": "W059",
+      "actionType": "GOAL",
+      "timeHorizon": "months"
+    },
+    {
+      "id": "W060",
+      "actionType": "GOAL",
+      "timeHorizon": "months"
+    },
+    {
+      "id": "W061",
+      "actionType": "PREP",
+      "timeHorizon": "weeks"
+    },
+    {
+      "id": "W002",
+      "actionType": "GOAL",
+      "timeHorizon": "months"
+    },
+    {
+      "id": "W014",
+      "actionType": "GOAL",
+      "timeHorizon": "months"
+    },
+    {
+      "id": "W062",
+      "actionType": "GOAL",
+      "timeHorizon": "months"
+    },
+    {
+      "id": "W063",
+      "actionType": "GOAL",
+      "timeHorizon": "months"
+    },
+    {
+      "id": "W064",
+      "actionType": "GOAL",
+      "timeHorizon": "months"
+    },
+    {
+      "id": "W065",
+      "actionType": "GOAL",
+      "timeHorizon": "months"
+    },
+    {
+      "id": "W066",
+      "actionType": "GOAL",
+      "timeHorizon": "years"
+    },
+    {
+      "id": "W067",
+      "actionType": "HABIT",
+      "timeHorizon": "ongoing"
+    },
+    {
+      "id": "W068",
+      "actionType": "GOAL",
+      "timeHorizon": "years"
+    },
+    {
+      "id": "W069",
+      "actionType": "GOAL",
+      "timeHorizon": "months"
+    },
+    {
+      "id": "W015",
+      "actionType": "GOAL",
+      "timeHorizon": "years"
+    },
+    {
+      "id": "W070",
+      "actionType": "GOAL",
+      "timeHorizon": "months"
+    },
+    {
+      "id": "W071",
+      "actionType": "GOAL",
+      "timeHorizon": "months"
+    },
+    {
+      "id": "W072",
+      "actionType": "GOAL",
+      "timeHorizon": "months"
+    },
+    {
+      "id": "W073",
+      "actionType": "HABIT",
+      "timeHorizon": "ongoing"
+    },
+    {
+      "id": "W074",
+      "actionType": "PREP",
+      "timeHorizon": "weeks"
+    },
+    {
+      "id": "W075",
+      "actionType": "GOAL",
+      "timeHorizon": "months"
+    },
+    {
+      "id": "W076",
+      "actionType": "GOAL",
+      "timeHorizon": "months"
+    },
+    {
+      "id": "W077",
+      "actionType": "NOW",
+      "timeHorizon": "days"
+    },
+    {
+      "id": "W078",
+      "actionType": "GOAL",
+      "timeHorizon": "months"
+    },
+    {
+      "id": "W004",
+      "actionType": "GOAL",
+      "timeHorizon": "months"
+    },
+    {
+      "id": "W079",
+      "actionType": "GOAL",
+      "timeHorizon": "months"
+    },
+    {
+      "id": "W080",
+      "actionType": "GOAL",
+      "timeHorizon": "months"
+    },
+    {
+      "id": "W081",
+      "actionType": "GOAL",
+      "timeHorizon": "months"
+    },
+    {
+      "id": "W082",
+      "actionType": "GOAL",
+      "timeHorizon": "months"
+    },
+    {
+      "id": "W083",
+      "actionType": "PREP",
+      "timeHorizon": "weeks"
+    },
+    {
+      "id": "W084",
+      "actionType": "GOAL",
+      "timeHorizon": "months"
+    },
+    {
+      "id": "W085",
+      "actionType": "GOAL",
+      "timeHorizon": "months"
+    },
+    {
+      "id": "W086",
+      "actionType": "GOAL",
+      "timeHorizon": "months"
+    },
+    {
+      "id": "W087",
+      "actionType": "GOAL",
+      "timeHorizon": "months"
+    },
+    {
+      "id": "W006",
+      "actionType": "NOW",
+      "timeHorizon": "days"
+    },
+    {
+      "id": "W088",
+      "actionType": "GOAL",
+      "timeHorizon": "months"
+    },
+    {
+      "id": "W089",
+      "actionType": "GOAL",
+      "timeHorizon": "months"
+    },
+    {
+      "id": "W090",
+      "actionType": "GOAL",
+      "timeHorizon": "months"
+    },
+    {
+      "id": "W091",
+      "actionType": "GOAL",
+      "timeHorizon": "months"
+    },
+    {
+      "id": "W092",
+      "actionType": "PREP",
+      "timeHorizon": "weeks"
+    },
+    {
+      "id": "W093",
+      "actionType": "GOAL",
+      "timeHorizon": "months"
+    },
+    {
+      "id": "W094",
+      "actionType": "GOAL",
+      "timeHorizon": "months"
+    },
+    {
+      "id": "W095",
+      "actionType": "GOAL",
+      "timeHorizon": "months"
+    },
+    {
+      "id": "W096",
+      "actionType": "PREP",
+      "timeHorizon": "weeks"
+    },
+    {
+      "id": "W007",
+      "actionType": "GOAL",
+      "timeHorizon": "months"
+    },
+    {
+      "id": "W097",
+      "actionType": "PREP",
+      "timeHorizon": "weeks"
+    },
+    {
+      "id": "W098",
+      "actionType": "HABIT",
+      "timeHorizon": "ongoing"
+    },
+    {
+      "id": "W099",
+      "actionType": "PREP",
+      "timeHorizon": "weeks"
+    },
+    {
+      "id": "W100",
+      "actionType": "GOAL",
+      "timeHorizon": "months"
+    },
+    {
+      "id": "W101",
+      "actionType": "PREP",
+      "timeHorizon": "weeks"
+    },
+    {
+      "id": "W102",
+      "actionType": "GOAL",
+      "timeHorizon": "months"
+    },
+    {
+      "id": "W103",
+      "actionType": "GOAL",
+      "timeHorizon": "months"
+    },
+    {
+      "id": "W104",
+      "actionType": "PREP",
+      "timeHorizon": "weeks"
+    },
+    {
+      "id": "W105",
+      "actionType": "GOAL",
+      "timeHorizon": "months"
+    },
+    {
+      "id": "W106",
+      "actionType": "GOAL",
+      "timeHorizon": "months"
+    },
+    {
+      "id": "W107",
+      "actionType": "GOAL",
+      "timeHorizon": "months"
+    },
+    {
+      "id": "W108",
+      "actionType": "PREP",
+      "timeHorizon": "weeks"
+    },
+    {
+      "id": "W109",
+      "actionType": "PREP",
+      "timeHorizon": "weeks"
+    },
+    {
+      "id": "W110",
+      "actionType": "NOW",
+      "timeHorizon": "days"
+    },
+    {
+      "id": "W111",
+      "actionType": "HABIT",
+      "timeHorizon": "ongoing"
+    },
+    {
+      "id": "W112",
+      "actionType": "NOW",
+      "timeHorizon": "days"
+    },
+    {
+      "id": "W113",
+      "actionType": "PREP",
+      "timeHorizon": "weeks"
+    },
+    {
+      "id": "W114",
+      "actionType": "NOW",
+      "timeHorizon": "days"
+    },
+    {
+      "id": "W115",
+      "actionType": "GOAL",
+      "timeHorizon": "months"
+    },
+    {
+      "id": "W011",
+      "actionType": "NOW",
+      "timeHorizon": "days"
+    },
+    {
+      "id": "W116",
+      "actionType": "PREP",
+      "timeHorizon": "weeks"
+    },
+    {
+      "id": "W117",
+      "actionType": "HABIT",
+      "timeHorizon": "ongoing"
+    },
+    {
+      "id": "W118",
+      "actionType": "GOAL",
+      "timeHorizon": "months"
+    },
+    {
+      "id": "W119",
+      "actionType": "PREP",
+      "timeHorizon": "weeks"
+    },
+    {
+      "id": "W120",
+      "actionType": "NOW",
+      "timeHorizon": "days"
+    },
+    {
+      "id": "W121",
+      "actionType": "PREP",
+      "timeHorizon": "weeks"
+    },
+    {
+      "id": "W122",
+      "actionType": "PREP",
+      "timeHorizon": "weeks"
+    },
+    {
+      "id": "W123",
+      "actionType": "PREP",
+      "timeHorizon": "weeks"
+    },
+    {
+      "id": "W124",
+      "actionType": "PREP",
+      "timeHorizon": "weeks"
+    },
+    {
+      "id": "W125",
+      "actionType": "HABIT",
+      "timeHorizon": "ongoing"
+    },
+    {
+      "id": "W126",
+      "actionType": "HABIT",
+      "timeHorizon": "ongoing"
+    },
+    {
+      "id": "W127",
+      "actionType": "HABIT",
+      "timeHorizon": "ongoing"
+    },
+    {
+      "id": "W128",
+      "actionType": "HABIT",
+      "timeHorizon": "ongoing"
+    },
+    {
+      "id": "W129",
+      "actionType": "HABIT",
+      "timeHorizon": "ongoing"
+    },
+    {
+      "id": "W130",
+      "actionType": "NOW",
+      "timeHorizon": "days"
+    },
+    {
+      "id": "W131",
+      "actionType": "HABIT",
+      "timeHorizon": "ongoing"
+    },
+    {
+      "id": "W132",
+      "actionType": "GOAL",
+      "timeHorizon": "months"
+    },
+    {
+      "id": "W133",
+      "actionType": "HABIT",
+      "timeHorizon": "ongoing"
+    },
+    {
+      "id": "W134",
+      "actionType": "GOAL",
+      "timeHorizon": "months"
+    },
+    {
+      "id": "W135",
+      "actionType": "GOAL",
+      "timeHorizon": "months"
+    },
+    {
+      "id": "W136",
+      "actionType": "GOAL",
+      "timeHorizon": "months"
+    },
+    {
+      "id": "W137",
+      "actionType": "NOW",
+      "timeHorizon": "days"
+    },
+    {
+      "id": "W138",
+      "actionType": "NOW",
+      "timeHorizon": "days"
+    },
+    {
+      "id": "W139",
+      "actionType": "NOW",
+      "timeHorizon": "days"
+    },
+    {
+      "id": "W140",
+      "actionType": "PREP",
+      "timeHorizon": "weeks"
+    },
+    {
+      "id": "W141",
+      "actionType": "NOW",
+      "timeHorizon": "days"
+    },
+    {
+      "id": "W142",
+      "actionType": "PREP",
+      "timeHorizon": "weeks"
+    },
+    {
+      "id": "W143",
+      "actionType": "NOW",
+      "timeHorizon": "days"
+    },
+    {
+      "id": "W144",
+      "actionType": "NOW",
+      "timeHorizon": "days"
+    },
+    {
+      "id": "W145",
+      "actionType": "REL",
+      "timeHorizon": "ongoing"
+    },
+    {
+      "id": "W146",
+      "actionType": "REL",
+      "timeHorizon": "ongoing"
+    },
+    {
+      "id": "W147",
+      "actionType": "REL",
+      "timeHorizon": "ongoing"
+    },
+    {
+      "id": "W148",
+      "actionType": "REL",
+      "timeHorizon": "ongoing"
+    },
+    {
+      "id": "W149",
+      "actionType": "REL",
+      "timeHorizon": "ongoing"
+    },
+    {
+      "id": "W150",
+      "actionType": "PREP",
+      "timeHorizon": "weeks"
+    },
+    {
+      "id": "W151",
+      "actionType": "REL",
+      "timeHorizon": "ongoing"
+    },
+    {
+      "id": "W152",
+      "actionType": "REL",
+      "timeHorizon": "ongoing"
+    },
+    {
+      "id": "W153",
+      "actionType": "REL",
+      "timeHorizon": "ongoing"
+    },
+    {
+      "id": "W154",
+      "actionType": "REL",
+      "timeHorizon": "ongoing"
+    },
+    {
+      "id": "W010",
+      "actionType": "HABIT",
+      "timeHorizon": "ongoing"
+    },
+    {
+      "id": "W155",
+      "actionType": "HABIT",
+      "timeHorizon": "ongoing"
+    },
+    {
+      "id": "W156",
+      "actionType": "PREP",
+      "timeHorizon": "weeks"
+    },
+    {
+      "id": "W157",
+      "actionType": "PREP",
+      "timeHorizon": "weeks"
+    },
+    {
+      "id": "W158",
+      "actionType": "REL",
+      "timeHorizon": "ongoing"
+    },
+    {
+      "id": "W159",
+      "actionType": "HABIT",
+      "timeHorizon": "ongoing"
+    },
+    {
+      "id": "W160",
+      "actionType": "GOAL",
+      "timeHorizon": "months"
+    },
+    {
+      "id": "W161",
+      "actionType": "REL",
+      "timeHorizon": "ongoing"
+    },
+    {
+      "id": "W162",
+      "actionType": "REL",
+      "timeHorizon": "ongoing"
+    },
+    {
+      "id": "W163",
+      "actionType": "PREP",
+      "timeHorizon": "weeks"
+    },
+    {
+      "id": "W018",
+      "actionType": "HABIT",
+      "timeHorizon": "ongoing"
+    },
+    {
+      "id": "W164",
+      "actionType": "REL",
+      "timeHorizon": "ongoing"
+    },
+    {
+      "id": "W165",
+      "actionType": "PREP",
+      "timeHorizon": "weeks"
+    },
+    {
+      "id": "W166",
+      "actionType": "NOW",
+      "timeHorizon": "days"
+    },
+    {
+      "id": "W167",
+      "actionType": "GOAL",
+      "timeHorizon": "months"
+    },
+    {
+      "id": "W168",
+      "actionType": "REL",
+      "timeHorizon": "ongoing"
+    },
+    {
+      "id": "W169",
+      "actionType": "REL",
+      "timeHorizon": "ongoing"
+    },
+    {
+      "id": "W170",
+      "actionType": "HABIT",
+      "timeHorizon": "ongoing"
+    },
+    {
+      "id": "W171",
+      "actionType": "HABIT",
+      "timeHorizon": "ongoing"
+    },
+    {
+      "id": "W172",
+      "actionType": "PREP",
+      "timeHorizon": "weeks"
+    },
+    {
+      "id": "W009",
+      "actionType": "GOAL",
+      "timeHorizon": "months"
+    },
+    {
+      "id": "W173",
+      "actionType": "GOAL",
+      "timeHorizon": "months"
+    },
+    {
+      "id": "W174",
+      "actionType": "HABIT",
+      "timeHorizon": "ongoing"
+    },
+    {
+      "id": "W175",
+      "actionType": "NOW",
+      "timeHorizon": "days"
+    },
+    {
+      "id": "W176",
+      "actionType": "GOAL",
+      "timeHorizon": "months"
+    },
+    {
+      "id": "W177",
+      "actionType": "GOAL",
+      "timeHorizon": "months"
+    },
+    {
+      "id": "W178",
+      "actionType": "PREP",
+      "timeHorizon": "weeks"
+    },
+    {
+      "id": "W179",
+      "actionType": "GOAL",
+      "timeHorizon": "years"
+    },
+    {
+      "id": "W180",
+      "actionType": "GOAL",
+      "timeHorizon": "months"
+    },
+    {
+      "id": "W181",
+      "actionType": "GOAL",
+      "timeHorizon": "months"
+    },
+    {
+      "id": "W182",
+      "actionType": "GOAL",
+      "timeHorizon": "months"
+    },
+    {
+      "id": "W183",
+      "actionType": "GOAL",
+      "timeHorizon": "months"
+    },
+    {
+      "id": "W184",
+      "actionType": "NOW",
+      "timeHorizon": "days"
+    },
+    {
+      "id": "W185",
+      "actionType": "PREP",
+      "timeHorizon": "weeks"
+    },
+    {
+      "id": "W186",
+      "actionType": "PREP",
+      "timeHorizon": "weeks"
+    },
+    {
+      "id": "W187",
+      "actionType": "HABIT",
+      "timeHorizon": "ongoing"
+    },
+    {
+      "id": "W188",
+      "actionType": "NOW",
+      "timeHorizon": "days"
+    },
+    {
+      "id": "W189",
+      "actionType": "HABIT",
+      "timeHorizon": "ongoing"
+    },
+    {
+      "id": "W190",
+      "actionType": "PREP",
+      "timeHorizon": "weeks"
+    },
+    {
+      "id": "W191",
+      "actionType": "GOAL",
+      "timeHorizon": "months"
+    },
+    {
+      "id": "W012",
+      "actionType": "PREP",
+      "timeHorizon": "weeks"
+    },
+    {
+      "id": "W192",
+      "actionType": "PREP",
+      "timeHorizon": "weeks"
+    },
+    {
+      "id": "W193",
+      "actionType": "PREP",
+      "timeHorizon": "weeks"
+    },
+    {
+      "id": "W194",
+      "actionType": "PREP",
+      "timeHorizon": "weeks"
+    },
+    {
+      "id": "W195",
+      "actionType": "HABIT",
+      "timeHorizon": "ongoing"
+    },
+    {
+      "id": "W196",
+      "actionType": "PREP",
+      "timeHorizon": "weeks"
+    },
+    {
+      "id": "W197",
+      "actionType": "PREP",
+      "timeHorizon": "weeks"
+    },
+    {
+      "id": "W198",
+      "actionType": "PREP",
+      "timeHorizon": "weeks"
+    },
+    {
+      "id": "W199",
+      "actionType": "PREP",
+      "timeHorizon": "weeks"
+    },
+    {
+      "id": "W200",
+      "actionType": "PREP",
+      "timeHorizon": "weeks"
+    }
+  ]
+}
