@@ -255,11 +255,6 @@ const stop=()=>new Promise(resolve=>server.close(resolve));
         await roulette.locator("#result.show").waitFor({timeout:8000});
         check((await roulette.locator("#rouletteMode").inputValue())==="ALL",
           mode.name+" roulette defaults to all intent modes");
-        await roulette.locator("#rouletteMode").selectOption("TODAY");
-        const todayCount=Number(await roulette.locator("#wheelEligible").innerText());
-        check(todayCount>=0,
-          mode.name+" roulette today mode updates eligible candidates");
-        await roulette.locator("#rouletteMode").selectOption("ALL");
         check((await roulette.locator("#resultText").innerText()).trim().length>2,
           mode.name+" roulette returns selected result");
         const winnerText=(await roulette.locator("#resultText").innerText()).trim();
@@ -288,6 +283,14 @@ const stop=()=>new Promise(resolve=>server.close(resolve));
           check((await roulette.locator("#progressHistory").innerText()).trim().length>0,
             mode.name+" roulette list shows recent progress history");
         }
+        await roulette.locator('.tab[data-tab="wheel"]').click();
+        await roulette.locator("#rouletteMode").selectOption("TODAY");
+        const todayCount=Number(await roulette.locator("#wheelEligible").innerText());
+        check(todayCount>=0,
+          mode.name+" roulette today mode updates eligible candidates");
+        check(!(await roulette.locator("#result").evaluate(el=>el.classList.contains("show"))),
+          mode.name+" roulette mode switch clears stale result");
+        await roulette.locator("#rouletteMode").selectOption("ALL");
         check(rouletteErrors.length===0,mode.name+" roulette no script/asset errors",
           rouletteErrors.join("; "));
         await roulette.screenshot({
