@@ -29,6 +29,7 @@ LIFE DESIGN LAB「やりたいこと発見スワイプ」の初稿200件を利�
 - [意味・粒度・カテゴリ境界レビュー 001](./EDITORIAL_REVIEW_001.md)
 - [実行タイプ・「最初の一歩」仕様 001](./ACTION_MODEL_SPEC_001.md)
 - [全200件の暫定action_type/time_horizon台帳](./card-action-metadata.v1.json) — NOW 24 / PREP 57 / GOAL 77 / HABIT 27 / REL 15
+- [全200件のfirstStep付き台帳 v2](./card-action-metadata.v2.json) — 200/200件に「最初の一歩」を付与。構造検証用の編集ドラフト
 
 本文・IDの改訂案は未適用です。既存の保存済み回答を守るため、MASTER_005を正本として確認後に反映します。
 
