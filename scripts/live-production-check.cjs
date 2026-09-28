@@ -43,7 +43,7 @@ async function fetchLive(route){
   let error;
   for(let attempt=1;attempt<=3;attempt++){
     try{
-      const res=await fetch(link,{redirect:"follow",signal:AbortSignal.timeout(12000),headers:{"User-Agent":"Kaito-Production-QA/1.0"}});
+      const res=await fetch(link,{redirect:"follow",signal:AbortSignal.timeout(8000),headers:{"User-Agent":"Kaito-Production-QA/1.0"}});
       if(res.url.startsWith("http:"))throw Error("Insecure HTTP redirect");
       if(new URL(res.url).host!==link.host)throw Error("Unexpected host redirect: "+res.url);
       if(res.status!==200)throw Error("HTTP "+res.status+" on "+res.url);
@@ -55,7 +55,8 @@ async function fetchLive(route){
 (async()=>{
   const errors=[];
   let verified=0;
-  for(const route of [...pages,...betaPages,...resources]){
+  const routes=[...pages,...betaPages,...resources];
+  const results=await Promise.all(routes.map(async route=>{
     try{
       const live=await fetchLive(route);
       const expected=local(route);
@@ -63,9 +64,12 @@ async function fetchLive(route){
         throw Error("public response differs from main (live "+digest(live).slice(0,12)+
           ", local "+digest(expected).slice(0,12)+")");
       }
-      console.log("PASS "+route+" HTTP 200; exact deployed bytes ("+live.length+")");
-      verified++;
-    }catch(e){const problem=route+": "+e.message;errors.push(problem);console.error("FAIL "+problem);}
+      return {route,ok:true,length:live.length};
+    }catch(e){return {route,ok:false,error:e.message};}
+  }));
+  for(const result of results){
+    if(result.ok){console.log("PASS "+result.route+" HTTP 200; exact deployed bytes ("+result.length+")");verified++;}
+    else{const problem=result.route+": "+result.error;errors.push(problem);console.error("FAIL "+problem);}
   }
   // Check the live sitemap covers every public page, not just matching a file.
   try{
