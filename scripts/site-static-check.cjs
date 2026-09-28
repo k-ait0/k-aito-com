@@ -98,6 +98,17 @@ for(const meta of actionMetaV2.cards){
   assert.ok(typeof meta.firstStep==="string"&&meta.firstStep.trim().length>=5,"Roulette v2 firstStep missing "+meta.id);
 }
 console.log("PASS roulette action metadata v2: 200/200 IDs have first-step guidance");
+const actionMetaV3=JSON.parse(fs.readFileSync(path.join(root,"tools/want-roulette/card-action-metadata.v3.json"),"utf8"));
+assert.equal(actionMetaV3.schemaVersion,3,"Roulette action metadata v3 schema");
+assert.equal(actionMetaV3.cards.length,200,"Roulette action metadata v3 count");
+assert.deepEqual(new Set(actionMetaV3.cards.map(c=>c.id)),new Set(cards.map(c=>c.id)),"Roulette action metadata v3 IDs mismatch");
+assert.equal(new Set(actionMetaV3.cards.map(c=>c.firstStep)).size,200,"Roulette v3 firstStep guidance must be unique per card");
+for(const meta of actionMetaV3.cards){
+  assert.ok(allowedActionTypes.has(meta.actionType),"Roulette v3 invalid action type "+meta.id);
+  assert.ok(allowedHorizons.has(meta.timeHorizon),"Roulette v3 invalid time horizon "+meta.id);
+  assert.ok(typeof meta.firstStep==="string"&&meta.firstStep.trim().length>=5,"Roulette v3 firstStep missing "+meta.id);
+}
+console.log("PASS roulette action metadata v3: 200/200 cards have unique first-step guidance");
 assert.ok(fs.existsSync(path.join(root,"og-image.png")),"OG image missing");
 console.log("PASS "+checked+" HTML files, "+listed.length+" unique sitemap URLs, "+
   localRefs+" local references, all canonical/social metadata and anchors");
