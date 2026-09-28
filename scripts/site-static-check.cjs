@@ -76,6 +76,18 @@ for(const card of cards){
 assert.equal(byCategory.size,20,"Roulette category count changed");
 for(const [id,count] of byCategory)assert.equal(count,10,"Roulette category size "+id);
 console.log("PASS roulette card inventory: 200 unique IDs in 20 categories of 10");
+const actionMeta=JSON.parse(fs.readFileSync(path.join(root,"tools/want-roulette/card-action-metadata.v1.json"),"utf8"));
+assert.equal(actionMeta.schemaVersion,1,"Roulette action metadata schema");
+assert.equal(actionMeta.cards.length,200,"Roulette action metadata count");
+assert.equal(new Set(actionMeta.cards.map(c=>c.id)).size,200,"Roulette action metadata duplicate IDs");
+assert.deepEqual(new Set(actionMeta.cards.map(c=>c.id)),new Set(cards.map(c=>c.id)),"Roulette action metadata IDs mismatch");
+const allowedActionTypes=new Set(["NOW","PREP","GOAL","HABIT","REL"]);
+const allowedHorizons=new Set(["today","days","weeks","months","years","ongoing"]);
+for(const meta of actionMeta.cards){
+  assert.ok(allowedActionTypes.has(meta.actionType),"Roulette invalid action type "+meta.id);
+  assert.ok(allowedHorizons.has(meta.timeHorizon),"Roulette invalid time horizon "+meta.id);
+}
+console.log("PASS roulette action metadata: 200/200 IDs mapped to valid action types and horizons");
 assert.ok(fs.existsSync(path.join(root,"og-image.png")),"OG image missing");
 console.log("PASS "+checked+" HTML files, "+listed.length+" unique sitemap URLs, "+
   localRefs+" local references, all canonical/social metadata and anchors");
