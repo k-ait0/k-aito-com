@@ -1,0 +1,1216 @@
+{
+  "schemaVersion": 3,
+  "status": "editorial-draft",
+  "reviewedAt": "2026-09-28",
+  "qualityRule": "First step should be concrete, low-friction, and not require another person's consent.",
+  "counts": {
+    "NOW": 24,
+    "PREP": 57,
+    "GOAL": 77,
+    "HABIT": 27,
+    "REL": 15
+  },
+  "cards": [
+    {
+      "id": "W001",
+      "actionType": "GOAL",
+      "timeHorizon": "months",
+      "firstStep": "暮らしてみたい国や都市を3つ書き出す"
+    },
+    {
+      "id": "W019",
+      "actionType": "PREP",
+      "timeHorizon": "weeks",
+      "firstStep": "行ってみたい知らない町を3つ挙げる"
+    },
+    {
+      "id": "W020",
+      "actionType": "PREP",
+      "timeHorizon": "weeks",
+      "firstStep": "一人旅してみたい国を3つ挙げる"
+    },
+    {
+      "id": "W021",
+      "actionType": "PREP",
+      "timeHorizon": "weeks",
+      "firstStep": "乗ってみたい寝台列車を1つ選ぶ"
+    },
+    {
+      "id": "W022",
+      "actionType": "PREP",
+      "timeHorizon": "weeks",
+      "firstStep": "巡ってみたい離島を3つ挙げる"
+    },
+    {
+      "id": "W023",
+      "actionType": "NOW",
+      "timeHorizon": "days",
+      "firstStep": "次の休日に使える時間だけ確保する"
+    },
+    {
+      "id": "W024",
+      "actionType": "PREP",
+      "timeHorizon": "weeks",
+      "firstStep": "走ってみたい方面と日数を仮置きする"
+    },
+    {
+      "id": "W025",
+      "actionType": "PREP",
+      "timeHorizon": "weeks",
+      "firstStep": "ホームステイしてみたい地域を1つ選ぶ"
+    },
+    {
+      "id": "W026",
+      "actionType": "PREP",
+      "timeHorizon": "weeks",
+      "firstStep": "長期旅行で行きたい場所を5つ書き出す"
+    },
+    {
+      "id": "W027",
+      "actionType": "PREP",
+      "timeHorizon": "weeks",
+      "firstStep": "バックパッカー旅の期間と予算を仮置きする"
+    },
+    {
+      "id": "W003",
+      "actionType": "PREP",
+      "timeHorizon": "weeks",
+      "firstStep": "オーロラを見たい国と季節を1つずつ調べる"
+    },
+    {
+      "id": "W028",
+      "actionType": "PREP",
+      "timeHorizon": "weeks",
+      "firstStep": "現地で見たい伝統的な祭りを1つ選ぶ"
+    },
+    {
+      "id": "W029",
+      "actionType": "PREP",
+      "timeHorizon": "weeks",
+      "firstStep": "興味のあるオペラか演劇を1公演探す"
+    },
+    {
+      "id": "W030",
+      "actionType": "PREP",
+      "timeHorizon": "weeks",
+      "firstStep": "参加したい音楽フェスの開催時期を調べる"
+    },
+    {
+      "id": "W031",
+      "actionType": "PREP",
+      "timeHorizon": "weeks",
+      "firstStep": "訪ねたい世界遺産を3つ挙げる"
+    },
+    {
+      "id": "W032",
+      "actionType": "PREP",
+      "timeHorizon": "weeks",
+      "firstStep": "一日過ごしてみたい美術館を1館選ぶ"
+    },
+    {
+      "id": "W033",
+      "actionType": "PREP",
+      "timeHorizon": "weeks",
+      "firstStep": "体験してみたい伝統工芸を1つ選ぶ"
+    },
+    {
+      "id": "W034",
+      "actionType": "PREP",
+      "timeHorizon": "weeks",
+      "firstStep": "参加できる星空観測会を1つ探す"
+    },
+    {
+      "id": "W035",
+      "actionType": "PREP",
+      "timeHorizon": "weeks",
+      "firstStep": "体験してみたい異文化の祝祭を1つ調べる"
+    },
+    {
+      "id": "W036",
+      "actionType": "PREP",
+      "timeHorizon": "weeks",
+      "firstStep": "内部を見学したい歴史建築を1つ選ぶ"
+    },
+    {
+      "id": "W005",
+      "actionType": "GOAL",
+      "timeHorizon": "years",
+      "firstStep": "暮らしてみたい海辺の地域を3つ挙げる"
+    },
+    {
+      "id": "W016",
+      "actionType": "NOW",
+      "timeHorizon": "days",
+      "firstStep": "家の中で緑を感じながら休める場所を1つ作る"
+    },
+    {
+      "id": "W037",
+      "actionType": "GOAL",
+      "timeHorizon": "years",
+      "firstStep": "二拠点にしたい場所と過ごし方を書き出す"
+    },
+    {
+      "id": "W038",
+      "actionType": "GOAL",
+      "timeHorizon": "months",
+      "firstStep": "理想の間取りで譲れない条件を3つ書く"
+    },
+    {
+      "id": "W039",
+      "actionType": "GOAL",
+      "timeHorizon": "months",
+      "firstStep": "改修したい住宅の場所を3つ挙げる"
+    },
+    {
+      "id": "W040",
+      "actionType": "GOAL",
+      "timeHorizon": "months",
+      "firstStep": "作業スペースに必要な条件を3つ書く"
+    },
+    {
+      "id": "W041",
+      "actionType": "GOAL",
+      "timeHorizon": "months",
+      "firstStep": "徒歩圏に欲しい施設を5つ書く"
+    },
+    {
+      "id": "W042",
+      "actionType": "GOAL",
+      "timeHorizon": "months",
+      "firstStep": "庭やベランダでしたいことを3つ書く"
+    },
+    {
+      "id": "W043",
+      "actionType": "GOAL",
+      "timeHorizon": "years",
+      "firstStep": "季節ごとに住んでみたい場所を考える"
+    },
+    {
+      "id": "W044",
+      "actionType": "GOAL",
+      "timeHorizon": "months",
+      "firstStep": "将来の住まいで必要になる条件を3つ書く"
+    },
+    {
+      "id": "W008",
+      "actionType": "NOW",
+      "timeHorizon": "days",
+      "firstStep": "次の休日に時間だけ決めて外へ出る"
+    },
+    {
+      "id": "W045",
+      "actionType": "NOW",
+      "timeHorizon": "days",
+      "firstStep": "明日の朝に飲みたいものを決める"
+    },
+    {
+      "id": "W046",
+      "actionType": "HABIT",
+      "timeHorizon": "ongoing",
+      "firstStep": "次の1週間で一人になる時間を30分確保する"
+    },
+    {
+      "id": "W047",
+      "actionType": "HABIT",
+      "timeHorizon": "ongoing",
+      "firstStep": "今の季節に楽しみたいことを1つ決める"
+    },
+    {
+      "id": "W048",
+      "actionType": "GOAL",
+      "timeHorizon": "months",
+      "firstStep": "休暇を取りにくくしている理由を一つ書く"
+    },
+    {
+      "id": "W049",
+      "actionType": "HABIT",
+      "timeHorizon": "ongoing",
+      "firstStep": "今日15分だけ読む時間を決める"
+    },
+    {
+      "id": "W050",
+      "actionType": "NOW",
+      "timeHorizon": "days",
+      "firstStep": "今日は持ち物を10個だけ見直す"
+    },
+    {
+      "id": "W051",
+      "actionType": "HABIT",
+      "timeHorizon": "ongoing",
+      "firstStep": "次の1か月で予定を入れない休日を1日決める"
+    },
+    {
+      "id": "W052",
+      "actionType": "HABIT",
+      "timeHorizon": "ongoing",
+      "firstStep": "次の平日に30分だけ趣味の時間を確保する"
+    },
+    {
+      "id": "W053",
+      "actionType": "NOW",
+      "timeHorizon": "days",
+      "firstStep": "明日の朝10分だけ散歩する時間を決める"
+    },
+    {
+      "id": "W013",
+      "actionType": "GOAL",
+      "timeHorizon": "months",
+      "firstStep": "自分のペースで働くために変えたいことを一つ書く"
+    },
+    {
+      "id": "W017",
+      "actionType": "GOAL",
+      "timeHorizon": "months",
+      "firstStep": "仕事で達成したい大きな目標を1文で書く"
+    },
+    {
+      "id": "W054",
+      "actionType": "GOAL",
+      "timeHorizon": "months",
+      "firstStep": "自分の得意分野を3つ書き出す"
+    },
+    {
+      "id": "W055",
+      "actionType": "GOAL",
+      "timeHorizon": "months",
+      "firstStep": "興味のある未経験職種を3つ挙げる"
+    },
+    {
+      "id": "W056",
+      "actionType": "GOAL",
+      "timeHorizon": "months",
+      "firstStep": "支えたい相手とできそうな支援を一つ考える"
+    },
+    {
+      "id": "W057",
+      "actionType": "GOAL",
+      "timeHorizon": "months",
+      "firstStep": "働く場所をどこまで自由にしたいか書く"
+    },
+    {
+      "id": "W058",
+      "actionType": "GOAL",
+      "timeHorizon": "months",
+      "firstStep": "収入につなげたい専門性を1つ選ぶ"
+    },
+    {
+      "id": "W059",
+      "actionType": "GOAL",
+      "timeHorizon": "months",
+      "firstStep": "一緒に仕事をしてみたい異分野を2つ挙げる"
+    },
+    {
+      "id": "W060",
+      "actionType": "GOAL",
+      "timeHorizon": "months",
+      "firstStep": "自分で企画したいプロジェクトの目的を1文で書く"
+    },
+    {
+      "id": "W061",
+      "actionType": "PREP",
+      "timeHorizon": "weeks",
+      "firstStep": "学び直したいテーマと必要期間を仮置きする"
+    },
+    {
+      "id": "W002",
+      "actionType": "GOAL",
+      "timeHorizon": "months",
+      "firstStep": "開きたい店の客・商品・場所を仮置きする"
+    },
+    {
+      "id": "W014",
+      "actionType": "GOAL",
+      "timeHorizon": "months",
+      "firstStep": "解決したい不便と使ってほしい人を1つずつ書く"
+    },
+    {
+      "id": "W062",
+      "actionType": "GOAL",
+      "timeHorizon": "months",
+      "firstStep": "副業で提供できそうなものを3つ挙げる"
+    },
+    {
+      "id": "W063",
+      "actionType": "GOAL",
+      "timeHorizon": "months",
+      "firstStep": "ネットショップで扱いたい商品候補を3つ挙げる"
+    },
+    {
+      "id": "W064",
+      "actionType": "GOAL",
+      "timeHorizon": "months",
+      "firstStep": "事業に生かしたい地元の魅力を3つ挙げる"
+    },
+    {
+      "id": "W065",
+      "actionType": "GOAL",
+      "timeHorizon": "months",
+      "firstStep": "販売してみたい商品の案を3つ書く"
+    },
+    {
+      "id": "W066",
+      "actionType": "GOAL",
+      "timeHorizon": "years",
+      "firstStep": "一緒に取り組みたい相手と事業目的を書き出す"
+    },
+    {
+      "id": "W067",
+      "actionType": "HABIT",
+      "timeHorizon": "ongoing",
+      "firstStep": "今の事業で繰り返し利益につながる流れを1つ書く"
+    },
+    {
+      "id": "W068",
+      "actionType": "GOAL",
+      "timeHorizon": "years",
+      "firstStep": "引き継いで育てたい事業の条件を3つ書く"
+    },
+    {
+      "id": "W069",
+      "actionType": "GOAL",
+      "timeHorizon": "months",
+      "firstStep": "自分以外に任せたい仕事を1つ選ぶ"
+    },
+    {
+      "id": "W015",
+      "actionType": "GOAL",
+      "timeHorizon": "years",
+      "firstStep": "何年も研究したいテーマを1つに絞る"
+    },
+    {
+      "id": "W070",
+      "actionType": "GOAL",
+      "timeHorizon": "months",
+      "firstStep": "学びたい外国語と知りたい文化テーマを1つ決める"
+    },
+    {
+      "id": "W071",
+      "actionType": "GOAL",
+      "timeHorizon": "months",
+      "firstStep": "世界史で最初に通して学ぶ時代や地域を決める"
+    },
+    {
+      "id": "W072",
+      "actionType": "GOAL",
+      "timeHorizon": "months",
+      "firstStep": "天文学で最初に理解したいテーマを1つ選ぶ"
+    },
+    {
+      "id": "W073",
+      "actionType": "HABIT",
+      "timeHorizon": "ongoing",
+      "firstStep": "最初の1回を15分だけ予定に入れる"
+    },
+    {
+      "id": "W074",
+      "actionType": "PREP",
+      "timeHorizon": "weeks",
+      "firstStep": "受けてみたい公開講座を1つ探す"
+    },
+    {
+      "id": "W075",
+      "actionType": "GOAL",
+      "timeHorizon": "months",
+      "firstStep": "住んでいる地域で最初に調べたい出来事を1つ選ぶ"
+    },
+    {
+      "id": "W076",
+      "actionType": "GOAL",
+      "timeHorizon": "months",
+      "firstStep": "経済の基礎で最初に学ぶテーマを1つ選ぶ"
+    },
+    {
+      "id": "W077",
+      "actionType": "NOW",
+      "timeHorizon": "days",
+      "firstStep": "家で試せる実験か観察を1つ選ぶ"
+    },
+    {
+      "id": "W078",
+      "actionType": "GOAL",
+      "timeHorizon": "months",
+      "firstStep": "学びたい法律分野を1つに絞る"
+    },
+    {
+      "id": "W004",
+      "actionType": "GOAL",
+      "timeHorizon": "months",
+      "firstStep": "演奏できるようになりたい曲を1曲選ぶ"
+    },
+    {
+      "id": "W079",
+      "actionType": "GOAL",
+      "timeHorizon": "months",
+      "firstStep": "試験日と必要な学習内容を確認する"
+    },
+    {
+      "id": "W080",
+      "actionType": "GOAL",
+      "timeHorizon": "months",
+      "firstStep": "狙いどおり撮りたい写真の例を3枚集める"
+    },
+    {
+      "id": "W081",
+      "actionType": "GOAL",
+      "timeHorizon": "months",
+      "firstStep": "作ってみたい小さなアプリの機能を1つ決める"
+    },
+    {
+      "id": "W082",
+      "actionType": "GOAL",
+      "timeHorizon": "months",
+      "firstStep": "身につけたい簿記・会計技能の到達点を決める"
+    },
+    {
+      "id": "W083",
+      "actionType": "PREP",
+      "timeHorizon": "weeks",
+      "firstStep": "受けられる応急手当講習を1つ探す"
+    },
+    {
+      "id": "W084",
+      "actionType": "GOAL",
+      "timeHorizon": "months",
+      "firstStep": "伝わるように話したいテーマで3分の構成を作る"
+    },
+    {
+      "id": "W085",
+      "actionType": "GOAL",
+      "timeHorizon": "months",
+      "firstStep": "磨きたい文字表現の見本を1つ選ぶ"
+    },
+    {
+      "id": "W086",
+      "actionType": "GOAL",
+      "timeHorizon": "months",
+      "firstStep": "自分でできるようになりたい整備作業を1つ選ぶ"
+    },
+    {
+      "id": "W087",
+      "actionType": "GOAL",
+      "timeHorizon": "months",
+      "firstStep": "編集してみたい短い映像素材を1つ決める"
+    },
+    {
+      "id": "W006",
+      "actionType": "NOW",
+      "timeHorizon": "days",
+      "firstStep": "一緒に作りたい作品と相手候補を1つずつ考える"
+    },
+    {
+      "id": "W088",
+      "actionType": "GOAL",
+      "timeHorizon": "months",
+      "firstStep": "描きたい絵のテーマを1つ決める"
+    },
+    {
+      "id": "W089",
+      "actionType": "GOAL",
+      "timeHorizon": "months",
+      "firstStep": "最初に作りたい家具を1つ選ぶ"
+    },
+    {
+      "id": "W090",
+      "actionType": "GOAL",
+      "timeHorizon": "months",
+      "firstStep": "短編映画のテーマと長さを仮置きする"
+    },
+    {
+      "id": "W091",
+      "actionType": "GOAL",
+      "timeHorizon": "months",
+      "firstStep": "作りたい曲の雰囲気を3語で表す"
+    },
+    {
+      "id": "W092",
+      "actionType": "PREP",
+      "timeHorizon": "weeks",
+      "firstStep": "作ってみたい陶器を1つ決める"
+    },
+    {
+      "id": "W093",
+      "actionType": "GOAL",
+      "timeHorizon": "months",
+      "firstStep": "撮りためたい写真作品のテーマを1つ決める"
+    },
+    {
+      "id": "W094",
+      "actionType": "GOAL",
+      "timeHorizon": "months",
+      "firstStep": "小さなゲームの遊び方を1文で書く"
+    },
+    {
+      "id": "W095",
+      "actionType": "GOAL",
+      "timeHorizon": "months",
+      "firstStep": "作ってみたい服の参考画像を3枚集める"
+    },
+    {
+      "id": "W096",
+      "actionType": "PREP",
+      "timeHorizon": "weeks",
+      "firstStep": "贈りたい相手と作りたい品を1つずつ決める"
+    },
+    {
+      "id": "W007",
+      "actionType": "GOAL",
+      "timeHorizon": "months",
+      "firstStep": "本で誰に何を伝えたいか1文で書く"
+    },
+    {
+      "id": "W097",
+      "actionType": "PREP",
+      "timeHorizon": "weeks",
+      "firstStep": "最初に公開したい記事の題材を1つ決める"
+    },
+    {
+      "id": "W098",
+      "actionType": "HABIT",
+      "timeHorizon": "ongoing",
+      "firstStep": "ニュースレターの発行頻度と最初のテーマを決める"
+    },
+    {
+      "id": "W099",
+      "actionType": "PREP",
+      "timeHorizon": "weeks",
+      "firstStep": "最初の音声番組で話すテーマを1つ決める"
+    },
+    {
+      "id": "W100",
+      "actionType": "GOAL",
+      "timeHorizon": "months",
+      "firstStep": "エッセイに残したい学びを3つ書き出す"
+    },
+    {
+      "id": "W101",
+      "actionType": "PREP",
+      "timeHorizon": "weeks",
+      "firstStep": "公開講座で伝えたいテーマを1つ決める"
+    },
+    {
+      "id": "W102",
+      "actionType": "GOAL",
+      "timeHorizon": "months",
+      "firstStep": "ZINEのテーマと想定ページ数を仮置きする"
+    },
+    {
+      "id": "W103",
+      "actionType": "GOAL",
+      "timeHorizon": "months",
+      "firstStep": "発信したい調査結果を1つ選ぶ"
+    },
+    {
+      "id": "W104",
+      "actionType": "PREP",
+      "timeHorizon": "weeks",
+      "firstStep": "動画で紹介したい趣味体験を1つ選ぶ"
+    },
+    {
+      "id": "W105",
+      "actionType": "GOAL",
+      "timeHorizon": "months",
+      "firstStep": "地域ガイドで紹介したい場所を5つ挙げる"
+    },
+    {
+      "id": "W106",
+      "actionType": "GOAL",
+      "timeHorizon": "months",
+      "firstStep": "集めたいテーマと次に欲しい1点を決める"
+    },
+    {
+      "id": "W107",
+      "actionType": "GOAL",
+      "timeHorizon": "months",
+      "firstStep": "最後まで遊びたいゲームを1本選ぶ"
+    },
+    {
+      "id": "W108",
+      "actionType": "PREP",
+      "timeHorizon": "weeks",
+      "firstStep": "ボードゲーム会に誘いたい人と候補日を考える"
+    },
+    {
+      "id": "W109",
+      "actionType": "PREP",
+      "timeHorizon": "weeks",
+      "firstStep": "参加したい作品イベントを1つ探す"
+    },
+    {
+      "id": "W110",
+      "actionType": "NOW",
+      "timeHorizon": "days",
+      "firstStep": "15分で試せる新しい趣味を1つ探す"
+    },
+    {
+      "id": "W111",
+      "actionType": "HABIT",
+      "timeHorizon": "ongoing",
+      "firstStep": "定期参加してみたい趣味の集まりを1つ探す"
+    },
+    {
+      "id": "W112",
+      "actionType": "NOW",
+      "timeHorizon": "days",
+      "firstStep": "コレクション10点だけ記録してみる"
+    },
+    {
+      "id": "W113",
+      "actionType": "PREP",
+      "timeHorizon": "weeks",
+      "firstStep": "会場で観たいスポーツを1つ決める"
+    },
+    {
+      "id": "W114",
+      "actionType": "NOW",
+      "timeHorizon": "days",
+      "firstStep": "行けそうな日時を1つ決める"
+    },
+    {
+      "id": "W115",
+      "actionType": "GOAL",
+      "timeHorizon": "months",
+      "firstStep": "挑戦したいパズルや謎解きを1つ選ぶ"
+    },
+    {
+      "id": "W011",
+      "actionType": "NOW",
+      "timeHorizon": "days",
+      "firstStep": "体験してみたい未経験スポーツを1つ選ぶ"
+    },
+    {
+      "id": "W116",
+      "actionType": "PREP",
+      "timeHorizon": "weeks",
+      "firstStep": "出てみたい距離と大会候補を1つ調べる"
+    },
+    {
+      "id": "W117",
+      "actionType": "HABIT",
+      "timeHorizon": "ongoing",
+      "firstStep": "次に泳ぐときの目標距離を無理なく決める"
+    },
+    {
+      "id": "W118",
+      "actionType": "GOAL",
+      "timeHorizon": "months",
+      "firstStep": "走ってみたい長距離コースを1つ探す"
+    },
+    {
+      "id": "W119",
+      "actionType": "PREP",
+      "timeHorizon": "weeks",
+      "firstStep": "登ってみたい山を1つ選ぶ"
+    },
+    {
+      "id": "W120",
+      "actionType": "NOW",
+      "timeHorizon": "days",
+      "firstStep": "体験してみたい武道を1つ選ぶ"
+    },
+    {
+      "id": "W121",
+      "actionType": "PREP",
+      "timeHorizon": "weeks",
+      "firstStep": "参加してみたいダンス発表の機会を調べる"
+    },
+    {
+      "id": "W122",
+      "actionType": "PREP",
+      "timeHorizon": "weeks",
+      "firstStep": "スキーかスノーボードのどちらを試すか決める"
+    },
+    {
+      "id": "W123",
+      "actionType": "PREP",
+      "timeHorizon": "weeks",
+      "firstStep": "受けられる初心者向けサーフィン体験を1つ探す"
+    },
+    {
+      "id": "W124",
+      "actionType": "PREP",
+      "timeHorizon": "weeks",
+      "firstStep": "企画したい運動イベントの内容を1つ決める"
+    },
+    {
+      "id": "W125",
+      "actionType": "HABIT",
+      "timeHorizon": "ongoing",
+      "firstStep": "無理のない10分の散歩を1回試す"
+    },
+    {
+      "id": "W126",
+      "actionType": "HABIT",
+      "timeHorizon": "ongoing",
+      "firstStep": "必要な睡眠時間と現在の睡眠時間を書き出す"
+    },
+    {
+      "id": "W127",
+      "actionType": "HABIT",
+      "timeHorizon": "ongoing",
+      "firstStep": "休息を増やしたい時間帯を1つ決める"
+    },
+    {
+      "id": "W128",
+      "actionType": "HABIT",
+      "timeHorizon": "ongoing",
+      "firstStep": "今日できるストレッチを1つ選ぶ"
+    },
+    {
+      "id": "W129",
+      "actionType": "HABIT",
+      "timeHorizon": "ongoing",
+      "firstStep": "次の健康診断を受ける時期を確認する"
+    },
+    {
+      "id": "W130",
+      "actionType": "NOW",
+      "timeHorizon": "days",
+      "firstStep": "5分で試せる休息方法を1つ選ぶ"
+    },
+    {
+      "id": "W131",
+      "actionType": "HABIT",
+      "timeHorizon": "ongoing",
+      "firstStep": "姿勢を意識する場面を1つ決める"
+    },
+    {
+      "id": "W132",
+      "actionType": "GOAL",
+      "timeHorizon": "months",
+      "firstStep": "今のスキンケアで気になる点を1つ書く"
+    },
+    {
+      "id": "W133",
+      "actionType": "HABIT",
+      "timeHorizon": "ongoing",
+      "firstStep": "週1回から試せる運動を1つ選ぶ"
+    },
+    {
+      "id": "W134",
+      "actionType": "GOAL",
+      "timeHorizon": "months",
+      "firstStep": "疲れたときに休みにくい原因を1つ書く"
+    },
+    {
+      "id": "W135",
+      "actionType": "GOAL",
+      "timeHorizon": "months",
+      "firstStep": "食べ比べたい郷土料理を3つ挙げる"
+    },
+    {
+      "id": "W136",
+      "actionType": "GOAL",
+      "timeHorizon": "months",
+      "firstStep": "定番にしたい料理を1つ選ぶ"
+    },
+    {
+      "id": "W137",
+      "actionType": "NOW",
+      "timeHorizon": "days",
+      "firstStep": "焼いてみたいパンを1種類選ぶ"
+    },
+    {
+      "id": "W138",
+      "actionType": "NOW",
+      "timeHorizon": "days",
+      "firstStep": "淹れ方を学びたいコーヒーかお茶を1つ選ぶ"
+    },
+    {
+      "id": "W139",
+      "actionType": "NOW",
+      "timeHorizon": "days",
+      "firstStep": "今が旬の食材を1つ選ぶ"
+    },
+    {
+      "id": "W140",
+      "actionType": "PREP",
+      "timeHorizon": "weeks",
+      "firstStep": "行ってみたいフードイベントを1つ探す"
+    },
+    {
+      "id": "W141",
+      "actionType": "NOW",
+      "timeHorizon": "days",
+      "firstStep": "一緒に作りたい料理を1品決める"
+    },
+    {
+      "id": "W142",
+      "actionType": "PREP",
+      "timeHorizon": "weeks",
+      "firstStep": "行きたかった飲食店を1店選ぶ"
+    },
+    {
+      "id": "W143",
+      "actionType": "NOW",
+      "timeHorizon": "days",
+      "firstStep": "使ってみたい地元の農産物を1つ選ぶ"
+    },
+    {
+      "id": "W144",
+      "actionType": "NOW",
+      "timeHorizon": "days",
+      "firstStep": "好きな料理を1つ選び変えてみたい点を考える"
+    },
+    {
+      "id": "W145",
+      "actionType": "REL",
+      "timeHorizon": "ongoing",
+      "firstStep": "どんな相手なら自然に話せそうか3つ書く"
+    },
+    {
+      "id": "W146",
+      "actionType": "REL",
+      "timeHorizon": "ongoing",
+      "firstStep": "気になる相手と行ってみたい場所を1つ考える"
+    },
+    {
+      "id": "W147",
+      "actionType": "REL",
+      "timeHorizon": "ongoing",
+      "firstStep": "二人で試してみたい趣味を3つ挙げる"
+    },
+    {
+      "id": "W148",
+      "actionType": "REL",
+      "timeHorizon": "ongoing",
+      "firstStep": "将来の暮らしで話したいテーマを1つ選ぶ"
+    },
+    {
+      "id": "W149",
+      "actionType": "REL",
+      "timeHorizon": "ongoing",
+      "firstStep": "自分に必要な一人時間を言葉にする"
+    },
+    {
+      "id": "W150",
+      "actionType": "PREP",
+      "timeHorizon": "weeks",
+      "firstStep": "次の記念日にしたいことを3つ挙げる"
+    },
+    {
+      "id": "W151",
+      "actionType": "REL",
+      "timeHorizon": "ongoing",
+      "firstStep": "パートナーと初めて試したい体験を1つ考える"
+    },
+    {
+      "id": "W152",
+      "actionType": "REL",
+      "timeHorizon": "ongoing",
+      "firstStep": "伝えたい感謝を一つ言葉にする"
+    },
+    {
+      "id": "W153",
+      "actionType": "REL",
+      "timeHorizon": "ongoing",
+      "firstStep": "パートナーと共に暮らす理想の形を3つ書く"
+    },
+    {
+      "id": "W154",
+      "actionType": "REL",
+      "timeHorizon": "ongoing",
+      "firstStep": "自分が大切にしたい価値観を3つ書く"
+    },
+    {
+      "id": "W010",
+      "actionType": "HABIT",
+      "timeHorizon": "ongoing",
+      "firstStep": "一緒に旅したい人と年内の候補時期を考える"
+    },
+    {
+      "id": "W155",
+      "actionType": "HABIT",
+      "timeHorizon": "ongoing",
+      "firstStep": "次に家族で食卓を囲めそうな日を決める"
+    },
+    {
+      "id": "W156",
+      "actionType": "PREP",
+      "timeHorizon": "weeks",
+      "firstStep": "残したい家族の思い出を1つ選ぶ"
+    },
+    {
+      "id": "W157",
+      "actionType": "PREP",
+      "timeHorizon": "weeks",
+      "firstStep": "子どもと共有したい新しい体験を1つ考える"
+    },
+    {
+      "id": "W158",
+      "actionType": "REL",
+      "timeHorizon": "ongoing",
+      "firstStep": "家族に伝えたい考えを1文で整理する"
+    },
+    {
+      "id": "W159",
+      "actionType": "HABIT",
+      "timeHorizon": "ongoing",
+      "firstStep": "家族への無理のない連絡頻度を仮に決める"
+    },
+    {
+      "id": "W160",
+      "actionType": "GOAL",
+      "timeHorizon": "months",
+      "firstStep": "最初に調べたい親族を1人決める"
+    },
+    {
+      "id": "W161",
+      "actionType": "REL",
+      "timeHorizon": "ongoing",
+      "firstStep": "家族それぞれに必要な時間を考える"
+    },
+    {
+      "id": "W162",
+      "actionType": "REL",
+      "timeHorizon": "ongoing",
+      "firstStep": "自分が望む家族の形を自由に書き出す"
+    },
+    {
+      "id": "W163",
+      "actionType": "PREP",
+      "timeHorizon": "weeks",
+      "firstStep": "家族で試したい季節行事を1つ選ぶ"
+    },
+    {
+      "id": "W018",
+      "actionType": "HABIT",
+      "timeHorizon": "ongoing",
+      "firstStep": "今週ゆっくり話したい相手と時間を決める"
+    },
+    {
+      "id": "W164",
+      "actionType": "REL",
+      "timeHorizon": "ongoing",
+      "firstStep": "どんな友人と気が合いそうか3つ書く"
+    },
+    {
+      "id": "W165",
+      "actionType": "PREP",
+      "timeHorizon": "weeks",
+      "firstStep": "再会したい友人を1人選び候補日を考える"
+    },
+    {
+      "id": "W166",
+      "actionType": "NOW",
+      "timeHorizon": "days",
+      "firstStep": "共通の趣味で交流できる場を1つ探す"
+    },
+    {
+      "id": "W167",
+      "actionType": "GOAL",
+      "timeHorizon": "months",
+      "firstStep": "仲間と挑戦したいことを3つ挙げる"
+    },
+    {
+      "id": "W168",
+      "actionType": "REL",
+      "timeHorizon": "ongoing",
+      "firstStep": "自分が相談しやすいこと・しにくいことを整理する"
+    },
+    {
+      "id": "W169",
+      "actionType": "REL",
+      "timeHorizon": "ongoing",
+      "firstStep": "交流してみたい世代と話題を1つずつ考える"
+    },
+    {
+      "id": "W170",
+      "actionType": "HABIT",
+      "timeHorizon": "ongoing",
+      "firstStep": "次に友人と食事やお茶をする候補日を決める"
+    },
+    {
+      "id": "W171",
+      "actionType": "HABIT",
+      "timeHorizon": "ongoing",
+      "firstStep": "遠方の友人に次に連絡する日を決める"
+    },
+    {
+      "id": "W172",
+      "actionType": "PREP",
+      "timeHorizon": "weeks",
+      "firstStep": "次に節目を迎える身近な人を1人思い浮かべる"
+    },
+    {
+      "id": "W009",
+      "actionType": "GOAL",
+      "timeHorizon": "months",
+      "firstStep": "安心して暮らすために必要な生活費の年数を仮置きする"
+    },
+    {
+      "id": "W173",
+      "actionType": "GOAL",
+      "timeHorizon": "months",
+      "firstStep": "生活費の何か月分を備えたいか仮置きする"
+    },
+    {
+      "id": "W174",
+      "actionType": "HABIT",
+      "timeHorizon": "ongoing",
+      "firstStep": "次に家計を見る日をカレンダーに入れる"
+    },
+    {
+      "id": "W175",
+      "actionType": "NOW",
+      "timeHorizon": "days",
+      "firstStep": "旅や体験用の積立額を仮に決める"
+    },
+    {
+      "id": "W176",
+      "actionType": "GOAL",
+      "timeHorizon": "months",
+      "firstStep": "資産形成の目的・期間・使える金額を仮置きする"
+    },
+    {
+      "id": "W177",
+      "actionType": "GOAL",
+      "timeHorizon": "months",
+      "firstStep": "外注したい仕事や家事を1つ選び費用を調べる"
+    },
+    {
+      "id": "W178",
+      "actionType": "PREP",
+      "timeHorizon": "weeks",
+      "firstStep": "欲しいものの価格と買いたい時期を確認する"
+    },
+    {
+      "id": "W179",
+      "actionType": "GOAL",
+      "timeHorizon": "years",
+      "firstStep": "働き方を選べる状態に必要な資産額を仮置きする"
+    },
+    {
+      "id": "W180",
+      "actionType": "GOAL",
+      "timeHorizon": "months",
+      "firstStep": "始めたい事業に必要な初期資金を仮置きする"
+    },
+    {
+      "id": "W181",
+      "actionType": "GOAL",
+      "timeHorizon": "months",
+      "firstStep": "老後に望む暮らしと年間生活費を仮置きする"
+    },
+    {
+      "id": "W182",
+      "actionType": "GOAL",
+      "timeHorizon": "months",
+      "firstStep": "一緒に暮らしたい動物と必要な飼育条件を調べる"
+    },
+    {
+      "id": "W183",
+      "actionType": "GOAL",
+      "timeHorizon": "months",
+      "firstStep": "育ててみたい野菜を1つ選ぶ"
+    },
+    {
+      "id": "W184",
+      "actionType": "NOW",
+      "timeHorizon": "days",
+      "firstStep": "行けそうな静かな森を1か所探す"
+    },
+    {
+      "id": "W185",
+      "actionType": "PREP",
+      "timeHorizon": "weeks",
+      "firstStep": "観察してみたい身近な野鳥を1種調べる"
+    },
+    {
+      "id": "W186",
+      "actionType": "PREP",
+      "timeHorizon": "weeks",
+      "firstStep": "育てたい季節の花を1つ選ぶ"
+    },
+    {
+      "id": "W187",
+      "actionType": "HABIT",
+      "timeHorizon": "ongoing",
+      "firstStep": "定期的に訪ねたい川や湖を1か所選ぶ"
+    },
+    {
+      "id": "W188",
+      "actionType": "NOW",
+      "timeHorizon": "days",
+      "firstStep": "行けそうな自然公園を1か所選ぶ"
+    },
+    {
+      "id": "W189",
+      "actionType": "HABIT",
+      "timeHorizon": "ongoing",
+      "firstStep": "日々世話したい植物を1つ選ぶ"
+    },
+    {
+      "id": "W190",
+      "actionType": "PREP",
+      "timeHorizon": "weeks",
+      "firstStep": "行ってみたい動物ふれあい施設を1つ探す"
+    },
+    {
+      "id": "W191",
+      "actionType": "GOAL",
+      "timeHorizon": "months",
+      "firstStep": "暮らしの中で環境負荷を減らせそうな行動を1つ選ぶ"
+    },
+    {
+      "id": "W012",
+      "actionType": "PREP",
+      "timeHorizon": "weeks",
+      "firstStep": "参加してみたい地域活動を1つ探す"
+    },
+    {
+      "id": "W192",
+      "actionType": "PREP",
+      "timeHorizon": "weeks",
+      "firstStep": "関心のあるボランティア分野を3つ挙げる"
+    },
+    {
+      "id": "W193",
+      "actionType": "PREP",
+      "timeHorizon": "weeks",
+      "firstStep": "伝えられそうな経験や知識を1つ書く"
+    },
+    {
+      "id": "W194",
+      "actionType": "PREP",
+      "timeHorizon": "weeks",
+      "firstStep": "参加できる地域の清掃活動を1つ探す"
+    },
+    {
+      "id": "W195",
+      "actionType": "HABIT",
+      "timeHorizon": "ongoing",
+      "firstStep": "継続して応援したい分野を3つ挙げる"
+    },
+    {
+      "id": "W196",
+      "actionType": "PREP",
+      "timeHorizon": "weeks",
+      "firstStep": "手伝ってみたい場づくり活動を1つ探す"
+    },
+    {
+      "id": "W197",
+      "actionType": "PREP",
+      "timeHorizon": "weeks",
+      "firstStep": "応援したい地元の文化活動を1つ探す"
+    },
+    {
+      "id": "W198",
+      "actionType": "PREP",
+      "timeHorizon": "weeks",
+      "firstStep": "参加できる地域の防災活動を1つ探す"
+    },
+    {
+      "id": "W199",
+      "actionType": "PREP",
+      "timeHorizon": "weeks",
+      "firstStep": "情報を届けたい相手と役立ちそうな情報を1つ考える"
+    },
+    {
+      "id": "W200",
+      "actionType": "PREP",
+      "timeHorizon": "weeks",
+      "firstStep": "交流イベントで集まりたい人とテーマを決める"
+    }
+  ],
+  "notes": "Third editorial pass: individualized firstStep guidance across the 200-card inventory."
+}
