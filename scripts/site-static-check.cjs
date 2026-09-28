@@ -88,6 +88,16 @@ for(const meta of actionMeta.cards){
   assert.ok(allowedHorizons.has(meta.timeHorizon),"Roulette invalid time horizon "+meta.id);
 }
 console.log("PASS roulette action metadata: 200/200 IDs mapped to valid action types and horizons");
+const actionMetaV2=JSON.parse(fs.readFileSync(path.join(root,"tools/want-roulette/card-action-metadata.v2.json"),"utf8"));
+assert.equal(actionMetaV2.schemaVersion,2,"Roulette action metadata v2 schema");
+assert.equal(actionMetaV2.cards.length,200,"Roulette action metadata v2 count");
+assert.deepEqual(new Set(actionMetaV2.cards.map(c=>c.id)),new Set(cards.map(c=>c.id)),"Roulette action metadata v2 IDs mismatch");
+for(const meta of actionMetaV2.cards){
+  assert.ok(allowedActionTypes.has(meta.actionType),"Roulette v2 invalid action type "+meta.id);
+  assert.ok(allowedHorizons.has(meta.timeHorizon),"Roulette v2 invalid time horizon "+meta.id);
+  assert.ok(typeof meta.firstStep==="string"&&meta.firstStep.trim().length>=5,"Roulette v2 firstStep missing "+meta.id);
+}
+console.log("PASS roulette action metadata v2: 200/200 IDs have first-step guidance");
 assert.ok(fs.existsSync(path.join(root,"og-image.png")),"OG image missing");
 console.log("PASS "+checked+" HTML files, "+listed.length+" unique sitemap URLs, "+
   localRefs+" local references, all canonical/social metadata and anchors");
