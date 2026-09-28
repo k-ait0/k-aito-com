@@ -253,6 +253,12 @@ const stop=()=>new Promise(resolve=>server.close(resolve));
           mode.name+" roulette wheel uses three saved candidates");
         await roulette.locator("#spinBtn").click();
         await roulette.locator("#result.show").waitFor({timeout:8000});
+        check((await roulette.locator("#page-wheel h2").innerText()).includes("次に"),
+          mode.name+" roulette uses next-step product copy");
+        if(mode.name==="mobile"){
+          const pos=await roulette.locator(".tabs").evaluate(el=>getComputedStyle(el).position);
+          check(pos==="sticky",mode.name+" roulette navigation stays reachable while scrolling");
+        }
         check((await roulette.locator("#rouletteMode").inputValue())==="ALL",
           mode.name+" roulette defaults to all intent modes");
         check((await roulette.locator("#resultText").innerText()).trim().length>2,
