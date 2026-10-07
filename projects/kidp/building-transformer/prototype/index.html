@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta name="description" content="KIDP-006 空きビル変身シミュレーター P0 Concept Prototype">
+<title>空きビル変身シミュレーター — KIDP-006 P0</title>
+<style>
+:root{--ink:#17342c;--muted:#69756f;--paper:#f5f1e7;--card:#fffef9;--line:#d7ddd3;--green:#5f7d4b;--soft:#eaf0df;--gold:#a9823d;--red:#a45347;--blue:#5a788b}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans JP",sans-serif}button,input,select{font:inherit;color:inherit}.shell{max-width:1080px;margin:auto;padding:18px 18px 64px}.top{display:flex;justify-content:space-between;align-items:center;padding:8px 0 18px;border-bottom:1px solid var(--line)}.brand{font-weight:900;letter-spacing:.06em}.brand small{display:block;font-size:8px;letter-spacing:.14em;color:var(--green)}.badge{font-size:9px;font-weight:800;border:1px solid var(--line);background:#fff;border-radius:99px;padding:6px 9px}.screen{display:none}.screen.on{display:block}.hero{padding:56px 0 30px}.eyebrow{font-size:10px;font-weight:900;letter-spacing:.14em;color:var(--green)}h1,h2,h3{font-family:Georgia,"Yu Mincho",serif;font-weight:600}h1{font-size:clamp(40px,7vw,72px);line-height:1.05;letter-spacing:-.04em;margin:8px 0 16px}.lead{max-width:760px;line-height:1.9;color:var(--muted)}.notice{margin:20px 0;padding:13px 15px;border-left:3px solid var(--gold);background:#fff8e7;color:#6d5b37;font-size:10px;line-height:1.7}.primary,.secondary{border:1px solid var(--line);background:#fff;padding:10px 13px;border-radius:999px;font-size:10px;font-weight:800;cursor:pointer}.primary{background:var(--ink);color:#fff;border-color:var(--ink)}.layout{display:grid;grid-template-columns:360px 1fr;gap:14px}.panel{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px}.panel h2{font-size:24px;margin:5px 0 13px}.presets{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-bottom:14px}.preset{border:1px solid var(--line);background:#fff;padding:9px;border-radius:10px;font-size:9px;font-weight:800;cursor:pointer}.preset.on{background:var(--soft);border-color:#b7c69e}.field{padding:12px 0;border-top:1px solid var(--line)}.field:first-of-type{border-top:0}.field-head{display:flex;justify-content:space-between;gap:10px;align-items:center}.field-head b{font-size:10px}.field-head strong{font-family:Georgia,serif;font-size:21px}.field p{font-size:9px;color:var(--muted);line-height:1.6;margin:3px 0 8px}.field input,.field select{width:100%}.field input{accent-color:var(--green)}.field select{border:1px solid var(--line);background:#fff;padding:8px;border-radius:8px;font-size:10px}.actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px}.results-head{display:flex;justify-content:space-between;gap:20px;align-items:end;margin-bottom:12px}.results-head p{font-size:10px;line-height:1.7;color:var(--muted);max-width:460px;margin:0}.use-list{display:grid;gap:9px}.use-card{border:1px solid var(--line);background:#fff;border-radius:14px;padding:15px;display:grid;grid-template-columns:1fr 92px;gap:12px;align-items:center}.use-card.best{border:2px solid var(--green);background:#fbfff7}.use-card small{font-size:8px;letter-spacing:.11em;color:var(--muted)}.use-card h3{font-size:20px;margin:4px 0}.tags{display:flex;gap:5px;flex-wrap:wrap;margin:8px 0}.tag{font-size:8px;background:#f1f3ee;color:#5c685f;border-radius:99px;padding:5px 7px}.why{font-size:10px;line-height:1.65;color:var(--muted);margin:0}.friction{text-align:right}.friction span{display:block;font-size:8px;color:var(--muted)}.friction strong{display:block;font-family:Georgia,serif;font-size:36px}.bar{height:7px;background:#e6e9e3;border-radius:99px;overflow:hidden;margin:5px 0}.bar i{display:block;height:100%;background:var(--gold)}.best .bar i{background:var(--green)}.detail-btn{margin-top:9px;border:0;background:none;padding:0;font-size:9px;font-weight:800;color:var(--green);cursor:pointer}.best-label{display:none;font-size:8px;background:var(--green);color:white;padding:4px 6px;border-radius:99px}.best .best-label{display:inline-block}.method{margin-top:15px;padding-top:14px;border-top:1px solid var(--line);font-size:9px;line-height:1.7;color:var(--muted)}.detail{padding:34px 0}.back{border:0;background:none;padding:0;color:var(--muted);font-size:10px;cursor:pointer}.detail-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:16px}.detail-box{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px}.detail-box h3{font-size:18px;margin:4px 0 10px}.detail-box ul{margin:0;padding-left:17px}.detail-box li{font-size:10px;line-height:1.7;color:var(--muted);margin:5px 0}.detail-score{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:16px 0}.detail-score div{background:var(--ink);color:white;border-radius:12px;padding:13px}.detail-score small{display:block;font-size:8px;color:#cbd6d1}.detail-score strong{display:block;font-family:Georgia,serif;font-size:26px}.warning{padding:14px;background:#fff0ec;border-left:3px solid var(--red);font-size:10px;line-height:1.7;color:#74473f}
+@media(max-width:760px){.layout{grid-template-columns:1fr}.presets{grid-template-columns:1fr}.use-card{grid-template-columns:1fr}.friction{text-align:left}.detail-grid,.detail-score{grid-template-columns:1fr}.results-head{display:block}.results-head p{margin-top:6px}.badge{display:none}}
+</style>
+</head>
+<body><main class="shell">
+<header class="top"><div class="brand">BUILDING TRANSFORMER<small>KIDP-006 · P0</small></div><span class="badge">SYNTHETIC FIT MODEL</span></header>
+
+<section id="landing" class="screen on"><div class="hero"><span class="eyebrow">START FROM THE BUILDING</span><h1>空きフロア、<br>何に変える？</h1><p class="lead">先に用途を決めるのではなく、床面積・給排水・前面性・EV・天井高・駅距離・静かさから「無理が少ない使い方」を比較するConcept Prototypeです。</p><div class="notice">Conversion Frictionは事業性・収益性・法令適合・工事費・融資可否を判定しません。P0は架空条件による初期アイデア比較だけを目的にしています。</div><button id="startBtn" class="primary">架空ビルを変身させる →</button></div></section>
+
+<section id="editor" class="screen"><div class="layout">
+<section class="panel"><span class="eyebrow">01 · BUILDING CONDITIONS</span><h2>物件条件</h2><div class="presets"><button class="preset on" data-preset="office">OFFICE SHELL</button><button class="preset" data-preset="street">STREET FLOOR</button><button class="preset" data-preset="upper">UPPER FLOOR</button></div>
+<div class="field"><div class="field-head"><b>FLOOR AREA</b><strong id="areaVal">420㎡</strong></div><p>使える1フロアの概算面積。</p><input id="area" type="range" min="180" max="650" step="10" value="420"></div>
+<div class="field"><div class="field-head"><b>PLUMBING READINESS</b><strong id="plumbingVal">LOW</strong></div><p>給排水を複数箇所へ展開しやすいかの架空条件。</p><select id="plumbing"><option value="low">LOW</option><option value="mid">MID</option><option value="high">HIGH</option></select></div>
+<div class="field"><div class="field-head"><b>STREET FRONTAGE</b><strong id="frontageVal">MID</strong></div><p>通行人からの見えやすさ・入りやすさ。</p><select id="frontage"><option value="low">LOW</option><option value="mid" selected>MID</option><option value="high">HIGH</option></select></div>
+<div class="field"><div class="field-head"><b>ELEVATOR</b><strong id="elevatorVal">1</strong></div><p>Vertical accessの簡易条件。</p><select id="elevator"><option value="0">0</option><option value="1" selected>1</option><option value="2">2+</option></select></div>
+<div class="field"><div class="field-head"><b>CEILING HEIGHT</b><strong id="ceilingVal">2.6m</strong></div><p>仕上げ前後の有効天井イメージではなくP0入力値。</p><input id="ceiling" type="range" min="2.4" max="3.5" step="0.1" value="2.6"></div>
+<div class="field"><div class="field-head"><b>STATION WALK</b><strong id="stationVal">7min</strong></div><p>最寄駅からの架空徒歩時間。</p><input id="station" type="range" min="3" max="15" step="1" value="7"></div>
+<div class="field"><div class="field-head"><b>QUIETNESS</b><strong id="quietVal">MID</strong></div><p>周辺の静かさを3段階で表現。</p><select id="quiet"><option value="low">LOW</option><option value="mid" selected>MID</option><option value="high">HIGH</option></select></div>
+<div class="actions"><button id="compareBtn" class="primary">COMPARE USES</button><button id="resetBtn" class="secondary">RESET</button></div></section>
+
+<section class="panel"><div class="results-head"><div><span class="eyebrow">02 · CANDIDATE USES</span><h2>Conversion Friction</h2></div><p>低いほど、このP0モデル上では既存条件との衝突が少ない。収益性や法令上の可否ではありません。</p></div><div id="useList" class="use-list"></div><div class="method">FrictionはAccess / Plumbing / Vertical circulation / Floorplate / Ceiling / Frontage / Quietnessのミスマッチを合成した架空指標です。実物件では構造・避難・消防・用途変更・設備容量・近隣条件などを別途確認する必要があります。</div></section>
+</div></section>
+
+<section id="detail" class="screen"><div class="detail"><button id="backBtn" class="back">← Candidate Uses</button><div class="hero" style="padding-top:24px"><span class="eyebrow" id="detailCode">USE</span><h1 id="detailName" style="font-size:clamp(36px,6vw,58px)">WORK HUB</h1><p class="lead" id="detailLead"></p></div><div class="detail-score"><div><small>CONVERSION FRICTION</small><strong id="detailFriction">—</strong></div><div><small>BUILDING AREA</small><strong id="detailArea">—</strong></div><div><small>STATION WALK</small><strong id="detailStation">—</strong></div></div><div class="detail-grid"><div class="detail-box"><span class="eyebrow">KEEP</span><h3>活かせる条件</h3><ul id="keepList"></ul></div><div class="detail-box"><span class="eyebrow">CHANGE</span><h3>変える可能性</h3><ul id="changeList"></ul></div><div class="detail-box"><span class="eyebrow">CHECK</span><h3>現地・専門確認</h3><ul id="checkList"></ul></div></div><div class="warning" id="detailWarning"></div></div></section>
+</main>
+<script>
+const $=s=>document.querySelector(s);
+const uses={
+ work:{code:"WORK HUB",name:"Work Hub",tags:["Cowork","Shared office","Desk / Meeting"],lead:"既存オフィスの骨格を比較的活かしやすい用途。アクセスとVertical circulationを重視。"},
+ midstay:{code:"MID-STAY",name:"Mid-Stay",tags:["Medium stay","Rooms","Residence-like"],lead:"個室化と水回り展開の負荷が大きくなりやすい。静かさと給排水条件を重視。"},
+ fitness:{code:"FITNESS",name:"Fitness Studio",tags:["Training","Open floor","Membership"],lead:"開放的な床と天井高を活かす用途。構造荷重・振動・騒音はP0では評価しない。"},
+ studio:{code:"CREATIVE STUDIO",name:"Creative Studio",tags:["Photo","Workshop","Classroom"],lead:"比較的少ない設備追加で成立しやすい用途。天井高と柔軟な床面を重視。"}
+};
+const presets={
+ office:{area:420,plumbing:"low",frontage:"mid",elevator:"1",ceiling:2.6,station:7,quiet:"mid"},
+ street:{area:280,plumbing:"mid",frontage:"high",elevator:"0",ceiling:3.2,station:5,quiet:"low"},
+ upper:{area:520,plumbing:"low",frontage:"low",elevator:"2",ceiling:2.8,station:10,quiet:"high"}
+};
+const rank={low:0,mid:1,high:2};
+function read(){return{area:+$("#area").value,plumbing:$("#plumbing").value,frontage:$("#frontage").value,elevator:+$("#elevator").value,ceiling:+$("#ceiling").value,station:+$("#station").value,quiet:$("#quiet").value}}
+function sync(){const v=read();$("#areaVal").textContent=v.area+"㎡";$("#plumbingVal").textContent=v.plumbing.toUpperCase();$("#frontageVal").textContent=v.frontage.toUpperCase();$("#elevatorVal").textContent=v.elevator===2?"2+":String(v.elevator);$("#ceilingVal").textContent=v.ceiling.toFixed(1)+"m";$("#stationVal").textContent=v.station+"min";$("#quietVal").textContent=v.quiet.toUpperCase()}
+function clamp(x){return Math.max(0,Math.min(100,Math.round(x)))}
+function friction(type,v){
+ let f=18;
+ if(type==="work"){f+=Math.max(0,v.station-6)*2.2;f+=v.elevator===0?18:0;f+=v.area<240?9:v.area>600?5:0;f+=rank[v.plumbing]===0?3:0;f+=rank[v.frontage]===0?5:0;}
+ if(type==="midstay"){f+=rank[v.plumbing]===0?30:rank[v.plumbing]===1?13:0;f+=v.elevator===0?18:v.elevator===1?5:0;f+=rank[v.quiet]===0?16:rank[v.quiet]===1?6:0;f+=v.area<300?8:0;f+=Math.max(0,v.station-10)*1.2;}
+ if(type==="fitness"){f+=Math.max(0,3.0-v.ceiling)*24;f+=v.elevator===0?7:0;f+=v.area<250?12:0;f+=rank[v.frontage]===0?8:rank[v.frontage]===1?3:0;f+=Math.max(0,v.station-9)*1.5;}
+ if(type==="studio"){f+=Math.max(0,2.8-v.ceiling)*16;f+=v.area<220?8:0;f+=Math.max(0,v.station-11);f+=rank[v.frontage]===0?2:0;f+=rank[v.plumbing]===0?2:0;}
+ return clamp(f);
+}
+function reason(type,v,f){
+ const arr=[];
+ if(type==="work"){arr.push(v.elevator===0?"EVなしでVertical access負荷":"既存EVを活用しやすい");arr.push(v.station<=7?"駅アクセスは相性良好":"駅距離がWork Hubにはやや不利");}
+ if(type==="midstay"){arr.push(rank[v.plumbing]>=2?"給排水条件が強い":"水回り追加が主要な変換負荷");arr.push(rank[v.quiet]>=2?"静かな周辺条件は相性良好":"静かさは追加確認したい");}
+ if(type==="fitness"){arr.push(v.ceiling>=3?"天井高を活かしやすい":"天井高が制約になりやすい");arr.push("荷重・振動・防音は別途確認");}
+ if(type==="studio"){arr.push(v.ceiling>=2.8?"制作空間として高さを活かせる":"天井高は用途次第で制約");arr.push("設備依存が比較的小さい");}
+ return arr.join(" / ");
+}
+function render(){
+ const v=read(),scores=Object.keys(uses).map(k=>({k,f:friction(k,v)})).sort((a,b)=>a.f-b.f),best=scores[0].k;
+ $("#useList").innerHTML=scores.map(({k,f})=>{const u=uses[k];return '<article class="use-card '+(k===best?"best":"")+'"><div><div><span class="best-label">LOWEST FRICTION</span></div><small>'+u.code+'</small><h3>'+u.name+'</h3><div class="tags">'+u.tags.map(t=>'<span class="tag">'+t+'</span>').join("")+'</div><p class="why">'+reason(k,v,f)+'</p><button class="detail-btn" onclick="openDetail(\''+k+'\')">ADAPTATION PATH →</button></div><div class="friction"><span>FRICTION</span><strong>'+f+'</strong><div class="bar"><i style="width:'+f+'%"></i></div></div></article>'}).join("");
+}
+function applyPreset(name){const p=presets[name];$("#area").value=p.area;$("#plumbing").value=p.plumbing;$("#frontage").value=p.frontage;$("#elevator").value=p.elevator;$("#ceiling").value=p.ceiling;$("#station").value=p.station;$("#quiet").value=p.quiet;document.querySelectorAll("[data-preset]").forEach(x=>x.classList.toggle("on",x.dataset.preset===name));sync();render()}
+function li(xs){return xs.map(x=>"<li>"+x+"</li>").join("")}
+function openDetail(type){
+ const v=read(),u=uses[type],f=friction(type,v);
+ const keep=[],change=[],check=[];
+ if(type==="work"){keep.push("既存のオフィス床・電源配置を活かせる可能性","会議室や受付の既存区画");change.push("共用ラウンジ・個室・会議室のゾーニング","ネットワーク / 入退室設備");check.push("避難・消防・収容人数","空調容量","営業時間とビル管理規約");}
+ if(type==="midstay"){keep.push("静かな周辺環境","EV・共用動線");change.push("個室化","複数水回り","長期滞在向け収納");check.push("用途変更・宿泊/居住に関する法令","消防・避難","給排水容量・防音");}
+ if(type==="fitness"){keep.push("広いオープン床","高い天井");change.push("更衣・シャワー","床仕上げ・防音");check.push("床荷重","振動伝播","騒音・営業時間","消防・収容人数");}
+ if(type==="studio"){keep.push("オープン床","天井高・採光を活かす余地");change.push("可動間仕切り","照明・電源","用途別収納");check.push("用途に応じた換気・消防","音出し可否","搬入動線");}
+ $("#detailCode").textContent=u.code;$("#detailName").textContent=u.name;$("#detailLead").textContent=u.lead;$("#detailFriction").textContent=f;$("#detailArea").textContent=v.area+"㎡";$("#detailStation").textContent=v.station+"m";$("#keepList").innerHTML=li(keep);$("#changeList").innerHTML=li(change);$("#checkList").innerHTML=li(check);$("#detailWarning").textContent="このAdaptation PathはP0の思考補助です。法令適合、工事可否、構造安全、設備容量、事業採算を保証しません。";show("detail")
+}
+const screens={landing:$("#landing"),editor:$("#editor"),detail:$("#detail")};function show(name){Object.values(screens).forEach(x=>x.classList.remove("on"));screens[name].classList.add("on");scrollTo(0,0)}
+$("#startBtn").onclick=()=>{render();show("editor")};$("#compareBtn").onclick=render;$("#resetBtn").onclick=()=>applyPreset("office");$("#backBtn").onclick=()=>show("editor");
+document.querySelectorAll("[data-preset]").forEach(b=>b.onclick=()=>applyPreset(b.dataset.preset));
+["area","plumbing","frontage","elevator","ceiling","station","quiet"].forEach(id=>$("#"+id).addEventListener("input",()=>{document.querySelectorAll("[data-preset]").forEach(x=>x.classList.remove("on"));sync();render()}));
+sync();render();
+</script>
+</body></html>
