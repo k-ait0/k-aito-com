@@ -1,0 +1,25 @@
+name: Temporary KIDP002 article QA
+on:
+  push:
+    branches: [feature/kidp002-article-a-20261007]
+permissions:
+  contents: read
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - name: Static references
+        run: node scripts/site-static-check.cjs
+      - name: Install Playwright
+        run: |
+          npm install --prefix /tmp/kaito-qa --no-audit --no-fund --no-save playwright@1.56.1
+          PLAYWRIGHT_BROWSERS_PATH=/tmp/kaito-browsers /tmp/kaito-qa/node_modules/.bin/playwright install --with-deps chromium
+      - name: Browser QA
+        env:
+          NODE_PATH: /tmp/kaito-qa/node_modules
+          PLAYWRIGHT_BROWSERS_PATH: /tmp/kaito-browsers
+        run: node scripts/browser-smoke.cjs
