@@ -109,19 +109,19 @@ const CARDS=[
 {id:"C07",text:"都市と地方の二拠点で暮らしてみたい",cat:"Living",tags:["multibase","mobility"]},
 {id:"C08",text:"自然の近くで、静かな時間を増やしたい",cat:"Nature",tags:["pace","environment"]},
 {id:"C09",text:"知らない街を歩いて、その土地の日常を知りたい",cat:"City",tags:["exploration","local"]},
-{id:"C10",text:"自分の知識や経験で、誰かの役に立つ仕事をしたい",cat:"Contribution",tags:["helping","work"]},
-{id:"C11",text:"会社に依存しない収入源を一つ持ってみたい",cat:"Money",tags:["independence","business"]},
-{id:"C12",text:"週に何度か、体を動かすことを生活の中心に置きたい",cat:"Health",tags:["routine","body"]},
+{id:"C10",text:"自分の知識や経験で、誰かの役に立つ仕事をしたい",cat:"Work",tags:["helping","work"]},
+{id:"C11",text:"会社に依存しない小さな仕事を一つ育ててみたい",cat:"Work",tags:["independence","income"]},
+{id:"C12",text:"自分の考えや発見を、文章や動画で定期的に発信したい",cat:"Creative",tags:["expression","publishing"]},
 {id:"C13",text:"気になるテーマを研究するように掘り続けたい",cat:"Study",tags:["research","curiosity"]},
 {id:"C14",text:"少人数でも、自分でチームを作って何か進めたい",cat:"Business",tags:["team","leadership"]},
 {id:"C15",text:"新しい道具やAIを試して、できることを増やしたい",cat:"Technology",tags:["tools","learning"]},
-{id:"C16",text:"季節ごとに住む場所や過ごし方を変えてみたい",cat:"Freedom",tags:["seasonal","living"]},
-{id:"C17",text:"地元や好きな街に、長く残るものを作りたい",cat:"Community",tags:["local","legacy"]},
+{id:"C16",text:"季節ごとに住む場所や過ごし方を変えてみたい",cat:"Living",tags:["seasonal","mobility"]},
+{id:"C17",text:"地元や好きな街に、長く残るものを作りたい",cat:"City",tags:["local","legacy"]},
 {id:"C18",text:"行ったことのない場所へ、目的を決めずに出かけたい",cat:"Travel",tags:["exploration","spontaneity"]},
-{id:"C19",text:"食事や道具など、日常の小さな質にこだわりたい",cat:"Lifestyle",tags:["quality","daily"]},
+{id:"C19",text:"森や海の近くに、何度も戻れる自分の拠点を持ちたい",cat:"Nature",tags:["place","environment"]},
 {id:"C20",text:"自分の時間を、もっと自分で決められる生活にしたい",cat:"Freedom",tags:["autonomy","time"]}
-];
-const LABELS={Travel:"旅・移動",Business:"事業・つくる",Freedom:"自由度",Study:"学び・探究",Technology:"技術・道具",Creative:"創作",Living:"暮らし",Nature:"自然",City:"街・探索",Contribution:"貢献",Money:"経済的自立",Health:"健康",Community:"地域",Lifestyle:"生活の質"};
+]
+const LABELS={Travel:"旅・移動",Business:"事業・つくる",Freedom:"自由度",Study:"学び・探究",Technology:"技術・道具",Creative:"創作・発信",Living:"暮らし方",Nature:"自然・環境",City:"街・地域",Work:"仕事の自立"};
 let index=0,responses=[];
 const screens={landing:document.querySelector("#landing"),swipe:document.querySelector("#swipe"),result:document.querySelector("#result")};
 function show(name){Object.values(screens).forEach(x=>x.classList.remove("on"));screens[name].classList.add("on");scrollTo(0,0)}
@@ -134,7 +134,7 @@ function renderResult(){
  CARDS.forEach(c=>{max[c.cat]=(max[c.cat]||0)+3});
  responses.forEach((r,i)=>{const cat=CARDS[i].cat;score[cat]=(score[cat]||0)+(r.choice==="WANT"?3:r.choice==="MAYBE"?1:0)});
  const ranked=Object.keys(max).map(cat=>({cat,score:score[cat]||0,max:max[cat],pct:Math.round((score[cat]||0)/max[cat]*100)})).sort((a,b)=>b.pct-a.pct||b.score-a.score).slice(0,5);
- document.querySelector("#ranking").innerHTML=ranked.map((r,i)=>'<div class="rank"><span class="no">'+String(i+1).padStart(2,"0")+'</span><div><strong>'+LABELS[r.cat]+'</strong><small>'+r.cat+'</small><div class="bar"><i style="width:'+r.pct+'%"></i></div></div><span class="signal">'+(r.pct>=80?"STRONG":r.pct>=50?"ACTIVE":"OPEN")+'</span></div>').join("");
+ document.querySelector("#ranking").innerHTML=ranked.map((r,i)=>'<div class="rank"><span class="no">'+String(i+1).padStart(2,"0")+'</span><div><strong>'+LABELS[r.cat]+'</strong><small>'+r.cat+'</small><div class="bar"><i style="width:'+r.pct+'%"></i></div></div><span class="signal">'+(r.pct>=67?"STRONG":r.pct>=34?"ACTIVE":"OPEN")+'</span></div>').join("");
  const top=ranked.slice(0,3).map(x=>LABELS[x.cat]);
  document.querySelector("#resultCopy").innerHTML='<p>今の反応では、<strong>'+top.join(" / ")+'</strong>あたりへの関心が強めでした。ここから先は、これらを単独で「向いていること」と決めず、組み合わせて「どんな生活や挑戦なら試してみたいか」を探します。</p>';
  document.querySelector("#progressBar").style.width="100%";
