@@ -1,0 +1,65 @@
+name: Temporary KIDP Test Ops QA
+on:
+  push:
+    branches: [feature/kidp-test-ops-20261008]
+permissions:
+  contents: read
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Static references
+        run: node scripts/site-static-check.cjs
+      - name: Install Playwright
+        run: |
+          npm install --prefix /tmp/kaito-qa --no-audit --no-fund --no-save playwright@1.56.1
+          PLAYWRIGHT_BROWSERS_PATH=/tmp/kaito-browsers /tmp/kaito-qa/node_modules/.bin/playwright install --with-deps chromium
+      - name: Existing browser QA
+        env:
+          NODE_PATH: /tmp/kaito-qa/node_modules
+          PLAYWRIGHT_BROWSERS_PATH: /tmp/kaito-browsers
+        run: node scripts/browser-smoke.cjs
+      - name: Test Ops QA
+        env:
+          NODE_PATH: /tmp/kaito-qa/node_modules
+          PLAYWRIGHT_BROWSERS_PATH: /tmp/kaito-browsers
+        run: |
+          python3 -m http.server 4173 --bind 127.0.0.1 >/tmp/kidp-testops-http.log 2>&1 &
+          node <<'NODE'
+          const {chromium}=require('playwright');
+          (async()=>{
+            const b=await chromium.launch({headless:true,args:['--no-sandbox']});
+            for(const [name,w,h] of [['desktop',1440,900],['mobile',390,844]]){
+              const p=await b.newPage({viewport:{width:w,height:h}});
+              await p.goto('http://127.0.0.1:4173/projects/kidp/test-ops/',{waitUntil:'networkidle'});
+              const robots=await p.locator('meta[name="robots"]').getAttribute('content');
+              if(!robots.includes('noindex')) throw Error(name+' noindex missing');
+              if(await p.locator('[data-project]').count()!==3) throw Error(name+' project cards');
+              for(const project of ['station-life','life-design-lab','whynot']){
+                const card=p.locator('[data-project="'+project+'"]');
+                if(await card.locator('.person').count()!==5) throw Error(name+' '+project+' participants');
+                const hrefs=await card.locator('.person a').evaluateAll(xs=>xs.map(x=>x.getAttribute('href')));
+                if(!hrefs[0].includes('pid=P01')||!hrefs[4].includes('pid=P05')) throw Error(name+' '+project+' participant hrefs '+JSON.stringify(hrefs));
+              }
+              const station=p.locator('[data-project="station-life"]');
+              if((await station.locator('.count').innerText()).trim()!=='0 / 5') throw Error(name+' initial count');
+              await station.locator('.person').nth(0).locator('select').selectOption({label:'DONE'});
+              await station.locator('.person').nth(1).locator('select').selectOption({label:'INVALID'});
+              await station.locator('.person').nth(2).locator('select').selectOption({label:'DONE'});
+              if((await station.locator('.count').innerText()).trim()!=='2 / 5') throw Error(name+' valid count');
+              await p.reload({waitUntil:'networkidle'});
+              const station2=p.locator('[data-project="station-life"]');
+              if((await station2.locator('.count').innerText()).trim()!=='2 / 5') throw Error(name+' localStorage restore');
+              if(await p.locator('a[href="/projects/kidp/whynot/test-review/"]').count()!==1) throw Error(name+' WHYNOT review');
+              const overflow=await p.evaluate(()=>document.documentElement.scrollWidth-innerWidth);
+              if(overflow>2) throw Error(name+' overflow '+overflow);
+              await p.close();
+            }
+            await b.close();
+          })().catch(e=>{console.error(e);process.exit(1)});
+          NODE
