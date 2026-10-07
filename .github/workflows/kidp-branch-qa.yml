@@ -34,3 +34,5 @@ jobs:
           path: qa-screenshots/*.png
           if-no-files-found: ignore
           retention-days: 2
+
+# trigger: metadata-and-sitemap-ready
