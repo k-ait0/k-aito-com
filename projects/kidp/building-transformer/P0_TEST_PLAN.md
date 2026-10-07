@@ -87,3 +87,34 @@ GOなら:
 - reusable property comparison
 
 P0結果を投資判断には使わない。
+
+
+## Instrumented test mode
+
+Use:
+`/projects/kidp/building-transformer/prototype/?test=1&pid=P01`
+
+Change P01 for each participant.
+
+Automatically recorded on-device:
+- unique building inputs touched
+- presets tried
+- adaptation details viewed
+- final lowest-friction use
+- final synthetic building config
+
+Tester records:
+- M1 positioning understanding
+- M2 condition causality
+- M3 use intent
+- M4 verdict misread
+- M5 unknown recognition
+- named unknown
+- preferred use
+- first quote
+- confusing / missing
+
+Press "CSV行をコピー" and paste one row under
+`P0_TEST_LOG_TEMPLATE.csv`.
+
+No data is transmitted externally.
