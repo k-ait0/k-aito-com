@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta name="description" content="KIDP internal test operations dashboard">
+<title>KIDP Test Ops | K. Aito</title>
+<style>
+:root{--ink:#17342c;--muted:#68736e;--paper:#f5f1e7;--card:#fffef9;--line:#d7ddd3;--green:#587747;--soft:#eaf0df;--gold:#a9823d;--blue:#5d7588;--brown:#79624e}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans JP",sans-serif}button,select{font:inherit;color:inherit}
+.shell{max-width:1080px;margin:auto;padding:20px 18px 70px}.top{display:flex;justify-content:space-between;align-items:center;padding:8px 0 18px;border-bottom:1px solid var(--line)}
+.brand{font-weight:900;letter-spacing:.07em}.brand small{display:block;font-size:8px;letter-spacing:.14em;color:var(--green)}.badge{font-size:9px;border:1px solid var(--line);background:#fff;padding:6px 9px;border-radius:99px}
+.hero{padding:46px 0 25px}.eyebrow{font-size:10px;font-weight:900;letter-spacing:.13em;color:var(--green)}h1,h2,h3{font-family:Georgia,"Yu Mincho",serif;font-weight:600}
+h1{font-size:clamp(40px,7vw,66px);line-height:1.05;letter-spacing:-.04em;margin:7px 0 15px}.lead{max-width:760px;line-height:1.85;color:var(--muted)}
+.rule{padding:13px 15px;background:#fff8e7;border-left:4px solid var(--gold);font-size:10px;line-height:1.7;color:#6d5b37}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px}.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px}
+.card.active{border-top:5px solid var(--green)}.card.next{border-top:5px solid var(--gold)}.card.parked{border-top:5px solid var(--blue)}.card.physical{border-top:5px solid var(--brown)}
+.card-head{display:flex;justify-content:space-between;gap:12px;align-items:start}.card-head small{display:block;font-size:9px;font-weight:900;letter-spacing:.1em;color:var(--muted)}.card h2{font-size:24px;margin:5px 0 8px}
+.state{font-size:8px;font-weight:900;border:1px solid var(--line);border-radius:99px;padding:6px 8px;white-space:nowrap;background:#fff}.active .state{color:var(--green);background:var(--soft)}
+.meta{font-size:10px;color:var(--muted);line-height:1.7}.progress{margin:14px 0;padding:12px;background:#f8f8f2;border-radius:12px}.progress-top{display:flex;justify-content:space-between;font-size:9px;font-weight:800}
+.bar{height:7px;background:#e3e6df;border-radius:99px;overflow:hidden;margin-top:7px}.bar i{display:block;height:100%;background:var(--green);width:0}
+.people{display:grid;gap:7px}.person{display:grid;grid-template-columns:42px 1fr 130px;gap:7px;align-items:center;border:1px solid var(--line);border-radius:10px;padding:8px;background:#fff}
+.person b{font-size:10px}.person a{font-size:9px;color:var(--green);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.person select{border:1px solid var(--line);background:#fff;border-radius:8px;padding:7px;font-size:9px}
+.actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px}.btn{display:inline-block;text-decoration:none;border:1px solid var(--line);background:#fff;padding:9px 11px;border-radius:9px;font-size:9px;font-weight:800;color:var(--ink)}
+.btn.primary{background:var(--ink);color:#fff;border-color:var(--ink)}.queue{margin-top:28px}.queue h2{font-size:28px;margin:5px 0 12px}.queue-list{display:grid;gap:8px}.queue-row{display:grid;grid-template-columns:120px 1fr auto;gap:12px;align-items:center;padding:13px 15px;background:#fff;border:1px solid var(--line);border-radius:12px}.queue-row small{font-size:8px;font-weight:900;letter-spacing:.08em;color:var(--muted)}.queue-row strong{font-family:Georgia,"Yu Mincho",serif}.queue-row span{font-size:9px;color:var(--muted)}
+.footer-note{margin-top:24px;padding-top:15px;border-top:1px solid var(--line);font-size:9px;line-height:1.7;color:var(--muted)}
+@media(max-width:760px){.grid{grid-template-columns:1fr}.person{grid-template-columns:38px minmax(0,1fr)}.person select{grid-column:2}.queue-row{grid-template-columns:1fr}.badge{display:none}}
+</style>
+</head>
+<body><main class="shell">
+<header class="top"><div class="brand">KIDP TEST OPS<small>INTERNAL FACILITATOR DASHBOARD</small></div><span class="badge">NOINDEX · LOCAL PROGRESS ONLY</span></header>
+<section class="hero"><span class="eyebrow">WAVE A</span><h1>Buildを止めて、<br>Test Loopを閉じる。</h1><p class="lead">Active Testは同時最大2案件。現在はKIDP-004と003をP01〜P05まで回し、初回Decisionが出たら空いたSlotへWHYNOTを入れます。</p><div class="rule">Sample / QA dataは実ユーザー結果に混ぜない。初回Decisionは有効参加者5人以上。ここで保存する進捗はこのブラウザのlocalStorageだけです。</div></section>
+<section class="grid">
+<div class="card active" data-project="station-life"><div class="card-head"><div><small>SLOT A · RUN NOW</small><h2>KIDP-004 駅生活圏</h2></div><span class="state">ACTIVE</span></div><p class="meta">駅徒歩だけでは足りない理由とLifestyle差が伝わるか。一般ユーザーで実施可能。</p><div class="progress"><div class="progress-top"><span>VALID SESSIONS</span><b class="count">0 / 5</b></div><div class="bar"><i></i></div></div><div class="people"></div><div class="actions"><a class="btn primary" href="/projects/kidp/station-life/test-review/" target="_blank">OPEN REVIEW ↗</a><a class="btn" href="/projects/kidp/station-life/" target="_blank">PROJECT ↗</a></div></div>
+<div class="card active" data-project="life-design-lab"><div class="card-head"><div><small>SLOT B · RUN NOW</small><h2>KIDP-003 LIFE DESIGN LAB</h2></div><span class="state">ACTIVE</span></div><p class="meta">20-card Swipeを完了し、Interest Mapに共感し、1領域をさらに掘りたいと思うか。</p><div class="progress"><div class="progress-top"><span>VALID SESSIONS</span><b class="count">0 / 5</b></div><div class="bar"><i></i></div></div><div class="people"></div><div class="actions"><a class="btn primary" href="/projects/kidp/life-design-lab/test-review/" target="_blank">OPEN REVIEW ↗</a><a class="btn" href="/projects/kidp/life-design-lab/" target="_blank">PROJECT ↗</a></div></div>
+<div class="card next" data-project="whynot"><div class="card-head"><div><small>NEXT SLOT · RUN NEXT</small><h2>KIDP-002 WHYNOT</h2></div><span class="state">NEXT</span></div><p class="meta">どちらかのActive Slotで初回Decisionが出たら開始。3件閲覧 / SAME / 投稿Activationを確認。</p><div class="progress"><div class="progress-top"><span>VALID SESSIONS</span><b class="count">0 / 5</b></div><div class="bar"><i></i></div></div><div class="people"></div><div class="actions"><a class="btn primary" href="/projects/kidp/whynot/test-review/" target="_blank">OPEN REVIEW ↗</a><a class="btn" href="/projects/kidp/whynot/" target="_blank">PROJECT ↗</a></div></div>
+<div class="card physical"><div class="card-head"><div><small>JUMP RULE</small><h2>KIDP-001 Project GIVE</h2></div><span class="state">PHYSICAL</span></div><p class="meta">4人同時・6Round。4人＋時間を確保できた時点で、デフォルトQueueに関係なく最優先へ繰り上げる。</p><div class="actions"><a class="btn" href="/projects/kidp/project-give/" target="_blank">PROJECT ↗</a></div></div>
+</section>
+<section class="queue"><span class="eyebrow">RECRUIT MIX</span><h2>参加者条件がある案件</h2><div class="queue-list"><div class="queue-row"><small>KIDP-006</small><strong>空きビル変身</strong><span>不動産・建築・店舗/オフィス運営 2–3人＋非専門 2–4人</span></div><div class="queue-row"><small>KIDP-005</small><strong>Board Game Balancer</strong><span>ゲーム制作/数値調整 2–3人＋ボードゲーム利用者 2–4人</span></div></div></section>
+<p class="footer-note">SESSION RULE · 1 Participant ID = 1 actual participant / project。途中離脱や観察不能はINVALID。P01などを別人で上書きしない。同一人物が複数案件を試す場合はセッションを分ける。</p>
+</main>
+<script>
+const defs={
+ "station-life":"/projects/kidp/station-life/prototype/?test=1&pid=",
+ "life-design-lab":"/projects/kidp/life-design-lab/prototype/?test=1&pid=",
+ "whynot":"/projects/kidp/whynot/prototype/?test=1&pid="
+};
+function key(project,pid){return "kidp.testops."+project+"."+pid}
+function renderCard(card){const project=card.dataset.project;if(!project)return;const root=card.querySelector(".people");root.innerHTML="";let valid=0;for(let i=1;i<=5;i++){const pid="P"+String(i).padStart(2,"0"),status=localStorage.getItem(key(project,pid))||"NOT STARTED";if(status==="DONE")valid++;const row=document.createElement("div");row.className="person";row.innerHTML='<b>'+pid+'</b><a target="_blank">OPEN TEST ↗</a><select aria-label="'+pid+' status"><option>NOT STARTED</option><option>DONE</option><option>INVALID</option></select>';row.querySelector("a").href=defs[project]+pid;const sel=row.querySelector("select");sel.value=status;sel.onchange=()=>{localStorage.setItem(key(project,pid),sel.value);renderCard(card)};root.append(row)}card.querySelector(".count").textContent=valid+" / 5";card.querySelector(".bar i").style.width=Math.min(100,valid/5*100)+"%"}
+document.querySelectorAll("[data-project]").forEach(renderCard);
+</script>
+</body></html>
