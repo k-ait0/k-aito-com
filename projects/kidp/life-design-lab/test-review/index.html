@@ -69,8 +69,8 @@ textarea{width:100%;min-height:220px;border:1px solid var(--line);border-radius:
 const HEADER=["participant_id","goal_clarity","self_analysis_usage","device","completed_20","duration_sec","want_count","maybe_count","pass_count","undo_count","hesitated_cards","result_first_quote","result_resonance","top1","top2","top3","top4","top5","wants_deep_dive","deep_dive_category","thought_it_was_diagnosis","unclear_cards","missing_cards","tester_notes","what_next","verbatim_quote"];
 const base=location.origin+"/projects/kidp/life-design-lab/prototype/?test=1&pid=";
 const urls=document.querySelector("#urls");
-for(let i=1;i<=10;i++){const id="P"+String(i).padStart(2,"0"),url=base+id;const row=document.createElement("div");row.className="url-row";row.innerHTML="<b>"+id+"</b><code>"+url+"</code><button class='mini'>COPY</button>";row.querySelector("button").onclick=()=>copy(url,document.querySelector("#urlStatus"),id+" URL");urls.append(row)}
-function allUrls(){return Array.from({length:10},(_,i)=>{const id="P"+String(i+1).padStart(2,"0");return id+"\t"+base+id}).join("\n")}
+for(let i=1;i<=10;i++){const participant="P"+String(i).padStart(2,"0"),url=base+participant;const row=document.createElement("div");row.className="url-row";row.innerHTML="<b>"+participant+"</b><code>"+url+"</code><button class='mini'>COPY</button>";row.querySelector("button").onclick=()=>copy(url,document.querySelector("#urlStatus"),participant+" URL");urls.append(row)}
+function allUrls(){return Array.from({length:10},(_,i)=>{const participant="P"+String(i+1).padStart(2,"0");return participant+"\t"+base+participant}).join("\n")}
 async function copy(text,el,label){try{await navigator.clipboard.writeText(text);el.textContent=label+"をコピーしました。"}catch{el.textContent="コピーできませんでした。"}}
 document.querySelector("#copyAllUrls").onclick=()=>copy(allUrls(),document.querySelector("#urlStatus"),"10件のURL");
 document.querySelector("#clearLocal").onclick=()=>{localStorage.removeItem("kidp003.p0.review.csv");document.querySelector("#csvInput").value="";document.querySelector("#results").hidden=true;document.querySelector("#urlStatus").textContent="Review画面に保存されたCSVだけ削除しました。"};
