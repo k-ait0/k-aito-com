@@ -44,14 +44,14 @@ const uses={
 const presets={
  office:{area:420,plumbing:"low",frontage:"mid",elevator:"1",ceiling:2.6,station:7,quiet:"mid"},
  street:{area:280,plumbing:"mid",frontage:"high",elevator:"0",ceiling:3.2,station:5,quiet:"low"},
- upper:{area:520,plumbing:"low",frontage:"low",elevator:"2",ceiling:2.8,station:10,quiet:"high"}
+ upper:{area:520,plumbing:"high",frontage:"low",elevator:"2",ceiling:2.8,station:10,quiet:"high"}
 };
 const rank={low:0,mid:1,high:2};
 function read(){return{area:+$("#area").value,plumbing:$("#plumbing").value,frontage:$("#frontage").value,elevator:+$("#elevator").value,ceiling:+$("#ceiling").value,station:+$("#station").value,quiet:$("#quiet").value}}
 function sync(){const v=read();$("#areaVal").textContent=v.area+"㎡";$("#plumbingVal").textContent=v.plumbing.toUpperCase();$("#frontageVal").textContent=v.frontage.toUpperCase();$("#elevatorVal").textContent=v.elevator===2?"2+":String(v.elevator);$("#ceilingVal").textContent=v.ceiling.toFixed(1)+"m";$("#stationVal").textContent=v.station+"min";$("#quietVal").textContent=v.quiet.toUpperCase()}
 function clamp(x){return Math.max(0,Math.min(100,Math.round(x)))}
 function friction(type,v){
- let f=18;
+ let f=type==="work"?16:type==="fitness"?12:type==="studio"?22:18;
  if(type==="work"){f+=Math.max(0,v.station-6)*2.2;f+=v.elevator===0?18:0;f+=v.area<240?9:v.area>600?5:0;f+=rank[v.plumbing]===0?3:0;f+=rank[v.frontage]===0?5:0;}
  if(type==="midstay"){f+=rank[v.plumbing]===0?30:rank[v.plumbing]===1?13:0;f+=v.elevator===0?18:v.elevator===1?5:0;f+=rank[v.quiet]===0?16:rank[v.quiet]===1?6:0;f+=v.area<300?8:0;f+=Math.max(0,v.station-10)*1.2;}
  if(type==="fitness"){f+=Math.max(0,3.0-v.ceiling)*24;f+=v.elevator===0?7:0;f+=v.area<250?12:0;f+=rank[v.frontage]===0?8:rank[v.frontage]===1?3:0;f+=Math.max(0,v.station-9)*1.5;}
