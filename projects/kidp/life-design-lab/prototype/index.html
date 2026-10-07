@@ -173,15 +173,15 @@ const testMode=params.get("test")==="1";
 const pidFromUrl=params.get("pid")||"";
 if(testMode)document.body.classList.add("test-mode");
 if(testMode&&pidFromUrl)document.querySelector("#participantId").value=pidFromUrl;
-let index=0,responses=[],sessionStart=0,cardShownAt=0,undos=0,rankedCache=[];
+let index=0,responses=[],sessionStart=0,sessionEnd=0,cardShownAt=0,undos=0,rankedCache=[];
 function participantId(){return (document.querySelector("#participantId")?.value||pidFromUrl||"").trim()}
 function storageKey(){return testMode?"kidp003.p0.test."+encodeURIComponent(participantId()||"anonymous"):"kidp003.p0.responses"}
 const screens={landing:document.querySelector("#landing"),swipe:document.querySelector("#swipe"),result:document.querySelector("#result")};
 function show(name){Object.values(screens).forEach(x=>x.classList.remove("on"));screens[name].classList.add("on");scrollTo(0,0)}
-function save(){localStorage.setItem(storageKey(),JSON.stringify({responses,sessionStart,undos}))}
-function load(){try{const raw=JSON.parse(localStorage.getItem(storageKey())||"null");if(Array.isArray(raw))return {responses:raw,sessionStart:0,undos:0};return raw||{responses:[],sessionStart:0,undos:0}}catch{return {responses:[],sessionStart:0,undos:0}}}
+function save(){localStorage.setItem(storageKey(),JSON.stringify({responses,sessionStart,sessionEnd,undos}))}
+function load(){try{const raw=JSON.parse(localStorage.getItem(storageKey())||"null");if(Array.isArray(raw))return {responses:raw,sessionStart:0,sessionEnd:0,undos:0};return raw||{responses:[],sessionStart:0,sessionEnd:0,undos:0}}catch{return {responses:[],sessionStart:0,undos:0}}}
 function renderCard(){const c=CARDS[index];document.querySelector("#counter").textContent=String(index+1).padStart(2,"0")+" / "+CARDS.length;document.querySelector("#progressBar").style.width=(index/CARDS.length*100)+"%";document.querySelector("#cardCategory").textContent=c.cat.toUpperCase();document.querySelector("#cardText").textContent=c.text;document.querySelector("#undoBtn").disabled=index===0;cardShownAt=Date.now();if(testMode)document.querySelector("#testStatus").textContent="TEST "+(participantId()||"UNASSIGNED")+" · "+(index+1)+"/20"}
-function choose(choice){const now=Date.now();responses[index]={id:CARDS[index].id,choice,ms:testMode?Math.max(0,now-cardShownAt):undefined};index++;save();if(index>=CARDS.length){renderResult();show("result")}else renderCard()}
+function choose(choice){const now=Date.now();responses[index]={id:CARDS[index].id,choice,ms:testMode?Math.max(0,now-cardShownAt):undefined};index++;if(index>=CARDS.length)sessionEnd=now;save();if(index>=CARDS.length){renderResult();show("result")}else renderCard()}
 function renderResult(){
  const score={}; const max={};
  CARDS.forEach(c=>{max[c.cat]=(max[c.cat]||0)+3});
@@ -194,10 +194,10 @@ function renderResult(){
  document.querySelector("#progressBar").style.width="100%";
  if(testMode)renderTestMetrics();
 }
-document.querySelector("#startBtn").onclick=()=>{const saved=load();if(saved.responses?.length===CARDS.length){responses=saved.responses;sessionStart=saved.sessionStart||0;undos=saved.undos||0;renderResult();show("result");return}responses=[];index=0;sessionStart=Date.now();undos=0;save();renderCard();show("swipe")};
+document.querySelector("#startBtn").onclick=()=>{const saved=load();if(saved.responses?.length===CARDS.length){responses=saved.responses;sessionStart=saved.sessionStart||0;sessionEnd=saved.sessionEnd||0;undos=saved.undos||0;renderResult();show("result");return}responses=[];index=0;sessionStart=Date.now();sessionEnd=0;undos=0;save();renderCard();show("swipe")};
 document.querySelectorAll("[data-choice]").forEach(b=>b.onclick=()=>choose(b.dataset.choice));
 document.querySelector("#undoBtn").onclick=()=>{if(index===0)return;index--;responses=responses.slice(0,index);if(testMode)undos++;save();renderCard()};
-document.querySelector("#restartBtn").onclick=()=>{responses=[];index=0;sessionStart=Date.now();undos=0;localStorage.removeItem(storageKey());save();renderCard();show("swipe")};
+document.querySelector("#restartBtn").onclick=()=>{responses=[];index=0;sessionStart=Date.now();sessionEnd=0;undos=0;localStorage.removeItem(storageKey());save();renderCard();show("swipe")};
 document.querySelector("#continueBtn").onclick=()=>alert("P1では、上位カテゴリを組み合わせたLife Theme Discoveryを実装します。");
 
 function testPayload(){
@@ -208,7 +208,7 @@ function testPayload(){
   participant_id:participantId(),
   device:innerWidth<=620?"mobile":innerWidth<=1024?"tablet":"desktop",
   completed_20:responses.length===20,
-  duration_sec:Math.round((sessionStart?Date.now()-sessionStart:totalMs)/1000),
+  duration_sec:Math.round((sessionStart?(sessionEnd||Date.now())-sessionStart:totalMs)/1000),
   want_count:counts.WANT,maybe_count:counts.MAYBE,pass_count:counts.PASS,
   undo_count:undos,
   hesitated_cards:hesitant,
@@ -233,7 +233,7 @@ function renderTestMetrics(){
 function csvCell(v){const s=Array.isArray(v)?v.join("|"):String(v??"");return '"'+s.replaceAll('"','""')+'"'}
 function testCsv(){
  const p=testPayload();
- return [p.participant_id,p.device,p.completed_20,p.duration_sec,p.want_count,p.maybe_count,p.pass_count,p.undo_count,p.hesitated_cards,p.top5,p.result_resonance,p.deep_dive_category,p.thought_it_was_diagnosis,p.result_first_quote,p.tester_notes].map(csvCell).join(",");
+ return [p.participant_id,"","",p.device,p.completed_20,p.duration_sec,p.want_count,p.maybe_count,p.pass_count,p.undo_count,p.hesitated_cards,p.result_first_quote,p.result_resonance,p.top5[0]||"",p.top5[1]||"",p.top5[2]||"",p.top5[3]||"",p.top5[4]||"",Boolean(p.deep_dive_category),p.deep_dive_category,p.thought_it_was_diagnosis,"","",p.tester_notes,"",""].map(csvCell).join(",");
 }
 async function copyText(text,label){
  try{await navigator.clipboard.writeText(text);document.querySelector("#copyState").textContent=label+"をコピーしました。"}
