@@ -46,7 +46,7 @@ try {
   assert.match(sitemap,/https:\/\/k-aito\.com\/notes\/catalogue-regression\/<\/loc><lastmod>2026-09-24/);
   assert.match(sitemap,/https:\/\/k-aito\.com\/works\//);
   assert.equal((sitemap.match(/notes\/catalogue-regression\//g)||[]).length,1);
-  assert.match(storage,/data-catalogue-count>3 NOTES/);
+  assert.match(storage,/data-catalogue-count>4 NOTES/);
   assert.match(storage,/href="\/notes\/catalogue-regression\/"/);
   assert.match(archive,/data-catalogue-timeline/);
   assert.match(archive,/href="\/notes\/catalogue-regression\/"/);
