@@ -1,0 +1,78 @@
+name: Temporary KIDP005 P0 QA
+on:
+  push:
+    branches: [feature/kidp005-board-game-balancer-p0-20261007]
+permissions:
+  contents: read
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Static references
+        run: node scripts/site-static-check.cjs
+      - name: Install Playwright
+        run: |
+          npm install --prefix /tmp/kaito-qa --no-audit --no-fund --no-save playwright@1.56.1
+          PLAYWRIGHT_BROWSERS_PATH=/tmp/kaito-browsers /tmp/kaito-qa/node_modules/.bin/playwright install --with-deps chromium
+      - name: Existing browser QA
+        env:
+          NODE_PATH: /tmp/kaito-qa/node_modules
+          PLAYWRIGHT_BROWSERS_PATH: /tmp/kaito-browsers
+        run: node scripts/browser-smoke.cjs
+      - name: KIDP005 interaction QA
+        env:
+          NODE_PATH: /tmp/kaito-qa/node_modules
+          PLAYWRIGHT_BROWSERS_PATH: /tmp/kaito-browsers
+        run: |
+          python3 -m http.server 4173 --bind 127.0.0.1 >/tmp/kidp005-http.log 2>&1 &
+          node <<'NODE'
+          const fs=require('fs'); const {chromium}=require('playwright');
+          (async()=>{
+            const b=await chromium.launch({headless:true,args:['--no-sandbox']});
+            fs.mkdirSync('qa-screenshots',{recursive:true});
+            for(const [name,w,h] of [['desktop',1440,900],['mobile',390,844]]){
+              const p=await b.newPage({viewport:{width:w,height:h}});
+              await p.goto('http://127.0.0.1:4173/projects/kidp/board-game-balancer/prototype/',{waitUntil:'networkidle'});
+              const resetSignal=(await p.locator('#signalText').innerText()).trim();
+              if(resetSignal!=='BALANCED-ish') throw Error(name+' reset signal '+resetSignal);
+              const resetGap=parseFloat(await p.locator('#gap').innerText());
+              if(resetGap>12) throw Error(name+' reset gap '+resetGap);
+              if(await p.locator('#matrix tr').count()!==3) throw Error(name+' matrix rows');
+
+              const before=parseFloat(await p.locator('#rushRate').innerText());
+              await p.locator('#rush').evaluate(el=>{el.value='4.1';el.dispatchEvent(new Event('input',{bubbles:true}))});
+              await p.click('#runBtn');
+              const after=parseFloat(await p.locator('#rushRate').innerText());
+              if(after<=before) throw Error(name+' rush parameter did not increase rate '+before+' -> '+after);
+
+              await p.click('#breakBtn');
+              const brokenSignal=(await p.locator('#signalText').innerText()).trim();
+              if(brokenSignal!=='DOMINANT') throw Error(name+' break signal '+brokenSignal);
+              const brokenRush=parseFloat(await p.locator('#rushRate').innerText());
+              const brokenGap=parseFloat(await p.locator('#gap').innerText());
+              if(brokenRush<60||brokenGap<=25) throw Error(name+' broken state rush/gap '+brokenRush+'/'+brokenGap);
+              if(!(await p.locator('#hint').innerText()).includes('RUSH')) throw Error(name+' dominant hint');
+              const overflow=await p.evaluate(()=>document.documentElement.scrollWidth-window.innerWidth);
+              if(overflow>2) throw Error(name+' horizontal overflow '+overflow);
+              await p.screenshot({path:'qa-screenshots/'+name+'-kidp005-broken.png',fullPage:true});
+
+              await p.click('#resetBtn');
+              if((await p.locator('#signalText').innerText()).trim()!=='BALANCED-ish') throw Error(name+' reset after break');
+              await p.screenshot({path:'qa-screenshots/'+name+'-kidp005-reset.png',fullPage:true});
+              await p.close();
+            }
+            await b.close();
+          })().catch(e=>{console.error(e);process.exit(1)});
+          NODE
+      - name: Upload visual review
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: kidp005-p0-visual-review
+          path: qa-screenshots/*.png
+          retention-days: 2
