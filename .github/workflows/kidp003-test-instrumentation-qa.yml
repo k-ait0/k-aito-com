@@ -1,0 +1,85 @@
+name: Temporary KIDP003 test instrumentation QA
+on:
+  push:
+    branches: [feature/kidp003-p0-test-instrumentation-20261007]
+permissions:
+  contents: read
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Static references
+        run: node scripts/site-static-check.cjs
+      - name: Install Playwright
+        run: |
+          npm install --prefix /tmp/kaito-qa --no-audit --no-fund --no-save playwright@1.56.1
+          PLAYWRIGHT_BROWSERS_PATH=/tmp/kaito-browsers /tmp/kaito-qa/node_modules/.bin/playwright install --with-deps chromium
+      - name: Existing browser QA
+        env:
+          NODE_PATH: /tmp/kaito-qa/node_modules
+          PLAYWRIGHT_BROWSERS_PATH: /tmp/kaito-browsers
+        run: node scripts/browser-smoke.cjs
+      - name: Instrumented test mode QA
+        env:
+          NODE_PATH: /tmp/kaito-qa/node_modules
+          PLAYWRIGHT_BROWSERS_PATH: /tmp/kaito-browsers
+        run: |
+          python3 -m http.server 4173 --bind 127.0.0.1 >/tmp/kidp003-test-http.log 2>&1 &
+          node <<'NODE'
+          const {chromium}=require('playwright');
+          (async()=>{
+            const b=await chromium.launch({headless:true,args:['--no-sandbox']});
+            const normal=await b.newPage({viewport:{width:390,height:844}});
+            await normal.goto('http://127.0.0.1:4173/projects/kidp/life-design-lab/prototype/',{waitUntil:'networkidle'});
+            if(await normal.locator('.test-setup').isVisible()) throw Error('normal mode exposes test setup');
+            if(await normal.locator('.tester-panel').isVisible()) throw Error('normal mode exposes tester panel');
+            await normal.close();
+
+            const p=await b.newPage({viewport:{width:390,height:844}});
+            await p.goto('http://127.0.0.1:4173/projects/kidp/life-design-lab/prototype/?test=1&pid=P01',{waitUntil:'networkidle'});
+            if(!await p.locator('.test-setup').isVisible()) throw Error('test setup not visible');
+            if(await p.locator('#participantId').inputValue()!=='P01') throw Error('pid not populated');
+            await p.click('#startBtn');
+            await p.waitForTimeout(5100);
+            for(let i=0;i<20;i++){
+              const choice=i%3===0?'WANT':i%3===1?'MAYBE':'PASS';
+              await p.click('[data-choice="'+choice+'"]');
+            }
+            if(!await p.locator('#result.screen.on').count()) throw Error('result not reached');
+            await p.selectOption('#resonance','somewhat');
+            await p.fill('#deepDive','Freedom');
+            await p.selectOption('#diagnosisRead','no');
+            await p.fill('#firstQuote','ちょっと分かる');
+            await p.fill('#testerNotes','カードは選びやすかった');
+
+            const payload=await p.evaluate(()=>testPayload());
+            if(payload.participant_id!=='P01') throw Error('payload pid');
+            if(payload.completed_20!==true) throw Error('completion');
+            if(payload.want_count!==7||payload.maybe_count!==7||payload.pass_count!==6) throw Error('choice counts '+JSON.stringify(payload));
+            if(!payload.hesitated_cards.includes('C01')) throw Error('hesitation missing '+JSON.stringify(payload.hesitated_cards));
+            if(payload.top5.length!==5) throw Error('top5');
+            if(payload.result_resonance!=='somewhat'||payload.deep_dive_category!=='Freedom'||payload.thought_it_was_diagnosis!=='no') throw Error('manual fields');
+            const csv=await p.evaluate(()=>testCsv());
+            const cols=csv.match(/("([^"]|"")*"|[^,]*)(,|$)/g)?.filter(x=>x!==''&&x!==',').length;
+            // robust CSV parser for exact top-level count
+            const parsed=await p.evaluate(()=>{
+              const s=testCsv();let q=false,count=1;
+              for(let i=0;i<s.length;i++){if(s[i]==='"'){if(q&&s[i+1]==='"')i++;else q=!q}else if(s[i]===','&&!q)count++}
+              return count;
+            });
+            if(parsed!==26) throw Error('CSV columns '+parsed);
+            const duration=payload.duration_sec;
+            await p.reload({waitUntil:'networkidle'});
+            await p.waitForTimeout(1500);
+            await p.click('#startBtn');
+            const reopened=await p.evaluate(()=>testPayload());
+            if(reopened.duration_sec!==duration) throw Error('duration changed after reopen '+duration+' -> '+reopened.duration_sec);
+            if(!await p.locator('#result.screen.on').count()) throw Error('result did not reopen');
+            await b.close();
+          })().catch(e=>{console.error(e);process.exit(1)});
+          NODE
