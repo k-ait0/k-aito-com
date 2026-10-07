@@ -26,6 +26,26 @@ jobs:
           NODE_PATH: /tmp/kaito-qa/node_modules
           PLAYWRIGHT_BROWSERS_PATH: /tmp/kaito-browsers
         run: node scripts/browser-smoke.cjs
+      - name: Capture KIDP desktop iPad mobile
+        env:
+          NODE_PATH: /tmp/kaito-qa/node_modules
+          PLAYWRIGHT_BROWSERS_PATH: /tmp/kaito-browsers
+        run: |
+          python3 -m http.server 4173 --bind 127.0.0.1 >/tmp/kidp-http.log 2>&1 &
+          node <<'NODE'
+          const fs=require('fs'); const {chromium}=require('playwright');
+          (async()=>{const browser=await chromium.launch({headless:true,args:['--no-sandbox']});
+          fs.mkdirSync('qa-screenshots',{recursive:true});
+          const modes=[['desktop',1440,900],['ipad',1024,1366],['mobile',390,844]];
+          const pages=[['kidp','/projects/kidp/'],['give','/projects/kidp/project-give/'],['whynot','/projects/kidp/whynot/']];
+          for(const [m,w,h] of modes){const ctx=await browser.newContext({viewport:{width:w,height:h}});
+            for(const [n,path] of pages){const p=await ctx.newPage(); await p.goto('http://127.0.0.1:4173'+path,{waitUntil:'networkidle'});
+              const x=await p.evaluate(()=>({overflow:document.documentElement.scrollWidth-window.innerWidth,h1:[...document.querySelectorAll('h1')].filter(e=>e.getClientRects().length).length}));
+              if(x.overflow>2||x.h1!==1) throw Error(m+' '+path+' '+JSON.stringify(x));
+              await p.screenshot({path:'qa-screenshots/'+m+'-'+n+'.png',fullPage:true}); await p.close();}
+            await ctx.close();}
+          await browser.close();})().catch(e=>{console.error(e);process.exit(1)});
+          NODE
       - name: Upload screenshots
         if: always()
         uses: actions/upload-artifact@v4
