@@ -9,7 +9,8 @@
 <style>
 :root{--ink:#142f29;--muted:#66726d;--paper:#f5f1e6;--card:#fffdf7;--line:#d8ddd2;--green:#587947;--soft:#e9f0df;--gold:#a98038;--red:#a74f44;--blue:#55778d}
 *{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans JP",sans-serif}button,input{font:inherit;color:inherit}.shell{max-width:1050px;margin:auto;padding:18px 18px 60px}.top{display:flex;justify-content:space-between;align-items:center;padding:8px 0 18px;border-bottom:1px solid var(--line)}.brand{font-weight:900;letter-spacing:.06em}.brand small{display:block;font-size:8px;color:var(--green);letter-spacing:.14em}.badge{font-size:9px;font-weight:800;border:1px solid var(--line);background:#fff;border-radius:99px;padding:6px 9px}.hero{padding:54px 0 26px}.eyebrow{font-size:10px;font-weight:900;color:var(--green);letter-spacing:.14em}h1,h2,h3{font-family:Georgia,"Yu Mincho",serif;font-weight:600}h1{font-size:clamp(40px,7vw,72px);line-height:1.05;letter-spacing:-.04em;margin:8px 0 16px}.lead{max-width:730px;line-height:1.85;color:var(--muted)}.notice{margin:20px 0;padding:13px 15px;border-left:3px solid var(--gold);background:#fff8e7;color:#6f5c36;font-size:10px;line-height:1.7}.grid{display:grid;grid-template-columns:340px 1fr;gap:14px}.panel{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px}.panel h2{font-size:24px;margin:4px 0 12px}.tuner{padding:14px 0;border-bottom:1px solid var(--line)}.tuner:last-of-type{border-bottom:0}.tuner-head{display:flex;justify-content:space-between;align-items:center;gap:10px}.tuner-head b{font-size:12px}.tuner-head strong{font-family:Georgia,serif;font-size:24px}.tuner p{font-size:9px;line-height:1.6;color:var(--muted);margin:4px 0 10px}.tuner input{width:100%;accent-color:var(--green)}.actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:14px}.primary,.secondary,.danger{border:1px solid var(--line);background:#fff;border-radius:999px;padding:9px 12px;font-size:10px;font-weight:800;cursor:pointer}.primary{background:var(--ink);color:#fff;border-color:var(--ink)}.danger{border-color:#d7b6b0;color:var(--red);background:#fff7f5}.signal{display:grid;grid-template-columns:1fr auto;gap:14px;align-items:center;padding:17px;border-radius:14px;background:var(--soft);margin-bottom:12px}.signal.watch{background:#fff5df}.signal.dominant{background:#fff0ec}.signal small{font-size:8px;letter-spacing:.1em;color:var(--muted)}.signal strong{display:block;font-family:Georgia,serif;font-size:26px;margin-top:2px}.gap{font-family:Georgia,serif;font-size:38px}.rates{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.rate{border:1px solid var(--line);background:#fff;padding:14px;border-radius:13px}.rate small{display:block;font-size:8px;color:var(--muted);letter-spacing:.1em}.rate strong{display:block;font-family:Georgia,serif;font-size:31px;margin:4px 0}.bar{height:7px;border-radius:99px;background:#e6e9e3;overflow:hidden}.bar i{display:block;height:100%;border-radius:99px}.rush i{background:var(--red)}.engine i{background:var(--green)}.control i{background:var(--blue)}.hint{margin:12px 0;padding:13px;border:1px dashed #aab5aa;border-radius:12px;font-size:10px;line-height:1.7;color:var(--muted)}.hint b{color:var(--ink)}table{width:100%;border-collapse:collapse;font-size:10px;margin-top:14px}th,td{padding:9px;border-bottom:1px solid var(--line);text-align:center}th:first-child,td:first-child{text-align:left}.matrix-win{font-weight:900;color:var(--green)}.matrix-loss{color:var(--red)}.run-meta{display:flex;gap:10px;flex-wrap:wrap;font-size:8px;color:var(--muted);margin-top:10px}.legend{font-size:9px;line-height:1.7;color:var(--muted);padding-top:18px;border-top:1px solid var(--line);margin-top:18px}
-@media(max-width:760px){.grid{grid-template-columns:1fr}.rates{grid-template-columns:1fr}.signal{grid-template-columns:1fr}.gap{font-size:30px}.badge{display:none}}
+.test-only{display:none}.test-mode .test-only{display:block}.test-panel{margin-top:14px;background:#f9f9f2;border:1px dashed #aab5aa;border-radius:16px;padding:18px}.test-panel strong{display:block;font-size:11px;letter-spacing:.08em}.test-panel p{font-size:10px;line-height:1.7;color:var(--muted)}.test-panel label{display:block;font-size:9px;font-weight:800;color:var(--muted);margin:10px 0 4px}.test-panel input,.test-panel textarea,.test-panel select{width:100%;border:1px solid var(--line);background:#fff;border-radius:8px;padding:9px;font:inherit;font-size:11px}.test-panel textarea{min-height:62px}.test-metrics{display:grid;grid-template-columns:repeat(5,1fr);gap:7px;margin:10px 0}.test-metrics div{background:#fff;border:1px solid var(--line);padding:9px;border-radius:9px;font-size:8px;color:var(--muted)}.test-metrics b{display:block;color:var(--ink);font-size:15px}.test-actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px}.test-actions button{border:1px solid var(--line);background:#fff;padding:8px 10px;border-radius:9px;font-size:10px;cursor:pointer}.test-actions .copy-primary{background:var(--ink);color:#fff;border-color:var(--ink)}.copy-state{min-height:1.4em;margin-top:7px;font-size:9px;color:var(--green)}
+@media(max-width:760px){.grid{grid-template-columns:1fr}.rates{grid-template-columns:1fr}.signal{grid-template-columns:1fr}.test-metrics{grid-template-columns:1fr 1fr}.gap{font-size:30px}.badge{display:none}}
 </style>
 </head><body><main class="shell">
 <header class="top"><div class="brand">BOARD GAME BALANCER<small>KIDP-005 · P0</small></div><span class="badge">SIMULATION ≠ FUN</span></header>
@@ -33,13 +34,32 @@
 <table><thead><tr><th>Head-to-Head</th><th>vs Rush</th><th>vs Engine</th><th>vs Control</th></tr></thead><tbody id="matrix"></tbody></table>
 <div class="legend">BALANCED-ish ≤ 12pt / WATCH 13–25pt / DOMINANT &gt; 25pt。これは偏り検知用のP0基準で、ゲーム品質を保証するスコアではありません。</div>
 </section></div>
+<section class="test-only test-panel">
+<strong>USER TEST MODE</strong><p>操作ログはこの端末内だけに保存します。テスト後に観察結果を入力し、CSVまたはJSONをコピーしてください。</p>
+<label for="participantId">Participant ID</label><input id="participantId" placeholder="P01">
+<div class="test-metrics"><div>Slider changes<b id="mSlider">0</b></div><div>RUN<b id="mRun">0</b></div><div>BREAK IT<b id="mBreak">NO</b></div><div>RESET<b id="mReset">0</b></div><div>Final Signal<b id="mSignal">—</b></div></div>
+<label for="m1Input">数値変更→勝率変化を説明できた</label><select id="m1Input"><option value="">未記録</option><option value="yes">YES</option><option value="no">NO</option><option value="unclear">UNCLEAR</option></select>
+<label for="m2Input">Balance Signalが「面白さ点数」ではないと理解した</label><select id="m2Input"><option value="">未記録</option><option value="yes">YES</option><option value="no">NO</option><option value="unclear">UNCLEAR</option></select>
+<label for="m3Input">自作ゲーム調整で使いたい</label><select id="m3Input"><option value="">未記録</option><option value="yes">YES</option><option value="no">NO</option><option value="unclear">UNCLEAR</option></select>
+<label for="m4Input">次に実Playtestする戦略を選べた</label><select id="m4Input"><option value="">未記録</option><option value="yes">YES</option><option value="no">NO</option><option value="unclear">UNCLEAR</option></select>
+<label for="m5Input">Simulationだけで調整を完了できると思った</label><select id="m5Input"><option value="">未記録</option><option value="no">NO</option><option value="yes">YES</option><option value="unclear">UNCLEAR</option></select>
+<label for="nextStrategy">次にPlaytestする戦略</label><select id="nextStrategy"><option value="">未選択</option><option value="rush">RUSH</option><option value="engine">ENGINE</option><option value="control">CONTROL</option></select>
+<label for="firstQuote">第一声</label><textarea id="firstQuote"></textarea>
+<label for="confusing">分かりにくかった点</label><textarea id="confusing"></textarea>
+<label for="missing">追加してほしいもの</label><textarea id="missing"></textarea>
+<div class="test-actions"><button class="copy-primary" id="copyCsvBtn">CSV行をコピー</button><button id="copyJsonBtn">JSONをコピー</button></div><div id="copyState" class="copy-state"></div>
+</section>
 </main>
 <script>
 const $=s=>document.querySelector(s);
+const params=new URLSearchParams(location.search),testMode=params.get("test")==="1",pidFromUrl=params.get("pid")||"";
+if(testMode)document.body.classList.add("test-mode");
+if(testMode&&pidFromUrl)$("#participantId").value=pidFromUrl;
+let sliderChanges=0,runCount=0,breakUsed=false,resetCount=0;
 const controls={rush:$("#rush"),engine:$("#engine"),control:$("#control")};
 function values(){return {rush:+controls.rush.value,engine:+controls.engine.value,control:+controls.control.value}}
 function sync(){const v=values();$("#rushVal").textContent=v.rush.toFixed(1);$("#engineVal").textContent=v.engine.toFixed(1);$("#controlVal").textContent=v.control.toFixed(1)}
-Object.values(controls).forEach(x=>x.addEventListener("input",sync));
+Object.values(controls).forEach(x=>x.addEventListener("input",()=>{sync();if(testMode){sliderChanges++;saveTest();renderTestMetrics()}}));
 function hash(v){return Math.floor(v.rush*1000+v.engine*10000+v.control*100000)+1707}
 function rng(seed){let x=seed>>>0;return()=>{x^=x<<13;x^=x>>>17;x^=x<<5;return (x>>>0)/4294967296}}
 function baseScore(type,v,noise){
@@ -86,8 +106,19 @@ function render(rates,v){
  const rows=types.map(a=>'<tr><td>'+a.toUpperCase()+'</td>'+types.map(b=>a===b?'<td>—</td>':(()=>{const x=h2h(a,b,v);return '<td class="'+(x>=60?'matrix-win':x<=40?'matrix-loss':'')+'">'+x.toFixed(0)+'%</td>'})()).join("")+'</tr>').join("");
  $("#matrix").innerHTML=rows;
 }
-$("#runBtn").onclick=simulate;
-$("#resetBtn").onclick=()=>{controls.rush.value=3.7;controls.engine.value=1.3;controls.control.value=1.8;sync();simulate()};
-$("#breakBtn").onclick=()=>{controls.rush.value=4.8;controls.engine.value=.8;controls.control.value=.7;sync();simulate()};
-sync();simulate();
+$("#runBtn").onclick=()=>{if(testMode){runCount++;saveTest()}simulate();if(testMode)renderTestMetrics()};
+$("#resetBtn").onclick=()=>{if(testMode)resetCount++;controls.rush.value=3.7;controls.engine.value=1.3;controls.control.value=1.8;sync();simulate();if(testMode){saveTest();renderTestMetrics()}};
+$("#breakBtn").onclick=()=>{if(testMode)breakUsed=true;controls.rush.value=4.8;controls.engine.value=.8;controls.control.value=.7;sync();simulate();if(testMode){saveTest();renderTestMetrics()}};
+
+function testKey(){return "kidp005.p0.test."+encodeURIComponent(($("#participantId")?.value||pidFromUrl||"anonymous").trim())}
+function saveTest(){if(!testMode)return;localStorage.setItem(testKey(),JSON.stringify({sliderChanges,runCount,breakUsed,resetCount,config:values()}))}
+function loadTest(){if(!testMode)return;try{const x=JSON.parse(localStorage.getItem(testKey())||"{}");sliderChanges=Number(x.sliderChanges)||0;runCount=Number(x.runCount)||0;breakUsed=Boolean(x.breakUsed);resetCount=Number(x.resetCount)||0;if(x.config){controls.rush.value=x.config.rush;controls.engine.value=x.config.engine;controls.control.value=x.config.control}}catch{}}
+function renderTestMetrics(){if(!testMode)return;$("#mSlider").textContent=sliderChanges;$("#mRun").textContent=runCount;$("#mBreak").textContent=breakUsed?"YES":"NO";$("#mReset").textContent=resetCount;$("#mSignal").textContent=$("#signalText").textContent}
+function testPayload(){return {participant_id:($("#participantId")?.value||pidFromUrl||"").trim(),device:innerWidth<=760?"mobile":"desktop",boardgame_frequency:"",game_design_experience:"",parameter_causality_understood:$("#m1Input")?.value||"",signal_understood:$("#m2Input")?.value||"",wants_use:$("#m3Input")?.value||"",can_choose_next_playtest:$("#m4Input")?.value||"",simulation_replacement_misread:$("#m5Input")?.value||"",next_playtest_strategy:$("#nextStrategy")?.value||"",first_quote:($("#firstQuote")?.value||"").trim(),confusing:($("#confusing")?.value||"").trim(),missing:($("#missing")?.value||"").trim(),verbatim_quote:"",slider_changes:sliderChanges,run_count:runCount,break_used:breakUsed,reset_count:resetCount,final_signal:$("#signalText").textContent,final_config:values()}}
+function csvCell(v){return '"'+String(v??"").replaceAll('"','""')+'"'}
+function testCsv(){const x=testPayload();return [x.participant_id,x.device,x.boardgame_frequency,x.game_design_experience,x.parameter_causality_understood,x.signal_understood,x.wants_use,x.can_choose_next_playtest,x.simulation_replacement_misread,x.next_playtest_strategy,x.first_quote,x.confusing,x.missing,x.verbatim_quote,x.slider_changes,x.run_count,x.break_used,x.reset_count,x.final_signal].map(csvCell).join(",")}
+async function copyText(t,label){try{await navigator.clipboard.writeText(t);$("#copyState").textContent=label+"をコピーしました。"}catch{$("#copyState").textContent="コピーできませんでした。"}}
+$("#copyCsvBtn")?.addEventListener("click",()=>copyText(testCsv(),"CSV"));
+$("#copyJsonBtn")?.addEventListener("click",()=>copyText(JSON.stringify(testPayload(),null,2),"JSON"));
+if(testMode)loadTest();sync();simulate();if(testMode)renderTestMetrics();
 </script></body></html>
