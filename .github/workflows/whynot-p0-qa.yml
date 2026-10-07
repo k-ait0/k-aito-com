@@ -1,0 +1,115 @@
+name: Temporary WHYNOT P0 QA
+on:
+  push:
+    branches: [feature/kidp002-whynot-test-tools-20261008]
+permissions:
+  contents: read
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Static references
+        run: node scripts/site-static-check.cjs
+      - name: Install Playwright
+        run: |
+          npm install --prefix /tmp/kaito-qa --no-audit --no-fund --no-save playwright@1.56.1
+          PLAYWRIGHT_BROWSERS_PATH=/tmp/kaito-browsers /tmp/kaito-qa/node_modules/.bin/playwright install --with-deps chromium
+      - name: Existing browser QA
+        env:
+          NODE_PATH: /tmp/kaito-qa/node_modules
+          PLAYWRIGHT_BROWSERS_PATH: /tmp/kaito-browsers
+        run: node scripts/browser-smoke.cjs
+      - name: WHYNOT P0 test tools
+        env:
+          NODE_PATH: /tmp/kaito-qa/node_modules
+          PLAYWRIGHT_BROWSERS_PATH: /tmp/kaito-browsers
+        run: |
+          python3 -m http.server 4173 --bind 127.0.0.1 >/tmp/whynot-http.log 2>&1 &
+          node <<'NODE'
+          const {chromium}=require('playwright');
+          (async()=>{
+            const b=await chromium.launch({headless:true,args:['--no-sandbox']});
+
+            const normal=await b.newPage({viewport:{width:390,height:844}});
+            await normal.goto('http://127.0.0.1:4173/projects/kidp/whynot/prototype/',{waitUntil:'networkidle'});
+            if(await normal.locator('.test-panel').isVisible()) throw Error('normal mode exposes test UI');
+            await normal.close();
+
+            const p=await b.newPage({viewport:{width:390,height:844}});
+            await p.goto('http://127.0.0.1:4173/projects/kidp/whynot/prototype/?test=1&pid=P01',{waitUntil:'networkidle'});
+            if(!await p.locator('.test-panel').isVisible()) throw Error('test UI hidden');
+            if(await p.locator('#participantId').inputValue()!=='P01') throw Error('pid');
+
+            await p.click('.nav[data-page="explore"]');
+            await p.locator('.card').nth(1).click();
+            if(!await p.locator('.samebtn').isVisible()) throw Error('P002 SAME missing');
+            await p.locator('.back').click();
+            await p.locator('.card').nth(2).click();
+            if((await p.locator('.detail .notice').innerText()).includes('店舗ごと')) throw Error('P002 analysis leaked to P003');
+            await p.locator('.samebtn').click();
+            await p.locator('.back').click();
+            await p.locator('.card').nth(5).click();
+            await p.locator('.back').click();
+
+            await p.click('.nav[data-page="submit"]');
+            await p.fill('#raw','通勤時に傘を忘れる');
+            await p.selectOption('#problemFirstInput','yes');
+            await p.selectOption('#wantsSubmitInput','yes');
+            await p.selectOption('#likeMisreadInput','no');
+
+            const payload=await p.evaluate(()=>testPayload());
+            if(payload.problems_viewed.length!==3) throw Error('view count '+JSON.stringify(payload.problems_viewed));
+            if(payload.same_clicks!==1) throw Error('same clicks '+payload.same_clicks);
+            if(!payload.submit_opened||payload.draft_chars<5) throw Error('submit activation '+JSON.stringify(payload));
+            if(payload.problem_first_understood!=='yes'||payload.wants_submit!=='yes'||payload.same_like_misread!=='no') throw Error('manual fields');
+
+            const cols=await p.evaluate(()=>{const s=testCsv();let q=false,count=1;for(let i=0;i<s.length;i++){if(s[i]==='"'){if(q&&s[i+1]==='"')i++;else q=!q}else if(s[i]===','&&!q)count++}return count});
+            if(cols!==17) throw Error('CSV columns '+cols);
+
+            await p.reload({waitUntil:'networkidle'});
+            if((await p.locator('#mViewed').innerText()).trim()!=='3') throw Error('stored views');
+            if((await p.locator('#mSame').innerText()).trim()!=='1') throw Error('stored SAME');
+            if((await p.locator('#mSubmit').innerText()).trim()!=='YES') throw Error('stored submit');
+            if(Number((await p.locator('#mDraft').innerText()).trim())<5) throw Error('stored draft');
+            const overflowP=await p.evaluate(()=>document.documentElement.scrollWidth-innerWidth);
+            if(overflowP>2) throw Error('prototype overflow '+overflowP);
+            await p.close();
+
+            for(const [name,w,h] of [['desktop',1440,900],['mobile',390,844]]){
+              const r=await b.newPage({viewport:{width:w,height:h}});
+              await r.goto('http://127.0.0.1:4173/projects/kidp/whynot/test-review/',{waitUntil:'networkidle'});
+              if(await r.locator('.url-row').count()!==10) throw Error(name+' links');
+              await r.click('#sample'); await r.click('#analyze');
+              if(await r.locator('#decision strong').innerText()!=='P1 GO') throw Error(name+' sample decision '+await r.locator('#decision strong').innerText());
+              if(await r.locator('#m1').innerText()!=='100%'||await r.locator('#m5').innerText()!=='0%') throw Error(name+' metrics');
+              const one=await r.evaluate(()=>{const rows=parseCSV(document.querySelector('#csvInput').value);return [rows[0],rows[1]].map(row=>row.map(v=>'"'+String(v).replaceAll('"','""')+'"').join(',')).join('\n')});
+              await r.fill('#csvInput',one); await r.click('#analyze');
+              if(await r.locator('#decision strong').innerText()!=='MORE DATA') throw Error(name+' <5 decision');
+              const overflow=await r.evaluate(()=>document.documentElement.scrollWidth-innerWidth);
+              if(overflow>2) throw Error(name+' review overflow '+overflow);
+              await r.close();
+            }
+
+            const hub=await b.newPage({viewport:{width:390,height:844}});
+            await hub.goto('http://127.0.0.1:4173/projects/kidp/',{waitUntil:'networkidle'});
+            const whyRow=hub.locator('.kidp-test-row').filter({hasText:'KIDP-002 WHYNOT'});
+            if(!await whyRow.locator('small').innerText().then(x=>x.includes('RUN NEXT'))) throw Error('hub WHYNOT lane');
+            if(await whyRow.getAttribute('href')!=='/projects/kidp/whynot/test-review/') throw Error('hub WHYNOT review href');
+            const whyCard=hub.locator('.kidp-project-card').filter({hasText:'WHYNOT'});
+            if(!await whyCard.locator('.kidp-score span').innerText().then(x=>x.includes('KIDP FIT'))) throw Error('hub score semantics');
+            await hub.close();
+
+            const project=await b.newPage({viewport:{width:390,height:844}});
+            await project.goto('http://127.0.0.1:4173/projects/kidp/whynot/',{waitUntil:'networkidle'});
+            if(!await project.locator('.kidp-score-large span').innerText().then(x=>x.includes('KIDP FIT'))) throw Error('project score semantics');
+            if(await project.locator('a[href="/projects/kidp/whynot/test-review/"]').count()!==1) throw Error('project review link');
+            await project.close();
+
+            await b.close();
+          })().catch(e=>{console.error(e);process.exit(1)});
+          NODE
