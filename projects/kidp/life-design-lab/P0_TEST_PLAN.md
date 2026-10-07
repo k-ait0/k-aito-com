@@ -144,3 +144,32 @@ P0がGOになった場合のみ:
 - AI Career recommendation
 - 課金
 - 他人との比較
+
+
+## Instrumented test mode
+
+Use:
+`/projects/kidp/life-design-lab/prototype/?test=1&pid=P01`
+
+Change P01 for each participant.
+
+Automatically recorded on-device:
+- completion
+- total duration
+- WANT / MAYBE / PASS counts
+- Undo count
+- cards taking 5 seconds or more
+- top 5 categories
+- per-card response time
+
+Tester adds after completion:
+- result resonance
+- deep-dive category
+- whether it looked like a diagnosis
+- first quote
+- notes
+
+Use "CSV行をコピー" and paste each participant as one row under
+`P0_TEST_LOG_TEMPLATE.csv`.
+
+No data is transmitted externally.

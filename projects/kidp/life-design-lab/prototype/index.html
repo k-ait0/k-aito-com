@@ -52,8 +52,23 @@ h1{font-family:Georgia,"Yu Mincho",serif;font-size:clamp(42px,8vw,76px);line-hei
 .result-copy p{margin:0;color:#d6e0db;line-height:1.8;font-size:13px}.result-copy strong{color:#fff}
 .result-actions{display:flex;gap:8px;flex-wrap:wrap}
 .footer-note{margin-top:32px;padding-top:18px;border-top:1px solid var(--line);font-size:9px;color:var(--muted);line-height:1.7}
+.test-only{display:none}.test-mode .test-only{display:block}
+.test-setup,.tester-panel{margin-top:20px;padding:16px;border:1px dashed #aab4a6;background:#f8f8f1;border-radius:14px}
+.test-setup strong,.tester-panel strong{display:block;font-size:11px;letter-spacing:.06em}
+.test-setup p,.tester-panel p{font-size:10px;line-height:1.7;color:var(--muted);margin:6px 0}
+.test-setup label,.tester-panel label{display:block;font-size:9px;font-weight:800;color:var(--muted);margin:10px 0 4px}
+.test-setup input,.tester-panel input,.tester-panel textarea,.tester-panel select{width:100%;border:1px solid var(--line);background:#fff;border-radius:8px;padding:9px;font:inherit;font-size:11px}
+.tester-panel textarea{min-height:68px;resize:vertical}
+.test-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin:12px 0}
+.test-metrics div{background:#fff;border:1px solid var(--line);padding:9px;border-radius:9px;font-size:9px;color:var(--muted)}
+.test-metrics b{display:block;color:var(--ink);font-size:14px}
+.test-buttons{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px}
+.test-buttons button{border:1px solid var(--line);background:#fff;padding:8px 10px;border-radius:9px;font-size:10px;cursor:pointer}
+.test-buttons .copy-primary{background:var(--dark);color:#fff;border-color:var(--dark)}
+.test-status{margin-top:10px;text-align:center;font-size:9px;color:var(--muted)}
+.copy-state{margin-top:8px;font-size:9px;color:var(--leaf);min-height:1.4em}
 @media(max-width:620px){
- .shell{padding:14px 14px 36px}.hero{padding-top:42px}.hero-note{grid-template-columns:1fr}.choice-card{min-height:410px;padding:34px 24px}.actions{gap:7px}.actions button{padding:14px 4px;font-size:12px}.rank{grid-template-columns:34px 1fr 54px;padding:13px}.badge{display:none}
+ .shell{padding:14px 14px 36px}.hero{padding-top:42px}.hero-note{grid-template-columns:1fr}.choice-card{min-height:410px;padding:34px 24px}.actions{gap:7px}.actions button{padding:14px 4px;font-size:12px}.rank{grid-template-columns:34px 1fr 54px;padding:13px}.badge{display:none}.test-metrics{grid-template-columns:1fr 1fr}
 }
 </style>
 </head>
@@ -68,6 +83,12 @@ h1{font-family:Georgia,"Yu Mincho",serif;font-size:clamp(42px,8vw,76px);line-hei
     <p class="lead">「これ、ちょっとやってみたい？」を20回。今の反応から、まだ言葉にしていない興味の方向を探します。</p>
     <div class="hero-note"><div><b>約3分</b><br>考え込みすぎなくていい</div><div><b>正解なし</b><br>今の気分で選ぶ</div><div><b>診断ではない</b><br>結果は探索の入口</div></div>
     <button class="primary" id="startBtn">興味を探してみる →</button>
+    <div class="test-only test-setup">
+      <strong>USER TEST MODE</strong>
+      <p>このモードでは回答時間などを端末内だけで記録します。個人情報や回答内容は外部送信しません。</p>
+      <label for="participantId">Participant ID</label>
+      <input id="participantId" inputmode="text" autocomplete="off" placeholder="P01">
+    </div>
   </div>
 </section>
 
@@ -85,6 +106,7 @@ h1{font-family:Georgia,"Yu Mincho",serif;font-size:clamp(42px,8vw,76px);line-hei
       <button class="want" data-choice="WANT">WANT<small>やってみたい</small></button>
     </div>
     <div class="undo"><button id="undoBtn">← ひとつ戻る</button></div>
+    <div class="test-only test-status" id="testStatus"></div>
   </div>
 </section>
 
@@ -94,6 +116,30 @@ h1{font-family:Georgia,"Yu Mincho",serif;font-size:clamp(42px,8vw,76px);line-hei
   <div id="ranking" class="ranking"></div>
   <div class="result-copy" id="resultCopy"></div>
   <div class="result-actions"><button class="primary" id="restartBtn">もう一度やる</button><button class="secondary" id="continueBtn">次の深掘りはP1で →</button></div>
+  <section class="test-only tester-panel">
+    <strong>TESTER LOG</strong>
+    <p>自動計測値に、テスト後の観察だけ追記して結果をコピーします。</p>
+    <div class="test-metrics">
+      <div>Duration<b id="metricDuration">—</b></div>
+      <div>Hesitated ≥5s<b id="metricHesitated">—</b></div>
+      <div>Undo<b id="metricUndo">—</b></div>
+      <div>WANT<b id="metricWant">—</b></div>
+      <div>MAYBE<b id="metricMaybe">—</b></div>
+      <div>PASS<b id="metricPass">—</b></div>
+    </div>
+    <label for="resonance">結果への反応</label>
+    <select id="resonance"><option value="">未記録</option><option value="yes">自分っぽい</option><option value="somewhat">少し分かる</option><option value="no">違う</option></select>
+    <label for="deepDive">深掘りしたい領域</label>
+    <input id="deepDive" placeholder="例: Freedom">
+    <label for="diagnosisRead">診断だと思ったか</label>
+    <select id="diagnosisRead"><option value="">未記録</option><option value="no">NO</option><option value="yes">YES</option><option value="unclear">UNCLEAR</option></select>
+    <label for="firstQuote">結果を見た第一声</label>
+    <textarea id="firstQuote" placeholder="要約せず、そのまま"></textarea>
+    <label for="testerNotes">迷った点・不足・次に欲しいもの</label>
+    <textarea id="testerNotes"></textarea>
+    <div class="test-buttons"><button class="copy-primary" id="copyCsvBtn">CSV行をコピー</button><button id="copyJsonBtn">JSONをコピー</button><button id="copyPartialBtn">現在データをコピー</button></div>
+    <div class="copy-state" id="copyState"></div>
+  </section>
   <div class="footer-note">Prototype: localStorageのみ使用。アカウント・本番AI・心理診断・外部送信はありません。</div>
 </section>
 </div>
@@ -122,28 +168,81 @@ const CARDS=[
 {id:"C20",text:"自分の時間を、もっと自分で決められる生活にしたい",cat:"Freedom",tags:["autonomy","time"]}
 ]
 const LABELS={Travel:"旅・移動",Business:"事業・つくる",Freedom:"自由度",Study:"学び・探究",Technology:"技術・道具",Creative:"創作・発信",Living:"暮らし方",Nature:"自然・環境",City:"街・地域",Work:"仕事の自立"};
-let index=0,responses=[];
+const params=new URLSearchParams(location.search);
+const testMode=params.get("test")==="1";
+const pidFromUrl=params.get("pid")||"";
+if(testMode)document.body.classList.add("test-mode");
+if(testMode&&pidFromUrl)document.querySelector("#participantId").value=pidFromUrl;
+let index=0,responses=[],sessionStart=0,sessionEnd=0,cardShownAt=0,undos=0,rankedCache=[];
+function participantId(){return (document.querySelector("#participantId")?.value||pidFromUrl||"").trim()}
+function storageKey(){return testMode?"kidp003.p0.test."+encodeURIComponent(participantId()||"anonymous"):"kidp003.p0.responses"}
 const screens={landing:document.querySelector("#landing"),swipe:document.querySelector("#swipe"),result:document.querySelector("#result")};
 function show(name){Object.values(screens).forEach(x=>x.classList.remove("on"));screens[name].classList.add("on");scrollTo(0,0)}
-function save(){localStorage.setItem("kidp003.p0.responses",JSON.stringify(responses))}
-function load(){try{return JSON.parse(localStorage.getItem("kidp003.p0.responses")||"[]")}catch{return []}}
-function renderCard(){const c=CARDS[index];document.querySelector("#counter").textContent=String(index+1).padStart(2,"0")+" / "+CARDS.length;document.querySelector("#progressBar").style.width=(index/CARDS.length*100)+"%";document.querySelector("#cardCategory").textContent=c.cat.toUpperCase();document.querySelector("#cardText").textContent=c.text;document.querySelector("#undoBtn").disabled=index===0}
-function choose(choice){responses[index]={id:CARDS[index].id,choice};index++;save();if(index>=CARDS.length){renderResult();show("result")}else renderCard()}
+function save(){localStorage.setItem(storageKey(),JSON.stringify({responses,sessionStart,sessionEnd,undos}))}
+function load(){try{const raw=JSON.parse(localStorage.getItem(storageKey())||"null");if(Array.isArray(raw))return {responses:raw,sessionStart:0,sessionEnd:0,undos:0};return raw||{responses:[],sessionStart:0,sessionEnd:0,undos:0}}catch{return {responses:[],sessionStart:0,undos:0}}}
+function renderCard(){const c=CARDS[index];document.querySelector("#counter").textContent=String(index+1).padStart(2,"0")+" / "+CARDS.length;document.querySelector("#progressBar").style.width=(index/CARDS.length*100)+"%";document.querySelector("#cardCategory").textContent=c.cat.toUpperCase();document.querySelector("#cardText").textContent=c.text;document.querySelector("#undoBtn").disabled=index===0;cardShownAt=Date.now();if(testMode)document.querySelector("#testStatus").textContent="TEST "+(participantId()||"UNASSIGNED")+" · "+(index+1)+"/20"}
+function choose(choice){const now=Date.now();responses[index]={id:CARDS[index].id,choice,ms:testMode?Math.max(0,now-cardShownAt):undefined};index++;if(index>=CARDS.length)sessionEnd=now;save();if(index>=CARDS.length){renderResult();show("result")}else renderCard()}
 function renderResult(){
  const score={}; const max={};
  CARDS.forEach(c=>{max[c.cat]=(max[c.cat]||0)+3});
  responses.forEach((r,i)=>{const cat=CARDS[i].cat;score[cat]=(score[cat]||0)+(r.choice==="WANT"?3:r.choice==="MAYBE"?1:0)});
  const ranked=Object.keys(max).map(cat=>({cat,score:score[cat]||0,max:max[cat],pct:Math.round((score[cat]||0)/max[cat]*100)})).sort((a,b)=>b.pct-a.pct||b.score-a.score).slice(0,5);
+ rankedCache=ranked;
  document.querySelector("#ranking").innerHTML=ranked.map((r,i)=>'<div class="rank"><span class="no">'+String(i+1).padStart(2,"0")+'</span><div><strong>'+LABELS[r.cat]+'</strong><small>'+r.cat+'</small><div class="bar"><i style="width:'+r.pct+'%"></i></div></div><span class="signal">'+(r.pct>=67?"STRONG":r.pct>=34?"ACTIVE":"OPEN")+'</span></div>').join("");
  const top=ranked.slice(0,3).map(x=>LABELS[x.cat]);
  document.querySelector("#resultCopy").innerHTML='<p>今の反応では、<strong>'+top.join(" / ")+'</strong>あたりへの関心が強めでした。ここから先は、これらを単独で「向いていること」と決めず、組み合わせて「どんな生活や挑戦なら試してみたいか」を探します。</p>';
  document.querySelector("#progressBar").style.width="100%";
+ if(testMode)renderTestMetrics();
 }
-document.querySelector("#startBtn").onclick=()=>{const saved=load();if(saved.length===CARDS.length){responses=saved;renderResult();show("result");return}responses=[];index=0;save();renderCard();show("swipe")};
+document.querySelector("#startBtn").onclick=()=>{const saved=load();if(saved.responses?.length===CARDS.length){responses=saved.responses;sessionStart=saved.sessionStart||0;sessionEnd=saved.sessionEnd||0;undos=saved.undos||0;renderResult();show("result");return}responses=[];index=0;sessionStart=Date.now();sessionEnd=0;undos=0;save();renderCard();show("swipe")};
 document.querySelectorAll("[data-choice]").forEach(b=>b.onclick=()=>choose(b.dataset.choice));
-document.querySelector("#undoBtn").onclick=()=>{if(index===0)return;index--;responses=responses.slice(0,index);save();renderCard()};
-document.querySelector("#restartBtn").onclick=()=>{responses=[];index=0;localStorage.removeItem("kidp003.p0.responses");renderCard();show("swipe")};
+document.querySelector("#undoBtn").onclick=()=>{if(index===0)return;index--;responses=responses.slice(0,index);if(testMode)undos++;save();renderCard()};
+document.querySelector("#restartBtn").onclick=()=>{responses=[];index=0;sessionStart=Date.now();sessionEnd=0;undos=0;localStorage.removeItem(storageKey());save();renderCard();show("swipe")};
 document.querySelector("#continueBtn").onclick=()=>alert("P1では、上位カテゴリを組み合わせたLife Theme Discoveryを実装します。");
+
+function testPayload(){
+ const counts={WANT:0,MAYBE:0,PASS:0};responses.forEach(r=>counts[r.choice]=(counts[r.choice]||0)+1);
+ const hesitant=responses.filter(r=>(r.ms||0)>=5000).map(r=>r.id);
+ const totalMs=responses.reduce((a,r)=>a+(r.ms||0),0);
+ return {
+  participant_id:participantId(),
+  device:innerWidth<=620?"mobile":innerWidth<=1024?"tablet":"desktop",
+  completed_20:responses.length===20,
+  duration_sec:Math.round((sessionStart?(sessionEnd||Date.now())-sessionStart:totalMs)/1000),
+  want_count:counts.WANT,maybe_count:counts.MAYBE,pass_count:counts.PASS,
+  undo_count:undos,
+  hesitated_cards:hesitant,
+  top5:rankedCache.map(x=>x.cat),
+  response_ms:responses.map(r=>({id:r.id,choice:r.choice,ms:r.ms||null})),
+  result_resonance:document.querySelector("#resonance")?.value||"",
+  deep_dive_category:(document.querySelector("#deepDive")?.value||"").trim(),
+  thought_it_was_diagnosis:document.querySelector("#diagnosisRead")?.value||"",
+  result_first_quote:(document.querySelector("#firstQuote")?.value||"").trim(),
+  tester_notes:(document.querySelector("#testerNotes")?.value||"").trim()
+ };
+}
+function renderTestMetrics(){
+ const p=testPayload();
+ document.querySelector("#metricDuration").textContent=p.duration_sec+"s";
+ document.querySelector("#metricHesitated").textContent=p.hesitated_cards.length;
+ document.querySelector("#metricUndo").textContent=p.undo_count;
+ document.querySelector("#metricWant").textContent=p.want_count;
+ document.querySelector("#metricMaybe").textContent=p.maybe_count;
+ document.querySelector("#metricPass").textContent=p.pass_count;
+}
+function csvCell(v){const s=Array.isArray(v)?v.join("|"):String(v??"");return '"'+s.replaceAll('"','""')+'"'}
+function testCsv(){
+ const p=testPayload();
+ return [p.participant_id,"","",p.device,p.completed_20,p.duration_sec,p.want_count,p.maybe_count,p.pass_count,p.undo_count,p.hesitated_cards,p.result_first_quote,p.result_resonance,p.top5[0]||"",p.top5[1]||"",p.top5[2]||"",p.top5[3]||"",p.top5[4]||"",Boolean(p.deep_dive_category),p.deep_dive_category,p.thought_it_was_diagnosis,"","",p.tester_notes,"",""].map(csvCell).join(",");
+}
+async function copyText(text,label){
+ try{await navigator.clipboard.writeText(text);document.querySelector("#copyState").textContent=label+"をコピーしました。"}
+ catch{document.querySelector("#copyState").textContent="コピーできませんでした。別画面で開いて再試行してください。"}
+}
+document.querySelector("#copyCsvBtn").onclick=()=>copyText(testCsv(),"CSV");
+document.querySelector("#copyJsonBtn").onclick=()=>copyText(JSON.stringify(testPayload(),null,2),"JSON");
+document.querySelector("#copyPartialBtn").onclick=()=>copyText(JSON.stringify(testPayload(),null,2),"現在データ");
+["resonance","deepDive","diagnosisRead","firstQuote","testerNotes"].forEach(id=>document.querySelector("#"+id)?.addEventListener("input",()=>{if(testMode)renderTestMetrics()}));
 </script>
 </body>
 </html>
