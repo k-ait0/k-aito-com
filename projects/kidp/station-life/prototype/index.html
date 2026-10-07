@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta name="description" content="KIDP-004 駅生活圏シミュレーター P0 Concept Prototype">
+<title>駅生活圏シミュレーター — KIDP-004 P0</title>
+<style>
+:root{--ink:#16352d;--muted:#68746e;--paper:#f5f2e8;--card:#fffef9;--line:#d8ddd2;--green:#567846;--soft:#eaf0df;--gold:#a8813d;--red:#a85545;--blue:#587789}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans JP",sans-serif}
+button{font:inherit;color:inherit}.shell{max-width:980px;margin:auto;padding:18px 18px 60px}.top{display:flex;justify-content:space-between;align-items:center;padding:8px 0 18px;border-bottom:1px solid var(--line)}.brand{font-weight:900;letter-spacing:.06em}.brand small{display:block;font-size:8px;letter-spacing:.14em;color:var(--green)}.badge{font-size:9px;font-weight:800;border:1px solid var(--line);border-radius:999px;padding:6px 9px;background:#fff}.screen{display:none}.screen.on{display:block}.hero{padding:58px 0 34px}.eyebrow{font-size:10px;font-weight:900;letter-spacing:.14em;color:var(--green)}h1,h2,h3{font-family:Georgia,"Yu Mincho",serif;font-weight:600}h1{font-size:clamp(38px,7vw,70px);line-height:1.06;letter-spacing:-.04em;margin:9px 0 16px}.lead{max-width:700px;color:var(--muted);line-height:1.9}.notice{margin:22px 0;padding:13px 15px;background:#fff8e8;border-left:3px solid var(--gold);font-size:10px;line-height:1.7;color:#6b5a38}.primary{border:0;background:var(--ink);color:#fff;padding:12px 17px;border-radius:999px;font-weight:800;cursor:pointer}.secondary{border:1px solid var(--line);background:#fff;padding:10px 13px;border-radius:999px;font-size:10px;cursor:pointer}.preset-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:22px 0}.preset{border:1px solid var(--line);background:#fff;padding:18px;border-radius:16px;text-align:left;cursor:pointer}.preset:hover,.preset.on{background:var(--soft);border-color:#b8c89e}.preset small{display:block;font-size:8px;letter-spacing:.12em;color:var(--green)}.preset strong{display:block;font-size:16px;margin:7px 0}.preset span{font-size:10px;line-height:1.6;color:var(--muted)}
+.section{padding:34px 0}.section-head{display:flex;justify-content:space-between;gap:20px;align-items:end;margin-bottom:14px}.section-head h2{font-size:28px;margin:5px 0}.section-head p{max-width:500px;font-size:11px;line-height:1.7;color:var(--muted);margin:0}.area-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.area{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px;display:flex;flex-direction:column}.area.best{border:2px solid var(--green);background:#fbfff6}.area-top{display:flex;justify-content:space-between;gap:10px}.area small{font-size:8px;letter-spacing:.11em;color:var(--muted)}.area h3{font-size:20px;margin:5px 0}.walk{font-family:Georgia,serif;font-size:26px}.walk span{display:block;font-family:inherit;font-size:8px;color:var(--muted);text-align:right}.traits{display:flex;gap:5px;flex-wrap:wrap;margin:10px 0}.trait{font-size:8px;padding:5px 7px;border-radius:99px;background:#f1f3ef;color:#59665e}.friction{margin:14px 0}.friction-head{display:flex;justify-content:space-between;font-size:9px}.friction-head b{font-size:20px;font-family:Georgia,serif}.bar{height:7px;border-radius:99px;background:#e7eae4;overflow:hidden;margin-top:5px}.bar i{display:block;height:100%;border-radius:99px;background:var(--gold)}.area.best .bar i{background:var(--green)}.area p{font-size:10px;line-height:1.65;color:var(--muted)}.area button{margin-top:auto}.best-label{display:none}.area.best .best-label{display:inline-block;font-size:8px;padding:5px 7px;border-radius:99px;background:var(--green);color:white;font-weight:800}
+.timeline{margin-top:14px;background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px}.step{display:grid;grid-template-columns:68px 20px 1fr 72px;gap:10px;align-items:start;padding:12px 0;border-bottom:1px solid var(--line)}.step:last-child{border:0}.time{font-family:Georgia,serif;font-size:18px}.dot{width:10px;height:10px;border-radius:50%;background:var(--green);margin-top:5px;position:relative}.dot:after{content:"";position:absolute;left:4px;top:10px;width:1px;height:44px;background:var(--line)}.step:last-child .dot:after{display:none}.step strong{display:block;font-size:12px}.step p{margin:3px 0 0;font-size:10px;line-height:1.6;color:var(--muted)}.impact{text-align:right;font-size:9px}.impact b{display:block;font-size:14px;color:var(--gold)}.summary{margin:18px 0;padding:20px;background:var(--ink);color:#fff;border-radius:16px}.summary-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.summary-grid small{display:block;font-size:8px;color:#c8d2cd}.summary-grid strong{display:block;font-family:Georgia,serif;font-size:26px}.summary p{font-size:10px;line-height:1.7;color:#d6dfda}.back{border:0;background:none;color:var(--muted);font-size:10px;padding:0;cursor:pointer}.method{font-size:9px;line-height:1.7;color:var(--muted);padding-top:20px;border-top:1px solid var(--line)}
+@media(max-width:720px){.preset-grid,.area-grid{grid-template-columns:1fr}.section-head{display:block}.section-head p{margin-top:6px}.step{grid-template-columns:54px 16px 1fr}.impact{grid-column:3;text-align:left}.summary-grid{grid-template-columns:1fr 1fr}.badge{display:none}}
+</style>
+</head>
+<body><main class="shell">
+<header class="top"><div class="brand">STATION LIFE<small>KIDP-004 · P0</small></div><span class="badge">SYNTHETIC DEMO DATA</span></header>
+
+<section id="landing" class="screen on">
+<div class="hero"><span class="eyebrow">FROM DISTANCE TO DAILY LIFE</span><h1>「駅徒歩8分」だけで、<br>暮らしは想像できる？</h1><p class="lead">駅までの距離が同じでも、スーパーが帰り道にあるか、在宅日に近所で完結するか、夜遅くに使える店があるかで1日は変わります。</p><div class="notice">このP0は架空の3エリアを使ったConcept Prototypeです。実在駅・実店舗・実際の徒歩時間・不動産価値を評価していません。</div><button class="primary" id="startBtn">生活パターンから比べる →</button></div>
+</section>
+
+<section id="compare" class="screen">
+<div class="section"><button class="back" id="homeBtn">← 最初へ</button><div class="section-head"><div><span class="eyebrow">01 · YOUR ROUTINE</span><h2>普段の生活に近いものは？</h2></div><p>同じ街でも、通勤頻度や帰宅時間で「楽な動線」は変わります。</p></div>
+<div class="preset-grid">
+<button class="preset on" data-life="commuter"><small>COMMUTER</small><strong>週5出社</strong><span>平日19時ごろ帰宅。帰宅途中に買い物したい。</span></button>
+<button class="preset" data-life="hybrid"><small>HYBRID</small><strong>週2出社 / 週3在宅</strong><span>家の周辺だけで昼食や日用品を済ませる日が多い。</span></button>
+<button class="preset" data-life="night"><small>NIGHT</small><strong>22時以降の帰宅が多い</strong><span>夜でも寄れる店と駅からの帰路を重視。</span></button>
+</div></div>
+
+<section class="section"><div class="section-head"><div><span class="eyebrow">02 · SAME STATION WALK</span><h2>全部「駅徒歩8分」。</h2></div><p>違うのは、1日の中で施設がどこに並んでいるか。Daily Frictionは選んだLifestyle専用のデモ指標です。</p></div><div id="areaGrid" class="area-grid"></div></section>
+<div class="method">Daily Friction = 追加徒歩 / 迂回 / 営業時間ミスマッチ / 坂・横断 / 自宅周辺完結性を、P0用に合成した架空指標。低いほどそのLifestyleでは動線が素直。総合的な住みやすさ・不動産価値・治安・資産価値を意味しません。</div>
+</section>
+
+<section id="detail" class="screen">
+<div class="section"><button class="back" id="compareBtn">← 3エリア比較へ</button><div class="section-head"><div><span class="eyebrow" id="detailCode">AREA A</span><h2 id="detailName">COMMUTE LINE</h2></div><p id="detailIntro"></p></div><div id="timeline" class="timeline"></div><div class="summary"><div class="summary-grid"><div><small>STATION WALK</small><strong>8 min</strong></div><div><small>DAILY FRICTION</small><strong id="detailFriction">—</strong></div><div><small>EXTRA WALK</small><strong id="detailExtra">—</strong></div></div><p id="detailSummary"></p></div><button class="primary" id="returnCompare">別のエリアを見る</button></div>
+</section>
+</main>
+<script>
+const AREAS={
+ A:{name:"COMMUTE LINE",traits:["駅→家の買い物動線","夜の選択肢多め","休日の公園は遠め"],intro:"通勤帰りの動線を短くするタイプ。駅から家までの途中で日常用事を済ませやすい。"},
+ B:{name:"LOCAL LOOP",traits:["自宅周辺で完結","在宅日に強い","駅まで坂あり"],intro:"家の近くに日常機能が固まるタイプ。在宅日と休日の移動を減らしやすい。"},
+ C:{name:"QUIET EDGE",traits:["公園が近い","静かな住宅側","買い物は駅反対側"],intro:"静かさと屋外時間を取りやすい代わりに、買い物は通勤動線から外れるタイプ。"}
+};
+const MODEL={
+ commuter:{
+  A:{f:22,extra:8,summary:"通勤帰りにスーパーが動線上。平日の寄り道が少なく、このLifestyleでは最も摩擦が小さい。",steps:[["07:40","自宅→駅","8分。そのまま出社。","+0"],["19:10","駅→スーパー","帰宅方向に2分寄る。","+2"],["19:25","スーパー→自宅","帰宅動線へ合流。","+0"],["21:00","ちょっと買い足し","徒歩3分のコンビニ。","+6"]]},
+  B:{f:38,extra:14,summary:"自宅周辺は便利だが、通勤日は坂道と駅からの往復が積み重なる。",steps:[["07:35","自宅→駅","8分＋坂。","+4"],["19:10","駅→自宅","坂を上って帰宅。","+4"],["19:35","近所のスーパー","自宅から徒歩3分。","+6"],["21:00","自宅周辺","日用品は近所で完結。","+0"]]},
+  C:{f:63,extra:22,summary:"駅距離は同じでも、買い物が駅反対側。通勤日の迂回が大きい。",steps:[["07:40","自宅→駅","8分。","+0"],["19:10","駅→スーパー","駅反対側へ5分。","+8"],["19:25","スーパー→自宅","駅を横断して帰宅。","+10"],["21:00","買い足し","夜の選択肢が少なめ。","+4"]]}
+ },
+ hybrid:{
+  A:{f:42,extra:15,summary:"通勤日は楽だが、在宅3日は昼食や日用品で駅側まで出る回数が増える。",steps:[["08:30","在宅開始","自宅。","+0"],["12:20","昼食","駅側へ徒歩6分。","+6"],["18:30","日用品","駅方向へ再度移動。","+6"],["20:00","散歩","公園まで遠め。","+3"]]},
+  B:{f:18,extra:5,summary:"在宅日の昼食・買い物・カフェが自宅周辺で完結。このLifestyleでは最も摩擦が小さい。",steps:[["08:30","在宅開始","自宅。","+0"],["12:20","昼食","徒歩2分。","+2"],["18:30","スーパー","徒歩3分。","+3"],["20:00","カフェ / 散歩","近所で完結。","+0"]]},
+  C:{f:31,extra:9,summary:"静かさと公園は在宅日に相性が良い。買い物だけ少し迂回。",steps:[["08:30","在宅開始","静かな住宅側。","+0"],["12:20","昼食","徒歩4分。","+3"],["18:30","スーパー","駅側へ迂回。","+6"],["20:00","公園","徒歩2分。","+0"]]}
+ },
+ night:{
+  A:{f:16,extra:5,summary:"22時以降でも駅から家までの帰路に選択肢が残る。このLifestyleでは最も摩擦が小さい。",steps:[["08:00","自宅→駅","8分。","+0"],["22:30","駅着","夜営業の店が帰宅方向。","+0"],["22:35","夕食 / 買い物","駅から3分。","+2"],["22:50","店→自宅","帰路上。","+3"]]},
+  B:{f:47,extra:12,summary:"昼間は便利だが、遅い時間は近所の選択肢が減る。坂道も帰宅時の摩擦。",steps:[["08:00","自宅→駅","坂を下る。","+2"],["22:30","駅着","駅前で用事を済ませる必要。","+4"],["22:40","駅→自宅","坂を上る。","+4"],["23:00","買い足し","近所は選択肢少なめ。","+2"]]},
+  C:{f:72,extra:20,summary:"静かな環境は強みだが、夜遅い帰宅では買い物と帰路の選択肢が少ない。",steps:[["08:00","自宅→駅","8分。","+0"],["22:30","駅着","買い物は駅反対側。","+8"],["22:42","駅を横断","帰宅方向へ戻る。","+8"],["23:00","自宅周辺","夜の店は少なめ。","+4"]]}
+ }
+};
+let life="commuter";
+const screens={landing:document.querySelector("#landing"),compare:document.querySelector("#compare"),detail:document.querySelector("#detail")};
+function show(name){Object.values(screens).forEach(x=>x.classList.remove("on"));screens[name].classList.add("on");scrollTo(0,0)}
+function lifeLabel(){return life==="commuter"?"週5出社":life==="hybrid"?"週2出社 / 週3在宅":"22時以降帰宅"}
+function renderAreas(){
+ const vals=MODEL[life],best=Object.keys(vals).sort((a,b)=>vals[a].f-vals[b].f)[0];
+ document.querySelector("#areaGrid").innerHTML=Object.keys(AREAS).map(k=>{const a=AREAS[k],v=vals[k];return '<article class="area '+(k===best?"best":"")+'"><div class="area-top"><div><small>AREA '+k+'</small><h3>'+a.name+'</h3></div><div class="walk">8<span>MIN TO STATION</span></div></div><div><span class="best-label">BEST FOR '+lifeLabel()+'</span></div><div class="traits">'+a.traits.map(t=>'<span class="trait">'+t+'</span>').join("")+'</div><div class="friction"><div class="friction-head"><span>DAILY FRICTION</span><b>'+v.f+'</b></div><div class="bar"><i style="width:'+Math.min(v.f,100)+'%"></i></div></div><p>'+v.summary+'</p><button class="secondary" onclick="openArea(\''+k+'\')">1日を見る →</button></article>'}).join("");
+}
+function openArea(k){const a=AREAS[k],v=MODEL[life][k];document.querySelector("#detailCode").textContent="AREA "+k+" · "+lifeLabel();document.querySelector("#detailName").textContent=a.name;document.querySelector("#detailIntro").textContent=a.intro;document.querySelector("#detailFriction").textContent=v.f;document.querySelector("#detailExtra").textContent="+"+v.extra+"m";document.querySelector("#detailSummary").textContent=v.summary;document.querySelector("#timeline").innerHTML=v.steps.map(s=>'<div class="step"><span class="time">'+s[0]+'</span><i class="dot"></i><div><strong>'+s[1]+'</strong><p>'+s[2]+'</p></div><span class="impact"><b>'+s[3]+'</b>EXTRA</span></div>').join("");show("detail")}
+document.querySelector("#startBtn").onclick=()=>{renderAreas();show("compare")};
+document.querySelector("#homeBtn").onclick=()=>show("landing");
+document.querySelector("#compareBtn").onclick=()=>show("compare");
+document.querySelector("#returnCompare").onclick=()=>show("compare");
+document.querySelectorAll("[data-life]").forEach(b=>b.onclick=()=>{life=b.dataset.life;document.querySelectorAll("[data-life]").forEach(x=>x.classList.toggle("on",x===b));renderAreas()});
+</script>
+</body></html>
