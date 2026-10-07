@@ -1,6 +1,6 @@
 "use strict";
-/* Regression: a third article should appear in the sitemap and both static
-   fallback lists, with content cache invalidation and repeatable output. */
+/* Regression: adding one article to the current catalogue should update the sitemap
+   and both static fallback lists, with content cache invalidation and repeatable output. */
 const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const os = require("node:os");
@@ -20,6 +20,7 @@ try {
     "archive/index.html", "index.html",
     "notes/nuclear-industrial-carrier/index.html",
     "notes/site-launch-trouble/index.html",
+    "notes/kidp-002-whynot/index.html",
     "scripts/sync-published-content.cjs"
   ]) copy(name);
   let index = fs.readFileSync(path.join(temp, "content-index.js"), "utf8");
@@ -37,7 +38,7 @@ try {
     [path.join(temp,"scripts/sync-published-content.cjs")],
     {cwd:temp,encoding:"utf8"});
   const first=run();
-  assert.match(first,/3 canonical articles/);
+  assert.match(first,/4 canonical articles/);
   const sitemap=fs.readFileSync(path.join(temp,"sitemap.xml"),"utf8");
   const storage=fs.readFileSync(path.join(temp,"storage/index.html"),"utf8");
   const archive=fs.readFileSync(path.join(temp,"archive/index.html"),"utf8");
@@ -52,7 +53,7 @@ try {
   assert.match(home,/content-index\.js\?v=[a-f0-9]{12}/);
   const second=run();
   assert.ok(!second.includes("UPDATED "), "Generator is not idempotent");
-  console.log("PASS: third article -> sitemap, HTML fallbacks and cache; rerun unchanged");
+  console.log("PASS: added article -> sitemap, HTML fallbacks and cache; rerun unchanged");
 }finally{
   fs.rmSync(temp,{recursive:true,force:true});
 }
