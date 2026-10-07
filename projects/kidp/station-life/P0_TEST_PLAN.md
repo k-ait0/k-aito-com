@@ -77,3 +77,31 @@ M4 >= 30%
 ### STOP
 M3 < 40%
 → 物件探索の意思決定補助としての価値が弱い。
+
+
+## Instrumented test mode
+
+Use:
+`/projects/kidp/station-life/prototype/?test=1&pid=P01`
+
+Change P01 for each participant.
+
+Automatically recorded on-device:
+- current Lifestyle
+- Lifestyle change count
+- viewed Areas
+
+Tester records after exploration:
+- M1 problem understanding
+- M2 Lifestyle sensitivity
+- M3 real-use intent
+- M4 score misread
+- chosen Area
+- first quote
+- missing data
+- confusing points
+
+Press "CSV行をコピー" and paste one row per participant under
+`P0_TEST_LOG_TEMPLATE.csv`.
+
+No test data is transmitted externally.
