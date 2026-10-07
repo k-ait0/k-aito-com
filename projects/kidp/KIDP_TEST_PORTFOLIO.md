@@ -45,19 +45,18 @@ Next action:
 P01〜P05で初回判定。
 
 ### #3 — KIDP-002 WHYNOT
-Lane: PREP NEXT
+Lane: RUN NEXT
 Participants: 5–10
 Mode: Remote / facilitated
-Tooling: Prototype READY / Test instrumentation NOT YET STANDARDIZED
+Tooling: Instrumented + Test Review READY
 
 Why now:
 - Problem DBは今後のBuild Queue供給源になり、KIDP全体への波及が大きい。
-- ただし003〜006と同等の計測・Review Toolがまだ揃っていない。
-- 先にTest Harnessを標準化してから実ユーザーへ出す。
+- 003〜006と同形式の計測・Review Toolへ標準化済み。
+- Problem DBがKIDP全体のBuild Queue供給源として機能するかを次に確認する。
 
 Next action:
-Test mode + Review Toolを追加。
-その後「3件以上見る / SAMEを押す / 自分のProblemを投稿したい」を検証。
+P01〜P05で「3件以上見る / SAMEを押す / 自分のProblemを投稿したい」を検証。
 
 ### #4 — KIDP-006 空きビル変身シミュレーター
 Lane: RECRUIT MIX
@@ -159,7 +158,7 @@ v0.4のゲームメカニクスを実測で壊す。
 |---|---|---|---|---|---|
 | 004 | 駅生活圏 | RUN NOW | YES | Low | P01–P05 |
 | 003 | LIFE DESIGN LAB | RUN NOW | YES | Low | P01–P05 |
-| 002 | WHYNOT | PREP NEXT | PARTIAL | Low | Add test harness |
+| 002 | WHYNOT | RUN NEXT | YES | Low | P01–P05 |
 | 006 | 空きビル変身 | RECRUIT MIX | YES | Medium | Recruit domain mix |
 | 005 | Board Game Balancer | RECRUIT MIX | YES | Medium | Recruit game mix |
 | 001 | Project GIVE | SCHEDULE PHYSICAL | YES | High | Book 4-player session |

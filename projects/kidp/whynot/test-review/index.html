@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta name="description" content="KIDP-002 WHYNOT P0 user test review tool">
+<title>KIDP-002 WHYNOT — P0 Test Review</title>
+<style>
+:root{--ink:#10233d;--muted:#667085;--green:#1e6757;--soft:#eaf4ef;--paper:#fbfaf7;--line:#e4e7ec;--gold:#a36a16;--red:#a64b43}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans JP",sans-serif}
+button,textarea{font:inherit}.shell{max-width:980px;margin:auto;padding:20px 18px 60px}.top{display:flex;justify-content:space-between;padding:8px 0 18px;border-bottom:1px solid var(--line)}
+.brand{font-weight:900;letter-spacing:.06em}.brand small{display:block;font-size:8px;color:var(--green)}.badge{font-size:9px;border:1px solid var(--line);background:#fff;border-radius:99px;padding:6px 9px}
+.hero{padding:44px 0 20px}.eyebrow{font-size:10px;font-weight:900;color:var(--green);letter-spacing:.13em}
+h1,h2{font-family:Georgia,"Yu Mincho",serif;font-weight:600}h1{font-size:clamp(36px,6vw,62px);line-height:1.08;margin:7px 0 14px}
+.lead{color:var(--muted);line-height:1.8;max-width:720px}.panel{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px;margin-top:16px}.panel h2{margin:5px 0 13px}
+.urls{display:grid;grid-template-columns:1fr 1fr;gap:7px}.url-row{display:grid;grid-template-columns:42px 1fr auto;gap:7px;align-items:center;border:1px solid var(--line);padding:8px;border-radius:9px}
+.url-row code{font-size:9px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--muted)}.mini,.primary{border:1px solid var(--line);background:#fff;padding:8px 10px;border-radius:9px;font-size:10px;cursor:pointer}
+.primary{background:var(--ink);color:#fff;border-color:var(--ink);font-weight:800}.actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}
+textarea{width:100%;min-height:210px;border:1px solid var(--line);border-radius:9px;padding:10px;font:10px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace}
+.status{font-size:9px;color:var(--muted);min-height:1.4em;margin-top:7px}.metrics{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.metric{border:1px solid var(--line);background:#fff;padding:13px;border-radius:11px}.metric small{display:block;font-size:8px;color:var(--muted)}.metric strong{display:block;font-family:Georgia,serif;font-size:27px}
+.decision{margin-top:15px;padding:17px;border-left:5px solid var(--gold);background:#fff8e8}.decision.go{border-color:var(--green);background:var(--soft)}.decision.stop{border-color:var(--red);background:#fff0ed}
+.decision b{font-size:10px;letter-spacing:.1em}.decision strong{display:block;font-family:Georgia,serif;font-size:28px;margin:5px 0}.decision p{font-size:10px;line-height:1.7;color:var(--muted)}
+table{width:100%;border-collapse:collapse;font-size:10px;margin-top:12px}th,td{text-align:left;padding:8px;border-bottom:1px solid var(--line)}.pass{color:var(--green);font-weight:900}.fail{color:var(--red);font-weight:900}
+.note{font-size:10px;color:var(--muted);line-height:1.7}@media(max-width:720px){.urls{grid-template-columns:1fr}.metrics{grid-template-columns:1fr 1fr}.badge{display:none}}
+</style>
+</head>
+<body><main class="shell">
+<header class="top"><div class="brand">WHYNOT<small>KIDP-002 · P0 USER TEST</small></div><span class="badge">FACILITATOR TOOL · NOINDEX</span></header>
+<section class="hero"><span class="eyebrow">TEST REVIEW</span><h1>Problemを、<br>もっと見たくなるか。</h1><p class="lead">閲覧深度・SAME・投稿Activation・Problem-first理解・Like誤読を、事前固定したGateで判定します。</p></section>
+<section class="panel"><span class="eyebrow">01 · LINKS</span><h2>テストURL</h2><div id="urls" class="urls"></div><div class="actions"><button id="copyAll" class="primary">P01〜P10をまとめてコピー</button></div><div id="urlStatus" class="status"></div></section>
+<section class="panel"><span class="eyebrow">02 · LOG</span><h2>CSVを貼る</h2><textarea id="csvInput" placeholder="participant_id,device,..."></textarea><div class="actions"><button id="analyze" class="primary">集計する</button><button id="sample" class="mini">5人サンプル</button></div><div id="parseStatus" class="status"></div></section>
+<section id="results" class="panel" hidden><span class="eyebrow">03 · DECISION</span><h2>P0判定</h2><div class="metrics">
+<div class="metric"><small>PARTICIPANTS</small><strong id="n">0</strong></div><div class="metric"><small>M1 BROWSE 3+</small><strong id="m1">—</strong></div><div class="metric"><small>M2 SAME</small><strong id="m2">—</strong></div><div class="metric"><small>M3 SUBMIT</small><strong id="m3">—</strong></div><div class="metric"><small>M4 PROBLEM-FIRST</small><strong id="m4">—</strong></div><div class="metric"><small>M5 LIKE MISREAD</small><strong id="m5">—</strong></div>
+</div><div id="decision" class="decision"><b>DECISION</b><strong>—</strong><p>CSVを集計してください。</p></div>
+<table><thead><tr><th>Metric</th><th>Actual</th><th>Threshold</th><th>Status</th></tr></thead><tbody id="rows"></tbody></table>
+<div class="actions"><button id="copySummary" class="primary">TEST_SUMMARY.mdをコピー</button><button id="copyJson" class="mini">JSONをコピー</button></div><div id="sumStatus" class="status"></div></section>
+<section class="panel"><span class="eyebrow">RULE</span><h2>判定順序</h2><p class="note">MORE DATA → STOP → POSITIONING → SAME → DISCOVERY → SUBMIT → P1 GO → HOLD。Sample dataは動作確認専用で、実ユーザー結果として扱いません。</p></section>
+</main>
+<script>
+const HEADER=["participant_id","device","problem_first_understood","wants_submit","same_like_misread","first_quote","confusing","missing","verbatim_quote","problems_viewed","same_clicks","submit_opened","draft_chars","structure_clicked","explore_opened","build_opened","final_page"];
+const base=location.origin+"/projects/kidp/whynot/prototype/?test=1&pid=",urls=document.querySelector("#urls");
+for(let i=1;i<=10;i++){const participant="P"+String(i).padStart(2,"0"),url=base+participant,row=document.createElement("div");row.className="url-row";row.innerHTML="<b>"+participant+"</b><code>"+url+"</code><button class='mini'>COPY</button>";row.querySelector("button").onclick=()=>copy(url,document.querySelector("#urlStatus"),participant+" URL");urls.append(row)}
+function allUrls(){return Array.from({length:10},(_,i)=>{const p="P"+String(i+1).padStart(2,"0");return p+"\t"+base+p}).join("\n")}
+async function copy(t,el,label){try{await navigator.clipboard.writeText(t);el.textContent=label+"をコピーしました。"}catch{el.textContent="コピーできませんでした。"}}
+document.querySelector("#copyAll").onclick=()=>copy(allUrls(),document.querySelector("#urlStatus"),"10件のURL");
+function parseCSV(text){const rows=[];let row=[],cell="",q=false;for(let i=0;i<text.length;i++){const ch=text[i];if(q){if(ch==='"'&&text[i+1]==='"'){cell+='"';i++}else if(ch==='"')q=false;else cell+=ch}else{if(ch==='"')q=true;else if(ch===','){row.push(cell);cell=""}else if(ch==='\n'){row.push(cell);rows.push(row);row=[];cell=""}else if(ch!=='\r')cell+=ch}}if(cell.length||row.length){row.push(cell);rows.push(row)}return rows.filter(r=>r.some(v=>v.trim()!==""))}
+function yes(v){return (v||"").trim().toLowerCase()==="yes"}function pct(n,d){return d?Math.round(n/d*100):0}
+function viewedCount(v){try{const x=JSON.parse(v||"[]");return Array.isArray(x)?x.length:0}catch{return 0}}
+function analyse(text){const rows=parseCSV(text);if(!rows.length)throw Error("CSVが空です。");const header=rows[0].map(x=>x.trim()),miss=HEADER.filter(h=>!header.includes(h));if(miss.length)throw Error("不足列: "+miss.join(", "));const data=rows.slice(1).map(r=>Object.fromEntries(header.map((h,i)=>[h,(r[i]||"").trim()]))).filter(x=>x.participant_id);if(!data.length)throw Error("参加者データがありません。");const n=data.length,m1=pct(data.filter(x=>viewedCount(x.problems_viewed)>=3).length,n),m2=pct(data.filter(x=>Number(x.same_clicks)>=1).length,n),m3=pct(data.filter(x=>Number(x.draft_chars)>=5||yes(x.wants_submit)).length,n),m4=pct(data.filter(x=>yes(x.problem_first_understood)).length,n),m5=pct(data.filter(x=>yes(x.same_like_misread)).length,n);let decision,reason,kind="";if(n<5){decision="MORE DATA";reason="初回判定には最低5人必要です。"}else if(m1<40&&m3<40){decision="STOP";reason="Problem探索と投稿Activationの両方が弱い。";kind="stop"}else if(m4<80){decision="POSITIONING REDESIGN";reason="Problem-firstの位置づけが十分伝わっていない。"}else if(m2<60||m5>=30){decision="SAME REDESIGN";reason="SAMEが押されない、またはLike/人気投票として誤読されている。"}else if(m1<70){decision="DISCOVERY REDESIGN";reason="Problemを3件以上見たくなる探索動機が弱い。"}else if(m3<60){decision="SUBMIT REDESIGN";reason="閲覧から自分のProblem投稿へつながっていない。"}else if(m1>=70&&m2>=60&&m3>=60&&m4>=80&&m5<30){decision="P1 GO";reason="P0条件を満たした。Problem Signal / Submit persistence / Build Queue connectionへ進む。";kind="go"}else{decision="HOLD / MIXED SIGNAL";reason="追加データを集める。"}return{n,m1,m2,m3,m4,m5,decision,reason,kind,data}}
+let current=null;
+function render(a){current=a;document.querySelector("#results").hidden=false;document.querySelector("#n").textContent=a.n;["m1","m2","m3","m4","m5"].forEach(k=>document.querySelector("#"+k).textContent=a[k]+"%");const box=document.querySelector("#decision");box.className="decision "+a.kind;box.querySelector("strong").textContent=a.decision;box.querySelector("p").textContent=a.reason;const checks=[["M1 Browse 3+",a.m1+"%","≥ 70%",a.m1>=70],["M2 SAME",a.m2+"%","≥ 60%",a.m2>=60],["M3 Submit",a.m3+"%","≥ 60%",a.m3>=60],["M4 Problem-first",a.m4+"%","≥ 80%",a.m4>=80],["M5 Like misread",a.m5+"%","< 30%",a.m5<30]];document.querySelector("#rows").innerHTML=checks.map(x=>"<tr><td>"+x[0]+"</td><td>"+x[1]+"</td><td>"+x[2]+"</td><td class='"+(x[3]?"pass":"fail")+"'>"+(x[3]?"PASS":"FAIL")+"</td></tr>").join("")}
+document.querySelector("#analyze").onclick=()=>{try{const a=analyse(document.querySelector("#csvInput").value);render(a);document.querySelector("#parseStatus").textContent=a.n+"人を集計しました。"}catch(e){document.querySelector("#parseStatus").textContent=e.message}}
+function summary(a){return "# KIDP-002 WHYNOT — P0 TEST SUMMARY\n\nParticipants: "+a.n+"\n\n## Metrics\n- M1 Browse 3+: "+a.m1+"%\n- M2 SAME action: "+a.m2+"%\n- M3 Submit activation: "+a.m3+"%\n- M4 Problem-first understanding: "+a.m4+"%\n- M5 Like misread: "+a.m5+"%\n\n## Decision\n**"+a.decision+"**\n\n"+a.reason+"\n"}
+document.querySelector("#copySummary").onclick=()=>current&&copy(summary(current),document.querySelector("#sumStatus"),"TEST_SUMMARY.md");document.querySelector("#copyJson").onclick=()=>current&&copy(JSON.stringify({...current,data:undefined},null,2),document.querySelector("#sumStatus"),"JSON");
+const sampleHeader=HEADER.join(",");
+const sampleRows=[
+["P01","mobile","yes","yes","no","","","","",'["P002","P003","P006"]',1,"true",12,"true","true","false","submit"],
+["P02","desktop","yes","yes","no","","","","",'["P003","P004","P012"]',1,"true",0,"false","true","false","submit"],
+["P03","mobile","yes","yes","no","","","","",'["P002","P005","P010"]',2,"true",8,"false","true","false","submit"],
+["P04","desktop","yes","yes","no","","","","",'["P004","P008","P016"]',1,"true",5,"false","true","true","build"],
+["P05","mobile","yes","yes","no","","","","",'["P006","P007","P014","P020"]',1,"true",9,"true","true","false","submit"]
+].map(r=>r.map(v=>'"'+String(v).replaceAll('"','""')+'"').join(",")).join("\n");
+document.querySelector("#sample").onclick=()=>{document.querySelector("#csvInput").value=sampleHeader+"\n"+sampleRows;document.querySelector("#parseStatus").textContent="5人サンプルを読み込みました。"};
+</script></body></html>
