@@ -135,7 +135,13 @@ h1{font-family:Georgia,"Yu Mincho",serif;font-size:clamp(42px,8vw,76px);line-hei
     <select id="diagnosisRead"><option value="">未記録</option><option value="no">NO</option><option value="yes">YES</option><option value="unclear">UNCLEAR</option></select>
     <label for="firstQuote">結果を見た第一声</label>
     <textarea id="firstQuote" placeholder="要約せず、そのまま"></textarea>
-    <label for="testerNotes">迷った点・不足・次に欲しいもの</label>
+    <label for="unclearCards">分かりにくかったカードID</label>
+    <input id="unclearCards" placeholder="例: C03|C09">
+    <label for="missingCards">足りないと思ったカード・テーマ</label>
+    <textarea id="missingCards"></textarea>
+    <label for="whatNext">次に出てくると面白そうなもの</label>
+    <textarea id="whatNext"></textarea>
+    <label for="testerNotes">その他のTester Notes</label>
     <textarea id="testerNotes"></textarea>
     <div class="test-buttons"><button class="copy-primary" id="copyCsvBtn">CSV行をコピー</button><button id="copyJsonBtn">JSONをコピー</button><button id="copyPartialBtn">現在データをコピー</button></div>
     <div class="copy-state" id="copyState"></div>
@@ -218,7 +224,11 @@ function testPayload(){
   deep_dive_category:(document.querySelector("#deepDive")?.value||"").trim(),
   thought_it_was_diagnosis:document.querySelector("#diagnosisRead")?.value||"",
   result_first_quote:(document.querySelector("#firstQuote")?.value||"").trim(),
-  tester_notes:(document.querySelector("#testerNotes")?.value||"").trim()
+  unclear_cards:(document.querySelector("#unclearCards")?.value||"").trim(),
+  missing_cards:(document.querySelector("#missingCards")?.value||"").trim(),
+  tester_notes:(document.querySelector("#testerNotes")?.value||"").trim(),
+  what_next:(document.querySelector("#whatNext")?.value||"").trim(),
+  verbatim_quote:(document.querySelector("#firstQuote")?.value||"").trim()
  };
 }
 function renderTestMetrics(){
@@ -233,7 +243,7 @@ function renderTestMetrics(){
 function csvCell(v){const s=Array.isArray(v)?v.join("|"):String(v??"");return '"'+s.replaceAll('"','""')+'"'}
 function testCsv(){
  const p=testPayload();
- return [p.participant_id,"","",p.device,p.completed_20,p.duration_sec,p.want_count,p.maybe_count,p.pass_count,p.undo_count,p.hesitated_cards,p.result_first_quote,p.result_resonance,p.top5[0]||"",p.top5[1]||"",p.top5[2]||"",p.top5[3]||"",p.top5[4]||"",Boolean(p.deep_dive_category),p.deep_dive_category,p.thought_it_was_diagnosis,"","",p.tester_notes,"",""].map(csvCell).join(",");
+ return [p.participant_id,"","",p.device,p.completed_20,p.duration_sec,p.want_count,p.maybe_count,p.pass_count,p.undo_count,p.hesitated_cards,p.result_first_quote,p.result_resonance,p.top5[0]||"",p.top5[1]||"",p.top5[2]||"",p.top5[3]||"",p.top5[4]||"",Boolean(p.deep_dive_category),p.deep_dive_category,p.thought_it_was_diagnosis,p.unclear_cards,p.missing_cards,p.tester_notes,p.what_next,p.verbatim_quote].map(csvCell).join(",");
 }
 async function copyText(text,label){
  try{await navigator.clipboard.writeText(text);document.querySelector("#copyState").textContent=label+"をコピーしました。"}
@@ -242,7 +252,7 @@ async function copyText(text,label){
 document.querySelector("#copyCsvBtn").onclick=()=>copyText(testCsv(),"CSV");
 document.querySelector("#copyJsonBtn").onclick=()=>copyText(JSON.stringify(testPayload(),null,2),"JSON");
 document.querySelector("#copyPartialBtn").onclick=()=>copyText(JSON.stringify(testPayload(),null,2),"現在データ");
-["resonance","deepDive","diagnosisRead","firstQuote","testerNotes"].forEach(id=>document.querySelector("#"+id)?.addEventListener("input",()=>{if(testMode)renderTestMetrics()}));
+["resonance","deepDive","diagnosisRead","firstQuote","unclearCards","missingCards","whatNext","testerNotes"].forEach(id=>document.querySelector("#"+id)?.addEventListener("input",()=>{if(testMode)renderTestMetrics()}));
 </script>
 </body>
 </html>
