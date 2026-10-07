@@ -30,7 +30,20 @@ Mandala、Mind Mapは作らない。
 ## Initial cards
 
 20 cards.
-カテゴリを偏らせず、仕事・事業・旅・暮らし・自由・学び・創作・技術・自然・地域などを横断する。
+P0では10カテゴリ×2枚に均等化する。
+
+- Travel
+- Business
+- Freedom
+- Study
+- Technology
+- Creative
+- Living
+- Nature
+- City
+- Work
+
+1枚だけの反応で特定カテゴリが100%になることを避け、Interest Mapの比較条件を揃える。
 
 ## Result
 
