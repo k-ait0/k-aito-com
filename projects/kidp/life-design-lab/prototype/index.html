@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta name="description" content="KIDP-003 LIFE DESIGN LAB P0 Concept Prototype">
+<title>LIFE DESIGN LAB — KIDP-003 P0</title>
+<style>
+:root{--ink:#17342b;--muted:#68736c;--paper:#f5f2e8;--card:#fffdf7;--line:#d8ddd2;--leaf:#6f8e45;--leaf-soft:#e8efd5;--gold:#b38a42;--dark:#18372d}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans JP",sans-serif;min-height:100vh}
+button{font:inherit;color:inherit}
+.shell{max-width:860px;margin:auto;padding:18px 18px 48px}
+.top{display:flex;align-items:center;justify-content:space-between;padding:8px 0 18px;border-bottom:1px solid var(--line)}
+.brand{font-weight:900;letter-spacing:.08em}.brand small{display:block;font-size:8px;letter-spacing:.15em;color:var(--leaf)}
+.badge{font-size:9px;font-weight:800;letter-spacing:.1em;padding:6px 9px;border:1px solid var(--line);border-radius:999px;background:#fff}
+.screen{display:none}.screen.on{display:block}
+.hero{padding:62px 0 34px}
+.eyebrow{font-size:10px;font-weight:900;letter-spacing:.14em;color:var(--leaf)}
+h1{font-family:Georgia,"Yu Mincho",serif;font-size:clamp(42px,8vw,76px);line-height:1.04;letter-spacing:-.045em;margin:10px 0 18px;font-weight:600}
+.lead{font-size:16px;line-height:1.9;color:var(--muted);max-width:650px}
+.hero-note{margin-top:26px;display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.hero-note div{padding:14px;border:1px solid var(--line);background:#fff;font-size:11px;line-height:1.55}
+.primary{border:0;background:var(--dark);color:#fff;padding:13px 18px;border-radius:999px;font-weight:800;letter-spacing:.03em;margin-top:26px;cursor:pointer}
+.secondary{border:1px solid var(--line);background:#fff;padding:10px 14px;border-radius:999px;font-size:11px;cursor:pointer}
+.swipe-wrap{padding:34px 0 10px}
+.progress-row{display:flex;justify-content:space-between;gap:20px;align-items:end;margin-bottom:12px}
+.progress-row strong{font-family:Georgia,serif;font-size:24px}
+.progress-row span{font-size:10px;color:var(--muted)}
+.progress{height:7px;background:#e4e7df;border-radius:999px;overflow:hidden}.progress i{display:block;height:100%;background:var(--leaf);width:0;transition:width .25s}
+.choice-card{min-height:360px;padding:42px 36px;background:var(--card);border:1px solid var(--line);border-radius:24px;box-shadow:0 14px 40px #24372a12;display:flex;flex-direction:column;justify-content:space-between}
+.choice-card small{font-size:9px;letter-spacing:.13em;color:var(--muted)}
+.choice-card h2{font-family:Georgia,"Yu Mincho",serif;font-size:clamp(29px,5vw,46px);line-height:1.4;margin:24px 0}
+.choice-card p{color:var(--muted);font-size:12px;line-height:1.7}
+.actions{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}
+.actions button{border:1px solid var(--line);background:#fff;padding:16px 8px;border-radius:15px;cursor:pointer;font-weight:900}
+.actions button small{display:block;font-size:8px;font-weight:600;color:var(--muted);margin-top:3px}
+.actions .want{background:var(--dark);border-color:var(--dark);color:#fff}.actions .want small{color:#d8e3dd}
+.actions .maybe{background:var(--leaf-soft);border-color:#cfdbb2}
+.undo{display:flex;justify-content:center;margin-top:12px}.undo button{border:0;background:none;color:var(--muted);font-size:10px;cursor:pointer}
+.result-head{padding:48px 0 22px}
+.result-head h1{font-size:clamp(38px,7vw,64px)}
+.result-note{padding:14px 16px;border-left:3px solid var(--gold);background:#fff8e8;color:#6d5a34;font-size:11px;line-height:1.7;margin:18px 0 28px}
+.ranking{display:grid;gap:10px}
+.rank{display:grid;grid-template-columns:42px 1fr 70px;gap:12px;align-items:center;background:#fff;border:1px solid var(--line);padding:15px;border-radius:16px}
+.rank .no{font-family:Georgia,serif;font-size:24px;color:#a0aa9f}
+.rank strong{display:block;font-size:15px}.rank small{display:block;font-size:10px;color:var(--muted);margin-top:2px}
+.bar{height:8px;background:#e7eae3;border-radius:99px;overflow:hidden;margin-top:7px}.bar i{display:block;height:100%;background:var(--leaf);border-radius:99px}
+.rank .signal{text-align:right;font-size:10px;font-weight:900;color:var(--leaf)}
+.result-copy{margin:26px 0;padding:22px;background:var(--dark);color:#fff;border-radius:18px}
+.result-copy p{margin:0;color:#d6e0db;line-height:1.8;font-size:13px}.result-copy strong{color:#fff}
+.result-actions{display:flex;gap:8px;flex-wrap:wrap}
+.footer-note{margin-top:32px;padding-top:18px;border-top:1px solid var(--line);font-size:9px;color:var(--muted);line-height:1.7}
+@media(max-width:620px){
+ .shell{padding:14px 14px 36px}.hero{padding-top:42px}.hero-note{grid-template-columns:1fr}.choice-card{min-height:410px;padding:34px 24px}.actions{gap:7px}.actions button{padding:14px 4px;font-size:12px}.rank{grid-template-columns:34px 1fr 54px;padding:13px}.badge{display:none}
+}
+</style>
+</head>
+<body>
+<div class="shell">
+<header class="top"><div class="brand">LIFE DESIGN LAB<small>KIDP-003 · P0</small></div><span class="badge">CONCEPT PROTOTYPE</span></header>
+
+<section id="landing" class="screen on">
+  <div class="hero">
+    <span class="eyebrow">START FROM SMALL INTERESTS</span>
+    <h1>人生の目標を、<br>最初から決めなくていい。</h1>
+    <p class="lead">「これ、ちょっとやってみたい？」を20回。今の反応から、まだ言葉にしていない興味の方向を探します。</p>
+    <div class="hero-note"><div><b>約3分</b><br>考え込みすぎなくていい</div><div><b>正解なし</b><br>今の気分で選ぶ</div><div><b>診断ではない</b><br>結果は探索の入口</div></div>
+    <button class="primary" id="startBtn">興味を探してみる →</button>
+  </div>
+</section>
+
+<section id="swipe" class="screen">
+  <div class="swipe-wrap">
+    <div class="progress-row"><strong id="counter">01 / 20</strong><span>WANT / MAYBE / PASS</span></div>
+    <div class="progress"><i id="progressBar"></i></div>
+    <article class="choice-card">
+      <div><small id="cardCategory">LIVING</small><h2 id="cardText"></h2></div>
+      <p>深く考えず、「今ちょっと惹かれるか」で選んでください。</p>
+    </article>
+    <div class="actions">
+      <button data-choice="PASS">PASS<small>今は違う</small></button>
+      <button class="maybe" data-choice="MAYBE">MAYBE<small>少し気になる</small></button>
+      <button class="want" data-choice="WANT">WANT<small>やってみたい</small></button>
+    </div>
+    <div class="undo"><button id="undoBtn">← ひとつ戻る</button></div>
+  </div>
+</section>
+
+<section id="result" class="screen">
+  <div class="result-head"><span class="eyebrow">INTEREST MAP</span><h1>今、反応が強かった方向。</h1><p class="lead">これは性格や適性の判定ではありません。20枚への反応を、次に掘るための材料として並べています。</p></div>
+  <div class="result-note">「Travelが高い＝旅行業界向き」のような意味ではありません。複数の興味を組み合わせるTheme Discoveryは次のP1で検証します。</div>
+  <div id="ranking" class="ranking"></div>
+  <div class="result-copy" id="resultCopy"></div>
+  <div class="result-actions"><button class="primary" id="restartBtn">もう一度やる</button><button class="secondary" id="continueBtn">次の深掘りはP1で →</button></div>
+  <div class="footer-note">Prototype: localStorageのみ使用。アカウント・本番AI・心理診断・外部送信はありません。</div>
+</section>
+</div>
+
+<script>
+const CARDS=[
+{id:"C01",text:"一度は海外で1か月くらい暮らしてみたい",cat:"Travel",tags:["mobility","experience"]},
+{id:"C02",text:"自分の小さな店やサービスを持ってみたい",cat:"Business",tags:["ownership","making"]},
+{id:"C03",text:"毎日同じ場所に通わなくても働ける生活に惹かれる",cat:"Freedom",tags:["workstyle","mobility"]},
+{id:"C04",text:"何か一つ、専門家と言えるくらい深く学びたい",cat:"Study",tags:["expertise","learning"]},
+{id:"C05",text:"便利なアプリや仕組みを自分で作ってみたい",cat:"Technology",tags:["building","systems"]},
+{id:"C06",text:"文章・絵・音楽など、自分の作品を残したい",cat:"Creative",tags:["expression","making"]},
+{id:"C07",text:"都市と地方の二拠点で暮らしてみたい",cat:"Living",tags:["multibase","mobility"]},
+{id:"C08",text:"自然の近くで、静かな時間を増やしたい",cat:"Nature",tags:["pace","environment"]},
+{id:"C09",text:"知らない街を歩いて、その土地の日常を知りたい",cat:"City",tags:["exploration","local"]},
+{id:"C10",text:"自分の知識や経験で、誰かの役に立つ仕事をしたい",cat:"Contribution",tags:["helping","work"]},
+{id:"C11",text:"会社に依存しない収入源を一つ持ってみたい",cat:"Money",tags:["independence","business"]},
+{id:"C12",text:"週に何度か、体を動かすことを生活の中心に置きたい",cat:"Health",tags:["routine","body"]},
+{id:"C13",text:"気になるテーマを研究するように掘り続けたい",cat:"Study",tags:["research","curiosity"]},
+{id:"C14",text:"少人数でも、自分でチームを作って何か進めたい",cat:"Business",tags:["team","leadership"]},
+{id:"C15",text:"新しい道具やAIを試して、できることを増やしたい",cat:"Technology",tags:["tools","learning"]},
+{id:"C16",text:"季節ごとに住む場所や過ごし方を変えてみたい",cat:"Freedom",tags:["seasonal","living"]},
+{id:"C17",text:"地元や好きな街に、長く残るものを作りたい",cat:"Community",tags:["local","legacy"]},
+{id:"C18",text:"行ったことのない場所へ、目的を決めずに出かけたい",cat:"Travel",tags:["exploration","spontaneity"]},
+{id:"C19",text:"食事や道具など、日常の小さな質にこだわりたい",cat:"Lifestyle",tags:["quality","daily"]},
+{id:"C20",text:"自分の時間を、もっと自分で決められる生活にしたい",cat:"Freedom",tags:["autonomy","time"]}
+];
+const LABELS={Travel:"旅・移動",Business:"事業・つくる",Freedom:"自由度",Study:"学び・探究",Technology:"技術・道具",Creative:"創作",Living:"暮らし",Nature:"自然",City:"街・探索",Contribution:"貢献",Money:"経済的自立",Health:"健康",Community:"地域",Lifestyle:"生活の質"};
+let index=0,responses=[];
+const screens={landing:document.querySelector("#landing"),swipe:document.querySelector("#swipe"),result:document.querySelector("#result")};
+function show(name){Object.values(screens).forEach(x=>x.classList.remove("on"));screens[name].classList.add("on");scrollTo(0,0)}
+function save(){localStorage.setItem("kidp003.p0.responses",JSON.stringify(responses))}
+function load(){try{return JSON.parse(localStorage.getItem("kidp003.p0.responses")||"[]")}catch{return []}}
+function renderCard(){const c=CARDS[index];document.querySelector("#counter").textContent=String(index+1).padStart(2,"0")+" / "+CARDS.length;document.querySelector("#progressBar").style.width=(index/CARDS.length*100)+"%";document.querySelector("#cardCategory").textContent=c.cat.toUpperCase();document.querySelector("#cardText").textContent=c.text;document.querySelector("#undoBtn").disabled=index===0}
+function choose(choice){responses[index]={id:CARDS[index].id,choice};index++;save();if(index>=CARDS.length){renderResult();show("result")}else renderCard()}
+function renderResult(){
+ const score={}; const max={};
+ CARDS.forEach(c=>{max[c.cat]=(max[c.cat]||0)+3});
+ responses.forEach((r,i)=>{const cat=CARDS[i].cat;score[cat]=(score[cat]||0)+(r.choice==="WANT"?3:r.choice==="MAYBE"?1:0)});
+ const ranked=Object.keys(max).map(cat=>({cat,score:score[cat]||0,max:max[cat],pct:Math.round((score[cat]||0)/max[cat]*100)})).sort((a,b)=>b.pct-a.pct||b.score-a.score).slice(0,5);
+ document.querySelector("#ranking").innerHTML=ranked.map((r,i)=>'<div class="rank"><span class="no">'+String(i+1).padStart(2,"0")+'</span><div><strong>'+LABELS[r.cat]+'</strong><small>'+r.cat+'</small><div class="bar"><i style="width:'+r.pct+'%"></i></div></div><span class="signal">'+(r.pct>=80?"STRONG":r.pct>=50?"ACTIVE":"OPEN")+'</span></div>').join("");
+ const top=ranked.slice(0,3).map(x=>LABELS[x.cat]);
+ document.querySelector("#resultCopy").innerHTML='<p>今の反応では、<strong>'+top.join(" / ")+'</strong>あたりへの関心が強めでした。ここから先は、これらを単独で「向いていること」と決めず、組み合わせて「どんな生活や挑戦なら試してみたいか」を探します。</p>';
+ document.querySelector("#progressBar").style.width="100%";
+}
+document.querySelector("#startBtn").onclick=()=>{const saved=load();if(saved.length===CARDS.length){responses=saved;renderResult();show("result");return}responses=[];index=0;save();renderCard();show("swipe")};
+document.querySelectorAll("[data-choice]").forEach(b=>b.onclick=()=>choose(b.dataset.choice));
+document.querySelector("#undoBtn").onclick=()=>{if(index===0)return;index--;responses=responses.slice(0,index);save();renderCard()};
+document.querySelector("#restartBtn").onclick=()=>{responses=[];index=0;localStorage.removeItem("kidp003.p0.responses");renderCard();show("swipe")};
+document.querySelector("#continueBtn").onclick=()=>alert("P1では、上位カテゴリを組み合わせたLife Theme Discoveryを実装します。");
+</script>
+</body>
+</html>
