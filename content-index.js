@@ -13,6 +13,11 @@ const shelves = [
 ];
 
 const entries = [
+  {id:"kidp-002-whynot",title:"「解決策」より先に「困りごと」を集めたらどうなる？――WHYNOTを設計してみた",state:"MAKING",shelf:"business",date:"2026.10.07",url:"/notes/kidp-002-whynot/",tags:["KIDP","WHYNOT","Prototype","Problem"],summary:"日常の「これ面倒」をProblemとして集め、AIで構造化し、次に作るものへつなぐConcept Prototype。",body:[
+    ["p","Idea-firstではなくProblem-first。LikeではなくSAME。ProblemとSolutionを分離し、Build Scoreを事業価値から切り離した。"],
+    ["p","20件のProblemを入れたWeb Prototypeまで作り、Project GIVEを最初のBUILT例として接続した。"],
+    ["p","次はProblemを3件以上見たくなるか、SAMEを押すか、自分のProblemを投稿したくなるかをTestする。"]
+  ]},
   {id:"nuclear-industrial-carrier",title:"海の上で工場を動かしたらどうなる？――原子力加工船という妄想",state:"THINK",shelf:"thinking",date:"2026.09.18",url:"/notes/nuclear-industrial-carrier/",tags:["原子力","海運","物流","工場船"],summary:"輸送という「何も作っていない時間」を、価値を作る時間に変えられないか。原子力加工船を妄想してみた。",body:[
     ["p","公海上で加工したら税金も変わるのでは、という素朴な疑問から始まった思考実験。"],
     ["p","原子炉を推進・電力・プロセス熱に配分し、輸送時間そのものを加工時間へ変えられないか考えた。"],

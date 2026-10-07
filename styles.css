@@ -49,9 +49,9 @@ dialog{border:0;background:#f8f6ec;color:var(--ink);width:min(920px,calc(100% - 
 
 /* Use the completed transparent logo without recoloring or changing the artwork.
    Source: 1254 x 1254; symbol viewport (217, 61, 818, 886), name viewport (217, 983, 818, 136). */
-.logo-mark,.logo-wordmark{display:block;flex-shrink:0;background-image:url('assets/kaito-logo-transparent.webp');background-repeat:no-repeat;mix-blend-mode:normal;filter:none}
-.logo-mark{aspect-ratio:818 / 886;background-size:153.3007335% 141.5349887%;background-position:49.7706422% 16.576087%}
-.logo-wordmark{width:165px;aspect-ratio:818 / 136;background-size:153.3007335% 922.0588235%;background-position:49.7706422% 87.9248658%}
+.logo-mark,.logo-wordmark{display:block;flex-shrink:0;background-repeat:no-repeat;mix-blend-mode:normal;filter:none}
+.logo-mark{background-image:url('/assets/brand/kite-mark.png?v=1');aspect-ratio:818 / 886;background-size:contain;background-position:center}
+.logo-wordmark{background-image:url('/assets/brand/wordmark.svg?v=2');width:165px;aspect-ratio:818 / 136;background-size:contain;background-position:center}
 .brand{gap:14px}
 .brand .brand-kite.logo-mark{width:61px;height:auto}
 .brand-lockup{display:flex;flex-direction:column;gap:9px;min-width:0}
