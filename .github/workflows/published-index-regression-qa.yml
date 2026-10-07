@@ -1,0 +1,24 @@
+name: Temporary published index regression QA
+on:
+  push:
+    branches: [fix/published-content-regression-kidp002]
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Published content regression
+        run: |
+          node --check content-index.js
+          node --check site-content.js
+          node --check scripts/sync-published-content.cjs
+          node --check scripts/test-published-content.cjs
+          node scripts/test-published-content.cjs
+          node scripts/sync-published-content.cjs
+          git diff --check
