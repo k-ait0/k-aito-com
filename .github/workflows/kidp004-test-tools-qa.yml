@@ -1,0 +1,82 @@
+name: Temporary KIDP004 test tools QA
+on:
+  push:
+    branches: [feature/kidp004-p0-test-tools-20261007]
+permissions:
+  contents: read
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Static references
+        run: node scripts/site-static-check.cjs
+      - name: Install Playwright
+        run: |
+          npm install --prefix /tmp/kaito-qa --no-audit --no-fund --no-save playwright@1.56.1
+          PLAYWRIGHT_BROWSERS_PATH=/tmp/kaito-browsers /tmp/kaito-qa/node_modules/.bin/playwright install --with-deps chromium
+      - name: Existing browser QA
+        env:
+          NODE_PATH: /tmp/kaito-qa/node_modules
+          PLAYWRIGHT_BROWSERS_PATH: /tmp/kaito-browsers
+        run: node scripts/browser-smoke.cjs
+      - name: KIDP004 test tools
+        env:
+          NODE_PATH: /tmp/kaito-qa/node_modules
+          PLAYWRIGHT_BROWSERS_PATH: /tmp/kaito-browsers
+        run: |
+          python3 -m http.server 4173 --bind 127.0.0.1 >/tmp/kidp004-test-http.log 2>&1 &
+          node <<'NODE'
+          const {chromium}=require('playwright');
+          (async()=>{
+            const b=await chromium.launch({headless:true,args:['--no-sandbox']});
+            const normal=await b.newPage({viewport:{width:390,height:844}});
+            await normal.goto('http://127.0.0.1:4173/projects/kidp/station-life/prototype/',{waitUntil:'networkidle'});
+            if(await normal.locator('.test-panel').isVisible()) throw Error('normal mode exposes test UI');
+            await normal.close();
+
+            const p=await b.newPage({viewport:{width:390,height:844}});
+            await p.goto('http://127.0.0.1:4173/projects/kidp/station-life/prototype/?test=1&pid=P01',{waitUntil:'networkidle'});
+            await p.click('#startBtn');
+            if(!await p.locator('.test-panel').isVisible()) throw Error('test UI hidden');
+            if(await p.locator('#participantId').inputValue()!=='P01') throw Error('pid');
+            await p.click('[data-life="hybrid"]');
+            await p.locator('.area').filter({hasText:'LOCAL LOOP'}).locator('button').click();
+            await p.click('#returnCompare');
+            await p.locator('.area').filter({hasText:'QUIET EDGE'}).locator('button').click();
+            await p.click('#returnCompare');
+            await p.selectOption('#chosenArea','B');
+            await p.selectOption('#problemUnderstood','yes');
+            await p.selectOption('#lifestyleUnderstood','yes');
+            await p.selectOption('#wantsUse','yes');
+            await p.selectOption('#scoreMisread','no');
+            await p.fill('#firstQuote','生活動線で見る方が分かる');
+            const payload=await p.evaluate(()=>testPayload());
+            if(payload.life_changes!==1) throw Error('life changes '+payload.life_changes);
+            if(payload.areas_viewed.length!==2) throw Error('areas viewed '+JSON.stringify(payload.areas_viewed));
+            if(payload.chosen_area!=='B'||payload.problem_understood!=='yes'||payload.score_misread!=='no') throw Error('manual fields');
+            const cols=await p.evaluate(()=>{const s=testCsv();let q=false,count=1;for(let i=0;i<s.length;i++){if(s[i]==='"'){if(q&&s[i+1]==='"')i++;else q=!q}else if(s[i]===','&&!q)count++}return count});
+            if(cols!==13) throw Error('CSV columns '+cols);
+            await p.close();
+
+            for(const [name,w,h] of [['desktop',1440,900],['mobile',390,844]]){
+              const r=await b.newPage({viewport:{width:w,height:h}});
+              await r.goto('http://127.0.0.1:4173/projects/kidp/station-life/test-review/',{waitUntil:'networkidle'});
+              if(await r.locator('.url-row').count()!==10) throw Error(name+' links');
+              await r.click('#sample'); await r.click('#analyze');
+              if(await r.locator('#decision strong').innerText()!=='P1 GO') throw Error(name+' sample decision');
+              if(await r.locator('#m1').innerText()!=='100%'||await r.locator('#m4').innerText()!=='0%') throw Error(name+' metrics');
+              const one=await r.evaluate(()=>{const rows=parseCSV(document.querySelector('#csvInput').value);return [rows[0],rows[1]].map(r=>r.map(v=>'"'+String(v).replaceAll('"','""')+'"').join(',')).join('\n')});
+              await r.fill('#csvInput',one);await r.click('#analyze');
+              if(await r.locator('#decision strong').innerText()!=='MORE DATA') throw Error(name+' <5 decision');
+              const overflow=await r.evaluate(()=>document.documentElement.scrollWidth-innerWidth);
+              if(overflow>2) throw Error(name+' overflow '+overflow);
+              await r.close();
+            }
+            await b.close();
+          })().catch(e=>{console.error(e);process.exit(1)});
+          NODE
