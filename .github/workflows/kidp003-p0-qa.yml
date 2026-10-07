@@ -38,7 +38,7 @@ jobs:
             for(const [name,w,h] of [['desktop',1440,900],['mobile',390,844]]){
               const p=await b.newPage({viewport:{width:w,height:h}});
               await p.goto('http://127.0.0.1:4173/projects/kidp/life-design-lab/prototype/',{waitUntil:'networkidle'});
-              if(await p.locator('h1').count()!==1) throw Error(name+' landing h1');
+              if(await p.locator('h1:visible').count()!==1) throw Error(name+' landing visible h1');
               await p.screenshot({path:'qa-screenshots/'+name+'-kidp003-landing.png',fullPage:true});
               await p.click('#startBtn');
               if(!(await p.locator('#counter').innerText()).includes('01 / 20')) throw Error(name+' start counter');
