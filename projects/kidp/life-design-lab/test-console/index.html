@@ -51,7 +51,14 @@
 const HEADERS=["participant_id","goal_clarity","self_analysis_usage","device","completed_20","duration_sec","want_count","maybe_count","pass_count","undo_count","hesitated_cards","result_first_quote","result_resonance","top1","top2","top3","top4","top5","wants_deep_dive","deep_dive_category","thought_it_was_diagnosis","unclear_cards","missing_cards","tester_notes","what_next","verbatim_quote"];
 const base=location.origin+"/projects/kidp/life-design-lab/prototype/";
 const links=Array.from({length:10},(_,i)=>({id:"P"+String(i+1).padStart(2,"0"),url:base+"?test=1&pid=P"+String(i+1).padStart(2,"0")}));
-document.querySelector("#links").innerHTML=links.map(x=>'<div class="link-row"><b>'+x.id+'</b><code>'+x.url+'</code><a class="btn" target="_blank" rel="noopener" href="'+x.url+'">OPEN ↗</a></div>').join("");
+const linksEl=document.querySelector("#links");
+for(const x of links){
+ const row=document.createElement("div");row.className="link-row";
+ const id=document.createElement("b");id.textContent=x.id;
+ const code=document.createElement("code");code.textContent=x.url;
+ const a=document.createElement("a");a.className="btn";a.target="_blank";a.rel="noopener";a.href=x.url;a.textContent="OPEN ↗";
+ row.append(id,code,a);linksEl.append(row);
+}
 document.querySelector("#copyLinks").onclick=()=>copy(links.map(x=>x.id+" "+x.url).join("\n"),"#linkStatus","リンクをコピーしました。");
 let currentRows=[],currentSummary=null;
 function parseCSV(s){const rows=[];let row=[],field="",q=false;for(let i=0;i<s.length;i++){const ch=s[i];if(q){if(ch==='"'&&s[i+1]==='"'){field+='"';i++}else if(ch==='"')q=false;else field+=ch}else{if(ch==='"')q=true;else if(ch===','){row.push(field);field=""}else if(ch==='\n'){row.push(field);if(row.some(x=>x.trim()!==""))rows.push(row);row=[];field=""}else if(ch!=='\r')field+=ch}}row.push(field);if(row.some(x=>x.trim()!==""))rows.push(row);return rows}
