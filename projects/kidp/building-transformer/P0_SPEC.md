@@ -108,7 +108,7 @@ The score is explanatory, not authoritative.
 280 sqm / plumbing MID / frontage HIGH / elevator 0 / 3.2m / station 5m / quiet LOW
 
 ### UPPER FLOOR
-520 sqm / plumbing LOW / frontage LOW / elevator 2 / 2.8m / station 10m / quiet HIGH
+520 sqm / plumbing HIGH / frontage LOW / elevator 2 / 2.8m / station 10m / quiet HIGH
 
 ## P0 screens
 
