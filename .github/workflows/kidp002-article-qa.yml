@@ -23,3 +23,5 @@ jobs:
           NODE_PATH: /tmp/kaito-qa/node_modules
           PLAYWRIGHT_BROWSERS_PATH: /tmp/kaito-browsers
         run: node scripts/browser-smoke.cjs
+
+# trigger
