@@ -1,0 +1,81 @@
+name: Temporary KIDP003 test console QA
+on:
+  push:
+    branches: [feature/kidp003-p0-test-console-20261007]
+permissions:
+  contents: read
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Static references
+        run: node scripts/site-static-check.cjs
+      - name: Install Playwright
+        run: |
+          npm install --prefix /tmp/kaito-qa --no-audit --no-fund --no-save playwright@1.56.1
+          PLAYWRIGHT_BROWSERS_PATH=/tmp/kaito-browsers /tmp/kaito-qa/node_modules/.bin/playwright install --with-deps chromium
+      - name: Existing browser QA
+        env:
+          NODE_PATH: /tmp/kaito-qa/node_modules
+          PLAYWRIGHT_BROWSERS_PATH: /tmp/kaito-browsers
+        run: node scripts/browser-smoke.cjs
+      - name: Console decision QA
+        env:
+          NODE_PATH: /tmp/kaito-qa/node_modules
+          PLAYWRIGHT_BROWSERS_PATH: /tmp/kaito-browsers
+        run: |
+          python3 -m http.server 4173 --bind 127.0.0.1 >/tmp/kidp003-console-http.log 2>&1 &
+          node <<'NODE'
+          const {chromium}=require('playwright');
+          (async()=>{
+            const b=await chromium.launch({headless:true,args:['--no-sandbox']});
+            const p=await b.newPage({viewport:{width:390,height:844}});
+            const base='http://127.0.0.1:4173/projects/kidp/life-design-lab/test-console/';
+            await p.goto(base,{waitUntil:'networkidle'});
+            const robots=await p.locator('meta[name="robots"]').getAttribute('content');
+            if(robots!=='noindex,nofollow') throw Error('console robots '+robots);
+            if(await p.locator('.link-row').count()!==10) throw Error('expected 10 participant links');
+            const hrefs=await p.locator('.link-row a').evaluateAll(as=>as.map(a=>a.getAttribute('href')));
+            if(!hrefs[0].includes('?test=1&pid=P01')||!hrefs[9].includes('?test=1&pid=P10')) throw Error('participant links');
+            const overflow=await p.evaluate(()=>document.documentElement.scrollWidth-window.innerWidth);
+            if(overflow>2) throw Error('console horizontal overflow '+overflow);
+
+            const row=(id,res='somewhat',deep='Freedom',diag='no',unclear='') =>
+              [id,'','','mobile','true','120','7','7','6','0','C01','少し分かる',res,'Freedom','Travel','Study','Technology','Living','true',deep,diag,unclear,'','','次も見たい','少し分かる']
+              .map(v=>'"'+String(v).replaceAll('"','""')+'"').join(',');
+            const good=[1,2,3,4,5].map(i=>row('P0'+i)).join('\n');
+            await p.fill('#csvInput',good);
+            await p.click('#analyzeBtn');
+            if((await p.locator('#decision strong').innerText())!=='P1 GO') throw Error('good dataset should P1 GO: '+await p.locator('#decision strong').innerText());
+            if((await p.locator('#m1').innerText())!=='100%') throw Error('M1');
+            if((await p.locator('#m2').innerText())!=='100%') throw Error('M2');
+            if((await p.locator('#m3').innerText())!=='100%') throw Error('M3');
+            if((await p.locator('#m4').innerText())!=='0%') throw Error('M4');
+
+            const diag=[row('P01','somewhat','Freedom','yes'),row('P02','somewhat','Freedom','yes'),row('P03'),row('P04'),row('P05')].join('\n');
+            await p.fill('#csvInput',diag); await p.click('#analyzeBtn');
+            if((await p.locator('#decision strong').innerText())!=='POSITIONING REDESIGN') throw Error('diagnosis gate '+await p.locator('#decision strong').innerText());
+
+            const card=[row('P01','somewhat','Freedom','no','C01|C02'),row('P02','somewhat','Freedom','no','C01|C02'),row('P03','somewhat','Freedom','no','C01|C02'),row('P04','somewhat','Freedom','no','C01|C02'),row('P05','somewhat','Freedom','no','C01|C02')].join('\n');
+            await p.fill('#csvInput',card); await p.click('#analyzeBtn');
+            if((await p.locator('#decision strong').innerText())!=='CARD REDESIGN') throw Error('card gate '+await p.locator('#decision strong').innerText());
+
+            const proto=await b.newPage({viewport:{width:390,height:844}});
+            await proto.goto('http://127.0.0.1:4173/projects/kidp/life-design-lab/prototype/?test=1&pid=P01',{waitUntil:'networkidle'});
+            await proto.click('#startBtn');
+            for(let i=0;i<20;i++) await proto.click('[data-choice="'+(i%3===0?'WANT':i%3===1?'MAYBE':'PASS')+'"]');
+            await proto.fill('#unclearCards','C03|C09');
+            await proto.fill('#missingCards','家族についてのカード');
+            await proto.fill('#whatNext','Themeを見たい');
+            const payload=await proto.evaluate(()=>testPayload());
+            if(payload.unclear_cards!=='C03|C09'||payload.missing_cards!=='家族についてのカード'||payload.what_next!=='Themeを見たい') throw Error('extended tester fields');
+            const cols=await proto.evaluate(()=>{const s=testCsv();let q=false,count=1;for(let i=0;i<s.length;i++){if(s[i]==='"'){if(q&&s[i+1]==='"')i++;else q=!q}else if(s[i]===','&&!q)count++}return count});
+            if(cols!==26) throw Error('prototype CSV '+cols);
+            await b.close();
+          })().catch(e=>{console.error(e);process.exit(1)});
+          NODE
