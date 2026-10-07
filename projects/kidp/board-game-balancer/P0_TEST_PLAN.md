@@ -90,3 +90,34 @@ GOなら:
 
 実際のProject GIVEのPlaytest結果は捏造せず、
 物理Playtest後の実測値がある場合のみ比較する。
+
+
+## Instrumented test mode
+
+Use:
+`/projects/kidp/board-game-balancer/prototype/?test=1&pid=P01`
+
+Change P01 for each participant.
+
+Automatically recorded on-device:
+- slider change count
+- RUN count
+- BREAK IT used
+- RESET count
+- final Balance Signal
+- final parameter config
+
+Tester records:
+- M1 parameter causality
+- M2 Signal meaning
+- M3 use intent
+- M4 next Playtest selection
+- M5 Simulation replacement misread
+- next strategy
+- first quote
+- confusing / missing
+
+Press "CSV行をコピー" and paste one row under
+`P0_TEST_LOG_TEMPLATE.csv`.
+
+No data is transmitted externally.
