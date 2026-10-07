@@ -73,17 +73,17 @@ max win rate - min win rate
 
 ## P0 controls
 
-- Rush Instant Points: 2.0–5.0
-- Engine Growth / Round: 0.5–2.0
-- Control Disruption: 0.0–3.0
+- Rush Instant Points: 2.0–5.0 (baseline 3.7)
+- Engine Growth / Round: 0.5–2.0 (baseline 1.3)
+- Control Disruption: 0.0–3.0 (baseline 1.8)
 
 Buttons:
 - RESET
 - BREAK IT
 - RUN 5,000
 
-BREAK ITは意図的にRushを強くし、
-dominant strategyを可視化できるかを見るデモ。
+RESET baselineは3戦略が概ね均衡するようP0モデル上で調整する。
+BREAK ITは意図的にRushを強くし、dominant strategyを可視化できるかを見るデモ。
 
 ## P0 success
 
