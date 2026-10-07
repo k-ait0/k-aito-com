@@ -1,0 +1,85 @@
+name: Temporary KIDP006 P0 QA
+on:
+  push:
+    branches: [feature/kidp006-building-transformer-p0-20261008]
+permissions:
+  contents: read
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Static references
+        run: node scripts/site-static-check.cjs
+      - name: Install Playwright
+        run: |
+          npm install --prefix /tmp/kaito-qa --no-audit --no-fund --no-save playwright@1.56.1
+          PLAYWRIGHT_BROWSERS_PATH=/tmp/kaito-browsers /tmp/kaito-qa/node_modules/.bin/playwright install --with-deps chromium
+      - name: Existing browser QA
+        env:
+          NODE_PATH: /tmp/kaito-qa/node_modules
+          PLAYWRIGHT_BROWSERS_PATH: /tmp/kaito-browsers
+        run: node scripts/browser-smoke.cjs
+      - name: KIDP006 interaction QA
+        env:
+          NODE_PATH: /tmp/kaito-qa/node_modules
+          PLAYWRIGHT_BROWSERS_PATH: /tmp/kaito-browsers
+        run: |
+          python3 -m http.server 4173 --bind 127.0.0.1 >/tmp/kidp006-http.log 2>&1 &
+          node <<'NODE'
+          const fs=require('fs'); const {chromium}=require('playwright');
+          (async()=>{
+            const b=await chromium.launch({headless:true,args:['--no-sandbox']});
+            fs.mkdirSync('qa-screenshots',{recursive:true});
+            for(const [name,w,h] of [['desktop',1440,900],['mobile',390,844]]){
+              const p=await b.newPage({viewport:{width:w,height:h}});
+              await p.goto('http://127.0.0.1:4173/projects/kidp/building-transformer/prototype/',{waitUntil:'networkidle'});
+              if(await p.locator('h1:visible').count()!==1) throw Error(name+' landing h1');
+              await p.screenshot({path:'qa-screenshots/'+name+'-kidp006-landing.png',fullPage:true});
+              await p.click('#startBtn');
+
+              async function best(){
+                return (await p.locator('.use-card.best h3').innerText()).trim();
+              }
+              let b1=await best();
+              if(b1!=='Work Hub') throw Error(name+' OFFICE winner '+b1);
+
+              await p.click('[data-preset="street"]');
+              let b2=await best();
+              if(b2!=='Fitness Studio') throw Error(name+' STREET winner '+b2);
+
+              await p.click('[data-preset="upper"]');
+              let b3=await best();
+              if(b3!=='Mid-Stay') throw Error(name+' UPPER winner '+b3);
+
+              await p.selectOption('#plumbing','low');
+              await p.locator('#plumbing').dispatchEvent('input');
+              let b4=await best();
+              if(b4==='Mid-Stay') throw Error(name+' Mid-Stay should lose after plumbing downgrade');
+
+              await p.locator('.use-card').filter({hasText:'Fitness Studio'}).locator('.detail-btn').click();
+              if(!await p.locator('#detail.screen.on').count()) throw Error(name+' detail not open');
+              if((await p.locator('#detailName').innerText()).trim()!=='Fitness Studio') throw Error(name+' wrong detail');
+              if((await p.locator('#checkList li').count())<3) throw Error(name+' insufficient check list');
+              const warn=(await p.locator('#detailWarning').innerText()).trim();
+              if(!warn.includes('法令適合')||!warn.includes('事業採算')) throw Error(name+' warning missing');
+
+              const overflow=await p.evaluate(()=>document.documentElement.scrollWidth-window.innerWidth);
+              if(overflow>2) throw Error(name+' overflow '+overflow);
+              await p.screenshot({path:'qa-screenshots/'+name+'-kidp006-detail.png',fullPage:true});
+              await p.close();
+            }
+            await b.close();
+          })().catch(e=>{console.error(e);process.exit(1)});
+          NODE
+      - name: Upload visual review
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: kidp006-p0-visual-review
+          path: qa-screenshots/*.png
+          retention-days: 2
