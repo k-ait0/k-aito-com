@@ -72,7 +72,8 @@ function matchingEntries(){
     if(shelfSelect.value!=="all"&&entry.shelf!==shelfSelect.value)return false;
     if(stateSelect.value!=="all"&&entry.state!==stateSelect.value)return false;
     const shelf=shelves.find(s=>s.id===entry.shelf);
-    const haystack=normalize([entry.title,entry.projectTitle||'',entry.summary,...entry.tags,shelf.name,shelf.en,entry.state,entry.searchText||'',...entry.body.map(part=>typeof part[1]==='string'?part[1]:Array.isArray(part[1])?part[1].join(' '):part[1].text)].join(' '));
+    const body=Array.isArray(entry.body)?entry.body:[];
+    const haystack=normalize([entry.title,entry.projectTitle||'',entry.summary,...entry.tags,shelf.name,shelf.en,entry.state,entry.searchText||'',...body.map(part=>typeof part?.[1]==='string'?part[1]:Array.isArray(part?.[1])?part[1].join(' '):part?.[1]?.text||'')].join(' '));
     return words.every(word=>haystack.includes(word));
   });
 }
