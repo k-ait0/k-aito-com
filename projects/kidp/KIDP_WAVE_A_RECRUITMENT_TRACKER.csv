@@ -1,0 +1,11 @@
+candidate_id,project,target_profile,contact_channel,invite_status,booked_datetime,participant_id,session_status,notes
+A01,KIDP-004,commute,,,,,,
+A02,KIDP-004,commute,,,,,,
+A03,KIDP-004,hybrid_remote,,,,,,
+A04,KIDP-004,hybrid_remote,,,,,,
+A05,KIDP-004,night_weekend,,,,,,
+B01,KIDP-003,goal_clear,,,,,,
+B02,KIDP-003,goal_clear,,,,,,
+B03,KIDP-003,goal_unclear,,,,,,
+B04,KIDP-003,goal_unclear,,,,,,
+B05,KIDP-003,self_analysis_skeptic,,,,,,
