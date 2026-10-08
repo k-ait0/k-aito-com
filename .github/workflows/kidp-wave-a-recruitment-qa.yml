@@ -1,0 +1,77 @@
+name: Temporary KIDP Wave A recruitment QA
+on:
+  push:
+    branches: [feature/kidp-wave-a-recruitment-20261008]
+permissions:
+  contents: read
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Static references
+        run: node scripts/site-static-check.cjs
+      - name: Install Playwright
+        run: |
+          npm install --prefix /tmp/kaito-qa --no-audit --no-fund --no-save playwright@1.56.1
+          PLAYWRIGHT_BROWSERS_PATH=/tmp/kaito-browsers /tmp/kaito-qa/node_modules/.bin/playwright install --with-deps chromium
+      - name: Existing browser QA
+        env:
+          NODE_PATH: /tmp/kaito-qa/node_modules
+          PLAYWRIGHT_BROWSERS_PATH: /tmp/kaito-browsers
+        run: node scripts/browser-smoke.cjs
+      - name: Wave A recruitment QA
+        env:
+          NODE_PATH: /tmp/kaito-qa/node_modules
+          PLAYWRIGHT_BROWSERS_PATH: /tmp/kaito-browsers
+        run: |
+          python3 -m http.server 4173 --bind 127.0.0.1 >/tmp/kidp-wavea-http.log 2>&1 &
+          node <<'NODE'
+          const {chromium}=require('playwright');
+          (async()=>{
+            const b=await chromium.launch({headless:true,args:['--no-sandbox']});
+            for(const [name,w,h] of [['desktop',1440,900],['mobile',390,844]]){
+              const p=await b.newPage({viewport:{width:w,height:h}});
+              await p.goto('http://127.0.0.1:4173/projects/kidp/test-ops/',{waitUntil:'networkidle'});
+              const station=p.locator('[data-project="station-life"]');
+              if(await station.locator('.person').count()!==5) throw Error(name+' participant rows');
+              const first=station.locator('.person').nth(0);
+              if(await first.locator('.source option').count()!==4) throw Error(name+' source options');
+              if(await first.locator('.profile option').count()<4) throw Error(name+' profile options');
+              if(await first.locator('.status option').count()!==5) throw Error(name+' status options');
+
+              await first.locator('.source').selectOption('NEUTRAL');
+              await first.locator('.profile').selectOption('COMMUTER');
+              await first.locator('.status').selectOption('INVITED');
+              const second=station.locator('.person').nth(1);
+              await second.locator('.source').selectOption('PERSONAL');
+              await second.locator('.profile').selectOption('HYBRID');
+              await second.locator('.status').selectOption('CONFIRMED');
+              const third=station.locator('.person').nth(2);
+              await third.locator('.source').selectOption('NEUTRAL');
+              await third.locator('.profile').selectOption('NIGHT');
+              await third.locator('.status').selectOption('DONE');
+
+              if((await station.locator('.count').innerText()).trim()!=='1 / 5 DONE') throw Error(name+' done count');
+              if(!(await station.locator('.booked').innerText()).includes('2 confirmed')) throw Error(name+' confirmed count');
+              if(!(await station.locator('.invited').innerText()).includes('1 invited')) throw Error(name+' invited count');
+              if(!(await station.locator('.neutral').innerText()).includes('2 neutral')) throw Error(name+' neutral count');
+
+              await p.reload({waitUntil:'networkidle'});
+              const station2=p.locator('[data-project="station-life"]');
+              if(await station2.locator('.person').nth(0).locator('.source').inputValue()!=='NEUTRAL') throw Error(name+' source restore');
+              if(await station2.locator('.person').nth(0).locator('.profile').inputValue()!=='COMMUTER') throw Error(name+' profile restore');
+              if(await station2.locator('.person').nth(0).locator('.status').inputValue()!=='INVITED') throw Error(name+' status restore');
+
+              if(await p.locator('[data-copy]').count()<3) throw Error(name+' copy buttons');
+              const overflow=await p.evaluate(()=>document.documentElement.scrollWidth-innerWidth);
+              if(overflow>2) throw Error(name+' overflow '+overflow);
+              await p.close();
+            }
+            await b.close();
+          })().catch(e=>{console.error(e);process.exit(1)});
+          NODE
