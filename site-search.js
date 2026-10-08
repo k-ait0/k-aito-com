@@ -58,7 +58,7 @@
     const words=normalize(queryInput.value).split(/\s+/).filter(Boolean);
     const found=published.filter(entry=>{
       const haystack=normalize([entry.title,entry.summary,entry.state,shelfName(entry.shelf),
-        ...entry.tags,entry.searchText||"",...entry.body.map(part=>part[1])].join(" "));
+        ...entry.tags,entry.searchText||"",...(Array.isArray(entry.body)?entry.body:[]).map(part=>part?.[1]??"")].join(" "));
       return words.every(word=>haystack.includes(word));
     });
     list.replaceChildren();

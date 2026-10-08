@@ -20,8 +20,8 @@ h1{font-size:clamp(40px,7vw,66px);line-height:1.05;letter-spacing:-.04em;margin:
 .state{font-size:8px;font-weight:900;border:1px solid var(--line);border-radius:99px;padding:6px 8px;white-space:nowrap;background:#fff}.active .state{color:var(--green);background:var(--soft)}
 .meta{font-size:10px;color:var(--muted);line-height:1.7}.progress{margin:14px 0;padding:12px;background:#f8f8f2;border-radius:12px}.progress-top{display:flex;justify-content:space-between;font-size:9px;font-weight:800}
 .bar{height:7px;background:#e3e6df;border-radius:99px;overflow:hidden;margin-top:7px}.bar i{display:block;height:100%;background:var(--green);width:0}
-.people{display:grid;gap:7px}.person{display:grid;grid-template-columns:42px 1fr 130px;gap:7px;align-items:center;border:1px solid var(--line);border-radius:10px;padding:8px;background:#fff}
-.person b{font-size:10px}.person a{font-size:9px;color:var(--green);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.person select{border:1px solid var(--line);background:#fff;border-radius:8px;padding:7px;font-size:9px}
+.people{display:grid;gap:7px}.person{display:grid;grid-template-columns:42px minmax(0,1fr) 118px 112px 130px;gap:7px;align-items:center;border:1px solid var(--line);border-radius:10px;padding:8px;background:#fff}
+.person b{font-size:10px}.person a{font-size:9px;color:var(--green);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.person select{border:1px solid var(--line);background:#fff;border-radius:8px;padding:7px;font-size:9px;min-width:0}.pipeline-note{font-size:8px;color:var(--muted);margin-top:6px}.progress-stats{display:flex;gap:10px;flex-wrap:wrap}.progress-stats span{font-size:9px}
 .actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px}.btn{display:inline-block;text-decoration:none;border:1px solid var(--line);background:#fff;padding:9px 11px;border-radius:9px;font-size:9px;font-weight:800;color:var(--ink)}
 .btn.primary{background:var(--ink);color:#fff;border-color:var(--ink)}.queue{margin-top:28px}.queue h2{font-size:28px;margin:5px 0 12px}.queue-list{display:grid;gap:8px}.queue-row{display:grid;grid-template-columns:120px 1fr auto;gap:12px;align-items:center;padding:13px 15px;background:#fff;border:1px solid var(--line);border-radius:12px}.queue-row small{font-size:8px;font-weight:900;letter-spacing:.08em;color:var(--muted)}.queue-row strong{font-family:Georgia,"Yu Mincho",serif}.queue-row span{font-size:9px;color:var(--muted)}
 .recruit{margin-top:30px}.recruit h2{font-size:28px;margin:5px 0 12px}.recruit-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.recruit-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px}.recruit-card h3{margin:4px 0 9px;font-size:19px}.recruit-card ul{margin:0;padding-left:18px}.recruit-card li{font-size:10px;line-height:1.7;color:var(--muted);margin:3px 0}.copy-box{margin-top:12px;padding:12px;background:#f8f8f2;border-radius:10px}.copy-box p{font-size:10px;line-height:1.7;color:var(--muted);white-space:pre-line;margin:0}.copy-btn{margin-top:9px;border:1px solid var(--line);background:var(--ink);color:#fff;padding:8px 10px;border-radius:8px;font-size:9px;font-weight:800;cursor:pointer}.session-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}.session-box{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px}.session-box h3{font-size:17px;margin:4px 0 8px}.session-box p,.session-box li{font-size:10px;line-height:1.7;color:var(--muted)}.prompt-list{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}.prompt-list div{padding:12px;background:#fff;border:1px solid var(--line);border-radius:10px}.prompt-list b{display:block;font-size:9px;margin-bottom:5px}.prompt-list p{font-size:9px;line-height:1.7;color:var(--muted);margin:0}.footer-note{margin-top:24px;padding-top:15px;border-top:1px solid var(--line);font-size:9px;line-height:1.7;color:var(--muted)}
@@ -32,9 +32,9 @@ h1{font-size:clamp(40px,7vw,66px);line-height:1.05;letter-spacing:-.04em;margin:
 <header class="top"><div class="brand">KIDP TEST OPS<small>INTERNAL FACILITATOR DASHBOARD</small></div><span class="badge">NOINDEX · LOCAL PROGRESS ONLY</span></header>
 <section class="hero"><span class="eyebrow">WAVE A</span><h1>Buildを止めて、<br>Test Loopを閉じる。</h1><p class="lead">Active Testは同時最大2案件。現在はKIDP-004と003をP01〜P05まで回し、初回Decisionが出たら空いたSlotへWHYNOTを入れます。</p><div class="rule">Sample / QA dataは実ユーザー結果に混ぜない。初回Decisionは有効参加者5人以上。ここで保存する進捗はこのブラウザのlocalStorageだけです。</div></section>
 <section class="grid">
-<div class="card active" data-project="station-life"><div class="card-head"><div><small>SLOT A · RUN NOW</small><h2>KIDP-004 駅生活圏</h2></div><span class="state">ACTIVE</span></div><p class="meta">駅徒歩だけでは足りない理由とLifestyle差が伝わるか。一般ユーザーで実施可能。</p><div class="progress"><div class="progress-top"><span>VALID SESSIONS</span><b class="count">0 / 5</b></div><div class="bar"><i></i></div></div><div class="people"></div><div class="actions"><a class="btn primary" href="/projects/kidp/station-life/test-review/" target="_blank">OPEN REVIEW ↗</a><a class="btn" href="/projects/kidp/station-life/" target="_blank">PROJECT ↗</a></div></div>
-<div class="card active" data-project="life-design-lab"><div class="card-head"><div><small>SLOT B · RUN NOW</small><h2>KIDP-003 LIFE DESIGN LAB</h2></div><span class="state">ACTIVE</span></div><p class="meta">20-card Swipeを完了し、Interest Mapに共感し、1領域をさらに掘りたいと思うか。</p><div class="progress"><div class="progress-top"><span>VALID SESSIONS</span><b class="count">0 / 5</b></div><div class="bar"><i></i></div></div><div class="people"></div><div class="actions"><a class="btn primary" href="/projects/kidp/life-design-lab/test-review/" target="_blank">OPEN REVIEW ↗</a><a class="btn" href="/projects/kidp/life-design-lab/" target="_blank">PROJECT ↗</a></div></div>
-<div class="card next" data-project="whynot"><div class="card-head"><div><small>NEXT SLOT · RUN NEXT</small><h2>KIDP-002 WHYNOT</h2></div><span class="state">NEXT</span></div><p class="meta">どちらかのActive Slotで初回Decisionが出たら開始。3件閲覧 / SAME / 投稿Activationを確認。</p><div class="progress"><div class="progress-top"><span>VALID SESSIONS</span><b class="count">0 / 5</b></div><div class="bar"><i></i></div></div><div class="people"></div><div class="actions"><a class="btn primary" href="/projects/kidp/whynot/test-review/" target="_blank">OPEN REVIEW ↗</a><a class="btn" href="/projects/kidp/whynot/" target="_blank">PROJECT ↗</a></div></div>
+<div class="card active" data-project="station-life"><div class="card-head"><div><small>SLOT A · RUN NOW</small><h2>KIDP-004 駅生活圏</h2></div><span class="state">ACTIVE</span></div><p class="meta">駅徒歩だけでは足りない理由とLifestyle差が伝わるか。一般ユーザーで実施可能。</p><div class="progress"><div class="progress-top"><span>RECRUITMENT PIPELINE</span><b class="count">0 / 5 DONE</b></div><div class="progress-stats"><span class="booked">0 confirmed</span><span class="invited">0 invited</span><span class="neutral">0 neutral</span></div><div class="bar"><i></i></div><p class="pipeline-note">個人名・連絡先は保存しません。募集元と参加者タイプだけlocalStorageへ保存。</p></div><div class="people"></div><div class="actions"><a class="btn primary" href="/projects/kidp/station-life/test-review/" target="_blank">OPEN REVIEW ↗</a><a class="btn" href="/projects/kidp/station-life/" target="_blank">PROJECT ↗</a></div></div>
+<div class="card active" data-project="life-design-lab"><div class="card-head"><div><small>SLOT B · RUN NOW</small><h2>KIDP-003 LIFE DESIGN LAB</h2></div><span class="state">ACTIVE</span></div><p class="meta">20-card Swipeを完了し、Interest Mapに共感し、1領域をさらに掘りたいと思うか。</p><div class="progress"><div class="progress-top"><span>RECRUITMENT PIPELINE</span><b class="count">0 / 5 DONE</b></div><div class="progress-stats"><span class="booked">0 confirmed</span><span class="invited">0 invited</span><span class="neutral">0 neutral</span></div><div class="bar"><i></i></div><p class="pipeline-note">個人名・連絡先は保存しません。募集元と参加者タイプだけlocalStorageへ保存。</p></div><div class="people"></div><div class="actions"><a class="btn primary" href="/projects/kidp/life-design-lab/test-review/" target="_blank">OPEN REVIEW ↗</a><a class="btn" href="/projects/kidp/life-design-lab/" target="_blank">PROJECT ↗</a></div></div>
+<div class="card next" data-project="whynot"><div class="card-head"><div><small>NEXT SLOT · RUN NEXT</small><h2>KIDP-002 WHYNOT</h2></div><span class="state">NEXT</span></div><p class="meta">どちらかのActive Slotで初回Decisionが出たら開始。3件閲覧 / SAME / 投稿Activationを確認。</p><div class="progress"><div class="progress-top"><span>RECRUITMENT PIPELINE</span><b class="count">0 / 5 DONE</b></div><div class="progress-stats"><span class="booked">0 confirmed</span><span class="invited">0 invited</span><span class="neutral">0 neutral</span></div><div class="bar"><i></i></div><p class="pipeline-note">個人名・連絡先は保存しません。募集元と参加者タイプだけlocalStorageへ保存。</p></div><div class="people"></div><div class="actions"><a class="btn primary" href="/projects/kidp/whynot/test-review/" target="_blank">OPEN REVIEW ↗</a><a class="btn" href="/projects/kidp/whynot/" target="_blank">PROJECT ↗</a></div></div>
 <div class="card physical"><div class="card-head"><div><small>JUMP RULE</small><h2>KIDP-001 Project GIVE</h2></div><span class="state">PHYSICAL</span></div><p class="meta">4人同時・6Round。4人＋時間を確保できた時点で、デフォルトQueueに関係なく最優先へ繰り上げる。</p><div class="actions"><a class="btn" href="/projects/kidp/project-give/" target="_blank">PROJECT ↗</a></div></div>
 </section>
 <section class="recruit"><span class="eyebrow">RECRUITMENT KIT</span><h2>Wave Aを10人で閉じる</h2><div class="recruit-grid">
@@ -61,8 +61,43 @@ const defs={
  "life-design-lab":"/projects/kidp/life-design-lab/prototype/?test=1&pid=",
  "whynot":"/projects/kidp/whynot/prototype/?test=1&pid="
 };
-function key(project,pid){return "kidp.testops."+project+"."+pid}
-function renderCard(card){const project=card.dataset.project;if(!project)return;const root=card.querySelector(".people");root.innerHTML="";let valid=0;for(let i=1;i<=5;i++){const pid="P"+String(i).padStart(2,"0"),status=localStorage.getItem(key(project,pid))||"NOT STARTED";if(status==="DONE")valid++;const row=document.createElement("div");row.className="person";row.innerHTML='<b>'+pid+'</b><a target="_blank">OPEN TEST ↗</a><select aria-label="'+pid+' status"><option>NOT STARTED</option><option>DONE</option><option>INVALID</option></select>';row.querySelector("a").href=defs[project]+pid;const sel=row.querySelector("select");sel.value=status;sel.onchange=()=>{localStorage.setItem(key(project,pid),sel.value);renderCard(card)};root.append(row)}card.querySelector(".count").textContent=valid+" / 5";card.querySelector(".bar i").style.width=Math.min(100,valid/5*100)+"%"}
+function key(project,pid,field="status"){return "kidp.testops."+project+"."+pid+"."+field}
+const profileOptions={
+ "station-life":[["UNSET","TYPE"],["COMMUTER","COMMUTER"],["HYBRID","HYBRID"],["NIGHT","NIGHT / OFF-HOURS"]],
+ "life-design-lab":[["UNSET","TYPE"],["CLEAR","GOALS CLEAR"],["UNCLEAR","GOALS UNCLEAR"],["NONUSER","NON-SELF-ANALYSIS"]],
+ "whynot":[["UNSET","TYPE"],["IDEA","IDEA CURIOUS"],["FRICTION","FRICTION VERBALIZER"],["NEUTRAL","NEUTRAL"]]
+};
+function opts(list,value){return list.map(([v,l])=>'<option value="'+v+'"'+(v===value?' selected':'')+'>'+l+'</option>').join("")}
+function renderCard(card){
+ const project=card.dataset.project;if(!project)return;
+ const root=card.querySelector(".people");root.innerHTML="";
+ let done=0,confirmed=0,invited=0,neutral=0;
+ for(let i=1;i<=5;i++){
+   const pid="P"+String(i).padStart(2,"0"),
+   status=localStorage.getItem(key(project,pid))||"NOT STARTED",
+   source=localStorage.getItem(key(project,pid,"source"))||"UNSET",
+   profile=localStorage.getItem(key(project,pid,"profile"))||"UNSET";
+   if(status==="DONE")done++;
+   if(status==="CONFIRMED"||status==="DONE")confirmed++;
+   if(status==="INVITED")invited++;
+   if(source==="NEUTRAL")neutral++;
+   const row=document.createElement("div");row.className="person";
+   row.innerHTML='<b>'+pid+'</b><a target="_blank">OPEN TEST ↗</a>'+
+   '<select class="source" aria-label="'+pid+' source">'+opts([["UNSET","SOURCE"],["PERSONAL","PERSONAL"],["NEUTRAL","NEUTRAL"],["OTHER","OTHER"]],source)+'</select>'+
+   '<select class="profile" aria-label="'+pid+' profile">'+opts(profileOptions[project],profile)+'</select>'+
+   '<select class="status" aria-label="'+pid+' status">'+opts([["NOT STARTED","NOT STARTED"],["INVITED","INVITED"],["CONFIRMED","CONFIRMED"],["DONE","DONE"],["INVALID","INVALID"]],status)+'</select>';
+   row.querySelector("a").href=defs[project]+pid;
+   row.querySelector(".source").onchange=e=>{localStorage.setItem(key(project,pid,"source"),e.target.value);renderCard(card)};
+   row.querySelector(".profile").onchange=e=>{localStorage.setItem(key(project,pid,"profile"),e.target.value);renderCard(card)};
+   row.querySelector(".status").onchange=e=>{localStorage.setItem(key(project,pid),e.target.value);renderCard(card)};
+   root.append(row)
+ }
+ card.querySelector(".count").textContent=done+" / 5 DONE";
+ card.querySelector(".booked").textContent=confirmed+" confirmed";
+ card.querySelector(".invited").textContent=invited+" invited";
+ card.querySelector(".neutral").textContent=neutral+" neutral";
+ card.querySelector(".bar i").style.width=Math.min(100,done/5*100)+"%"
+}
 document.querySelectorAll("[data-project]").forEach(renderCard);
 document.querySelectorAll("[data-copy]").forEach(btn=>btn.addEventListener("click",async()=>{const el=document.getElementById(btn.dataset.copy);try{await navigator.clipboard.writeText(el.innerText);const old=btn.textContent;btn.textContent="COPIED";setTimeout(()=>btn.textContent=old,1200)}catch{btn.textContent="COPY FAILED"}}));
 </script>
