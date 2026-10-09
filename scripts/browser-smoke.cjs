@@ -229,6 +229,7 @@ const stop=()=>new Promise(resolve=>server.close(resolve));
               mode.name+" PROJECTS links to FINOWA");
           }
           if(slug==="/"){
+            if(mode.name==="mobile")await page.locator("#search-form button[type=submit]").click();
             await page.locator("#site-search").fill("WHYNOT");
             await page.locator("#search-form").evaluate(form=>form.requestSubmit());
             await page.locator("#archive-dialog").waitFor({state:"visible"});
