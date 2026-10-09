@@ -1,0 +1,30 @@
+/* KAITO card classification v1 (2026-10-09)
+   A card always makes clear: ARTICLE or PROJECT; current editorial/stage;
+   available destination (or genuinely PREPARING). No overall palette change. */
+.card-kind{display:inline-block;font-family:Arial,"Hiragino Kaku Gothic ProN",sans-serif;font-size:.68rem;letter-spacing:.11em;font-weight:750;color:#397153}
+.entry-card[data-card-type="article"] .card-kind{margin:0 0 6px}
+.entry-card[data-card-type="article"] .state{left:15px;top:15px}
+.entry-card[data-card-type="article"] .card-copy .card-kind{font-size:.72rem}
+.note-link[data-card-type="article"] .note-meta{align-items:center}
+.note-link[data-card-type="article"] .note-meta .card-kind{font-size:.65rem;color:#315d46;border:1px solid #cbdccb;background:#f0f5ee;border-radius:2px;padding:3px 7px;font-weight:700;white-space:nowrap}
+.archive-period .note-link[data-card-type="article"] .note-meta .card-kind{display:inline-block;font-size:.57rem!important;padding:3px 6px;background:#edf2ea!important;margin-top:7px;color:#476553}
+.content-card[data-card-type="project"] .card-access{display:inline-flex;align-items:center;align-self:flex-start;width:fit-content;max-width:100%;gap:5px;padding:5px 11px;border:1px solid #c6d7c9;border-radius:3px;background:#f0f4ed;color:#2d6347;font-size:.76rem;font-weight:650;line-height:1.55;letter-spacing:.01em}
+.content-card[data-card-type="project"][data-project-id="tabi-route"] .card-access{background:#f6f4ed;color:#74664b;border-color:#dbd5c8}
+.content-card[data-card-type="project"] .project-card-top .project-state{background:#d7e5db;color:#26533c}
+.content-card[data-card-type="project"] .project-card-top .project-phase{font-weight:750;letter-spacing:.07em}
+.content-card[data-card-type="project"] .project-card-copy{min-width:0}
+.content-card[data-card-type="project"] .project-card-copy>.card-access{margin:2px 0 15px}
+.content-card[data-card-type="project"] .project-cta{display:inline-block;max-width:100%;font-weight:750;line-height:1.5;letter-spacing:.04em}
+.content-card[data-card-type="project"].static .project-cta{color:#877962;font-size:.76rem;font-style:normal}
+.home-project-card.content-card .home-project-copy{min-width:0}
+.home-project-card.content-card .home-project-copy>small{display:block;line-height:1.7;overflow-wrap:anywhere}
+.home-project-card.content-card .home-project-copy .card-kind{color:inherit;opacity:.85}
+.home-project-card.content-card .home-project-copy .card-access{font-size:.68rem;padding:3px 8px;margin-top:6px}
+.home-project-card.content-card .home-project-copy>b{font-size:.72rem;line-height:1.55;overflow-wrap:anywhere;letter-spacing:.035em}
+.home-project-card.content-card.is-preparing{cursor:default}
+.home-project-card.content-card.is-preparing .home-project-copy>b{color:#85775d}
+@media(max-width:760px){
+ .entry-card[data-card-type="article"] .card-kind{font-size:.68rem}
+ .note-link[data-card-type="article"] .note-meta .card-kind{font-size:.62rem}
+ .content-card[data-card-type="project"] .card-access{font-size:.72rem}
+}
