@@ -10,6 +10,16 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 8
     steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Install Playwright
+        run: npm install --no-save playwright@1.56.1
+      - name: Real Chromium flow against XServer
+        env:
+          KIDP_TEST_ORIGIN: https://k-aito.com
+        run: node projects/kidp/qa_wave_a_browser.cjs
       - name: Check KIDP production pages and deployed version
         shell: bash
         run: |
