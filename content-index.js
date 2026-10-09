@@ -19,12 +19,12 @@ const entries = [
     ["p","20件のProblemを入れたWeb Prototypeまで作り、Project GIVEを最初のBUILT例として接続した。"],
     ["p","次はProblemを3件以上見たくなるか、SAMEを押すか、自分のProblemを投稿したくなるかをTestする。"]
   ]},
-  {id:"nuclear-industrial-carrier",title:"海の上で工場を動かしたらどうなる？――原子力加工船という妄想",state:"THINK",shelf:"thinking",date:"2026.09.18",url:"/notes/nuclear-industrial-carrier/",tags:["原子力","海運","物流","工場船"],summary:"輸送という「何も作っていない時間」を、価値を作る時間に変えられないか。原子力加工船を妄想してみた。",body:[
+  {id:"nuclear-industrial-carrier",thumbnail:{src:"/assets/notes/nuclear-industrial-carrier/manga-01.webp",alt:"原子力加工船の構想を描いた漫画の一場面"},title:"海の上で工場を動かしたらどうなる？――原子力加工船という妄想",state:"THINK",shelf:"thinking",date:"2026.09.18",url:"/notes/nuclear-industrial-carrier/",tags:["原子力","海運","物流","工場船"],summary:"輸送という「何も作っていない時間」を、価値を作る時間に変えられないか。原子力加工船を妄想してみた。",body:[
     ["p","公海上で加工したら税金も変わるのでは、という素朴な疑問から始まった思考実験。"],
     ["p","原子炉を推進・電力・プロセス熱に配分し、輸送時間そのものを加工時間へ変えられないか考えた。"],
     ["p","日本とチリの硫酸・銅精鉱の往復物流や、油脂を往復で加工する可能性まで掘り下げている。"]
   ]},
-  {id:"site-launch-trouble",title:"サイトを公開しようとしたら、早速つまずいた。",state:"MAKING",shelf:"technology",date:"2026.09.11",image:"notebook",tags:["Web","XServer","GitHub"],summary:"独自ドメイン公開で止まった原因は、.htaccessだった。",body:[
+  {id:"site-launch-trouble",thumbnail:{src:"/assets/notebook-photo.webp",alt:"机に置かれたノートとコーヒーの写真"},title:"サイトを公開しようとしたら、早速つまずいた。",state:"MAKING",shelf:"technology",date:"2026.09.11",image:"notebook",tags:["Web","XServer","GitHub"],summary:"独自ドメイン公開で止まった原因は、.htaccessだった。",body:[
     ["p","K. Aitoの「デジタル物置」を作ることにした。旅行や酒の記録、勉強のメモ、制作物、思いついた事業のアイデア。あちこちに散らばっているものを、少しずつ置いていく場所だ。"],
     ["p","ドメインを取得して、GitHubに仮のトップページを用意。XServer Staticの初期URLで表示できたので、あとは独自ドメインに切り替えるだけ。そう思っていた。"],
     ["h3","「設定ファイルの取得に失敗しました。」"],
