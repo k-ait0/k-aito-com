@@ -161,6 +161,10 @@ writeIfChanged(archivePath, archive);
 
 /* Cache bust the shared catalogue in every HTML page on catalogue changes. */
 const catalogueVersion = crypto.createHash("sha256").update(source).digest("hex").slice(0, 12);
+const frontendVersions=["app.js","site-content.js"].map(file=>({
+  file,version:crypto.createHash("sha256").update(fs.readFileSync(path.join(root,file))).digest("hex").slice(0,12)
+}));
+
 const walk = dir => fs.readdirSync(dir, {withFileTypes: true}).flatMap(entry => {
   if (entry.isDirectory()) {
     if (entry.name === ".git" || entry.name === "node_modules") return [];
@@ -170,8 +174,12 @@ const walk = dir => fs.readdirSync(dir, {withFileTypes: true}).flatMap(entry => 
 });
 for (const htmlPath of walk(root)) {
   const html = fs.readFileSync(htmlPath, "utf8");
-  const updated = html.replace(/\/content-index\.js\?v=[a-zA-Z0-9]+/g,
+  let updated = html.replace(/\/content-index\.js\?v=[a-zA-Z0-9]+/g,
     "/content-index.js?v=" + catalogueVersion);
+  for(const asset of frontendVersions){
+    updated=updated.replace(new RegExp("/"+asset.file.replace(".","\\.")+"\\?v=[a-zA-Z0-9]+","g"),
+      "/"+asset.file+"?v="+asset.version);
+  }
   if (updated !== html) writeIfChanged(htmlPath, updated);
 }
 console.log("OK: " + notes.length + " canonical articles; index " + catalogueVersion);
