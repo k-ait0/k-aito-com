@@ -29,7 +29,7 @@ const projects=routes.map(url=>{
   const status=plain(capture(main,/<div class="project-status">\s*<strong>([\s\S]*?)<\/strong>/i));
   const id=url.slice(1,-1).replaceAll("/","-");
   const registered=registry.projects.find(p=>p.id===url.split("/")[2] && url.split("/").length===4);
-  if(!title||!summary||!main||title.length>140||!status||!/^\/projects\//.test(url))throw Error("Incomplete project "+url);
+  if(!title||!summary||!main||title.length>140||!(status||registered?.stage)||!/^\/projects\//.test(url))throw Error("Incomplete project "+url);
   return {id,type:"PROJECT",title,summary,url,stage:registered?.stage||status,
     access:registered?.accessJa||"公開中の紹介ページ",searchText:plain(main).slice(0,7000)};
 });
