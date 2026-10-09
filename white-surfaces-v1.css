@@ -149,3 +149,9 @@ body:not(.subpage) .home-v2 .shelves-grid .shelf,
 body:not(.subpage) .home-v2 .shelves-grid .shelf:hover{
   background-color:#fff!important;
 }
+
+/* White reading surface for the sitewide footer, including mobile. */
+.site-footer,.site-footer .footer-inner,.site-footer .footer-bottom{background-color:#fff!important;color:#193f32!important}
+.site-footer :is(p,span,small,a,.footer-hand,.footer-nav a,.footer-bottom span){color:#193f32!important;text-shadow:none!important}
+.site-footer .footer-nav{border-color:#d8e0d6!important}
+.site-footer .footer-bottom{border-top-color:#d8e0d6!important}
