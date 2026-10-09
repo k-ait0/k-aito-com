@@ -82,6 +82,49 @@ const stop=()=>new Promise(resolve=>server.close(resolve));
           check(valid.overflow<=2,mode.name+" "+slug+" no horizontal overflow",JSON.stringify(valid));
           check(valid.header&&valid.search,mode.name+" "+slug+" header and search",JSON.stringify(valid));
           check(errors.length===0,mode.name+" "+slug+" no script/asset errors",errors.join("; "));
+          // Global reading-surface standard: all public pages include the white layer;
+          // only the copy surfaces are white — the surrounding canvas remains warm.
+          const surfaces=await page.evaluate(()=>{
+            const white="rgb(255, 255, 255)";
+            const cases={
+              "/":[".hero-poster",".section-heading",".shelf",".entry-card",".home-project-card"],
+              "/storage/":[".page-intro",".storage-guide",".storage-discovery",".storage-discovery-link",".status-guide"],
+              "/archive/":[".page-intro",".archive-guide",".archive-tools",".archive-period .note-link"],
+              "/projects/":[".projects-hero-copy",".project-index",".portfolio-section-head",".portfolio-card",".project-note-feature"],
+              "/about/":[".about-hero-copy",".about-hero-card",".about-copy",".editorial-principles li"],
+              "/travel/":[".page-intro",".shelf-group-heading",".shelf-empty",".record-guide"],
+              "/projects/kidp/":[".kidp-hero",".kidp-process",".kidp-section-head",".kidp-build-queue"],
+              "/projects/kidp/whynot/":[".kidp-project-hero",".kidp-two-col>div",".kidp-next-full"],
+              "/links/":[".page-intro",".links-section",".link-row"]
+            };
+            const route=location.pathname;
+            const selected=cases[route]||[];
+            return {
+              styleLink:!!document.querySelector('link[href^="/white-surfaces-v1.css"]'),
+              warmCanvas:getComputedStyle(document.body).backgroundColor!==white,
+              selected:selected.map(selector=>{
+                const el=document.querySelector(selector);
+                return {selector,exists:!!el,background:el?getComputedStyle(el).backgroundColor:null};
+              }),
+              shelfOverlay:route==="/storage/"?(()=>{
+                const e=document.querySelector(".storage-shelf");
+                return e?{overlay:getComputedStyle(e,"::before").backgroundImage,
+                  text:getComputedStyle(e.querySelector("h2")).color,
+                  image:getComputedStyle(e.querySelector(".storage-shelf-image")).display}:null;
+              })():null
+            };
+          });
+          check(surfaces.styleLink&&surfaces.warmCanvas,
+            mode.name+" "+slug+" standard white surface layer preserves warm site",JSON.stringify(surfaces));
+          if(surfaces.selected.length){
+            check(surfaces.selected.every(x=>x.exists&&x.background==="rgb(255, 255, 255)"),
+              mode.name+" "+slug+" readable text panels are opaque white",JSON.stringify(surfaces.selected));
+          }
+          if(slug==="/storage/"){
+            check(!!surfaces.shelfOverlay&&surfaces.shelfOverlay.overlay.includes("rgb(255, 255, 255)")&&
+              surfaces.shelfOverlay.text==="rgb(25, 63, 50)"&&surfaces.shelfOverlay.image!=="none",
+              mode.name+" SHELVES retain photographs with white type panel",JSON.stringify(surfaces.shelfOverlay));
+          }
           // All published KAITO articles share a white reading paper over the warm site background.
           if(slug.startsWith("/notes/")){
             await page.evaluate(async()=>{
