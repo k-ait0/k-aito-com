@@ -146,6 +146,35 @@ const stop=()=>new Promise(resolve=>server.close(resolve));
             check(shelves.count===3&&shelves.hrefs.includes("/archive/")&&shelves.hrefs.includes("/projects/kidp/"),
               mode.name+" SHELVES offers discovery paths despite unfilled categories",JSON.stringify(shelves));
           }
+          if(slug==="/"||slug==="/projects/"){
+            const cards=await page.locator('[data-card-type="project"][data-project-id]').evaluateAll(nodes=>
+              nodes.map(node=>({
+                id:node.dataset.projectId,
+                stage:node.querySelector('[data-project-stage]')?.textContent.trim()||"",
+                access:node.querySelector('[data-project-access]')?.textContent.trim()||"",
+                action:node.querySelector('[data-project-action]')?.textContent.trim()||"",
+                clickable:node.tagName==="A"
+              })));
+            const ids=cards.map(x=>x.id);
+            const stages={ "digital-storage":"OPERATING","tabi-route":"DESIGNING","finowa":"BUILDING","kidp":"TESTING" };
+            check(cards.length===4&&new Set(ids).size===4&&Object.entries(stages).every(([id,stage])=>cards.some(x=>x.id===id&&x.stage===stage&&x.access&&x.action)),
+              mode.name+" "+slug+" project cards disclose type, phase and availability",JSON.stringify(cards));
+            check(cards.some(x=>x.id==="tabi-route"&&!x.clickable&&x.access==="未公開")&&cards.some(x=>x.id==="kidp"&&x.clickable&&x.access==="試作あり"),
+              mode.name+" "+slug+" distinguishes unpublished concepts from accessible prototypes",JSON.stringify(cards));
+          }
+          if(slug==="/"){
+            const articleCards=await page.locator("#recent-grid .entry-card").evaluateAll(nodes=>nodes.map(node=>({
+              type:node.dataset.cardType,label:node.querySelector(".card-kind")?.textContent.trim(),state:node.querySelector(".state")?.textContent.trim()
+            })));
+            check(articleCards.length===3&&articleCards.every(x=>x.type==="article"&&x.label==="ARTICLE"&&x.state),
+              mode.name+" HOME distinguishes reading cards from project cards",JSON.stringify(articleCards));
+          }
+          if(slug==="/storage/"||slug==="/archive/"){
+            const count=await page.locator(slug==="/storage/"?'[data-catalogue-recent] .note-link':'[data-catalogue-timeline] .note-link').evaluateAll(nodes=>
+              ({total:nodes.length,typed:nodes.filter(n=>n.dataset.cardType==="article"&&n.querySelector(".card-kind")?.textContent.trim()==="ARTICLE").length}));
+            check(count.total===4&&count.typed===count.total,
+              mode.name+" "+slug+" identifies all published article cards",JSON.stringify(count));
+          }
           if(slug==="/projects/"){
             check(await page.locator(".featured-project-card .project-meta").innerText()
               .then(text=>text.includes("公開済み / 運用・記事拡充中")),
