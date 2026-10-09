@@ -9,12 +9,12 @@ const stateTag = state => `<span class="state state-${state.toLowerCase()}">${es
 const photoAlt = {travel:"列車と海のイメージ",sake:"日本酒と料理のイメージ",house:"木の建物のイメージ",notebook:"ノートとペンのイメージ"};
 
 function entryCard(entry, compact=false){
-  const photo=entry.image || "notebook";
-  const picture=entry.image || compact ? `<span class="card-photo photo photo-${photo}" role="img" aria-label="${photoAlt[photo]||"記事イメージ"}"></span>` : "";
+  const asset=entry.thumbnail;
+  const picture=asset ? `<img class="card-photo note-thumbnail" src="${esc(asset.src)}" alt="${esc(asset.alt)}" width="640" height="360" loading="lazy" decoding="async">` : "";
   const content=`${compact?picture+stateTag(entry.state):stateTag(entry.state)+picture}
     <span class="card-copy"><span class="card-kind">ARTICLE</span><span class="card-date">${entry.date}</span><span class="card-title">${esc(entry.title)}</span>${compact?'':`<span class="card-summary">${esc(entry.summary)}</span>`}<span class="card-tags">${entry.tags.map(tag=>'#'+esc(tag)).join('　')}</span><span class="card-arrow" aria-hidden="true">→</span></span>`;
-  if(entry.url)return `<a class="entry-card entry-card-link ${!entry.image&&!compact?'text-card':''}" data-card-type="article" href="${esc(entry.url)}" aria-label="${esc(entry.title)}を読む">${content}</a>`;
-  return `<button type="button" class="entry-card ${!entry.image&&!compact?'text-card':''}" data-card-type="article" data-entry="${entry.id}" aria-label="${esc(entry.title)}を読む">${content}</button>`;
+  if(entry.url)return `<a class="entry-card entry-card-link ${!entry.thumbnail&&!compact?'text-card':''}" data-card-type="article" href="${esc(entry.url)}" aria-label="${esc(entry.title)}を読む">${content}</a>`;
+  return `<button type="button" class="entry-card ${!entry.thumbnail&&!compact?'text-card':''}" data-card-type="article" data-entry="${entry.id}" aria-label="${esc(entry.title)}を読む">${content}</button>`;
 }
 
 const publishedNotes=entries.filter(entry=>entry.url&&entry.url.startsWith("/notes/")).slice().sort((a,b)=>b.date.localeCompare(a.date));
