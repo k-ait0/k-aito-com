@@ -15,11 +15,11 @@
 .essay-page .essay-toc a{display:flex;gap:11px;align-items:baseline;padding:7px 4px;border-bottom:1px solid #e4eae1;font-size:.94rem;line-height:1.65;text-decoration:none;color:#25483b}
 .essay-page .essay-toc a:before{content:counter(chapters,decimal-leading-zero);font:700 .75rem/1.6 Arial,sans-serif;color:#547b60}
 .essay-page .essay-toc a:hover{color:#236d4b;border-color:#8caa94}
-.essay-page .essay-body{max-width:760px;margin-inline:auto;font-family:var(--serif);font-size:1.075rem;line-height:2.03;letter-spacing:.012em;color:#29372f;overflow-wrap:break-word}
+.essay-page .essay-body{max-width:760px;margin-inline:auto;font-family:var(--font);font-size:1.075rem;line-height:2.03;letter-spacing:.012em;color:#29372f;overflow-wrap:break-word}
 .essay-page .essay-body>p{margin:0 0 1.6em}
-.essay-page .essay-body>h2{margin:4.1rem 0 1.35rem;padding:25px 0 0;border-top:2px solid #c6d4c9;color:#183f31;font-size:1.63rem;line-height:1.5;letter-spacing:.015em;scroll-margin-top:145px}
+.essay-page .essay-body>h2{font-family:var(--serif);margin:4.1rem 0 1.35rem;padding:25px 0 0;border-top:2px solid #c6d4c9;color:#183f31;font-size:1.63rem;line-height:1.5;letter-spacing:.015em;scroll-margin-top:145px}
 .essay-page .essay-body>h2:first-child{margin-top:0;padding-top:0;border:0}
-.essay-page .essay-body>h3{font-size:1.27rem;line-height:1.55;color:#24513d;margin:2.5em 0 1em;padding:0 0 0 14px;border-left:4px solid #a2bca4}
+.essay-page .essay-body>h3{font-family:var(--serif);font-size:1.27rem;line-height:1.55;color:#24513d;margin:2.5em 0 1em;padding:0 0 0 14px;border-left:4px solid #a2bca4}
 .essay-page .essay-body>.essay-keyline{margin:2.35rem 0;font-weight:650;color:#244e3b;border-left:4px solid #759b82;background:#edf3e9;padding:19px 22px;line-height:1.95}
 .essay-page .essay-figure{max-width:100%;margin:40px 0 47px!important;padding:16px;background:#fffdf7;border:1px solid #cedbd0;border-radius:9px;box-shadow:0 5px 19px rgba(22,56,37,.045)}
 .essay-page .essay-figure-window{max-width:100%;overflow-x:auto;overscroll-behavior-inline:contain;-webkit-overflow-scrolling:touch;scrollbar-color:#8aa698 #f0f3ed}
