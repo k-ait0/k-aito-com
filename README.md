@@ -12,6 +12,17 @@
 - `thinking`（その他）の記事はARCHIVEへ、`business`の記事はPROJECTSと事業の構想ページへ表示。
 - 制作・開発の棚では、状態ラベルから完成品・制作中・構想に振り分ける。
 
+## KAITO記事の共通デザイン（2026-10-09 標準化）
+
+公開済み記事はすべて、生成りのサイト背景に**白い記事紙面**を重ねるデザインに統一しました。
+
+- 正式な共通スタイル：`article-reading.css`（`article-v2.css` と共存）
+- 記事HTML：`body.subpage.essay-page`、`article.article-page`、`div.article-copy.essay-body`
+- 長文の目次：`essay-toc`（必要なら `details` で折りたたむ）
+- 仕様書：[KAITO 記事デザイン・制作標準 v1.0](docs/KAITO_ARTICLE_STYLE_GUIDE_v1_20261009.md)
+- 新規記事用：[記事テンプレート v1.0](docs/KAITO_ARTICLE_TEMPLATE_v1.md)
+- 既存4記事に適用済み。記事固有の図解・写真・Prototypeはそのまま残しています。
+
 ## 記事を1本追加するとき
 
 1. `notes/<slug>/index.html` と記事で利用する画像を配置する。
