@@ -59,6 +59,25 @@ async function main(){
   assert.equal(await page.locator("#decision strong").innerText(),"MORE DATA");
   assert.match(await page.locator("#parseStatus").innerText(),/INVALID除外/);
   console.log("PASS: "+project+" INVALID -> valid 4 -> MORE DATA");
+  // The operator must be able to replace an invalid P05 with a new P06.
+  await page.goto(origin+"/projects/kidp/test-ops/");
+  const updatedCard=page.locator('[data-project="'+project+'"]');
+  await updatedCard.locator(".reserve-group summary").click();
+  const reserveP06=updatedCard.locator(".reserve-people .person").first();
+  assert.equal(await reserveP06.locator("b").innerText(),"P06");
+  await reserveP06.locator(".receipt").check();
+  await updatedCard.locator(".reserve-people .person").first().locator(".status").selectOption("DONE");
+  assert.equal(await updatedCard.locator(".count").innerText(),"5 / 5 DONE");
+  assert.equal(await updatedCard.locator(".reserve-group").evaluate(el=>el.open),true);
+  const nextRow=lastRow.replace(/^"P01",/,'"P06",');
+  assert.notEqual(nextRow,lastRow);
+  await page.goto(origin+"/"+file.replace("/index.html","/"));
+  await page.locator("#csvInput").fill(csv+"\n"+nextRow);
+  await page.locator(project==="life-design-lab"?"#analyzeBtn":"#analyze").click();
+  assert.equal(await page.locator("#decision strong").innerText(),"P1 GO");
+  assert.equal(await page.locator("#n, #mN").first().innerText(),"5");
+  assert.match(await page.locator("#parseStatus").innerText(),/INVALID除外.*P05/);
+  console.log("PASS: "+project+" invalid P05 -> replacement P06 counts as fifth valid session");
  }
  for(const width of [1280,390]){
   await page.setViewportSize({width,height:850});

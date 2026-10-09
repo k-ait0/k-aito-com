@@ -68,6 +68,15 @@ Physical session:
 - A negative opinion or misunderstanding is still valid evidence unless an actual INVALID condition applies.
 - Decisions and gate thresholds remain unchanged. Use the original P0 test plans.
 
+## Backup participant recovery — P06–P10
+
+- The first five assigned sessions are P01–P05 per project. In Test Ops, expand **追加参加者 P06〜P10** when an INVALID / interrupted / withdrawn session leaves fewer than five valid cases.
+- Assign each backup Pxx to a **different, real session**. Do not overwrite an invalid P05 with another person's data.
+- The Review tool supports P01–P10 and checks the same Test Ops status/receipt on the facilitator browser. After e.g. P05 INVALID, valid P01–P04 + P06 is five; P05 remains excluded.
+- A candidate screening ID such as A06 or B06 is **not** the P06 participant ID until that candidate actually accepts and is assigned it.
+- Only the first 5 slots appear in the earlier printed QR handout. Use Test Ops' OPEN TEST link for P06–P10 when needed.
+- Keep both QA/sample rows and unverified/invalid rows out of the actual decision denominator.
+
 ## Wave A sequence
 
 1. Run KIDP-004 P01–P05.
