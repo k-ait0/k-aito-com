@@ -228,6 +228,37 @@ const stop=()=>new Promise(resolve=>server.close(resolve));
               await link.getAttribute("href")==="https://finowa.jp/",
               mode.name+" PROJECTS links to FINOWA");
           }
+          if(slug==="/"){
+            await page.locator("#site-search").fill("WHYNOT");
+            await page.locator("#search-form").evaluate(form=>form.requestSubmit());
+            await page.locator("#archive-dialog").waitFor({state:"visible"});
+            const types=await page.locator("#archive-results a[data-card-type]").evaluateAll(nodes=>nodes.map(n=>n.dataset.cardType));
+            check(types.includes("article")&&types.includes("project"),
+              mode.name+" HOME search returns both WHYNOT article and KIDP project",JSON.stringify(types));
+            await page.locator("#archive-search").fill("駅生活圏");
+            const filtered=await page.locator("#archive-results a[data-card-type]").evaluateAll(nodes=>nodes.map(n=>({kind:n.dataset.cardType,href:n.getAttribute("href")})));
+            check(filtered.some(n=>n.kind==="project"&&n.href==="/projects/kidp/station-life/")&&filtered.every(n=>n.kind==="project"),
+              mode.name+" HOME project-only phrase returns published station-life detail",JSON.stringify(filtered));
+            await page.locator('#archive-dialog [data-close-dialog]').click();
+          }
+          if(slug==="/about/"){
+            await page.locator('#site-wide-search button[type="submit"]').click();
+            await page.locator("#global-search-input").fill("WHYNOT");
+            await page.locator("#global-search-input").press("Enter");
+            await page.locator("#site-wide-search-dialog").waitFor({state:"visible"});
+            const types=await page.locator('.site-search-results a[data-search-type]').evaluateAll(nodes=>nodes.map(n=>n.dataset.searchType));
+            check(types.includes("article")&&types.includes("project"),
+              mode.name+" subpage search returns both WHYNOT article and project",JSON.stringify(types));
+            await page.locator("#site-search-query").fill("サンケイビル");
+            const articleHits=await page.locator('.site-search-results a[data-search-type]').evaluateAll(nodes=>nodes.map(n=>({kind:n.dataset.searchType,href:n.getAttribute("href")})));
+            check(articleHits.some(x=>x.kind==="article"&&x.href==="/notes/media-public-interest-sankei-building/"),
+              mode.name+" subpage search finds article full text",JSON.stringify(articleHits));
+            await page.locator("#site-search-query").fill("駅生活圏");
+            const projectHits=await page.locator('.site-search-results a[data-search-type]').evaluateAll(nodes=>nodes.map(n=>({kind:n.dataset.searchType,href:n.getAttribute("href")})));
+            check(projectHits.some(x=>x.kind==="project"&&x.href==="/projects/kidp/station-life/"),
+              mode.name+" subpage search finds KIDP prototype by topic",JSON.stringify(projectHits));
+            await page.locator(".site-search-dismiss").click();
+          }
           if(slug==="/projects/digital-storage/"){
             check(await page.locator(".project-status strong").innerText()
               .then(text=>text.includes("公開・運用中")),
