@@ -219,6 +219,29 @@ const stop=()=>new Promise(resolve=>server.close(resolve));
             check(count.total===4&&count.typed===count.total,
               mode.name+" "+slug+" identifies all published article cards",JSON.stringify(count));
           }
+          if(["/","/storage/","/archive/","/works/"].includes(slug)){
+            const photos=await page.evaluate(async()=>{
+              const images=[...document.querySelectorAll('img.note-thumbnail')];
+              await Promise.all(images.map(async image=>{
+                image.loading="eager";
+                try{await image.decode();}catch(_error){}
+              }));
+              return images.map(image=>({
+                src:new URL(image.currentSrc||image.src).pathname,
+                alt:image.alt,
+                naturalWidth:image.naturalWidth,
+                naturalHeight:image.naturalHeight,
+                complete:image.complete,
+                box:image.getBoundingClientRect().toJSON()
+              }));
+            });
+            const expected=slug==="/works/"?["/assets/notebook-photo.webp"]:
+              ["/assets/notebook-photo.webp","/assets/notes/nuclear-industrial-carrier/manga-01.webp"];
+            check(photos.length===expected.length&&photos.every(p=>expected.includes(p.src)),
+              mode.name+" "+slug+" uses approved article thumbnails",JSON.stringify(photos));
+            check(photos.every(p=>p.complete&&p.naturalWidth>=200&&p.naturalHeight>=100&&p.alt.length>=10&&p.box.width>70&&p.box.height>70),
+              mode.name+" "+slug+" thumbnails load with readable dimensions and alt text",JSON.stringify(photos));
+          }
           if(slug==="/projects/"){
             check(await page.locator(".featured-project-card .project-meta").innerText()
               .then(text=>text.includes("公開済み / 運用・記事拡充中")),
