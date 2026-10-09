@@ -44,6 +44,13 @@ for(const file of html){
     assert.ok(head.includes('name="twitter:card" content="summary_large_image"'),"Missing Twitter card "+p);
     assert.ok(listed.includes(url),"Missing sitemap location "+p);
   }
+  // KAITO article-reading standard: every published note must use the white-paper shell.
+  if(/^notes\\/[^/]+\\/index\\.html$/.test(p)&&!isNoindex){
+    assert.match(src,/<body[^>]*class="[^"]*\\bessay-page\\b[^"]*"/,"Missing article shell class "+p);
+    assert.match(src,/<article[^>]*class="[^"]*\\barticle-page\\b[^"]*"/,"Missing semantic article page "+p);
+    assert.match(src,/<div class="article-copy essay-body">/,"Missing reading typography class "+p);
+    assert.match(head,/href="\\/article-reading\\.css\\?v=[^"]+"/,"Missing shared article stylesheet "+p);
+  }
   for(const m of src.matchAll(/(?:href|src)="([^"]+)"/g)){
     const ref=m[1];
     if(ref.startsWith("#")||/^(https?:|mailto:|tel:|data:|\/\/)/.test(ref))continue;
