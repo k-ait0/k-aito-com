@@ -140,6 +140,7 @@ document.getElementById("search-form").addEventListener("submit",event=>{
   const input=document.getElementById("site-search");
   if(window.matchMedia('(max-width: 700px)').matches&&!input.value&&document.activeElement!==input){input.focus();return;}
   const searchTerm=input.value;
+  document.getElementById("search-form").classList.remove("is-open");
   // Avoid leaving mobile header search expanded after the dialog closes.
   if(document.activeElement&&document.getElementById("search-form").contains(document.activeElement)){
     document.activeElement.blur();
@@ -155,6 +156,7 @@ for(const dialog of [archiveDialog,entryDialog]){
   dialog.addEventListener("close",()=>{
     document.body.classList.remove("modal-open");
     const opener=dialogOpeners.get(dialog),searchForm=document.getElementById("search-form");
+    if(dialog===archiveDialog)searchForm.classList.remove("is-open");
     // Restoring focus to the header search input would leave the mobile overlay expanded.
     if(opener&&opener.focus&&!searchForm.contains(opener))opener.focus();
     if(dialog===archiveDialog&&searchForm.contains(document.activeElement)){
