@@ -1,7 +1,7 @@
 const {chromium}=require("playwright");
 const fs=require("node:fs");
 const assert=require("node:assert/strict");
-const origin="http://127.0.0.1:8765";
+const origin=process.env.KIDP_TEST_ORIGIN||"http://127.0.0.1:8765";
 const projects=[
  ["station-life","projects/kidp/station-life/test-review/index.html"],
  ["life-design-lab","projects/kidp/life-design-lab/test-review/index.html"],
