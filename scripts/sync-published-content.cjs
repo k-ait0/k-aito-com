@@ -81,6 +81,26 @@ writeIfChanged(sitemapPath, '<?xml version="1.0" encoding="UTF-8"?>\n' +
 
 /* Keep existing HTML meaningful with JavaScript disabled. Dynamic renderers
    replace these sections when JS is enabled; guard their exact boundaries. */
+/* Keep the featured HOME note current even if JavaScript is disabled.
+   FIRST NOTE in the hero is intentional and is not replaced by this feature. */
+const homePath=path.join(root,"index.html");
+let home=fs.readFileSync(homePath,"utf8");
+const featureBegin="<!-- HOME FEATURE START -->";
+const featureEnd="<!-- HOME FEATURE END -->";
+const fi=home.indexOf(featureBegin),fj=home.indexOf(featureEnd);
+if(fi<0||fj<=fi)throw new Error("HOME feature markers missing or reversed");
+const current=notes[0];
+const featured=current
+ ? '<a class="home-feature-note" href="'+escapeHtml(current.url)+'"><span class="home-feature-copy">'+
+   '<span class="home-feature-meta"><span class="home-feature-label">'+
+   escapeHtml(current.state)+' / NEW IN STORAGE</span><time datetime="'+current.date.replaceAll(".","-")+'">'+
+   escapeHtml(current.date)+'</time></span><strong class="home-feature-title">'+
+   escapeHtml(current.title)+'</strong><span class="home-feature-summary">'+
+   escapeHtml(current.summary)+'</span></span><span class="home-feature-action">READ NOTE <b aria-hidden="true">→</b></span></a>'
+ : '<p class="home-feature-empty">公開記事は準備中です。<a href="/projects/">プロジェクトを見る →</a></p>';
+home=home.slice(0,fi+featureBegin.length)+"\n"+featured+"\n"+home.slice(fj);
+writeIfChanged(homePath,home);
+
 const storagePath = path.join(root, "storage", "index.html");
 let storage = fs.readFileSync(storagePath, "utf8");
 const recentStart = '<div class="notes-grid" data-catalogue-recent>';
