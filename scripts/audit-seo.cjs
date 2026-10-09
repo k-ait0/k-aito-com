@@ -9,6 +9,7 @@ const sitemap = fs.readFileSync(path.join(root, "sitemap.xml"), "utf8");
 const urls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(m => m[1]);
 const failures = [];
 const warnings = [];
+if (!urls.length) failures.push("sitemap.xml: no URLs found");
 const seen = new Set();
 for (const url of urls) {
   let pathname;
