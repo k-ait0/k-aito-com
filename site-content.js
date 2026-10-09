@@ -12,6 +12,7 @@
   function noteCard(note){
     const link=document.createElement("a");
     link.className="note-link";
+    link.dataset.cardType="article";
     link.href=note.url;
     const meta=document.createElement("div");
     meta.className="note-meta";
@@ -20,7 +21,10 @@
     const date=document.createElement("time");
     date.dateTime=note.date.replaceAll(".","-");
     date.textContent=note.date;
-    meta.append(state,date);
+    const kind=document.createElement("span");
+    kind.className="card-kind";
+    kind.textContent="ARTICLE";
+    meta.append(state,date,kind);
     const title=document.createElement("h3");
     title.textContent=note.title;
     const summary=document.createElement("p");
