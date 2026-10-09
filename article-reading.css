@@ -1,0 +1,99 @@
+/* KAITO Article Reading Standard v1.0 (2026-10-09). All public /notes/ article pages. */
+.essay-page .article-layout{max-width:1120px;padding-top:40px}
+.essay-page .article-layout>.breadcrumb{max-width:860px;margin:0 auto 30px;color:#647369}
+.essay-page .article-page{max-width:860px;margin:0 auto;padding:46px 49px 52px;background:#fff;border:1px solid #d9dfd5;border-radius:12px;box-shadow:0 7px 24px rgba(29,56,37,.065)}
+.essay-page .article-page h1{font-family:var(--serif);font-size:clamp(2rem,3.45vw,2.75rem);line-height:1.5;letter-spacing:.025em;text-wrap:pretty;color:#173c32;margin:12px 0 22px}
+.essay-page .article-page>.page-lead{max-width:760px;font-size:1.19rem;line-height:1.85;color:#405b4e;margin-bottom:28px}
+.essay-page .article-page .article-reading-guide{font-size:.83rem;gap:14px;margin-bottom:30px}
+.essay-page .essay-orientation{max-width:760px;border-left:4px solid #3b715c;background:#edf2e9;padding:17px 23px;margin:0 0 24px}
+.essay-page .essay-orientation strong{display:block;font-size:.84rem;letter-spacing:.07em;color:#235541;margin-bottom:6px}
+.essay-page .essay-orientation p{font-size:.97rem;line-height:1.9;color:#294638;margin:0}
+.essay-page .essay-toc{max-width:760px;padding:24px 28px;background:#fffef9;border:1px solid #d6dfd5;border-radius:8px;margin:0 0 58px}
+.essay-page .essay-toc>strong{display:block;font-size:.92rem;letter-spacing:.04em;color:#204938;margin-bottom:15px}
+.essay-page .essay-toc ol{list-style:none;counter-reset:chapters;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:8px 24px}
+.essay-page .essay-toc li{min-width:0;counter-increment:chapters}
+.essay-page .essay-toc a{display:flex;gap:11px;align-items:baseline;padding:7px 4px;border-bottom:1px solid #e4eae1;font-size:.94rem;line-height:1.65;text-decoration:none;color:#25483b}
+.essay-page .essay-toc a:before{content:counter(chapters,decimal-leading-zero);font:700 .75rem/1.6 Arial,sans-serif;color:#547b60}
+.essay-page .essay-toc a:hover{color:#236d4b;border-color:#8caa94}
+.essay-page .essay-body{max-width:760px;margin-inline:auto;font-family:var(--font);font-size:1.075rem;line-height:2.03;letter-spacing:.012em;color:#29372f;overflow-wrap:break-word}
+.essay-page .essay-body>p{margin:0 0 1.6em}
+.essay-page .essay-body>h2{font-family:var(--serif);margin:4.1rem 0 1.35rem;padding:25px 0 0;border-top:2px solid #c6d4c9;color:#183f31;font-size:1.63rem;line-height:1.5;letter-spacing:.015em;scroll-margin-top:145px}
+.essay-page .essay-body>h2:first-child{margin-top:0;padding-top:0;border:0}
+.essay-page .essay-body>h3{font-family:var(--serif);font-size:1.27rem;line-height:1.55;color:#24513d;margin:2.5em 0 1em;padding:0 0 0 14px;border-left:4px solid #a2bca4}
+.essay-page .essay-body>.essay-keyline{margin:2.35rem 0;font-weight:650;color:#244e3b;border-left:4px solid #759b82;background:#edf3e9;padding:19px 22px;line-height:1.95}
+.essay-page .essay-figure{max-width:100%;margin:40px 0 47px!important;padding:16px;background:#fffdf7;border:1px solid #cedbd0;border-radius:9px;box-shadow:0 5px 19px rgba(22,56,37,.045)}
+.essay-page .essay-figure-window{max-width:100%;overflow-x:auto;overscroll-behavior-inline:contain;-webkit-overflow-scrolling:touch;scrollbar-color:#8aa698 #f0f3ed}
+.essay-page .essay-figure-window a{display:block;min-width:0}
+.essay-page .essay-figure img{display:block;width:100%;max-width:none;height:auto;border:0;border-radius:5px;background:#f8f7f1}
+.essay-page .essay-figure .essay-figure-hint{margin:9px 0 0;color:#577665;font-size:.79rem;line-height:1.5}
+.essay-page .essay-figure>figcaption{font-family:var(--font);font-size:.88rem;line-height:1.75;padding-top:13px;margin-top:11px;border-top:1px solid #dbe5dc;color:#4f6659}
+.essay-page .essay-data-details{margin:20px 0 24px;border:1px solid #cddace;border-radius:8px;background:#f9faf6;overflow:hidden}
+.essay-page .essay-data-details summary{cursor:pointer;list-style:auto;font-family:var(--font);font-size:.96rem;font-weight:600;color:#245642;line-height:1.6;padding:15px 19px}
+.essay-page .essay-data-details summary:hover{background:#edf3e9}
+.essay-page .essay-data-details summary:focus-visible{outline:2px solid #527c61;outline-offset:-4px}
+.essay-page .essay-data-details[open] summary{border-bottom:1px solid #d7e2d8}
+.essay-page .essay-data-details .article-data{margin:0;padding:16px 18px 22px;background:#fffefa;border:0;max-width:100%}
+.essay-page .essay-data-details .article-data>div{overflow-x:auto;max-width:100%}
+.essay-page .essay-data-details table{width:100%;min-width:495px;border-collapse:collapse;font-family:var(--font);font-size:.89rem;line-height:1.6}
+.essay-page .essay-data-details .article-data figcaption{font-size:.79rem;line-height:1.65;color:#586d5f}
+.essay-page .essay-body ul{margin:1rem 0 1.4rem;padding-left:1.4em}
+.essay-page .essay-body li{margin-bottom:.7em}
+.essay-page .essay-body a{color:#205c43;text-decoration:underline;text-decoration-color:#8aa99a;text-underline-offset:4px}
+.essay-page .article-next,.essay-page .article-layout>.related-band{max-width:860px;margin-inline:auto}
+@media(max-width:760px){
+  .essay-page .article-page{padding:28px 24px 34px;border-radius:10px;box-shadow:0 4px 14px rgba(29,56,37,.055)}
+  .essay-page .article-layout{padding-top:23px}
+  .essay-page .article-page h1{font-size:clamp(1.8rem,6.4vw,2.2rem);line-height:1.5}
+  .essay-page .article-page>.page-lead{font-size:1.06rem;line-height:1.82}
+  .essay-page .essay-toc{padding:19px;margin-bottom:38px}
+  .essay-page .essay-toc ol{grid-template-columns:1fr;gap:3px}
+  .essay-page .essay-body{font-size:1.035rem;line-height:1.98;letter-spacing:0}
+  .essay-page .essay-body>p{margin-bottom:1.52em}
+  .essay-page .essay-body>h2{font-size:1.42rem;line-height:1.52;padding-top:19px;margin:3.4rem 0 1.1rem}
+  .essay-page .essay-body>h3{font-size:1.16rem;margin:2.1em 0 .9em}
+  .essay-page .essay-figure{margin:32px 0 37px!important;padding:10px}
+  .essay-page .essay-figure-window a{min-width:730px}
+  .essay-page .essay-figure img{width:730px;max-width:none}
+  .essay-page .essay-figure .essay-figure-hint{font-size:.8rem;font-weight:600}
+  .essay-page .essay-figure>figcaption{font-size:.84rem;margin-top:10px}
+  .essay-page .essay-orientation{padding:16px 17px}
+}
+@media(max-width:420px){
+  .essay-page .article-page{padding:21px 16px 28px;border-radius:8px}
+  .essay-page .essay-body{font-size:1.01rem;line-height:1.94}
+  .essay-page .essay-body>h2{font-size:1.35rem}
+  .essay-page .essay-toc a{font-size:.9rem}
+}
+@media print{
+ .essay-page .essay-toc{break-after:page}
+ .essay-page .essay-figure-window{overflow:visible}
+ .essay-page .essay-figure-window a{min-width:0}
+ .essay-page .essay-figure img{width:100%}
+ .essay-page .essay-figure{break-inside:avoid}
+}
+
+
+/* Core article components retained when adapting prior essays and production notes. */
+.essay-page .article-page{min-width:0}
+.essay-page .article-page .article-cover{margin:28px 0 36px}
+.essay-page .article-page .article-cover>img{width:100%;height:auto;max-width:100%}
+.essay-page .essay-body :where(.article-visual,.kidp-concept,.kidp-live-prototype,.article-summary,.article-sources){max-width:100%;min-width:0}
+.essay-page .essay-body :where(.process-flow,.kidp-built-chain,.kidp-concept-flow){overflow-wrap:anywhere}
+.essay-page .essay-body :where(.concept-compare,.reactor-diagram,.shared-route,.architecture-grid,.kidp-score-explain,.kidp-split){min-width:0}
+.essay-page .essay-body :where(.article-sources,.article-summary) li{line-height:1.8}
+.essay-page .essay-body :where(.article-pull){font-weight:600;color:#275743}
+.essay-page .essay-body :where(.article-data, .article-summary) h2{font-family:var(--serif)}
+.essay-page .essay-toc.essay-toc-collapsible{padding:18px 25px}
+.essay-page .essay-toc.essay-toc-collapsible summary{cursor:pointer;font-size:.99rem;font-weight:700;color:#204938;line-height:1.8}
+.essay-page .essay-toc.essay-toc-collapsible[open] summary{padding-bottom:14px;margin-bottom:9px;border-bottom:1px solid #d6dfd5}
+.essay-page .essay-toc.essay-toc-collapsible ol{gap:5px 22px}
+.essay-page .essay-toc summary:focus-visible{outline:2px solid #527c61;outline-offset:4px}
+@media(max-width:760px){
+  .essay-page .essay-toc.essay-toc-collapsible{padding:16px 18px}
+  .essay-page .article-page .article-cover{margin:18px 0 28px}
+  .essay-page .essay-body :where(.kidp-prototype-map,.kidp-live-prototype){max-width:100%}
+}
+/* Maintain the same paper on printing, without shadows. */
+@media print{
+  .essay-page .article-page{border-color:#e0e0e0;box-shadow:none}
+}
