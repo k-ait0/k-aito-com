@@ -1,0 +1,63 @@
+name: KIDP Live Deployment Readiness
+on:
+  pull_request:
+    paths:
+      - ".github/workflows/kidp-live-deployment-readiness.yml"
+  workflow_dispatch:
+
+jobs:
+  verify-production:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Install Playwright
+        run: npm install --no-save playwright@1.56.1
+      - name: Real Chromium flow against XServer
+        env:
+          KIDP_TEST_ORIGIN: https://k-aito.com
+        run: node projects/kidp/qa_wave_a_browser.cjs
+      - name: Check KIDP production pages and deployed version
+        shell: bash
+        run: |
+          set -u
+          host="k-aito.com"
+          echo "Check domain: ${host}"
+          getent ahosts "${host}" | head -3 || true
+          failures=0
+          check() {
+            name="$1"
+            path="$2"
+            marker="$3"
+            tmpfile="$(mktemp)"
+            echo "::group::${name} ${path}"
+            status="$(curl -L --silent --show-error --connect-timeout 10 --max-time 20 -w '%{http_code}' -o "${tmpfile}" "https://${host}${path}")"
+            code=$?
+            if [ "$code" -ne 0 ]; then
+              echo "FAIL: ${name} HTTP fetch failed (curl code ${code})"
+              failures=$((failures+1))
+            elif [ "${status}" != 200 ]; then
+              echo "FAIL: ${name} HTTP status ${status}"
+              failures=$((failures+1))
+            elif ! grep -Fq "${marker}" "${tmpfile}"; then
+              echo "FAIL: ${name} is reachable but marker is missing (likely deployment mismatch)"
+              failures=$((failures+1))
+            else
+              echo "PASS: ${name} HTTP 200 and updated marker is deployed"
+            fi
+            rm -f "${tmpfile}"
+            echo "::endgroup::"
+          }
+          check "KIDP Hub" "/projects/kidp/" "KIDP"
+          check "Test Ops" "/projects/kidp/test-ops/" "CSV行をブラウザ外に保存済み"
+          check "Station Life Review" "/projects/kidp/station-life/test-review/" "validatedSessions"
+          check "Life Design Lab Review" "/projects/kidp/life-design-lab/test-review/" "validatedSessions"
+          check "WHYNOT Review" "/projects/kidp/whynot/test-review/" "validatedSessions"
+          if [ "$failures" -ne 0 ]; then
+            echo "Readiness gate FAIL: ${failures} page checks failed"
+            exit 1
+          fi
+          echo "Readiness gate PASS: all 5 production URLs matched deployed code"
