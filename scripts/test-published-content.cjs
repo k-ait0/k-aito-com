@@ -29,7 +29,7 @@ try {
   assert.ok(index.includes(anchor), "Catalogue export position changed");
   index = index.replace(anchor,
     'entries.push({id:"catalogue-regression",title:"追加記事の確認",state:"FOUND",' +
-    'shelf:"sake",date:"2026.09.24",url:"/notes/catalogue-regression/",' +
+    'shelf:"sake",date:"2026.10.09",url:"/notes/catalogue-regression/",' +
     'tags:["確認"],summary:"新しい記事の表示",searchText:"本文テスト",body:[]});\n' + anchor
   );
   fs.writeFileSync(path.join(temp,"content-index.js"),index);
@@ -49,7 +49,7 @@ try {
   const storage=fs.readFileSync(path.join(temp,"storage/index.html"),"utf8");
   const archive=fs.readFileSync(path.join(temp,"archive/index.html"),"utf8");
   const home=fs.readFileSync(path.join(temp,"index.html"),"utf8");
-  assert.match(sitemap,/https:\/\/k-aito\.com\/notes\/catalogue-regression\/<\/loc><lastmod>2026-09-24/);
+  assert.match(sitemap,/https:\/\/k-aito\.com\/notes\/catalogue-regression\/<\/loc><lastmod>2026-10-09/);
   assert.match(sitemap,/https:\/\/k-aito\.com\/works\//);
   assert.equal((sitemap.match(/notes\/catalogue-regression\//g)||[]).length,1);
   assert.match(storage,/data-catalogue-count>5 NOTES/);
@@ -57,6 +57,11 @@ try {
   assert.match(archive,/data-catalogue-timeline/);
   assert.match(archive,/href="\/notes\/catalogue-regression\/"/);
   assert.match(home,/content-index\.js\?v=[a-f0-9]{12}/);
+  const feature=home.split("<!-- HOME FEATURE START -->")[1]?.split("<!-- HOME FEATURE END -->")[0]||"";
+  assert.ok(feature.includes('href="/notes/catalogue-regression/"'),"Newest note missing from HOME feature");
+  assert.ok(feature.includes("追加記事の確認"),"Newest note title missing from HOME feature");
+  assert.ok(home.includes('href="/notes/site-launch-trouble/"'),"FIRST NOTE hero should remain unchanged");
+
   const rebuilt=fs.readFileSync(path.join(temp,"content-index.js"),"utf8");
   assert.match(rebuilt,/BEGIN GENERATED ARTICLE SEARCH TEXT/);
   assert.ok(rebuilt.includes("更新された記事本文で公開検索の同期を検証するため"),"New article text not indexed");
