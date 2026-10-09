@@ -31,7 +31,19 @@
     summary.textContent=note.summary;
     const tags=document.createElement("small");
     tags.textContent=note.tags.map(tag=>"#"+tag).join(" ");
-    link.append(meta,title,summary,tags);
+    if(note.thumbnail){
+      const photo=document.createElement("img");
+      photo.className="note-thumbnail";
+      photo.src=note.thumbnail.src;
+      photo.alt=note.thumbnail.alt;
+      photo.width=640;
+      photo.height=360;
+      photo.loading="lazy";
+      photo.decoding="async";
+      link.append(meta,photo,title,summary,tags);
+    }else{
+      link.append(meta,title,summary,tags);
+    }
     return link;
   }
 
