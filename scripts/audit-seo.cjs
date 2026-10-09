@@ -42,7 +42,23 @@ for (const url of urls) {
   if (!/<meta\s+property="og:description"/i.test(head)) warnings.push(pathname + ": missing og:description");
   if (!/<meta\s+property="og:image"/i.test(head)) warnings.push(pathname + ": missing og:image");
   if (!/<h1\b/i.test(html)) warnings.push(pathname + ": missing h1");
-  if (!/application\/ld\+json/i.test(head)) warnings.push(pathname + ": no JSON-LD structured data");
+  const ldScripts = [...head.matchAll(/<script\\b[^>]*type=["']application\\/ld\\+json["'][^>]*>([\\s\\S]*?)<\\/script>/gi)];
+  if (!ldScripts.length) warnings.push(pathname + ": no JSON-LD structured data");
+  for (const match of ldScripts) {
+    try {
+      const data = JSON.parse(match[1]);
+      const nodes = Array.isArray(data) ? data : (Array.isArray(data["@graph"]) ? data["@graph"] : [data]);
+      if (!nodes.some(node => node && node["@context"] && node["@type"])) {
+        failures.push(pathname + ": JSON-LD missing @context or @type");
+      }
+      if (pathname.startsWith("/notes/") && !nodes.some(node => {
+        const types = node && node["@type"];
+        return (Array.isArray(types) ? types : [types]).some(t => ["Article", "BlogPosting", "NewsArticle"].includes(t));
+      })) warnings.push(pathname + ": article page lacks Article JSON-LD");
+    } catch (e) {
+      failures.push(pathname + ": malformed JSON-LD (" + e.message + ")");
+    }
+  }
   if (/<meta\s+name="robots"\s+content="[^"]*noindex/i.test(head)) failures.push(pathname + ": noindex page included in sitemap");
 }
 const robots = path.join(root, "robots.txt");
