@@ -114,6 +114,38 @@ const stop=()=>new Promise(resolve=>server.close(resolve));
               getComputedStyle(node).backgroundImage.includes("/assets/notebook-photo.webp"));
             check(photo,mode.name+" HOME first note uses sharp photo");
           }
+          if(slug==="/"){
+            const homeDiscovery=await page.evaluate(()=>{
+              const feature=document.querySelector("#fresh .home-feature-note");
+              const all=document.querySelector("#fresh .section-heading a");
+              const hero=document.querySelector(".hero-polaroid");
+              const latest=document.querySelector("#recent");
+              const featureSection=document.querySelector("#fresh");
+              const shelves=document.querySelector("#shelves");
+              const cards=[...document.querySelectorAll("#recent-grid .entry-card")];
+              return {href:feature?.getAttribute("href"),title:feature?.querySelector(".home-feature-title")?.textContent,
+                all:all?.getAttribute("href"),hero:hero?.getAttribute("href"),
+                order:!!featureSection&&!!shelves&&featureSection.compareDocumentPosition(shelves)&Node.DOCUMENT_POSITION_FOLLOWING,
+                cards:cards.length,duplicate:cards.some(card=>card.getAttribute("href")===feature?.getAttribute("href")),
+                latestVisible:!!latest};
+            });
+            check(!!homeDiscovery.href?.startsWith("/notes/")&&!!homeDiscovery.title,
+              mode.name+" HOME highlights one published article",JSON.stringify(homeDiscovery));
+            check(homeDiscovery.all==="/archive/"&&homeDiscovery.hero==="/notes/site-launch-trouble/"&&!!homeDiscovery.order,
+              mode.name+" HOME has direct archive link and preserves FIRST NOTE",JSON.stringify(homeDiscovery));
+            check(homeDiscovery.cards>=1&&!homeDiscovery.duplicate,
+              mode.name+" HOME avoids repeating the featured note in remaining cards",JSON.stringify(homeDiscovery));
+          }
+          if(slug==="/storage/"){
+            const shelves=await page.evaluate(()=>{
+              const anchors=[...document.querySelectorAll(".storage-discovery-link")];
+              return {count:anchors.length,hrefs:anchors.map(a=>a.getAttribute("href")),
+                label:document.querySelector("#storage-discovery-heading")?.textContent||"",
+                overflow:document.documentElement.scrollWidth-window.innerWidth};
+            });
+            check(shelves.count===3&&shelves.hrefs.includes("/archive/")&&shelves.hrefs.includes("/projects/kidp/"),
+              mode.name+" SHELVES offers discovery paths despite unfilled categories",JSON.stringify(shelves));
+          }
           if(slug==="/projects/"){
             check(await page.locator(".featured-project-card .project-meta").innerText()
               .then(text=>text.includes("公開済み / 運用・記事拡充中")),
