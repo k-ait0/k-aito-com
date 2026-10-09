@@ -30,7 +30,7 @@ table{width:100%;border-collapse:collapse;font-size:10px;margin-top:12px}th,td{t
 <header class="top"><div class="brand">WHYNOT<small>KIDP-002 · P0 USER TEST</small></div><span class="badge">FACILITATOR TOOL · NOINDEX</span></header>
 <section class="hero"><span class="eyebrow">TEST REVIEW</span><h1>Problemを、<br>もっと見たくなるか。</h1><p class="lead">閲覧深度・SAME・投稿Activation・Problem-first理解・Like誤読を、事前固定したGateで判定します。</p></section>
 <section class="panel"><span class="eyebrow">01 · LINKS</span><h2>テストURL</h2><div id="urls" class="urls"></div><div class="actions"><button id="copyAll" class="primary">P01〜P10をまとめてコピー</button></div><div id="urlStatus" class="status"></div></section>
-<section class="panel"><span class="eyebrow">02 · LOG</span><h2>CSVを貼る</h2><textarea id="csvInput" placeholder="participant_id,device,..."></textarea><div class="actions"><button id="analyze" class="primary">集計する</button><button id="sample" class="mini">5人サンプル</button></div><div id="parseStatus" class="status"></div></section>
+<section class="panel"><span class="eyebrow">02 · LOG</span><h2>CSVを貼る</h2><p class="status">Test Opsと同じブラウザで集計してください。INVALIDは除外し、重複IDは集計エラーにします。CSV回収確認は手動管理です。</p><textarea id="csvInput" placeholder="participant_id,device,..."></textarea><div class="actions"><button id="analyze" class="primary">集計する</button><button id="sample" class="mini">5人サンプル</button></div><div id="parseStatus" class="status"></div></section>
 <section id="results" class="panel" hidden><span class="eyebrow">03 · DECISION</span><h2>P0判定</h2><div class="metrics">
 <div class="metric"><small>PARTICIPANTS</small><strong id="n">0</strong></div><div class="metric"><small>M1 BROWSE 3+</small><strong id="m1">—</strong></div><div class="metric"><small>M2 SAME</small><strong id="m2">—</strong></div><div class="metric"><small>M3 SUBMIT</small><strong id="m3">—</strong></div><div class="metric"><small>M4 PROBLEM-FIRST</small><strong id="m4">—</strong></div><div class="metric"><small>M5 LIKE MISREAD</small><strong id="m5">—</strong></div>
 </div><div id="decision" class="decision"><b>DECISION</b><strong>—</strong><p>CSVを集計してください。</p></div>
@@ -48,12 +48,37 @@ document.querySelector("#copyAll").onclick=()=>copy(allUrls(),document.querySele
 function parseCSV(text){const rows=[];let row=[],cell="",q=false;for(let i=0;i<text.length;i++){const ch=text[i];if(q){if(ch==='"'&&text[i+1]==='"'){cell+='"';i++}else if(ch==='"')q=false;else cell+=ch}else{if(ch==='"')q=true;else if(ch===','){row.push(cell);cell=""}else if(ch==='\n'){row.push(cell);rows.push(row);row=[];cell=""}else if(ch!=='\r')cell+=ch}}if(cell.length||row.length){row.push(cell);rows.push(row)}return rows.filter(r=>r.some(v=>v.trim()!==""))}
 function yes(v){return (v||"").trim().toLowerCase()==="yes"}function pct(n,d){return d?Math.round(n/d*100):0}
 function viewedCount(v){try{const x=JSON.parse(v||"[]");return Array.isArray(x)?x.length:0}catch{return 0}}
-function analyse(text){const rows=parseCSV(text);if(!rows.length)throw Error("CSVが空です。");const header=rows[0].map(x=>x.trim()),miss=HEADER.filter(h=>!header.includes(h));if(miss.length)throw Error("不足列: "+miss.join(", "));const data=rows.slice(1).map(r=>Object.fromEntries(header.map((h,i)=>[h,(r[i]||"").trim()]))).filter(x=>x.participant_id);if(!data.length)throw Error("参加者データがありません。");const n=data.length,m1=pct(data.filter(x=>viewedCount(x.problems_viewed)>=3).length,n),m2=pct(data.filter(x=>Number(x.same_clicks)>=1).length,n),m3=pct(data.filter(x=>Number(x.draft_chars)>=5||yes(x.wants_submit)).length,n),m4=pct(data.filter(x=>yes(x.problem_first_understood)).length,n),m5=pct(data.filter(x=>yes(x.same_like_misread)).length,n);let decision,reason,kind="";if(n<5){decision="MORE DATA";reason="初回判定には最低5人必要です。"}else if(m1<40&&m3<40){decision="STOP";reason="Problem探索と投稿Activationの両方が弱い。";kind="stop"}else if(m4<80){decision="POSITIONING REDESIGN";reason="Problem-firstの位置づけが十分伝わっていない。"}else if(m2<60||m5>=30){decision="SAME REDESIGN";reason="SAMEが押されない、またはLike/人気投票として誤読されている。"}else if(m1<70){decision="DISCOVERY REDESIGN";reason="Problemを3件以上見たくなる探索動機が弱い。"}else if(m3<60){decision="SUBMIT REDESIGN";reason="閲覧から自分のProblem投稿へつながっていない。"}else if(m1>=70&&m2>=60&&m3>=60&&m4>=80&&m5<30){decision="P1 GO";reason="P0条件を満たした。Problem Signal / Submit persistence / Build Queue connectionへ進む。";kind="go"}else{decision="HOLD / MIXED SIGNAL";reason="追加データを集める。"}return{n,m1,m2,m3,m4,m5,decision,reason,kind,data}}
-let current=null;
+function validatedSessions(rows,header,project){
+ const data=[],excluded=[],unverified=[],seen=new Set();
+ for(const raw of rows.slice(1)){
+   if(raw.every(v=>!v.trim()))continue;
+   if(raw.length!==header.length)throw Error("CSV列数が一致しません: "+(raw[0]||"参加者不明"));
+   const x=Object.fromEntries(header.map((h,i)=>[h,(raw[i]||"").trim()]));
+   const id=x.participant_id;
+   if(!/^P(0[1-9]|10)$/.test(id))throw Error("参加者ID不正: "+(id||"(空欄)")+"。P01〜P10を使用してください。");
+   if(seen.has(id))throw Error("参加者ID重複: "+id+"。重複行を除いて再集計してください。");
+   seen.add(id);
+   const prefix="kidp.testops."+project+"."+id+".";
+   const status=localStorage.getItem(prefix+"status");
+   if(status==="INVALID"){excluded.push(id);continue}
+   if(status!=="DONE"||localStorage.getItem(prefix+"receipt")!=="YES")unverified.push(id);
+   data.push(x)
+ }
+ return {data,excluded,unverified}
+}
+function reviewStatus(a,sampleLoaded){
+ const notes=[a.n+"人を集計しました。"];
+ if(sampleLoaded)notes.push("QA SAMPLE：実ユーザー結果として使用しないでください。");
+ if(a.excluded.length)notes.push("INVALID除外: "+a.excluded.join(", "));
+ if(a.unverified.length)notes.push("Test Ops DONE/CSV回収未照合: "+a.unverified.join(", "));
+ return notes.join("  ");
+}
+function analyse(text){const rows=parseCSV(text);if(!rows.length)throw Error("CSVが空です。");const header=rows[0].map(x=>x.trim()),miss=HEADER.filter(h=>!header.includes(h));if(miss.length)throw Error("不足列: "+miss.join(", "));const {data,excluded,unverified}=validatedSessions(rows,header,"whynot");if(!data.length)throw Error("参加者データがありません。");const n=data.length,m1=pct(data.filter(x=>viewedCount(x.problems_viewed)>=3).length,n),m2=pct(data.filter(x=>Number(x.same_clicks)>=1).length,n),m3=pct(data.filter(x=>Number(x.draft_chars)>=5||yes(x.wants_submit)).length,n),m4=pct(data.filter(x=>yes(x.problem_first_understood)).length,n),m5=pct(data.filter(x=>yes(x.same_like_misread)).length,n);let decision,reason,kind="";if(n<5){decision="MORE DATA";reason="初回判定には最低5人必要です。"}else if(m1<40&&m3<40){decision="STOP";reason="Problem探索と投稿Activationの両方が弱い。";kind="stop"}else if(m4<80){decision="POSITIONING REDESIGN";reason="Problem-firstの位置づけが十分伝わっていない。"}else if(m2<60||m5>=30){decision="SAME REDESIGN";reason="SAMEが押されない、またはLike/人気投票として誤読されている。"}else if(m1<70){decision="DISCOVERY REDESIGN";reason="Problemを3件以上見たくなる探索動機が弱い。"}else if(m3<60){decision="SUBMIT REDESIGN";reason="閲覧から自分のProblem投稿へつながっていない。"}else if(m1>=70&&m2>=60&&m3>=60&&m4>=80&&m5<30){decision="P1 GO";reason="P0条件を満たした。Problem Signal / Submit persistence / Build Queue connectionへ進む。";kind="go"}else{decision="HOLD / MIXED SIGNAL";reason="追加データを集める。"}return{n,m1,m2,m3,m4,m5,decision,reason,kind,data,excluded,unverified}}
+let current=null,sampleLoaded=false;document.querySelector('#csvInput').addEventListener('input',()=>{sampleLoaded=false});
 function render(a){current=a;document.querySelector("#results").hidden=false;document.querySelector("#n").textContent=a.n;["m1","m2","m3","m4","m5"].forEach(k=>document.querySelector("#"+k).textContent=a[k]+"%");const box=document.querySelector("#decision");box.className="decision "+a.kind;box.querySelector("strong").textContent=a.decision;box.querySelector("p").textContent=a.reason;const checks=[["M1 Browse 3+",a.m1+"%","≥ 70%",a.m1>=70],["M2 SAME",a.m2+"%","≥ 60%",a.m2>=60],["M3 Submit",a.m3+"%","≥ 60%",a.m3>=60],["M4 Problem-first",a.m4+"%","≥ 80%",a.m4>=80],["M5 Like misread",a.m5+"%","< 30%",a.m5<30]];document.querySelector("#rows").innerHTML=checks.map(x=>"<tr><td>"+x[0]+"</td><td>"+x[1]+"</td><td>"+x[2]+"</td><td class='"+(x[3]?"pass":"fail")+"'>"+(x[3]?"PASS":"FAIL")+"</td></tr>").join("")}
-document.querySelector("#analyze").onclick=()=>{try{const a=analyse(document.querySelector("#csvInput").value);render(a);document.querySelector("#parseStatus").textContent=a.n+"人を集計しました。"}catch(e){document.querySelector("#parseStatus").textContent=e.message}}
+document.querySelector("#analyze").onclick=()=>{try{const a=analyse(document.querySelector("#csvInput").value);render(a);document.querySelector("#parseStatus").textContent=reviewStatus(a,sampleLoaded)}catch(e){document.querySelector("#parseStatus").textContent=e.message}}
 function summary(a){return "# KIDP-002 WHYNOT — P0 TEST SUMMARY\n\nParticipants: "+a.n+"\n\n## Metrics\n- M1 Browse 3+: "+a.m1+"%\n- M2 SAME action: "+a.m2+"%\n- M3 Submit activation: "+a.m3+"%\n- M4 Problem-first understanding: "+a.m4+"%\n- M5 Like misread: "+a.m5+"%\n\n## Decision\n**"+a.decision+"**\n\n"+a.reason+"\n"}
-document.querySelector("#copySummary").onclick=()=>current&&copy(summary(current),document.querySelector("#sumStatus"),"TEST_SUMMARY.md");document.querySelector("#copyJson").onclick=()=>current&&copy(JSON.stringify({...current,data:undefined},null,2),document.querySelector("#sumStatus"),"JSON");
+document.querySelector("#copySummary").onclick=()=>{if(sampleLoaded){document.querySelector("#sumStatus").textContent="QA SAMPLEの結果は正式なTEST_SUMMARYとして出力できません。";return}if(current)copy(summary(current),document.querySelector("#sumStatus"),"TEST_SUMMARY.md")};document.querySelector("#copyJson").onclick=()=>current&&copy(JSON.stringify({...current,data:undefined},null,2),document.querySelector("#sumStatus"),"JSON");
 const sampleHeader=HEADER.join(",");
 const sampleRows=[
 ["P01","mobile","yes","yes","no","","","","",'["P002","P003","P006"]',1,"true",12,"true","true","false","submit"],
@@ -62,5 +87,5 @@ const sampleRows=[
 ["P04","desktop","yes","yes","no","","","","",'["P004","P008","P016"]',1,"true",5,"false","true","true","build"],
 ["P05","mobile","yes","yes","no","","","","",'["P006","P007","P014","P020"]',1,"true",9,"true","true","false","submit"]
 ].map(r=>r.map(v=>'"'+String(v).replaceAll('"','""')+'"').join(",")).join("\n");
-document.querySelector("#sample").onclick=()=>{document.querySelector("#csvInput").value=sampleHeader+"\n"+sampleRows;document.querySelector("#parseStatus").textContent="5人サンプルを読み込みました。"};
+document.querySelector("#sample").onclick=()=>{sampleLoaded=true;document.querySelector("#csvInput").value=sampleHeader+"\n"+sampleRows;document.querySelector("#parseStatus").textContent="5人サンプルを読み込みました。"};
 </script></body></html>
