@@ -51,6 +51,15 @@ Dashboard: https://k-aito.com/projects/kidp/test-ops/
 5. Paste >=5 valid rows into each project's Review tool.
 6. Save decision and observations; only then free a test slot.
 
+## CSV recovery and validation (2026-10-09)
+
+1. On the participant's device, copy the CSV row and archive it in a secure, external file. Use the corresponding `P0_TEST_LOG_TEMPLATE.csv` header.
+2. On the **facilitator's Test Ops browser**, verify the saved row, check its CSV receipt, and only then change the participant status to DONE.
+3. For invalid sessions, select INVALID instead. Never mark invalid or QA sessions as DONE.
+4. Paste actual rows and the CSV header into each project's Review tool on the **same facilitator browser** as Test Ops. Duplicate IDs/incorrect row lengths are rejected; INVALID and unverified sessions do not contribute to the decision.
+5. If Review reports an unverified ID, reconcile the associated Test Ops status/receipt before interpreting the metrics. Different browsers do not synchronize localStorage.
+6. Use a manually saved and reviewed TEST_SUMMARY plus the archived CSV as the record of decision. Do not treat the dashboard count alone as proof of evidence collection.
+
 ## Quality and safeguards
 - Sample data in Review is QA-only, never real research evidence.
 - DONE means a valid completed session with exported row; INVALID is excluded from denominator.
