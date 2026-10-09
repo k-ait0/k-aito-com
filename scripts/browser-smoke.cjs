@@ -82,6 +82,22 @@ const stop=()=>new Promise(resolve=>server.close(resolve));
           check(valid.overflow<=2,mode.name+" "+slug+" no horizontal overflow",JSON.stringify(valid));
           check(valid.header&&valid.search,mode.name+" "+slug+" header and search",JSON.stringify(valid));
           check(errors.length===0,mode.name+" "+slug+" no script/asset errors",errors.join("; "));
+          // All published KAITO articles share a white reading paper over the warm site background.
+          if(slug.startsWith("/notes/")){
+            const design=await page.evaluate(()=>{
+              const paper=document.querySelector(".article-page");
+              const body=document.querySelector("body");
+              const reading=document.querySelector(".article-copy.essay-body");
+              const css=paper?getComputedStyle(paper):null;
+              return {paper:css?.backgroundColor||null,site:getComputedStyle(body).backgroundColor,
+                padding:css?parseFloat(css.paddingLeft):0,reading:!!reading,
+                illustrations:[...document.querySelectorAll(".article-copy img")].every(img=>img.complete&&img.naturalWidth>0)};
+            });
+            check(design.paper==="rgb(255, 255, 255)",mode.name+" "+slug+" white article paper",JSON.stringify(design));
+            check(design.site!=="rgb(255, 255, 255)",mode.name+" "+slug+" warm site background preserved",JSON.stringify(design));
+            check(design.reading&&design.padding>=15,mode.name+" "+slug+" article padding and typography",JSON.stringify(design));
+            check(design.illustrations,mode.name+" "+slug+" article illustrations load",JSON.stringify(design));
+          }
           if(slug==="/"){
             const link=page.locator(".home-project-finowa-link");
             check(await link.count()===1 &&
