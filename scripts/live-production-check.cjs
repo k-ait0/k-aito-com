@@ -29,6 +29,11 @@ const resources=[
   "/subpages.css","/og-image.png","/assets/brand/kite-mark.png",
   "/assets/editorial/about-profile.webp","/assets/editorial/archive-library.webp",
   "/assets/editorial/tabi-route.webp","/assets/editorial/finowa-workspace.webp",
+  // Illustrations for the public-interest essay; verify every asset on XServer.
+  "/notes/media-public-interest-sankei-building/figures/fig01-operating-profit.svg",
+  "/notes/media-public-interest-sankei-building/figures/fig02-assets.svg",
+  "/notes/media-public-interest-sankei-building/figures/fig03-profit-breakdown.svg",
+  "/notes/media-public-interest-sankei-building/figures/fig04-editorial-independence.svg",
   "/sitemap.xml","/robots.txt","/assets/notebook-photo.webp","/article-v2.css",
   // Isolated noindex beta, verified without adding the URL to the public sitemap.
   "/tools/want-roulette/index.html","/tools/want-roulette/manifest.webmanifest",
