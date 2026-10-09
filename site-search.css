@@ -73,3 +73,15 @@
   .site-search-heading h2{font-size:1.27rem}
   .site-search-result{padding:14px 13px}
 }
+
+/* ARTICLE / PROJECT search results use explicit type labels on white paper. */
+.site-search-kind{display:inline-block;padding:3px 7px;margin:0 8px 0 0;
+  border:1px solid #b5cdb9;background:#edf4ed;border-radius:3px;
+  color:#285842;font:700 .67rem/1.5 Arial,sans-serif;letter-spacing:.09em}
+.site-search-result[data-search-type="project"] .site-search-kind{
+  color:#38576b;border-color:#bfced7;background:#eef3f6}
+.site-search-result[data-search-type="article"] .site-search-kind{
+  color:#286247;border-color:#c3d9c8;background:#eef5ed}
+.site-search-result:hover,.site-search-result:focus-visible{background-color:#fff!important;border-color:#6f9a79}
+.site-search-dialog,.site-search-result,.site-search-empty,
+.site-search-dialog input[type="search"]{background:#fff!important}
