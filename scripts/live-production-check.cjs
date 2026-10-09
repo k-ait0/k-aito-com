@@ -57,24 +57,48 @@ async function fetchLive(route){
   }
   throw Error(route+" — "+(error?.cause?.message||error?.message||String(error)));
 }
+// Limit simultaneous fetches to avoid overwhelming the origin and preserve diagnostics.
+async function mapLimited(routes,limit,callback){
+  const output=new Array(routes.length);
+  let next=0;
+  await Promise.all(Array.from({length:Math.min(limit,routes.length)},async()=>{
+    while(next<routes.length){
+      const position=next++;
+      output[position]=await callback(routes[position]);
+    }
+  }));
+  return output;
+}
 (async()=>{
   const errors=[];
   let verified=0;
   const routes=[...pages,...betaPages,...resources];
-  const results=await Promise.all(routes.map(async route=>{
-    try{
-      const live=await fetchLive(route);
-      const expected=local(route);
-      if(digest(live)!==digest(expected)){
-        throw Error("public response differs from main (live "+digest(live).slice(0,12)+
-          ", local "+digest(expected).slice(0,12)+")");
-      }
-      return {route,ok:true,length:live.length};
-    }catch(e){return {route,ok:false,error:e.message};}
-  }));
+  // Do not print 58 misleading 'file mismatch' failures if the origin is inaccessible.
+  let homepage;
+  try{
+    homepage=await fetchLive("/");
+    console.log("PASS origin preflight: "+origin+"/ HTTP 200");
+  }catch(e){
+    console.error("PRODUCTION UNREACHABLE: origin preflight failed. No local/live byte comparison was possible.");
+    console.error("ORIGIN ERROR: "+e.message);
+    console.error("ACTION: inspect DNS, firewall and outbound connectivity; rerun after origin is reachable.");
+    process.exitCode=2;
+    return;
+  }
+  const results=await mapLimited(routes,10,async route=>{
+    let live;
+    try{live=route==="/"?homepage:await fetchLive(route);}
+    catch(e){return {route,ok:false,kind:"FETCH_ERROR",error:e.message};}
+    const expected=local(route);
+    if(digest(live)!==digest(expected)){
+      return {route,ok:false,kind:"CONTENT_MISMATCH",error:"public response differs from main (live "+
+        digest(live).slice(0,12)+", local "+digest(expected).slice(0,12)+")"};
+    }
+    return {route,ok:true,length:live.length};
+  });
   for(const result of results){
     if(result.ok){console.log("PASS "+result.route+" HTTP 200; exact deployed bytes ("+result.length+")");verified++;}
-    else{const problem=result.route+": "+result.error;errors.push(problem);console.error("FAIL "+problem);}
+    else{const problem=result.kind+" "+result.route+": "+result.error;errors.push(problem);console.error("FAIL "+problem);}
   }
   // Check the live sitemap covers every public page, not just matching a file.
   try{
@@ -104,5 +128,8 @@ async function fetchLive(route){
     verified++;
   }catch(e){errors.push("FINOWA destination: "+e.message);console.error("FAIL FINOWA destination: "+e.message);}
   console.log("PRODUCTION RESULT "+verified+" passed; "+errors.length+" failed");
+  if(errors.length)console.error("FAILURE SUMMARY: "+errors.filter(e=>e.startsWith("CONTENT_MISMATCH")).length+
+    " content mismatch(es); "+errors.filter(e=>e.startsWith("FETCH_ERROR")).length+" fetch error(s); "+
+    errors.filter(e=>!e.startsWith("CONTENT_MISMATCH")&&!e.startsWith("FETCH_ERROR")).length+" ancillary error(s).");
   if(errors.length)process.exitCode=1;
 })().catch(e=>{console.error(e.stack||String(e));process.exitCode=1;});
