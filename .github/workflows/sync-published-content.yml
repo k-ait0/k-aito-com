@@ -5,7 +5,9 @@ on:
     branches: [main]
     paths:
       - 'content-index.js'
+      - 'notes/**/index.html'
       - 'scripts/sync-published-content.cjs'
+      - 'scripts/article-search-text.cjs'
       - 'scripts/test-published-content.cjs'
       - '.github/workflows/sync-published-content.yml'
   workflow_dispatch:
@@ -37,9 +39,11 @@ jobs:
           node --check content-index.js
           node --check site-content.js
           node --check scripts/sync-published-content.cjs
+          node --check scripts/article-search-text.cjs
           node --check scripts/test-published-content.cjs
           node scripts/test-published-content.cjs
           node scripts/sync-published-content.cjs
+          node scripts/site-static-check.cjs
           git diff --check
 
       - name: Commit generated output when changed
