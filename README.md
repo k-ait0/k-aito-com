@@ -12,6 +12,16 @@
 - `thinking`（その他）の記事はARCHIVEへ、`business`の記事はPROJECTSと事業の構想ページへ表示。
 - 制作・開発の棚では、状態ラベルから完成品・制作中・構想に振り分ける。
 
+## 公開記事・プロジェクト横断検索（2026-10-09）
+
+- HOMEの検索と、各下層ページのヘッダー検索に、`ARTICLE` / `PROJECT` の区別付きの共通検索を実装。
+- 記事の検索本文：`content-index.js` の公開記事4件（`scripts/article-search-text.cjs` がHTMLから生成）。
+- プロジェクト検索：`project-search-index.js`（`scripts/sync-project-search.cjs` がサイトマップ掲載の公開詳細8ページから生成）。個別ページの概要、タイトル、制作段階、本文を利用。
+- すべての公開ページで検索インデックスを`app.js`または`site-search.js`より先に読み込む。
+- 未公開`noindex`ベータ・サイトマップ外の試作は検索しない。
+- `scripts/test-project-search.cjs`で8件・24ページの読み込み漏れと冪等性を検証。`scripts/browser-smoke.cjs`でHOME・下層ページ双方の結果を確認。
+- サムネイル候補と採用保留理由は [検索・サムネイル監査台帳](docs/KAITO_SEARCH_AND_THUMBNAIL_AUDIT_20261009.md) へ保存。
+
 ## KAITOの文字面を白く統一（2026-10-09 v1.0）
 
 「外側は生成り、読む面は白、写真は写真のまま」をサイト全体の規格にする。
