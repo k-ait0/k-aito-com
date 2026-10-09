@@ -84,6 +84,12 @@ const stop=()=>new Promise(resolve=>server.close(resolve));
           check(errors.length===0,mode.name+" "+slug+" no script/asset errors",errors.join("; "));
           // All published KAITO articles share a white reading paper over the warm site background.
           if(slug.startsWith("/notes/")){
+            await page.evaluate(async()=>{
+              await Promise.all([...document.querySelectorAll(".article-copy img")].map(async img=>{
+                img.loading="eager";
+                try{await img.decode();}catch(_error){}
+              }));
+            });
             const design=await page.evaluate(()=>{
               const paper=document.querySelector(".article-page");
               const body=document.querySelector("body");
