@@ -36,22 +36,19 @@
 | P2 | プロジェクト一覧 | HOMEとPROJECTSで異なる制作段階表現が混在 | **カードの段階・公開区分は共通台帳へ統一済み**。COMING SOONやPROJECT FLOWの整理は残作業 |
 | P2 | 記事回遊 | 7棚と記事導線が少なく孤立しやすい | 記事末から同カテゴリ/関連論考に誘導。推奨アルゴリズムは記事台帳ベース |
 
-## フェーズ 2-D：サイト全体の白い文字面（実装済み・検証中）
+## フェーズ 2-D：サイト全体の白い文字面（本番確認済み）
 
 ユーザー決定：「背景色は変えず、文字がある下地は白で統一」。
 
 - `white-surfaces-v1.css` を全24公開ページに最後の共通CSSとして適用。
 - 見出し、文章ボックス、記事カード、プロジェクトカード、棚、検索、KIDP説明面を対象にする。
-- 全体の生成り背景・画像・濃緑フッターは維持。写真付きの棚は上部画像＋下部白い文字面。
-- `scripts/sync-white-surfaces.cjs` で新規ページ追加時も強制適用。
-- 仕様：`docs/KAITO_WHITE_READING_SURFACES_v1_20261009.md`。
-- ブラウザQAで白・生成り・画像維持を検証済み（ローカルChromium：464項目成功、失敗0件）。
-- **本番環境の検証は未確定**：2026-10-09の検証ジョブ `37877990150` は全58対象が通信タイムアウト（0件照合）となり失敗。内容の不一致を示すログではない。
-- `scripts/live-production-check.cjs` を修正し、ホームのHTTPプリフライト・接続不良と内容差分の区別・同時アクセス数上限10を追加した。
-- **改修後の本番検証 `37879203847`：2026-10-09 03:25〜03:30 UTCに6回試行し、全回で「PRODUCTION UNREACHABLE: origin preflight failed」。ホームへの接続が8秒×3回の試行後にタイムアウトした。** この検証では本番のHTML/CSSを1件も比較できていない。デプロイ成否は未確定。
-- ほかの公開コンテンツの更新と本番到達性の問題は切り分けて扱うこと。アクセス制限・DNS・XServer配信状況・GitHub Actionsランナーの経路を別途確認する。
-- 目視監査：GitHub Browser QAのPC 1440px／スマホ390pxの画面キャプチャでHOME・SHELVES・PROJECTS・ARCHIVE・ABOUTの白面／生成り外周を確認。
-- SITE CHECKが成功するまで本番公開確認済みと報告しない。GitHubのローカルQA成功と本番一致は別の判定。
+- サイト全体の生成り背景・画像・濃緑フッターは維持。写真付きの棚は上部画像＋下部白い文字面。
+- `scripts/sync-white-surfaces.cjs` で新規ページ追加時も強制適用。仕様：`docs/KAITO_WHITE_READING_SURFACES_v1_20261009.md`。
+- **本番公開確認済み：GitHub Actions `37879203847` の再実行（attempt 2）で、XServer配信バイト照合58/58成功・失敗0、実サイトのPC／スマホChromium QA 460項目成功・失敗0。** 本番CSS `/white-surfaces-v1.css` もHTTP 200で一致。
+- ローカルChromium QAも464項目成功・失敗0。PC／スマホの画面キャプチャでHOME・SHELVES・PROJECTS・ARCHIVE・ABOUTを目視確認。
+- 通信障害履歴：2026-10-09の先行検証（`37877990150`、`37879203847` attempt 1）では起点サイトがタイムアウトしたが、後続の診断 `37880257877` は `k-aito.com` と `finowa.jp` のDNS・TCP・HTTPS 200を確認し、本番照合も再実行で成功。恒久的な配信障害だったとは断定しない。
+- `www.k-aito.com` は診断時にDNS ENOTFOUND。通常の正規URL `https://k-aito.com/` は正常。www別名が必要ならドメイン設定側で対応する（未対応・低優先度）。
+- 本番検証スクリプトは、到達不能・HTTP取得失敗・内容不一致を明確に分け、同時取得数を10に制限。補助診断：`scripts/diagnose-origin-network.cjs`。
 
 ## フェーズ 3：横断検索・SEO・運用（未実施）
 
