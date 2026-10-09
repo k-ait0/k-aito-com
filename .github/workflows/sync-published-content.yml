@@ -17,6 +17,7 @@ on:
       - 'project-search-index.js'
       - 'site-search.js'
       - 'projects/**/index.html'
+      - 'thumbnail-v1.css'
       - 'white-surfaces-v1.css'
       - 'scripts/sync-white-surfaces.cjs'
       - 'notes/**/index.html'
