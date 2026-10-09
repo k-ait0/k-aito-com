@@ -44,12 +44,12 @@ for(const file of html){
     assert.ok(head.includes('name="twitter:card" content="summary_large_image"'),"Missing Twitter card "+p);
     assert.ok(listed.includes(url),"Missing sitemap location "+p);
   }
-  // KAITO article-reading standard: every published note must use the white-paper shell.
-  if(/^notes\\/[^/]+\\/index\\.html$/.test(p)&&!isNoindex){
-    assert.match(src,/<body[^>]*class="[^"]*\\bessay-page\\b[^"]*"/,"Missing article shell class "+p);
-    assert.match(src,/<article[^>]*class="[^"]*\\barticle-page\\b[^"]*"/,"Missing semantic article page "+p);
-    assert.match(src,/<div class="article-copy essay-body">/,"Missing reading typography class "+p);
-    assert.match(head,/href="\\/article-reading\\.css\\?v=[^"]+"/,"Missing shared article stylesheet "+p);
+  // All published /notes/<slug>/ articles must use the canonical reading shell.
+  if(p.startsWith("notes/")&&p.endsWith("/index.html")&&p.split("/").length===3&&!isNoindex){
+    assert.ok(src.includes('<body class="subpage essay-page">'),"Missing white paper body class "+p);
+    assert.ok(src.includes('<article class="article-page'),"Missing article class "+p);
+    assert.ok(src.includes('<div class="article-copy essay-body">'),"Missing article reading typography "+p);
+    assert.ok(head.includes('href="/article-reading.css?v='),"Missing shared article CSS "+p);
   }
   for(const m of src.matchAll(/(?:href|src)="([^"]+)"/g)){
     const ref=m[1];
