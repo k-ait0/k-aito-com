@@ -26,7 +26,7 @@ if(!pages.length||new Set(pages).size!==pages.length){
 const resources=[
   "/content-index.js","/app.js","/site-enhance.js","/site-content.js",
   "/site-search.js","/site-search.css","/image-fix.css","/homepage.css",
-  "/subpages.css","/og-image.png","/assets/brand/kite-mark.png",
+  "/subpages.css","/essay-reading.css","/og-image.png","/assets/brand/kite-mark.png",
   "/assets/editorial/about-profile.webp","/assets/editorial/archive-library.webp",
   "/assets/editorial/tabi-route.webp","/assets/editorial/finowa-workspace.webp",
   // Illustrations for the public-interest essay; verify every asset on XServer.
