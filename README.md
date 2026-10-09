@@ -12,6 +12,17 @@
 - `thinking`（その他）の記事はARCHIVEへ、`business`の記事はPROJECTSと事業の構想ページへ表示。
 - 制作・開発の棚では、状態ラベルから完成品・制作中・構想に振り分ける。
 
+## KAITOの文字面を白く統一（2026-10-09 v1.0）
+
+「外側は生成り、読む面は白、写真は写真のまま」をサイト全体の規格にする。
+
+- 共通CSS：`white-surfaces-v1.css`。各公開HTMLの**最後のスタイルシート**として適用。
+- 自動横展開：`scripts/sync-white-surfaces.cjs`。公開サイトマップ全24ページへ適用し、以後も漏れを防止。
+- 対象：HOME/SHELVES/ARCHIVE/PROJECTS/KIDP/ABOUT/LINKS/各テーマ/記事/検索の各テキスト面。
+- 例外：サイト全体の生成り、濃色フッター、画像主体の背景・ヒーロー装飾は維持。写真のある棚カードには白い文字面を敷く。
+- 設計資料：[KAITO 白い文字面デザイン標準 v1.0](docs/KAITO_WHITE_READING_SURFACES_v1_20261009.md)
+- 品質確認：`scripts/browser-smoke.cjs` に白・非白・画像保持の検証を追加。公開確認はXServer照合と併用。
+
 ## 記事・プロジェクトカードの共通分類（2026-10-09 フェーズ2-C）
 
 - ARTICLESは `ARTICLE` と `THINK/MAKING` 等の編集状態を分けて表示する。
