@@ -1,0 +1,49 @@
+/* KAITO article thumbnails v1 | 2026-10-09
+   Metadata: content-index.js thumbnail {src,alt}. Existing white paper stays intact. */
+.entry-card[data-card-type="article"] > img.note-thumbnail,
+.entry-card[data-card-type="article"] > .note-thumbnail{
+  display:block;width:100%;height:132px;aspect-ratio:16/9;
+  object-fit:cover;object-position:center;border-radius:2px;
+  background:#eef0e9;flex:0 0 auto;margin-bottom:10px;
+}
+.entry-card[data-card-type="article"].text-card > img.note-thumbnail{display:none}
+.entry-card[data-card-type="article"]:has(> img.note-thumbnail) .card-copy{padding-top:7px}
+.note-link[data-card-type="article"] > img.note-thumbnail{
+  display:block;width:100%;height:135px;aspect-ratio:16/9;object-fit:cover;
+  object-position:center;margin:9px 0 15px;min-width:0;border-radius:3px;
+  background:#eff2ed;
+}
+/* Preserve the date/sidebar structure of the timeline. */
+.archive-period .note-link:has(> img.note-thumbnail){
+  grid-template-columns:110px minmax(0,1fr);
+  grid-template-rows:auto auto auto auto;
+}
+.archive-period .note-link:has(> img.note-thumbnail) > .note-meta{
+  grid-column:1;grid-row:1 / span 4;
+}
+.archive-period .note-link:has(> img.note-thumbnail) > img.note-thumbnail{
+  grid-column:2;grid-row:1;max-width:280px;height:125px;margin:0 0 5px;
+}
+.archive-period .note-link:has(> img.note-thumbnail) > h3{
+  grid-column:2;grid-row:2;
+}
+.archive-period .note-link:has(> img.note-thumbnail) > p{
+  grid-column:2;grid-row:3;
+}
+.archive-period .note-link:has(> img.note-thumbnail) > small{
+  grid-column:2;grid-row:4;
+}
+@media(max-width:700px){
+  .entry-card[data-card-type="article"] > img.note-thumbnail{height:155px}
+  .archive-period .note-link:has(> img.note-thumbnail){grid-template-columns:minmax(0,1fr)}
+  .archive-period .note-link:has(> img.note-thumbnail) > .note-meta{grid-column:1;grid-row:1}
+  .archive-period .note-link:has(> img.note-thumbnail) > img.note-thumbnail{
+    grid-column:1;grid-row:2;max-width:100%;height:150px;margin:4px 0 6px;
+  }
+  .archive-period .note-link:has(> img.note-thumbnail) > h3{grid-column:1;grid-row:3}
+  .archive-period .note-link:has(> img.note-thumbnail) > p{grid-column:1;grid-row:4}
+  .archive-period .note-link:has(> img.note-thumbnail) > small{grid-column:1;grid-row:5}
+}
+@media(prefers-reduced-motion:reduce){
+  .entry-card[data-card-type="article"] > img.note-thumbnail{transition:none}
+}
