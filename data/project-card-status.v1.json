@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "updated": "2026-10-09",
+  "projects": [
+    {
+      "id": "digital-storage",
+      "stage": "OPERATING",
+      "stageJa": "公開・運用中",
+      "access": "INTERNAL",
+      "accessJa": "詳細ページあり",
+      "action": "PROJECT NOTE"
+    },
+    {
+      "id": "tabi-route",
+      "stage": "DESIGNING",
+      "stageJa": "設計・データ構築中",
+      "access": "PREPARING",
+      "accessJa": "未公開",
+      "action": "PREPARING"
+    },
+    {
+      "id": "finowa",
+      "stage": "BUILDING",
+      "stageJa": "サイト・ツール開発中",
+      "access": "EXTERNAL",
+      "accessJa": "外部サイト公開",
+      "action": "EXTERNAL SITE"
+    },
+    {
+      "id": "kidp",
+      "stage": "TESTING",
+      "stageJa": "試作・テスト中",
+      "access": "PROTOTYPE",
+      "accessJa": "試作あり",
+      "action": "VIEW PROTOTYPES"
+    }
+  ]
+}
