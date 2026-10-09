@@ -1,0 +1,35 @@
+name: SEO static audit
+
+on:
+  pull_request:
+    paths:
+      - '**/*.html'
+      - 'sitemap.xml'
+      - 'robots.txt'
+      - 'scripts/audit-seo.cjs'
+      - '.github/workflows/seo-audit.yml'
+  push:
+    branches: [main]
+    paths:
+      - '**/*.html'
+      - 'sitemap.xml'
+      - 'robots.txt'
+      - 'scripts/audit-seo.cjs'
+      - '.github/workflows/seo-audit.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  seo-audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate SEO audit script
+        run: node --check scripts/audit-seo.cjs
+      - name: Audit published URLs
+        run: node scripts/audit-seo.cjs
