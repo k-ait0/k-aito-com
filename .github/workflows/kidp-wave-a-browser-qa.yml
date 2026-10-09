@@ -1,0 +1,23 @@
+name: KIDP Wave A Browser QA
+on:
+  pull_request:
+    paths:
+      - "projects/kidp/**"
+      - ".github/workflows/kidp-wave-a-browser-qa.yml"
+  workflow_dispatch:
+jobs:
+  chromium:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Install Playwright
+        run: npm install --no-save playwright@1.56.1
+      - name: Start static server and run Chromium
+        run: |
+          python3 -m http.server 8765 --bind 127.0.0.1 > /tmp/kidp-server.log 2>&1 &
+          sleep 2
+          node projects/kidp/qa_wave_a_browser.cjs
