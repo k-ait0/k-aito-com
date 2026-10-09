@@ -47,7 +47,10 @@
 - 仕様：`docs/KAITO_WHITE_READING_SURFACES_v1_20261009.md`。
 - ブラウザQAで白・生成り・画像維持を検証済み（ローカルChromium：464項目成功、失敗0件）。
 - **本番環境の検証は未確定**：2026-10-09の検証ジョブ `37877990150` は全58対象が通信タイムアウト（0件照合）となり失敗。内容の不一致を示すログではない。
-- `scripts/live-production-check.cjs` を修正し、ホームのHTTPプリフライト・接続不良と内容差分の区別・同時アクセス数上限10を追加した。最新検証で要再確認。
+- `scripts/live-production-check.cjs` を修正し、ホームのHTTPプリフライト・接続不良と内容差分の区別・同時アクセス数上限10を追加した。
+- **改修後の本番検証 `37879203847`：2026-10-09 03:25〜03:30 UTCに6回試行し、全回で「PRODUCTION UNREACHABLE: origin preflight failed」。ホームへの接続が8秒×3回の試行後にタイムアウトした。** この検証では本番のHTML/CSSを1件も比較できていない。デプロイ成否は未確定。
+- ほかの公開コンテンツの更新と本番到達性の問題は切り分けて扱うこと。アクセス制限・DNS・XServer配信状況・GitHub Actionsランナーの経路を別途確認する。
+- 目視監査：GitHub Browser QAのPC 1440px／スマホ390pxの画面キャプチャでHOME・SHELVES・PROJECTS・ARCHIVE・ABOUTの白面／生成り外周を確認。
 - SITE CHECKが成功するまで本番公開確認済みと報告しない。GitHubのローカルQA成功と本番一致は別の判定。
 
 ## フェーズ 3：横断検索・SEO・運用（未実施）
