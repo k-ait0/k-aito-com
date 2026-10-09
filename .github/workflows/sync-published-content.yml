@@ -12,6 +12,11 @@ on:
       - 'data/project-card-status.v1.json'
       - 'scripts/sync-project-cards.cjs'
       - 'scripts/test-project-cards.cjs'
+      - 'scripts/sync-project-search.cjs'
+      - 'scripts/test-project-search.cjs'
+      - 'project-search-index.js'
+      - 'site-search.js'
+      - 'projects/**/index.html'
       - 'white-surfaces-v1.css'
       - 'scripts/sync-white-surfaces.cjs'
       - 'notes/**/index.html'
@@ -50,6 +55,9 @@ jobs:
           node --check app.js
           node --check scripts/sync-project-cards.cjs
           node --check scripts/test-project-cards.cjs
+          node --check scripts/sync-project-search.cjs
+          node --check scripts/test-project-search.cjs
+          node --check site-search.js
           node --check scripts/sync-white-surfaces.cjs
           node --check scripts/sync-published-content.cjs
           node --check scripts/article-search-text.cjs
@@ -58,6 +66,8 @@ jobs:
           node scripts/sync-project-cards.cjs
           node scripts/test-published-content.cjs
           node scripts/sync-published-content.cjs
+          node scripts/test-project-search.cjs
+          node scripts/sync-project-search.cjs
           node scripts/sync-white-surfaces.cjs
           node scripts/site-static-check.cjs
           git diff --check
