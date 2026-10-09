@@ -128,3 +128,12 @@ JavaScriptが無効の場合に備え、SHELVES一覧とARCHIVEの静的記事�
   https://www.pexels.com/photo/wooden-table-with-coffee-and-notebook-with-pen-4195334/
   Pexels License: https://www.pexels.com/license/
 - `scripts/build-notebook-photo.py` と `.github/workflows/build-notebook-photo.yml` が画像をローカルWebP化する（画像差し替え・再生成時には出典・ライセンスを再確認する）。
+
+## SEO監査（2026-10-09）
+
+- `node scripts/audit-seo.cjs` で `sitemap.xml` 掲載の全公開ページを読み取り専用で監査する。
+- エラー：HTML不在、title/description欠落、canonical不一致、noindex混入、robotsのサイトマップ指定欠落。エラー時は終了コード1。
+- 警告：OGP、H1、JSON-LDの欠落。警告だけでは終了コードを変更しない。
+- 記事の公開・修正時は `node scripts/sync-published-content.cjs` の後に監査を実行する。
+- JSON-LDはページ種別と公開情報に合わせて実装し、未確認の日付・著者属性・画像を推測で追加しない。
+- この監査は静的HTMLの検証であり、本番HTTP応答・Search Console・リッチリザルト適格性は別途確認する。
