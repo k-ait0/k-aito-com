@@ -1,7 +1,7 @@
 /* Long-form essay: typography and charts. Scoped to the Sankei Building article. */
 .essay-page .article-layout{max-width:1120px;padding-top:40px}
 .essay-page .article-layout>.breadcrumb{max-width:860px;margin:0 auto 30px;color:#647369}
-.essay-page .sankei-essay{max-width:860px;margin:0 auto}
+.essay-page .sankei-essay{max-width:860px;margin:0 auto;padding:46px 49px 52px;background:#fff;border:1px solid #d9dfd5;border-radius:12px;box-shadow:0 7px 24px rgba(29,56,37,.065)}
 .essay-page .sankei-essay h1{font-family:var(--serif);font-size:clamp(2rem,3.45vw,2.75rem);line-height:1.5;letter-spacing:.025em;text-wrap:pretty;color:#173c32;margin:12px 0 22px}
 .essay-page .sankei-essay>.page-lead{max-width:760px;font-size:1.19rem;line-height:1.85;color:#405b4e;margin-bottom:28px}
 .essay-page .sankei-essay .article-reading-guide{font-size:.83rem;gap:14px;margin-bottom:30px}
@@ -41,6 +41,7 @@
 .essay-page .essay-body a{color:#205c43;text-decoration:underline;text-decoration-color:#8aa99a;text-underline-offset:4px}
 .essay-page .article-next,.essay-page .article-layout>.related-band{max-width:860px;margin-inline:auto}
 @media(max-width:760px){
+  .essay-page .sankei-essay{padding:28px 24px 34px;border-radius:10px;box-shadow:0 4px 14px rgba(29,56,37,.055)}
   .essay-page .article-layout{padding-top:23px}
   .essay-page .sankei-essay h1{font-size:clamp(1.8rem,6.4vw,2.2rem);line-height:1.5}
   .essay-page .sankei-essay>.page-lead{font-size:1.06rem;line-height:1.82}
@@ -58,6 +59,7 @@
   .essay-page .essay-orientation{padding:16px 17px}
 }
 @media(max-width:420px){
+  .essay-page .sankei-essay{padding:21px 16px 28px;border-radius:8px}
   .essay-page .essay-body{font-size:1.01rem;line-height:1.94}
   .essay-page .essay-body>h2{font-size:1.35rem}
   .essay-page .essay-toc a{font-size:.9rem}
