@@ -4,7 +4,7 @@
 const fs=require("node:fs");
 const path=require("node:path");
 const root=path.resolve(__dirname,"..");
-const href='/white-surfaces-v1.css?v=20261009-2';
+const href='/white-surfaces-v1.css?v=20261009-3';
 const sitemap=fs.readFileSync(path.join(root,"sitemap.xml"),"utf8");
 const pages=[...sitemap.matchAll(/<loc>\s*([^<]+)\s*<\/loc>/g)].map(m=>new URL(m[1].trim()));
 let changed=0;
