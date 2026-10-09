@@ -17,7 +17,9 @@ function entryCard(entry, compact=false){
   return `<button type="button" class="entry-card ${!entry.image&&!compact?'text-card':''}" data-entry="${entry.id}" aria-label="${esc(entry.title)}を読む">${content}</button>`;
 }
 
-document.getElementById("recent-grid").innerHTML=entries.slice(0,5).map(entry=>entryCard(entry)).join("");
+const publishedNotes=entries.filter(entry=>entry.url&&entry.url.startsWith("/notes/")).slice().sort((a,b)=>b.date.localeCompare(a.date));
+// The latest article has its own feature above the shelves. Avoid a duplicate card below.
+document.getElementById("recent-grid").innerHTML=publishedNotes.slice(1,4).map(entry=>entryCard(entry)).join("");
 document.getElementById("shelves-grid").innerHTML=shelves.map(shelf=>{
   const count=entries.filter(entry=>entry.shelf===shelf.id).length;
   return `<button type="button" class="shelf" data-shelf="${shelf.id}" aria-label="${shelf.name}の棚を見る"><span class="shelf-symbol" aria-hidden="true">${shelf.symbol}</span><strong>${shelf.name}</strong><small>${shelf.en}</small><span class="shelf-description">${esc(shelf.description)}</span><span class="shelf-count">${count?`記事 ${count}`:'準備中'}</span><span class="shelf-arrow" aria-hidden="true">→</span></button>`;
