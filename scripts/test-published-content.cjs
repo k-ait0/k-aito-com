@@ -17,7 +17,7 @@ function copy(relative) {
 try {
   for(const name of [
     "content-index.js", "sitemap.xml", "storage/index.html",
-    "archive/index.html", "index.html",
+    "archive/index.html", "index.html", "app.js", "site-content.js",
     "notes/media-public-interest-sankei-building/index.html",
     "notes/nuclear-industrial-carrier/index.html",
     "notes/site-launch-trouble/index.html",
@@ -53,6 +53,9 @@ try {
   assert.match(sitemap,/https:\/\/k-aito\.com\/works\//);
   assert.equal((sitemap.match(/notes\/catalogue-regression\//g)||[]).length,1);
   assert.match(storage,/data-catalogue-count>5 NOTES/);
+  assert.match(storage,/data-card-type="article"/);
+  assert.match(storage,/class="card-kind">ARTICLE<\/span>/);
+
   assert.match(storage,/href="\/notes\/catalogue-regression\/"/);
   assert.match(archive,/data-catalogue-timeline/);
   assert.match(archive,/href="\/notes\/catalogue-regression\/"/);
