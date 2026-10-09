@@ -87,7 +87,7 @@ function parseCSV(text){
 function truthy(v){return /^(true|yes|1)$/i.test((v||"").trim())}
 function countList(v){return (v||"").split(/[|;／/]/).map(x=>x.trim()).filter(Boolean).length}
 function pct(n,d){return d?Math.round(n/d*100):0}
-function validatedSessions(rows,header,project){
+function validatedSessions(rows,header,project,sampleMode=false){
  const data=[],excluded=[],unverified=[],seen=new Set();
  for(const raw of rows.slice(1)){
    if(raw.every(v=>!v.trim()))continue;
@@ -99,33 +99,34 @@ function validatedSessions(rows,header,project){
    seen.add(id);
    const prefix="kidp.testops."+project+"."+id+".";
    const status=localStorage.getItem(prefix+"status");
-   if(status==="INVALID"){excluded.push(id);continue}
-   if(status!=="DONE"||localStorage.getItem(prefix+"receipt")!=="YES")unverified.push(id);
+   if(!sampleMode&&status==="INVALID"){excluded.push(id);continue}
+   if(!sampleMode&&(status!=="DONE"||localStorage.getItem(prefix+"receipt")!=="YES")){unverified.push(id);continue}
    data.push(x)
  }
+ if(!seen.size)throw Error("参加者データがありません。");
  return {data,excluded,unverified}
 }
 function reviewStatus(a,sampleLoaded){
  const notes=[a.n+"人を集計しました。"];
  if(sampleLoaded)notes.push("QA SAMPLE：実ユーザー結果として使用しないでください。");
  if(a.excluded.length)notes.push("INVALID除外: "+a.excluded.join(", "));
- if(a.unverified.length)notes.push("Test Ops DONE/CSV回収未照合: "+a.unverified.join(", "));
+ if(a.unverified.length)notes.push("DONE/CSV回収未確認で除外: "+a.unverified.join(", "));
  return notes.join("  ");
 }
 function analyse(text){
  const rows=parseCSV(text);if(!rows.length)throw Error("CSVが空です。");
  const header=rows[0].map(x=>x.trim());
  const missing=HEADER.filter(h=>!header.includes(h));if(missing.length)throw Error("不足列: "+missing.join(", "));
- const {data,excluded,unverified}=validatedSessions(rows,header,"life-design-lab");
- if(!data.length)throw Error("参加者データがありません。");
+ const {data,excluded,unverified}=validatedSessions(rows,header,"life-design-lab",sampleLoaded);
+ 
  const n=data.length;
  const completion=pct(data.filter(x=>truthy(x.completed_20)).length,n);
  const resonance=pct(data.filter(x=>["yes","somewhat"].includes(x.result_resonance)).length,n);
  const deep=pct(data.filter(x=>truthy(x.wants_deep_dive)||x.deep_dive_category).length,n);
  const diagnosis=pct(data.filter(x=>x.thought_it_was_diagnosis==="yes").length,n);
- const avgUnclear=Math.round(data.reduce((a,x)=>a+countList(x.unclear_cards),0)/n*10)/10;
- const avgDuration=Math.round(data.reduce((a,x)=>a+(Number(x.duration_sec)||0),0)/n);
- const avgHesitated=Math.round(data.reduce((a,x)=>a+countList(x.hesitated_cards),0)/n*10)/10;
+ const avgUnclear=n?Math.round(data.reduce((a,x)=>a+countList(x.unclear_cards),0)/n*10)/10:0;
+ const avgDuration=n?Math.round(data.reduce((a,x)=>a+(Number(x.duration_sec)||0),0)/n):0;
+ const avgHesitated=n?Math.round(data.reduce((a,x)=>a+countList(x.hesitated_cards),0)/n*10)/10:0;
  let decision,reason,kind="";
  if(n<5){decision="MORE DATA";reason="初回判定には最低5人必要です。"}
  else if(completion<50&&deep<40){decision="STOP / INTERNAL TOOL";reason="閲覧完走と深掘り意向の両方が弱い。公開サービス拡張を止め、内部ツール化を検討。";kind="is-stop"}
@@ -148,7 +149,7 @@ function render(a){current=a;document.querySelector("#results").hidden=false;doc
  ];
  document.querySelector("#thresholdRows").innerHTML=checks.map(x=>"<tr><td>"+x[0]+"</td><td>"+x[1]+"</td><td>"+x[2]+"</td><td class='"+(x[3]?"pass":"fail")+"'>"+(x[3]?"PASS":"FAIL")+"</td></tr>").join("");
 }
-document.querySelector("#analyzeBtn").onclick=()=>{try{const text=document.querySelector("#csvInput").value;current=analyse(text);localStorage.setItem("kidp003.p0.review.csv",text);render(current);document.querySelector("#parseStatus").textContent=reviewStatus(current,sampleLoaded)}catch(e){document.querySelector("#parseStatus").textContent=e.message}};
+document.querySelector("#analyzeBtn").onclick=()=>{try{const text=document.querySelector("#csvInput").value;current=analyse(text);render(current);localStorage.setItem("kidp003.p0.review.csv",text);document.querySelector("#parseStatus").textContent=reviewStatus(current,sampleLoaded)}catch(e){current=null;document.querySelector("#results").hidden=true;document.querySelector("#parseStatus").textContent=e.message}};
 function summaryMd(a){return `# KIDP-003 LIFE DESIGN LAB — P0 TEST SUMMARY
 
 Participants: ${a.n}
