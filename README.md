@@ -12,6 +12,16 @@
 - `thinking`（その他）の記事はARCHIVEへ、`business`の記事はPROJECTSと事業の構想ページへ表示。
 - 制作・開発の棚では、状態ラベルから完成品・制作中・構想に振り分ける。
 
+## 記事・プロジェクトカードの共通分類（2026-10-09 フェーズ2-C）
+
+- ARTICLESは `ARTICLE` と `THINK/MAKING` 等の編集状態を分けて表示する。
+- PROJECTSは `PROJECT` と `DESIGNING/BUILDING/TESTING/OPERATING` 等の制作段階、さらに公開区分（未公開／詳細あり／試作あり／外部サイト）を分離する。
+- 正式ルール：[KAITO カード表示・状態管理標準 v1.0](docs/KAITO_CARD_STANDARD_v1_20261009.md)
+- 状態の正本：`data/project-card-status.v1.json`。HOME・PROJECTSの両ページへ `scripts/sync-project-cards.cjs` で反映。
+- 共通CSS：`cards-v1.css`。記事一覧・棚・アーカイブ・プロジェクトカードへ適用。
+- 未公開プロジェクトは操作できるリンクにしない。外部サイトへの移動は明示する。
+- 変更後は `node scripts/test-project-cards.cjs` → `node scripts/sync-project-cards.cjs` → Browser QAと本番照合を実行する。
+
 ## ホーム・棚の回遊導線（2026-10-09 フェーズ2）
 
 - HOMEのヒーローにある**FIRST NOTE**はサイトの原点として維持。
