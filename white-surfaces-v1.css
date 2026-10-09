@@ -142,3 +142,10 @@ body:not(.subpage) .home-closing{background-color:transparent!important}
  .subpage :is(.projects-hero-copy,.project-index,.kidp-hero,.kidp-section-head){padding:18px}
  .subpage .breadcrumb{padding:6px 10px}
 }
+
+/* HOME picture-backed shelf tiles already have a split photo/paper layout.
+   Override the legacy highly-specific cream base without erasing the photo image. */
+body:not(.subpage) .home-v2 .shelves-grid .shelf,
+body:not(.subpage) .home-v2 .shelves-grid .shelf:hover{
+  background-color:#fff!important;
+}
