@@ -137,3 +137,7 @@ JavaScriptが無効の場合に備え、SHELVES一覧とARCHIVEの静的記事�
 - 記事の公開・修正時は `node scripts/sync-published-content.cjs` の後に監査を実行する。
 - JSON-LDはページ種別と公開情報に合わせて実装し、未確認の日付・著者属性・画像を推測で追加しない。
 - この監査は静的HTMLの検証であり、本番HTTP応答・Search Console・リッチリザルト適格性は別途確認する。
+
+### 構造化データの検証
+
+SEO監査はJSON-LDの有無に加え、JSONとして解析可能か、`@context`と`@type`があるかを検証する。`/notes/`以下の記事はArticle系タイプの有無も警告する。構造化データ未設定の一覧・プロジェクトページは現状警告扱いとし、実態に合わないschemaを機械的に追加しない。
