@@ -101,6 +101,7 @@ const stop=()=>new Promise(resolve=>server.close(resolve));
             const selected=cases[route]||[];
             return {
               styleLink:!!document.querySelector('link[href^="/white-surfaces-v1.css"]'),
+              isLastCSS:[...document.querySelectorAll('head link[rel="stylesheet"]')].at(-1)?.getAttribute("href")?.startsWith("/white-surfaces-v1.css"),
               warmCanvas:getComputedStyle(document.body).backgroundColor!==white,
               selected:selected.map(selector=>{
                 const el=document.querySelector(selector);
@@ -114,7 +115,7 @@ const stop=()=>new Promise(resolve=>server.close(resolve));
               })():null
             };
           });
-          check(surfaces.styleLink&&surfaces.warmCanvas,
+          check(surfaces.styleLink&&surfaces.isLastCSS&&surfaces.warmCanvas,
             mode.name+" "+slug+" standard white surface layer preserves warm site",JSON.stringify(surfaces));
           if(surfaces.selected.length){
             check(surfaces.selected.every(x=>x.exists&&x.background==="rgb(255, 255, 255)"),
