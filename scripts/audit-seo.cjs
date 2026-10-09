@@ -43,7 +43,7 @@ for (const url of urls) {
   if (!/<meta\s+property="og:description"/i.test(head)) warnings.push(pathname + ": missing og:description");
   if (!/<meta\s+property="og:image"/i.test(head)) warnings.push(pathname + ": missing og:image");
   if (!/<h1\b/i.test(html)) warnings.push(pathname + ": missing h1");
-  const ldScripts = [...head.matchAll(/<script\\b[^>]*type=["']application\\/ld\\+json["'][^>]*>([\\s\\S]*?)<\\/script>/gi)];
+  const ldScripts = [...head.matchAll(new RegExp("<script\\b[^>]*type=[\\\"\']application/ld\\+json[\\\"\'][^>]*>([\\s\\S]*?)</script>", "gi"))];
   if (!ldScripts.length) warnings.push(pathname + ": no JSON-LD structured data");
   for (const match of ldScripts) {
     try {
