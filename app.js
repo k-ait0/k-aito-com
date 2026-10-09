@@ -152,5 +152,13 @@ document.getElementById("reset-filters").addEventListener("click",()=>{archiveSe
 
 for(const dialog of [archiveDialog,entryDialog]){
   dialog.addEventListener("click",event=>{if(event.target===dialog)dialog.close();});
-  dialog.addEventListener("close",()=>{document.body.classList.remove("modal-open");const opener=dialogOpeners.get(dialog);if(opener&&opener.focus)opener.focus();});
+  dialog.addEventListener("close",()=>{
+    document.body.classList.remove("modal-open");
+    const opener=dialogOpeners.get(dialog),searchForm=document.getElementById("search-form");
+    // Restoring focus to the header search input would leave the mobile overlay expanded.
+    if(opener&&opener.focus&&!searchForm.contains(opener))opener.focus();
+    if(dialog===archiveDialog&&searchForm.contains(document.activeElement)){
+      document.activeElement.blur();
+    }
+  });
 }
