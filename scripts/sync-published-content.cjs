@@ -35,6 +35,14 @@ for (const item of catalogue.entries) {
   const article = path.join(root, item.url.slice(1), "index.html");
   if (!fs.existsSync(article)) throw new Error("Published article is missing: " + article);
   if (!item.title || !item.summary || !Array.isArray(item.tags)) throw new Error("Incomplete metadata: " + item.id);
+  if(item.thumbnail){
+    if(!item.thumbnail.src||!/^\/assets\/[a-z0-9/_.-]+\.webp$/.test(item.thumbnail.src)||
+      !item.thumbnail.alt||item.thumbnail.alt.trim().length<10)throw new Error("Invalid thumbnail metadata "+item.id);
+    const imageFile=path.join(root,item.thumbnail.src.slice(1));
+    if(!fs.existsSync(imageFile)||fs.statSync(imageFile).size<1000||fs.statSync(imageFile).size>500000){
+      throw new Error("Thumbnail missing or unusually large "+item.id+" "+imageFile);
+    }
+  }
   ids.add(item.id);
   urls.add(item.url);
   notes.push(item);
@@ -58,8 +66,10 @@ const count = n => n + " NOTE" + (n === 1 ? "" : "S");
 const noteCard = note =>
   '<a class="note-link" data-card-type="article" href="' + escapeHtml(note.url) + '"><div class="note-meta"><span>' +
   escapeHtml(note.state) + '</span><time datetime="' + note.date.replaceAll(".", "-") + '">' +
-  escapeHtml(note.date) + '</time><span class="card-kind">ARTICLE</span></div><h3>' + escapeHtml(note.title) +
-  '</h3><p>' + escapeHtml(note.summary) + '</p><small>' +
+  escapeHtml(note.date) + '</time><span class="card-kind">ARTICLE</span></div>' +
+  (note.thumbnail?'<img class="note-thumbnail" src="'+escapeHtml(note.thumbnail.src)+
+    '" alt="'+escapeHtml(note.thumbnail.alt)+'" loading="lazy" decoding="async" width="640" height="360">':'') +
+  '<h3>' + escapeHtml(note.title) + '</h3><p>' + escapeHtml(note.summary) + '</p><small>' +
   note.tags.map(t => "#" + escapeHtml(t)).join(" ") + "</small></a>";
 const writeIfChanged = (file, result) => {
   const previous = fs.readFileSync(file, "utf8");
