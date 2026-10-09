@@ -80,8 +80,40 @@ function matchingEntries(){
   });
 }
 function renderArchive(){
+  const query=normalize(archiveSearch.value);
+  const words=query.split(/\s+/).filter(Boolean);
+  const allFilters=shelfSelect.value==="all"&&stateSelect.value==="all";
+  if((words.length&&allFilters)||projectsOnly){
+    const projectIndex=Array.isArray(window.KAitoProjects)?window.KAitoProjects:[];
+    const articleList=entries.filter(e=>e.url&&e.url.startsWith("/notes/")).map(e=>({
+      type:"ARTICLE",url:e.url,title:e.title,summary:e.summary,state:e.state,
+      text:[e.title,e.summary,e.state,...(e.tags||[]),e.searchText||""].join(" ")
+    }));
+    const projectList=projectIndex.map(p=>({
+      type:"PROJECT",url:p.url,title:p.title,summary:p.summary,state:p.stage,
+      text:[p.title,p.summary,p.stage,p.access,p.searchText||""].join(" ")
+    }));
+    const selected=(projectsOnly?projectList:[...articleList,...projectList])
+      .map(item=>{
+        const normal=normalize(item.text);
+        if(!words.every(word=>normal.includes(word)))return null;
+        const title=normalize(item.title),summary=normalize(item.summary);
+        return {...item,score:words.reduce((n,w)=>n+(title.includes(w)?6:summary.includes(w)?3:1),0)};
+      }).filter(Boolean).sort((a,b)=>b.score-a.score||a.type.localeCompare(b.type));
+    const notes=selected.filter(x=>x.type==="ARTICLE").length;
+    document.getElementById("results-count").textContent=`${selected.length} 件（記事 ${notes}・プロジェクト ${selected.length-notes}）`;
+    document.getElementById("archive-results").innerHTML=selected.length?selected.map(item=>
+      `<a class="entry-card entry-card-link text-card" data-card-type="${item.type.toLowerCase()}" href="${esc(item.url)}">
+        <span class="card-copy"><span class="card-kind">${item.type}</span>
+          <span class="state">${esc(item.state)}</span>
+          <span class="card-title">${esc(item.title)}</span>
+          <span class="card-summary">${esc(item.summary)}</span>
+          <span class="card-arrow" aria-hidden="true">→</span>
+        </span></a>`).join(""):`<div class="empty-state"><strong>一致する公開記事・プロジェクトはありません。</strong><p>短いキーワードでもう一度検索してください。</p></div>`;
+    return;
+  }
   const found=matchingEntries();
-  document.getElementById("results-count").textContent=`${found.length} 件の置いたもの`;
+  document.getElementById("results-count").textContent=`${found.length} 件の公開記事`;
   document.getElementById("archive-results").innerHTML=found.length?found.map(entry=>entryCard(entry)).join(''):`<div class="empty-state"><strong>この条件のものは、まだありません。</strong><p>別のことばで探すか、棚や状態の条件を変えてみてください。</p></div>`;
 }
 function openEntry(id){
