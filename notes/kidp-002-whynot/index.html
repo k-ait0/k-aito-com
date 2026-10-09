@@ -4,9 +4,9 @@
 <meta name="description" content="日常の「これ面倒」をProblemとして集め、AIで構造化し、SAMEとBuild Scoreから次に作るものを探す。KIDP-002 WHYNOTの設計とPrototype制作記録。">
 <link rel="canonical" href="https://k-aito.com/notes/kidp-002-whynot/"><link rel="icon" href="/assets/brand/kite-mark.png?v=1" type="image/png">
 <meta property="og:type" content="article"><meta property="og:site_name" content="K. Aito / DIGITAL STORAGE"><meta property="og:title" content="「解決策」より先に「困りごと」を集めたらどうなる？――WHYNOTを設計してみた"><meta property="og:description" content="Problemを先に集め、構造化し、次に作るものへつなぐ。KIDP-002 WHYNOTの制作記録。"><meta property="og:url" content="https://k-aito.com/notes/kidp-002-whynot/"><meta property="og:image" content="https://k-aito.com/og-image.png"><meta property="og:image:alt" content="K. Aito / DIGITAL STORAGE"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="KIDP-002 WHYNOTを設計してみた"><meta name="twitter:description" content="日常の「これ面倒」をProblemとして集め、次に作るものを探す仕組み。"><meta name="twitter:image" content="https://k-aito.com/og-image.png">
-<link rel="stylesheet" href="/styles.css?v=4"><link rel="stylesheet" href="/image-fix.css?v=37"><link rel="stylesheet" href="/pages.css?v=4"><link rel="stylesheet" href="/article-v2.css?v=1"><link rel="stylesheet" href="/subpages.css?v=6"><link rel="stylesheet" href="/site-search.css?v=1"><link rel="stylesheet" href="/kidp-article.css?v=1"><script src="/content-index.js?v=2f4d79fda2a0" defer></script><script src="/site-search.js?v=1" defer></script>
+<link rel="stylesheet" href="/styles.css?v=4"><link rel="stylesheet" href="/image-fix.css?v=37"><link rel="stylesheet" href="/pages.css?v=4"><link rel="stylesheet" href="/article-v2.css?v=1"><link rel="stylesheet" href="/subpages.css?v=6"><link rel="stylesheet" href="/site-search.css?v=1"><link rel="stylesheet" href="/article-reading.css?v=20261009-v1"><link rel="stylesheet" href="/kidp-article.css?v=1"><script src="/content-index.js?v=2f4d79fda2a0" defer></script><script src="/site-search.js?v=1" defer></script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"「解決策」より先に「困りごと」を集めたらどうなる？――WHYNOTを設計してみた","datePublished":"2026-10-07","dateModified":"2026-10-07","author":{"@type":"Person","name":"K. Aito"},"publisher":{"@type":"Organization","name":"K. Aito / DIGITAL STORAGE"},"mainEntityOfPage":"https://k-aito.com/notes/kidp-002-whynot/"}</script></head>
-<body class="subpage"><a class="skip-link" href="#content">本文へ</a><header class="site-header"><div class="header-inner"><a class="brand" href="/" aria-label="K. Aito ホーム"><span class="brand-kite logo-mark" aria-hidden="true"></span><span class="brand-lockup"><span class="logo-wordmark" aria-hidden="true"></span><span class="sr-only">K. Aito</span><small>風にのせて、もっと先へ。</small></span></a><nav class="main-nav" aria-label="メインナビゲーション"><a href="/">HOME</a><a href="/storage/">SHELVES</a><a href="/projects/" aria-current="page">PROJECTS</a><a href="/archive/">ARCHIVE</a><a href="/about/">ABOUT</a></nav></div></header>
+<body class="subpage essay-page"><a class="skip-link" href="#content">本文へ</a><header class="site-header"><div class="header-inner"><a class="brand" href="/" aria-label="K. Aito ホーム"><span class="brand-kite logo-mark" aria-hidden="true"></span><span class="brand-lockup"><span class="logo-wordmark" aria-hidden="true"></span><span class="sr-only">K. Aito</span><small>風にのせて、もっと先へ。</small></span></a><nav class="main-nav" aria-label="メインナビゲーション"><a href="/">HOME</a><a href="/storage/">SHELVES</a><a href="/projects/" aria-current="page">PROJECTS</a><a href="/archive/">ARCHIVE</a><a href="/about/">ABOUT</a></nav></div></header>
 <main id="content" class="page-wrap article-layout"><div class="breadcrumb"><a href="/">HOME</a><span>/</span><a href="/projects/kidp/">KIDP</a><span>/</span>KIDP-002</div>
 <article class="article-page kidp-article"><div class="note-meta"><span>KIDP / PROTOTYPE</span><time datetime="2026-10-07">2026.10.07</time></div>
 <h1>「解決策」より先に<br>「困りごと」を集めたらどうなる？<br><small>――WHYNOTを設計してみた</small></h1>
@@ -16,27 +16,28 @@
 
 <section class="kidp-concept" aria-labelledby="concept-title"><p class="eyebrow">CONCEPT</p><h2 id="concept-title">Problemを、次の制作物の入口にする。</h2><div class="kidp-concept-flow"><span>これ面倒</span><b>→</b><span>Problem</span><b>→</b><span>AI Structure</span><b>→</b><span>SAME</span><b>→</b><span>Solution Lab</span><b>→</b><span>Build Score</span><b>→</b><span>KIDP</span><b>→</b><span>Prototype</span></div><p>重要なのは、Solutionを先に置かないこと。まず「誰が・いつ・どのくらい困るのか」をProblemとして残す。</p></section>
 
-<div class="article-copy">
-<h2>きっかけは「アイデアの在庫」だった</h2>
+<details class="essay-toc essay-toc-collapsible"><summary>この記事の目次（8章）を開く</summary><ol><li><a href="#whynot-article-section-1">きっかけは「アイデアの在庫」だった</a></li><li><a href="#whynot-article-section-2">最初の設計は、たぶん「Like」が強すぎた</a></li><li><a href="#whynot-article-section-3">ProblemとSolutionを同じ投稿に入れない</a></li><li><a href="#whynot-article-section-4">AIに「答え」を出させるのではなく、Problemを整理させる</a></li><li><a href="#whynot-article-section-5">Build Scoreは、事業性スコアにしなかった</a></li><li><a href="#whynot-article-section-6">Project GIVEを、後付けではなく「実績」にした</a></li><li><a href="#whynot-article-section-7">作ってみて、WHYNOT自体のProblemも見えた</a></li><li><a href="#whynot-article-section-8">次に確かめるのは4つだけ</a></li></ol></details>
+<div class="article-copy essay-body">
+<h2 id="whynot-article-section-1">きっかけは「アイデアの在庫」だった</h2>
 <p>「こんなアプリがあったら面白い」「この仕組み、別の業界でも使えそう」。思いつきは増える。でも、アイデアから始めると、そのアイデアを成立させる理由を後から探し始めてしまう。</p>
 <p>そこで順番を逆にしてみた。<strong>アイデアではなく、解決されていないProblemを先に貯める。</strong> そこから必要に応じて複数のSolutionを生やす。</p>
 <p class="article-pull">「何を作りたいか」ではなく、<strong>「何がまだ面倒なのか」から始める。</strong></p>
 
-<h2>最初の設計は、たぶん「Like」が強すぎた</h2>
+<h2 id="whynot-article-section-2">最初の設計は、たぶん「Like」が強すぎた</h2>
 <p>Problem投稿サービスを考えると、Like、コメント、ランキングを置きたくなる。でもLikeでは「面白い問題だと思った」のか「自分も実際に困っている」のかが分からない。</p>
 <p>そこで反応を<strong>SAME</strong>に変えた。意味は「私にもこのProblemがある」。人気投票ではなく、Problemの重なりを取るためのボタンにした。</p>
 <div class="kidp-decision"><span>CHANGE 01</span><strong>LIKE → SAME</strong><p>評価ではなく「自分にもある」を取る。Prototypeでは1ユーザー1Problemにつき1回だけ。</p></div>
 
-<h2>ProblemとSolutionを同じ投稿に入れない</h2>
+<h2 id="whynot-article-section-3">ProblemとSolutionを同じ投稿に入れない</h2>
 <p>もう一つ分けたのがProblemとSolutionだ。「閉店作業が長い」というProblemに対して、チェックリストSaaS、物理キット、外部BPOなど、解き方は複数あり得る。</p>
 <p>Solutionを投稿の主役にすると、議論が「その案が好きか嫌いか」に寄る。Problemを資産として残しておけば、一つのProblemに何度でも別のSolutionを接続できる。</p>
 <div class="kidp-split"><div><small>PROBLEM</small><strong>飲食店の閉店作業に毎日45分かかる</strong><p>誰が / いつ / 頻度 / 現在の回避策 / Pain</p></div><div><small>SOLUTION LAB</small><strong>CloseFlow / Closing Kit / NightOps</strong><p>SaaS / 物理＋デジタル / BPO</p></div></div>
 
-<h2>AIに「答え」を出させるのではなく、Problemを整理させる</h2>
+<h2 id="whynot-article-section-4">AIに「答え」を出させるのではなく、Problemを整理させる</h2>
 <p>投稿時に必要なのは、きれいな企画書ではない。「閉店作業で帰るのが遅くなる」くらいでいい。Prototypeでは、その雑な文章をProblem / Who / When / Frequency / Workaround / Painへ整理する画面を置いた。</p>
 <p>ここでもAIの出力は事実ではなく<strong>仮説</strong>として扱う。特に「なぜ未解決なのか」「既存サービスの穴は何か」は、実際には追加調査が必要だ。</p>
 
-<h2>Build Scoreは、事業性スコアにしなかった</h2>
+<h2 id="whynot-article-section-5">Build Scoreは、事業性スコアにしなかった</h2>
 <p>途中で最も危なかったのがスコアだった。SAMEが多く、AIが面白いと言えば「事業価値90点」のような数字を出したくなる。でもPrototype段階でそんな精度はない。</p>
 <p>そこでBuild Scoreの意味を限定した。<strong>K. Aitoで設計・Prototype化すると面白いか、検証しやすいか。</strong> それだけを100点で見る。</p>
 <div class="kidp-score-explain"><div><strong>BUILD SCORE</strong><b>87</b><span>制作適性</span></div><div><p>一言で伝わるか / 独自メカニクス / UI映え / Prototype可能性 / 実際に検証できるか / 派生性など。</p><small>NOT BUSINESS VALUE<br>NOT MARKET SIZE<br>NOT INVESTMENT SCORE</small></div></div>
@@ -47,16 +48,16 @@
 <p>本番用のアカウント、Backend、課金、コメント、DM、リアルタイムAIは入れていない。今回確かめたいのは「このProblem DBを触っていると、自分のProblemも入れたくなるか」だからだ。</p>
 <section class="kidp-live-prototype"><div class="kidp-live-head"><div><span class="eyebrow">LIVE CONCEPT PROTOTYPE</span><h3>実際に触ってみる</h3></div><a href="/projects/kidp/whynot/prototype/" target="_blank" rel="noopener">別画面で開く ↗</a></div><iframe src="/projects/kidp/whynot/prototype/" title="WHYNOT Concept Prototype"></iframe><p>Prototype内のSAMEはブラウザ内だけに保存されます。実データ・実AIには接続していません。</p></section>
 
-<h2>Project GIVEを、後付けではなく「実績」にした</h2>
+<h2 id="whynot-article-section-6">Project GIVEを、後付けではなく「実績」にした</h2>
 <p>WHYNOTだけを見ると「Problemから本当に何か作るの？」という疑問が残る。そこでKIDP-001 Project GIVEを接続した。</p>
 <div class="kidp-built-chain"><span>クーポンを使わず失効する</span><b>→</b><span>Problem</span><b>→</b><span>Project GIVE</span><b>→</b><strong>BUILT / KIDP-001</strong></div>
 <p>Project GIVEはWHYNOTより先に設計したものだが、逆にたどれば「使わないクーポンが失効する」というProblemから生まれたSolutionとして扱える。これを最初のBUILT例にした。</p>
 
-<h2>作ってみて、WHYNOT自体のProblemも見えた</h2>
+<h2 id="whynot-article-section-7">作ってみて、WHYNOT自体のProblemも見えた</h2>
 <p>Problemを集めれば価値が出る、とは限らない。同じProblemの重複、抽象度の違い、単なる愚痴、個人情報、誹謗中傷、危険な投稿。「未解決」と書くなら既存サービス調査も必要になる。</p>
 <p>本番化するなら、semantic clustering、重複統合、moderation、報告機能、出典管理、AIコスト制御などが必要だ。むしろPrototypeを作ったことで、<strong>「Problem DBを作るProblem」</strong>が具体的になった。</p>
 
-<h2>次に確かめるのは4つだけ</h2>
+<h2 id="whynot-article-section-8">次に確かめるのは4つだけ</h2>
 <p>機能を増やす前に、まず人がこの体験を面白いと思うかを見る。</p>
 <ol class="kidp-test-list"><li><b>01</b><span>Problemを3件以上見たくなるか</span></li><li><b>02</b><span>SAMEを押したくなるか</span></li><li><b>03</b><span>自分のProblemを投稿したくなるか</span></li><li><b>04</b><span>「これ、本気で作ったら？」まで見たくなるか</span></li></ol>
 <p>ここが弱ければ、AI機能や事業モデルを足しても意味がない。KIDP-002は現在Prototypeまで。次はTestで壊す。</p>
