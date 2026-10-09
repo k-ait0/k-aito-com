@@ -18,10 +18,11 @@ try {
   for(const name of [
     "content-index.js", "sitemap.xml", "storage/index.html",
     "archive/index.html", "index.html",
+    "notes/media-public-interest-sankei-building/index.html",
     "notes/nuclear-industrial-carrier/index.html",
     "notes/site-launch-trouble/index.html",
     "notes/kidp-002-whynot/index.html",
-    "scripts/sync-published-content.cjs"
+    "scripts/sync-published-content.cjs", "scripts/article-search-text.cjs"
   ]) copy(name);
   let index = fs.readFileSync(path.join(temp, "content-index.js"), "utf8");
   const anchor = "window.KAitoContent=Object.freeze({shelves,entries});";
@@ -33,12 +34,17 @@ try {
   );
   fs.writeFileSync(path.join(temp,"content-index.js"),index);
   fs.mkdirSync(path.join(temp,"notes/catalogue-regression"),{recursive:true});
-  fs.writeFileSync(path.join(temp,"notes/catalogue-regression/index.html"),"<!doctype html><title>test</title>");
+  fs.writeFileSync(path.join(temp,"notes/catalogue-regression/index.html"),'<!doctype html><title>test</title><div class="article-copy essay-body"><p>更新された記事本文で公開検索の同期を検証するため、この記事には十分な文章を入力しています。</p></div>');
   const run=()=>cp.execFileSync(process.execPath,
     [path.join(temp,"scripts/sync-published-content.cjs")],
     {cwd:temp,encoding:"utf8"});
+  // An edit to an existing published article should reindex automatically.
+  const edited=path.join(temp,"notes/media-public-interest-sankei-building/index.html");
+  let article=fs.readFileSync(edited,"utf8");
+  article=article.replace('<div class="article-copy essay-body">','<div class="article-copy essay-body"><p>検索用本文の同期を検証する変更です。</p>');
+  fs.writeFileSync(edited,article);
   const first=run();
-  assert.match(first,/4 canonical articles/);
+  assert.match(first,/5 canonical articles/);
   const sitemap=fs.readFileSync(path.join(temp,"sitemap.xml"),"utf8");
   const storage=fs.readFileSync(path.join(temp,"storage/index.html"),"utf8");
   const archive=fs.readFileSync(path.join(temp,"archive/index.html"),"utf8");
@@ -46,11 +52,17 @@ try {
   assert.match(sitemap,/https:\/\/k-aito\.com\/notes\/catalogue-regression\/<\/loc><lastmod>2026-09-24/);
   assert.match(sitemap,/https:\/\/k-aito\.com\/works\//);
   assert.equal((sitemap.match(/notes\/catalogue-regression\//g)||[]).length,1);
-  assert.match(storage,/data-catalogue-count>4 NOTES/);
+  assert.match(storage,/data-catalogue-count>5 NOTES/);
   assert.match(storage,/href="\/notes\/catalogue-regression\/"/);
   assert.match(archive,/data-catalogue-timeline/);
   assert.match(archive,/href="\/notes\/catalogue-regression\/"/);
   assert.match(home,/content-index\.js\?v=[a-f0-9]{12}/);
+  const rebuilt=fs.readFileSync(path.join(temp,"content-index.js"),"utf8");
+  assert.match(rebuilt,/BEGIN GENERATED ARTICLE SEARCH TEXT/);
+  assert.ok(rebuilt.includes("更新された記事本文で公開検索の同期を検証するため"),"New article text not indexed");
+  assert.ok(rebuilt.includes("検索用本文の同期"),"New changes to existing article not indexed");
+  assert.match(archive,/<div class="archive-stats"><span><b>5<\/b> NOTES/);
+
   const second=run();
   assert.ok(!second.includes("UPDATED "), "Generator is not idempotent");
   console.log("PASS: added article -> sitemap, HTML fallbacks and cache; rerun unchanged");
