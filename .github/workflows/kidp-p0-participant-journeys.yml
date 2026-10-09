@@ -1,0 +1,22 @@
+name: KIDP P0 Participant Journeys
+on:
+  pull_request:
+    paths:
+      - "projects/kidp/qa_p0_participant_journeys.cjs"
+      - ".github/workflows/kidp-p0-participant-journeys.yml"
+  workflow_dispatch:
+jobs:
+  production-chrome:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Install Playwright
+        run: npm install --no-save playwright@1.56.1
+      - name: Test actual P0 production journeys
+        env:
+          KIDP_TEST_ORIGIN: https://k-aito.com
+        run: node projects/kidp/qa_p0_participant_journeys.cjs
