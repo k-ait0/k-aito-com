@@ -2,6 +2,17 @@ const { chromium } = require("playwright");
 const assert = require("node:assert/strict");
 const origin = process.env.KIDP_TEST_ORIGIN || "https://k-aito.com";
 const checks = [];
+const csvColumnCount = line=>{
+  let inQuotes=false, columns=1;
+  for(let i=0;i<line.length;i++){
+    if(line[i]==='"'){
+      if(inQuotes&&line[i+1]==='"'){i++;continue;}
+      inQuotes=!inQuotes;
+    }else if(line[i]===','&&!inQuotes)columns++;
+  }
+  assert.equal(inQuotes,false,"CSV quoting must be closed");
+  return columns;
+};
 async function runCase(name,fn){
   await fn();
   checks.push(name);
@@ -37,7 +48,7 @@ async function runCase(name,fn){
       assert.equal(payload.life_changes,2);
       assert.equal(payload.areas_viewed.length,1);
       const row=await page.evaluate(()=>testCsv());
-      assert.equal(row.match(/","/g).length,12);
+      assert.equal(csvColumnCount(row),13);
       await page.locator("#copyCsvBtn").click();
       await page.waitForFunction(()=>document.querySelector("#copyState")?.textContent?.includes("コピーしました")||document.querySelector("#copyState")?.textContent?.includes("コピーできません")); 
       assert.match(await page.locator("#copyState").innerText(),/コピーしました/);
@@ -69,7 +80,7 @@ async function runCase(name,fn){
       await page.locator("#deepDive").fill("Travel");
       await page.locator("#firstQuote").fill("旅行が上でした");
       const row=await page.evaluate(()=>testCsv());
-      assert.equal(row.match(/","/g).length,25);
+      assert.equal(csvColumnCount(row),26);
       await page.locator("#copyCsvBtn").click();
       await page.waitForFunction(()=>document.querySelector("#copyState")?.textContent?.includes("コピーしました")||document.querySelector("#copyState")?.textContent?.includes("コピーできません")); 
       assert.match(await page.locator("#copyState").innerText(),/コピーしました/);
@@ -102,7 +113,7 @@ async function runCase(name,fn){
       assert.equal(p.submit_opened,true);
       assert.ok(p.draft_chars>=5);
       const row=await page.evaluate(()=>testCsv());
-      assert.equal(row.match(/","/g).length,16);
+      assert.equal(csvColumnCount(row),17);
       await page.locator("#copyCsvBtn").click();
       await page.waitForFunction(()=>document.querySelector("#copyState")?.textContent?.includes("コピーしました")||document.querySelector("#copyState")?.textContent?.includes("コピーできません")); 
       assert.match(await page.locator("#copyState").innerText(),/コピーしました/);
