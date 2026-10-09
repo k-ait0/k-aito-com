@@ -23,10 +23,20 @@
 - 新規記事用：[記事テンプレート v1.0](docs/KAITO_ARTICLE_TEMPLATE_v1.md)
 - 既存4記事に適用済み。記事固有の図解・写真・Prototypeはそのまま残しています。
 
+## 本文・検索・一覧の自動同期（2026-10-09）
+
+記事本文の一次情報は `notes/<slug>/index.html` です。`content-index.js` はタイトル・日付・棚・タグ・要約を手動管理し、**検索用全文 `searchText` だけを自動生成**します。
+
+- `scripts/article-search-text.cjs` は `.article-copy.essay-body` の本文から検索テキストを抽出する。
+- `scripts/sync-published-content.cjs` は `content-index.js` の `BEGIN/END GENERATED ARTICLE SEARCH TEXT` ブロックを再生成し、`sitemap.xml`・ストレージ一覧・アーカイブ静的一覧／件数・全HTMLの検索用スクリプトキャッシュを同期する。
+- 同期ワークフローは **`notes/**/index.html` の変更でも実行する**。今後は記事本文の変更のたびに `searchText` を手編集しない。
+- 生成ブロックを直接編集しない。記事を変更したら `scripts/test-published-content.cjs` と `scripts/sync-published-content.cjs` を実行し、生成結果を反映する。
+- GitHub Actions生成コミットはほかのワークフローを自動発火しない場合があるので、**本番公開とブラウザQAは生成結果が反映された最新コミットで確認する**。
+
 ## 記事を1本追加するとき
 
 1. `notes/<slug>/index.html` と記事で利用する画像を配置する。
-2. `content-index.js` に一意な `id`、`title`、`state`、`shelf`、`date`（YYYY.MM.DD）、`url`（/notes/<slug>/）、`tags`、`summary`、検索用本文 `searchText` を登録する。既存データの `id` と `url` は原則維持する。
+2. `content-index.js` に一意な `id`、`title`、`state`、`shelf`、`date`（YYYY.MM.DD）、`url`（/notes/<slug>/）、`tags`、`summary` を登録する。**検索用本文 `searchText` は生成されるので手入力しない。**既存データの `id` と `url` は原則維持する。
 3. 両方を `main` に反映する。記事ページがないのにメタデータだけ公開しない。
 
 `.github/workflows/sync-published-content.yml` が記事台帳の変更を検出すると、`scripts/sync-published-content.cjs` を実行し、次をGitHub Actionsの別コミットへ反映します。
@@ -56,7 +66,7 @@ JavaScriptが無効の場合に備え、SHELVES一覧とARCHIVEの静的記事�
 - 本番ブランチ: `main`
 - 公開方式: XServer Static
 - `.htaccess` は既存設定を確認せず変更・上書きしない。
-- 新しい記事の本文と `searchText` の内容を一致させる。
+- 新しい記事の本文から `searchText` が自動生成されていることを確認する。
 - GitHubのワークフローが成功しただけでは、実際の端末での表示確認が完了したことにはならない。
 
 
