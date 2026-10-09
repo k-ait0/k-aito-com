@@ -72,4 +72,13 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -u
           git commit -m "Sync sitemap and article index from published catalogue"
-          git push origin HEAD:main
+          for attempt in 1 2 3; do
+            git fetch origin main
+            git rebase origin/main
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            echo "Main advanced during the generated commit; retrying after fetch (attempt ${attempt})."
+          done
+          echo "Could not push generated site after 3 attempts." >&2
+          exit 1
