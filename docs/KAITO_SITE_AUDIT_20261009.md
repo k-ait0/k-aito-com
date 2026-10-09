@@ -32,7 +32,7 @@
 | --- | --- | --- | --- |
 | P1 | ホームのヒーロー | FIRST NOTEは維持 | **対応済み**：ヒーロー直下に最新記事1件を表示、次の記録を別枠へ配置。最新記事枠は公開台帳で自動更新 |
 | P1 | 棚・一覧 | 7棚に対し公開記事4本。準備中を残す | **一部対応済み**：SHELVESにARCHIVE・KIDP・考察記事への案内を設置。カテゴリ自体のコンテンツ拡充は未実施 |
-| P1 | 記事カード | 記事カードにARTICLEラベルを実装し、THINK等の編集状態と分離 | **分類の共通化は実施済み**。個別サムネイル導入は未実施 |
+| P1 | 記事カード | ARTICLEラベルと文字面の白地を共通化 | **サムネイル2件を正式採用・本番展開済み**。残り2件は記事専用画像を検討 |
 | P2 | プロジェクト一覧 | HOMEとPROJECTSで異なる制作段階表現が混在 | **カードの段階・公開区分は共通台帳へ統一済み**。COMING SOONやPROJECT FLOWの整理は残作業 |
 | P2 | 記事回遊 | 7棚と記事導線が少なく孤立しやすい | 記事末から同カテゴリ/関連論考に誘導。推奨アルゴリズムは記事台帳ベース |
 
@@ -55,7 +55,7 @@
 | 優先 | 対象 | 現状 | 検討内容 |
 | --- | --- | --- | --- |
 | P1 | 横断検索 | **公開記事4件＋公開プロジェクト詳細8件の横断検索を本番確認済み** | 24公開ページで共通検索を提供。XServer実体照合59/59・PC/スマホ470項目成功。非公開ベータは対象外 |
-| P1 | 画像 | 既存画像40点を棚卸しし記事別候補を台帳化 | 採用保留2記事・原子力加工船漫画のトリミング検討。未採用を完了としない |
+| P1 | 画像 | 既存画像からノート写真・原子力加工船の漫画の2点を採用 | HOME・ARCHIVE・SHELVES・WORKSに展開。WHYNOT／サンケイビル論考の2件は画像選定保留 |
 | P2 | メタデータ | 一部は共通OG画像、構造化データには差 | 記事単位のOG/Article/BreadcrumbListの運用を設計 |
 | P2 | 古いCSS | `article-v2.css`, `article-reading.css`, 旧`essay-reading.css` が混在 | 参照箇所を洗い、未使用が確認できたもののみ廃止する |
 | P2 | Search Console | 本監査でKAITOの接続プロパティが確認できなかった | 所有権確認・サイトマップ送信・検索流入/索引状況の検証 |
@@ -64,11 +64,13 @@
 
 1. フェーズ2-A【実装済み】：ホームの最新記事スポットライト。FIRST NOTE維持、他の投稿との重複排除。関連ファイル：`discovery-v1.css`、`app.js`、`index.html`、`scripts/sync-published-content.cjs`。
 2. フェーズ2-B【一部実装済み】：SHELVESに初回案内を追加。記事未公開のカテゴリ自体は準備中を表示。
-3. フェーズ2-C【共通分類・表示は実装済み】：HOME／ARCHIVE／SHELVES／PROJECTS／各棚でARTICLEとPROJECTを区別。`cards-v1.css`と`data/project-card-status.v1.json`が正本。個別サムネイル・KIDP内部の全カード統一は次工程。
+3. フェーズ2-C【共通分類・表示は実装済み】：HOME／ARCHIVE／SHELVES／PROJECTS／各棚でARTICLEとPROJECTを区別。`cards-v1.css`と`data/project-card-status.v1.json`が正本。サムネイル2件を横展開済み。KIDP内部の全カード統一は次工程。
 4. フェーズ3-A【実装・本番検証済み】：公開記事4件とプロジェクト詳細8件の横断検索。`project-search-index.js`は各HTMLから自動生成。`scripts/sync-project-search.cjs`、`scripts/test-project-search.cjs`、`site-search.js`、`app.js`を参照。
 
 **最終確認（2026-10-09）：** GitHub Actions [本番検証 37887561491](https://github.com/k-ait0/k-aito-com/actions/runs/37887561491) は59項目のファイル照合が成功・失敗0、ブラウザ470項目成功・失敗0。`project-search-index.js`も本番でHTTP 200・バイト単位一致。スマホ検索欄の開閉不具合を修正済み。
 
-5. フェーズ3-B【画像候補を整理済み】：既存40ファイルを確認。記事4本の候補・保留理由は`docs/KAITO_SEARCH_AND_THUMBNAIL_AUDIT_20261009.md`に記録。個別サムネイルの正式採用・表示実装は未実施。
+5. フェーズ3-B【2記事本番採用済み】：原子力加工船とサイト公開記録の画像を`content-index.js`で共通管理、`thumbnail-v1.css`でカード表示統一、JSなしの静的一覧も画像を表示。WHYNOT／サンケイビル論考のサムネイル選定が残件。詳細は`docs/KAITO_SEARCH_AND_THUMBNAIL_AUDIT_20261009.md`。
+
+**追加検証（2026-10-09）：** サムネイル実装の本番検証 [GitHub Actions 37889156156](https://github.com/k-ait0/k-aito-com/actions/runs/37889156156) では、配信ファイル60項目の一致、PC・スマホ486項目成功（失敗0）。ローカル側490項目成功（失敗0）。原画像と台帳、JSあり／なしの各一覧が一致。
 
 **注意**：2026年10月9日現在の公開記事4本で判定。非公開ベータや外部FINOWAの記事はKAITO公開記事数に含めない。未実施の項目を完了扱いにしない。
