@@ -22,6 +22,8 @@ try {
     "notes/nuclear-industrial-carrier/index.html",
     "notes/site-launch-trouble/index.html",
     "notes/kidp-002-whynot/index.html",
+    "assets/notebook-photo.webp",
+    "assets/notes/nuclear-industrial-carrier/manga-01.webp",
     "scripts/sync-published-content.cjs", "scripts/article-search-text.cjs"
   ]) copy(name);
   let index = fs.readFileSync(path.join(temp, "content-index.js"), "utf8");
@@ -55,6 +57,8 @@ try {
   assert.match(storage,/data-catalogue-count>5 NOTES/);
   assert.match(storage,/data-card-type="article"/);
   assert.match(storage,/class="card-kind">ARTICLE<\/span>/);
+  assert.match(storage,/src="\/assets\/notebook-photo\.webp"/);
+  assert.match(storage,/src="\/assets\/notes\/nuclear-industrial-carrier\/manga-01\.webp"/);
 
   assert.match(storage,/href="\/notes\/catalogue-regression\/"/);
   assert.match(archive,/data-catalogue-timeline/);
