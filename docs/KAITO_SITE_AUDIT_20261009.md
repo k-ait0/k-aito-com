@@ -50,11 +50,11 @@
 - `www.k-aito.com` は診断時にDNS ENOTFOUND。通常の正規URL `https://k-aito.com/` は正常。www別名が必要ならドメイン設定側で対応する（未対応・低優先度）。
 - 本番検証スクリプトは、到達不能・HTTP取得失敗・内容不一致を明確に分け、同時取得数を10に制限。補助診断：`scripts/diagnose-origin-network.cjs`。
 
-## フェーズ 3：横断検索・SEO・運用（未実施）
+## フェーズ 3：横断検索・SEO・運用（一部完了）
 
 | 優先 | 対象 | 現状 | 検討内容 |
 | --- | --- | --- | --- |
-| P1 | 横断検索 | **公開記事4件＋公開プロジェクト詳細8件の横断検索を実装** | 24公開ページに共有検索インデックスを配置。ローカル・本番ブラウザの最終QA確認中。非公開ベータは対象外 |
+| P1 | 横断検索 | **公開記事4件＋公開プロジェクト詳細8件の横断検索を本番確認済み** | 24公開ページで共通検索を提供。XServer実体照合59/59・PC/スマホ470項目成功。非公開ベータは対象外 |
 | P1 | 画像 | 既存画像40点を棚卸しし記事別候補を台帳化 | 採用保留2記事・原子力加工船漫画のトリミング検討。未採用を完了としない |
 | P2 | メタデータ | 一部は共通OG画像、構造化データには差 | 記事単位のOG/Article/BreadcrumbListの運用を設計 |
 | P2 | 古いCSS | `article-v2.css`, `article-reading.css`, 旧`essay-reading.css` が混在 | 参照箇所を洗い、未使用が確認できたもののみ廃止する |
@@ -65,7 +65,10 @@
 1. フェーズ2-A【実装済み】：ホームの最新記事スポットライト。FIRST NOTE維持、他の投稿との重複排除。関連ファイル：`discovery-v1.css`、`app.js`、`index.html`、`scripts/sync-published-content.cjs`。
 2. フェーズ2-B【一部実装済み】：SHELVESに初回案内を追加。記事未公開のカテゴリ自体は準備中を表示。
 3. フェーズ2-C【共通分類・表示は実装済み】：HOME／ARCHIVE／SHELVES／PROJECTS／各棚でARTICLEとPROJECTを区別。`cards-v1.css`と`data/project-card-status.v1.json`が正本。個別サムネイル・KIDP内部の全カード統一は次工程。
-4. フェーズ3-A【実装済み・本番QA待ち】：公開記事4件とプロジェクト詳細8件の横断検索。`project-search-index.js`は各HTMLから自動生成。`scripts/sync-project-search.cjs`、`scripts/test-project-search.cjs`、`site-search.js`、`app.js`を参照。
+4. フェーズ3-A【実装・本番検証済み】：公開記事4件とプロジェクト詳細8件の横断検索。`project-search-index.js`は各HTMLから自動生成。`scripts/sync-project-search.cjs`、`scripts/test-project-search.cjs`、`site-search.js`、`app.js`を参照。
+
+**最終確認（2026-10-09）：** GitHub Actions [本番検証 37887561491](https://github.com/k-ait0/k-aito-com/actions/runs/37887561491) は59項目のファイル照合が成功・失敗0、ブラウザ470項目成功・失敗0。`project-search-index.js`も本番でHTTP 200・バイト単位一致。スマホ検索欄の開閉不具合を修正済み。
+
 5. フェーズ3-B【画像候補を整理済み】：既存40ファイルを確認。記事4本の候補・保留理由は`docs/KAITO_SEARCH_AND_THUMBNAIL_AUDIT_20261009.md`に記録。個別サムネイルの正式採用・表示実装は未実施。
 
 **注意**：2026年10月9日現在の公開記事4本で判定。非公開ベータや外部FINOWAの記事はKAITO公開記事数に含めない。未実施の項目を完了扱いにしない。
