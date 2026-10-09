@@ -12,6 +12,15 @@
 - `thinking`（その他）の記事はARCHIVEへ、`business`の記事はPROJECTSと事業の構想ページへ表示。
 - 制作・開発の棚では、状態ラベルから完成品・制作中・構想に振り分ける。
 
+## 記事サムネイルの共通管理（2026-10-09）
+
+- `content-index.js` の `thumbnail:{src,alt}` を**唯一のサムネイル台帳**とする。サムネイル未採用の記事は白いテキストカードを維持する。
+- 採用済み：サイト公開記録 `/assets/notebook-photo.webp`、原子力加工船 `/assets/notes/nuclear-industrial-carrier/manga-01.webp`。
+- HOMEは `app.js`、SHELVES・ARCHIVE・各テーマ棚は `site-content.js`、静的フォールバックは `scripts/sync-published-content.cjs` から共通参照する。
+- `thumbnail-v1.css` で16:9のカード表示とアーカイブの2列レイアウトを調整。全24公開ページへ `scripts/sync-white-surfaces.cjs` がCSSを自動追加する。
+- 画像の実在・容量・代替テキストは同期時に検査し、PC・スマホの画像読み込みはブラウザQAで検証する。
+- 未採用のWHYNOT・サンケイビル論考には無関係な画像を充当しない。[検索・サムネイル監査台帳](docs/KAITO_SEARCH_AND_THUMBNAIL_AUDIT_20261009.md) に残作業を記録。
+
 ## 公開記事・プロジェクト横断検索（2026-10-09）
 
 - HOMEの検索と、各下層ページのヘッダー検索に、`ARTICLE` / `PROJECT` の区別付きの共通検索を実装。
