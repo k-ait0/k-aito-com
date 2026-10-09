@@ -115,3 +115,30 @@ body:not(.subpage) .home-closing{background-color:transparent!important}
 @media print{
  .subpage :is(.page-intro,.about-copy,.profile-shelves,.storage-guide){box-shadow:none}
 }
+
+/* Keep navigational copy on paper, too, including project and KIDP overviews. */
+.subpage .breadcrumb{
+  display:flex;width:fit-content;max-width:100%;padding:6px 12px;
+  background:#fff;border:1px solid var(--k-reading-border);border-radius:3px
+}
+.subpage :is(.projects-hero-copy,.projects-hero-note,.project-index,
+ .kidp-hero,.kidp-hero aside,.kidp-process,.kidp-section-head,
+ .kidp-project-card,.kidp-test-row,.kidp-build-queue,
+ .kidp-next,.project-note-queue article,.index-side){
+  background:#fff!important;color:#193f32!important;
+}
+.subpage .projects-hero-copy{max-width:540px;padding:21px 25px;border:1px solid var(--k-reading-border);border-radius:4px}
+.subpage .projects-hero-note{background:#fff!important}
+.subpage .project-index{padding:20px 24px;border:1px solid var(--k-reading-border);border-radius:4px}
+.subpage :is(.kidp-hero,.kidp-section-head){padding:21px 24px;border:1px solid var(--k-reading-border);border-radius:4px}
+.subpage .kidp-process{border:1px solid var(--k-reading-border)}
+.subpage .kidp-process .is-active{background:#fff!important;border-top-color:#b18a42}
+.subpage .kidp-build-queue{color:#193f32!important;border:1px solid var(--k-reading-border)}
+.subpage .kidp-build-queue :is(h2,li,span,b,strong,p){color:#193f32!important}
+.subpage .kidp-build-queue li{border-top-color:#d6dfd6}
+.subpage .kidp-next{border-color:#b18a42}
+.subpage .kidp-test-row:hover{background-color:#fff!important}
+@media(max-width:760px){
+ .subpage :is(.projects-hero-copy,.project-index,.kidp-hero,.kidp-section-head){padding:18px}
+ .subpage .breadcrumb{padding:6px 10px}
+}
