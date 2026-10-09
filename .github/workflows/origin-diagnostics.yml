@@ -1,0 +1,25 @@
+name: KAITO origin network diagnostics
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/diagnose-origin-network.cjs'
+      - '.github/workflows/origin-diagnostics.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate diagnostics script
+        run: node --check scripts/diagnose-origin-network.cjs
+      - name: Diagnose DNS, TCP and HTTPS
+        run: node scripts/diagnose-origin-network.cjs
