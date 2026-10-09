@@ -56,9 +56,9 @@ const escapeHtml = value => String(value || "").replace(/[&<>"']/g, ch => (
 ));
 const count = n => n + " NOTE" + (n === 1 ? "" : "S");
 const noteCard = note =>
-  '<a class="note-link" href="' + escapeHtml(note.url) + '"><div class="note-meta"><span>' +
+  '<a class="note-link" data-card-type="article" href="' + escapeHtml(note.url) + '"><div class="note-meta"><span>' +
   escapeHtml(note.state) + '</span><time datetime="' + note.date.replaceAll(".", "-") + '">' +
-  escapeHtml(note.date) + '</time></div><h3>' + escapeHtml(note.title) +
+  escapeHtml(note.date) + '</time><span class="card-kind">ARTICLE</span></div><h3>' + escapeHtml(note.title) +
   '</h3><p>' + escapeHtml(note.summary) + '</p><small>' +
   note.tags.map(t => "#" + escapeHtml(t)).join(" ") + "</small></a>";
 const writeIfChanged = (file, result) => {
