@@ -1,0 +1,117 @@
+/* KAITO WHITE READING SURFACES v1 — 2026-10-09
+   Design invariant: the overall site canvas stays warm cream.
+   All ordinary copy surfaces use white; photographic artwork and dark footer remain intact.
+   Loaded AFTER legacy page-specific styles. Keep exceptions explicit. */
+:root{--k-reading-white:#fff;--k-reading-border:#d8e0d6;--k-reading-shadow:0 4px 15px rgba(28,54,35,.048)}
+/* Homescreen: all paper/card content, not the photographic hero or dark footer. */
+body:not(.subpage) :is(.hero-poster,.hero-note,.hero-polaroid,.words-paper,.entry-card,
+  .shelf,.project-card,.home-project-card,.home-feature-note,.random-layout,
+  .archive-dialog,.entry-dialog){background-color:var(--k-reading-white)!important}
+body:not(.subpage) :is(.shelf:nth-child(3n+2),.shelf:nth-child(3n)){background:var(--k-reading-white)!important}
+body:not(.subpage) :is(.entry-card,.project-card,.home-project-card,.home-feature-note):hover{background-color:#fff!important}
+body:not(.subpage) .section-heading{
+  padding:12px 18px 13px;
+  background:var(--k-reading-white);
+  border:1px solid var(--k-reading-border);
+  border-radius:4px;
+}
+body:not(.subpage) .home-feature-context{
+  width:fit-content;max-width:100%;
+  background:var(--k-reading-white);
+  border:1px solid var(--k-reading-border);
+  padding:9px 14px;border-radius:3px;
+}
+body:not(.subpage) .random-layout{border:1px solid var(--k-reading-border)}
+body:not(.subpage) .words-paper{border:1px solid var(--k-reading-border)}
+body:not(.subpage) .shelf{border-color:var(--k-reading-border)}
+body:not(.subpage) :is(.home-closing-inner blockquote,.home-closing-inner>div){
+  background:var(--k-reading-white);border:1px solid var(--k-reading-border);
+  padding:22px 24px;border-radius:4px;color:#193f32;
+}
+body:not(.subpage) :is(.home-closing-inner blockquote,.home-closing-inner>div) :is(p,cite){color:#193f32}
+body:not(.subpage) .home-closing{background-color:transparent!important}
+/* Subpages: all intros, explanatory blocks, index sections and ordinary copy. */
+.subpage :is(.page-intro,.about-hero-copy,.about-hero-card,.about-copy,.profile-shelves,
+ .storage-guide,.storage-discovery,.status-guide,.archive-guide,.archive-tools,
+ .portfolio-section-head,.portfolio-rule>div,.project-coming-card,
+ .project-note-feature,.project-note-queue article,.shelf-group-heading,
+ .shelf-bridge,.record-guide,.shelf-empty,.shelf-empty-state,.shelf-intro,
+ .shelf-figure figcaption,.shelf-toc a,.links-section,.links-empty,
+ .recommendation-policy,.kidp-project-hero,.kidp-two-col>div,.kidp-next-full,
+ .project-columns>div,.project-local-nav a,.link-row,
+ .note-link,.portfolio-card,.storage-discovery-link,.related-band a,
+ .site-search-dialog,.site-search-result,.article-visual,.thought-note,
+ .coming-soon,.article-data,.essay-data-details){
+  background-color:var(--k-reading-white)!important;
+}
+.subpage :is(.about-hero-card,.project-note-feature,.project-coming-card,.portfolio-rule>div,.shelf-empty){
+  background-image:none!important;
+}
+.subpage :is(.page-intro,.about-hero-copy,.about-copy,.profile-shelves,
+ .storage-guide,.storage-discovery,.status-guide,.archive-guide,.archive-tools,
+ .portfolio-section-head,.shelf-bridge,.record-guide,.links-section,.recommendation-policy,
+ .kidp-project-hero,.kidp-next-full,.shelf-intro){
+  border:1px solid var(--k-reading-border);
+  border-radius:5px;
+  padding:24px 28px;
+}
+.subpage .shelf-group-heading{padding:22px 24px;border:1px solid var(--k-reading-border);border-radius:4px}
+.subpage :is(.storage-discovery-link,.note-link,.portfolio-card,.link-row,.related-band a):hover{
+  background-color:var(--k-reading-white)!important;
+}
+.subpage :is(.shelf-figure figcaption,.shelf-toc a){padding:12px 16px;border:1px solid var(--k-reading-border)}
+.subpage .shelf-figure figcaption{margin-top:0}
+.subpage :is(.archive-guide,.status-guide,.profile-shelves,.portfolio-section-head){
+  box-shadow:var(--k-reading-shadow)
+}
+.subpage .status-guide:before{background:var(--k-reading-white)!important;padding-inline:10px}
+/* Image-backed SHELVES: keep a visible photo strip, give all overlaid type opaque white paper.
+   No fake transparency behind important text. */
+.subpage .storage-shelf{color:#193f32!important}
+.subpage .storage-shelf:before{
+  background:linear-gradient(180deg,transparent 0%,transparent 23%,#fff 23%,#fff 100%)!important;
+  opacity:1!important;
+}
+.subpage .storage-shelf :is(.eyebrow,h2,p,small,.storage-arrow){
+  color:#193f32!important;text-shadow:none!important;z-index:3!important;
+}
+.subpage .storage-shelf:after{background:#54795e!important}
+/* Image-only project covers and hero illustrations retain their photography and overlay. */
+.subpage :is(.project-cover,.project-visual,.project-visual-image,.archive-feature-photo,
+ .shelf-photo,.storage-shelf-image,.about-shelf-image){background-color:transparent}
+.subpage .portfolio-card .project-visual{background-color:transparent}
+.subpage .project-cover-copy{background:rgba(255,255,255,.96)!important;color:#193f32!important;
+  padding:16px 20px!important;border-radius:3px}
+.subpage .project-cover-copy :is(h1,p,.eyebrow){color:#193f32!important;text-shadow:none!important}
+/* Article cards already have a white reading surface; preserve article typography. */
+.subpage.essay-page .article-page{background-color:var(--k-reading-white)!important}
+.subpage .about-page .editorial-principles li{background-color:#fff!important}
+/* Shared dialogs; search inputs must not revert to cream. */
+:where(dialog,.subpage .site-search-dialog) :is(input,select,textarea,.site-search-panel){
+  background-color:var(--k-reading-white);
+}
+@media(max-width:760px){
+  body:not(.subpage) .section-heading{padding:12px 13px}
+  .subpage :is(.page-intro,.about-hero-copy,.about-copy,.profile-shelves,
+   .storage-guide,.storage-discovery,.status-guide,.archive-guide,.archive-tools,
+   .portfolio-section-head,.shelf-bridge,.record-guide,.links-section,
+   .recommendation-policy,.kidp-project-hero,.kidp-next-full,.shelf-intro){
+    padding:18px 18px
+  }
+  .subpage .shelf-group-heading{padding:17px}
+  body:not(.subpage) :is(.home-closing-inner blockquote,.home-closing-inner>div){padding:18px}
+}
+@media(max-width:420px){
+  .subpage :is(.page-intro,.about-hero-copy,.about-copy,.profile-shelves,
+   .storage-guide,.storage-discovery,.status-guide,.archive-guide,.archive-tools,
+   .portfolio-section-head,.shelf-bridge,.record-guide,.links-section,
+   .recommendation-policy,.kidp-project-hero,.kidp-next-full,.shelf-intro){
+    padding:16px 15px
+  }
+  .subpage .storage-shelf:before{
+    background:linear-gradient(180deg,transparent 0%,transparent 22%,#fff 22%,#fff 100%)!important;
+  }
+}
+@media print{
+ .subpage :is(.page-intro,.about-copy,.profile-shelves,.storage-guide){box-shadow:none}
+}
