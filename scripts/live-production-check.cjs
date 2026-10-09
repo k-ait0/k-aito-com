@@ -24,7 +24,7 @@ if(!pages.length||new Set(pages).size!==pages.length){
   throw Error("Sitemap has no pages or contains duplicate public URLs");
 }
 const resources=[
-  "/content-index.js","/app.js","/site-enhance.js","/site-content.js",
+  "/content-index.js","/project-search-index.js","/app.js","/site-enhance.js","/site-content.js",
   "/site-search.js","/site-search.css","/image-fix.css","/homepage.css",
   "/subpages.css","/article-reading.css","/discovery-v1.css","/cards-v1.css","/white-surfaces-v1.css","/og-image.png","/assets/brand/kite-mark.png",
   "/assets/editorial/about-profile.webp","/assets/editorial/archive-library.webp",
