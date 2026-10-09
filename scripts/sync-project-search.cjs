@@ -54,6 +54,9 @@ for(const route of pages){
     if(i<0)throw Error("Search script anchor missing on "+route);
     html=html.slice(0,i)+scriptTag+html.slice(i);
   }
+  // This search implementation replaces the previous article-only header search.
+  if(route!=="/")html=html.replace(/\/site-search\.js\?v=[a-zA-Z0-9-]+/g,"/site-search.js?v=20261009-cross1");
+  html=html.replace(/\/site-search\.css\?v=[a-zA-Z0-9-]+/g,"/site-search.css?v=20261009-cross1");
   const first=html.indexOf('src="/project-search-index.js?');
   const second=html.indexOf(route==="/"?'/app.js?':'/site-search.js?');
   if(first<0||second<first)throw Error("Invalid dependency order "+route);
