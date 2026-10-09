@@ -7,8 +7,10 @@ const fs = require("node:fs");
 const path = require("node:path");
 const vm = require("node:vm");
 const crypto = require("node:crypto");
+const {articleText,injectIndex} = require("./article-search-text.cjs");
 const root = path.resolve(__dirname, "..");
-const source = fs.readFileSync(path.join(root, "content-index.js"), "utf8");
+const contentIndexPath = path.join(root, "content-index.js");
+let source = fs.readFileSync(contentIndexPath, "utf8");
 const sandbox = {window: {}};
 vm.runInNewContext(source, sandbox, {filename: "content-index.js", timeout: 3000});
 const catalogue = sandbox.window.KAitoContent;
@@ -38,6 +40,17 @@ for (const item of catalogue.entries) {
   notes.push(item);
 }
 notes.sort((a, b) => b.date.localeCompare(a.date));
+/* Article HTML is the only text source: reindex after each article edit. */
+const nextSource = injectIndex(source,notes.map(note=>{
+  const file=path.join(root,note.url.slice(1),"index.html");
+  return {id:note.id,text:articleText(fs.readFileSync(file,"utf8"),note.id)};
+}));
+if(nextSource!==source){
+  fs.writeFileSync(contentIndexPath,nextSource,"utf8");
+  console.log("UPDATED content-index.js (generated article search text)");
+  source=nextSource;
+}
+
 const escapeHtml = value => String(value || "").replace(/[&<>"']/g, ch => (
   {"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"}[ch]
 ));
@@ -115,6 +128,15 @@ if (notes.length) {
         [Number(notes[0].date.slice(5,7)) - 1] +
       " <span>" + count(notes.filter(n => n.date.slice(0,7) === notes[0].date.slice(0,7)).length) + "</span>");
 }
+// Keep the no-JavaScript archive summary consistent with generated cards.
+const latestMonthLabel=notes[0]
+  ? ["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"][Number(notes[0].date.slice(5,7))-1]
+  : "—";
+const summaryMarkup='<div class="archive-stats"><span><b>'+notes.length+'</b> NOTES</span>'+
+  '<span><b>'+new Set(notes.map(note=>note.state)).size+'</b> TYPES</span>'+
+  '<span><b>'+latestMonthLabel+'</b> LATEST</span></div>';
+if(!/<div class="archive-stats">[\s\S]*?<\/div>/.test(archive))throw new Error("Archive stats markup has changed");
+archive=archive.replace(/<div class="archive-stats">[\s\S]*?<\/div>/,summaryMarkup);
 writeIfChanged(archivePath, archive);
 
 /* Cache bust the shared catalogue in every HTML page on catalogue changes. */
