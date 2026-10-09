@@ -139,7 +139,12 @@ document.getElementById("search-form").addEventListener("submit",event=>{
   event.preventDefault();
   const input=document.getElementById("site-search");
   if(window.matchMedia('(max-width: 700px)').matches&&!input.value&&document.activeElement!==input){input.focus();return;}
-  openArchive({query:input.value});
+  const searchTerm=input.value;
+  // Avoid leaving mobile header search expanded after the dialog closes.
+  if(document.activeElement&&document.getElementById("search-form").contains(document.activeElement)){
+    document.activeElement.blur();
+  }
+  openArchive({query:searchTerm});
 });
 document.getElementById("archive-search-form").addEventListener("submit",event=>{event.preventDefault();renderArchive();});
 archiveSearch.addEventListener("input",renderArchive);shelfSelect.addEventListener("change",renderArchive);stateSelect.addEventListener("change",renderArchive);
