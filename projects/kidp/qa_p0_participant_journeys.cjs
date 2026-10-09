@@ -39,6 +39,7 @@ async function runCase(name,fn){
       const row=await page.evaluate(()=>testCsv());
       assert.equal(row.match(/","/g).length,12);
       await page.locator("#copyCsvBtn").click();
+      await page.waitForFunction(()=>document.querySelector("#copyState")?.textContent?.includes("コピーしました")||document.querySelector("#copyState")?.textContent?.includes("コピーできません")); 
       assert.match(await page.locator("#copyState").innerText(),/コピーしました/);
       assert.equal(await page.evaluate(()=>navigator.clipboard.readText()),row);
       await page.reload();
@@ -70,6 +71,7 @@ async function runCase(name,fn){
       const row=await page.evaluate(()=>testCsv());
       assert.equal(row.match(/","/g).length,25);
       await page.locator("#copyCsvBtn").click();
+      await page.waitForFunction(()=>document.querySelector("#copyState")?.textContent?.includes("コピーしました")||document.querySelector("#copyState")?.textContent?.includes("コピーできません")); 
       assert.match(await page.locator("#copyState").innerText(),/コピーしました/);
       assert.equal(await page.evaluate(()=>navigator.clipboard.readText()),row);
       await page.reload();
@@ -102,6 +104,7 @@ async function runCase(name,fn){
       const row=await page.evaluate(()=>testCsv());
       assert.equal(row.match(/","/g).length,16);
       await page.locator("#copyCsvBtn").click();
+      await page.waitForFunction(()=>document.querySelector("#copyState")?.textContent?.includes("コピーしました")||document.querySelector("#copyState")?.textContent?.includes("コピーできません")); 
       assert.match(await page.locator("#copyState").innerText(),/コピーしました/);
       assert.equal(await page.evaluate(()=>navigator.clipboard.readText()),row);
       await page.reload();
