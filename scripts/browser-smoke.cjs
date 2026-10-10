@@ -115,6 +115,17 @@ const stop=()=>new Promise(resolve=>server.close(resolve));
               })():null
             };
           });
+          // Footer is a deliberate dark exception to the white reading-surface rule.
+          const footer=await page.evaluate(()=>{
+            const el=document.querySelector(".site-footer");
+            if(!el)return null;
+            const style=getComputedStyle(el);
+            const nav=el.querySelector(".footer-nav a");
+            const navColor=nav?getComputedStyle(nav).color:null;
+            return {background:style.backgroundColor,color:style.color,navColor};
+          });
+          check(!!footer&&footer.background==="rgb(29, 63, 51)",
+            mode.name+" "+slug+" dark brand footer preserved",JSON.stringify(footer));
           check(surfaces.styleLink&&surfaces.isLastCSS&&surfaces.warmCanvas,
             mode.name+" "+slug+" standard white surface layer preserves warm site",JSON.stringify(surfaces));
           if(surfaces.selected.length){
