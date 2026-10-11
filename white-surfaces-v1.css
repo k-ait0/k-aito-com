@@ -209,3 +209,11 @@ body:not(.subpage) .home-v2 .shelves-grid .shelf:hover{
  .subpage .project-index dl{grid-template-columns:1fr!important;gap:10px!important}
  .subpage .project-index dl>div{display:grid;grid-template-columns:90px minmax(0,1fr);align-items:center;padding:8px 0!important;border-bottom:1px solid #d8e0d6}
 }
+
+/* Mobile shelf image layering: use HTML image as the only image source. */
+@media(max-width:760px){
+ .subpage .storage-shelf{background-image:none!important;background-color:#fff!important;isolation:isolate}
+ .subpage .storage-shelf>.storage-shelf-image{position:absolute!important;inset:0 auto auto 0!important;width:100%!important;height:80px!important;object-fit:cover!important;z-index:0!important}
+ .subpage .storage-shelf:before{display:none!important}
+ .subpage .storage-shelf :is(.eyebrow,h2,p,small,.storage-arrow){position:relative;z-index:1!important}
+}
