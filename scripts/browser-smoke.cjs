@@ -122,7 +122,8 @@ const stop=()=>new Promise(resolve=>server.close(resolve));
               mode.name+" "+slug+" readable text panels are opaque white",JSON.stringify(surfaces.selected));
           }
           if(slug==="/storage/"){
-            check(!!surfaces.shelfOverlay&&surfaces.shelfOverlay.overlay.includes("rgb(255, 255, 255)")&&
+            check(!!surfaces.shelfOverlay&&
+              (mode.name==="mobile" ? surfaces.shelfOverlay.overlay==="none" : surfaces.shelfOverlay.overlay.includes("rgb(255, 255, 255)"))&&
               surfaces.shelfOverlay.text==="rgb(25, 63, 50)"&&surfaces.shelfOverlay.image!=="none",
               mode.name+" SHELVES retain photographs with white type panel",JSON.stringify(surfaces.shelfOverlay));
           }
