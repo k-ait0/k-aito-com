@@ -188,3 +188,24 @@ body:not(.subpage) .home-v2 .shelves-grid .shelf:hover{
   .subpage .storage-shelves{grid-template-columns:1fr!important}
   .subpage .storage-shelf{min-height:220px!important}
 }
+
+/* Shared mobile editorial alignment, review pass 2 */
+@media(max-width:760px){
+ .subpage .projects-hero-inner,.subpage .projects-body,.subpage .about-page{min-width:0;max-width:100%}
+ .subpage .projects-hero-copy{width:100%;box-sizing:border-box}
+ .subpage .project-index{padding:18px!important;min-width:0}
+ .subpage .project-index dl{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:0!important}
+ .subpage .project-index dl>div{min-width:0;padding:0 8px!important}
+ .subpage .project-index dl dt{font-size:clamp(1.2rem,5vw,1.7rem)!important;overflow-wrap:anywhere}
+ .subpage .project-index dl dd{font-size:.72rem!important;line-height:1.5!important;overflow-wrap:anywhere}
+ .subpage .about-hero{min-width:0}
+ .subpage .about-hero-copy{padding:18px!important}
+ .subpage .about-hero-copy .eyebrow{font-size:.7rem;line-height:1.5;overflow-wrap:anywhere}
+ .subpage .about-feature-photo,.subpage .about-feature-photo img{max-width:100%;height:auto}
+ .subpage .about-copy{padding:22px 18px!important}
+ .subpage .about-copy h2{font-size:clamp(1.2rem,5vw,1.5rem);line-height:1.5}
+}
+@media(max-width:420px){
+ .subpage .project-index dl{grid-template-columns:1fr!important;gap:10px!important}
+ .subpage .project-index dl>div{display:grid;grid-template-columns:90px minmax(0,1fr);align-items:center;padding:8px 0!important;border-bottom:1px solid #d8e0d6}
+}
