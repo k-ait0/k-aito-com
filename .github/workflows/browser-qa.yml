@@ -51,4 +51,4 @@ jobs:
           name: kaito-desktop-mobile-screenshots
           path: qa-screenshots/*.png
           if-no-files-found: ignore
-          retention-days: 7
+          retention-days: 30
