@@ -39,7 +39,7 @@ try {
   fs.writeFileSync(path.join(temp,"notes/catalogue-regression/index.html"),'<!doctype html><title>test</title><div class="article-copy essay-body"><p>更新された記事本文で公開検索の同期を検証するため、この記事には十分な文章を入力しています。</p></div>');
   const run=()=>cp.execFileSync(process.execPath,
     [path.join(temp,"scripts/sync-published-content.cjs")],
-    {cwd:temp,encoding:"utf8"});
+    {cwd:temp,encoding:"utf8",env:{...process.env,KAITO_SKIP_SITE_SHELL_SYNC:"1"}});
   // An edit to an existing published article should reindex automatically.
   const edited=path.join(temp,"notes/media-public-interest-sankei-building/index.html");
   let article=fs.readFileSync(edited,"utf8");
