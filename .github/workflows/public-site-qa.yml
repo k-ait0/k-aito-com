@@ -43,23 +43,4 @@ jobs:
           node scripts/site-static-check.cjs
           node scripts/audit-seo.cjs
           git diff --exit-code
-  browser:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-      - name: Install Chromium for browser QA
-        run: |
-          npm install --prefix /tmp/kaito-qa --no-audit --no-fund playwright@1.56.1
-          /tmp/kaito-qa/node_modules/.bin/playwright install --with-deps chromium
-      - name: Test 320/375/390/430/768/1440 px on local build
-        run: NODE_PATH=/tmp/kaito-qa/node_modules node scripts/browser-smoke.cjs
-      - name: Upload rendered screenshots
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: kaito-public-site-screenshots
-          path: qa-screenshots/
-          if-no-files-found: ignore
+# Browser viewport, image and article checks run in the existing Browser and metadata QA workflow.
