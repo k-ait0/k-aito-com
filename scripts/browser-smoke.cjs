@@ -123,7 +123,7 @@ const stop=()=>new Promise(resolve=>server.close(resolve));
           }
           if(slug==="/storage/"){
             check(!!surfaces.shelfOverlay&&
-              (mode.width<=430 ? surfaces.shelfOverlay.overlay==="none" : surfaces.shelfOverlay.overlay.includes("rgb(255, 255, 255)"))&&
+              surfaces.shelfOverlay.overlay==="none"&&
               surfaces.shelfOverlay.text==="rgb(25, 63, 50)"&&surfaces.shelfOverlay.image!=="none",
               mode.name+" SHELVES retain photographs with white type panel",JSON.stringify(surfaces.shelfOverlay));
           }
@@ -181,23 +181,45 @@ const stop=()=>new Promise(resolve=>server.close(resolve));
             check(homeDiscovery.cards>=1&&!homeDiscovery.duplicate,
               mode.name+" HOME avoids repeating the featured note in remaining cards",JSON.stringify(homeDiscovery));
           }
-          if(slug==="/storage/"&&mode.width<=430){
+          if(slug==="/storage/"){
+            await page.evaluate(async()=>{
+              await Promise.all([...document.querySelectorAll(".storage-shelf-image")]
+                .map(image=>image.decode().catch(()=>{})));
+              await document.fonts.ready;
+            });
             const layout=await page.evaluate(()=>{
-              const shelves=[...document.querySelectorAll(".storage-shelf")];
-              return shelves.map(card=>{
-                const img=card.querySelector(".storage-shelf-image");
+              const cards=[...document.querySelectorAll(".storage-shelf")];
+              const rect=e=>e.getBoundingClientRect();
+              const overlap=(a,b)=>a.right>b.left+1&&a.left<b.right-1&&
+                a.bottom>b.top+1&&a.top<b.bottom-1;
+              return cards.map(card=>{
+                const image=card.querySelector(".storage-shelf-image");
+                const label=card.querySelector(".eyebrow");
                 const heading=card.querySelector("h2");
-                if(!img||!heading)return {valid:false,reason:"missing image or heading"};
-                const i=img.getBoundingClientRect(),h=heading.getBoundingClientRect(),c=card.getBoundingClientRect();
-                return {valid:img.complete&&img.naturalWidth>0&&
-                  i.height>=60&&i.height<=90&&
-                  h.top>=i.bottom-2&&
-                  c.width<=window.innerWidth+2,
-                  imageBottom:i.bottom,headingTop:h.top,cardWidth:c.width};
+                const description=card.querySelector("p");
+                const foot=card.querySelector("small");
+                const arrow=card.querySelector(".storage-arrow");
+                const items=[image,label,heading,description,foot,arrow];
+                if(items.some(el=>!el))return {valid:false,reason:"missing card element"};
+                const [im,la,he,de,fo,ar]=items.map(rect);
+                const imageReady=image.complete&&image.naturalWidth>0;
+                const ordered=im.bottom<=la.top+1&&la.bottom<=he.top+1&&
+                  he.bottom<=de.top+1&&de.bottom<=fo.top+1;
+                const collisions=[label,heading,description,foot,arrow]
+                  .filter(el=>overlap(im,rect(el))).length;
+                const copyClipped=items.slice(1).some(el=>{
+                  const r=rect(el),c=rect(card);
+                  return r.left<c.left-2||r.right>c.right+2||r.bottom>c.bottom+2;
+                });
+                return {valid:imageReady&&im.height>=90&&ordered&&
+                  collisions===0&&!copyClipped&&!overlap(fo,ar),
+                  imageReady,ordered,collisions,copyClipped,
+                  photoHeight:im.height,cardWidth:rect(card).width};
               });
             });
-            check(layout.length>0&&layout.every(x=>x.valid),
-              mode.name+" SHELVES image strips do not overlap headings",JSON.stringify(layout));
+            check(layout.length===7&&layout.every(x=>x.valid),
+              mode.name+" SHELVES all 7 image, label, copy and arrow tracks do not overlap",
+              JSON.stringify(layout));
           }
           if(slug==="/storage/"){
             const shelves=await page.evaluate(()=>{
