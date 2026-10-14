@@ -33,6 +33,8 @@ jobs:
         run: |
           node --check scripts/site-static-check.cjs
           node scripts/site-static-check.cjs
+          node --check scripts/sync-site-shell.cjs
+          node scripts/test-site-shell.cjs
       - name: Install test runtime
         run: |
           npm install --prefix /tmp/kaito-qa --no-audit --no-fund --no-save playwright@1.56.1

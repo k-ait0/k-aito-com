@@ -21,12 +21,6 @@
 .subpage .profile-shelves .eyebrow{font-size:.75rem}
 .subpage .about-page .editorial-principles strong{font-size:1rem}
 .subpage .about-page .editorial-principles p{font-size:.875rem;line-height:1.8}
-
-/* SHELVES index and category pages. */
-.subpage .storage-shelf .eyebrow{font-size:.75rem}
-.subpage .storage-shelf h2{font-size:1.25rem}
-.subpage .storage-shelf p{font-size:.9375rem;line-height:1.65}
-.subpage .storage-shelf small{font-size:.75rem;opacity:1}
 .subpage .status-guide dt{font-size:.8125rem!important}
 .subpage .status-guide dd{font-size:.9375rem!important;line-height:1.75!important}
 .subpage .listing-heading>span{font-size:.75rem!important}
@@ -108,9 +102,6 @@
  .subpage .about-hero-card{transform:none;padding:22px 22px 45px}
  .subpage .about-hero-card small{bottom:16px;right:20px}
  .subpage .profile-shelves .notes-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
- .subpage .storage-shelves{grid-template-columns:repeat(2,minmax(0,1fr))}
- .subpage .storage-shelf{min-height:215px!important;padding:18px 15px!important}
- .subpage .storage-shelf .storage-arrow{bottom:10px!important;right:12px!important}
  .subpage .status-guide dl>div{grid-template-columns:100px minmax(0,1fr)!important}
  .subpage .archive-period{padding-left:27px}
  .subpage .archive-period .note-link{min-width:0}
@@ -133,23 +124,12 @@
  .subpage .main-nav a{font-size:.75rem;letter-spacing:.04em}
  .subpage .page-wrap{padding-left:16px;padding-right:16px}
  .subpage .profile-shelves .notes-grid{grid-template-columns:1fr}
- .subpage .storage-shelves{grid-template-columns:1fr}
- .subpage .storage-shelf{min-height:205px!important}
  .subpage .shelf-toc{grid-template-columns:1fr}
  .subpage .record-guide dl{grid-template-columns:1fr}
  .subpage .article-next{grid-template-columns:1fr}
  .subpage .reactor-branches>div{grid-template-columns:32px minmax(0,1fr);gap:7px}
  .subpage .reactor-branches>div span{grid-column:2}
 }
-
-
-/* Visual parity pass: real image elements remain visible in mobile PDF exports. */
-.subpage .storage-shelf{isolation:isolate;background-image:none!important;background-color:#172f25!important}
-.subpage .storage-shelf>.storage-shelf-image{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:0;display:block}
-.subpage .storage-shelf:before{z-index:1;pointer-events:none}
-.subpage .storage-shelf:after{z-index:2}
-.subpage .storage-shelf .eyebrow,.subpage .storage-shelf h2,.subpage .storage-shelf p,.subpage .storage-shelf small,.subpage .storage-shelf .storage-arrow{z-index:2}
-.subpage .storage-shelf .storage-arrow{top:auto}
 .subpage .storage-shelf:focus-visible,.subpage .portfolio-card:focus-visible{outline:3px solid #8da641;outline-offset:3px}
 .subpage .project-visual{isolation:isolate;display:block;background-color:#244033}
 .subpage .project-visual>.project-visual-image{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:cover;object-position:center;z-index:0}
@@ -163,13 +143,6 @@
  .subpage .storage-guide{min-width:0}
  .subpage .storage-guide>h2{font-size:1.5rem;line-height:1.45}
  .subpage .storage-guide>p{font-size:1rem;line-height:1.8}
- .subpage .storage-shelves{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:12px!important;margin:20px 0 34px!important}
- .subpage .storage-shelf{min-width:0;min-height:218px!important;padding:16px 14px 34px!important;justify-content:flex-end!important}
- .subpage .storage-shelf .eyebrow{font-size:.75rem!important;letter-spacing:.09em}
- .subpage .storage-shelf h2{font-size:1.125rem;line-height:1.35;min-height:0}
- .subpage .storage-shelf p{font-size:.8125rem;line-height:1.6;min-height:0}
- .subpage .storage-shelf small{font-size:.75rem;min-height:0}
- .subpage .storage-shelf:last-child{grid-column:1/-1;min-height:172px!important}
  .subpage .status-guide{margin:8px 0 27px!important}
  .subpage .status-guide>div>p:last-child{font-size:1rem}
  .subpage .notes-grid{gap:12px!important}
@@ -194,15 +167,11 @@
  .subpage .about-page .editorial-principles p{font-size:.9375rem}
 }
 @media(max-width:359px){
- .subpage .storage-shelves{grid-template-columns:1fr!important}
- .subpage .storage-shelf{min-height:185px!important}
- .subpage .storage-shelf:last-child{grid-column:auto}
 }
 /* Print/export: images are content, not optional CSS wallpaper. */
 @media print{
  .subpage .storage-shelf,.subpage .project-visual{print-color-adjust:exact;-webkit-print-color-adjust:exact}
  .subpage .storage-shelf>.storage-shelf-image,.subpage .project-visual>.project-visual-image{print-color-adjust:exact;-webkit-print-color-adjust:exact}
- .subpage .storage-shelf{break-inside:avoid;page-break-inside:avoid}
  .subpage .portfolio-card{break-inside:avoid;page-break-inside:avoid}
 }
 
@@ -213,13 +182,6 @@
   .subpage .profile-shelves .note-link{min-height:132px;padding:14px!important}
   .subpage .profile-shelves .note-link h3{font-size:1rem!important;margin:7px 0 5px!important}
   .subpage .profile-shelves .note-link p{font-size:.8125rem!important;line-height:1.65!important}
-  .subpage .storage-shelves{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important}
-  .subpage .storage-shelf{min-height:176px!important;padding:13px 12px 31px!important}
-  .subpage .storage-shelf:last-child{grid-column:1/-1;min-height:148px!important}
-  .subpage .storage-shelf h2{font-size:1.02rem!important}
-  .subpage .storage-shelf p{font-size:.75rem!important;line-height:1.52!important}
-  .subpage .storage-shelf small{font-size:.6875rem!important}
-  .subpage .storage-shelf .storage-arrow{font-size:1rem!important}
   .subpage .status-guide dl>div{grid-template-columns:82px minmax(0,1fr)!important;gap:10px!important}
   .subpage .status-guide dt{font-size:.75rem!important}
   .subpage .status-guide dd{font-size:.875rem!important}
