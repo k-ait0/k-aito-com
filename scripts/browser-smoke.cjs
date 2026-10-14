@@ -57,7 +57,7 @@ const stop=()=>new Promise(resolve=>server.close(resolve));
     else{failures.push(label+(detail?" — "+detail:""));console.error("FAIL "+label,detail);}
   };
   try{
-    for(const mode of [{name:"mobile-375",width:375,height:812},{name:"mobile",width:390,height:844},{name:"mobile-430",width:430,height:932},{name:"tablet",width:768,height:1024},{name:"desktop",width:1440,height:900}]){
+    for(const mode of [{name:"mobile-320",width:320,height:700},{name:"mobile-375",width:375,height:812},{name:"mobile",width:390,height:844},{name:"mobile-430",width:430,height:932},{name:"tablet",width:768,height:1024},{name:"desktop",width:1440,height:900}]){
       const context=await browser.newContext({viewport:{width:mode.width,height:mode.height},
         deviceScaleFactor:1,isMobile:mode.width<=430,hasTouch:mode.width<=430});
       for(const slug of pages){
