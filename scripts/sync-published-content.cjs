@@ -195,4 +195,4 @@ for (const htmlPath of walk(root)) {
 console.log("OK: " + notes.length + " canonical articles; index " + catalogueVersion);
 
 /* Keep the canonical shell in sync after all generated article markup. */
-require("./sync-site-shell.cjs");
+require("./sync-site-shell.cjs").sync();
