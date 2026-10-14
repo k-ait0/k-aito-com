@@ -1,7 +1,31 @@
 # KAITO 公開サイトレビュー・修正進捗台帳
 
-確認日: 2026-10-14 JST
+確認日: 2026-10-14 JST（履歴）
 対象: https://k-aito.com/ と `k-ait0/k-aito-com` の `main`（レビュー開始時 `bbe8f0d`、同期修正取込 `29a996b`）
+
+## 2026-10-15 更新（最新状態）
+
+確認した基点: main `5b8b1b89e10b49e43c12b51b2061155a25cae917`。当日の変更は `fix/storage-shelf-flow-20261015` に分離し、main・本番には未統合。
+最新公開対象は `sitemap.xml` 上の **24 URL**（トップ1、下層23）。MONO BASE・noindex試作は対象外。
+状態は **未着手／実装済み／検証済み／本番確認済み／阻害要因あり** の五段階で表す。下段の2026-10-14記録は履歴として保持。
+
+| ID | 対象 | 状態 | 今回の差分と完了条件 |
+| --- | --- | --- | --- |
+| W-05 / K-02 | `/storage/` 棚カード7枚 | **実装済み** | `storage/index.html` の画像・白本文面・状態・矢印をDOMのフローで分離。 `storage-v2.css` を整理し、`subpages.css` / `white-surfaces-v1.css` の棚用競合ルールを削除。固定高さの本文重なりをなくす構造へ。CSSクエリを刷新。画像読込後の6幅QA・本番確認は未完。 |
+| W-04 / K-03 | 共通ヘッダー・フッター | **実装済み** | 公開24ページのヘッダーとトップ系`.site-footer`を静的に同期。`scripts/sync-site-shell.cjs` を生成元として公開同期CIに組み込み。フッターは濃緑を維持し、白フッター強制ルールを削除。下層検索は既存`site-search.js`に委ねる。テスト・本番確認は未完。 |
+| W-04b | 共通部品の棚卸し | **実装済み** | `docs/KAITO_SITE_COMPONENT_AUDIT_20261015.md` に検索、パンくず、記事カード、関連記事、導線、メタ情報を分類。今回の共通化対象外は同文書に残作業として記録。 |
+| W-02 / PR #31 | 旧フッター修正PR | **阻害要因あり** | 旧PRは最新mainと競合。`white-surfaces-v1.css` の4つのフッター白色上書き削除という有効差分を本修正ブランチに再実装。新PRのブラウザQAが通るまで旧PRを無条件マージしない。 |
+| W-03 / PR #33 | MONO BASE 8ページ | **阻害要因あり** | Draft独立管理。canonicalの静的監査不一致、および専用アセット・表示ゲートが残る。KAITO本体のヘッダー同期対象に含めず、専用ヘッダー方針を保持。 |
+| W-01 / PR #34 | 4ページのCSS版番号巻き戻り修正 | **本番確認済み** | 2026-10-14、PR #34 main統合とActions本番確認済み（run `38527532758`）。今回の`sync-white-surfaces.cjs`はページごとの既存クエリを保持するロジックを維持。新バージョンの本番検証は別ゲート。 |
+| QA-01 | 静的監査・公開24 URL・CSS参照 | **未着手** | 既存のSEO/サイト監査に加え、`scripts/test-site-shell.cjs`を追加。新CIで同期差分0・構造・既存記事を確認する。CI未実行の段階では合格と扱わない。 |
+| QA-02 | 320/375/390/430/768/1440px ブラウザ | **未着手** | `scripts/browser-smoke.cjs`へ7枚の画像デコード後境界・文字順序・矢印干渉検査と濃緑フッター検査を追加。新Actionsワークフローでスクリーンショット取得を予定。 |
+| QA-03 | 本番ファイル一致・本番ブラウザ | **阻害要因あり** | 当環境から公開サイト取得が拒否／通信失敗。ブランチはmain未統合であるため配信一致や本番反映済みとは判定できない。マージ・配信後に`scripts/live-production-check.cjs`と実ブラウザ操作を再実行する。 |
+
+### 2026-10-15 対象公開URLと検証ゲート
+
+全体24 URL: `/`、`/storage/`、`/travel/`、`/drink/`、`/money/`、`/study/`、`/works/`、`/business/`、`/projects/`、`/projects/digital-storage/`、`/projects/kidp/`、`/projects/kidp/project-give/`、`/projects/kidp/whynot/`、`/projects/kidp/life-design-lab/`、`/projects/kidp/station-life/`、`/projects/kidp/board-game-balancer/`、`/projects/kidp/building-transformer/`、`/archive/`、`/about/`、`/links/`、`/notes/media-public-interest-sankei-building/`、`/notes/kidp-002-whynot/`、`/notes/nuclear-industrial-carrier/`、`/notes/site-launch-trouble/`。
+
+完了条件: PR CIで静的・画像読み込み後の6幅ブラウザ検証が成功し、main統合後にXServer配信ファイル一致および公開ページの視覚・検索操作・図解を再検証すること。未確認の画面は本番確認済みにしない。
 
 ## 判定の区別
 
