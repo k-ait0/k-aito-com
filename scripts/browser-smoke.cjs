@@ -81,6 +81,30 @@ const stop=()=>new Promise(resolve=>server.close(resolve));
           check(valid.visibleH1===1,mode.name+" "+slug+" one visible heading",JSON.stringify(valid));
           check(valid.overflow<=2,mode.name+" "+slug+" no horizontal overflow",JSON.stringify(valid));
           check(valid.header&&valid.search,mode.name+" "+slug+" header and search",JSON.stringify(valid));
+
+          const shell=await page.evaluate(()=>{
+            const header=document.querySelector(".site-header");
+            const footer=document.querySelector(".site-footer");
+            const nav=[...document.querySelectorAll(".main-nav a")];
+            const links=[...document.querySelectorAll(".footer-nav a")];
+            const expected=["HOME","SHELVES","PROJECTS","ARCHIVE","ABOUT"];
+            return {header:!!header,footer:!!footer,
+              nav:nav.map(a=>a.textContent.trim()),
+              links:links.map(a=>a.textContent.trim()),
+              darkFooter:footer?getComputedStyle(footer).backgroundColor==="rgb(29, 63, 51)":false,
+              current:nav.filter(a=>a.getAttribute("aria-current")==="page").length,
+              brand:!!header?.querySelector(".brand .logo-mark"),
+              headerSearch:!!header?.querySelector(".header-search"),
+              footerTargets:links.map(a=>a.getAttribute("href"))};
+          });
+          check(shell.header&&shell.footer&&shell.brand&&shell.headerSearch&&
+            shell.darkFooter&&shell.nav.join("|")==="HOME|SHELVES|PROJECTS|ARCHIVE|ABOUT"&&
+            shell.links.join("|")==="HOME|SHELVES|PROJECTS|ARCHIVE|LINKS|ABOUT"&&
+            shell.footerTargets.includes("/links/")&&
+            (slug==="/"||slug==="/links/"||shell.current===1),
+            mode.name+" "+slug+" canonical navigation, search and dark footer",
+            JSON.stringify(shell));
+
           check(errors.length===0,mode.name+" "+slug+" no script/asset errors",errors.join("; "));
           // Global reading-surface standard: all public pages include the white layer;
           // only the copy surfaces are white — the surrounding canvas remains warm.
