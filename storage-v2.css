@@ -1,28 +1,37 @@
-/* Storage hub aligned with the seven-category top-page taxonomy */
-.storage-shelves{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
-.storage-shelf{position:relative;min-height:230px;padding:20px;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;border:1px solid rgba(31,61,48,.10)!important;background-size:cover!important;background-position:center!important;background-repeat:no-repeat!important;color:#fff!important;isolation:isolate;box-shadow:0 5px 16px rgba(25,45,34,.08)!important;transition:transform .22s ease,filter .22s ease,box-shadow .22s ease}
-.storage-shelf:before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(9,25,17,.03) 18%,rgba(10,29,20,.16) 48%,rgba(10,29,20,.84) 100%);z-index:-1}
-.storage-shelf .eyebrow,.storage-shelf h2,.storage-shelf p,.storage-shelf small,.storage-shelf .storage-arrow{position:relative;z-index:1;color:#fff!important;text-shadow:0 1px 5px rgba(0,0,0,.58)}
-.storage-shelf .eyebrow{font-size:.66rem;letter-spacing:.15em;font-weight:600}
-.storage-shelf h2{margin:7px 0 6px;font-size:1.17rem;line-height:1.35}
-.storage-shelf p{font-size:.78rem;line-height:1.58;max-width:22em;margin:0}
-.storage-shelf small{margin-top:8px;font-size:.62rem;letter-spacing:.04em;opacity:.70}
-.storage-shelf .storage-arrow{position:absolute;right:18px;bottom:17px;font-size:1.28rem}
-.storage-shelf:hover{transform:translateY(-3px);filter:saturate(1.03) contrast(1.02);box-shadow:0 10px 22px rgba(25,45,34,.13)!important}
+/* KAITO SHELVES: one image row and a flow-sized white reading panel.
+   The content row grows with localized/longer copy; nothing floats across the image. */
+.storage-shelves{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin:22px 0 48px}
+.storage-shelf{display:grid;grid-template-rows:108px minmax(0,1fr);min-width:0;min-height:285px;padding:0;overflow:hidden;isolation:isolate;position:relative;
+  border:1px solid #cbd6ca;border-radius:3px;background:#fff;color:#193f32;text-decoration:none;box-shadow:0 5px 16px rgba(25,45,34,.08);
+  transition:transform .22s ease,box-shadow .22s ease}
+.storage-shelf::before,.storage-shelf::after{content:none;display:none}
+.storage-shelf>.storage-shelf-image{display:block;position:static;width:100%;height:108px;min-width:0;object-fit:cover;object-position:center}
+.storage-shelf-copy{display:flex;flex-direction:column;min-width:0;padding:15px 17px 14px;background:#fff;overflow-wrap:anywhere}
+.storage-shelf .eyebrow{display:block;margin:0;padding:0;font-size:.7rem;line-height:1.45;letter-spacing:.09em;color:#397153;text-shadow:none}
+.storage-shelf h2{margin:7px 0;font-family:var(--serif);font-size:1.17rem;line-height:1.4;min-height:0;color:#193f32;text-shadow:none}
+.storage-shelf p{margin:0;font-size:.86rem;line-height:1.65;min-height:0;color:#536157;text-shadow:none}
+.storage-shelf-bottom{display:flex;align-items:flex-end;justify-content:space-between;gap:10px;min-width:0;margin-top:auto;padding-top:12px}
+.storage-shelf small{display:block;min-width:0;max-width:100%;font-size:.68rem;line-height:1.5;letter-spacing:.03em;color:#516955;text-shadow:none;overflow-wrap:anywhere}
+.storage-shelf .storage-arrow{display:block;flex:0 0 auto;position:static;line-height:1;font-size:1.2rem;color:#193f32;text-shadow:none;transition:transform .18s ease}
+.storage-shelf:hover{transform:translateY(-3px);box-shadow:0 10px 22px rgba(25,45,34,.13)}
+.storage-shelf:hover .storage-arrow{transform:translateX(3px)}
+.storage-shelf:focus-visible{outline:3px solid #547427;outline-offset:4px}
+@media(min-width:1001px){
+ .storage-shelves{grid-template-columns:repeat(12,minmax(0,1fr))}
+ .storage-shelf{grid-column:span 3}
+ .storage-shelf:nth-child(5){grid-column:2/span 3}
+ .storage-shelf:nth-child(6){grid-column:5/span 3}
+ .storage-shelf:nth-child(7){grid-column:8/span 3}
+}
+@media(min-width:481px) and (max-width:1000px){.storage-shelves{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:480px){
+ .storage-shelves{grid-template-columns:minmax(0,1fr);gap:12px}
+ .storage-shelf{grid-template-rows:90px minmax(0,1fr);min-height:0}
+ .storage-shelf>.storage-shelf-image{height:90px}
+ .storage-shelf-copy{padding:13px 15px 14px}
+}
 
-/* Use the dedicated shelf artwork instead of the low-resolution sprite. */
-.storage-shelf:nth-child(1){background-image:url('/assets/shelves/travel.webp?v=3')!important}
-.storage-shelf:nth-child(2){background-image:url('/assets/shelves/drink.webp?v=3')!important}
-.storage-shelf:nth-child(3){background-image:url('/assets/shelves/moneytax.webp?v=3')!important}
-.storage-shelf:nth-child(4){background-image:url('/assets/shelves/study.webp?v=3')!important}
-.storage-shelf:nth-child(5){background-image:url('/assets/shelves/create.webp?v=3')!important}
-.storage-shelf:nth-child(6){background-image:url('/assets/shelves/project.webp?v=3')!important}
-.storage-shelf:nth-child(7){background-image:url('/assets/shelves/archive.webp?v=3')!important}
-
-@media(max-width:1000px){.storage-shelves{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:620px){.storage-shelves{grid-template-columns:1fr}.storage-shelf{min-height:190px}}
-
-/* Storage page pass 2: compress the introduction and balance the 4+3 shelf layout. */
+/* Editorial spacing shared with the storage index's existing sections. */
 .page-wrap{padding-top:26px!important}
 .breadcrumb{margin-bottom:24px!important}
 .page-intro{padding-bottom:24px!important;margin-bottom:24px!important}
@@ -30,57 +39,14 @@
 .page-intro .page-lead{margin:0!important;line-height:1.75!important}
 .storage-guide>h2{margin:0 0 4px!important}
 .storage-guide>p{margin:0!important;line-height:1.7!important}
-.storage-shelves{margin:22px 0 48px!important}
-
-/* On wide screens the second row becomes a centered three-card band instead of
-   leaving a visually accidental empty fourth slot. */
-@media(min-width:1001px){
-  .storage-shelves{grid-template-columns:repeat(12,minmax(0,1fr))!important}
-  .storage-shelf{grid-column:span 3}
-  .storage-shelf:nth-child(5){grid-column:2/span 3}
-  .storage-shelf:nth-child(6){grid-column:5/span 3}
-  .storage-shelf:nth-child(7){grid-column:8/span 3}
-}
-
-@media(max-width:760px){
-  .page-wrap{padding-top:22px!important}
-  .breadcrumb{margin-bottom:20px!important}
-  .page-intro{padding-bottom:20px!important;margin-bottom:22px!important}
-  .page-intro .page-lead{line-height:1.7!important}
-  .storage-shelves{margin-top:18px!important}
-}
-
-/* Storage page pass 3: unify the seven cards and add a restrained editorial signature. */
 .storage-guide{position:relative}
 .storage-guide:before{content:"SHELF INDEX 01—07";display:block;margin:0 0 9px;font-size:.60rem;line-height:1;letter-spacing:.18em;color:#547427;font-weight:700}
 .storage-guide>h2{font-family:var(--serif);letter-spacing:.01em}
-.storage-shelves{gap:16px!important}
-.storage-shelf{min-height:238px!important;border-radius:3px!important;padding:20px 19px!important}
-.storage-shelf:after{content:"";position:absolute;left:19px;top:18px;width:26px;height:1px;background:rgba(255,255,255,.72);z-index:1}
-.storage-shelf .eyebrow{padding-top:8px}
-.storage-shelf h2{min-height:1.6em}
-.storage-shelf p{min-height:2.55em}
-.storage-shelf small{min-height:1em}
-.storage-shelf .storage-arrow{right:17px!important;bottom:16px!important;transition:transform .18s ease}
-.storage-shelf:hover .storage-arrow{transform:translateX(3px)}
-.storage-shelf:focus-visible{outline:3px solid #547427!important;outline-offset:4px!important}
-
-/* Keep the imagery distinct, but normalize crop behavior across the set. */
-.storage-shelf:nth-child(1){background-position:center 52%!important}
-.storage-shelf:nth-child(2){background-position:center 50%!important}
-.storage-shelf:nth-child(3){background-position:center 52%!important}
-.storage-shelf:nth-child(4){background-position:center 50%!important}
-.storage-shelf:nth-child(5){background-position:center 50%!important}
-.storage-shelf:nth-child(6){background-position:center 48%!important}
-.storage-shelf:nth-child(7){background-position:center 50%!important}
-
-@media(min-width:1001px){
-  .storage-shelf{min-height:242px!important}
-}
-@media(max-width:620px){
-  .storage-guide:before{margin-bottom:7px}
-  .storage-shelf{min-height:200px!important}
-  .storage-shelf h2,.storage-shelf p,.storage-shelf small{min-height:0}
+@media(max-width:760px){
+ .page-wrap{padding-top:22px!important}
+ .breadcrumb{margin-bottom:20px!important}
+ .page-intro{padding-bottom:20px!important;margin-bottom:22px!important}
+ .page-intro .page-lead{line-height:1.7!important}
 }
 
 /* Storage page pass 4: carry the shelf language through labels, recent notes and onward navigation. */
