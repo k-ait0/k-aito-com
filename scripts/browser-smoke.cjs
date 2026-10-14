@@ -181,23 +181,35 @@ const stop=()=>new Promise(resolve=>server.close(resolve));
             check(homeDiscovery.cards>=1&&!homeDiscovery.duplicate,
               mode.name+" HOME avoids repeating the featured note in remaining cards",JSON.stringify(homeDiscovery));
           }
-          if(slug==="/storage/"&&mode.width<=430){
-            const layout=await page.evaluate(()=>{
+          if(slug==="/storage/"){
+            const layout=await page.evaluate(async()=>{
               const shelves=[...document.querySelectorAll(".storage-shelf")];
+              await Promise.all(shelves.map(card=>{
+                const img=card.querySelector(".storage-shelf-image");
+                return img?.decode?.().catch(()=>{})||Promise.resolve();
+              }));
               return shelves.map(card=>{
                 const img=card.querySelector(".storage-shelf-image");
-                const heading=card.querySelector("h2");
-                if(!img||!heading)return {valid:false,reason:"missing image or heading"};
-                const i=img.getBoundingClientRect(),h=heading.getBoundingClientRect(),c=card.getBoundingClientRect();
-                return {valid:img.complete&&img.naturalWidth>0&&
-                  i.height>=60&&i.height<=90&&
-                  h.top>=i.bottom-2&&
-                  c.width<=window.innerWidth+2,
-                  imageBottom:i.bottom,headingTop:h.top,cardWidth:c.width};
+                const copy=card.querySelector(".storage-shelf-copy");
+                const parts=[...card.querySelectorAll(".eyebrow,h2,p,small")];
+                const arrow=card.querySelector(".storage-arrow");
+                if(!img||!copy||parts.length!==4||!arrow)return {valid:false,reason:"missing shelf elements"};
+                const i=img.getBoundingClientRect(),c=card.getBoundingClientRect();
+                const b=copy.getBoundingClientRect(),a=arrow.getBoundingClientRect();
+                const rects=parts.map(x=>x.getBoundingClientRect());
+                const ordered=rects.every((r,j)=>j===0||r.top>=rects[j-1].bottom-1);
+                const noArrowOverlap=rects[3].right<=a.left+1||rects[3].bottom<=a.top+1;
+                return {valid:img.complete&&img.naturalWidth>0&&i.height>=85&&
+                    b.top>=i.bottom-1&&rects[0].top>=b.top-1&&
+                    ordered&&noArrowOverlap&&
+                    a.bottom<=c.bottom+1&&rects[3].bottom<=c.bottom+1&&
+                    c.width<=window.innerWidth+2,
+                  imageBottom:i.bottom,labelTop:rects[0].top,
+                  cardBottom:c.bottom,arrowBottom:a.bottom,ordered,noArrowOverlap};
               });
             });
-            check(layout.length>0&&layout.every(x=>x.valid),
-              mode.name+" SHELVES image strips do not overlap headings",JSON.stringify(layout));
+            check(layout.length===7&&layout.every(x=>x.valid),
+              mode.name+" SHELVES all 7 cards have separate image and nonoverlapping text",JSON.stringify(layout));
           }
           if(slug==="/storage/"){
             const shelves=await page.evaluate(()=>{
