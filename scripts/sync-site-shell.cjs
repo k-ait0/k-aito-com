@@ -38,6 +38,7 @@ function render(pathname){
     throw Error("Canonical shell nav incomplete");
   return {header:h,footer:f};
 }
+function sync(){
 let changed=0;
 for(const url of urls){
   if(url.origin!=="https://k-aito.com"||url.search||url.hash||!/^\/[a-z0-9/-]*$/.test(url.pathname))throw Error("Invalid sitemap URL "+url.href);
@@ -54,4 +55,6 @@ for(const url of urls){
   if(src!==previous){fs.writeFileSync(file,src,"utf8");changed++;console.log("UPDATED "+url.pathname);}
 }
 console.log("PASS canonical shell: "+urls.length+" public pages; "+changed+" changed");
-module.exports={render,current};
+}
+if(require.main===module)sync();
+module.exports={render,current,sync};
