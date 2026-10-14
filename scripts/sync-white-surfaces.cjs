@@ -4,7 +4,7 @@
 const fs=require("node:fs");
 const path=require("node:path");
 const root=path.resolve(__dirname,"..");
-const defaultHref='/white-surfaces-v1.css?v=20261011-mobile3';
+const defaultHref='/white-surfaces-v1.css?v=20261015-shell1';
 const thumbnailHref='/thumbnail-v1.css?v=20261009-1';
 const sitemap=fs.readFileSync(path.join(root,"sitemap.xml"),"utf8");
 const pages=[...sitemap.matchAll(/<loc>\s*([^<]+)\s*<\/loc>/g)].map(m=>new URL(m[1].trim()));
