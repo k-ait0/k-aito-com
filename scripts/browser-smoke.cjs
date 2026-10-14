@@ -111,7 +111,10 @@ const stop=()=>new Promise(resolve=>server.close(resolve));
                 const e=document.querySelector(".storage-shelf");
                 return e?{overlay:getComputedStyle(e,"::before").backgroundImage,
                   text:getComputedStyle(e.querySelector("h2")).color,
-                  image:getComputedStyle(e.querySelector(".storage-shelf-image")).display}:null;
+                  copy:getComputedStyle(e.querySelector(".storage-shelf-copy")).backgroundColor,
+                  image:getComputedStyle(e.querySelector(".storage-shelf-image")).display,
+                  imagePosition:getComputedStyle(e.querySelector(".storage-shelf-image")).position,
+                  imageHeight:e.querySelector(".storage-shelf-image").getBoundingClientRect().height}:null;
               })():null
             };
           });
@@ -134,8 +137,12 @@ const stop=()=>new Promise(resolve=>server.close(resolve));
           }
           if(slug==="/storage/"){
             check(!!surfaces.shelfOverlay&&
-              (mode.width<=430 ? surfaces.shelfOverlay.overlay==="none" : surfaces.shelfOverlay.overlay.includes("rgb(255, 255, 255)"))&&
-              surfaces.shelfOverlay.text==="rgb(25, 63, 50)"&&surfaces.shelfOverlay.image!=="none",
+              surfaces.shelfOverlay.overlay==="none"&&
+              surfaces.shelfOverlay.copy==="rgb(255, 255, 255)"&&
+              surfaces.shelfOverlay.text==="rgb(25, 63, 50)"&&
+              surfaces.shelfOverlay.image==="block"&&
+              surfaces.shelfOverlay.imagePosition==="static"&&
+              surfaces.shelfOverlay.imageHeight>=85,
               mode.name+" SHELVES retain photographs with white type panel",JSON.stringify(surfaces.shelfOverlay));
           }
           // All published KAITO articles share a white reading paper over the warm site background.
