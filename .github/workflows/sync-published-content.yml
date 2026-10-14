@@ -20,6 +20,8 @@ on:
       - 'thumbnail-v1.css'
       - 'white-surfaces-v1.css'
       - 'scripts/sync-white-surfaces.cjs'
+      - 'scripts/sync-site-shell.cjs'
+      - 'scripts/test-site-shell.cjs'
       - 'notes/**/index.html'
       - 'scripts/sync-published-content.cjs'
       - 'scripts/article-search-text.cjs'
@@ -60,6 +62,8 @@ jobs:
           node --check scripts/test-project-search.cjs
           node --check site-search.js
           node --check scripts/sync-white-surfaces.cjs
+          node --check scripts/sync-site-shell.cjs
+          node --check scripts/test-site-shell.cjs
           node --check scripts/sync-published-content.cjs
           node --check scripts/article-search-text.cjs
           node --check scripts/test-published-content.cjs
@@ -70,6 +74,8 @@ jobs:
           node scripts/test-project-search.cjs
           node scripts/sync-project-search.cjs
           node scripts/sync-white-surfaces.cjs
+          node scripts/sync-site-shell.cjs
+          node scripts/test-site-shell.cjs
           node scripts/site-static-check.cjs
           git diff --check
 
