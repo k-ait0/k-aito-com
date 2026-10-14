@@ -228,6 +228,29 @@ const stop=()=>new Promise(resolve=>server.close(resolve));
             });
             check(layout.length===7&&layout.every(x=>x.valid),
               mode.name+" SHELVES all 7 cards have separate image and nonoverlapping text",JSON.stringify(layout));
+            const lengthStress=await page.evaluate(()=>{
+              const card=document.querySelectorAll(".storage-shelf")[5];
+              const title=card?.querySelector("h2"),copy=card?.querySelector("p");
+              const label=card?.querySelector(".eyebrow"),small=card?.querySelector("small");
+              const arrow=card?.querySelector(".storage-arrow"),image=card?.querySelector("img");
+              if(!card||!title||!copy||!label||!small||!arrow||!image)return false;
+              const originalTitle=title.textContent,originalCopy=copy.textContent;
+              try{
+                title.textContent=originalTitle+"・開発の記録と今後の構想";
+                copy.textContent=[originalCopy,originalCopy,originalCopy].join(" ");
+                const rects=[image,label,title,copy,small,arrow,card].map(el=>el.getBoundingClientRect());
+                const [i,l,h,p,s,a,c]=rects;
+                return l.top>=i.bottom-1&&h.top>=l.bottom-1&&
+                  p.top>=h.bottom-1&&s.top>=p.bottom-1&&
+                  s.bottom<=c.bottom+1&&a.bottom<=c.bottom+1&&
+                  c.width<=innerWidth+2&&
+                  card.scrollHeight<=card.clientHeight+2;
+              }finally{
+                title.textContent=originalTitle;
+                copy.textContent=originalCopy;
+              }
+            });
+            check(lengthStress,mode.name+" SHELVES longer project heading and copy grow without overlap");
           }
           if(slug==="/storage/"){
             const shelves=await page.evaluate(()=>{
