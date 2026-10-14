@@ -57,9 +57,9 @@ const stop=()=>new Promise(resolve=>server.close(resolve));
     else{failures.push(label+(detail?" — "+detail:""));console.error("FAIL "+label,detail);}
   };
   try{
-    for(const mode of [{name:"mobile",width:390,height:844},{name:"desktop",width:1440,height:900}]){
+    for(const mode of [{name:"mobile-320",width:320,height:700},{name:"mobile-375",width:375,height:812},{name:"mobile",width:390,height:844},{name:"mobile-430",width:430,height:932},{name:"tablet",width:768,height:1024},{name:"desktop",width:1440,height:900}]){
       const context=await browser.newContext({viewport:{width:mode.width,height:mode.height},
-        deviceScaleFactor:1,isMobile:mode.name==="mobile",hasTouch:mode.name==="mobile"});
+        deviceScaleFactor:1,isMobile:mode.width<=430,hasTouch:mode.width<=430});
       for(const slug of pages){
         const page=await context.newPage();
         const errors=[];
@@ -122,7 +122,8 @@ const stop=()=>new Promise(resolve=>server.close(resolve));
               mode.name+" "+slug+" readable text panels are opaque white",JSON.stringify(surfaces.selected));
           }
           if(slug==="/storage/"){
-            check(!!surfaces.shelfOverlay&&surfaces.shelfOverlay.overlay.includes("rgb(255, 255, 255)")&&
+            check(!!surfaces.shelfOverlay&&
+              (mode.width<=430 ? surfaces.shelfOverlay.overlay==="none" : surfaces.shelfOverlay.overlay.includes("rgb(255, 255, 255)"))&&
               surfaces.shelfOverlay.text==="rgb(25, 63, 50)"&&surfaces.shelfOverlay.image!=="none",
               mode.name+" SHELVES retain photographs with white type panel",JSON.stringify(surfaces.shelfOverlay));
           }
@@ -179,6 +180,24 @@ const stop=()=>new Promise(resolve=>server.close(resolve));
               mode.name+" HOME has direct archive link and preserves FIRST NOTE",JSON.stringify(homeDiscovery));
             check(homeDiscovery.cards>=1&&!homeDiscovery.duplicate,
               mode.name+" HOME avoids repeating the featured note in remaining cards",JSON.stringify(homeDiscovery));
+          }
+          if(slug==="/storage/"&&mode.width<=430){
+            const layout=await page.evaluate(()=>{
+              const shelves=[...document.querySelectorAll(".storage-shelf")];
+              return shelves.map(card=>{
+                const img=card.querySelector(".storage-shelf-image");
+                const heading=card.querySelector("h2");
+                if(!img||!heading)return {valid:false,reason:"missing image or heading"};
+                const i=img.getBoundingClientRect(),h=heading.getBoundingClientRect(),c=card.getBoundingClientRect();
+                return {valid:img.complete&&img.naturalWidth>0&&
+                  i.height>=60&&i.height<=90&&
+                  h.top>=i.bottom-2&&
+                  c.width<=window.innerWidth+2,
+                  imageBottom:i.bottom,headingTop:h.top,cardWidth:c.width};
+              });
+            });
+            check(layout.length>0&&layout.every(x=>x.valid),
+              mode.name+" SHELVES image strips do not overlap headings",JSON.stringify(layout));
           }
           if(slug==="/storage/"){
             const shelves=await page.evaluate(()=>{
@@ -252,7 +271,7 @@ const stop=()=>new Promise(resolve=>server.close(resolve));
               mode.name+" PROJECTS links to FINOWA");
           }
           if(slug==="/"){
-            if(mode.name==="mobile")await page.locator("#search-form button[type=submit]").click();
+            if(mode.width<=430)await page.locator("#search-form button[type=submit]").click();
             await page.locator("#site-search").fill("WHYNOT");
             await page.locator("#search-form").evaluate(form=>form.requestSubmit());
             await page.locator("#archive-dialog").waitFor({state:"visible"});
@@ -322,7 +341,7 @@ const stop=()=>new Promise(resolve=>server.close(resolve));
             const label=slug==="/"?"home":slug==="/storage/"?"shelves":slug.slice(1,-1);
             await page.screenshot({path:path.join(screens,mode.name+"-"+label+".png"),fullPage:true});
           }
-          if(mode.name==="mobile"){
+          if(mode.width<=430){
             const dimensions=await page.locator(slug==="/"
               ?"#search-form":".site-wide-search").boundingBox();
             check(!!dimensions&&dimensions.width<=52,mode.name+" "+slug+" compact search",
@@ -361,7 +380,7 @@ const stop=()=>new Promise(resolve=>server.close(resolve));
       const home=await context.newPage();
       try{
         await home.goto(url+"/",{waitUntil:"networkidle"});
-        if(mode.name==="mobile"){
+        if(mode.width<=430){
           await home.locator("#search-form button[type=submit]").tap();
           check(await home.locator("#search-form").evaluate(e=>e.classList.contains("is-open")),
             "mobile HOME search expands on tap");
@@ -396,7 +415,7 @@ const stop=()=>new Promise(resolve=>server.close(resolve));
         if(!box)throw Error("Swipe card has no bounding box");
         const x=Math.round(box.x+Math.min(box.width*.28,100));
         const y=Math.round(box.y+box.height*.50);
-        if(mode.name==="mobile"){
+        if(mode.width<=430){
           const cdp=await context.newCDPSession(roulette);
           await cdp.send("Input.dispatchTouchEvent",{
             type:"touchStart",touchPoints:[{x,y}]
@@ -437,7 +456,7 @@ const stop=()=>new Promise(resolve=>server.close(resolve));
         await roulette.locator("#result.show").waitFor({timeout:8000});
         check((await roulette.locator("#page-wheel h2").innerText()).includes("次に"),
           mode.name+" roulette uses next-step product copy");
-        if(mode.name==="mobile"){
+        if(mode.width<=430){
           const pos=await roulette.locator(".tabs").evaluate(el=>getComputedStyle(el).position);
           check(pos==="sticky",mode.name+" roulette navigation stays reachable while scrolling");
         }
