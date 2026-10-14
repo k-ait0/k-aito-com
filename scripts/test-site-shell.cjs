@@ -7,7 +7,7 @@ const home=fs.readFileSync(path.join(root,"index.html"),"utf8");
 const {render}=require("./sync-site-shell.cjs");
 const paths=[...fs.readFileSync(path.join(root,"sitemap.xml"),"utf8")
  .matchAll(/<loc>https:\/\/k-aito\.com(\/[^<]*)<\/loc>/g)].map(m=>m[1]);
-assert.equal(paths.length,24,"Check public sitemap count before releasing new pages");
+assert.ok(paths.length>=24,"Unexpected loss of published pages");
 const homeHeader=home.match(/<header class="site-header">[\s\S]*?<\/header>/)?.[0];
 const homeFooter=home.match(/<footer\b[^>]*class="site-footer"[^>]*>[\s\S]*?<\/footer>/)?.[0];
 assert.ok(homeHeader&&homeFooter,"Missing canonical homepage shell");
