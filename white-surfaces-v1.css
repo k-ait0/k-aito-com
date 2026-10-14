@@ -65,17 +65,6 @@ body:not(.subpage) .home-closing{background-color:transparent!important}
   box-shadow:var(--k-reading-shadow)
 }
 .subpage .status-guide:before{background:var(--k-reading-white)!important;padding-inline:10px}
-/* Image-backed SHELVES: keep a visible photo strip, give all overlaid type opaque white paper.
-   No fake transparency behind important text. */
-.subpage .storage-shelf{color:#193f32!important}
-.subpage .storage-shelf:before{
-  background:linear-gradient(180deg,transparent 0%,transparent 23%,#fff 23%,#fff 100%)!important;
-  opacity:1!important;
-}
-.subpage .storage-shelf :is(.eyebrow,h2,p,small,.storage-arrow){
-  color:#193f32!important;text-shadow:none!important;z-index:3!important;
-}
-.subpage .storage-shelf:after{background:#54795e!important}
 /* Image-only project covers and hero illustrations retain their photography and overlay. */
 .subpage :is(.project-cover,.project-visual,.project-visual-image,.archive-feature-photo,
  .shelf-photo,.storage-shelf-image,.about-shelf-image){background-color:transparent}
@@ -107,9 +96,6 @@ body:not(.subpage) .home-closing{background-color:transparent!important}
    .portfolio-section-head,.shelf-bridge,.record-guide,.links-section,
    .recommendation-policy,.kidp-project-hero,.kidp-next-full,.shelf-intro){
     padding:16px 15px
-  }
-  .subpage .storage-shelf:before{
-    background:linear-gradient(180deg,transparent 0%,transparent 22%,#fff 22%,#fff 100%)!important;
   }
 }
 @media print{
@@ -168,16 +154,6 @@ body:not(.subpage) .home-v2 .shelves-grid .shelf:hover{
   .subpage .status-guide dl{display:grid!important;grid-template-columns:minmax(0,1fr)!important;width:100%;min-width:0;margin:16px 0 0}
   .subpage .status-guide dl>div{display:grid!important;grid-template-columns:minmax(72px,27%) minmax(0,1fr)!important;gap:12px!important;min-width:0;padding:12px 0!important}
   .subpage .status-guide dt,.subpage .status-guide dd{min-width:0;overflow-wrap:anywhere;margin:0}
-  .subpage .storage-shelves{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:12px!important}
-  .subpage .storage-shelf{min-width:0;min-height:250px!important;padding:13px 12px 14px!important;justify-content:flex-start!important;gap:0;overflow:hidden}
-  .subpage .storage-shelf .storage-shelf-image{position:absolute;top:0;left:0;width:100%;height:80px;object-fit:cover}
-  .subpage .storage-shelf:before{background:linear-gradient(to bottom,transparent 0 80px,#fff 80px 100%)!important}
-  .subpage .storage-shelf .eyebrow{margin-top:82px!important;padding:0!important;font-size:.65rem!important;line-height:1.45!important;overflow-wrap:anywhere}
-  .subpage .storage-shelf h2{font-size:1.08rem!important;line-height:1.4!important;margin:7px 0!important;overflow-wrap:anywhere}
-  .subpage .storage-shelf p{font-size:.78rem!important;line-height:1.55!important;min-height:0!important;overflow-wrap:anywhere}
-  .subpage .storage-shelf small{margin-top:8px!important;font-size:.7rem!important}
-  .subpage .storage-shelf .storage-arrow{right:12px!important;bottom:9px!important}
-  .subpage .storage-shelf:after{display:none}
   .subpage :is(.page-intro,.about-hero-copy,.projects-hero-copy){overflow-wrap:anywhere}
   .subpage :is(.page-intro h1,.projects-hero-copy h1,.about-hero-copy h1){font-size:clamp(1.65rem,7vw,2.2rem)!important;line-height:1.4!important}
   body:not(.subpage) .section-heading{flex-wrap:wrap;gap:8px 14px}
@@ -185,8 +161,6 @@ body:not(.subpage) .home-v2 .shelves-grid .shelf:hover{
   body:not(.subpage) .section-heading h2 span{white-space:normal;font-size:.72rem}
 }
 @media (max-width:360px){
-  .subpage .storage-shelves{grid-template-columns:1fr!important}
-  .subpage .storage-shelf{min-height:220px!important}
 }
 
 /* Shared mobile editorial alignment, review pass 2 */
@@ -212,18 +186,8 @@ body:not(.subpage) .home-v2 .shelves-grid .shelf:hover{
 
 /* Mobile shelf image layering: use HTML image as the only image source. */
 @media(max-width:760px){
- .subpage .storage-shelf{background-image:none!important;background-color:#fff!important;isolation:isolate}
- .subpage .storage-shelf>.storage-shelf-image{position:absolute!important;inset:0 auto auto 0!important;width:100%!important;height:80px!important;object-fit:cover!important;z-index:0!important}
- .subpage .storage-shelf:before{display:none!important}
- .subpage .storage-shelf :is(.eyebrow,h2,p,small,.storage-arrow){position:relative;z-index:1!important}
 }
 
 /* Make the mobile photo-strip mask deterministic for browser QA. */
 @media(max-width:760px){
- .subpage .storage-shelf::before{
-   content:none!important;
-   display:none!important;
-   background:none!important;
-   background-image:none!important;
- }
 }
