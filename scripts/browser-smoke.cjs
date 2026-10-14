@@ -115,6 +115,17 @@ const stop=()=>new Promise(resolve=>server.close(resolve));
               })():null
             };
           });
+          const footer=await page.evaluate(()=>{
+            const el=document.querySelector(".site-footer");
+            if(!el)return null;
+            const style=getComputedStyle(el);
+            return {background:style.backgroundColor,
+              navCount:el.querySelectorAll(".footer-nav a").length,
+              branded:!!el.querySelector(".footer-brand")};
+          });
+          check(!!footer&&footer.background==="rgb(29, 63, 51)"&&
+              footer.navCount===6&&footer.branded,
+            mode.name+" "+slug+" retains the HOME dark footer",JSON.stringify(footer));
           check(surfaces.styleLink&&surfaces.isLastCSS&&surfaces.warmCanvas,
             mode.name+" "+slug+" standard white surface layer preserves warm site",JSON.stringify(surfaces));
           if(surfaces.selected.length){
