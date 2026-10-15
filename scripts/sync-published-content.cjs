@@ -171,7 +171,7 @@ writeIfChanged(archivePath, archive);
 
 /* Cache bust the shared catalogue in every HTML page on catalogue changes. */
 const catalogueVersion = crypto.createHash("sha256").update(source).digest("hex").slice(0, 12);
-const frontendVersions=["app.js","site-content.js"].map(file=>({
+const frontendVersions=["app.js","site-content.js","site-search-ui.js"].map(file=>({
   file,version:crypto.createHash("sha256").update(fs.readFileSync(path.join(root,file))).digest("hex").slice(0,12)
 }));
 
