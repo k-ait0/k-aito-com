@@ -6,7 +6,7 @@ const tmp=fs.mkdtempSync(path.join(os.tmpdir(),"kaito-project-search-"));
 const xml=fs.readFileSync(path.join(root,"sitemap.xml"),"utf8");
 const routes=[...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map(x=>new URL(x[1]).pathname);
 try{
-  for(const file of ["sitemap.xml","data/project-card-status.v1.json","scripts/sync-project-search.cjs"]){
+  for(const file of ["sitemap.xml","data/project-card-status.v1.json","scripts/sync-project-search.cjs,"site-search-core.js","site-search.js"]){
     const out=path.join(tmp,file);fs.mkdirSync(path.dirname(out),{recursive:true});fs.copyFileSync(path.join(root,file),out);
   }
   for(const route of routes){
@@ -29,9 +29,15 @@ try{
   assert.ok(!projects.some(p=>p.url.includes("/tools/")||p.url==="/projects/"));
   const main=fs.readFileSync(path.join(tmp,"index.html"),"utf8");
   assert.ok(main.indexOf("/project-search-index.js?")<main.indexOf("/app.js?"));
+  assert.equal((main.match(/src="[/]site-search-core[.]js[?]v=/g)||[]).length,1);
+  assert.ok(main.indexOf("/project-search-index.js?")<main.indexOf("/site-search-core.js?")&&
+    main.indexOf("/site-search-core.js?")<main.indexOf("/app.js?"));
   for(const route of routes){
     const html=fs.readFileSync(path.join(tmp,route.slice(1),"index.html"),"utf8");
     assert.equal((html.match(/src="\/project-search-index\.js\?/g)||[]).length,1);
+    assert.equal((html.match(/src="[/]site-search-core[.]js[?]v=/g)||[]).length,1);
+    assert.ok(html.indexOf("/project-search-index.js?")<html.indexOf("/site-search-core.js?")&&
+      html.indexOf("/site-search-core.js?")<html.indexOf(route==="/"?"/app.js?":"/site-search.js?"));
   }
   const second=run();
   assert.match(second,/0 HTML updates/);
