@@ -82,6 +82,25 @@ const stop=()=>new Promise(resolve=>server.close(resolve));
           check(valid.overflow<=2,mode.name+" "+slug+" no horizontal overflow",JSON.stringify(valid));
           check(valid.header&&valid.search,mode.name+" "+slug+" header and search",JSON.stringify(valid));
 
+          const breadcrumb=await page.evaluate(()=>{
+            const navs=[...document.querySelectorAll('nav.breadcrumb[aria-label="パンくずリスト"]')];
+            const nav=navs[0];
+            const script=document.querySelector('script[data-site-breadcrumbs]');
+            let parsed=null;
+            if(script){try{parsed=JSON.parse(script.textContent);}catch{}}
+            return {count:navs.length,active:nav?.querySelectorAll('[aria-current="page"]').length||0,
+              parentHrefs:[...(nav?.querySelectorAll("a")||[])].map(a=>a.getAttribute("href")),
+              ldType:parsed?.["@type"],ldCount:parsed?.itemListElement?.length||0,
+              lastUrl:parsed?.itemListElement?.at(-1)?.item||null};
+          });
+          check(slug==="/"?(breadcrumb.count===0&&breadcrumb.ldCount===0):
+            (breadcrumb.count===1&&breadcrumb.active===1&&
+             breadcrumb.parentHrefs[0]==="/"&&breadcrumb.ldType==="BreadcrumbList"&&
+             breadcrumb.ldCount>=2&&breadcrumb.lastUrl==="https://k-aito.com"+slug),
+            mode.name+" "+slug+" canonical breadcrumb and structured data",
+            JSON.stringify(breadcrumb));
+
+
           const shell=await page.evaluate(()=>{
             const header=document.querySelector(".site-header");
             const footer=document.querySelector(".site-footer");
@@ -244,6 +263,32 @@ const stop=()=>new Promise(resolve=>server.close(resolve));
             check(layout.length===7&&layout.every(x=>x.valid),
               mode.name+" SHELVES all 7 image, label, copy and arrow tracks do not overlap",
               JSON.stringify(layout));
+
+            const longCopy=await page.evaluate(()=>{
+              const card=document.querySelectorAll(".storage-shelf")[5];
+              const title=card?.querySelector("h2"),description=card?.querySelector("p");
+              const label=card?.querySelector(".eyebrow"),status=card?.querySelector("small");
+              const arrow=card?.querySelector(".storage-arrow"),image=card?.querySelector("img");
+              if(!card||!title||!description||!label||!status||!arrow||!image)return false;
+              const originalTitle=title.textContent,originalDescription=description.textContent;
+              const rect=el=>el.getBoundingClientRect();
+              try{
+                title.textContent=originalTitle+"・新規開発と長期構想の取り組み";
+                description.textContent=Array(3).fill(originalDescription).join(" ");
+                const [i,l,h,p,s,a,c]=[image,label,title,description,status,arrow,card].map(rect);
+                const overlaps=(x,y)=>x.right>y.left+1&&x.left<y.right-1&&
+                  x.bottom>y.top+1&&x.top<y.bottom-1;
+                return l.top>=i.bottom-1&&h.top>=l.bottom-1&&
+                  p.top>=h.bottom-1&&s.top>=p.bottom-1&&
+                  !overlaps(s,a)&&s.bottom<=c.bottom+2&&a.bottom<=c.bottom+2&&
+                  card.scrollHeight<=card.clientHeight+2;
+              }finally{
+                title.textContent=originalTitle;
+                description.textContent=originalDescription;
+              }
+            });
+            check(longCopy,mode.name+" SHELVES longer title and tripled description do not overlap");
+
           }
           if(slug==="/storage/"){
             const shelves=await page.evaluate(()=>{

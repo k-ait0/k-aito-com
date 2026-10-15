@@ -23,6 +23,9 @@ on:
       - 'subpages.css'
       - 'scripts/sync-site-shell.cjs'
       - 'scripts/test-site-shell.cjs'
+      - 'data/site-breadcrumbs.v1.json'
+      - 'scripts/sync-site-breadcrumbs.cjs'
+      - 'scripts/test-site-breadcrumbs.cjs'
       - 'scripts/sync-white-surfaces.cjs'
       - 'notes/**/index.html'
       - 'scripts/sync-published-content.cjs'
@@ -66,6 +69,8 @@ jobs:
           node --check scripts/sync-white-surfaces.cjs
           node --check scripts/sync-site-shell.cjs
           node --check scripts/test-site-shell.cjs
+          node --check scripts/sync-site-breadcrumbs.cjs
+          node --check scripts/test-site-breadcrumbs.cjs
           node --check scripts/sync-published-content.cjs
           node --check scripts/article-search-text.cjs
           node --check scripts/test-published-content.cjs
@@ -77,6 +82,7 @@ jobs:
           node scripts/sync-project-search.cjs
           node scripts/sync-white-surfaces.cjs
           node scripts/test-site-shell.cjs
+          node scripts/test-site-breadcrumbs.cjs
           node scripts/site-static-check.cjs
           git diff --check
 
