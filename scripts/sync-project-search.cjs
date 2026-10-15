@@ -61,7 +61,7 @@ for(const route of pages){
     if(i<0)throw Error("Search script anchor missing on "+route);
     html=html.slice(0,i)+scriptTag+html.slice(i);
   }
-  const coreTags=[...html.matchAll(/<script src="\\/site-search-core\\.js(?:\\?v=[^"]+)?" defer><\\/script>/g)];
+  const coreTags=[...html.matchAll(/<script src="[/]site-search-core[.]js(?:[?]v=[^"]+)?" defer><[/]script>/g)];
   if(coreTags.length>1)throw Error("Duplicate shared search core "+route);
   if(coreTags.length===1)html=html.replace(coreTags[0][0],coreTag);
   else html=html.replace(scriptTag,scriptTag+coreTag);
