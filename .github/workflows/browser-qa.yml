@@ -36,6 +36,8 @@ jobs:
         run: |
           node --check scripts/site-static-check.cjs
           node scripts/site-static-check.cjs
+          node --check scripts/test-published-content.cjs
+          node scripts/test-published-content.cjs
           node scripts/test-site-search-ui.cjs
           node scripts/test-published-content.cjs
           node scripts/test-site-search-core.cjs
