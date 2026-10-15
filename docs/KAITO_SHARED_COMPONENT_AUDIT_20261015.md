@@ -10,7 +10,7 @@
 | 濃緑フッター | 同一シェル生成元。旧 `.page-footer` 23ページを廃止 | 本番確認済み（PR #36） | 白い読書面のCSSをフッターへ波及させない |
 | パンくず | `data/site-breadcrumbs.v1.json` → `scripts/sync-site-breadcrumbs.cjs` → 下層23ページの `nav.breadcrumb` と BreadcrumbList | 本番確認済み（PR #38） | 新しいsitemap URL追加時は同時に階層マスターを更新。HTMLを個別編集しない |
 | 検索ロジック | HOME `app.js`／下層 `site-search.js` が `site-search-core.js` の公開検索ソース・NFKC・関連度・URLを共有 | 本番確認済み（S-10A、PR #39） | 新規公開記事・プロジェクト追加時のスクリプト同期と6幅QAを維持。正規化・ランキングを各ページに再実装しない |
-| 検索UI・結果カード | HOMEの全体検索と下層検索は `site-search-ui.js` のカード描画を共有。ダイアログは引き続きHOME・下層で別実装 | 実装済み（一部、S-10B1） | PRと本番QA完了後にカード部分を本番確認済みに変更。HOME棚・状態フィルタを維持したままダイアログ構成・フォーカス・操作を追加共通化 |
+| 検索UI・結果カード | HOMEの全体検索と下層検索は `site-search-ui.js` のカード描画を共有。ダイアログはHOME・下層で別実装 | 本番確認済み（S-10B1） | PR #40のXServer配信62/62・Chromium2104/0。棚・状態フィルタと320px文字表示を維持。ダイアログ全体・キーボード操作・フォーカス復帰の統一はS-10B2として次期作業 |
 | 一般記事カード | HOME `app.js` の `entryCard`、下層 `site-content.js` の `noteCard`、静的フォールバック `scripts/sync-published-content.cjs` の `noteCard` | 未着手（S-11） | 同じ `content-index.js` を正規マスターとして、ラベル・リンク・日付・概要・タグ・サムネ・alt・状態の表示契約を作る。HTML文字列の重複を減らす |
 | 関連記事／次に見る | `.article-related`、`.related-band`、記事別の関連リンク、`.project-local-nav` など用途で区別 | 未着手（S-11） | 記事本文・図解の配置と個別選定結果は保存し、カードの構造とスタイルのみ用途別の共有コンポーネントへ |
 | canonical／OG／Twitterメタ | 各公開HTMLのheadに静的記述。 `scripts/site-static-check.cjs` による整合性監査。パンくず構造化データだけ独立マスター | 未着手（S-12） | 記事の正規タイトル/概要/公開日/画像URLを含む共通メタ生成へ移行。Article・BreadcrumbListのJSON-LDと同じURL正規化を使用 |
@@ -37,3 +37,10 @@
 - PR #39 はmainマージ済み。自動同期 run `38665423769` が成功し、キャッシュ版の更新後mainは `705bce7a0c3faf4d2f929495c536cc462b83d41c`。
 - XServer本番QA run `38665443799`: 配信61件すべて一致、Chromium1944項目成功・0失敗。PRブラウザQA run `38665024398` は1948項目成功・0失敗。
 - UIの完全統一（S-10B）は今回のスコープ外。記事本文、図解、検索結果の公開リンクは維持。パンくず・フッター・棚カードの修正を後退させていない。
+
+## S-10B1 本番確認と未完の境界（2026-10-15）
+
+- main統合: PR #40、同期fixture修正PR #42/#41。公開同期 run `38669803664` 成功、本番XServer run `38669830320` 最終62件一致・Chromium2,104/0合格。
+- 共通化済み: HOME・下層のグローバル検索結果カード、公開URL・ARTICLE/PROJECTラベル・タイトル・概要・タグのDOM構成。スマホの棚・状態選択幅を修正。
+- 共通化しないまま維持: HOME棚・状態フィルタ付き検索、ページ固有の記事本文、図解・カード内容。MONO BASEは専用設計。
+- 残作業: S-10B2（検索ダイアログ本体／ヘッダー検索操作／フォーカス復帰・Escapeの完全統一）、S-11（記事・関連記事カード）、S-12（SEOメタ生成元）。本番確認済み範囲と混同しない。
