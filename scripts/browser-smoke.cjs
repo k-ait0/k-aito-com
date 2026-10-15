@@ -378,6 +378,13 @@ const stop=()=>new Promise(resolve=>server.close(resolve));
             check(types.includes("article")&&types.includes("project"),
               mode.name+" HOME search returns both WHYNOT article and KIDP project",JSON.stringify(types));
              await page.screenshot({path:path.join(screens,mode.name+"-search-home-dialog.png"),fullPage:false});
+             if(mode.width<=430){
+               const widths=await page.locator("#archive-dialog .archive-controls select")
+                 .evaluateAll(nodes=>nodes.map(n=>n.getBoundingClientRect().width));
+               check(widths.length===2&&widths.every(w=>w>=110),
+                 mode.name+" HOME shelf and state filter option widths remain readable",
+                 JSON.stringify(widths));
+             }
             await page.locator("#archive-search").fill("駅生活圏");
             const filtered=await page.locator("#archive-results a[data-card-type]").evaluateAll(nodes=>nodes.map(n=>({kind:n.dataset.cardType,href:n.getAttribute("href")})));
             check(filtered.some(n=>n.kind==="project"&&n.href==="/projects/kidp/station-life/")&&filtered.every(n=>n.kind==="project"),
