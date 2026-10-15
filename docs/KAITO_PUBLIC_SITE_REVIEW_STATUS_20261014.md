@@ -62,7 +62,7 @@
 | S-06 | 本番ファイル照合・画像ロード後の視覚確認 | 本番確認済み | XServerで60件の配信ファイル照合成功／0失敗。本番Chromium 1638項目成功／0失敗。QA成果物のSHELVES画像を直接レビュー。実行元はGitHub-hosted runner（手元のDNS接続は不可）。 |
 | S-07 | PR #31 | 本番確認済み | PR #31を再マージせず、必要なフッター差分をPR #36へ吸収し公開版で検証。 |
 | S-08 | MONO BASE PR #33 | 阻害要因あり | Draftのまま別管理。aboutページのcanonical不一致と静的監査未解決は引継ぎ時点の情報。MONO BASEの専用デザイン・ヘッダーは維持。 |
-| S-09 | パンくず・階層生成 | 未着手 | `.breadcrumb` は共通CSSだがラベルと階層のHTMLがページ別。構造化データとの整合を含め別途集約する。 |
+| S-09 | パンくず・階層生成 | 実装済み | 24公開ページのURL/ラベル/親子階層を `data/site-breadcrumbs.v1.json` に集約。下層23ページへ共通 `<nav>` と BreadcrumbList JSON-LD を生成。公開同期・静的テスト・6幅ブラウザQAを追加。PR・CI・本番確認は未完。 |
 | S-10 | 検索インターフェース完全共通化 | 未着手 | HOMEの `app.js` とサブページの `site-search.js` の表示差を調査。現行検索機能は維持。 |
 | S-11 | 記事カード・関連記事・次に見る導線 | 未着手 | HOMEの動的カード、フォールバック記事カード、ページ個別の関連記事・次導線を追加監査。本文と図解は一切変更しない。 |
 | S-12 | メタ情報生成元の一元化 | 未着手 | canonical/OG/Twitterなどは静的監査対象だがHTMLはページ別に重複。テンプレート化は別作業。 |
@@ -97,3 +97,12 @@
 - 照合対象: sitemapの24 URL、`sitemap.xml`、`robots.txt`、CSS/JS/画像/記事図解等、計60件。代表URLは `/`、`/storage/`、`/archive/`、`/projects/`、`/projects/kidp/`、`/about/`、`/notes/media-public-interest-sankei-building/`、`/notes/nuclear-industrial-carrier/`。
 - 実行環境の制約: Chat側からは `k-aito.com` のDNSが引けない。**本番確認済みの根拠はGitHub-hosted runnerによる公開HTTPS取得・バイト照合・Chromium検証・スクリーンショット**。手元からのブラウザ操作を行ったと装わない。
 - 未完了・別管理: MONO BASE Draft PR #33のcanonical等の監査（S-08）、パンくず共通化（S-09）、検索UI完全共通化（S-10）、カード・関連記事・次導線（S-11）、メタ生成テンプレート（S-12）。既存本文・図解は削除していない。
+
+### 2026-10-15 S-09 追加着手（パンくず共通化）
+
+- 作業ブランチ: `refactor/kaito-breadcrumbs-20261015`、着手基点 main `74c1578ed34f603896ff16d041b90d9eb4c73832`。
+- `data/site-breadcrumbs.v1.json` に sitemap24公開URL（トップ含む）を対応付け、従来の表示ラベル・親階層を維持。MONO BASE / noindexツールには適用しない。
+- `scripts/sync-site-breadcrumbs.cjs` で23下層HTMLのパンくずを静的生成。BreadcrumbList JSON-LD は同一データから生成し、HTML文言との差異を防ぐ。
+- `scripts/test-site-breadcrumbs.cjs` でルート・祖先URL・重複・構造化データ・同期の冪等性を検査。公開コンテンツ同期とPRブラウザQAにも連携。
+- まだ作業ブランチ上の実装段階。**本番確認済みとはしない**。PRの静的・ブラウザ検証、main統合後のXServer配信ファイル照合・実画面確認を必要とする。
+- 同時に、別Draft PR #35のユニークな長文ストレス試験を今回のブラウザQAへ取り込み、棚カードの説明文3倍・長い見出しの重なり回帰を確認する。
