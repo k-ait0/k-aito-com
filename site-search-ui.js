@@ -50,5 +50,28 @@
     }
     target.replaceChildren(...items.map(item=>card(item,target.ownerDocument)));
   }
-  return Object.freeze({card,render});
+  /* Shared native-dialog lifecycle. Feature-specific controls stay outside. */
+  function bindDialog(dialog,{queryInput,closeButton,onClose}={}){
+    if(!dialog||dialog.tagName!=="DIALOG"||!queryInput)throw Error("Invalid KAITO search dialog");
+    let returnFocus=null;
+    function open({focusTarget=null}={}){
+      returnFocus=focusTarget||dialog.ownerDocument.activeElement;
+      if(!dialog.open)dialog.showModal();
+      dialog.ownerDocument.body.classList.add("modal-open");
+      dialog.scrollTop=0;
+      queryInput.focus();
+    }
+    if(closeButton)closeButton.addEventListener("click",()=>dialog.close());
+    dialog.addEventListener("click",event=>{if(event.target===dialog)dialog.close();});
+    dialog.addEventListener("close",()=>{
+      dialog.ownerDocument.body.classList.remove("modal-open");
+      if(onClose)onClose();
+      if(returnFocus?.isConnected&&typeof returnFocus.focus==="function"){
+        returnFocus.focus({preventScroll:true});
+      }
+      returnFocus=null;
+    });
+    return Object.freeze({open,close:()=>dialog.close()});
+  }
+  return Object.freeze({card,render,bindDialog});
 });
