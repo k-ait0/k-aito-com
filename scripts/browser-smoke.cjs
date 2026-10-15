@@ -85,6 +85,10 @@ const stop=()=>new Promise(resolve=>server.close(resolve));
             typeof window.KAitoSearchCore.search==="function"&&
             document.querySelectorAll('script[src^="/site-search-core.js"]').length===1),
             mode.name+" "+slug+" shared searchable public source loaded exactly once");
+           check(await page.evaluate(()=>!!window.KAitoSearchUI&&
+             typeof window.KAitoSearchUI.render==="function"&&
+             document.querySelectorAll('script[src^="/site-search-ui.js"]').length===1),
+             mode.name+" "+slug+" shared public search result component loaded once");
 
           const breadcrumb=await page.evaluate(()=>{
             const navs=[...document.querySelectorAll('nav.breadcrumb[aria-label="パンくずリスト"]')];
@@ -373,6 +377,14 @@ const stop=()=>new Promise(resolve=>server.close(resolve));
             const types=await page.locator("#archive-results a[data-card-type]").evaluateAll(nodes=>nodes.map(n=>n.dataset.cardType));
             check(types.includes("article")&&types.includes("project"),
               mode.name+" HOME search returns both WHYNOT article and KIDP project",JSON.stringify(types));
+             await page.screenshot({path:path.join(screens,mode.name+"-search-home-dialog.png"),fullPage:false});
+             if(mode.width<=430){
+               const widths=await page.locator("#archive-dialog .archive-controls select")
+                 .evaluateAll(nodes=>nodes.map(n=>n.getBoundingClientRect().width));
+               check(widths.length===2&&widths.every(w=>w>=110),
+                 mode.name+" HOME shelf and state filter option widths remain readable",
+                 JSON.stringify(widths));
+             }
             await page.locator("#archive-search").fill("駅生活圏");
             const filtered=await page.locator("#archive-results a[data-card-type]").evaluateAll(nodes=>nodes.map(n=>({kind:n.dataset.cardType,href:n.getAttribute("href")})));
             check(filtered.some(n=>n.kind==="project"&&n.href==="/projects/kidp/station-life/")&&filtered.every(n=>n.kind==="project"),
@@ -387,6 +399,7 @@ const stop=()=>new Promise(resolve=>server.close(resolve));
             const types=await page.locator('.site-search-results a[data-search-type]').evaluateAll(nodes=>nodes.map(n=>n.dataset.searchType));
             check(types.includes("article")&&types.includes("project"),
               mode.name+" subpage search returns both WHYNOT article and project",JSON.stringify(types));
+             await page.screenshot({path:path.join(screens,mode.name+"-search-subpage-dialog.png"),fullPage:false});
             await page.locator("#site-search-query").fill("サンケイビル");
             const articleHits=await page.locator('.site-search-results a[data-search-type]').evaluateAll(nodes=>nodes.map(n=>({kind:n.dataset.searchType,href:n.getAttribute("href")})));
             check(articleHits.some(x=>x.kind==="article"&&x.href==="/notes/media-public-interest-sankei-building/"),
@@ -466,6 +479,12 @@ const stop=()=>new Promise(resolve=>server.close(resolve));
         check(subpageSearchUrls.includes("/notes/kidp-002-whynot/")&&
           subpageSearchUrls.includes("/projects/kidp/whynot/"),
           mode.name+" subpage mixed-type global search shares public index");
+         check(await page.locator(".site-search-result").evaluateAll(nodes=>
+           nodes.every(n=>!!n.querySelector(".site-search-kind")&&
+             !!n.querySelector(".site-search-result-title")&&
+             !!n.querySelector(".site-search-result-summary")&&
+             n.dataset.cardType===n.dataset.searchType)),
+           mode.name+" subpage unified accessible result-card contract");
         await page.locator("#site-search-query").fill("原子炉");
         await page.locator("#site-search-query").fill("該当しない単語abc");
         check(await page.locator(".site-search-result").count()===0 &&
@@ -493,7 +512,7 @@ const stop=()=>new Promise(resolve=>server.close(resolve));
         await home.locator("#site-search").press("Enter");
         check(await home.locator("#archive-dialog").evaluate(e=>e.open),
           mode.name+" HOME search dialog opens");
-        check(await home.locator("#archive-results .entry-card").count()===1,
+        check(await home.locator("#archive-results .site-search-result").count()===1,
           mode.name+" HOME full-text search matches");
         await home.locator("#archive-search").fill("ＷＨＹＮＯＴ");
         const homeUrls=await home.locator('#archive-results a[data-card-type]')
@@ -501,6 +520,14 @@ const stop=()=>new Promise(resolve=>server.close(resolve));
         check(homeUrls.join("|")===subpageSearchUrls.join("|")&&homeUrls.length>0,
           mode.name+" HOME/subpage global search parity and NFKC normalization",
           JSON.stringify({homeUrls,subpageSearchUrls}));
+         check(await home.locator("#archive-results").evaluate(grid=>
+            grid.classList.contains("is-global-search")&&
+            [...grid.querySelectorAll("a.site-search-result")].every(a=>
+              a.dataset.cardType===a.dataset.searchType&&
+              !!a.querySelector(".site-search-kind")&&
+              !!a.querySelector(".site-search-result-title")&&
+              !!a.querySelector(".site-search-result-summary"))),
+            mode.name+" HOME global results use same public card contract");
       }catch(e){failures.push(mode.name+" HOME search: "+e.message);}
       finally{await home.close();}
       // Test the noindex roulette beta separately from public sitemap pages.

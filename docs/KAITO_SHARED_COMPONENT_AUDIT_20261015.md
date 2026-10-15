@@ -10,7 +10,7 @@
 | 濃緑フッター | 同一シェル生成元。旧 `.page-footer` 23ページを廃止 | 本番確認済み（PR #36） | 白い読書面のCSSをフッターへ波及させない |
 | パンくず | `data/site-breadcrumbs.v1.json` → `scripts/sync-site-breadcrumbs.cjs` → 下層23ページの `nav.breadcrumb` と BreadcrumbList | 本番確認済み（PR #38） | 新しいsitemap URL追加時は同時に階層マスターを更新。HTMLを個別編集しない |
 | 検索ロジック | HOME `app.js`／下層 `site-search.js` が `site-search-core.js` の公開検索ソース・NFKC・関連度・URLを共有 | 本番確認済み（S-10A、PR #39） | 新規公開記事・プロジェクト追加時のスクリプト同期と6幅QAを維持。正規化・ランキングを各ページに再実装しない |
-| 検索UI・結果カード | HOME `#archive-dialog` と下層 `#site-wide-search-dialog` の異なる画面・絞込UIを維持 | 未着手（S-10B） | フィルター付きHOME検索の機能を落とさず、共通検索ダイアログ・キーボード操作・カード表示の設計を別PRで進める |
+| 検索UI・結果カード | HOMEの全体検索と下層検索は `site-search-ui.js` のカード描画を共有。ダイアログは引き続きHOME・下層で別実装 | 実装済み（一部、S-10B1） | PRと本番QA完了後にカード部分を本番確認済みに変更。HOME棚・状態フィルタを維持したままダイアログ構成・フォーカス・操作を追加共通化 |
 | 一般記事カード | HOME `app.js` の `entryCard`、下層 `site-content.js` の `noteCard`、静的フォールバック `scripts/sync-published-content.cjs` の `noteCard` | 未着手（S-11） | 同じ `content-index.js` を正規マスターとして、ラベル・リンク・日付・概要・タグ・サムネ・alt・状態の表示契約を作る。HTML文字列の重複を減らす |
 | 関連記事／次に見る | `.article-related`、`.related-band`、記事別の関連リンク、`.project-local-nav` など用途で区別 | 未着手（S-11） | 記事本文・図解の配置と個別選定結果は保存し、カードの構造とスタイルのみ用途別の共有コンポーネントへ |
 | canonical／OG／Twitterメタ | 各公開HTMLのheadに静的記述。 `scripts/site-static-check.cjs` による整合性監査。パンくず構造化データだけ独立マスター | 未着手（S-12） | 記事の正規タイトル/概要/公開日/画像URLを含む共通メタ生成へ移行。Article・BreadcrumbListのJSON-LDと同じURL正規化を使用 |
