@@ -6,7 +6,7 @@ const tmp=fs.mkdtempSync(path.join(os.tmpdir(),"kaito-project-search-"));
 const xml=fs.readFileSync(path.join(root,"sitemap.xml"),"utf8");
 const routes=[...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map(x=>new URL(x[1]).pathname);
 try{
-  for(const file of ["sitemap.xml","data/project-card-status.v1.json","scripts/sync-project-search.cjs,"site-search-core.js","site-search.js"]){
+  for(const file of ["sitemap.xml","data/project-card-status.v1.json","scripts/sync-project-search.cjs","site-search-core.js","site-search.js"]){
     const out=path.join(tmp,file);fs.mkdirSync(path.dirname(out),{recursive:true});fs.copyFileSync(path.join(root,file),out);
   }
   for(const route of routes){
