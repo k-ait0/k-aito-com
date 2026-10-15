@@ -17,7 +17,7 @@ function copy(relative) {
 try {
   for(const name of [
     "content-index.js", "sitemap.xml", "storage/index.html",
-    "archive/index.html", "index.html", "app.js", "site-content.js", "site-search.js", "site-search-ui.js",
+    "archive/index.html", "index.html", "app.js", "site-content.js", "site-search.js", "site-search-ui.js", "site-search.css",
     "notes/media-public-interest-sankei-building/index.html",
     "notes/nuclear-industrial-carrier/index.html",
     "notes/site-launch-trouble/index.html",
