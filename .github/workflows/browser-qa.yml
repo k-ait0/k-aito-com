@@ -33,6 +33,7 @@ jobs:
         run: |
           node --check scripts/site-static-check.cjs
           node scripts/site-static-check.cjs
+          node scripts/test-site-search-core.cjs
           node --check scripts/sync-site-shell.cjs
           node scripts/test-site-shell.cjs
           node scripts/test-site-breadcrumbs.cjs
