@@ -68,6 +68,8 @@ function openArchive({query="",shelf="all",projects=false}={}){
 const searchCore=window.KAitoSearchCore;
 if(!searchCore)throw Error("KAITO shared search core did not load");
 const normalize=searchCore.normalize;
+const searchUI=window.KAitoSearchUI;
+if(!searchUI)throw Error("KAITO shared search UI did not load");
 const searchSources=searchCore.sources(window.KAitoContent,
   Array.isArray(window.KAitoProjects)?window.KAitoProjects:[]);
 function matchingEntries(){
@@ -91,16 +93,14 @@ function renderArchive(){
     const selected=searchCore.search(searchSources,query,{projectsOnly});
     const notes=selected.filter(x=>x.type==="ARTICLE").length;
     document.getElementById("results-count").textContent=`${selected.length} 件（記事 ${notes}・プロジェクト ${selected.length-notes}）`;
-    document.getElementById("archive-results").innerHTML=selected.length?selected.map(item=>
-      `<a class="entry-card entry-card-link text-card" data-card-type="${item.type.toLowerCase()}" href="${esc(item.url)}">
-        <span class="card-copy"><span class="card-kind">${item.type}</span>
-          <span class="state">${esc(item.state)}</span>
-          <span class="card-title">${esc(item.title)}</span>
-          <span class="card-summary">${esc(item.summary)}</span>
-          <span class="card-arrow" aria-hidden="true">→</span>
-        </span></a>`).join(""):`<div class="empty-state"><strong>一致する公開記事・プロジェクトはありません。</strong><p>短いキーワードでもう一度検索してください。</p></div>`;
+    const grid=document.getElementById("archive-results");
+    grid.classList.add("is-global-search");
+    searchUI.render(grid,selected,{
+      emptyText:"一致する公開記事・プロジェクトはありません。短いキーワードでもう一度検索してください。"
+    });
     return;
   }
+  document.getElementById("archive-results").classList.remove("is-global-search");
   const found=matchingEntries();
   document.getElementById("results-count").textContent=`${found.length} 件の公開記事`;
   document.getElementById("archive-results").innerHTML=found.length?found.map(entry=>entryCard(entry)).join(''):`<div class="empty-state"><strong>この条件のものは、まだありません。</strong><p>別のことばで探すか、棚や状態の条件を変えてみてください。</p></div>`;
