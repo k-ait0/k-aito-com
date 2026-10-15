@@ -59,17 +59,21 @@ function openDialog(dialog){
   document.body.classList.add("modal-open");
   dialog.scrollTop=0;
 }
-function openArchive({query="",shelf="all",projects=false}={}){
+function openArchive({query="",shelf="all",projects=false,returnFocus=null}={}){
   archiveSearch.value=query;shelfSelect.value=shelf;stateSelect.value="all";projectsOnly=projects;
   document.getElementById("archive-title").textContent=projects?"進行中のプロジェクト":"物置の中を探す";
-  renderArchive();openDialog(archiveDialog);
-  if(query)archiveSearch.focus();
+  renderArchive();archiveModal.open({focusTarget:returnFocus});
 }
 const searchCore=window.KAitoSearchCore;
 if(!searchCore)throw Error("KAITO shared search core did not load");
 const normalize=searchCore.normalize;
 const searchUI=window.KAitoSearchUI;
 if(!searchUI)throw Error("KAITO shared search UI did not load");
+const archiveModal=searchUI.bindDialog(archiveDialog,{
+  queryInput:archiveSearch,
+  closeButton:archiveDialog.querySelector("[data-close-dialog]"),
+  onClose:()=>document.getElementById("search-form").classList.remove("is-open")
+});
 const searchSources=searchCore.sources(window.KAitoContent,
   Array.isArray(window.KAitoProjects)?window.KAitoProjects:[]);
 function matchingEntries(){
@@ -122,7 +126,8 @@ document.addEventListener("click",event=>{
   const shelf=event.target.closest("[data-shelf]");if(shelf){openArchive({shelf:shelf.dataset.shelf});return;}
   if(event.target.closest("[data-open-archive]")){openArchive();return;}
   if(event.target.closest("[data-project-archive]")){openArchive({projects:true});return;}
-  const close=event.target.closest("[data-close-dialog]");if(close)close.closest("dialog").close();
+  const close=event.target.closest("[data-close-dialog]");
+  if(close&&close.closest("dialog")===entryDialog)entryDialog.close();
 });
 document.getElementById("search-form").addEventListener("submit",event=>{
   event.preventDefault();
@@ -134,22 +139,17 @@ document.getElementById("search-form").addEventListener("submit",event=>{
   if(document.activeElement&&document.getElementById("search-form").contains(document.activeElement)){
     document.activeElement.blur();
   }
-  openArchive({query:searchTerm});
+  openArchive({query:searchTerm,returnFocus:document.querySelector('#search-form button[type="submit"]')});
 });
 document.getElementById("archive-search-form").addEventListener("submit",event=>{event.preventDefault();renderArchive();});
 archiveSearch.addEventListener("input",renderArchive);shelfSelect.addEventListener("change",renderArchive);stateSelect.addEventListener("change",renderArchive);
 document.getElementById("reset-filters").addEventListener("click",()=>{archiveSearch.value="";shelfSelect.value="all";stateSelect.value="all";renderArchive();archiveSearch.focus();});
 
-for(const dialog of [archiveDialog,entryDialog]){
+for(const dialog of [entryDialog]){
   dialog.addEventListener("click",event=>{if(event.target===dialog)dialog.close();});
   dialog.addEventListener("close",()=>{
     document.body.classList.remove("modal-open");
-    const opener=dialogOpeners.get(dialog),searchForm=document.getElementById("search-form");
-    if(dialog===archiveDialog)searchForm.classList.remove("is-open");
-    // Restoring focus to the header search input would leave the mobile overlay expanded.
-    if(opener&&opener.focus&&!searchForm.contains(opener))opener.focus();
-    if(dialog===archiveDialog&&searchForm.contains(document.activeElement)){
-      document.activeElement.blur();
-    }
+    const opener=dialogOpeners.get(dialog);
+    if(opener&&opener.isConnected&&opener.focus)opener.focus({preventScroll:true});
   });
 }
