@@ -40,6 +40,14 @@ if(!fs.existsSync(outFile)||fs.readFileSync(outFile,"utf8")!==output){
 }
 const hash=crypto.createHash("sha256").update(output).digest("hex").slice(0,12);
 const scriptTag='<script src="/project-search-index.js?v='+hash+'" defer></script>';
+const coreSource=fs.readFileSync(path.join(root,"site-search-core.js"),"utf8");
+const coreHash=crypto.createHash("sha1").update("blob "+Buffer.byteLength(coreSource)+"\0")
+  .update(coreSource).digest("hex").slice(0,12);
+const coreTag='<script src="/site-search-core.js?v='+coreHash+'" defer></script>';
+const searchSource=fs.readFileSync(path.join(root,"site-search.js"),"utf8");
+const searchHash=crypto.createHash("sha1").update("blob "+Buffer.byteLength(searchSource)+"\0")
+  .update(searchSource).digest("hex").slice(0,12);
+
 const pages=[...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(x=>new URL(x[1].trim()).pathname);
 let changed=0;
 for(const route of pages){
@@ -54,8 +62,17 @@ for(const route of pages){
     if(i<0)throw Error("Search script anchor missing on "+route);
     html=html.slice(0,i)+scriptTag+html.slice(i);
   }
-  // This search implementation replaces the previous article-only header search.
-  if(route!=="/")html=html.replace(/\/site-search\.js\?v=[a-zA-Z0-9-]+/g,"/site-search.js?v=20261009-cross1");
+  const coreTags=[...html.matchAll(/<script src="[/]site-search-core[.]js(?:[?]v=[^"]+)?" defer><[/]script>/g)];
+  if(coreTags.length>1)throw Error("Duplicate shared search core "+route);
+  if(coreTags.length===1)html=html.replace(coreTags[0][0],coreTag);
+  else html=html.replace(scriptTag,scriptTag+coreTag);
+  const projectPosition=html.indexOf('src="/project-search-index.js?');
+  const corePosition=html.indexOf('src="/site-search-core.js?');
+  const uiPosition=html.indexOf(route==="/"?'/app.js?':'/site-search.js?');
+  if(projectPosition<0||corePosition<projectPosition||uiPosition<corePosition)
+    throw Error("Shared search dependencies out of order "+route);
+  // Always invalidate global subpage search JavaScript on implementation changes.
+  if(route!=="/")html=html.replace(/\/site-search\.js\?v=[a-zA-Z0-9-]+/g,"/site-search.js?v="+searchHash);
   html=html.replace(/\/site-search\.css\?v=[a-zA-Z0-9-]+/g,"/site-search.css?v=20261009-cross1");
   const first=html.indexOf('src="/project-search-index.js?');
   const second=html.indexOf(route==="/"?'/app.js?':'/site-search.js?');

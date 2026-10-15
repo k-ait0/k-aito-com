@@ -37,10 +37,10 @@
   const queryInput=document.getElementById("site-search-query");
   const list=dialog.querySelector(".site-search-results");
   const count=dialog.querySelector(".site-search-count");
-  const normalize=value=>String(value||"").normalize("NFKC").toLocaleLowerCase("ja").trim();
-  const shelfName=id=>(catalogue.shelves.find(item=>item.id===id)||{}).name||"";
-  const published=catalogue.entries.filter(entry=>entry.url&&entry.url.startsWith("/notes/"));
-  const projects=Array.isArray(window.KAitoProjects)?window.KAitoProjects:[];
+  const searchCore=window.KAitoSearchCore;
+  if(!searchCore)throw Error("KAITO shared search core did not load");
+  const sources=searchCore.sources(catalogue,
+    Array.isArray(window.KAitoProjects)?window.KAitoProjects:[]);
 
   function expand(){
     form.classList.add("is-open");
@@ -57,29 +57,8 @@
   }
   // Search both public article prose and published project pages; never index noindex betas.
   function render(){
-    const words=normalize(queryInput.value).split(/\s+/).filter(Boolean);
-    const sources=[
-      ...published.map(entry=>({
-        type:"ARTICLE",title:entry.title,url:entry.url,summary:entry.summary,
-        metadata:[entry.state,entry.date,shelfName(entry.shelf)].filter(Boolean).join(" / "),
-        tags:entry.tags||[],
-        searchText:[entry.title,entry.summary,entry.state,shelfName(entry.shelf),
-          ...(entry.tags||[]),entry.searchText||""].join(" ")
-      })),
-      ...projects.map(p=>({
-        type:"PROJECT",title:p.title,url:p.url,summary:p.summary,
-        metadata:[p.stage,p.access].filter(Boolean).join(" / "),
-        tags:[],
-        searchText:[p.title,p.summary,p.stage,p.access,p.searchText||""].join(" ")
-      }))
-    ];
-    const found=sources.map(item=>{
-      const haystack=normalize(item.searchText);
-      if(!words.every(word=>haystack.includes(word)))return null;
-      const title=normalize(item.title),description=normalize(item.summary);
-      const relevance=words.reduce((n,w)=>n+(title.includes(w)?6:description.includes(w)?3:1),0);
-      return {...item,relevance};
-    }).filter(Boolean).sort((a,b)=>b.relevance-a.relevance||a.type.localeCompare(b.type));
+    const words=searchCore.tokens(queryInput.value);
+    const found=searchCore.search(sources,queryInput.value);
     list.replaceChildren();
     const articleCount=found.filter(x=>x.type==="ARTICLE").length;
     count.textContent=found.length+" 件（記事 "+articleCount+"・プロジェクト "+(found.length-articleCount)+"）"+(words.length?"が見つかりました":"を公開中");

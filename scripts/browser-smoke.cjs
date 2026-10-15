@@ -81,6 +81,10 @@ const stop=()=>new Promise(resolve=>server.close(resolve));
           check(valid.visibleH1===1,mode.name+" "+slug+" one visible heading",JSON.stringify(valid));
           check(valid.overflow<=2,mode.name+" "+slug+" no horizontal overflow",JSON.stringify(valid));
           check(valid.header&&valid.search,mode.name+" "+slug+" header and search",JSON.stringify(valid));
+          check(await page.evaluate(()=>!!window.KAitoSearchCore&&
+            typeof window.KAitoSearchCore.search==="function"&&
+            document.querySelectorAll('script[src^="/site-search-core.js"]').length===1),
+            mode.name+" "+slug+" shared searchable public source loaded exactly once");
 
           const breadcrumb=await page.evaluate(()=>{
             const navs=[...document.querySelectorAll('nav.breadcrumb[aria-label="パンくずリスト"]')];
@@ -441,6 +445,7 @@ const stop=()=>new Promise(resolve=>server.close(resolve));
         }catch(e){failures.push(mode.name+" "+slug+": "+e.message);console.error("FAIL",mode.name,slug,e);}
         finally{await page.close();}
       }
+      let subpageSearchUrls=[];
       const page=await context.newPage();
       const searchErrors=[];
       page.on("pageerror",e=>searchErrors.push(e.message));
@@ -455,6 +460,13 @@ const stop=()=>new Promise(resolve=>server.close(resolve));
           mode.name+" subpage search dialog opens");
         check(await page.locator(".site-search-result").count()===1,
           mode.name+" subpage full-text search matches one");
+        await page.locator("#site-search-query").fill("WHYNOT");
+        subpageSearchUrls=await page.locator(".site-search-result")
+          .evaluateAll(nodes=>nodes.map(n=>new URL(n.href).pathname).sort());
+        check(subpageSearchUrls.includes("/notes/kidp-002-whynot/")&&
+          subpageSearchUrls.includes("/projects/kidp/whynot/"),
+          mode.name+" subpage mixed-type global search shares public index");
+        await page.locator("#site-search-query").fill("原子炉");
         await page.locator("#site-search-query").fill("該当しない単語abc");
         check(await page.locator(".site-search-result").count()===0 &&
           await page.locator(".site-search-empty").count()===1,
@@ -483,6 +495,12 @@ const stop=()=>new Promise(resolve=>server.close(resolve));
           mode.name+" HOME search dialog opens");
         check(await home.locator("#archive-results .entry-card").count()===1,
           mode.name+" HOME full-text search matches");
+        await home.locator("#archive-search").fill("ＷＨＹＮＯＴ");
+        const homeUrls=await home.locator('#archive-results a[data-card-type]')
+          .evaluateAll(nodes=>nodes.map(n=>new URL(n.href).pathname).sort());
+        check(homeUrls.join("|")===subpageSearchUrls.join("|")&&homeUrls.length>0,
+          mode.name+" HOME/subpage global search parity and NFKC normalization",
+          JSON.stringify({homeUrls,subpageSearchUrls}));
       }catch(e){failures.push(mode.name+" HOME search: "+e.message);}
       finally{await home.close();}
       // Test the noindex roulette beta separately from public sitemap pages.

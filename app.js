@@ -65,7 +65,11 @@ function openArchive({query="",shelf="all",projects=false}={}){
   renderArchive();openDialog(archiveDialog);
   if(query)archiveSearch.focus();
 }
-const normalize = value=>value.normalize('NFKC').toLocaleLowerCase('ja').trim();
+const searchCore=window.KAitoSearchCore;
+if(!searchCore)throw Error("KAITO shared search core did not load");
+const normalize=searchCore.normalize;
+const searchSources=searchCore.sources(window.KAitoContent,
+  Array.isArray(window.KAitoProjects)?window.KAitoProjects:[]);
 function matchingEntries(){
   const query=normalize(archiveSearch.value);
   const words=query.split(/\s+/).filter(Boolean);
@@ -84,22 +88,7 @@ function renderArchive(){
   const words=query.split(/\s+/).filter(Boolean);
   const allFilters=shelfSelect.value==="all"&&stateSelect.value==="all";
   if((words.length&&allFilters)||projectsOnly){
-    const projectIndex=Array.isArray(window.KAitoProjects)?window.KAitoProjects:[];
-    const articleList=entries.filter(e=>e.url&&e.url.startsWith("/notes/")).map(e=>({
-      type:"ARTICLE",url:e.url,title:e.title,summary:e.summary,state:e.state,
-      text:[e.title,e.summary,e.state,...(e.tags||[]),e.searchText||""].join(" ")
-    }));
-    const projectList=projectIndex.map(p=>({
-      type:"PROJECT",url:p.url,title:p.title,summary:p.summary,state:p.stage,
-      text:[p.title,p.summary,p.stage,p.access,p.searchText||""].join(" ")
-    }));
-    const selected=(projectsOnly?projectList:[...articleList,...projectList])
-      .map(item=>{
-        const normal=normalize(item.text);
-        if(!words.every(word=>normal.includes(word)))return null;
-        const title=normalize(item.title),summary=normalize(item.summary);
-        return {...item,score:words.reduce((n,w)=>n+(title.includes(w)?6:summary.includes(w)?3:1),0)};
-      }).filter(Boolean).sort((a,b)=>b.score-a.score||a.type.localeCompare(b.type));
+    const selected=searchCore.search(searchSources,query,{projectsOnly});
     const notes=selected.filter(x=>x.type==="ARTICLE").length;
     document.getElementById("results-count").textContent=`${selected.length} 件（記事 ${notes}・プロジェクト ${selected.length-notes}）`;
     document.getElementById("archive-results").innerHTML=selected.length?selected.map(item=>

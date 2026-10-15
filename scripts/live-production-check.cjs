@@ -25,7 +25,7 @@ if(!pages.length||new Set(pages).size!==pages.length){
 }
 const resources=[
   "/content-index.js","/project-search-index.js","/app.js","/site-enhance.js","/site-content.js",
-  "/site-search.js","/site-search.css","/image-fix.css","/homepage.css",
+  "/site-search.js","/site-search-core.js","/site-search.css","/image-fix.css","/homepage.css",
   "/subpages.css","/article-reading.css","/discovery-v1.css","/cards-v1.css","/thumbnail-v1.css","/white-surfaces-v1.css","/og-image.png","/assets/brand/kite-mark.png",
   "/assets/editorial/about-profile.webp","/assets/editorial/archive-library.webp",
   "/assets/editorial/tabi-route.webp","/assets/editorial/finowa-workspace.webp",
