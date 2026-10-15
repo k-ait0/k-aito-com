@@ -82,6 +82,25 @@ const stop=()=>new Promise(resolve=>server.close(resolve));
           check(valid.overflow<=2,mode.name+" "+slug+" no horizontal overflow",JSON.stringify(valid));
           check(valid.header&&valid.search,mode.name+" "+slug+" header and search",JSON.stringify(valid));
 
+          const breadcrumb=await page.evaluate(()=>{
+            const navs=[...document.querySelectorAll('nav.breadcrumb[aria-label="パンくずリスト"]')];
+            const nav=navs[0];
+            const script=document.querySelector('script[data-site-breadcrumbs]');
+            let parsed=null;
+            if(script){try{parsed=JSON.parse(script.textContent);}catch{}}
+            return {count:navs.length,active:nav?.querySelectorAll('[aria-current="page"]').length||0,
+              parentHrefs:[...(nav?.querySelectorAll("a")||[])].map(a=>a.getAttribute("href")),
+              ldType:parsed?.["@type"],ldCount:parsed?.itemListElement?.length||0,
+              lastUrl:parsed?.itemListElement?.at(-1)?.item||null};
+          });
+          check(slug==="/"?(breadcrumb.count===0&&breadcrumb.ldCount===0):
+            (breadcrumb.count===1&&breadcrumb.active===1&&
+             breadcrumb.parentHrefs[0]==="/"&&breadcrumb.ldType==="BreadcrumbList"&&
+             breadcrumb.ldCount>=2&&breadcrumb.lastUrl==="https://k-aito.com"+slug),
+            mode.name+" "+slug+" canonical breadcrumb and structured data",
+            JSON.stringify(breadcrumb));
+
+
           const shell=await page.evaluate(()=>{
             const header=document.querySelector(".site-header");
             const footer=document.querySelector(".site-footer");
