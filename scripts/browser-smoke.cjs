@@ -263,6 +263,32 @@ const stop=()=>new Promise(resolve=>server.close(resolve));
             check(layout.length===7&&layout.every(x=>x.valid),
               mode.name+" SHELVES all 7 image, label, copy and arrow tracks do not overlap",
               JSON.stringify(layout));
+
+            const longCopy=await page.evaluate(()=>{
+              const card=document.querySelectorAll(".storage-shelf")[5];
+              const title=card?.querySelector("h2"),description=card?.querySelector("p");
+              const label=card?.querySelector(".eyebrow"),status=card?.querySelector("small");
+              const arrow=card?.querySelector(".storage-arrow"),image=card?.querySelector("img");
+              if(!card||!title||!description||!label||!status||!arrow||!image)return false;
+              const originalTitle=title.textContent,originalDescription=description.textContent;
+              const rect=el=>el.getBoundingClientRect();
+              try{
+                title.textContent=originalTitle+"・新規開発と長期構想の取り組み";
+                description.textContent=Array(3).fill(originalDescription).join(" ");
+                const [i,l,h,p,s,a,c]=[image,label,title,description,status,arrow,card].map(rect);
+                const overlaps=(x,y)=>x.right>y.left+1&&x.left<y.right-1&&
+                  x.bottom>y.top+1&&x.top<y.bottom-1;
+                return l.top>=i.bottom-1&&h.top>=l.bottom-1&&
+                  p.top>=h.bottom-1&&s.top>=p.bottom-1&&
+                  !overlaps(s,a)&&s.bottom<=c.bottom+2&&a.bottom<=c.bottom+2&&
+                  card.scrollHeight<=card.clientHeight+2;
+              }finally{
+                title.textContent=originalTitle;
+                description.textContent=originalDescription;
+              }
+            });
+            check(longCopy,mode.name+" SHELVES longer title and tripled description do not overlap");
+
           }
           if(slug==="/storage/"){
             const shelves=await page.evaluate(()=>{
