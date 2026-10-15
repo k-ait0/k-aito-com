@@ -17,6 +17,7 @@ on:
       - 'project-search-index.js'
       - 'site-search.js'
       - 'site-search-ui.js'
+      - 'scripts/test-site-search-ui.cjs'
       - 'site-search.css'
       - 'site-search-core.js'
       - 'scripts/test-site-search-core.cjs'
@@ -71,6 +72,7 @@ jobs:
           node --check scripts/test-project-search.cjs
           node --check site-search.js
           node --check site-search-ui.js
+          node --check scripts/test-site-search-ui.cjs
           node --check site-search-core.js
           node --check scripts/test-site-search-core.cjs
           node --check scripts/sync-white-surfaces.cjs
@@ -90,6 +92,7 @@ jobs:
           node scripts/sync-project-search.cjs
           node scripts/sync-white-surfaces.cjs
           node scripts/test-site-shell.cjs
+          node scripts/test-site-search-ui.cjs
           node scripts/test-site-breadcrumbs.cjs
           node scripts/site-static-check.cjs
           git diff --check
