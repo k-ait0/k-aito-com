@@ -1,5 +1,5 @@
 "use strict";
-/* Shared header search for subpages. HOME uses its existing search dialog. */
+/* Subpage header search. Dialog behavior and cards are shared with HOME. */
 (function(){
   if(!document.body.classList.contains("subpage"))return;
   const catalogue=window.KAitoContent;
@@ -43,6 +43,11 @@
   if(!searchUI)throw Error("KAITO shared search UI did not load");
   const sources=searchCore.sources(catalogue,
     Array.isArray(window.KAitoProjects)?window.KAitoProjects:[]);
+  const searchDialog=searchUI.bindDialog(dialog,{
+    queryInput,
+    closeButton:dialog.querySelector(".site-search-dismiss"),
+    onClose:()=>collapse(false)
+  });
 
   function expand(){
     form.classList.add("is-open");
@@ -71,14 +76,10 @@
     queryInput.value=input.value;
     collapse(false);
     render();
-    if(!dialog.open)dialog.showModal();
-    queryInput.focus();
+    searchDialog.open({focusTarget:trigger});
   });
   close.addEventListener("click",()=>collapse(true));
   queryInput.addEventListener("input",render);
-  dialog.querySelector(".site-search-dismiss").addEventListener("click",()=>dialog.close());
-  dialog.addEventListener("click",event=>{if(event.target===dialog)dialog.close();});
-  dialog.addEventListener("close",()=>trigger.focus({preventScroll:true}));
   document.addEventListener("keydown",event=>{
     if(event.key==="Escape"&&form.classList.contains("is-open")&&!dialog.open){
       event.preventDefault();collapse(true);
