@@ -25,7 +25,7 @@ for(const route of urls){
   assert.deepEqual(data.itemListElement.map(x=>x.item),trail(route).map(x=>"https://k-aito.com"+x.url));
   assert.equal((generated.markup.match(/aria-current="page"/g)||[]).length,1);
   for(const parent of trail(route).slice(0,-1)){
-    const local=parent.url==="/":"index.html":path.join(parent.url.slice(1),"index.html");
+    const local=parent.url==="/"?"index.html":path.join(parent.url.slice(1),"index.html");
     if(local!=="index.html")assert.ok(fs.existsSync(path.join(root,local)),"Missing breadcrumb parent "+local);
   }
 }
