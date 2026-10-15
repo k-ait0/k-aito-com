@@ -45,7 +45,8 @@ const coreHash=crypto.createHash("sha1").update("blob "+Buffer.byteLength(coreSo
   .update(coreSource).digest("hex").slice(0,12);
 const coreTag='<script src="/site-search-core.js?v='+coreHash+'" defer></script>';
 const searchSource=fs.readFileSync(path.join(root,"site-search.js"),"utf8");
-const searchHash=crypto.createHash("sha256").update(searchSource).digest("hex").slice(0,12);
+const searchHash=crypto.createHash("sha1").update("blob "+Buffer.byteLength(searchSource)+"\0")
+  .update(searchSource).digest("hex").slice(0,12);
 
 const pages=[...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(x=>new URL(x[1].trim()).pathname);
 let changed=0;
