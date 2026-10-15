@@ -377,6 +377,7 @@ const stop=()=>new Promise(resolve=>server.close(resolve));
             const types=await page.locator("#archive-results a[data-card-type]").evaluateAll(nodes=>nodes.map(n=>n.dataset.cardType));
             check(types.includes("article")&&types.includes("project"),
               mode.name+" HOME search returns both WHYNOT article and KIDP project",JSON.stringify(types));
+             await page.screenshot({path:path.join(screens,mode.name+"-search-home-dialog.png"),fullPage:false});
             await page.locator("#archive-search").fill("駅生活圏");
             const filtered=await page.locator("#archive-results a[data-card-type]").evaluateAll(nodes=>nodes.map(n=>({kind:n.dataset.cardType,href:n.getAttribute("href")})));
             check(filtered.some(n=>n.kind==="project"&&n.href==="/projects/kidp/station-life/")&&filtered.every(n=>n.kind==="project"),
@@ -391,6 +392,7 @@ const stop=()=>new Promise(resolve=>server.close(resolve));
             const types=await page.locator('.site-search-results a[data-search-type]').evaluateAll(nodes=>nodes.map(n=>n.dataset.searchType));
             check(types.includes("article")&&types.includes("project"),
               mode.name+" subpage search returns both WHYNOT article and project",JSON.stringify(types));
+             await page.screenshot({path:path.join(screens,mode.name+"-search-subpage-dialog.png"),fullPage:false});
             await page.locator("#site-search-query").fill("サンケイビル");
             const articleHits=await page.locator('.site-search-results a[data-search-type]').evaluateAll(nodes=>nodes.map(n=>({kind:n.dataset.searchType,href:n.getAttribute("href")})));
             check(articleHits.some(x=>x.kind==="article"&&x.href==="/notes/media-public-interest-sankei-building/"),
