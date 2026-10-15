@@ -9,7 +9,8 @@
 | ロゴ／共通ヘッダー | トップHTMLを正規元とし `scripts/sync-site-shell.cjs` で他23公開ページへ同期 | 本番確認済み（PR #36） | メニュー変更時は全24ページ同期無差分・公開版操作確認を必須にする |
 | 濃緑フッター | 同一シェル生成元。旧 `.page-footer` 23ページを廃止 | 本番確認済み（PR #36） | 白い読書面のCSSをフッターへ波及させない |
 | パンくず | `data/site-breadcrumbs.v1.json` → `scripts/sync-site-breadcrumbs.cjs` → 下層23ページの `nav.breadcrumb` と BreadcrumbList | 本番確認済み（PR #38） | 新しいsitemap URL追加時は同時に階層マスターを更新。HTMLを個別編集しない |
-| 検索 | HOMEは `app.js` の検索・`#search-form` と `#archive-dialog`、下層は `site-search.js` の動的フォーム・専用結果ダイアログ | 未着手（S-10） | 結果生成・日本語NFKC正規化・検索順位・記事/プロジェクトの対象集合・URL生成を共通の純粋関数へ集約。見た目と対話モデルは回帰確認後に統一 |
+| 検索ロジック | HOME `app.js`／下層 `site-search.js` が `site-search-core.js` の公開検索ソース・NFKC・関連度・URLを共有 | 本番確認済み（S-10A、PR #39） | 新規公開記事・プロジェクト追加時のスクリプト同期と6幅QAを維持。正規化・ランキングを各ページに再実装しない |
+| 検索UI・結果カード | HOME `#archive-dialog` と下層 `#site-wide-search-dialog` の異なる画面・絞込UIを維持 | 未着手（S-10B） | フィルター付きHOME検索の機能を落とさず、共通検索ダイアログ・キーボード操作・カード表示の設計を別PRで進める |
 | 一般記事カード | HOME `app.js` の `entryCard`、下層 `site-content.js` の `noteCard`、静的フォールバック `scripts/sync-published-content.cjs` の `noteCard` | 未着手（S-11） | 同じ `content-index.js` を正規マスターとして、ラベル・リンク・日付・概要・タグ・サムネ・alt・状態の表示契約を作る。HTML文字列の重複を減らす |
 | 関連記事／次に見る | `.article-related`、`.related-band`、記事別の関連リンク、`.project-local-nav` など用途で区別 | 未着手（S-11） | 記事本文・図解の配置と個別選定結果は保存し、カードの構造とスタイルのみ用途別の共有コンポーネントへ |
 | canonical／OG／Twitterメタ | 各公開HTMLのheadに静的記述。 `scripts/site-static-check.cjs` による整合性監査。パンくず構造化データだけ独立マスター | 未着手（S-12） | 記事の正規タイトル/概要/公開日/画像URLを含む共通メタ生成へ移行。Article・BreadcrumbListのJSON-LDと同じURL正規化を使用 |
@@ -30,3 +31,9 @@
 - XServer本番 run: https://github.com/k-ait0/k-aito-com/actions/runs/38662372824 — 配信60件成功・0失敗、本番Chromium1788件成功・0失敗。幅は320/375/390/430/768/1440px。
 - ブラウザQAは公開24ページの画像・検索・グローバルUI・横はみ出しを検査。棚カード7枚の画像読込後判定と説明文3倍ストレスが6幅で成功。
 - 今回作業による既存記事の本文・図解・既存カード項目の削除はなし。上記S-10～S-12は**調査・設計段階**であり、実装済みや本番確認済みではない。
+
+## S-10A 更新（2026-10-15）
+
+- PR #39 はmainマージ済み。自動同期 run `38665423769` が成功し、キャッシュ版の更新後mainは `705bce7a0c3faf4d2f929495c536cc462b83d41c`。
+- XServer本番QA run `38665443799`: 配信61件すべて一致、Chromium1944項目成功・0失敗。PRブラウザQA run `38665024398` は1948項目成功・0失敗。
+- UIの完全統一（S-10B）は今回のスコープ外。記事本文、図解、検索結果の公開リンクは維持。パンくず・フッター・棚カードの修正を後退させていない。
