@@ -11,6 +11,9 @@ on:
       - '*.css'
       - '*.js'
       - 'scripts/browser-smoke.cjs'
+      - 'site-search-ui.js'
+      - 'site-search.css'
+      - 'scripts/test-site-search-ui.cjs'
       - 'scripts/site-static-check.cjs'
       - '.github/workflows/browser-qa.yml'
   workflow_dispatch:
