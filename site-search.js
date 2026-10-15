@@ -39,6 +39,8 @@
   const count=dialog.querySelector(".site-search-count");
   const searchCore=window.KAitoSearchCore;
   if(!searchCore)throw Error("KAITO shared search core did not load");
+  const searchUI=window.KAitoSearchUI;
+  if(!searchUI)throw Error("KAITO shared search UI did not load");
   const sources=searchCore.sources(catalogue,
     Array.isArray(window.KAitoProjects)?window.KAitoProjects:[]);
 
@@ -59,39 +61,9 @@
   function render(){
     const words=searchCore.tokens(queryInput.value);
     const found=searchCore.search(sources,queryInput.value);
-    list.replaceChildren();
     const articleCount=found.filter(x=>x.type==="ARTICLE").length;
     count.textContent=found.length+" 件（記事 "+articleCount+"・プロジェクト "+(found.length-articleCount)+"）"+(words.length?"が見つかりました":"を公開中");
-    if(!found.length){
-      const empty=document.createElement("p");
-      empty.className="site-search-empty";
-      empty.textContent="一致する公開記事・プロジェクトはありません。別のキーワードで探してください。";
-      list.append(empty);return;
-    }
-    for(const entry of found){
-      const card=document.createElement("a");
-      card.className="site-search-result";
-      card.dataset.searchType=entry.type.toLowerCase();
-      card.href=entry.url;
-      const meta=document.createElement("span");
-      meta.className="site-search-result-meta";
-      const kind=document.createElement("b");
-      kind.className="site-search-kind";
-      kind.textContent=entry.type;
-      meta.append(kind,document.createTextNode(" "+entry.metadata));
-      const title=document.createElement("strong");
-      title.textContent=entry.title;
-      const summary=document.createElement("span");
-      summary.className="site-search-result-summary";
-      summary.textContent=entry.summary;
-      card.append(meta,title,summary);
-      if(entry.tags.length){
-        const tags=document.createElement("small");
-        tags.textContent=entry.tags.map(tag=>"#"+tag).join("  ");
-        card.append(tags);
-      }
-      list.append(card);
-    }
+    searchUI.render(list,found);
   }
   form.addEventListener("submit",event=>{
     event.preventDefault();
