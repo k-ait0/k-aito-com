@@ -61,17 +61,35 @@
       dialog.scrollTop=0;
       queryInput.focus();
     }
-    if(closeButton)closeButton.addEventListener("click",()=>dialog.close());
-    dialog.addEventListener("click",event=>{if(event.target===dialog)dialog.close();});
-    dialog.addEventListener("close",()=>{
+    function finishClose(){
+      // The native "close" event is asynchronous; restore focus before the
+      // next interaction, and ignore a queued event after a quick reopen.
+      if(dialog.open||!returnFocus)return;
+      const target=returnFocus;
+      returnFocus=null;
       dialog.ownerDocument.body.classList.remove("modal-open");
       if(onClose)onClose();
-      if(returnFocus?.isConnected&&typeof returnFocus.focus==="function"){
-        returnFocus.focus({preventScroll:true});
+      if(target.isConnected&&typeof target.focus==="function"){
+        target.focus({preventScroll:true});
       }
-      returnFocus=null;
+    }
+    function close(){
+      if(dialog.open)dialog.close();
+      finishClose();
+    }
+    if(closeButton)closeButton.addEventListener("click",close);
+    dialog.addEventListener("click",event=>{if(event.target===dialog)close();});
+    // Escape is sometimes consumed by input[type="search"] to clear its text.
+    // Make the modal semantics deterministic for keyboard users.
+    dialog.addEventListener("keydown",event=>{
+      if(event.key!=="Escape"||event.isComposing)return;
+      event.preventDefault();
+      event.stopPropagation();
+      close();
     });
-    return Object.freeze({open,close:()=>dialog.close()});
+    dialog.addEventListener("cancel",event=>{event.preventDefault();close();});
+    dialog.addEventListener("close",finishClose);
+    return Object.freeze({open,close});
   }
   return Object.freeze({card,render,bindDialog});
 });
