@@ -50,5 +50,46 @@
     }
     target.replaceChildren(...items.map(item=>card(item,target.ownerDocument)));
   }
-  return Object.freeze({card,render});
+  /* Shared native-dialog lifecycle. Feature-specific controls stay outside. */
+  function bindDialog(dialog,{queryInput,closeButton,onClose}={}){
+    if(!dialog||dialog.tagName!=="DIALOG"||!queryInput)throw Error("Invalid KAITO search dialog");
+    let returnFocus=null;
+    function open({focusTarget=null}={}){
+      returnFocus=focusTarget||dialog.ownerDocument.activeElement;
+      if(!dialog.open)dialog.showModal();
+      dialog.ownerDocument.body.classList.add("modal-open");
+      dialog.scrollTop=0;
+      queryInput.focus();
+    }
+    function finishClose(){
+      // The native "close" event is asynchronous; restore focus before the
+      // next interaction, and ignore a queued event after a quick reopen.
+      if(dialog.open||!returnFocus)return;
+      const target=returnFocus;
+      returnFocus=null;
+      dialog.ownerDocument.body.classList.remove("modal-open");
+      if(onClose)onClose();
+      if(target.isConnected&&typeof target.focus==="function"){
+        target.focus({preventScroll:true});
+      }
+    }
+    function close(){
+      if(dialog.open)dialog.close();
+      finishClose();
+    }
+    if(closeButton)closeButton.addEventListener("click",close);
+    dialog.addEventListener("click",event=>{if(event.target===dialog)close();});
+    // Escape is sometimes consumed by input[type="search"] to clear its text.
+    // Make the modal semantics deterministic for keyboard users.
+    dialog.addEventListener("keydown",event=>{
+      if(event.key!=="Escape"||event.isComposing)return;
+      event.preventDefault();
+      event.stopPropagation();
+      close();
+    });
+    dialog.addEventListener("cancel",event=>{event.preventDefault();close();});
+    dialog.addEventListener("close",finishClose);
+    return Object.freeze({open,close});
+  }
+  return Object.freeze({card,render,bindDialog});
 });

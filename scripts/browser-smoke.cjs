@@ -390,6 +390,10 @@ const stop=()=>new Promise(resolve=>server.close(resolve));
             check(filtered.some(n=>n.kind==="project"&&n.href==="/projects/kidp/station-life/")&&filtered.every(n=>n.kind==="project"),
               mode.name+" HOME project-only phrase returns published station-life detail",JSON.stringify(filtered));
             await page.locator('#archive-dialog [data-close-dialog]').click();
+             await page.locator('#archive-dialog').waitFor({state:"hidden"});
+             check(await page.evaluate(()=>document.activeElement===
+               document.querySelector('#search-form button[type="submit"]')),
+               mode.name+" HOME search closes with header focus restored");
           }
           if(slug==="/about/"){
             await page.locator('#site-wide-search button[type="submit"]').click();
@@ -409,6 +413,18 @@ const stop=()=>new Promise(resolve=>server.close(resolve));
             check(projectHits.some(x=>x.kind==="project"&&x.href==="/projects/kidp/station-life/"),
               mode.name+" subpage search finds KIDP prototype by topic",JSON.stringify(projectHits));
             await page.locator(".site-search-dismiss").click();
+             await page.locator("#site-wide-search-dialog").waitFor({state:"hidden"});
+             check(await page.evaluate(()=>document.activeElement===
+               document.querySelector('#site-wide-search button[type="submit"]')),
+               mode.name+" subpage close button restores focus");
+             await page.locator('#site-wide-search button[type="submit"]').click();
+             await page.locator('#global-search-input').fill("WHYNOT");
+             await page.locator('#global-search-input').press("Enter");
+             await page.locator('#site-search-query').press("Escape");
+             await page.locator('#site-wide-search-dialog').waitFor({state:"hidden"});
+             check(await page.evaluate(()=>document.activeElement===
+               document.querySelector('#site-wide-search button[type="submit"]')),
+               mode.name+" subpage Escape restores focus");
           }
           if(slug==="/projects/digital-storage/"){
             check(await page.locator(".project-status strong").innerText()
@@ -512,6 +528,8 @@ const stop=()=>new Promise(resolve=>server.close(resolve));
         await home.locator("#site-search").press("Enter");
         check(await home.locator("#archive-dialog").evaluate(e=>e.open),
           mode.name+" HOME search dialog opens");
+         check(await home.evaluate(()=>document.activeElement.id==="archive-search"),
+           mode.name+" HOME dialog focuses search field");
         check(await home.locator("#archive-results .site-search-result").count()===1,
           mode.name+" HOME full-text search matches");
         await home.locator("#archive-search").fill("ＷＨＹＮＯＴ");
@@ -528,6 +546,17 @@ const stop=()=>new Promise(resolve=>server.close(resolve));
               !!a.querySelector(".site-search-result-title")&&
               !!a.querySelector(".site-search-result-summary"))),
             mode.name+" HOME global results use same public card contract");
+         await home.locator("#archive-search").press("Escape");
+         await home.locator("#archive-dialog").waitFor({state:"hidden"});
+         check(await home.evaluate(()=>document.activeElement===
+           document.querySelector('#search-form button[type="submit"]')),
+           mode.name+" HOME Escape restores focus");
+         if(mode.width<=430){
+           const compact=await home.locator("#search-form").boundingBox();
+           check(!!compact&&compact.width<=52,
+             mode.name+" HOME focus return leaves compact search collapsed",
+             JSON.stringify(compact));
+         }
       }catch(e){failures.push(mode.name+" HOME search: "+e.message);}
       finally{await home.close();}
       // Test the noindex roulette beta separately from public sitemap pages.
