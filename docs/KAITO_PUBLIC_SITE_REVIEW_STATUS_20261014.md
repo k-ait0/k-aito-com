@@ -183,3 +183,12 @@
 - **未完了の本番ゲート**: https://github.com/k-ait0/k-aito-com/actions/runs/38834061836 — 初回・失敗ジョブ再実行とも6回照合で**38ファイル一致／24公開HTML不一致**（fetch errorなし）。現時点では検索ダイアログ改修を「本番確認済み」としない。GitHubの実装・CIに比べてXServer Staticの公開HTML反映が遅れているか、GitHub連携の自動デプロイが開始されていない可能性。
 - 残タスクIssue #45: https://github.com/k-ait0/k-aito-com/issues/45 。XServer Staticのサーバー設定から**デプロイ履歴・GitHub自動デプロイ設定**を確認し、必要なら設定再保存／デプロイを確認する。再検証の完了条件は**配信62/62一致＋公開Chromium全6幅0失敗**。
 - S-11 記事カード／関連記事／次の導線、S-12 SEOメタ共通生成、S-08 MONO BASE Draft PR #33は独立した残作業。記事本文・図解・HOME専用フィルタの削除なし。
+
+
+## 2026-10-16 S-10B2本番確定・S-11第1段階統合
+
+- S-10B2: XServer本番検証 run [38834061836](https://github.com/k-ait0/k-aito-com/actions/runs/38834061836) は最終的に成功。配信62ファイル一致・Chromium 2,134項目成功。旧記録の「HTML反映待ち」は解消済み。Issue #45はクローズ。
+- S-11 Issue [#46](https://github.com/k-ait0/k-aito-com/issues/46): HOME・ARCHIVE・棚ページの公開記事集合を `KAitoContent.publishedNotes` に統一。URL正規形の検証と日付降順を一箇所に集約。カードDOM/CSSと記事本文は不変更。
+- PR [#47](https://github.com/k-ait0/k-aito-com/pull/47): 初回CI run 38839544897 はfixture挿入位置の旧前提で失敗。テストを修正し、再検証 run [38843250466](https://github.com/k-ait0/k-aito-com/actions/runs/38843250466) 成功。squash merge `a5d21794f6922a38cbd855a3943bbe1ffaae92d4`。
+- main統合後の自動同期・ブラウザQA・XServer配信検証（run 38843995653 / 38843995689 / 38843995650）はこの記録時点で進行中。成功確定前に本番確認済みと扱わない。
+- **S-11残件**: 関連記事と「次に見る」リンクの生成・データ同期、静的フォールバック維持、全6幅QA、本番確認。S-12 SEOメタ生成とS-08 MONO BASEは独立作業。
