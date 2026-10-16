@@ -175,7 +175,7 @@ for(let i=0;i<notes.length;i++){
   const note=notes[i];
   const articlePath=path.join(root,note.url.slice(1),"index.html");
   const html=fs.readFileSync(articlePath,"utf8");
-  const match=html.match(/<nav class="article-next"[^>]*>[\\s\\S]*?<\\/nav>/);
+  const match=html.match(new RegExp('<nav class="article-next"[^>]*>[\\s\\S]*?</nav>'));
   if(!match)continue; // New article templates may not include navigation yet.
   const older=notes[i+1],newer=notes[i-1];
   const navLink=(other,direction)=>{
