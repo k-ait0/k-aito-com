@@ -181,7 +181,7 @@ for(const note of notes){
   if(!links)continue;
   const articlePath=path.join(root,note.url.slice(1),"index.html");
   const html=fs.readFileSync(articlePath,"utf8");
-  const match=html.match(/<section class="related-band">[\\s\\S]*?<\\/section>/);
+  const match=html.match(new RegExp('<section class="related-band">[\\s\\S]*?</section>'));
   if(!match)throw new Error("Missing next-view section for "+note.id);
   const seen=new Set();
   const anchors=links.map(([href,label])=>{
