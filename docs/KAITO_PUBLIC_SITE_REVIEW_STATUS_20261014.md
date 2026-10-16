@@ -192,3 +192,12 @@
 - PR [#47](https://github.com/k-ait0/k-aito-com/pull/47): 初回CI run 38839544897 はfixture挿入位置の旧前提で失敗。テストを修正し、再検証 run [38843250466](https://github.com/k-ait0/k-aito-com/actions/runs/38843250466) 成功。squash merge `a5d21794f6922a38cbd855a3943bbe1ffaae92d4`。
 - main統合後の自動同期・ブラウザQA・XServer配信検証（run 38843995653 / 38843995689 / 38843995650）はこの記録時点で進行中。成功確定前に本番確認済みと扱わない。
 - **S-11残件**: 関連記事と「次に見る」リンクの生成・データ同期、静的フォールバック維持、全6幅QA、本番確認。S-12 SEOメタ生成とS-08 MONO BASEは独立作業。
+
+
+## 2026-10-16 S-11前後リンク統合後の本番差分（要対応）
+
+- PR #48: 記事回遊リンク監査をmainへ統合（`0ea34d44`）。
+- PR #49: 前後記事リンクのカタログ同期をmainへ統合（`a6f09260`）。CI 38845435928 と 38845421591 は成功。mainブラウザQA 38854166615 と索引同期 38854166684 も成功。
+- 自動索引同期によりmain HEADは `5ce0303557` へ進行。
+- XServer本番照合 run [38854184467](https://github.com/k-ait0/k-aito-com/actions/runs/38854184467) は **58一致/4不一致**。不一致は公開ノート4本 `/notes/media-public-interest-sankei-building/`、`/notes/kidp-002-whynot/`、`/notes/nuclear-industrial-carrier/`、`/notes/site-launch-trouble/` のHTML。その他の取得エラーは0。6回再試行後も不一致。**本番反映完了とは記録しない**。
+- 次工程: XServerのデプロイ対象SHA・自動デプロイ設定・キャッシュと実配信HTMLの差分を確認し、再配信後に62件の完全一致を再検証。S-11「次に見る」導線共通化は未着手。
