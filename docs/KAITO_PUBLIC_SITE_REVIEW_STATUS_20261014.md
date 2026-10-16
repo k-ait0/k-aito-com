@@ -218,3 +218,12 @@
 - 公開記事3本の「次に見る」リンクを編集マッピングから静的HTML生成する実装を追加。4本目には新設しない。
 - 生成リンク先・順序を回帰テストで検証。branch browser QA [38862787420](https://github.com/k-ait0/k-aito-com/actions/runs/38862787420) success。
 - **本番検証は未完了**。mainの同期ワークフロー [38863393518](https://github.com/k-ait0/k-aito-com/actions/runs/38863393518) は確認時点でqueued。同期・デプロイ・本番ファイル一致・ブラウザ確認の完了後にS-11全体を完了扱いにする。
+
+
+### S-11 本番不一致の調査追記（2026-10-17）
+
+- Live XServer deployment verification [38863415814](https://github.com/k-ait0/k-aito-com/actions/runs/38863415814) は初回・再実行とも失敗。各回の最終結果は61/62一致、HTTP取得失敗0、付随エラー0。
+- 不一致は `/notes/kidp-002-whynot/` のみ。公開HTMLハッシュ先頭 `0470063b9e0c`、main期待値 `9683649e9adf`。6回再試行でも同じ差異。
+- `Sync published article index` [38863393518](https://github.com/k-ait0/k-aito-com/actions/runs/38863393518) は成功。mainの該当HTMLには `/projects/kidp/`、`/projects/kidp/whynot/`、`/archive/` の「次に見る」リンクが存在する。
+- `.github/workflows/live-production-check.yml` は公開ファイル完全一致を満たした場合にのみブラウザテストへ進む構成。このため本番ブラウザテストは未実施。
+- **未解決の本番反映ブロッカー**：XServerへのファイル配備方法・配備先、CDN/サーバーキャッシュ、公開HTMLの差分をホスティング側で確認する。GitHub上にXServerへアップロードするデプロイワークフローは確認できず、GitHubの生成成功は本番配備成功を意味しない。原因を特定するまでサイトの変更・再デプロイ成功を断定しない。
