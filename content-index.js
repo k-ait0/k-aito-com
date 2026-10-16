@@ -59,5 +59,10 @@ for(const entry of entries){
 }
 /* END GENERATED ARTICLE SEARCH TEXT */
 
-window.KAitoContent=Object.freeze({shelves,entries});
+// S-11: one canonical published-note collection for HOME and ARCHIVE/SHELVES.
+// Only public canonical note URLs are eligible for article cards.
+const publishedNotes=Object.freeze(entries.filter(entry=>
+  typeof entry.url==="string"&&/^\/notes\/[a-z0-9-]+\/$/.test(entry.url)
+).slice().sort((a,b)=>b.date.localeCompare(a.date)));
+window.KAitoContent=Object.freeze({shelves,entries,publishedNotes});
 })();

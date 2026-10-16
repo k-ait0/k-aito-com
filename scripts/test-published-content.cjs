@@ -27,7 +27,7 @@ try {
     "scripts/sync-published-content.cjs", "scripts/article-search-text.cjs"
   ]) copy(name);
   let index = fs.readFileSync(path.join(temp, "content-index.js"), "utf8");
-  const anchor = "window.KAitoContent=Object.freeze({shelves,entries});";
+  const anchor = "// S-11: one canonical published-note collection for HOME and ARCHIVE/SHELVES.";
   assert.ok(index.includes(anchor), "Catalogue export position changed");
   index = index.replace(anchor,
     'entries.push({id:"catalogue-regression",title:"追加記事の確認",state:"FOUND",' +

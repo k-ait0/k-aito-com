@@ -17,7 +17,7 @@ function entryCard(entry, compact=false){
   return `<button type="button" class="entry-card ${!entry.thumbnail&&!compact?'text-card':''}" data-card-type="article" data-entry="${entry.id}" aria-label="${esc(entry.title)}を読む">${content}</button>`;
 }
 
-const publishedNotes=entries.filter(entry=>entry.url&&entry.url.startsWith("/notes/")).slice().sort((a,b)=>b.date.localeCompare(a.date));
+const publishedNotes=window.KAitoContent.publishedNotes || entries.filter(entry=>entry.url&&entry.url.startsWith("/notes/")).slice().sort((a,b)=>b.date.localeCompare(a.date));
 // The latest article has its own feature above the shelves. Avoid a duplicate card below.
 document.getElementById("recent-grid").innerHTML=publishedNotes.slice(1,4).map(entry=>entryCard(entry)).join("");
 document.getElementById("shelves-grid").innerHTML=shelves.map(shelf=>{

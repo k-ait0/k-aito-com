@@ -4,7 +4,7 @@
 (function(){
   const catalogue=window.KAitoContent;
   if(!catalogue)return;
-  const notes=catalogue.entries.filter(note=>note.url&&note.url.startsWith("/notes/"))
+  const notes=catalogue.publishedNotes || catalogue.entries.filter(note=>note.url&&note.url.startsWith("/notes/"))
     .slice().sort((a,b)=>b.date.localeCompare(a.date));
   const noteCount=n=>n+" NOTE"+(n===1?"":"S");
   const monthNames=["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"];
