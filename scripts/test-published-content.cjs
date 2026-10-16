@@ -55,7 +55,7 @@ try {
   ];
   for(const [id,expected] of nextViewCases){
     const html=fs.readFileSync(path.join(temp,"notes",id,"index.html"),"utf8");
-    const section=html.match(/<section class="related-band">([\\s\\S]*?)<\\/section>/);
+    const section=html.match(new RegExp('<section class="related-band">[\\s\\S]*?</section>'));
     assert.ok(section,"Missing next-view HTML for "+id);
     const targets=[...section[1].matchAll(/href="([^"]+)"/g)].map(match=>match[1]);
     assert.deepEqual(targets,expected,"Curated next-view order changed for "+id);
