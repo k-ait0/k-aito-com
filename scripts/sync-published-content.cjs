@@ -169,6 +169,30 @@ if(!/<div class="archive-stats">[\s\S]*?<\/div>/.test(archive))throw new Error("
 archive=archive.replace(/<div class="archive-stats">[\s\S]*?<\/div>/,summaryMarkup);
 writeIfChanged(archivePath, archive);
 
+/* S-11: editorial next-view destinations are data, not repeated HTML.
+   Keep hand-picked destinations, labels, and the static no-JS fallback. */
+const nextViewByNote={
+  "kidp-002-whynot":[["/projects/kidp/","KIDP"],["/projects/kidp/whynot/","WHYNOT"],["/archive/","ARCHIVE"]],
+  "nuclear-industrial-carrier":[["/storage/","7つの棚"],["/archive/","記録のアーカイブ"],["/projects/","進行中のプロジェクト"]],
+  "site-launch-trouble":[["/storage/","7つの棚"],["/projects/digital-storage/","DIGITAL STORAGEプロジェクト"],["/archive/","記録のアーカイブ"]]
+};
+for(const note of notes){
+  const links=nextViewByNote[note.id];
+  if(!links)continue;
+  const articlePath=path.join(root,note.url.slice(1),"index.html");
+  const html=fs.readFileSync(articlePath,"utf8");
+  const match=html.match(new RegExp('<section class="related-band">[\\s\\S]*?</section>'));
+  if(!match)throw new Error("Missing next-view section for "+note.id);
+  const seen=new Set();
+  const anchors=links.map(([href,label])=>{
+    if(seen.has(href)||href===note.url)throw new Error("Duplicate or self next-view link for "+note.id);
+    seen.add(href);
+    return '<a href="'+escapeHtml(href)+'">'+escapeHtml(label)+' <span aria-hidden="true">→</span></a>';
+  }).join("");
+  const section='<section class="related-band"><h2>次に見る</h2><div>'+anchors+'</div></section>';
+  writeIfChanged(articlePath,html.replace(match[0],section));
+}
+
 /* S-11: keep previous/next note navigation in canonical date order.
    Curated series/project links outside this nav remain untouched. */
 for(let i=0;i<notes.length;i++){

@@ -47,6 +47,19 @@ try {
   fs.writeFileSync(edited,article);
   const first=run();
   assert.match(first,/5 canonical articles/);
+  // Curated next-view destinations must be regenerated as static HTML.
+  const nextViewCases=[
+    ["kidp-002-whynot",["/projects/kidp/","/projects/kidp/whynot/","/archive/"]],
+    ["nuclear-industrial-carrier",["/storage/","/archive/","/projects/"]],
+    ["site-launch-trouble",["/storage/","/projects/digital-storage/","/archive/"]]
+  ];
+  for(const [id,expected] of nextViewCases){
+    const html=fs.readFileSync(path.join(temp,"notes",id,"index.html"),"utf8");
+    const section=html.match(new RegExp('<section class="related-band">[\\s\\S]*?</section>'));
+    assert.ok(section,"Missing next-view HTML for "+id);
+    const targets=[...section[0].matchAll(/href="([^"]+)"/g)].map(match=>match[1]);
+    assert.deepEqual(targets,expected,"Curated next-view order changed for "+id);
+  }
   const sitemap=fs.readFileSync(path.join(temp,"sitemap.xml"),"utf8");
   const storage=fs.readFileSync(path.join(temp,"storage/index.html"),"utf8");
   const archive=fs.readFileSync(path.join(temp,"archive/index.html"),"utf8");
