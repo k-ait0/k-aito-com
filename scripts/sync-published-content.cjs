@@ -169,6 +169,29 @@ if(!/<div class="archive-stats">[\s\S]*?<\/div>/.test(archive))throw new Error("
 archive=archive.replace(/<div class="archive-stats">[\s\S]*?<\/div>/,summaryMarkup);
 writeIfChanged(archivePath, archive);
 
+/* S-11: keep previous/next note navigation in canonical date order.
+   Curated series/project links outside this nav remain untouched. */
+for(let i=0;i<notes.length;i++){
+  const note=notes[i];
+  const articlePath=path.join(root,note.url.slice(1),"index.html");
+  const html=fs.readFileSync(articlePath,"utf8");
+  const match=html.match(new RegExp('<nav class="article-next"[^>]*>[\\s\\S]*?</nav>'));
+  if(!match)continue; // New article templates may not include navigation yet.
+  const older=notes[i+1],newer=notes[i-1];
+  const navLink=(other,direction)=>{
+    const label=direction==="older"?"OLDER NOTE / ":"NEWER NOTE / ";
+    const arrow=direction==="older"?"← ":" →";
+    return '<a href="'+escapeHtml(other.url)+'"><small>'+label+escapeHtml(other.date)+
+      '</small><strong>'+(direction==="older"?"← ":"")+escapeHtml(other.title)+
+      (direction==="newer"?arrow:"")+'</strong></a>';
+  };
+  const navigation='<nav class="article-next" aria-label="前後の記事">'+
+    (older?navLink(older,"older"):'<a href="/archive/"><small>ALL NOTES</small><strong>← アーカイブへ戻る</strong></a>')+
+    (newer?navLink(newer,"newer"):'<a href="/archive/"><small>ALL NOTES</small><strong>アーカイブへ戻る →</strong></a>')+
+    '</nav>';
+  writeIfChanged(articlePath,html.replace(match[0],navigation));
+}
+
 /* Cache bust the shared catalogue in every HTML page on catalogue changes. */
 const catalogueVersion = crypto.createHash("sha256").update(source).digest("hex").slice(0, 12);
 const frontendVersions=["app.js","site-content.js","site-search.js","site-search-ui.js","site-search.css"].map(file=>({
