@@ -6,7 +6,7 @@ const tmp=fs.mkdtempSync(path.join(os.tmpdir(),"kaito-project-search-"));
 const xml=fs.readFileSync(path.join(root,"sitemap.xml"),"utf8");
 const routes=[...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map(x=>new URL(x[1]).pathname);
 try{
-  for(const file of ["sitemap.xml","data/project-card-status.v1.json","scripts/sync-project-search.cjs","site-search-core.js","site-search.js"]){
+  for(const file of ["sitemap.xml","data/project-card-status.v1.json","scripts/sync-project-search.cjs","site-search-core.js","site-search.js","site-search.css"]){
     const out=path.join(tmp,file);fs.mkdirSync(path.dirname(out),{recursive:true});fs.copyFileSync(path.join(root,file),out);
   }
   for(const route of routes){
@@ -42,5 +42,17 @@ try{
   const second=run();
   assert.match(second,/0 HTML updates/);
   assert.equal(fs.readFileSync(path.join(tmp,"project-search-index.js"),"utf8"),built);
+  // Changing the shared CSS must invalidate all public pages; a third run
+  // without changes must again be a no-op.
+  const firstCssHref=(fs.readFileSync(path.join(tmp,"index.html"),"utf8")
+    .match(/\/site-search\.css\?v=([a-zA-Z0-9-]+)/)||[])[1];
+  assert.ok(firstCssHref);
+  fs.appendFileSync(path.join(tmp,"site-search.css"),"\n/* changed test fixture */\n");
+  const cssChanged=run();
+  assert.match(cssChanged,/24 HTML updates/);
+  const nextCssHref=(fs.readFileSync(path.join(tmp,"index.html"),"utf8")
+    .match(/\/site-search\.css\?v=([a-zA-Z0-9-]+)/)||[])[1];
+  assert.ok(nextCssHref&&nextCssHref!==firstCssHref);
+  assert.match(run(),/0 HTML updates/);
   console.log("PASS project search: 8 published projects, 24 search-enabled pages, no betas, no duplicate indexes, repeatable output");
 }finally{fs.rmSync(tmp,{recursive:true,force:true});}

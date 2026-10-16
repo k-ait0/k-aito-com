@@ -47,6 +47,10 @@ const coreTag='<script src="/site-search-core.js?v='+coreHash+'" defer></script>
 const searchSource=fs.readFileSync(path.join(root,"site-search.js"),"utf8");
 const searchHash=crypto.createHash("sha1").update("blob "+Buffer.byteLength(searchSource)+"\0")
   .update(searchSource).digest("hex").slice(0,12);
+// The stylesheet is shared across HOME and subpages. Never roll its cache
+// version back to a fixed dated tag when the browser-facing CSS changes.
+const cssHash=crypto.createHash("sha256")
+  .update(fs.readFileSync(path.join(root,"site-search.css"))).digest("hex").slice(0,12);
 
 const pages=[...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(x=>new URL(x[1].trim()).pathname);
 let changed=0;
@@ -73,7 +77,7 @@ for(const route of pages){
     throw Error("Shared search dependencies out of order "+route);
   // Always invalidate global subpage search JavaScript on implementation changes.
   if(route!=="/")html=html.replace(/\/site-search\.js\?v=[a-zA-Z0-9-]+/g,"/site-search.js?v="+searchHash);
-  html=html.replace(/\/site-search\.css\?v=[a-zA-Z0-9-]+/g,"/site-search.css?v=20261009-cross1");
+  html=html.replace(/\/site-search\.css\?v=[a-zA-Z0-9-]+/g,"/site-search.css?v="+cssHash);
   const first=html.indexOf('src="/project-search-index.js?');
   const second=html.indexOf(route==="/"?'/app.js?':'/site-search.js?');
   if(first<0||second<first)throw Error("Invalid dependency order "+route);
