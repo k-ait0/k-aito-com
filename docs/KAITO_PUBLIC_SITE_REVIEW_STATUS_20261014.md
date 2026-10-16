@@ -172,3 +172,14 @@
 - 幅320/375/390/430/768/1440pxを公開画面で検証。検索結果カードのARTICLE/PROJECT表示とリンク、画像読込、記事図解、棚カード、ナビゲーション、濃緑フッターの回帰QAが成功。
 - 本番スクリーンショット成果物（run `38669830320`）の320px HOME検索表示を直接確認し、棚・状態selectの文字が表示されることを確認。PR版のデスクトップ・スマホ画像もレビュー済み。
 - **S-10B2は未着手**: HOMEのフィルタ付きダイアログと下層検索ダイアログの完全統一、フォーカス復帰・Escape・キーボード動線は次回改修。S-11記事カード／関連記事、S-12メタ生成、MONO BASE PR #33は引き続き別作業。
+
+
+## 2026-10-16 S-10B2 実装・PR検証完了／XServer HTML反映待ち
+
+- PR #43（https://github.com/k-ait0/k-aito-com/pull/43）: 検索結果カードに加えて、`KAitoSearchUI.bindDialog` によるHOME／下層モーダルの開閉・背面クリック・Escape・フォーカス復帰を共通化。HOMEの棚・状態フィルター・記事カード表示は保持。
+- 最初のPR QA run `38785183322` は2,112成功・22失敗。検索inputのEscape消費／非同期`close`発火時のフォーカス復帰を修正し、再QA run `38833023086` は**2,134成功／0失敗**。SEO監査 run `38833023318` 成功。PR #43 mainマージ `6f0e8f5b0c1`。
+- PR #44（https://github.com/k-ait0/k-aito-com/pull/44）: `scripts/sync-project-search.cjs` が `site-search.css` のハッシュを古い `20261009-cross1` に戻す問題を修正。CSS内容のSHA-256短縮値へ統一し、独立テスト環境でCSS更新→公開24ページの版更新→再実行無差分を検証。PR QA run `38833690954` は**2,142成功／0失敗**。mainマージ `ef5d4d41d648`。
+- 自動同期 run `38834039824` 成功、生成後main `2b82842310e97f5a83e1fd7a16eb023a4c301eae`。公開24ページの検索CSS URLを個別読み取りし、全件 `?v=93ce816e3e5d` への変更を確認。
+- **未完了の本番ゲート**: https://github.com/k-ait0/k-aito-com/actions/runs/38834061836 — 初回・失敗ジョブ再実行とも6回照合で**38ファイル一致／24公開HTML不一致**（fetch errorなし）。現時点では検索ダイアログ改修を「本番確認済み」としない。GitHubの実装・CIに比べてXServer Staticの公開HTML反映が遅れているか、GitHub連携の自動デプロイが開始されていない可能性。
+- 残タスクIssue #45: https://github.com/k-ait0/k-aito-com/issues/45 。XServer Staticのサーバー設定から**デプロイ履歴・GitHub自動デプロイ設定**を確認し、必要なら設定再保存／デプロイを確認する。再検証の完了条件は**配信62/62一致＋公開Chromium全6幅0失敗**。
+- S-11 記事カード／関連記事／次の導線、S-12 SEOメタ共通生成、S-08 MONO BASE Draft PR #33は独立した残作業。記事本文・図解・HOME専用フィルタの削除なし。
