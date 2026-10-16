@@ -210,3 +210,11 @@
 - 本番Chromiumチェック **2,142 assertions成功・失敗0**。
 - PR #49（前後の記事リンク自動生成）は **main統合・本番検証完了**。初回失敗は再実行時には解消。デプロイ遅延と断定できる証拠はないため原因は未確定とする。
 - S-11の残作業は編集意図を保った「次に見る」導線の共通化。完了済み作業を再実施しない。
+
+
+## 2026-10-16 S-11 次に見る導線の共通化
+
+- PR [#50](https://github.com/k-ait0/k-aito-com/pull/50) をCI成功後に squash merge。main commit `d1ce299fbca9e5ae157e01f6ce6c6a71394e10bc`。
+- 公開記事3本の「次に見る」リンクを編集マッピングから静的HTML生成する実装を追加。4本目には新設しない。
+- 生成リンク先・順序を回帰テストで検証。branch browser QA [38862787420](https://github.com/k-ait0/k-aito-com/actions/runs/38862787420) success。
+- **本番検証は未完了**。mainの同期ワークフロー [38863393518](https://github.com/k-ait0/k-aito-com/actions/runs/38863393518) は確認時点でqueued。同期・デプロイ・本番ファイル一致・ブラウザ確認の完了後にS-11全体を完了扱いにする。
