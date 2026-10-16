@@ -201,3 +201,12 @@
 - 自動索引同期によりmain HEADは `5ce0303557` へ進行。
 - XServer本番照合 run [38854184467](https://github.com/k-ait0/k-aito-com/actions/runs/38854184467) は **58一致/4不一致**。不一致は公開ノート4本 `/notes/media-public-interest-sankei-building/`、`/notes/kidp-002-whynot/`、`/notes/nuclear-industrial-carrier/`、`/notes/site-launch-trouble/` のHTML。その他の取得エラーは0。6回再試行後も不一致。**本番反映完了とは記録しない**。
 - 次工程: XServerのデプロイ対象SHA・自動デプロイ設定・キャッシュと実配信HTMLの差分を確認し、再配信後に62件の完全一致を再検証。S-11「次に見る」導線共通化は未着手。
+
+
+## 2026-10-16 S-11本番再検証成功
+
+- GitHub Actions [38854184467](https://github.com/k-ait0/k-aito-com/actions/runs/38854184467) の失敗ジョブを再実行（attempt 2）。**success**。
+- XServer本番ファイル照合 **62/62一致・失敗0**。以前不一致だった公開記事4本も正確なバイト列で一致。
+- 本番Chromiumチェック **2,142 assertions成功・失敗0**。
+- PR #49（前後の記事リンク自動生成）は **main統合・本番検証完了**。初回失敗は再実行時には解消。デプロイ遅延と断定できる証拠はないため原因は未確定とする。
+- S-11の残作業は編集意図を保った「次に見る」導線の共通化。完了済み作業を再実施しない。
