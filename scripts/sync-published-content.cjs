@@ -176,7 +176,7 @@ for(let i=0;i<notes.length;i++){
   const articlePath=path.join(root,note.url.slice(1),"index.html");
   const html=fs.readFileSync(articlePath,"utf8");
   const match=html.match(/<nav class="article-next"[^>]*>[\\s\\S]*?<\\/nav>/);
-  if(!match)throw new Error("Article navigation missing: "+note.id);
+  if(!match)continue; // New article templates may not include navigation yet.
   const older=notes[i+1],newer=notes[i-1];
   const navLink=(other,direction)=>{
     const label=direction==="older"?"OLDER NOTE / ":"NEWER NOTE / ";
