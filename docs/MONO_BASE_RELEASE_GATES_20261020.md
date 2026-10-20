@@ -22,3 +22,6 @@ Source-level metadata issue addressed provisionally; **tests unexecuted on curre
 
 ## Added lightweight preview gate
 Run `node scripts/test-mono-base-preview.cjs` from the repository root before requesting a browser QA run. This checks all eight preview HTML files, their noindex metadata, absence from the sitemap, and local links without a hosted runner. The script was added on the PR branch but **has not yet been executed**; passing the script alone does not replace the existing full static and browser QA.
+
+## Owner release decision — 2026-10-21
+**Decision: full version only.** Do not merge or deploy the current eight-page concept preview. Finish the intended visual assets and functional 3D viewer, then complete desktop/mobile and accessibility QA, final metadata/sitemap, merge/deployment and live verification. The `noindex` markers are temporary staging safeguards, not the final launch configuration. The three GitHub QA workflows succeeded at commit `c7efbc65a00445d8b120904032c338ed89f95587`, but that success validates the existing scaffold only; it does not establish completion of the intended visual package. Keep PR #33 in Draft until these acceptance criteria are met.
