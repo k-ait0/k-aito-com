@@ -36,13 +36,19 @@ const url = "https://k-aito.com" + route;
     matches: expected.equals(actual)
   }, null, 2));
   if (expected.equals(actual)) return;
-  const a = expected.toString("utf8").split(/\r?\n/);
-  const b = actual.toString("utf8").split(/\r?\n/);
-  const first = Array.from({length:Math.max(a.length,b.length)}, (_,i) => i)
-    .find(i => a[i] !== b[i]);
-  const safe = value => String(value ?? "<missing>").slice(0, 300);
-  console.log("First differing line:", (first ?? 0) + 1);
-  console.log("Local :", safe(a[first]));
-  console.log("Public:", safe(b[first]));
+  // Byte offsets remain meaningful even for minified one-line HTML.
+  const minLength = Math.min(expected.length, actual.length);
+  let offset = 0;
+  while (offset < minLength && expected[offset] === actual[offset]) offset++;
+  const context = bytes => bytes.subarray(Math.max(0, offset - 100), Math.min(bytes.length, offset + 240)).toString("utf8");
+  console.log("First differing byte offset:", offset);
+  console.log("Local context :", JSON.stringify(context(expected)));
+  console.log("Public context:", JSON.stringify(context(actual)));
+  const markers = ["次に見る", "/projects/kidp/", "/projects/kidp/whynot/", "/archive/"];
+  const localText = expected.toString("utf8");
+  const liveText = actual.toString("utf8");
+  console.log("Navigation markers:", JSON.stringify(Object.fromEntries(
+    markers.map(marker => [marker, { local: localText.includes(marker), public: liveText.includes(marker) }])
+  )));
   process.exitCode = 1;
 })().catch(err => { console.error(err.message); process.exitCode = 2; });
