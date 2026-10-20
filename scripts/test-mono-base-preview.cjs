@@ -19,8 +19,9 @@ for (const page of pages) {
     const ref = match[1].split(/[?#]/)[0];
     if (!ref || /^(?:https?:|mailto:|tel:|data:|\/\/)/.test(ref) || ref.startsWith("#")) continue;
     const local = ref.startsWith("/") ? path.resolve(root,"."+ref) : path.resolve(dir,ref);
-    assert.ok(local.startsWith(root+path.sep),"Link escapes root "+page+" "+ref);
-    assert.ok(fs.existsSync(local),"Broken local link "+page+" "+ref);
+    assert.ok(local === root || local.startsWith(root+path.sep),"Link escapes root "+page+" "+ref);
+    const target = ref.endsWith("/") ? path.join(local,"index.html") : local;
+    assert.ok(fs.existsSync(target),"Broken local link "+page+" "+ref);
   }
 }
 assert.ok(!sitemap.includes("https://k-aito.com/mono-base/"),"Noindex preview must not be in sitemap");
