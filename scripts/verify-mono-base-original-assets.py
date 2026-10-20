@@ -29,7 +29,7 @@ def main():
         source=root/relative
         if source.is_symlink():raise SystemExit('Symbolic link forbidden: '+relative)
         data=source.read_bytes()
-        if not data.startswith(b'\\xff\\xd8\\xff') or len(data)>20_000_000:
+        if not data.startswith(b'\xff\xd8\xff') or len(data)>20_000_000:
             raise SystemExit('Invalid/oversized JPEG: '+relative)
         got=hashlib.sha256(data).hexdigest()
         if got!=want:raise SystemExit(f'SHA-256 mismatch {relative}: expected {want}, got {got}')
