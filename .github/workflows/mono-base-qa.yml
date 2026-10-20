@@ -39,6 +39,8 @@ jobs:
           assert not broken, f'Broken local links: {broken}'
           print(f'PASS: {len(list(root.glob("*.html")))} pages, no broken local references')
           PY
+      - name: Run lightweight concept preview gate
+        run: node scripts/test-mono-base-preview.cjs
       - name: Install browser
         run: |
           python -m pip install playwright
