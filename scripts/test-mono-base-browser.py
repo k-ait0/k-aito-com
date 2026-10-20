@@ -41,7 +41,7 @@ def verify(page, name):
     page.locator('[data-view="side"]').click()
     canvas.focus()
     page.keyboard.press("ArrowRight")
-    page.keyboard.press("+")
+    page.keyboard.press("Equal")
     page.keyboard.press("Home")
     assert page.locator("#sweepValue").inner_text() == "20°", f"{name}: reset sweep"
     assert page.locator("#explodeValue").inner_text() == "0%", f"{name}: reset explode"
