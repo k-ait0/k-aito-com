@@ -41,6 +41,13 @@ jobs:
           PY
       - name: Run lightweight concept preview gate
         run: node scripts/test-mono-base-preview.cjs
+      - name: Verify original v3.4 image hashes when integrated
+        run: |
+          if [ -f mono-base/cad-viewer.html ]; then
+            python scripts/verify-mono-base-original-assets.py mono-base
+          else
+            echo 'Draft scaffold only — original v3.4 image integration not yet complete'
+          fi
       - name: Install browser
         run: |
           python -m pip install playwright
@@ -48,7 +55,11 @@ jobs:
       - name: Verify WebGL viewer and interactive controls on desktop/mobile
         run: |
           python -m http.server 8765 --directory mono-base >/tmp/mono-server.log 2>&1 &
-          python scripts/test-mono-base-browser.py
+          if [ -f mono-base/cad-viewer.html ]; then
+            python scripts/test-mono-base-v34-browser.py
+          else
+            python scripts/test-mono-base-browser.py
+          fi
       - uses: actions/upload-artifact@v4
         if: always()
         with:
