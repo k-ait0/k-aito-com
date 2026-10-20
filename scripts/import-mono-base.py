@@ -4,6 +4,7 @@ import argparse
 from pathlib import Path
 from zipfile import ZipFile
 from collections import Counter
+import hashlib
 from stat import S_IFMT, S_IFLNK
 from html.parser import HTMLParser
 from urllib.parse import urlsplit, unquote
@@ -48,6 +49,18 @@ def main():
         if missing: raise SystemExit('Missing required files: '+str(sorted(missing)))
         images=sorted(n for n in members if n.startswith('assets/') and n.lower().endswith(('.jpg','.png','.webp')))
         if len(images)!=13: raise SystemExit(f'Expected 13 image files, got {len(images)}')
+        manifest_file=args.destination/'ASSET_MANIFEST.sha256'
+        if not manifest_file.is_file():
+            raise SystemExit('Missing original-image SHA manifest: '+str(manifest_file))
+        expected={}
+        for line in manifest_file.read_text(encoding='utf-8').splitlines():
+            if not line.strip() or line.startswith('#'): continue
+            digest,name=line.split(maxsplit=1)
+            name=name.lstrip('*')
+            if name in expected:raise SystemExit('Duplicate image in SHA manifest: '+name)
+            expected[name]=digest.lower()
+        if set(images)!=set(expected):
+            raise SystemExit('Original-image manifest names differ from ZIP assets')
         for name in images:
             data=z.read(name)
             ext=Path(name).suffix.lower()
@@ -58,6 +71,9 @@ def main():
             )
             if not signature_ok: raise SystemExit('Invalid image signature: '+name)
             if len(data)>20_000_000: raise SystemExit('Oversized asset (>20MB): '+name)
+            digest=hashlib.sha256(data).hexdigest()
+            if digest!=expected[name]:
+                raise SystemExit('Original image SHA256 mismatch: '+name)
         bad=[]
         for name in sorted(n for n in members if n.endswith('.html')):
             parser=Refs()
@@ -68,7 +84,7 @@ def main():
                 target=(Path(name).parent/unquote(parsed.path)).as_posix()
                 if parsed.path and target not in members: bad.append((name,ref))
         if bad: raise SystemExit('Broken references: '+str(bad))
-        print(f'Validated {len(members)} files, {len(images)} original images; no broken local links')
+        print(f'Validated {len(members)} files, {len(images)} SHA-pinned original images; no broken local links')
         selected=images if args.assets_only else sorted(members)
         conflicts=[]
         for name in selected:
