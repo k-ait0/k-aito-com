@@ -52,8 +52,8 @@ def main():
             data=z.read(name)
             ext=Path(name).suffix.lower()
             signature_ok=(
-                data.startswith(b'\\x89PNG\\r\\n\\x1a\\n') if ext=='.png' else
-                data.startswith(b'\\xff\\xd8\\xff') if ext=='.jpg' else
+                data.startswith(b'\x89PNG\r\n\x1a\n') if ext=='.png' else
+                data.startswith(b'\xff\xd8\xff') if ext=='.jpg' else
                 data.startswith(b'RIFF') and data[8:12]==b'WEBP'
             )
             if not signature_ok: raise SystemExit('Invalid image signature: '+name)
@@ -79,7 +79,7 @@ def main():
                 elif not args.overwrite_pages:
                     conflicts.append(name+' (existing source differs; --overwrite-pages required)')
         if conflicts:
-            raise SystemExit('Refusing silent overwrite:\\n'+'\\n'.join(conflicts))
+            raise SystemExit('Refusing silent overwrite:\n'+'\n'.join(conflicts))
         print(f'Import candidate: {len(selected)} files; mode='+('assets-only' if args.assets_only else 'full'))
         if not args.apply:
             print('DRY RUN: use --apply to copy into',args.destination)
