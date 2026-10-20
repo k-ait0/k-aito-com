@@ -61,3 +61,6 @@ The later entries in `docs/KAITO_PUBLIC_SITE_REVIEW_STATUS_20261014.md` supersed
 
 ### Tracking issue
 - Hosting-side deployment mismatch: https://github.com/k-ait0/k-aito-com/issues/52. Do not mark S-11 production verification complete until this issue's acceptance criteria are met.
+
+### Local command inventory verified (2026-10-20)
+All seven `node scripts/*.cjs` paths in the Routine changes block were individually fetched from `main` and confirmed to exist: `site-static-check`, `test-published-content`, `test-site-search-core`, `test-site-search-ui`, `test-site-shell`, `test-site-breadcrumbs`, and `test-article-navigation`. **File existence is not test execution**: no PASS result is asserted for these checks. `git diff --check` also remains unexecuted. Keep these distinct in any release report.
