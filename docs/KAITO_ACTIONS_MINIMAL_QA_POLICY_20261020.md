@@ -58,3 +58,6 @@ A content update can trigger content sync and production verification; completio
 
 ### Progress ledger correction
 The later entries in `docs/KAITO_PUBLIC_SITE_REVIEW_STATUS_20261014.md` supersede its earlier summary table: S-10B2 was merged and production-verified; S-11 was substantially merged. Do not repeat these completed changes. The remaining S-11 gate is the production mismatch noted above.
+
+### Tracking issue
+- Hosting-side deployment mismatch: https://github.com/k-ait0/k-aito-com/issues/52. Do not mark S-11 production verification complete until this issue's acceptance criteria are met.
