@@ -19,3 +19,6 @@ Draft PR #33 currently contains eight concept-stage HTML pages under `/mono-base
 
 ## Status
 Source-level metadata issue addressed provisionally; **tests unexecuted on current head**, deployment not attempted, full launch blocked by missing intended visual package and QA.
+
+## Added lightweight preview gate
+Run `node scripts/test-mono-base-preview.cjs` from the repository root before requesting a browser QA run. This checks all eight preview HTML files, their noindex metadata, absence from the sitemap, and local links without a hosted runner. The script was added on the PR branch but **has not yet been executed**; passing the script alone does not replace the existing full static and browser QA.
