@@ -39,3 +39,22 @@ If a script is missing or fails, record the failure and do not label the change 
 ## Release verification
 - Confirm source SHA, published asset versions, sitemap, and a representative set of desktop/mobile pages after deployment.
 - Record results and distinguish local QA, Actions QA, and production verification.
+
+## Audit update: 2026-10-20
+
+Repository files inspected:
+- `.github/workflows/browser-qa.yml`: automatic PR and main triggers are removed **only in this Draft PR**; manual browser QA remains.
+- `.github/workflows/sync-published-content.yml`: selected `main` pushes trigger generation; it may push a generated commit to `main`.
+- `.github/workflows/live-production-check.yml`: **both** selected `main` pushes and successful completion of `Sync published article index` can trigger production verification; manual dispatch also exists. It installs Chromium after a full file-by-file production match.
+
+### Duplication and safety assessment
+A content update can trigger content sync and production verification; completion of sync can also trigger another production verification. The concurrency group `kaito-live-verification` with `cancel-in-progress: true` reduces simultaneous runs but does not guarantee zero billed runtime for superseded runs. Do not remove either trigger without confirming deployment timing and which run is needed.
+
+### Current publication blocker (from progress ledger, last entry 2026-10-17)
+- `/notes/kidp-002-whynot/` failed byte-for-byte comparison while 61/62 files matched.
+- GitHub index sync success does not prove that XServer deployed the updated HTML.
+- Inspect XServer deployment history, deployed commit SHA, destination path, and cache behavior before claiming production success.
+- Run a single manual `Live XServer deployment verification` after the hosting-side discrepancy is addressed, rather than repeated speculative CI runs.
+
+### Progress ledger correction
+The later entries in `docs/KAITO_PUBLIC_SITE_REVIEW_STATUS_20261014.md` supersede its earlier summary table: S-10B2 was merged and production-verified; S-11 was substantially merged. Do not repeat these completed changes. The remaining S-11 gate is the production mismatch noted above.
