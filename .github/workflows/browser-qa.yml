@@ -1,21 +1,8 @@
 name: Browser and metadata QA
 
 on:
-  pull_request:
-    branches: [main]
-  push:
-    branches: [main]
-    paths:
-      - '*.html'
-      - '**/index.html'
-      - '*.css'
-      - '*.js'
-      - 'scripts/browser-smoke.cjs'
-      - 'site-search-ui.js'
-      - 'site-search.css'
-      - 'scripts/test-site-search-ui.cjs'
-      - 'scripts/site-static-check.cjs'
-      - '.github/workflows/browser-qa.yml'
+  # Browser QA is expensive (Playwright/Chromium installation and six viewport checks).
+  # Run manually for release candidates or major UI changes after local static checks.
   workflow_dispatch:
 
 permissions:
