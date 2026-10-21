@@ -36,6 +36,29 @@ node scripts/diagnose-live-html-drift.cjs
 
 クエリ付き応答の一致・不一致だけでキャッシュ原因を断定しない。
 
+## 2026-10-21 確定した差分の正体（GitHub履歴と公開検証ログの突合）
+
+[既存の追跡Issue #52](https://github.com/k-ait0/k-aito-com/issues/52)に、再現可能なSHA照合結果を記録した。これは **2026-10-16の本番検証ログの解釈**であり、10/21の実配信を新たに取得した結果ではない。
+
+| 対象 | SHA-256 |
+| --- | --- |
+| 本番検証ログの公開版 | `0470063b9e0c2207fd322b24c2ccc82d5255572b2294dd49655475dffe97ff90` |
+| PR #50 squash merge `d1ce299fbca9` のHTML | `0470063b9e0c2207fd322b24c2ccc82d5255572b2294dd49655475dffe97ff90` |
+| 自動生成コミット `cd0f679329b6` と最新mainのHTML | `9683649e9adfe2101f27b295fbebf19805bd02a96273ad36f653a2b69e07f5e3` |
+
+両版の違いは「次に見る」欄の **3つの装飾矢印に `aria-hidden="true"` があるかどうかのみ**で、後者は57バイト長い。PR統合直後のHTMLに3か所の `aria-hidden="true"` を付けると、自動生成コミット版と完全一致する。
+
+この属性は `scripts/sync-published-content.cjs` の生成ロジックが出力している。GitHubの同期成功とXServerへの配備成功は独立しているため、自動生成された内容が公開側に届かない場合があり得る。
+
+**未確定:** XServer自動デプロイのGitHub Actions生成コミットへの追従、デプロイ設定、個別ファイルキャッシュ。ホスティング側の記録なしに断定しない。
+
+## 再発防止の暫定方針
+
+1. 記事の本文・「次に見る」導線など生成ソースを変更するPRでは、マージ前にローカルで `node scripts/test-published-content.cjs` と `node scripts/sync-published-content.cjs`、関連静的監査を実行し、**生成物の差分も同じPRへ含める**。
+2. 生成物をコミットした後に同じ同期を再実行し、`git diff --exit-code` で無差分を確認する。同期ソースと出力の境界を明確にする。
+3. サイトへ自動配備されたSHAが「PRマージコミット」なのか「Actions生成コミット」なのか、XServerのデプロイ履歴で確認する。GitHub Actions側の成功だけで本番公開済みとはしない。
+4. 診断が必要な場合は、既存の [Draft PR #51の診断スクリプト](https://github.com/k-ait0/k-aito-com/blob/a80fea0b5af8/scripts/diagnose-live-page.cjs)を優先してもよい。本ブランチの診断スクリプトは**キャッシュ回避URLとの比較を追加した補助版**であり、両者を無条件にmainへ統合しない。
+
 ## XServer Staticでの確認事項（管理者操作）
 
 公式マニュアル: https://static.xserver.ne.jp/support/manual/man_tool_server.php
