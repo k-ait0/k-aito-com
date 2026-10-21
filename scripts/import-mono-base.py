@@ -5,6 +5,7 @@ from pathlib import Path
 from zipfile import ZipFile
 from collections import Counter
 import hashlib
+import re
 from stat import S_IFMT, S_IFLNK
 from html.parser import HTMLParser
 from urllib.parse import urlsplit, unquote
@@ -49,6 +50,12 @@ def main():
         if missing: raise SystemExit('Missing required files: '+str(sorted(missing)))
         images=sorted(n for n in members if n.startswith('assets/') and n.lower().endswith(('.jpg','.png','.webp')))
         if len(images)!=13: raise SystemExit(f'Expected 13 image files, got {len(images)}')
+        allowed=REQUIRED|set(images)
+        if members != allowed:
+            raise SystemExit('Unexpected or missing v3.4 members: '
+                             +str(sorted(members-allowed))+' / '+str(sorted(allowed-members)))
+        if sum(name.endswith('.html') for name in members)!=9:
+            raise SystemExit('Expected exactly 9 HTML pages')
         manifest_file=args.destination/'ASSET_MANIFEST.sha256'
         if not manifest_file.is_file():
             raise SystemExit('Missing original-image SHA manifest: '+str(manifest_file))
@@ -76,10 +83,31 @@ def main():
                 raise SystemExit('Original image SHA256 mismatch: '+name)
         bad=[]
         for name in sorted(n for n in members if n.endswith('.html')):
+            source=z.read(name).decode('utf-8')
+            head=source.split('</head>',1)[0]
+            for label,pattern in (
+                ('title',r'<title>[^<]+</title>'),
+                ('description',r'<meta\\s+name="description"\\s+content="[^"]+"'),
+                ('viewport',r'<meta\\s+name="viewport"'),
+                ('pre-release noindex',r'<meta\\s+name="robots"\\s+content="noindex,follow"'),
+            ):
+                if not re.search(pattern,head):
+                    raise SystemExit(f'Missing {label} in {name}')
+            if len(re.findall(r'<h1(?:\\s|>)',source))!=1:
+                raise SystemExit('Expected one H1: '+name)
+            ids=re.findall(r'\\bid="([^"]+)"',source)
+            if len(set(ids))!=len(ids):
+                raise SystemExit('Duplicate HTML IDs: '+name)
+            for img in re.findall(r'<img\\b[^>]*>',source):
+                if not re.search(r'\\balt="[^"]*"',img):
+                    raise SystemExit('Missing image alt: '+name)
             parser=Refs()
-            parser.feed(z.read(name).decode('utf-8'))
+            parser.feed(source)
             for ref in parser.refs:
                 parsed=urlsplit(ref)
+                if parsed.scheme and parsed.scheme.lower() not in ('http','https','mailto','tel','data'):
+                    bad.append((name,ref+' (unsafe scheme)'))
+                    continue
                 if parsed.scheme or parsed.netloc or ref.startswith(('#','/','data:','mailto:','tel:')):continue
                 target=(Path(name).parent/unquote(parsed.path)).as_posix()
                 if parsed.path and target not in members: bad.append((name,ref))
