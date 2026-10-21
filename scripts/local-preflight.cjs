@@ -11,6 +11,7 @@ const cp = require("node:child_process");
 
 const CHECKS = [
   ["Local preflight regression", "scripts/test-local-preflight.cjs"],
+  ["Manual-sync workflow policy", "scripts/test-manual-sync-policy.cjs"],
   ["Generation guard regression", "scripts/test-check-generated-content.cjs"],
   ["Generated content matches checked-in files", "scripts/check-generated-content.cjs"],
   ["Published article regression", "scripts/test-published-content.cjs"],
