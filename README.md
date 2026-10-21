@@ -100,6 +100,29 @@
 
 JavaScriptが無効の場合に備え、SHELVES一覧とARCHIVEの静的記事一覧も自動更新します。**棚詳細ページの個別セクションはJavaScriptによる記事一覧更新です。** JavaScript無効でもすべての棚の新着記事を一覧表示する要件が生じた場合は、静的生成の対象に追加します。
 
+## GitHub Actionsを使わないローカルQA（2026-10-21）
+
+日常のHTML・記事・検索UI修正は、Node.js 22環境で以下を実行し、**PRに生成物を含めてから**レビューする。GitHub Actions、XServerへのデプロイ、Playwrightのインストールはいずれも発生しない。
+
+```bash
+node scripts/local-preflight.cjs
+```
+
+検査内容：自動生成物とコミット済みHTMLの一致、生成チェックの回帰、公開記事・前後記事リンク、共通シェル・パンくず、検索、HTML参照、静的SEO。生成チェックは一時ディレクトリ上で同期処理を再実行し、実際の作業ツリーを変更しない。
+
+**生成物差分が検出された場合**は、対応するソースを見直してから以下を実行する。
+
+```bash
+node scripts/sync-published-content.cjs
+git diff --check
+git diff --stat
+node scripts/local-preflight.cjs
+```
+
+同期で変更されたHTML・`content-index.js`・`sitemap.xml`もPRに含める。これで「PRマージ後のActions生成コミットだけが公開先に配備されない」リスクを低減できる。
+
+**注意：** ローカルQA合格はPRマージや公開の承認ではない。主要UIの変更では手動ブラウザQA、公開時にはXServerの配備履歴・配信62ファイルの一致・主要画面の動作確認を別途行う。XServerへの反映不一致は[Issue #52](https://github.com/k-ait0/k-aito-com/issues/52)で追跡中であり、このQAでは解消しない。
+
 ## 通常運用と本番公開チェック
 
 公開記事を追加するときは、記事のHTMLと `content-index.js` の登録を同一の変更として反映します。台帳の同期が成功すると、SHELVES・ARCHIVEのフォールバック一覧と `sitemap.xml` が更新されます。
