@@ -86,7 +86,7 @@
 
 1. `notes/<slug>/index.html` と記事で利用する画像を配置する。
 2. `content-index.js` に一意な `id`、`title`、`state`、`shelf`、`date`（YYYY.MM.DD）、`url`（/notes/<slug>/）、`tags`、`summary` を登録する。**検索用本文 `searchText` は生成されるので手入力しない。**既存データの `id` と `url` は原則維持する。
-3. 両方を `main` に反映する。記事ページがないのにメタデータだけ公開しない。
+3. 記事HTMLと台帳を作業ブランチに保存し、ローカル同期・QAの結果として生じた生成物も同じPRへ含める。レビュー後にまとめて `main` へ統合する。記事ページがないのにメタデータだけ公開しない。
 
 **2026-10-21以降の標準運用：記事・索引の同期はローカルで行い、生成物も同じPRに含めます。** `Sync published article index` の自動pushトリガーは停止し、`workflow_dispatch`（手動実行）のみ維持します。これにより、マージ後にActionsが別コミットを作ってXServerの公開版と食い違う問題を予防します。
 
