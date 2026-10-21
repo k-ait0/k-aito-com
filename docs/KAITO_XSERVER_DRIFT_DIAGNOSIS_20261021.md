@@ -59,6 +59,33 @@ node scripts/diagnose-live-html-drift.cjs
 3. サイトへ自動配備されたSHAが「PRマージコミット」なのか「Actions生成コミット」なのか、XServerのデプロイ履歴で確認する。GitHub Actions側の成功だけで本番公開済みとはしない。
 4. 診断が必要な場合は、既存の [Draft PR #51の診断スクリプト](https://github.com/k-ait0/k-aito-com/blob/a80fea0b5af8/scripts/diagnose-live-page.cjs)を優先してもよい。本ブランチの診断スクリプトは**キャッシュ回避URLとの比較を追加した補助版**であり、両者を無条件にmainへ統合しない。
 
+## 2026-10-21 ローカル再発防止ガード（新規追加）
+
+この診断ブランチに次の2ファイルを追加した。
+
+- `scripts/check-generated-content.cjs`：記事生成スクリプトを**OSの一時ディレクトリに複製したサイト**で実行し、元の作業ディレクトリには書き込まず、HTML／`content-index.js`／`sitemap.xml` に差分が出るか調べる。
+- `scripts/test-check-generated-content.cjs`：生成結果一致、生成差分検出、ジェネレーター失敗の3ケースを検証。元のファイルを変更しないことも検証。
+
+Windows PowerShell、macOS、LinuxのいずれもNode.js 22で実行可能。
+
+```bash
+node scripts/test-check-generated-content.cjs
+node scripts/check-generated-content.cjs
+```
+
+ガードが `FAIL` を返した場合、**元の作業ディレクトリは変更されていない**。通常の同期処理を明示的に実行し、差分をレビューして同じPRへ含める。
+
+```bash
+node scripts/sync-published-content.cjs
+git diff --check
+git diff --stat
+node scripts/check-generated-content.cjs
+```
+
+初期テストはローカルの小型フィクスチャで3ケース合格。**この会話環境からGitHubの実際のサイト一式をチェックアウトできないため、リポジトリ全体に対するガードの合格判定は未実施**。CIや本番デプロイも起動していない。
+
+なお、このガードは `sync-published-content.cjs` が生成する記事関連成果物のみが対象であり、他のジェネレーター、XServer配備、実ブラウザ表示を検証するものではない。
+
 ## XServer Staticでの確認事項（管理者操作）
 
 公式マニュアル: https://static.xserver.ne.jp/support/manual/man_tool_server.php
