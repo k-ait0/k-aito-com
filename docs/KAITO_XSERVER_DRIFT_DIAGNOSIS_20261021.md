@@ -117,3 +117,12 @@ GitHub接続で最新main（`54a7c85321ee`）のサイトマップ24URLを直接
 - **未検証:** 実リポジトリ全体での`node scripts/local-preflight.cjs`の統合実行。XServerの最新公開HTMLおよびホスティングのデプロイ履歴。過去の本番61/62不一致が解消したとは判定しない。
 - **変更理由:** 本番HTML不一致の根拠を記録し、Actionsの使用を抑えながら、PRに生成済みHTMLを含めるチェックを実現するため。
 - **運用:** 既存の記録は削除せず追記。XServer側の情報が得られるまではIssue #52をOpenのまま維持する。
+
+## 改訂履歴・v1.2（2026-10-21、PR審査中）
+
+- **変更対象:** `.github/workflows/sync-published-content.yml`、`scripts/local-preflight.cjs`、`README.md`、`scripts/test-manual-sync-policy.cjs`。
+- **変更前:** `main`への記事・検索UI・スクリプト変更で `Sync published article index` が自動起動し、差分があれば追加コミットを作成。その後、生成コミットの公開配備が行われない場合があった。
+- **変更後:** 記事同期を `workflow_dispatch` の手動実行のみとする。記事変更者がローカルで生成物を作り、ソース変更と同じPRへ含める。標準ローカルQAにワークフローの起動条件検査を追加。
+- **変更理由:** マージコミットと生成コミットの乖離防止、GitHub Actionsの使用量削減。重要な本番照合は別ワークフローの自動起動を維持。
+- **検証とリリースゲート:** 設定の静的整合性をチェックし、実リポジトリ全体のローカルQAとXServer配信照合は別判定。
+- **状態:** この変更はDraft PRで検討する。本番公開環境や`main`への反映は、マージを行うまで未実施。Issue #52は引き続きOpen。
