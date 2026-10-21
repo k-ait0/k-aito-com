@@ -87,19 +87,19 @@ def main():
             head=source.split('</head>',1)[0]
             for label,pattern in (
                 ('title',r'<title>[^<]+</title>'),
-                ('description',r'<meta\\s+name="description"\\s+content="[^"]+"'),
-                ('viewport',r'<meta\\s+name="viewport"'),
-                ('pre-release noindex',r'<meta\\s+name="robots"\\s+content="noindex,follow"'),
+                ('description',r'<meta\s+name="description"\s+content="[^"]+"'),
+                ('viewport',r'<meta\s+name="viewport"'),
+                ('pre-release noindex',r'<meta\s+name="robots"\s+content="noindex,follow"'),
             ):
                 if not re.search(pattern,head):
                     raise SystemExit(f'Missing {label} in {name}')
-            if len(re.findall(r'<h1(?:\\s|>)',source))!=1:
+            if len(re.findall(r'<h1(?:\s|>)',source))!=1:
                 raise SystemExit('Expected one H1: '+name)
-            ids=re.findall(r'\\bid="([^"]+)"',source)
+            ids=re.findall(r'\bid="([^"]+)"',source)
             if len(set(ids))!=len(ids):
                 raise SystemExit('Duplicate HTML IDs: '+name)
-            for img in re.findall(r'<img\\b[^>]*>',source):
-                if not re.search(r'\\balt="[^"]*"',img):
+            for img in re.findall(r'<img\b[^>]*>',source):
+                if not re.search(r'\balt="[^"]*"',img):
                     raise SystemExit('Missing image alt: '+name)
             parser=Refs()
             parser.feed(source)
