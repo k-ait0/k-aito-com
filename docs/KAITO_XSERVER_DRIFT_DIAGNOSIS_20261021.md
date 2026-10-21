@@ -86,6 +86,25 @@ node scripts/check-generated-content.cjs
 
 なお、このガードは `sync-published-content.cjs` が生成する記事関連成果物のみが対象であり、他のジェネレーター、XServer配備、実ブラウザ表示を検証するものではない。
 
+## 2026-10-21 GitHub mainの実ページ監査・ローカルQA整備
+
+GitHub接続で最新main（`54a7c85321ee`）のサイトマップ24URLを直接読み、**24ページすべてのHTMLを取得して静的照合に合格**した。
+
+監査内容: 各ページのtitle・description、canonicalとOG URL、重複ID、ページ内アンカーのターゲット、GitHubツリー上の絶対パス参照先。検査範囲内ではエラー0件。
+
+加えて、S-11の編集マッピングを持つ3記事の「次に見る」欄もmainと同期コードで完全一致。
+
+本監査は**GitHub上のファイルの静的照合のみ**。相対リンクの一部、動的UI、公開XServerのHTTPレスポンスは含まれない。
+
+### ローカル検査コマンド
+
+- `scripts/local-preflight.cjs`を追加し、**Node.js 22のみ**で10種の既存検証と生成物ドリフトガードを順次実行する。失敗項目は集約報告し、GitHub ActionsもブラウザQAも起動しない。
+- `scripts/test-local-preflight.cjs`でチェック項目の存在、ブラウザ/ライブ検証の非実行、成功・部分失敗・例外処理をユニットテストした。
+- 手元のNode.js 22環境で**両新規テストスイートが合格**。実際のリポジトリ全体についての`node scripts/local-preflight.cjs`実行は未実施（本環境からGitHubリポジトリのローカルクローン不可）。
+- [README](../README.md)に「GitHub Actionsを使わないローカルQA」手順を追加。
+
+この調査ブランチにPRは作成しておらず、`main`も本番公開環境も変更していない。
+
 ## XServer Staticでの確認事項（管理者操作）
 
 公式マニュアル: https://static.xserver.ne.jp/support/manual/man_tool_server.php
