@@ -88,17 +88,32 @@
 2. `content-index.js` に一意な `id`、`title`、`state`、`shelf`、`date`（YYYY.MM.DD）、`url`（/notes/<slug>/）、`tags`、`summary` を登録する。**検索用本文 `searchText` は生成されるので手入力しない。**既存データの `id` と `url` は原則維持する。
 3. 両方を `main` に反映する。記事ページがないのにメタデータだけ公開しない。
 
-`.github/workflows/sync-published-content.yml` が記事台帳の変更を検出すると、`scripts/sync-published-content.cjs` を実行し、次をGitHub Actionsの別コミットへ反映します。
+**2026-10-21以降の標準運用：記事・索引の同期はローカルで行い、生成物も同じPRに含めます。** `Sync published article index` の自動pushトリガーは停止し、`workflow_dispatch`（手動実行）のみ維持します。これにより、マージ後にActionsが別コミットを作ってXServerの公開版と食い違う問題を予防します。
 
-- `sitemap.xml` の公開記事URL・公開日
-- SHELVES一覧とARCHIVEの静的フォールバック記事一覧
-- 各HTMLが読み込む `content-index.js` のキャッシュ識別子（内容のSHA-256から生成）
+記事や索引を変更する場合：
 
-ワークフローは記事HTMLの存在、URLとIDの一致、棚、公開日の妥当性を検証します。**Actionsが失敗した場合は生成物が同期されないので、実行結果と公開先での反映を確認してください。** Github Actionsが生成したコミットのXServer Staticへの反映も確認してください。
+```bash
+node scripts/test-published-content.cjs
+node scripts/sync-published-content.cjs
+node scripts/local-preflight.cjs
+git diff --check
+git diff --stat
+```
 
-手元で確認する場合は、Node.js 22で `node scripts/sync-published-content.cjs` を実行できます。生成結果は決定的で、同じ台帳から再実行しても差分は発生しません。
+生成された`content-index.js`の検索本文、`sitemap.xml`、HOME/SHELVES/ARCHIVEの静的一覧、記事内の前後リンク・「次に見る」、読み込みキャッシュ識別子の変更を**ソース変更と同じPRでレビュー・コミット**してください。
+
+Actions側の手動同期は、ローカル実行できない緊急復旧などに限定します。手動実行した場合は、生成後コミットのSHAとXServerの配備履歴を必ず照合してください。公開ページを変更したコミットに対する`Live XServer deployment verification`は引き続き自動実行され、リリース時の配信整合性チェックは残します。
+
+ローカル生成スクリプトは同じ入力に対して冪等であることを単体テストしています。**本番復旧については別管理の[Issue #52](https://github.com/k-ait0/k-aito-com/issues/52)が未解決です。**
 
 JavaScriptが無効の場合に備え、SHELVES一覧とARCHIVEの静的記事一覧も自動更新します。**棚詳細ページの個別セクションはJavaScriptによる記事一覧更新です。** JavaScript無効でもすべての棚の新着記事を一覧表示する要件が生じた場合は、静的生成の対象に追加します。
+
+### 同期方式の改訂履歴
+
+| 版 | 日付 | 変更前 | 変更後 | 理由・対象 |
+| --- | --- | --- | --- | --- |
+| 1.0 | 2026-10-09 | 記事変更をpush検出してActionsで索引とHTMLを別コミット生成 | 同左 | 記事検索・一覧を自動同期 |
+| 1.1（PR審査中） | 2026-10-21 | `main`のpushで自動生成コミット | PR内で生成済み成果物を提出、Actionsは手動復旧専用 | XServerで生じた生成コミットの公開不一致とActions消費を抑制。対象：`sync-published-content.yml`・記事更新手順 |
 
 ## GitHub Actionsを使わないローカルQA（2026-10-21）
 
