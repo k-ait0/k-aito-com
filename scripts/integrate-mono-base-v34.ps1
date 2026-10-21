@@ -37,7 +37,7 @@ try {
     if ($LASTEXITCODE -ne 0 -or $dirty.Count -gt 0) {
         throw 'Working tree is not clean. Preserve existing changes before importing.'
     }
-    Invoke-Checked 'git' @('fetch','--no-tags','origin',$branch)
+    Invoke-Checked -Tool 'git' -Arguments @('fetch','--no-tags','origin',$branch)
     $remote = (git rev-parse "refs/remotes/origin/$branch").Trim()
     if ($LASTEXITCODE -ne 0) { throw 'Unable to resolve upstream branch.' }
     $localHead = (git rev-parse HEAD).Trim()
@@ -48,30 +48,30 @@ try {
     if ($digest -ne $zipSha256) { throw "Release ZIP checksum mismatch: $digest" }
     Write-Host "Approved ZIP and unchanged upstream branch verified: $($localHead.Substring(0,12))"
 
-    Invoke-Checked 'python' @('scripts/import-mono-base.py',$zip,'--destination','mono-base','--overwrite-pages')
+    Invoke-Checked -Tool 'python' -Arguments @('scripts/import-mono-base.py',$zip,'--destination','mono-base','--overwrite-pages')
     if (-not $Apply) {
         Write-Host 'DRY RUN passed; no files, commits or deployment changed.'
         return
     }
 
-    Invoke-Checked 'python' @('scripts/import-mono-base.py',$zip,'--destination','mono-base','--overwrite-pages','--apply')
-    Invoke-Checked 'python' @('scripts/verify-mono-base-original-assets.py','mono-base')
-    Invoke-Checked 'node' @('scripts/site-static-check.cjs')
-    Invoke-Checked 'node' @('scripts/test-mono-base-preview.cjs')
-    Invoke-Checked 'node' @('scripts/test-site-shell.cjs')
-    Invoke-Checked 'git' @('diff','--check')
-    Invoke-Checked 'git' @('add','--','mono-base')
-    Invoke-Checked 'git' @('diff','--cached','--check')
+    Invoke-Checked -Tool 'python' -Arguments @('scripts/import-mono-base.py',$zip,'--destination','mono-base','--overwrite-pages','--apply')
+    Invoke-Checked -Tool 'python' -Arguments @('scripts/verify-mono-base-original-assets.py','mono-base')
+    Invoke-Checked -Tool 'node' -Arguments @('scripts/site-static-check.cjs')
+    Invoke-Checked -Tool 'node' -Arguments @('scripts/test-mono-base-preview.cjs')
+    Invoke-Checked -Tool 'node' -Arguments @('scripts/test-site-shell.cjs')
+    Invoke-Checked -Tool 'git' -Arguments @('diff','--check')
+    Invoke-Checked -Tool 'git' -Arguments @('add','--','mono-base')
+    Invoke-Checked -Tool 'git' -Arguments @('diff','--cached','--check')
     $staged = @(git diff --cached --name-only)
     if ($LASTEXITCODE -ne 0 -or $staged.Count -lt 1) {
         throw 'No changes staged: refusing an empty integration commit.'
     }
-    Invoke-Checked 'git' @('commit','-m','feat(mono-base): integrate reviewed v3.4 site and original assets')
+    Invoke-Checked -Tool 'git' -Arguments @('commit','-m','feat(mono-base): integrate reviewed v3.4 site and original assets')
     if ($Push) {
-        Invoke-Checked 'git' @('push','origin',"HEAD:refs/heads/$branch")
+        Invoke-Checked -Tool 'git' -Arguments @('push','origin',"HEAD:refs/heads/$branch")
         Write-Host 'Pushed to existing Draft PR #33. Check full-v3.4 CI; DO NOT MERGE until reviewed.'
     } else {
-        Write-Host 'Integrated into local Draft PR branch only. Use -Push on a subsequent verified run.'
+        Write-Host 'Integrated into local Draft PR branch only. Push the newly created commit manually with git push origin HEAD:refs/heads/$branch after reviewing it.'
     }
     Write-Host 'No GitHub PR merge or production deployment was performed.'
 } finally {
