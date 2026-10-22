@@ -1,0 +1,102 @@
+{
+  "version": 1,
+  "description": "KAITO公開ページのパンくず単一マスター。MONO BASEは対象外。",
+  "pages": {
+    "/": {
+      "label": "HOME",
+      "parent": null
+    },
+    "/storage/": {
+      "label": "SHELVES",
+      "parent": "/"
+    },
+    "/travel/": {
+      "label": "旅",
+      "parent": "/storage/"
+    },
+    "/drink/": {
+      "label": "酒",
+      "parent": "/storage/"
+    },
+    "/money/": {
+      "label": "お金・税務",
+      "parent": "/storage/"
+    },
+    "/study/": {
+      "label": "学び・資格",
+      "parent": "/storage/"
+    },
+    "/works/": {
+      "label": "制作・開発",
+      "parent": "/storage/"
+    },
+    "/business/": {
+      "label": "事業の構想",
+      "parent": "/projects/"
+    },
+    "/projects/": {
+      "label": "PROJECTS",
+      "parent": "/"
+    },
+    "/projects/digital-storage/": {
+      "label": "DIGITAL STORAGE",
+      "parent": "/projects/"
+    },
+    "/projects/kidp/": {
+      "label": "KIDP",
+      "parent": "/projects/"
+    },
+    "/projects/kidp/project-give/": {
+      "label": "KIDP-001",
+      "parent": "/projects/kidp/"
+    },
+    "/projects/kidp/whynot/": {
+      "label": "KIDP-002",
+      "parent": "/projects/kidp/"
+    },
+    "/projects/kidp/life-design-lab/": {
+      "label": "KIDP-003",
+      "parent": "/projects/kidp/"
+    },
+    "/projects/kidp/station-life/": {
+      "label": "KIDP-004",
+      "parent": "/projects/kidp/"
+    },
+    "/projects/kidp/board-game-balancer/": {
+      "label": "KIDP-005",
+      "parent": "/projects/kidp/"
+    },
+    "/projects/kidp/building-transformer/": {
+      "label": "KIDP-006",
+      "parent": "/projects/kidp/"
+    },
+    "/archive/": {
+      "label": "ARCHIVE",
+      "parent": "/"
+    },
+    "/about/": {
+      "label": "ABOUT",
+      "parent": "/"
+    },
+    "/links/": {
+      "label": "LINKS",
+      "parent": "/"
+    },
+    "/notes/media-public-interest-sankei-building/": {
+      "label": "2026.10.08",
+      "parent": "/archive/"
+    },
+    "/notes/kidp-002-whynot/": {
+      "label": "KIDP-002",
+      "parent": "/projects/kidp/"
+    },
+    "/notes/nuclear-industrial-carrier/": {
+      "label": "2026.09.18",
+      "parent": "/archive/"
+    },
+    "/notes/site-launch-trouble/": {
+      "label": "2026.09.11",
+      "parent": "/archive/"
+    }
+  }
+}

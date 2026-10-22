@@ -1,5 +1,5 @@
 "use strict";
-/* Shared header search for subpages. HOME uses its existing search dialog. */
+/* Subpage header search. Dialog behavior and cards are shared with HOME. */
 (function(){
   if(!document.body.classList.contains("subpage"))return;
   const catalogue=window.KAitoContent;
@@ -37,10 +37,17 @@
   const queryInput=document.getElementById("site-search-query");
   const list=dialog.querySelector(".site-search-results");
   const count=dialog.querySelector(".site-search-count");
-  const normalize=value=>String(value||"").normalize("NFKC").toLocaleLowerCase("ja").trim();
-  const shelfName=id=>(catalogue.shelves.find(item=>item.id===id)||{}).name||"";
-  const published=catalogue.entries.filter(entry=>entry.url&&entry.url.startsWith("/notes/"));
-  const projects=Array.isArray(window.KAitoProjects)?window.KAitoProjects:[];
+  const searchCore=window.KAitoSearchCore;
+  if(!searchCore)throw Error("KAITO shared search core did not load");
+  const searchUI=window.KAitoSearchUI;
+  if(!searchUI)throw Error("KAITO shared search UI did not load");
+  const sources=searchCore.sources(catalogue,
+    Array.isArray(window.KAitoProjects)?window.KAitoProjects:[]);
+  const searchDialog=searchUI.bindDialog(dialog,{
+    queryInput,
+    closeButton:dialog.querySelector(".site-search-dismiss"),
+    onClose:()=>collapse(false)
+  });
 
   function expand(){
     form.classList.add("is-open");
@@ -57,62 +64,11 @@
   }
   // Search both public article prose and published project pages; never index noindex betas.
   function render(){
-    const words=normalize(queryInput.value).split(/\s+/).filter(Boolean);
-    const sources=[
-      ...published.map(entry=>({
-        type:"ARTICLE",title:entry.title,url:entry.url,summary:entry.summary,
-        metadata:[entry.state,entry.date,shelfName(entry.shelf)].filter(Boolean).join(" / "),
-        tags:entry.tags||[],
-        searchText:[entry.title,entry.summary,entry.state,shelfName(entry.shelf),
-          ...(entry.tags||[]),entry.searchText||""].join(" ")
-      })),
-      ...projects.map(p=>({
-        type:"PROJECT",title:p.title,url:p.url,summary:p.summary,
-        metadata:[p.stage,p.access].filter(Boolean).join(" / "),
-        tags:[],
-        searchText:[p.title,p.summary,p.stage,p.access,p.searchText||""].join(" ")
-      }))
-    ];
-    const found=sources.map(item=>{
-      const haystack=normalize(item.searchText);
-      if(!words.every(word=>haystack.includes(word)))return null;
-      const title=normalize(item.title),description=normalize(item.summary);
-      const relevance=words.reduce((n,w)=>n+(title.includes(w)?6:description.includes(w)?3:1),0);
-      return {...item,relevance};
-    }).filter(Boolean).sort((a,b)=>b.relevance-a.relevance||a.type.localeCompare(b.type));
-    list.replaceChildren();
+    const words=searchCore.tokens(queryInput.value);
+    const found=searchCore.search(sources,queryInput.value);
     const articleCount=found.filter(x=>x.type==="ARTICLE").length;
     count.textContent=found.length+" 件（記事 "+articleCount+"・プロジェクト "+(found.length-articleCount)+"）"+(words.length?"が見つかりました":"を公開中");
-    if(!found.length){
-      const empty=document.createElement("p");
-      empty.className="site-search-empty";
-      empty.textContent="一致する公開記事・プロジェクトはありません。別のキーワードで探してください。";
-      list.append(empty);return;
-    }
-    for(const entry of found){
-      const card=document.createElement("a");
-      card.className="site-search-result";
-      card.dataset.searchType=entry.type.toLowerCase();
-      card.href=entry.url;
-      const meta=document.createElement("span");
-      meta.className="site-search-result-meta";
-      const kind=document.createElement("b");
-      kind.className="site-search-kind";
-      kind.textContent=entry.type;
-      meta.append(kind,document.createTextNode(" "+entry.metadata));
-      const title=document.createElement("strong");
-      title.textContent=entry.title;
-      const summary=document.createElement("span");
-      summary.className="site-search-result-summary";
-      summary.textContent=entry.summary;
-      card.append(meta,title,summary);
-      if(entry.tags.length){
-        const tags=document.createElement("small");
-        tags.textContent=entry.tags.map(tag=>"#"+tag).join("  ");
-        card.append(tags);
-      }
-      list.append(card);
-    }
+    searchUI.render(list,found);
   }
   form.addEventListener("submit",event=>{
     event.preventDefault();
@@ -120,14 +76,10 @@
     queryInput.value=input.value;
     collapse(false);
     render();
-    if(!dialog.open)dialog.showModal();
-    queryInput.focus();
+    searchDialog.open({focusTarget:trigger});
   });
   close.addEventListener("click",()=>collapse(true));
   queryInput.addEventListener("input",render);
-  dialog.querySelector(".site-search-dismiss").addEventListener("click",()=>dialog.close());
-  dialog.addEventListener("click",event=>{if(event.target===dialog)dialog.close();});
-  dialog.addEventListener("close",()=>trigger.focus({preventScroll:true}));
   document.addEventListener("keydown",event=>{
     if(event.key==="Escape"&&form.classList.contains("is-open")&&!dialog.open){
       event.preventDefault();collapse(true);

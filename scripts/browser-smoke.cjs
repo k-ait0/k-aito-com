@@ -52,9 +52,9 @@ const stop=()=>new Promise(resolve=>server.close(resolve));
     else{failures.push(label+(detail?" — "+detail:""));console.error("FAIL "+label,detail);}
   };
   try{
-    for(const mode of [{name:"mobile",width:390,height:844},{name:"desktop",width:1440,height:900}]){
+    for(const mode of [{name:"mobile-320",width:320,height:700},{name:"mobile-375",width:375,height:812},{name:"mobile",width:390,height:844},{name:"mobile-430",width:430,height:932},{name:"tablet",width:768,height:1024},{name:"desktop",width:1440,height:900}]){
       const context=await browser.newContext({viewport:{width:mode.width,height:mode.height},
-        deviceScaleFactor:1,isMobile:mode.name==="mobile",hasTouch:mode.name==="mobile"});
+        deviceScaleFactor:1,isMobile:mode.width<=430,hasTouch:mode.width<=430});
       for(const slug of pages){
         const page=await context.newPage();
         const errors=[];
@@ -96,7 +96,7 @@ const stop=()=>new Promise(resolve=>server.close(resolve));
               mode.name+" "+slug+" MONO BASE public page layout/SEO/images",JSON.stringify(details));
             if(slug==="/mono-base/"){
               const menu=page.locator(".menu-toggle");
-              if(mode.name==="mobile"){
+              if(mode.width<=430){
                 await menu.click();
                 check(await menu.getAttribute("aria-expanded")==="true" &&
                   await page.locator("#site-nav").evaluate(e=>e.classList.contains("open")),
@@ -148,6 +148,57 @@ const stop=()=>new Promise(resolve=>server.close(resolve));
           check(valid.visibleH1===1,mode.name+" "+slug+" one visible heading",JSON.stringify(valid));
           check(valid.overflow<=2,mode.name+" "+slug+" no horizontal overflow",JSON.stringify(valid));
           check(valid.header&&valid.search,mode.name+" "+slug+" header and search",JSON.stringify(valid));
+          check(await page.evaluate(()=>!!window.KAitoSearchCore&&
+            typeof window.KAitoSearchCore.search==="function"&&
+            document.querySelectorAll('script[src^="/site-search-core.js"]').length===1),
+            mode.name+" "+slug+" shared searchable public source loaded exactly once");
+           check(await page.evaluate(()=>!!window.KAitoSearchUI&&
+             typeof window.KAitoSearchUI.render==="function"&&
+             document.querySelectorAll('script[src^="/site-search-ui.js"]').length===1),
+             mode.name+" "+slug+" shared public search result component loaded once");
+
+          const breadcrumb=await page.evaluate(()=>{
+            const navs=[...document.querySelectorAll('nav.breadcrumb[aria-label="パンくずリスト"]')];
+            const nav=navs[0];
+            const script=document.querySelector('script[data-site-breadcrumbs]');
+            let parsed=null;
+            if(script){try{parsed=JSON.parse(script.textContent);}catch{}}
+            return {count:navs.length,active:nav?.querySelectorAll('[aria-current="page"]').length||0,
+              parentHrefs:[...(nav?.querySelectorAll("a")||[])].map(a=>a.getAttribute("href")),
+              ldType:parsed?.["@type"],ldCount:parsed?.itemListElement?.length||0,
+              lastUrl:parsed?.itemListElement?.at(-1)?.item||null};
+          });
+          check(slug==="/"?(breadcrumb.count===0&&breadcrumb.ldCount===0):
+            (breadcrumb.count===1&&breadcrumb.active===1&&
+             breadcrumb.parentHrefs[0]==="/"&&breadcrumb.ldType==="BreadcrumbList"&&
+             breadcrumb.ldCount>=2&&breadcrumb.lastUrl==="https://k-aito.com"+slug),
+            mode.name+" "+slug+" canonical breadcrumb and structured data",
+            JSON.stringify(breadcrumb));
+
+
+          const shell=await page.evaluate(()=>{
+            const header=document.querySelector(".site-header");
+            const footer=document.querySelector(".site-footer");
+            const nav=[...document.querySelectorAll(".main-nav a")];
+            const links=[...document.querySelectorAll(".footer-nav a")];
+            const expected=["HOME","SHELVES","PROJECTS","ARCHIVE","ABOUT"];
+            return {header:!!header,footer:!!footer,
+              nav:nav.map(a=>a.textContent.trim()),
+              links:links.map(a=>a.textContent.trim()),
+              darkFooter:footer?getComputedStyle(footer).backgroundColor==="rgb(29, 63, 51)":false,
+              current:nav.filter(a=>a.getAttribute("aria-current")==="page").length,
+              brand:!!header?.querySelector(".brand .logo-mark"),
+              headerSearch:!!header?.querySelector(".header-search"),
+              footerTargets:links.map(a=>a.getAttribute("href"))};
+          });
+          check(shell.header&&shell.footer&&shell.brand&&shell.headerSearch&&
+            shell.darkFooter&&shell.nav.join("|")==="HOME|SHELVES|PROJECTS|ARCHIVE|ABOUT"&&
+            shell.links.join("|")==="HOME|SHELVES|PROJECTS|ARCHIVE|LINKS|ABOUT"&&
+            shell.footerTargets.includes("/links/")&&
+            (slug==="/"||slug==="/links/"||shell.current===1),
+            mode.name+" "+slug+" canonical navigation, search and dark footer",
+            JSON.stringify(shell));
+
           check(errors.length===0,mode.name+" "+slug+" no script/asset errors",errors.join("; "));
           // Global reading-surface standard: all public pages include the white layer;
           // only the copy surfaces are white — the surrounding canvas remains warm.
@@ -189,7 +240,8 @@ const stop=()=>new Promise(resolve=>server.close(resolve));
               mode.name+" "+slug+" readable text panels are opaque white",JSON.stringify(surfaces.selected));
           }
           if(slug==="/storage/"){
-            check(!!surfaces.shelfOverlay&&surfaces.shelfOverlay.overlay.includes("rgb(255, 255, 255)")&&
+            check(!!surfaces.shelfOverlay&&
+              surfaces.shelfOverlay.overlay==="none"&&
               surfaces.shelfOverlay.text==="rgb(25, 63, 50)"&&surfaces.shelfOverlay.image!=="none",
               mode.name+" SHELVES retain photographs with white type panel",JSON.stringify(surfaces.shelfOverlay));
           }
@@ -246,6 +298,72 @@ const stop=()=>new Promise(resolve=>server.close(resolve));
               mode.name+" HOME has direct archive link and preserves FIRST NOTE",JSON.stringify(homeDiscovery));
             check(homeDiscovery.cards>=1&&!homeDiscovery.duplicate,
               mode.name+" HOME avoids repeating the featured note in remaining cards",JSON.stringify(homeDiscovery));
+          }
+          if(slug==="/storage/"){
+            await page.evaluate(async()=>{
+              await Promise.all([...document.querySelectorAll(".storage-shelf-image")]
+                .map(image=>image.decode().catch(()=>{})));
+              await document.fonts.ready;
+            });
+            const layout=await page.evaluate(()=>{
+              const cards=[...document.querySelectorAll(".storage-shelf")];
+              const rect=e=>e.getBoundingClientRect();
+              const overlap=(a,b)=>a.right>b.left+1&&a.left<b.right-1&&
+                a.bottom>b.top+1&&a.top<b.bottom-1;
+              return cards.map(card=>{
+                const image=card.querySelector(".storage-shelf-image");
+                const label=card.querySelector(".eyebrow");
+                const heading=card.querySelector("h2");
+                const description=card.querySelector("p");
+                const foot=card.querySelector("small");
+                const arrow=card.querySelector(".storage-arrow");
+                const items=[image,label,heading,description,foot,arrow];
+                if(items.some(el=>!el))return {valid:false,reason:"missing card element"};
+                const [im,la,he,de,fo,ar]=items.map(rect);
+                const imageReady=image.complete&&image.naturalWidth>0;
+                const ordered=im.bottom<=la.top+1&&la.bottom<=he.top+1&&
+                  he.bottom<=de.top+1&&de.bottom<=fo.top+1;
+                const collisions=[label,heading,description,foot,arrow]
+                  .filter(el=>overlap(im,rect(el))).length;
+                const copyClipped=items.slice(1).some(el=>{
+                  const r=rect(el),c=rect(card);
+                  return r.left<c.left-2||r.right>c.right+2||r.bottom>c.bottom+2;
+                });
+                return {valid:imageReady&&im.height>=90&&ordered&&
+                  collisions===0&&!copyClipped&&!overlap(fo,ar),
+                  imageReady,ordered,collisions,copyClipped,
+                  photoHeight:im.height,cardWidth:rect(card).width};
+              });
+            });
+            check(layout.length===7&&layout.every(x=>x.valid),
+              mode.name+" SHELVES all 7 image, label, copy and arrow tracks do not overlap",
+              JSON.stringify(layout));
+
+            const longCopy=await page.evaluate(()=>{
+              const card=document.querySelectorAll(".storage-shelf")[5];
+              const title=card?.querySelector("h2"),description=card?.querySelector("p");
+              const label=card?.querySelector(".eyebrow"),status=card?.querySelector("small");
+              const arrow=card?.querySelector(".storage-arrow"),image=card?.querySelector("img");
+              if(!card||!title||!description||!label||!status||!arrow||!image)return false;
+              const originalTitle=title.textContent,originalDescription=description.textContent;
+              const rect=el=>el.getBoundingClientRect();
+              try{
+                title.textContent=originalTitle+"・新規開発と長期構想の取り組み";
+                description.textContent=Array(3).fill(originalDescription).join(" ");
+                const [i,l,h,p,s,a,c]=[image,label,title,description,status,arrow,card].map(rect);
+                const overlaps=(x,y)=>x.right>y.left+1&&x.left<y.right-1&&
+                  x.bottom>y.top+1&&x.top<y.bottom-1;
+                return l.top>=i.bottom-1&&h.top>=l.bottom-1&&
+                  p.top>=h.bottom-1&&s.top>=p.bottom-1&&
+                  !overlaps(s,a)&&s.bottom<=c.bottom+2&&a.bottom<=c.bottom+2&&
+                  card.scrollHeight<=card.clientHeight+2;
+              }finally{
+                title.textContent=originalTitle;
+                description.textContent=originalDescription;
+              }
+            });
+            check(longCopy,mode.name+" SHELVES longer title and tripled description do not overlap");
+
           }
           if(slug==="/storage/"){
             const shelves=await page.evaluate(()=>{
@@ -319,18 +437,30 @@ const stop=()=>new Promise(resolve=>server.close(resolve));
               mode.name+" PROJECTS links to FINOWA");
           }
           if(slug==="/"){
-            if(mode.name==="mobile")await page.locator("#search-form button[type=submit]").click();
+            if(mode.width<=430)await page.locator("#search-form button[type=submit]").click();
             await page.locator("#site-search").fill("WHYNOT");
             await page.locator("#search-form").evaluate(form=>form.requestSubmit());
             await page.locator("#archive-dialog").waitFor({state:"visible"});
             const types=await page.locator("#archive-results a[data-card-type]").evaluateAll(nodes=>nodes.map(n=>n.dataset.cardType));
             check(types.includes("article")&&types.includes("project"),
               mode.name+" HOME search returns both WHYNOT article and KIDP project",JSON.stringify(types));
+             await page.screenshot({path:path.join(screens,mode.name+"-search-home-dialog.png"),fullPage:false});
+             if(mode.width<=430){
+               const widths=await page.locator("#archive-dialog .archive-controls select")
+                 .evaluateAll(nodes=>nodes.map(n=>n.getBoundingClientRect().width));
+               check(widths.length===2&&widths.every(w=>w>=110),
+                 mode.name+" HOME shelf and state filter option widths remain readable",
+                 JSON.stringify(widths));
+             }
             await page.locator("#archive-search").fill("駅生活圏");
             const filtered=await page.locator("#archive-results a[data-card-type]").evaluateAll(nodes=>nodes.map(n=>({kind:n.dataset.cardType,href:n.getAttribute("href")})));
             check(filtered.some(n=>n.kind==="project"&&n.href==="/projects/kidp/station-life/")&&filtered.every(n=>n.kind==="project"),
               mode.name+" HOME project-only phrase returns published station-life detail",JSON.stringify(filtered));
             await page.locator('#archive-dialog [data-close-dialog]').click();
+             await page.locator('#archive-dialog').waitFor({state:"hidden"});
+             check(await page.evaluate(()=>document.activeElement===
+               document.querySelector('#search-form button[type="submit"]')),
+               mode.name+" HOME search closes with header focus restored");
           }
           if(slug==="/about/"){
             await page.locator('#site-wide-search button[type="submit"]').click();
@@ -340,6 +470,7 @@ const stop=()=>new Promise(resolve=>server.close(resolve));
             const types=await page.locator('.site-search-results a[data-search-type]').evaluateAll(nodes=>nodes.map(n=>n.dataset.searchType));
             check(types.includes("article")&&types.includes("project"),
               mode.name+" subpage search returns both WHYNOT article and project",JSON.stringify(types));
+             await page.screenshot({path:path.join(screens,mode.name+"-search-subpage-dialog.png"),fullPage:false});
             await page.locator("#site-search-query").fill("サンケイビル");
             const articleHits=await page.locator('.site-search-results a[data-search-type]').evaluateAll(nodes=>nodes.map(n=>({kind:n.dataset.searchType,href:n.getAttribute("href")})));
             check(articleHits.some(x=>x.kind==="article"&&x.href==="/notes/media-public-interest-sankei-building/"),
@@ -349,6 +480,18 @@ const stop=()=>new Promise(resolve=>server.close(resolve));
             check(projectHits.some(x=>x.kind==="project"&&x.href==="/projects/kidp/station-life/"),
               mode.name+" subpage search finds KIDP prototype by topic",JSON.stringify(projectHits));
             await page.locator(".site-search-dismiss").click();
+             await page.locator("#site-wide-search-dialog").waitFor({state:"hidden"});
+             check(await page.evaluate(()=>document.activeElement===
+               document.querySelector('#site-wide-search button[type="submit"]')),
+               mode.name+" subpage close button restores focus");
+             await page.locator('#site-wide-search button[type="submit"]').click();
+             await page.locator('#global-search-input').fill("WHYNOT");
+             await page.locator('#global-search-input').press("Enter");
+             await page.locator('#site-search-query').press("Escape");
+             await page.locator('#site-wide-search-dialog').waitFor({state:"hidden"});
+             check(await page.evaluate(()=>document.activeElement===
+               document.querySelector('#site-wide-search button[type="submit"]')),
+               mode.name+" subpage Escape restores focus");
           }
           if(slug==="/projects/digital-storage/"){
             check(await page.locator(".project-status strong").innerText()
@@ -389,7 +532,7 @@ const stop=()=>new Promise(resolve=>server.close(resolve));
             const label=slug==="/"?"home":slug==="/storage/"?"shelves":slug.slice(1,-1);
             await page.screenshot({path:path.join(screens,mode.name+"-"+label+".png"),fullPage:true});
           }
-          if(mode.name==="mobile"){
+          if(mode.width<=430){
             const dimensions=await page.locator(slug==="/"
               ?"#search-form":".site-wide-search").boundingBox();
             check(!!dimensions&&dimensions.width<=52,mode.name+" "+slug+" compact search",
@@ -398,6 +541,7 @@ const stop=()=>new Promise(resolve=>server.close(resolve));
         }catch(e){failures.push(mode.name+" "+slug+": "+e.message);console.error("FAIL",mode.name,slug,e);}
         finally{await page.close();}
       }
+      let subpageSearchUrls=[];
       const page=await context.newPage();
       const searchErrors=[];
       page.on("pageerror",e=>searchErrors.push(e.message));
@@ -412,6 +556,19 @@ const stop=()=>new Promise(resolve=>server.close(resolve));
           mode.name+" subpage search dialog opens");
         check(await page.locator(".site-search-result").count()===1,
           mode.name+" subpage full-text search matches one");
+        await page.locator("#site-search-query").fill("WHYNOT");
+        subpageSearchUrls=await page.locator(".site-search-result")
+          .evaluateAll(nodes=>nodes.map(n=>new URL(n.href).pathname).sort());
+        check(subpageSearchUrls.includes("/notes/kidp-002-whynot/")&&
+          subpageSearchUrls.includes("/projects/kidp/whynot/"),
+          mode.name+" subpage mixed-type global search shares public index");
+         check(await page.locator(".site-search-result").evaluateAll(nodes=>
+           nodes.every(n=>!!n.querySelector(".site-search-kind")&&
+             !!n.querySelector(".site-search-result-title")&&
+             !!n.querySelector(".site-search-result-summary")&&
+             n.dataset.cardType===n.dataset.searchType)),
+           mode.name+" subpage unified accessible result-card contract");
+        await page.locator("#site-search-query").fill("原子炉");
         await page.locator("#site-search-query").fill("該当しない単語abc");
         check(await page.locator(".site-search-result").count()===0 &&
           await page.locator(".site-search-empty").count()===1,
@@ -428,7 +585,7 @@ const stop=()=>new Promise(resolve=>server.close(resolve));
       const home=await context.newPage();
       try{
         await home.goto(url+"/",{waitUntil:"networkidle"});
-        if(mode.name==="mobile"){
+        if(mode.width<=430){
           await home.locator("#search-form button[type=submit]").tap();
           check(await home.locator("#search-form").evaluate(e=>e.classList.contains("is-open")),
             "mobile HOME search expands on tap");
@@ -438,8 +595,35 @@ const stop=()=>new Promise(resolve=>server.close(resolve));
         await home.locator("#site-search").press("Enter");
         check(await home.locator("#archive-dialog").evaluate(e=>e.open),
           mode.name+" HOME search dialog opens");
-        check(await home.locator("#archive-results .entry-card").count()===1,
+         check(await home.evaluate(()=>document.activeElement.id==="archive-search"),
+           mode.name+" HOME dialog focuses search field");
+        check(await home.locator("#archive-results .site-search-result").count()===1,
           mode.name+" HOME full-text search matches");
+        await home.locator("#archive-search").fill("ＷＨＹＮＯＴ");
+        const homeUrls=await home.locator('#archive-results a[data-card-type]')
+          .evaluateAll(nodes=>nodes.map(n=>new URL(n.href).pathname).sort());
+        check(homeUrls.join("|")===subpageSearchUrls.join("|")&&homeUrls.length>0,
+          mode.name+" HOME/subpage global search parity and NFKC normalization",
+          JSON.stringify({homeUrls,subpageSearchUrls}));
+         check(await home.locator("#archive-results").evaluate(grid=>
+            grid.classList.contains("is-global-search")&&
+            [...grid.querySelectorAll("a.site-search-result")].every(a=>
+              a.dataset.cardType===a.dataset.searchType&&
+              !!a.querySelector(".site-search-kind")&&
+              !!a.querySelector(".site-search-result-title")&&
+              !!a.querySelector(".site-search-result-summary"))),
+            mode.name+" HOME global results use same public card contract");
+         await home.locator("#archive-search").press("Escape");
+         await home.locator("#archive-dialog").waitFor({state:"hidden"});
+         check(await home.evaluate(()=>document.activeElement===
+           document.querySelector('#search-form button[type="submit"]')),
+           mode.name+" HOME Escape restores focus");
+         if(mode.width<=430){
+           const compact=await home.locator("#search-form").boundingBox();
+           check(!!compact&&compact.width<=52,
+             mode.name+" HOME focus return leaves compact search collapsed",
+             JSON.stringify(compact));
+         }
       }catch(e){failures.push(mode.name+" HOME search: "+e.message);}
       finally{await home.close();}
       // Test the noindex roulette beta separately from public sitemap pages.
@@ -463,7 +647,7 @@ const stop=()=>new Promise(resolve=>server.close(resolve));
         if(!box)throw Error("Swipe card has no bounding box");
         const x=Math.round(box.x+Math.min(box.width*.28,100));
         const y=Math.round(box.y+box.height*.50);
-        if(mode.name==="mobile"){
+        if(mode.width<=430){
           const cdp=await context.newCDPSession(roulette);
           await cdp.send("Input.dispatchTouchEvent",{
             type:"touchStart",touchPoints:[{x,y}]
@@ -504,7 +688,7 @@ const stop=()=>new Promise(resolve=>server.close(resolve));
         await roulette.locator("#result.show").waitFor({timeout:8000});
         check((await roulette.locator("#page-wheel h2").innerText()).includes("次に"),
           mode.name+" roulette uses next-step product copy");
-        if(mode.name==="mobile"){
+        if(mode.width<=430){
           const pos=await roulette.locator(".tabs").evaluate(el=>getComputedStyle(el).position);
           check(pos==="sticky",mode.name+" roulette navigation stays reachable while scrolling");
         }

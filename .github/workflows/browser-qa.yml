@@ -1,16 +1,8 @@
 name: Browser and metadata QA
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - '*.html'
-      - '**/index.html'
-      - '*.css'
-      - '*.js'
-      - 'scripts/browser-smoke.cjs'
-      - 'scripts/site-static-check.cjs'
-      - '.github/workflows/browser-qa.yml'
+  # Browser QA is expensive (Playwright/Chromium installation and six viewport checks).
+  # Run manually for release candidates or major UI changes after local static checks.
   workflow_dispatch:
 
 permissions:
@@ -31,6 +23,16 @@ jobs:
         run: |
           node --check scripts/site-static-check.cjs
           node scripts/site-static-check.cjs
+          node --check scripts/sync-published-content.cjs
+          node --check scripts/test-published-content.cjs
+          node scripts/test-published-content.cjs
+          node --check scripts/test-article-navigation.cjs
+          node scripts/test-article-navigation.cjs
+          node scripts/test-site-search-ui.cjs
+          node scripts/test-site-search-core.cjs
+          node --check scripts/sync-site-shell.cjs
+          node scripts/test-site-shell.cjs
+          node scripts/test-site-breadcrumbs.cjs
       - name: Install test runtime
         run: |
           npm install --prefix /tmp/kaito-qa --no-audit --no-fund --no-save playwright@1.56.1
@@ -49,4 +51,4 @@ jobs:
           name: kaito-desktop-mobile-screenshots
           path: qa-screenshots/*.png
           if-no-files-found: ignore
-          retention-days: 7
+          retention-days: 30

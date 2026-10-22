@@ -17,7 +17,7 @@ function entryCard(entry, compact=false){
   return `<button type="button" class="entry-card ${!entry.thumbnail&&!compact?'text-card':''}" data-card-type="article" data-entry="${entry.id}" aria-label="${esc(entry.title)}を読む">${content}</button>`;
 }
 
-const publishedNotes=entries.filter(entry=>entry.url&&entry.url.startsWith("/notes/")).slice().sort((a,b)=>b.date.localeCompare(a.date));
+const publishedNotes=window.KAitoContent.publishedNotes || entries.filter(entry=>entry.url&&entry.url.startsWith("/notes/")).slice().sort((a,b)=>b.date.localeCompare(a.date));
 // The latest article has its own feature above the shelves. Avoid a duplicate card below.
 document.getElementById("recent-grid").innerHTML=publishedNotes.slice(1,4).map(entry=>entryCard(entry)).join("");
 document.getElementById("shelves-grid").innerHTML=shelves.map(shelf=>{
@@ -59,13 +59,23 @@ function openDialog(dialog){
   document.body.classList.add("modal-open");
   dialog.scrollTop=0;
 }
-function openArchive({query="",shelf="all",projects=false}={}){
+function openArchive({query="",shelf="all",projects=false,returnFocus=null}={}){
   archiveSearch.value=query;shelfSelect.value=shelf;stateSelect.value="all";projectsOnly=projects;
   document.getElementById("archive-title").textContent=projects?"進行中のプロジェクト":"物置の中を探す";
-  renderArchive();openDialog(archiveDialog);
-  if(query)archiveSearch.focus();
+  renderArchive();archiveModal.open({focusTarget:returnFocus});
 }
-const normalize = value=>value.normalize('NFKC').toLocaleLowerCase('ja').trim();
+const searchCore=window.KAitoSearchCore;
+if(!searchCore)throw Error("KAITO shared search core did not load");
+const normalize=searchCore.normalize;
+const searchUI=window.KAitoSearchUI;
+if(!searchUI)throw Error("KAITO shared search UI did not load");
+const archiveModal=searchUI.bindDialog(archiveDialog,{
+  queryInput:archiveSearch,
+  closeButton:archiveDialog.querySelector("[data-close-dialog]"),
+  onClose:()=>document.getElementById("search-form").classList.remove("is-open")
+});
+const searchSources=searchCore.sources(window.KAitoContent,
+  Array.isArray(window.KAitoProjects)?window.KAitoProjects:[]);
 function matchingEntries(){
   const query=normalize(archiveSearch.value);
   const words=query.split(/\s+/).filter(Boolean);
@@ -84,34 +94,17 @@ function renderArchive(){
   const words=query.split(/\s+/).filter(Boolean);
   const allFilters=shelfSelect.value==="all"&&stateSelect.value==="all";
   if((words.length&&allFilters)||projectsOnly){
-    const projectIndex=Array.isArray(window.KAitoProjects)?window.KAitoProjects:[];
-    const articleList=entries.filter(e=>e.url&&e.url.startsWith("/notes/")).map(e=>({
-      type:"ARTICLE",url:e.url,title:e.title,summary:e.summary,state:e.state,
-      text:[e.title,e.summary,e.state,...(e.tags||[]),e.searchText||""].join(" ")
-    }));
-    const projectList=projectIndex.map(p=>({
-      type:"PROJECT",url:p.url,title:p.title,summary:p.summary,state:p.stage,
-      text:[p.title,p.summary,p.stage,p.access,p.searchText||""].join(" ")
-    }));
-    const selected=(projectsOnly?projectList:[...articleList,...projectList])
-      .map(item=>{
-        const normal=normalize(item.text);
-        if(!words.every(word=>normal.includes(word)))return null;
-        const title=normalize(item.title),summary=normalize(item.summary);
-        return {...item,score:words.reduce((n,w)=>n+(title.includes(w)?6:summary.includes(w)?3:1),0)};
-      }).filter(Boolean).sort((a,b)=>b.score-a.score||a.type.localeCompare(b.type));
+    const selected=searchCore.search(searchSources,query,{projectsOnly});
     const notes=selected.filter(x=>x.type==="ARTICLE").length;
     document.getElementById("results-count").textContent=`${selected.length} 件（記事 ${notes}・プロジェクト ${selected.length-notes}）`;
-    document.getElementById("archive-results").innerHTML=selected.length?selected.map(item=>
-      `<a class="entry-card entry-card-link text-card" data-card-type="${item.type.toLowerCase()}" href="${esc(item.url)}">
-        <span class="card-copy"><span class="card-kind">${item.type}</span>
-          <span class="state">${esc(item.state)}</span>
-          <span class="card-title">${esc(item.title)}</span>
-          <span class="card-summary">${esc(item.summary)}</span>
-          <span class="card-arrow" aria-hidden="true">→</span>
-        </span></a>`).join(""):`<div class="empty-state"><strong>一致する公開記事・プロジェクトはありません。</strong><p>短いキーワードでもう一度検索してください。</p></div>`;
+    const grid=document.getElementById("archive-results");
+    grid.classList.add("is-global-search");
+    searchUI.render(grid,selected,{
+      emptyText:"一致する公開記事・プロジェクトはありません。短いキーワードでもう一度検索してください。"
+    });
     return;
   }
+  document.getElementById("archive-results").classList.remove("is-global-search");
   const found=matchingEntries();
   document.getElementById("results-count").textContent=`${found.length} 件の公開記事`;
   document.getElementById("archive-results").innerHTML=found.length?found.map(entry=>entryCard(entry)).join(''):`<div class="empty-state"><strong>この条件のものは、まだありません。</strong><p>別のことばで探すか、棚や状態の条件を変えてみてください。</p></div>`;
@@ -133,7 +126,8 @@ document.addEventListener("click",event=>{
   const shelf=event.target.closest("[data-shelf]");if(shelf){openArchive({shelf:shelf.dataset.shelf});return;}
   if(event.target.closest("[data-open-archive]")){openArchive();return;}
   if(event.target.closest("[data-project-archive]")){openArchive({projects:true});return;}
-  const close=event.target.closest("[data-close-dialog]");if(close)close.closest("dialog").close();
+  const close=event.target.closest("[data-close-dialog]");
+  if(close&&close.closest("dialog")===entryDialog)entryDialog.close();
 });
 document.getElementById("search-form").addEventListener("submit",event=>{
   event.preventDefault();
@@ -145,22 +139,17 @@ document.getElementById("search-form").addEventListener("submit",event=>{
   if(document.activeElement&&document.getElementById("search-form").contains(document.activeElement)){
     document.activeElement.blur();
   }
-  openArchive({query:searchTerm});
+  openArchive({query:searchTerm,returnFocus:document.querySelector('#search-form button[type="submit"]')});
 });
 document.getElementById("archive-search-form").addEventListener("submit",event=>{event.preventDefault();renderArchive();});
 archiveSearch.addEventListener("input",renderArchive);shelfSelect.addEventListener("change",renderArchive);stateSelect.addEventListener("change",renderArchive);
 document.getElementById("reset-filters").addEventListener("click",()=>{archiveSearch.value="";shelfSelect.value="all";stateSelect.value="all";renderArchive();archiveSearch.focus();});
 
-for(const dialog of [archiveDialog,entryDialog]){
+for(const dialog of [entryDialog]){
   dialog.addEventListener("click",event=>{if(event.target===dialog)dialog.close();});
   dialog.addEventListener("close",()=>{
     document.body.classList.remove("modal-open");
-    const opener=dialogOpeners.get(dialog),searchForm=document.getElementById("search-form");
-    if(dialog===archiveDialog)searchForm.classList.remove("is-open");
-    // Restoring focus to the header search input would leave the mobile overlay expanded.
-    if(opener&&opener.focus&&!searchForm.contains(opener))opener.focus();
-    if(dialog===archiveDialog&&searchForm.contains(document.activeElement)){
-      document.activeElement.blur();
-    }
+    const opener=dialogOpeners.get(dialog);
+    if(opener&&opener.isConnected&&opener.focus)opener.focus({preventScroll:true});
   });
 }

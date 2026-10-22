@@ -169,9 +169,56 @@ if(!/<div class="archive-stats">[\s\S]*?<\/div>/.test(archive))throw new Error("
 archive=archive.replace(/<div class="archive-stats">[\s\S]*?<\/div>/,summaryMarkup);
 writeIfChanged(archivePath, archive);
 
+/* S-11: editorial next-view destinations are data, not repeated HTML.
+   Keep hand-picked destinations, labels, and the static no-JS fallback. */
+const nextViewByNote={
+  "kidp-002-whynot":[["/projects/kidp/","KIDP"],["/projects/kidp/whynot/","WHYNOT"],["/archive/","ARCHIVE"]],
+  "nuclear-industrial-carrier":[["/storage/","7つの棚"],["/archive/","記録のアーカイブ"],["/projects/","進行中のプロジェクト"]],
+  "site-launch-trouble":[["/storage/","7つの棚"],["/projects/digital-storage/","DIGITAL STORAGEプロジェクト"],["/archive/","記録のアーカイブ"]]
+};
+for(const note of notes){
+  const links=nextViewByNote[note.id];
+  if(!links)continue;
+  const articlePath=path.join(root,note.url.slice(1),"index.html");
+  const html=fs.readFileSync(articlePath,"utf8");
+  const match=html.match(new RegExp('<section class="related-band">[\\s\\S]*?</section>'));
+  if(!match)throw new Error("Missing next-view section for "+note.id);
+  const seen=new Set();
+  const anchors=links.map(([href,label])=>{
+    if(seen.has(href)||href===note.url)throw new Error("Duplicate or self next-view link for "+note.id);
+    seen.add(href);
+    return '<a href="'+escapeHtml(href)+'">'+escapeHtml(label)+' <span aria-hidden="true">→</span></a>';
+  }).join("");
+  const section='<section class="related-band"><h2>次に見る</h2><div>'+anchors+'</div></section>';
+  writeIfChanged(articlePath,html.replace(match[0],section));
+}
+
+/* S-11: keep previous/next note navigation in canonical date order.
+   Curated series/project links outside this nav remain untouched. */
+for(let i=0;i<notes.length;i++){
+  const note=notes[i];
+  const articlePath=path.join(root,note.url.slice(1),"index.html");
+  const html=fs.readFileSync(articlePath,"utf8");
+  const match=html.match(new RegExp('<nav class="article-next"[^>]*>[\\s\\S]*?</nav>'));
+  if(!match)continue; // New article templates may not include navigation yet.
+  const older=notes[i+1],newer=notes[i-1];
+  const navLink=(other,direction)=>{
+    const label=direction==="older"?"OLDER NOTE / ":"NEWER NOTE / ";
+    const arrow=direction==="older"?"← ":" →";
+    return '<a href="'+escapeHtml(other.url)+'"><small>'+label+escapeHtml(other.date)+
+      '</small><strong>'+(direction==="older"?"← ":"")+escapeHtml(other.title)+
+      (direction==="newer"?arrow:"")+'</strong></a>';
+  };
+  const navigation='<nav class="article-next" aria-label="前後の記事">'+
+    (older?navLink(older,"older"):'<a href="/archive/"><small>ALL NOTES</small><strong>← アーカイブへ戻る</strong></a>')+
+    (newer?navLink(newer,"newer"):'<a href="/archive/"><small>ALL NOTES</small><strong>アーカイブへ戻る →</strong></a>')+
+    '</nav>';
+  writeIfChanged(articlePath,html.replace(match[0],navigation));
+}
+
 /* Cache bust the shared catalogue in every HTML page on catalogue changes. */
 const catalogueVersion = crypto.createHash("sha256").update(source).digest("hex").slice(0, 12);
-const frontendVersions=["app.js","site-content.js"].map(file=>({
+const frontendVersions=["app.js","site-content.js","site-search.js","site-search-ui.js","site-search.css"].map(file=>({
   file,version:crypto.createHash("sha256").update(fs.readFileSync(path.join(root,file))).digest("hex").slice(0,12)
 }));
 
@@ -193,3 +240,9 @@ for (const htmlPath of walk(root)) {
   if (updated !== html) writeIfChanged(htmlPath, updated);
 }
 console.log("OK: " + notes.length + " canonical articles; index " + catalogueVersion);
+
+/* Keep the canonical shell in sync after all generated article markup. */
+if(process.env.KAITO_SKIP_SITE_SHELL_SYNC!=="1"){
+  require("./sync-site-shell.cjs").sync();
+  require("./sync-site-breadcrumbs.cjs").sync();
+}

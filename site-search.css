@@ -85,3 +85,70 @@
 .site-search-result:hover,.site-search-result:focus-visible{background-color:#fff!important;border-color:#6f9a79}
 .site-search-dialog,.site-search-result,.site-search-empty,
 .site-search-dialog input[type="search"]{background:#fff!important}
+
+
+/* One result-card presentation in global search for HOME and subpages.
+   Category/state-only HOME cards remain in their original editorial grid. */
+#archive-results.is-global-search{
+  grid-template-columns:minmax(0,1fr);
+  gap:11px;
+  padding:12px 4px 10px;
+}
+#archive-results.is-global-search .site-search-result{
+  width:100%;
+  min-width:0;
+  transform:none;
+  box-shadow:none;
+}
+#archive-results.is-global-search .site-search-empty{
+  margin:0;
+}
+
+
+/* HOME retains its shelf/state controls; allow meaningful option labels at
+   mobile widths rather than reducing both selects to arrow-only slivers. */
+@media(max-width:700px){
+  #archive-dialog .archive-controls{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:stretch;
+    gap:10px 12px;
+  }
+  #archive-dialog .archive-controls label{
+    flex:1 1 calc(50% - 6px);
+    min-width:0;
+  }
+  #archive-dialog .archive-controls select{
+    box-sizing:border-box;
+    display:block;
+    width:100%;
+    min-width:0;
+    min-height:42px;
+    padding:9px 25px 9px 10px;
+  }
+  #archive-dialog .archive-controls .text-link{
+    flex:1 0 100%;
+    margin:0;
+    min-height:32px;
+    justify-content:flex-end;
+  }
+}
+@media(max-width:350px){
+  #archive-dialog .archive-controls label{flex-basis:100%}
+}
+
+/* S-10B2: HOME shares subpage white modal treatment. Shelf/state filters
+   and multi-column editorial cards are intentionally HOME-only. */
+#archive-dialog.site-search-dialog{width:min(920px,calc(100vw - 24px))}
+#archive-dialog .archive-search{margin-top:0}
+#archive-dialog .site-search-heading{align-items:start}
+#archive-dialog .archive-results:not(.is-global-search){padding-top:15px}
+@media(max-width:700px){
+  /* Restored focus on the compact HOME trigger must not reopen its input. */
+  body:not(.subpage) #search-form:not(.is-open):focus-within{
+    position:relative;left:auto;right:auto;top:auto;z-index:auto;
+  }
+  body:not(.subpage) #search-form:not(.is-open):focus-within>input{
+    display:none;
+  }
+}

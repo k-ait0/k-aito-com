@@ -65,17 +65,6 @@ body:not(.subpage) .home-closing{background-color:transparent!important}
   box-shadow:var(--k-reading-shadow)
 }
 .subpage .status-guide:before{background:var(--k-reading-white)!important;padding-inline:10px}
-/* Image-backed SHELVES: keep a visible photo strip, give all overlaid type opaque white paper.
-   No fake transparency behind important text. */
-.subpage .storage-shelf{color:#193f32!important}
-.subpage .storage-shelf:before{
-  background:linear-gradient(180deg,transparent 0%,transparent 23%,#fff 23%,#fff 100%)!important;
-  opacity:1!important;
-}
-.subpage .storage-shelf :is(.eyebrow,h2,p,small,.storage-arrow){
-  color:#193f32!important;text-shadow:none!important;z-index:3!important;
-}
-.subpage .storage-shelf:after{background:#54795e!important}
 /* Image-only project covers and hero illustrations retain their photography and overlay. */
 .subpage :is(.project-cover,.project-visual,.project-visual-image,.archive-feature-photo,
  .shelf-photo,.storage-shelf-image,.about-shelf-image){background-color:transparent}
@@ -107,9 +96,6 @@ body:not(.subpage) .home-closing{background-color:transparent!important}
    .portfolio-section-head,.shelf-bridge,.record-guide,.links-section,
    .recommendation-policy,.kidp-project-hero,.kidp-next-full,.shelf-intro){
     padding:16px 15px
-  }
-  .subpage .storage-shelf:before{
-    background:linear-gradient(180deg,transparent 0%,transparent 22%,#fff 22%,#fff 100%)!important;
   }
 }
 @media print{
@@ -150,8 +136,53 @@ body:not(.subpage) .home-v2 .shelves-grid .shelf:hover{
   background-color:#fff!important;
 }
 
-/* White reading surface for the sitewide footer, including mobile. */
-.site-footer,.site-footer .footer-inner,.site-footer .footer-bottom{background-color:#fff!important;color:#193f32!important}
-.site-footer :is(p,span,small,a,.footer-hand,.footer-nav a,.footer-bottom span){color:#193f32!important;text-shadow:none!important}
-.site-footer .footer-nav{border-color:#d8e0d6!important}
-.site-footer .footer-bottom{border-top-color:#d8e0d6!important}
+/* Footer is a dark site shell, not a white reading surface. */
+
+/* Mobile layout stabilization — 2026-10-11.
+   Keep all changes isolated to the review branch until visual QA. */
+@media (max-width:760px){
+  html,body{max-width:100%;overflow-x:clip}
+  .subpage .page-wrap,.subpage main,.subpage section{min-width:0}
+  .subpage :is(.storage-guide,.status-guide,.page-intro,.projects-hero-copy,.about-hero-copy){min-width:0;max-width:100%}
+  .subpage .status-guide{display:block!important;padding:22px 18px!important;margin:24px 0 32px!important}
+  .subpage .status-guide>div{min-width:0;max-width:100%}
+  .subpage .status-guide dl{display:grid!important;grid-template-columns:minmax(0,1fr)!important;width:100%;min-width:0;margin:16px 0 0}
+  .subpage .status-guide dl>div{display:grid!important;grid-template-columns:minmax(72px,27%) minmax(0,1fr)!important;gap:12px!important;min-width:0;padding:12px 0!important}
+  .subpage .status-guide dt,.subpage .status-guide dd{min-width:0;overflow-wrap:anywhere;margin:0}
+  .subpage :is(.page-intro,.about-hero-copy,.projects-hero-copy){overflow-wrap:anywhere}
+  .subpage :is(.page-intro h1,.projects-hero-copy h1,.about-hero-copy h1){font-size:clamp(1.65rem,7vw,2.2rem)!important;line-height:1.4!important}
+  body:not(.subpage) .section-heading{flex-wrap:wrap;gap:8px 14px}
+  body:not(.subpage) .section-heading h2{font-size:clamp(1.08rem,4.5vw,1.4rem)}
+  body:not(.subpage) .section-heading h2 span{white-space:normal;font-size:.72rem}
+}
+@media (max-width:360px){
+}
+
+/* Shared mobile editorial alignment, review pass 2 */
+@media(max-width:760px){
+ .subpage .projects-hero-inner,.subpage .projects-body,.subpage .about-page{min-width:0;max-width:100%}
+ .subpage .projects-hero-copy{width:100%;box-sizing:border-box}
+ .subpage .project-index{padding:18px!important;min-width:0}
+ .subpage .project-index dl{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:0!important}
+ .subpage .project-index dl>div{min-width:0;padding:0 8px!important}
+ .subpage .project-index dl dt{font-size:clamp(1.2rem,5vw,1.7rem)!important;overflow-wrap:anywhere}
+ .subpage .project-index dl dd{font-size:.72rem!important;line-height:1.5!important;overflow-wrap:anywhere}
+ .subpage .about-hero{min-width:0}
+ .subpage .about-hero-copy{padding:18px!important}
+ .subpage .about-hero-copy .eyebrow{font-size:.7rem;line-height:1.5;overflow-wrap:anywhere}
+ .subpage .about-feature-photo,.subpage .about-feature-photo img{max-width:100%;height:auto}
+ .subpage .about-copy{padding:22px 18px!important}
+ .subpage .about-copy h2{font-size:clamp(1.2rem,5vw,1.5rem);line-height:1.5}
+}
+@media(max-width:420px){
+ .subpage .project-index dl{grid-template-columns:1fr!important;gap:10px!important}
+ .subpage .project-index dl>div{display:grid;grid-template-columns:90px minmax(0,1fr);align-items:center;padding:8px 0!important;border-bottom:1px solid #d8e0d6}
+}
+
+/* Mobile shelf image layering: use HTML image as the only image source. */
+@media(max-width:760px){
+}
+
+/* Make the mobile photo-strip mask deterministic for browser QA. */
+@media(max-width:760px){
+}

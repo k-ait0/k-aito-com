@@ -16,9 +16,21 @@ on:
       - 'scripts/test-project-search.cjs'
       - 'project-search-index.js'
       - 'site-search.js'
+      - 'site-search-ui.js'
+      - 'scripts/test-site-search-ui.cjs'
+      - 'site-search.css'
+      - 'site-search-core.js'
+      - 'scripts/test-site-search-core.cjs'
       - 'projects/**/index.html'
       - 'thumbnail-v1.css'
       - 'white-surfaces-v1.css'
+      - 'storage-v2.css'
+      - 'subpages.css'
+      - 'scripts/sync-site-shell.cjs'
+      - 'scripts/test-site-shell.cjs'
+      - 'data/site-breadcrumbs.v1.json'
+      - 'scripts/sync-site-breadcrumbs.cjs'
+      - 'scripts/test-site-breadcrumbs.cjs'
       - 'scripts/sync-white-surfaces.cjs'
       - 'notes/**/index.html'
       - 'scripts/sync-published-content.cjs'
@@ -59,7 +71,15 @@ jobs:
           node --check scripts/sync-project-search.cjs
           node --check scripts/test-project-search.cjs
           node --check site-search.js
+          node --check site-search-ui.js
+          node --check scripts/test-site-search-ui.cjs
+          node --check site-search-core.js
+          node --check scripts/test-site-search-core.cjs
           node --check scripts/sync-white-surfaces.cjs
+          node --check scripts/sync-site-shell.cjs
+          node --check scripts/test-site-shell.cjs
+          node --check scripts/sync-site-breadcrumbs.cjs
+          node --check scripts/test-site-breadcrumbs.cjs
           node --check scripts/sync-published-content.cjs
           node --check scripts/article-search-text.cjs
           node --check scripts/test-published-content.cjs
@@ -67,9 +87,13 @@ jobs:
           node scripts/sync-project-cards.cjs
           node scripts/test-published-content.cjs
           node scripts/sync-published-content.cjs
+          node scripts/test-site-search-core.cjs
           node scripts/test-project-search.cjs
           node scripts/sync-project-search.cjs
           node scripts/sync-white-surfaces.cjs
+          node scripts/test-site-shell.cjs
+          node scripts/test-site-search-ui.cjs
+          node scripts/test-site-breadcrumbs.cjs
           node scripts/site-static-check.cjs
           git diff --check
 

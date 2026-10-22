@@ -17,7 +17,7 @@ function copy(relative) {
 try {
   for(const name of [
     "content-index.js", "sitemap.xml", "storage/index.html",
-    "archive/index.html", "index.html", "app.js", "site-content.js",
+    "archive/index.html", "index.html", "app.js", "site-content.js", "site-search.js", "site-search-ui.js", "site-search.css",
     "notes/media-public-interest-sankei-building/index.html",
     "notes/nuclear-industrial-carrier/index.html",
     "notes/site-launch-trouble/index.html",
@@ -27,7 +27,7 @@ try {
     "scripts/sync-published-content.cjs", "scripts/article-search-text.cjs"
   ]) copy(name);
   let index = fs.readFileSync(path.join(temp, "content-index.js"), "utf8");
-  const anchor = "window.KAitoContent=Object.freeze({shelves,entries});";
+  const anchor = "// S-11: one canonical published-note collection for HOME and ARCHIVE/SHELVES.";
   assert.ok(index.includes(anchor), "Catalogue export position changed");
   index = index.replace(anchor,
     'entries.push({id:"catalogue-regression",title:"追加記事の確認",state:"FOUND",' +
@@ -39,7 +39,7 @@ try {
   fs.writeFileSync(path.join(temp,"notes/catalogue-regression/index.html"),'<!doctype html><title>test</title><div class="article-copy essay-body"><p>更新された記事本文で公開検索の同期を検証するため、この記事には十分な文章を入力しています。</p></div>');
   const run=()=>cp.execFileSync(process.execPath,
     [path.join(temp,"scripts/sync-published-content.cjs")],
-    {cwd:temp,encoding:"utf8"});
+    {cwd:temp,encoding:"utf8",env:{...process.env,KAITO_SKIP_SITE_SHELL_SYNC:"1"}});
   // An edit to an existing published article should reindex automatically.
   const edited=path.join(temp,"notes/media-public-interest-sankei-building/index.html");
   let article=fs.readFileSync(edited,"utf8");
@@ -47,6 +47,19 @@ try {
   fs.writeFileSync(edited,article);
   const first=run();
   assert.match(first,/5 canonical articles/);
+  // Curated next-view destinations must be regenerated as static HTML.
+  const nextViewCases=[
+    ["kidp-002-whynot",["/projects/kidp/","/projects/kidp/whynot/","/archive/"]],
+    ["nuclear-industrial-carrier",["/storage/","/archive/","/projects/"]],
+    ["site-launch-trouble",["/storage/","/projects/digital-storage/","/archive/"]]
+  ];
+  for(const [id,expected] of nextViewCases){
+    const html=fs.readFileSync(path.join(temp,"notes",id,"index.html"),"utf8");
+    const section=html.match(new RegExp('<section class="related-band">[\\s\\S]*?</section>'));
+    assert.ok(section,"Missing next-view HTML for "+id);
+    const targets=[...section[0].matchAll(/href="([^"]+)"/g)].map(match=>match[1]);
+    assert.deepEqual(targets,expected,"Curated next-view order changed for "+id);
+  }
   const sitemap=fs.readFileSync(path.join(temp,"sitemap.xml"),"utf8");
   const storage=fs.readFileSync(path.join(temp,"storage/index.html"),"utf8");
   const archive=fs.readFileSync(path.join(temp,"archive/index.html"),"utf8");
