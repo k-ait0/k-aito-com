@@ -19,7 +19,8 @@ Only the complete v3.4 may be published. Keep [Draft PR #33](https://github.com/
 
 ## SEO / public release proposal
 - Current nine pages remain `noindex,follow`. Neither the noindex preview nor its pages belong in the production sitemap.
-- At release approval: expose **eight content pages** with self-canonical URLs on `https://k-aito.com/mono-base/` (index) and their `.html` paths, add canonical/OG/Twitter meta and eight sitemap locations, and remove their noindex directives.
+- Eight content pages now include self-canonical URLs, distinct descriptions, OpenGraph and Twitter large-card metadata; the sharing image is the unmodified original `assets/hero_final.jpg` (1220×588).
+- At release approval, remove noindex on those eight content pages and add their sitemap locations together, adjusting the preview-only test gate. Until then, do not index any MONO BASE URLs.
 - Keep the utility `cad-viewer.html` **noindex** even after the public site launches; it is embedded by `design-lab.html`, which is the indexed entry point.
 - Recheck XServer deployment path and CDN/Three.js dependency handling before activating public indexing.
 

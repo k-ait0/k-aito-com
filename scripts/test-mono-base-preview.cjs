@@ -14,6 +14,11 @@ for (const page of pages) {
   assert.match(head,/<title>[^<]+<\/title>/,"Missing title "+page);
   assert.match(head,/<meta name="description" content="[^"]+"/,"Missing description "+page);
   assert.match(head,/<meta name="robots" content="noindex,follow">/,"Concept preview must be noindex "+page);
+  const canonical = page === "index" ? "https://k-aito.com/mono-base/" : "https://k-aito.com/mono-base/"+page+".html";
+  assert.ok(head.includes('rel="canonical" href="'+canonical+'"'),"Missing canonical "+page);
+  assert.ok(head.includes('property="og:url" content="'+canonical+'"'),"Missing OG URL "+page);
+  assert.ok(head.includes('property="og:image" content="https://k-aito.com/mono-base/assets/hero_final.jpg"'),"Missing branded OG image "+page);
+  assert.ok(head.includes('name="twitter:card" content="summary_large_image"'),"Missing Twitter card "+page);
   assert.ok(!sitemap.includes("https://k-aito.com/mono-base/"+page+".html"),"Noindex page in sitemap "+page);
   for (const match of html.matchAll(/(?:href|src)="([^"]+)"/g)) {
     const ref = match[1].split(/[?#]/)[0];
