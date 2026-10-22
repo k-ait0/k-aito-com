@@ -6,6 +6,7 @@ const root = path.resolve(__dirname, "..");
 const dir = path.join(root, "mono-base");
 const pages = ["index","about","aircraft","robotics","space","design-lab","technology","journal"];
 const sitemap = fs.readFileSync(path.join(root,"sitemap.xml"),"utf8");
+const releaseMode = sitemap.includes("<loc>https://k-aito.com/mono-base/</loc>");
 for (const page of pages) {
   const file = path.join(dir,page+".html");
   assert.ok(fs.existsSync(file),"Missing MONO BASE page "+page);
@@ -13,13 +14,14 @@ for (const page of pages) {
   const head = html.split("</head>")[0];
   assert.match(head,/<title>[^<]+<\/title>/,"Missing title "+page);
   assert.match(head,/<meta name="description" content="[^"]+"/,"Missing description "+page);
-  assert.match(head,/<meta name="robots" content="noindex,follow">/,"Concept preview must be noindex "+page);
+  const noindex=/<meta\s+name="robots"\s+content="[^"]*\bnoindex\b/i.test(head);
+  assert.equal(noindex,!releaseMode, "Indexing state mismatch "+page);
   const canonical = page === "index" ? "https://k-aito.com/mono-base/" : "https://k-aito.com/mono-base/"+page+".html";
   assert.ok(head.includes('rel="canonical" href="'+canonical+'"'),"Missing canonical "+page);
   assert.ok(head.includes('property="og:url" content="'+canonical+'"'),"Missing OG URL "+page);
   assert.ok(head.includes('property="og:image" content="https://k-aito.com/mono-base/assets/hero_final.jpg"'),"Missing branded OG image "+page);
   assert.ok(head.includes('name="twitter:card" content="summary_large_image"'),"Missing Twitter card "+page);
-  assert.ok(!sitemap.includes("https://k-aito.com/mono-base/"+page+".html"),"Noindex page in sitemap "+page);
+  assert.equal(sitemap.includes("<loc>"+canonical+"</loc>"),releaseMode,"Sitemap/indexing mismatch "+page);
   for (const match of html.matchAll(/(?:href|src)="([^"]+)"/g)) {
     const ref = match[1].split(/[?#]/)[0];
     if (!ref || /^(?:https?:|mailto:|tel:|data:|\/\/)/.test(ref) || ref.startsWith("#")) continue;
@@ -29,5 +31,9 @@ for (const page of pages) {
     assert.ok(fs.existsSync(target),"Broken local link "+page+" "+ref);
   }
 }
-assert.ok(!sitemap.includes("https://k-aito.com/mono-base/"),"Noindex preview must not be in sitemap");
-console.log("PASS: MONO BASE concept preview: 8 pages, metadata, sitemap, local links");
+const viewer = fs.readFileSync(path.join(dir,"cad-viewer.html"),"utf8");
+const viewerHead=viewer.split("</head>")[0];
+assert.match(viewerHead,/<meta name="robots" content="noindex,follow">/,"Standalone CAD viewer must remain noindex");
+assert.ok(!sitemap.includes("https://k-aito.com/mono-base/cad-viewer.html"),"CAD utility must not be in sitemap");
+if(!releaseMode) assert.ok(!sitemap.includes("https://k-aito.com/mono-base/"),"Preview URLs cannot be in sitemap");
+console.log("PASS: MONO BASE "+(releaseMode?"public":"preview")+" mode: 8 pages, metadata, indexing, sitemap, local links");

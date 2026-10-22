@@ -39,7 +39,17 @@ jobs:
           assert not broken, f'Broken local links: {broken}'
           print(f'PASS: {len(list(root.glob("*.html")))} pages, no broken local references')
           PY
-      - name: Run lightweight concept preview gate
+      - name: Check KAITO and MONO BASE public URL compatibility
+        run: |
+          node --check scripts/public-sitemap-routes.cjs
+          node --check scripts/test-public-sitemap-routes.cjs
+          node --check scripts/audit-seo.cjs
+          node --check scripts/live-production-check.cjs
+          node --check scripts/browser-smoke.cjs
+          node --check scripts/prepare-mono-base-publication.cjs
+          node scripts/test-public-sitemap-routes.cjs
+          node scripts/prepare-mono-base-publication.cjs --check
+      - name: Validate MONO BASE preview or public SEO metadata
         run: node scripts/test-mono-base-preview.cjs
       - name: Verify original v3.4 image hashes when integrated
         run: |

@@ -10,6 +10,7 @@ const fs = require("node:fs");
 const path = require("node:path");
 const {chromium} = require("playwright");
 const root = path.resolve(__dirname, "..");
+const {readPublicSitemapUrl,isMonoBaseContentRoute}=require("./public-sitemap-routes.cjs");
 const screens = path.join(root, "qa-screenshots");
 const types = {".html":"text/html; charset=utf-8",".js":"text/javascript; charset=utf-8",
   ".css":"text/css; charset=utf-8",".svg":"image/svg+xml",".webp":"image/webp",
@@ -19,13 +20,7 @@ const types = {".html":"text/html; charset=utf-8",".js":"text/javascript; charse
 const sitemap=fs.readFileSync(path.join(root,"sitemap.xml"),"utf8");
 const pages=[...sitemap.matchAll(/<loc>\s*([^<]+)\s*<\/loc>/g)].map(match=>{
   const value=match[1].trim();
-  const url=new URL(value);
-  if(url.origin!=="https://k-aito.com"||
-      !(url.pathname==="/"||/^\/[a-z0-9/-]+\/$/.test(url.pathname))||
-      url.search||url.hash||url.href!=="https://k-aito.com"+url.pathname){
-    throw Error("Unexpected public sitemap URL: "+value);
-  }
-  return url.pathname;
+  return readPublicSitemapUrl(value).pathname;
 });
 if(!pages.length||new Set(pages).size!==pages.length){
   throw Error("Sitemap has no pages or contains duplicate public URLs");
@@ -69,6 +64,78 @@ const stop=()=>new Promise(resolve=>server.close(resolve));
             errors.push("HTTP "+response.status()+" "+response.url().slice(url.length));
         });
         try{
+          // MONO BASE has its own dark design shell and file-style public URLs.
+          // Keep KAITO's white reading-paper/search checks scoped to KAITO pages.
+          if(isMonoBaseContentRoute(slug)){
+            const response=await page.goto(url+slug,{waitUntil:"domcontentloaded",timeout:45000});
+            check(response?.status()===200,mode.name+" "+slug+" HTTP 200");
+            await page.evaluate(async()=>{
+              await Promise.all([...document.images].map(async img=>{
+                img.loading="eager";
+                try{await img.decode();}catch(_){}
+              }));
+            });
+            const details=await page.evaluate(()=>{
+              const expected="https://k-aito.com"+location.pathname;
+              const canon=document.querySelector('link[rel="canonical"]')?.href;
+              const og=document.querySelector('meta[property="og:url"]')?.content;
+              const robots=document.querySelector('meta[name="robots"]')?.content||"";
+              return {
+                headings:[...document.querySelectorAll("h1")].filter(x=>x.getClientRects().length).length,
+                overflow:document.documentElement.scrollWidth-innerWidth,
+                images:[...document.images].every(img=>img.complete&&img.naturalWidth>0),
+                canonical:canon===expected,
+                ogUrl:og===expected,
+                indexable:!/\bnoindex\b/i.test(robots),
+                footer:!!document.querySelector("footer"),
+                dark:getComputedStyle(document.body).backgroundColor!=="rgb(255, 255, 255)"
+              };
+            });
+            check(details.headings===1&&details.overflow<=2&&details.images&&
+              details.canonical&&details.ogUrl&&details.indexable&&details.footer&&details.dark,
+              mode.name+" "+slug+" MONO BASE public page layout/SEO/images",JSON.stringify(details));
+            if(slug==="/mono-base/"){
+              const menu=page.locator(".menu-toggle");
+              if(mode.name==="mobile"){
+                await menu.click();
+                check(await menu.getAttribute("aria-expanded")==="true" &&
+                  await page.locator("#site-nav").evaluate(e=>e.classList.contains("open")),
+                  mode.name+" MONO BASE menu opens");
+              }else{
+                check(await page.locator("#site-nav").isVisible(),
+                  mode.name+" MONO BASE desktop navigation visible");
+              }
+            }
+            if(slug==="/mono-base/design-lab.html"){
+              const iframe=page.locator("#cad-frame");
+              await iframe.scrollIntoViewIfNeeded();
+              await page.waitForFunction(()=>{
+                const f=document.querySelector("#cad-frame");
+                return f?.contentDocument?.querySelector("#status")?.textContent?.includes("ENGINE ONLINE");
+              },null,{timeout:45000});
+              const shape=await page.evaluate(()=>{
+                const f=document.querySelector("#cad-frame");
+                const body=f?.contentDocument?.body;
+                const footer=document.querySelector("body > footer");
+                return {
+                  contentFits:!!body && f.getBoundingClientRect().height>=body.getBoundingClientRect().height-3,
+                  footerAfter:!!footer && (f.compareDocumentPosition(footer)&Node.DOCUMENT_POSITION_FOLLOWING)!==0,
+                  lastButton:!!f?.contentDocument?.querySelector("#reset")
+                };
+              });
+              check(shape.contentFits&&shape.footerAfter&&shape.lastButton,
+                mode.name+" MONO BASE live 3D viewer uncut and before footer",JSON.stringify(shape));
+              const frame=page.frameLocator("#cad-frame");
+              await frame.locator('[data-mode="wire"]').click();
+              check(await frame.locator('[data-mode="wire"]').evaluate(e=>e.classList.contains("active")),
+                mode.name+" MONO BASE live 3D wireframe control responds");
+            }
+            check(errors.length===0,mode.name+" "+slug+" no local asset/script errors",errors.join("; "));
+            if(slug==="/mono-base/"||slug==="/mono-base/design-lab.html"){
+              await page.screenshot({path:path.join(screens,mode.name+"-"+(slug==="/mono-base/"?"mono-home":"mono-design-lab")+".png"),fullPage:true});
+            }
+            continue;
+          }
           const response=await page.goto(url+slug,{waitUntil:"networkidle",timeout:30000});
           await page.waitForTimeout(100);
           check(response.status()===200,mode.name+" "+slug+" response "+response.status());

@@ -8,17 +8,13 @@ const fs=require("node:fs");
 const path=require("node:path");
 const crypto=require("node:crypto");
 const root=path.resolve(__dirname,"..");
+const {readPublicSitemapUrl,isMonoBaseContentRoute,MONO_BASE_CONTENT,publicRouteToFile}=require("./public-sitemap-routes.cjs");
 const origin=process.env.KAITO_LIVE_ORIGIN||"https://k-aito.com";
 // Read routes from the published sitemap so newly added notes are verified too.
 const sitemap=fs.readFileSync(path.join(root,"sitemap.xml"),"utf8");
 const pages=[...sitemap.matchAll(/<loc>\s*([^<]+)\s*<\/loc>/g)].map(match=>{
   const value=match[1].trim();
-  const url=new URL(value);
-  if(url.origin!==origin||!(url.pathname==="/"||/^\/[a-z0-9/-]+\/$/.test(url.pathname))||
-      url.search||url.hash||url.href!==origin+url.pathname){
-    throw Error("Unexpected public sitemap URL: "+value);
-  }
-  return url.pathname;
+  return readPublicSitemapUrl(value,origin).pathname;
 });
 if(!pages.length||new Set(pages).size!==pages.length){
   throw Error("Sitemap has no pages or contains duplicate public URLs");
@@ -39,9 +35,26 @@ const resources=[
   "/tools/want-roulette/index.html","/tools/want-roulette/manifest.webmanifest",
   "/tools/want-roulette/app-icon.svg","/tools/want-roulette/sw.js"
 ];
+// At release, confirm deployed files match *all* original JPEGs and the CAD utility.
+// Before release the files are intentionally absent from main, so only enable
+// these checks when the complete MONO BASE content appears in the sitemap.
+const monoPages=pages.filter(isMonoBaseContentRoute);
+if(monoPages.length){
+  if(monoPages.length!==MONO_BASE_CONTENT.length)
+    throw Error("Partial MONO BASE release: sitemap must contain all eight content URLs");
+  const manifest=fs.readFileSync(path.join(root,"mono-base/ASSET_MANIFEST.sha256"),"utf8");
+  const assets=manifest.split(/\r?\n/).filter(line=>line&&!line.startsWith("#")).map(line=>{
+    const m=line.match(/^[a-f0-9]{64}  (assets\/[a-z0-9_]+\.jpg)$/);
+    if(!m)throw Error("Unexpected MONO BASE asset entry: "+line);
+    return "/mono-base/"+m[1];
+  });
+  if(assets.length!==13||new Set(assets).size!==13)
+    throw Error("MONO BASE image inventory incomplete");
+  resources.push("/mono-base/site.css","/mono-base/cad-viewer.html",...assets);
+}
 const betaPages=["/tools/want-roulette/"];
 const digest=body=>crypto.createHash("sha256").update(body).digest("hex");
-const local=route=>fs.readFileSync(path.join(root,route.replace(/^\//,"")+(route.endsWith("/")?"index.html":"")));
+const local=route=>fs.readFileSync(path.join(root,route.endsWith("/")?publicRouteToFile(route):route.replace(/^\//,"")));
 const wait=ms=>new Promise(resolve=>setTimeout(resolve,ms));
 async function fetchLive(route){
   const link=new URL(route,origin);
