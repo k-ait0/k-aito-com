@@ -21,6 +21,22 @@ def validate_site(browser,name,viewport):
             image.evaluate("el => {el.loading='eager'}")
             expect(image).to_have_js_property('complete',True,timeout=15000)
             assert image.evaluate('(el)=>el.naturalWidth>0'),f'{name}: {path} image failed'
+        if path == 'design-lab':
+            embedded = page.locator('#cad-frame')
+            expect(embedded).to_have_count(1)
+            embedded.scroll_into_view_if_needed()
+            inner = page.frame_locator('#cad-frame')
+            expect(inner.locator('#status')).to_contain_text('ENGINE ONLINE',timeout=45000)
+            page.wait_for_function("""() => {
+                const f=document.getElementById('cad-frame');
+                const footer=document.querySelector('body > footer');
+                const b=f?.contentDocument?.body;
+                if (!b || !footer) return false;
+                const height=b.getBoundingClientRect().height;
+                const fits=f.getBoundingClientRect().height >= height-3;
+                const ordered=(f.compareDocumentPosition(footer) & Node.DOCUMENT_POSITION_FOLLOWING)!==0;
+                return fits && ordered;
+            }""",timeout=20000)
         if path in ('index','design-lab'):
             page.screenshot(path=str(OUT/f'{path}-v34-{name}.png'),full_page=True)
     page.goto(f'{BASE}/design-lab.html',wait_until='domcontentloaded')

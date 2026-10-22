@@ -1,27 +1,32 @@
-# MONO BASE integration status — 2026-10-21
+# MONO BASE v3.4 integration — 2026-10-22
 
 ## Release policy
-**Full v3.4 only.** Do not merge or deploy the eight-page scaffold. PR #33 remains Draft until the complete source package, assets, visual QA, SEO and live verification are finished.
+**Full v3.4 only; no automatic production release.** PR #33 must remain a Draft until visual review, release metadata, approval, XServer deployment and live verification are complete.
 
-## Source and integration state
-- The original `MONOBASE202610140518450C233D9B8841DCD7IntegratedV34.zip` was recovered from the owner's ChatGPT file Library.
-- The verified local integration candidate `MONO_BASE_v34_staging_candidate_r2.zip` contains **9 HTML pages, 1 CSS file and 13 original JPEG filenames representing 6 distinct image payloads**.
-- The 13 JPEGs in the candidate were compared byte-for-byte against the original v3.4 ZIP. GitHub now contains the original SHA-256 hashes under `mono-base/ASSET_MANIFEST.sha256`.
-- Source files and binary images from v3.4 **are not yet integrated into this PR**. Current `mono-base/` is still the eight-page scaffold with a separate prototype viewer.
-- The importer (`scripts/import-mono-base.py`) checks the archive's 13 hashes, image headers, local links and replacement conflicts. Import does not happen automatically.
-- After importing the complete candidate into `mono-base/`, `.github/workflows/mono-base-qa.yml` selects the full v3.4 browser gate and verifies original asset hashes; before import, only scaffold QA runs.
+## Integrated source
+- Branch `feature/mono-base-kaito-integration` now includes **nine HTML files** (eight content pages plus `cad-viewer.html`), site stylesheet, and 13 original JPEG filenames (six unique payloads).
+- Initial complete import commit: `a3023ac`.
+- The original JPEG bytes are verified against `ASSET_MANIFEST.sha256`; no asset substitutions.
+- 3D WebGL fallback fix commit: `b02c550`.
 
-## Findings from local visual preflight of the candidate
-- Chromium rendered eight site pages using in-memory documents and original JPEG data at 1440px, 390px and 320px (24 visual checks). No broken JPEG rendering, JavaScript exceptions or horizontal overflow remained.
-- Fixed the TECHNOLOGY heading at 390px and the ENGINEERING JOURNAL heading at 320px **in the candidate ZIP**, not yet in GitHub site files.
-- Managed browser policy blocked direct URL navigation; these static visual checks **do not prove Three.js/CDN/iframe CAD runtime behavior**.
-- Dedicated full-version browser tests are prepared in `scripts/test-mono-base-v34-browser.py` but will only run after importing `cad-viewer.html` and images.
+## Test results before visual fixes
+- Local image integrity, site-wide static checks and MONO BASE preview gate: **PASS**.
+- GitHub SEO static audit and MONO BASE site QA: **PASS** at `b02c550`.
+- Chromium desktop 1440px, mobile 390px, and small mobile 320px all passed the automated CAD interaction and dependency-error fallback checks.
+- Screenshot review of the successful run found two *additional* design issues not covered by the original tests: CAD iframe controls clipped beneath its fixed viewport, and the site footer displayed before the CAD section.
 
-## Completion gates
-1. Import all nine HTML pages, CSS and 13 original JPEG files in one reviewed candidate without discarding the distinct 3D features.
-2. Run local static and source-hash verification; collect latest PR CI on the full candidate and fix defects.
-3. Review desktop/mobile screenshot artifacts and live CAD interaction including failure fallback, on a normal browser.
-4. Finalize metadata, canonical, OpenGraph, sitemap and public indexing when release approved.
-5. Merge, deploy to XServer and verify the actual public pages and all image/3D functions; log evidence.
+## Visual QA correction in this change
+- Moves the 3D exhibit inside the main document before the footer.
+- Makes the same-origin iframe height track its content, avoiding inaccessible controls and unnecessary nested scrolling.
+- Uses stable stage heights in the embedded CAD viewer to prevent viewport-height feedback loops.
+- Corrects stale static-gallery copy that claimed 3D would be integrated in a later phase.
+- Adds browser regression checks for iframe content fit and correct footer order.
 
-**Current state: candidate built and statically reviewed; full GitHub import, real 3D QA, and production release incomplete.**
+## Remaining gates
+1. **Run the updated GitHub Actions checks**, then inspect refreshed desktop/mobile screenshots (not just test pass/fail).
+2. Confirm full real-browser WebGL/CDN behavior, responsive menu and keyboard/screen-reader accessibility.
+3. Decide public URLs and metadata: keep the 3D utility page noindex; when public release is approved, remove noindex from the eight content pages, add canonical/OG/Twitter metadata and sitemap entries.
+4. Approve release, merge and deploy to XServer.
+5. Verify real published images, links and 3D controls after deployment. Record evidence and mark release complete only then.
+
+**Current status: sources integrated; visual fixes pending re-test; Draft PR, not deployed.**
