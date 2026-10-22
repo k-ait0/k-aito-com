@@ -1,1 +1,194 @@
-<!doctype html><html lang="ja"><head><meta name="robots" content="noindex,follow"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="固定翼機、ロボット、宇宙開発。構想から設計、試作までを公開するエンジニアリング・ラボ。"><title>MONO BASE | MONO BASE</title><link rel="stylesheet" href="./site.css"></head><body><header><a href="./index.html"><strong>MONO BASE</strong></a><nav aria-label="メインナビゲーション"><a href="./index.html">MONO BASE</a><a href="./aircraft.html">AIRCRAFT</a><a href="./robotics.html">ROBOTICS</a><a href="./space.html">SPACE</a><a href="./design-lab.html">DESIGN LAB</a><a href="./technology.html">TECHNOLOGY</a><a href="./journal.html">JOURNAL</a><a href="./about.html">ABOUT</a></nav></header><main><section class="hero"><div class="eyebrow">ENGINEERING FOR A WIDER TOMORROW</div><h1>つくる。まだない未来を。</h1><p>固定翼機、ロボット、宇宙開発。構想から設計、試作までを公開するエンジニアリング・ラボ。</p><a class="action" href="#projects">PROJECTSを見る →</a></section><section class="section" id="projects"><h2>PROJECTS</h2><div class="grid"><a class="tile" href="./aircraft.html"><span>PROJECT / AIRCRAFT</span><h3>AIRCRAFT</h3><p>一般的なクアッドコプターではなく、固定翼機の構造・制御・機体設計を探究するプロジェクト。現在は構想・設計段階です。</p></a><a class="tile" href="./robotics.html"><span>PROJECT / ROBOTICS</span><h3>ROBOTICS</h3><p>機構設計、駆動、制御、センサーを組み合わせたロボットアームの試作計画。実機の検証結果は今後掲載します。</p></a><a class="tile" href="./space.html"><span>PROJECT / SPACE</span><h3>SPACE</h3><p>小型ロケット・人工衛星などを長期的な研究テーマとして扱います。実際の製造や打ち上げ実績を示すものではありません。</p></a></div></section><section class="section"><h2>DESIGN LAB</h2><p>MB-AIR 01 — コンセプト機体の設計展示</p><a class="action" href="./design-lab.html">DESIGN LABを見る →</a></section></main><footer>MONO BASE — A project within <a href="/">KAITO</a> / Concept-stage engineering showcase</footer></body></html>
+<!DOCTYPE html>
+
+<html lang="ja"><head><meta name="robots" content="noindex,follow"><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"><meta content="#050d16" name="theme-color"/><title>MONO BASE | Aerospace · Robotics · Engineering</title><meta name="description" content="MONO BASE — 固定翼機、ロボティクス、宇宙開発。設計と試作の過程を公開するエンジニアリングプロジェクト。"><style>
+:root{color-scheme:dark;--bg:#050d16;--panel:#0a1623;--line:#264053;--muted:#92a8b8;--cyan:#72d6ff}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:#f1f6fa;font-family:Inter,"Helvetica Neue",Arial,"Noto Sans JP",sans-serif;letter-spacing:.025em}a{color:inherit;text-decoration:none}button{font:inherit}header{position:sticky;top:0;z-index:30;height:70px;background:#06101aeb;backdrop-filter:blur(16px);border-bottom:1px solid #294050;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(20px,4vw,72px)}.logo{font-weight:750;font-size:24px;letter-spacing:.19em;white-space:nowrap}.logo b{font-weight:400;color:#8ce0ff}.nav{display:flex;gap:32px;font-size:11px;letter-spacing:.14em}.nav a:hover,.mini:hover{color:var(--cyan)}.topright{font-size:11px;color:var(--muted);letter-spacing:.18em}.wrap{max-width:1500px;margin:auto;padding:0 clamp(20px,4vw,72px)}.hero{min-height:600px;position:relative;overflow:hidden;border-bottom:1px solid var(--line);display:flex;align-items:center}.hero:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#06101b 0%,#06101bea 26%,#06101b9e 49%,#06101b1a 80%),linear-gradient(0deg,#050d16 0%,transparent 32%),url('assets/hero_rocket.jpg') center right/cover no-repeat}.hero:after{content:"";position:absolute;inset:0;opacity:.17;pointer-events:none;background:linear-gradient(transparent 97%,#4f7c96 100%) 0 0/100% 44px}.hero .wrap{width:100%;position:relative;z-index:1}.eyebrow{font-size:11px;letter-spacing:.33em;color:var(--cyan);margin-bottom:26px}.jp{font-size:clamp(15px,1.7vw,22px);letter-spacing:.22em;margin-bottom:18px}.hero h1{font-size:clamp(54px,8.2vw,126px);line-height:.96;letter-spacing:.08em;font-weight:650;margin:0 0 18px;text-shadow:0 8px 32px #0008}.sub{font-size:clamp(10px,1.05vw,15px);letter-spacing:.4em;color:#c5d7e3}.intro{font-size:14px;line-height:2.3;color:#d2dee6;max-width:590px;margin:34px 0}.btn{display:inline-flex;gap:35px;align-items:center;justify-content:space-between;padding:16px 24px;border:1px solid #7290a5;border-radius:2px;background:#07111b88;font-size:11px;letter-spacing:.22em;transition:.2s}.btn:hover{background:#163b55;border-color:var(--cyan)}.btn span{font-size:18px}.section{padding:82px 0 40px}.sectionhead{display:flex;justify-content:space-between;align-items:end;gap:20px;margin-bottom:26px}.sectionhead h2{font-size:clamp(28px,4vw,46px);font-weight:450;letter-spacing:.22em;margin:0}.sectionhead p{font-size:12px;color:var(--muted);line-height:1.8}.num{color:var(--cyan);font-size:11px;letter-spacing:.2em;margin-bottom:13px}.projects{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.project{min-height:360px;border:1px solid var(--line);position:relative;overflow:hidden;background:#0b1722}.project:before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,#06101be0 0%,#06101b1f 48%,#06101be9 100%),url('assets/aircraft_card.jpg') center/cover;transition:transform .4s}.project:nth-child(2):before{background-image:linear-gradient(180deg,#06101be0 0%,#06101b1f 48%,#06101be9 100%),url('assets/robotics_card.jpg')}.project:nth-child(3):before{background-image:linear-gradient(180deg,#06101be0 0%,#06101b1f 48%,#06101be9 100%),url('assets/space_card.jpg')}.project:hover:before{transform:scale(1.06)}.project .content{position:relative;z-index:1;height:100%;min-height:360px;display:flex;flex-direction:column;padding:26px}.project h3{font-size:27px;letter-spacing:.18em;font-weight:450;margin:0 0 6px}.project p{font-size:12px;color:#d2dfe9;margin:0}.project .bottom{margin-top:auto}.project .bottom p{line-height:1.9;max-width:220px}.mini{font-size:11px;letter-spacing:.16em;display:inline-block;margin-top:20px;border-bottom:1px solid #6e9eb6;padding-bottom:8px}.lab{border:1px solid #2a4c61;background:#071421;display:grid;grid-template-columns:minmax(230px,.75fr) minmax(0,1.65fr) minmax(245px,.85fr);min-height:470px}.labcopy{padding:34px 30px;border-right:1px solid var(--line);display:flex;flex-direction:column}.labcopy h2{font-size:32px;letter-spacing:.2em;font-weight:450;margin:0 0 15px}.labcopy h3{font-weight:400;font-size:19px;margin:0 0 25px}.labcopy p{color:#a9bfce;font-size:12px;line-height:2.15}.labcopy .btn{margin-top:auto}.airview{position:relative;min-height:470px;overflow:hidden;background:linear-gradient(0deg,#06101b66,#06101b22),url('assets/design_lab_aircraft.jpg') center/cover}.airview:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#07142166,transparent 30%),repeating-linear-gradient(0deg,transparent 0 39px,#9cddff0a 40px),repeating-linear-gradient(90deg,transparent 0 39px,#9cddff0a 40px)}.airview .modeltag{position:absolute;top:25px;left:25px;font-size:16px;letter-spacing:.24em}.airview .modeltag small{display:block;color:#b1c4d2;font-size:10px;letter-spacing:.08em;margin-top:6px}.callout{position:absolute;font-size:10px;color:#aee9ff;border-left:1px solid #7bdbff;padding-left:9px;text-shadow:0 2px 5px #000}.callout.a{left:15%;top:47%}.callout.b{right:12%;top:33%}.callout.c{right:16%;bottom:23%}.labpanel{padding:22px 20px;border-left:1px solid var(--line);background:#081726}.paneltitle{font-size:11px;letter-spacing:.15em;color:var(--cyan);margin-bottom:22px}.switches{display:flex;gap:5px;margin-bottom:26px}.switches span{font-size:10px;flex:1;text-align:center;padding:10px 4px;border:1px solid #284558}.switches span:first-child{background:#154568;border-color:#4c9ac7}.spec{display:flex;justify-content:space-between;font-size:11px;border-bottom:1px solid #284558;padding:13px 0;color:#b9c9d5}.spec b{color:white;font-weight:400}.note{font-size:10px;color:#7998ad;line-height:1.9;margin-top:24px}.blueprint{margin-top:12px;border:1px solid #24475b;min-height:90px;background:linear-gradient(#081523b0,#081523b0),url('assets/blueprint_strip.jpg') center/cover}.foot{margin-top:80px;padding:35px 0;border-top:1px solid var(--line);color:#718a9c;font-size:11px;display:flex;justify-content:space-between;gap:20px}.journal{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.journal article{padding:25px;border:1px solid var(--line);background:#0a1724}.journal small{color:var(--cyan);letter-spacing:.16em}.journal h3{font-size:18px;font-weight:450;line-height:1.5}.journal p{font-size:12px;line-height:1.9;color:var(--muted)}@media(max-width:1100px){.lab{grid-template-columns:1fr 1.7fr}.labpanel{grid-column:1/-1;border-left:0;border-top:1px solid var(--line);display:grid;grid-template-columns:1fr 1fr;gap:0 30px}.labpanel .paneltitle,.labpanel .note{grid-column:1/-1}.labcopy,.airview{min-height:440px}}@media(max-width:720px){header{height:62px}.logo{font-size:17px}.nav{display:none}.hero{min-height:630px;align-items:flex-end;padding-bottom:65px}.hero:before{background:linear-gradient(0deg,#06101b 0%,#06101be8 34%,#06101b25 86%),url('assets/hero_legacy.jpg') 60% top/auto 80% no-repeat}.hero h1{font-size:clamp(47px,12vw,76px)}.intro{font-size:12px}.section{padding-top:58px}.sectionhead{align-items:start;flex-direction:column}.projects,.journal{grid-template-columns:1fr}.project,.project .content{min-height:310px}.lab{grid-template-columns:1fr}.labcopy{min-height:270px;border-right:0;border-bottom:1px solid var(--line)}.airview{min-height:360px}.labpanel{display:block}.foot{flex-direction:column}.callout{font-size:9px}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.project:before{transition:none}}
+
+/* v2.1 — visual refinement and responsive QA */
+:root{--focus:#93e6ff}::selection{background:#2c7294;color:#fff}
+:focus-visible{outline:2px solid var(--focus);outline-offset:4px}
+body{background:radial-gradient(ellipse 70% 24% at 75% 50%,#0c2535 0%,transparent 75%),#050d16}
+header{transition:background .2s ease}header.is-scrolled{background:#040b13f7;box-shadow:0 12px 38px #0006}
+.hero{min-height:min(780px,86svh)}.hero:after{content:'';position:absolute;inset:auto 0 0;height:2px;background:linear-gradient(90deg,transparent,#67d4ff 52%,transparent);opacity:.32;pointer-events:none}
+.section{scroll-margin-top:85px}#home{scroll-margin-top:70px}
+#design-lab{position:relative}#design-lab:before{content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 50% 50% at 65% 55%,#1d476023,transparent 75%)}
+a,button{transition:color .18s ease,border-color .18s ease,background .18s ease,transform .18s ease}
+a:hover{color:#a6e8ff}
+@media(hover:hover){.project-card:hover{transform:translateY(-5px);border-color:#5aa7c5!important}}
+@media(max-width:850px){header{height:62px}.hero{min-height:640px}.nav{gap:12px;flex-wrap:wrap}.topright{display:none}}
+@media(max-width:600px){header{padding:0 16px}.logo{font-size:18px;letter-spacing:.12em}.nav{gap:10px;font-size:9px}.nav a:nth-child(2),.nav a:nth-child(4){display:none}.hero{min-height:640px}.wrap{padding-left:18px;padding-right:18px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important;animation:none!important}}
+
+/* v2.2: responsive and accessible navigation, static showcase polish */
+html{scroll-padding-top:90px}
+body{overflow-x:clip}
+.menu-toggle{display:none;align-items:center;justify-content:center;flex-direction:column;gap:5px;width:42px;height:42px;border:1px solid #41647c;background:#071522d9;border-radius:4px;cursor:pointer;flex-shrink:0}
+.menu-toggle span{display:block;width:19px;height:1px;background:#d6efff}
+.nav a:focus-visible,.btn:focus-visible,.menu-toggle:focus-visible,.project:focus-visible{outline:2px solid #65d8ff;outline-offset:4px}
+.switches .selected{background:#15547a;color:#e7f8ff;border-color:#3d9dd1}
+.project{isolation:isolate}
+@media(max-width:850px){header{justify-content:space-between}.menu-toggle{display:flex}.nav{display:none;position:absolute;top:100%;left:0;right:0;background:#06121ef7;border-bottom:1px solid #41647c;padding:18px 24px 24px;flex-direction:column;align-items:stretch;gap:0;box-shadow:0 20px 40px #0009}.nav.open{display:flex}.nav a{display:block;padding:13px 8px;border-bottom:1px solid #294054;font-size:12px;letter-spacing:.12em}.nav a:nth-child(2),.nav a:nth-child(4){display:block}}
+@media(max-width:600px){.hero h1{overflow-wrap:normal}.labpanel{min-width:0}.airview{min-width:0}}
+
+/* v2.4: visual hierarchy, engineering editorial detail, accessibility */
+.hero{min-height:min(810px,calc(100svh - 70px));isolation:isolate}
+.hero::after{content:"";position:absolute;inset:auto 0 0;height:2px;background:linear-gradient(90deg,transparent,#5ac9f9 35%,transparent 76%);opacity:.65;pointer-events:none}
+.hero .wrap{position:relative;z-index:1;width:100%}
+.hero h1{letter-spacing:.105em;line-height:.98;text-shadow:0 9px 45px #0008}
+.hero .intro{max-width:490px;line-height:2}
+.sectionhead h2{letter-spacing:.14em}
+.project{isolation:isolate}
+.project::after{content:"";position:absolute;inset:0;border:1px solid transparent;pointer-events:none;transition:border-color .2s}
+.project:hover::after,.project:focus-visible::after{border-color:#78d9ff99}
+.project .content{z-index:1}
+.lab{box-shadow:0 24px 80px #0005;border-color:#396078}
+.airview{position:relative}
+.airview::after{content:"CONCEPT VISUALIZATION  /  NOT A MANUFACTURING DRAWING";position:absolute;bottom:13px;left:15px;font:9px/1.5 monospace;letter-spacing:.1em;color:#9cc5d8;background:#04111ccc;padding:6px 9px;border:1px solid #355c71}
+.build-phases{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:#294457;border:1px solid #294457;margin-top:28px}
+.build-phase{padding:20px 22px;background:#081622;min-height:120px}
+.build-phase .phase-num{color:#6ed5ff;font:11px monospace;letter-spacing:.18em}
+.build-phase strong{display:block;font-size:15px;letter-spacing:.06em;margin:12px 0 6px}
+.build-phase p{color:#9db5c5;font-size:12px;line-height:1.8;margin:0}
+@media(max-width:720px){.hero{min-height:670px}.hero h1{font-size:clamp(46px,12vw,80px);letter-spacing:.045em}.hero .intro{max-width:330px}.build-phases{grid-template-columns:1fr}.build-phase{min-height:0;padding:16px 18px}.airview::after{font-size:7px;max-width:70%}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition-duration:.01ms!important;animation-duration:.01ms!important}}
+
+/* v2.6 art-direction pass: distinct photographic panels and stronger visual hierarchy */
+:root{--cyan:#64d6ff;--line:#22435a}
+.hero{min-height:720px;isolation:isolate}
+.hero:before{background:linear-gradient(90deg,#020a13 0%,#030d18f5 26%,#061322c9 49%,#0613224d 78%),linear-gradient(0deg,#050d16 0%,transparent 24%),url("assets/hero_alt.jpg") center 45%/cover no-repeat!important;opacity:1!important}
+.hero:after{pointer-events:none}
+.hero .wrap{padding-top:160px!important;padding-bottom:120px!important}
+.hero h1{letter-spacing:.065em!important;text-shadow:0 8px 36px #000b}
+.project{min-height:340px!important;overflow:hidden}
+.project:before{opacity:.92!important;transform:scale(1.01)}
+.project:first-child:before{background:linear-gradient(0deg,#020914ed,#02091426 68%),url("assets/aircraft_alt.jpg") center/cover no-repeat!important}
+.project:nth-child(2):before{background:linear-gradient(0deg,#020914ed,#02091426 68%),url("assets/robotics_alt.jpg") center/cover no-repeat!important}
+.project:nth-child(3):before{background:linear-gradient(0deg,#020914ed,#02091426 68%),url("assets/space_alt.jpg") center/cover no-repeat!important}
+.project:hover:before{transform:scale(1.055)}
+.airview{background:linear-gradient(0deg,#06101a99,#06101a18 68%),url("assets/aircraft_detail.jpg") center/cover no-repeat!important;min-height:430px!important}
+.lab{border:1px solid #25506b;box-shadow:0 24px 80px #0009,0 0 50px #0a406019}
+.lab-edition{color:#8ddaff}
+.sectionhead h2{letter-spacing:.12em}
+.journal article{border-top:1px solid #35617a;padding-top:26px}
+@media(max-width:760px){.hero{min-height:650px}.hero:before{background-position:63% center!important}.hero .wrap{padding-top:130px!important;padding-bottom:85px!important}.project{min-height:320px!important}.airview{min-height:330px!important}}
+.hero:before{background:linear-gradient(90deg,#020a13 0%,#020a13 31%,#020a13e8 46%,#020a1355 78%),url("assets/hero_final.jpg") right center/cover no-repeat!important}.airview{background:linear-gradient(90deg,#071421d9,#07142111 58%),url("assets/aircraft_detail.jpg") center/cover no-repeat!important}</style><style>
+/* MONO BASE visual polish v2.3 — static showcase */
+:root{--cyan:#8bdbff;--line:#2d465a}
+html{scroll-padding-top:90px}
+body{background:radial-gradient(ellipse 85% 40% at 55% 40%,#102236 0%,#050d16 65%);-webkit-font-smoothing:antialiased}
+header{box-shadow:0 10px 32px #0005}
+.hero{min-height:min(820px,calc(100svh - 70px));isolation:isolate}
+.hero:after{content:"";position:absolute;inset:0;pointer-events:none;z-index:-1;background:radial-gradient(ellipse at 77% 54%,transparent 0%,#06101a38 72%),linear-gradient(90deg,#06101b99 0%,transparent 56%)}
+.hero .wrap{position:relative;z-index:2;width:100%}
+.hero h1{font-size:clamp(65px,9vw,152px);letter-spacing:.055em;line-height:1.03;text-shadow:0 8px 38px #0009;margin-block:24px 14px}
+.hero .jp{font-size:clamp(18px,2vw,27px);letter-spacing:.24em}
+.hero .intro{max-width:520px;line-height:2.15;color:#d4e2ed;text-shadow:0 2px 10px #000}
+.hero-status{font-size:10px;letter-spacing:.23em;color:#9bcee6;border-left:2px solid #74d4ff;padding:7px 0 7px 15px;margin:18px 0 25px;width:max-content;max-width:100%}
+.section{padding-top:105px;padding-bottom:55px}
+.sectionhead h2{letter-spacing:.13em}
+.project{transition:transform .25s ease,border-color .25s ease,filter .25s ease;filter:saturate(.93)}
+.project:hover{transform:translateY(-5px);border-color:#71cbff;filter:saturate(1.1)}
+.lab{box-shadow:0 25px 90px #0005;border-color:#355168}
+.airview{box-shadow:inset 0 0 75px #0006}
+.btn{transition:background .2s,color .2s,border-color .2s,transform .2s}
+.btn:hover{background:#b9eaff;color:#07121d;border-color:#b9eaff;transform:translateY(-2px)}
+:focus-visible{outline:2px solid #a4e4ff!important;outline-offset:4px}
+@media(max-width:700px){.hero{min-height:700px;align-items:flex-end;padding-bottom:58px}.hero h1{font-size:clamp(48px,12vw,78px);letter-spacing:.025em}.hero .jp{letter-spacing:.08em}.hero .intro{font-size:13px}.hero-status{font-size:8px;letter-spacing:.12em}.section{padding-top:66px;padding-bottom:25px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
+</style><style>
+/* v2.5: visual-first art direction, no changes to the prototype interactions */
+:root{--cyan:#69cfff;--line:#28485d}
+body{background:radial-gradient(ellipse at 50% 23%,#0b1c2c 0%,#050d16 55%);}
+header{height:62px;background:rgba(3,10,17,.94);padding-inline:clamp(18px,3vw,58px)}
+.logo{font-size:22px;letter-spacing:.14em}
+.nav{gap:clamp(14px,2.5vw,38px)}
+.hero{min-height:clamp(540px,54vw,730px);align-items:center}
+.hero:before{background:linear-gradient(90deg,#030c17ed 0%,#05101bd9 26%,#06101b72 54%,#06101b0d 86%),linear-gradient(0deg,#050d16 0%,transparent 26%),url('assets/hero_final.jpg');background-size:cover;background-position:center}
+.hero .wrap{position:relative;z-index:2;width:100%}
+.hero h1{font-size:clamp(64px,8.1vw,138px);line-height:.98;letter-spacing:.045em;margin:22px 0 16px;font-weight:780;text-shadow:0 10px 50px #0009}
+.hero .eyebrow{color:#81dbff;letter-spacing:.35em;font-size:10px}
+.hero .jp{font-size:clamp(18px,1.6vw,24px);letter-spacing:.19em}
+.hero .sub{letter-spacing:.37em;font-size:clamp(9px,.95vw,14px);color:#d6e6f3}
+.hero .intro{font-size:13px;line-height:2.2;color:#e0edf6;max-width:600px}
+.hero-rail{position:absolute;right:clamp(20px,4vw,64px);top:21%;z-index:2;display:grid;gap:26px;font-size:10px;letter-spacing:.22em;color:#c2d5e5;text-shadow:0 2px 8px #000}
+.hero-rail div:first-child{color:#8ddfff}
+.hero-rail div:first-child:after{content:'';display:inline-block;width:24px;border-top:1px solid #80dcff;margin:0 0 3px 12px}
+.section{padding-top:70px;padding-bottom:14px}
+.sectionhead{margin-bottom:26px}
+.sectionhead h2{letter-spacing:.2em}
+.projects{gap:12px}
+.project{min-height:285px;border:1px solid #294356;overflow:hidden;transition:transform .2s,border-color .2s}
+.project:hover{transform:translateY(-3px);border-color:#75cfff}
+.project .content{padding:26px}
+.project h3{font-size:clamp(23px,2.1vw,35px);letter-spacing:.19em}
+.lab{position:relative;border:1px solid #29526a;box-shadow:0 25px 75px #0006;overflow:hidden}
+.lab-edition{position:absolute;right:20px;top:14px;z-index:3;font-size:9px;letter-spacing:.18em;color:#9edcff;background:#051321bb;padding:7px 9px;border:1px solid #29526a}
+.labcopy{position:relative;z-index:2}
+.airview{min-height:520px}
+.journal article{border-top:1px solid #2b4a60}
+a:focus-visible,button:focus-visible{outline:2px solid #8edfff;outline-offset:4px}
+@media(max-width:800px){.hero{min-height:650px;align-items:flex-end;padding-bottom:70px}.hero h1{font-size:clamp(49px,12vw,86px);overflow-wrap:normal}.hero-rail{display:none}.hero .intro{font-size:12px}.section{padding-top:54px}.project{min-height:255px}.airview{min-height:370px}.lab-edition{top:8px;right:8px;font-size:8px}}
+@media(max-width:420px){.hero{min-height:600px}.hero h1{font-size:12vw;letter-spacing:.025em}.hero .sub{letter-spacing:.18em}.hero .intro{line-height:1.9}.hero-status{font-size:9px}}
+@media(prefers-reduced-motion:reduce){.project{transition:none}}
+</style><style>
+/* v2.7: keep text/UI in HTML, use replaceable independent image assets */
+.hero::before{background-position: center 46%!important}
+.project::before{background-size:cover!important}
+@media(max-width:760px){.hero::before{background-position:64% center!important}}
+</style><style>
+/* v2.8 editorial/art direction, non-destructive layer */
+:root{--cyan:#7adfff;--line:#315168}
+body{font-feature-settings:"palt" 1;letter-spacing:.015em;background:#040b13}
+.hero{min-height:clamp(610px,70svh,850px)!important}
+.hero:before{background:linear-gradient(90deg,#020812f5 0%,#03101ce3 28%,#04101b70 55%,#020a1022 100%),linear-gradient(0deg,#050d16 0%,transparent 28%),url('assets/hero_final.jpg') center 42%/cover no-repeat!important}
+.hero .wrap{padding-top:clamp(125px,16vh,210px)!important;padding-bottom:105px!important}
+.hero h1{font-size:clamp(64px,8.5vw,148px)!important;letter-spacing:.065em!important;line-height:.96!important;max-width:1100px}
+.hero .intro{border-left:2px solid #6bd3f4;padding-left:20px;max-width:480px}
+.project{min-height:380px!important;border:1px solid #29485e!important}
+.project:before{filter:contrast(1.07) saturate(.87)}
+.project .content{position:relative;z-index:2}
+.sectionhead{margin-bottom:35px}
+.lab{border:1px solid #3a5d72!important;background:#07121d;box-shadow:0 28px 90px #000b}
+.airview{min-height:480px!important;background:linear-gradient(0deg,#030c14b5,transparent 55%),url('assets/design_lab_aircraft.jpg') center/cover no-repeat!important}
+.airview:after{background:#04111df2!important;border-color:#30546a!important}
+.sectionhead h2{font-size:clamp(34px,4.8vw,64px)}
+.preview-ribbon{display:inline-flex;align-items:center;gap:10px;color:#91d7f0;border:1px solid #32627b;background:#071b2b;padding:8px 12px;font:10px/1.4 monospace;letter-spacing:.12em;margin:14px 0}
+.preview-ribbon:before{content:'';width:7px;height:7px;border-radius:50%;background:#6dd9ff;box-shadow:0 0 10px #6dd9ff}
+@media(max-width:850px){.hero{min-height:700px!important}.hero:before{background-position:63% center!important}.hero .wrap{padding-top:150px!important}.project{min-height:310px!important}.airview{min-height:370px!important}}
+@media(max-width:600px){.hero{min-height:710px!important}.hero:before{background:linear-gradient(0deg,#020812 0%,#020812e8 24%,#02081255 78%),url('assets/hero_final.jpg') 68% center/auto 100% no-repeat!important}.hero .wrap{padding-top:250px!important;padding-bottom:65px!important}.hero h1{font-size:clamp(47px,12.6vw,70px)!important;letter-spacing:.018em!important;overflow-wrap:normal}.hero .intro{padding-left:13px}.project{min-height:300px!important}.airview{min-height:310px!important;background-position:54% center!important}}
+
+/* v2.9: usable static engineering view gallery */
+.airview{background-image:linear-gradient(0deg,#020c16b8,#020c1630 60%),var(--view-image,url('assets/design_lab_aircraft.jpg'))!important;background-position:center!important;background-size:cover!important;transition:background-image .2s ease}
+.view-gallery{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;padding:12px;background:#061320;border:1px solid #284c63;border-top:0}
+.view-option{appearance:none;display:block;position:relative;min-width:0;padding:0;background:#071726;border:1px solid #30546a;color:#d8e9f5;text-align:left;cursor:pointer;border-radius:3px;overflow:hidden}
+.view-option img{display:block;width:100%;aspect-ratio:2.8;object-fit:cover;filter:saturate(.83)}
+.view-option span{display:block;padding:8px 10px;font-size:11px;letter-spacing:.07em}
+.view-option[aria-pressed="true"]{border-color:#64d6ff;box-shadow:inset 0 0 0 1px #64d6ff,0 0 15px #0a94cf50}
+.view-option:focus-visible{outline:2px solid #a1e8ff;outline-offset:3px}
+.view-label{position:absolute;right:12px;top:12px;padding:7px 10px;border:1px solid #4c8099;background:#06131ec9;font:10px monospace;letter-spacing:.08em;color:#a4dcf6;z-index:2}
+@media(max-width:700px){.view-gallery{grid-template-columns:repeat(2,minmax(0,1fr))}.view-option img{aspect-ratio:2.7}.airview{background-position:52% center!important}}
+</style><style>
+.site-launch-ribbon{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:12px;padding:15px;background:#061522;border-block:1px solid #244b64;font:11px monospace;letter-spacing:.08em;color:#82a5bc}.site-launch-ribbon a{padding:7px 10px;color:#d6f3ff;text-decoration:none;border:1px solid #2c526b}.site-launch-ribbon a:hover{background:#16405a}
+</style><style>@media(max-width:500px){.sectionhead h2{font-size:clamp(24px,7.5vw,32px);letter-spacing:.08em;overflow-wrap:anywhere}}</style></head><body><header><a class="logo" href="index.html">MONO <b>BASE</b></a><nav aria-label="メインナビゲーション" class="nav" id="site-nav"><a href="index.html">HOME</a><a href="index.html#projects">PROJECTS</a><a href="design-lab.html">DESIGN LAB</a><a href="technology.html">TECHNOLOGY</a><a href="journal.html">JOURNAL</a><a href="index.html#about">ABOUT</a></nav><button aria-controls="site-nav" aria-expanded="false" aria-label="メニューを開く" class="menu-toggle" type="button"><span></span><span></span><span></span></button></header>
+<main><section class="hero" id="home"><div class="wrap"><div class="eyebrow">INDEPENDENT ENGINEERING PROJECT</div><div class="jp">つくる。まだない未来を。</div><h1>MONO BASE</h1><div class="sub">ENGINEERING FOR A WIDER TOMORROW</div><p class="intro">空へ、そしてその先へ。<br/>固定翼機・ロボティクス・宇宙開発。<br/>構想し、設計し、試す。その過程から、ものづくりの可能性を広げていく。</p><div aria-label="構想段階のプロジェクト" class="hero-status">CONCEPT → ENGINEERING → PROTOTYPE</div><a class="btn" href="#projects">EXPLORE PROJECTS <span>→</span></a></div><div aria-hidden="true" class="hero-rail"><div>01  /  HOME</div><div>02  /  PROJECTS</div><div>03  /  DESIGN LAB</div><div>04  /  JOURNAL</div></div></section><div class="site-launch-ribbon">EXPLORE THE WORKSPACE  /  <a href="aircraft.html">AIRCRAFT</a><a href="robotics.html">ROBOTICS</a><a href="space.html">SPACE</a><a href="design-lab.html">DESIGN LAB</a><a href="journal.html">JOURNAL</a></div>
+<section class="section wrap" id="projects"><div class="sectionhead"><div><div class="num">01 / EXPLORATION</div><h2>PROJECTS</h2></div><p>好奇心を、設計へ。設計を、実験へ。<br/>三つの領域から技術の可能性を探る。</p></div><div class="projects"><a class="project" href="aircraft.html"><div class="content"><h3>AIRCRAFT</h3><p>固定翼機プロジェクト</p><div class="bottom"><p>空力、機構、制御。<br/>小さな機体から飛行の可能性を探る。</p><span class="mini">EXPLORE AIRCRAFT　→</span></div></div></a><a aria-label="制作記録の構想を見る" class="project" href="robotics.html"><div class="content"><h3>ROBOTICS</h3><p>ロボティクス</p><div class="bottom"><p>機構設計と電子制御。<br/>動く仕組みを、一つずつ形にする。</p><span class="mini">EXPLORE ROBOTICS　→</span></div></div></a><a aria-label="制作記録の構想を見る" class="project" href="space.html"><div class="content"><h3>SPACE</h3><p>宇宙開発</p><div class="bottom"><p>遠い宇宙を、身近な挑戦に。<br/>小型宇宙技術への道筋を考える。</p><span class="mini">EXPLORE SPACE　→</span></div></div></a></div></section>
+<section class="section wrap" id="design-lab"><div class="sectionhead"><div><div class="num">02 / ENGINEERING VIEW</div><h2>DESIGN LAB</h2></div><p>図面の向こうに、形が見える。<br/>技術を直感的に伝えるデジタル展示室。</p></div><div class="preview-ribbon">VISUAL CONCEPT / STATIC PREVIEW — 3D INTERACTION IN DEVELOPMENT</div><div class="lab"><div class="lab-edition">VISUAL CONCEPT  /  ART DIRECTION / STATIC STUDY</div><div class="labcopy"><div class="num">MODEL / 001</div><h2>DESIGN<br/>LAB</h2><h3>設計を、体験する。</h3><p>MONO BASEの機体を、3Dで見る、触れる、分解する。構想から構造まで、エンジニアリングの思考を可視化する。</p><p>完成ビジュアルを確認するための静止版プレビュー。3D操作機能は次の工程で統合します。</p><a class="btn" href="journal.html">VIEW DEVELOPMENT <span>→</span></a></div><div aria-label="固定翼機の技術展示イメージ" class="airview" role="img"><div class="modeltag">MB-AIR 01<small>Experimental Fixed-Wing Aircraft / Concept</small></div><div class="callout a">FUSELAGE / 胴体</div><div class="callout b">VERTICAL TAIL / 垂直尾翼</div><div class="callout c">MAIN WING / 主翼</div><div aria-live="polite" class="view-label" id="view-label">EXTERIOR / CONCEPT</div></div><aside class="labpanel"><div class="paneltitle">AIRCRAFT SYSTEM / CONCEPT</div><div aria-label="表示モードの完成イメージ（操作機能は未実装）" class="switches" role="img"><span class="selected" title="静止プレビュー：操作機能は今後実装">EXTERIOR</span><span title="静止プレビュー：操作機能は今後実装">WIRE</span><span title="静止プレビュー：操作機能は今後実装">EXPLODE</span></div><div class="spec"><span>MODEL</span><b>MB-AIR 01</b></div><div class="spec"><span>TYPE</span><b>FIXED WING</b></div><div class="spec"><span>STATUS</span><b>CONCEPT</b></div><div class="spec"><span>VIEW</span><b>ART DIRECTION / STATIC STUDY</b></div><div aria-label="機体設計図のイメージ" class="blueprint"></div><p class="note">※ この画面は展示デザインの静止モックアップです。寸法・機体形状は実機設計値ではありません。操作ボタンは未実装です。</p></aside></div><div aria-label="DESIGN LABの静止画像を切り替える" class="view-gallery" role="group"><button aria-pressed="true" class="view-option" data-image="design_lab_aircraft.jpg" data-label="EXTERIOR / CONCEPT" type="button"><img alt="航空機の展示イメージ" loading="lazy" src="assets/design_lab_aircraft.jpg"/><span>01 / EXTERIOR</span></button><button aria-pressed="false" class="view-option" data-image="aircraft_alt.jpg" data-label="AIRCRAFT / STUDY" type="button"><img alt="航空機の別角度イメージ" loading="lazy" src="assets/aircraft_alt.jpg"/><span>02 / AIRCRAFT</span></button><button aria-pressed="false" class="view-option" data-image="blueprint_strip.jpg" data-label="BLUEPRINT / STUDY" type="button"><img alt="設計図風のイメージ" loading="lazy" src="assets/blueprint_strip.jpg"/><span>03 / BLUEPRINT</span></button><button aria-pressed="false" class="view-option" data-image="aircraft_detail.jpg" data-label="DETAIL / STUDY" type="button"><img alt="機体ディテールのイメージ" loading="lazy" src="assets/aircraft_detail.jpg"/><span>04 / DETAIL</span></button></div></section>
+<section class="section wrap" id="journal"><div class="sectionhead"><div><div class="num">03 / BUILD LOG</div><h2>ENGINEERING JOURNAL</h2></div><p>完成品だけでなく、試行錯誤も記録する。</p></div><div class="journal"><article><h3>開発記録を準備中</h3><p>設計・検証・制作の過程を順次公開します。</p></article><article><h3>開発記録を準備中</h3><p>設計・検証・制作の過程を順次公開します。</p></article><article><h3>開発記録を準備中</h3><p>設計・検証・制作の過程を順次公開します。</p></article></div></section>
+<section class="section wrap" id="about"><div class="num">04 / OUR PHILOSOPHY</div><div class="sectionhead"><h2>BUILD. TEST. LEARN.</h2><p>手の届く技術から、まだ見ぬ領域へ。<br/>MONO BASEは個人のエンジニアリング構想・制作記録です。</p></div><div class="build-phases"><div class="build-phase"><span class="phase-num">01 / CONCEPT</span><strong>構想・リサーチ</strong><p>設計思想と技術課題を言語化し、公開する。</p></div><div class="build-phase"><span class="phase-num">02 / PROTOTYPE</span><strong>試作・検証</strong><p>固定翼機やロボットの小規模な試作から始める。</p></div><div class="build-phase"><span class="phase-num">03 / ITERATION</span><strong>改良・記録</strong><p>成功も失敗もデータとして残し、次の設計へつなぐ。</p></div></div></section></main><footer class="wrap foot"><span>© MONO BASE — ENGINEERING FOR A WIDER TOMORROW</span><span>A PROJECT BY KAITO</span></footer><script>
+(()=>{
+ const header=document.querySelector('header');
+ const update=()=>header?.classList.toggle('is-scrolled',scrollY>32);
+ addEventListener('scroll',update,{passive:true});update();
+ const menu=document.querySelector('.menu-toggle');
+ const nav=document.querySelector('#site-nav');
+ const closeMenu=()=>{nav?.classList.remove('open');menu?.setAttribute('aria-expanded','false');menu?.setAttribute('aria-label','メニューを開く');};
+ menu?.addEventListener('click',()=>{const open=nav.classList.toggle('open');menu.setAttribute('aria-expanded',String(open));menu.setAttribute('aria-label',open?'メニューを閉じる':'メニューを開く');});
+ nav?.querySelectorAll('a').forEach(a=>a.addEventListener('click',closeMenu));
+ addEventListener('keydown',e=>{if(e.key==='Escape')closeMenu();});
+ // Keep the static preview honest: no pretend CAD controls are enabled.
+ document.querySelectorAll('button').forEach(b=>{
+   if(!b.getAttribute('type'))b.setAttribute('type','button');
+ });
+})();
+</script><script>
+(()=>{const view=document.querySelector('.airview');const label=document.querySelector('#view-label');const buttons=[...document.querySelectorAll('.view-option')];buttons.forEach(button=>button.addEventListener('click',()=>{const filename=button.dataset.image;if(!/^[a-z_]+\.jpg$/.test(filename))return;view.style.setProperty('--view-image',`url("assets/${filename}")`);label.textContent=button.dataset.label;buttons.forEach(b=>b.setAttribute('aria-pressed',String(b===button)));const annotations=view.querySelectorAll('.callout');annotations.forEach(a=>a.style.display=filename==='design_lab_aircraft.jpg'?'':'none');}));})();
+</script><div style="position:fixed;bottom:12px;right:12px;z-index:60;background:#061624eb;color:#b9d7e7;border:1px solid #34586e;padding:8px 12px;font:11px sans-serif;max-width:270px">VISUAL CONCEPT / 掲載機体・開発記録はイメージです</div></body></html>
