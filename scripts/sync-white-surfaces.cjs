@@ -4,10 +4,14 @@
 const fs=require("node:fs");
 const path=require("node:path");
 const root=path.resolve(__dirname,"..");
+const {isMonoBaseContentRoute,readPublicSitemapUrl}=require("./public-sitemap-routes.cjs");
 const defaultHref='/white-surfaces-v1.css?v=20261015-shell1';
 const thumbnailHref='/thumbnail-v1.css?v=20261009-1';
 const sitemap=fs.readFileSync(path.join(root,"sitemap.xml"),"utf8");
-const pages=[...sitemap.matchAll(/<loc>\s*([^<]+)\s*<\/loc>/g)].map(m=>new URL(m[1].trim()));
+const pages=[...sitemap.matchAll(/<loc>\s*([^<]+)\s*<\/loc>/g)].map(m=>{
+  const parsed=readPublicSitemapUrl(m[1].trim());
+  return new URL("https://k-aito.com"+parsed.pathname);
+}).filter(u=>!isMonoBaseContentRoute(u.pathname));
 let changed=0;
 for(const url of pages){
   if(url.origin!=="https://k-aito.com"||!/^\/[a-z0-9/-]*$/.test(url.pathname))throw Error("Invalid sitemap URL "+url);

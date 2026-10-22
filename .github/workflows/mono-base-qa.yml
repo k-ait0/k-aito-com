@@ -49,6 +49,18 @@ jobs:
           node --check scripts/prepare-mono-base-publication.cjs
           node scripts/test-public-sitemap-routes.cjs
           node scripts/prepare-mono-base-publication.cjs --check
+          # Current KAITO generators must remain isolated from the
+          # independently styled MONO BASE pages when indexing is enabled.
+          node --check scripts/sync-site-shell.cjs
+          node --check scripts/sync-site-breadcrumbs.cjs
+          node --check scripts/sync-white-surfaces.cjs
+          node --check scripts/sync-project-search.cjs
+          node --check scripts/test-mono-base-generator-isolation.cjs
+          node scripts/test-mono-base-generator-isolation.cjs
+          node scripts/test-site-shell.cjs
+          node scripts/test-site-breadcrumbs.cjs
+          node scripts/test-site-search-ui.cjs
+          node scripts/test-project-search.cjs
       - name: Validate MONO BASE preview or public SEO metadata
         run: node scripts/test-mono-base-preview.cjs
       - name: Verify original v3.4 image hashes when integrated

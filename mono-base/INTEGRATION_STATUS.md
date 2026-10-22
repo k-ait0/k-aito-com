@@ -34,3 +34,13 @@ KAITO traditionally indexes /directory/ routes, whereas seven MONO BASE content 
 5. Merge then deploy through XServer Static, inspect any deployment mismatch (tracked separately in KAITO issue #52), rerun live byte-for-byte comparison and responsive 3D tests, and record evidence.
 
 **State: Draft PR; source and visual QA passed prior to compatibility change; indexing off; not merged or deployed.**
+
+## 2026-10-23 — KAITO main conflict resolution and generator isolation (append-only update)
+
+- Draft PR #33 previously could not merge because KAITO main advanced by 42 commits. Non-conflicting MONO BASE changes were preserved while `projects/index.html`, `scripts/browser-smoke.cjs`, and `scripts/live-production-check.cjs` were reconciled with current main; the merge commit has parents from both branches. `main` itself was not changed.
+- Browser QA continues to use KAITO's latest six-viewport shared search, header, footer, breadcrumb and accessibility checks, with a separate branch for MONO BASE's independent dark layout.
+- Additional release-risk audit identified **four KAITO content generators** that would have failed on the seven MONO BASE file-style `.html` routes after indexing: site shell, site breadcrumbs, white reading surface CSS, and generated search-script links. They are now restricted to KAITO sitemap routes while retaining the same existing 24-page behavior.
+- The corresponding four regression suites also filter the distinct MONO BASE routes; the dedicated `test-mono-base-generator-isolation.cjs` simulates adding all eight public routes **without changing the real sitemap** and verifies that the original dark designs remain isolated.
+- The updated MONO BASE workflow now tests the generator scope, syntax, release-mode eligibility, and existing KAITO generator regressions before performing browser QA.
+- Noindex/robots and sitemap remain in **preview mode**; public-mode conversion has NOT been performed. The changes in this addendum still require the new merge-head CI run.
+- KAITO [Issue #52](https://github.com/k-ait0/k-aito-com/issues/52) remains open; investigation identified a previous Actions-generated HTML revision that did not match the version served by XServer. Current live state and XServer deployment history are not confirmed. Draft [PR #54](https://github.com/k-ait0/k-aito-com/pull/54) proposes manual-only article-index generation to prevent recurrence; it is not merged.

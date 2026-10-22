@@ -3,9 +3,10 @@ const assert=require("node:assert/strict");
 const fs=require("node:fs");
 const path=require("node:path");
 const root=path.resolve(__dirname,"..");
+const {isMonoBaseContentRoute}=require("./public-sitemap-routes.cjs");
 const {render,update,trail}=require("./sync-site-breadcrumbs.cjs");
 const sitemap=fs.readFileSync(path.join(root,"sitemap.xml"),"utf8");
-const urls=[...sitemap.matchAll(/<loc>https:\/\/k-aito\.com(\/[^<]*)<\/loc>/g)].map(m=>m[1]);
+const urls=[...sitemap.matchAll(/<loc>https:\/\/k-aito\.com(\/[^<]*)<\/loc>/g)].map(m=>m[1]).filter(route=>!isMonoBaseContentRoute(route));
 assert.ok(urls.length>=24,"Unexpected reduction in public sitemap");
 for(const route of urls){
   const src=fs.readFileSync(path.join(root,route.slice(1),"index.html"),"utf8");

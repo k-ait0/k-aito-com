@@ -3,10 +3,11 @@ const assert=require("node:assert/strict");
 const fs=require("node:fs");
 const path=require("node:path");
 const root=path.resolve(__dirname,"..");
+const {isMonoBaseContentRoute}=require("./public-sitemap-routes.cjs");
 const home=fs.readFileSync(path.join(root,"index.html"),"utf8");
 const {render}=require("./sync-site-shell.cjs");
 const paths=[...fs.readFileSync(path.join(root,"sitemap.xml"),"utf8")
- .matchAll(/<loc>https:\/\/k-aito\.com(\/[^<]*)<\/loc>/g)].map(m=>m[1]);
+ .matchAll(/<loc>https:\/\/k-aito\.com(\/[^<]*)<\/loc>/g)].map(m=>m[1]).filter(route=>!isMonoBaseContentRoute(route));
 assert.ok(paths.length>=24,"Unexpected loss of published pages");
 const homeHeader=home.match(/<header class="site-header">[\s\S]*?<\/header>/)?.[0];
 const homeFooter=home.match(/<footer\b[^>]*class="site-footer"[^>]*>[\s\S]*?<\/footer>/)?.[0];
