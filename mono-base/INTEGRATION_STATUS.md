@@ -11,6 +11,7 @@
 - Visual QA: fixed overflowing iframe, incorrect footer order, stale gallery explanation and desktop unused space; checked six screenshots.
 - Metadata staged: eight page-specific descriptions, canonical URLs, OpenGraph and Twitter large cards; `assets/hero_final.jpg` used for image. All nine pages still **noindex,follow**, sitemap has no MONO BASE URLs.
 - Commit `4247304`: both SEO static audit and full MONO BASE Chromium browser QA **PASS**. [PR #33](https://github.com/k-ait0/k-aito-com/pull/33)
+- The KAITO `/projects/` project-notes column now includes an internal MONO BASE discovery link; this does not alter the existing four-card project registry or its generated markers.
 
 ## Publication compatibility fix — subject to fresh CI
 

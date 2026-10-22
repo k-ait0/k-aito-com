@@ -13,6 +13,8 @@ on:
       - 'scripts/browser-smoke.cjs'
       - 'scripts/live-production-check.cjs'
       - 'assets/**'
+      - 'mono-base/assets/**'
+      - 'mono-base/ASSET_MANIFEST.sha256'
       - 'sitemap.xml'
       - 'robots.txt'
       - 'og-image.png'

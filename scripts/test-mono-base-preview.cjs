@@ -6,6 +6,9 @@ const root = path.resolve(__dirname, "..");
 const dir = path.join(root, "mono-base");
 const pages = ["index","about","aircraft","robotics","space","design-lab","technology","journal"];
 const sitemap = fs.readFileSync(path.join(root,"sitemap.xml"),"utf8");
+const projects=fs.readFileSync(path.join(root,"projects/index.html"),"utf8");
+assert.equal((projects.match(/href="\/mono-base\/"/g)||[]).length,1,
+  "KAITO PROJECTS must provide one discoverable MONO BASE link");
 const releaseMode = sitemap.includes("<loc>https://k-aito.com/mono-base/</loc>");
 for (const page of pages) {
   const file = path.join(dir,page+".html");
