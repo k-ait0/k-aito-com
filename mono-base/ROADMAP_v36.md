@@ -24,3 +24,9 @@ Saved user profiles, sharable URLs, model geometry serialization, manufacturing 
 
 ## Revision history
 2026-10-23: P2-01 proposed as a copyable text snapshot instead of CAD/model export. Reason: provide usable design-study continuity without implying engineering dimensions or claiming to reproduce an independently orbited camera position.
+
+## 2026-10-23 — browser-acceptance evidence refinement
+
+- Static QA and full Chromium browser QA initially passed at `91176e9`. Review of the 1440px full-page DESIGN LAB screenshot showed the embedded WebGL canvas blank even though the engine was online and the interactive controls passed. The full-page screenshot was taken while the intersection-controlled renderer could be paused, so it is not adequate evidence that the airframe was actually drawn.
+- Updated browser QA now explicitly scrolls the real canvas into view, waits for **two fresh frames** with `paused=false`, then stores a dedicated visible-airframe canvas screenshot for desktop, 390px and 320px. It also exercises the copy button with a deterministic permitted-clipboard stub and a denied-clipboard stub, checking the accessible success/fallback message and selected manual-copy text. This changes tests only, not deployed CAD code.
+- The new QA commit must pass static checks and the **manual** browser run again at its own HEAD before release approval. A screenshot artifact without a visible airframe does not count as visual acceptance.
