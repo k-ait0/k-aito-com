@@ -29,6 +29,7 @@ on:
       - 'scripts/test-project-search.cjs'
       - 'scripts/verify-mono-base-original-assets.py'
       - 'scripts/test-mono-base-v34-browser.py'
+      - 'scripts/test-mono-base-v35-controls.cjs'
       - '.github/workflows/mono-base-qa.yml'
   workflow_dispatch:
 permissions:
@@ -100,6 +101,8 @@ jobs:
           node scripts/test-project-search.cjs
       - name: Validate MONO BASE preview or public SEO metadata
         run: node scripts/test-mono-base-preview.cjs
+      - name: Validate v3.5 accessible controls and reset contract
+        run: node scripts/test-mono-base-v35-controls.cjs
       - name: Verify original v3.4 image hashes when integrated
         run: |
           if [ -f mono-base/cad-viewer.html ]; then

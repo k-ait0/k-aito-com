@@ -71,3 +71,11 @@ KAITO traditionally indexes /directory/ routes, whereas seven MONO BASE content 
 - Runs are **read-only** against the checked-out source. The published-mode rehearsal only modifies a disposable OS temporary directory that is cleaned afterward.
 - Outputs named PASS/FAIL entries and a final aggregate exit status. The local launcher does **not** replace the deliberately manual Chromium/WebGL browser QA or live XServer deployment checks.
 - The MONO BASE workflow checks the syntax of this launcher but continues to perform its own lightweight tests on each scoped PR update.
+
+## 2026-10-23 — v3.4 production acceptance and v3.5 development opened
+
+- Public v3.4 release evidence: merge [PR #33](https://github.com/k-ait0/k-aito-com/pull/33) and [production Run #39885561010](https://github.com/k-ait0/k-aito-com/actions/runs/39885561010): **85 production checks PASS, 0 FAIL, 2308 Chromium assertions PASS, 0 FAIL**, and [146/146 deployed source file hash matches](https://github.com/k-ait0/k-aito-com/blob/main/docs/qa/kaito-production-release-20261023.json). Original 13 images and all 8 indexed content pages included. Standalone CAD viewer remains noindex.
+- [Issue #52](https://github.com/k-ait0/k-aito-com/issues/52) (WHYNOT mismatch) and [Issue #55](https://github.com/k-ait0/k-aito-com/issues/55) (MONO BASE initial deployment 404) were closed after verified live reconciliation.
+- **Do not erase preceding historical Draft/noindex statements**: they describe the previous state as it existed when recorded.
+- v3.5 begins on an independent Draft PR, not on production main. First scoped fixes: `RESET ALL PARAMETERS` must restore perspective after orthographic; the 14 selected-mode/part/view/projection controls must expose `aria-pressed` and stay synchronized.
+- These are source changes for the next version only. A v3.5 PR static-qa PASS does NOT constitute browser-qa, production deployment or a release announcement; manual full browser QA and fresh production verification are still release gates.
