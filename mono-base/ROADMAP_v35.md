@@ -12,7 +12,7 @@ Status: **v3.4 production VERIFIED; v3.5 development Draft only**. Date: 2026-10
 | --- | --- | --- | --- |
 | P0 | **Full reset** | Orthographic camera is retained after RESET | Mode, part, sweep, exploded view, camera preset and projection all reset; both button and Home keyboard path pass browser tests |
 | P0 | **Accessible selected state** | Control state relies on visual `active` class | 14 mode/view/projection/part controls expose accurate `aria-pressed` before and after actions, including reset |
-| P1 | **Offscreen renderer economy** | Viewer spins RAF while not visible; parent does not currently send `mono-visibility` notifications | Verified pause/resume without blank frames when embedded iframe is offscreen or tab hidden, preserve touch/drag/damping |
+| P1 | **Offscreen renderer economy** | Previously the viewer kept scheduling RAF while invisible and the parent never sent visibility messages | Parent IntersectionObserver + same-origin messages, child cancels RAF when hidden; complete full Chromium pause/resume acceptance before marking done |
 | P1 | **3D fallback / dependency resilience** | CDN dependency requires network and may fail | Offline/unavailable-module fallback remains legible, keyboard-accessible and safe; maintain WebGL error coverage |
 | P2 | **View export and configuration UX** | PNG export available but current camera/parameter metadata is not recorded | Evaluate optional copyable preset/settings summary; no false claims of manufacturing-grade CAD |
 | P2 | **Content depth** | Many sections are conceptual introductions | Add evidence-backed design process notes and project updates only when source material is available |
@@ -26,3 +26,10 @@ Status: **v3.4 production VERIFIED; v3.5 development Draft only**. Date: 2026-10
 
 ## Out of scope for P0
 - Aircraft geometry changes, aerodynamic simulation, real CAD dimensions, new 3D assets, image substitutions, member registration, unrelated KAITO/FINOWA changes.
+
+## 2026-10-23 — P1-01 renderer lifecycle implementation (Draft PR #57)
+
+- **Before:** child `tick()` ran `requestAnimationFrame` repeatedly even when `viewerVisible=false`, while the parent did not send `mono-visibility`; standalone and embedded visibility states were conflated.
+- **After:** the parent DESIGN LAB page observes iframe intersection and document visibility, posting `mono-visibility` **only to its same origin** and repeating notification at iframe load. In the child, parent visibility and the child's own `document.hidden` are combined, pending RAF is cancelled on pause, and exactly one RAF chain is restarted on resume. The standalone viewer renders normally.
+- **Evidence design:** a read-only `window.__monoBaseRenderStats={frames,paused}` diagnostic makes real render counts inspectable during Chromium browser QA. Browser regression scrolls the viewer fully offscreen, confirms frame count stays constant, scrolls back and verifies frames increase. Separate static checks assert the observer, origin/source validation and cancellation contract.
+- **Status:** implementation prepared; no actual performance savings percentage is claimed without profiling. Browser QA remains **PENDING** until manually triggered. Keep v3.4 production unchanged.

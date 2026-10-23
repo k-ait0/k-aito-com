@@ -3,6 +3,25 @@
   const frame = document.getElementById('cad-frame');
   if (!frame) return;
   let observer;
+  let frameIntersects=true;
+  const notifyViewerVisibility = () => {
+    // The iframe is same-origin; ignore page-hidden and offscreen intervals.
+    try {
+      const visible=frameIntersects&&!document.hidden&&frame.getClientRects().length>0;
+      frame.contentWindow?.postMessage({type:'mono-visibility',visible},location.origin);
+    } catch (_) {
+      // No message means the standalone viewer still operates normally.
+    }
+  };
+  if ('IntersectionObserver' in window) {
+    const visibilityObserver=new IntersectionObserver(entries=>{
+      frameIntersects=!!entries[0]?.isIntersecting&&entries[0].intersectionRatio>0;
+      notifyViewerVisibility();
+    },{threshold:0});
+    visibilityObserver.observe(frame);
+  }
+  document.addEventListener('visibilitychange',notifyViewerVisibility);
+  window.addEventListener('pageshow',notifyViewerVisibility);
   const fit = () => {
     // Same-origin iframe: measure the actual body height, rather than the
     // viewport-clamped scrollHeight, so the embed can both grow and shrink.
@@ -20,6 +39,7 @@
   };
   frame.addEventListener('load', () => {
     fit();
+    notifyViewerVisibility(); // Re-send after iframe module scripts have initialized.
     try {
       const body = frame.contentDocument?.body;
       if (body && window.ResizeObserver) {

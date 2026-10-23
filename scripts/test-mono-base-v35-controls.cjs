@@ -22,3 +22,25 @@ assert.match(html,/document\.querySelector\('#reset'\)\.onclick=/,'RESET handler
 const count=Object.values(groups).flat().length;
 assert.equal((html.match(/<button\s+data-(?:mode|view|projection|part)=/g)||[]).length,count);
 console.log('PASS MONO BASE v3.5: 14 accessible toggle states and reset projection contract');
+
+const host=fs.readFileSync(path.join(__dirname,"../mono-base/design-lab.html"),"utf8");
+assert.ok(host.includes("new IntersectionObserver("),
+  "Host must observe iframe intersection");
+assert.ok(host.includes("notifyViewerVisibility(); // Re-send after iframe module scripts have initialized."),
+  "Host must notify iframe after load");
+assert.ok(host.includes("document.addEventListener('visibilitychange',notifyViewerVisibility)"),
+  "Host must handle background tabs");
+assert.ok(host.includes("postMessage({type:'mono-visibility',visible},location.origin)"),
+  "Host must send same-origin visibility messages");
+assert.ok(html.includes("event.source!==window.parent||event.origin!==location.origin"),
+  "Viewer must authenticate visibility messages");
+assert.ok(html.includes("const shouldRender=()=>hostVisible&&!document.hidden"),
+  "Viewer must combine parent and local visibility");
+assert.ok(html.includes("cancelAnimationFrame(animationRequest)"),
+  "Viewer must cancel queued frames while hidden");
+assert.ok(html.includes("renderStats.frames++"),
+  "Viewer must expose actual paint count for regression tests");
+assert.ok(!html.includes("if(!viewerVisible){requestAnimationFrame(tick);return}"),
+  "No RAF spin loop while hidden");
+console.log("PASS MONO BASE v3.5: same-origin iframe visibility and paint pause contract");
+

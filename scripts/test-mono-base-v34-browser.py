@@ -76,6 +76,44 @@ def validate_site(browser,name,viewport):
     expect(frame.locator('[data-projection="perspective"]')).to_have_attribute('aria-pressed','true')
     expect(frame.locator('[data-projection="ortho"]')).to_have_attribute('aria-pressed','false')
     expect(frame.locator('#hudMode')).to_contain_text('PERSPECTIVE')
+    # One real pause/resume test covers WebGL render scheduling, not just flags.
+    # It is intentionally limited to desktop to avoid tripling the CI runtime.
+    if name == 'desktop':
+        page.wait_for_function("""() => {
+          const stats=document.querySelector('#cad-frame')?.contentWindow?.__monoBaseRenderStats;
+          return stats && !stats.paused && stats.frames >= 3;
+        }""",timeout=15000)
+        page.evaluate("document.documentElement.style.scrollBehavior='auto'; window.scrollTo(0,0)")
+        page.wait_for_function("""() => document.querySelector('#cad-frame')?.contentWindow?.__monoBaseRenderStats?.paused === true""",timeout=10000)
+        frozen=page.evaluate("document.querySelector('#cad-frame').contentWindow.__monoBaseRenderStats.frames")
+        page.wait_for_timeout(180)
+        still=page.evaluate("document.querySelector('#cad-frame').contentWindow.__monoBaseRenderStats.frames")
+        assert still==frozen,f'{name}: offscreen 3D renderer continued painting: {frozen}->{still}'
+        frame_element.scroll_into_view_if_needed()
+        page.wait_for_function("""minimum => {
+          const stats=document.querySelector('#cad-frame')?.contentWindow?.__monoBaseRenderStats;
+          return stats && !stats.paused && stats.frames >= minimum+2;
+        }""",arg=frozen,timeout=15000)
+        # Simulate visibilitychange independently of the parent viewport.
+        # This verifies the child's own document.hidden guard and restart.
+        frame.locator('body').evaluate("""el => {
+          Object.defineProperty(document,'hidden',{configurable:true,get:()=>true});
+          document.dispatchEvent(new Event('visibilitychange'));
+        }""")
+        page.wait_for_function("""() => document.querySelector('#cad-frame')?.contentWindow?.__monoBaseRenderStats?.paused === true""",timeout=10000)
+        background=page.evaluate("document.querySelector('#cad-frame').contentWindow.__monoBaseRenderStats.frames")
+        page.wait_for_timeout(180)
+        assert page.evaluate("document.querySelector('#cad-frame').contentWindow.__monoBaseRenderStats.frames")==background,\
+            f'{name}: background tab continued painting'
+        frame.locator('body').evaluate("""el => {
+          delete document.hidden;
+          document.dispatchEvent(new Event('visibilitychange'));
+        }""")
+        page.wait_for_function("""minimum => {
+          const stats=document.querySelector('#cad-frame')?.contentWindow?.__monoBaseRenderStats;
+          return stats && !stats.paused && stats.frames >= minimum+2;
+        }""",arg=background,timeout=15000)
+        print(f'PASS v3.5 {name}: offscreen and background WebGL rendering paused/resumed')
     assert not errors,f'{name}: JS errors: {errors}'
     page.close()
     print(f'PASS v3.4 {name}: 8 pages, original images, no overflow, 3D interaction')

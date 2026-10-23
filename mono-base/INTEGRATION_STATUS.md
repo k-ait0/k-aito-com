@@ -79,3 +79,12 @@ KAITO traditionally indexes /directory/ routes, whereas seven MONO BASE content 
 - **Do not erase preceding historical Draft/noindex statements**: they describe the previous state as it existed when recorded.
 - v3.5 begins on an independent Draft PR, not on production main. First scoped fixes: `RESET ALL PARAMETERS` must restore perspective after orthographic; the 14 selected-mode/part/view/projection controls must expose `aria-pressed` and stay synchronized.
 - These are source changes for the next version only. A v3.5 PR static-qa PASS does NOT constitute browser-qa, production deployment or a release announcement; manual full browser QA and fresh production verification are still release gates.
+
+## 2026-10-23 — v3.5 P1 offscreen WebGL lifecycle (append-only)
+
+- Draft PR #57 gains host-page IntersectionObserver + tab visibility forwarding for the embedded `cad-viewer.html`.
+- Previously the child continuously scheduled `requestAnimationFrame` while hidden; now it cancels pending RAF and only restarts when both parent intersection and child document visibility permit rendering.
+- Messages are validated against `window.parent` and `location.origin`; a standalone viewer remains independent of host messages.
+- Adds read-only-in-practice frame-count/paused diagnostics for browser regression, with a render-count pause/resume check on desktop. Parent iframe auto-height logic is retained unchanged.
+- HTML changes are limited to `mono-base/design-lab.html` and `mono-base/cad-viewer.html`; original JPEGs, sitemap and indexed URLs are untouched.
+- **This is an unmerged v3.5 Draft change, not a v3.4 production fix or measured energy-saving claim.** Full browser check and production release remain separate approval gates.

@@ -101,8 +101,10 @@ jobs:
           node scripts/test-project-search.cjs
       - name: Validate MONO BASE preview or public SEO metadata
         run: node scripts/test-mono-base-preview.cjs
-      - name: Validate v3.5 accessible controls and reset contract
-        run: node scripts/test-mono-base-v35-controls.cjs
+      - name: Validate v3.5 accessible controls and renderer lifecycle
+        run: |
+          node scripts/test-mono-base-v35-controls.cjs
+          python -m py_compile scripts/test-mono-base-v34-browser.py
       - name: Verify original v3.4 image hashes when integrated
         run: |
           if [ -f mono-base/cad-viewer.html ]; then
