@@ -173,3 +173,18 @@ Use "CSV行をコピー" and paste each participant as one row under
 `P0_TEST_LOG_TEMPLATE.csv`.
 
 No data is transmitted externally.
+
+
+## Test Console
+
+Internal noindex console:
+`/projects/kidp/life-design-lab/test-console/`
+
+Purpose:
+- issue P01–P10 instrumented URLs
+- paste participant CSV rows
+- calculate M1–M5
+- apply the pre-registered decision rules without moving thresholds afterward
+
+The console stores pasted CSV only in browser localStorage.
+No backend or external transmission.

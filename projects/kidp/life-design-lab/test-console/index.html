@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><meta name="description" content="KIDP-003 LIFE DESIGN LAB P0のUser Test用ローカル集計コンソール。">
+<title>LIFE DESIGN LAB — P0 Test Console</title>
+<style>
+:root{--ink:#17342b;--muted:#68736c;--paper:#f5f2e8;--card:#fffdf7;--line:#d8ddd2;--leaf:#6f8e45;--dark:#18372d;--gold:#b38a42;--bad:#985b4a}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans JP",sans-serif}.wrap{max-width:1040px;margin:auto;padding:22px 18px 70px}.top{display:flex;justify-content:space-between;gap:18px;align-items:end;border-bottom:1px solid var(--line);padding-bottom:18px}.eyebrow{font-size:9px;font-weight:900;letter-spacing:.14em;color:var(--leaf)}h1,h2{font-family:Georgia,"Yu Mincho",serif}h1{font-size:clamp(34px,6vw,56px);line-height:1.1;margin:6px 0}.top p,.section p{color:var(--muted);line-height:1.7;font-size:12px}.privacy{font-size:9px;padding:8px 10px;border:1px solid var(--line);background:#fff;border-radius:999px;white-space:nowrap}.section{margin-top:34px}.section h2{font-size:23px;margin:4px 0 12px}.links{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}.link-row{display:grid;grid-template-columns:50px 1fr auto;gap:8px;align-items:center;padding:10px;background:#fff;border:1px solid var(--line);border-radius:10px}.link-row b{font-family:Georgia,serif}.link-row code{font-size:9px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--muted)}button,a.btn{border:1px solid var(--line);background:#fff;border-radius:8px;padding:7px 9px;font:inherit;font-size:10px;color:var(--ink);cursor:pointer;text-decoration:none}.primary{background:var(--dark)!important;color:#fff!important;border-color:var(--dark)!important}.paste{width:100%;min-height:180px;border:1px solid var(--line);background:#fff;border-radius:12px;padding:13px;font:11px/1.6 ui-monospace,SFMono-Regular,Menlo,monospace}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.status{font-size:10px;color:var(--muted);min-height:1.6em;margin-top:8px}.metrics{display:grid;grid-template-columns:repeat(6,1fr);gap:8px}.metric{background:#fff;border:1px solid var(--line);padding:13px;border-radius:12px}.metric small{display:block;color:var(--muted);font-size:8px;letter-spacing:.06em}.metric strong{display:block;font-family:Georgia,serif;font-size:25px;margin:4px 0}.metric em{font-style:normal;font-size:9px;color:var(--muted)}.decision{margin-top:14px;padding:18px;background:var(--dark);color:#fff;border-radius:14px}.decision small{color:#c8d3ce;font-size:9px}.decision strong{display:block;font-family:Georgia,serif;font-size:26px;margin:5px 0}.decision p{color:#d6e0db;margin:0}.decision.warn{background:#70592d}.decision.bad{background:#70483e}.thresholds{display:grid;grid-template-columns:repeat(5,1fr);gap:7px;margin-top:12px}.threshold{padding:10px;background:#fff;border:1px solid var(--line);border-radius:10px;font-size:10px}.threshold b{display:block}.threshold.pass{border-color:#a7bd7e;background:#f1f6e7}.threshold.fail{border-color:#caa698;background:#fff3ef}.table-wrap{overflow:auto;border:1px solid var(--line);background:#fff;border-radius:12px}table{border-collapse:collapse;width:100%;min-width:760px;font-size:10px}th,td{padding:9px;border-bottom:1px solid #eceee9;text-align:left}th{position:sticky;top:0;background:#f8f8f2}.footer{margin-top:34px;border-top:1px solid var(--line);padding-top:16px;color:var(--muted);font-size:9px;line-height:1.7}
+@media(max-width:760px){.top{display:block}.privacy{display:inline-block;margin-top:10px}.links{grid-template-columns:1fr}.metrics{grid-template-columns:repeat(2,1fr)}.thresholds{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body><main class="wrap">
+<header class="top"><div><span class="eyebrow">KIDP-003 · P0 USER TEST</span><h1>Test Console</h1><p>P01〜P10のリンク発行、CSV集計、事前に固定したGate判定だけを行う内部ツール。</p></div><span class="privacy">NOINDEX · LOCAL ONLY</span></header>
+
+<section class="section">
+<span class="eyebrow">01 · TEST LINKS</span><h2>参加者リンク</h2><p>各参加者に1つずつ割り当てます。回答・計測データは各端末内だけに残り、外部送信されません。</p>
+<div class="links" id="links"></div>
+<div class="actions"><button id="copyLinks">10件をまとめてコピー</button></div><div class="status" id="linkStatus"></div>
+</section>
+
+<section class="section">
+<span class="eyebrow">02 · COLLECT</span><h2>CSV行を貼り付ける</h2><p>各参加者の結果画面で「CSV行をコピー」し、1行ずつここへ貼ります。ヘッダーはなくても構いません。</p>
+<textarea class="paste" id="csvInput" placeholder='"P01",...&#10;"P02",...'></textarea>
+<div class="actions"><button class="primary" id="analyzeBtn">集計する</button><button id="clearBtn">クリア</button><button id="copySummaryBtn">Summaryをコピー</button></div><div class="status" id="parseStatus"></div>
+</section>
+
+<section class="section">
+<span class="eyebrow">03 · GATE</span><h2>P0判定</h2>
+<div class="metrics">
+<div class="metric"><small>N</small><strong id="mN">0</strong><em>participants</em></div>
+<div class="metric"><small>M1 COMPLETION</small><strong id="m1">—</strong><em>target ≥80%</em></div>
+<div class="metric"><small>M2 RESONANCE</small><strong id="m2">—</strong><em>target ≥70%</em></div>
+<div class="metric"><small>M3 DEEP DIVE</small><strong id="m3">—</strong><em>target ≥60%</em></div>
+<div class="metric"><small>M4 DIAGNOSIS</small><strong id="m4">—</strong><em>failure ≥40%</em></div>
+<div class="metric"><small>M5 UNCLEAR</small><strong id="m5">—</strong><em>target &lt;2 cards</em></div>
+</div>
+<div id="thresholds" class="thresholds"></div>
+<div id="decision" class="decision warn"><small>DECISION</small><strong>NO DATA</strong><p>5人以上集まるまではGate判定しません。</p></div>
+</section>
+
+<section class="section">
+<span class="eyebrow">04 · ROWS</span><h2>読み込んだ結果</h2>
+<div class="table-wrap"><table><thead><tr><th>ID</th><th>Complete</th><th>Duration</th><th>W/M/P</th><th>Resonance</th><th>Deep dive</th><th>Diagnosis</th><th>Unclear</th><th>Top 3</th></tr></thead><tbody id="rows"></tbody></table></div>
+</section>
+
+<div class="footer">このConsoleは判断基準を後から動かさないための集計補助です。P1 GOになっても、市場性・心理特性・適性を証明するものではありません。</div>
+</main>
+<script>
+const HEADERS=["participant_id","goal_clarity","self_analysis_usage","device","completed_20","duration_sec","want_count","maybe_count","pass_count","undo_count","hesitated_cards","result_first_quote","result_resonance","top1","top2","top3","top4","top5","wants_deep_dive","deep_dive_category","thought_it_was_diagnosis","unclear_cards","missing_cards","tester_notes","what_next","verbatim_quote"];
+const base=location.origin+"/projects/kidp/life-design-lab/prototype/";
+const links=Array.from({length:10},(_,i)=>({id:"P"+String(i+1).padStart(2,"0"),url:base+"?test=1&pid=P"+String(i+1).padStart(2,"0")}));
+const linksEl=document.querySelector("#links");
+for(const x of links){
+ const row=document.createElement("div");row.className="link-row";
+ const id=document.createElement("b");id.textContent=x.id;
+ const code=document.createElement("code");code.textContent=x.url;
+ const a=document.createElement("a");a.className="btn";a.target="_blank";a.rel="noopener";a.href=x.url;a.textContent="OPEN ↗";
+ row.append(id,code,a);linksEl.append(row);
+}
+document.querySelector("#copyLinks").onclick=()=>copy(links.map(x=>x.id+" "+x.url).join("\n"),"#linkStatus","リンクをコピーしました。");
+let currentRows=[],currentSummary=null;
+function parseCSV(s){const rows=[];let row=[],field="",q=false;for(let i=0;i<s.length;i++){const ch=s[i];if(q){if(ch==='"'&&s[i+1]==='"'){field+='"';i++}else if(ch==='"')q=false;else field+=ch}else{if(ch==='"')q=true;else if(ch===','){row.push(field);field=""}else if(ch==='\n'){row.push(field);if(row.some(x=>x.trim()!==""))rows.push(row);row=[];field=""}else if(ch!=='\r')field+=ch}}row.push(field);if(row.some(x=>x.trim()!==""))rows.push(row);return rows}
+function truthy(v){return /^(true|yes|1)$/i.test(String(v||"").trim())}
+function unclearCount(v){const s=String(v||"").trim();if(!s)return 0;return s.split(/[|,、\s]+/).filter(Boolean).length}
+function esc(s){return String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]))}
+function pct(n,d){return d?Math.round(n/d*100):0}
+function analyze(){
+ const raw=parseCSV(document.querySelector("#csvInput").value.trim());
+ if(!raw.length){render([]);return}
+ const body=(raw[0][0]==="participant_id")?raw.slice(1):raw;
+ currentRows=body.filter(r=>r.some(x=>String(x).trim()!=="")).map(r=>Object.fromEntries(HEADERS.map((h,i)=>[h,r[i]??""])));
+ render(currentRows);
+ localStorage.setItem("kidp003.p0.console.csv",document.querySelector("#csvInput").value);
+}
+function render(rows){
+ const n=rows.length,complete=rows.filter(r=>truthy(r.completed_20)).length;
+ const resonance=rows.filter(r=>["yes","somewhat"].includes((r.result_resonance||"").toLowerCase())).length;
+ const deep=rows.filter(r=>truthy(r.wants_deep_dive)||String(r.deep_dive_category||"").trim()).length;
+ const diagnosis=rows.filter(r=>(r.thought_it_was_diagnosis||"").toLowerCase()==="yes").length;
+ const unclearAvg=n?rows.reduce((a,r)=>a+unclearCount(r.unclear_cards),0)/n:0;
+ const m1=pct(complete,n),m2=pct(resonance,n),m3=pct(deep,n),m4=pct(diagnosis,n),m5=Math.round(unclearAvg*10)/10;
+ const avgDuration=n?Math.round(rows.reduce((a,r)=>a+(Number(r.duration_sec)||0),0)/n):0;
+ currentSummary={n,m1,m2,m3,m4,m5,avgDuration};
+ document.querySelector("#mN").textContent=n;document.querySelector("#m1").textContent=n?m1+"%":"—";document.querySelector("#m2").textContent=n?m2+"%":"—";document.querySelector("#m3").textContent=n?m3+"%":"—";document.querySelector("#m4").textContent=n?m4+"%":"—";document.querySelector("#m5").textContent=n?m5:"—";
+ const checks=[["M1",m1>=80,m1+"% ≥ 80%"],["M2",m2>=70,m2+"% ≥ 70%"],["M3",m3>=60,m3+"% ≥ 60%"],["M4",m4<40,m4+"% < 40%"],["M5",m5<2,m5+" < 2"]];
+ document.querySelector("#thresholds").innerHTML=n?checks.map(x=>'<div class="threshold '+(x[1]?"pass":"fail")+'"><b>'+x[0]+' '+(x[1]?"PASS":"FAIL")+'</b>'+x[2]+'</div>').join(""):"";
+ let label="NO DATA",copy="5人以上集まるまではGate判定しません。",cls="warn";
+ if(n<5){label="COLLECT MORE";copy="現在 "+n+" 人。初回Gateは5〜10人で判定します。"}
+ else if(m1<50&&m3<40){label="STOP / INTERNAL TOOL";copy="Problemではなく体験自体への関心が弱い可能性。公開サービス拡張を止める。";cls="bad"}
+ else if(m1<80||m5>=2){label="CARD REDESIGN";copy="完走率またはカード摩擦が基準未達。カード文面・順番・カテゴリを先に直す。";cls="bad"}
+ else if(m4>=40){label="POSITIONING REDESIGN";copy="診断として誤読されすぎている。Landing / Result copyを修正する。";cls="bad"}
+ else if(m2<50){label="RESULT REDESIGN";copy="完走はするが結果への納得感が弱い。集計・見せ方を修正する。";cls="bad"}
+ else if(m1>=80&&m2>=70&&m3>=60&&m4<40&&m5<2){label="P1 GO";copy="P1としてLife Theme Discovery / Deep Swipeへ進む。";cls=""}
+ else{label="MORE DATA / REVIEW";copy="明確なGO/REDESIGN条件に入っていない。追加参加者または定性コメントを確認する。"}
+ const d=document.querySelector("#decision");d.className="decision "+cls;d.innerHTML='<small>DECISION · AVG '+avgDuration+'s</small><strong>'+label+'</strong><p>'+copy+'</p>';
+ document.querySelector("#rows").innerHTML=rows.map(r=>'<tr><td>'+esc(r.participant_id)+'</td><td>'+esc(r.completed_20)+'</td><td>'+esc(r.duration_sec)+'s</td><td>'+esc(r.want_count)+'/'+esc(r.maybe_count)+'/'+esc(r.pass_count)+'</td><td>'+esc(r.result_resonance)+'</td><td>'+esc(r.deep_dive_category)+'</td><td>'+esc(r.thought_it_was_diagnosis)+'</td><td>'+esc(unclearCount(r.unclear_cards))+'</td><td>'+esc([r.top1,r.top2,r.top3].filter(Boolean).join(" / "))+'</td></tr>').join("");
+ document.querySelector("#parseStatus").textContent=n?n+"件を読み込みました。":"CSV行を貼り付けてください。";
+}
+function summaryText(){if(!currentSummary)return "NO DATA";const s=currentSummary;return ["KIDP-003 P0 USER TEST","N="+s.n,"M1 Completion="+s.m1+"%","M2 Resonance="+s.m2+"%","M3 Deep Dive="+s.m3+"%","M4 Diagnosis Misread="+s.m4+"%","M5 Unclear Cards Avg="+s.m5,"Average Duration="+s.avgDuration+"s",document.querySelector("#decision strong").textContent].join("\n")}
+async function copy(t,status,msg){try{await navigator.clipboard.writeText(t);document.querySelector(status).textContent=msg}catch{document.querySelector(status).textContent="コピーできませんでした。"}}
+document.querySelector("#analyzeBtn").onclick=analyze;
+document.querySelector("#clearBtn").onclick=()=>{document.querySelector("#csvInput").value="";localStorage.removeItem("kidp003.p0.console.csv");render([])};
+document.querySelector("#copySummaryBtn").onclick=()=>copy(summaryText(),"#parseStatus","Summaryをコピーしました。");
+const saved=localStorage.getItem("kidp003.p0.console.csv")||"";document.querySelector("#csvInput").value=saved;if(saved)analyze();else render([]);
+</script></body></html>
