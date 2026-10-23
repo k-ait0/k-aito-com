@@ -1,0 +1,1030 @@
+{
+  "origin": "https://k-aito.com",
+  "checked": 146,
+  "passed": 146,
+  "failed": [],
+  "rows": [
+    {
+      "path": "404.html",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "e90ab9534ab276361d5e82d90aa5c6f98f067c4b10e8e989b996e3b883b0ef06",
+      "actual_sha256": "e90ab9534ab276361d5e82d90aa5c6f98f067c4b10e8e989b996e3b883b0ef06"
+    },
+    {
+      "path": "about-v2.css",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "9af40e11713978251ab6c7e9cf7cd32b5bb197481a6989c025359574e23d2d64",
+      "actual_sha256": "9af40e11713978251ab6c7e9cf7cd32b5bb197481a6989c025359574e23d2d64"
+    },
+    {
+      "path": "about/index.html",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "05204c32202e0301697702077ef0bedfcab7e792a54954d186b15b7b5add45f0",
+      "actual_sha256": "05204c32202e0301697702077ef0bedfcab7e792a54954d186b15b7b5add45f0"
+    },
+    {
+      "path": "app.js",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "82afaa43f15d3e292770de9477b43ad4831612f38edd1ff7e8f74ca4cd7dad6a",
+      "actual_sha256": "82afaa43f15d3e292770de9477b43ad4831612f38edd1ff7e8f74ca4cd7dad6a"
+    },
+    {
+      "path": "archive-v2.css",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "1385a3c0d5a9a29420a3882c8a373d30d00c46b2ed876ecb307a6f027167d714",
+      "actual_sha256": "1385a3c0d5a9a29420a3882c8a373d30d00c46b2ed876ecb307a6f027167d714"
+    },
+    {
+      "path": "archive/index.html",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "4103abe955ef3043e4dc43e37a8334a1742ab19234887ae310d6adf3c33d8cf5",
+      "actual_sha256": "4103abe955ef3043e4dc43e37a8334a1742ab19234887ae310d6adf3c33d8cf5"
+    },
+    {
+      "path": "article-reading.css",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "d977ce7a2b477e47b90af50d2c97aa296168867ca02d0d2d1f38534398107002",
+      "actual_sha256": "d977ce7a2b477e47b90af50d2c97aa296168867ca02d0d2d1f38534398107002"
+    },
+    {
+      "path": "article-v2.css",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "ebae42ea0fce67f9b422345a6ad12b9b19683e9ec3fa891a34995454d8eff744",
+      "actual_sha256": "ebae42ea0fce67f9b422345a6ad12b9b19683e9ec3fa891a34995454d8eff744"
+    },
+    {
+      "path": "assets/brand/favicon.svg",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "6cb4c2d3ff8250e0a62428ada35f59002807ac12ff6099a11199cd80f3daec47",
+      "actual_sha256": "6cb4c2d3ff8250e0a62428ada35f59002807ac12ff6099a11199cd80f3daec47"
+    },
+    {
+      "path": "assets/brand/kite-mark.png",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "8f056d97d1e6016b623b045942bdc502c790ece6ac2bf8d68187883920b0cc60",
+      "actual_sha256": "8f056d97d1e6016b623b045942bdc502c790ece6ac2bf8d68187883920b0cc60"
+    },
+    {
+      "path": "assets/brand/kite-mark.svg",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "c0e11aa9188f5bdf55d5ab69f1aeaaf3587369c87732110437b1c7cfe55a313a",
+      "actual_sha256": "c0e11aa9188f5bdf55d5ab69f1aeaaf3587369c87732110437b1c7cfe55a313a"
+    },
+    {
+      "path": "assets/brand/wordmark.svg",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "d686af12b6693847112d0638a22b2b56f064dc67a1f1f1f21c3eaa8f86f12920",
+      "actual_sha256": "d686af12b6693847112d0638a22b2b56f064dc67a1f1f1f21c3eaa8f86f12920"
+    },
+    {
+      "path": "assets/editorial.jpg",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "0c843df02a3d6c0cbbdd20f487dee71583d17cbb61fc3e0cb57642d575510db7",
+      "actual_sha256": "0c843df02a3d6c0cbbdd20f487dee71583d17cbb61fc3e0cb57642d575510db7"
+    },
+    {
+      "path": "assets/editorial/about-profile.webp",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "239776a5b2de5b85cace17d4b666bcb8a995026f9b81a47c0fcbc8a147698502",
+      "actual_sha256": "239776a5b2de5b85cace17d4b666bcb8a995026f9b81a47c0fcbc8a147698502"
+    },
+    {
+      "path": "assets/editorial/archive-library.webp",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "c4b014ed4ee71c20bda71aac6f909f13bdb09c51654561240426b301385d699f",
+      "actual_sha256": "c4b014ed4ee71c20bda71aac6f909f13bdb09c51654561240426b301385d699f"
+    },
+    {
+      "path": "assets/editorial/finowa-workspace.webp",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "86ac949490c508697b3056d14473a1188e298667d55aa1caa24b8e3aae17f14f",
+      "actual_sha256": "86ac949490c508697b3056d14473a1188e298667d55aa1caa24b8e3aae17f14f"
+    },
+    {
+      "path": "assets/editorial/tabi-route.webp",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "9e609f4e249ce943e8d18f55ac0e9765b6076c26aab24da04df1234b3e0afa88",
+      "actual_sha256": "9e609f4e249ce943e8d18f55ac0e9765b6076c26aab24da04df1234b3e0afa88"
+    },
+    {
+      "path": "assets/hero-hq.jpg",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "503f99abd0073c1f43c2c1c1bee7b1874308c6c34bc414ea67fc9266526871e5",
+      "actual_sha256": "503f99abd0073c1f43c2c1c1bee7b1874308c6c34bc414ea67fc9266526871e5"
+    },
+    {
+      "path": "assets/hero-study.jpg",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "9d343b30c85a55c3499aa189ac9fd373776a2518e16a6bda5ee01b913815213f",
+      "actual_sha256": "9d343b30c85a55c3499aa189ac9fd373776a2518e16a6bda5ee01b913815213f"
+    },
+    {
+      "path": "assets/hero/hero-bg.jpg",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "54cb345ed0599137be25b304da4bcf886aee64d1aad7e492c6cfcb47381386a2",
+      "actual_sha256": "54cb345ed0599137be25b304da4bcf886aee64d1aad7e492c6cfcb47381386a2"
+    },
+    {
+      "path": "assets/notebook-hq.jpg",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "dfc40505c8848f0c4e7a0bfbaca28d31f9b58f39a3f4aa6644ee1d6efc7ef5ed",
+      "actual_sha256": "dfc40505c8848f0c4e7a0bfbaca28d31f9b58f39a3f4aa6644ee1d6efc7ef5ed"
+    },
+    {
+      "path": "assets/notebook-photo.webp",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "3fe44b7d98a271b3363c9aca37dd84ec3dad6617a98892ab0cf2768cf1eaa7f6",
+      "actual_sha256": "3fe44b7d98a271b3363c9aca37dd84ec3dad6617a98892ab0cf2768cf1eaa7f6"
+    },
+    {
+      "path": "assets/notes/nuclear-industrial-carrier/manga-01.webp",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "f49ed6992fa69a5520e4628a255b5245b8f773e63bd9d6bd17af06248143942f",
+      "actual_sha256": "f49ed6992fa69a5520e4628a255b5245b8f773e63bd9d6bd17af06248143942f"
+    },
+    {
+      "path": "assets/shelves.jpg",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "aafe3dff48febc1d0eb40ec37efad45c815fc0de13d1becb56692a0a9f8b4e4c",
+      "actual_sha256": "aafe3dff48febc1d0eb40ec37efad45c815fc0de13d1becb56692a0a9f8b4e4c"
+    },
+    {
+      "path": "assets/shelves/archive.jpg",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "b53198f25462779cc66ad70ba18081ecf1e3fe602c2d54c7900dbb05373ce6ec",
+      "actual_sha256": "b53198f25462779cc66ad70ba18081ecf1e3fe602c2d54c7900dbb05373ce6ec"
+    },
+    {
+      "path": "assets/shelves/archive.webp",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "1162864db832ec612d73b9728e51c9bc4a6ec5ebfbcda3c3c70980e9c498a9f1",
+      "actual_sha256": "1162864db832ec612d73b9728e51c9bc4a6ec5ebfbcda3c3c70980e9c498a9f1"
+    },
+    {
+      "path": "assets/shelves/create.jpg",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "af881df27e61542bf80adef6e67fadbb77770d2118c5f9eccef6a39c1c25c10a",
+      "actual_sha256": "af881df27e61542bf80adef6e67fadbb77770d2118c5f9eccef6a39c1c25c10a"
+    },
+    {
+      "path": "assets/shelves/create.webp",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "6d59e10991fdf8100b41f0e3e70bd04eee67d8190f023682e2b55841fdfca510",
+      "actual_sha256": "6d59e10991fdf8100b41f0e3e70bd04eee67d8190f023682e2b55841fdfca510"
+    },
+    {
+      "path": "assets/shelves/drink.jpg",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "adbdb5017d0c505f782a9a27626887152c5280cea31c8355c2502f0bd7b35a44",
+      "actual_sha256": "adbdb5017d0c505f782a9a27626887152c5280cea31c8355c2502f0bd7b35a44"
+    },
+    {
+      "path": "assets/shelves/drink.webp",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "7ce4e74234eb4af365004ff311c0ceeeae323e6ade7c4c75b7ef1932d33e8c79",
+      "actual_sha256": "7ce4e74234eb4af365004ff311c0ceeeae323e6ade7c4c75b7ef1932d33e8c79"
+    },
+    {
+      "path": "assets/shelves/moneytax.jpg",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "1502aeb22213a43fa4ae0e01490c3b38f7cdab97fb7fd02b6060f9cf1fa3c08b",
+      "actual_sha256": "1502aeb22213a43fa4ae0e01490c3b38f7cdab97fb7fd02b6060f9cf1fa3c08b"
+    },
+    {
+      "path": "assets/shelves/moneytax.webp",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "6d30c17e7e5e18cc3f8eab48c0c4db4a39734e1f880ee8a2f060cbc60ab2fed3",
+      "actual_sha256": "6d30c17e7e5e18cc3f8eab48c0c4db4a39734e1f880ee8a2f060cbc60ab2fed3"
+    },
+    {
+      "path": "assets/shelves/project.jpg",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "d464afd0b0227db5e14cd7904037f4993e0291d3917f0190b318d9bb70fd2630",
+      "actual_sha256": "d464afd0b0227db5e14cd7904037f4993e0291d3917f0190b318d9bb70fd2630"
+    },
+    {
+      "path": "assets/shelves/project.webp",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "ef276c336635575155b612b69cbdab4b9a9f08c4e7e53e500c844f24ad1fe2a9",
+      "actual_sha256": "ef276c336635575155b612b69cbdab4b9a9f08c4e7e53e500c844f24ad1fe2a9"
+    },
+    {
+      "path": "assets/shelves/study.jpg",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "08bd37f97956e0da79cfb08f039f79aa5c58779c68ac98f80f0bfab2c4f07fc6",
+      "actual_sha256": "08bd37f97956e0da79cfb08f039f79aa5c58779c68ac98f80f0bfab2c4f07fc6"
+    },
+    {
+      "path": "assets/shelves/study.webp",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "a35b484f4922ca1aff2f6e2b807171a50b244f51f9aef0494352197b821c3b27",
+      "actual_sha256": "a35b484f4922ca1aff2f6e2b807171a50b244f51f9aef0494352197b821c3b27"
+    },
+    {
+      "path": "assets/shelves/travel.jpg",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "8a98cc21915ed8c5217d3f26ac248f3cc8003db7c641873a96b4a566f9c0b693",
+      "actual_sha256": "8a98cc21915ed8c5217d3f26ac248f3cc8003db7c641873a96b4a566f9c0b693"
+    },
+    {
+      "path": "assets/shelves/travel.webp",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "0e87e19b47c5d52f1cbb7b586ac2affc1140918352e94fa3915ca4721bc9808b",
+      "actual_sha256": "0e87e19b47c5d52f1cbb7b586ac2affc1140918352e94fa3915ca4721bc9808b"
+    },
+    {
+      "path": "business/index.html",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "454a33a3450dad8f85024e992855cbf14d557ef3b6e4d4594f4d1d4d548087f1",
+      "actual_sha256": "454a33a3450dad8f85024e992855cbf14d557ef3b6e4d4594f4d1d4d548087f1"
+    },
+    {
+      "path": "cards-v1.css",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "0d78a6c57cc1f8b3d3a80abb900640403517a31281d605fc06b42f43a93634b6",
+      "actual_sha256": "0d78a6c57cc1f8b3d3a80abb900640403517a31281d605fc06b42f43a93634b6"
+    },
+    {
+      "path": "cards.css",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "89486ad43a9e4fee3cdca3320a5bb24272d7a14f78d21af8b37f88558aa0c712",
+      "actual_sha256": "89486ad43a9e4fee3cdca3320a5bb24272d7a14f78d21af8b37f88558aa0c712"
+    },
+    {
+      "path": "content-index.js",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "e95729bd6f6e759d92572af3067bed592c872ca544b4eab5f1adda078adf63df",
+      "actual_sha256": "e95729bd6f6e759d92572af3067bed592c872ca544b4eab5f1adda078adf63df"
+    },
+    {
+      "path": "discovery-v1.css",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "b27fca6db3de877024987f32760ec1ebcb7de4e83e5cc31f54072835c9cbb1fb",
+      "actual_sha256": "b27fca6db3de877024987f32760ec1ebcb7de4e83e5cc31f54072835c9cbb1fb"
+    },
+    {
+      "path": "drink/index.html",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "a68f7c48370a3f9bc4de9184659cb1ab5c6d2665868d934799d12db11c6de29a",
+      "actual_sha256": "a68f7c48370a3f9bc4de9184659cb1ab5c6d2665868d934799d12db11c6de29a"
+    },
+    {
+      "path": "enhance.css",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "2930e735bd05de350debfade9e1955fcd856c4ed0a1ac836a2e4a6af634fe094",
+      "actual_sha256": "2930e735bd05de350debfade9e1955fcd856c4ed0a1ac836a2e4a6af634fe094"
+    },
+    {
+      "path": "essay-reading.css",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "f95172c10e8ec44055042af480a0ecabb9dafb0f5b0b3093da56c3da782cdb86",
+      "actual_sha256": "f95172c10e8ec44055042af480a0ecabb9dafb0f5b0b3093da56c3da782cdb86"
+    },
+    {
+      "path": "favicon.svg",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "6cb4c2d3ff8250e0a62428ada35f59002807ac12ff6099a11199cd80f3daec47",
+      "actual_sha256": "6cb4c2d3ff8250e0a62428ada35f59002807ac12ff6099a11199cd80f3daec47"
+    },
+    {
+      "path": "home-layout.css",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "6bd33e2ab295c7b67ae4fb49e5d256f6564bfb9bb91aa93336b7ea7afb3aa193",
+      "actual_sha256": "6bd33e2ab295c7b67ae4fb49e5d256f6564bfb9bb91aa93336b7ea7afb3aa193"
+    },
+    {
+      "path": "homepage-polish.css",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "a5c9586d908a1326e904c284082bef71f661f40486cf1c027b6ef499a91999ea",
+      "actual_sha256": "a5c9586d908a1326e904c284082bef71f661f40486cf1c027b6ef499a91999ea"
+    },
+    {
+      "path": "homepage.css",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "fac5c94fb3a1f3b44580cf4bc3128a39153a68007e94db69e69c4b94909f9128",
+      "actual_sha256": "fac5c94fb3a1f3b44580cf4bc3128a39153a68007e94db69e69c4b94909f9128"
+    },
+    {
+      "path": "image-fix.css",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "db1f0e103b85b4ded509751ed0f9cf066359eaaeb0fa36b7cb208769c435424e",
+      "actual_sha256": "db1f0e103b85b4ded509751ed0f9cf066359eaaeb0fa36b7cb208769c435424e"
+    },
+    {
+      "path": "index.html",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "25461a2c46dab2415af2df3315841021a886ec5fad3cde394a06386187f43954",
+      "actual_sha256": "25461a2c46dab2415af2df3315841021a886ec5fad3cde394a06386187f43954"
+    },
+    {
+      "path": "kidp-article.css",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "c232d482b187e1cbd7c7c3f9c930d8d9d99b4cf43761cca7557094af8725a59a",
+      "actual_sha256": "c232d482b187e1cbd7c7c3f9c930d8d9d99b4cf43761cca7557094af8725a59a"
+    },
+    {
+      "path": "kidp.css",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "54f62f88f1f8b59b915ca46e9bb317fad48a10f70e39165105ae65f447b1014e",
+      "actual_sha256": "54f62f88f1f8b59b915ca46e9bb317fad48a10f70e39165105ae65f447b1014e"
+    },
+    {
+      "path": "kite-mark.svg",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "c0e11aa9188f5bdf55d5ab69f1aeaaf3587369c87732110437b1c7cfe55a313a",
+      "actual_sha256": "c0e11aa9188f5bdf55d5ab69f1aeaaf3587369c87732110437b1c7cfe55a313a"
+    },
+    {
+      "path": "links/index.html",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "59d5ad6b07ab120f243d8f149a6d977e0319fa2f881909e7204d1d2713c9943f",
+      "actual_sha256": "59d5ad6b07ab120f243d8f149a6d977e0319fa2f881909e7204d1d2713c9943f"
+    },
+    {
+      "path": "money/index.html",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "b4d0c51757eca018d05c6ca7e33fd4dbda7da0dcd116e6affdbbdcb0f66885ec",
+      "actual_sha256": "b4d0c51757eca018d05c6ca7e33fd4dbda7da0dcd116e6affdbbdcb0f66885ec"
+    },
+    {
+      "path": "mono-base/about.html",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "21e53cc6358a8748a1358895945fbdb0ab091a5c61d5637ca2171aa385fdfb3f",
+      "actual_sha256": "21e53cc6358a8748a1358895945fbdb0ab091a5c61d5637ca2171aa385fdfb3f"
+    },
+    {
+      "path": "mono-base/aircraft.html",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "997371345b0bc6deb30b0b54ab62ce4ca1d02bdf9dc4a20f1bef25bdc688bf61",
+      "actual_sha256": "997371345b0bc6deb30b0b54ab62ce4ca1d02bdf9dc4a20f1bef25bdc688bf61"
+    },
+    {
+      "path": "mono-base/assets/aircraft_alt.jpg",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "70c910db3f03c82dd3289a09fa6dfa1a3c909afc82ff204723e200e1affddc39",
+      "actual_sha256": "70c910db3f03c82dd3289a09fa6dfa1a3c909afc82ff204723e200e1affddc39"
+    },
+    {
+      "path": "mono-base/assets/aircraft_card.jpg",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "70c910db3f03c82dd3289a09fa6dfa1a3c909afc82ff204723e200e1affddc39",
+      "actual_sha256": "70c910db3f03c82dd3289a09fa6dfa1a3c909afc82ff204723e200e1affddc39"
+    },
+    {
+      "path": "mono-base/assets/aircraft_detail.jpg",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "6d7fa1b41498406394abc395aed574fce5d6c1f81da0f507164f1ca7973ed1d9",
+      "actual_sha256": "6d7fa1b41498406394abc395aed574fce5d6c1f81da0f507164f1ca7973ed1d9"
+    },
+    {
+      "path": "mono-base/assets/blueprint_strip.jpg",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "e67e5c851491102a23eaa2bbfe106a98be720bd9e3aa71e86f5eed5653de3d37",
+      "actual_sha256": "e67e5c851491102a23eaa2bbfe106a98be720bd9e3aa71e86f5eed5653de3d37"
+    },
+    {
+      "path": "mono-base/assets/design_lab_aircraft.jpg",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "6d7fa1b41498406394abc395aed574fce5d6c1f81da0f507164f1ca7973ed1d9",
+      "actual_sha256": "6d7fa1b41498406394abc395aed574fce5d6c1f81da0f507164f1ca7973ed1d9"
+    },
+    {
+      "path": "mono-base/assets/hero_alt.jpg",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "ab1b63099f0c8053aab862119d538bd70632796f9194a38f4c2231f075fc5684",
+      "actual_sha256": "ab1b63099f0c8053aab862119d538bd70632796f9194a38f4c2231f075fc5684"
+    },
+    {
+      "path": "mono-base/assets/hero_final.jpg",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "ab1b63099f0c8053aab862119d538bd70632796f9194a38f4c2231f075fc5684",
+      "actual_sha256": "ab1b63099f0c8053aab862119d538bd70632796f9194a38f4c2231f075fc5684"
+    },
+    {
+      "path": "mono-base/assets/hero_legacy.jpg",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "ab1b63099f0c8053aab862119d538bd70632796f9194a38f4c2231f075fc5684",
+      "actual_sha256": "ab1b63099f0c8053aab862119d538bd70632796f9194a38f4c2231f075fc5684"
+    },
+    {
+      "path": "mono-base/assets/hero_rocket.jpg",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "ab1b63099f0c8053aab862119d538bd70632796f9194a38f4c2231f075fc5684",
+      "actual_sha256": "ab1b63099f0c8053aab862119d538bd70632796f9194a38f4c2231f075fc5684"
+    },
+    {
+      "path": "mono-base/assets/robotics_alt.jpg",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "e2267c9e4afc320e6f9e119383904713d91777834ecff7aeeb128e8089678f2e",
+      "actual_sha256": "e2267c9e4afc320e6f9e119383904713d91777834ecff7aeeb128e8089678f2e"
+    },
+    {
+      "path": "mono-base/assets/robotics_card.jpg",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "e2267c9e4afc320e6f9e119383904713d91777834ecff7aeeb128e8089678f2e",
+      "actual_sha256": "e2267c9e4afc320e6f9e119383904713d91777834ecff7aeeb128e8089678f2e"
+    },
+    {
+      "path": "mono-base/assets/space_alt.jpg",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "c9de5e857a8cca00a64174b98948c73afd4073294a98076611e98a33f7cbe380",
+      "actual_sha256": "c9de5e857a8cca00a64174b98948c73afd4073294a98076611e98a33f7cbe380"
+    },
+    {
+      "path": "mono-base/assets/space_card.jpg",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "c9de5e857a8cca00a64174b98948c73afd4073294a98076611e98a33f7cbe380",
+      "actual_sha256": "c9de5e857a8cca00a64174b98948c73afd4073294a98076611e98a33f7cbe380"
+    },
+    {
+      "path": "mono-base/cad-viewer.html",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "bd14d1921ed322b0f4e726964458747082da305f4576b5740836478d3894e15c",
+      "actual_sha256": "bd14d1921ed322b0f4e726964458747082da305f4576b5740836478d3894e15c"
+    },
+    {
+      "path": "mono-base/design-lab.html",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "347a1b6ebe9151363650c9f0d049e3aa260ba277822260e7d96708bc3057f032",
+      "actual_sha256": "347a1b6ebe9151363650c9f0d049e3aa260ba277822260e7d96708bc3057f032"
+    },
+    {
+      "path": "mono-base/index.html",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "b93349d58dc361940cb7809ff4720e55dd3f4cf2fb30e3729a6fbc848a16c313",
+      "actual_sha256": "b93349d58dc361940cb7809ff4720e55dd3f4cf2fb30e3729a6fbc848a16c313"
+    },
+    {
+      "path": "mono-base/journal.html",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "711b42cf43ee786d3946dc9f9c61fb89107d27baf67c34315c429f8d8dd7a9b3",
+      "actual_sha256": "711b42cf43ee786d3946dc9f9c61fb89107d27baf67c34315c429f8d8dd7a9b3"
+    },
+    {
+      "path": "mono-base/robotics.html",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "c62268dfffc0076f62d483e97bff90dd95d14b3c3ca1acebcba39a61d535f6f9",
+      "actual_sha256": "c62268dfffc0076f62d483e97bff90dd95d14b3c3ca1acebcba39a61d535f6f9"
+    },
+    {
+      "path": "mono-base/site.css",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "bc330e6d79d7424af032a7671fd50edf8e93c61b22047202873062cc369aef4a",
+      "actual_sha256": "bc330e6d79d7424af032a7671fd50edf8e93c61b22047202873062cc369aef4a"
+    },
+    {
+      "path": "mono-base/space.html",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "ed247a10a4263c57545a277470980d55125c3a782c6c431f1cfebdd69d49b2c9",
+      "actual_sha256": "ed247a10a4263c57545a277470980d55125c3a782c6c431f1cfebdd69d49b2c9"
+    },
+    {
+      "path": "mono-base/technology.html",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "6ecc5f4700971f51b8e3c35a553559e5459edc6504d68c1ca0a2d0b30fc14378",
+      "actual_sha256": "6ecc5f4700971f51b8e3c35a553559e5459edc6504d68c1ca0a2d0b30fc14378"
+    },
+    {
+      "path": "notes/kidp-002-whynot/index.html",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "2511eab3b15a4b591757738f06f63e524d7fb2a55cb79263a7b0eefcf5cc5de4",
+      "actual_sha256": "2511eab3b15a4b591757738f06f63e524d7fb2a55cb79263a7b0eefcf5cc5de4"
+    },
+    {
+      "path": "notes/media-public-interest-sankei-building/figures/fig01-operating-profit.svg",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "09cacf339ae851dabf44a389b1e1b0d973ecaebe3528660c46aa305e431477b1",
+      "actual_sha256": "09cacf339ae851dabf44a389b1e1b0d973ecaebe3528660c46aa305e431477b1"
+    },
+    {
+      "path": "notes/media-public-interest-sankei-building/figures/fig02-assets.svg",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "afc7edc3d0b70f38ae74d85199ff6cd7287553af98e4abe9680f8d331a18b877",
+      "actual_sha256": "afc7edc3d0b70f38ae74d85199ff6cd7287553af98e4abe9680f8d331a18b877"
+    },
+    {
+      "path": "notes/media-public-interest-sankei-building/figures/fig03-profit-breakdown.svg",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "8a35d98c522c28904b7b5c4673b497a13366b4c03bca80a1e8545427f87256f9",
+      "actual_sha256": "8a35d98c522c28904b7b5c4673b497a13366b4c03bca80a1e8545427f87256f9"
+    },
+    {
+      "path": "notes/media-public-interest-sankei-building/figures/fig04-editorial-independence.svg",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "76c60260666985648be5314a88c9865e5038acf1ad6cf5a7379f1500cfb2828a",
+      "actual_sha256": "76c60260666985648be5314a88c9865e5038acf1ad6cf5a7379f1500cfb2828a"
+    },
+    {
+      "path": "notes/media-public-interest-sankei-building/index.html",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "227b24fc5a03adfb7ecde216cdd97658cdee10ed9d9aeba4b111fec6a0bcab10",
+      "actual_sha256": "227b24fc5a03adfb7ecde216cdd97658cdee10ed9d9aeba4b111fec6a0bcab10"
+    },
+    {
+      "path": "notes/nuclear-industrial-carrier/index.html",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "43e7a5b0a2e4fac5a67928e8e110a101de845528d9fe40ae14d9561559d742be",
+      "actual_sha256": "43e7a5b0a2e4fac5a67928e8e110a101de845528d9fe40ae14d9561559d742be"
+    },
+    {
+      "path": "notes/site-launch-trouble/index.html",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "92d58d31be3cd9081fceaa7f8461b270570a4dadf41b1e49135c921a7a7936b8",
+      "actual_sha256": "92d58d31be3cd9081fceaa7f8461b270570a4dadf41b1e49135c921a7a7936b8"
+    },
+    {
+      "path": "og-image.png",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "d68d6606a22ce660a6eb81db5d41c898045146feaf935f318f8776f0b4ad7bde",
+      "actual_sha256": "d68d6606a22ce660a6eb81db5d41c898045146feaf935f318f8776f0b4ad7bde"
+    },
+    {
+      "path": "pages.css",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "73f41db893ef952814ccb43cf6a72f4142939e76f9d54555d9ed1105db155a35",
+      "actual_sha256": "73f41db893ef952814ccb43cf6a72f4142939e76f9d54555d9ed1105db155a35"
+    },
+    {
+      "path": "project-detail-v2.css",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "15838c653857d674fe3130610c6d1e2d112ecb6c29732704492795e3dc14e90f",
+      "actual_sha256": "15838c653857d674fe3130610c6d1e2d112ecb6c29732704492795e3dc14e90f"
+    },
+    {
+      "path": "project-search-index.js",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "8e04cd230a577a205263f2d012305a3019c5381b96fb4fb62596e6c92a45dbae",
+      "actual_sha256": "8e04cd230a577a205263f2d012305a3019c5381b96fb4fb62596e6c92a45dbae"
+    },
+    {
+      "path": "projects-v2.css",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "6609ddf37ad735cc0ff0ad4def7f20f938ba1b38815fc3f4537921d0836208a6",
+      "actual_sha256": "6609ddf37ad735cc0ff0ad4def7f20f938ba1b38815fc3f4537921d0836208a6"
+    },
+    {
+      "path": "projects/digital-storage/index.html",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "3fb668bd7c2b51892eedff85d1feea1a5a24025a6b924cbdbe7a811e1e9227aa",
+      "actual_sha256": "3fb668bd7c2b51892eedff85d1feea1a5a24025a6b924cbdbe7a811e1e9227aa"
+    },
+    {
+      "path": "projects/index.html",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "26472bd2a43f003168e25c9bf7e446283b2dfa3d393cc818ba6a14675252df50",
+      "actual_sha256": "26472bd2a43f003168e25c9bf7e446283b2dfa3d393cc818ba6a14675252df50"
+    },
+    {
+      "path": "projects/kidp/KIDP_WAVE_A_RECRUITMENT_TRACKER.csv",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "91b60ec84e4946f51f4cca4d81b2e32212ca48f29e9dfa07a68e26d583ee9d9c",
+      "actual_sha256": "91b60ec84e4946f51f4cca4d81b2e32212ca48f29e9dfa07a68e26d583ee9d9c"
+    },
+    {
+      "path": "projects/kidp/board-game-balancer/P0_TEST_LOG_TEMPLATE.csv",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "b58fdc5b9a86fbb18570e8879d835aee5264704c32346ffcf4161a79394ec806",
+      "actual_sha256": "b58fdc5b9a86fbb18570e8879d835aee5264704c32346ffcf4161a79394ec806"
+    },
+    {
+      "path": "projects/kidp/board-game-balancer/index.html",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "e8f7635fa2595eb0778558971be5a5dcb2fc5900238ead082681dcb44669e7e1",
+      "actual_sha256": "e8f7635fa2595eb0778558971be5a5dcb2fc5900238ead082681dcb44669e7e1"
+    },
+    {
+      "path": "projects/kidp/board-game-balancer/prototype/index.html",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "1c09c08909846dcc60aafdbf3f7ad462b0726a0ac988fa9ee5ff9336303b78bc",
+      "actual_sha256": "1c09c08909846dcc60aafdbf3f7ad462b0726a0ac988fa9ee5ff9336303b78bc"
+    },
+    {
+      "path": "projects/kidp/board-game-balancer/test-review/index.html",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "b8093229853c04404d44501bd5a2a7da394c5804e450eb8fc6b5121ccd6f9fe1",
+      "actual_sha256": "b8093229853c04404d44501bd5a2a7da394c5804e450eb8fc6b5121ccd6f9fe1"
+    },
+    {
+      "path": "projects/kidp/building-transformer/P0_TEST_LOG_TEMPLATE.csv",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "3af12d8dde53fcb39aa8f40701cdeef376b3442bc17902d9c77edc2cc472983b",
+      "actual_sha256": "3af12d8dde53fcb39aa8f40701cdeef376b3442bc17902d9c77edc2cc472983b"
+    },
+    {
+      "path": "projects/kidp/building-transformer/index.html",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "2bd8e7037d80f3295b7c480ef1794c414d7edd217d35667ff74923fc381c0c2d",
+      "actual_sha256": "2bd8e7037d80f3295b7c480ef1794c414d7edd217d35667ff74923fc381c0c2d"
+    },
+    {
+      "path": "projects/kidp/building-transformer/prototype/index.html",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "0dc3c5cd7b282df607b67962d45ae839edde2d3146a6c5d370fd3c7231a57ade",
+      "actual_sha256": "0dc3c5cd7b282df607b67962d45ae839edde2d3146a6c5d370fd3c7231a57ade"
+    },
+    {
+      "path": "projects/kidp/building-transformer/test-review/index.html",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "92fcbe3b0b281d1f200966535deb7833e07cec05b97dc62c4470445b7b8a7255",
+      "actual_sha256": "92fcbe3b0b281d1f200966535deb7833e07cec05b97dc62c4470445b7b8a7255"
+    },
+    {
+      "path": "projects/kidp/index.html",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "861986dfb539f3833f779745432aab38d70880e498fbd1dbf4e3c239cea1bcb6",
+      "actual_sha256": "861986dfb539f3833f779745432aab38d70880e498fbd1dbf4e3c239cea1bcb6"
+    },
+    {
+      "path": "projects/kidp/life-design-lab/P0_TEST_LOG_TEMPLATE.csv",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "8aa15be52eac55cc2e3839223d2d00e84dec8b157a9aec5f3d0b42fb7c7469c0",
+      "actual_sha256": "8aa15be52eac55cc2e3839223d2d00e84dec8b157a9aec5f3d0b42fb7c7469c0"
+    },
+    {
+      "path": "projects/kidp/life-design-lab/index.html",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "0c66388fd00b0541eb85ab8921976b7efa7cef641b86b2985d1074e6ded8abf8",
+      "actual_sha256": "0c66388fd00b0541eb85ab8921976b7efa7cef641b86b2985d1074e6ded8abf8"
+    },
+    {
+      "path": "projects/kidp/life-design-lab/prototype/index.html",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "6cdd8aeaeea6fccc7b84b73fb852fa13be3aa89796eaf4623322f586fa356d98",
+      "actual_sha256": "6cdd8aeaeea6fccc7b84b73fb852fa13be3aa89796eaf4623322f586fa356d98"
+    },
+    {
+      "path": "projects/kidp/life-design-lab/test-console/index.html",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "ab66adc222eaa8c23257d5202bcc183d427f004664a090b99d0a720774d0861f",
+      "actual_sha256": "ab66adc222eaa8c23257d5202bcc183d427f004664a090b99d0a720774d0861f"
+    },
+    {
+      "path": "projects/kidp/life-design-lab/test-review/index.html",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "3a22507cb6bccffcc2cfd25f1850322ef622a75e69d674cad050383b1bd99941",
+      "actual_sha256": "3a22507cb6bccffcc2cfd25f1850322ef622a75e69d674cad050383b1bd99941"
+    },
+    {
+      "path": "projects/kidp/project-give/index.html",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "bca0f4b30314280a9c2085ea5fa36c767c83bcead04d615a83f3a40f540091a0",
+      "actual_sha256": "bca0f4b30314280a9c2085ea5fa36c767c83bcead04d615a83f3a40f540091a0"
+    },
+    {
+      "path": "projects/kidp/station-life/P0_TEST_LOG_TEMPLATE.csv",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "0684f0cf379db58597d16b69aea3eda1ad7c21f71d1fbfc86d5458d15406a5df",
+      "actual_sha256": "0684f0cf379db58597d16b69aea3eda1ad7c21f71d1fbfc86d5458d15406a5df"
+    },
+    {
+      "path": "projects/kidp/station-life/index.html",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "e7dc321a0b6b53ea290d7906959b4ac77d152e289e82c69fc89fa36437d63dfb",
+      "actual_sha256": "e7dc321a0b6b53ea290d7906959b4ac77d152e289e82c69fc89fa36437d63dfb"
+    },
+    {
+      "path": "projects/kidp/station-life/prototype/index.html",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "76d4715b98c9f67e98081a31b1a251e44dfd3dccb0f25f7194269b27a53953db",
+      "actual_sha256": "76d4715b98c9f67e98081a31b1a251e44dfd3dccb0f25f7194269b27a53953db"
+    },
+    {
+      "path": "projects/kidp/station-life/test-review/index.html",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "23318745319700d2663afa5c6fab6a9ca0ef26de014c007ae87642793321d52e",
+      "actual_sha256": "23318745319700d2663afa5c6fab6a9ca0ef26de014c007ae87642793321d52e"
+    },
+    {
+      "path": "projects/kidp/test-ops/index.html",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "6f1fecda863f9e56704a59fda91c2320a5e4d646363f85045c7a26de174206aa",
+      "actual_sha256": "6f1fecda863f9e56704a59fda91c2320a5e4d646363f85045c7a26de174206aa"
+    },
+    {
+      "path": "projects/kidp/whynot/P0_TEST_LOG_TEMPLATE.csv",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "923646fe6ddf5630186024cfa93caa2b2694ca34834bb0b562d1fd5fa138642d",
+      "actual_sha256": "923646fe6ddf5630186024cfa93caa2b2694ca34834bb0b562d1fd5fa138642d"
+    },
+    {
+      "path": "projects/kidp/whynot/TEST_LOG_TEMPLATE.csv",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "9b450160b46e0294ce6fabc3b5cb3e7f203871e5e1f8a9601e7c7471f6c11ead",
+      "actual_sha256": "9b450160b46e0294ce6fabc3b5cb3e7f203871e5e1f8a9601e7c7471f6c11ead"
+    },
+    {
+      "path": "projects/kidp/whynot/index.html",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "7e79ba281d4dcfc00ec01e86f3082b80afa76af8460e58806c2a56128032e5e3",
+      "actual_sha256": "7e79ba281d4dcfc00ec01e86f3082b80afa76af8460e58806c2a56128032e5e3"
+    },
+    {
+      "path": "projects/kidp/whynot/prototype/index.html",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "59edc7bb93d59cd78c59ce0a5fa018eaf88293d50dddfe799875ef1a1ce82edd",
+      "actual_sha256": "59edc7bb93d59cd78c59ce0a5fa018eaf88293d50dddfe799875ef1a1ce82edd"
+    },
+    {
+      "path": "projects/kidp/whynot/test-review/index.html",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "eaaf5598437ca74f31170bd183e59900aeed3cfd194c6df0ce487e15ebe75956",
+      "actual_sha256": "eaaf5598437ca74f31170bd183e59900aeed3cfd194c6df0ce487e15ebe75956"
+    },
+    {
+      "path": "responsive.css",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "bda1534730c3a81b1c954898542844d16de69802d60d81bf34a53b99db9ce020",
+      "actual_sha256": "bda1534730c3a81b1c954898542844d16de69802d60d81bf34a53b99db9ce020"
+    },
+    {
+      "path": "robots.txt",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "3c12e0c23b11bf0641ad80f08736e0edd46dbcb57299a0dd8b7d3c6a5a8b0f52",
+      "actual_sha256": "3c12e0c23b11bf0641ad80f08736e0edd46dbcb57299a0dd8b7d3c6a5a8b0f52"
+    },
+    {
+      "path": "shelf-v2.css",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "81c4ce0fb4146bb977f0cea5b52a462508c38efe2e06945b6f44eab48ba049f1",
+      "actual_sha256": "81c4ce0fb4146bb977f0cea5b52a462508c38efe2e06945b6f44eab48ba049f1"
+    },
+    {
+      "path": "site-content.js",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "89cdb52e34111846c6946dd70bb83975b54ada8f16d4d13f8ef1f26489e5b350",
+      "actual_sha256": "89cdb52e34111846c6946dd70bb83975b54ada8f16d4d13f8ef1f26489e5b350"
+    },
+    {
+      "path": "site-enhance.js",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "3f5736d4d656f7e8aab4ccc40bba3a1aeb03ce74236e6da9a6c86bcee1afccce",
+      "actual_sha256": "3f5736d4d656f7e8aab4ccc40bba3a1aeb03ce74236e6da9a6c86bcee1afccce"
+    },
+    {
+      "path": "site-search-core.js",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "931f91eacadbbf977cca8373ee98026b661b7732e9309ab87655feb8009f0177",
+      "actual_sha256": "931f91eacadbbf977cca8373ee98026b661b7732e9309ab87655feb8009f0177"
+    },
+    {
+      "path": "site-search-ui.js",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "621bcca237491d221ddc8f41c5e57ca7689430f4b37565b946d743ae47e90f3c",
+      "actual_sha256": "621bcca237491d221ddc8f41c5e57ca7689430f4b37565b946d743ae47e90f3c"
+    },
+    {
+      "path": "site-search.css",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "93ce816e3e5d0ca85a0c5dbc2d5856974082c83d1e12990cc070e073c049b3cf",
+      "actual_sha256": "93ce816e3e5d0ca85a0c5dbc2d5856974082c83d1e12990cc070e073c049b3cf"
+    },
+    {
+      "path": "site-search.js",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "86368f47cec4e66eae0dbd7546ca8712f4ef8cc17902bdf45d11ad325b0346b3",
+      "actual_sha256": "86368f47cec4e66eae0dbd7546ca8712f4ef8cc17902bdf45d11ad325b0346b3"
+    },
+    {
+      "path": "site-thumbnail.svg",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "cc1ca8a7d7bb5b83b6ad1c45f57affe6716571295abb914e2fc99ed97d4cd75a",
+      "actual_sha256": "cc1ca8a7d7bb5b83b6ad1c45f57affe6716571295abb914e2fc99ed97d4cd75a"
+    },
+    {
+      "path": "sitemap.xml",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "fdd912bc3e669df32b3a9e97278915be94ae716c3d851613917ee7f7b7b519a0",
+      "actual_sha256": "fdd912bc3e669df32b3a9e97278915be94ae716c3d851613917ee7f7b7b519a0"
+    },
+    {
+      "path": "storage-v2.css",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "db64253c451b8030ca3c978bc262953740a119e058f5cc128b5cb2c52e00749a",
+      "actual_sha256": "db64253c451b8030ca3c978bc262953740a119e058f5cc128b5cb2c52e00749a"
+    },
+    {
+      "path": "storage/index.html",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "a67e4d23ac6bd20e920a8dd631e09bf5c5bf4319208203d498fa7563887ffcc3",
+      "actual_sha256": "a67e4d23ac6bd20e920a8dd631e09bf5c5bf4319208203d498fa7563887ffcc3"
+    },
+    {
+      "path": "study/index.html",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "02b0936aef6af1f9d89f4fc45d4787748be183126d42ff64b52d73b06a3a26eb",
+      "actual_sha256": "02b0936aef6af1f9d89f4fc45d4787748be183126d42ff64b52d73b06a3a26eb"
+    },
+    {
+      "path": "styles.css",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "8e54ea6ebfd4ddd85707d4db558dc2a7ca8a163610e2f4a8c30758c71015f1b3",
+      "actual_sha256": "8e54ea6ebfd4ddd85707d4db558dc2a7ca8a163610e2f4a8c30758c71015f1b3"
+    },
+    {
+      "path": "subpages.css",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "6545060af61d3b09cacd3373bb5eb895c59078177a262d033a53728f51a6c886",
+      "actual_sha256": "6545060af61d3b09cacd3373bb5eb895c59078177a262d033a53728f51a6c886"
+    },
+    {
+      "path": "thumbnail-v1.css",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "6ea869a72d1b9f67b0dc584612289050ec2136d23034b92e8291a28d5657dc24",
+      "actual_sha256": "6ea869a72d1b9f67b0dc584612289050ec2136d23034b92e8291a28d5657dc24"
+    },
+    {
+      "path": "tools/want-roulette/app-icon.svg",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "2f95dd94dd29bea84561797ae701cb13a4aa87e4f63ed87bc6d7a3180147b1c2",
+      "actual_sha256": "2f95dd94dd29bea84561797ae701cb13a4aa87e4f63ed87bc6d7a3180147b1c2"
+    },
+    {
+      "path": "tools/want-roulette/index.html",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "ce97aa00b8049b5f3f111086d51f553d6e23153ac97a56ed657354f68ee88889",
+      "actual_sha256": "ce97aa00b8049b5f3f111086d51f553d6e23153ac97a56ed657354f68ee88889"
+    },
+    {
+      "path": "tools/want-roulette/manifest.webmanifest",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "5d36e190c56363528d29d0bef50ee40c1f57830741929129412c733ccbd785d3",
+      "actual_sha256": "5d36e190c56363528d29d0bef50ee40c1f57830741929129412c733ccbd785d3"
+    },
+    {
+      "path": "tools/want-roulette/sw.js",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "84ff66c4073f01cf52778f6ded4b0d6282cf4aefdab93d8890b7d8d33468683d",
+      "actual_sha256": "84ff66c4073f01cf52778f6ded4b0d6282cf4aefdab93d8890b7d8d33468683d"
+    },
+    {
+      "path": "travel/index.html",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "13ccdfab53a7ce2623057bef1c64427ba745236be29f929cfc041afe9d3e288d",
+      "actual_sha256": "13ccdfab53a7ce2623057bef1c64427ba745236be29f929cfc041afe9d3e288d"
+    },
+    {
+      "path": "white-surfaces-v1.css",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "e84c09861aa1ecb0e84764cc3a1f874e868b5ced574929f744f1a1ecc3c5c8ef",
+      "actual_sha256": "e84c09861aa1ecb0e84764cc3a1f874e868b5ced574929f744f1a1ecc3c5c8ef"
+    },
+    {
+      "path": "wordmark.svg",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "d686af12b6693847112d0638a22b2b56f064dc67a1f1f1f21c3eaa8f86f12920",
+      "actual_sha256": "d686af12b6693847112d0638a22b2b56f064dc67a1f1f1f21c3eaa8f86f12920"
+    },
+    {
+      "path": "works/index.html",
+      "status": 200,
+      "match": true,
+      "expected_sha256": "90ef10baea821609ad9cf5bb4819aeb73dfab2697b0bac1a2455263757e85c1d",
+      "actual_sha256": "90ef10baea821609ad9cf5bb4819aeb73dfab2697b0bac1a2455263757e85c1d"
+    }
+  ]
+}
