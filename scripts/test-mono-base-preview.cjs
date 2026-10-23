@@ -10,6 +10,12 @@ const projects=fs.readFileSync(path.join(root,"projects/index.html"),"utf8");
 assert.equal((projects.match(/href="\/mono-base\/"/g)||[]).length,1,
   "KAITO PROJECTS must provide one discoverable MONO BASE link");
 const releaseMode = sitemap.includes("<loc>https://k-aito.com/mono-base/</loc>");
+const homePreview=fs.readFileSync(path.join(dir,"index.html"),"utf8");
+assert.ok(homePreview.includes('href="design-lab.html">OPEN 3D VIEWER'),
+  "Homepage must link to the available interactive 3D exhibit");
+assert.ok(!homePreview.includes("3D INTERACTION IN DEVELOPMENT"),
+  "Homepage must not describe an implemented 3D viewer as future work");
+
 for (const page of pages) {
   const file = path.join(dir,page+".html");
   assert.ok(fs.existsSync(file),"Missing MONO BASE page "+page);

@@ -57,6 +57,8 @@ jobs:
           node --check scripts/sync-project-search.cjs
           node --check scripts/test-mono-base-generator-isolation.cjs
           node scripts/test-mono-base-generator-isolation.cjs
+          node --check scripts/test-mono-base-publication-fixture.cjs
+          node scripts/test-mono-base-publication-fixture.cjs
           node scripts/test-site-shell.cjs
           node scripts/test-site-breadcrumbs.cjs
           node scripts/test-site-search-ui.cjs

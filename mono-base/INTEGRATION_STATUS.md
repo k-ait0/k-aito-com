@@ -44,3 +44,11 @@ KAITO traditionally indexes /directory/ routes, whereas seven MONO BASE content 
 - The updated MONO BASE workflow now tests the generator scope, syntax, release-mode eligibility, and existing KAITO generator regressions before performing browser QA.
 - Noindex/robots and sitemap remain in **preview mode**; public-mode conversion has NOT been performed. The changes in this addendum still require the new merge-head CI run.
 - KAITO [Issue #52](https://github.com/k-ait0/k-aito-com/issues/52) remains open; investigation identified a previous Actions-generated HTML revision that did not match the version served by XServer. Current live state and XServer deployment history are not confirmed. Draft [PR #54](https://github.com/k-ait0/k-aito-com/pull/54) proposes manual-only article-index generation to prevent recurrence; it is not merged.
+
+## 2026-10-23 — Public-mode end-to-end fixture and copy audit
+
+- The latest browser QA artifact was inspected at 1440px desktop, 390px phone and 320px small-phone. Interactive CAD controls are fully visible; the standalone utility and gallery remain concept-only rather than manufactured engineering drawings.
+- The MONO BASE homepage still described the 3D feature as future work even though the standalone viewer is integrated into DESIGN LAB. Its preview ribbon, explanatory text and principal CTA now distinguish **static homepage concept images** from the **working interactive viewer on DESIGN LAB**.
+- `scripts/test-mono-base-publication-fixture.cjs` creates a disposable **OS temporary directory**, copies the existing KAITO sitemap/HTML and MONO BASE assets, executes the actual release preparation script **only inside that temporary directory**, runs all four KAITO generators, then verifies all eight MONO BASE public HTML pages and the noindex CAD utility are unchanged by the KAITO generators. It also verifies the KAITO site-shell, breadcrumb and MONO BASE public-mode regression checks. The original working tree is never written.
+- The MONO BASE QA workflow now invokes the end-to-end publication fixture without deploying, merging or enabling indexing in the real branch.
+- Important: XServer's actual served content and deployment history have **not** been verified. This local fixture is a publication simulation, not a live production acceptance test.
