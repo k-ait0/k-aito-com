@@ -53,12 +53,18 @@ const begin=html.indexOf("let hostVisible=true,animationRequest=0;");
 const end=html.lastIndexOf("\nscheduleRendering();");
 assert.ok(begin>=0 && end>begin,"Render lifecycle source boundaries missing");
 const lifecycle=html.slice(begin,end+"\nscheduleRendering();".length);
-const queued=new Map(),listeners={message:[],visibilitychange:[]};
-let id=1,paintCalls=0;
+const queued=new Map(),listeners={message:[],visibilitychange:[]},canvasListeners={};
+let id=1,paintCalls=0,restores=0;
+const failures=[];
 const parentRef={},origin="https://k-aito.com";
 const mockWindow={
   parent:parentRef,
-  addEventListener:(type,cb)=>{(listeners[type]??=[]).push(cb)}
+  addEventListener:(type,cb)=>{(listeners[type]??=[]).push(cb)},
+  __monoBaseGraphicsFailure:kind=>failures.push(kind),
+  __monoBaseGraphicsRecovered:()=>{restores++}
+};
+const mockCanvas={
+  addEventListener:(type,cb)=>{(canvasListeners[type]??=[]).push(cb)}
 };
 const mockDocument={
   hidden:false,
@@ -67,6 +73,7 @@ const mockDocument={
 };
 const ctx={
   window:mockWindow,document:mockDocument,location:{origin},
+  canvas:mockCanvas,resize:()=>{},
   requestAnimationFrame:cb=>{const next=id++;queued.set(next,cb);return next},
   cancelAnimationFrame:requested=>queued.delete(requested),
   displayExplode:0,targetExplode:0,
@@ -115,3 +122,52 @@ nextFrame();
 assert.equal(stats.frames,3);
 assert.equal(paintCalls,3);
 console.log("PASS MONO BASE v3.5: live RAF scheduler pauses/resumes, no hidden-frame spin, trusted messages only");
+
+// WebGL loss must pause *all* rendering until a real restoration event.
+assert.equal(queued.size,1,"Normal renderer should have a pending RAF before context loss");
+let prevented=false;
+for(const cb of canvasListeners.webglcontextlost||[]){
+  cb({preventDefault:()=>{prevented=true}});
+}
+assert.ok(prevented,"WebGL lost event must preventDefault to permit recovery");
+assert.equal(stats.contextLost,true);
+assert.equal(stats.paused,true);
+assert.equal(queued.size,0,"Context loss must cancel pending render frames");
+assert.equal(failures.at(-1),"context-lost","Context-loss alert was not raised");
+const lastFrame=stats.frames;
+message(true);
+assert.equal(queued.size,0,"Parent visibility must not restart a lost context");
+for(const cb of canvasListeners.webglcontextrestored||[])cb({});
+assert.equal(stats.contextLost,false);
+assert.equal(stats.paused,false);
+assert.equal(restores,1,"Context restoration must update accessibility/fallback UI");
+nextFrame();
+assert.equal(stats.frames,lastFrame+1,"WebGL did not render after context recovery");
+
+// A fatal render exception must stop the loop and expose a reloadable fallback.
+ctx.renderer.render=()=>{throw Error("simulated WebGL rendering failure")};
+nextFrame();
+assert.equal(stats.fatal,true);
+assert.equal(stats.paused,true);
+assert.equal(queued.size,0,"Renderer exception must not spin requestAnimationFrame");
+assert.equal(failures.at(-1),"render-failed");
+for(const cb of canvasListeners.webglcontextrestored||[])cb({});
+assert.equal(queued.size,0,"A fatal render must not revive automatically");
+assert.match(html,/id='viewer-retry'/,"Failure overlay needs an actionable reload button");
+assert.match(html,/location\.reload\(\)/,"Reload button must reload failed viewer");
+console.log("PASS MONO BASE v3.5: context loss/recovery + fatal render fallback, real VM scheduler");
+
+assert.ok(html.includes("canvas.addEventListener('webglcontextcreationerror',fail)"),
+  "WebGL context creation failure must trigger initial fallback");
+assert.ok(html.includes("window.addEventListener('unhandledrejection',fail)"),
+  "CDN module import failures must reach accessible fallback");
+assert.ok(html.includes("overlay.setAttribute('role','alert')"),
+  "Failure/recovery feedback must be announced accessibly");
+assert.ok(html.includes("retry.addEventListener('click',()=>location.reload())"),
+  "Recovery button must offer a real reload action");
+assert.ok(html.includes("alternate.href='./design-lab.html'"),
+  "Failed WebGL must still offer the original static design gallery");
+assert.ok(html.includes("document.querySelectorAll('.panel button,.panel input')"),
+  "Runtime graphics loss should disable broken controls, not its own retry action");
+
+

@@ -114,6 +114,40 @@ def validate_site(browser,name,viewport):
           return stats && !stats.paused && stats.frames >= minimum+2;
         }""",arg=background,timeout=15000)
         print(f'PASS v3.5 {name}: offscreen and background WebGL rendering paused/resumed')
+        # A real WebGL context loss can invalidate buffers and textures.
+        # The WEBGL_lose_context extension allows controlled browser testing.
+        loss_supported=canvas.evaluate("""el => {
+          const gl=el.getContext('webgl2') || el.getContext('webgl');
+          const extension=gl?.getExtension('WEBGL_lose_context');
+          if(!extension)return false;
+          extension.loseContext();
+          return true;
+        }""")
+        if loss_supported:
+            expect(frame.locator('#viewer-fallback')).to_be_visible(timeout=15000)
+            expect(frame.locator('#viewer-retry')).to_be_enabled()
+            expect(frame.locator('#reset')).to_be_disabled()
+            page.wait_for_function("""() => {
+              const stats=document.querySelector('#cad-frame')?.contentWindow?.__monoBaseRenderStats;
+              return stats?.paused && stats.contextLost;
+            }""",timeout=10000)
+            before_restore=page.evaluate("document.querySelector('#cad-frame').contentWindow.__monoBaseRenderStats.frames")
+            canvas.evaluate("""el => {
+              const gl=el.getContext('webgl2') || el.getContext('webgl');
+              gl.getExtension('WEBGL_lose_context').restoreContext();
+            }""")
+            expect(frame.locator('#viewer-fallback')).to_have_count(0,timeout=30000)
+            expect(frame.locator('#reset')).to_be_enabled()
+            page.wait_for_function("""previous => {
+              const stats=document.querySelector('#cad-frame')?.contentWindow?.__monoBaseRenderStats;
+              return stats && !stats.paused && !stats.contextLost && stats.frames>=previous+2;
+            }""",arg=before_restore,timeout=20000)
+            frame.locator('[data-mode="wire"]').click()
+            expect(frame.locator('[data-mode="wire"]')).to_have_attribute('aria-pressed','true')
+            print(f'PASS v3.5 {name}: actual WebGL context loss/restoration and controls recovered')
+        else:
+            print(f'SKIP v3.5 {name}: WEBGL_lose_context unavailable; runtime GPU restoration unverified')
+
     assert not errors,f'{name}: JS errors: {errors}'
     page.close()
     print(f'PASS v3.4 {name}: 8 pages, original images, no overflow, 3D interaction')
@@ -123,8 +157,11 @@ def validate_dependency_failure(browser):
     page.route('**/three.module.js',lambda route:route.abort())
     page.goto(BASE+'/cad-viewer.html',wait_until='domcontentloaded')
     expect(page.locator('#viewer-fallback')).to_be_visible(timeout=20000)
+    expect(page.locator('#viewer-retry')).to_be_enabled()
+    expect(page.locator('#viewer-fallback')).to_have_attribute('role','alert')
     expect(page.locator('#reset')).to_be_disabled()
-    print('PASS v3.4: Three.js dependency failure fallback and disabled controls')
+    expect(page.locator('#viewer-fallback a[href="./design-lab.html"]')).to_have_count(1)
+    print('PASS v3.5: Three.js CDN failure offers accessible retry/gallery fallback')
     page.close()
 
 with sync_playwright() as playwright:

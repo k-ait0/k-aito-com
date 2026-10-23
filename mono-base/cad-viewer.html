@@ -8,7 +8,82 @@
 @media(max-width:900px){.stage{height:440px;min-height:360px}}
 @media(max-width:520px){.stage{height:360px;min-height:330px}}
 </style></head><body><header><b>MONO BASE<span style="color:#5ccfff">.</span></b><span>DESIGN LAB / INTERACTIVE EXHIBIT</span></header><main><div class="top"><div><div class="eyebrow">PROJECT 001 / AEROSPACE · INTERACTIVE CONCEPT</div><h1>MB-AIR 01 <span style="color:#56d3ff">/</span> 3D LAB</h1><p style="margin:0">機体の構造を、視点・形状・分解表示から探索する。</p></div><div class="status" id="status" role="status" aria-live="polite">INITIALIZING ENGINE…</div></div><div class="layout"><section class="stage" aria-label="3D機体ビューア"><canvas id="viewport" tabindex="0" aria-label="機体3Dモデル。ドラッグやピンチで操作、方向キーで回転、プラスとマイナスで拡大縮小、Homeで初期化"></canvas><div class="hud"><strong>MB-AIR 01 / CONCEPT AIRFRAME</strong><span id="hudMode">SOLID · PERSPECTIVE</span><br>DRAG TO ORBIT / SCROLL TO ZOOM</div><div class="corner">MONO BASE · DESIGN STUDY / NOT FOR MANUFACTURING</div><div id="cadAnnotations" class="cad-annotations" aria-hidden="true"><span class="measure span-measure">SPAN / CONCEPT</span><span class="measure length-measure">LENGTH / CONCEPT</span><span class="crosshair">+</span></div><div class="viewreadout" id="viewreadout">PERSPECTIVE / ISO</div></section><aside class="panel"><section class="group"><h2>DISPLAY MODE</h2><div class="buttons" id="modes"><button data-mode="solid" class="active" aria-pressed="true">SOLID</button><button data-mode="wire" aria-pressed="false">WIREFRAME</button><button data-mode="blueprint" aria-pressed="false">BLUEPRINT</button><button data-mode="xray" aria-pressed="false">X-RAY</button></div></section><section class="group"><h2>GEOMETRY CONTROL</h2><div class="line"><label for="sweep">WING SWEEP</label><span class="value" id="sweepValue">20°</span></div><input id="sweep" type="range" min="0" max="50" value="20" step="1"><div class="line" style="margin-top:18px"><label for="explode">EXPLODED VIEW</label><span class="value" id="explodeValue">0%</span></div><input id="explode" type="range" min="0" max="100" value="0" step="1"></section><section class="group"><h2>CAMERA PRESETS</h2><div class="buttons" id="views"><button data-view="iso" class="active" aria-pressed="true">ISOMETRIC</button><button data-view="top" aria-pressed="false">TOP</button><button data-view="side" aria-pressed="false">SIDE</button><button data-view="front" aria-pressed="false">FRONT</button></div></section><section class="group"><h2>PROJECTION</h2><div class="buttons" id="projections"><button data-projection="perspective" class="active" aria-pressed="true">PERSPECTIVE</button><button data-projection="ortho" aria-pressed="false">ORTHOGRAPHIC</button></div></section><section class="group"><h2>COMPONENT INSPECTOR</h2><div class="buttons" id="parts"><button data-part="fuselage" class="active" aria-pressed="true">FUSELAGE</button><button data-part="wings" aria-pressed="false">MAIN WINGS</button><button data-part="tail" aria-pressed="false">TAIL UNIT</button><button data-part="avionics" aria-pressed="false">AVIONICS</button></div><div class="note" id="info">胴体：機体の中心構造。先端のノーズから後方の尾部までを形成します。</div></section><section class="group"><h2>CONTROLS</h2><div class="note">ドラッグ：回転 / ホイール・ピンチ：拡大 / 機体をタップ：部品選択。BLUEPRINTでは補助線を表示します。</div></section><section class="group"><button id="capture" style="width:100%;margin-bottom:8px">EXPORT VIEW AS PNG ↓</button><button id="reset" style="width:100%">RESET ALL PARAMETERS ↺</button></section></aside></div><div class="footer">技術展示用のコンセプトモデルです。実際のCAD設計・空力解析・製造寸法を保証するものではありません。Three.jsの読み込みにはインターネット接続が必要です。</div></main>
-<script>(function(){let engineOnline=false;function fail(){if(engineOnline)return;const status=document.querySelector('#status');if(status)status.textContent='3Dを読み込めませんでした。ネット接続やWebGLの対応状況を確認してください。';if(!document.querySelector('#viewer-fallback')){const alert=document.createElement('div');alert.id='viewer-fallback';alert.setAttribute('role','alert');alert.textContent='3Dビューアを利用できません。ページを再読み込みするか、時間をおいて再度お試しください。';alert.style.cssText='position:absolute;inset:0;z-index:9;display:grid;place-items:center;text-align:center;padding:30px;background:#061421ee;color:#e8f5ff';document.querySelector('.stage')?.append(alert)}document.querySelectorAll('button,input').forEach(x=>{x.disabled=true})}window.__monoBaseMarkOnline=()=>{engineOnline=true;clearTimeout(watchdog);document.querySelector('#viewer-fallback')?.remove();document.querySelectorAll('button,input').forEach(x=>{x.disabled=false})};window.addEventListener('error',fail,true);window.addEventListener('unhandledrejection',fail);const watchdog=setTimeout(()=>{if(!engineOnline)fail()},12000)})();</script><script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"}}</script>
+<script>
+(function(){
+  let engineOnline=false;
+  const status=document.querySelector('#status');
+  const canvas=document.querySelector('#viewport');
+  const setControlsDisabled=disabled=>{
+    document.querySelectorAll('.panel button,.panel input').forEach(el=>{el.disabled=disabled});
+    canvas.setAttribute('aria-disabled',String(disabled));
+    canvas.tabIndex=disabled?-1:0;
+  };
+  const showFallback=(message,detail)=>{
+    status.textContent=message;
+    let overlay=document.querySelector('#viewer-fallback');
+    if(!overlay){
+      overlay=document.createElement('div');
+      overlay.id='viewer-fallback';
+      overlay.setAttribute('role','alert');
+      overlay.style.cssText='position:absolute;inset:0;z-index:9;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;background:#061421f4;color:#e8f5ff';
+      const inner=document.createElement('div');
+      const desc=document.createElement('p');
+      desc.id='viewer-fallback-message';
+      desc.style.cssText='max-width:420px;margin:0 auto 16px;color:#e8f5ff';
+      const retry=document.createElement('button');
+      retry.id='viewer-retry';
+      retry.type='button';
+      retry.textContent='3Dビューアを再読み込み';
+      retry.addEventListener('click',()=>location.reload());
+      const alternate=document.createElement('a');
+      alternate.href='./design-lab.html';
+      alternate.target='_blank';
+      alternate.rel='noopener noreferrer';
+      alternate.textContent='静止画像のギャラリーを見る ↗';
+      alternate.style.cssText='display:block;margin-top:14px;color:#75d6ff';
+      inner.append(desc,retry,alternate);
+      overlay.append(inner);
+      document.querySelector('.stage')?.append(overlay);
+    }
+    overlay.querySelector('#viewer-fallback-message').textContent=detail;
+    setControlsDisabled(true);
+  };
+  const clearFallback=()=>{
+    document.querySelector('#viewer-fallback')?.remove();
+    setControlsDisabled(false);
+  };
+  function fail(){
+    if(engineOnline)return;
+    showFallback(
+      '3Dを読み込めませんでした。ネット接続やWebGLの対応状況を確認してください。',
+      '3Dビューアを開始できません。再読み込みするか、静止画像をご覧ください。'
+    );
+  }
+  window.__monoBaseMarkOnline=()=>{
+    engineOnline=true;
+    clearTimeout(watchdog);
+    clearFallback();
+    status.textContent='● THREE.JS ENGINE ONLINE / v1.6';
+  };
+  window.__monoBaseGraphicsFailure=kind=>{
+    if(!engineOnline)return;
+    const interrupted=kind==='context-lost';
+    showFallback(
+      interrupted?'WebGLの描画が中断されました。復旧を待っています。':'3D描画を継続できませんでした。',
+      interrupted?'描画機能の自動復旧を待っています。復旧しない場合は再読み込みしてください。':'表示を再開するには3Dビューアを再読み込みしてください。'
+    );
+  };
+  window.__monoBaseGraphicsRecovered=()=>{
+    if(!engineOnline)return;
+    clearFallback();
+    status.textContent='● THREE.JS ENGINE ONLINE / v1.6';
+  };
+  window.addEventListener('error',fail,true);
+  window.addEventListener('unhandledrejection',fail);
+  canvas.addEventListener('webglcontextcreationerror',fail);
+  const watchdog=setTimeout(()=>{if(!engineOnline)fail()},12000);
+})();
+</script><script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"}}</script>
 <script type="module">
 import * as THREE from 'three';
 import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
@@ -125,8 +200,9 @@ function resize(){const w=stage.clientWidth,h=stage.clientHeight;renderer.setSiz
 // The same-origin host notifies us when the embedded iframe leaves the viewport.
 // A standalone viewer never receives that message and renders normally.
 let hostVisible=true,animationRequest=0;
-const renderStats=window.__monoBaseRenderStats={frames:0,paused:false};
-const shouldRender=()=>hostVisible&&!document.hidden;
+let graphicsLost=false,graphicsFatal=false;
+const renderStats=window.__monoBaseRenderStats={frames:0,paused:false,contextLost:false,fatal:false};
+const shouldRender=()=>hostVisible&&!document.hidden&&!graphicsLost&&!graphicsFatal;
 function scheduleRendering(){
   const active=shouldRender();
   renderStats.paused=!active;
@@ -136,6 +212,13 @@ function scheduleRendering(){
     animationRequest=requestAnimationFrame(tick);
   }
 }
+function stopOnRenderFailure(error){
+  graphicsFatal=true;
+  renderStats.fatal=true;
+  renderStats.lastError=String(error);
+  scheduleRendering();
+  window.__monoBaseGraphicsFailure?.('render-failed');
+}
 function tick(){
   animationRequest=0;
   if(!shouldRender()){renderStats.paused=true;return}
@@ -144,11 +227,38 @@ function tick(){
     explode=displayExplode;updateGeometry();
     document.querySelector('#explodeValue').textContent=Math.round(explode*100)+'%';
   }
-  orbit.update();
-  renderer.render(scene,camera);
+  try{
+    orbit.update();
+    renderer.render(scene,camera);
+  }catch(error){
+    stopOnRenderFailure(error);
+    return;
+  }
   renderStats.frames++;
   animationRequest=requestAnimationFrame(tick);
 }
+canvas.addEventListener('webglcontextlost',event=>{
+  // Required by WebGL for the browser to attempt context restoration.
+  event.preventDefault();
+  graphicsLost=true;
+  renderStats.contextLost=true;
+  scheduleRendering();
+  window.__monoBaseGraphicsFailure?.('context-lost');
+});
+canvas.addEventListener('webglcontextrestored',()=>{
+  if(!graphicsLost||graphicsFatal)return;
+  // Three.js WebGLRenderer also listens to this event and recreates GL state.
+  // Resume only after the restoration event, not merely after losing context.
+  graphicsLost=false;
+  renderStats.contextLost=false;
+  try{
+    resize();
+    window.__monoBaseGraphicsRecovered?.();
+    scheduleRendering();
+  }catch(error){
+    stopOnRenderFailure(error);
+  }
+});
 window.addEventListener('message',event=>{
   if(event.source!==window.parent||event.origin!==location.origin||
      event.data?.type!=='mono-visibility')return;

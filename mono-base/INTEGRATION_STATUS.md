@@ -88,3 +88,10 @@ KAITO traditionally indexes /directory/ routes, whereas seven MONO BASE content 
 - Adds read-only-in-practice frame-count/paused diagnostics for browser regression, with a render-count pause/resume check on desktop. Parent iframe auto-height logic is retained unchanged.
 - HTML changes are limited to `mono-base/design-lab.html` and `mono-base/cad-viewer.html`; original JPEGs, sitemap and indexed URLs are untouched.
 - **This is an unmerged v3.5 Draft change, not a v3.4 production fix or measured energy-saving claim.** Full browser check and production release remain separate approval gates.
+
+## 2026-10-23 — v3.5 P1-03 actionable CDN/WebGL fallback (append-only)
+
+- Draft PR #57 extends `mono-base/cad-viewer.html` failure handling: CDN import/init failure and WebGL context creation failure show a `role=alert` overlay with an actionable reload button and static DESIGN LAB gallery link. Only nonfunctional viewer controls are disabled.
+- For a running renderer, `webglcontextlost` cancels RAF and shows a transient recovery status; `webglcontextrestored` clears the overlay and restarts. Exceptions during rendering or context recovery stop the loop and require explicit reload. The retry action works both embedded and standalone.
+- Added Node VM and structural checks and an optional actual GPU loss/restore Chromium round trip. Browser test output explicitly reports SKIP if the driver does not expose `WEBGL_lose_context`.
+- The release gate remains **actual browser QA on the final PR head** and explicit review/approval; no v3.5 merge, XServer deployment, original asset change, or public indexing change performed.
