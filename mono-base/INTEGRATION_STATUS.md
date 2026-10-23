@@ -63,3 +63,11 @@ KAITO traditionally indexes /directory/ routes, whereas seven MONO BASE content 
 - Explicit release criterion: confirm **one successful `browser-qa` run at the exact publication candidate head SHA** after the public-mode commit and before merge/deploy. A static-only green check must **not** be misrepresented as full 3D/browser clearance.
 - GitHub public-repo billing and account spending-limit settings have not been verified; no assumptions about available minutes or budget should be used as test evidence.
 - **No change to main, PR Draft status, noindex or XServer** is authorized by this workflow adjustment. Historical production mismatch [Issue #52](https://github.com/k-ait0/k-aito-com/issues/52) remains a separate live deployment blocker.
+
+## Local-first QA launcher — 2026-10-23
+
+- `node scripts/mono-base-local-qa.cjs` now runs **11 inexpensive checks** in the current checkout without relying on GitHub Actions: eight MONO BASE preview/release and KAITO regression checks, site static/SEO audit, and original 13-JPEG SHA-256 verification.
+- Requires the already-used Node.js and Python runtimes; no browser package download, account authorization or GitHub action is needed. On Windows, Python launcher fallback is supported.
+- Runs are **read-only** against the checked-out source. The published-mode rehearsal only modifies a disposable OS temporary directory that is cleaned afterward.
+- Outputs named PASS/FAIL entries and a final aggregate exit status. The local launcher does **not** replace the deliberately manual Chromium/WebGL browser QA or live XServer deployment checks.
+- The MONO BASE workflow checks the syntax of this launcher but continues to perform its own lightweight tests on each scoped PR update.

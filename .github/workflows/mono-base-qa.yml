@@ -18,6 +18,7 @@ on:
       - 'scripts/test-mono-base-preview.cjs'
       - 'scripts/test-mono-base-generator-isolation.cjs'
       - 'scripts/test-mono-base-publication-fixture.cjs'
+      - 'scripts/mono-base-local-qa.cjs'
       - 'scripts/sync-site-shell.cjs'
       - 'scripts/sync-site-breadcrumbs.cjs'
       - 'scripts/sync-white-surfaces.cjs'
@@ -91,6 +92,7 @@ jobs:
           node --check scripts/test-mono-base-generator-isolation.cjs
           node scripts/test-mono-base-generator-isolation.cjs
           node --check scripts/test-mono-base-publication-fixture.cjs
+          node --check scripts/mono-base-local-qa.cjs
           node scripts/test-mono-base-publication-fixture.cjs
           node scripts/test-site-shell.cjs
           node scripts/test-site-breadcrumbs.cjs
