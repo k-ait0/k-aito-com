@@ -51,6 +51,7 @@ def validate_site(browser,name,viewport):
     assert canvas.get_attribute('tabindex')=='0',f'{name}: keyboard access missing'
     frame.locator('#sweep').evaluate("el => {el.value='35';el.dispatchEvent(new Event('input',{bubbles:true}))}")
     expect(frame.locator('#sweepValue')).to_have_text('35°')
+    assert 'wing_sweep_deg=35' in frame.locator('#configuration-summary').input_value(),f'{name}: copied sweep state stale'
     frame.locator('[data-mode="wire"]').click()
     expect(frame.locator('[data-mode="wire"]')).to_have_class('active')
     expect(frame.locator('[data-mode="wire"]')).to_have_attribute('aria-pressed','true')
@@ -63,6 +64,9 @@ def validate_site(browser,name,viewport):
     expect(frame.locator('[data-projection="ortho"]')).to_have_attribute('aria-pressed','true')
     expect(frame.locator('#hudMode')).to_contain_text('ORTHO')
     frame.locator('#explode').evaluate("el => {el.value='60';el.dispatchEvent(new Event('input',{bubbles:true}))}")
+    summary=frame.locator('#configuration-summary').input_value()
+    for expected in ('mode=WIREFRAME','view_preset=TOP','projection=ORTHOGRAPHIC','selected_part=MAIN_WINGS','wing_sweep_deg=35','exploded_view_percent=60','concept_only'):
+        assert expected in summary,f'{name}: configuration export missing {expected}: {summary}'
     canvas.focus()
     page.keyboard.press('ArrowLeft')
     page.keyboard.press('Equal')
@@ -76,6 +80,40 @@ def validate_site(browser,name,viewport):
     expect(frame.locator('[data-projection="perspective"]')).to_have_attribute('aria-pressed','true')
     expect(frame.locator('[data-projection="ortho"]')).to_have_attribute('aria-pressed','false')
     expect(frame.locator('#hudMode')).to_contain_text('PERSPECTIVE')
+    reset_summary=frame.locator('#configuration-summary').input_value()
+    for expected in ('mode=SOLID','view_preset=ISOMETRIC','projection=PERSPECTIVE','selected_part=FUSELAGE','wing_sweep_deg=20','exploded_view_percent=0'):
+        assert expected in reset_summary,f'{name}: reset summary mismatch {expected}: {reset_summary}'
+    expect(frame.locator('#copy-configuration')).to_be_enabled()
+    # A full-page capture taken while the CAD frame is offscreen may show an
+    # intentionally paused/blank renderer. Capture the actual WebGL canvas
+    # after two fresh visible frames as the visual evidence instead.
+    canvas.scroll_into_view_if_needed()
+    previous_frames=page.evaluate("""() => document.querySelector('#cad-frame')?.contentWindow?.__monoBaseRenderStats?.frames||0""")
+    page.wait_for_function("""previous => {
+      const r=document.querySelector('#cad-frame')?.contentWindow?.__monoBaseRenderStats;
+      return r && !r.paused && r.frames >= previous + 2;
+    }""",arg=previous_frames,timeout=15000)
+    canvas.screenshot(path=str(OUT/f'cad-model-v36-{name}.png'))
+    if name == 'desktop':
+        # Inject a local test clipboard to verify both real button behavior
+        # and the accessible fallback without requesting OS clipboard access.
+        frame.locator('#copy-configuration').evaluate("""button => {
+          Object.defineProperty(navigator,'clipboard',{configurable:true,
+            value:{writeText:async text=>{window.__monoCopiedSettings=text}}});
+          button.click();
+        }""")
+        expect(frame.locator('#configuration-copy-status')).to_have_text('表示条件をコピーしました。')
+        copied=frame.locator('body').evaluate('() => window.__monoCopiedSettings')
+        assert copied==reset_summary,f'{name}: copy action changed exported text'
+        frame.locator('#copy-configuration').evaluate("""button => {
+          Object.defineProperty(navigator,'clipboard',{configurable:true,
+            value:{writeText:async()=>{throw Error('permission denied')}}});
+          button.click();
+        }""")
+        expect(frame.locator('#configuration-copy-status')).to_contain_text('手動でコピー')
+        assert frame.locator('#configuration-summary').evaluate(
+            '(el)=>document.activeElement===el && el.selectionStart===0 && el.selectionEnd===el.value.length'
+        ),f'{name}: clipboard permission denial did not select text'
     # One real pause/resume test covers WebGL render scheduling, not just flags.
     # It is intentionally limited to desktop to avoid tripling the CI runtime.
     if name == 'desktop':
