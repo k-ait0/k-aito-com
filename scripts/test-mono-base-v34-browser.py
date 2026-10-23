@@ -120,6 +120,9 @@ def validate_site(browser,name,viewport):
           const gl=el.getContext('webgl2') || el.getContext('webgl');
           const extension=gl?.getExtension('WEBGL_lose_context');
           if(!extension)return false;
+          // getExtension() can return null while the context is lost.
+          // Retain the pre-loss extension object for the subsequent restore.
+          window.__monoBaseTestWebGLRestore=()=>extension.restoreContext();
           extension.loseContext();
           return true;
         }""")
@@ -133,8 +136,10 @@ def validate_site(browser,name,viewport):
             }""",timeout=10000)
             before_restore=page.evaluate("document.querySelector('#cad-frame').contentWindow.__monoBaseRenderStats.frames")
             canvas.evaluate("""el => {
-              const gl=el.getContext('webgl2') || el.getContext('webgl');
-              gl.getExtension('WEBGL_lose_context').restoreContext();
+              const restore=window.__monoBaseTestWebGLRestore;
+              if(typeof restore!=='function')throw Error('Lost WebGL restore handle');
+              restore();
+              delete window.__monoBaseTestWebGLRestore;
             }""")
             expect(frame.locator('#viewer-fallback')).to_have_count(0,timeout=30000)
             expect(frame.locator('#reset')).to_be_enabled()
