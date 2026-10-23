@@ -25,14 +25,24 @@ const sha=(file)=>require("node:crypto").createHash("sha256")
   .update(fs.readFileSync(path.join(tmp,file))).digest("hex");
 try{
   const xml=fs.readFileSync(path.join(root,"sitemap.xml"),"utf8");
-  const originalUrls=[...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map(m=>m[1]);
+  const originalUrls=[...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map(m=>m[1])
+    .filter(value=>!MONO_BASE_CONTENT.includes(readPublicSitemapUrl(value).pathname));
   assert.ok(originalUrls.length>=24,"Missing KAITO public pages");
   const routes=originalUrls.map(value=>readPublicSitemapUrl(value));
-  assert.ok(routes.every(x=>!MONO_BASE_CONTENT.includes(x.pathname)),
-    "This fixture expects MONO BASE to remain in preview mode");
   for(const {file} of routes)copy(file);
   copy("sitemap.xml");
   copy("mono-base");
+  // Rehearse the full transition after release too. Reset only the disposable
+  // fixture to preview mode; never change the checked-out public files.
+  fs.writeFileSync(path.join(tmp,"sitemap.xml"),xml.replace(
+    /\s*<url>\s*<loc>([^<]+)<\/loc>[\s\S]*?<\/url>/g,
+    (entry,url)=>MONO_BASE_CONTENT.includes(readPublicSitemapUrl(url).pathname)?"":entry));
+  for(const route of MONO_BASE_CONTENT){
+    const file=path.join(tmp,route==="/mono-base/"?"mono-base/index.html":route.slice(1));
+    const html=fs.readFileSync(file,"utf8");
+    if(!html.split("</head>")[0].includes('content="noindex,follow"'))
+      fs.writeFileSync(file,html.replace("</head>",'<meta name="robots" content="noindex,follow"></head>'));
+  }
   for(const rel of [
     "data/site-breadcrumbs.v1.json","data/project-card-status.v1.json",
     "site-search-core.js","site-search.js","site-search.css",

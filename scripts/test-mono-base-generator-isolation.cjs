@@ -11,11 +11,13 @@ const {MONO_BASE_CONTENT,isMonoBaseContentRoute,readPublicSitemapUrl}=require(".
 const sitemap=fs.readFileSync(path.join(root,"sitemap.xml"),"utf8");
 const existing=[...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(m=>m[1]);
 assert.ok(existing.length>=24);
-const simulated=[...existing,...MONO_BASE_CONTENT.map(r=>"https://k-aito.com"+r)];
+assert.equal(new Set(existing).size,existing.length,"Duplicated existing public URL");
+const simulated=[...new Set([...existing,...MONO_BASE_CONTENT.map(r=>"https://k-aito.com"+r)])];
 assert.equal(new Set(simulated).size,simulated.length,"Duplicated public URL");
 const selected=simulated.map(u=>readPublicSitemapUrl(u).pathname);
 assert.equal(selected.filter(isMonoBaseContentRoute).length,8);
-assert.equal(selected.filter(r=>!isMonoBaseContentRoute(r)).length,existing.length);
+assert.equal(selected.filter(r=>!isMonoBaseContentRoute(r)).length,
+  existing.filter(u=>!isMonoBaseContentRoute(readPublicSitemapUrl(u).pathname)).length);
 assert.ok(!selected.includes("/mono-base/cad-viewer.html"));
 for(const route of MONO_BASE_CONTENT){
   const file=route==="/mono-base/"?"mono-base/index.html":route.slice(1);
