@@ -96,13 +96,17 @@ const stop=()=>new Promise(resolve=>server.close(resolve));
               mode.name+" "+slug+" MONO BASE public page layout/SEO/images",JSON.stringify(details));
             if(slug==="/mono-base/"){
               const menu=page.locator(".menu-toggle");
-              if(mode.width<=430){
+              const nav=page.locator("#site-nav");
+              // Follow the actual responsive breakpoint (850px in MONO BASE),
+              // instead of inferring navigation state from the device preset.
+              if(await menu.isVisible()){
                 await menu.click();
                 check(await menu.getAttribute("aria-expanded")==="true" &&
-                  await page.locator("#site-nav").evaluate(e=>e.classList.contains("open")),
-                  mode.name+" MONO BASE menu opens");
+                  await nav.evaluate(e=>e.classList.contains("open")) &&
+                  await nav.isVisible(),
+                  mode.name+" MONO BASE responsive menu opens");
               }else{
-                check(await page.locator("#site-nav").isVisible(),
+                check(await nav.isVisible(),
                   mode.name+" MONO BASE desktop navigation visible");
               }
             }
