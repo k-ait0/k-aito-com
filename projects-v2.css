@@ -183,3 +183,7 @@
   .project-index dl{padding-top:10px}
   .projects-body>.portfolio-section:first-of-type{padding-top:5px}
 }
+
+/* MONO BASE release discovery link inside the existing PROJECT NOTES list. */
+.project-note-queue article strong a{color:inherit;text-decoration-color:#55765b;text-underline-offset:3px}
+.project-note-queue article strong a:hover{color:#193f32}

@@ -5,6 +5,7 @@
 const fs = require("node:fs");
 const path = require("node:path");
 const root = path.resolve(__dirname, "..");
+const {readPublicSitemapUrl}=require("./public-sitemap-routes.cjs");
 const sitemap = fs.readFileSync(path.join(root, "sitemap.xml"), "utf8");
 const urls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(m => m[1]);
 const failures = [];
@@ -12,22 +13,17 @@ const warnings = [];
 if (!urls.length) failures.push("sitemap.xml: no URLs found");
 const seen = new Set();
 for (const url of urls) {
-  let pathname;
+  let pathname,file;
   try {
-    const parsed = new URL(url);
-    if (parsed.origin !== "https://k-aito.com") throw new Error("unexpected origin");
-    pathname = decodeURIComponent(parsed.pathname);
-  } catch (e) {
-    failures.push(url + ": invalid URL (" + e.message + ")");
+    const parsed=readPublicSitemapUrl(url);
+    pathname=parsed.pathname;
+    file=path.join(root,parsed.file);
+  } catch(e) {
+    failures.push(url + ": invalid public sitemap URL (" + e.message + ")");
     continue;
   }
-  if (seen.has(pathname)) failures.push(pathname + ": duplicate sitemap URL");
+  if(seen.has(pathname)) failures.push(pathname + ": duplicate sitemap URL");
   seen.add(pathname);
-  if (!pathname.startsWith("/") || pathname.includes("..") || !pathname.endsWith("/")) {
-    failures.push(pathname + ": unsafe or noncanonical path");
-    continue;
-  }
-  const file = path.join(root, pathname.slice(1), "index.html");
   if (!fs.existsSync(file)) {
     failures.push(pathname + ": missing index.html");
     continue;

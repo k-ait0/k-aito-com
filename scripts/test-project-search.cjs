@@ -2,11 +2,12 @@
 const fs=require("node:fs"),path=require("node:path"),assert=require("node:assert/strict");
 const vm=require("node:vm"),cp=require("node:child_process"),os=require("node:os");
 const root=path.resolve(__dirname,"..");
+const {isMonoBaseContentRoute}=require("./public-sitemap-routes.cjs");
 const tmp=fs.mkdtempSync(path.join(os.tmpdir(),"kaito-project-search-"));
 const xml=fs.readFileSync(path.join(root,"sitemap.xml"),"utf8");
-const routes=[...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map(x=>new URL(x[1]).pathname);
+const routes=[...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map(x=>new URL(x[1]).pathname).filter(route=>!isMonoBaseContentRoute(route));
 try{
-  for(const file of ["sitemap.xml","data/project-card-status.v1.json","scripts/sync-project-search.cjs","site-search-core.js","site-search.js","site-search.css"]){
+  for(const file of ["sitemap.xml","data/project-card-status.v1.json","scripts/sync-project-search.cjs","scripts/public-sitemap-routes.cjs","site-search-core.js","site-search.js","site-search.css"]){
     const out=path.join(tmp,file);fs.mkdirSync(path.dirname(out),{recursive:true});fs.copyFileSync(path.join(root,file),out);
   }
   for(const route of routes){

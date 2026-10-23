@@ -40,7 +40,8 @@ for(const file of html){
   }else{
     assert.ok(head.includes('rel="canonical" href="'+url+'"'),"Canonical mismatch "+p);
     assert.ok(head.includes('property="og:url" content="'+url+'"'),"OpenGraph URL mismatch "+p);
-    assert.ok(head.includes('property="og:image" content="https://k-aito.com/og-image.png"'),"Missing sharing image "+p);
+    const expectedOgImage=p.startsWith("mono-base/")?"https://k-aito.com/mono-base/assets/hero_final.jpg":"https://k-aito.com/og-image.png";
+    assert.ok(head.includes('property="og:image" content="'+expectedOgImage+'"'),"Missing sharing image "+p);
     assert.ok(head.includes('name="twitter:card" content="summary_large_image"'),"Missing Twitter card "+p);
     assert.ok(listed.includes(url),"Missing sitemap location "+p);
   }

@@ -6,6 +6,7 @@
 const fs=require("node:fs");
 const path=require("node:path");
 const root=path.resolve(__dirname,"..");
+const {isMonoBaseContentRoute,readPublicSitemapUrl}=require("./public-sitemap-routes.cjs");
 const home=fs.readFileSync(path.join(root,"index.html"),"utf8");
 const sitemap=fs.readFileSync(path.join(root,"sitemap.xml"),"utf8");
 const urls=[...sitemap.matchAll(/<loc>\s*([^<]+)\s*<\/loc>/g)].map(x=>new URL(x[1].trim()));
@@ -41,6 +42,8 @@ function render(pathname){
 function sync(){
 let changed=0;
 for(const url of urls){
+  readPublicSitemapUrl(url.href);
+  if(isMonoBaseContentRoute(url.pathname))continue; // MONO BASE owns its separate dark shell
   if(url.origin!=="https://k-aito.com"||url.search||url.hash||!/^\/[a-z0-9/-]*$/.test(url.pathname))throw Error("Invalid sitemap URL "+url.href);
   if(url.pathname==="/")continue;
   const file=path.join(root,url.pathname.slice(1),"index.html");
@@ -54,7 +57,7 @@ for(const url of urls){
   const previous=fs.readFileSync(file,"utf8");
   if(src!==previous){fs.writeFileSync(file,src,"utf8");changed++;console.log("UPDATED "+url.pathname);}
 }
-console.log("PASS canonical shell: "+urls.length+" public pages; "+changed+" changed");
+console.log("PASS canonical shell: "+urls.filter(u=>!isMonoBaseContentRoute(u.pathname)).length+" KAITO pages; "+changed+" changed");
 }
 if(require.main===module)sync();
 module.exports={render,current,sync};

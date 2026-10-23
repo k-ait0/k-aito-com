@@ -6,14 +6,13 @@
 const fs=require("node:fs");
 const path=require("node:path");
 const root=path.resolve(__dirname,"..");
+const {isMonoBaseContentRoute,readPublicSitemapUrl}=require("./public-sitemap-routes.cjs");
 const master=JSON.parse(fs.readFileSync(path.join(root,"data/site-breadcrumbs.v1.json"),"utf8"));
 const publicOrigin="https://k-aito.com";
 const sitemap=fs.readFileSync(path.join(root,"sitemap.xml"),"utf8");
 const routes=[...sitemap.matchAll(/<loc>\s*([^<]+)\s*<\/loc>/g)].map(m=>{
-  const u=new URL(m[1].trim());
-  if(u.origin!==publicOrigin||u.search||u.hash)throw Error("Unexpected sitemap route "+u);
-  return u.pathname;
-});
+  return readPublicSitemapUrl(m[1].trim(),publicOrigin).pathname;
+}).filter(route=>!isMonoBaseContentRoute(route));
 if(master.version!==1||!master.pages||!routes.includes("/")||
   new Set(routes).size!==routes.length||
   routes.length!==Object.keys(master.pages).length||

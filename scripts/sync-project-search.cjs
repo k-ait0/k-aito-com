@@ -3,6 +3,7 @@
  * Projects are not hand-copied into article catalogue. No external network use. */
 const fs=require("node:fs"),path=require("node:path"),crypto=require("node:crypto");
 const root=path.resolve(__dirname,"..");
+const {isMonoBaseContentRoute,readPublicSitemapUrl}=require("./public-sitemap-routes.cjs");
 const escText=text=>String(text||"").replace(/&(#x[0-9a-f]+|#\d+|amp|lt|gt|quot|apos|nbsp|hellip|mdash|ndash);/gi,(whole,key)=>{
   const k=key.toLowerCase();
   if(k.startsWith("#x"))return String.fromCodePoint(parseInt(k.slice(2),16));
@@ -52,7 +53,9 @@ const searchHash=crypto.createHash("sha1").update("blob "+Buffer.byteLength(sear
 const cssHash=crypto.createHash("sha256")
   .update(fs.readFileSync(path.join(root,"site-search.css"))).digest("hex").slice(0,12);
 
-const pages=[...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(x=>new URL(x[1].trim()).pathname);
+const pages=[...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)]
+  .map(x=>readPublicSitemapUrl(x[1].trim()).pathname)
+  .filter(route=>!isMonoBaseContentRoute(route));
 let changed=0;
 for(const route of pages){
   const htmlPath=path.join(root,route.slice(1),"index.html");

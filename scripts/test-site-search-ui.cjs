@@ -3,6 +3,7 @@ const assert=require("node:assert/strict");
 const fs=require("node:fs");
 const path=require("node:path");
 const root=path.resolve(__dirname,"..");
+const {isMonoBaseContentRoute}=require("./public-sitemap-routes.cjs");
 const ui=require("../site-search-ui.js");
 function fakeDoc(){
   const doc={
@@ -40,7 +41,7 @@ ui.render(target,[]);
 assert.equal(target.children.length,1);
 assert.equal(target.children[0].className,"site-search-empty");
 const sitemap=fs.readFileSync(path.join(root,"sitemap.xml"),"utf8");
-const routes=[...sitemap.matchAll(/<loc>https:\/\/k-aito\.com(\/[^<]*)<\/loc>/g)].map(x=>x[1]);
+const routes=[...sitemap.matchAll(/<loc>https:\/\/k-aito\.com(\/[^<]*)<\/loc>/g)].map(x=>x[1]).filter(route=>!isMonoBaseContentRoute(route));
 assert.ok(routes.length>=24);
 for(const route of routes){
   const html=fs.readFileSync(path.join(root,route.slice(1),"index.html"),"utf8");
