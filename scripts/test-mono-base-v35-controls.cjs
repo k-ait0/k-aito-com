@@ -2,6 +2,7 @@
 const assert=require("node:assert/strict");
 const fs=require("node:fs");
 const path=require("node:path");
+const vm=require("node:vm");
 const html=fs.readFileSync(path.join(__dirname,"../mono-base/cad-viewer.html"),"utf8");
 const groups={mode:["solid","wire","blueprint","xray"],view:["iso","top","side","front"],projection:["perspective","ortho"],part:["fuselage","wings","tail","avionics"]};
 const active={mode:"solid",view:"iso",projection:"perspective",part:"fuselage"};
@@ -44,3 +45,73 @@ assert.ok(!html.includes("if(!viewerVisible){requestAnimationFrame(tick);return}
   "No RAF spin loop while hidden");
 console.log("PASS MONO BASE v3.5: same-origin iframe visibility and paint pause contract");
 
+
+
+// Exercise the actual requestAnimationFrame lifecycle in a lightweight VM.
+// This checks scheduling semantics without downloading Chromium or Three.js.
+const begin=html.indexOf("let hostVisible=true,animationRequest=0;");
+const end=html.lastIndexOf("\nscheduleRendering();");
+assert.ok(begin>=0 && end>begin,"Render lifecycle source boundaries missing");
+const lifecycle=html.slice(begin,end+"\nscheduleRendering();".length);
+const queued=new Map(),listeners={message:[],visibilitychange:[]};
+let id=1,paintCalls=0;
+const parentRef={},origin="https://k-aito.com";
+const mockWindow={
+  parent:parentRef,
+  addEventListener:(type,cb)=>{(listeners[type]??=[]).push(cb)}
+};
+const mockDocument={
+  hidden:false,
+  addEventListener:(type,cb)=>{(listeners[type]??=[]).push(cb)},
+  querySelector:()=>({textContent:""})
+};
+const ctx={
+  window:mockWindow,document:mockDocument,location:{origin},
+  requestAnimationFrame:cb=>{const next=id++;queued.set(next,cb);return next},
+  cancelAnimationFrame:requested=>queued.delete(requested),
+  displayExplode:0,targetExplode:0,
+  orbit:{update:()=>{}},
+  renderer:{render:()=>{paintCalls++}},
+  scene:{},camera:{}
+};
+vm.runInNewContext(lifecycle,ctx,{timeout:1000});
+const stats=mockWindow.__monoBaseRenderStats;
+const dispatch=(type,event)=>{for(const cb of listeners[type]||[])cb(event)};
+const message=(visible,source=parentRef,messageOrigin=origin)=>
+  dispatch("message",{source,origin:messageOrigin,data:{type:"mono-visibility",visible}});
+const nextFrame=()=>{
+  assert.equal(queued.size,1,"Expected exactly one queued RAF callback");
+  const [next,cb]=queued.entries().next().value;
+  queued.delete(next);cb();
+};
+assert.equal(queued.size,1,"Standalone viewer must schedule its initial draw");
+nextFrame();
+assert.equal(paintCalls,1);
+assert.equal(stats.frames,1);
+assert.equal(stats.paused,false);
+message(false,{}); // Different message source must not control the renderer.
+assert.equal(queued.size,1);
+message(false,parentRef,"https://evil.example"); // Reject other origins.
+assert.equal(queued.size,1);
+message(false);
+assert.equal(stats.paused,true);
+assert.equal(queued.size,0,"Offscreen renderer must not queue further frames");
+assert.equal(paintCalls,1);
+message(true);
+assert.equal(stats.paused,false);
+nextFrame();
+assert.equal(stats.frames,2);
+mockDocument.hidden=true;
+dispatch("visibilitychange");
+assert.equal(stats.paused,true);
+assert.equal(queued.size,0,"Hidden document must stop queued RAF callbacks");
+message(true);
+assert.equal(stats.paused,true,"Host visibility cannot override a hidden document");
+assert.equal(queued.size,0);
+mockDocument.hidden=false;
+dispatch("visibilitychange");
+assert.equal(stats.paused,false);
+nextFrame();
+assert.equal(stats.frames,3);
+assert.equal(paintCalls,3);
+console.log("PASS MONO BASE v3.5: live RAF scheduler pauses/resumes, no hidden-frame spin, trusted messages only");
