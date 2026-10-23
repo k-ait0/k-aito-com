@@ -1,42 +1,9 @@
 name: Sync published article index
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - 'content-index.js'
-      - 'app.js'
-      - 'site-content.js'
-      - 'index.html'
-      - 'projects/index.html'
-      - 'data/project-card-status.v1.json'
-      - 'scripts/sync-project-cards.cjs'
-      - 'scripts/test-project-cards.cjs'
-      - 'scripts/sync-project-search.cjs'
-      - 'scripts/test-project-search.cjs'
-      - 'project-search-index.js'
-      - 'site-search.js'
-      - 'site-search-ui.js'
-      - 'scripts/test-site-search-ui.cjs'
-      - 'site-search.css'
-      - 'site-search-core.js'
-      - 'scripts/test-site-search-core.cjs'
-      - 'projects/**/index.html'
-      - 'thumbnail-v1.css'
-      - 'white-surfaces-v1.css'
-      - 'storage-v2.css'
-      - 'subpages.css'
-      - 'scripts/sync-site-shell.cjs'
-      - 'scripts/test-site-shell.cjs'
-      - 'data/site-breadcrumbs.v1.json'
-      - 'scripts/sync-site-breadcrumbs.cjs'
-      - 'scripts/test-site-breadcrumbs.cjs'
-      - 'scripts/sync-white-surfaces.cjs'
-      - 'notes/**/index.html'
-      - 'scripts/sync-published-content.cjs'
-      - 'scripts/article-search-text.cjs'
-      - 'scripts/test-published-content.cjs'
-      - '.github/workflows/sync-published-content.yml'
+  # Intentionally manual: local-preflight checks generated files before merge.
+  # Automated post-merge generated commits previously diverged from XServer.
+  # Invoke only as a recovery/migration operation after reviewing source and output.
   workflow_dispatch:
 
 permissions:
