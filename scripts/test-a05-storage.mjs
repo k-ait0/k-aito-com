@@ -11,7 +11,7 @@ import { QUESTIONS } from "../projects/kidp/life-design-lab/a05/questions.mjs";
 import { newDraft } from "../projects/kidp/life-design-lab/a05/engine.mjs";
 import {
   enableSaving, saveDraft, finalizeDraft, restoreState, read,
-  removeRawAnswers, deleteAssessment, eraseA05DatabaseContents
+  readRecoverySnapshot, removeRawAnswers, deleteAssessment, eraseA05DatabaseContents
 } from "../projects/kidp/life-design-lab/a05/storage.mjs";
 
 const HASH = "f".repeat(64);
@@ -217,4 +217,65 @@ test("explicit delete and erase only affect this simulated database", async () =
   await eraseA05DatabaseContents(db);
   assert.equal(await read(db, "preferences", "consent"), undefined);
   assert.equal((await restoreState(db, HASH)).consent, false);
+});
+
+
+test("restoration reads consent/draft/history from a single transaction", async () => {
+  const db = new SimulatedDatabase();
+  await enableSaving(db, fixture(), HASH, false);
+  await finalizeDraft(db, "case-11", 0, HASH, false);
+  let transactionCount = 0;
+  const original = db.transaction.bind(db);
+  db.transaction = (...args) => {
+    transactionCount++;
+    assert.deepEqual(new Set(args[0]), new Set(["preferences", "drafts", "history"]));
+    assert.equal(args[1], "readonly");
+    return original(...args);
+  };
+  const restored = await restoreState(db, HASH);
+  assert.equal(transactionCount, 1);
+  assert.equal(restored.consent, true);
+  assert.equal(restored.draft, null);
+  assert.equal(restored.report.verified.length, 1);
+});
+
+test("re-registering consent cannot overwrite prior choices after finalization", async () => {
+  const db = new SimulatedDatabase();
+  await enableSaving(db, fixture(), HASH, false);
+  await finalizeDraft(db, "case-11", 0, HASH, false);
+  const before = await read(db, "preferences", "consent");
+  await assert.rejects(enableSaving(db, fixture("second"), HASH, true));
+  assert.deepEqual(await read(db, "preferences", "consent"), before);
+  assert.equal(await read(db, "drafts", "active"), undefined);
+  assert.equal((await read(db, "history", "case-11")).result.typeId, "T11");
+});
+
+test("restore quarantines damaged history individually, preserving verified records", async () => {
+  const db = new SimulatedDatabase();
+  await enableSaving(db, fixture(), HASH, false);
+  await finalizeDraft(db, "case-11", 0, HASH, false);
+  db.stores.history.set("broken", {
+    id: "broken",
+    schemaVersion: 1,
+    completedAt: new Date().toISOString(),
+    versions: { question: "legacy", scoring: "legacy", type: "legacy", content: "legacy" },
+    questionHash: HASH,
+    result: { axes: [null, null, null, null, null], typeId: "T99", classification: "classified", wealth: "time" },
+    presentation: { id: "T99", name: "Unknown", summary: "" }
+  });
+  const restored = await restoreState(db, HASH);
+  assert.equal(restored.report.verified.length, 1);
+  assert.equal(restored.report.quarantined.length, 1);
+  assert.equal(restored.readOnly, true);
+  assert.ok(restored.report.warnings.length);
+});
+
+test("snapshot API returns a coherent set of recovery domains", async () => {
+  const db = new SimulatedDatabase();
+  await enableSaving(db, fixture(), HASH, true);
+  const { consent, draft, history } = await readRecoverySnapshot(db);
+  assert.equal(consent.enabled, true);
+  assert.equal(consent.retainRaw, true);
+  assert.equal(draft.assessmentId, "case-11");
+  assert.equal(history.length, 0);
 });
