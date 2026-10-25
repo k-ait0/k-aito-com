@@ -140,6 +140,63 @@ async function main() {
       assert.match(await page.locator("#a05-content").innerText(), /生回答なし/);
     });
 
+    await check("restore keeps valid history while surfacing legacy and quarantined entries", async () => {
+      await page.evaluate(async () => {
+        const database = await new Promise((resolve, reject) => {
+          const open = indexedDB.open("kaito-a05-values-v1", 1);
+          open.onsuccess = () => resolve(open.result);
+          open.onerror = () => reject(open.error);
+        });
+        try {
+          const saved = await new Promise((resolve, reject) => {
+            const tx = database.transaction(["history"], "readonly");
+            const request = tx.objectStore("history").getAll();
+            request.onsuccess = () => resolve(request.result);
+            request.onerror = () => reject(request.error);
+          });
+          if (saved.length !== 1) throw Error("Expected one valid history before injecting test records");
+          const old = structuredClone(saved[0]);
+          old.id = "qa-a05-legacy";
+          old.versions.scoring = "S-LEGACY";
+          old.presentation.name = "<img src=x onerror=alert(1)>旧版";
+          const bad = structuredClone(saved[0]);
+          bad.id = "qa-a05-quarantined";
+          bad.result.axes[0].n = -1;
+          await new Promise((resolve, reject) => {
+            const tx = database.transaction(["history"], "readwrite");
+            tx.objectStore("history").add(old);
+            tx.objectStore("history").add(bad);
+            tx.oncomplete = resolve;
+            tx.onabort = () => reject(tx.error ?? Error("Injection rolled back"));
+          });
+        } finally {
+          database.close();
+        }
+      });
+      await page.reload();
+      await page.locator('[data-view="history"]').first().click();
+      const content = await page.locator("#a05-content").innerText();
+      assert.match(content, /検証済み 1件/);
+      assert.match(content, /旧版 1件/);
+      assert.match(content, /隔離 1件/);
+      assert.match(content, /読み取り専用・未検証/);
+      assert.equal(await page.locator('#a05-content img').count(), 0,
+        "Untrusted legacy text must be HTML-escaped");
+      assert.equal(await page.locator('[data-action="delete-protected"]').count(), 2);
+    });
+
+    await check("targeted recovery deletion preserves verified history", async () => {
+      await page.locator('[data-action="delete-protected"][data-kind="legacy"]').click();
+      assert.match(await page.locator("#a05-content").innerText(), /旧版 0件/);
+      await page.locator('[data-action="delete-protected"][data-kind="quarantined"]').click();
+      assert.match(await page.locator("#a05-content").innerText(), /隔離 0件/);
+      await page.reload();
+      await page.locator('[data-view="history"]').first().click();
+      assert.match(await page.locator("#a05-content").innerText(), /検証済み 1件/);
+      assert.match(await page.locator("#a05-content").innerText(), /旧版 0件/);
+      assert.match(await page.locator("#a05-content").innerText(), /隔離 0件/);
+    });
+
     await check("second tab cannot overwrite a different active assessment", async () => {
       // After finalize(), storage has consent/history but no active draft.
       const other = await context.newPage();
