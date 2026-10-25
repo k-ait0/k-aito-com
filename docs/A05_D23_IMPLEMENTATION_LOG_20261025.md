@@ -898,3 +898,32 @@ no participant recruitment, recording, research answers,
 personal data, actual deletion, production scoring changes,
 stored-result migration, P0 changes, merge or deployment.
 Draft PR #61 remains unmerged.
+
+### A05-D40-001 — native QA, failed first run and verified correction
+
+**First run 40213379022: FAILURE.** The synthetic scenario list
+was expanded from seven to nine cases, but the uniqueness
+assertion still expected **7** rather than 9. Nine of the ten
+new D-40 cases passed; the other native A05 suites passed.
+This was a test expectation typo, not an actual collection,
+storage or deletion of any data.
+
+**Correction:** Updated the uniqueness assertion in
+`scripts/test-a05-research-d40.mjs` to exactly nine names,
+consistent with the exported internal cases.
+
+**Retest GitHub Actions 40213430442: SUCCESS.**
+D-40 pure synthetic-simulation safety tests **10/10 PASS**.
+Other research contracts **18/18 PASS**, G1/D-39 tests
+**11/11 PASS**, existing domain scoring **66/66 PASS**,
+simulated IndexedDB **13/13 PASS**, existing real Chromium A05
+acceptance **16/16 PASS** plus the independent page/network
+error check. Existing P0 browser acceptance and site
+preflight passed. SEO audit run **40213430495: SUCCESS**.
+
+**Interpretation:** Synthetic-only trace assertions expose
+the identity/withdrawal contradiction but do not resolve it.
+No participant identity proof, consent collection, actual
+storage, scheduled deletion, backup erasure or operational
+approval was implemented or tested. The G1 human decision
+register remains entirely PENDING, with no sign-off.
