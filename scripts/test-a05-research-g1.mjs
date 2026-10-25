@@ -172,6 +172,6 @@ test("D-39 uses calendar-day arithmetic including leap year and rejects invalid 
   });
   for (const invalid of ["2026-02-29", "2026-13-01", "2026-00-01",
     "2026-02-30", "2026-1-1", "", 42, null]) {
-    assert.throws(() => proposeRetentionDeadlines(invalid), invalid);
+    assert.throws(() => proposeRetentionDeadlines(invalid), /Expected date-only|Invalid calendar date/, String(invalid));
   }
 });
