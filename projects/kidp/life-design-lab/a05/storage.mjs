@@ -78,16 +78,31 @@ export function readAll(db, store) {
   });
 }
 
+/**
+ * Read all recovery domains under one readonly IDB transaction. This avoids
+ * mixing preference/draft/history data from different cross-tab commit points.
+ */
+export function readRecoverySnapshot(db) {
+  const result = { consent: undefined, draft: undefined, history: [] };
+  return transaction(db, ["preferences", "drafts", "history"], "readonly", (tx, ctl) => {
+    ctl.result(result);
+    const p = tx.objectStore("preferences").get("consent");
+    const d = tx.objectStore("drafts").get("active");
+    const h = tx.objectStore("history").getAll();
+    p.onsuccess = () => { result.consent = p.result; };
+    d.onsuccess = () => { result.draft = d.result; };
+    h.onsuccess = () => { result.history = h.result; };
+  });
+}
+
 export async function restoreState(db, questionHash) {
-  const [consent, draft, history] = await Promise.all([
-    read(db, "preferences", "consent"),
-    read(db, "drafts", "active"),
-    readAll(db, "history")
-  ]);
+  const { consent, draft, history } = await readRecoverySnapshot(db);
   const report = { verified: [], legacy: [], quarantined: [], warnings: [] };
   const seen = new Set();
   for (const item of history) {
-    let status = classifySnapshot(item, questionHash);
+    let status;
+    try { status = classifySnapshot(item, questionHash); }
+    catch (_) { status = "quarantined"; }
     if (typeof item?.id !== "string" || seen.has(item.id)) status = "quarantined";
     else seen.add(item.id);
     report[status].push(item);
@@ -120,7 +135,8 @@ export function enableSaving(db, draft, questionHash, retainRaw = false) {
   return transaction(db, ["drafts", "preferences"], "readwrite", (tx) => {
     // add() fails rather than overwrite an unknown existing draft.
     tx.objectStore("drafts").add({ ...draft, revision: 0 });
-    tx.objectStore("preferences").put({
+    // Do not overwrite a pre-existing consent record (even with no active draft).
+    tx.objectStore("preferences").add({
       id: "consent",
       enabled: true,
       retainRaw: retainRaw === true,
