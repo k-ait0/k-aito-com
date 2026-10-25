@@ -93,6 +93,49 @@ async function main() {
       assert.equal(await page.locator("#a05-main").getAttribute("tabindex"), "-1");
     });
 
+    await check("D-50 Tokyo history shows local date for UTC-midnight fixture", async () => {
+      const tokyoContext = await browser.newContext({
+        timezoneId: "Asia/Tokyo", viewport: { width: 390, height: 844 }
+      });
+      try {
+        const tokyoPage = await tokyoContext.newPage();
+        await tokyoPage.goto(address + A05);
+        await tokyoPage.locator("#a05-content h2").waitFor();
+        await tokyoPage.evaluate(async () => {
+          const { QUESTIONS, questionSetHash } = await import("./questions.mjs");
+          const { newDraft, makeSnapshot } = await import("./engine.mjs");
+          const hash = await questionSetHash();
+          const draft = newDraft("qa-time-zone-fixture", hash);
+          draft.startedAt = "2026-10-25T15:10:00.000Z";
+          draft.answers = Object.fromEntries(QUESTIONS.map(q => [q.id, 4]));
+          const snapshot = makeSnapshot(draft, hash, false);
+          snapshot.completedAt = "2026-10-25T15:30:00.000Z";
+          const db = await new Promise((resolve, reject) => {
+            const request = indexedDB.open("kaito-a05-values-v1", 1);
+            request.onsuccess = () => resolve(request.result);
+            request.onerror = () => reject(request.error);
+          });
+          try {
+            await new Promise((resolve, reject) => {
+              const tx = db.transaction(["history"], "readwrite");
+              tx.objectStore("history").add(snapshot);
+              tx.oncomplete = resolve;
+              tx.onabort = () => reject(tx.error);
+            });
+          } finally { db.close(); }
+        });
+        await tokyoPage.reload();
+        await tokyoPage.locator('[data-view="history"]').first().click();
+        const history = await tokyoPage.locator("#a05-content").innerText();
+        assert.match(history, /検証済み 1件/);
+        assert.match(history, /2026-10-26/,
+          "JST early-morning completion must display 26th, not its UTC 25th");
+        assert.doesNotMatch(history, /2026-10-25/);
+      } finally {
+        await tokyoContext.close();
+      }
+    });
+
     await check("keyboard and accessible answer controls", async () => {
       await page.goto(address + A05);
       await page.locator('[data-action="start"]').focus();
