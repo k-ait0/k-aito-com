@@ -610,3 +610,29 @@ SEO audit **40217974629 succeeded**. No new workflow/job;
 all runs were on a Draft branch. G1 12/12 and D-42 16/16
 research decisions remain PENDING; no publication or
 participant study approval was granted.
+
+## D-48 / D-49 touch access and honest deletion limits (2026-10-26)
+
+`docs/A05_D48_MOBILE_ANSWER_TARGETS_20261026.md`
+and `docs/A05_D49_SKIP_LINK_AND_ERASE_SCOPE_20261026.md`
+record two quality improvements to the Draft A05 app:
+
+- **D-48:** For widths up to 440px, 7-point answer buttons
+  display in a 4+3 grid with >=44px width and height. The
+  DOM/input order and D-47 digit shortcuts are preserved.
+  Chrome measures eight viewports from 320 to 768px, verifies
+  row count and absence of horizontal overflow.
+- **D-49:** The `#a05-main` skip-link target is programmatically
+  focusable and visibly outlined. The confirm and completion
+  messages for the A05 IndexedDB erase distinguish removal of
+  local browser records from **unverified physical erasure of
+  backups and copies**. Old experimental D-12/D-19/P0 stores
+  are still outside A05's deletion scope.
+
+The existing Chrome suite now contains 22 named checks (20
+prior plus two new), covering skip-link Enter navigation and
+the erase disclosure in addition to the existing persistence
+checks. The Node suite remains at 139. Native CI verification
+of the latest D-49 changes was pending at this entry.
+No new workflows/jobs, study recruitment, approval, scoring
+change or deployment. G1 12/12 and D-42 16/16 remain pending.
