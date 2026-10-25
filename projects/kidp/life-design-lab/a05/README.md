@@ -251,3 +251,12 @@ execute both research test files as part of its existing test step;
 added a separate Actions job or workflow. No human interviews have
 occurred; no approvals for collection, scoring or publication have
 been granted.
+
+### D-36 native test verification
+
+GitHub Actions **40209295560** passed: D-35+D-36 research contracts
+**13/13 native Node 22**, existing scoring **66/66**, simulated
+storage **13/13**, real Chromium A05 **16/16**, existing P0 and
+site-wide preflight. SEO run **40209295397** passed. This supersedes
+only the D-36 *pending native test* note above; revision history
+and scientific/release restrictions remain unchanged.
