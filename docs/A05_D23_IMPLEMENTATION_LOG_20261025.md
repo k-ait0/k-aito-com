@@ -381,3 +381,39 @@ Safari quota eviction, sudden browser termination, or every failure mode.
 The question set and psychometric validity remain unreviewed.
 
 **State:** Draft PR #61; no merge, production rollout, or P0 modification.
+
+## A05-D33-001 (2026-10-26)
+
+**Scope:** Structured content-quality review of all 30 D-31 questionnaire
+candidates, particularly the distinction among A/D, the coexistence of
+B/C preferences, and the E-axis money/time comparison.
+
+**Before:** D-31 paired the present question text with 30 initial v2
+wording candidates and named a few broad risks. It did not classify each
+candidate or supply a consent-aware participant protocol.
+
+**After:** Added
+`docs/A05_D33_ITEM_AUDIT_AND_VALIDATION_PLAN_20261026.md`, containing
+30 individually identified editorial decisions: **7 BLOCK, 13 REVISE,
+10 TRIAL**, including replacement text for the seven blocked items
+(two alternative E05 drafts), operating definitions, a conditional E-axis
+instruction, and interview/pilot gates. Added
+`docs/A05_D33_COGNITIVE_INTERVIEW_PROTOCOL_20261026.md`, setting out
+voluntary participation, consent/privacy requirements, common prompts
+for 30 items, specific probes for blocked items, counterbalanced E05
+presentation, and aggregation rules.
+
+**Reason:** A wording revision or passed software test must not be mistaken
+for construct validity. Record explicit editorial blockers before creating
+a new scored or versioned question bank.
+
+**Evidence:** Full source comparison against `questions.mjs` and the
+D-31 document completed; the audit matrix programmatically confirmed
+30 distinct question IDs and classification counts. These are **editorial
+hypotheses**, not responses from interviews, statistical reliability
+estimates, or external expert approval. The changes are documentation only;
+there is no new Node or browser acceptance claim.
+
+**Unchanged:** Existing questionnaire, question hash, assessment/scoring
+logic, 16-type mapping, IndexedDB, P0, live site, GitHub Actions
+configuration. Draft PR #61 must remain unmerged and unpublished.
