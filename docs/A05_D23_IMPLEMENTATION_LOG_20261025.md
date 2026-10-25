@@ -1110,3 +1110,30 @@ no published release.
 **Verification status at authoring:** Native GitHub QA pending. No claims of passed tests or publication based merely on committing the files.
 
 **Boundaries:** Questions/version/hash, scoring, 16 type rules, saved assessment compatibility, IndexedDB storage, old results, P0, main release, and the 12 G1 / 16 D-42 human approval gates unchanged. Draft PR #61 remains unmerged; no participant recruitment or research data collection.
+
+### A05-D44-001 — verified native domain, storage, browser and SEO QA (2026-10-26 JST)
+
+**GitHub Actions KIDP run 40216961208: SUCCESS.**
+The existing Chrome A05 acceptance suite passed **17/17 named cases**
+(the prior 16 plus the D-44 accessible progress/filter/share focus
+case). The extended existing browser cases also verified that
+keyboard focus remains usable after the raw-answer retention
+checkbox is toggled off/on, after individual raw-answer
+deletion, after targeted protected-record deletion and after
+the full A05 data erase. The separate network/page-error
+check passed.
+
+**Native Node 22 test totals: 139/139 PASS**:
+scoring domain 66, simulated IndexedDB storage 13,
+D-35–37 research 18, G1/D-39 11, D-40 10,
+D-41 10, D-42 11. Existing KIDP P0 browser QA,
+local preflight and diff checks also passed.
+**SEO static audit 40216961278: SUCCESS.**
+
+**Interpretation:** These are acceptance tests of an *unmerged*
+prototype. They improve the 30-item progress indicator and
+keyboard focus reliability; they do not validate the questions
+psychometrically or approve participant research and do not
+indicate any main-branch release. The D-43 owner/storage
+decisions, G1 12/12 pending and D-42 16/16 pending continue
+to block human research.
