@@ -85,6 +85,14 @@ async function main() {
     });
     page.on("dialog", dialog => dialog.accept());
 
+    await check("D-49 skip navigation focuses the main landmark", async () => {
+      await page.goto(address + A05);
+      await page.locator(".skip-link").focus();
+      await page.keyboard.press("Enter");
+      assert.equal(await page.evaluate(() => document.activeElement?.id), "a05-main");
+      assert.equal(await page.locator("#a05-main").getAttribute("tabindex"), "-1");
+    });
+
     await check("keyboard and accessible answer controls", async () => {
       await page.goto(address + A05);
       await page.locator('[data-action="start"]').focus();
@@ -417,8 +425,14 @@ async function main() {
 
     await check("explicit full deletion clears this A05 database", async () => {
       await page.locator('[data-view="history"]').first().click();
+      await page.evaluate(() => {
+        window.__a05ErasePrompt = "";
+        window.confirm = message => { window.__a05ErasePrompt = message; return true; };
+      });
       await page.locator('[data-action="erase"]').click();
       await waitForUICommit(page, "home");
+      assert.match(await page.evaluate(() => window.__a05ErasePrompt), /バックアップ/);
+      assert.match(await page.locator("#a05-notice").innerText(), /保証できません/);
       assert.equal(await page.evaluate(() => document.activeElement?.tagName), "H2",
         "After full erase, focus should move to the fresh overview heading");
       await page.reload();
