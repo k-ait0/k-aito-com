@@ -397,6 +397,55 @@ async function main() {
       }
     });
 
+    await check("D-52 local backup inspection reports counts without restoring or leaking records", async () => {
+      await page.locator('[data-view="history"]').first().click();
+      const historyBefore = await page.locator("#a05-content").innerText();
+      assert.match(historyBefore, /検証済み 1件/);
+      const fileInput = page.locator("#a05-inspect-file");
+      const fixture = {
+        schema:"A05-EXPORT-1", exportedAt:"2026-10-26T03:00:00.000Z",
+        stores:{
+          drafts:[{id:"active",privateText:"do-not-display-this"}],
+          history:[{id:"synthetic-123",rawAnswers:{A01:7}}],
+          preferences:[{id:"consent"}], migrations:[], legacyBackups:[]
+        }
+      };
+      await fileInput.setInputFiles({
+        name:"safe-synthetic.json", mimeType:"application/json",
+        buffer:Buffer.from(JSON.stringify(fixture),"utf8")
+      });
+      await page.locator("#a05-inspect-report").waitFor();
+      let report = await page.locator("#a05-inspect-report").innerText();
+      assert.match(report,/構造検査のみ成功/);
+      assert.match(report,/履歴 1件/);
+      assert.match(report,/下書き 1件/);
+      assert.doesNotMatch(report,/do-not-display-this|synthetic-123|A01/);
+      assert.equal(await page.evaluate(() => document.activeElement?.tagName),"H2");
+      assert.match(await page.locator("#a05-content").innerText(),/検証済み 1件/);
+      // Invalid file must not toggle storage into read-only or mutate history.
+      await page.locator("#a05-inspect-file").setInputFiles({
+        name:"unknown.json", mimeType:"application/json",
+        buffer:Buffer.from('{"schema":"UNKNOWN"}',"utf8")
+      });
+      await page.locator("#a05-inspect-report").waitFor();
+      report = await page.locator("#a05-inspect-report").innerText();
+      assert.match(report,/A05-EXPORT-1形式ではありません/);
+      assert.match(await page.locator("#a05-content").innerText(),/検証済み 1件/);
+      assert.equal(await page.locator('[data-action="new"]').isEnabled(),true);
+      await page.locator("#a05-inspect-file").setInputFiles({
+        name:"malformed.json", mimeType:"application/json",
+        buffer:Buffer.from('{"invalid":', "utf8")
+      });
+      await page.locator("#a05-inspect-report").waitFor();
+      assert.match(await page.locator("#a05-inspect-report").innerText(),/JSONとして読み取れませんでした/);
+      assert.match(await page.locator("#a05-content").innerText(),/検証済み 1件/);
+      // No actual local data is restored by any inspection step.
+      await page.reload();
+      await page.locator('[data-view="history"]').first().click();
+      assert.match(await page.locator("#a05-content").innerText(),/検証済み 1件/);
+      assert.equal(await page.locator("#a05-inspect-report").count(),0);
+    });
+
     await check("raw-answer deletion leaves result intact", async () => {
       await page.locator('[data-action="scrub"]').click();
       await page.waitForFunction(() =>
