@@ -144,7 +144,7 @@
       "reviewedAt": null
     },
     {
-      "path": "docs/A05_D35_INTERVIEW_CANDIDATE_GUIDE_20261026.md",
+      "path": "docs/A05_D35_INTERVIEW_CANDIDATES_20261026.json",
       "group": "D_RESEARCH_HUMAN_APPROVAL",
       "reviewStatus": "NOT_REVIEWED",
       "mergeAuthorized": false,
@@ -153,7 +153,7 @@
       "reviewedAt": null
     },
     {
-      "path": "docs/A05_D35_INTERVIEW_CANDIDATES_20261026.json",
+      "path": "docs/A05_D35_INTERVIEW_CANDIDATE_GUIDE_20261026.md",
       "group": "D_RESEARCH_HUMAN_APPROVAL",
       "reviewStatus": "NOT_REVIEWED",
       "mergeAuthorized": false,
@@ -396,6 +396,15 @@
       "reviewedAt": null
     },
     {
+      "path": "projects/kidp/life-design-lab/a05/README.md",
+      "group": "A_UI_ACCESSIBILITY",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
       "path": "projects/kidp/life-design-lab/a05/app.mjs",
       "group": "A_UI_ACCESSIBILITY",
       "reviewStatus": "NOT_REVIEWED",
@@ -452,15 +461,6 @@
     {
       "path": "projects/kidp/life-design-lab/a05/questions.mjs",
       "group": "C_PROVISIONAL_SCORING",
-      "reviewStatus": "NOT_REVIEWED",
-      "mergeAuthorized": false,
-      "reviewEvidenceRef": null,
-      "reviewerRole": null,
-      "reviewedAt": null
-    },
-    {
-      "path": "projects/kidp/life-design-lab/a05/README.md",
-      "group": "A_UI_ACCESSIBILITY",
       "reviewStatus": "NOT_REVIEWED",
       "mergeAuthorized": false,
       "reviewEvidenceRef": null,
