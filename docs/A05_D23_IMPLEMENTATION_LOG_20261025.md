@@ -326,3 +326,13 @@ After: Added CSS layout zoom checks at 200 and 400 percent. Added a separate ver
 Evidence: Actions 40177149557 passed, including 16 browser cases, 66 scoring cases, 13 storage cases, and 12 site preflight checks. SEO audit 40177149569 passed.
 
 Limitations: CSS zoom is not native browser zoom. Screen reader and psychometric reviews remain pending. No merge or release.
+
+## A05-D31-001 (2026-10-25)
+
+Before: D-30 recorded an unapproved sample of revised questions, not all 30 items.
+
+After: Added docs/A05_D31_FULL_QUESTION_REVIEW_20261025.md with 30 source-matched items, polarity-normalized old/new wording, E05 review priority, and version/scoring/storage compatibility gates. No production question or scoring changes.
+
+Evidence: Confirmed 30 unique questions from the current source. D-30 test baseline remains Actions 40177149557: browser 16/16, scoring 66/66, storage 13/13, site 12/12. D-31 is documentation only and has no new acceptance claim.
+
+Limitations: The new wording is not validated or approved. No automatic migration, merge, or release.
