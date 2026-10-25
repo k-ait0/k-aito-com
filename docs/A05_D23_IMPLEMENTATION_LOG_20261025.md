@@ -1256,3 +1256,17 @@ the test matrix. Canonical stored timestamps and assessments
 are unchanged, as are question set/score contracts.
 G1 human research decisions 12/12 PENDING; D-42 controls
 16/16 PENDING; no merge or production deployment.
+
+## A05-D51-001 (2026-10-26)
+
+**Actual issue:** `exportA05Data()` fetched all five A05 IndexedDB stores via **five separate readonly transactions**. Although no response was sent remotely, another tab could potentially commit a draft/finalization/consent change between the individual snapshots, producing a backup whose stores do not refer to one coherent commit point.
+
+**Fix:** `storage.mjs` now exports `readExportSnapshot()`. All `drafts/history/preferences/migrations/legacyBackups` `getAll()` calls are queued synchronously inside **one multi-store readonly IndexedDB transaction**. `export.mjs` uses the resulting snapshot unchanged. The user-facing `A05-EXPORT-1` JSON schema, names/order of store arrays, confirmation and privacy warning remain unchanged; there is no upload, restoration, scoring alteration or additional persistence.
+
+**Regression:** Appended **2 native Node** storage adapter tests verifying exactly one readonly transaction across all five stores, inclusion of consent, draft, migrations and legacy backups, and independent result-copy semantics (modifying the exported snapshot does not alter stored items). Strengthened the existing Chrome JSON-download case to inspect all five store keys and instrument `IDBDatabase.prototype.transaction` to assert **exactly one readonly multi-store transaction** during export, restoring the original method afterward.
+
+**Native verification:** GitHub Actions **40222049810 SUCCESS**: Node 22 **146/146 passed** (scoring 66, date formatting 5, storage 15, earlier research/G1 60). Chromium A05 acceptance **23/23 named cases passed**, including strengthened actual JSON export. Independent network/page-error check, KIDP P0 browser QA, local preflight and diff checks passed. SEO static audit **40222049766 SUCCESS**.
+
+**Release/research audit:** `docs/A05_D51_ENGINEERING_VS_RESEARCH_RELEASE_REVIEW_20261026.md` explicitly separates technically tested A05 functions from the still-unvalidated candidate questions. D-33 editorial statuses remain BLOCK 7, REVISE 13, TRIAL 10; G1 research operations 12/12 and D-42 research acceptance 16/16 remain PENDING. E-axis research structure undecided. There were no participants, real research data, novel consent, actual backup erasure, question scoring/version changes, PR merge or production deployment.
+
+**Change history:** D-50 corrected local date presentation -> D-51 eliminates per-store export snapshot inconsistency and provides a separate research/release go/no-go assessment. All historical QA evidence preserved.
