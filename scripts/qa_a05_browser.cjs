@@ -358,16 +358,43 @@ async function main() {
     });
 
     await check("user export includes history but does not transmit responses", async () => {
-      const [download] = await Promise.all([
-        page.waitForEvent("download"),
-        page.locator('[data-action="export"]').click()
-      ]);
-      assert.equal(download.suggestedFilename(), "a05-data-export.json");
-      const text = fs.readFileSync(await download.path(), "utf8");
-      const data = JSON.parse(text);
-      assert.equal(data.schema, "A05-EXPORT-1");
-      assert.equal(data.stores.history.length, 1);
-      assert.ok(Object.hasOwn(data.stores.history[0], "rawAnswers"));
+      await page.evaluate(() => {
+        window.__a05ExportScopes = [];
+        window.__a05OriginalTransaction = IDBDatabase.prototype.transaction;
+        IDBDatabase.prototype.transaction = function (...args) {
+          window.__a05ExportScopes.push({
+            stores: typeof args[0] === "string" ? [args[0]] : Array.from(args[0]),
+            mode: args[1] || "readonly"
+          });
+          return window.__a05OriginalTransaction.apply(this, args);
+        };
+      });
+      try {
+        const [download] = await Promise.all([
+          page.waitForEvent("download"),
+          page.locator('[data-action="export"]').click()
+        ]);
+        assert.equal(download.suggestedFilename(), "a05-data-export.json");
+        const text = fs.readFileSync(await download.path(), "utf8");
+        const data = JSON.parse(text);
+        assert.equal(data.schema, "A05-EXPORT-1");
+        assert.deepEqual(Object.keys(data.stores),
+          ["drafts", "history", "preferences", "migrations", "legacyBackups"]);
+        assert.equal(data.stores.history.length, 1);
+        assert.ok(Object.hasOwn(data.stores.history[0], "rawAnswers"));
+        const scopes = await page.evaluate(() => window.__a05ExportScopes);
+        assert.deepEqual(scopes, [{
+          stores: ["drafts", "history", "preferences", "migrations", "legacyBackups"],
+          mode: "readonly"
+        }], "D-51 must export all five stores in one consistent transaction");
+      } finally {
+        await page.evaluate(() => {
+          if (window.__a05OriginalTransaction)
+            IDBDatabase.prototype.transaction = window.__a05OriginalTransaction;
+          delete window.__a05OriginalTransaction;
+          delete window.__a05ExportScopes;
+        });
+      }
     });
 
     await check("raw-answer deletion leaves result intact", async () => {
