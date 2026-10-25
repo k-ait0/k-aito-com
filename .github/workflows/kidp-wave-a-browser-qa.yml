@@ -11,9 +11,26 @@ jobs:
     timeout-minutes: 12
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
       - uses: actions/setup-node@v4
         with:
           node-version: "22"
+      - name: Check A05 scope (avoid unrelated QA cost)
+        id: a05scope
+        shell: bash
+        run: |
+          if git rev-parse HEAD^1 >/dev/null 2>&1 && \
+             git diff --name-only HEAD^1 HEAD | grep -q '^projects/kidp/life-design-lab/a05/'; then
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          fi
+      - name: A05 native Node domain and storage tests
+        if: ${{ steps.a05scope.outputs.changed == 'true' }}
+        run: |
+          node --test scripts/test-a05-engine.mjs
+          node --test scripts/test-a05-storage.mjs
       - name: Install Playwright
         run: npm install --no-save playwright@1.56.1
       - name: Start static server and run Chromium
@@ -21,3 +38,6 @@ jobs:
           python3 -m http.server 8765 --bind 127.0.0.1 > /tmp/kidp-server.log 2>&1 &
           sleep 2
           node projects/kidp/qa_wave_a_browser.cjs
+      - name: A05 Chromium acceptance
+        if: ${{ steps.a05scope.outputs.changed == 'true' }}
+        run: node scripts/qa_a05_browser.cjs
