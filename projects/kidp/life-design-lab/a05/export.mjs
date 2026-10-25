@@ -2,11 +2,10 @@
  * Explicit user-requested export. Never uploads data or automatically creates files.
  * Includes any raw answers still held in the new A05 IndexedDB.
  */
-import { readAll } from "./storage.mjs";
+import { readExportSnapshot } from "./storage.mjs";
 
 export async function exportA05Data(db) {
-  const names = ["drafts", "history", "preferences", "migrations", "legacyBackups"];
-  const contents = await Promise.all(names.map(name => readAll(db, name)));
+  const stores = await readExportSnapshot(db);
   return {
     schema: "A05-EXPORT-1",
     exportedAt: new Date().toISOString(),
