@@ -1,0 +1,729 @@
+{
+  "schema": "A05-INTERVIEW-CANDIDATES-1",
+  "researchVersion": "A05-R-2.0.0-alpha.1",
+  "updated": "2026-10-26",
+  "status": "RESEARCH_ONLY_UNAPPROVED",
+  "sourceVersion": "A05-Q-1.0.0-draft",
+  "sources": [
+    "docs/A05_D31_FULL_QUESTION_REVIEW_20261025.md",
+    "docs/A05_D34_BLOCKER_REWRITE_COMPARISON_20261026.md",
+    "docs/A05_D33_ITEM_AUDIT_AND_VALIDATION_PLAN_20261026.md"
+  ],
+  "policy": {
+    "scoringAllowed": false,
+    "productionUseAllowed": false,
+    "storedAssessmentCompatible": false,
+    "personalDataCollectionApproved": false,
+    "autosaveAllowed": false,
+    "questionBankVersionIsUnchanged": true
+  },
+  "responseFormat": {
+    "bipolar": {
+      "choices": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "notApplicable": null,
+      "neutral": 4
+    },
+    "E05IndependentResearchOnly": {
+      "code": "C",
+      "questions": [
+        {
+          "id": "E05-M",
+          "domain": "money",
+          "prompt": "生活に必要な条件が満たされているとしたら、追加的に使えるお金を増やすことを、どの程度重視しますか"
+        },
+        {
+          "id": "E05-T",
+          "domain": "time",
+          "prompt": "生活に必要な条件が満たされているとしたら、追加的に自分で使える時間を増やすことを、どの程度重視しますか"
+        }
+      ],
+      "choices": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "scoringAllowed": false
+    }
+  },
+  "interview": {
+    "proposedParticipantsMin": 8,
+    "proposedParticipantsMax": 12,
+    "consentRequired": true,
+    "counterbalance": "blocked A/B order alternates across interview participants; E05 independent C order assigned before enrollment",
+    "allowedReporting": "aggregated non-identifying opt-in editorial findings only"
+  },
+  "items": [
+    {
+      "id": "A01",
+      "axis": "A",
+      "sourcePosition": 1,
+      "direction": 1,
+      "editorialStatus": "REVISE",
+      "overlaps": [
+        "A06"
+      ],
+      "variants": [
+        {
+          "code": "D31",
+          "negative": "慣れた方法を改善する",
+          "positive": "新しい方法を試す",
+          "left": "慣れた方法を改善する",
+          "right": "新しい方法を試す"
+        }
+      ]
+    },
+    {
+      "id": "B01",
+      "axis": "B",
+      "sourcePosition": 2,
+      "direction": -1,
+      "editorialStatus": "TRIAL",
+      "overlaps": [
+        "B02",
+        "B06"
+      ],
+      "variants": [
+        {
+          "code": "D31",
+          "negative": "自分で判断する余地を重視する",
+          "positive": "周囲と相談する機会を重視する",
+          "left": "周囲と相談する機会を重視する",
+          "right": "自分で判断する余地を重視する"
+        }
+      ]
+    },
+    {
+      "id": "C01",
+      "axis": "C",
+      "sourcePosition": 3,
+      "direction": 1,
+      "editorialStatus": "TRIAL",
+      "overlaps": [
+        "C02",
+        "C05",
+        "C06",
+        "C04"
+      ],
+      "variants": [
+        {
+          "code": "D31",
+          "negative": "将来の選択肢を増やす活動",
+          "positive": "今日の充実を高める活動",
+          "left": "将来の選択肢を増やす活動",
+          "right": "今日の充実を高める活動"
+        }
+      ]
+    },
+    {
+      "id": "D01",
+      "axis": "D",
+      "sourcePosition": 4,
+      "direction": -1,
+      "editorialStatus": "TRIAL",
+      "overlaps": [
+        "D03",
+        "D06"
+      ],
+      "variants": [
+        {
+          "code": "D31",
+          "negative": "未経験の趣味を試す",
+          "positive": "好きな趣味を深める",
+          "left": "好きな趣味を深める",
+          "right": "未経験の趣味を試す"
+        }
+      ]
+    },
+    {
+      "id": "E01",
+      "axis": "E",
+      "sourcePosition": 5,
+      "direction": 1,
+      "editorialStatus": "TRIAL",
+      "overlaps": [
+        "E02",
+        "E03",
+        "E04",
+        "E05",
+        "E06"
+      ],
+      "variants": [
+        {
+          "code": "D31",
+          "negative": "使えるお金に余裕を持つ",
+          "positive": "自由に使える時間に余裕を持つ",
+          "left": "使えるお金に余裕を持つ",
+          "right": "自由に使える時間に余裕を持つ"
+        }
+      ]
+    },
+    {
+      "id": "A02",
+      "axis": "A",
+      "sourcePosition": 6,
+      "direction": -1,
+      "editorialStatus": "TRIAL",
+      "overlaps": [],
+      "variants": [
+        {
+          "code": "D31",
+          "negative": "今の活動環境を整える",
+          "positive": "新しい活動環境に挑戦する",
+          "left": "新しい活動環境に挑戦する",
+          "right": "今の活動環境を整える"
+        }
+      ]
+    },
+    {
+      "id": "B02",
+      "axis": "B",
+      "sourcePosition": 7,
+      "direction": 1,
+      "editorialStatus": "BLOCK",
+      "overlaps": [
+        "B01",
+        "B06"
+      ],
+      "variants": [
+        {
+          "code": "A",
+          "negative": "同一の活動で自己裁量",
+          "positive": "共同調整をどちらから優先するか。人数や社交性を直接問わない",
+          "left": "同一の活動で自己裁量",
+          "right": "共同調整をどちらから優先するか。人数や社交性を直接問わない"
+        },
+        {
+          "code": "B",
+          "negative": "両方同時にできる",
+          "positive": "相談が道徳的に良く見える、B01/B06と近接 | 自分で決めつつ相談することは可能だと思いますか。どちらを『先に』選んだ理由は何ですか。",
+          "left": "両方同時にできる",
+          "right": "相談が道徳的に良く見える、B01/B06と近接 | 自分で決めつつ相談することは可能だと思いますか。どちらを『先に』選んだ理由は何ですか。"
+        }
+      ]
+    },
+    {
+      "id": "C02",
+      "axis": "C",
+      "sourcePosition": 8,
+      "direction": -1,
+      "editorialStatus": "REVISE",
+      "overlaps": [
+        "C01",
+        "C05",
+        "C06",
+        "C04"
+      ],
+      "variants": [
+        {
+          "code": "D31",
+          "negative": "将来に備える時間",
+          "positive": "今日を楽しむ時間",
+          "left": "今日を楽しむ時間",
+          "right": "将来に備える時間"
+        }
+      ]
+    },
+    {
+      "id": "D02",
+      "axis": "D",
+      "sourcePosition": 9,
+      "direction": 1,
+      "editorialStatus": "TRIAL",
+      "overlaps": [
+        "D03",
+        "D06"
+      ],
+      "variants": [
+        {
+          "code": "D31",
+          "negative": "幅広い分野を学ぶ",
+          "positive": "一つの分野を掘り下げる",
+          "left": "幅広い分野を学ぶ",
+          "right": "一つの分野を掘り下げる"
+        }
+      ]
+    },
+    {
+      "id": "E02",
+      "axis": "E",
+      "sourcePosition": 10,
+      "direction": -1,
+      "editorialStatus": "REVISE",
+      "overlaps": [
+        "E01",
+        "E03",
+        "E04",
+        "E05",
+        "E06"
+      ],
+      "variants": [
+        {
+          "code": "D31",
+          "negative": "追加の収入機会を確保する",
+          "positive": "追加の自由時間を確保する",
+          "left": "追加の自由時間を確保する",
+          "right": "追加の収入機会を確保する"
+        }
+      ]
+    },
+    {
+      "id": "A03",
+      "axis": "A",
+      "sourcePosition": 11,
+      "direction": 1,
+      "editorialStatus": "TRIAL",
+      "overlaps": [],
+      "variants": [
+        {
+          "code": "D31",
+          "negative": "今ある習慣を磨く",
+          "positive": "新しい習慣を取り入れる",
+          "left": "今ある習慣を磨く",
+          "right": "新しい習慣を取り入れる"
+        }
+      ]
+    },
+    {
+      "id": "B03",
+      "axis": "B",
+      "sourcePosition": 12,
+      "direction": -1,
+      "editorialStatus": "REVISE",
+      "overlaps": [
+        "B05"
+      ],
+      "variants": [
+        {
+          "code": "D31",
+          "negative": "自分で達成を振り返る",
+          "positive": "他者と達成を共有する",
+          "left": "他者と達成を共有する",
+          "right": "自分で達成を振り返る"
+        }
+      ]
+    },
+    {
+      "id": "C03",
+      "axis": "C",
+      "sourcePosition": 13,
+      "direction": 1,
+      "editorialStatus": "TRIAL",
+      "overlaps": [],
+      "variants": [
+        {
+          "code": "D31",
+          "negative": "後で役立つ知識を学ぶ",
+          "positive": "今の関心を満たす知識を学ぶ",
+          "left": "後で役立つ知識を学ぶ",
+          "right": "今の関心を満たす知識を学ぶ"
+        }
+      ]
+    },
+    {
+      "id": "D03",
+      "axis": "D",
+      "sourcePosition": 14,
+      "direction": -1,
+      "editorialStatus": "BLOCK",
+      "overlaps": [
+        "D01",
+        "D06",
+        "D02"
+      ],
+      "variants": [
+        {
+          "code": "A",
+          "negative": "使える時間が同じなら、未経験の活動をいくつか試す",
+          "positive": "使える時間が同じなら、気に入った活動をさらに掘り下げる",
+          "left": "使える時間が同じなら、気に入った活動をさらに掘り下げる",
+          "right": "使える時間が同じなら、未経験の活動をいくつか試す"
+        },
+        {
+          "code": "B",
+          "negative": "活動の機会が同じなら、複数の異なるテーマを少しずつ体験する",
+          "positive": "活動の機会が同じなら、一つのテーマを繰り返して詳しく知る",
+          "left": "活動の機会が同じなら、一つのテーマを繰り返して詳しく知る",
+          "right": "活動の機会が同じなら、複数の異なるテーマを少しずつ体験する"
+        }
+      ]
+    },
+    {
+      "id": "E03",
+      "axis": "E",
+      "sourcePosition": 15,
+      "direction": 1,
+      "editorialStatus": "REVISE",
+      "overlaps": [
+        "E01",
+        "E02",
+        "E04",
+        "E05",
+        "E06"
+      ],
+      "variants": [
+        {
+          "code": "D31",
+          "negative": "経済的な選択肢を増やす",
+          "positive": "時間の使い方の選択肢を増やす",
+          "left": "経済的な選択肢を増やす",
+          "right": "時間の使い方の選択肢を増やす"
+        }
+      ]
+    },
+    {
+      "id": "A04",
+      "axis": "A",
+      "sourcePosition": 16,
+      "direction": -1,
+      "editorialStatus": "BLOCK",
+      "overlaps": [
+        "A06",
+        "D04"
+      ],
+      "variants": [
+        {
+          "code": "A",
+          "negative": "今の役割の範囲を保ちながら工夫する",
+          "positive": "役割の範囲を組み替えながら工夫する",
+          "left": "役割の範囲を組み替えながら工夫する",
+          "right": "今の役割の範囲を保ちながら工夫する"
+        },
+        {
+          "code": "B",
+          "negative": "慣れている活動の構成を続ける",
+          "positive": "活動の構成を見直して新しく組み直す",
+          "left": "活動の構成を見直して新しく組み直す",
+          "right": "慣れている活動の構成を続ける"
+        }
+      ]
+    },
+    {
+      "id": "B04",
+      "axis": "B",
+      "sourcePosition": 17,
+      "direction": 1,
+      "editorialStatus": "TRIAL",
+      "overlaps": [],
+      "variants": [
+        {
+          "code": "D31",
+          "negative": "自分のペースで予定を決める",
+          "positive": "周囲と予定を合わせる",
+          "left": "自分のペースで予定を決める",
+          "right": "周囲と予定を合わせる"
+        }
+      ]
+    },
+    {
+      "id": "C04",
+      "axis": "C",
+      "sourcePosition": 18,
+      "direction": -1,
+      "editorialStatus": "BLOCK",
+      "overlaps": [
+        "C01",
+        "C02",
+        "C05"
+      ],
+      "variants": [
+        {
+          "code": "A",
+          "negative": "同じ活動なら、後から得られる充実を先に重視する",
+          "positive": "同じ活動なら、取り組む今日の充実を先に重視する",
+          "left": "同じ活動なら、取り組む今日の充実を先に重視する",
+          "right": "同じ活動なら、後から得られる充実を先に重視する"
+        },
+        {
+          "code": "B",
+          "negative": "時間を使う活動を選ぶとき、将来の自分の満足につながる方を先に選ぶ",
+          "positive": "時間を使う活動を選ぶとき、今日の自分の満足につながる方を先に選ぶ",
+          "left": "時間を使う活動を選ぶとき、今日の自分の満足につながる方を先に選ぶ",
+          "right": "時間を使う活動を選ぶとき、将来の自分の満足につながる方を先に選ぶ"
+        }
+      ]
+    },
+    {
+      "id": "D04",
+      "axis": "D",
+      "sourcePosition": 19,
+      "direction": 1,
+      "editorialStatus": "REVISE",
+      "overlaps": [
+        "A04",
+        "A06"
+      ],
+      "variants": [
+        {
+          "code": "D31",
+          "negative": "新しい仕事の進め方を試す",
+          "positive": "得意な進め方を磨く",
+          "left": "新しい仕事の進め方を試す",
+          "right": "得意な進め方を磨く"
+        }
+      ]
+    },
+    {
+      "id": "E04",
+      "axis": "E",
+      "sourcePosition": 20,
+      "direction": -1,
+      "editorialStatus": "BLOCK",
+      "overlaps": [
+        "E01",
+        "E02",
+        "E03",
+        "E05",
+        "E06"
+      ],
+      "variants": [
+        {
+          "code": "A",
+          "negative": "家計不足・時間不足の不安を測らず、追加的な支出",
+          "positive": "時間裁量の利用を比較する",
+          "left": "時間裁量の利用を比較する",
+          "right": "家計不足・時間不足の不安を測らず、追加的な支出"
+        },
+        {
+          "code": "B",
+          "negative": "両案ともE01/E03/E06と重複。改善量・可能性の共通基準なし | どの程度のお金",
+          "positive": "時間が増えると想定しましたか。実際の不足が判断に影響しましたか。",
+          "left": "時間が増えると想定しましたか。実際の不足が判断に影響しましたか。",
+          "right": "両案ともE01/E03/E06と重複。改善量・可能性の共通基準なし | どの程度のお金"
+        }
+      ]
+    },
+    {
+      "id": "A05",
+      "axis": "A",
+      "sourcePosition": 21,
+      "direction": 1,
+      "editorialStatus": "BLOCK",
+      "overlaps": [
+        "A06"
+      ],
+      "variants": [
+        {
+          "code": "A",
+          "negative": "予定外の変化があっても、今の進め方を土台に調整する",
+          "positive": "予定外の変化を機に、進め方を大きく組み替える",
+          "left": "予定外の変化があっても、今の進め方を土台に調整する",
+          "right": "予定外の変化を機に、進め方を大きく組み替える"
+        },
+        {
+          "code": "B",
+          "negative": "周囲の状況が変わったとき、慣れた仕組みを活かす",
+          "positive": "周囲の状況が変わったとき、新しい仕組みを試す",
+          "left": "周囲の状況が変わったとき、慣れた仕組みを活かす",
+          "right": "周囲の状況が変わったとき、新しい仕組みを試す"
+        }
+      ]
+    },
+    {
+      "id": "B05",
+      "axis": "B",
+      "sourcePosition": 22,
+      "direction": -1,
+      "editorialStatus": "REVISE",
+      "overlaps": [
+        "B03"
+      ],
+      "variants": [
+        {
+          "code": "D31",
+          "negative": "個人で進める目標を持つ",
+          "positive": "協力して進める目標を持つ",
+          "left": "協力して進める目標を持つ",
+          "right": "個人で進める目標を持つ"
+        }
+      ]
+    },
+    {
+      "id": "C05",
+      "axis": "C",
+      "sourcePosition": 23,
+      "direction": 1,
+      "editorialStatus": "REVISE",
+      "overlaps": [
+        "C01",
+        "C02",
+        "C06",
+        "C04"
+      ],
+      "variants": [
+        {
+          "code": "D31",
+          "negative": "長期の目標に向けた小さな前進",
+          "positive": "日々の満足を増やす小さな工夫",
+          "left": "長期の目標に向けた小さな前進",
+          "right": "日々の満足を増やす小さな工夫"
+        }
+      ]
+    },
+    {
+      "id": "D05",
+      "axis": "D",
+      "sourcePosition": 24,
+      "direction": -1,
+      "editorialStatus": "TRIAL",
+      "overlaps": [],
+      "variants": [
+        {
+          "code": "D31",
+          "negative": "複数の創作表現に挑戦する",
+          "positive": "一つの表現を磨き続ける",
+          "left": "一つの表現を磨き続ける",
+          "right": "複数の創作表現に挑戦する"
+        }
+      ]
+    },
+    {
+      "id": "E05",
+      "axis": "E",
+      "sourcePosition": 25,
+      "direction": 1,
+      "editorialStatus": "BLOCK",
+      "overlaps": [
+        "E01",
+        "E02",
+        "E03",
+        "E04",
+        "E06"
+      ],
+      "variants": [
+        {
+          "code": "A",
+          "negative": "両方実現できるとして、まず家計の追加的な余裕を確保したい",
+          "positive": "両方実現できるとして、まず自分で使える追加的な時間を確保したい",
+          "left": "両方実現できるとして、まず家計の追加的な余裕を確保したい",
+          "right": "両方実現できるとして、まず自分で使える追加的な時間を確保したい"
+        },
+        {
+          "code": "B",
+          "negative": "同程度の負担で一つ改善するなら、支出の選択肢を増やしたい",
+          "positive": "同程度の負担で一つ改善するなら、予定の選択肢を増やしたい",
+          "left": "同程度の負担で一つ改善するなら、支出の選択肢を増やしたい",
+          "right": "同程度の負担で一つ改善するなら、予定の選択肢を増やしたい"
+        }
+      ]
+    },
+    {
+      "id": "A06",
+      "axis": "A",
+      "sourcePosition": 26,
+      "direction": -1,
+      "editorialStatus": "REVISE",
+      "overlaps": [
+        "A01",
+        "A04",
+        "D04",
+        "A05"
+      ],
+      "variants": [
+        {
+          "code": "D31",
+          "negative": "慣れた進め方で挑戦する",
+          "positive": "異なる進め方で挑戦する",
+          "left": "異なる進め方で挑戦する",
+          "right": "慣れた進め方で挑戦する"
+        }
+      ]
+    },
+    {
+      "id": "B06",
+      "axis": "B",
+      "sourcePosition": 27,
+      "direction": 1,
+      "editorialStatus": "REVISE",
+      "overlaps": [
+        "B01",
+        "B02"
+      ],
+      "variants": [
+        {
+          "code": "D31",
+          "negative": "自分で方針を組み立てる",
+          "positive": "関係者と方針をすり合わせる",
+          "left": "自分で方針を組み立てる",
+          "right": "関係者と方針をすり合わせる"
+        }
+      ]
+    },
+    {
+      "id": "C06",
+      "axis": "C",
+      "sourcePosition": 28,
+      "direction": -1,
+      "editorialStatus": "REVISE",
+      "overlaps": [
+        "C01",
+        "C02",
+        "C05"
+      ],
+      "variants": [
+        {
+          "code": "D31",
+          "negative": "将来の暮らしを整える",
+          "positive": "現在の暮らしを充実させる",
+          "left": "現在の暮らしを充実させる",
+          "right": "将来の暮らしを整える"
+        }
+      ]
+    },
+    {
+      "id": "D06",
+      "axis": "D",
+      "sourcePosition": 29,
+      "direction": 1,
+      "editorialStatus": "REVISE",
+      "overlaps": [
+        "D01",
+        "D03",
+        "D02"
+      ],
+      "variants": [
+        {
+          "code": "D31",
+          "negative": "経験の種類を増やす",
+          "positive": "経験の深さを増やす",
+          "left": "経験の種類を増やす",
+          "right": "経験の深さを増やす"
+        }
+      ]
+    },
+    {
+      "id": "E06",
+      "axis": "E",
+      "sourcePosition": 30,
+      "direction": -1,
+      "editorialStatus": "REVISE",
+      "overlaps": [
+        "E01",
+        "E02",
+        "E03",
+        "E04",
+        "E05"
+      ],
+      "variants": [
+        {
+          "code": "D31",
+          "negative": "支出を選べる柔軟性",
+          "positive": "予定を選べる柔軟性",
+          "left": "予定を選べる柔軟性",
+          "right": "支出を選べる柔軟性"
+        }
+      ]
+    }
+  ]
+}
