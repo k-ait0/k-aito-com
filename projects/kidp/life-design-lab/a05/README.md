@@ -108,3 +108,26 @@ Recovery / consent / damaged-history cases have new regression tests.
 **Status:** isolated V8 domain regression 66/66; storage regression 13/13.
 Both use testing shims and are NOT native Node or real IndexedDB passes.
 All release gates in the main checklist still apply.
+
+## D-26 protected-history recovery
+
+The history page now displays structurally checked legacy snapshots in
+read-only mode, with an explicit **not verified** label. Any unknown legacy
+presentation strings are HTML-escaped, not rendered as markup. Quarantined
+records are shown as opaque recovery entries without their contents.
+
+Users can explicitly delete a *single* legacy or quarantined history entry
+after confirmation instead of being forced to erase all verified results.
+The storage controller stays locked after such a deletion: **reload to
+verify the current persisted state** before regular writes are allowed.
+Records with unusable IDs require export and full cleanup rather than
+attempting an unsafe guess at their identity.
+
+The browser QA runner now injects one legacy and one malformed entry alongside
+one verified result; it asserts independent classification, escaped legacy
+presentation, and record-specific deletion preserving the verified history.
+Those tests are not yet executed in real Chromium.
+
+A source-level V8 evaluation of the actual renderHistory() from this branch
+matched seven safety/visibility invariants. This is not a full DOM/browser
+acceptance test.
