@@ -187,3 +187,72 @@ GitHub Actions execution. PR remains Draft and must not be merged yet.
 **Next gate:** Run the checked-in node and Playwright tests on a checked-out
 branch, review logs, fix any failing cases; only after verified browser QA
 should the release status be reconsidered.
+
+## 2026-10-25 — A05-D27-001
+
+**Scope:** First native Node 22 verification, real Chromium acceptance, and
+repository-wide preflight for A05 Draft PR #61.
+
+**Before:**
+- Prior isolated V8 domain and simulated IndexedDB results were not native
+  Node or real-browser evidence.
+- The first Chromium runner assumed Playwright's default downloaded Chromium
+  executable, which is not installed on the GitHub runner.
+- Fast consecutive answer/next interactions could be discarded while an
+  asynchronous save was in flight; the QA runner also reloaded or inspected
+  state before the IndexedDB commit finished.
+- The existing repository workflow verified KIDP P0, not A05.
+
+**After:**
+- Reuse existing `.github/workflows/kidp-wave-a-browser-qa.yml` rather than
+  create another workflow. Detect A05 changes via merge-commit diff and run
+  A05 Node tests, repository preflight/diff check and A05 Chrome QA only for
+  such changes. The existing KIDP P0 QA remains in place.
+- Browser runner uses the installed `channel: "chrome"`.
+- A05 UI disables controls while asynchronous persistence runs, derives the
+  Next button state again from the stored answer, and exposes `aria-busy`.
+- QA waits for both the updated question and `aria-busy=false` before
+  reload; waits for save/finish/purge/recovery acknowledgements before
+  inspecting persisted state. Per-question assertions detect skipped steps.
+- No changes to P0's application code, production navigation or deployment.
+
+**Native GitHub Actions evidence:**
+- Run 40165404398: Node domain 66/66 and storage contract 13/13 passed; A05
+  browser runner failed to launch (missing default Playwright executable).
+- Later runs identified a rapid-tap/save ordering problem, and premature
+  UI assertions/reloads before IndexedDB operations settled. Both production
+  UI and QA runner were corrected; no tests were marked passed prematurely.
+- Run 40165964282: A05 Chromium acceptance **12/12 passed**, Node domain
+  **66/66 passed**, simulated storage contract **13/13 passed**, existing
+  KIDP Wave A browser QA passed, SEO static audit succeeded.
+- Final verification run **40166061103**: success. A05 Node **66/66**,
+  simulated storage contract **13/13**, real Chrome A05 acceptance **12/12**,
+  site-wide `node scripts/local-preflight.cjs` **12/12**, `git diff
+  --check HEAD^1 HEAD` passed, existing KIDP P0 Chrome QA passed.
+  SEO audit: 0 errors and 12 existing warnings (missing JSON-LD on
+  non-A05 pages); warnings did not fail the gate.
+- The A05 Chrome suite verified consent/no-consent reload, full 30-answer
+  scoring to T16/time, history reload, JSON export, raw answer purge,
+  verified+legacy+quarantined mixed records, escaped HTML,
+  targeted protected-record deletion, two-tab conflict protection,
+  explicit A05 database deletion, viewport 320/390/1440px,
+  and no unexpected external network/page errors.
+
+**Limits and remaining release gates:**
+- The 13 storage contract cases use an in-memory IndexedDB simulator;
+  they are separate from the real Chrome acceptance flows.
+- No actual Safari/iOS or screen-reader manual acceptance yet.
+- No independent psychometric validation or editorial approval of the 30
+  draft questions and E-axis trade-offs. This is not a clinical assessment.
+- No D-12/D-19 legacy prototype data migration or A01/MY LIFE NOTE API
+  integration. Earlier data remains untouched.
+- No proof of behavior under quota exhaustion, forced browser termination,
+  storage corruption beyond test fixtures, or real multi-device sync.
+- No production merge, deployment or navigation link. PR #61 remains Draft.
+
+**Reason:** Turn proposed quality gates into reproducible, traceable native
+tests while minimizing Actions cost by reusing one existing KIDP QA workflow
+and limiting A05 steps to A05-modifying PRs.
+
+**Status:** D-27 engineering QA gate passed in GitHub Actions; release gate
+remains pending content/accessibility review and explicit publish decision.
