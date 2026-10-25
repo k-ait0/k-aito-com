@@ -522,3 +522,14 @@ G1 12/12 and D-42 16/16 approval tasks remain PENDING;
 D-44 does not grant research permission, change stored
 result/scoring semantics or publish the draft. Native
 browser verification was pending when this note was written.
+
+### D-44 extended keyboard QA
+
+Additional assertions in the existing Chromium suite now check that
+keyboard focus survives toggling opted-in raw-answer retention
+**off and back on**, deleting a history item's raw answers,
+targetedly deleting legacy/quarantined entries, and erasing the
+A05 database. No changes to saved data semantics or deletion
+behavior were required; these cases specifically cover the
+post-rerender focus changes. The browser regression suite has
+17 named cases, not a new CI workflow or job.
