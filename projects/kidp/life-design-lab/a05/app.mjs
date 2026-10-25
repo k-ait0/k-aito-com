@@ -355,6 +355,10 @@ function renderHistory() {
         '<p>この端末に既存データがあるため、上書きを禁止します。</p>' : '') +
       (state.backupInspection.restorePlan.blockers.includes('HISTORY_REQUIRES_MANUAL_VERSION_REVIEW') ?
         '<p>旧版または不整合の履歴は自動採用できません。</p>' : '') +
+      (state.backupInspection.restorePlan.status === 'BLOCKED_BACKUP_INCOMPATIBLE' ?
+        '<p>互換性未確認の下書きや保護対象が含まれるため、このバックアップは復元候補にできません。</p>' : '') +
+      (state.backupInspection.restorePlan.blockers.includes('CONSENT_MUST_NOT_BE_IMPORTED') ?
+        '<p>バックアップ内の保存同意は、この端末の同意として引き継げません。</p>' : '') +
       '<p>元のJSONの真正性は未確認です。復元機能・自動承認機能はありません。既存の端末データは変更していません。</p>' +
       '</div>' : '') + '</div>';
 }
