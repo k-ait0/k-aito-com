@@ -316,3 +316,13 @@ No merge, production deploy, or public navigation link.
 
 **Reason:** Remove common accessibility barriers without changing
 versioned answers, existing KIDP P0, or the production release state.
+
+## A05-D30-001 (2026-10-25)
+
+Before: Browser acceptance covered text sizing but not CSS layout zoom. No version-two question proposal existed.
+
+After: Added CSS layout zoom checks at 200 and 400 percent. Added a separate version-two wording proposal. The original questionnaire and stored results remain unchanged.
+
+Evidence: Actions 40177149557 passed, including 16 browser cases, 66 scoring cases, 13 storage cases, and 12 site preflight checks. SEO audit 40177149569 passed.
+
+Limitations: CSS zoom is not native browser zoom. Screen reader and psychometric reviews remain pending. No merge or release.
