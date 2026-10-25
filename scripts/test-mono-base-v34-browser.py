@@ -87,7 +87,14 @@ def validate_site(browser,name,viewport):
     # A full-page capture taken while the CAD frame is offscreen may show an
     # intentionally paused/blank renderer. Capture the actual WebGL canvas
     # after two fresh visible frames as the visual evidence instead.
-    canvas.scroll_into_view_if_needed()
+    # A live WebGL canvas can be reported "not stable" by Playwright while
+    # its containing auto-height iframe is being resized. This is a visual
+    # capture setup, not an interaction: use DOM scrolling rather than an
+    # actionability/stability-gated locator scroll.
+    canvas.evaluate("""el => {
+      document.documentElement.style.scrollBehavior='auto';
+      el.scrollIntoView({behavior:'instant',block:'center'});
+    }""")
     previous_frames=page.evaluate("""() => document.querySelector('#cad-frame')?.contentWindow?.__monoBaseRenderStats?.frames||0""")
     page.wait_for_function("""previous => {
       const r=document.querySelector('#cad-frame')?.contentWindow?.__monoBaseRenderStats;
