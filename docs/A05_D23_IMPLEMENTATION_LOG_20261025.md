@@ -1201,3 +1201,21 @@ set, result version/hash/shape, saved assessment compatibility,
 production app, real user personal research data, owner
 authority or retention governance. G1 12/12 PENDING and
 D-42 16/16 PENDING. No PR merge/deployment.
+
+## A05-D48–D49-001 (2026-10-26)
+
+**Scope:** Additional independently actionable mobile accessibility and privacy-disclosure improvements to the still-unmerged A05 prototype. D-43 human decisions and all research gates remain untouched.
+
+**D-48 before:** The 7-point input row could compress each answer button below 44px width on 320–440px viewports. Existing D-29/D-30 QA asserted answer-button **height**, but not **width**.
+
+**D-48 after:** `projects/kidp/life-design-lab/a05/style.css` uses an ordered **4+3** grid for seven answers at viewports up to 440px. The first four remain on the first line, the next three on the second, preserving DOM order, screen-reader order and D-47 digit-key shortcuts. Larger viewports retain a single row. An added Chrome QA case checks 320/375/390/400/420/440/480/768px, rendered button width and height >=44px, appropriate row count and no horizontal overflow.
+
+**D-49 before:** The existing skip link navigated to `#a05-main` but the `main` landmark was not programmatically focusable. A05's IndexedDB clear operation was described as deletion of all saved data without making clear that system/cloud backups and prior D-12/D-19/P0 data are not erased.
+
+**D-49 after:** Added `tabindex="-1"` to the main landmark and a focus outline; keyboard skip link can now focus the document's main section. Before explicit A05 browser deletion, a confirmation clarifies the old-store and backup boundary; after a successful IndexedDB operation the notice avoids claiming confirmed erasure of OS/cloud copies. The scope of `eraseA05DatabaseContents()` is unchanged. New Chrome QA checks the skip link; the pre-existing full-deletion case checks the dialog and success notice while retaining the reload/persistence cleanup checks.
+
+**Test tally after these additions:** The existing browser suite contains **22 named checks** (20 prior + D-48 + D-49), plus a separate no-unexpected-network/page-error check. Native Node domain/storage/research tests remain 139. **Final GitHub Actions results for the last D-49 code changes are pending** at this change-log entry. No Actions jobs or workflows were created.
+
+**Unchanged:** Questions, score/hashes, result schema, optional browser consent, stored history adapter, P0, existing releases; human research G1 12/12 pending and D-42 16/16 pending, no real research or personal data capture, no deployment or PR merge.
+
+**Change history:** D-47 1–7 keyboard input -> D-48 touch width/row layout -> D-49 focusable skip target and precise deletion-scope explanation. History appended rather than overwritten.
