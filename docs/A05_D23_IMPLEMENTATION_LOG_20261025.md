@@ -1342,3 +1342,83 @@ recruitment, collection, merge or deployment.
 non-destructive local inspection. D-52 adds a safe preview
 and independent technical-vs-research review gates, keeping
 the previous engineering and research decisions separate.
+
+## A05-D53-001 (2026-10-26)
+
+**Scope:** Extend D-52's format-only JSON preview to a **no-write,
+data-minimizing recovery-readiness analysis**, while strengthening the
+Draft PR's engineering-vs-human-research release boundaries.
+
+**Before:** A local A05 JSON could be structurally checked and its
+five per-store counts displayed. The existing browser contents,
+the candidate historical record versions, and whether source consent
+could be transferred were not evaluated in a recovery-planning
+context. GitHub Actions only triggered/scoped the A05 job for
+A05 app-directory edits; a standalone test/script-only change
+could be missed.
+
+**After:**
+- `storage.mjs`: `readA05StoreCounts()` obtains five aggregate
+  store counts using one readonly IndexedDB transaction, WITHOUT
+  loading any stored respondent identifiers or answers.
+- `restore-review.mjs`: pure `inspectA05RestorePlan()` compares
+  input JSON structure, current question hash, current/legacy/
+  quarantined history classification, draft compatibility,
+  protected stores and saved consent, and local-target occupancy.
+  All results have `restoreAuthorized:false`,
+  `restoreImplemented:false`, `anyDataWritten:false`.
+  Existing local records cause a **NO OVERWRITE** blocker;
+  imported opt-in consent is NEVER transferred.
+- `app.mjs`: the user-selected local JSON review now displays
+  only local aggregate counts, version-category counts and
+  fixed generic risk warnings. It stores neither source JSON
+  nor individual IDs or answers and never writes to the DB.
+  Even a clean preview is NOT a restore invitation.
+- Added eight pure native recovery-plan tests and two
+  count-only IndexedDB simulator tests; expanded the D-52
+  Chrome case and added an isolated empty-browser, synthetic
+  valid-history browser case (real Chrome **26 named checks**).
+- Added four native release-boundary tests: the app must
+  remain `noindex,nofollow` and marked as unvalidated;
+  production modules may not import research-only scripts;
+  backup inspection/planning modules must not use storage
+  or network I/O; scored-question/version contracts remain
+  labelled `-draft`.
+- Adjusted the **existing** KIDP Actions path scope to cover
+  A05-specific test and research script changes. No new jobs
+  or workflows. Added
+  `docs/A05_D53_RESTORE_DRY_RUN_AND_PR_RELEASE_GATES_20261026.md`.
+
+**CI evidence (including failed intermediate runs):**
+First KIDP run **40223736456** failed two newly added
+tests because their fixtures accidentally duplicated
+the `active` draft key and the helper's default argument
+hid an explicit invalid `undefined`. Correcting the
+test fixtures yielded **40223797648 SUCCESS**, native
+161/161 and Chromium 26/26. New static release-boundary
+tests first failed at **40224010036** by classifying
+legitimate local `Set.add()` (duplicate detection) as
+a persistent write; the assertion was narrowed, with
+no change to app storage behavior.
+
+**Final verified code CI: KIDP 40224146085 SUCCESS.**
+Node 22 **165/165 PASS** (66 domain/scoring, 5 local
+date, 5 backup structure, 8 recovery risk, 4 release
+boundaries, 17 simulated storage, 60 earlier research/G1).
+Real Chrome A05 **26/26 named checks PASS** plus
+the independent no-network/page-error check. Existing
+KIDP P0 browser QA, local preflight/diff succeeded.
+SEO audit **40224146036 SUCCESS**.
+
+**Human decision boundary remains unchanged:** G1 12/12
+PENDING, D-42 operational acceptance 16/16 PENDING.
+D-33 BLOCK7/REVISE13/TRIAL10 editorial classifications
+remain unchanged; E axis and 16-type validity remain
+unproven. No actual participant data or research, no
+real backup import, no overwriting saved answers, no
+production merge or release. PR #61 remains Draft.
+
+**Change history:** D-52 structural JSON inspection
+without restoring -> D-53 local-count and historical
+compatibility review with permanent NO-WRITE outcomes,
+explicit release guards and CI coverage for script changes.
