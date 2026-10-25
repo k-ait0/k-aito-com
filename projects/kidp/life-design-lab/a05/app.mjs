@@ -164,17 +164,25 @@ function updateAnswerControls() {
 
 function renderReview() {
   return '<h2>回答一覧</h2><p class="muted">各質問を選ぶと修正できます。回答不能は入力済みとして扱います。</p>' +
-    '<div class="card tinted"><strong>' + count() + ' / 30問 入力済み</strong></div>' +
-    AXES.map(axis => '<h3>' + axis.id + '｜' + escapeHTML(axis.name) + '</h3>' +
+    '<div class="card tinted"><strong>' + count() + ' / 30問 入力済み</strong>' +
+    (count() < 30 ? '<p class="muted">未回答は ' + (30 - count()) + '問あります。</p>' :
+      '<p class="muted">30問すべて入力済みです。必要なら回答を見直せます。</p>') + '</div>' +
+    AXES.map(axis => '<h3>' + axis.id + '｜' + escapeHTML(axis.name) +
+      '（' + QUESTIONS.filter(q => q.axis === axis.id && OWN(state.draft.answers, q.id)).length + '/6）</h3>' +
       '<div class="review-grid">' + QUESTIONS.map((q, index) => ({ q, index }))
         .filter(item => item.q.axis === axis.id).map(({ q, index }) => {
           const value = state.draft.answers[q.id];
           const label = value === undefined ? "未回答" : value === null ? "回答不能" :
             value === 4 ? "中間" : value + "/7";
           return '<button type="button" data-action="jump" data-index="' + index +
-            '"><strong>' + q.id + '</strong><br><span class="muted">' + label + '</span></button>';
+            '"' + (value === undefined ? ' data-unanswered="true"' : '') +
+            ' aria-label="' + escapeHTML(q.id + '：' + q.left + '／' + q.right + '。' + label + '。質問を編集') + '">' +
+            '<strong>' + q.id + '</strong><span class="review-prompt">' +
+            escapeHTML(q.left) + ' ／ ' + escapeHTML(q.right) + '</span>' +
+            '<span class="review-answer">' + escapeHTML(label) + '</span></button>';
         }).join("") + '</div>').join("") +
     '<div class="actions"><button type="button" class="btn" data-view="quiz">回答に戻る</button>' +
+    (count() < 30 ? '<button type="button" class="btn primary" data-action="next-unanswered">最初の未回答へ</button>' : '') +
     '<button type="button" class="btn primary" data-action="finish" ' +
     (count() !== 30 || state.consent && state.readOnly ? "disabled" : "") +
     '>診断結果を確定する</button></div>';
@@ -258,8 +266,10 @@ function renderResult() {
     '<p class="muted">スコアは暫定的な質問への回答から計算したもので、学術的に検証された診断ではありません。</p>' +
     '<div class="actions"><button type="button" class="btn" data-view="catalog">タイプ図鑑</button>' +
     '<button type="button" class="btn" data-view="history">履歴</button>' +
-    '<button type="button" class="btn" data-action="share">共有文面を表示</button></div>' +
-    (state.share ? '<div class="card"><label for="a05-share">共有するテキスト（個別回答を含みません）</label>' +
+    '<button type="button" class="btn" data-action="share" aria-expanded="' +
+    state.share + '" aria-controls="a05-share-panel">' +
+    (state.share ? '共有文面を閉じる' : '共有文面を表示') + '</button></div>' +
+    (state.share ? '<div class="card" id="a05-share-panel"><label for="a05-share">共有するテキスト（個別回答を含みません）</label>' +
       '<textarea id="a05-share" readonly style="width:100%;min-height:110px">' +
       escapeHTML("A05 人生価値観診断（開発版）\n" +
         (result.typeId ?? "判定保留") + " " + (display?.name ?? "") +
@@ -414,6 +424,10 @@ root.addEventListener("click", async event => {
       if (state.draft.index === 29) show("review");
       else await moveIndex(state.draft.index + 1);
     } else if (action === "jump") await moveIndex(Number(button.dataset.index));
+    else if (action === "next-unanswered") {
+      const unanswered = QUESTIONS.findIndex(q => !OWN(state.draft.answers, q.id));
+      if (unanswered >= 0) await moveIndex(unanswered);
+    }
     else if (action === "filter") {
       const key = button.dataset.filter;
       if (!["all", "G1", "G2", "G3", "G4"].includes(key)) return;
