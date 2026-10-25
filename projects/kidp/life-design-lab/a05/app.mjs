@@ -121,11 +121,15 @@ function renderQuiz() {
     '<div class="answer-pair"><div><small>左の価値観</small><strong>' + escapeHTML(q.left) + '</strong></div>' +
     '<div><small>右の価値観</small><strong>' + escapeHTML(q.right) + '</strong></div></div>' +
     '<div class="scale-hint"><span>左を強く重視</span><span>右を強く重視</span></div>' +
-    '<fieldset><legend>7段階の回答</legend><div class="scale" id="a05-scale">' +
+    '<fieldset aria-describedby="a05-answer-status"><legend>質問 ' + (index + 1) +
+    '：' + escapeHTML(q.left) + ' と ' + escapeHTML(q.right) +
+    ' のどちらを重視しますか。7段階の回答</legend><div class="scale" id="a05-scale">' +
     Array.from({ length: 7 }, (_, i) => {
       const n = i + 1;
       return '<button type="button" data-action="answer" data-value="' + n +
-        '" aria-pressed="' + (value === n) + '" aria-label="' + n + '／7">' + n + '</button>';
+        '" aria-pressed="' + (value === n) + '" aria-label="' +
+        (n === 1 ? "1／7 左を強く重視" : n === 4 ? "4／7 どちらも同程度" :
+          n === 7 ? "7／7 右を強く重視" : n + "／7") + '">' + n + '</button>';
     }).join("") + '</div></fieldset>' +
     '<p class="muted" id="a05-answer-status" aria-live="polite">' + answerLabel(value) + '</p>' +
     '<button type="button" class="btn" id="a05-skip" data-action="skip">' +
@@ -375,6 +379,15 @@ function show(page) {
   state.view = page;
   state.share = false;
   render();
+  // A re-render removes the clicked control from the DOM. Transfer focus
+  // to the new view's heading instead of dropping keyboard/SR users to body.
+  const heading = page === "quiz"
+    ? root.querySelector("#a05-question-heading")
+    : root.querySelector("h2");
+  if (heading) {
+    heading.setAttribute("tabindex", "-1");
+    heading.focus({ preventScroll: true });
+  }
 }
 
 root.addEventListener("click", async event => {
