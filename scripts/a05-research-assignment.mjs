@@ -89,6 +89,21 @@ export function buildInterviewAssignment(base, overlay, slot) {
     p1[(slot - 1) % p1.length]
   ];
   if (new Set(focusIds).size !== 4) throw new Error("Duplicate follow-up selection");
+  // Follow-up is a *different* wording of the same item, not another
+  // independently sampled response. Label its order for interviewer notes.
+  const focus = focusIds.map(id => {
+    const item = base.items.find(entry => entry.id === id);
+    const variants = item.editorialStatus === "REVISE"
+      ? [...item.variants, ...reviseById.get(id).variants] : item.variants;
+    const current = core.find(entry => entry.id === id);
+    const from = variants.findIndex(v => v.code === current.variantCode);
+    if (from < 0 || variants.length < 2) throw new Error("No focus alternative for " + id);
+    const next = variants[(from + 1) % variants.length];
+    return {
+      id, primaryCode: current.variantCode, comparisonCode: next.code,
+      left: next.left, right: next.right, comparisonOnly: true
+    };
+  });
   const separate = base.responseFormat?.E05IndependentResearchOnly;
   if (!separate || separate.scoringAllowed !== false ||
       separate.questions?.length !== 2) {
@@ -101,7 +116,7 @@ export function buildInterviewAssignment(base, overlay, slot) {
     baseVersion: base.researchVersion,
     overlayVersion: overlay.researchVersion,
     core,
-    focusIds,
+    focus,
     e05Independent: {
       timing: slot % 2 ? "before-core" : "after-core",
       questions: separate.questions.map(({ id, domain, prompt }) => ({ id, domain, prompt }))
