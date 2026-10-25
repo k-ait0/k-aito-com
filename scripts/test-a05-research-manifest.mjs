@@ -16,7 +16,9 @@ function tableRows(markdown, pattern) {
 }
 const initial = tableRows(text31, /^\| ([A-E]0[1-6]) \| (.+?) \| (.+?) \| (通常|左右反転) \|$/gm);
 const status = tableRows(text33, /^\| ([A-E]0[1-6]) \| (BLOCK|REVISE|TRIAL) \|/gm);
-const alternatives = tableRows(text34, /^\| (A04|A05|B02|C04|D03|E04|E05) \| (.+?) \| (.+?) \|$/gm);
+const rewriteTable = text34.split("## 2.")[1]?.split("## 3.")[0];
+assert.ok(rewriteTable, "D-34 question rewrite table must exist");
+const alternatives = tableRows(rewriteTable, /^\| (A04|A05|B02|C04|D03|E04|E05) \| (.+?) \| (.+?) \|$/gm);
 const blockers = ["A04", "A05", "B02", "C04", "D03", "E04", "E05"];
 function pair(text) {
   const out = text.split(/\s*／\s*/);
