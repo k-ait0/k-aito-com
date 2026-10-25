@@ -746,3 +746,60 @@ decisions, authorize any participant contact or certify legal/
 research-ethics compliance. G1 final approval, interviews and
 psychometric validation remain **not performed**. No merge or
 production deployment.
+
+## A05-D39-001 (2026-10-26)
+
+**Scope:** Convert high-priority pending G1 research-operation questions into
+actual human-decision options while leaving authorization exclusively with
+a real accountable person.
+
+**Before:** D-38 had a comprehensive 12-item G1 approval register and
+draft notice/SOP, but no specific A/B tradeoff table or executable
+definition of draft retention-date anchors. The SOP's draft "90 days
+after the editorial decision" could extend preservation indefinitely
+if review completion slipped.
+
+**After:**
+- Created `docs/A05_D39_G1_DECISION_OPTIONS_20261026.json` with
+  two concrete alternatives, rationale, risks and required human
+  evidence for **eight priority G1 decisions**:
+  G1-01/03/05/06/07/08/09/12. G1-02/04/10/11 and
+  all eight prioritised decisions remain unapproved. The source
+  D-38 G1 register remains **12×PENDING** with signoff pending.
+- Created `docs/A05_D39_HUMAN_DECISIONS_AND_RETENTION_20261026.md`,
+  comparing internal owner/roles, local encrypted private storage
+  vs reviewed provider storage, no-default-recording, contact
+  separation, withdrawal windows, the prior D-38 retention proposal,
+  and which parts of the participant-facing explanation still
+  require human decisions.
+- Created pure, no-I/O `scripts/a05-research-retention-proposal.mjs`:
+  accepts only a *hypothetical date string* and calculates
+  **unapproved** calendar-date upper limits of 14/30/90 days
+  from each interview date for contact, pseudonym-ID map, and
+  raw notes. It explicitly cannot collect, store or delete answers
+  and `authorized:false` never changes. Unlike a review-end
+  anchor, deadlines cannot silently extend when editing is delayed.
+  The limitation of withdrawal matching after the 30-day ID-map
+  deletion proposal is explicitly called out for the consent notice.
+- Appended four D-39 native Node test cases to
+  `scripts/test-a05-research-g1.mjs`. They verify alternatives
+  cover exactly the 12 G1 IDs without changing the source PENDING
+  register; no proposal is signed; no research is authorized;
+  proposed dates match leap-year and ordinary calendar arithmetic,
+  and invalid dates are rejected.
+
+**Reason:** Stop adding abstract research documentation and present
+actual choices an accountable operator can decide, with safe date-only
+arithmetic and explicit costs of withdrawing after pseudonym lookup
+deletion.
+
+**Evidence:** Source-backed isolated JavaScript verification confirmed
+the tracked G1 register is still all PENDING and that the ordinary and
+leap-year deadline examples match the new calculator. Native
+`node --test` on the amended cases and full browser QA were **pending**
+at this history entry. The calculator has no interaction with A05
+assessment storage, participant data, consent or external systems.
+
+**Change boundary:** No study participants, recruitment, response
+collection, scoring/manifest update, old-result migration, merge,
+production deploy or P0 change. Draft PR #61 stays unmerged.
