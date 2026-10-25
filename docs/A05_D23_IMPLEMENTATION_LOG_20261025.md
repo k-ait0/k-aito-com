@@ -454,3 +454,59 @@ test. No participants have been enrolled.
 interviews and editorial approval. No existing A05 module, scoring,
 snapshot, database, site navigation, P0 or Actions workflow was changed.
 Draft PR #61 remains unmerged and unpublished.
+
+## A05-D35-001 (2026-10-26)
+
+**Scope:** Consolidate draft question wording into a traceable, non-scoring
+cognitive-interview candidate set while preserving all existing A05
+data and version contracts.
+
+**Before:** D-31's 30 candidates, D-33's 7 BLOCK/13 REVISE/10 TRIAL
+decisions, and D-34's seven alternate question pairs were split across
+Markdown files. There was no single machine-readable source of
+participant-facing candidate wording, order, display polarity, and
+research-only prohibition flags.
+
+**After:**
+- Created `docs/A05_D35_INTERVIEW_CANDIDATES_20261026.json`:
+  30 ID-preserving entries in the original A01,B01,C01,D01,E01,...
+  sequence, 37 bipolar candidate pairs (one primary candidate for
+  each of the 23 non-blockers, A/B alternatives for the seven blockers),
+  a separately identified research-only independent E05 money/time
+  format, participant-facing left/right presentation, editorial status,
+  and proposed construct-overlap links.
+- Explicit `RESEARCH_ONLY_UNAPPROVED` metadata and five false permission
+  flags prohibit scoring, production use, old-result compatibility,
+  personal-data collection approval, and auto-save. New research version
+  `A05-R-2.0.0-alpha.1` is **not** a published question-set version.
+- Created `docs/A05_D35_INTERVIEW_CANDIDATE_GUIDE_20261026.md`
+  specifying a 30-item core, A/B counterbalancing at blocked items,
+  conditional follow-up probes, privacy and recruitment gates, and
+  unresolved duplication and question-quality issues.
+- Added `scripts/test-a05-research-manifest.mjs` (seven Node test cases)
+  to verify ID/order, D-31/D-33/D-34 provenance, all 37 candidate
+  wordings and polarity, E05 independent format, overlap references,
+  and research-only safeguards.
+
+**Defect found during integration:** Markdown extraction initially read
+later non-question tables from D-34 and accidentally substituted prose
+into B02 and E04 question variants. The manifest was corrected to use
+only D-34 Section 2's question-pair table and the test fixture was
+hardened to the same scoped table.
+
+**Evidence:** All seven actual source-backed contract assertions passed
+in isolated JavaScript execution with an assertion shim. This is
+**not** a native `node --test` result and not browser acceptance.
+Native Node 22 execution remains pending. D-32 production-facing
+Chrome evidence is unchanged and cannot be transferred to this
+research-only manifest. No participant interviews or psychometric
+validation have been conducted.
+
+**Reason:** Provide one non-production reference set that can be
+audited against the question/design history without accidentally
+treating unapproved edits as score-compatible.
+
+**Change boundary:** No edits to deployed `questions.mjs`,
+`engine.mjs`, `storage.mjs`, public navigation, P0, or existing
+Actions workflow. No stored assessments transformed. Draft PR #61
+remains unmerged and unpublished.
