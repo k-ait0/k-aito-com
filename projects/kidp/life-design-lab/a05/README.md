@@ -500,3 +500,25 @@ passed. No new job/workflow was created.
 acceptance controls, human final authorization, real deletion
 and identity verification are all **not completed**. QA success
 does not approve recruiting or production release.
+
+## D-44 accessible progress and retained keyboard focus (2026-10-26)
+
+`docs/A05_D44_UI_FOCUS_AND_PROGRESS_FIX_20261026.md` describes
+a UI-only pass fixing the missing answer-progress ARIA
+range/value and keyboard focus loss when category filters,
+share text, saved-raw preference and history controls cause
+DOM rerender. Restore focus only after persistence finishes
+and busy/disabled state clears. The quiz answer count remains
+the original 30-question contract, including skipped/null
+answers in completed counts.
+
+The existing `scripts/qa_a05_browser.cjs` includes an
+additional Chrome case for accessible progress (0→1→1→1→0)
+and keyboard Enter focus restoration on catalog filtering
+and share toggling. No new CI job/workflow.
+
+D-43 **human research decision gate still applies**.
+G1 12/12 and D-42 16/16 approval tasks remain PENDING;
+D-44 does not grant research permission, change stored
+result/scoring semantics or publish the draft. Native
+browser verification was pending when this note was written.
