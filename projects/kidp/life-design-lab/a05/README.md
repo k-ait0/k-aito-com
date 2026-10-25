@@ -703,3 +703,35 @@ preflight/diff. SEO audit **40222049766 SUCCESS**. No
 new Actions job or workflow. Questionnaire versions, score,
 stored ISO/result schema, G1 research owner 12/12 pending,
 D-42 16/16 pending and Draft PR release boundary unchanged.
+
+## D-52 local-only JSON backup inspection and PR review separation
+
+`backup-inspect.mjs` supplies a **pure, non-importing**
+A05-EXPORT-1 format inspector. The existing history screen
+lets the user voluntarily select a local JSON file
+(up to 10 MiB) and displays **only counts** of drafts,
+history, preferences, migrations and legacyBackups.
+Malformed files are rejected without disabling storage,
+modifying existing answers or sending any data remotely.
+The file contents and identifiers are never kept in the
+app's state or displayed; the result disappears on reload.
+
+The inspector does **not** restore a backup, verify a
+cryptographic checksum, confirm the question/scoring schema
+of each record or prove authenticity. Import/overwrite
+remains intentionally unimplemented.
+
+`docs/A05_D52_BACKUP_PREVIEW_AND_RELEASE_SPLIT_20261026.md`
+offers a four-part review of the large unmerged Draft PR,
+separating UI/accessibility, local storage, provisional
+question/scoring rules and human-research approval.
+
+**Verified GitHub Actions:** KIDP run **40222996675
+SUCCESS**. Native Node 22 **151/151** (engine 66,
+date 5, backup inspection 5, storage 15, prior
+research/G1 60). Chromium A05 **25/25 named cases**
+plus no-network/page-error check, KIDP P0, site
+preflight/diff PASS. SEO **40222996687 SUCCESS**.
+Existing conditional A05 Node and browser jobs only.
+G1 12/12 and D-42 16/16 remain PENDING; no public
+release or user/participant study authorization.
