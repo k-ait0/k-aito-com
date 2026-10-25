@@ -516,6 +516,9 @@ root.addEventListener("click", async event => {
       render();
       focusAfterRender = "h2";
     } else if (action === "export") {
+      // The export includes any saved raw answers, legacy records and recovery
+      // data. Confirm the privacy scope BEFORE generating a local download.
+      if (!confirmAction("A05の保存データをJSONファイルに書き出します。個別の生回答・旧版履歴・隔離データなど、非公開にすべき内容が含まれる場合があります。安全な場所に保存してください。続けますか？")) return;
       const data = await exportA05Data(state.db);
       const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
       const url = URL.createObjectURL(blob);
