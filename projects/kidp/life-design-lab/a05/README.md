@@ -459,3 +459,29 @@ Three D-41 retention policies remain **unapproved human
 options**. No real authentication, recording, data
 storage or physical deletion was tested or implemented.
 G1 12/12 PENDING, final signoff PENDING; Draft PR only.
+
+## D-42 operational acceptance gate for the unapproved 30-day proposal
+
+The D-41 A variant (contact 14d, ID mapping 30d, raw notes
+30d) has a **16-row, all-PENDING operational evidence register**:
+`docs/A05_D42_30DAY_ACCEPTANCE_REGISTER_20261026.json`.
+`docs/A05_D42_30DAY_OPERATIONAL_ACCEPTANCE_20261026.md`
+records each item and its relationship to the 12 human G1
+decisions, including withdrawal identity proof and actual
+record/backup deletion evidence.
+
+`scripts/a05-research-d42-acceptance-audit.mjs` is a
+**pure static check**. It never issues research
+authorization or verifies actual physical deletion,
+even if every evidence metadata field is present.
+Eleven additional contract cases reside in
+`scripts/test-a05-research-d42.mjs`, running in the
+existing conditional A05 Node QA job:
+
+    node --test scripts/test-a05-research-d42.mjs
+
+The G1 human owner/signoff and all 12 decisions are still
+PENDING; the D-42 16 controls are PENDING. No participant
+data, production record, token or browser storage is
+created/modified. The D-42 native CI result is pending
+at this chronological entry.
