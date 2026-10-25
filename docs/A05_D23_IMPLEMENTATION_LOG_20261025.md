@@ -1219,3 +1219,15 @@ D-42 16/16 PENDING. No PR merge/deployment.
 **Unchanged:** Questions, score/hashes, result schema, optional browser consent, stored history adapter, P0, existing releases; human research G1 12/12 pending and D-42 16/16 pending, no real research or personal data capture, no deployment or PR merge.
 
 **Change history:** D-47 1–7 keyboard input -> D-48 touch width/row layout -> D-49 focusable skip target and precise deletion-scope explanation. History appended rather than overwritten.
+
+## A05-D50-001 (2026-10-26)
+
+**Actual defect:** Current history cards rendered `completedAt.slice(0, 10)`, which displays the stored UTC date rather than the calendar date in the user's timezone. For instance, an assessment completed at `2026-10-26 00:30 JST` has a stored UTC value of `2026-10-25T15:30Z`, and the UI incorrectly displayed **2026-10-25** to a Tokyo user.
+
+**Fix:** Added `projects/kidp/life-design-lab/a05/format.mjs` with a **display-only** local calendar date conversion using `Intl.DateTimeFormat("ja-JP").formatToParts`. Updated both verified and protected legacy history views to show the viewer's local day, formatted YYYY-MM-DD. Invalid dates are displayed as unknown, without replacing or migrating the stored ISO timestamps.
+
+**Regression:** Added `scripts/test-a05-format.mjs` with five native Node cases (Tokyo/UTC/Los Angeles, midnight, year-end/leap day, invalid dates, default environment TZ). Added one real Chrome A05 case using an isolated Asia/Tokyo browser context and a **synthetic valid history snapshot** in that context only; it confirms that the stored UTC 2026-10-25 15:30 instant is rendered as local 2026-10-26. New Node test is appended to the existing conditional A05 QA step; no new job/workflow.
+
+**Invariant:** No change to the canonical `completedAt` timestamp, history ordering, raw answers or export serialization, questionnaire, scoring hash, versions, IndexedDB shape, earlier prototype databases, P0 or the live site. The synthetic browser snapshot is a local QA fixture, not participant data.
+
+**Verification state:** New D-50 native Node and Chromium run still pending at this chronological entry. Original G1 12 decisions and D-42 16 human-study acceptance criteria remain entirely PENDING. No research recruitment/collection, approval, PR merge or deployment.
