@@ -287,3 +287,32 @@ publication remain out of scope. PR #61 remains Draft, unmerged.
 **Reason:** Improve input comprehension and focus continuity while keeping
 versioned responses reproducible, and surface conceptual risks before
 public release.
+
+## 2026-10-25 — A05-D29-001
+
+**Scope:** Responsive text enlargement, touch target size, reduced-motion
+and high-contrast support.
+
+**Before:** The A05 CSS did not respect prefers-reduced-motion or
+prefers-contrast:more. Narrow-screen answer layout had no explicit
+long-text wrapping or text-enlargement acceptance.
+
+**After:** Added media-query overrides to remove scroll/progress animation
+under reduced-motion, strengthen contrast/focus/selection borders when the
+OS requests more contrast, wrap long answer options and stack the two
+answer alternatives below 400px. Keep answer buttons at least 44px high.
+Added real-Chrome checks at 320px with root text-size factors 1, 1.5, 2
+and for both OS media preferences.
+
+**Verification:** GitHub Actions run **40166842747** succeeded.
+A05 Chrome acceptance **15/15**, Node scoring **66/66**, simulated storage
+**13/13**, site-wide local preflight **12/12**, existing KIDP Chrome QA
+passed. SEO static audit run **40166842783** succeeded.
+
+**Limitations:** Root text-size emulation is not equivalent to iOS Dynamic
+Type or 200–400% browser page zoom. No real Safari/VoiceOver or manual
+contrast audit has yet been completed. No psychometric validation.
+No merge, production deploy, or public navigation link.
+
+**Reason:** Remove common accessibility barriers without changing
+versioned answers, existing KIDP P0, or the production release state.
