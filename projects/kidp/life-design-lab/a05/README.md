@@ -260,3 +260,32 @@ storage **13/13**, real Chromium A05 **16/16**, existing P0 and
 site-wide preflight. SEO run **40209295397** passed. This supersedes
 only the D-36 *pending native test* note above; revision history
 and scientific/release restrictions remain unchanged.
+
+## D-37 interview scheduling and release safeguards (2026-10-26)
+
+`docs/A05_D37_INTERVIEW_READINESS_AND_DECISION_GATES_20261026.md`
+defines the **unapproved** G0–G5 gates for candidate research,
+including the missing consent/recording, storage, access, deletion
+and research-ownership decisions. **Do not recruit participants
+or capture any user answers until G1 is explicitly approved.**
+
+`scripts/a05-research-assignment.mjs` is a pure, no-I/O research
+schedule proposal: twelve numeric slots, 30 primary item prompts
+per slot, four separately labelled alternate-wording comparisons,
+and E05 independent money/time prompts. Every BLOCK wording is
+primary 6/6, every REVISE wording 4/4/4, and E05 variant by
+timing has four cells of three planned slots. Allocations are
+planning counts and not evidence of human participation.
+
+Five D-37 contract checks were appended to the existing D-36
+research test file; eleven D-36+D-37 assertions passed in an
+isolated JS test shim. Native Node execution **pending** at the
+time of this note; the existing conditional Node workflow
+includes the updated test file, with no extra CI job/workflow.
+
+Local verification:
+
+    node --test scripts/test-a05-research-manifest.mjs scripts/test-a05-research-d36.mjs
+
+The protocol does **not** score responses, collect personal
+data, change old snapshots or authorize a new version or release.
