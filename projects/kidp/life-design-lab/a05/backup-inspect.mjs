@@ -21,7 +21,8 @@ export function inspectA05Backup(value) {
   }
   if (typeof value.exportedAt !== "string" ||
       !/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d{1,3})?Z$/.test(value.exportedAt) ||
-      !Number.isFinite(Date.parse(value.exportedAt))) {
+      !Number.isFinite(Date.parse(value.exportedAt)) ||
+      new Date(value.exportedAt).toISOString() !== value.exportedAt) {
     return reject("書き出し日時が不正です。");
   }
   const stores = value.stores;
