@@ -1,0 +1,166 @@
+{
+  "schema": "A05-G1-APPROVAL-REGISTER-1",
+  "version": "A05-D38-G1-0.1",
+  "created": "2026-10-26",
+  "state": "DRAFT_NOT_APPROVED",
+  "researchPurpose": "人生価値観診断の設問理解度・概念混入・回答形式を確認する認知インタビューの準備",
+  "related": {
+    "candidateBase": "A05-R-2.0.0-alpha.1",
+    "candidateOverlay": "A05-R-2.0.0-alpha.2-overlay",
+    "assignmentProtocol": "A05-R-PROTOCOL-1",
+    "proposalSlots": 12,
+    "previousDocumentation": "docs/A05_D37_INTERVIEW_READINESS_AND_DECISION_GATES_20261026.md",
+    "participantNotice": "docs/A05_D38_PARTICIPANT_INFORMATION_AND_CONSENT_DRAFT_20261026.md",
+    "operatingSop": "docs/A05_D38_DATA_HANDLING_SOP_DRAFT_20261026.md"
+  },
+  "forbiddenUntilExplicitApproval": [
+    "participant-recruitment",
+    "personal-data-collection",
+    "response-storage",
+    "recording",
+    "screen-capture",
+    "production-scoring",
+    "public-release"
+  ],
+  "operationalDecisions": [
+    {
+      "id": "G1-01",
+      "title": "研究責任者・停止権限",
+      "purpose": "研究内容、募集停止、削除判断を担う責任者と代理を決定",
+      "status": "PENDING",
+      "decision": null,
+      "evidenceRef": null,
+      "approvedByRole": null,
+      "approvedAt": null
+    },
+    {
+      "id": "G1-02",
+      "title": "募集対象と方法",
+      "purpose": "対象年齢・任意参加・連絡経路・謝礼有無・利益相反を明確化",
+      "status": "PENDING",
+      "decision": null,
+      "evidenceRef": null,
+      "approvedByRole": null,
+      "approvedAt": null
+    },
+    {
+      "id": "G1-03",
+      "title": "参加者向け説明と同意",
+      "purpose": "質問の理解度調査、選択・辞退、利用目的、問い合わせ先と改訂版を承認",
+      "status": "PENDING",
+      "decision": null,
+      "evidenceRef": null,
+      "approvedByRole": null,
+      "approvedAt": null
+    },
+    {
+      "id": "G1-04",
+      "title": "録音・画面共有の扱い",
+      "purpose": "デフォルト録音なし。必要な場合は別同意・保存先・削除時点を確定",
+      "status": "PENDING",
+      "decision": null,
+      "evidenceRef": null,
+      "approvedByRole": null,
+      "approvedAt": null
+    },
+    {
+      "id": "G1-05",
+      "title": "連絡先と調査データの分離",
+      "purpose": "募集連絡先の必要性、仮名対応表の管理と集約後の撤回境界を決定",
+      "status": "PENDING",
+      "decision": null,
+      "evidenceRef": null,
+      "approvedByRole": null,
+      "approvedAt": null
+    },
+    {
+      "id": "G1-06",
+      "title": "保存領域と暗号化",
+      "purpose": "公開GitHub・PR・本番サービス以外のアクセス制限付き保管領域を承認",
+      "status": "PENDING",
+      "decision": null,
+      "evidenceRef": null,
+      "approvedByRole": null,
+      "approvedAt": null
+    },
+    {
+      "id": "G1-07",
+      "title": "閲覧権限・外部委託・転送",
+      "purpose": "閲覧担当者、共有先、外部サービス/AIへの転送可否と契約を決定",
+      "status": "PENDING",
+      "decision": null,
+      "evidenceRef": null,
+      "approvedByRole": null,
+      "approvedAt": null
+    },
+    {
+      "id": "G1-08",
+      "title": "保持期限と削除手順",
+      "purpose": "個票・録音・連絡先・集計ごとの期限と削除確認方法を確定",
+      "status": "PENDING",
+      "decision": null,
+      "evidenceRef": null,
+      "approvedByRole": null,
+      "approvedAt": null
+    },
+    {
+      "id": "G1-09",
+      "title": "中断・撤回・問い合わせ",
+      "purpose": "参加者の停止・削除依頼窓口、対応期限と手順を決定",
+      "status": "PENDING",
+      "decision": null,
+      "evidenceRef": null,
+      "approvedByRole": null,
+      "approvedAt": null
+    },
+    {
+      "id": "G1-10",
+      "title": "情報事故・想定外回答の対応",
+      "purpose": "収集停止、情報漏えい/機微情報の最小化・エスカレーションを確定",
+      "status": "PENDING",
+      "decision": null,
+      "evidenceRef": null,
+      "approvedByRole": null,
+      "approvedAt": null
+    },
+    {
+      "id": "G1-11",
+      "title": "研究資料・割付の版固定",
+      "purpose": "D-35/D-36候補、D-37割付、実施票、同意文書をGit SHA・版番号で凍結",
+      "status": "PENDING",
+      "decision": null,
+      "evidenceRef": null,
+      "approvedByRole": null,
+      "approvedAt": null
+    },
+    {
+      "id": "G1-12",
+      "title": "適用規程・法令等の確認",
+      "purpose": "個人情報取扱い/研究倫理/年齢・管轄等の要否と実施主体の義務を確認",
+      "status": "PENDING",
+      "decision": null,
+      "evidenceRef": null,
+      "approvedByRole": null,
+      "approvedAt": null
+    }
+  ],
+  "finalSignoff": {
+    "state": "PENDING",
+    "approverRole": null,
+    "approvalRecordRef": null,
+    "approvalDate": null,
+    "revisionFrozenCommit": null
+  },
+  "automatedGate": "NEVER_AUTHORISES_RECRUITMENT_OR_COLLECTION",
+  "dataCollected": false,
+  "interviewsConducted": 0,
+  "changeHistory": [
+    {
+      "date": "2026-10-26",
+      "version": "A05-D38-G1-0.1",
+      "before": "D-37 listed approval gaps in prose",
+      "after": "explicit twelve-decision register and separate final sign-off; all PENDING",
+      "reason": "prevent questionnaire readiness from being mistaken for a participant-research authorisation"
+    }
+  ]
+}
