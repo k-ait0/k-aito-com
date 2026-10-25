@@ -421,6 +421,12 @@ async function main() {
       assert.match(report,/履歴 1件/);
       assert.match(report,/下書き 1件/);
       assert.doesNotMatch(report,/do-not-display-this|synthetic-123|A01/);
+      await page.locator("#a05-restore-plan").waitFor();
+      const risk = await page.locator("#a05-restore-plan").innerText();
+      assert.match(risk,/既存データがあるため、上書きを禁止/);
+      assert.match(risk,/不整合 1件/);
+      assert.match(risk,/復元機能・自動承認機能はありません/);
+      assert.doesNotMatch(risk,/do-not-display-this|synthetic-123|A01/);
       assert.equal(await page.evaluate(() => document.activeElement?.tagName),"H2");
       assert.match(await page.locator("#a05-content").innerText(),/検証済み 1件/);
       // Invalid file must not toggle storage into read-only or mutate history.
@@ -447,6 +453,47 @@ async function main() {
       await page.locator('[data-view="history"]').first().click();
       assert.match(await page.locator("#a05-content").innerText(),/検証済み 1件/);
       assert.equal(await page.locator("#a05-inspect-report").count(),0);
+    });
+
+    await check("D-53 empty target reviews a valid synthetic backup without writing or restoring", async () => {
+      const isolated = await browser.newContext({ viewport:{width:390,height:844} });
+      try {
+        const isolatedPage = await isolated.newPage();
+        await isolatedPage.goto(address + A05);
+        await isolatedPage.locator("#a05-content h2").waitFor();
+        const fixture = await isolatedPage.evaluate(async () => {
+          const {QUESTIONS,questionSetHash} = await import("./questions.mjs");
+          const {newDraft,makeSnapshot} = await import("./engine.mjs");
+          const hash = await questionSetHash();
+          const draft = newDraft("synthetic-no-pii",hash);
+          draft.answers = Object.fromEntries(QUESTIONS.map(q=>[q.id,4]));
+          const snapshot = makeSnapshot(draft,hash,false);
+          return {
+            schema:"A05-EXPORT-1",exportedAt:"2026-10-26T03:00:00.000Z",
+            stores:{drafts:[],history:[snapshot],preferences:[],migrations:[],legacyBackups:[]}
+          };
+        });
+        await isolatedPage.locator('[data-view="history"]').first().click();
+        assert.match(await isolatedPage.locator("#a05-content").innerText(),/検証済み 0件/);
+        await isolatedPage.locator("#a05-inspect-file").setInputFiles({
+          name:"synthetic-not-to-restore.json",mimeType:"application/json",
+          buffer:Buffer.from(JSON.stringify(fixture),"utf8")
+        });
+        await isolatedPage.waitForFunction(() =>
+          document.querySelector("#a05-restore-plan")?.textContent.includes("現行版との形式整合 1件"));
+        const report = await isolatedPage.locator("#a05-restore-plan").innerText();
+        assert.match(report,/端末側の既存保存レコード：0件/);
+        assert.match(report,/旧版 0件、不整合 0件/);
+        assert.match(report,/復元機能・自動承認機能はありません/);
+        assert.doesNotMatch(report,/synthetic-no-pii/);
+        assert.match(await isolatedPage.locator("#a05-content").innerText(),/検証済み 0件/);
+        await isolatedPage.reload();
+        await isolatedPage.locator('[data-view="history"]').first().click();
+        assert.match(await isolatedPage.locator("#a05-content").innerText(),/検証済み 0件/);
+        assert.equal(await isolatedPage.locator("#a05-restore-plan").count(),0);
+      } finally {
+        await isolated.close();
+      }
     });
 
     await check("raw-answer deletion leaves result intact", async () => {
