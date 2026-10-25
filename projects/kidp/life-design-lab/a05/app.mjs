@@ -190,7 +190,7 @@ function renderReview() {
 
 function renderCatalog() {
   const selected = GROUPS.filter(g => state.filter === "all" || g.id === state.filter);
-  const filters = [["all", "すべて"], ["G3", "R"], ["G2", "G"], ["G1", "B"], ["G4", "Y"]];
+  const filters = [["all", "すべて"], ["G3", "R・赤"], ["G2", "G・緑"], ["G1", "B・青"], ["G4", "Y・黄"]];
   return '<h2>16タイプ図鑑</h2>' +
     '<p class="muted">仮称と解説です。結果は人生の選択肢を制限するものではありません。</p>' +
     '<div class="actions">' + filters.map(([key, title]) =>
