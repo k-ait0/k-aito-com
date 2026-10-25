@@ -574,3 +574,21 @@ export and 320/390/768/1440 px layouts across three
 screens. Final CI result was pending when this entry
 was made. G1 12/12 and D-42 16/16 remain PENDING.
 No research recruitment, approval, merge or deployment.
+
+## D-47 numeric keyboard input and selection focus (2026-10-26)
+
+In the quiz, unmodified keys **1–7** now activate their matching
+seven-point answer button when focus is within the question area.
+This is only a shortcut for the existing `data-action="answer"`
+handler: it never bypasses `state.busy`, IndexedDB opt-in,
+optimistic write revisions or read-only conflict protection.
+The interface includes an announced keyboard hint and restores
+focus after answer/skip operations complete. Repeated keystrokes
+and combinations with Shift/Control/Alt/Meta are excluded.
+
+An additional real Chrome case checks keyboard 7→2, selection
+and progress, skip focus and no persistence after reload without
+consent. The browser QA suite has **20 named cases** after
+D-45/46/47. Native CI result was pending at this history
+entry. G1/D-42 research decisions are unchanged and no
+production release is authorized.
