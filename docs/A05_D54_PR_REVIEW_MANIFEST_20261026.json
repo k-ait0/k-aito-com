@@ -1,6 +1,6 @@
 {
   "schema": "A05-D54-PR-REVIEW-MANIFEST-1",
-  "version": "D54-001",
+  "version": "D54-002",
   "date": "2026-10-26",
   "repository": "k-ait0/k-aito-com",
   "base": "main",
@@ -29,35 +29,45 @@
       "meaning": "未公開A05画面、操作性、アクセシビリティ",
       "reviewStatus": "PENDING_HUMAN_REVIEW",
       "technicalCI": "VERIFIED_PREVIOUS_RUN_ONLY",
-      "releaseApproved": false
+      "releaseApproved": false,
+      "riskPriority": "P1_USER_ACCESS",
+      "requiredSignoffRole": "UI_ACCESSIBILITY_REVIEWER"
     },
     {
       "id": "B_STORAGE_BACKUP",
       "meaning": "端末保存、エクスポート、復元を実行しないプレビュー、データ保護",
       "reviewStatus": "PENDING_HUMAN_REVIEW",
       "technicalCI": "VERIFIED_PREVIOUS_RUN_ONLY",
-      "releaseApproved": false
+      "releaseApproved": false,
+      "riskPriority": "P0_DATA_PROTECTION",
+      "requiredSignoffRole": "DATA_PROTECTION_REVIEWER"
     },
     {
       "id": "C_PROVISIONAL_SCORING",
       "meaning": "未検証の30問・暫定採点・16タイプ。科学的妥当性は未証明",
       "reviewStatus": "RESEARCH_VALIDATION_PENDING",
       "technicalCI": "VERIFIED_PREVIOUS_RUN_ONLY",
-      "releaseApproved": false
+      "releaseApproved": false,
+      "riskPriority": "P0_RESEARCH_VALIDATION_BLOCKED",
+      "requiredSignoffRole": "SUBJECT_MATTER_REVIEWER"
     },
     {
       "id": "D_RESEARCH_HUMAN_APPROVAL",
       "meaning": "認知面接の草案、G1の人間による承認、収集なし",
       "reviewStatus": "G1_12_AND_D42_16_PENDING",
       "technicalCI": "NO_RESEARCH_AUTORIZATION",
-      "releaseApproved": false
+      "releaseApproved": false,
+      "riskPriority": "P0_HUMAN_APPROVAL_REQUIRED",
+      "requiredSignoffRole": "ACTUAL_RESEARCH_OWNER"
     },
     {
       "id": "E_CROSSCUTTING_QA_AUDIT",
       "meaning": "横断QA、GitHub Actions、実装履歴、レビュー資料",
       "reviewStatus": "PENDING_HUMAN_REVIEW",
       "technicalCI": "VERIFIED_PREVIOUS_RUN_ONLY",
-      "releaseApproved": false
+      "releaseApproved": false,
+      "riskPriority": "P1_ENGINEERING_GATE",
+      "requiredSignoffRole": "ENGINEERING_REVIEWER"
     }
   ],
   "files": [
@@ -65,403 +75,604 @@
       "path": ".github/workflows/kidp-wave-a-browser-qa.yml",
       "group": "E_CROSSCUTTING_QA_AUDIT",
       "reviewStatus": "NOT_REVIEWED",
-      "mergeAuthorized": false
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
     },
     {
       "path": "docs/A05_D23_IMPLEMENTATION_LOG_20261025.md",
       "group": "E_CROSSCUTTING_QA_AUDIT",
       "reviewStatus": "NOT_REVIEWED",
-      "mergeAuthorized": false
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
     },
     {
       "path": "docs/A05_D28_REVIEW_20261025.md",
       "group": "D_RESEARCH_HUMAN_APPROVAL",
       "reviewStatus": "NOT_REVIEWED",
-      "mergeAuthorized": false
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
     },
     {
       "path": "docs/A05_D30_QUESTION_SET_V2_PROPOSAL_20261025.md",
       "group": "D_RESEARCH_HUMAN_APPROVAL",
       "reviewStatus": "NOT_REVIEWED",
-      "mergeAuthorized": false
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
     },
     {
       "path": "docs/A05_D31_FULL_QUESTION_REVIEW_20261025.md",
       "group": "D_RESEARCH_HUMAN_APPROVAL",
       "reviewStatus": "NOT_REVIEWED",
-      "mergeAuthorized": false
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
     },
     {
       "path": "docs/A05_D33_COGNITIVE_INTERVIEW_PROTOCOL_20261026.md",
       "group": "D_RESEARCH_HUMAN_APPROVAL",
       "reviewStatus": "NOT_REVIEWED",
-      "mergeAuthorized": false
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
     },
     {
       "path": "docs/A05_D33_ITEM_AUDIT_AND_VALIDATION_PLAN_20261026.md",
       "group": "D_RESEARCH_HUMAN_APPROVAL",
       "reviewStatus": "NOT_REVIEWED",
-      "mergeAuthorized": false
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
     },
     {
       "path": "docs/A05_D34_BLOCKER_REWRITE_COMPARISON_20261026.md",
       "group": "D_RESEARCH_HUMAN_APPROVAL",
       "reviewStatus": "NOT_REVIEWED",
-      "mergeAuthorized": false
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
     },
     {
       "path": "docs/A05_D35_INTERVIEW_CANDIDATES_20261026.json",
       "group": "D_RESEARCH_HUMAN_APPROVAL",
       "reviewStatus": "NOT_REVIEWED",
-      "mergeAuthorized": false
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
     },
     {
       "path": "docs/A05_D35_INTERVIEW_CANDIDATE_GUIDE_20261026.md",
       "group": "D_RESEARCH_HUMAN_APPROVAL",
       "reviewStatus": "NOT_REVIEWED",
-      "mergeAuthorized": false
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
     },
     {
       "path": "docs/A05_D36_PRIORITIZED_30ITEM_REVIEW_20261026.md",
       "group": "D_RESEARCH_HUMAN_APPROVAL",
       "reviewStatus": "NOT_REVIEWED",
-      "mergeAuthorized": false
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
     },
     {
       "path": "docs/A05_D36_REVISE_CANDIDATES_20261026.json",
       "group": "D_RESEARCH_HUMAN_APPROVAL",
       "reviewStatus": "NOT_REVIEWED",
-      "mergeAuthorized": false
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
     },
     {
       "path": "docs/A05_D37_INTERVIEW_READINESS_AND_DECISION_GATES_20261026.md",
       "group": "D_RESEARCH_HUMAN_APPROVAL",
       "reviewStatus": "NOT_REVIEWED",
-      "mergeAuthorized": false
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
     },
     {
       "path": "docs/A05_D38_DATA_HANDLING_SOP_DRAFT_20261026.md",
       "group": "D_RESEARCH_HUMAN_APPROVAL",
       "reviewStatus": "NOT_REVIEWED",
-      "mergeAuthorized": false
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
     },
     {
       "path": "docs/A05_D38_G1_APPROVAL_REGISTER_20261026.json",
       "group": "D_RESEARCH_HUMAN_APPROVAL",
       "reviewStatus": "NOT_REVIEWED",
-      "mergeAuthorized": false
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
     },
     {
       "path": "docs/A05_D38_G1_DECISION_PACKET_20261026.md",
       "group": "D_RESEARCH_HUMAN_APPROVAL",
       "reviewStatus": "NOT_REVIEWED",
-      "mergeAuthorized": false
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
     },
     {
       "path": "docs/A05_D38_PARTICIPANT_INFORMATION_AND_CONSENT_DRAFT_20261026.md",
       "group": "D_RESEARCH_HUMAN_APPROVAL",
       "reviewStatus": "NOT_REVIEWED",
-      "mergeAuthorized": false
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
     },
     {
       "path": "docs/A05_D39_G1_DECISION_OPTIONS_20261026.json",
       "group": "D_RESEARCH_HUMAN_APPROVAL",
       "reviewStatus": "NOT_REVIEWED",
-      "mergeAuthorized": false
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
     },
     {
       "path": "docs/A05_D39_HUMAN_DECISIONS_AND_RETENTION_20261026.md",
       "group": "D_RESEARCH_HUMAN_APPROVAL",
       "reviewStatus": "NOT_REVIEWED",
-      "mergeAuthorized": false
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
     },
     {
       "path": "docs/A05_D40_SYNTHETIC_CONSENT_WITHDRAWAL_DELETION_REVIEW_20261026.md",
       "group": "D_RESEARCH_HUMAN_APPROVAL",
       "reviewStatus": "NOT_REVIEWED",
-      "mergeAuthorized": false
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
     },
     {
       "path": "docs/A05_D41_WITHDRAWAL_IDENTITY_AND_RETENTION_DECISION_20261026.md",
       "group": "D_RESEARCH_HUMAN_APPROVAL",
       "reviewStatus": "NOT_REVIEWED",
-      "mergeAuthorized": false
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
     },
     {
       "path": "docs/A05_D41_WITHDRAWAL_POLICY_OPTIONS_20261026.json",
       "group": "D_RESEARCH_HUMAN_APPROVAL",
       "reviewStatus": "NOT_REVIEWED",
-      "mergeAuthorized": false
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
     },
     {
       "path": "docs/A05_D42_30DAY_ACCEPTANCE_REGISTER_20261026.json",
       "group": "D_RESEARCH_HUMAN_APPROVAL",
       "reviewStatus": "NOT_REVIEWED",
-      "mergeAuthorized": false
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
     },
     {
       "path": "docs/A05_D42_30DAY_OPERATIONAL_ACCEPTANCE_20261026.md",
       "group": "D_RESEARCH_HUMAN_APPROVAL",
       "reviewStatus": "NOT_REVIEWED",
-      "mergeAuthorized": false
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
     },
     {
       "path": "docs/A05_D43_OPERATOR_DECISION_GATE_20261026.md",
       "group": "D_RESEARCH_HUMAN_APPROVAL",
       "reviewStatus": "NOT_REVIEWED",
-      "mergeAuthorized": false
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
     },
     {
       "path": "docs/A05_D44_UI_FOCUS_AND_PROGRESS_FIX_20261026.md",
       "group": "E_CROSSCUTTING_QA_AUDIT",
       "reviewStatus": "NOT_REVIEWED",
-      "mergeAuthorized": false
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
     },
     {
       "path": "docs/A05_D45_D46_REVIEW_NAVIGATION_EXPORT_20261026.md",
       "group": "E_CROSSCUTTING_QA_AUDIT",
       "reviewStatus": "NOT_REVIEWED",
-      "mergeAuthorized": false
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
     },
     {
       "path": "docs/A05_D48_MOBILE_ANSWER_TARGETS_20261026.md",
       "group": "E_CROSSCUTTING_QA_AUDIT",
       "reviewStatus": "NOT_REVIEWED",
-      "mergeAuthorized": false
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
     },
     {
       "path": "docs/A05_D49_SKIP_LINK_AND_ERASE_SCOPE_20261026.md",
       "group": "E_CROSSCUTTING_QA_AUDIT",
       "reviewStatus": "NOT_REVIEWED",
-      "mergeAuthorized": false
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
     },
     {
       "path": "docs/A05_D50_LOCAL_HISTORY_DATES_20261026.md",
       "group": "E_CROSSCUTTING_QA_AUDIT",
       "reviewStatus": "NOT_REVIEWED",
-      "mergeAuthorized": false
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
     },
     {
       "path": "docs/A05_D51_ENGINEERING_VS_RESEARCH_RELEASE_REVIEW_20261026.md",
       "group": "E_CROSSCUTTING_QA_AUDIT",
       "reviewStatus": "NOT_REVIEWED",
-      "mergeAuthorized": false
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
     },
     {
       "path": "docs/A05_D52_BACKUP_PREVIEW_AND_RELEASE_SPLIT_20261026.md",
       "group": "E_CROSSCUTTING_QA_AUDIT",
       "reviewStatus": "NOT_REVIEWED",
-      "mergeAuthorized": false
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
     },
     {
       "path": "docs/A05_D53_RESTORE_DRY_RUN_AND_PR_RELEASE_GATES_20261026.md",
       "group": "E_CROSSCUTTING_QA_AUDIT",
       "reviewStatus": "NOT_REVIEWED",
-      "mergeAuthorized": false
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
     },
     {
       "path": "docs/A05_D54_INTEGRATION_REVIEW_AND_GO_NO_GO_20261026.md",
       "group": "E_CROSSCUTTING_QA_AUDIT",
       "reviewStatus": "NOT_REVIEWED",
-      "mergeAuthorized": false
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
     },
     {
       "path": "docs/A05_D54_PR_REVIEW_MANIFEST_20261026.json",
       "group": "E_CROSSCUTTING_QA_AUDIT",
       "reviewStatus": "NOT_REVIEWED",
-      "mergeAuthorized": false
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
     },
     {
       "path": "projects/kidp/life-design-lab/a05/README.md",
       "group": "A_UI_ACCESSIBILITY",
       "reviewStatus": "NOT_REVIEWED",
-      "mergeAuthorized": false
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
     },
     {
       "path": "projects/kidp/life-design-lab/a05/app.mjs",
       "group": "A_UI_ACCESSIBILITY",
       "reviewStatus": "NOT_REVIEWED",
-      "mergeAuthorized": false
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
     },
     {
       "path": "projects/kidp/life-design-lab/a05/backup-inspect.mjs",
       "group": "B_STORAGE_BACKUP",
       "reviewStatus": "NOT_REVIEWED",
-      "mergeAuthorized": false
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
     },
     {
       "path": "projects/kidp/life-design-lab/a05/engine.mjs",
       "group": "C_PROVISIONAL_SCORING",
       "reviewStatus": "NOT_REVIEWED",
-      "mergeAuthorized": false
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
     },
     {
       "path": "projects/kidp/life-design-lab/a05/export.mjs",
       "group": "B_STORAGE_BACKUP",
       "reviewStatus": "NOT_REVIEWED",
-      "mergeAuthorized": false
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
     },
     {
       "path": "projects/kidp/life-design-lab/a05/format.mjs",
       "group": "A_UI_ACCESSIBILITY",
       "reviewStatus": "NOT_REVIEWED",
-      "mergeAuthorized": false
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
     },
     {
       "path": "projects/kidp/life-design-lab/a05/index.html",
       "group": "A_UI_ACCESSIBILITY",
       "reviewStatus": "NOT_REVIEWED",
-      "mergeAuthorized": false
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
     },
     {
       "path": "projects/kidp/life-design-lab/a05/questions.mjs",
       "group": "C_PROVISIONAL_SCORING",
       "reviewStatus": "NOT_REVIEWED",
-      "mergeAuthorized": false
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
     },
     {
       "path": "projects/kidp/life-design-lab/a05/restore-review.mjs",
       "group": "B_STORAGE_BACKUP",
       "reviewStatus": "NOT_REVIEWED",
-      "mergeAuthorized": false
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
     },
     {
       "path": "projects/kidp/life-design-lab/a05/storage.mjs",
       "group": "B_STORAGE_BACKUP",
       "reviewStatus": "NOT_REVIEWED",
-      "mergeAuthorized": false
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
     },
     {
       "path": "projects/kidp/life-design-lab/a05/style.css",
       "group": "A_UI_ACCESSIBILITY",
       "reviewStatus": "NOT_REVIEWED",
-      "mergeAuthorized": false
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
     },
     {
       "path": "projects/kidp/life-design-lab/a05/types.mjs",
       "group": "C_PROVISIONAL_SCORING",
       "reviewStatus": "NOT_REVIEWED",
-      "mergeAuthorized": false
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
     },
     {
       "path": "scripts/a05-research-assignment.mjs",
       "group": "D_RESEARCH_HUMAN_APPROVAL",
       "reviewStatus": "NOT_REVIEWED",
-      "mergeAuthorized": false
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
     },
     {
       "path": "scripts/a05-research-d40-simulator.mjs",
       "group": "D_RESEARCH_HUMAN_APPROVAL",
       "reviewStatus": "NOT_REVIEWED",
-      "mergeAuthorized": false
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
     },
     {
       "path": "scripts/a05-research-d41-withdrawal-review.mjs",
       "group": "D_RESEARCH_HUMAN_APPROVAL",
       "reviewStatus": "NOT_REVIEWED",
-      "mergeAuthorized": false
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
     },
     {
       "path": "scripts/a05-research-d42-acceptance-audit.mjs",
       "group": "D_RESEARCH_HUMAN_APPROVAL",
       "reviewStatus": "NOT_REVIEWED",
-      "mergeAuthorized": false
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
     },
     {
       "path": "scripts/a05-research-g1-gate.mjs",
       "group": "D_RESEARCH_HUMAN_APPROVAL",
       "reviewStatus": "NOT_REVIEWED",
-      "mergeAuthorized": false
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
     },
     {
       "path": "scripts/a05-research-retention-proposal.mjs",
       "group": "D_RESEARCH_HUMAN_APPROVAL",
       "reviewStatus": "NOT_REVIEWED",
-      "mergeAuthorized": false
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
     },
     {
       "path": "scripts/qa_a05_browser.cjs",
       "group": "E_CROSSCUTTING_QA_AUDIT",
       "reviewStatus": "NOT_REVIEWED",
-      "mergeAuthorized": false
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
     },
     {
       "path": "scripts/test-a05-backup-inspect.mjs",
       "group": "E_CROSSCUTTING_QA_AUDIT",
       "reviewStatus": "NOT_REVIEWED",
-      "mergeAuthorized": false
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
     },
     {
       "path": "scripts/test-a05-engine.mjs",
       "group": "E_CROSSCUTTING_QA_AUDIT",
       "reviewStatus": "NOT_REVIEWED",
-      "mergeAuthorized": false
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
     },
     {
       "path": "scripts/test-a05-format.mjs",
       "group": "E_CROSSCUTTING_QA_AUDIT",
       "reviewStatus": "NOT_REVIEWED",
-      "mergeAuthorized": false
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
     },
     {
       "path": "scripts/test-a05-pr-review-manifest.mjs",
       "group": "E_CROSSCUTTING_QA_AUDIT",
       "reviewStatus": "NOT_REVIEWED",
-      "mergeAuthorized": false
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
     },
     {
       "path": "scripts/test-a05-release-boundaries.mjs",
       "group": "E_CROSSCUTTING_QA_AUDIT",
       "reviewStatus": "NOT_REVIEWED",
-      "mergeAuthorized": false
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
     },
     {
       "path": "scripts/test-a05-research-d36.mjs",
       "group": "E_CROSSCUTTING_QA_AUDIT",
       "reviewStatus": "NOT_REVIEWED",
-      "mergeAuthorized": false
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
     },
     {
       "path": "scripts/test-a05-research-d40.mjs",
       "group": "E_CROSSCUTTING_QA_AUDIT",
       "reviewStatus": "NOT_REVIEWED",
-      "mergeAuthorized": false
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
     },
     {
       "path": "scripts/test-a05-research-d41.mjs",
       "group": "E_CROSSCUTTING_QA_AUDIT",
       "reviewStatus": "NOT_REVIEWED",
-      "mergeAuthorized": false
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
     },
     {
       "path": "scripts/test-a05-research-d42.mjs",
       "group": "E_CROSSCUTTING_QA_AUDIT",
       "reviewStatus": "NOT_REVIEWED",
-      "mergeAuthorized": false
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
     },
     {
       "path": "scripts/test-a05-research-g1.mjs",
       "group": "E_CROSSCUTTING_QA_AUDIT",
       "reviewStatus": "NOT_REVIEWED",
-      "mergeAuthorized": false
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
     },
     {
       "path": "scripts/test-a05-research-manifest.mjs",
       "group": "E_CROSSCUTTING_QA_AUDIT",
       "reviewStatus": "NOT_REVIEWED",
-      "mergeAuthorized": false
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
     },
     {
       "path": "scripts/test-a05-restore-review.mjs",
       "group": "E_CROSSCUTTING_QA_AUDIT",
       "reviewStatus": "NOT_REVIEWED",
-      "mergeAuthorized": false
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
     },
     {
       "path": "scripts/test-a05-storage.mjs",
       "group": "E_CROSSCUTTING_QA_AUDIT",
       "reviewStatus": "NOT_REVIEWED",
-      "mergeAuthorized": false
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
     }
   ],
   "changeHistory": [
@@ -471,6 +682,13 @@
       "before": "Draft PR held 229 commits across 64 files with only a narrative four-part review summary",
       "after": "A nonauthorizing exact-path review manifest covering 64 existing changed paths plus 3 D54 additions, with per-file human-review status and five risk owners",
       "reason": "Make changes auditable by review domain and prevent CI PASS being misread as release or research authorization"
+    },
+    {
+      "date": "2026-10-26",
+      "version": "D54-002",
+      "before": "All 67 files only stored NOT_REVIEWED and no proof fields, making future signoff evidence hard to track",
+      "after": "Every file has nullable non-identifying review evidence, role and date; each area has a risk priority and required reviewer role. All remain NOT_REVIEWED and nonauthorizing",
+      "reason": "Allow later accountable review without mixing CI QA with real human approval"
     }
   ]
 }
