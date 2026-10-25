@@ -775,3 +775,39 @@ false-positive were corrected, as logged chronologically.
 No user/participant study authority has been granted.
 G1 12/12, D-42 16/16 and human final approval are still
 PENDING, and PR #61 is an unmerged, undeployed Draft.
+
+## D-54 full Draft PR review manifest and non-release gates (2026-10-26)
+
+`docs/A05_D54_PR_REVIEW_MANIFEST_20261026.json`
+records **67 exact PR change paths** (original 64 +
+three D-54 files) in five risk-aware review tracks:
+A UI/accessibility (5), B storage/backup (4),
+C provisional scoring (3), D research approval (29),
+E audit/CI/documents (26). All are **NOT_REVIEWED**,
+with empty non-identifying reviewer/evidence/date fields;
+all merge/release authorizations remain false.
+B/C/D are P0, A/E P1. The manifest is a review
+checklist, not evidence of a human signoff.
+
+`docs/A05_D54_INTEGRATION_REVIEW_AND_GO_NO_GO_20261026.md`
+describes review order and the separate public-release
+and human-study decisions. Seven new Node contract
+cases in `scripts/test-a05-pr-review-manifest.mjs`
+cover exact file ownership and a **real full-PR
+merge-ref file-diff comparison**, forbidding drift
+without manifest updates. Reused the existing A05
+Node QA step; no new workflow or job.
+Existing Chrome JSON preview QA now rejects a
+synthetic file over 10 MiB without modifying history.
+
+**Verified:** KIDP GitHub Actions **40225064094 SUCCESS**:
+Node 22 **172/172**, real Chrome A05 **26/26 named
+cases**, separate no-network/page-error check,
+existing P0/browser and preflight/diff PASS. SEO audit
+**40225064097 SUCCESS**. Full GitHub PR diff test
+ran and passed (not skipped).
+
+Research G1 **12/12 PENDING**, D-42 **16/16 PENDING**.
+Provisional 30-question/type scientific validity
+unverified. Draft PR #61 is not merged or deployed,
+and no participant study or JSON restoration occurred.
