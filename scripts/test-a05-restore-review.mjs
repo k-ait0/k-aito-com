@@ -22,8 +22,9 @@ function sampleBackup() {
     }
   };
 }
-const review = (file=sampleBackup(), current=empty(), hash=HASH) =>
-  inspectA05RestorePlan(file,current,hash);
+const review = (...args) =>
+  inspectA05RestorePlan(args.length>0?args[0]:sampleBackup(),
+    args.length>1?args[1]:empty(),args.length>2?args[2]:HASH);
 
 test("D-53 an empty browser with a valid test snapshot is still never authorized for restoration", () => {
   const r=review();
@@ -82,6 +83,7 @@ test("D-53 malformed/multiple drafts remain non-importable; no raw answers retur
   const valid=newDraft("synthetic-11", HASH);
   valid.answers = {A01:7};
   const malformed=clone(valid);
+  malformed.id="another-draft";
   malformed.assessmentId="synthetic-12";
   malformed.revision=-1;
   source.stores.drafts=[valid,malformed];
