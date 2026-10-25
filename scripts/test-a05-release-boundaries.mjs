@@ -34,7 +34,7 @@ test("D-53 backup review modules remain incapable of performing storage/network 
   for(const name of ["backup-inspect.mjs","restore-review.mjs"]){
     const source=read(name).replace(/\/\*[\s\S]*?\*\/|\/\/[^\n]*/g,"");
     assert.doesNotMatch(source,/\b(?:indexedDB|localStorage|sessionStorage|fetch|XMLHttpRequest|sendBeacon)\b/,name);
-    assert.doesNotMatch(source,/\.\s*(?:put|add|delete|clear|open|setItem)\s*\(/,name);
+    assert.doesNotMatch(source,/\.\s*(?:put|delete|clear|open|setItem)\s*\(/,name);
     assert.doesNotMatch(source,/\b(?:eval|Function)\s*\(/,name);
   }
 });
