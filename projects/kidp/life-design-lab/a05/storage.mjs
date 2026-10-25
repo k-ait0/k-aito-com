@@ -96,6 +96,23 @@ export function readExportSnapshot(db) {
 }
 
 /**
+ * Read-only, data-minimizing inventory for a hypothetical recovery review.
+ * Uses 5 count() requests in one transaction; never loads raw answers/IDs.
+ * A separate tab can change these counts after this transaction completes,
+ * so these counts are NEVER proof that a subsequent restore is safe.
+ */
+export function readA05StoreCounts(db) {
+  const counts = Object.fromEntries(STORES.map(name => [name, 0]));
+  return transaction(db, STORES, "readonly", (tx, ctl) => {
+    ctl.result(counts);
+    for (const name of STORES) {
+      const request = tx.objectStore(name).count();
+      request.onsuccess = () => { counts[name] = request.result; };
+    }
+  });
+}
+
+/**
  * Read all recovery domains under one readonly IDB transaction. This avoids
  * mixing preference/draft/history data from different cross-tab commit points.
  */
