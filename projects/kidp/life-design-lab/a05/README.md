@@ -226,3 +226,28 @@ editorial approval. No production module or historical result changed.
   snapshot compatibility and automatic answer retention.
 - Existing A05 browser functionality, question hash, P0 and
   deployed content remain unchanged.
+
+## D-36 prioritized item audit and research contract checks (2026-10-26)
+
+The D-35 research-only 30-item/37-pair manifest remains unchanged.
+`docs/A05_D36_REVISE_CANDIDATES_20261026.json` holds **26 additional
+unapproved pairs for all 13 REVISE items**. Combined editorial candidates
+across both files total 63 pairs, but the survey is still 30 item IDs
+and no participant is required to answer all variants.
+
+`docs/A05_D36_PRIORITIZED_30ITEM_REVIEW_20261026.md` assigns
+P0=15 (7 BLOCK + 8 REVISE), P1=5 (remaining REVISE), P2=10 (TRIAL).
+These are editorial triage groups, not study findings. The major E-axis
+redundancy and B/C two-pole interpretation problems are unresolved.
+
+Validation commands from the repository root:
+
+    node --test scripts/test-a05-research-manifest.mjs scripts/test-a05-research-d36.mjs
+
+The six new D-36 assertions were evaluated using an isolated JavaScript
+shim (6/6). The existing A05-scoped Node workflow has been extended to
+execute both research test files as part of its existing test step;
+**native results are pending** at this entry's creation. This has not
+added a separate Actions job or workflow. No human interviews have
+occurred; no approvals for collection, scoring or publication have
+been granted.
