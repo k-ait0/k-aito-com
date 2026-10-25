@@ -74,6 +74,7 @@ test("D-53 old and corrupted history are count-only categories, never auto-migra
   const r=review(backup);
   assert.deepEqual(r.analysis.history,{verified:1,legacy:1,quarantined:1});
   assert.ok(r.blockers.includes("HISTORY_REQUIRES_MANUAL_VERSION_REVIEW"));
+  assert.equal(r.status,"BLOCKED_BACKUP_INCOMPATIBLE");
   assert.equal(r.restoreAuthorized,false);
   assert.equal(JSON.stringify(r).includes("synthetic-legacy"),false);
 });
@@ -91,6 +92,7 @@ test("D-53 malformed/multiple drafts remain non-importable; no raw answers retur
   assert.equal(r.analysis.compatibleDrafts,1);
   assert.ok(r.blockers.includes("MULTIPLE_DRAFTS_NOT_IMPORTABLE"));
   assert.ok(r.blockers.includes("DRAFT_NOT_COMPATIBLE_WITH_CURRENT_VERSION"));
+  assert.equal(r.status,"BLOCKED_BACKUP_INCOMPATIBLE");
   assert.equal(r.restoreAuthorized,false);
   assert.equal(JSON.stringify(r).includes("A01"),false);
 });
@@ -101,6 +103,7 @@ test("D-53 protected domains must be reviewed manually", () => {
   source.stores.legacyBackups=[{id:"synth-legacy-backup"}];
   const r=review(source);
   assert.ok(r.blockers.includes("PROTECTED_DOMAINS_REQUIRE_MANUAL_REVIEW"));
+  assert.equal(r.status,"BLOCKED_BACKUP_INCOMPATIBLE");
   assert.equal(r.restoreAuthorized,false);
 });
 
@@ -132,4 +135,31 @@ test("D-53 summary contains only aggregated numbers and generic flags, no import
   assert.equal(Object.isFrozen(r.blockers),true);
   assert.equal(Object.isFrozen(r.analysis.history),true);
   assert.equal(r.anyDataWritten,false);
+});
+
+test("D-55 no empty-target backup with incompatible history is labelled planning-only",()=>{
+  for(const kind of ["legacy","quarantined"]){
+    const backup=sampleBackup();
+    if(kind==="legacy") backup.stores.history[0].versions.scoring="unrecognized-old-score";
+    else backup.stores.history[0].result.axes[0].n=-1;
+    const r=review(backup,empty());
+    assert.equal(r.status,"BLOCKED_BACKUP_INCOMPATIBLE",kind);
+    assert.equal(r.analysis.history[kind],1);
+    assert.equal(r.analysis.target.history,0);
+    assert.equal(r.restoreAuthorized,false);
+    assert.equal(r.anyDataWritten,false);
+  }
+});
+
+test("D-55 only fully compatible synthetic records can keep a nonauthorizing plan state",()=>{
+  const good=review(sampleBackup(),empty());
+  assert.equal(good.status,"PLAN_ONLY_REQUIRES_HUMAN_REVIEW");
+  assert.equal(good.restoreImplemented,false);
+  const withConsent=sampleBackup();
+  withConsent.stores.preferences=[{id:"consent",enabled:true,retainRaw:true}];
+  const check=review(withConsent,empty());
+  assert.equal(check.status,"PLAN_ONLY_REQUIRES_HUMAN_REVIEW");
+  assert.ok(check.blockers.includes("CONSENT_MUST_NOT_BE_IMPORTED"));
+  assert.equal(check.restoreAuthorized,false);
+  assert.equal(check.identityOrIntegrityVerified,false);
 });
