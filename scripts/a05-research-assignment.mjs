@@ -118,7 +118,9 @@ export function buildInterviewAssignment(base, overlay, slot) {
     core,
     focus,
     e05Independent: {
-      timing: slot % 2 ? "before-core" : "after-core",
+      // 2×2 balance: each E05 A/B wording appears three times before
+      // and three times after the independent format over twelve slots.
+      timing: Math.floor((slot - 1) / 2) % 2 === 0 ? "before-core" : "after-core",
       questions: separate.questions.map(({ id, domain, prompt }) => ({ id, domain, prompt }))
     },
     permissions: {
