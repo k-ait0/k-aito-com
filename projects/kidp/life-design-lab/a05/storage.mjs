@@ -79,6 +79,23 @@ export function readAll(db, store) {
 }
 
 /**
+ * Export an atomic, coherent view of ALL A05 domains. A separate readonly
+ * transaction per store can mix states committed by another tab at different
+ * moments. Queue all five getAll requests synchronously inside ONE transaction.
+ * No data is written or sent outside this browser by this helper.
+ */
+export function readExportSnapshot(db) {
+  const result = Object.fromEntries(STORES.map(name => [name, []]));
+  return transaction(db, STORES, "readonly", (tx, ctl) => {
+    ctl.result(result);
+    for (const name of STORES) {
+      const request = tx.objectStore(name).getAll();
+      request.onsuccess = () => { result[name] = request.result; };
+    }
+  });
+}
+
+/**
  * Read all recovery domains under one readonly IDB transaction. This avoids
  * mixing preference/draft/history data from different cross-tab commit points.
  */
