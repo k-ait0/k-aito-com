@@ -11,6 +11,7 @@ import {
 } from "./storage.mjs";
 import { exportA05Data } from "./export.mjs";
 import { formatLocalCompletionDay } from "./format.mjs";
+import { inspectA05Backup, A05_BACKUP_MAX_BYTES } from "./backup-inspect.mjs";
 
 const root = document.querySelector("#a05-content");
 const notice = document.querySelector("#a05-notice");
@@ -23,7 +24,7 @@ const state = {
   view: "home", db: null, hash: "", draft: null, history: [],
   legacy: [], quarantined: [], consent: false, retainRaw: false,
   readOnly: false, busy: false, selected: null, sample: null,
-  filter: "all", share: false, status: ""
+  filter: "all", share: false, status: "", backupInspection: null
 };
 const uid = () => "a05-" + (globalThis.crypto?.randomUUID?.() ??
   Date.now().toString(36) + "-" + Math.random().toString(36).slice(2));
@@ -325,7 +326,20 @@ function renderHistory() {
     '>A05保存データを書き出す</button>' +
     '<button type="button" class="btn danger" data-action="erase" ' + (!state.db ? "disabled" : "") +
     '>このA05試作の保存データを全削除</button></div>' +
-    '<p class="muted">旧D-12・D-19試作およびP0のデータは、この削除操作の対象外です。</p>';
+    '<p class="muted">旧D-12・D-19試作およびP0のデータは、この削除操作の対象外です。</p>' +
+    '<div class="card"><strong>JSONバックアップの形式を確認（復元しません）</strong>' +
+    '<p class="muted">端末内で形式と件数のみ検査します。保存データの上書き・サーバー送信は行いません。最大10MiBです。</p>' +
+    '<label class="option" for="a05-inspect-file">検査するA05バックアップJSONを選択</label>' +
+    '<input id="a05-inspect-file" type="file" accept=".json,application/json" aria-describedby="a05-inspect-description">' +
+    '<p class="muted" id="a05-inspect-description">構造の確認だけで、回答の真正性やバックアップからの復元可否は保証しません。</p>' +
+    (state.backupInspection ? '<div id="a05-inspect-report" role="status" class="' +
+      (state.backupInspection.ok ? 'muted' : 'warning') + '">' +
+      (state.backupInspection.ok ? '形式確認：' +
+        ['下書き', '履歴', '設定', '移行', '旧版バックアップ'].map((label, i) =>
+          label + ' ' + state.backupInspection.counts[['drafts', 'history', 'preferences', 'migrations', 'legacyBackups'][i]] + '件').join('／') +
+        '。構造検査のみ成功。復元・保存・内容検証は行っていません。' :
+        '形式を確認できません：' + escapeHTML(state.backupInspection.reason)) +
+      '</div>' : '') + '</div>';
 }
 
 async function persistDraft() {
@@ -592,6 +606,33 @@ tabs.addEventListener("click", event => {
 });
 
 root.addEventListener("change", async event => {
+  if (event.target.id === "a05-inspect-file") {
+    if (state.busy || state.view !== "history") return;
+    const file = event.target.files?.[0];
+    if (!file) return;
+    state.busy = true;
+    reflectBusy();
+    try {
+      if (file.size > A05_BACKUP_MAX_BYTES) {
+        state.backupInspection = { ok: false, reason: "10MiBを超えるファイルは検査できません。" };
+      } else {
+        const contents = await file.text();
+        // Do not keep the user-provided JSON or identifiers in application
+        // state, storage, logs or the DOM. Retain only five record counts.
+        state.backupInspection = inspectA05Backup(JSON.parse(contents));
+      }
+    } catch (_) {
+      state.backupInspection = { ok: false, reason: "JSONとして読み取れませんでした。" };
+    } finally {
+      state.busy = false;
+      updateNotice("ファイルの構造確認が完了しました。端末内の診断履歴は変更していません。");
+      render();
+      const heading = root.querySelector("h2");
+      heading?.setAttribute("tabindex", "-1");
+      heading?.focus({ preventScroll: true });
+    }
+    return;
+  }
   if (event.target.dataset.setting !== "raw" || state.busy) return;
   state.busy = true;
   reflectBusy();
