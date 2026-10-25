@@ -723,3 +723,26 @@ and gate-contract check, not legal compliance certification.
 storage, past results, P0, site navigation and live production.
 No interviews or respondent records. PR #61 remains Draft,
 unmerged and undeployed.
+
+### A05-D38-001 — native GitHub Actions verification (2026-10-26 JST)
+
+**KIDP Wave A Browser QA run 40211128156: SUCCESS.**
+The existing Node 22 A05 step ran G1 checks
+`node --test scripts/test-a05-research-g1.mjs` with **7/7 PASS**,
+including the 12 pending operations and final human sign-off
+boundary, missing approval evidence, missing/duplicate IDs,
+forged approval, privacy restrictions and malformed inputs.
+The existing research contracts **18/18**, scoring domain
+**66/66**, simulated IndexedDB storage **13/13**, real Chrome A05
+acceptance **16/16** (plus the independent unexpected-network/
+page-error check) and existing KIDP P0 browser QA all passed.
+Local preflight and diff checks passed.
+**SEO audit run 40211128155: SUCCESS.**
+
+**Interpretation:** Technical controls prove the submitted approval
+register cannot be read as research authorization through this
+gate helper. They do **not** satisfy the outstanding 12 human
+decisions, authorize any participant contact or certify legal/
+research-ethics compliance. G1 final approval, interviews and
+psychometric validation remain **not performed**. No merge or
+production deployment.
