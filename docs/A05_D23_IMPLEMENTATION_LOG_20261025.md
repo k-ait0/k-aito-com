@@ -1014,3 +1014,54 @@ decisions and final sign-off remain PENDING; no
 respondents, recruitment, research data, release or
 production change occurred. No new Actions job or
 workflow was created.
+
+## A05-D42-001 (2026-10-26)
+
+**Scope:** Translate the D-41 policy A (14-day contacts,
+30-day pseudonym lookup and 30-day notes) into a concrete
+operational acceptance *evidence requirement* before real research.
+
+**Before:** D-41 aligned the proposed linkage and note lifetimes,
+but left actual participant rights/identity verification,
+physical storage and backup erasure, authorization and
+post-expiry monitoring untested and unapproved.
+
+**After:**
+- Created `docs/A05_D42_30DAY_ACCEPTANCE_REGISTER_20261026.json`
+  with **16 acceptance controls** linked across all 12 G1
+  decisions. Every check is PENDING, evidence/reference/role/time
+  fields null, approval PENDING, and collection/recruitment/
+  physical-erasure/token-implementation flags false.
+- Added `docs/A05_D42_30DAY_OPERATIONAL_ACCEPTANCE_20261026.md`
+  covering the evidence matrix, proposed cutoff days, safe
+  withdrawal identity token, backups/sync/replicas, fail-to-delete
+  handling, participant notice and release restrictions.
+- Added `scripts/a05-research-d42-acceptance-audit.mjs`,
+  pure structural evidence validator. It verifies check IDs,
+  G1 mapping, D-41 unchanged 14/30/30 source, fake approval,
+  missing evidence and candidate mismatch. **Always reports
+  `authorized:false` and `physicalDeletionVerified:false`.**
+  Even a hypothetical completed 16-row document is *not*
+  automatically eligible for research approval.
+- Added `scripts/test-a05-research-d42.mjs` with **11**
+  contract cases, including forged sign-off, unsafe legacy
+  30/90 durations, missing checks, pending G1 source,
+  fictional metadata, malformed input, and symbolic boundary
+  transitions. Extended the existing conditionally-scoped
+  A05 Node step, **no new workflow or job**.
+
+**Reason:** Prevent a passed logical simulation from being
+mistaken for participant-authenticated withdrawal, actual
+record/backup deletion, regulatory conformity or formal
+research authorization.
+
+**Verification at creation:** The prospective native Node
+contract and existing browser QA run have **not yet been
+observed at this entry**. Inspecting evidence field
+completeness is not validating those external artifacts.
+
+**Unchanged:** D-38 G1 register remains 12/12 PENDING
+and final human approval absent. No actual participant,
+recordings, individual records, data deletion, secret token
+issuance, real storage changes, scoring, P0 or production
+deployment. PR #61 stays Draft.
