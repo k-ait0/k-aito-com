@@ -1,6 +1,6 @@
 {
   "schema": "A05-D54-PR-REVIEW-MANIFEST-1",
-  "version": "D54-002",
+  "version": "D55-001",
   "date": "2026-10-26",
   "repository": "k-ait0/k-aito-com",
   "base": "main",
@@ -144,7 +144,7 @@
       "reviewedAt": null
     },
     {
-      "path": "docs/A05_D35_INTERVIEW_CANDIDATES_20261026.json",
+      "path": "docs/A05_D35_INTERVIEW_CANDIDATE_GUIDE_20261026.md",
       "group": "D_RESEARCH_HUMAN_APPROVAL",
       "reviewStatus": "NOT_REVIEWED",
       "mergeAuthorized": false,
@@ -153,7 +153,7 @@
       "reviewedAt": null
     },
     {
-      "path": "docs/A05_D35_INTERVIEW_CANDIDATE_GUIDE_20261026.md",
+      "path": "docs/A05_D35_INTERVIEW_CANDIDATES_20261026.json",
       "group": "D_RESEARCH_HUMAN_APPROVAL",
       "reviewStatus": "NOT_REVIEWED",
       "mergeAuthorized": false,
@@ -387,8 +387,8 @@
       "reviewedAt": null
     },
     {
-      "path": "projects/kidp/life-design-lab/a05/README.md",
-      "group": "A_UI_ACCESSIBILITY",
+      "path": "docs/A05_D55_P0_BACKUP_REVIEW_AND_DOC_CI_GATE_20261026.md",
+      "group": "E_CROSSCUTTING_QA_AUDIT",
       "reviewStatus": "NOT_REVIEWED",
       "mergeAuthorized": false,
       "reviewEvidenceRef": null,
@@ -452,6 +452,15 @@
     {
       "path": "projects/kidp/life-design-lab/a05/questions.mjs",
       "group": "C_PROVISIONAL_SCORING",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "projects/kidp/life-design-lab/a05/README.md",
+      "group": "A_UI_ACCESSIBILITY",
       "reviewStatus": "NOT_REVIEWED",
       "mergeAuthorized": false,
       "reviewEvidenceRef": null,
@@ -689,6 +698,13 @@
       "before": "All 67 files only stored NOT_REVIEWED and no proof fields, making future signoff evidence hard to track",
       "after": "Every file has nullable non-identifying review evidence, role and date; each area has a risk priority and required reviewer role. All remain NOT_REVIEWED and nonauthorizing",
       "reason": "Allow later accountable review without mixing CI QA with real human approval"
+    },
+    {
+      "date": "2026-10-26",
+      "version": "D55-001",
+      "before": "D54-002 covered 67 paths and QA did not run for docs-only A05 updates",
+      "after": "Added D55 risk/CI review memo as 68th NOT_REVIEWED path; retained original 64-path intake baseline and blocked authorizations",
+      "reason": "Preserve exact PR diff inventory and support lightweight docs-only checks"
     }
   ]
 }
