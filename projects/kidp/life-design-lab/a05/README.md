@@ -485,3 +485,18 @@ PENDING; the D-42 16 controls are PENDING. No participant
 data, production record, token or browser storage is
 created/modified. The D-42 native CI result is pending
 at this chronological entry.
+
+### D-42 native CI evidence
+
+GitHub Actions **40215370738 succeeded**: D-42 acceptance
+contract checks **11/11 native Node 22**, D-41 **10/10**,
+D-40 **10/10**, G1/D-39 **11/11**, earlier research
+**18/18**, existing scoring **66/66**, simulated storage
+**13/13**, real Chromium A05 **16/16** plus no-error
+check, existing P0 and site preflight. SEO **40215370651**
+passed. No new job/workflow was created.
+
+**Research remains blocked:** the 12 G1 decisions, 16 D-42
+acceptance controls, human final authorization, real deletion
+and identity verification are all **not completed**. QA success
+does not approve recruiting or production release.
