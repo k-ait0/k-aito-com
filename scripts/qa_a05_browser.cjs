@@ -110,6 +110,49 @@ async function main() {
       assert.equal(await page.evaluate(() => document.activeElement?.tagName), "H2");
     });
 
+    await check("D-44 progressbar and focus after dynamic rerenders", async () => {
+      await page.goto(address + A05);
+      await page.locator('[data-action="start"]').click();
+      const progress = page.locator('[role="progressbar"][aria-label="回答の進捗"]');
+      assert.equal(await progress.getAttribute("aria-valuemax"), "30");
+      assert.equal(await progress.getAttribute("aria-valuenow"), "0");
+      await page.locator('[data-action="answer"][data-value="7"]').click();
+      await page.locator('#a05-content[aria-busy="false"]').waitFor();
+      assert.equal(await progress.getAttribute("aria-valuenow"), "1");
+      await page.locator('[data-action="answer"][data-value="4"]').click();
+      await page.locator('#a05-content[aria-busy="false"]').waitFor();
+      assert.equal(await progress.getAttribute("aria-valuenow"), "1",
+        "Changing an existing answer must not increase count");
+      await page.locator('[data-action="skip"]').click();
+      await page.locator('#a05-content[aria-busy="false"]').waitFor();
+      assert.equal(await progress.getAttribute("aria-valuenow"), "1",
+        "Choosing unanswerable counts as answered");
+      await page.locator('[data-action="skip"]').click();
+      await page.locator('#a05-content[aria-busy="false"]').waitFor();
+      assert.equal(await progress.getAttribute("aria-valuenow"), "0",
+        "Removing an answer decreases accessible progress");
+
+      await page.locator('[data-view="catalog"]').first().click();
+      const choose = page.locator('[data-action="filter"][data-filter="G2"]');
+      await choose.focus();
+      await page.keyboard.press("Enter");
+      await page.locator('#a05-content[aria-busy="false"]').waitFor();
+      assert.equal(await page.evaluate(() => document.activeElement?.dataset.filter), "G2",
+        "Filter rerender must not drop keyboard focus");
+      assert.equal(await choose.getAttribute("aria-pressed"), "true");
+      await page.locator('[data-action="sample"]').first().click();
+      await page.locator('[data-action="share"]').focus();
+      await page.keyboard.press("Enter");
+      await page.locator('#a05-content[aria-busy="false"]').waitFor();
+      assert.equal(await page.evaluate(() => document.activeElement?.dataset.action), "share",
+        "Share toggle rerender must retain keyboard focus");
+      assert.equal(await page.locator('#a05-share[readonly]').count(), 1);
+      await page.keyboard.press("Enter");
+      await page.locator('#a05-content[aria-busy="false"]').waitFor();
+      assert.equal(await page.evaluate(() => document.activeElement?.dataset.action), "share");
+      assert.equal(await page.locator("#a05-share").count(), 0);
+    });
+
     await check("no consent: answer is not persisted after reload", async () => {
       await page.goto(address + A05);
       await page.locator('[data-action="start"]').click();
