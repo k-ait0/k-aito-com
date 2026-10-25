@@ -835,3 +835,66 @@ still 12/12 PENDING plus final human sign-off, and the D-39
 calculator performs **no retention, deletion, collection, storage
 or authorization action**. Neither human interviews nor
 psychometric validation have occurred. No production merge/release.
+
+## A05-D40-001 (2026-10-26)
+
+**Scope:** Test the unapproved G1 consent, withdrawal and
+retention proposals using **synthetic-only, in-memory desk cases**,
+without building actual participant data collection or deletion.
+
+**Before:** D-39 had A/B alternatives for eight human G1
+decisions and proposed 14/30/90-day maximum periods calculated
+from interview dates. It had not exercised refusal to record,
+separate consent, withdrawal before/after pseudonym-link deletion,
+or the difference between logical markers and actual record deletion.
+
+**After:**
+- Added `scripts/a05-research-d40-simulator.mjs`, a pure
+  scenario-name-only function containing **nine fixed fictional
+  cases**. No personal identifiers, real records, external inputs,
+  IO, IndexedDB, recording or network access can be supplied.
+  Every result explicitly reports `authorized:false`,
+  `actualDataCollected:false`, and
+  `actualDeletionPerformed:false`.
+- Added `scripts/test-a05-research-d40.mjs` with **ten**
+  synthetic-safety cases: explicit consent boundaries, separate
+  contact consent, refusal to record, time-bounded pseudonym
+  linkage, withdrawal with/without assumed identity verification,
+  repeated withdrawal, proposed deadlines, and original G1
+  nonauthorization.
+- Added `docs/A05_D40_SYNTHETIC_CONSENT_WITHDRAWAL_DELETION_REVIEW_20261026.md`
+  containing the nine-case matrix, confirmed design limits and
+  unresolved human G1 decisions.
+- Extended the existing *conditional A05 Node step* with one
+  research test command. No new job or workflow.
+
+**Important findings:** Consent to record research notes must NOT
+automatically imply consent to retain contact information. Removing
+contact after 14 days does not prove the participant can be
+verified to submit a deletion request while a mapping still
+exists. When the pseudonym-ID lookup expires after 30 days,
+individual notes retained until day 90 may be impossible to
+match to a specific withdrawal request. The simulation reports
+an **unmatchable/unverified request**, not a fabricated successful
+deletion. It also never claims that simulated marker deletion
+means physical deletion from storage/backups.
+
+**Reason:** Expose internal contradictions before deciding the
+retention/withdrawal policy. Options include extending the
+lookup window to match identifiable notes, retiring the notes
+earlier, using a carefully reviewed opt-in withdrawal token,
+or collecting no records until the process is viable. Each
+requires responsible human approval.
+
+**Evidence at creation:** Source-backed JavaScript review of
+the earlier seven cases confirmed fail-closed states and
+nonauthorization; the scenarios were expanded to nine with
+explicit separate contact consent and verification checks.
+**Native Node CI is pending at this entry.** These checks do not
+establish research-ethics or legal compliance.
+
+**Unchanged:** G1 register 12/12 PENDING, no human sign-off;
+no participant recruitment, recording, research answers,
+personal data, actual deletion, production scoring changes,
+stored-result migration, P0 changes, merge or deployment.
+Draft PR #61 remains unmerged.
