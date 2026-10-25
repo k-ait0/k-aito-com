@@ -445,3 +445,17 @@ Native CI status was pending at this history entry.
 **All G1 decisions remain PENDING**. An engineering test
 does not permit recruitment, collection, recording, real
 deletion, release or modifying old assessment histories.
+
+### D-41 native verification evidence
+
+KIDP GitHub Actions **40214353407 succeeded**:
+D-41 **10/10 native Node**, D-40 **10/10**, G1/D-39
+**11/11**, D-35–37 research **18/18**, A05 scoring
+**66/66**, storage simulator **13/13**, Chromium A05
+**16/16** plus no-error check, P0 QA and preflight.
+SEO audit **40214353357** passed.
+
+Three D-41 retention policies remain **unapproved human
+options**. No real authentication, recording, data
+storage or physical deletion was tested or implemented.
+G1 12/12 PENDING, final signoff PENDING; Draft PR only.
