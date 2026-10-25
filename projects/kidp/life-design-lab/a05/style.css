@@ -96,13 +96,14 @@ label.option input{width:18px;height:18px}
   .value-axis{grid-template-columns:minmax(55px,5.5rem) minmax(0,1fr) minmax(36px,3rem)}
   .axis-ends{margin-right:3rem;margin-left:calc(5.5rem + 9px)}
 }
-@media(max-width:400px){
-  .scale{gap:3px}
-  /* Seven targets in a single mobile row can be less than 44px wide.
-     Use a 4 + 3 grouping without changing their DOM/keyboard order. */
+/* Under ~440px, seven 1fr targets would shrink below 44px wide.
+   Keep DOM and keyboard order, but visually group as four plus three. */
+@media(max-width:440px){
   .scale{grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
   .scale button{padding:0;min-width:0;min-height:48px}
   .scale button:nth-child(5){grid-column:2}
+}
+@media(max-width:400px){
   .answer-pair{grid-template-columns:minmax(0,1fr)}
   .answer-pair>div{min-height:0}
 }
