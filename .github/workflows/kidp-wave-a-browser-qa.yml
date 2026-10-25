@@ -32,6 +32,7 @@ jobs:
           node --test scripts/test-a05-engine.mjs
           node --test scripts/test-a05-format.mjs
           node --test scripts/test-a05-backup-inspect.mjs
+          node --test scripts/test-a05-restore-review.mjs
           node --test scripts/test-a05-storage.mjs
           node --test scripts/test-a05-research-manifest.mjs scripts/test-a05-research-d36.mjs
           node --test scripts/test-a05-research-g1.mjs
