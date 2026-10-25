@@ -6,6 +6,13 @@ import { AXES, QUESTIONS, QUESTION_SET_VERSION } from "./questions.mjs";
 import { TYPES, GROUPS, TYPE_VERSION, CONTENT_VERSION } from "./types.mjs";
 
 export const SCORING_VERSION = "A05-S-1.0.0-draft";
+export class AssessmentValidationError extends Error {
+  constructor(message) {
+    super(message);
+    this.name = "AssessmentValidationError";
+    this.code = "VALIDATION_ERROR";
+  }
+}
 const OWN = (obj, key) => Object.prototype.hasOwnProperty.call(obj, key);
 
 export function validateQuestions(questions = QUESTIONS) {
@@ -35,17 +42,17 @@ export function validateQuestions(questions = QUESTIONS) {
 export function validateAnswers(answers, questions = QUESTIONS, requireComplete = false) {
   validateQuestions(questions);
   if (!answers || typeof answers !== "object" || Array.isArray(answers)) {
-    throw new Error("Invalid answer object");
+    throw new AssessmentValidationError("Invalid answer object");
   }
   const ids = new Set(questions.map(q => q.id));
   for (const [id, value] of Object.entries(answers)) {
     if (!ids.has(id) || (value !== null &&
         (!Number.isInteger(value) || value < 1 || value > 7))) {
-      throw new Error("Invalid question ID or answer: " + id);
+      throw new AssessmentValidationError("Invalid question ID or answer: " + id);
     }
   }
   if (requireComplete && questions.some(q => !OWN(answers, q.id))) {
-    throw new Error("Every question must be answered or explicitly skipped");
+    throw new AssessmentValidationError("Every question must be answered or explicitly skipped");
   }
   return true;
 }
