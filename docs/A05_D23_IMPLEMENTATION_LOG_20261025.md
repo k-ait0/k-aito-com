@@ -1137,3 +1137,23 @@ psychometrically or approve participant research and do not
 indicate any main-branch release. The D-43 owner/storage
 decisions, G1 12/12 pending and D-42 16/16 pending continue
 to block human research.
+
+## A05-D45-D46-001 (2026-10-26)
+
+**Priority:** Following D-44 accessible progress and focus fixes, address the functional friction of locating unanswered items within the 30-question review page and warn before exporting potentially sensitive local data. D-43 human-run study operations remain blocked without a designated owner/storage decision.
+
+**D-45 before:** The question review listed only item IDs and response status in 3 mobile/6 desktop columns; the wording was not visible, finding the next missing item required manual scanning, type filter labels R/G/B/Y lacked Japanese color names, and sharing had no open/closed accessibility state.
+
+**D-45 after:** `projects/kidp/life-design-lab/a05/app.mjs` now shows escaped left/right wording and response status for each card, accessible edit names and 5-axis input totals, a **first-unanswered** button that uses the existing revision-safe `moveIndex()`, R・赤 / G・緑 / B・青 / Y・黄 filter labels, and `aria-expanded` plus `aria-controls` on the share toggle. `style.css` adapts the review cards to 1 / 2 / 3 columns (<380 / 380–699 / >=700 px) and wraps long item text.
+
+**D-46 before:** The app mentioned possible raw-answer inclusion only after creating the local JSON export.
+
+**D-46 after:** A clearly worded pre-download confirmation explains that raw answers, legacy snapshots and quarantined entries may be in the JSON. Cancel prevents calling `exportA05Data()`; the export format and storage contract remain untouched.
+
+**Regression:** Expanded existing `scripts/qa_a05_browser.cjs` with named cases for D-45 review/jump and D-46 canceled export, a share `aria-expanded` assertion, and responsive overflow/column checks at 320/390/768/1440 px across catalog/review/quiz. No new CI job/workflow.
+
+**Evidence at creation:** Native GitHub Chrome/Node jobs for the final D-45/D-46 changes are pending. The last D-44 verified code had 139 native Node and 17 named Chrome cases passed; D-45/D-46 verification must be checked separately.
+
+**Unchanged:** Existing 30 scored questions, versions/hashes, 16 type classification, IndexedDB persistence and stored assessments, P0, main, and site deployment. G1 12/12 and D-42 16/16 remain PENDING; no human research, recruitment or data collection. PR #61 remains Draft/unmerged.
+
+**Change history:** D-44: readable progress and focus restoration; D-45: review visibility and unanswered navigation; D-46: privacy warning before export. All appended without replacing earlier history.
