@@ -1490,3 +1490,87 @@ backup preflight -> D-54 exact-file reviewer inventory
 and CI diff guard. Revisions D54-002 added risk ratings
 and empty proof slots; D54-003 recorded the verified
 172/172 and 26/26 CI evidence. Historical entries retained.
+
+## A05-D55-001–005 (2026-10-26)
+
+**Scope:** P0 technical code review of A05's local backup/recovery
+readiness and version-tagged drafts, together with PR #61's
+file-inventory coverage for docs-only updates. No respondent
+research or production action was authorized.
+
+**Defect 1 — misleading recovery status on empty target.**
+Before D-55, `inspectA05RestorePlan()` could return
+`PLAN_ONLY_REQUIRES_HUMAN_REVIEW` when the local database
+was empty even if a user-selected JSON contained legacy/
+quarantined histories, an incompatible or multiple draft,
+or protected migration/backup domains. Individual blockers
+already existed, and no restore/write path existed, but the
+overall status could be misread as relatively safe.
+**After:** incompatible sources are
+`BLOCKED_BACKUP_INCOMPATIBLE`; invalid JSON, unknown
+target/version and occupied target retain their stricter
+blocked outcomes. `app.mjs` warns about incompatible
+materials and that previous saved consent cannot be
+imported. All reports retain no-write, no-restore and
+no-authority values. Added **2** new no-write contract
+cases, strengthened three older ones and augmented the
+isolated empty-target Chrome backup regression.
+
+**Defect 2 — type/content draft version drift.**
+`verifyDraft()` previously checked `question` and
+`scoring` versions but did not require equality of
+`type` or `content`. An old draft could therefore be
+finalized under current type/presentation logic while
+retaining outdated version metadata, later appearing as
+legacy or inconsistent. **After:** all four versions
+must match; old drafts remain preserved and read-only
+rather than silently rewritten. Added **1 engine** and
+**1 storage** test for stale-version rejection, consent
+atomicity and retention of existing persisted old drafts.
+Scoring formulas, stored final assessments and canonical
+question hash are unchanged.
+
+**CI scope — documentation updates.** The existing KIDP
+workflow now includes `docs/A05_D*.md/json` in the
+PR event paths. Full-PR manifest coverage executes
+even for a docs-only update. On real PR merge refs,
+however, the existing A05 scope check compares
+`HEAD^1..HEAD` (the **entire** PR), so docs-only changes
+still run Node/Playwright/Chrome. Run **40226095185
+SUCCESS** confirmed this behavior. **The proposed
+cost optimization was not achieved**; this limitation
+is explicitly recorded rather than asserting that
+browser QA was skipped. No additional workflows or
+jobs were created.
+
+**Reviewer inventory:** D-54 file manifest was updated
+from 67 to **68 exact paths** for the new D-55
+memo. All files remain NOT_REVIEWED with null human
+signoff evidence and `mergeAuthorized:false`.
+The existing PR merge-ref exact-diff test remains
+active.
+
+**Verified code-source CI:** KIDP **40226316060 SUCCESS**.
+Native Node 22 **176/176 PASS** (172 D-54 baseline
++ 2 recovery checks + 1 engine check + 1 storage check).
+Real Chromium A05 **26/26 named PASS** with its
+independent no-network/page-error check. Existing
+KIDP P0 QA, local preflight/diff passed.
+SEO static audit **40226316202 SUCCESS**.
+Earlier D-55 recovery-only run **40225965393 SUCCESS**
+had 174/174 Node and 26/26 Chromium before the
+type/content fix.
+
+**No-go gates unchanged:** G1 12/12 PENDING and
+D-42 16/16 PENDING. D-33 7 BLOCK, 13 REVISE
+and 10 TRIAL with no cognitive interviews performed;
+unresolved E-axis, unvalidated 16 types. No real
+respondent data, actual JSON restore/import, physical
+backup erasure, draft approval change, merge or deployment.
+PR #61 remains Draft.
+
+**Append-only history:** D-54 file-level review/QA
+inventory -> D-55 incompatible recovery status blocking,
+four-part draft-version checks, and docs-only PR coverage.
+Earlier D55-002 lightweight browser-skip expectation
+was corrected by D55-004 after observing actual CI.
