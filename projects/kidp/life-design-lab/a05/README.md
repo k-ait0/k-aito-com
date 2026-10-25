@@ -735,3 +735,43 @@ preflight/diff PASS. SEO **40222996687 SUCCESS**.
 Existing conditional A05 Node and browser jobs only.
 G1 12/12 and D-42 16/16 remain PENDING; no public
 release or user/participant study authorization.
+
+## D-53 safe, no-write backup recovery assessment and release guards (2026-10-26)
+
+`docs/A05_D53_RESTORE_DRY_RUN_AND_PR_RELEASE_GATES_20261026.md`
+documents the recovery-preflight feature. A05 now reads the
+**counts only** of its five local IndexedDB stores in a
+single readonly transaction and compares them to a
+user-selected, ephemeral A05-EXPORT-1 file. The read-only
+`restore-review.mjs` summarizes verified-format/legacy/
+quarantined snapshots, draft compatibility, existing-data
+conflicts and consent portability, returning generic
+warnings without personal data.
+
+**There is no restore/import/write operation.** Existing
+target data blocks proposed overwrites, another device's
+saved consent is NOT reused, and a clean preview cannot
+authenticate the file or authorize future import. The
+counts are not atomically linked to any hypothetical later
+write; the target must be rechecked if an importer is
+designed separately.
+
+Added eight pure restore risk tests, two aggregate
+storage-count tests, four PR release-boundary tests
+(noindex/unvalidated, no research imports, no IO in
+inspectors, draft scoring labels) and real Chrome
+coverage of occupied versus empty local target.
+Expanded the existing KIDP Actions script path filters
+for A05 tests and research-only scripts; added no job.
+
+**Final CI:** KIDP **40224146085 SUCCESS** with native
+Node **165/165** and real Chrome **26/26 named checks**
+plus separate no-unexpected-network/page-error guard,
+existing KIDP P0 and preflight/diff. SEO static audit
+**40224146036 SUCCESS**. Initial errors from
+mis-specified test fixtures and `Set.add()` static
+false-positive were corrected, as logged chronologically.
+
+No user/participant study authority has been granted.
+G1 12/12, D-42 16/16 and human final approval are still
+PENDING, and PR #61 is an unmerged, undeployed Draft.
