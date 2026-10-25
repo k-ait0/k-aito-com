@@ -1,4 +1,5 @@
 import test from "node:test";
+import { buildInterviewAssignment, buildInterviewPlan, PLANNED_SLOTS, RESEARCH_PROTOCOL_VERSION } from "./a05-research-assignment.mjs";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { QUESTIONS, QUESTION_SET_VERSION } from "../projects/kidp/life-design-lab/a05/questions.mjs";
@@ -102,4 +103,97 @@ test("combined editorial candidates total 63 but do not imply 63 questionnaire i
   assert.deepEqual(overlay.entries.filter(e => e.id.startsWith("E")).map(e => e.id).sort(),
     ["E02", "E03", "E06"]);
   assert.equal(base.responseFormat.E05IndependentResearchOnly.scoringAllowed, false);
+});
+
+test("D-37 schedule rejects invalid slots and non-research candidate inputs", () => {
+  assert.equal(PLANNED_SLOTS, 12);
+  assert.equal(RESEARCH_PROTOCOL_VERSION, "A05-R-PROTOCOL-1");
+  for (const slot of [0, 13, 1.5, null, "1", NaN]) {
+    assert.throws(() => buildInterviewAssignment(base, overlay, slot), RangeError);
+  }
+  assert.throws(() => buildInterviewAssignment({ ...base,
+    policy: { ...base.policy, scoringAllowed: true } }, overlay, 1));
+  assert.throws(() => buildInterviewAssignment(base, { ...overlay,
+    permissions: { ...overlay.permissions, personalDataCollectionApproved: true } }, 1));
+});
+
+test("D-37 all twelve interview slots have exactly thirty unscored core items", () => {
+  const plans = buildInterviewPlan(base, overlay);
+  assert.equal(plans.length, 12);
+  for (const [index, plan] of plans.entries()) {
+    assert.equal(plan.slot, index + 1);
+    assert.equal(plan.protocol, RESEARCH_PROTOCOL_VERSION);
+    assert.equal(plan.status, "UNAPPROVED_SCHEDULE_ONLY");
+    assert.equal(plan.core.length, 30);
+    assert.deepEqual(plan.core.map(x => x.id), QUESTIONS.map(x => x.id));
+    assert.equal(plan.focus.length, 4);
+    assert.equal(new Set(plan.focus.map(x => x.id)).size, 4);
+    assert.equal(plan.permissions.scoringAllowed, false);
+    assert.equal(plan.permissions.savingAllowed, false);
+    assert.equal(plan.permissions.personalDataCollectionApproved, false);
+    assert.equal(plan.permissions.productionUseAllowed, false);
+    for (const row of plan.core) {
+      assert.ok(row.left && row.right);
+      assert.ok(["BLOCK", "REVISE", "TRIAL"].includes(row.editorialStatus));
+      const candidate = [...base.items.find(x => x.id === row.id).variants,
+        ...(overlay.entries.find(x => x.id === row.id)?.variants || [])]
+        .find(v => v.code === row.variantCode);
+      assert.equal(row.left, candidate.left, row.id);
+      assert.equal(row.right, candidate.right, row.id);
+    }
+  }
+});
+
+test("D-37 blocked A/B and revised D31/A/B are exactly balanced over 12 slots", () => {
+  const plans = buildInterviewPlan(base, overlay);
+  for (const item of base.items) {
+    const labels = plans.map(plan =>
+      plan.core.find(q => q.id === item.id).variantCode);
+    const counts = label => labels.filter(value => value === label).length;
+    if (item.editorialStatus === "BLOCK") {
+      assert.equal(counts("A"), 6, item.id);
+      assert.equal(counts("B"), 6, item.id);
+    } else if (item.editorialStatus === "REVISE") {
+      assert.equal(counts("D31"), 4, item.id);
+      assert.equal(counts("A"), 4, item.id);
+      assert.equal(counts("B"), 4, item.id);
+    } else {
+      assert.ok(labels.every(x => x === "D31"), item.id);
+    }
+  }
+});
+
+test("D-37 follow-up schedule balances 3 P0 and 1 P1 per slot", () => {
+  const plans = buildInterviewPlan(base, overlay);
+  const p0 = base.items.filter(item => item.editorialStatus === "BLOCK" ||
+    overlay.entries.find(x => x.id === item.id)?.priority === "P0").map(x => x.id);
+  const p1 = overlay.entries.filter(x => x.priority === "P1").map(x => x.id);
+  assert.equal(p0.length, 15);
+  assert.equal(p1.length, 5);
+  for (const plan of plans) {
+    assert.equal(plan.focus.filter(x => p0.includes(x.id)).length, 3);
+    assert.equal(plan.focus.filter(x => p1.includes(x.id)).length, 1);
+    for (const focus of plan.focus) {
+      const primary = plan.core.find(x => x.id === focus.id);
+      assert.equal(focus.primaryCode, primary.variantCode);
+      assert.notEqual(focus.comparisonCode, primary.variantCode);
+      assert.equal(focus.comparisonOnly, true);
+      assert.ok(focus.left && focus.right);
+    }
+  }
+  for (const id of [...p0, ...p1]) {
+    const appearances = plans.filter(plan =>
+      plan.focus.some(f => f.id === id)).length;
+    assert.ok(appearances >= 2 && appearances <= 3, id + " appearances=" + appearances);
+  }
+});
+
+test("D-37 independent E05 has counterbalanced before/after timing, no scoring", () => {
+  const plans = buildInterviewPlan(base, overlay);
+  assert.equal(plans.filter(x => x.e05Independent.timing === "before-core").length, 6);
+  assert.equal(plans.filter(x => x.e05Independent.timing === "after-core").length, 6);
+  for (const plan of plans) {
+    assert.deepEqual(plan.e05Independent.questions.map(x => x.id), ["E05-M", "E05-T"]);
+    assert.equal(plan.permissions.scoringAllowed, false);
+  }
 });
