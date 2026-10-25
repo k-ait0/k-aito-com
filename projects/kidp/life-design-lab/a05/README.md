@@ -74,3 +74,37 @@ Pure scoring and integrity code matched 72 isolated V8 checks; nine
 committed storage contract cases matched with an in-memory IndexedDB
 simulator. Native Node, real-browser and site-wide preflight results are
 **not yet available**. See docs/A05_D23_IMPLEMENTATION_LOG_20261025.md.
+
+
+## D-25 browser acceptance runner
+
+Use the repository's existing Playwright QA installation. It must be run
+**locally against a checked-out copy of the draft branch**; it does not
+contact the live domain or production database.
+
+    NODE_PATH=/tmp/kaito-qa/node_modules node scripts/qa_a05_browser.cjs
+
+The script serves the checked-out site on 127.0.0.1 and automates:
+- persistence off -> reload discards unpersisted answers;
+- explicit consent -> reload restores in-progress answers;
+- complete 30 questions -> T16 / time result;
+- history restored after reload, JSON export, raw-answer purge;
+- stale second tab cannot overwrite a different active assessment;
+- explicit all-data deletion and responsive widths of 320/390/1440px;
+- no unexpected external network or JavaScript page errors.
+
+The runner requires Playwright+Chromium to be available; its source was
+syntax-checked but the real browser suite has **not been executed** yet.
+
+### D-25 storage controller hardening
+
+D-25 reads consent, draft and history in **one readonly IndexedDB
+transaction** to avoid mixing values from different cross-tab commits.
+Re-enabling saving uses insert-only consent registration; it cannot silently
+overwrite an existing consent record. Invalid answers now raise
+VALIDATION_ERROR, which the UI handles without locking healthy storage.
+Recovery / consent / damaged-history cases have new regression tests.
+
+**Status:** isolated V8 domain regression 66/66; storage regression 13/13.
+Both use testing shims and are NOT native Node or real IndexedDB passes.
+All release gates in the main checklist still apply.
