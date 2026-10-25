@@ -69,7 +69,7 @@ export function inspectD42Acceptance(register,g1,policies) {
        source.contactDays!==14||source.linkDays!==30||source.noteDays!==30)
       blockers.push("D41 A candidate differs or has been declared adopted");
   } catch {blockers.push("D41 candidate policy invalid");}
-  const linkedG1=new Set(checks?.map(x=>x.g1));
+  const linkedG1=new Set(Array.isArray(checks)?checks.map(x=>x?.g1):[]);
   if(Array.isArray(g1?.operationalDecisions)&&
      g1.operationalDecisions.some(x=>!linkedG1.has(x.id)))
     blockers.push("D42 is missing one or more G1 controls");
