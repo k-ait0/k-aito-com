@@ -336,3 +336,30 @@ After: Added docs/A05_D31_FULL_QUESTION_REVIEW_20261025.md with 30 source-matche
 Evidence: Confirmed 30 unique questions from the current source. D-30 test baseline remains Actions 40177149557: browser 16/16, scoring 66/66, storage 13/13, site 12/12. D-31 is documentation only and has no new acceptance claim.
 
 Limitations: The new wording is not validated or approved. No automatic migration, merge, or release.
+
+## A05-D32-001 (2026-10-26)
+
+**Scope:** Fail-closed recovery under a simulated IndexedDB write/quota failure.
+
+**Before:** A05 real-Chrome acceptance covered valid persistence, cross-tab revision
+conflict, and corrupted stored records, but not an exception thrown during an
+in-flight draft write. The prior QA suite could not distinguish an optimistic
+in-memory answer update from an atomic, durable answer change under quota failure.
+
+**After:** Extend `scripts/qa_a05_browser.cjs` with a deterministic failure
+injection: after saving answer 7 with explicit consent, temporarily make
+`IDBObjectStore.put()` throw `QuotaExceededError` for the draft store.
+Verify that the UI switches to the write-locked home state, advises against
+automatic overwrite, and after reload restores the previously committed answer
+7 instead of the rejected answer 1. The override is scoped to the QA page and
+removed by reload. No production data or real quota is manipulated.
+
+**Reason:** Verify the transaction abort / UI error boundary with a real
+Chromium IndexedDB transaction rather than relying only on the in-memory
+adapter. Reject-and-reload must not lose the last durably committed draft.
+
+**Evidence:** Test implementation and JavaScript syntax check completed.
+Native Chrome acceptance **pending the next CI verification**; no PASS claim
+until logs confirm it. Existing D-31 scoring/content contracts unchanged.
+
+**Release state:** Draft PR #61, no merge/deploy or P0 changes.
