@@ -397,3 +397,20 @@ is unimplemented. All G1 operational choices remain PENDING.
 This test does **not** authorize recruiting participants or
 storing/releasing any real research data. Native CI outcome
 was pending at the time of this history entry.
+
+### D-40 verified native synthetic QA
+
+First Actions run **40213379022** failed because the synthetic
+scenario uniqueness assertion expected seven cases after nine
+had been defined (9/10 passing). This expectation was corrected
+and **40213430442 PASSED**: D-40 **10/10 native Node 22**,
+prior research contracts **18/18**, G1/D-39 contracts
+**11/11**, scoring **66/66**, simulated storage **13/13**,
+real Chromium acceptance **16/16** and the independent
+no-network/page-error check, plus P0 browser QA and preflight.
+SEO audit **40213430495** passed.
+
+This validates **only logical fake markers in a pure function**:
+it cannot verify participant identity, physical deletion,
+backup erasure, informed consent or research authorization.
+All G1 decisions remain pending and PR #61 remains Draft.
