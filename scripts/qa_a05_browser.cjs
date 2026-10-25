@@ -181,6 +181,33 @@ async function main() {
       assert.equal(await page.locator('[data-action="answer"][data-value="7"]').getAttribute('aria-pressed'), 'true');
     });
 
+    await check("D-47 number-key answers preserve selection, focus and no-consent boundary", async () => {
+      await page.goto(address + A05);
+      await page.locator('[data-action="start"]').click();
+      assert.match(await page.locator("#a05-shortcut-hint").innerText(), /数字キー1〜7/);
+      assert.match(await page.locator("fieldset").getAttribute("aria-describedby"), /a05-shortcut-hint/);
+      assert.equal(await page.evaluate(() => document.activeElement?.id), "a05-question-heading");
+      await page.keyboard.press("7");
+      await page.locator('#a05-content[aria-busy="false"]').waitFor();
+      assert.equal(await page.locator('[data-action="answer"][data-value="7"]').getAttribute("aria-pressed"), "true");
+      assert.equal(await page.evaluate(() => document.activeElement?.dataset.value), "7",
+        "Shortcut should restore focus to selected answer");
+      await page.keyboard.press("2");
+      await page.locator('#a05-content[aria-busy="false"]').waitFor();
+      assert.equal(await page.locator('[data-action="answer"][data-value="2"]').getAttribute("aria-pressed"), "true");
+      assert.equal(await page.locator('[data-action="answer"][data-value="7"]').getAttribute("aria-pressed"), "false");
+      assert.equal(await page.locator('[role="progressbar"]').getAttribute("aria-valuenow"), "1");
+      await page.locator('[data-action="skip"]').focus();
+      await page.keyboard.press("Enter");
+      await page.locator('#a05-content[aria-busy="false"]').waitFor();
+      assert.equal(await page.evaluate(() => document.activeElement?.dataset.action), "skip");
+      assert.match(await page.locator("#a05-answer-status").innerText(), /判断できない/);
+      await page.reload();
+      await page.locator('[data-action="start"]').click();
+      assert.equal(await page.locator('[role="progressbar"]').getAttribute("aria-valuenow"), "0",
+        "Keyboard answers without storage consent must not persist after reload");
+    });
+
     await check("no consent: answer is not persisted after reload", async () => {
       await page.goto(address + A05);
       await page.locator('[data-action="start"]').click();
