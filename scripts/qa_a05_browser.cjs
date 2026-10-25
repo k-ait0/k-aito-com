@@ -85,6 +85,31 @@ async function main() {
     });
     page.on("dialog", dialog => dialog.accept());
 
+    await check("keyboard and accessible answer controls", async () => {
+      await page.goto(address + A05);
+      await page.locator('[data-action="start"]').focus();
+      await page.keyboard.press("Enter");
+      assert.equal(await page.evaluate(() => document.activeElement?.id),
+        "a05-question-heading", "Focus must move to the question heading");
+      const fieldset = page.locator("#a05-scale").locator("xpath=..");
+      assert.match(await fieldset.locator("legend").innerText(), /どちらを重視しますか/);
+      assert.match(await page.locator('[data-action="answer"][data-value="1"]').getAttribute("aria-label"), /左を強く重視/);
+      assert.match(await page.locator('[data-action="answer"][data-value="4"]').getAttribute("aria-label"), /どちらも同程度/);
+      assert.match(await page.locator('[data-action="answer"][data-value="7"]').getAttribute("aria-label"), /右を強く重視/);
+      await page.locator('[data-action="answer"][data-value="7"]').focus();
+      await page.keyboard.press("Space");
+      assert.equal(await page.locator('[data-action="answer"][data-value="7"]').getAttribute("aria-pressed"), "true");
+      await page.locator('[data-action="next"]').focus();
+      await page.keyboard.press("Enter");
+      await page.locator('#a05-content[aria-busy="false"]').waitFor();
+      assert.equal(await page.evaluate(() => document.activeElement?.id), "a05-question-heading");
+      assert.match(await page.locator("#a05-content").innerText(), /質問 2 \/ 30/);
+      await page.locator('[data-view="catalog"]').first().focus();
+      await page.keyboard.press("Enter");
+      assert.match(await page.locator("#a05-content h2").innerText(), /16タイプ図鑑/);
+      assert.equal(await page.evaluate(() => document.activeElement?.tagName), "H2");
+    });
+
     await check("no consent: answer is not persisted after reload", async () => {
       await page.goto(address + A05);
       await page.locator('[data-action="start"]').click();
