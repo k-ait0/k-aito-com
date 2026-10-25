@@ -483,7 +483,7 @@ async function main() {
     });
 
     await check("D-48 seven-answer mobile targets are at least 44px wide and tall", async () => {
-      for (const width of [320, 375, 390, 400, 420, 768]) {
+      for (const width of [320, 375, 390, 400, 420, 440, 480, 768]) {
         await page.setViewportSize({ width, height: 800 });
         await page.locator('[data-view="quiz"]').first().click();
         const metrics = await page.locator("#a05-scale").evaluate(scale => {
@@ -499,7 +499,7 @@ async function main() {
         assert.equal(metrics.boxes.length, 7);
         assert.ok(metrics.boxes.every(box => box.width >= 44 && box.height >= 44),
           width + "px target too small: " + JSON.stringify(metrics.boxes));
-        assert.equal(metrics.rows, width <= 400 ? 2 : 1,
+        assert.equal(metrics.rows, width <= 440 ? 2 : 1,
           width + "px seven-answer row grouping");
         assert.equal(metrics.horizontalOverflow, false, width + "px horizontal overflow");
       }
