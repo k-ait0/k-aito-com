@@ -191,3 +191,43 @@ test("type/axis/group/hash tampering is quarantined", () => {
   wrongHash.questionHash = "0".repeat(64);
   assert.equal(classifySnapshot(wrongHash, hash), "quarantined");
 });
+
+
+test("tampered current display name, explanation and theme are quarantined", () => {
+  for (const field of ["name", "summary", "emoji", "action", "tint"]) {
+    const item = snapshotOf(11, "time", false);
+    item.presentation[field] += " (altered)";
+    assert.equal(classifySnapshot(item, hash), "quarantined", field);
+  }
+});
+
+test("legacy records with invalid internal structure are quarantined, not trusted", () => {
+  const item = snapshotOf(11, "time", false);
+  item.versions.scoring = "S-LEGACY";
+  assert.equal(classifySnapshot(item, hash), "legacy");
+
+  item.result.axes[0].n = -1;
+  assert.equal(classifySnapshot(item, hash), "quarantined");
+  item.result.axes[0].n = 6;
+
+  item.result.typeId = "T99";
+  assert.equal(classifySnapshot(item, hash), "quarantined");
+});
+
+test("snapshot validation is independent of JSON object property order", () => {
+  const item = snapshotOf(11, "time", true);
+  item.result = {
+    wealth: item.result.wealth,
+    classification: item.result.classification,
+    typeId: item.result.typeId,
+    axes: item.result.axes.map(a => ({
+      status: a.status,
+      direction: a.direction,
+      value: a.value,
+      sum: a.sum,
+      n: a.n,
+      id: a.id
+    }))
+  };
+  assert.equal(classifySnapshot(item, hash), "verified");
+});
