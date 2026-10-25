@@ -510,3 +510,18 @@ treating unapproved edits as score-compatible.
 `engine.mjs`, `storage.mjs`, public navigation, P0, or existing
 Actions workflow. No stored assessments transformed. Draft PR #61
 remains unmerged and unpublished.
+
+### A05-D35-001 — existing CI verification after documentation integration
+
+**GitHub Actions run 40208344965: succeeded.** The existing A05
+native scoring (66/66), simulated storage (13/13), existing Chrome
+acceptance (16/16), site-wide preflight and KIDP P0 browser QA
+succeeded; SEO static audit **40208345038** also succeeded.
+
+**Important test boundary:** The new
+`scripts/test-a05-research-manifest.mjs` was **not executed** by this
+workflow. Its seven contract tests were executed only using an
+isolated JavaScript assertion shim (7/7). The baseline browser run
+does not establish native acceptance of the new research JSON.
+No extra GitHub Actions workflow or research-specific CI gate was
+added, to limit Actions usage until the interview format is approved.
