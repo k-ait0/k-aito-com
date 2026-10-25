@@ -54,7 +54,7 @@ async function main() {
   let browser;
   const address = "http://127.0.0.1:" + server.address().port;
   try {
-    browser = await chromium.launch({ headless: true, args: ["--no-sandbox"] });
+    browser = await chromium.launch({ headless: true, channel: "chrome" });
     const context = await browser.newContext({
       viewport: { width: 390, height: 844 },
       acceptDownloads: true
