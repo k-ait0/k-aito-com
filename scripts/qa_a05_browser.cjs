@@ -299,6 +299,17 @@ async function main() {
       }
     });
 
+    await check("D-29 motion and contrast preferences", async () => {
+      await page.emulateMedia({ reducedMotion: "reduce", contrast: "more" });
+      const values = await page.evaluate(() => ({
+        scroll: getComputedStyle(document.documentElement).scrollBehavior,
+        border: getComputedStyle(document.documentElement).getPropertyValue("--line").trim()
+      }));
+      assert.equal(values.scroll, "auto");
+      assert.equal(values.border, "#52657b");
+      await page.emulateMedia({ reducedMotion: "no-preference", contrast: "no-preference" });
+    });
+
     assert.deepEqual(consoleErrors, []);
     console.log("PASS A05 browser: no unexpected network or page errors");
     await context.close();
