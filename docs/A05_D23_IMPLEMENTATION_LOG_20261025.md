@@ -1231,3 +1231,28 @@ D-42 16/16 PENDING. No PR merge/deployment.
 **Invariant:** No change to the canonical `completedAt` timestamp, history ordering, raw answers or export serialization, questionnaire, scoring hash, versions, IndexedDB shape, earlier prototype databases, P0 or the live site. The synthetic browser snapshot is a local QA fixture, not participant data.
 
 **Verification state:** New D-50 native Node and Chromium run still pending at this chronological entry. Original G1 12 decisions and D-42 16 human-study acceptance criteria remain entirely PENDING. No research recruitment/collection, approval, PR merge or deployment.
+
+### A05-D48–D50 — verified real-browser and native Node acceptance (2026-10-26 JST)
+
+**GitHub Actions run 40219629294: SUCCESS** for the final D-48/D-49/D-50 code changes.
+
+**Native Node 22: 144/144 PASS** — scoring 66, D-50 date/time 5,
+simulated IndexedDB 13, D-35–37 research 18, G1/D-39 11,
+D-40 10, D-41 10 and D-42 11.
+**Chrome A05 acceptance: 23/23 named cases PASS** —
+including D-48 eight viewport 44×44px touch targets and 4+3
+mobile arrangement; D-49 skip link focusing main and precise
+erase/backup notices; D-50 timezone-specific fixture showing
+Tokyo local 2026-10-26 from ISO 2026-10-25 15:30Z.
+Independent unexpected network/page-error check passed.
+KIDP P0 browser QA, site preflight and diff checks passed.
+**SEO static audit run 40219629273: SUCCESS.**
+
+**Interpretation:** This validates the unmerged prototype UI
+and read-only time display, not scientific validity,
+participant research authorization, real physical backup
+deletion, or compatibility of devices not represented in
+the test matrix. Canonical stored timestamps and assessments
+are unchanged, as are question set/score contracts.
+G1 human research decisions 12/12 PENDING; D-42 controls
+16/16 PENDING; no merge or production deployment.
