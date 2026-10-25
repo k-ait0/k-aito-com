@@ -671,3 +671,55 @@ is still **no completed cognitive interview**, approved retention
 or consent plan, psychometric validation, participant recruitment,
 production merge or deployment. The existing CI workflow was reused
 without adding a job.
+
+## A05-D38-001 (2026-10-26)
+
+**Scope:** Prepare the human-controlled G1 research-operations approval
+packet without accepting participants, personal data, or recruitment.
+
+**Before:** D-37 documented the 12-slot candidate allocation and
+the qualitative validation plan, but research responsibility,
+participant information, consent, retention/deletion, incident
+response and final G1 approval were unresolved prose decisions.
+
+**After:**
+- Added `docs/A05_D38_G1_APPROVAL_REGISTER_20261026.json` with
+  **12 pending decisions**, an independently pending final sign-off,
+  explicit prohibited activities, a `dataCollected:false` marker
+  and zero recorded interviews. No approver or personal identifier
+  was invented.
+- Added draft participant notice/consent:
+  `docs/A05_D38_PARTICIPANT_INFORMATION_AND_CONSENT_DRAFT_20261026.md`
+  (nonclinical purpose; optional/withdrawable participation; distinct
+  consent for recording, screen capture, data recording and contact).
+  **Not authorized for distribution.**
+- Added draft data-handling SOP:
+  `docs/A05_D38_DATA_HANDLING_SOP_DRAFT_20261026.md`. It separates
+  private storage from GitHub and production IndexedDB, describes
+  access, withdrawal, deletion and incident steps, and explicitly
+  labels suggested retention periods as **unapproved proposals**.
+- Added `docs/A05_D38_G1_DECISION_PACKET_20261026.md` with
+  an ordered sign-off agenda, stop/go boundaries and dependencies.
+- Added pure `scripts/a05-research-g1-gate.mjs` and seven
+  `scripts/test-a05-research-g1.mjs` contract cases. The check
+  inspects completeness but **always returns `authorized:false`**.
+  Even a fully populated synthetic decision register is only
+  eligible for **external/manual review**. A forged approval state
+  fails closed. Existing conditional A05 Node CI is extended by a
+  single test command, without adding a job or workflow.
+
+**Reason:** Engineering QA and the presence of AI-authored documents
+cannot substitute for authorization to conduct real participant
+research or for consent to handle their answers.
+
+**Evidence:** Source-backed JavaScript checks verified the 12-item
+register is pending, with 13 blockers (12 decisions plus external
+sign-off), that a hypothetical fully documented register remains
+unauthorized, and that a forged approval is rejected. **Native Node
+CI for this commit is pending** at this point. This is a document
+and gate-contract check, not legal compliance certification.
+
+**Unchanged:** Scored questions, question/version hash, 16 types,
+storage, past results, P0, site navigation and live production.
+No interviews or respondent records. PR #61 remains Draft,
+unmerged and undeployed.
