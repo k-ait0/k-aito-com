@@ -231,3 +231,20 @@ test("snapshot validation is independent of JSON object property order", () => {
   };
   assert.equal(classifySnapshot(item, hash), "verified");
 });
+
+
+test("incomplete and invalid responses are tagged VALIDATION_ERROR", () => {
+  const badAnswer = { ...fixture(11, "time"), A01: 9 };
+  assert.throws(() => scoreAssessment(badAnswer), {
+    name: "AssessmentValidationError",
+    code: "VALIDATION_ERROR"
+  });
+
+  const draft = newDraft("validation-test", hash);
+  draft.answers = fixture(11);
+  delete draft.answers.A01;
+  assert.throws(() => makeSnapshot(draft, hash, false), {
+    name: "AssessmentValidationError",
+    code: "VALIDATION_ERROR"
+  });
+});
