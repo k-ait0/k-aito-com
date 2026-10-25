@@ -355,3 +355,18 @@ corresponding extra four tests live in the existing G1 suite:
 These append to the prior seven G1 checks. Native Node CI result
 was pending at the time of this entry. No questions, scoring,
 storage, saved assessments, P0 site or production release changed.
+
+### D-39 native CI verification
+
+GitHub Actions **40212412443 passed** after a test-only
+`assert.throws` argument correction (the first run
+**40212345408** failed in that assertion). Native Node 22
+G1/D-39 **11/11**, previous research contracts **18/18**,
+scoring **66/66**, storage **13/13**, Chromium A05 **16/16**,
+KIDP P0 browser QA and site preflight passed.
+SEO **40212412394** passed.
+
+The current G1 decision register is still 12/12 pending;
+the D-39 14/30/90-day deadlines and operator options are
+unapproved proposals. No participant data processed and
+no release or deployment occurred.
