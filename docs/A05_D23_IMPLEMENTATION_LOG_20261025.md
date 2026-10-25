@@ -140,3 +140,50 @@ P0 and production remain unchanged. No GitHub Actions workflows are added.
 **Next release gate:** Native Node 22 verification + Playwright Chromium QA
 on a checked-out feature branch, with captured logs and defects fixed.
 Only after this, revisit the unimplemented legacy D-12/D-19 migration.
+
+## 2026-10-25 — A05-D26-001
+
+**Scope:** User-facing preservation and targeted recovery of incompatible and
+damaged A05 assessment history.
+
+**Before (D-25):**
+- The controller protected legacy and quarantined records but the history
+  screen displayed only verified records. Users could not inspect the old
+  presentation or delete one problematic record without clearing the entire
+  new A05 database and losing verified history.
+- The Chromium acceptance runner did not inject actual legacy/corrupted
+  records or check unsafe HTML in those entries.
+
+**After (Draft PR #61 only):**
+- The history screen lists legacy results with a read-only, unverified label.
+  Displayed content is HTML-escaped and limited to short summary text; no
+  recalculation or implicit migration is performed.
+- Quarantined records display only opaque recovery information. Raw content
+  is not rendered. If a stable record ID is present, the user can explicitly
+  delete that one entry, independently of valid records.
+- Explicit deletion requires confirmation; the UI remains locked for normal
+  writes until the user reloads and restoreState() revalidates the database.
+  This avoids reusing a stale in-memory draft revision after recovery.
+- Extend the Playwright Chromium script to inject a well-formed old-version
+  record and a damaged record next to a valid result, assert the count of
+  each class, check HTML-escaped legacy content, then delete the two protected
+  entries individually and ensure the verified result remains.
+
+**Verified:** Seven source-level HTML output and injection-safety conditions
+against the actual GitHub renderHistory() function passed in isolated V8:
+verified record remains visible; legacy readable; HTML and script markup
+escaped; deletion buttons target valid IDs; invalid IDs are not targeted;
+quarantined record body is not rendered.
+
+**Not verified:** Native Node 22 test runner, complete repository preflight,
+Playwright browser execution, actual IndexedDB transaction semantics,
+multi-tab end-to-end operation, production. Network restrictions still block
+a normal git clone into the local Node environment. The existing V8 results
+must not be labelled browser/Node acceptance.
+
+**No change:** Existing P0 code, site navigation, production, user data, and
+GitHub Actions execution. PR remains Draft and must not be merged yet.
+
+**Next gate:** Run the checked-in node and Playwright tests on a checked-out
+branch, review logs, fix any failing cases; only after verified browser QA
+should the release status be reconsidered.
