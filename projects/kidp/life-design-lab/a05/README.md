@@ -160,3 +160,13 @@ accessible labels for 1/4/7, and moves keyboard focus to the new heading
 on view changes. Real-Chrome keyboard regression is included in the
 browser runner. Manual iOS VoiceOver, zoom/contrast and editorial reviews
 remain required before publication.
+
+## D-32 failure-injection acceptance (2026-10-26)
+
+The Chrome QA runner now includes a deterministic, temporary
+`QuotaExceededError` thrown by a draft-store `IDBObjectStore.put()`.
+It checks that an in-flight failed answer edit locks normal writes, then a
+reload restores the last committed draft answer without accepting the rejected
+edit. This is a fault-injection test, **not** proof of behavior for every
+browser quota policy or forced termination. The new case is pending a native
+Chrome CI run; historical D-27–D-30 pass evidence remains as recorded.
