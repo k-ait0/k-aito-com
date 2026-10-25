@@ -659,3 +659,21 @@ Existing scoped A05 Node/Chrome workflows were reused. No
 new job. Native QA results were pending when this entry was
 authored. G1 12/12 and D-42 16/16 remain PENDING; no human
 research or public release is authorized.
+
+### D-48–D-50 verified native and browser QA
+
+GitHub Actions KIDP **40219629294 succeeded**: **144/144**
+native Node 22 tests (66 scoring, 5 local time display,
+13 storage, 60 prior research/G1), and **23/23 named
+Chrome A05 cases** plus independent no-network/page-error.
+The newly verified cases include 8 viewport sizes for
+>=44px touch target width/height and 4+3 mobile rows,
+skip-link focus and backup deletion-scope notices, and
+a synthetic saved history shown in Asia/Tokyo across the
+UTC-midnight date boundary. Existing P0 QA, site
+preflight/diff passed. SEO run **40219629273 succeeded**.
+
+All code remains in Draft PR #61, unmerged and undeployed.
+Saved canonical timestamps/assessment scores remain
+unchanged. Research G1 12/12 and D-42 16/16 are PENDING;
+no participant study or actual backup erasure is authorized.
