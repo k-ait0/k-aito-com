@@ -131,3 +131,32 @@ Those tests are not yet executed in real Chromium.
 A source-level V8 evaluation of the actual renderHistory() from this branch
 matched seven safety/visibility invariants. This is not a full DOM/browser
 acceptance test.
+
+## D-27 native QA evidence (2026-10-25)
+
+The historical D-24/D-25/D-26 notes above describe what was known at
+those stages; they are retained rather than overwritten.
+
+GitHub Actions run 40166061103 passed:
+- Node 22 domain: 66/66; simulated IndexedDB storage contract: 13/13.
+- Real Chrome browser acceptance: 12/12, including full 30 questions,
+  consent/reload, export, deletion, conflict, recovery and 320/390/1440px.
+- Site-wide local preflight: 12/12; git diff --check passed.
+- Existing KIDP Wave A browser QA passed; SEO audit had 0 errors and
+  12 nonblocking warnings on other pages.
+
+The existing KIDP workflow is reused with A05-only conditional checks;
+no separate workflow was added. The PR remains Draft and unmerged.
+
+## D-28 review and accessibility changes
+
+See docs/A05_D28_REVIEW_20261025.md for question-quality risks, especially
+the E-axis and E05's arbitrary fixed money/time comparison. The questionnaire
+is still draft, and its validity has not been demonstrated. Do not rewrite
+the current versioned question bank in place.
+
+A05 now gives the 7-point scale a descriptive legend and meaningful
+accessible labels for 1/4/7, and moves keyboard focus to the new heading
+on view changes. Real-Chrome keyboard regression is included in the
+browser runner. Manual iOS VoiceOver, zoom/contrast and editorial reviews
+remain required before publication.
