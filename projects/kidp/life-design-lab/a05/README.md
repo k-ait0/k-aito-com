@@ -370,3 +370,30 @@ The current G1 decision register is still 12/12 pending;
 the D-39 14/30/90-day deadlines and operator options are
 unapproved proposals. No participant data processed and
 no release or deployment occurred.
+
+## D-40 synthetic consent, withdrawal and retention desk checks (2026-10-26)
+
+`docs/A05_D40_SYNTHETIC_CONSENT_WITHDRAWAL_DELETION_REVIEW_20261026.md`
+records **nine** hardcoded, non-respondent scenarios from
+`scripts/a05-research-d40-simulator.mjs`: refusal, separate
+note/contact/recording consent, withdrawal before and after
+expiry of the identification map, verified-token assumptions,
+non-verified withdrawal, repeated withdrawal and proposed
+14/30/90-day marker expiry.
+
+The module is **pure and synthetic-only**. It does not accept
+real contact details, identifiers, answers or data; every result
+has `authorized:false` and `actualDeletionPerformed:false`.
+The ten contract checks are at
+`scripts/test-a05-research-d40.mjs`, included in the existing
+conditional A05 Node step.
+
+    node --test scripts/test-a05-research-d40.mjs
+
+**Unresolved:** A 30-day ID mapping and 90-day raw-note retention
+may prevent individual withdrawal after the mapping is
+removed; even before then, genuine identity/token verification
+is unimplemented. All G1 operational choices remain PENDING.
+This test does **not** authorize recruiting participants or
+storing/releasing any real research data. Native CI outcome
+was pending at the time of this history entry.
