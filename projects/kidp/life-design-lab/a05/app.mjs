@@ -532,7 +532,7 @@ root.addEventListener("click", async event => {
       a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(url), 2000);
       updateNotice("A05の保存データを書き出しました。ファイルには生回答が含まれる場合があります。");
     } else if (action === "erase") {
-      if (!confirmAction("この新A05試作の端末保存データをすべて削除しますか？旧D-12/D-19とP0は対象外です。")) return;
+      if (!confirmAction("このブラウザの新A05試作の保存記録を削除しますか？旧D-12/D-19とP0は対象外です。端末のバックアップなどに残った複製まで消去する操作ではありません。")) return;
       await eraseA05DatabaseContents(state.db);
       state.consent = false;
       state.retainRaw = false;
@@ -544,7 +544,7 @@ root.addEventListener("click", async event => {
       state.selected = null;
       state.sample = null;
       state.view = "home";
-      updateNotice("新A05試作の保存データを消去しました。");
+      updateNotice("このブラウザの新A05試作の保存記録を削除しました。端末のバックアップ等の複製が残っていないことまでは保証できません。");
       render();
       focusAfterRender = "h2";
     } else if (action === "share") {
