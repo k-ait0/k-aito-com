@@ -811,3 +811,45 @@ Research G1 **12/12 PENDING**, D-42 **16/16 PENDING**.
 Provisional 30-question/type scientific validity
 unverified. Draft PR #61 is not merged or deployed,
 and no participant study or JSON restoration occurred.
+
+## D-55 P0 storage audit — explicit incompatibility and version guards
+
+`docs/A05_D55_P0_BACKUP_REVIEW_AND_DOC_CI_GATE_20261026.md`
+documents two technical correctness issues repaired without
+ever importing or overwriting user data.
+
+1. An **empty** local database no longer produces the generic
+   planning status for a backup containing legacy/quarantined
+   history, incompatible/multiple drafts or protected migration
+   domains. It is now `BLOCKED_BACKUP_INCOMPATIBLE`;
+   browser copy explicitly cautions that foreign saved consent
+   cannot transfer. Restoring and writing remain unimplemented
+   and never authorized.
+2. `verifyDraft()` now checks **all four** metadata versions
+   (question, scoring, type and content), rather than just
+   the first two. A draft saved under an older type or
+   presentation version cannot be finalized as current;
+   it remains protected and cannot silently mutate existing
+   consent, stored draft or finalized results.
+
+The existing KIDP workflow is triggered for
+`docs/A05_D*.md/json` PR changes and checks PR #61's
+**entire file inventory**, now **68 files**. Docs-only
+updates currently *still* run full Chromium because the
+existing PR scope includes the entire accumulated PR diff;
+the proposed Actions cost reduction was **not achieved**.
+This is recorded explicitly; no CI jobs or workflows were
+added.
+
+**Verified technical QA** on source run
+**40226316060 SUCCESS**: Node 22 **176/176 tests**,
+real Chromium **26/26 named cases** plus independent
+no-network/page-error assertion, existing P0 and
+preflight/diff PASS. SEO audit
+**40226316202 SUCCESS**. The prior D-55
+recovery-only QA run **40225965393** also passed.
+Human review proof fields remain empty; the A05
+questions and psychometrics are not validated.
+G1 research operations 12/12 and D-42 16/16
+remain PENDING. No participant research, data
+collection, restoration, Draft PR merge or deployment.
