@@ -248,3 +248,15 @@ test("incomplete and invalid responses are tagged VALIDATION_ERROR", () => {
     code: "VALIDATION_ERROR"
   });
 });
+
+test("D-55 reject stale type/content drafts before final scoring or presentation",()=>{
+  const base=newDraft("synthetic-stale-version",hash);
+  base.answers=fixture(11,"time");
+  assert.doesNotThrow(()=>makeSnapshot(base,hash,false));
+  for(const version of ["question","scoring","type","content"]){
+    const old=structuredClone(base);
+    old.versions[version]="old-"+version+"-version";
+    assert.throws(()=>makeSnapshot(old,hash,false),/Unsupported or corrupted draft/,
+      "must not finalize a "+version+"-version draft with today's engine");
+  }
+});
