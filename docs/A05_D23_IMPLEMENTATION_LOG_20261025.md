@@ -1157,3 +1157,15 @@ to block human research.
 **Unchanged:** Existing 30 scored questions, versions/hashes, 16 type classification, IndexedDB persistence and stored assessments, P0, main, and site deployment. G1 12/12 and D-42 16/16 remain PENDING; no human research, recruitment or data collection. PR #61 remains Draft/unmerged.
 
 **Change history:** D-44: readable progress and focus restoration; D-45: review visibility and unanswered navigation; D-46: privacy warning before export. All appended without replacing earlier history.
+
+## A05-D47-001 (2026-10-26)
+
+**Scope:** Accelerate keyboard completion of the existing 30-question A05 prototype without changing answer semantics or research approvals.
+
+**Before:** Each 7-step answer could only be activated by pointer or by reaching a selected button via Tab and Space/Enter. After an asynchronous save, temporarily disabled controls could also lose focus.
+
+**After:** A quiz-only keyboard listener accepts plain, non-repeated digit keys `1`–`7` from within the live question region, rejecting modified keys and editable inputs. It routes every shortcut to the existing answer-button click handler rather than implementing a second persistence path, so IndexedDB consent, busy-state locking and revision-concurrency guards still apply. The quiz explicitly advertises the shortcut and references the hint from the answer fieldset. After answer/skip actions, the focused control is restored after the write completes and busy state clears.
+
+**Regression:** Added one native Chrome acceptance case in `scripts/qa_a05_browser.cjs`: with focus on the question heading, type 7 then 2, verify the answer and accessible progress, skip using Enter and confirm focus restoration, then reload without consent and verify the answer did not persist. Existing 19 named Chrome cases are retained (20 total). No new CI workflow or job.
+
+**Verification:** Native browser and Node results for D-47 pending when this change history entry was written. This does not authorize recruitment, data collection, scoring changes or deployment. G1 12 decisions and D-42 16 acceptance checks remain PENDING.
