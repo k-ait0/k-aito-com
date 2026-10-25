@@ -259,6 +259,25 @@ function renderHistory() {
       '<button type="button" class="btn danger" data-action="delete" data-id="' +
       escapeHTML(item.id) + '">履歴を削除</button></div></div>').join("") ||
       '<p class="muted">現在表示できる確定履歴はありません。</p>') +
+    (state.legacy.length ? '<h3>旧版履歴（読み取り専用・未検証）</h3>' +
+      '<p class="muted">当時の表示内容をそのまま確認できます。現在の採点規則で再計算していません。</p>' +
+      state.legacy.map(item => '<div class="record"><strong>' +
+        escapeHTML(item.result.typeId ?? "判定保留") + "｜" +
+        escapeHTML(item.presentation?.name ?? "旧版の診断結果") + '</strong>' +
+        '<p class="muted">' + escapeHTML(item.presentation?.summary?.slice(0, 240) ?? "") + '</p>' +
+        '<p class="muted">' + escapeHTML(item.completedAt.slice(0, 10)) +
+        ' · 検証されていない旧版スナップショット</p>' +
+        '<div class="actions"><button type="button" class="btn danger" data-action="delete-protected" data-kind="legacy" data-id="' +
+        escapeHTML(item.id) + '">この旧版履歴だけを削除</button></div></div>').join("") : "") +
+    (state.quarantined.length ? '<h3>隔離された履歴</h3>' +
+      '<p class="muted">内容の整合性が確認できないため、詳細の自動表示は行いません。まずデータを書き出して保管できます。</p>' +
+      state.quarantined.map((item, index) => '<div class="record"><strong>隔離 ' +
+        (index + 1) + '</strong><p class="muted">内容未検証・自動修正なし</p>' +
+        (typeof item?.id === "string" && item.id ?
+          '<button type="button" class="btn danger" data-action="delete-protected" data-kind="quarantined" data-id="' +
+          escapeHTML(item.id) + '">この隔離履歴だけを削除</button>' :
+          '<p class="muted">識別子が不正なため個別削除はできません。書き出し・全消去のみ利用できます。</p>') +
+        '</div>').join("") : "") +
     '<div class="actions"><button type="button" class="btn primary" data-action="new">新しい診断</button>' +
     '<button type="button" class="btn" data-action="export" ' + (!state.db ? "disabled" : "") +
     '>A05保存データを書き出す</button>' +
@@ -407,6 +426,24 @@ root.addEventListener("click", async event => {
       if (state.consent) await deleteAssessment(state.db, id);
       state.history = state.history.filter(item => item.id !== id);
       if (state.selected === id) state.selected = null;
+      render();
+    } else if (action === "delete-protected") {
+      const id = button.dataset.id;
+      const kind = button.dataset.kind;
+      const collection = kind === "legacy" ? state.legacy :
+        kind === "quarantined" ? state.quarantined : [];
+      if (!id || !collection.some(item => item?.id === id)) {
+        throw new Error("指定された保護履歴が見つかりません");
+      }
+      if (!confirmAction("未検証の履歴1件を削除しますか？先にデータの書き出しを推奨します。削除後は再読み込みで復旧を確認してください。")) return;
+      if (!state.db) throw new Error("保存領域を利用できません");
+      await deleteAssessment(state.db, id);
+      if (kind === "legacy") state.legacy = state.legacy.filter(item => item.id !== id);
+      else state.quarantined = state.quarantined.filter(item => item?.id !== id);
+      // Never automatically unlock writes after deletion; reload verifies
+      // the entire persisted state again and uses the latest draft revision.
+      state.readOnly = true;
+      updateNotice("指定した履歴を削除しました。ほかの履歴は維持しています。再読み込みして残存データの整合性をご確認ください。");
       render();
     } else if (action === "export") {
       const data = await exportA05Data(state.db);
