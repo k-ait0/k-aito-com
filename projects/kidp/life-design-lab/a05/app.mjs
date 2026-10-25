@@ -10,6 +10,7 @@ import {
   setRawRetention, removeRawAnswers, deleteAssessment, eraseA05DatabaseContents
 } from "./storage.mjs";
 import { exportA05Data } from "./export.mjs";
+import { formatLocalCompletionDay } from "./format.mjs";
 
 const root = document.querySelector("#a05-content");
 const notice = document.querySelector("#a05-notice");
@@ -290,7 +291,7 @@ function renderHistory() {
     (state.history.map(item => '<div class="record"><strong>' +
       escapeHTML(item.result.typeId ?? "判定保留") + "｜" +
       escapeHTML(item.presentation?.name ?? "") + '</strong><p class="muted">' +
-      escapeHTML(item.completedAt.slice(0, 10)) + ' · ' +
+      escapeHTML(formatLocalCompletionDay(item.completedAt)) + ' · ' +
       wealthLabel(item.result.wealth) + ' · 生回答' +
       (OWN(item, "rawAnswers") ? "あり" : "なし") + '</p>' +
       '<div class="actions"><button type="button" class="btn" data-action="open" data-id="' +
@@ -306,7 +307,7 @@ function renderHistory() {
         escapeHTML(item.result.typeId ?? "判定保留") + "｜" +
         escapeHTML(item.presentation?.name ?? "旧版の診断結果") + '</strong>' +
         '<p class="muted">' + escapeHTML(item.presentation?.summary?.slice(0, 240) ?? "") + '</p>' +
-        '<p class="muted">' + escapeHTML(item.completedAt.slice(0, 10)) +
+        '<p class="muted">' + escapeHTML(formatLocalCompletionDay(item.completedAt)) +
         ' · 検証されていない旧版スナップショット</p>' +
         '<div class="actions"><button type="button" class="btn danger" data-action="delete-protected" data-kind="legacy" data-id="' +
         escapeHTML(item.id) + '">この旧版履歴だけを削除</button></div></div>').join("") : "") +
