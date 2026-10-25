@@ -327,3 +327,7 @@ Local commands:
 Existing A05 conditional workflow runs the same files without a
 new job/workflow. G1 sign-off, participant-level consent,
 and separate publication/adoption approval all remain required.
+
+### D-38 CI verification (2026-10-26)
+
+GitHub Actions run **40211128156** passed: native G1 approval-gate tests **7/7**, other research contract tests **18/18**, scoring **66/66**, storage **13/13**, real Chromium A05 cases **16/16**, existing KIDP P0, and site preflight. SEO run **40211128155** passed. These are technical checks only: all twelve G1 operations decisions and final human authorization remain outstanding. No participant research or production deployment occurred.
