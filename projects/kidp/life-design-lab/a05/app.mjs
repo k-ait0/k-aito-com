@@ -116,7 +116,7 @@ function renderQuiz() {
   const value = state.draft.answers[q.id];
   return '<div class="small"><strong>質問 ' + (index + 1) + ' / 30</strong> · ' +
     escapeHTML(axis.name) + ' <span id="a05-progress-count">（' + count() + '問回答済み）</span></div>' +
-    '<div class="progress"><span id="a05-progress" style="width:' + (count() / 30 * 100) + '%"></span></div>' +
+    '<div class="progress" role="progressbar" aria-label="回答の進捗" aria-valuemin="0" aria-valuemax="30" aria-valuenow="' + count() + '"><span id="a05-progress" style="width:' + (count() / 30 * 100) + '%"></span></div>' +
     '<h2 id="a05-question-heading" tabindex="-1">理想に近いのは、どちらですか？</h2>' +
     '<div class="answer-pair"><div><small>左の価値観</small><strong>' + escapeHTML(q.left) + '</strong></div>' +
     '<div><small>右の価値観</small><strong>' + escapeHTML(q.right) + '</strong></div></div>' +
@@ -159,6 +159,7 @@ function updateAnswerControls() {
   root.querySelector("#a05-next").disabled = value === undefined;
   root.querySelector("#a05-progress-count").textContent = "（" + count() + "問回答済み）";
   root.querySelector("#a05-progress").style.width = (count() / 30 * 100) + "%";
+  root.querySelector('[role="progressbar"]').setAttribute("aria-valuenow", String(count()));
 }
 
 function renderReview() {
@@ -397,6 +398,7 @@ root.addEventListener("click", async event => {
   if (page) { show(page); return; }
   const action = button.dataset.action;
   if (!action) return;
+  let focusAfterRender = null;
   state.busy = true;
   reflectBusy();
   try {
@@ -412,7 +414,15 @@ root.addEventListener("click", async event => {
       if (state.draft.index === 29) show("review");
       else await moveIndex(state.draft.index + 1);
     } else if (action === "jump") await moveIndex(Number(button.dataset.index));
-    else if (action === "filter") { state.filter = button.dataset.filter; render(); }
+    else if (action === "filter") {
+      const key = button.dataset.filter;
+      if (!["all", "G1", "G2", "G3", "G4"].includes(key)) return;
+      state.filter = key;
+      render();
+      // The old button was replaced by render(); restore its logical focus
+      // only after reflectBusy() unlocks the new button in finally.
+      focusAfterRender = '[data-action="filter"][data-filter="' + key + '"]';
+    }
     else if (action === "sample") {
       const typeIndex = Number(button.dataset.index);
       const sampleDraft = newDraft(uid(), state.hash);
@@ -450,6 +460,7 @@ root.addEventListener("click", async event => {
       state.retainRaw = raw;
       updateNotice("端末への保存を有効にしました。");
       render();
+      focusAfterRender = '[data-setting="raw"]';
     } else if (action === "open") {
       state.selected = button.dataset.id; state.sample = null; show("result");
     } else if (action === "scrub") {
@@ -462,6 +473,7 @@ root.addEventListener("click", async event => {
         return remaining;
       });
       render();
+      focusAfterRender = "h2";
     } else if (action === "delete") {
       if (!confirmAction("この診断履歴を削除しますか？")) return;
       const id = button.dataset.id;
@@ -469,6 +481,7 @@ root.addEventListener("click", async event => {
       state.history = state.history.filter(item => item.id !== id);
       if (state.selected === id) state.selected = null;
       render();
+      focusAfterRender = "h2";
     } else if (action === "delete-protected") {
       const id = button.dataset.id;
       const kind = button.dataset.kind;
@@ -487,6 +500,7 @@ root.addEventListener("click", async event => {
       state.readOnly = true;
       updateNotice("指定した履歴を削除しました。ほかの履歴は維持しています。再読み込みして残存データの整合性をご確認ください。");
       render();
+      focusAfterRender = "h2";
     } else if (action === "export") {
       const data = await exportA05Data(state.db);
       const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
@@ -510,7 +524,12 @@ root.addEventListener("click", async event => {
       state.view = "home";
       updateNotice("新A05試作の保存データを消去しました。");
       render();
-    } else if (action === "share") { state.share = !state.share; render(); }
+      focusAfterRender = "h2";
+    } else if (action === "share") {
+      state.share = !state.share;
+      render();
+      focusAfterRender = '[data-action="share"]';
+    }
   } catch (error) { failed(error); }
   finally {
     state.busy = false;
@@ -519,6 +538,13 @@ root.addEventListener("click", async event => {
     // Re-derive this button's disabled state from the actual answer.
     if (state.view === "quiz" && root.querySelector("#a05-next")) {
       updateAnswerControls();
+    }
+    if (focusAfterRender) {
+      const target = root.querySelector(focusAfterRender);
+      if (target && !target.disabled) {
+        if (target.matches("h2")) target.setAttribute("tabindex", "-1");
+        target.focus({ preventScroll: true });
+      }
     }
   }
 });
@@ -543,6 +569,9 @@ root.addEventListener("change", async event => {
   finally {
     state.busy = false;
     reflectBusy();
+    // Changing raw-answer retention rerenders the checkbox; do not discard
+    // keyboard focus after the IndexedDB transaction has settled.
+    root.querySelector('input[data-setting="raw"]:not(:disabled)')?.focus({ preventScroll: true });
   }
 });
 
