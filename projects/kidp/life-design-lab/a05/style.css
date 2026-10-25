@@ -45,8 +45,12 @@ h1{font-size:clamp(28px,6vw,42px);line-height:1.35;margin:0;font-weight:900;lett
 .scale button{min-height:48px;background:#fff;border:1px solid var(--line);border-radius:10px;font-weight:800}
 .scale button[aria-pressed=true]{background:#e5f0ff;border:2px solid var(--blue)}
 .scale-hint{display:flex;justify-content:space-between;gap:10px;margin:12px 0 7px;color:var(--muted);font-size:11px}
-.review-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:10px 0 22px}
-.review-grid button{background:white;border:1px solid var(--line);border-radius:11px;padding:10px;text-align:left;min-height:56px;color:var(--ink)}
+.review-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:8px;margin:10px 0 22px}
+.review-grid button{background:white;border:1px solid var(--line);border-radius:11px;padding:12px;text-align:left;min-height:98px;color:var(--ink)}
+.review-grid button[data-unanswered=true]{border-left:4px solid var(--blue)}
+.review-prompt{display:block;margin-top:4px;font-size:12px;line-height:1.5;overflow-wrap:anywhere}
+.review-answer{display:block;margin-top:8px;font-size:12px;font-weight:750;color:var(--muted)}
+@media(min-width:380px){.review-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .catalog-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin:12px 0 22px}
 .catalog-grid button{border:1px solid;border-radius:12px;padding:14px;text-align:left;min-height:115px}
 .catalog-grid strong{display:block;font-size:13px}.catalog-grid small{display:block;margin-top:6px;font-size:11px}
@@ -67,7 +71,7 @@ label.option{display:flex;align-items:center;gap:9px;padding:10px 0;font-size:13
 label.option input{width:18px;height:18px}
 .footer{padding:23px 3px;color:var(--muted);font-size:11px}
 .footer a{color:inherit}
-@media(min-width:700px){.content{padding:28px 30px}.catalog-grid{grid-template-columns:repeat(4,minmax(0,1fr))}.review-grid{grid-template-columns:repeat(6,minmax(0,1fr))}.hero{padding:33px 30px 23px}}
+@media(min-width:700px){.content{padding:28px 30px}.catalog-grid{grid-template-columns:repeat(4,minmax(0,1fr))}.review-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.hero{padding:33px 30px 23px}}
 @media(max-width:350px){.app-shell{padding-left:8px;padding-right:8px}.content{padding:16px 12px}.tabs button{min-width:62px;font-size:11px}.scale{gap:3px}.scale button{min-height:44px}.answer-pair>div{padding:12px 9px}}
 
 /* D-29: respect platform motion, zoom and text-size preferences. */
