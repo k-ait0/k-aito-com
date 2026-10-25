@@ -315,6 +315,24 @@ async function main() {
       await page.evaluate(() => { document.documentElement.style.fontSize = ""; });
     });
 
+    await check("D-30 CSS layout zoom at 200 and 400 percent", async () => {
+      await page.setViewportSize({ width: 1280, height: 900 });
+      await page.locator('[data-view="quiz"]').first().click();
+      for (const factor of [2, 4]) {
+        await page.evaluate(value => { document.documentElement.style.zoom = String(value); }, factor);
+        const metrics = await page.evaluate(() => ({
+          width: document.documentElement.clientWidth,
+          scroll: document.documentElement.scrollWidth,
+          buttons: [...document.querySelectorAll("#a05-scale button")].map(b => b.getBoundingClientRect().height)
+        }));
+        assert.ok(metrics.scroll <= metrics.width + 2,
+          "CSS zoom " + factor + " causes horizontal overflow: " + JSON.stringify(metrics));
+        assert.ok(metrics.buttons.every(h => h >= 44),
+          "CSS zoom " + factor + " reduces answer touch target below 44px");
+      }
+      await page.evaluate(() => { document.documentElement.style.zoom = ""; });
+    });
+
     await check("D-29 motion and contrast preferences", async () => {
       await page.emulateMedia({ reducedMotion: "reduce", contrast: "more" });
       const values = await page.evaluate(() => ({
