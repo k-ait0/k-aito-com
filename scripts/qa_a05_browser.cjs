@@ -482,6 +482,29 @@ async function main() {
       }
     });
 
+    await check("D-48 seven-answer mobile targets are at least 44px wide and tall", async () => {
+      for (const width of [320, 375, 390, 400, 420, 768]) {
+        await page.setViewportSize({ width, height: 800 });
+        await page.locator('[data-view="quiz"]').first().click();
+        const metrics = await page.locator("#a05-scale").evaluate(scale => {
+          const buttons = [...scale.querySelectorAll("button")];
+          const rects = buttons.map(button => button.getBoundingClientRect());
+          return {
+            boxes: rects.map(r => ({ width: r.width, height: r.height, top: Math.round(r.top) })),
+            rows: new Set(rects.map(r => Math.round(r.top))).size,
+            horizontalOverflow: document.documentElement.scrollWidth >
+              document.documentElement.clientWidth + 2
+          };
+        });
+        assert.equal(metrics.boxes.length, 7);
+        assert.ok(metrics.boxes.every(box => box.width >= 44 && box.height >= 44),
+          width + "px target too small: " + JSON.stringify(metrics.boxes));
+        assert.equal(metrics.rows, width <= 400 ? 2 : 1,
+          width + "px seven-answer row grouping");
+        assert.equal(metrics.horizontalOverflow, false, width + "px horizontal overflow");
+      }
+    });
+
     await check("D-29 narrow-screen zoom and touch targets", async () => {
       await page.setViewportSize({ width: 320, height: 800 });
       await page.locator('[data-view="quiz"]').first().click();
