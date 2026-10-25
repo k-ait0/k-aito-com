@@ -88,9 +88,19 @@ export function inspectA05RestorePlan(backup, localCounts, currentQuestionHash) 
     add("BACKUP_ORIGIN_AND_INTEGRITY_UNVERIFIED");
   }
   add("RESTORE_ENGINE_NOT_IMPLEMENTED");
+  // D-55: A backup with incompatible historical records, malformed drafts
+  // or protected migration domains must NOT be described as merely
+  // "planning-only / human review" even when the local target is empty.
+  const incompatible = [
+    "HISTORY_REQUIRES_MANUAL_VERSION_REVIEW",
+    "MULTIPLE_DRAFTS_NOT_IMPORTABLE",
+    "DRAFT_NOT_COMPATIBLE_WITH_CURRENT_VERSION",
+    "PROTECTED_DOMAINS_REQUIRE_MANUAL_REVIEW"
+  ].some(code => report.blockers.includes(code));
   const status = !structured.ok ? "BLOCKED_STRUCTURE" :
     !validCounts || !validHash ? "BLOCKED_UNKNOWN_TARGET_OR_VERSION" :
     A05_BACKUP_STORES.some(name => localCounts[name] > 0) ? "BLOCKED_EXISTING_LOCAL_DATA" :
+    incompatible ? "BLOCKED_BACKUP_INCOMPATIBLE" :
     "PLAN_ONLY_REQUIRES_HUMAN_REVIEW";
   return Object.freeze({
     ...report,
