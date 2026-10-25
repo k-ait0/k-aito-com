@@ -11,7 +11,7 @@ import { QUESTIONS } from "../projects/kidp/life-design-lab/a05/questions.mjs";
 import { newDraft } from "../projects/kidp/life-design-lab/a05/engine.mjs";
 import {
   enableSaving, saveDraft, finalizeDraft, restoreState, read,
-  readRecoverySnapshot, removeRawAnswers, deleteAssessment, eraseA05DatabaseContents
+  readRecoverySnapshot, readExportSnapshot, removeRawAnswers, deleteAssessment, eraseA05DatabaseContents
 } from "../projects/kidp/life-design-lab/a05/storage.mjs";
 
 const HASH = "f".repeat(64);
@@ -279,3 +279,48 @@ test("snapshot API returns a coherent set of recovery domains", async () => {
   assert.equal(draft.assessmentId, "case-11");
   assert.equal(history.length, 0);
 });
+
+test("D-51 full export reads all five A05 stores with exactly one readonly transaction", async () => {
+  const db = new SimulatedDatabase();
+  await enableSaving(db, fixture(), HASH, true);
+  db.stores.migrations.set("m1", { id: "m1", status: "fixture-only" });
+  db.stores.legacyBackups.set("b1", { id: "b1", status: "fixture-only" });
+  const expected = ["drafts", "history", "preferences", "migrations", "legacyBackups"];
+  let count = 0;
+  const original = db.transaction.bind(db);
+  db.transaction = (stores, mode) => {
+    count++;
+    assert.deepEqual(stores, expected);
+    assert.equal(mode, "readonly");
+    return original(stores, mode);
+  };
+  const snapshot = await readExportSnapshot(db);
+  assert.equal(count, 1, "exporting separate stores must not mix different transaction points");
+  assert.deepEqual(Object.keys(snapshot), expected);
+  assert.equal(snapshot.drafts[0].assessmentId, "case-11");
+  assert.equal(snapshot.preferences[0].retainRaw, true);
+  assert.deepEqual(snapshot.migrations.map(x => x.id), ["m1"]);
+  assert.deepEqual(snapshot.legacyBackups.map(x => x.id), ["b1"]);
+  assert.deepEqual(snapshot.history, []);
+});
+
+test("D-51 export snapshot is a detached copy and does not mutate source stores", async () => {
+  const db = new SimulatedDatabase();
+  await enableSaving(db, fixture(), HASH, false);
+  await finalizeDraft(db, "case-11", 0, HASH, false);
+  const snapshot = await readExportSnapshot(db);
+  assert.equal(snapshot.history.length, 1);
+  const id = snapshot.history[0].id;
+  snapshot.history[0].presentation.name = "changed-in-export-memory";
+  snapshot.history.push({ id: "made-up-export-record" });
+  snapshot.preferences[0].retainRaw = true;
+  assert.equal((await read(db, "history", id)).presentation.name ===
+    "changed-in-export-memory", false);
+  assert.equal((await read(db, "preferences", "consent")).retainRaw, false);
+  assert.equal((await readAllForD51(db, "history")).length, 1);
+});
+
+async function readAllForD51(db, store) {
+  const request = db.transaction([store], "readonly").objectStore(store).getAll();
+  return new Promise(resolve => { request.onsuccess = () => resolve(request.result); });
+}
