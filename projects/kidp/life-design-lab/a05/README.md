@@ -204,3 +204,25 @@ A third, research-only E05 approach considers independent money/time
 importance ratings. None of these drafts is adopted or scored by the
 existing engine. All seven blockers require participant interviews and
 editorial approval. No production module or historical result changed.
+
+## D-35 unscored cognitive-interview candidate set (2026-10-26)
+
+- `docs/A05_D35_INTERVIEW_CANDIDATES_20261026.json` is a
+  **research-only, unapproved** manifest of 30 items, 37 bipolar
+  wording variants and a separate two-item E05 independent
+  money/time option. It preserves current question IDs and
+  presentational direction, not score comparability.
+- `docs/A05_D35_INTERVIEW_CANDIDATE_GUIDE_20261026.md` describes
+  complete wording, construct overlaps and the opt-in, participant-
+  sensitive interview plan. The remaining 13 REVISE and seven BLOCK
+  statuses are not cleared.
+- Run `node --test scripts/test-a05-research-manifest.mjs` to check
+  the manifest against D-31, D-33, D-34 and the existing question
+  source. Seven source-backed JavaScript assertions passed in an
+  isolated test shim; **native Node was not run yet**.
+- No research participant data has been collected. Privacy operations
+  and recruiting need separate approval. The manifest's permission
+  flags explicitly prohibit scoring, production adoption, old
+  snapshot compatibility and automatic answer retention.
+- Existing A05 browser functionality, question hash, P0 and
+  deployed content remain unchanged.
