@@ -1422,3 +1422,71 @@ production merge or release. PR #61 remains Draft.
 without restoring -> D-53 local-count and historical
 compatibility review with permanent NO-WRITE outcomes,
 explicit release guards and CI coverage for script changes.
+
+## A05-D54-001–003 (2026-10-26)
+
+**Scope:** Make the 229-commit, 64-file Draft PR #61 reviewable by
+exact changed file and risk track, rather than calling one
+green engineering QA run a global release authorization.
+
+**Before:** D-52/53 grouped the PR conceptually by app,
+storage, provisional scoring and unapproved human research.
+There was no canonical per-file manifest, assigned review
+risk/role, evidence field or CI gate to catch an unnoticed
+addition to the large PR's changed-file list.
+
+**After:**
+- Added `docs/A05_D54_PR_REVIEW_MANIFEST_20261026.json`:
+  **64 changed paths at intake** plus three D-54 artifacts
+  = **67 paths**. Five review groups:
+  A UI/accessibility (5), B data storage/backup (4),
+  C provisional questions/scoring (3), D research approval
+  (29), E cross-cutting QA/audit (26). Every file is
+  NOT_REVIEWED, has null non-identifying reviewer/evidence/
+  reviewed-at fields, and `mergeAuthorized:false`.
+  Review groups B/C/D are P0, A/E P1; real reviewer roles
+  are unassigned.
+- Added `docs/A05_D54_INTEGRATION_REVIEW_AND_GO_NO_GO_20261026.md`
+  with risk-first technical review sequence, actual
+  owner responsibilities, and separate user/research
+  and final public release go/no-go decisions.
+- Added `scripts/test-a05-pr-review-manifest.mjs`
+  with **7 native contract cases** verifying all paths
+  exist/unique/sorted, group assignment and provenance
+  requirements, G1/D-42 12/16 still PENDING,
+  `draftOnly`, `productionReleaseAuthorized:false`
+  and `studyAuthorized:false`. On a real GitHub
+  `refs/pull/N/merge` checkout, a test compares the
+  **entire PR diff** (`HEAD^1..HEAD`) to the exact
+  reviewed file set; missing inventory entries fail QA.
+  The end-to-end merge-ref diff case was run (not skipped).
+- Reused existing scoped A05 Node test command; **no
+  new Actions workflow or job**.
+- Strengthened an existing real Chrome local-backup case:
+  a synthetic JSON file over 10 MiB is rejected before
+  reading or parsing, and already saved browser history
+  remains unchanged. No data import/restore implemented.
+
+**Actual source verification:** GitHub Actions KIDP
+**40225064094 SUCCESS**. Native Node 22 **172/172 PASS**
+(165 earlier + 7 D-54 manifest cases), real Chromium A05
+**26/26 named acceptance cases PASS** plus separate
+no-network/page-error check. Existing KIDP P0 browser
+QA and local preflight/diff passed. SEO static audit
+**40225064097 SUCCESS**.
+
+**Risk and release boundaries:** This is a developer
+review inventory, **not actual human approval**.
+D-33 item editorial status BLOCK 7 / REVISE 13 /
+TRIAL 10 and undecided E-axis remain; science/psychometric
+validation has not occurred. G1 research operation
+decisions **12/12 PENDING**, D-42 operational checks
+**16/16 PENDING**, no real participants or respondent
+records, no user data imported from JSON, and no
+production release/merge. PR #61 remains Draft.
+
+**Append-only change history:** D-53 no-write
+backup preflight -> D-54 exact-file reviewer inventory
+and CI diff guard. Revisions D54-002 added risk ratings
+and empty proof slots; D54-003 recorded the verified
+172/172 and 26/26 CI evidence. Historical entries retained.
