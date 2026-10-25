@@ -195,3 +195,12 @@ comparison scenarios; neither is approved. Do not amend the present
 are claimed for this documentation-only change. Public release and
 new version adoption remain blocked pending participant review and
 explicit approval.
+
+## D-34 editorial comparison (2026-10-26)
+
+`docs/A05_D34_BLOCKER_REWRITE_COMPARISON_20261026.md` compares two draft
+wordings for each of the seven D-33 blocked items (14 question pairs).
+A third, research-only E05 approach considers independent money/time
+importance ratings. None of these drafts is adopted or scored by the
+existing engine. All seven blockers require participant interviews and
+editorial approval. No production module or historical result changed.
