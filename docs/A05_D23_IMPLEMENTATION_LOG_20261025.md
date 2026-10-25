@@ -927,3 +927,68 @@ No participant identity proof, consent collection, actual
 storage, scheduled deletion, backup erasure or operational
 approval was implemented or tested. The G1 human decision
 register remains entirely PENDING, with no sign-off.
+
+## A05-D41-001 (2026-10-26)
+
+**Scope:** Resolve D-40's contradictory *proposal* of a
+30-day lookup plus 90-day identifiable note retention by
+comparing aligned withdrawal/retention windows and defining
+identity proof as an explicit, still unimplemented prerequisite.
+
+**Before:** D-39 proposed contacts 14 days / pseudonym mapping
+30 days / raw notes 90 days, leaving days 30–90 with potentially
+unmatchable notes. D-40 modeled hypothetical identity
+matches but never implemented real authentication or deletion.
+
+**After:**
+- Added `docs/A05_D41_WITHDRAWAL_POLICY_OPTIONS_20261026.json`
+  with **three unapproved alternatives**:
+  A = contacts 14 / link 30 / notes 30;
+  B = contacts 14 / link 90 / notes 90;
+  C = no individually identifiable contact/link/raw notes.
+  A is preferred only for **human review**; no option was adopted.
+- Added `docs/A05_D41_WITHDRAWAL_IDENTITY_AND_RETENTION_DECISION_20261026.md`,
+  explaining benefits, costs, boundary days, independent human
+  G1 approvals, small-sample risk of supposed anonymous
+  aggregation, and the need to disclose lookup/token-loss limits.
+- Added a pure, fixed-fixture model
+  `scripts/a05-research-d41-withdrawal-review.mjs`.
+  It allows only three named policy alternatives and 12
+  predefined synthetic cases. It rejects a lookup duration
+  shorter than raw-note retention and rejects forged research
+  authorization flags. Every result reports
+  `authorized:false`, `realIdentityVerified:false`,
+  `actualDataCollected:false` and
+  `actualDeletionPerformed:false`.
+- Added 10 native Node contract cases in
+  `scripts/test-a05-research-d41.mjs`, covering
+  expiration on day 14, 30 and 90, absence/incorrect/replay
+  evidence, absent consent, no-identifiable-record option,
+  malformed cases and the old 30/90 mismatch.
+- Reused the existing conditionally-scoped A05 Node CI step
+  with one additional test command, **no new workflow/job**.
+
+**Identity/withdrawal boundary:** A synthetic `FIXTURE_MATCH`
+is **not** verification of an actual person's identity.
+A real secure withdrawal-token system (generation, custody,
+comparison, expiry, replay/theft and loss handling), private
+storage, durable deletion/backups, informed consent and
+human research approval remain entirely unimplemented and
+unapproved. Pure tests cannot prove those properties.
+
+**Reason:** Provide an accountable human with actionable
+choices that eliminate the unmatched-record timing bug at
+the planning stage without creating a falsely approved
+research-data collection or deletion system.
+
+**Evidence initially:** Isolated source-backed JS boundary
+checks confirmed aligned expiry for A/B, no persistent
+identifiable markers for C, rejection of D-39's prior
+30/90 mismatch, and no authorization or deletion assertions.
+Native Node/Chromium CI verification is pending in this
+historical entry.
+
+**Unaffected:** Original G1 register 12/12 PENDING and
+final sign-off PENDING; no participants, consents, interviews,
+real token generation, data, deletion, scores, past assessments,
+P0, main site or public release. PR #61 stays Draft.
