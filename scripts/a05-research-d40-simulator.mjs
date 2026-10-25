@@ -25,9 +25,9 @@ const D90 = "2027-01-24";
 
 const INTERNAL_CASES = Object.freeze({
   "consent-refused": [["decline", DAY0], ["attempt-note", DAY0]],
-  "consented-withdrawal": [["consent-notes", DAY0], ["attempt-note", DAY0], ["withdraw", D1]],
-  "withdrawal-after-link-expiry": [["consent-notes", DAY0], ["attempt-note", DAY0], ["advance", D31], ["withdraw", D31]],
-  "retention-deadlines": [["consent-notes", DAY0], ["attempt-note", DAY0], ["advance", "2026-11-09"], ["advance", "2026-11-25"], ["advance", D90]],
+  "consented-withdrawal": [["consent-notes", DAY0], ["consent-contact", DAY0], ["attempt-note", DAY0], ["withdraw", D1]],
+  "withdrawal-after-link-expiry": [["consent-notes", DAY0], ["consent-contact", DAY0], ["attempt-note", DAY0], ["advance", D31], ["withdraw", D31]],
+  "retention-deadlines": [["consent-notes", DAY0], ["consent-contact", DAY0], ["attempt-note", DAY0], ["advance", "2026-11-09"], ["advance", "2026-11-25"], ["advance", D90]],
   "repeat-withdrawal": [["consent-notes", DAY0], ["attempt-note", DAY0], ["withdraw", D1], ["withdraw", D29]],
   "recording-not-consented": [["consent-notes", DAY0], ["attempt-recording", DAY0]],
   "withdrawal-before-consent": [["withdraw", DAY0], ["consent-notes", D1], ["attempt-note", D1]]
@@ -60,9 +60,14 @@ export function runSyntheticD40Scenario(name) {
         break;
       case "consent-notes":
         if (!s.closed) {
-          s.notesConsent=true; s.contact=true; s.link=true;
+          s.notesConsent=true; s.link=true;
           outcome="SYNTHETIC_CONSENT_MARKER_ONLY";
         } else outcome="REFUSED_AFTER_CLOSURE";
+        break;
+      case "consent-contact":
+        if (s.notesConsent && !s.closed) {
+          s.contact=true; outcome="SYNTHETIC_SEPARATE_CONTACT_CONSENT_ONLY";
+        } else outcome="CONTACT_NOT_RECORDED_WITHOUT_CONSENT";
         break;
       case "attempt-note":
         if (s.notesConsent && !s.closed && s.link) {
