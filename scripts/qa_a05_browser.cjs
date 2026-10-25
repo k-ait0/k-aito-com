@@ -286,6 +286,40 @@ async function main() {
       assert.match(await page.locator("#a05-content").innerText(), /検証済み 0件/);
     });
 
+    await check("D-32 simulated quota failure fails closed and preserves saved draft", async () => {
+      // Begin with a clean A05 DB after the explicit erase case above.
+      await page.locator('[data-view="home"]').first().click();
+      await page.locator('[data-action="enable"]').click();
+      await waitForUICommit(page, "home");
+      await page.locator('[data-action="start"]').click();
+      await page.locator('[data-action="answer"][data-value="7"]').click();
+      await page.waitForFunction(() =>
+        document.querySelector("#a05-content")?.getAttribute("aria-busy") === "false" &&
+        document.querySelector('[data-action="answer"][data-value="7"]')?.getAttribute("aria-pressed") === "true"
+      );
+
+      await page.evaluate(() => {
+        const originalPut = IDBObjectStore.prototype.put;
+        IDBObjectStore.prototype.put = function (...args) {
+          if (this.name === "drafts") {
+            throw new DOMException("QA injected quota failure", "QuotaExceededError");
+          }
+          return originalPut.apply(this, args);
+        };
+      });
+      // This second answer must not commit, and normal writes must lock.
+      await page.locator('[data-action="answer"][data-value="1"]').click();
+      await waitForUICommit(page, "home");
+      assert.match(await page.locator("#a05-notice").innerText(), /自動上書きは停止中/);
+      assert.match(await page.locator("#a05-content").innerText(), /通常保存は停止中/);
+      await page.reload(); // Restores the real prototype method and reopens IDB.
+      await page.locator('[data-action="start"]').click();
+      assert.equal(await page.locator('[data-action="answer"][data-value="7"]').getAttribute("aria-pressed"), "true");
+      assert.equal(await page.locator('[data-action="answer"][data-value="1"]').getAttribute("aria-pressed"), "false");
+      assert.match(await page.locator("#a05-progress-count").innerText(), /1問回答済み/);
+      assert.doesNotMatch(await page.locator("#a05-content").innerText(), /通常保存は停止中/);
+    });
+
     await check("320 / 390 / 1440 responsive widths do not overflow main content", async () => {
       for (const width of [320, 390, 1440]) {
         await page.setViewportSize({ width, height: 860 });
