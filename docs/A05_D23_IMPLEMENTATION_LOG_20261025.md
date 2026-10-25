@@ -1169,3 +1169,35 @@ to block human research.
 **Regression:** Added one native Chrome acceptance case in `scripts/qa_a05_browser.cjs`: with focus on the question heading, type 7 then 2, verify the answer and accessible progress, skip using Enter and confirm focus restoration, then reload without consent and verify the answer did not persist. Existing 19 named Chrome cases are retained (20 total). No new CI workflow or job.
 
 **Verification:** Native browser and Node results for D-47 pending when this change history entry was written. This does not authorize recruitment, data collection, scoring changes or deployment. G1 12 decisions and D-42 16 acceptance checks remain PENDING.
+
+### A05-D45–D47 — final native CI and browser verification (2026-10-26 JST)
+
+**GitHub Actions KIDP run 40217974719: SUCCESS.**
+All **20/20 named Chromium A05 acceptance checks** passed,
+including:
+- D-45 question-text review cards, first-unanswered navigation,
+  responsive review/catalog/quiz at 320/390/768/1440 px,
+  plus share control state and focus restoration.
+- D-46 canceled export with sensitive JSON warning, and
+  continued verified JSON export under the existing
+  explicitly accepted path.
+- D-47 digit-key 7→2 input, answer selection/focus
+  restoration, null/skip keyboard handling and no storage
+  without consent after reload.
+- Existing D-32 and earlier browser/history/legacy/quota,
+  tap/keyboard/accessibility and full erase cases.
+
+The independent no-unexpected-network/page-error check,
+KIDP P0 browser QA and local preflight/diff passed.
+
+Native Node 22 tests: **139/139 PASS** (66 scoring,
+13 storage simulator, 18 earlier research contracts,
+11 G1/D-39, 10 D-40, 10 D-41, 11 D-42).
+SEO static audit **40217974629: SUCCESS**.
+All verification occurred on the unmerged Draft branch.
+
+**No-go boundaries remain:** No change to scored question
+set, result version/hash/shape, saved assessment compatibility,
+production app, real user personal research data, owner
+authority or retention governance. G1 12/12 PENDING and
+D-42 16/16 PENDING. No PR merge/deployment.
