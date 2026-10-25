@@ -355,3 +355,26 @@ test("D-53 inventory of empty stores reports zero without erasing any records", 
     {drafts:1, history:0, preferences:1, migrations:0, legacyBackups:0});
   assert.equal((await read(db, "drafts", "active")).assessmentId, "case-11");
 });
+
+test("D-55 stale type/content draft versions fail closed without touching persisted consent",async()=>{
+  for(const dimension of ["type","content"]){
+    const db=new SimulatedDatabase();
+    const candidate=fixture("synthetic-version-"+dimension);
+    candidate.versions[dimension]="legacy-"+dimension;
+    assert.throws(()=>enableSaving(db,candidate,HASH,false),
+      /Unsupported or corrupted draft/);
+    assert.equal(await read(db,"drafts","active"),undefined);
+    assert.equal(await read(db,"preferences","consent"),undefined);
+
+    await enableSaving(db,fixture("good-"+dimension),HASH,false);
+    // Simulate a draft originating from an older type/presentation version.
+    db.stores.drafts.get("active").versions[dimension]="legacy-"+dimension;
+    const result=await restoreState(db,HASH);
+    assert.equal(result.draft,null,dimension);
+    assert.equal(result.consent,true,dimension);
+    assert.equal(result.readOnly,true,dimension);
+    assert.ok(result.report.warnings.some(x=>x.includes("下書きの版")),dimension);
+    assert.equal((await read(db,"drafts","active")).versions[dimension],
+      "legacy-"+dimension,"quarantining an old draft must not delete it");
+  }
+});
