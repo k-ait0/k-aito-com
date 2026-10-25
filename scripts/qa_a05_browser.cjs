@@ -299,6 +299,22 @@ async function main() {
       }
     });
 
+    await check("D-29 narrow-screen zoom and touch targets", async () => {
+      await page.setViewportSize({ width: 320, height: 800 });
+      await page.locator('[data-view="quiz"]').first().click();
+      for (const zoom of [1, 1.5, 2]) {
+        await page.evaluate(n => { document.documentElement.style.fontSize = n + "px"; }, 16 * zoom);
+        const box = await page.evaluate(() => ({
+          scroll: document.documentElement.scrollWidth,
+          width: document.documentElement.clientWidth,
+          heights: [...document.querySelectorAll("#a05-scale button")].map(x => x.getBoundingClientRect().height)
+        }));
+        assert.ok(box.scroll <= box.width + 2, "overflow at text zoom " + zoom);
+        assert.ok(box.heights.every(h => h >= 44), "small touch target at text zoom " + zoom);
+      }
+      await page.evaluate(() => { document.documentElement.style.fontSize = ""; });
+    });
+
     await check("D-29 motion and contrast preferences", async () => {
       await page.emulateMedia({ reducedMotion: "reduce", contrast: "more" });
       const values = await page.evaluate(() => ({
