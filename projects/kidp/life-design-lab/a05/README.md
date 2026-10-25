@@ -636,3 +636,26 @@ checks. The Node suite remains at 139. Native CI verification
 of the latest D-49 changes was pending at this entry.
 No new workflows/jobs, study recruitment, approval, scoring
 change or deployment. G1 12/12 and D-42 16/16 remain pending.
+
+## D-50 history dates in browser local timezone (2026-10-26)
+
+`docs/A05_D50_LOCAL_HISTORY_DATES_20261026.md` describes
+a display-only correction for saved A05 history: do not use
+the first ten UTC characters of `completedAt` as the
+user's calendar day. `projects/kidp/life-design-lab/a05/format.mjs`
+uses Intl year/month/day parts in the viewing browser's local
+timezone; verified and legacy read-only history cards display
+YYYY-MM-DD local dates. Stored UTC timestamps and history
+sorting, scoring, snapshots and export data stay unchanged.
+
+Five native date tests in `scripts/test-a05-format.mjs`
+cover JST midnight crossings, UTC/LA dates, leap/year
+boundaries, invalid timestamps and environment defaults.
+One additional Chrome integration case injects only a
+synthetic date-boundary snapshot in an isolated Asia/Tokyo
+QA context and confirms local-day display.
+
+Existing scoped A05 Node/Chrome workflows were reused. No
+new job. Native QA results were pending when this entry was
+authored. G1 12/12 and D-42 16/16 remain PENDING; no human
+research or public release is authorized.
