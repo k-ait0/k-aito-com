@@ -8,6 +8,7 @@ button:disabled{cursor:not-allowed;opacity:.45}
 button:focus-visible,a:focus-visible,input:focus-visible,h2:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
 .skip-link{position:absolute;left:12px;top:-80px;background:white;padding:10px;z-index:10}
 .skip-link:focus{top:12px}
+main:focus{outline:3px solid var(--blue);outline-offset:3px}
 .app-shell{max-width:920px;margin:auto;padding:0 15px 50px}
 .site-top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:18px 0}
 .brand{color:var(--ink);font-weight:850;text-decoration:none;letter-spacing:.035em}
