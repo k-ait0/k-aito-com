@@ -48,6 +48,9 @@ function updateNotice(message = state.status) {
  * rerenders so a still-unanswered question remains blocked.
  */
 function reflectBusy() {
+  // Screen readers and acceptance tests can observe when persistence settles.
+  root.setAttribute("aria-busy", state.busy ? "true" : "false");
+  tabs.setAttribute("aria-busy", state.busy ? "true" : "false");
   for (const control of document.querySelectorAll(
     "#a05-tabs button, #a05-content button, #a05-content input"
   )) {

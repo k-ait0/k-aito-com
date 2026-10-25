@@ -92,6 +92,13 @@ async function main() {
       // A01, direction=1, answer 7 -> positive A.
       await page.locator('[data-action="answer"][data-value="7"]').click();
       await page.locator('[data-action="next"]').click();
+      // A click event can return before its async IndexedDB write commits.
+      // Wait for both the updated step and aria-busy=false before reloading.
+      await page.waitForFunction(() => {
+        const root = document.querySelector("#a05-content");
+        return root?.getAttribute("aria-busy") === "false" &&
+          /質問 2 \/ 30/.test(root.innerText);
+      }, null, { timeout: 10000 });
       await page.reload();
       await page.locator('[data-action="start"]').click();
       assert.match(await page.locator("#a05-progress-count").innerText(), /1問回答済み/);
@@ -108,6 +115,7 @@ async function main() {
         const value = QUESTIONS[i].direction === 1 ? 7 : 1;
         await page.locator('[data-action="answer"][data-value="' + value + '"]').click();
         await page.locator('[data-action="next"]').click();
+        await page.locator('#a05-content[aria-busy="false"]').waitFor();
       }
       assert.equal(await page.locator('[data-action="finish"]').count(), 1,
         "Expected answer review; current screen: " +
