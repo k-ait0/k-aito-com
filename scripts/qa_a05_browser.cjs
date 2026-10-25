@@ -448,6 +448,15 @@ async function main() {
         document.querySelector("#a05-inspect-report")?.textContent.includes("JSONとして読み取れませんでした"));
       assert.match(await page.locator("#a05-inspect-report").innerText(),/JSONとして読み取れませんでした/);
       assert.match(await page.locator("#a05-content").innerText(),/検証済み 1件/);
+      // Reject >10 MiB before File.text() or JSON.parse(); never change local history.
+      await page.locator("#a05-inspect-file").setInputFiles({
+        name:"oversize-synthetic.json",mimeType:"application/json",
+        buffer:Buffer.alloc(10*1024*1024+1,32)
+      });
+      await page.waitForFunction(() =>
+        document.querySelector("#a05-inspect-report")?.textContent.includes("10MiBを超える"));
+      assert.match(await page.locator("#a05-inspect-report").innerText(),/10MiBを超える/);
+      assert.match(await page.locator("#a05-content").innerText(),/検証済み 1件/);
       // No actual local data is restored by any inspection step.
       await page.reload();
       await page.locator('[data-view="history"]').first().click();
