@@ -417,3 +417,40 @@ there is no new Node or browser acceptance claim.
 **Unchanged:** Existing questionnaire, question hash, assessment/scoring
 logic, 16-type mapping, IndexedDB, P0, live site, GitHub Actions
 configuration. Draft PR #61 must remain unmerged and unpublished.
+
+## A05-D34-001 (2026-10-26)
+
+**Scope:** Second-pass rewrite of the seven questionnaire candidates whose
+editorial status remains BLOCK (A04, A05, B02, C04, D03, E04, E05).
+
+**Before:** D-33 documented one primary wording substitute for each blocker
+and two E05 alternatives, but there was no consistent pairwise editorial
+comparison covering all seven blockers. The bipolar 7-point answer format
+remained a substantial risk, especially for money versus time.
+
+**After:** Created
+`docs/A05_D34_BLOCKER_REWRITE_COMPARISON_20261026.md`. It contains
+two unapproved negative/positive question pairs for each of the seven IDs
+(**14 pairs total**), candidate-specific construct and overlap notes,
+non-leading interview probes, within- and cross-axis redundancy checks,
+and explicit editorial decision gates. Added a third E05 **research-only**
+format that asks about money and time **independently** rather than deriving
+a forced bipolar preference. Its scores must not be substituted into
+the existing E-axis scoring or used to recalculate saved snapshots.
+
+**Reason:** Candidate wording needs a competing alternative and an
+explanation of potential construct contamination before any content approval.
+E05's fixed monetary/time tradeoff cannot be repaired merely by removing
+the numbers.
+
+**Evidence:** Checked the new proposal against the actual versioned
+`questions.mjs` and D-33 blocker list: exactly seven unique matched
+BLOCK IDs, each with two wording pairs; independent E05 format included.
+This is a source/structure consistency check, **not** a validated
+psychological instrument, participant interview, or a native Node/Chrome
+test. No participants have been enrolled.
+
+**Status:** All seven D-33 BLOCK flags remain open pending cognitive
+interviews and editorial approval. No existing A05 module, scoring,
+snapshot, database, site navigation, P0 or Actions workflow was changed.
+Draft PR #61 remains unmerged and unpublished.
