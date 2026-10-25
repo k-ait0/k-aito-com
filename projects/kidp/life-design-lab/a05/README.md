@@ -547,3 +547,30 @@ tests **139/139 succeeded** across scoring 66,
 storage 13 and research/G1 contracts 60.
 SEO audit **40216961278 succeeded**. Both runs were for
 the unmerged Draft branch; no production publication.
+
+## D-45 / D-46 review navigation and export confirmation (2026-10-26)
+
+`docs/A05_D45_D46_REVIEW_NAVIGATION_EXPORT_20261026.md`
+documents production-code quality improvements that do not
+depend on the pending G1 human-research decisions.
+
+D-45: Review now shows both sides of every question,
+the stored response state and per-axis progress. A
+"最初の未回答へ" action navigates to the next omitted
+question via existing revision-safe draft handling.
+Question cards use responsive 1/2/3-column layouts
+(under 380 / 380–699 / 700+ px); RGBY group filters
+include Japanese color names, and share toggles expose
+`aria-expanded` and `aria-controls`.
+
+D-46: JSON export now confirms **before** generating
+a local download that raw answers, legacy or quarantined
+data may be included; cancel aborts the export. No
+export serialization or IndexedDB storage contracts changed.
+
+The existing Chrome suite now checks question wording,
+first-unanswered navigation, share state, canceled
+export and 320/390/768/1440 px layouts across three
+screens. Final CI result was pending when this entry
+was made. G1 12/12 and D-42 16/16 remain PENDING.
+No research recruitment, approval, merge or deployment.
