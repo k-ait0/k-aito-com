@@ -352,6 +352,9 @@ async function setAnswer(value) {
     throw e;
   }
   updateAnswerControls(); // No replacement: retain the selected button's focus.
+  // updateAnswerControls can enable Next. Keep it disabled until IndexedDB
+  // and the outer event handler have fully completed.
+  reflectBusy();
 }
 
 async function moveIndex(index) {

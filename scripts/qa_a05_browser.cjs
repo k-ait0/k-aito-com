@@ -96,14 +96,22 @@ async function main() {
       await page.locator('[data-action="start"]').click();
       assert.match(await page.locator("#a05-progress-count").innerText(), /1問回答済み/);
       assert.match(await page.locator("#a05-question-heading").innerText(), /理想に近いのは/);
+      assert.match(await page.locator("#a05-content").innerText(), /質問 2 \/ 30/,
+        "The persisted draft must resume at question 2, not question 1");
     });
 
     await check("complete 30 and classify T16 / time", async () => {
       for (let i = 1; i < QUESTIONS.length; i++) {
+        const step = await page.locator("#a05-content").innerText();
+        assert.match(step, new RegExp("質問 " + (i + 1) + " / 30"),
+          "Unexpected question before answering Q" + (i + 1) + ": " + step.slice(0, 150));
         const value = QUESTIONS[i].direction === 1 ? 7 : 1;
         await page.locator('[data-action="answer"][data-value="' + value + '"]').click();
         await page.locator('[data-action="next"]').click();
       }
+      assert.equal(await page.locator('[data-action="finish"]').count(), 1,
+        "Expected answer review; current screen: " +
+        (await page.locator("#a05-content").innerText()).slice(0, 180));
       await page.locator('[data-action="finish"]').click();
       const content = await page.locator("#a05-content").innerText();
       assert.match(content, /T16/);
