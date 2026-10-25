@@ -275,10 +275,21 @@ async function persistDraft() {
 }
 
 function failed(error) {
-  const conflict = error?.code === "REVISION_CONFLICT";
+  // Input errors and missing history are recoverable without locking storage.
+  // Conflicts and unknown storage failures fail closed to avoid overwrites.
+  const code = error?.code;
+  if (code === "VALIDATION_ERROR" || code === "NOT_FOUND") {
+    state.view = code === "VALIDATION_ERROR" ? "review" : "history";
+    updateNotice((code === "VALIDATION_ERROR" ?
+      "回答内容を確認してください。" : "対象の履歴が見つかりません。") +
+      (error?.message ? "（" + error.message + "）" : ""));
+    render();
+    return;
+  }
+  const conflict = code === "REVISION_CONFLICT";
   state.readOnly = state.consent;
   state.view = "home";
-  updateNotice((conflict ? "別タブで変更されました。" : "処理に失敗しました。") +
+  updateNotice((conflict ? "別タブで変更されました。" : "保存・復元処理に失敗しました。") +
     " 自動上書きは停止中です。回答を確認し、必要なら履歴をエクスポートしてください。" +
     (error?.message ? "（" + error.message + "）" : ""));
   render();
