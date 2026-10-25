@@ -45,7 +45,7 @@ test("D-52 rejects unsupported schema, malformed timestamp and non-object roots"
     const f=fixture(); f.schema=value;
     assert.equal(inspectA05Backup(f).ok,false);
   }
-  for(const value of ["bad", "2026-13-44", 20261026, null]) {
+  for(const value of ["bad", "2026-13-44", "2026-02-30T03:00:00.000Z", "2026-10-26T03:00:00Z", 20261026, null]) {
     const f=fixture(); f.exportedAt=value;
     assert.equal(inspectA05Backup(f).ok,false);
   }
