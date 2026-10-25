@@ -363,3 +363,21 @@ Native Chrome acceptance **pending the next CI verification**; no PASS claim
 until logs confirm it. Existing D-31 scoring/content contracts unchanged.
 
 **Release state:** Draft PR #61, no merge/deploy or P0 changes.
+
+### A05-D32-001 — native acceptance result (2026-10-26 JST)
+
+**Verified:** GitHub Actions run **40205839032** completed successfully.
+The actual Node 22 and Chrome logs show scoring **66/66**, simulated
+IndexedDB storage contract **13/13**, and **16/16** named real-Chrome
+acceptance cases passed, including D-32's injected quota failure and
+the independent check for unexpected network/page errors. The
+existing KIDP P0 browser QA, site-wide preflight and diff checks also
+completed successfully. SEO static audit run **40205837919** succeeded.
+
+**Interpretation:** This proves the tested `IDBObjectStore.put()` exception
+path rejects the uncommitted edit and restores previously committed data
+upon reload in Chromium. It does **not** emulate OS-level disk exhaustion,
+Safari quota eviction, sudden browser termination, or every failure mode.
+The question set and psychometric validity remain unreviewed.
+
+**State:** Draft PR #61; no merge, production rollout, or P0 modification.
