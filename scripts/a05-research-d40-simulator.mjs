@@ -1,7 +1,7 @@
 /**
  * D-40: synthetic-only, pure desk exercise for proposed research data handling.
  *
- * Only seven internally defined scenario names can be passed in.
+ * Only internally defined scenario names can be passed in.
  * There is NO ability to accept real participant identifiers, answers, dates,
  * consents or contact details. NO IO, database, network, recording or deletion.
  * All research operations remain forbidden until human G1 approval.
@@ -11,6 +11,8 @@ import { proposeRetentionDeadlines } from "./a05-research-retention-proposal.mjs
 export const D40_SCENARIOS = Object.freeze([
   "consent-refused",
   "consented-withdrawal",
+  "withdrawal-after-contact-expiry",
+  "unverified-withdrawal",
   "withdrawal-after-link-expiry",
   "retention-deadlines",
   "repeat-withdrawal",
@@ -19,6 +21,7 @@ export const D40_SCENARIOS = Object.freeze([
 ]);
 const DAY0 = "2026-10-26";
 const D1 = "2026-10-27";
+const D15 = "2026-11-10";
 const D29 = "2026-11-24";
 const D31 = "2026-11-26";
 const D90 = "2027-01-24";
@@ -26,6 +29,8 @@ const D90 = "2027-01-24";
 const INTERNAL_CASES = Object.freeze({
   "consent-refused": [["decline", DAY0], ["attempt-note", DAY0]],
   "consented-withdrawal": [["consent-notes", DAY0], ["consent-contact", DAY0], ["attempt-note", DAY0], ["withdraw", D1]],
+  "withdrawal-after-contact-expiry": [["consent-notes", DAY0], ["consent-contact", DAY0], ["attempt-note", DAY0], ["advance", D15], ["withdraw", D15]],
+  "unverified-withdrawal": [["consent-notes", DAY0], ["attempt-note", DAY0], ["withdraw-unverified", D1]],
   "withdrawal-after-link-expiry": [["consent-notes", DAY0], ["consent-contact", DAY0], ["attempt-note", DAY0], ["advance", D31], ["withdraw", D31]],
   "retention-deadlines": [["consent-notes", DAY0], ["consent-contact", DAY0], ["attempt-note", DAY0], ["advance", "2026-11-09"], ["advance", "2026-11-25"], ["advance", D90]],
   "repeat-withdrawal": [["consent-notes", DAY0], ["attempt-note", DAY0], ["withdraw", D1], ["withdraw", D29]],
@@ -77,7 +82,14 @@ export function runSyntheticD40Scenario(name) {
       case "attempt-recording":
         outcome="RECORDING_REJECTED_NO_SEPARATE_CONSENT";
         break;
+      case "withdraw-unverified":
+        s.closed=true; s.notesConsent=false;
+        s.withdrawalStatus="UNVERIFIED_REQUEST_REQUIRES_HUMAN_REVIEW";
+        outcome="UNVERIFIED_NO_VERIFIABLE_INDIVIDUAL_DELETION";
+        break;
       case "withdraw":
+        // A verified, participant-held withdrawal token is ASSUMED ONLY.
+        // D-40 cannot demonstrate the real verification procedure.
         if (!s.link && s.note) {
           s.withdrawalStatus="UNMATCHABLE_REQUIRES_HUMAN_REVIEW";
           outcome="WITHDRAWAL_NOT_VERIFIABLY_DELETED";
