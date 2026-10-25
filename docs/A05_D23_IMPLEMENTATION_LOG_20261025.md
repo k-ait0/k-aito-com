@@ -992,3 +992,25 @@ historical entry.
 final sign-off PENDING; no participants, consents, interviews,
 real token generation, data, deletion, scores, past assessments,
 P0, main site or public release. PR #61 stays Draft.
+
+### A05-D41-001 — native CI evidence (2026-10-26 JST)
+
+GitHub Actions **40214353407: SUCCESS**. D-41 aligned-policy
+synthetic-only contracts **10/10 PASS (native Node 22)**.
+D-40 synthetic consent/withdrawal **10/10 PASS**,
+D-38/D-39 G1 contracts **11/11 PASS**, D-35–37 research
+contracts **18/18 PASS**. Existing A05 scoring domain
+**66/66**, simulated IndexedDB storage **13/13**, real
+Chromium A05 acceptance **16/16** plus an independent
+no-network/page-error check, P0 browser QA and local
+preflight all passed. SEO audit run **40214353357: SUCCESS**.
+
+**Scope:** These contracts prove only internally consistent
+paper-policy alternatives and deterministic synthetic
+review states. They do NOT prove participant identity,
+token-security implementation, physical record/backup
+deletion, policy approval or consent. Original 12 G1
+decisions and final sign-off remain PENDING; no
+respondents, recruitment, research data, release or
+production change occurred. No new Actions job or
+workflow was created.
