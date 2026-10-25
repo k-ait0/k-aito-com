@@ -34,6 +34,7 @@ jobs:
           node --test scripts/test-a05-research-manifest.mjs scripts/test-a05-research-d36.mjs
           node --test scripts/test-a05-research-g1.mjs
           node --test scripts/test-a05-research-d40.mjs
+          node --test scripts/test-a05-research-d41.mjs
       - name: A05 site-wide local preflight and diff checks
         if: ${{ steps.a05scope.outputs.changed == 'true' }}
         run: |
