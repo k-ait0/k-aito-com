@@ -533,3 +533,17 @@ A05 database. No changes to saved data semantics or deletion
 behavior were required; these cases specifically cover the
 post-rerender focus changes. The browser regression suite has
 17 named cases, not a new CI workflow or job.
+
+### D-44 completed technical verification
+
+KIDP GitHub Actions run **40216961208 succeeded**.
+All **17/17** named Chromium A05 cases passed, including
+the new progressbar / filter and share focus regression
+and extended existing checks for raw retention, individual
+raw-answer deletion, legacy/quarantined cleanup and full
+erase focus. Independent no-network/page-error check and
+P0/browser/site preflight also passed. Native Node 22
+tests **139/139 succeeded** across scoring 66,
+storage 13 and research/G1 contracts 60.
+SEO audit **40216961278 succeeded**. Both runs were for
+the unmerged Draft branch; no production publication.
