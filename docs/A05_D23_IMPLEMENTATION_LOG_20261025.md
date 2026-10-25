@@ -256,3 +256,34 @@ and limiting A05 steps to A05-modifying PRs.
 
 **Status:** D-27 engineering QA gate passed in GitHub Actions; release gate
 remains pending content/accessibility review and explicit publish decision.
+
+## 2026-10-25 — A05-D28-001
+
+**Scope:** Accessibility improvements and preliminary questionnaire content review.
+
+**Before:** Seven-point scale screen-reader labels only conveyed numeric
+positions; screen changes could leave focus on a removed button. No dedicated
+written risk register for the draft 30-item instrument.
+
+**After:** Each question's fieldset legend includes the two actual alternatives.
+Scale 1/4/7 have descriptive accessible labels. Navigation via show() moves
+focus to the destination heading, preserving keyboard/screen-reader context.
+A Chromium keyboard acceptance case verifies Enter, Space, focus movement and
+the accessible scale descriptions. A separate review document at
+`docs/A05_D28_REVIEW_20261025.md` flags A/B/C construct confounds,
+D context coverage, and especially E05's arbitrary money/time trade-off.
+Question text and scoring versions remain unchanged.
+
+**Verification:** GitHub Actions run **40166414295** passed. Node domain
+**66/66**, simulated storage contract **13/13**, site-wide local preflight
+**12/12**, A05 real Chrome acceptance **13/13** (including the new keyboard
+case), existing KIDP Chrome QA passed. SEO run **40166414297** succeeded.
+
+**Limitations:** Automated Chromium tests are not real iOS VoiceOver,
+NVDA/JAWS, contrast/zoom testing, or psychometric validation. Content review
+is a risk inventory, not editorial approval. D-12/D-19 migration and
+publication remain out of scope. PR #61 remains Draft, unmerged.
+
+**Reason:** Improve input comprehension and focus continuity while keeping
+versioned responses reproducible, and surface conceptual risks before
+public release.
