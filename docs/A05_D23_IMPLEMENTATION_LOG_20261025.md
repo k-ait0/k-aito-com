@@ -573,3 +573,22 @@ psychometric analysis have been conducted.
 **Unchanged:** `questions.mjs`, versioned scoring, data persistence,
 old results, type mapping, P0, production, deploy and public
 navigation. Draft PR #61 must remain unmerged.
+
+### A05-D36-001 — native CI evidence (2026-10-26 JST)
+
+GitHub Actions run **40209295560** completed successfully. The
+existing A05 Node 22 verification step executed **both new research
+files** via
+`node --test scripts/test-a05-research-manifest.mjs scripts/test-a05-research-d36.mjs`
+and returned **13/13 tests passed** (D-35: seven, D-36: six).
+Existing native domain scoring **66/66**, simulated IndexedDB storage
+**13/13**, actual Chromium A05 acceptance **16/16** named cases,
+existing KIDP P0 Chrome checks, site preflight and `git diff --check`
+passed. SEO static audit run **40209295397** succeeded.
+
+The original D-36 pre-CI isolated JS assertions remain recorded above
+as historical test provenance; the present section reports later
+**native Node execution**. This is engineering/source-contract evidence
+only; it does not validate question quality, response interpretation
+or psychometric properties. No participants were recruited and
+no candidate question or stored assessment was published or modified.
