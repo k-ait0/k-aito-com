@@ -414,3 +414,34 @@ This validates **only logical fake markers in a pure function**:
 it cannot verify participant identity, physical deletion,
 backup erasure, informed consent or research authorization.
 All G1 decisions remain pending and PR #61 remains Draft.
+
+## D-41 withdrawal matching and retention-policy choices (2026-10-26)
+
+`docs/A05_D41_WITHDRAWAL_IDENTITY_AND_RETENTION_DECISION_20261026.md`
+and its machine-readable companion
+`docs/A05_D41_WITHDRAWAL_POLICY_OPTIONS_20261026.json`
+compare three **unapproved** G1-05/08/09 choices:
+
+- A: contacts 14d, pseudonym mapping **30d**, raw notes **30d**;
+  preferred for **human review only**.
+- B: contacts 14d, mapping **90d**, notes **90d**;
+  longer retention and associated privacy risk.
+- C: no persistent identifiable contact, mapping or raw notes;
+  limits per-question audit, requires separate scrutiny of
+  nonidentifying aggregation.
+
+`scripts/a05-research-d41-withdrawal-review.mjs` is a
+pure no-I/O review model with 12 hard-coded synthetic scenarios
+and no real withdrawal token, identity check, consent, data
+storage, record deletion or backup erasure. It rejects any
+new policy with mapping shorter than identifiable note
+retention. The 10 engineering tests are in
+`scripts/test-a05-research-d41.mjs`, included in the
+existing scoped A05 Node command:
+
+    node --test scripts/test-a05-research-d41.mjs
+
+Native CI status was pending at this history entry.
+**All G1 decisions remain PENDING**. An engineering test
+does not permit recruitment, collection, recording, real
+deletion, release or modifying old assessment histories.
