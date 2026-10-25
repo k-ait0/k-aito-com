@@ -1065,3 +1065,22 @@ and final human approval absent. No actual participant,
 recordings, individual records, data deletion, secret token
 issuance, real storage changes, scoring, P0 or production
 deployment. PR #61 stays Draft.
+
+### A05-D42-001 — verified native CI evidence (2026-10-26 JST)
+
+GitHub Actions **40215370738: SUCCESS**. The 11 D-42
+operational-acceptance audit contracts all **passed under native
+Node 22**. Other native A05 suites: D-41 **10/10**, D-40
+**10/10**, G1/D-39 **11/11**, earlier research **18/18**,
+scoring domain **66/66**, storage simulator **13/13**.
+Real Chromium A05 acceptance **16/16** plus the separate
+network/page-error check, P0 browser QA, site preflight
+and diff checks passed. SEO audit **40215370651: SUCCESS**.
+
+These results validate **only the completeness/rejection
+rules** for the pending D-42 acceptance register. They do
+not validate real identity proof, real participant consent,
+data handling, backups or actual deletion. G1 (12 decisions)
+and D-42 (16 controls) remain entirely PENDING with no
+final human signoff. Draft PR #61 remains unmerged, with
+no published release.
