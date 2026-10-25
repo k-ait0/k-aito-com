@@ -170,3 +170,12 @@ reload restores the last committed draft answer without accepting the rejected
 edit. This is a fault-injection test, **not** proof of behavior for every
 browser quota policy or forced termination. The new case is pending a native
 Chrome CI run; historical D-27–D-30 pass evidence remains as recorded.
+
+### D-32 acceptance result
+
+GitHub Actions run **40205839032** completed successfully on the Draft
+branch: Node scoring **66/66**, simulated storage **13/13**, named real-Chrome
+acceptance **16/16** (including injected quota-failure rollback), and the
+site-wide preflight and existing KIDP P0 QA. SEO audit **40205837919**
+succeeded. This supersedes only the earlier D-32 *pending CI* status;
+the historical notes remain intact.
