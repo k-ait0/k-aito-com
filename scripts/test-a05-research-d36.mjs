@@ -192,6 +192,14 @@ test("D-37 independent E05 has counterbalanced before/after timing, no scoring",
   const plans = buildInterviewPlan(base, overlay);
   assert.equal(plans.filter(x => x.e05Independent.timing === "before-core").length, 6);
   assert.equal(plans.filter(x => x.e05Independent.timing === "after-core").length, 6);
+  // Variant wording and independent-question timing must not be confounded.
+  for (const code of ["A", "B"]) {
+    for (const timing of ["before-core", "after-core"]) {
+      assert.equal(plans.filter(plan =>
+        plan.core.find(row => row.id === "E05").variantCode === code &&
+        plan.e05Independent.timing === timing).length, 3, code + "/" + timing);
+    }
+  }
   for (const plan of plans) {
     assert.deepEqual(plan.e05Independent.questions.map(x => x.id), ["E05-M", "E05-T"]);
     assert.equal(plan.permissions.scoringAllowed, false);
