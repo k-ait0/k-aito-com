@@ -6,6 +6,8 @@ on:
       - "scripts/qa_a05_browser.cjs"
       - "scripts/test-a05-*.mjs"
       - "scripts/a05-research-*.mjs"
+      - "docs/A05_D*.md"
+      - "docs/A05_D*.json"
       - ".github/workflows/kidp-wave-a-browser-qa.yml"
   workflow_dispatch:
 jobs:
@@ -29,6 +31,9 @@ jobs:
           else
             echo "changed=false" >> "$GITHUB_OUTPUT"
           fi
+      - name: A05 PR #61 full-diff review inventory (including docs-only changes)
+        if: ${{ github.event_name == 'pull_request' && github.event.pull_request.number == 61 }}
+        run: node --test scripts/test-a05-pr-review-manifest.mjs
       - name: A05 native Node domain and storage tests
         if: ${{ steps.a05scope.outputs.changed == 'true' }}
         run: |
@@ -37,7 +42,6 @@ jobs:
           node --test scripts/test-a05-backup-inspect.mjs
           node --test scripts/test-a05-restore-review.mjs
           node --test scripts/test-a05-release-boundaries.mjs
-          node --test scripts/test-a05-pr-review-manifest.mjs
           node --test scripts/test-a05-storage.mjs
           node --test scripts/test-a05-research-manifest.mjs scripts/test-a05-research-d36.mjs
           node --test scripts/test-a05-research-g1.mjs
@@ -50,8 +54,10 @@ jobs:
           node scripts/local-preflight.cjs
           git diff --check HEAD^1 HEAD
       - name: Install Playwright
+        if: ${{ github.event_name != 'pull_request' || github.event.pull_request.number != 61 || steps.a05scope.outputs.changed == 'true' }}
         run: npm install --no-save playwright@1.56.1
       - name: Start static server and run Chromium
+        if: ${{ github.event_name != 'pull_request' || github.event.pull_request.number != 61 || steps.a05scope.outputs.changed == 'true' }}
         run: |
           python3 -m http.server 8765 --bind 127.0.0.1 > /tmp/kidp-server.log 2>&1 &
           sleep 2
