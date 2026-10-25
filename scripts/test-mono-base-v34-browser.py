@@ -100,7 +100,21 @@ def validate_site(browser,name,viewport):
       const r=document.querySelector('#cad-frame')?.contentWindow?.__monoBaseRenderStats;
       return r && !r.paused && r.frames >= previous + 2;
     }""",arg=previous_frames,timeout=15000)
-    canvas.screenshot(path=str(OUT/f'cad-model-v36-{name}.png'))
+    # Locator.screenshot() performs a hidden stability-gated scroll even after
+    # the explicit scroll above. The dynamically resized 3D iframe never
+    # satisfies that heuristic. Capture the visible viewport directly after
+    # checking that it contains the live canvas and two newly rendered frames.
+    visible_canvas=page.evaluate("""() => {
+      const frame=document.querySelector('#cad-frame');
+      const canvas=frame?.contentDocument?.querySelector('canvas#viewport');
+      if (!frame || !canvas) return false;
+      const a=frame.getBoundingClientRect(), b=canvas.getBoundingClientRect();
+      const top=a.top+b.top, bottom=top+b.height;
+      const left=a.left+b.left, right=left+b.width;
+      return top < innerHeight && bottom > 0 && left < innerWidth && right > 0;
+    }""")
+    assert visible_canvas,f'{name}: rendered CAD canvas not in visible screenshot'
+    page.screenshot(path=str(OUT/f'cad-model-v36-{name}.png'),full_page=False)
     if name == 'desktop':
         # Inject a local test clipboard to verify both real button behavior
         # and the accessible fallback without requesting OS clipboard access.
