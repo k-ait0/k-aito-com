@@ -82,3 +82,61 @@ normal DNS; V8-based checks must not be represented as Node/browser passes.
 **Status:** Draft PR only. NO merge, no navigation changes, no deployment.
 **Next gate:** Run native Node 22 tests and site preflight in an actual
 checkout, record results in the PR, then proceed to browser acceptance.
+
+
+## 2026-10-25 — A05-D25-001
+
+**Scope:** Atomic restore/read, error-state classification, reproducible
+browser acceptance test specification and script.
+
+**Before:**
+- restoreState() used separate readonly transactions for consent, draft and
+  history, possibly mixing snapshots across other-tab commits.
+- enableSaving() used a put() of consent, allowing silent replacement when
+  no active draft remained.
+- UI treated validation errors and missing-history errors as fatal storage
+  failures, unnecessarily locking otherwise healthy data.
+- Browser acceptance was described in prose, without a reproducible script.
+
+**After (Draft PR #61 only):**
+- readRecoverySnapshot() obtains consent, draft and history from the same
+  readonly IndexedDB transaction; restoreState() uses this snapshot.
+- Initial consent registration uses add(), not put(), and rejects duplicate
+  consent even after a draft has been finalized.
+- AssessmentValidationError(code=VALIDATION_ERROR) identifies invalid answers.
+  The UI allows correction without globally locking the storage controller;
+  genuine revision conflicts continue to block automatic writes.
+- QA runner scripts/qa_a05_browser.cjs added with 30-question completion,
+  reload/resume, raw consent and purge, history export, two-tab conflict,
+  explicit deletion, viewport widths, and unexpected-network checks.
+- Existing favicon linked to prevent missing-asset requests.
+- Existing history/data are not overwritten by these changes.
+
+**D-25 executable-source evidence:**
+- 66/66 test cases from the actual committed test-a05-engine.mjs source
+  matched under isolated V8 with Node assertion/test function adapters.
+  SHA-256 was stubbed (64-hex placeholder) in that shim; this is NOT a
+  native Node execution or a SHA-256 integration validation.
+- 13/13 test cases from the actual committed test-a05-storage.mjs source
+  matched under isolated V8 with a simulated asynchronous IndexedDB.
+- Browser runner parsed successfully as JavaScript, but was NOT executed
+  against Chromium or the real browser IndexedDB.
+- V8 results do not establish cross-tab transactional correctness,
+  browser storage behavior, or a successful website preflight.
+
+**Not executed (blocking):**
+- node --test scripts/test-a05-engine.mjs
+- node --test scripts/test-a05-storage.mjs
+- node scripts/local-preflight.cjs
+- NODE_PATH=/tmp/kaito-qa/node_modules node scripts/qa_a05_browser.cjs
+- git diff --check in a checked-out repository
+- live environment checks and usability/psychometric studies.
+
+**Reason:** Remove read skew, prevent consent overwrite, ensure recoverable
+user-answer errors do not unnecessarily disable saving, and turn browser
+acceptance into a reproducible test. The source is kept on Draft PR #61;
+P0 and production remain unchanged. No GitHub Actions workflows are added.
+
+**Next release gate:** Native Node 22 verification + Playwright Chromium QA
+on a checked-out feature branch, with captured logs and defects fixed.
+Only after this, revisit the unimplemented legacy D-12/D-19 migration.
