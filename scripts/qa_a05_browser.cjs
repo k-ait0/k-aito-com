@@ -167,6 +167,17 @@ async function main() {
       await page.locator('[data-view="home"]').first().click();
       await page.locator("#a05-retain-raw").check();
       await page.locator('[data-action="enable"]').click();
+      await waitForUICommit(page, "home");
+      assert.equal(await page.evaluate(() => document.activeElement?.dataset.setting), "raw",
+        "After opting in, the new raw retention checkbox should be focused");
+      await page.locator('input[data-setting="raw"]').uncheck();
+      await waitForUICommit(page, "home");
+      assert.equal(await page.evaluate(() => document.activeElement?.dataset.setting), "raw",
+        "Turning raw retention off should retain keyboard focus");
+      await page.locator('input[data-setting="raw"]').check();
+      await waitForUICommit(page, "home");
+      assert.equal(await page.evaluate(() => document.activeElement?.dataset.setting), "raw",
+        "Turning raw retention on should retain keyboard focus");
       await page.locator('[data-view="quiz"]').first().click();
       // A01, direction=1, answer 7 -> positive A.
       await page.locator('[data-action="answer"][data-value="7"]').click();
@@ -234,6 +245,8 @@ async function main() {
         document.querySelector("#a05-content")?.innerText.includes("生回答なし"),
         null, { timeout: 10000 });
       assert.match(await page.locator("#a05-content").innerText(), /生回答なし/);
+      assert.equal(await page.evaluate(() => document.activeElement?.tagName), "H2",
+        "After removing raw answers, focus should return to the history heading");
       await page.reload();
       await page.locator('[data-view="history"]').first().click();
       assert.match(await page.locator("#a05-content").innerText(), /検証済み 1件/);
@@ -292,12 +305,14 @@ async function main() {
         document.querySelector("#a05-content")?.innerText.includes("旧版 0件"),
         null, { timeout: 10000 });
       assert.match(await page.locator("#a05-content").innerText(), /旧版 0件/);
+      assert.equal(await page.evaluate(() => document.activeElement?.tagName), "H2");
       await page.locator('[data-action="delete-protected"][data-kind="quarantined"]').click();
       await page.waitForFunction(() =>
         document.querySelector("#a05-content")?.getAttribute("aria-busy") === "false" &&
         document.querySelector("#a05-content")?.innerText.includes("隔離 0件"),
         null, { timeout: 10000 });
       assert.match(await page.locator("#a05-content").innerText(), /隔離 0件/);
+      assert.equal(await page.evaluate(() => document.activeElement?.tagName), "H2");
       await page.reload();
       await page.locator('[data-view="history"]').first().click();
       assert.match(await page.locator("#a05-content").innerText(), /検証済み 1件/);
@@ -323,6 +338,8 @@ async function main() {
       await page.locator('[data-view="history"]').first().click();
       await page.locator('[data-action="erase"]').click();
       await waitForUICommit(page, "home");
+      assert.equal(await page.evaluate(() => document.activeElement?.tagName), "H2",
+        "After full erase, focus should move to the fresh overview heading");
       await page.reload();
       assert.match(await page.locator("#a05-content").innerText(), /端末保存：無効/);
       await page.locator('[data-view="history"]').first().click();
