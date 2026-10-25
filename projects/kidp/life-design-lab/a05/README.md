@@ -289,3 +289,15 @@ Local verification:
 
 The protocol does **not** score responses, collect personal
 data, change old snapshots or authorize a new version or release.
+
+### D-37 verified Node and Chrome checks
+
+Native GitHub Actions run **40210242723 succeeded**. Research contracts
+**18/18 Node 22** (seven D-35, six D-36, five D-37), existing
+scoring **66/66**, storage simulator **13/13**, Chrome A05
+acceptance **16/16**, independent network/page-error check,
+existing P0 browser QA and site preflight passed.
+SEO static audit **40210242730** passed. This updates the
+prior D-37 pending-test statement without replacing the history.
+It **does not** authorize actual interviews, data collection,
+questionnaire adoption, merge or production release.
