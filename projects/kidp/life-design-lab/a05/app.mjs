@@ -121,7 +121,8 @@ function renderQuiz() {
     '<div class="answer-pair"><div><small>左の価値観</small><strong>' + escapeHTML(q.left) + '</strong></div>' +
     '<div><small>右の価値観</small><strong>' + escapeHTML(q.right) + '</strong></div></div>' +
     '<div class="scale-hint"><span>左を強く重視</span><span>右を強く重視</span></div>' +
-    '<fieldset aria-describedby="a05-answer-status"><legend>質問 ' + (index + 1) +
+    '<p class="muted" id="a05-shortcut-hint">キーボードでは数字キー1〜7でも回答できます。</p>' +
+    '<fieldset aria-describedby="a05-answer-status a05-shortcut-hint"><legend>質問 ' + (index + 1) +
     '：' + escapeHTML(q.left) + ' と ' + escapeHTML(q.right) +
     ' のどちらを重視しますか。7段階の回答</legend><div class="scale" id="a05-scale">' +
     Array.from({ length: 7 }, (_, i) => {
@@ -413,10 +414,14 @@ root.addEventListener("click", async event => {
   reflectBusy();
   try {
     if (action === "start") show("quiz");
-    else if (action === "answer") await setAnswer(Number(button.dataset.value));
+    else if (action === "answer") {
+      await setAnswer(Number(button.dataset.value));
+      focusAfterRender = '[data-action="answer"][data-value="' + button.dataset.value + '"]';
+    }
     else if (action === "skip") {
       const old = state.draft.answers[QUESTIONS[state.draft.index].id];
       await setAnswer(old === null ? undefined : null);
+      focusAfterRender = '[data-action="skip"]';
     } else if (action === "previous") {
       await moveIndex(Math.max(0, state.draft.index - 1));
     } else if (action === "next") {
@@ -564,6 +569,19 @@ root.addEventListener("click", async event => {
       }
     }
   }
+});
+
+// Optional keyboard acceleration for the 30-question flow. Route through
+// the same click handler, busy lock and persistence checks as pointer input.
+root.addEventListener("keydown", event => {
+  if (state.view !== "quiz" || state.busy || event.repeat ||
+      event.altKey || event.ctrlKey || event.metaKey || event.shiftKey ||
+      !/^[1-7]$/.test(event.key) ||
+      event.target.closest("input, textarea, select, [contenteditable]")) return;
+  const answer = root.querySelector('[data-action="answer"][data-value="' + event.key + '"]');
+  if (!answer || answer.disabled) return;
+  event.preventDefault();
+  answer.click();
 });
 
 tabs.addEventListener("click", event => {
