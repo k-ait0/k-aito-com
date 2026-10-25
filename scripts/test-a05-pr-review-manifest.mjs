@@ -35,15 +35,43 @@ test("D-54 file paths map to known review owners; everything awaits a human revi
   for(const group of manifest.groups){
     assert.equal(group.releaseApproved,false);
     assert.ok(group.reviewStatus !== "APPROVED");
+    assert.ok(group.riskPriority?.startsWith("P0_")||
+              group.riskPriority?.startsWith("P1_"));
+    assert.ok(group.requiredSignoffRole?.length>5);
     assert.ok(manifest.files.some(f=>f.group===group.id));
   }
   for(const file of manifest.files){
     assert.ok(groupIds.includes(file.group),file.path);
-    assert.equal(file.reviewStatus,"NOT_REVIEWED",file.path);
+    assert.ok(["NOT_REVIEWED","REVIEWED"].includes(file.reviewStatus),file.path);
+    if(file.reviewStatus==="REVIEWED") {
+      for(const key of ["reviewEvidenceRef","reviewerRole","reviewedAt"]){
+        assert.ok(typeof file[key]==="string"&&file[key].trim().length>0,
+          file.path+": missing human review field "+key);
+      }
+    } else {
+      for(const key of ["reviewEvidenceRef","reviewerRole","reviewedAt"]){
+        assert.equal(file[key],null,file.path+": unverifiable evidence field "+key);
+      }
+    }
     assert.equal(file.mergeAuthorized,false,file.path);
     assert.ok(!file.path.startsWith("/")&&!file.path.includes(".."),
       "no absolute or upward-traversing manifest paths");
   }
+});
+
+test("D-54 review proof slots are empty and risk-prioritized until real humans sign",()=>{
+  assert.equal(manifest.version,"D54-002");
+  assert.ok(manifest.files.every(file=>file.reviewStatus==="NOT_REVIEWED"));
+  assert.ok(manifest.files.every(file=>file.reviewEvidenceRef===null &&
+    file.reviewerRole===null && file.reviewedAt===null));
+  assert.equal(manifest.groups.find(g=>g.id==="B_STORAGE_BACKUP").riskPriority,
+    "P0_DATA_PROTECTION");
+  assert.equal(manifest.groups.find(g=>g.id==="C_PROVISIONAL_SCORING").riskPriority,
+    "P0_RESEARCH_VALIDATION_BLOCKED");
+  assert.equal(manifest.groups.find(g=>g.id==="D_RESEARCH_HUMAN_APPROVAL").riskPriority,
+    "P0_HUMAN_APPROVAL_REQUIRED");
+  assert.equal(manifest.guards.productionReleaseAuthorized,false);
+  assert.equal(manifest.guards.studyAuthorized,false);
 });
 
 test("D-54 complete G1 and D42 cannot be implied by a green software QA run",()=>{
