@@ -188,9 +188,28 @@ export function classifySnapshot(snapshot, knownQuestionHash) {
       snapshot.result.axes.length !== 5) {
     return "quarantined";
   }
+
+  const result = snapshot.result;
+  // Validate a legacy record's basic shape before allowing read-only access.
+  // DO NOT recalculate or reinterpret old versions with the current algorithm.
+  if ((result.typeId !== null &&
+       (typeof result.typeId !== "string" || !/^T(0[1-9]|1[0-6])$/.test(result.typeId))) ||
+      !["classified", "provisional", "withheld"].includes(result.classification) ||
+      !["money", "time", "neutral", "withheld"].includes(result.wealth) ||
+      !result.axes.every((a, i) =>
+        a && a.id === AXES[i].id &&
+        Number.isInteger(a.n) && a.n >= 0 && a.n <= 6 &&
+        Number.isInteger(a.sum) && Math.abs(a.sum) <= 3 * a.n &&
+        (a.value === null || (Number.isFinite(a.value) && Math.abs(a.value) <= 100)) &&
+        [null, 1, -1].includes(a.direction) &&
+        ["classified", "provisional", "withheld"].includes(a.status))) {
+    return "quarantined";
+  }
   const presentation = snapshot.presentation;
-  if (presentation !== null && (!presentation || typeof presentation.name !== "string" ||
-      presentation.name.length > 120 || typeof presentation.summary !== "string")) {
+  if (result.typeId === null ? presentation !== null :
+      !presentation || presentation.id !== result.typeId ||
+      typeof presentation.name !== "string" || !presentation.name.trim() ||
+      presentation.name.length > 120 || typeof presentation.summary !== "string") {
     return "quarantined";
   }
   if (snapshot.versions.question !== QUESTION_SET_VERSION ||
@@ -200,24 +219,31 @@ export function classifySnapshot(snapshot, knownQuestionHash) {
     return "legacy";
   }
   if (snapshot.questionHash !== knownQuestionHash) return "quarantined";
-  let recomputed;
+
+  let expected;
   try {
-    const axes = snapshot.result.axes;
-    const normalized = axes.map((a, i) => {
-      if (!a || a.id !== AXES[i].id) throw new Error("Invalid axis order");
-      return { id: AXES[i].id, ...resolveAxis(a.n, a.sum) };
-    });
-    recomputed = { axes: normalized, ...derive(normalized) };
-    if (JSON.stringify(recomputed) !== JSON.stringify(snapshot.result)) return "quarantined";
-  } catch (_) {
+    const axes = result.axes.map((a, i) => ({ id: AXES[i].id, ...resolveAxis(a.n, a.sum) }));
+    expected = { axes, ...derive(axes) };
+  } catch (_) { return "quarantined"; }
+  if (result.typeId !== expected.typeId ||
+      result.classification !== expected.classification ||
+      result.wealth !== expected.wealth ||
+      !result.axes.every((a, i) => {
+        const b = expected.axes[i];
+        return a.id === b.id && a.n === b.n && a.sum === b.sum &&
+          a.value === b.value && a.direction === b.direction && a.status === b.status;
+      })) {
     return "quarantined";
   }
-  const type = TYPES.find(x => x.id === recomputed.typeId);
+
+  const type = TYPES.find(x => x.id === result.typeId);
   if (type) {
     const group = GROUPS[type.group];
     if (!presentation || presentation.id !== type.id ||
+        presentation.name !== type.name || presentation.emoji !== type.emoji ||
+        presentation.summary !== type.summary || presentation.action !== type.action ||
         presentation.group !== group.id || presentation.color !== group.color ||
-        typeof presentation.emoji !== "string" || typeof presentation.action !== "string") {
+        presentation.tint !== group.tint) {
       return "quarantined";
     }
   } else if (presentation !== null) {
@@ -226,7 +252,15 @@ export function classifySnapshot(snapshot, knownQuestionHash) {
   if (OWN(snapshot, "rawAnswers")) {
     try {
       validateAnswers(snapshot.rawAnswers, QUESTIONS, true);
-      if (JSON.stringify(scoreAssessment(snapshot.rawAnswers)) !== JSON.stringify(snapshot.result)) {
+      const actual = scoreAssessment(snapshot.rawAnswers);
+      if (actual.typeId !== result.typeId ||
+          actual.classification !== result.classification ||
+          actual.wealth !== result.wealth ||
+          !actual.axes.every((a, i) => {
+            const b = result.axes[i];
+            return a.id === b.id && a.n === b.n && a.sum === b.sum &&
+              a.value === b.value && a.direction === b.direction && a.status === b.status;
+          })) {
         return "quarantined";
       }
     } catch (_) { return "quarantined"; }
