@@ -1084,3 +1084,13 @@ data handling, backups or actual deletion. G1 (12 decisions)
 and D-42 (16 controls) remain entirely PENDING with no
 final human signoff. Draft PR #61 remains unmerged, with
 no published release.
+
+## A05-D43-001 (2026-10-26)
+
+**Decision gate:** Consolidated D-33–D-42 research-only preparation into one accountable human-decision brief, `docs/A05_D43_OPERATOR_DECISION_GATE_20261026.md`. The three first decisions are: (1) who is responsible for participant study operations and data handling, (2) actual private storage or no persistent identifiable notes, and (3) A 14/30/30-day retention vs B 14/90/90 vs C no identifiable records. The memo explicitly recommends considering A only after verified identity/withdrawal and real-backup-erasure procedures; all recommendations are **proposed, not selected or approved**.
+
+**Why now:** Prior engineering simulation and structured tests already proved the synthetic timelines behave as specified; they cannot prove real participant verification, encrypted device configuration, actual retention or physical deletion. Further hypothetical code without an operator and chosen storage would not materially resolve G1 blockers. D-43 thus **pauses unconditional further research-design and test expansion until real decisions are made**, rather than introducing another proxy approval gate.
+
+**Scope/verification:** Documentation-only. No tests, conditional workflow, scored questions, production artifacts, existing G1 12-decision register or D-42 16-acceptance register changed. Previous native verification at run 40215370738 remains the most recent verified code evidence as of authoring; the documentation-only change is not a claim of new test execution. Participant count 0; no real recruitment, consent or research data, token issuance or erasure. PR #61 stays Draft/unmerged and not deployed.
+
+**Change history:** D-42: 16 acceptance checks remained all PENDING -> D-43: three decisions required before any further concrete operational implementation; reason: resolve responsibility and real environment rather than continually adding speculative acceptance code.
