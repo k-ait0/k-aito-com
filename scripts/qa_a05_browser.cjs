@@ -45,6 +45,17 @@ const check = async (name, fn) => {
   console.log("PASS A05 browser: " + name);
 };
 
+// Let IndexedDB transactions and UI rendering settle before inspecting
+// results or reloading the page. A Playwright click is not an async save ACK.
+async function waitForUICommit(page, view) {
+  await page.waitForFunction(expected => {
+    const root = document.querySelector("#a05-content");
+    const tab = document.querySelector('[data-view="' + expected + '"]');
+    return root?.getAttribute("aria-busy") === "false" &&
+      (!expected || tab?.getAttribute("aria-current") === "page");
+  }, view || "", { timeout: 10000 });
+}
+
 async function main() {
   const { QUESTIONS } = await import(pathToFileURL(path.join(ROOT,
     "projects/kidp/life-design-lab/a05/questions.mjs")).href);
@@ -121,6 +132,7 @@ async function main() {
         "Expected answer review; current screen: " +
         (await page.locator("#a05-content").innerText()).slice(0, 180));
       await page.locator('[data-action="finish"]').click();
+      await waitForUICommit(page, "result");
       const content = await page.locator("#a05-content").innerText();
       assert.match(content, /T16/);
       assert.match(content, /時間的自由寄り/);
@@ -149,6 +161,10 @@ async function main() {
 
     await check("raw-answer deletion leaves result intact", async () => {
       await page.locator('[data-action="scrub"]').click();
+      await page.waitForFunction(() =>
+        document.querySelector("#a05-content")?.getAttribute("aria-busy") === "false" &&
+        document.querySelector("#a05-content")?.innerText.includes("生回答なし"),
+        null, { timeout: 10000 });
       assert.match(await page.locator("#a05-content").innerText(), /生回答なし/);
       await page.reload();
       await page.locator('[data-view="history"]').first().click();
@@ -203,8 +219,16 @@ async function main() {
 
     await check("targeted recovery deletion preserves verified history", async () => {
       await page.locator('[data-action="delete-protected"][data-kind="legacy"]').click();
+      await page.waitForFunction(() =>
+        document.querySelector("#a05-content")?.getAttribute("aria-busy") === "false" &&
+        document.querySelector("#a05-content")?.innerText.includes("旧版 0件"),
+        null, { timeout: 10000 });
       assert.match(await page.locator("#a05-content").innerText(), /旧版 0件/);
       await page.locator('[data-action="delete-protected"][data-kind="quarantined"]').click();
+      await page.waitForFunction(() =>
+        document.querySelector("#a05-content")?.getAttribute("aria-busy") === "false" &&
+        document.querySelector("#a05-content")?.innerText.includes("隔離 0件"),
+        null, { timeout: 10000 });
       assert.match(await page.locator("#a05-content").innerText(), /隔離 0件/);
       await page.reload();
       await page.locator('[data-view="history"]').first().click();
@@ -221,6 +245,8 @@ async function main() {
       await page.locator('[data-action="answer"][data-value="7"]').click();
       await other.locator('[data-view="quiz"]').first().click();
       await other.locator('[data-action="answer"][data-value="7"]').click();
+      await other.locator("#a05-notice").waitFor({ state: "visible" });
+      await waitForUICommit(other, "home");
       assert.match(await other.locator("#a05-notice").innerText(), /別タブ|自動上書き/);
       await other.close();
     });
@@ -228,6 +254,7 @@ async function main() {
     await check("explicit full deletion clears this A05 database", async () => {
       await page.locator('[data-view="history"]').first().click();
       await page.locator('[data-action="erase"]').click();
+      await waitForUICommit(page, "home");
       await page.reload();
       assert.match(await page.locator("#a05-content").innerText(), /端末保存：無効/);
       await page.locator('[data-view="history"]').first().click();
