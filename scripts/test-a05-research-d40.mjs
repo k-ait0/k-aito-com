@@ -10,7 +10,7 @@ const last=x=>x.trace.at(-1);
 
 test("D-40 only nine predefined synthetic scenario names are accepted",()=>{
   assert.equal(D40_SCENARIOS.length,9);
-  assert.equal(new Set(D40_SCENARIOS).size,7);
+  assert.equal(new Set(D40_SCENARIOS).size,9);
   for(const invalid of [null,undefined,17,{},[],"actual-person",""])
     assert.throws(()=>runSyntheticD40Scenario(invalid),RangeError);
   for(const scenario of D40_SCENARIOS){
