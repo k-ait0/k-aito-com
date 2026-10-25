@@ -36,17 +36,17 @@ test("D-40 no-consent state refuses note collection",()=>{
 
 test("D-40 consented synthetic note is cleared along with linkage on timely withdrawal",()=>{
   const x=run("consented-withdrawal");
-  assert.equal(x.trace[1].noteMarker,true);
-  assert.equal(x.trace[2].outcome,"SYNTHETIC_MARKERS_CLEARED");
+  assert.equal(x.trace[2].noteMarker,true);
+  assert.equal(x.trace[3].outcome,"SYNTHETIC_MARKERS_CLEARED");
   assert.deepEqual(x.remaining,{contact:false,pseudonymLink:false,rawNote:false,recording:false});
   assert.equal(x.withdrawalStatus,"SIMULATED_IDENTIFIABLE_RECORDS_CLEARED");
 });
 
 test("D-40 linkage expires on day 30 while notes may remain until day 90",()=>{
   const x=run("withdrawal-after-link-expiry");
-  assert.equal(x.trace[2].linkMarker,false);
-  assert.equal(x.trace[2].noteMarker,true);
-  assert.equal(x.trace[3].outcome,"WITHDRAWAL_NOT_VERIFIABLY_DELETED");
+  assert.equal(x.trace[3].linkMarker,false);
+  assert.equal(x.trace[3].noteMarker,true);
+  assert.equal(x.trace[4].outcome,"WITHDRAWAL_NOT_VERIFIABLY_DELETED");
   assert.equal(x.withdrawalStatus,"UNMATCHABLE_REQUIRES_HUMAN_REVIEW");
   assert.equal(x.remaining.rawNote,true,
     "never report full individual withdrawal deletion without matching ability");
@@ -55,15 +55,15 @@ test("D-40 linkage expires on day 30 while notes may remain until day 90",()=>{
 
 test("D-40 proposed 14/30/90 day retention markers expire at explicit boundaries",()=>{
   const x=run("retention-deadlines");
-  assert.equal(x.trace[1].noteMarker,true);
-  assert.equal(x.trace[2].day,"2026-11-09");
-  assert.equal(x.trace[2].contactMarker,false);
-  assert.equal(x.trace[2].linkMarker,true);
-  assert.equal(x.trace[3].day,"2026-11-25");
-  assert.equal(x.trace[3].linkMarker,false);
-  assert.equal(x.trace[3].noteMarker,true);
-  assert.equal(x.trace[4].day,"2027-01-24");
-  assert.equal(x.trace[4].noteMarker,false);
+  assert.equal(x.trace[2].noteMarker,true);
+  assert.equal(x.trace[3].day,"2026-11-09");
+  assert.equal(x.trace[3].contactMarker,false);
+  assert.equal(x.trace[3].linkMarker,true);
+  assert.equal(x.trace[4].day,"2026-11-25");
+  assert.equal(x.trace[4].linkMarker,false);
+  assert.equal(x.trace[4].noteMarker,true);
+  assert.equal(x.trace[5].day,"2027-01-24");
+  assert.equal(x.trace[5].noteMarker,false);
   assert.deepEqual(x.remaining,{contact:false,pseudonymLink:false,rawNote:false,recording:false});
   assert.equal(x.actualDeletionPerformed,false,
     "a simulated transition never deletes data on a real system");
@@ -84,6 +84,10 @@ test("D-40 note consent does not imply recording consent",()=>{
   assert.equal(x.trace[0].outcome,"SYNTHETIC_CONSENT_MARKER_ONLY");
   assert.equal(last(x).outcome,"RECORDING_REJECTED_NO_SEPARATE_CONSENT");
   assert.equal(x.remaining.recording,false);
+  assert.equal(x.remaining.contact,false,
+    "consent for notes must not imply consent for contact storage");
+  assert.equal(x.remaining.pseudonymLink,true,
+    "pseudonym mapping is a separate disclosed condition of research notes");
 });
 
 test("D-40 simulation must never bypass the pending human G1 operations gate",()=>{
