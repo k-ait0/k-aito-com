@@ -1,4 +1,5 @@
 import test from "node:test";
+import { proposeRetentionDeadlines, RETENTION_PROPOSAL_STATE } from "./a05-research-retention-proposal.mjs";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { inspectG1Readiness, G1_REQUIRED_IDS, G1_NONAUTHORIZATION } from "./a05-research-g1-gate.mjs";
@@ -105,4 +106,72 @@ test("D-38 parser rejects invalid, future or nonexistent registers", () => {
   const incorrect = clone(source);
   incorrect.schema = "UNRELATED-1";
   assert.ok(inspectG1Readiness(incorrect).blockers.some(x => x.includes("schema")));
+});
+
+const options = JSON.parse(readFileSync(
+  new URL("../docs/A05_D39_G1_DECISION_OPTIONS_20261026.json", import.meta.url), "utf8"
+));
+
+test("D-39 decisions remain proposals; all twelve source G1 decisions remain pending", () => {
+  assert.equal(options.schema, "A05-D39-G1-DECISION-OPTIONS-1");
+  assert.equal(options.status, "PROPOSALS_ONLY_ALL_G1_PENDING");
+  assert.equal(options.decisionCount, 8);
+  assert.equal(options.decisions.length, 8);
+  assert.equal(new Set(options.decisions.map(x => x.id)).size, 8);
+  assert.ok(options.decisions.every(x => x.decisionStatus === "PROPOSED_NOT_DECIDED"));
+  assert.ok(options.decisions.every(x => x.selectedByAuthority === null &&
+    x.approvalEvidence === null));
+  assert.ok(source.operationalDecisions.every(x => x.status === "PENDING"));
+  assert.equal(source.finalSignoff.state, "PENDING");
+  assert.equal(inspectG1Readiness(source).authorized, false);
+  for (const id of options.decisions.map(x => x.id)) {
+    assert.ok(source.operationalDecisions.some(x => x.id === id), id);
+  }
+});
+
+test("D-39 two alternatives exist for each priority topic without fabricated signoff", () => {
+  for (const item of options.decisions) {
+    assert.deepEqual(item.options.map(x => x.code), ["A", "B"], item.id);
+    assert.equal(item.preferredOption, "A", item.id);
+    assert.ok(item.recommendation.length > 12, item.id);
+    assert.ok(item.options.every(x => x.advantages.length > 0 && x.risks.length > 0));
+    assert.ok(item.decisionRequired.length >= 4);
+  }
+  const covered = [...options.decisions.map(x => x.id), ...options.unresolvedOtherG1Ids].sort();
+  assert.deepEqual(covered, G1_REQUIRED_IDS.slice().sort());
+  assert.equal(options.interviewRecruitmentAuthorized, false);
+  assert.equal(options.responseCollectionAuthorized, false);
+  assert.equal(options.publicationAuthorized, false);
+});
+
+test("D-39 proposed deletion windows require session-date anchors and remain unapproved", () => {
+  assert.equal(options.retentionProposals.anchor, "participant-session-date");
+  assert.equal(options.retentionProposals.notApproved, true);
+  assert.deepEqual(options.retentionProposals.records.map(x => x.limitDays), [14, 30, 90]);
+  assert.ok(options.retentionProposals.records.every(x =>
+    x.dependsOn === "session-date" && x.approvalRequired === true));
+  assert.equal(options.retentionProposals.audioVideoDefault, "DO_NOT_COLLECT");
+  assert.equal(proposeRetentionDeadlines("2026-10-26").state, RETENTION_PROPOSAL_STATE);
+  const dates = proposeRetentionDeadlines("2026-10-26");
+  assert.deepEqual(dates.deadlines, {
+    contact: "2026-11-09",
+    pseudonymLink: "2026-11-25",
+    rawNotes: "2027-01-24"
+  });
+  assert.equal(dates.authorized, false);
+  assert.equal(dates.storageOrDeletionPerformed, false);
+  assert.equal(dates.withdrawalMatchingPossibleAfterLinkDeadline, false);
+});
+
+test("D-39 uses calendar-day arithmetic including leap year and rejects invalid dates", () => {
+  const leap = proposeRetentionDeadlines("2028-02-28");
+  assert.deepEqual(leap.deadlines, {
+    contact: "2028-03-13",
+    pseudonymLink: "2028-03-29",
+    rawNotes: "2028-05-28"
+  });
+  for (const invalid of ["2026-02-29", "2026-13-01", "2026-00-01",
+    "2026-02-30", "2026-1-1", "", 42, null]) {
+    assert.throws(() => proposeRetentionDeadlines(invalid), invalid);
+  }
 });
