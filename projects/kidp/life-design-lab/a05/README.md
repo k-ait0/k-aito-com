@@ -22,6 +22,7 @@ to be a psychometrically validated assessment.
 From repository root, using Node.js 22:
 
     node --test scripts/test-a05-engine.mjs
+    node --test scripts/test-a05-storage.mjs
     node scripts/local-preflight.cjs
     git diff --check
 
@@ -66,3 +67,10 @@ unexpected network requests. Test keyboard and screen reader operation.
    compares +¥30,000/month to +3 free hours/week; these are not calibrated.
 
 No GitHub Actions workflow is added or automatically enabled.
+
+## D-24 source QA note
+
+Pure scoring and integrity code matched 72 isolated V8 checks; nine
+committed storage contract cases matched with an in-memory IndexedDB
+simulator. Native Node, real-browser and site-wide preflight results are
+**not yet available**. See docs/A05_D23_IMPLEMENTATION_LOG_20261025.md.
