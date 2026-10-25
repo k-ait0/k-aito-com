@@ -434,16 +434,24 @@ async function main() {
       assert.doesNotMatch(await page.locator("#a05-content").innerText(), /通常保存は停止中/);
     });
 
-    await check("320 / 390 / 1440 responsive widths do not overflow main content", async () => {
-      for (const width of [320, 390, 1440]) {
+    await check("320 / 390 / 768 / 1440 responsive widths cover catalog, review and quiz", async () => {
+      for (const width of [320, 390, 768, 1440]) {
         await page.setViewportSize({ width, height: 860 });
-        await page.locator('[data-view="catalog"]').first().click();
-        const layout = await page.evaluate(() => ({
-          scroll: document.documentElement.scrollWidth,
-          client: document.documentElement.clientWidth
-        }));
-        assert.ok(layout.scroll <= layout.client + 2,
-          width + "px overflow: " + JSON.stringify(layout));
+        for (const view of ["catalog", "review", "quiz"]) {
+          await page.locator('[data-view="' + view + '"]').first().click();
+          const layout = await page.evaluate(() => ({
+            scroll: document.documentElement.scrollWidth,
+            client: document.documentElement.clientWidth
+          }));
+          assert.ok(layout.scroll <= layout.client + 2,
+            width + "px " + view + " overflow: " + JSON.stringify(layout));
+          if (view === "review") {
+            const cols = await page.locator(".review-grid").first().evaluate(element =>
+              getComputedStyle(element).gridTemplateColumns.split(" ").length);
+            assert.equal(cols, width < 380 ? 1 : width < 700 ? 2 : 3,
+              width + "px responsive review columns");
+          }
+        }
       }
     });
 
