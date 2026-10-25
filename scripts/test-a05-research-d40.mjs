@@ -8,8 +8,8 @@ const register=JSON.parse(readFileSync(new URL("../docs/A05_D38_G1_APPROVAL_REGI
 const run=name=>runSyntheticD40Scenario(name);
 const last=x=>x.trace.at(-1);
 
-test("D-40 only seven predefined synthetic scenario names are accepted",()=>{
-  assert.equal(D40_SCENARIOS.length,7);
+test("D-40 only nine predefined synthetic scenario names are accepted",()=>{
+  assert.equal(D40_SCENARIOS.length,9);
   assert.equal(new Set(D40_SCENARIOS).size,7);
   for(const invalid of [null,undefined,17,{},[],"actual-person",""])
     assert.throws(()=>runSyntheticD40Scenario(invalid),RangeError);
@@ -40,6 +40,28 @@ test("D-40 consented synthetic note is cleared along with linkage on timely with
   assert.equal(x.trace[3].outcome,"SYNTHETIC_MARKERS_CLEARED");
   assert.deepEqual(x.remaining,{contact:false,pseudonymLink:false,rawNote:false,recording:false});
   assert.equal(x.withdrawalStatus,"SIMULATED_IDENTIFIABLE_RECORDS_CLEARED");
+});
+
+test("D-40 after contact expiry, per-person deletion still depends on an unbuilt verified token",()=>{
+  const x=run("withdrawal-after-contact-expiry");
+  assert.equal(x.trace[3].day,"2026-11-10");
+  assert.equal(x.trace[3].contactMarker,false);
+  assert.equal(x.trace[3].linkMarker,true);
+  assert.equal(last(x).outcome,"SYNTHETIC_MARKERS_CLEARED");
+  assert.equal(x.remaining.rawNote,false);
+  assert.equal(x.actualDeletionPerformed,false);
+  // A successful marker transition ASSUMES identity verification, not proof
+  // that a real participant could furnish a safe removal token.
+});
+
+test("D-40 unverified withdrawal cannot delete or falsely confirm a specific person's note",()=>{
+  const x=run("unverified-withdrawal");
+  assert.equal(x.trace[1].noteMarker,true);
+  assert.equal(last(x).outcome,"UNVERIFIED_NO_VERIFIABLE_INDIVIDUAL_DELETION");
+  assert.equal(x.withdrawalStatus,"UNVERIFIED_REQUEST_REQUIRES_HUMAN_REVIEW");
+  assert.equal(x.remaining.rawNote,true);
+  assert.equal(x.remaining.pseudonymLink,true);
+  assert.equal(x.authorized,false);
 });
 
 test("D-40 linkage expires on day 30 while notes may remain until day 90",()=>{
