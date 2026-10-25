@@ -301,3 +301,29 @@ SEO static audit **40210242730** passed. This updates the
 prior D-37 pending-test statement without replacing the history.
 It **does not** authorize actual interviews, data collection,
 questionnaire adoption, merge or production release.
+
+## D-38 G1 research approval packet — NO RECRUITMENT (2026-10-26)
+
+`docs/A05_D38_G1_DECISION_PACKET_20261026.md` coordinates a
+pending G1 approval register, draft participant consent notice,
+and research data-handling SOP. All **12 required operational
+decisions remain PENDING** and human final sign-off is absent.
+Do **not** recruit, record, collect responses or store participant
+data based on this documentation.
+
+`scripts/a05-research-g1-gate.mjs` audits completeness but **never
+grants research permission**. The tracked register at
+`docs/A05_D38_G1_APPROVAL_REGISTER_20261026.json` is initially
+blocked; the seven native Node contract cases are located at
+`scripts/test-a05-research-g1.mjs`. In a source-backed JavaScript
+check the pending register failed closed and a synthetic forged
+approval was rejected. **Native Node testing was pending** at
+the time of this history entry.
+
+Local commands:
+
+    node --test scripts/test-a05-research-manifest.mjs scripts/test-a05-research-d36.mjs scripts/test-a05-research-g1.mjs
+
+Existing A05 conditional workflow runs the same files without a
+new job/workflow. G1 sign-off, participant-level consent,
+and separate publication/adoption approval all remain required.
