@@ -135,6 +135,8 @@ export function verifyDraft(draft, questionHash) {
       typeof draft.assessmentId !== "string" || !draft.assessmentId ||
       draft.versions?.question !== QUESTION_SET_VERSION ||
       draft.versions?.scoring !== SCORING_VERSION ||
+      draft.versions?.type !== TYPE_VERSION ||
+      draft.versions?.content !== CONTENT_VERSION ||
       draft.questionHash !== questionHash ||
       (draft.revision !== null && (!Number.isInteger(draft.revision) || draft.revision < 0)) ||
       !Number.isInteger(draft.index) || draft.index < 0 || draft.index >= 30) {
