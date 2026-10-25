@@ -11,7 +11,7 @@ import { QUESTIONS } from "../projects/kidp/life-design-lab/a05/questions.mjs";
 import { newDraft } from "../projects/kidp/life-design-lab/a05/engine.mjs";
 import {
   enableSaving, saveDraft, finalizeDraft, restoreState, read,
-  readRecoverySnapshot, readExportSnapshot, removeRawAnswers, deleteAssessment, eraseA05DatabaseContents
+  readRecoverySnapshot, readExportSnapshot, readA05StoreCounts, removeRawAnswers, deleteAssessment, eraseA05DatabaseContents
 } from "../projects/kidp/life-design-lab/a05/storage.mjs";
 
 const HASH = "f".repeat(64);
@@ -80,6 +80,7 @@ class SimulatedDatabase {
         return {
           get: key => request(() => copy(map.get(key))),
           getAll: () => request(() => Array.from(map.values()).map(copy)),
+          count: () => request(() => map.size),
           put: value => request(() => {
             if (mode !== "readwrite") throw Error("Read-only transaction");
             map.set(value.id, copy(value));
@@ -324,3 +325,33 @@ async function readAllForD51(db, store) {
   const request = db.transaction([store], "readonly").objectStore(store).getAll();
   return new Promise(resolve => { request.onsuccess = () => resolve(request.result); });
 }
+
+test("D-53 restore planning inventory reads counts in one readonly multi-store transaction", async () => {
+  const db = new SimulatedDatabase();
+  await enableSaving(db, fixture(), HASH, false);
+  db.stores.migrations.set("fixture-migration", {id:"fixture-migration"});
+  let called = 0;
+  const original = db.transaction.bind(db);
+  db.transaction = (names, mode) => {
+    called++;
+    assert.deepEqual(names, NAMES);
+    assert.equal(mode, "readonly");
+    return original(names, mode);
+  };
+  const counts = await readA05StoreCounts(db);
+  assert.equal(called, 1);
+  assert.deepEqual(counts, {
+    drafts:1, history:0, preferences:1, migrations:1, legacyBackups:0
+  });
+  assert.equal(Object.values(counts).reduce((x,y)=>x+y),3);
+});
+
+test("D-53 inventory of empty stores reports zero without erasing any records", async () => {
+  const db = new SimulatedDatabase();
+  assert.deepEqual(await readA05StoreCounts(db),
+    {drafts:0, history:0, preferences:0, migrations:0, legacyBackups:0});
+  await enableSaving(db, fixture(), HASH, false);
+  assert.deepEqual(await readA05StoreCounts(db),
+    {drafts:1, history:0, preferences:1, migrations:0, legacyBackups:0});
+  assert.equal((await read(db, "drafts", "active")).assessmentId, "case-11");
+});
