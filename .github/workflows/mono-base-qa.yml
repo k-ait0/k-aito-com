@@ -104,6 +104,7 @@ jobs:
       - name: Validate v3.5 accessible controls and renderer lifecycle
         run: |
           node scripts/test-mono-base-v35-controls.cjs
+          node scripts/test-mono-base-v36-configuration.cjs
           python -m py_compile scripts/test-mono-base-v34-browser.py
       - name: Verify original v3.4 image hashes when integrated
         run: |
