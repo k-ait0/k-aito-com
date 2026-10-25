@@ -253,6 +253,32 @@ async function main() {
       assert.match(content, /生回答あり/);
     });
 
+    await check("D-46 cancelling sensitive JSON export does not create a download", async () => {
+      await page.evaluate(() => {
+        window.__a05ExportPrompt = [];
+        window.confirm = message => {
+          window.__a05ExportPrompt.push(message);
+          return false;
+        };
+      });
+      let downloads = 0;
+      const countDownload = () => { downloads++; };
+      page.on("download", countDownload);
+      try {
+        await page.locator('[data-action="export"]').click();
+        await page.locator('#a05-content[aria-busy="false"]').waitFor();
+        const prompts = await page.evaluate(() => window.__a05ExportPrompt);
+        assert.equal(prompts.length, 1);
+        assert.match(prompts[0], /生回答/);
+        assert.match(prompts[0], /旧版履歴/);
+        assert.equal(downloads, 0);
+      } finally {
+        page.off("download", countDownload);
+        await page.reload(); // restore browser-native confirm; keep IndexedDB contents
+        await page.locator('[data-view="history"]').first().click();
+      }
+    });
+
     await check("user export includes history but does not transmit responses", async () => {
       const [download] = await Promise.all([
         page.waitForEvent("download"),
