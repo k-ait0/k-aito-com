@@ -10,7 +10,7 @@ const register=load("A05_D42_30DAY_ACCEPTANCE_REGISTER_20261026.json");
 const g1=load("A05_D38_G1_APPROVAL_REGISTER_20261026.json");
 const policies=load("A05_D41_WITHDRAWAL_POLICY_OPTIONS_20261026.json");
 const clone=value=>structuredClone(value);
-const check=(r=register,g=g1,p=policies)=>inspectD42Acceptance(r,g,p);
+const check=(...args)=>inspectD42Acceptance(args.length>0?args[0]:register,args.length>1?args[1]:g1,args.length>2?args[2]:policies);
 
 test("D-42 all 16 acceptance checks are pending, mapped to each G1 control",()=>{
   assert.equal(register.schema,"A05-D42-30DAY-ACCEPTANCE-1");
