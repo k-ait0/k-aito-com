@@ -69,3 +69,35 @@ label.option input{width:18px;height:18px}
 .footer a{color:inherit}
 @media(min-width:700px){.content{padding:28px 30px}.catalog-grid{grid-template-columns:repeat(4,minmax(0,1fr))}.review-grid{grid-template-columns:repeat(6,minmax(0,1fr))}.hero{padding:33px 30px 23px}}
 @media(max-width:350px){.app-shell{padding-left:8px;padding-right:8px}.content{padding:16px 12px}.tabs button{min-width:62px;font-size:11px}.scale{gap:3px}.scale button{min-height:44px}.answer-pair>div{padding:12px 9px}}
+
+/* D-29: respect platform motion, zoom and text-size preferences. */
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .progress span{transition:none}
+}
+@media(prefers-contrast:more){
+  :root{--ink:#101b29;--muted:#34465b;--line:#52657b;--paper:#fff}
+  .btn,.scale button,.review-grid button,.catalog-grid button{border-width:2px}
+  .scale button[aria-pressed=true]{outline:3px solid currentColor;outline-offset:1px}
+  .tabs button[aria-current=page]{outline:2px solid currentColor;outline-offset:-2px}
+  .value-track{border:1px solid currentColor}
+}
+/* Preserve the full scale and readable question text when the user enlarges
+   browser text; never reduce controls below the 44px touch target. */
+@media(max-width:540px){
+  .tabs{scrollbar-width:thin}
+  .tabs button{flex:0 0 auto;min-width:68px}
+  .answer-pair{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .answer-pair strong{overflow-wrap:anywhere}
+  .value-axis{grid-template-columns:minmax(55px,5.5rem) minmax(0,1fr) minmax(36px,3rem)}
+  .axis-ends{margin-right:3rem;margin-left:calc(5.5rem + 9px)}
+}
+@media(max-width:400px){
+  .scale{gap:3px}
+  .scale button{padding:0;min-width:0;min-height:48px}
+  .answer-pair{grid-template-columns:minmax(0,1fr)}
+  .answer-pair>div{min-height:0}
+}
+@media(min-resolution:2dppx){
+  .scale button[aria-pressed=true]{border-width:2px}
+}
