@@ -1270,3 +1270,75 @@ G1 human research decisions 12/12 PENDING; D-42 controls
 **Release/research audit:** `docs/A05_D51_ENGINEERING_VS_RESEARCH_RELEASE_REVIEW_20261026.md` explicitly separates technically tested A05 functions from the still-unvalidated candidate questions. D-33 editorial statuses remain BLOCK 7, REVISE 13, TRIAL 10; G1 research operations 12/12 and D-42 research acceptance 16/16 remain PENDING. E-axis research structure undecided. There were no participants, real research data, novel consent, actual backup erasure, question scoring/version changes, PR merge or production deployment.
 
 **Change history:** D-50 corrected local date presentation -> D-51 eliminates per-store export snapshot inconsistency and provides a separate research/release go/no-go assessment. All historical QA evidence preserved.
+
+## A05-D52-001 (2026-10-26)
+
+**Scope:** Continue actionable engineering review of the large Draft PR
+without pretending that unapproved psychometric research or real human
+research operations are complete.
+
+**Prior state:** D-51 made the five-domain A05 JSON export a consistent
+single-transaction snapshot, but users had no way to check a saved
+A05-EXPORT-1 file's basic structure without actually importing or
+overwriting stored records. Draft PR #61 also had 200 commits and 57
+changed files at the start of D-52, spanning UI/storage, provisional
+scoring, and unapproved research materials.
+
+**Changes:**
+- Added `projects/kidp/life-design-lab/a05/backup-inspect.mjs`
+  as a pure **structural** A05-EXPORT-1 check (canonical UTC
+  export timestamp; five exact store names; array shape and duplicate
+  or missing record IDs). Its output is ONLY status, fixed-label
+  store counts and a generic error message, **never raw answers,
+  emails or saved identifiers**. Neither cryptographic integrity
+  nor scoring/identity validation is claimed.
+- Added a manually activated, local-only JSON file picker in
+  the existing history view (`app.mjs`, `style.css`).
+  The file must be <=10 MiB; the content is not saved into
+  application state or IndexedDB, posted to a server, uploaded
+  to GitHub, imported or restored. Invalid schema/malformed
+  JSON cannot change the existing answer history or storage
+  read-only status. The inspection result is temporary and
+  disappears after reload.
+- Added five native Node structural/anti-leak tests in
+  `scripts/test-a05-backup-inspect.mjs`; extended a real
+  Chrome acceptance case to test a synthetic valid JSON,
+  unsupported schema, invalid JSON, non-disclosure of
+  identifiers/answers, and unchanged history.
+- Appended a single test command to the existing scoped A05
+  Node job; **no new workflow or job**.
+- Created `docs/A05_D52_BACKUP_PREVIEW_AND_RELEASE_SPLIT_20261026.md`
+  partitioning the 200-commit/57-file PR *for review* into
+  (A) UI/accessibility, (B) local persistence/export, (C)
+  provisional questions/scoring, and (D) human-research
+  readiness. This is an analysis document, not a branch split,
+  merge or release approval.
+- Strengthened timestamp validation to reject malformed
+  calendar rollover values (e.g. Feb 30) and noncanonical
+  ISO export times.
+
+**Verified:** GitHub Actions **40222996675 SUCCESS**.
+Native Node 22 **151/151 PASS** (66 engine, 5 local date,
+5 backup inspector, 15 storage, 60 prior research/G1).
+Real Chromium A05 acceptance **25/25 named cases PASS**
+including the new D-52 preview and 24 prior cases, plus the
+separate network/page-error guard, existing KIDP P0 browser
+QA and site preflight/diff checks. SEO audit **40222996687:
+SUCCESS**. The previous source-only D-52 run
+**40222785429** also passed, before the strict timestamp
+enhancement.
+
+**Risk boundary:** Successful structural inspection does NOT
+guarantee backup contents, attribution, integrity, compatibility
+of individual historical records or restorability. There is
+still **no backup import/restore feature**. Scored question
+set and original A05 engine, stored results, IndexedDB schema,
+P0 and production stay unchanged. D-33 BLOCK7/REVISE13/
+TRIAL10 statuses remain; E-axis unresolved. Research G1
+12/12 PENDING and D-42 16/16 PENDING. No participant
+recruitment, collection, merge or deployment.
+
+**Change history:** D-51 had coherent backups but no
+non-destructive local inspection. D-52 adds a safe preview
+and independent technical-vs-research review gates, keeping
+the previous engineering and research decisions separate.
