@@ -592,3 +592,21 @@ consent. The browser QA suite has **20 named cases** after
 D-45/46/47. Native CI result was pending at this history
 entry. G1/D-42 research decisions are unchanged and no
 production release is authorized.
+
+### D-45–D-47 verified native acceptance
+
+GitHub Actions run **40217974719 succeeded**. The existing
+Chromium suite passed **20/20 named A05 cases**: D-45
+readable question review / first-unanswered jump and
+responsive 320/390/768/1440 px, D-46 pre-export warning
+and cancel path, D-47 numeric 1–7 answering and
+focus/no-consent preservation, plus all prior storage/
+legacy/keyboard/error cases. Independent no-network/
+page-error, P0 QA, site preflight and diff passed.
+
+Native Node 22 contracts **139/139 passed** across
+scoring 66, simulated storage 13 and research/G1 60.
+SEO audit **40217974629 succeeded**. No new workflow/job;
+all runs were on a Draft branch. G1 12/12 and D-42 16/16
+research decisions remain PENDING; no publication or
+participant study approval was granted.
