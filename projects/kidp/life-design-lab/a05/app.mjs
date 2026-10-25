@@ -42,6 +42,27 @@ function updateNotice(message = state.status) {
   notice.textContent = message || "";
 }
 
+/**
+ * Prevent rapid taps from being discarded while an asynchronous IndexedDB
+ * write is active. Preserve each control's original disabled state across
+ * rerenders so a still-unanswered question remains blocked.
+ */
+function reflectBusy() {
+  for (const control of document.querySelectorAll(
+    "#a05-tabs button, #a05-content button, #a05-content input"
+  )) {
+    if (state.busy) {
+      if (control.dataset.a05OriginalDisabled === undefined) {
+        control.dataset.a05OriginalDisabled = control.disabled ? "1" : "0";
+      }
+      control.disabled = true;
+    } else if (control.dataset.a05OriginalDisabled !== undefined) {
+      control.disabled = control.dataset.a05OriginalDisabled === "1";
+      delete control.dataset.a05OriginalDisabled;
+    }
+  }
+}
+
 function render() {
   for (const button of tabs.querySelectorAll("button")) {
     if (button.dataset.view === state.view) button.setAttribute("aria-current", "page");
@@ -54,6 +75,7 @@ function render() {
   };
   root.innerHTML = pages[state.view]();
   updateNotice();
+  reflectBusy();
 }
 
 function renderHome() {
@@ -357,6 +379,7 @@ root.addEventListener("click", async event => {
   const action = button.dataset.action;
   if (!action) return;
   state.busy = true;
+  reflectBusy();
   try {
     if (action === "start") show("quiz");
     else if (action === "answer") await setAnswer(Number(button.dataset.value));
@@ -470,7 +493,10 @@ root.addEventListener("click", async event => {
       render();
     } else if (action === "share") { state.share = !state.share; render(); }
   } catch (error) { failed(error); }
-  finally { state.busy = false; }
+  finally {
+    state.busy = false;
+    reflectBusy();
+  }
 });
 
 tabs.addEventListener("click", event => {
@@ -482,6 +508,7 @@ tabs.addEventListener("click", event => {
 root.addEventListener("change", async event => {
   if (event.target.dataset.setting !== "raw" || state.busy) return;
   state.busy = true;
+  reflectBusy();
   try {
     if (!state.consent || state.readOnly) throw new Error("保存を変更できません");
     const enabled = event.target.checked;
@@ -489,7 +516,10 @@ root.addEventListener("change", async event => {
     state.retainRaw = enabled;
     render();
   } catch (error) { failed(error); }
-  finally { state.busy = false; }
+  finally {
+    state.busy = false;
+    reflectBusy();
+  }
 });
 
 async function initialize() {
