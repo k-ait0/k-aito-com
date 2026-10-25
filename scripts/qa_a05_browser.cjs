@@ -414,7 +414,8 @@ async function main() {
         name:"safe-synthetic.json", mimeType:"application/json",
         buffer:Buffer.from(JSON.stringify(fixture),"utf8")
       });
-      await page.locator("#a05-inspect-report").waitFor();
+      await page.waitForFunction(() =>
+        document.querySelector("#a05-inspect-report")?.textContent.includes("構造検査のみ成功"));
       let report = await page.locator("#a05-inspect-report").innerText();
       assert.match(report,/構造検査のみ成功/);
       assert.match(report,/履歴 1件/);
@@ -427,7 +428,8 @@ async function main() {
         name:"unknown.json", mimeType:"application/json",
         buffer:Buffer.from('{"schema":"UNKNOWN"}',"utf8")
       });
-      await page.locator("#a05-inspect-report").waitFor();
+      await page.waitForFunction(() =>
+        document.querySelector("#a05-inspect-report")?.textContent.includes("A05-EXPORT-1形式ではありません"));
       report = await page.locator("#a05-inspect-report").innerText();
       assert.match(report,/A05-EXPORT-1形式ではありません/);
       assert.match(await page.locator("#a05-content").innerText(),/検証済み 1件/);
@@ -436,7 +438,8 @@ async function main() {
         name:"malformed.json", mimeType:"application/json",
         buffer:Buffer.from('{"invalid":', "utf8")
       });
-      await page.locator("#a05-inspect-report").waitFor();
+      await page.waitForFunction(() =>
+        document.querySelector("#a05-inspect-report")?.textContent.includes("JSONとして読み取れませんでした"));
       assert.match(await page.locator("#a05-inspect-report").innerText(),/JSONとして読み取れませんでした/);
       assert.match(await page.locator("#a05-content").innerText(),/検証済み 1件/);
       // No actual local data is restored by any inspection step.
