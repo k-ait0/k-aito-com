@@ -7,11 +7,13 @@ import { TYPES, GROUPS } from "./types.mjs";
 import { newDraft, verifyDraft, scoreAssessment, makeSnapshot } from "./engine.mjs";
 import {
   openDatabase, restoreState, enableSaving, saveDraft, replaceDraft, finalizeDraft,
-  setRawRetention, removeRawAnswers, deleteAssessment, eraseA05DatabaseContents
+  setRawRetention, removeRawAnswers, deleteAssessment, eraseA05DatabaseContents,
+  readA05StoreCounts
 } from "./storage.mjs";
 import { exportA05Data } from "./export.mjs";
 import { formatLocalCompletionDay } from "./format.mjs";
 import { inspectA05Backup, A05_BACKUP_MAX_BYTES } from "./backup-inspect.mjs";
+import { inspectA05RestorePlan } from "./restore-review.mjs";
 
 const root = document.querySelector("#a05-content");
 const notice = document.querySelector("#a05-notice");
@@ -339,6 +341,21 @@ function renderHistory() {
           label + ' ' + state.backupInspection.counts[['drafts', 'history', 'preferences', 'migrations', 'legacyBackups'][i]] + '件').join('／') +
         '。構造検査のみ成功。復元・保存・内容検証は行っていません。' :
         '形式を確認できません：' + escapeHTML(state.backupInspection.reason)) +
+      '</div>' : '') +
+    (state.backupInspection?.restorePlan ? '<div id="a05-restore-plan" class="warning" role="status">' +
+      '<strong>復元前のリスク確認（復元・上書きは実行しません）</strong>' +
+      '<p>端末側の既存保存レコード：' +
+      (state.backupInspection.restorePlan.analysis.target ?
+        Object.values(state.backupInspection.restorePlan.analysis.target).reduce((a, b) => a + b, 0) + '件' :
+        '確認不能') + '。バックアップ内の履歴：現行版との形式整合 ' +
+      state.backupInspection.restorePlan.analysis.history.verified + '件、旧版 ' +
+      state.backupInspection.restorePlan.analysis.history.legacy + '件、不整合 ' +
+      state.backupInspection.restorePlan.analysis.history.quarantined + '件。</p>' +
+      (state.backupInspection.restorePlan.blockers.includes('TARGET_NOT_EMPTY_NO_OVERWRITE') ?
+        '<p>この端末に既存データがあるため、上書きを禁止します。</p>' : '') +
+      (state.backupInspection.restorePlan.blockers.includes('HISTORY_REQUIRES_MANUAL_VERSION_REVIEW') ?
+        '<p>旧版または不整合の履歴は自動採用できません。</p>' : '') +
+      '<p>元のJSONの真正性は未確認です。復元機能・自動承認機能はありません。既存の端末データは変更していません。</p>' +
       '</div>' : '') + '</div>';
 }
 
@@ -619,7 +636,15 @@ root.addEventListener("change", async event => {
         const contents = await file.text();
         // Do not keep the user-provided JSON or identifiers in application
         // state, storage, logs or the DOM. Retain only five record counts.
-        state.backupInspection = inspectA05Backup(JSON.parse(contents));
+        const backup = JSON.parse(contents);
+        const structure = inspectA05Backup(backup);
+        const currentCounts = structure.ok && state.db ?
+          await readA05StoreCounts(state.db) : null;
+        const restorePlan = structure.ok ?
+          inspectA05RestorePlan(backup, currentCounts, state.hash) : null;
+        // Retain only aggregate metadata. The source JSON and all record IDs
+        // stay inside this handler and are never imported into IndexedDB.
+        state.backupInspection = { ...structure, restorePlan };
       }
     } catch (_) {
       state.backupInspection = { ok: false, reason: "JSONとして読み取れませんでした。" };
