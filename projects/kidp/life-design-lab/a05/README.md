@@ -179,3 +179,19 @@ acceptance **16/16** (including injected quota-failure rollback), and the
 site-wide preflight and existing KIDP P0 QA. SEO audit **40205837919**
 succeeded. This supersedes only the earlier D-32 *pending CI* status;
 the historical notes remain intact.
+
+## D-33 question quality gate (2026-10-26)
+
+Added a source-matched 30-item editorial audit at
+`docs/A05_D33_ITEM_AUDIT_AND_VALIDATION_PLAN_20261026.md`
+(**7 BLOCK, 13 REVISE, 10 TRIAL**) plus a cognitive interview
+preparation protocol at
+`docs/A05_D33_COGNITIVE_INTERVIEW_PROTOCOL_20261026.md`.
+
+These documents are **hypotheses and preparation materials**, not completed
+interviews or validated psychometrics. E05 has two provisional new
+comparison scenarios; neither is approved. Do not amend the present
+`questions.mjs` or existing saved assessments. No new functional tests
+are claimed for this documentation-only change. Public release and
+new version adoption remain blocked pending participant review and
+explicit approval.
