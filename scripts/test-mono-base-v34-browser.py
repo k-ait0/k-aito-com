@@ -114,7 +114,28 @@ def validate_site(browser,name,viewport):
       return top < innerHeight && bottom > 0 && left < innerWidth && right > 0;
     }""")
     assert visible_canvas,f'{name}: rendered CAD canvas not in visible screenshot'
-    page.screenshot(path=str(OUT/f'cad-model-v36-{name}.png'),full_page=False)
+    # Capture the model separately in standalone mode. In the tall embedded
+    # desktop iframe, Playwright may capture the controls lower down the page
+    # after an auto-height update even when WebGL frame counters advanced.
+    # The embedded viewer's behavior is validated above; this independent
+    # visual proof must depict actual model pixels in a stable viewport.
+    visual=browser.new_page(viewport=viewport,device_scale_factor=1)
+    try:
+        visual.goto(f'{BASE}/cad-viewer.html',wait_until='domcontentloaded')
+        expect(visual.locator('#status')).to_contain_text('ENGINE ONLINE',timeout=45000)
+        visual.locator('canvas#viewport').evaluate("""el => {
+          document.documentElement.style.scrollBehavior='auto';
+          el.scrollIntoView({behavior:'instant',block:'center'});
+        }""")
+        visual.wait_for_function("""() => {
+          const r=window.__monoBaseRenderStats;
+          const b=document.querySelector('canvas#viewport')?.getBoundingClientRect();
+          return r && !r.paused && r.frames>=3 && b &&
+            b.top<innerHeight && b.bottom>0 && b.left<innerWidth && b.right>0;
+        }""",timeout=15000)
+        visual.screenshot(path=str(OUT/f'cad-model-v36-{name}.png'),full_page=False)
+    finally:
+        visual.close()
     if name == 'desktop':
         # Inject a local test clipboard to verify both real button behavior
         # and the accessible fallback without requesting OS clipboard access.
