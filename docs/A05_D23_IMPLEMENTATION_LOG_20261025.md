@@ -803,3 +803,35 @@ assessment storage, participant data, consent or external systems.
 **Change boundary:** No study participants, recruitment, response
 collection, scoring/manifest update, old-result migration, merge,
 production deploy or P0 change. Draft PR #61 stays unmerged.
+
+### A05-D39-001 — verified native CI and defect correction (2026-10-26 JST)
+
+**First run 40212345408: FAILURE.** The initial D-39 Node test
+supplied the numeric invalid-date example `42` as the
+second argument to `assert.throws()`, which Node interprets as
+an expected error specification. Node correctly rejected the
+test harness argument (`ERR_INVALID_ARG_TYPE`) even though
+the proposed retention calculation itself was correct.
+No scoring, storage, respondent or production functionality was
+implicated.
+
+**Correction:** Updated `scripts/test-a05-research-g1.mjs` to
+pass a valid expected-error regular expression and use
+`String(invalid)` as its display message, so every invalid-date
+fixture is checked correctly.
+
+**Retest GitHub Actions 40212412443: SUCCESS.**
+Native Node 22 G1/D-39 contracts **11/11 passed** (previous G1
+seven plus D-39 four), D-35–D-37 research contracts **18/18**,
+existing scoring **66/66**, and simulated IndexedDB storage
+**13/13**. Real Chromium A05 acceptance **16/16** plus
+the independent network/page-error check passed.
+Existing KIDP P0 browser QA, local preflight and diff checks
+passed. SEO static audit **40212412394: SUCCESS**.
+
+**Boundaries unchanged:** D-39 alternative choices and deletion
+windows are only planning proposals. The tracked G1 register is
+still 12/12 PENDING plus final human sign-off, and the D-39
+calculator performs **no retention, deletion, collection, storage
+or authorization action**. Neither human interviews nor
+psychometric validation have occurred. No production merge/release.
