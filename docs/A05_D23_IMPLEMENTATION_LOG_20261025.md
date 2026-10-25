@@ -592,3 +592,62 @@ as historical test provenance; the present section reports later
 only; it does not validate question quality, response interpretation
 or psychometric properties. No participants were recruited and
 no candidate question or stored assessment was published or modified.
+
+## A05-D37-001 (2026-10-26)
+
+**Scope:** Turn the research-only D-35/D-36 item candidates into a
+reproducible but unapproved cognitive-interview scheduling and
+quality-decision protocol, with explicit protection against collecting
+participant data before consent operations are approved.
+
+**Before:** D-36 identified 30 items, 63 editorial wording pairs,
+seven BLOCK and 13 REVISE issues, but interview assignment,
+variant balance, privacy operating responsibilities and editorial
+Go/No-Go criteria were not executable or finalized.
+
+**After:**
+- Created `scripts/a05-research-assignment.mjs`, a deterministic
+  pure function accepting only research manifests and a numeric
+  presentation slot (1–12). It checks research-only flags and creates
+  30 primary question prompts per slot plus exactly four follow-up
+  comparison prompts (three P0 and one P1).
+- Across the proposed 12 slots, each BLOCK A/B candidate is primary
+  six times, each REVISE D31/A/B candidate four times, and each of
+  the 20 unresolved question IDs receives two or three targeted
+  follow-up allocations.
+- E05 independent money/time prompts appear before the main set in
+  six slots and after it in six; **E05 wording A/B × timing before/after**
+  forms four cells of three slots each, avoiding exact confounding.
+  These are design counts, not participant outcomes.
+- Created `docs/A05_D37_INTERVIEW_READINESS_AND_DECISION_GATES_20261026.md`
+  with a G0–G5 review chain, explicit G1 unresolved fields
+  (research owner, participant consent, custody/access, deletion and
+  retention), participant stop/withdraw conditions, non-identifying
+  aggregation categories and a separate E-axis structural decision
+  (bipolar, independent, withheld).
+- Appended five D-37 contract cases to the existing
+  `scripts/test-a05-research-d36.mjs` rather than creating a new
+  CI job or workflow. These test the 12-slot core, exact variant
+  balance, focused comparison schedules, E05 2×2, and mandatory
+  research-only and no-data restrictions.
+
+**Defect prevented:** The initial timing rule used slot parity,
+which aligned exactly with E05 A/B wording assignment and would
+confound timing with wording. The schedule now changes timing in
+blocks of two slots; the new 2×2 test asserts 3 allocations per cell.
+
+**Reason:** Prevent post-hoc presentation assignment, falsely
+interpreting follow-ups as independent samples, nonconsensual data
+collection and excessive psychometric claims from a qualitative
+small-sample study.
+
+**Verification:** Eleven D-36+D-37 contract assertions passed
+against the actual branch files in an isolated JavaScript V8
+assertion shim. **Native Node 22 and browser results for the
+current commit are not yet recorded.** Passing allocation tests
+does not mean any research participant was recruited, consented or
+assessed. G1 through G5 remain blocked.
+
+**Unchanged:** Scored question-set version/hash, 16 types,
+production UI, IndexedDB, old assessments, P0, public site.
+PR #61 stays Draft; no merge/deployment.
