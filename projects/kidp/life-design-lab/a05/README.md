@@ -677,3 +677,29 @@ All code remains in Draft PR #61, unmerged and undeployed.
 Saved canonical timestamps/assessment scores remain
 unchanged. Research G1 12/12 and D-42 16/16 are PENDING;
 no participant study or actual backup erasure is authorized.
+
+## D-51 coherent five-store JSON backup snapshot (2026-10-26)
+
+`docs/A05_D51_ENGINEERING_VS_RESEARCH_RELEASE_REVIEW_20261026.md`
+documents a genuine consistency defect. The old JSON export read
+five IndexedDB stores using independent readonly transactions;
+other-tab commits could yield an inconsistent backup. The new
+`readExportSnapshot()` in `storage.mjs` requests all five
+stores in **one readonly transaction**, and `exportA05Data()`
+preserves the existing `A05-EXPORT-1` JSON schema and
+private-download warning. No restore/import capability or
+external upload was added.
+
+Two new native storage tests check atomic transaction scope
+and returned-copy isolation. The existing real-browser JSON
+download test now asserts the unchanged five store keys and
+instruments the transaction API to verify one cross-store
+readonly snapshot.
+
+**Verified:** KIDP Actions **40222049810 SUCCESS**: native
+Node 22 **146/146**, Chromium A05 **23/23 named cases**
+plus independent page/network check, existing P0 QA,
+preflight/diff. SEO audit **40222049766 SUCCESS**. No
+new Actions job or workflow. Questionnaire versions, score,
+stored ISO/result schema, G1 research owner 12/12 pending,
+D-42 16/16 pending and Draft PR release boundary unchanged.
