@@ -496,6 +496,11 @@ root.addEventListener("click", async event => {
   finally {
     state.busy = false;
     reflectBusy();
+    // The answer handler may enable Next while controls are locked.
+    // Re-derive this button's disabled state from the actual answer.
+    if (state.view === "quiz" && root.querySelector("#a05-next")) {
+      updateAnswerControls();
+    }
   }
 });
 
