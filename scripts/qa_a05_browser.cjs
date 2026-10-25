@@ -147,10 +147,38 @@ async function main() {
       assert.equal(await page.evaluate(() => document.activeElement?.dataset.action), "share",
         "Share toggle rerender must retain keyboard focus");
       assert.equal(await page.locator('#a05-share[readonly]').count(), 1);
+      assert.equal(await page.locator('[data-action="share"]').getAttribute('aria-expanded'), "true");
+      assert.equal(await page.locator('[data-action="share"]').getAttribute('aria-controls'), "a05-share-panel");
       await page.keyboard.press("Enter");
       await page.locator('#a05-content[aria-busy="false"]').waitFor();
       assert.equal(await page.evaluate(() => document.activeElement?.dataset.action), "share");
       assert.equal(await page.locator("#a05-share").count(), 0);
+    });
+
+    await check("D-45 review shows question text and jumps to first unanswered", async () => {
+      await page.goto(address + A05);
+      await page.locator('[data-action="start"]').click();
+      await page.locator('[data-action="answer"][data-value="7"]').click();
+      await page.locator('[data-view="review"]').first().click();
+      const review = page.locator('#a05-content');
+      assert.match(await review.innerText(), /29問あります/);
+      const first = review.locator('[data-action="jump"][data-index="0"]');
+      assert.match(await first.innerText(), /A01/);
+      assert.ok((await first.innerText()).includes(QUESTIONS[0].left));
+      assert.ok((await first.innerText()).includes(QUESTIONS[0].right));
+      assert.match(await first.getAttribute('aria-label'), /質問を編集/);
+      assert.equal(await review.locator('[data-action="jump"][data-unanswered="true"]').count(), 29);
+      assert.equal(await review.locator('[data-action="finish"]').isDisabled(), true);
+      await review.locator('[data-action="next-unanswered"]').click();
+      await page.locator('#a05-content[aria-busy="false"]').waitFor();
+      assert.match(await page.locator('#a05-content').innerText(), /質問 2 \/ 30/);
+      assert.equal(await page.evaluate(() => document.activeElement?.id),
+        'a05-question-heading', 'Jumping to an unanswered question should focus the heading');
+      await page.locator('[data-view="review"]').first().click();
+      await page.locator('[data-action="jump"][data-index="0"]').click();
+      await page.locator('#a05-content[aria-busy="false"]').waitFor();
+      assert.match(await page.locator('#a05-content').innerText(), /質問 1 \/ 30/);
+      assert.equal(await page.locator('[data-action="answer"][data-value="7"]').getAttribute('aria-pressed'), 'true');
     });
 
     await check("no consent: answer is not persisted after reload", async () => {
