@@ -1094,3 +1094,19 @@ no published release.
 **Scope/verification:** Documentation-only. No tests, conditional workflow, scored questions, production artifacts, existing G1 12-decision register or D-42 16-acceptance register changed. Previous native verification at run 40215370738 remains the most recent verified code evidence as of authoring; the documentation-only change is not a claim of new test execution. Participant count 0; no real recruitment, consent or research data, token issuance or erasure. PR #61 stays Draft/unmerged and not deployed.
 
 **Change history:** D-42: 16 acceptance checks remained all PENDING -> D-43: three decisions required before any further concrete operational implementation; reason: resolve responsibility and real environment rather than continually adding speculative acceptance code.
+
+## A05-D44-001 (2026-10-26)
+
+**Scope:** D-43 halted further speculative research operations engineering pending a responsible person and an actual data-handling decision. D-44 instead fixes independently reviewable UI accessibility issues on the existing unmerged A05 prototype.
+
+**Before:** The visually updating 30-question progress bar had no machine-readable ARIA range/value. Filtering RGBY type groups and toggling the sample sharing text rerendered their buttons without restoring keyboard focus. Opt-in raw-answer controls and targeted history deletes also replaced the focused elements.
+
+**After:** `projects/kidp/life-design-lab/a05/app.mjs` marks answer progress as an accessible progressbar (0..30) and synchronizes `aria-valuenow` with the displayed count on choice, null/unanswerable, correction and undo. For re-rendered actions, the client restores focus **after** asynchronous busy-state unlocking, validating filter keys against the five known options. It also restores focus for sharing, storage opt-in, raw retention changes, and destructive history operations.
+
+**Regression:** Appended one real Chrome Playwright case to `scripts/qa_a05_browser.cjs` testing progress 0→1→1→1→0, filtered group focus, and sample-result share toggle focus. Existing sixteen Chrome cases and domain/storage tests remain as before. Added detailed D-44 change note `docs/A05_D44_UI_FOCUS_AND_PROGRESS_FIX_20261026.md`. No new Actions workflows/jobs.
+
+**Reason:** Improve keyboard and assistive technology behavior without depending on research approval or changing questionnaire semantics.
+
+**Verification status at authoring:** Native GitHub QA pending. No claims of passed tests or publication based merely on committing the files.
+
+**Boundaries:** Questions/version/hash, scoring, 16 type rules, saved assessment compatibility, IndexedDB storage, old results, P0, main release, and the 12 G1 / 16 D-42 human approval gates unchanged. Draft PR #61 remains unmerged; no participant recruitment or research data collection.
