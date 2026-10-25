@@ -651,3 +651,23 @@ assessed. G1 through G5 remain blocked.
 **Unchanged:** Scored question-set version/hash, 16 types,
 production UI, IndexedDB, old assessments, P0, public site.
 PR #61 stays Draft; no merge/deployment.
+
+### A05-D37-001 — native verification result (2026-10-26 JST)
+
+**GitHub Actions run 40210242723: SUCCESS.** Existing conditional
+A05 Node step executed all three research sources, including the
+five new D-37 scheduling cases appended to the D-36 file. Native
+Node 22 research contract suite **18/18 passed** (D-35 seven,
+D-36 six, D-37 five). Existing domain scoring **66/66** and
+simulated IndexedDB contract **13/13** passed. Real Chrome A05
+acceptance **16/16**, plus the separate no-unexpected-network/
+page-error check, passed. Existing KIDP P0 browser QA, site-wide
+local preflight and diff check passed. SEO audit
+**40210242730: SUCCESS**.
+
+The full D-37 12-slot presentation generator is validated only for
+deterministic structure, balance and permission restrictions. There
+is still **no completed cognitive interview**, approved retention
+or consent plan, psychometric validation, participant recruitment,
+production merge or deployment. The existing CI workflow was reused
+without adding a job.
