@@ -331,3 +331,27 @@ and separate publication/adoption approval all remain required.
 ### D-38 CI verification (2026-10-26)
 
 GitHub Actions run **40211128156** passed: native G1 approval-gate tests **7/7**, other research contract tests **18/18**, scoring **66/66**, storage **13/13**, real Chromium A05 cases **16/16**, existing KIDP P0, and site preflight. SEO run **40211128155** passed. These are technical checks only: all twelve G1 operations decisions and final human authorization remain outstanding. No participant research or production deployment occurred.
+
+## D-39 G1 human decision options and retention date proposal (2026-10-26)
+
+`docs/A05_D39_HUMAN_DECISIONS_AND_RETENTION_20261026.md`
+and its companion
+`docs/A05_D39_G1_DECISION_OPTIONS_20261026.json`
+present **eight prioritized G1 decisions**, each with two candidate
+operational approaches, risks, and information an actual human
+owner must approve. The original 12-item G1 approval register and
+external final sign-off remain **entirely PENDING**; preferences
+within D-39 are NOT decisions.
+
+`scripts/a05-research-retention-proposal.mjs` is an isolated
+date-only calculation aid for **hypothetical** 14/30/90-day
+upper-limit proposals counted from each participant session.
+It does not store, collect, expire or delete any data. The
+proposal must not be used as an approved retention policy. The
+corresponding extra four tests live in the existing G1 suite:
+
+    node --test scripts/test-a05-research-g1.mjs
+
+These append to the prior seven G1 checks. Native Node CI result
+was pending at the time of this entry. No questions, scoring,
+storage, saved assessments, P0 site or production release changed.
