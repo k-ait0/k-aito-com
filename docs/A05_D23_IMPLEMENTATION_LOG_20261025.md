@@ -525,3 +525,51 @@ isolated JavaScript assertion shim (7/7). The baseline browser run
 does not establish native acceptance of the new research JSON.
 No extra GitHub Actions workflow or research-specific CI gate was
 added, to limit Actions usage until the interview format is approved.
+
+## A05-D36-001 (2026-10-26)
+
+**Scope:** Prioritize the 20 unresolved candidate questions (seven BLOCK and
+13 REVISE) without treating revised wording as psychometric approval.
+
+**Before:** D-35 stored 30 questions, 37 wording variants, D-33 editorial
+flags, and a research-only independent E05 format. The 13 REVISE items
+still had only one initial D-31 candidate, and there was no unified
+30-item P0/P1/P2 priority matrix.
+
+**After:**
+- Created `docs/A05_D36_REVISE_CANDIDATES_20261026.json`, a
+  separate research-only overlay of **13 REVISE questions × 2 additional
+  alternatives = 26 candidate pairs**, with construct hypotheses,
+  cross-question overlap links, P0/P1 review priority and non-leading
+  interview probes.
+- Preserved the D-35 30-item, 37-pair research manifest unchanged:
+  combined **63 wording pairs** are available across D-35/D-36, **not**
+  63 respondent questions and not 63 independently validated items.
+- Created `docs/A05_D36_PRIORITIZED_30ITEM_REVIEW_20261026.md`.
+  Priority assignment: **P0 15** (seven BLOCK + eight high-impact
+  REVISE: A06/B06/C02/C06/D04/E02/E03/E06),
+  **P1 five** (A01/B03/B05/C05/D06), and **P2 ten**
+  pre-interview TRIAL candidates. No BLOCK or REVISE status was cleared.
+- Added six source-linked invariant cases in
+  `scripts/test-a05-research-d36.mjs`, checking old/new version
+  boundaries, 13 IDs/26 candidates, display polarity, priority groups,
+  overlap references, consent/production prohibitions and combined count.
+- Extended the **existing** KIDP A05-only Node verification step to run
+  D-35 and D-36 research contracts; **no extra job or workflow** was
+  created. The existing conditional scope still limits A05-specific
+  test execution to relevant A05 changes.
+
+**Reason:** Separate editorial drafting from production implementation
+and identify the most consequential conceptual risks before recruiting
+participants. Repeated E-axis question wording may be a structural
+problem that no superficial edit fixes.
+
+**Verification:** All six D-36 source-linked assertions passed via an
+isolated JavaScript assertion shim. A native Node 22 GitHub Actions
+run for the combined D-35/D-36 research contracts is **pending**.
+No interviews, respondent data, manual screen-reader QA or
+psychometric analysis have been conducted.
+
+**Unchanged:** `questions.mjs`, versioned scoring, data persistence,
+old results, type mapping, P0, production, deploy and public
+navigation. Draft PR #61 must remain unmerged.
