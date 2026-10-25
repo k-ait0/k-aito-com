@@ -496,6 +496,23 @@ async function main() {
         assert.match(report,/復元機能・自動承認機能はありません/);
         assert.doesNotMatch(report,/synthetic-no-pii/);
         assert.match(await isolatedPage.locator("#a05-content").innerText(),/検証済み 0件/);
+        // An otherwise well-shaped legacy snapshot on an empty target must
+        // report an explicit compatibility block, not a harmless plan.
+        const incompatible = structuredClone(fixture);
+        incompatible.stores.history[0].versions.scoring = "unreviewed-legacy";
+        incompatible.stores.preferences = [{id:"consent",enabled:true,retainRaw:true}];
+        await isolatedPage.locator("#a05-inspect-file").setInputFiles({
+          name:"synthetic-legacy-no-restore.json",mimeType:"application/json",
+          buffer:Buffer.from(JSON.stringify(incompatible),"utf8")
+        });
+        await isolatedPage.waitForFunction(() =>
+          document.querySelector("#a05-restore-plan")?.textContent.includes("互換性未確認の下書き"));
+        const incompatibleText = await isolatedPage.locator("#a05-restore-plan").innerText();
+        assert.match(incompatibleText,/旧版または不整合の履歴は自動採用できません/);
+        assert.match(incompatibleText,/互換性未確認の下書きや保護対象/);
+        assert.match(incompatibleText,/バックアップ内の保存同意は、この端末の同意として引き継げません/);
+        assert.doesNotMatch(incompatibleText,/synthetic-no-pii/);
+        assert.match(await isolatedPage.locator("#a05-content").innerText(),/検証済み 0件/);
         await isolatedPage.reload();
         await isolatedPage.locator('[data-view="history"]').first().click();
         assert.match(await isolatedPage.locator("#a05-content").innerText(),/検証済み 0件/);
