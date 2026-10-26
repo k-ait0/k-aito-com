@@ -204,7 +204,7 @@ export function saveDraft(db, draft, questionHash, expectedRevision) {
   });
 }
 
-export function replaceDraft(db, nextDraft, questionHash, expectedRevision) {
+export function replaceDraft(db, nextDraft, questionHash, expectedRevision, expectedAssessmentId) {
   verifyDraft(nextDraft, questionHash);
   return transaction(db, ["drafts", "preferences"], "readwrite", (tx, ctl) => {
     const prefReq = tx.objectStore("preferences").get("consent");
@@ -215,7 +215,14 @@ export function replaceDraft(db, nextDraft, questionHash, expectedRevision) {
         if (!prefReq.result?.enabled) throw new StorageError("NO_CONSENT", "保存同意がありません");
         const current = request.result;
         const actual = current?.revision ?? null;
-        if (actual !== expectedRevision) throw new StorageError("REVISION_CONFLICT", "下書きが更新されました");
+        // Revisions are per draft, and can restart at 0 after a new
+        // assessment is begun in another tab. Comparing only the revision
+        // could silently overwrite an unrelated assessment with the same
+        // revision number. Require both the observed revision and identity.
+        if (actual !== expectedRevision ||
+            (current && current.assessmentId !== expectedAssessmentId)) {
+          throw new StorageError("REVISION_CONFLICT", "別のタブで下書きが変更されました");
+        }
         const revision = actual === null ? 0 : actual + 1;
         drafts.put({ ...nextDraft, revision });
         ctl.result(revision);
