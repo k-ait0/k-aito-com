@@ -1,6 +1,6 @@
 {
   "schema": "A05-D54-PR-REVIEW-MANIFEST-1",
-  "version": "D63-001",
+  "version": "D65-001",
   "date": "2026-10-26",
   "repository": "k-ait0/k-aito-com",
   "base": "main",
@@ -144,7 +144,7 @@
       "reviewedAt": null
     },
     {
-      "path": "docs/A05_D35_INTERVIEW_CANDIDATE_GUIDE_20261026.md",
+      "path": "docs/A05_D35_INTERVIEW_CANDIDATES_20261026.json",
       "group": "D_RESEARCH_HUMAN_APPROVAL",
       "reviewStatus": "NOT_REVIEWED",
       "mergeAuthorized": false,
@@ -153,7 +153,7 @@
       "reviewedAt": null
     },
     {
-      "path": "docs/A05_D35_INTERVIEW_CANDIDATES_20261026.json",
+      "path": "docs/A05_D35_INTERVIEW_CANDIDATE_GUIDE_20261026.md",
       "group": "D_RESEARCH_HUMAN_APPROVAL",
       "reviewStatus": "NOT_REVIEWED",
       "mergeAuthorized": false,
@@ -441,6 +441,15 @@
       "reviewedAt": null
     },
     {
+      "path": "projects/kidp/life-design-lab/a05/README.md",
+      "group": "A_UI_ACCESSIBILITY",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
       "path": "projects/kidp/life-design-lab/a05/app.mjs",
       "group": "A_UI_ACCESSIBILITY",
       "reviewStatus": "NOT_REVIEWED",
@@ -524,15 +533,6 @@
     {
       "path": "projects/kidp/life-design-lab/a05/questions.mjs",
       "group": "C_PROVISIONAL_SCORING",
-      "reviewStatus": "NOT_REVIEWED",
-      "mergeAuthorized": false,
-      "reviewEvidenceRef": null,
-      "reviewerRole": null,
-      "reviewedAt": null
-    },
-    {
-      "path": "projects/kidp/life-design-lab/a05/README.md",
-      "group": "A_UI_ACCESSIBILITY",
       "reviewStatus": "NOT_REVIEWED",
       "mergeAuthorized": false,
       "reviewEvidenceRef": null,
@@ -843,6 +843,11 @@
       "date": "2026-10-26",
       "version": "D63-001",
       "change": "Add isolated noindex research preview and static test; no real participants or production wiring."
+    },
+    {
+      "date": "2026-10-26",
+      "version": "D65-001",
+      "change": "Normalize manifest path ordering to default JavaScript lexical order required by strict PR inventory test; no review approvals changed."
     }
   ]
 }
