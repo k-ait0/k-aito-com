@@ -346,3 +346,79 @@ export const EDITORIAL_ITEMS=Object.freeze([
     "risk": "社会的望ましさの偏りや交渉権限の差を確認する"
   }
 ].map(x=>Object.freeze(x)));
+
+/** D84 editorial hypotheses only; not approved dispositions or respondent data. */
+export const EDITORIAL_ACTIONS=Object.freeze({
+  "A01": {
+    "proposedAction": "RETAIN_FOR_REVIEW",
+    "rationale": "日々の生活方針を問い、A04の計画実行場面と分離できる可能性がある。",
+    "disconfirmingQuestion": "A04とは違う生活上の選択理由が挙がるか。",
+    "revisionBrief": "基盤の継続と変化の選好を日常場面で比較し、実行能力を問わない"
+  },
+  "A02": {
+    "proposedAction": "DROP_CANDIDATE",
+    "rationale": "活動場所の選択が勤務形態・移動制約・住環境に左右され、Aの抽象的変化志向と混ざりやすい。",
+    "disconfirmingQuestion": "場所を変えられない状況でも選好が回答できるか。",
+    "revisionBrief": "生活上の時間配分など場所に依存しない場面に差し替えを検討"
+  },
+  "A03": {
+    "proposedAction": "RETAIN_FOR_REVIEW",
+    "rationale": "習慣の維持と試行という場面が生活環境・計画と一応区別できる。",
+    "disconfirmingQuestion": "維持と新規導入を両方望む場合に7段階で答えられるか。",
+    "revisionBrief": "習慣という文脈を残し、変化の強制・実現可能性とは切り離す"
+  },
+  "A04": {
+    "proposedAction": "REWRITE_FOR_REVIEW",
+    "rationale": "元のBLOCK。Rの『生活計画』はA01の生活方針、Mの計画変更と混ざり、構成概念の変更も含む。",
+    "disconfirmingQuestion": "暮らしの計画の見直しは変化を選好することと一致するか。",
+    "revisionBrief": "生活の大切な選択を維持する／選択肢を広げるなど、目的に近い場面へ再設計。BLOCKを維持"
+  },
+  "A05": {
+    "proposedAction": "DROP_CANDIDATE",
+    "rationale": "元のBLOCK。『生活上の役割』は家族・仕事の役割変更可能性やA06の環境対応と混入する。",
+    "disconfirmingQuestion": "本人の裁量で役割を変えられない場合に何を答えているか。",
+    "revisionBrief": "役割を前提としない選択場面へ差し替え。BLOCKを維持"
+  },
+  "A06": {
+    "proposedAction": "REWRITE_FOR_REVIEW",
+    "rationale": "予想外の変化への対処は自発的な安定／変化の選好でなく状況対応力を測りかねない。",
+    "disconfirmingQuestion": "同じ人が好む生き方と緊急時の対応を別々に答えるか。",
+    "revisionBrief": "本人の裁量がある将来の選択場面に置き換え、状況対応力を推定しない"
+  },
+  "B01": {
+    "proposedAction": "RETAIN_FOR_REVIEW",
+    "rationale": "生活方針というBの中心に近いが、両者は併存しうるため尺度形式の検証を要する。",
+    "disconfirmingQuestion": "自分も周囲も重視する人が無理に片方を選ばないか。",
+    "revisionBrief": "本人の価値基準と他者への配慮を別々に答えられる方式も併走検討"
+  },
+  "B02": {
+    "proposedAction": "REWRITE_FOR_REVIEW",
+    "rationale": "元のBLOCK。余暇に他者がいることを前提にし、自分の希望と相談は対立とは限らない。",
+    "disconfirmingQuestion": "予定を自分で決めつつ誰かと相談する人はどう回答するか。",
+    "revisionBrief": "想定する他者の範囲を定義するか、両希望の独立評価へ再設計。BLOCKを維持"
+  },
+  "B03": {
+    "proposedAction": "RETAIN_FOR_REVIEW",
+    "rationale": "自分の納得と共有意義という目標の場面はBの候補だが、B05の達成喜びに近い。",
+    "disconfirmingQuestion": "目標設定時と達成時で答える理由が異なるか。",
+    "revisionBrief": "目標の選択時点に限定して目的と結果の混同を避ける"
+  },
+  "B04": {
+    "proposedAction": "DROP_CANDIDATE",
+    "rationale": "居住地選択はA軸の生活環境と横断的に重なり、家族・経済事情で回答が制限される。",
+    "disconfirmingQuestion": "本人が居住地を選べない場合にBの選好が残るか。",
+    "revisionBrief": "住居に依存しない価値選択場面を代替候補として起案"
+  },
+  "B05": {
+    "proposedAction": "DROP_CANDIDATE",
+    "rationale": "目標の共有というB03と近く、達成の喜びは相手との関係の有無や表現習慣に依存しうる。",
+    "disconfirmingQuestion": "B03と違う理由で回答できるか。",
+    "revisionBrief": "目標・達成と異なる生活場面での本人と他者の希望を検討"
+  },
+  "B06": {
+    "proposedAction": "REWRITE_FOR_REVIEW",
+    "rationale": "『互いの希望をすり合わせる』は社会的望ましさで片側が望ましく見え、B01とも近い。",
+    "disconfirmingQuestion": "意見の相違で自分の希望を伝えつつ歩み寄る場合の回答可能性。",
+    "revisionBrief": "対立場面の行動能力を測らず、重視する基準を独立尺度で問うことも検討"
+  }
+});
