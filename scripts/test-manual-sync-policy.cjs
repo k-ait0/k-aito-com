@@ -21,11 +21,14 @@ assert.match(sync, /^\s{2}contents: write$/m, "Emergency manual sync retains wri
 assert.match(sync, /^\s{2}update-index:$/m, "Manual sync job must be retained");
 
 const liveEvents = triggers(live);
-assert.match(liveEvents, /^  push:$/m, "Production verification still reacts to published commits");
-assert.match(liveEvents, /'\*\*\/\*\.html'/, "Production verification still covers article HTML");
-assert.match(liveEvents, /^  workflow_dispatch:$/m, "Manual production recheck remains available");
-
+assert.match(liveEvents, /^  workflow_dispatch:$/m, "Manual production verification remains available");
+assert.doesNotMatch(liveEvents, /^  (?:push|pull_request|workflow_run|schedule):/m,
+  "Automatic production check must not run");
+assert.match(live, /node scripts\/live-production-check\.cjs/,
+  "Manual release check must compare deployed revision");
+assert.match(live, /node scripts\/browser-smoke\.cjs/,
+  "Manual release check must retain real browser validation");
 const browserEvents = triggers(browser);
 assert.match(browserEvents, /^  workflow_dispatch:$/m);
 assert.doesNotMatch(browserEvents, /^  (?:push|pull_request):/m, "Expensive browser QA must stay opt-in");
-console.log("PASS: manual sync policy, live release verification, on-demand browser QA");
+console.log("PASS: manual-only sync, deployment and browser QA");

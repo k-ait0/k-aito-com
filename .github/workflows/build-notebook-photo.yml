@@ -1,11 +1,7 @@
 name: Build high-resolution notebook photo
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - 'scripts/build-notebook-photo.py'
-      - '.github/workflows/build-notebook-photo.yml'
+  # Manual-only. See docs/GITHUB_ACTIONS_POLICY.md.
   workflow_dispatch:
 
 permissions:

@@ -2,6 +2,10 @@
 
 個人メディアの静的サイト。公開先: https://k-aito.com/
 
+## CI運用（Actions最小化）
+
+開発の検証はローカルを優先し、GitHub Actionsは手動実行のみ。[運用方針](docs/GITHUB_ACTIONS_POLICY.md) と [AGENTS.md](AGENTS.md) を参照。作業後は `node scripts/local-preflight.cjs` で確認し、本番反映の実機検証は手動で実施する。
+
 ## 公開記事の共通管理
 
 `content-index.js` が公開記事のメタデータと検索用本文の一次情報です。
