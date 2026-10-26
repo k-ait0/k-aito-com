@@ -20,7 +20,7 @@
 <select id="mode"><option value="relative">A：金銭と時間の相対比較</option><option value="independent">B：金銭と時間を個別評価</option><option value="omitted">C：E軸を除外</option></select>
 </fieldset>
 <fieldset id="relative-group"><legend>相対比較</legend><label for="relative">1：金銭面を優先 ／ 4：同程度 ／ 7：時間面を優先</label><input id="relative" type="range" min="1" max="7" step="1" value="4"><output id="relative-value" for="relative">4</output></fieldset>
-<fieldset id="independent-group" hidden><legend>個別評価</legend><label for="money">金銭面の追加的な裁量を重視する程度（1〜7）</label><input id="money" type="range" min="1" max="7" value="4"><label for="time">時間面の追加的な裁量を重視する程度（1〜7）</label><input id="time" type="range" min="1" max="7" value="4"></fieldset>
+<fieldset id="independent-group" hidden><legend>個別評価</legend><label for="money">金銭面の追加的な裁量を重視する程度（1〜7）</label><input id="money" type="range" min="1" max="7" value="4"><output id="money-value" for="money">4</output><label for="time">時間面の追加的な裁量を重視する程度（1〜7）</label><input id="time" type="range" min="1" max="7" value="4"><output id="time-value" for="time">4</output></fieldset>
 <h2>表示確認</h2><output id="result" role="status" aria-live="polite"></output>
 <small>本画面は既存のA05診断エンジン・保存処理から独立しています。実験結果を旧版のwealthへ変換しません。</small>
 </main>
@@ -32,6 +32,8 @@ function render(){
  $("relative-group").hidden=mode!=="relative";
  $("independent-group").hidden=mode!=="independent";
  $("relative-value").value=$("relative").value;
+ $("money-value").value=$("money").value;
+ $("time-value").value=$("time").value;
  const config=mode==="relative"?{mode,answer:Number($("relative").value)}:mode==="independent"?{mode,money:Number($("money").value),time:Number($("time").value)}:{mode};
  const result=experimentalEDisplay(config);
  $("result").textContent=[result.title,result.description,...result.items.map(x=>x.label+"： "+x.value)].join("\n");
