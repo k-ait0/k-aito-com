@@ -10,7 +10,7 @@ import assert from "node:assert/strict";
 import { QUESTIONS } from "../projects/kidp/life-design-lab/a05/questions.mjs";
 import { newDraft } from "../projects/kidp/life-design-lab/a05/engine.mjs";
 import {
-  enableSaving, saveDraft, finalizeDraft, restoreState, read,
+  enableSaving, saveDraft, replaceDraft, finalizeDraft, restoreState, read,
   readRecoverySnapshot, readExportSnapshot, readA05StoreCounts, removeRawAnswers, deleteAssessment, eraseA05DatabaseContents
 } from "../projects/kidp/life-design-lab/a05/storage.mjs";
 
@@ -150,6 +150,57 @@ test("optimistic revision check prevents stale overwrite", async () => {
   assert.equal(await saveDraft(db, draft, HASH, 0), 1);
   await assert.rejects(saveDraft(db, draft, HASH, 0));
   assert.equal((await read(db, "drafts", "active")).revision, 1);
+});
+
+test("D-56 replaceDraft rejects stale identity despite matching revision number", async () => {
+  const db = new SimulatedDatabase();
+  await enableSaving(db, fixture("first"), HASH, false);
+  const first = await read(db, "drafts", "active");
+  assert.equal(first.revision, 0);
+  await finalizeDraft(db, "first", 0, HASH, false);
+  // Second assessment starts at revision 0, the same as the stale first tab.
+  const second = fixture("second");
+  assert.equal(await saveDraft(db, second, HASH, null), 0);
+  const consentBefore = await read(db, "preferences", "consent");
+  const storedBefore = await read(db, "drafts", "active");
+  assert.equal(storedBefore.assessmentId, "second");
+  await assert.rejects(
+    replaceDraft(db, fixture("third"), HASH, 0, "first"),
+    err => err.code === "REVISION_CONFLICT");
+  assert.deepEqual(await read(db, "drafts", "active"), storedBefore);
+  assert.deepEqual(await read(db, "preferences", "consent"), consentBefore);
+  assert.ok(await read(db, "history", "first"), "first result survives");
+  assert.equal(await read(db, "history", "third"), undefined);
+});
+
+test("D-56 replaceDraft advances only the currently observed identity", async () => {
+  const db = new SimulatedDatabase();
+  await enableSaving(db, fixture("one"), HASH, false);
+  assert.equal(await replaceDraft(db, fixture("two"), HASH, 0, "one"), 1);
+  const updated = await read(db, "drafts", "active");
+  assert.equal(updated.assessmentId, "two");
+  assert.equal(updated.revision, 1);
+  await assert.rejects(
+    replaceDraft(db, fixture("three"), HASH, 1, undefined),
+    err => err.code === "REVISION_CONFLICT");
+  await assert.rejects(
+    replaceDraft(db, fixture("three"), HASH, 0, "two"),
+    err => err.code === "REVISION_CONFLICT");
+  assert.deepEqual(await read(db, "drafts", "active"), updated);
+  assert.equal(await replaceDraft(db, fixture("three"), HASH, 1, "two"), 2);
+  assert.equal((await read(db, "drafts", "active")).assessmentId, "three");
+});
+
+test("D-56 an absent draft may be replaced only when the expected revision is null", async () => {
+  const db = new SimulatedDatabase();
+  await enableSaving(db, fixture("first"), HASH, false);
+  await finalizeDraft(db, "first", 0, HASH, false);
+  await assert.rejects(
+    replaceDraft(db, fixture("second"), HASH, 0, "first"),
+    err => err.code === "REVISION_CONFLICT");
+  assert.equal(await read(db, "drafts", "active"), undefined);
+  assert.equal(await replaceDraft(db, fixture("second"), HASH, null, "first"), 0);
+  assert.equal((await read(db, "drafts", "active")).assessmentId, "second");
 });
 
 test("finalize rejects missing raw-consent and old revision atomically", async () => {
