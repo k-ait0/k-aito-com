@@ -1,6 +1,6 @@
 {
   "schema": "A05-D54-PR-REVIEW-MANIFEST-1",
-  "version": "D59-001",
+  "version": "D61-001",
   "date": "2026-10-26",
   "repository": "k-ait0/k-aito-com",
   "base": "main",
@@ -144,7 +144,7 @@
       "reviewedAt": null
     },
     {
-      "path": "docs/A05_D35_INTERVIEW_CANDIDATES_20261026.json",
+      "path": "docs/A05_D35_INTERVIEW_CANDIDATE_GUIDE_20261026.md",
       "group": "D_RESEARCH_HUMAN_APPROVAL",
       "reviewStatus": "NOT_REVIEWED",
       "mergeAuthorized": false,
@@ -153,7 +153,7 @@
       "reviewedAt": null
     },
     {
-      "path": "docs/A05_D35_INTERVIEW_CANDIDATE_GUIDE_20261026.md",
+      "path": "docs/A05_D35_INTERVIEW_CANDIDATES_20261026.json",
       "group": "D_RESEARCH_HUMAN_APPROVAL",
       "reviewStatus": "NOT_REVIEWED",
       "mergeAuthorized": false,
@@ -432,8 +432,8 @@
       "reviewedAt": null
     },
     {
-      "path": "projects/kidp/life-design-lab/a05/README.md",
-      "group": "A_UI_ACCESSIBILITY",
+      "path": "docs/A05_D60_E_AXIS_VERSIONING_DECISION_20261026.md",
+      "group": "E_CROSSCUTTING_QA_AUDIT",
       "reviewStatus": "NOT_REVIEWED",
       "mergeAuthorized": false,
       "reviewEvidenceRef": null,
@@ -452,6 +452,15 @@
     {
       "path": "projects/kidp/life-design-lab/a05/backup-inspect.mjs",
       "group": "B_STORAGE_BACKUP",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "projects/kidp/life-design-lab/a05/e-experiment.mjs",
+      "group": "C_PROVISIONAL_SCORING",
       "reviewStatus": "NOT_REVIEWED",
       "mergeAuthorized": false,
       "reviewEvidenceRef": null,
@@ -497,6 +506,15 @@
     {
       "path": "projects/kidp/life-design-lab/a05/questions.mjs",
       "group": "C_PROVISIONAL_SCORING",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "projects/kidp/life-design-lab/a05/README.md",
+      "group": "A_UI_ACCESSIBILITY",
       "reviewStatus": "NOT_REVIEWED",
       "mergeAuthorized": false,
       "reviewEvidenceRef": null,
@@ -604,6 +622,15 @@
     },
     {
       "path": "scripts/test-a05-backup-inspect.mjs",
+      "group": "E_CROSSCUTTING_QA_AUDIT",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "scripts/test-a05-e-experiment.mjs",
       "group": "E_CROSSCUTTING_QA_AUDIT",
       "reviewStatus": "NOT_REVIEWED",
       "mergeAuthorized": false,
@@ -765,6 +792,11 @@
       "date": "2026-10-26",
       "version": "D59-001",
       "change": "Add D58 and D59 editorial drafts to exact PR file inventory; all human signoffs remain pending."
+    },
+    {
+      "date": "2026-10-26",
+      "version": "D61-001",
+      "change": "Inventory D60 design and D61 isolated experimental model and tests. No human approval."
     }
   ]
 }
