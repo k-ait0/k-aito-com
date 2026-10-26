@@ -1,6 +1,6 @@
 {
   "schema": "A05-D54-PR-REVIEW-MANIFEST-1",
-  "version": "D84-001",
+  "version": "D85-001",
   "date": "2026-10-26",
   "repository": "k-ait0/k-aito-com",
   "base": "main",
@@ -648,6 +648,24 @@
       "reviewedAt": null
     },
     {
+      "path": "docs/A05_D85_B_CONSTRUCT_AND_TYPE_GATE_20261026.md",
+      "group": "C_PROVISIONAL_SCORING",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "docs/A05_D85_B_MODE_COMPARISON_20261026.json",
+      "group": "C_PROVISIONAL_SCORING",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
       "path": "projects/kidp/life-design-lab/a05/README.md",
       "group": "A_UI_ACCESSIBILITY",
       "reviewStatus": "NOT_REVIEWED",
@@ -658,6 +676,42 @@
     },
     {
       "path": "projects/kidp/life-design-lab/a05/app.mjs",
+      "group": "A_UI_ACCESSIBILITY",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "projects/kidp/life-design-lab/a05/b-experiment.mjs",
+      "group": "C_PROVISIONAL_SCORING",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "projects/kidp/life-design-lab/a05/b-preview-scenarios.mjs",
+      "group": "C_PROVISIONAL_SCORING",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "projects/kidp/life-design-lab/a05/b-preview.html",
+      "group": "A_UI_ACCESSIBILITY",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "projects/kidp/life-design-lab/a05/b-preview.mjs",
       "group": "A_UI_ACCESSIBILITY",
       "reviewStatus": "NOT_REVIEWED",
       "mergeAuthorized": false,
@@ -864,6 +918,15 @@
       "reviewedAt": null
     },
     {
+      "path": "scripts/qa_a05_b_preview_browser.cjs",
+      "group": "E_CROSSCUTTING_QA_AUDIT",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
       "path": "scripts/qa_a05_browser.cjs",
       "group": "E_CROSSCUTTING_QA_AUDIT",
       "reviewStatus": "NOT_REVIEWED",
@@ -883,6 +946,15 @@
     },
     {
       "path": "scripts/qa_a05_editorial_preview_browser.cjs",
+      "group": "E_CROSSCUTTING_QA_AUDIT",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "scripts/test-a05-b-experiment.mjs",
       "group": "E_CROSSCUTTING_QA_AUDIT",
       "reviewStatus": "NOT_REVIEWED",
       "mergeAuthorized": false,
@@ -1203,6 +1275,11 @@
       "date": "2026-10-26",
       "version": "D84-001",
       "change": "Triaged 12 A/B R candidates into four retain, four rewrite, four drop proposals, with original BLOCK unchanged; add read-only preview guidance, Node and Chromium guards. No human signoff or production changes."
+    },
+    {
+      "date": "2026-10-26",
+      "version": "D85-001",
+      "change": "Add isolated B bipolar/independent contracts, eight synthetic scenarios, noindex preview and Node/Chrome tests; preserve old scoring and 16-type meaning; no study or release approval."
     }
   ]
 }
