@@ -1574,3 +1574,60 @@ inventory -> D-55 incompatible recovery status blocking,
 four-part draft-version checks, and docs-only PR coverage.
 Earlier D55-002 lightweight browser-skip expectation
 was corrected by D55-004 after observing actual CI.
+
+## A05-D56-001–002 (2026-10-26)
+
+**P0 defect:** `replaceDraft()` compared the expected active
+draft revision, but not the current assessment identity.
+A newly started assessment after an earlier one finishes
+can restart at revision 0. A stale tab with its own
+revision-0 draft could therefore accidentally overwrite
+an unrelated new assessment using the same revision number.
+
+**Fix:** Added required expected assessment identity to
+the existing `replaceDraft()` transaction's conflict
+condition. `app.mjs` passes the identity currently held
+by the requesting tab. If another tab has changed either
+the revision or the assessment ID, the write aborts with
+REVISION_CONFLICT and existing UI enters fail-closed
+local read-only mode. When there is no active draft,
+only an expected null revision allows the new one.
+The 30-question scoring/version/IndexedDB data shape
+and previously saved results remain unchanged.
+
+**Coverage:** Added 3 native simulated-storage tests
+for equal-revision/different-ID cross-tab collisions,
+legitimate identity-matched replacement, and absent-draft
+handling. Added one real Chrome test with two tabs
+sharing an isolated synthetic IndexedDB, where one tab
+replaces the assessment ID while retaining revision 0
+and the stale other tab's New action must be rejected.
+A stale tab must not change the new stored draft or
+silently grant a new consent.
+
+**Final QA:** GitHub Actions KIDP **40253810301 SUCCESS**:
+Node 22 **179/179** (176 prior +3 D56),
+real Chromium A05 **27/27 named cases**, independent
+network/page-error guard, existing KIDP P0 browser QA,
+preflight/diff all PASS. SEO audit **40253810336
+SUCCESS**. Intermediate runs **40253413366** (test
+looked for New on wrong screen) and **40253705052**
+(locale sort differed from exact PR manifest path
+ordering) failed, were corrected, and the final source
+passed. No workflows/jobs were added.
+
+**Review inventory:** Added
+`docs/A05_D56_CROSS_TAB_DRAFT_IDENTITY_GUARD_20261026.md`
+as the **69th** changed path in the D54 inventory,
+all NOT_REVIEWED and no human proof/signoff.
+
+**Unchanged risk boundary:** G1 **12/12 PENDING**,
+D-42 **16/16 PENDING**; scientific validity and E-axis
+unresolved. No actual respondents/research data, backup
+restore/import, database migration, PR merge or live
+release. PR #61 remains Draft.
+
+**Append-only history:** D55 stopped stale draft metadata
+versions and incompatible restore previews; D56 also
+protects active draft identity as well as revision when
+starting a new assessment.
