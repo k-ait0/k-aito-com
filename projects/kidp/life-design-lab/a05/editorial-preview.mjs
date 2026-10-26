@@ -1,10 +1,11 @@
 /** D83 local editorial review; no answers, collection, scoring, or persistence. */
-import { EDITORIAL_ITEMS } from "./editorial-preview-data.mjs";
+import { EDITORIAL_ITEMS, EDITORIAL_ACTIONS } from "./editorial-preview-data.mjs";
 const byId=new Map(EDITORIAL_ITEMS.map(x=>[x.id,x]));
 const $=id=>document.getElementById(id);
 const axis=$("axis"),itemSelect=$("item"),blockOnly=$("block-only");
 const titles={L:"L：従来概念の改稿候補",M:"M：別の構成概念",R:"R：人生選択の再設計候補"};
 const statusNames={BLOCK:"BLOCK（採用禁止）",REVISE:"REVISE（改稿対象）",TRIAL:"TRIAL（試験候補）"};
+const actionNames={RETAIN_FOR_REVIEW:"残す候補",REWRITE_FOR_REVIEW:"改稿候補",DROP_CANDIDATE:"削除候補"};
 function filtered(){return EDITORIAL_ITEMS.filter(x=>x.axis===axis.value&&(!blockOnly.checked||x.verdict==="BLOCK"));}
 function options(target,values,preferred){
  target.replaceChildren();
@@ -28,6 +29,7 @@ function render(selected){
   $("status").textContent="該当する候補はありません";
   $("cards").replaceChildren();
   $("count").textContent="0件";
+  $("editorial-advice").textContent="";
   for(const el of [$("previous"),$("next"),itemSelect,$("overlap"),$("jump-overlap")])el.disabled=true;
   return;
  }
@@ -41,6 +43,9 @@ function render(selected){
  $("cards").replaceChildren(...["L","M","R"].map(k=>card(k,x[k])));
  $("original").textContent="現行の参照文面：負方向「"+x.original.negative+"」／正方向「"+x.original.positive+"」";
  $("risk").textContent="検証上の論点："+x.risk;
+ const proposed=EDITORIAL_ACTIONS[x.id];
+ $("editorial-advice").textContent="D-84の机上提案："+actionNames[proposed.proposedAction]+"（未承認）。理由："+proposed.rationale+" 次に確かめること："+proposed.disconfirmingQuestion+" 改稿・差替えの方向："+proposed.revisionBrief;
+ $("editorial-advice").dataset.proposedAction=proposed.proposedAction;
  const links=x.overlaps.filter(id=>byId.has(id));
  options($("overlap"),links.map(id=>({value:id,label:id+"｜"+byId.get(id).facet})));
  $("overlap").disabled=links.length===0;
