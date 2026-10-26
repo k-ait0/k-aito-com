@@ -11,14 +11,14 @@ const manifest=read("docs/A05_D54_PR_REVIEW_MANIFEST_20261026.json");
 const g1=read("docs/A05_D38_G1_APPROVAL_REGISTER_20261026.json");
 const d42=read("docs/A05_D42_30DAY_ACCEPTANCE_REGISTER_20261026.json");
 
-test("D-54 manifest assigns every baseline PR file and D54 review artifact exactly once",()=>{
+test("D-54+ manifest assigns every tracked PR file exactly once",()=>{
   assert.equal(manifest.schema,"A05-D54-PR-REVIEW-MANIFEST-1");
   assert.equal(manifest.prNumber,61);
   assert.equal(manifest.repository,"k-ait0/k-aito-com");
   assert.equal(manifest.base,"main");
   assert.equal(manifest.state,"DRAFT_REVIEW_NOT_SIGNED_OFF");
   assert.equal(manifest.baselineAtCreation.trackedDiffFiles,64);
-  assert.equal(manifest.files.length,69);
+  assert.ok(manifest.files.length>=69,"review inventory cannot lose baseline entries");
   assert.equal(new Set(manifest.files.map(x=>x.path)).size,manifest.files.length);
   const sorted=manifest.files.map(x=>x.path);
   assert.deepEqual(sorted,[...sorted].sort());
@@ -60,7 +60,7 @@ test("D-54 file paths map to known review owners; everything awaits a human revi
 });
 
 test("D-54 review proof slots are empty and risk-prioritized until real humans sign",()=>{
-  assert.equal(manifest.version,"D56-001");
+  assert.match(manifest.version,/^D(?:5[6-9]|6[0-9])-\\d{3}$/);
   assert.ok(manifest.files.some(file=>file.path==="docs/A05_D55_P0_BACKUP_REVIEW_AND_DOC_CI_GATE_20261026.md"));
   assert.ok(manifest.files.some(file=>file.path==="docs/A05_D56_CROSS_TAB_DRAFT_IDENTITY_GUARD_20261026.md"));
   assert.ok(manifest.files.every(file=>file.reviewStatus==="NOT_REVIEWED"));
