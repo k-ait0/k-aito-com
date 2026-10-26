@@ -1,6 +1,6 @@
 {
   "schema": "A05-D54-PR-REVIEW-MANIFEST-1",
-  "version": "D75-001",
+  "version": "D78-001",
   "date": "2026-10-26",
   "repository": "k-ait0/k-aito-com",
   "base": "main",
@@ -495,6 +495,60 @@
       "reviewedAt": null
     },
     {
+      "path": "docs/A05_D76_BLOCKER_DECISION_20261026.md",
+      "group": "C_PROVISIONAL_SCORING",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "docs/A05_D76_BLOCKER_DISPOSITION_20261026.json",
+      "group": "C_PROVISIONAL_SCORING",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "docs/A05_D77_CD_ITEM_REVIEW_20261026.json",
+      "group": "C_PROVISIONAL_SCORING",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "docs/A05_D77_CD_REVIEW_DECISION_20261026.md",
+      "group": "C_PROVISIONAL_SCORING",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "docs/A05_D78_E_DECISION_PROTOCOL_20261026.md",
+      "group": "C_PROVISIONAL_SCORING",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "docs/A05_D78_E_MODE_DECISION_MATRIX_20261026.json",
+      "group": "C_PROVISIONAL_SCORING",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
       "path": "projects/kidp/life-design-lab/a05/README.md",
       "group": "A_UI_ACCESSIBILITY",
       "reviewStatus": "NOT_REVIEWED",
@@ -765,6 +819,15 @@
       "reviewedAt": null
     },
     {
+      "path": "scripts/test-a05-editorial-d76-d78.mjs",
+      "group": "E_CROSSCUTTING_QA_AUDIT",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
       "path": "scripts/test-a05-engine.mjs",
       "group": "E_CROSSCUTTING_QA_AUDIT",
       "reviewStatus": "NOT_REVIEWED",
@@ -958,6 +1021,11 @@
       "date": "2026-10-26",
       "version": "D75-001",
       "change": "Inventory unapproved 16-type L/M conditional result copy and regression checks; existing A05 question/scoring/type/content files unchanged."
+    },
+    {
+      "date": "2026-10-26",
+      "version": "D78-001",
+      "change": "D76 seven-blocker disposition, D77 C/D twelve-item quality review and D78 E-axis three-mode synthetic decision matrix added with safety tests; no research or release approval."
     }
   ]
 }
