@@ -501,7 +501,7 @@ root.addEventListener("click", async event => {
       const draft = newDraft(uid(), state.hash);
       if (state.consent) {
         if (state.readOnly) throw new Error("書き込みが停止されています");
-        draft.revision = await replaceDraft(state.db, draft, state.hash, state.draft.revision);
+        draft.revision = await replaceDraft(state.db, draft, state.hash, state.draft.revision, state.draft.assessmentId);
       }
       state.draft = draft;
       state.selected = null;
