@@ -1631,3 +1631,17 @@ release. PR #61 remains Draft.
 versions and incompatible restore previews; D56 also
 protects active draft identity as well as revision when
 starting a new assessment.
+
+## A05-D55-006–007 — exact PR synchronize delta and lightweight documentation-only QA (2026-10-26)
+
+**Problem:** D-55 added A05 docs to existing pull_request path triggers, but the scope step compared `HEAD^1..HEAD` on GitHub's synthetic pull_request **merge commit**. That diff contains the entire historical A05 PR, so `changed=true` even when only one documentation file was updated; Playwright and Chromium were unnecessarily run.
+
+**Correction:** Reused the existing `.github/workflows/kidp-wave-a-browser-qa.yml` single job, no new workflows/jobs. For `synchronize` events only, it now checks the event's `before` and `after` SHA, validates `after` matches the actual PR head (`HEAD^2`), fetches the `before` commit and compares the **entire update range**, including a batch of multiple commits. When any of these checks fails, `changed=true` deliberately triggers the full engineering QA rather than skipping it without proof. The **D-54 full-PR review inventory test always runs** on PR #61, including docs-only changes.
+
+**Native proof on workflow edit:** KIDP Actions **40254004590 SUCCESS**, with Node 22 **179/179**, Chromium A05 **27/27**, existing P0 QA, site preflight/diff. SEO **40254004577 SUCCESS**.
+
+**Independent docs-only proof:** KIDP Actions **40254146208 SUCCESS** after updating only the D-55 document. The full PR review inventory passed **7/7**. A05 domain/storage research Node suites, Playwright install, static server / KIDP Chromium and A05 Chromium were all explicitly **skipped**. SEO **40254146209 SUCCESS**. Thus the cost reduction is verified for a docs-only synchronize, without weakening the code-change fail-open default.
+
+**Review and release guard:** Manifest still accounts for **69/69 changed paths** and all files are NOT_REVIEWED. No merge or deployment; research G1 12/12 and D-42 16/16 pending; no real participants, data import or operational research authorization.
+
+**Append-only change history:** D55-004 had warned that the earlier docs-only QA route still ran full Chrome. D55-006 implemented exact verified PR update-range checking and D55-007 recorded the successful docs-only light QA. Earlier evidence and intermediate runs have not been overwritten.
