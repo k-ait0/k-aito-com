@@ -1,6 +1,6 @@
 {
   "schema": "A05-D54-PR-REVIEW-MANIFEST-1",
-  "version": "D56-001",
+  "version": "D57-001",
   "date": "2026-10-26",
   "repository": "k-ait0/k-aito-com",
   "base": "main",
@@ -405,6 +405,15 @@
       "reviewedAt": null
     },
     {
+      "path": "docs/A05_D57_QUESTION_EDITORIAL_MATRIX_20261026.md",
+      "group": "C_PROVISIONAL_SCORING",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
       "path": "projects/kidp/life-design-lab/a05/README.md",
       "group": "A_UI_ACCESSIBILITY",
       "reviewStatus": "NOT_REVIEWED",
@@ -728,6 +737,11 @@
       "before": "D55 register covers 68 files but concurrent D56 technical safety document was not inventoried",
       "after": "D56 cross-tab identity guard document added as 69th review-pending file; all user and release approvals remain false",
       "reason": "Full-PR diff inventory must catch every new source, test and technical document"
+    },
+    {
+      "date": "2026-10-26",
+      "version": "D57-001",
+      "change": "Added provisional 30-item editorial matrix to exact PR review inventory; no human signoff or release authorization."
     }
   ]
 }
