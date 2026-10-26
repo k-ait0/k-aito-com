@@ -882,3 +882,29 @@ Manifest now covers **69** PR changed files, all
 NOT_REVIEWED. Draft PR #61 has not been merged or
 deployed. Research G1 12/12 and D-42 16/16 remain
 PENDING; no participant study or raw backup import.
+
+## D-55 exact-update CI scoping: docs-only proof (2026-10-26)
+
+The existing `kidp-wave-a-browser-qa.yml` now checks
+GitHub pull-request synchronize **before/after SHA** and
+the actual PR head identity, using the *complete changed
+commit range* (including multi-commit updates).
+Unknown or unverifiable update ranges **fail open to full
+Node/Chromium QA**; they never silently skip tests.
+The all-file PR review manifest checker remains mandatory
+for PR #61 even on documentation-only edits.
+
+**Verified on workflow change:** KIDP **40254004590
+SUCCESS**, Node 22 **179/179** and Chromium **27/27**,
+existing KIDP P0 and preflight/diff PASS; SEO
+**40254004577 SUCCESS**.
+
+**Verified on actual docs-only change:** KIDP
+**40254146208 SUCCESS**, manifest **7/7 PASS**;
+A05 Node suites, Playwright installation, KIDP browser
+and A05 Chromium steps were **skipped**. SEO
+**40254146209 SUCCESS**. No new job or workflow.
+
+All 69 PR files remain NOT_REVIEWED, the PR stays
+Draft/unmerged, with 12 G1 and 16 D-42 research
+approval requirements pending.
