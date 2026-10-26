@@ -24,13 +24,33 @@ jobs:
       - name: Check A05 scope (avoid unrelated QA cost)
         id: a05scope
         shell: bash
+        env:
+          BEFORE_SHA: ${{ github.event.before }}
+          AFTER_SHA: ${{ github.event.after }}
+          PR_ACTION: ${{ github.event.action }}
         run: |
-          if git rev-parse HEAD^1 >/dev/null 2>&1 && \
-             git diff --name-only HEAD^1 HEAD | grep -Eq '^(projects/kidp/life-design-lab/a05/|scripts/(qa_a05_browser\.cjs|test-a05-.*\.mjs|a05-research-.*\.mjs)|\.github/workflows/kidp-wave-a-browser-qa\.yml)'; then
-            echo "changed=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "changed=false" >> "$GITHUB_OUTPUT"
+          # Pull-request merge HEAD^1 is the base branch, so diffing
+          # HEAD^1..HEAD always includes *all* historical A05 edits.
+          # For a synchronize event use the actual before/after PR head
+          # range. This handles multi-commit pushes, unlike HEAD^2^..HEAD^2.
+          # If that delta cannot be verified, fail open: run full QA.
+          changed=true
+          if [[ "$GITHUB_EVENT_NAME" == "pull_request" &&
+                "$PR_ACTION" == "synchronize" &&
+                "$BEFORE_SHA" =~ ^[0-9a-f]{40}$ &&
+                "$AFTER_SHA" =~ ^[0-9a-f]{40}$ ]] &&
+             git rev-parse -q --verify HEAD^2 >/dev/null 2>&1 &&
+             [[ "$(git rev-parse HEAD^2)" == "$AFTER_SHA" ]] &&
+             git fetch --no-tags --depth=1 origin "$BEFORE_SHA" >/dev/null 2>&1 &&
+             git cat-file -e "$BEFORE_SHA^{commit}" 2>/dev/null; then
+            if git diff --name-only "$BEFORE_SHA" "$AFTER_SHA" |
+               grep -Eq '^(projects/kidp/life-design-lab/a05/|scripts/(qa_a05_browser\.cjs|test-a05-.*\.mjs|a05-research-.*\.mjs)|\.github/workflows/kidp-wave-a-browser-qa\.yml)'; then
+              changed=true
+            else
+              changed=false
+            fi
           fi
+          echo "changed=$changed" >> "$GITHUB_OUTPUT"
       - name: A05 PR #61 full-diff review inventory (including docs-only changes)
         if: ${{ github.event_name == 'pull_request' && github.event.pull_request.number == 61 }}
         run: node --test scripts/test-a05-pr-review-manifest.mjs
