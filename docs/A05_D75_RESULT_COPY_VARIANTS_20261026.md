@@ -1,6 +1,6 @@
 # A05 D-75 — 16タイプ結果文言の条件付きL/M比較（未採用）
 
-作成日：2026-10-26。D-73の構成概念分離、D-74のA/B各6問の候補比較を受けた編集案。機械可読データ：`docs/A05_D75_CONDITIONAL_16TYPE_COPY_20261026.json`。**科学的な妥当性・説明文の有効性は未検証。正式な結果文言ではない。** 現行`types.mjs`、`engine.mjs`、`questions.mjs`、保存済み`snapshot.presentation`、公開画面はいずれも無変更。
+作成日：2026-10-26。D-73の構成概念分離、D-74のA/B各6問の候補比較を受けた編集案。機械可読データ：`docs/A05_D75_CONDITIONAL_16TYPE_COPY_20261026.json`。**科学的な妥当性・説明文の有効性は未検証。正式採用は未承認であり、正式な結果文言ではない。** 現行`types.mjs`、`engine.mjs`、`questions.mjs`、保存済み`snapshot.presentation`、公開画面はいずれも無変更。
 
 ## 1. 同じ16タイプIDでも意味が変わる
 
