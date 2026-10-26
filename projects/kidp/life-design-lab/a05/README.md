@@ -853,3 +853,32 @@ questions and psychometrics are not validated.
 G1 research operations 12/12 and D-42 16/16
 remain PENDING. No participant research, data
 collection, restoration, Draft PR merge or deployment.
+
+## D-56 cross-tab stale-draft overwrite protection (2026-10-26)
+
+`docs/A05_D56_CROSS_TAB_DRAFT_IDENTITY_GUARD_20261026.md`
+describes an actual P0 data-loss risk. A new assessment
+could start again at revision 0 while a stale tab still
+held an unrelated revision-0 assessment. The prior
+`replaceDraft()` compared revision alone and could
+replace the wrong active draft. It now compares
+**revision AND assessment ID inside the same atomic
+IndexedDB readwrite transaction**. The caller supplies
+its expected active ID; conflicts reject without
+overwriting the new assessment and put the stale tab
+into fail-closed read-only mode.
+
+New native tests check equal-revision/different-ID
+rejection, legitimate replacement and no-active-draft
+case. A real Chromium isolated two-tab test verifies
+the existing changed assessment ID and saved revision
+remain intact after the stale tab tries New.
+
+**Verified:** KIDP Actions **40253810301 SUCCESS**:
+Node 22 **179/179**, real A05 Chromium **27/27 named
+cases**, existing P0 QA, preflight/diff and independent
+no-network/page-error PASS. SEO **40253810336 SUCCESS**.
+Manifest now covers **69** PR changed files, all
+NOT_REVIEWED. Draft PR #61 has not been merged or
+deployed. Research G1 12/12 and D-42 16/16 remain
+PENDING; no participant study or raw backup import.
