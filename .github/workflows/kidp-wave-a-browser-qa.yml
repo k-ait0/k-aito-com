@@ -83,6 +83,7 @@ jobs:
           python3 -m http.server 8765 --bind 127.0.0.1 > /tmp/kidp-server.log 2>&1 &
           sleep 2
           node projects/kidp/qa_wave_a_browser.cjs
+          node scripts/qa_a05_e_preview_browser.cjs
       - name: A05 Chromium acceptance
         if: ${{ steps.a05scope.outputs.changed == 'true' }}
         run: node scripts/qa_a05_browser.cjs
