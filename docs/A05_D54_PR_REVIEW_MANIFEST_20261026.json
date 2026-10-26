@@ -1,6 +1,6 @@
 {
   "schema": "A05-D54-PR-REVIEW-MANIFEST-1",
-  "version": "D68-001",
+  "version": "D73-001",
   "date": "2026-10-26",
   "repository": "k-ait0/k-aito-com",
   "base": "main",
@@ -441,6 +441,24 @@
       "reviewedAt": null
     },
     {
+      "path": "docs/A05_D73_EDITORIAL_DECISION_PACKET_20261026.md",
+      "group": "C_PROVISIONAL_SCORING",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "docs/A05_D73_ITEM_CONSTRUCT_CROSSWALK_20261026.json",
+      "group": "C_PROVISIONAL_SCORING",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
       "path": "projects/kidp/life-design-lab/a05/README.md",
       "group": "A_UI_ACCESSIBILITY",
       "reviewStatus": "NOT_REVIEWED",
@@ -684,6 +702,15 @@
       "reviewedAt": null
     },
     {
+      "path": "scripts/test-a05-editorial-d73.mjs",
+      "group": "E_CROSSCUTTING_QA_AUDIT",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
       "path": "scripts/test-a05-engine.mjs",
       "group": "E_CROSSCUTTING_QA_AUDIT",
       "reviewStatus": "NOT_REVIEWED",
@@ -862,6 +889,11 @@
       "date": "2026-10-26",
       "version": "D68-001",
       "change": "Add responsive Chromium QA for isolated E preview; retain draft-only and all approval gates."
+    },
+    {
+      "date": "2026-10-26",
+      "version": "D73-001",
+      "change": "Include D73 30-item source-aligned editorial crosswalk, decision packet and automated structural review, with no human signoff or release authorization."
     }
   ]
 }
