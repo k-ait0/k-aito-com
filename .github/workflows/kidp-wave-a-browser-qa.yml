@@ -55,9 +55,11 @@ jobs:
       - name: A05 PR #61 full-diff review inventory (including docs-only changes)
         if: ${{ github.event_name == 'pull_request' && github.event.pull_request.number == 61 }}
         run: node --test scripts/test-a05-pr-review-manifest.mjs
-      - name: A05 D73 editorial source alignment (docs-only changes included)
+      - name: A05 D73-D74 editorial consistency (docs-only changes included)
         if: ${{ github.event_name == 'pull_request' && github.event.pull_request.number == 61 }}
-        run: node --test scripts/test-a05-editorial-d73.mjs
+        run: |
+          node --test scripts/test-a05-editorial-d73.mjs
+          node --test scripts/test-a05-editorial-d74.mjs
       - name: A05 native Node domain and storage tests
         if: ${{ steps.a05scope.outputs.changed == 'true' }}
         run: |
