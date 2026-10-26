@@ -1,0 +1,332 @@
+{
+  "schema": "A05-D85-B-MODE-COMPARISON-1",
+  "version": "D85-001",
+  "date": "2026-10-26",
+  "state": "SYNTHETIC_DESIGN_REVIEW_ONLY",
+  "purpose": "Compare what one bipolar response and two independent responses can represent. These are separately stipulated hypothetical answers, never scores converted between formats.",
+  "construct": "人生の選択で自分の希望と関係者への配慮をどの程度重視するか",
+  "modes": [
+    {
+      "id": "bipolar",
+      "input": "one 1..7 or null response (1:self priority, 4:relative middle, 7:others priority)",
+      "status": "HYPOTHESIS_NOT_APPROVED",
+      "informationLost": [
+        "both_high_vs_both_low",
+        "independent_strength",
+        "unavailable_other_person_context"
+      ],
+      "risk": "self and others can be simultaneously important"
+    },
+    {
+      "id": "independent",
+      "input": "self 1..7 or null and others 1..7 or null",
+      "status": "HYPOTHESIS_NOT_APPROVED",
+      "informationLost": [
+        "context_specific_relative_priority_without_extra_question"
+      ],
+      "risk": "different instrument and burden; not a validated value scale"
+    }
+  ],
+  "syntheticScenarios": [
+    {
+      "id": "both-high",
+      "name": "両方を強く重視",
+      "inputs": {
+        "bipolar": {
+          "mode": "bipolar",
+          "answer": 4
+        },
+        "independent": {
+          "mode": "independent",
+          "self": 7,
+          "others": 7
+        }
+      },
+      "expected": {
+        "bipolar": {
+          "mode": "bipolar",
+          "answer": 4,
+          "responseStatus": "answered",
+          "relativePosition": 0
+        },
+        "independent": {
+          "mode": "independent",
+          "ratings": {
+            "self": 7,
+            "others": 7
+          },
+          "responseStatus": "answered"
+        }
+      },
+      "focus": "相対的な中間回答だけでは双方の高さを判別できない",
+      "fictional": true
+    },
+    {
+      "id": "both-low",
+      "name": "どちらもあまり重視しない",
+      "inputs": {
+        "bipolar": {
+          "mode": "bipolar",
+          "answer": 4
+        },
+        "independent": {
+          "mode": "independent",
+          "self": 1,
+          "others": 1
+        }
+      },
+      "expected": {
+        "bipolar": {
+          "mode": "bipolar",
+          "answer": 4,
+          "responseStatus": "answered",
+          "relativePosition": 0
+        },
+        "independent": {
+          "mode": "independent",
+          "ratings": {
+            "self": 1,
+            "others": 1
+          },
+          "responseStatus": "answered"
+        }
+      },
+      "focus": "同じ二極中点でも二尺度なら双方の低さを表現できる",
+      "fictional": true
+    },
+    {
+      "id": "both-middle",
+      "name": "双方とも中程度",
+      "inputs": {
+        "bipolar": {
+          "mode": "bipolar",
+          "answer": 4
+        },
+        "independent": {
+          "mode": "independent",
+          "self": 4,
+          "others": 4
+        }
+      },
+      "expected": {
+        "bipolar": {
+          "mode": "bipolar",
+          "answer": 4,
+          "responseStatus": "answered",
+          "relativePosition": 0
+        },
+        "independent": {
+          "mode": "independent",
+          "ratings": {
+            "self": 4,
+            "others": 4
+          },
+          "responseStatus": "answered"
+        }
+      },
+      "focus": "中点は高低や優先順位を一意に示さない",
+      "fictional": true
+    },
+    {
+      "id": "self-high",
+      "name": "自分の希望を強く重視",
+      "inputs": {
+        "bipolar": {
+          "mode": "bipolar",
+          "answer": 1
+        },
+        "independent": {
+          "mode": "independent",
+          "self": 7,
+          "others": 1
+        }
+      },
+      "expected": {
+        "bipolar": {
+          "mode": "bipolar",
+          "answer": 1,
+          "responseStatus": "answered",
+          "relativePosition": -3
+        },
+        "independent": {
+          "mode": "independent",
+          "ratings": {
+            "self": 7,
+            "others": 1
+          },
+          "responseStatus": "answered"
+        }
+      },
+      "focus": "相対的な片側重視を表せても独立尺度と同一の数値ではない",
+      "fictional": true
+    },
+    {
+      "id": "others-high",
+      "name": "関係者への配慮を強く重視",
+      "inputs": {
+        "bipolar": {
+          "mode": "bipolar",
+          "answer": 7
+        },
+        "independent": {
+          "mode": "independent",
+          "self": 1,
+          "others": 7
+        }
+      },
+      "expected": {
+        "bipolar": {
+          "mode": "bipolar",
+          "answer": 7,
+          "responseStatus": "answered",
+          "relativePosition": 3
+        },
+        "independent": {
+          "mode": "independent",
+          "ratings": {
+            "self": 1,
+            "others": 7
+          },
+          "responseStatus": "answered"
+        }
+      },
+      "focus": "相対的な片側重視を表せても独立尺度と同一の数値ではない",
+      "fictional": true
+    },
+    {
+      "id": "both-high-with-tilt",
+      "name": "両方高く、本人希望がやや優先",
+      "inputs": {
+        "bipolar": {
+          "mode": "bipolar",
+          "answer": 3
+        },
+        "independent": {
+          "mode": "independent",
+          "self": 7,
+          "others": 6
+        }
+      },
+      "expected": {
+        "bipolar": {
+          "mode": "bipolar",
+          "answer": 3,
+          "responseStatus": "answered",
+          "relativePosition": -1
+        },
+        "independent": {
+          "mode": "independent",
+          "ratings": {
+            "self": 7,
+            "others": 6
+          },
+          "responseStatus": "answered"
+        }
+      },
+      "focus": "両方高いことと相対順位を同時に表すには別の質問が必要",
+      "fictional": true
+    },
+    {
+      "id": "unanswerable",
+      "name": "比較・評価できない",
+      "inputs": {
+        "bipolar": {
+          "mode": "bipolar",
+          "answer": null
+        },
+        "independent": {
+          "mode": "independent",
+          "self": null,
+          "others": null
+        }
+      },
+      "expected": {
+        "bipolar": {
+          "mode": "bipolar",
+          "answer": null,
+          "responseStatus": "unanswered",
+          "relativePosition": null
+        },
+        "independent": {
+          "mode": "independent",
+          "ratings": {
+            "self": null,
+            "others": null
+          },
+          "responseStatus": "unanswered"
+        }
+      },
+      "focus": "判断不能は4に置き換えず明示的な欠測で保持",
+      "fictional": true
+    },
+    {
+      "id": "partial",
+      "name": "本人の希望のみ回答可能",
+      "inputs": {
+        "bipolar": {
+          "mode": "bipolar",
+          "answer": null
+        },
+        "independent": {
+          "mode": "independent",
+          "self": 7,
+          "others": null
+        }
+      },
+      "expected": {
+        "bipolar": {
+          "mode": "bipolar",
+          "answer": null,
+          "responseStatus": "unanswered",
+          "relativePosition": null
+        },
+        "independent": {
+          "mode": "independent",
+          "ratings": {
+            "self": 7,
+            "others": null
+          },
+          "responseStatus": "partial"
+        }
+      },
+      "focus": "独立回答には部分欠測があり、結果の分類を強制できない",
+      "fictional": true
+    }
+  ],
+  "nonEquivalence": {
+    "sameBipolarMiddle": [
+      "both-high",
+      "both-low",
+      "both-middle"
+    ],
+    "sameBipolarValue": 4,
+    "independentDistinguishesThese": true,
+    "crossModeNumericalConversion": "PROHIBITED",
+    "empiricalComparabilityProven": false
+  },
+  "goNoGo": [
+    "Before actual trial, product owner must explicitly select B construct or approve the comparison-only instrument",
+    "Determine whether both endpoints can be endorsed simultaneously and how a respondent interprets the midpoint",
+    "Check whether respondents without an applicable other person understand the question; null is not midpoint",
+    "Assess social desirability, fairness for different relational circumstances and two-question burden",
+    "Type-bit B and T01–T16 meaning must NOT be inherited without new evidence and a new result contract"
+  ],
+  "guards": {
+    "humanChoice": "PENDING",
+    "scaleValidated": false,
+    "participantsCollected": 0,
+    "studyAuthorized": false,
+    "mergeAuthorized": false,
+    "productionReleaseAuthorized": false,
+    "legacyScoringChanged": false,
+    "oldHistoryRescored": false,
+    "typeMappingApproved": false
+  },
+  "changeHistory": [
+    {
+      "date": "2026-10-26",
+      "version": "D85-001",
+      "change": "Create eight paired fictional scenarios comparing answer expressiveness, not inferring individual conversions or authorized psychological conclusions."
+    }
+  ]
+}
