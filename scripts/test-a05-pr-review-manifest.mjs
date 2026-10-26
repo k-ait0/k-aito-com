@@ -60,7 +60,7 @@ test("D-54 file paths map to known review owners; everything awaits a human revi
 });
 
 test("D-54 review proof slots are empty and risk-prioritized until real humans sign",()=>{
-  assert.match(manifest.version,/^D(?:5[6-9]|6[0-9])-\\d{3}$/);
+  assert.match(manifest.version,/^D(?:5[6-9]|6[0-9])-\d{3}$/);
   assert.ok(manifest.files.some(file=>file.path==="docs/A05_D55_P0_BACKUP_REVIEW_AND_DOC_CI_GATE_20261026.md"));
   assert.ok(manifest.files.some(file=>file.path==="docs/A05_D56_CROSS_TAB_DRAFT_IDENTITY_GUARD_20261026.md"));
   assert.ok(manifest.files.every(file=>file.reviewStatus==="NOT_REVIEWED"));
