@@ -1,37 +1,9 @@
-# Fast pull-request checks. Heavy Chromium/WebGL QA is manual-only.
-# At final release review, run this workflow with workflow_dispatch on the
-# exact proposed release branch HEAD, then verify its run ID and conclusion.
-# Before this file reaches the default branch, adding label mono-base-full-qa
-# to the Draft PR is the supported browser-QA trigger. Remove/re-add to rerun.
+# Manual-only MONO BASE QA for approved release candidates.
 name: MONO BASE site QA
 on:
-  pull_request:
-    types: [opened, synchronize, reopened, labeled]
-    paths:
-      - 'mono-base/**'
-      - 'scripts/public-sitemap-routes.cjs'
-      - 'scripts/test-public-sitemap-routes.cjs'
-      - 'scripts/audit-seo.cjs'
-      - 'scripts/live-production-check.cjs'
-      - 'scripts/browser-smoke.cjs'
-      - 'scripts/prepare-mono-base-publication.cjs'
-      - 'scripts/test-mono-base-preview.cjs'
-      - 'scripts/test-mono-base-generator-isolation.cjs'
-      - 'scripts/test-mono-base-publication-fixture.cjs'
-      - 'scripts/mono-base-local-qa.cjs'
-      - 'scripts/sync-site-shell.cjs'
-      - 'scripts/sync-site-breadcrumbs.cjs'
-      - 'scripts/sync-white-surfaces.cjs'
-      - 'scripts/sync-project-search.cjs'
-      - 'scripts/test-site-shell.cjs'
-      - 'scripts/test-site-breadcrumbs.cjs'
-      - 'scripts/test-site-search-ui.cjs'
-      - 'scripts/test-project-search.cjs'
-      - 'scripts/verify-mono-base-original-assets.py'
-      - 'scripts/test-mono-base-v34-browser.py'
-      - 'scripts/test-mono-base-v35-controls.cjs'
-      - '.github/workflows/mono-base-qa.yml'
+  # Manual-only. See docs/GITHUB_ACTIONS_POLICY.md.
   workflow_dispatch:
+
 permissions:
   contents: read
 concurrency:
@@ -39,8 +11,6 @@ concurrency:
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 jobs:
   static-qa:
-    # Ignore irrelevant label changes so they consume no runner minutes.
-    if: github.event_name != 'pull_request' || github.event.action != 'labeled' || github.event.label.name == 'mono-base-full-qa'
     runs-on: ubuntu-latest
     timeout-minutes: 8
     steps:
@@ -113,12 +83,7 @@ jobs:
             echo 'Draft scaffold only — original v3.4 image integration not yet complete'
           fi
   browser-qa:
-    # Never install Chromium on ordinary PR updates; one explicit final QA
-    # dispatch is required for release approval.
-    # Draft PR manual trigger: add the "mono-base-full-qa" label.
-    # Only the labeling event triggers Chromium; later PR pushes stay static-only.
-    # workflow_dispatch becomes available once this workflow exists on main.
-    if: github.event_name == 'workflow_dispatch' || (github.event_name == 'pull_request' && github.event.action == 'labeled' && github.event.label.name == 'mono-base-full-qa')
+    # Chrome installation only occurs after manual dispatch.
     needs: static-qa
     runs-on: ubuntu-latest
     timeout-minutes: 20

@@ -1,0 +1,32 @@
+{
+  "schema": "KAITO-ACTIONS-MANUAL-ONLY-1",
+  "version": "1.0.0",
+  "effectiveDate": "2026-10-26",
+  "repository": "k-ait0/k-aito-com",
+  "allowedTriggers": [
+    "workflow_dispatch"
+  ],
+  "automatedTriggerExceptions": [],
+  "expectedWorkflowFiles": [
+    "browser-qa.yml",
+    "build-image-assets.yml",
+    "build-notebook-photo.yml",
+    "kidp-live-deployment-readiness.yml",
+    "kidp-p0-participant-journeys.yml",
+    "kidp-wave-a-browser-qa.yml",
+    "live-production-check.yml",
+    "mono-base-qa.yml",
+    "origin-diagnostics.yml",
+    "seo-audit.yml",
+    "sync-published-content.yml"
+  ],
+  "manualReleaseQARequired": true,
+  "changingTriggersRequiresExplicitUserApproval": true,
+  "changeHistory": [
+    {
+      "date": "2026-10-26",
+      "version": "1.0.0",
+      "description": "9 auto workflows made manual; two already manual retained."
+    }
+  ]
+}

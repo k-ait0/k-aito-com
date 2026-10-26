@@ -1,11 +1,8 @@
 name: KAITO origin network diagnostics
 on:
-  push:
-    branches: [main]
-    paths:
-      - 'scripts/diagnose-origin-network.cjs'
-      - '.github/workflows/origin-diagnostics.yml'
+  # Manual-only. See docs/GITHUB_ACTIONS_POLICY.md.
   workflow_dispatch:
+
 permissions:
   contents: read
 jobs:

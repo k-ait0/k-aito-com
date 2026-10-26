@@ -1,10 +1,8 @@
 name: KIDP P0 Participant Journeys
 on:
-  pull_request:
-    paths:
-      - "projects/kidp/qa_p0_participant_journeys.cjs"
-      - ".github/workflows/kidp-p0-participant-journeys.yml"
+  # Manual-only. See docs/GITHUB_ACTIONS_POLICY.md.
   workflow_dispatch:
+
 jobs:
   production-chrome:
     runs-on: ubuntu-latest

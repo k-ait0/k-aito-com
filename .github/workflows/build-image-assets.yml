@@ -1,15 +1,7 @@
 name: Validate production assets
 
 on:
-  push:
-    paths:
-      - 'assets/shelves/*.webp'
-      - 'assets/hero/**'
-      - 'assets/brand/**'
-      - 'homepage.css'
-      - 'image-fix.css'
-      - 'index.html'
-      - '.github/workflows/build-image-assets.yml'
+  # Manual-only. See docs/GITHUB_ACTIONS_POLICY.md.
   workflow_dispatch:
 
 permissions:
