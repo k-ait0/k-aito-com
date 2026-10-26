@@ -1,0 +1,195 @@
+{
+  "schema": "A05-D78-E-MODE-COMPARISON-1",
+  "version": "D78-001",
+  "date": "2026-10-26",
+  "state": "DECISION_PENDING_NO_PARTICIPANTS",
+  "question": "E軸を補助的な相対選好・独立した二尺度・分類しないのどれとして扱うか",
+  "modes": [
+    {
+      "id": "E-A",
+      "runtimeMode": "relative",
+      "role": "COMPARATOR_ONLY",
+      "expectedOutput": "position_-3_to_3",
+      "strength": "1回答で相対的な希望を表現できる",
+      "unresolved": [
+        "金銭と時間の増分が等価でない",
+        "両方強く求める場合と両方求めない場合を区別できない",
+        "現状の生活制約を選好と混同"
+      ],
+      "requiredEvidence": [
+        "具体的に何円・何時間を想像したか",
+        "どちらも強く求めるとき答えられるか"
+      ],
+      "adoption": "NOT_APPROVED"
+    },
+    {
+      "id": "E-B",
+      "runtimeMode": "independent",
+      "role": "CONTRAST_AND_REDESIGN_CANDIDATE",
+      "expectedOutput": "separate_money_and_time_1_to_7",
+      "strength": "金銭と時間の両方を高く／低く評価できる",
+      "unresolved": [
+        "二つの尺度を直ちに性格分類と扱えない",
+        "回答負担・質問数・欠測処理が変わる",
+        "生活状況による回答偏りは残る"
+      ],
+      "requiredEvidence": [
+        "双方高／双方低の理解",
+        "回答負担・欠測の理由"
+      ],
+      "adoption": "NOT_APPROVED"
+    },
+    {
+      "id": "E-C",
+      "runtimeMode": "omitted",
+      "role": "SAFETY_BASELINE",
+      "expectedOutput": "no_E_classification",
+      "strength": "未検証の金銭／時間タイプを確定表示しない",
+      "unresolved": [
+        "旧32派生案と製品仕様が変わる",
+        "個別の金銭／時間の希望を可視化しない場合の価値を再評価する"
+      ],
+      "requiredEvidence": [
+        "4軸16タイプだけで目的が果たせるか",
+        "金銭／時間が任意振り返りとして必要か"
+      ],
+      "adoption": "NOT_APPROVED"
+    }
+  ],
+  "syntheticFixtures": [
+    {
+      "id": "relative-low",
+      "input": {
+        "mode": "relative",
+        "answer": 1
+      },
+      "expected": {
+        "mode": "relative",
+        "preference": -3
+      }
+    },
+    {
+      "id": "relative-middle",
+      "input": {
+        "mode": "relative",
+        "answer": 4
+      },
+      "expected": {
+        "mode": "relative",
+        "preference": 0
+      }
+    },
+    {
+      "id": "relative-high",
+      "input": {
+        "mode": "relative",
+        "answer": 7
+      },
+      "expected": {
+        "mode": "relative",
+        "preference": 3
+      }
+    },
+    {
+      "id": "independent-both-low",
+      "input": {
+        "mode": "independent",
+        "money": 1,
+        "time": 1
+      },
+      "expected": {
+        "mode": "independent",
+        "ratings": {
+          "money": 1,
+          "time": 1
+        }
+      }
+    },
+    {
+      "id": "independent-money-high",
+      "input": {
+        "mode": "independent",
+        "money": 7,
+        "time": 1
+      },
+      "expected": {
+        "mode": "independent",
+        "ratings": {
+          "money": 7,
+          "time": 1
+        }
+      }
+    },
+    {
+      "id": "independent-time-high",
+      "input": {
+        "mode": "independent",
+        "money": 1,
+        "time": 7
+      },
+      "expected": {
+        "mode": "independent",
+        "ratings": {
+          "money": 1,
+          "time": 7
+        }
+      }
+    },
+    {
+      "id": "independent-both-high",
+      "input": {
+        "mode": "independent",
+        "money": 7,
+        "time": 7
+      },
+      "expected": {
+        "mode": "independent",
+        "ratings": {
+          "money": 7,
+          "time": 7
+        }
+      }
+    },
+    {
+      "id": "omitted",
+      "input": {
+        "mode": "omitted"
+      },
+      "expected": {
+        "mode": "omitted",
+        "value": null
+      }
+    }
+  ],
+  "decisionRule": {
+    "preferForRiskControl": "E-C is the baseline to compare, not an adopted release option",
+    "researchContrast": "Compare E-A versus E-B only after authorizations; do not infer efficacy from synthetic fixtures",
+    "refusalToConflate": "Do not turn relative/independent experimental outputs into legacy wealth or 32 derived types",
+    "finalApproval": "HUMAN_EDITOR_AND_RESEARCH_OWNER",
+    "requiredReview": [
+      "CONSTRUCT_VALIDITY",
+      "COGNITIVE_COMPREHENSION",
+      "RESPONSE_BURDEN",
+      "UNKNOWN_AND_NEUTRAL_HANDLING",
+      "DATA_CONTRACT_VERSIONING",
+      "HUMAN_STUDY_AUTHORIZATION"
+    ]
+  },
+  "guards": {
+    "studyAuthorized": false,
+    "realParticipantRecords": 0,
+    "modeSelected": false,
+    "releaseAuthorized": false,
+    "mergeAuthorized": false,
+    "legacyWealthCompatible": false,
+    "legacyRescoringAllowed": false,
+    "oldRuntimeModified": false
+  },
+  "changeHistory": [
+    {
+      "date": "2026-10-26",
+      "version": "D78-001",
+      "change": "Record three E-mode option boundaries and 8 synthetic regression fixtures for review without authorization or production wiring."
+    }
+  ]
+}
