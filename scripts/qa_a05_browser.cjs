@@ -306,6 +306,8 @@ async function main() {
         });
         assert.ok(identity !== "synthetic-other-tab");
         // Stale tab and newly saved draft both have revision 0.
+        // The new-diagnosis action is on the history screen, not Home.
+        await stale.locator('[data-view="history"]').first().click();
         await stale.locator('[data-action="new"]').click();
         await stale.waitForFunction(() =>
           document.querySelector("#a05-notice")?.textContent.includes("別タブで変更"));
@@ -327,7 +329,8 @@ async function main() {
         });
         assert.equal(latest.assessmentId,"synthetic-other-tab");
         assert.equal(latest.revision,0);
-        assert.equal(await stale.locator('[data-action="enable"]').isDisabled(),true);
+        assert.equal(await stale.locator('input[data-setting="raw"]').isDisabled(),true,
+          "A conflict must lock further local preference writes");
       } finally { await isolated.close(); }
     });
 
