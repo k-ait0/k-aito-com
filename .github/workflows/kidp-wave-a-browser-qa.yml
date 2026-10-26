@@ -4,6 +4,7 @@ on:
     paths:
       - "projects/kidp/**"
       - "scripts/qa_a05_browser.cjs"
+      - "scripts/qa_a05_e_preview_browser.cjs"
       - "scripts/test-a05-*.mjs"
       - "scripts/a05-research-*.mjs"
       - "docs/A05_D*.md"
@@ -44,7 +45,7 @@ jobs:
              git fetch --no-tags --depth=1 origin "$BEFORE_SHA" >/dev/null 2>&1 &&
              git cat-file -e "$BEFORE_SHA^{commit}" 2>/dev/null; then
             if git diff --name-only "$BEFORE_SHA" "$AFTER_SHA" |
-               grep -Eq '^(projects/kidp/life-design-lab/a05/|scripts/(qa_a05_browser\.cjs|test-a05-.*\.mjs|a05-research-.*\.mjs)|\.github/workflows/kidp-wave-a-browser-qa\.yml)'; then
+               grep -Eq '^(projects/kidp/life-design-lab/a05/|scripts/(qa_a05_browser\.cjs|qa_a05_e_preview_browser\.cjs|test-a05-.*\.mjs|a05-research-.*\.mjs)|\.github/workflows/kidp-wave-a-browser-qa\.yml)'; then
               changed=true
             else
               changed=false
