@@ -1,6 +1,6 @@
 {
   "schema": "A05-D54-PR-REVIEW-MANIFEST-1",
-  "version": "D62-001",
+  "version": "D63-001",
   "date": "2026-10-26",
   "repository": "k-ait0/k-aito-com",
   "base": "main",
@@ -477,6 +477,15 @@
       "reviewedAt": null
     },
     {
+      "path": "projects/kidp/life-design-lab/a05/e-preview.html",
+      "group": "A_UI_ACCESSIBILITY",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
       "path": "projects/kidp/life-design-lab/a05/engine.mjs",
       "group": "C_PROVISIONAL_SCORING",
       "reviewStatus": "NOT_REVIEWED",
@@ -657,6 +666,15 @@
       "reviewedAt": null
     },
     {
+      "path": "scripts/test-a05-e-preview.mjs",
+      "group": "E_CROSSCUTTING_QA_AUDIT",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
       "path": "scripts/test-a05-engine.mjs",
       "group": "E_CROSSCUTTING_QA_AUDIT",
       "reviewStatus": "NOT_REVIEWED",
@@ -820,6 +838,11 @@
       "date": "2026-10-26",
       "version": "D62-001",
       "change": "Added research-only E display mapping and local node tests; no production wiring, study approval, or release."
+    },
+    {
+      "date": "2026-10-26",
+      "version": "D63-001",
+      "change": "Add isolated noindex research preview and static test; no real participants or production wiring."
     }
   ]
 }
