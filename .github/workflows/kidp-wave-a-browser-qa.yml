@@ -55,6 +55,9 @@ jobs:
       - name: A05 PR #61 full-diff review inventory (including docs-only changes)
         if: ${{ github.event_name == 'pull_request' && github.event.pull_request.number == 61 }}
         run: node --test scripts/test-a05-pr-review-manifest.mjs
+      - name: A05 D73 editorial source alignment (docs-only changes included)
+        if: ${{ github.event_name == 'pull_request' && github.event.pull_request.number == 61 }}
+        run: node --test scripts/test-a05-editorial-d73.mjs
       - name: A05 native Node domain and storage tests
         if: ${{ steps.a05scope.outputs.changed == 'true' }}
         run: |
@@ -65,7 +68,6 @@ jobs:
           node --test scripts/test-a05-release-boundaries.mjs
           node --test scripts/test-a05-storage.mjs
           node --test scripts/test-a05-e-experiment.mjs scripts/test-a05-e-display.mjs scripts/test-a05-e-preview.mjs
-          node --test scripts/test-a05-editorial-d73.mjs
           node --test scripts/test-a05-research-manifest.mjs scripts/test-a05-research-d36.mjs
           node --test scripts/test-a05-research-g1.mjs
           node --test scripts/test-a05-research-d40.mjs
