@@ -9,7 +9,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 2
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: "22"
@@ -43,7 +43,7 @@ jobs:
       - name: A05 site-wide local preflight and diff checks
         run: |
           node scripts/local-preflight.cjs
-          git diff --check HEAD^1 HEAD
+          git diff --check origin/main...HEAD
       - name: Install Playwright
         run: npm install --no-save playwright@1.56.1
       - name: Start static server and run Chromium

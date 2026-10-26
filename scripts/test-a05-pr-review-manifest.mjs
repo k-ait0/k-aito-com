@@ -119,16 +119,23 @@ test("D-54 production and private research domains remain separately classified"
   }
 });
 
-test("D-54 on GitHub PR merge refs: manifest covers exact full PR diff",t=>{
-  // Pull-request checkout defaults to refs/pull/N/merge, whose HEAD^1 is
-  // the base commit. Do NOT use the last single commit in a normal branch.
-  if(process.env.GITHUB_EVENT_NAME!=="pull_request" ||
-    !/^refs\/pull\/\d+\/merge$/.test(process.env.GITHUB_REF||""))
-    return t.skip("Full merge-ref diff available only for pull_request checkout");
-  const changed=execFileSync("git",["diff","--name-only","HEAD^1","HEAD"],{
+test("D-54 full PR diff is covered on PR merge refs and manual feature-branch QA",t=>{
+  const event=process.env.GITHUB_EVENT_NAME||"";
+  const ref=process.env.GITHUB_REF||"";
+  const onPrMerge=event==="pull_request" && /^refs\/pull\/\d+\/merge$/.test(ref);
+  const manual=event==="workflow_dispatch";
+  const local=process.env.A05_ENFORCE_PR_DIFF==="1";
+  if(!onPrMerge && !manual && !local)
+    return t.skip("Set A05_ENFORCE_PR_DIFF=1 for local audit; manual dispatch enforces it automatically");
+  if((manual||local)&&ref==="refs/heads/main")
+    throw new Error("Full PR inventory must be checked against a feature branch, never main");
+  const args=onPrMerge?
+    ["diff","--name-only","HEAD^1","HEAD"]:
+    ["diff","--name-only","origin/main...HEAD"];
+  const changed=execFileSync("git",args,{
     cwd:root,encoding:"utf8",maxBuffer:1024*1024
   }).trim().split("\n").filter(Boolean).sort();
   const listed=manifest.files.map(x=>x.path);
   assert.deepEqual(listed,changed,
-    "Every changed file must have an explicit human review owner; update manifest before adding files");
+    "PR diff must match every file in the human-review manifest; checkout full history and update the manifest before adding files");
 });
