@@ -269,6 +269,68 @@ async function main() {
       assert.match(await page.locator("#a05-answer-status").innerText(), /まだ回答/);
     });
 
+    await check("D-56 stale tab cannot replace a different draft with the same revision", async () => {
+      const isolated = await browser.newContext({ viewport: { width:390, height:844 } });
+      try {
+        const first = await isolated.newPage();
+        await first.goto(address + A05);
+        await first.locator("#a05-content h2").waitFor();
+        await first.locator('[data-action="enable"]').click();
+        await first.locator('#a05-content[aria-busy="false"]').waitFor();
+
+        const stale = await isolated.newPage();
+        await stale.goto(address + A05);
+        await stale.locator("#a05-content h2").waitFor();
+
+        const identity = await first.evaluate(async () => {
+          const request = indexedDB.open("kaito-a05-values-v1",1);
+          const db = await new Promise((resolve,reject) => {
+            request.onsuccess=()=>resolve(request.result);
+            request.onerror=()=>reject(request.error);
+          });
+          try {
+            return await new Promise((resolve,reject) => {
+              const tx=db.transaction(["drafts"],"readwrite");
+              const store=tx.objectStore("drafts");
+              let oldId;
+              const get=store.get("active");
+              get.onsuccess=()=>{
+                const next={...get.result,assessmentId:"synthetic-other-tab",revision:0};
+                oldId=get.result.assessmentId;
+                store.put(next);
+              };
+              tx.oncomplete=()=>resolve(oldId);
+              tx.onabort=()=>reject(tx.error);
+            });
+          } finally { db.close(); }
+        });
+        assert.ok(identity !== "synthetic-other-tab");
+        // Stale tab and newly saved draft both have revision 0.
+        await stale.locator('[data-action="new"]').click();
+        await stale.waitForFunction(() =>
+          document.querySelector("#a05-notice")?.textContent.includes("別タブで変更"));
+        assert.match(await stale.locator("#a05-notice").innerText(),/自動上書きは停止中/);
+        const latest=await first.evaluate(async () => {
+          const req=indexedDB.open("kaito-a05-values-v1",1);
+          const db=await new Promise((resolve,reject)=>{
+            req.onsuccess=()=>resolve(req.result);
+            req.onerror=()=>reject(req.error);
+          });
+          try {
+            return await new Promise((resolve,reject)=>{
+              const tx=db.transaction(["drafts"],"readonly");
+              const get=tx.objectStore("drafts").get("active");
+              get.onsuccess=()=>resolve(get.result);
+              get.onerror=()=>reject(get.error);
+            });
+          } finally { db.close(); }
+        });
+        assert.equal(latest.assessmentId,"synthetic-other-tab");
+        assert.equal(latest.revision,0);
+        assert.equal(await stale.locator('[data-action="enable"]').isDisabled(),true);
+      } finally { await isolated.close(); }
+    });
+
     await check("opt-in: consent and draft survive reload", async () => {
       await page.locator('[data-view="home"]').first().click();
       await page.locator("#a05-retain-raw").check();
