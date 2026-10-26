@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta name="description" content="A05のB軸形式による16タイプ構造の変化を合成回答だけで検証する編集用プレビュー">
+<title>A05 D86｜16タイプ構造の研究設計比較（未承認）</title>
+<style>
+:root{font-family:system-ui,-apple-system,"Hiragino Kaku Gothic ProN",sans-serif;color-scheme:light dark}
+*{box-sizing:border-box}
+body{max-width:1040px;margin:24px auto;padding:0 16px;line-height:1.65}
+h1{line-height:1.35}h2{font-size:1.15rem}h3{font-size:1.05rem}
+.notice{border:2px solid currentColor;border-radius:12px;padding:12px 16px;font-weight:650}
+.controls{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:22px 0}
+.controls>div{min-width:0}label{display:block;font-weight:600;margin-bottom:5px}
+select{font:inherit;width:100%;min-height:44px;padding:8px;border-radius:8px}
+select:focus-visible{outline:3px solid #347ac3;outline-offset:3px}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.card{min-width:0;border:1px solid #888;border-radius:12px;padding:16px;overflow-wrap:anywhere}
+.card[data-current="true"]{border-width:3px}
+.card h3{margin:0 0 12px}
+.count{font-size:1.6rem;font-weight:750;margin:5px 0}
+.note{border:1px solid #888;border-radius:12px;padding:12px 16px;margin:16px 0}
+.small{font-size:.9rem}
+.output{font-weight:650;white-space:pre-wrap}
+@media(max-width:740px){.grid{grid-template-columns:1fr}.controls{grid-template-columns:1fr}.card{padding:14px}}
+</style>
+</head>
+<body>
+<main>
+<h1>A05｜分類構造の選択肢を比較</h1>
+<p class="notice">未承認の編集・研究設計用画面です。タイプ判定や実回答調査ではありません。表示する回答はすべて架空の例です。</p>
+<p>16タイプを維持するB1、B軸を独立2尺度として扱うB2、B軸を分類に使わないB3の構造差を比較します。軸が二値で区分できると仮定した場合の数学的な組合せ数であり、実際の人格タイプ数ではありません。</p>
+<div class="controls">
+ <div>
+ <label for="mode">比較する構造</label>
+ <select id="mode">
+  <option value="B1">B1：B軸を単一の二極尺度として保持</option>
+  <option value="B2">B2：B軸を独立2尺度とする</option>
+  <option value="B3">B3：B軸をタイプ分類に使用しない</option>
+ </select>
+ </div>
+ <div>
+ <label for="case">架空の回答例</label>
+ <select id="case"></select>
+ </div>
+</div>
+<p id="selection" aria-live="polite"></p>
+<div class="grid" aria-label="分類構造の比較">
+ <section class="card" data-mode="B1"><h3>B1｜4つの二値軸</h3><p class="count">理論上16通り</p><p>A・B・C・Dが独立した二値軸だという未検証の仮定に依存します。</p></section>
+ <section class="card" data-mode="B2"><h3>B2｜3つの二値軸＋2尺度</h3><p class="count">理論上8通り＋2項目</p><p>A・C・Dの仮の組合せと、独立した自分／他者の重視度を別々に表示する設計です。</p></section>
+ <section class="card" data-mode="B3"><h3>B3｜B軸を分類から除外</h3><p class="count">理論上8通り</p><p>残り3軸を二値と仮定しただけの組合せです。8タイプの正式採用案ではありません。</p></section>
+</div>
+<section class="note" aria-label="選択した構造での合成結果">
+ <h2>選択方式のデータ構造（合成結果のみ）</h2>
+ <p id="model-summary" class="output"></p>
+ <p id="example-value"></p>
+ <p id="withheld" class="output"></p>
+</section>
+<section class="note">
+ <h2>公開・実装の判断ゲート</h2>
+ <p>現時点ではタイプIDを生成しません。16通り・8通りという数は数学的な組合せ数で、回答者の特性を裏付けるものではありません。旧T01〜T16やRGBYへの互換性を主張せず、旧履歴を変更しません。</p>
+ <p>まずA/Bの概念、Bの二極性、残る質問のBLOCK、G1の研究運用承認を解決し、その後に新版の分類仕様と結果表示を承認します。</p>
+</section>
+<p class="small">この画面は選択を保存・送信しません。参加者募集、実回答の収集、16タイプの採点、個人情報の保存、A01等への自動連携はありません。</p>
+</main>
+<script type="module" src="./type-structure-preview.mjs"></script>
+</body>
+</html>
