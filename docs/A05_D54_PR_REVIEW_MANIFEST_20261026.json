@@ -1,6 +1,6 @@
 {
   "schema": "A05-D54-PR-REVIEW-MANIFEST-1",
-  "version": "D65-001",
+  "version": "D68-001",
   "date": "2026-10-26",
   "repository": "k-ait0/k-aito-com",
   "base": "main",
@@ -639,6 +639,15 @@
       "reviewedAt": null
     },
     {
+      "path": "scripts/qa_a05_e_preview_browser.cjs",
+      "group": "E_CROSSCUTTING_QA_AUDIT",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
       "path": "scripts/test-a05-backup-inspect.mjs",
       "group": "E_CROSSCUTTING_QA_AUDIT",
       "reviewStatus": "NOT_REVIEWED",
@@ -848,6 +857,11 @@
       "date": "2026-10-26",
       "version": "D65-001",
       "change": "Normalize manifest path ordering to default JavaScript lexical order required by strict PR inventory test; no review approvals changed."
+    },
+    {
+      "date": "2026-10-26",
+      "version": "D68-001",
+      "change": "Add responsive Chromium QA for isolated E preview; retain draft-only and all approval gates."
     }
   ]
 }
