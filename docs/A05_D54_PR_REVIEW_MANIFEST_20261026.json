@@ -1,6 +1,6 @@
 {
   "schema": "A05-D54-PR-REVIEW-MANIFEST-1",
-  "version": "D85-001",
+  "version": "D86-001",
   "date": "2026-10-26",
   "repository": "k-ait0/k-aito-com",
   "base": "main",
@@ -666,6 +666,24 @@
       "reviewedAt": null
     },
     {
+      "path": "docs/A05_D86_TYPE_STRUCTURE_DECISION_20261026.json",
+      "group": "C_PROVISIONAL_SCORING",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "docs/A05_D86_TYPE_STRUCTURE_REVIEW_20261026.md",
+      "group": "C_PROVISIONAL_SCORING",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
       "path": "projects/kidp/life-design-lab/a05/README.md",
       "group": "A_UI_ACCESSIBILITY",
       "reviewStatus": "NOT_REVIEWED",
@@ -855,6 +873,33 @@
       "reviewedAt": null
     },
     {
+      "path": "projects/kidp/life-design-lab/a05/type-structure-experiment.mjs",
+      "group": "C_PROVISIONAL_SCORING",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "projects/kidp/life-design-lab/a05/type-structure-preview.html",
+      "group": "A_UI_ACCESSIBILITY",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "projects/kidp/life-design-lab/a05/type-structure-preview.mjs",
+      "group": "A_UI_ACCESSIBILITY",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
       "path": "projects/kidp/life-design-lab/a05/types.mjs",
       "group": "C_PROVISIONAL_SCORING",
       "reviewStatus": "NOT_REVIEWED",
@@ -946,6 +991,15 @@
     },
     {
       "path": "scripts/qa_a05_editorial_preview_browser.cjs",
+      "group": "E_CROSSCUTTING_QA_AUDIT",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "scripts/qa_a05_type_structure_browser.cjs",
       "group": "E_CROSSCUTTING_QA_AUDIT",
       "reviewStatus": "NOT_REVIEWED",
       "mergeAuthorized": false,
@@ -1168,6 +1222,15 @@
       "reviewEvidenceRef": null,
       "reviewerRole": null,
       "reviewedAt": null
+    },
+    {
+      "path": "scripts/test-a05-type-structure.mjs",
+      "group": "E_CROSSCUTTING_QA_AUDIT",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
     }
   ],
   "changeHistory": [
@@ -1280,6 +1343,11 @@
       "date": "2026-10-26",
       "version": "D85-001",
       "change": "Add isolated B bipolar/independent contracts, eight synthetic scenarios, noindex preview and Node/Chrome tests; preserve old scoring and 16-type meaning; no study or release approval."
+    },
+    {
+      "date": "2026-10-26",
+      "version": "D86-001",
+      "change": "Add B1/B2/B3 type-structure decision, isolated no-type comparator and noindex preview, Node and Chrome regression tests. Theory-only counts 16/8; no new type assignment, human validation, data migration, participant recruitment, merge or production approval."
     }
   ]
 }
