@@ -2,7 +2,8 @@
 const assert = require("node:assert/strict");
 const {CHECKS, runPreflight} = require("./local-preflight.cjs");
 
-const expected = ["test-check-generated-content.cjs", "check-generated-content.cjs",
+const expected = ["check-actions-manual-only.cjs", "test-actions-manual-only-policy.cjs",
+  "test-check-generated-content.cjs", "check-generated-content.cjs",
   "test-published-content.cjs", "test-article-navigation.cjs",
   "site-static-check.cjs", "audit-seo.cjs"];
 for (const name of expected) {
