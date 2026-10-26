@@ -1,21 +1,7 @@
 name: SEO static audit
 
 on:
-  pull_request:
-    paths:
-      - '**/*.html'
-      - 'sitemap.xml'
-      - 'robots.txt'
-      - 'scripts/audit-seo.cjs'
-      - '.github/workflows/seo-audit.yml'
-  push:
-    branches: [main]
-    paths:
-      - '**/*.html'
-      - 'sitemap.xml'
-      - 'robots.txt'
-      - 'scripts/audit-seo.cjs'
-      - '.github/workflows/seo-audit.yml'
+  # Manual-only. See docs/GITHUB_ACTIONS_POLICY.md.
   workflow_dispatch:
 
 permissions:

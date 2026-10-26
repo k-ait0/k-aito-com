@@ -1,8 +1,6 @@
 name: KIDP Live Deployment Readiness
 on:
-  pull_request:
-    paths:
-      - ".github/workflows/kidp-live-deployment-readiness.yml"
+  # Manual-only. See docs/GITHUB_ACTIONS_POLICY.md.
   workflow_dispatch:
 
 jobs:

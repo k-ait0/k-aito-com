@@ -1,28 +1,7 @@
 name: Live XServer deployment verification
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - '*.html'
-      - '**/*.html'
-      - '*.css'
-      - '**/*.css'
-      - '*.js'
-      - '**/*.js'
-      - 'scripts/browser-smoke.cjs'
-      - 'scripts/live-production-check.cjs'
-      - 'assets/**'
-      - 'mono-base/assets/**'
-      - 'mono-base/ASSET_MANIFEST.sha256'
-      - 'sitemap.xml'
-      - 'robots.txt'
-      - 'og-image.png'
-      - '.github/workflows/live-production-check.yml'
-  workflow_run:
-    workflows: ['Sync published article index']
-    types: [completed]
-    branches: [main]
+  # Manual-only. See docs/GITHUB_ACTIONS_POLICY.md.
   workflow_dispatch:
 
 permissions:
@@ -34,7 +13,7 @@ concurrency:
 
 jobs:
   compare-production:
-    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
+    # Manual release gate; real production checks are retained.
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
