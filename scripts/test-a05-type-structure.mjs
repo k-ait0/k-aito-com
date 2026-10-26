@@ -137,7 +137,7 @@ test("D86 static preview is noindex, fictional, and contains no persistence or n
  assert.match(html,/id="case"/);
  assert.match(html,/合成/);
  assert.match(js,/structurePreview/);
- assert.equal(js.includes("typeId"),false); 
+ assert.equal(js.includes("typeId"),false);
  for(const forbidden of ["localStorage","sessionStorage","indexedDB","fetch(",
   "XMLHttpRequest","sendBeacon","navigator.serviceWorker","innerHTML","https://","http://"])
   assert.equal([html,js,engine].some(s=>s.includes(forbidden)),false,forbidden);
