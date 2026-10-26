@@ -1,6 +1,6 @@
 {
   "schema": "A05-D54-PR-REVIEW-MANIFEST-1",
-  "version": "D74-001",
+  "version": "D75-001",
   "date": "2026-10-26",
   "repository": "k-ait0/k-aito-com",
   "base": "main",
@@ -477,6 +477,24 @@
       "reviewedAt": null
     },
     {
+      "path": "docs/A05_D75_CONDITIONAL_16TYPE_COPY_20261026.json",
+      "group": "C_PROVISIONAL_SCORING",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "docs/A05_D75_RESULT_COPY_VARIANTS_20261026.md",
+      "group": "C_PROVISIONAL_SCORING",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
       "path": "projects/kidp/life-design-lab/a05/README.md",
       "group": "A_UI_ACCESSIBILITY",
       "reviewStatus": "NOT_REVIEWED",
@@ -738,6 +756,15 @@
       "reviewedAt": null
     },
     {
+      "path": "scripts/test-a05-editorial-d75.mjs",
+      "group": "E_CROSSCUTTING_QA_AUDIT",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
       "path": "scripts/test-a05-engine.mjs",
       "group": "E_CROSSCUTTING_QA_AUDIT",
       "reviewStatus": "NOT_REVIEWED",
@@ -926,6 +953,11 @@
       "date": "2026-10-26",
       "version": "D74-001",
       "change": "Track A/B 12-item construct-continuity comparison proposal and CI checks; no questionnaire adoption, study approval or release."
+    },
+    {
+      "date": "2026-10-26",
+      "version": "D75-001",
+      "change": "Inventory unapproved 16-type L/M conditional result copy and regression checks; existing A05 question/scoring/type/content files unchanged."
     }
   ]
 }
