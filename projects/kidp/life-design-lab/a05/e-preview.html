@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta name="description" content="A05のE軸に関する未検証の研究用プレビュー。金銭と時間の希望の表示方式を比較します。">
+<title>A05 E軸比較・研究用プレビュー（未検証）</title>
+<style>
+:root{color-scheme:light dark;font-family:system-ui,sans-serif}body{max-width:720px;margin:2rem auto;padding:0 1rem;line-height:1.7}fieldset{border:1px solid #999;border-radius:10px;padding:1rem;margin:1rem 0}label{display:block;margin:.6rem 0}select,input{font:inherit;max-width:100%;padding:.35rem}button{font:inherit;padding:.6rem 1rem}output{display:block;padding:1rem;border:1px solid #999;border-radius:10px;white-space:pre-wrap}small{display:block} .notice{font-weight:700}
+</style>
+</head>
+<body>
+<main>
+<h1>E軸方式比較：研究用プレビュー</h1>
+<p class="notice">未検証の試作品です。心理尺度・診断結果ではありません。</p>
+<p>端末への保存、ネットワーク送信、参加者データの収集は行いません。研究への参加募集・実施を許可する画面ではありません。</p>
+<fieldset><legend>比較方式</legend>
+<label for="mode">方式を選択</label>
+<select id="mode"><option value="relative">A：金銭と時間の相対比較</option><option value="independent">B：金銭と時間を個別評価</option><option value="omitted">C：E軸を除外</option></select>
+</fieldset>
+<fieldset id="relative-group"><legend>相対比較</legend><label for="relative">1：金銭面を優先 ／ 4：同程度 ／ 7：時間面を優先</label><input id="relative" type="range" min="1" max="7" step="1" value="4"><output id="relative-value" for="relative">4</output></fieldset>
+<fieldset id="independent-group" hidden><legend>個別評価</legend><label for="money">金銭面の追加的な裁量を重視する程度（1〜7）</label><input id="money" type="range" min="1" max="7" value="4"><output id="money-value" for="money">4</output><label for="time">時間面の追加的な裁量を重視する程度（1〜7）</label><input id="time" type="range" min="1" max="7" value="4"><output id="time-value" for="time">4</output></fieldset>
+<h2>表示確認</h2><output id="result" role="status" aria-live="polite"></output>
+<small>本画面は既存のA05診断エンジン・保存処理から独立しています。実験結果を旧版のwealthへ変換しません。</small>
+</main>
+<script type="module">
+import { experimentalEDisplay } from "./e-display.mjs";
+const $ = id => document.getElementById(id);
+function render(){
+ const mode=$("mode").value;
+ $("relative-group").hidden=mode!=="relative";
+ $("independent-group").hidden=mode!=="independent";
+ $("relative-value").value=$("relative").value;
+ $("money-value").value=$("money").value;
+ $("time-value").value=$("time").value;
+ const config=mode==="relative"?{mode,answer:Number($("relative").value)}:mode==="independent"?{mode,money:Number($("money").value),time:Number($("time").value)}:{mode};
+ const result=experimentalEDisplay(config);
+ $("result").textContent=[result.title,result.description,...result.items.map(x=>x.label+"： "+x.value)].join("\n");
+}
+for(const id of ["mode","relative","money","time"])$(id).addEventListener("input",render);
+render();
+</script>
+</body>
+</html>

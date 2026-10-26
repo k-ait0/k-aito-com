@@ -1,0 +1,864 @@
+{
+  "schema": "A05-D80-PILOT-CANDIDATES-1",
+  "version": "D80-001",
+  "date": "2026-10-26",
+  "state": "CANDIDATE_INVENTORY_NOT_A_QUESTIONNAIRE",
+  "purpose": "A proposed four-axis, up-to-24-item comparison pool; no official 24-question test or scoring version approved.",
+  "selectionBasis": {
+    "AB": "D79 R is an editorial priority, not owner choice.",
+    "CD": "D57/D59 candidate copy, unchanged.",
+    "E": "Quarantined until D81 selection. Engineering baseline E-C only.",
+    "lockedQuestionCount": 30,
+    "comparisonPoolSlots": 24,
+    "readyToAdopt": 0
+  },
+  "questionOrder": "A01,B01,C01,D01,A02,B02,C02,D02,...,A06,B06,C06,D06 (reference IDs only; actual order undecided)",
+  "items": [
+    {
+      "id": "A01",
+      "axis": "A",
+      "oldEditorialVerdict": "REVISE",
+      "sourceCurrent": {
+        "negative": "一つの地域で暮らしを育てる",
+        "positive": "複数の地域で暮らしを経験する"
+      },
+      "priorCandidate": {
+        "negative": "既存の方法を改善して使う",
+        "positive": "未経験の方法を試す",
+        "source": "D59"
+      },
+      "candidateR": {
+        "negative": "日常の暮らし方を維持して整えることを重視",
+        "positive": "日常の暮らし方に変化を取り入れることを重視"
+      },
+      "candidateSource": "D80_R_NEW_EDITORIAL_HYPOTHESIS",
+      "facet": "日々の生活",
+      "disposition": "UNAPPROVED_EDITING_CANDIDATE",
+      "requiresReview": "AXIS_R_CONCEPT_AND_BIPOLARITY",
+      "approved": false,
+      "researchValidation": false,
+      "linkedDuplicates": [
+        "A04"
+      ]
+    },
+    {
+      "id": "A02",
+      "axis": "A",
+      "oldEditorialVerdict": "TRIAL",
+      "sourceCurrent": {
+        "negative": "慣れた環境を長く活かす",
+        "positive": "新しい環境へ定期的に移る"
+      },
+      "priorCandidate": {
+        "negative": "現在の活動環境を整える",
+        "positive": "新しい活動環境を試す",
+        "source": "D57"
+      },
+      "candidateR": {
+        "negative": "活動する場所を一定に保つことを重視",
+        "positive": "活動する場所を変えることを重視"
+      },
+      "candidateSource": "D80_R_NEW_EDITORIAL_HYPOTHESIS",
+      "facet": "活動環境",
+      "disposition": "UNAPPROVED_EDITING_CANDIDATE",
+      "requiresReview": "AXIS_R_CONCEPT_AND_BIPOLARITY",
+      "approved": false,
+      "researchValidation": false,
+      "linkedDuplicates": [
+        "A03"
+      ]
+    },
+    {
+      "id": "A03",
+      "axis": "A",
+      "oldEditorialVerdict": "TRIAL",
+      "sourceCurrent": {
+        "negative": "心地よい日常の形を維持する",
+        "positive": "日常の形を更新し続ける"
+      },
+      "priorCandidate": {
+        "negative": "既存の習慣を磨く",
+        "positive": "新しい習慣を取り入れる",
+        "source": "D57"
+      },
+      "candidateR": {
+        "negative": "今の習慣を継続して磨くことを重視",
+        "positive": "新しい習慣を試すことを重視"
+      },
+      "candidateSource": "D80_R_NEW_EDITORIAL_HYPOTHESIS",
+      "facet": "生活習慣",
+      "disposition": "UNAPPROVED_EDITING_CANDIDATE",
+      "requiresReview": "AXIS_R_CONCEPT_AND_BIPOLARITY",
+      "approved": false,
+      "researchValidation": false,
+      "linkedDuplicates": [
+        "A02"
+      ]
+    },
+    {
+      "id": "A04",
+      "axis": "A",
+      "oldEditorialVerdict": "BLOCK",
+      "sourceCurrent": {
+        "negative": "今ある生活基盤を活かす",
+        "positive": "生活基盤を作り直す"
+      },
+      "priorCandidate": {
+        "negative": "一度決めた活動計画を続ける",
+        "positive": "途中でも活動計画を見直す",
+        "source": "D59"
+      },
+      "candidateR": {
+        "negative": "暮らしの計画を継続して調整することを重視",
+        "positive": "暮らしの計画を変えて組み直すことを重視"
+      },
+      "candidateSource": "D80_R_NEW_EDITORIAL_HYPOTHESIS",
+      "facet": "生活計画",
+      "disposition": "BLOCK_PENDING_REWRITE_OR_DELETE",
+      "requiresReview": "AXIS_R_CONCEPT_AND_BIPOLARITY",
+      "approved": false,
+      "researchValidation": false,
+      "linkedDuplicates": [
+        "A01"
+      ]
+    },
+    {
+      "id": "A05",
+      "axis": "A",
+      "oldEditorialVerdict": "BLOCK",
+      "sourceCurrent": {
+        "negative": "一つの環境をより良く育てる",
+        "positive": "異なる環境を経験していく"
+      },
+      "priorCandidate": {
+        "negative": "予想できる変化には従来の進め方を調整する",
+        "positive": "予想できる変化を機に進め方を組み替える",
+        "source": "D59"
+      },
+      "candidateR": {
+        "negative": "生活上の役割を維持して工夫することを重視",
+        "positive": "生活上の役割に新しい変化を加えることを重視"
+      },
+      "candidateSource": "D80_R_NEW_EDITORIAL_HYPOTHESIS",
+      "facet": "生活上の役割",
+      "disposition": "BLOCK_PENDING_REWRITE_OR_DELETE",
+      "requiresReview": "AXIS_R_CONCEPT_AND_BIPOLARITY",
+      "approved": false,
+      "researchValidation": false,
+      "linkedDuplicates": [
+        "A06"
+      ]
+    },
+    {
+      "id": "A06",
+      "axis": "A",
+      "oldEditorialVerdict": "REVISE",
+      "sourceCurrent": {
+        "negative": "現在の拠点を保って挑戦する",
+        "positive": "拠点そのものを変えて挑戦する"
+      },
+      "priorCandidate": {
+        "negative": "予想外の変化には既存の手順を応用する",
+        "positive": "予想外の変化には別の手順を探す",
+        "source": "D59"
+      },
+      "candidateR": {
+        "negative": "予想外の生活変化でも今の基盤を活かすことを重視",
+        "positive": "予想外の生活変化には新たな形を探すことを重視"
+      },
+      "candidateSource": "D80_R_NEW_EDITORIAL_HYPOTHESIS",
+      "facet": "変化への対応",
+      "disposition": "UNAPPROVED_EDITING_CANDIDATE",
+      "requiresReview": "AXIS_R_CONCEPT_AND_BIPOLARITY",
+      "approved": false,
+      "researchValidation": false,
+      "linkedDuplicates": [
+        "A05"
+      ]
+    },
+    {
+      "id": "B01",
+      "axis": "B",
+      "oldEditorialVerdict": "TRIAL",
+      "sourceCurrent": {
+        "negative": "自分の希望を中心に決める",
+        "positive": "大切な人との希望の一致を重視する"
+      },
+      "priorCandidate": {
+        "negative": "最終的な判断を自分で担う",
+        "positive": "最終的な判断を関係者と共同で担う",
+        "source": "D57"
+      },
+      "candidateR": {
+        "negative": "自分の希望を優先して生活方針を考えることを重視",
+        "positive": "関係する人の希望を優先して生活方針を考えることを重視"
+      },
+      "candidateSource": "D80_R_NEW_EDITORIAL_HYPOTHESIS",
+      "facet": "生活方針",
+      "disposition": "UNAPPROVED_EDITING_CANDIDATE",
+      "requiresReview": "AXIS_R_CONCEPT_AND_BIPOLARITY",
+      "approved": false,
+      "researchValidation": false,
+      "linkedDuplicates": [
+        "B06"
+      ]
+    },
+    {
+      "id": "B02",
+      "axis": "B",
+      "oldEditorialVerdict": "BLOCK",
+      "sourceCurrent": {
+        "negative": "自分で生活を組み立てる余地",
+        "positive": "身近な人と生活を共有する機会"
+      },
+      "priorCandidate": {
+        "negative": "活動の進め方を自分で決める余地を重視",
+        "positive": "関係者と決める機会を重視",
+        "source": "D59"
+      },
+      "candidateR": {
+        "negative": "余暇の過ごし方は自分の希望を起点に考えることを重視",
+        "positive": "余暇の過ごし方は関係する人の希望を起点に考えることを重視"
+      },
+      "candidateSource": "D80_R_NEW_EDITORIAL_HYPOTHESIS",
+      "facet": "余暇",
+      "disposition": "BLOCK_PENDING_REWRITE_OR_DELETE",
+      "requiresReview": "AXIS_R_CONCEPT_AND_BIPOLARITY",
+      "approved": false,
+      "researchValidation": false,
+      "linkedDuplicates": [
+        "B05"
+      ]
+    },
+    {
+      "id": "B03",
+      "axis": "B",
+      "oldEditorialVerdict": "REVISE",
+      "sourceCurrent": {
+        "negative": "自分が望む達成を大切にする",
+        "positive": "誰かと共有できる達成を大切にする"
+      },
+      "priorCandidate": {
+        "negative": "達成後まず自分で振り返る",
+        "positive": "達成後まず関係者と振り返る",
+        "source": "D57"
+      },
+      "candidateR": {
+        "negative": "目標の意義は自分の納得を基準に考えることを重視",
+        "positive": "目標の意義は他者と共有できることを基準に考えることを重視"
+      },
+      "candidateSource": "D80_R_NEW_EDITORIAL_HYPOTHESIS",
+      "facet": "目標の意義",
+      "disposition": "UNAPPROVED_EDITING_CANDIDATE",
+      "requiresReview": "AXIS_R_CONCEPT_AND_BIPOLARITY",
+      "approved": false,
+      "researchValidation": false,
+      "linkedDuplicates": [
+        "B01"
+      ]
+    },
+    {
+      "id": "B04",
+      "axis": "B",
+      "oldEditorialVerdict": "TRIAL",
+      "sourceCurrent": {
+        "negative": "自分の希望する場所を選ぶ",
+        "positive": "大切な人との距離を重視して選ぶ"
+      },
+      "priorCandidate": {
+        "negative": "調整可能なら自分の予定を優先して組む",
+        "positive": "調整可能なら関係者と予定を合わせて組む",
+        "source": "D57"
+      },
+      "candidateR": {
+        "negative": "暮らす場所は自分に合う条件を優先して考えることを重視",
+        "positive": "暮らす場所は関係する人との関わりを優先して考えることを重視"
+      },
+      "candidateSource": "D80_R_NEW_EDITORIAL_HYPOTHESIS",
+      "facet": "居住選択",
+      "disposition": "UNAPPROVED_EDITING_CANDIDATE",
+      "requiresReview": "AXIS_R_CONCEPT_AND_BIPOLARITY",
+      "approved": false,
+      "researchValidation": false,
+      "linkedDuplicates": [
+        "B02"
+      ]
+    },
+    {
+      "id": "B05",
+      "axis": "B",
+      "oldEditorialVerdict": "REVISE",
+      "sourceCurrent": {
+        "negative": "自分だけでも実現したい目標",
+        "positive": "大切な人と実現したい目標"
+      },
+      "priorCandidate": {
+        "negative": "同じ目標の実行を自分で組み立てる",
+        "positive": "同じ目標の実行を関係者と分担する",
+        "source": "D59"
+      },
+      "candidateR": {
+        "negative": "達成の喜びは自分自身の実感を重視",
+        "positive": "達成の喜びは関係する人と共有する実感を重視"
+      },
+      "candidateSource": "D80_R_NEW_EDITORIAL_HYPOTHESIS",
+      "facet": "達成の受け止め",
+      "disposition": "UNAPPROVED_EDITING_CANDIDATE",
+      "requiresReview": "AXIS_R_CONCEPT_AND_BIPOLARITY",
+      "approved": false,
+      "researchValidation": false,
+      "linkedDuplicates": [
+        "B02"
+      ]
+    },
+    {
+      "id": "B06",
+      "axis": "B",
+      "oldEditorialVerdict": "REVISE",
+      "sourceCurrent": {
+        "negative": "自分の希望に合わせて方向を決める",
+        "positive": "関係者と方向をすり合わせる"
+      },
+      "priorCandidate": {
+        "negative": "意見が分かれた際に自分の判断を重視する",
+        "positive": "意見が分かれた際に合意形成を重視する",
+        "source": "D57"
+      },
+      "candidateR": {
+        "negative": "意見が異なる場面で自分の希望を伝えることを重視",
+        "positive": "意見が異なる場面で互いの希望をすり合わせることを重視"
+      },
+      "candidateSource": "D80_R_NEW_EDITORIAL_HYPOTHESIS",
+      "facet": "意見相違",
+      "disposition": "UNAPPROVED_EDITING_CANDIDATE",
+      "requiresReview": "AXIS_R_CONCEPT_AND_BIPOLARITY",
+      "approved": false,
+      "researchValidation": false,
+      "linkedDuplicates": [
+        "B01"
+      ]
+    },
+    {
+      "id": "C01",
+      "axis": "C",
+      "oldEditorialVerdict": "TRIAL",
+      "sourceCurrent": {
+        "negative": "数年後の達成につながる日々",
+        "positive": "毎日の充実を感じられる日々"
+      },
+      "priorCandidate": {
+        "negative": "将来の選択肢が増える活動を先に選ぶ",
+        "positive": "今日の充実が増える活動を先に選ぶ",
+        "source": "D57"
+      },
+      "candidateR": {
+        "negative": "将来の選択肢が増える活動を先に選ぶ",
+        "positive": "今日の充実が増える活動を先に選ぶ",
+        "source": "D57"
+      },
+      "candidateSource": "D57",
+      "facet": "活動全体の選択",
+      "disposition": "UNAPPROVED_EDITING_CANDIDATE",
+      "requiresReview": "DISTINCTNESS_AND_COGNITIVE_REVIEW",
+      "approved": false,
+      "researchValidation": false,
+      "linkedDuplicates": [
+        "C02",
+        "C05"
+      ]
+    },
+    {
+      "id": "C02",
+      "axis": "C",
+      "oldEditorialVerdict": "REVISE",
+      "sourceCurrent": {
+        "negative": "将来の目標に備える活動",
+        "positive": "今の満足につながる活動"
+      },
+      "priorCandidate": {
+        "negative": "同じ負担なら将来便益の大きい時間を選ぶ",
+        "positive": "同じ負担なら今日便益の大きい時間を選ぶ",
+        "source": "D57"
+      },
+      "candidateR": {
+        "negative": "同じ負担なら将来便益の大きい時間を選ぶ",
+        "positive": "同じ負担なら今日便益の大きい時間を選ぶ",
+        "source": "D57"
+      },
+      "candidateSource": "D57",
+      "facet": "同負担下の時間配分",
+      "disposition": "UNAPPROVED_EDITING_CANDIDATE",
+      "requiresReview": "DISTINCTNESS_AND_COGNITIVE_REVIEW",
+      "approved": false,
+      "researchValidation": false,
+      "linkedDuplicates": [
+        "C01",
+        "C05"
+      ]
+    },
+    {
+      "id": "C03",
+      "axis": "C",
+      "oldEditorialVerdict": "TRIAL",
+      "sourceCurrent": {
+        "negative": "将来使いたい知識を身につける",
+        "positive": "今知りたいことを学ぶ"
+      },
+      "priorCandidate": {
+        "negative": "後に役立つ知識を学ぶ",
+        "positive": "今日の関心を満たす知識を学ぶ",
+        "source": "D57"
+      },
+      "candidateR": {
+        "negative": "後に役立つ知識を学ぶ",
+        "positive": "今日の関心を満たす知識を学ぶ",
+        "source": "D57"
+      },
+      "candidateSource": "D57",
+      "facet": "知識を学ぶ動機",
+      "disposition": "UNAPPROVED_EDITING_CANDIDATE",
+      "requiresReview": "DISTINCTNESS_AND_COGNITIVE_REVIEW",
+      "approved": false,
+      "researchValidation": false,
+      "linkedDuplicates": [
+        "C04"
+      ]
+    },
+    {
+      "id": "C04",
+      "axis": "C",
+      "oldEditorialVerdict": "BLOCK",
+      "sourceCurrent": {
+        "negative": "長期的な成果につながる挑戦",
+        "positive": "取り組む過程を楽しめる挑戦"
+      },
+      "priorCandidate": {
+        "negative": "同じ活動で将来得られる充実を重視する",
+        "positive": "同じ活動で今日得られる充実を重視する",
+        "source": "D57"
+      },
+      "candidateR": {
+        "negative": "同じ活動で将来得られる充実を重視する",
+        "positive": "同じ活動で今日得られる充実を重視する",
+        "source": "D57"
+      },
+      "candidateSource": "D57",
+      "facet": "同じ活動の便益を感じる時点",
+      "disposition": "BLOCK_PENDING_REWRITE_OR_DELETE",
+      "requiresReview": "DISTINCTNESS_AND_COGNITIVE_REVIEW",
+      "approved": false,
+      "researchValidation": false,
+      "linkedDuplicates": [
+        "C03"
+      ]
+    },
+    {
+      "id": "C05",
+      "axis": "C",
+      "oldEditorialVerdict": "REVISE",
+      "sourceCurrent": {
+        "negative": "後から得られる充実を優先",
+        "positive": "すぐに得られる充実を優先"
+      },
+      "priorCandidate": {
+        "negative": "余暇の一部を将来の便益に振り向ける",
+        "positive": "余暇の一部を今日の便益に振り向ける",
+        "source": "D57"
+      },
+      "candidateR": {
+        "negative": "余暇の一部を将来の便益に振り向ける",
+        "positive": "余暇の一部を今日の便益に振り向ける",
+        "source": "D57"
+      },
+      "candidateSource": "D57",
+      "facet": "余暇の一部を使う配分",
+      "disposition": "UNAPPROVED_EDITING_CANDIDATE",
+      "requiresReview": "DISTINCTNESS_AND_COGNITIVE_REVIEW",
+      "approved": false,
+      "researchValidation": false,
+      "linkedDuplicates": [
+        "C01",
+        "C02"
+      ]
+    },
+    {
+      "id": "C06",
+      "axis": "C",
+      "oldEditorialVerdict": "REVISE",
+      "sourceCurrent": {
+        "negative": "将来の理想に近づく感覚",
+        "positive": "今の生活に満足できる感覚"
+      },
+      "priorCandidate": {
+        "negative": "生活改善で将来の快適さを優先する",
+        "positive": "生活改善で今日の快適さを優先する",
+        "source": "D57"
+      },
+      "candidateR": {
+        "negative": "生活改善で将来の快適さを優先する",
+        "positive": "生活改善で今日の快適さを優先する",
+        "source": "D57"
+      },
+      "candidateSource": "D57",
+      "facet": "生活改善による快適さ",
+      "disposition": "UNAPPROVED_EDITING_CANDIDATE",
+      "requiresReview": "DISTINCTNESS_AND_COGNITIVE_REVIEW",
+      "approved": false,
+      "researchValidation": false,
+      "linkedDuplicates": [
+        "C04"
+      ]
+    },
+    {
+      "id": "D01",
+      "axis": "D",
+      "oldEditorialVerdict": "TRIAL",
+      "sourceCurrent": {
+        "negative": "さまざまな趣味を試す",
+        "positive": "好きな趣味を長く深める"
+      },
+      "priorCandidate": {
+        "negative": "関心活動の種類を広げる",
+        "positive": "一つの関心活動を深める",
+        "source": "D57"
+      },
+      "candidateR": {
+        "negative": "関心活動の種類を広げる",
+        "positive": "一つの関心活動を深める",
+        "source": "D57"
+      },
+      "candidateSource": "D57",
+      "facet": "関心を持つ活動の種類",
+      "disposition": "UNAPPROVED_EDITING_CANDIDATE",
+      "requiresReview": "DISTINCTNESS_AND_COGNITIVE_REVIEW",
+      "approved": false,
+      "researchValidation": false,
+      "linkedDuplicates": [
+        "D06"
+      ]
+    },
+    {
+      "id": "D02",
+      "axis": "D",
+      "oldEditorialVerdict": "TRIAL",
+      "sourceCurrent": {
+        "negative": "幅広い分野を知る",
+        "positive": "一つの分野を深く理解する"
+      },
+      "priorCandidate": {
+        "negative": "複数分野の知識を広く学ぶ",
+        "positive": "一分野の知識を深く学ぶ",
+        "source": "D59"
+      },
+      "candidateR": {
+        "negative": "複数分野の知識を広く学ぶ",
+        "positive": "一分野の知識を深く学ぶ",
+        "source": "D59"
+      },
+      "candidateSource": "D59",
+      "facet": "複数分野の知識の学習",
+      "disposition": "UNAPPROVED_EDITING_CANDIDATE",
+      "requiresReview": "DISTINCTNESS_AND_COGNITIVE_REVIEW",
+      "approved": false,
+      "researchValidation": false,
+      "linkedDuplicates": [
+        "D03",
+        "D05"
+      ]
+    },
+    {
+      "id": "D03",
+      "axis": "D",
+      "oldEditorialVerdict": "BLOCK",
+      "sourceCurrent": {
+        "negative": "未経験のことを数多く経験する",
+        "positive": "気に入った経験を繰り返し深める"
+      },
+      "priorCandidate": {
+        "negative": "複数分野の体験を試す",
+        "positive": "一分野の体験を掘り下げる",
+        "source": "D59"
+      },
+      "candidateR": {
+        "negative": "複数分野の体験を試す",
+        "positive": "一分野の体験を掘り下げる",
+        "source": "D59"
+      },
+      "candidateSource": "D59",
+      "facet": "現実の体験の幅と深さ",
+      "disposition": "BLOCK_PENDING_REWRITE_OR_DELETE",
+      "requiresReview": "DISTINCTNESS_AND_COGNITIVE_REVIEW",
+      "approved": false,
+      "researchValidation": false,
+      "linkedDuplicates": [
+        "D02"
+      ]
+    },
+    {
+      "id": "D04",
+      "axis": "D",
+      "oldEditorialVerdict": "REVISE",
+      "sourceCurrent": {
+        "negative": "異なるテーマに取り組む",
+        "positive": "一つのテーマを追究する"
+      },
+      "priorCandidate": {
+        "negative": "一つの課題で異なるテーマに触れる",
+        "positive": "一つの課題で特定テーマを掘り下げる",
+        "source": "D57"
+      },
+      "candidateR": {
+        "negative": "一つの課題で異なるテーマに触れる",
+        "positive": "一つの課題で特定テーマを掘り下げる",
+        "source": "D57"
+      },
+      "candidateSource": "D57",
+      "facet": "一つの課題でのテーマ探索",
+      "disposition": "UNAPPROVED_EDITING_CANDIDATE",
+      "requiresReview": "DISTINCTNESS_AND_COGNITIVE_REVIEW",
+      "approved": false,
+      "researchValidation": false,
+      "linkedDuplicates": [
+        "D01"
+      ]
+    },
+    {
+      "id": "D05",
+      "axis": "D",
+      "oldEditorialVerdict": "TRIAL",
+      "sourceCurrent": {
+        "negative": "複数領域に知識を広げる",
+        "positive": "特定領域への理解を深める"
+      },
+      "priorCandidate": {
+        "negative": "鑑賞・制作で複数の表現に触れる",
+        "positive": "鑑賞・制作で一つの表現を深める",
+        "source": "D57"
+      },
+      "candidateR": {
+        "negative": "鑑賞・制作で複数の表現に触れる",
+        "positive": "鑑賞・制作で一つの表現を深める",
+        "source": "D57"
+      },
+      "candidateSource": "D57",
+      "facet": "鑑賞・制作における表現の幅",
+      "disposition": "UNAPPROVED_EDITING_CANDIDATE",
+      "requiresReview": "DISTINCTNESS_AND_COGNITIVE_REVIEW",
+      "approved": false,
+      "researchValidation": false,
+      "linkedDuplicates": [
+        "D02"
+      ]
+    },
+    {
+      "id": "D06",
+      "axis": "D",
+      "oldEditorialVerdict": "REVISE",
+      "sourceCurrent": {
+        "negative": "経験の種類を増やす",
+        "positive": "大切な経験の深さを増やす"
+      },
+      "priorCandidate": {
+        "negative": "旅行・外出で訪れる対象を広げる",
+        "positive": "旅行・外出で一つの対象を詳しく知る",
+        "source": "D57"
+      },
+      "candidateR": {
+        "negative": "旅行・外出で訪れる対象を広げる",
+        "positive": "旅行・外出で一つの対象を詳しく知る",
+        "source": "D57"
+      },
+      "candidateSource": "D57",
+      "facet": "対象を広げるか詳しく知るか",
+      "disposition": "UNAPPROVED_EDITING_CANDIDATE",
+      "requiresReview": "DISTINCTNESS_AND_COGNITIVE_REVIEW",
+      "approved": false,
+      "researchValidation": false,
+      "linkedDuplicates": [
+        "D01"
+      ]
+    },
+    {
+      "id": "E01",
+      "axis": "E",
+      "oldEditorialVerdict": "TRIAL",
+      "sourceCurrent": {
+        "negative": "収入に余裕のある働き方",
+        "positive": "自由時間に余裕のある働き方"
+      },
+      "priorCandidate": {
+        "negative": "追加の支出裁量を先に確保する",
+        "positive": "追加の時間裁量を先に確保する",
+        "source": "D57"
+      },
+      "candidateR": null,
+      "candidateSource": "E_HOLD",
+      "facet": "E_MODE_NOT_SELECTED",
+      "disposition": "NOT_IN_24_ITEM_BASELINE",
+      "requiresReview": "E_MODE_DECISION",
+      "approved": false,
+      "researchValidation": false,
+      "linkedDuplicates": [
+        "E02",
+        "E04",
+        "E05",
+        "E06"
+      ]
+    },
+    {
+      "id": "E02",
+      "axis": "E",
+      "oldEditorialVerdict": "REVISE",
+      "sourceCurrent": {
+        "negative": "追加収入を得る",
+        "positive": "自由時間を増やす"
+      },
+      "priorCandidate": {
+        "negative": "余裕ができたら支出の選択肢を増やす",
+        "positive": "余裕ができたら予定の選択肢を増やす",
+        "source": "D57"
+      },
+      "candidateR": null,
+      "candidateSource": "E_HOLD",
+      "facet": "E_MODE_NOT_SELECTED",
+      "disposition": "NOT_IN_24_ITEM_BASELINE",
+      "requiresReview": "E_MODE_DECISION",
+      "approved": false,
+      "researchValidation": false,
+      "linkedDuplicates": [
+        "E01",
+        "E04",
+        "E05",
+        "E06"
+      ]
+    },
+    {
+      "id": "E03",
+      "axis": "E",
+      "oldEditorialVerdict": "REVISE",
+      "sourceCurrent": {
+        "negative": "収入のために使う時間を増やす",
+        "positive": "自分で使える時間を増やす"
+      },
+      "priorCandidate": {
+        "negative": "趣味に使う予算の裁量を増やす",
+        "positive": "趣味に使う時間の裁量を増やす",
+        "source": "D57"
+      },
+      "candidateR": null,
+      "candidateSource": "E_HOLD",
+      "facet": "E_MODE_NOT_SELECTED",
+      "disposition": "NOT_IN_24_ITEM_BASELINE",
+      "requiresReview": "E_MODE_DECISION",
+      "approved": false,
+      "researchValidation": false,
+      "linkedDuplicates": [
+        "E01"
+      ]
+    },
+    {
+      "id": "E04",
+      "axis": "E",
+      "oldEditorialVerdict": "BLOCK",
+      "sourceCurrent": {
+        "negative": "使えるお金の余裕を広げる",
+        "positive": "使える時間の余裕を広げる"
+      },
+      "priorCandidate": {
+        "negative": "将来の支出先を選ぶ余地を増やす",
+        "positive": "将来の予定を選ぶ余地を増やす",
+        "source": "D57"
+      },
+      "candidateR": null,
+      "candidateSource": "E_HOLD",
+      "facet": "E_MODE_NOT_SELECTED",
+      "disposition": "NOT_IN_24_ITEM_BASELINE",
+      "requiresReview": "E_MODE_DECISION",
+      "approved": false,
+      "researchValidation": false,
+      "linkedDuplicates": [
+        "E01",
+        "E02",
+        "E05"
+      ]
+    },
+    {
+      "id": "E05",
+      "axis": "E",
+      "oldEditorialVerdict": "BLOCK",
+      "sourceCurrent": {
+        "negative": "可処分所得を月3万円増やす",
+        "positive": "自由時間を週3時間増やす"
+      },
+      "priorCandidate": {
+        "negative": "家計の追加的な余裕を先に確保する",
+        "positive": "自由に使える追加的な時間を先に確保する",
+        "source": "D57"
+      },
+      "candidateR": null,
+      "candidateSource": "E_HOLD",
+      "facet": "E_MODE_NOT_SELECTED",
+      "disposition": "NOT_IN_24_ITEM_BASELINE",
+      "requiresReview": "E_MODE_DECISION",
+      "approved": false,
+      "researchValidation": false,
+      "linkedDuplicates": [
+        "E01",
+        "E02",
+        "E04"
+      ]
+    },
+    {
+      "id": "E06",
+      "axis": "E",
+      "oldEditorialVerdict": "REVISE",
+      "sourceCurrent": {
+        "negative": "経済的な選択肢を広げる",
+        "positive": "時間の使い方の選択肢を広げる"
+      },
+      "priorCandidate": {
+        "negative": "生活上の追加予算の使途を選べること",
+        "positive": "生活上の追加時間の使途を選べること",
+        "source": "D57"
+      },
+      "candidateR": null,
+      "candidateSource": "E_HOLD",
+      "facet": "E_MODE_NOT_SELECTED",
+      "disposition": "NOT_IN_24_ITEM_BASELINE",
+      "requiresReview": "E_MODE_DECISION",
+      "approved": false,
+      "researchValidation": false,
+      "linkedDuplicates": [
+        "E01",
+        "E02"
+      ]
+    }
+  ],
+  "stoppingRules": [
+    "All BLOCK items keep their original block status, including 5 within A-D.",
+    "24 candidate pairs are NOT an approved 24-item questionnaire.",
+    "B-axis bipolarness and A-axis distinction from D may force an axis or type structure redesign.",
+    "Current 30-question validators and snapshots must not process this candidate pool."
+  ],
+  "gates": {
+    "studyAuthorized": false,
+    "productionReleaseAuthorized": false,
+    "mergeAuthorized": false,
+    "humanAdoptionApproval": false,
+    "legacyRescoringAllowed": false,
+    "questionRuntimeChanged": false,
+    "questionCountApproved": false,
+    "newQuestionHashAssigned": false,
+    "researchAuthorized": false,
+    "ownerConstructChoice": "PENDING",
+    "blockersRemaining": 7,
+    "activeABCDblockersRemaining": 5
+  },
+  "changeHistory": [
+    {
+      "date": "2026-10-26",
+      "version": "D80-001",
+      "change": "Assemble reviewable A/B R variants and existing C/D proposed copy into a 24-slot candidate comparison pool; retain full 30-item review inventory and all seven block statuses."
+    }
+  ]
+}

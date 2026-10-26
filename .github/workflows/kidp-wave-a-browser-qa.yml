@@ -1,17 +1,49 @@
 name: KIDP Wave A Browser QA
 on:
-  # Manual-only. See docs/GITHUB_ACTIONS_POLICY.md.
+  # No automatic PR/push triggers. Human-approved release QA only.
   workflow_dispatch:
-
 jobs:
   chromium:
     runs-on: ubuntu-latest
     timeout-minutes: 12
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: "22"
+      - name: A05 human review inventory (no release signoff implied)
+        run: node --test scripts/test-a05-pr-review-manifest.mjs
+      - name: A05 D73-D86 editorial consistency
+        run: |
+          node --test scripts/test-a05-editorial-d73.mjs
+          node --test scripts/test-a05-editorial-d74.mjs
+          node --test scripts/test-a05-editorial-d75.mjs
+          node --test scripts/test-a05-editorial-d76-d78.mjs
+          node --test scripts/test-a05-editorial-d79-d82.mjs
+          node --test scripts/test-a05-editorial-preview.mjs
+          node --test scripts/test-a05-editorial-d84.mjs
+          node --test scripts/test-a05-b-experiment.mjs
+          node --test scripts/test-a05-type-structure.mjs
+      - name: A05 native Node domain and storage tests
+        run: |
+          node --test scripts/test-a05-engine.mjs
+          node --test scripts/test-a05-format.mjs
+          node --test scripts/test-a05-backup-inspect.mjs
+          node --test scripts/test-a05-restore-review.mjs
+          node --test scripts/test-a05-release-boundaries.mjs
+          node --test scripts/test-a05-storage.mjs
+          node --test scripts/test-a05-e-experiment.mjs scripts/test-a05-e-display.mjs scripts/test-a05-e-preview.mjs
+          node --test scripts/test-a05-research-manifest.mjs scripts/test-a05-research-d36.mjs
+          node --test scripts/test-a05-research-g1.mjs
+          node --test scripts/test-a05-research-d40.mjs
+          node --test scripts/test-a05-research-d41.mjs
+          node --test scripts/test-a05-research-d42.mjs
+      - name: A05 site-wide local preflight and diff checks
+        run: |
+          node scripts/local-preflight.cjs
+          git diff --check origin/main...HEAD
       - name: Install Playwright
         run: npm install --no-save playwright@1.56.1
       - name: Start static server and run Chromium
@@ -19,3 +51,9 @@ jobs:
           python3 -m http.server 8765 --bind 127.0.0.1 > /tmp/kidp-server.log 2>&1 &
           sleep 2
           node projects/kidp/qa_wave_a_browser.cjs
+          node scripts/qa_a05_e_preview_browser.cjs
+          node scripts/qa_a05_editorial_preview_browser.cjs
+          node scripts/qa_a05_b_preview_browser.cjs
+          node scripts/qa_a05_type_structure_browser.cjs
+      - name: A05 Chromium acceptance
+        run: node scripts/qa_a05_browser.cjs

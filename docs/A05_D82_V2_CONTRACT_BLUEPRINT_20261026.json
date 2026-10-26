@@ -1,0 +1,121 @@
+{
+  "schema": "A05-D82-V2-CONTRACT-BLUEPRINT-1",
+  "version": "D82-001",
+  "date": "2026-10-26",
+  "status": "INTERFACE_BLUEPRINT_NO_IMPLEMENTATION",
+  "scope": {
+    "candidateAxes": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "candidateItemSlots": 24,
+    "legacyAxes": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E"
+    ],
+    "legacyItems": 30,
+    "legacyTypes": 16,
+    "legacyDerivedWealth": "READ_ONLY_ON_V1",
+    "pilotQuestionListSource": "docs/A05_D80_PILOT_CANDIDATES_20261026.json"
+  },
+  "versioning": {
+    "legacyFrozen": {
+      "question": "A05-Q-1.0.0-draft",
+      "scoring": "A05-S-1.0.0-draft",
+      "type": "A05-T-1.0.0-draft",
+      "content": "A05-C-1.0.0-draft"
+    },
+    "candidate": {
+      "question": "UNASSIGNED",
+      "scoring": "UNASSIGNED",
+      "type": "UNASSIGNED",
+      "content": "UNASSIGNED",
+      "resultSchema": "UNASSIGNED"
+    },
+    "assignmentGate": "APPROVED_CONTENT_AND_SCHEMA_REQUIRED",
+    "canonicalQuestionHash": "MUST_BE_COMPUTED_FOR_FINAL_ORDER_AND_WORDING_BEFORE_RUNTIME",
+    "noImplicitVersionCompatibility": true
+  },
+  "dataContracts": {
+    "draft": {
+      "requirements": [
+        "new namespace separated from kaito-a05-values-v1",
+        "explicit consent before persist",
+        "questionSetId and SHA-256 hash",
+        "four independent version identifiers",
+        "unknown/old draft rejected from editing",
+        "separate no-answer from midpoint4"
+      ]
+    },
+    "snapshot": {
+      "requirements": [
+        "immutable four-version tuple",
+        "questionSet SHA-256",
+        "resultSchema version",
+        "no E wealth compatibility claims",
+        "presentation frozen at completion",
+        "legacy snapshots read-only and kept byte-for-byte"
+      ]
+    },
+    "legacy": {
+      "sourceSchema": 1,
+      "legacyDb": "kaito-a05-values-v1",
+      "policy": "READ_ONLY_NO_MUTATION_NO_AUTO_RESCORING_NO_SCHEMA_CAST"
+    },
+    "result": {
+      "typeId": "NULL_UNLESS_EVIDENCE_SUPPORTS_TYPE_SCHEME",
+      "classification": "WITHHELD_OR_PROVISIONAL_SUPPORTED",
+      "optionalE": "ABSENT_IN_SAFE_BASELINE",
+      "wealth": "FORBIDDEN_ON_NEW_RESULT",
+      "noMedicalOrCareerClaims": true
+    },
+    "integrations": {
+      "A01": "OFF_UNTIL_SIGNOFF",
+      "myLifeNote": "OFF_UNTIL_SIGNOFF",
+      "forbidSilentInference": true
+    }
+  },
+  "blockedImplementation": [
+    "Do not import draft D80 candidates into current questions.mjs",
+    "Do not pass a 24-item pool to v1 engine.validateQuestions (requires 30)",
+    "Do not reuse T01-T16 meaning without separately approved mapping",
+    "Do not create a v2 persisted assessment until owner product choice and psychometric/safety criteria are defined",
+    "Do not migrate or rewrite snapshots in the v1 IndexedDB",
+    "Do not remove noindex or make a production route"
+  ],
+  "proposedImplementationSequence": [
+    "Select A/B constructs and evaluate alternatives",
+    "Resolve 5 A-D BLOCK items or change question count",
+    "Set E public decision and scope",
+    "Define scoring/status and type decision including unclassified option",
+    "Assign four new versions and canonical hash",
+    "Create isolated v2 modules/storage namespace and contract tests",
+    "Test historic read-only, consent and browser accessibility",
+    "Obtain human review and release authorization"
+  ],
+  "gates": {
+    "studyAuthorized": false,
+    "productionReleaseAuthorized": false,
+    "mergeAuthorized": false,
+    "humanAdoptionApproval": false,
+    "legacyRescoringAllowed": false,
+    "questionRuntimeChanged": false,
+    "pilotProductionReady": false,
+    "ownerApproval": false,
+    "versionIdentifiersIssued": false,
+    "humanDataCollected": false,
+    "publicTypeValidity": false
+  },
+  "changeHistory": [
+    {
+      "date": "2026-10-26",
+      "version": "D82-001",
+      "change": "Create integration-safe v2 design contract without code, persisted namespace, content version, or release approval."
+    }
+  ]
+}

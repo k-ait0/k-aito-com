@@ -1,0 +1,291 @@
+{
+  "schema": "A05-D75-CONDITIONAL-TYPE-COPY-1",
+  "version": "D75-001",
+  "date": "2026-10-26",
+  "status": "COMPARISON_ONLY_NOT_ADOPTED",
+  "inputs": [
+    "docs/A05_D73_ITEM_CONSTRUCT_CROSSWALK_20261026.json",
+    "docs/A05_D74_AB_ALTERNATIVES_20261026.json",
+    "projects/kidp/life-design-lab/a05/types.mjs"
+  ],
+  "definitions": {
+    "L": "従来のA/B構成概念の連続性を目指す候補",
+    "M": "D57/D59のA/B新構成概念候補"
+  },
+  "sharedDisclaimer": "この結果は今回の回答傾向を整理した仮の分類です。性格・能力・適職・将来の行動を確定する診断や、標準化された心理尺度ではありません。回答時の状況や不足回答によって結果が変化・保留される可能性があります。",
+  "safeguards": {
+    "conceptChoice": "PENDING",
+    "typeStructureVersion": "A05-T-1.0.0-draft",
+    "contentVersion": "A05-C-1.0.0-draft",
+    "legacyCopyOverrideAllowed": false,
+    "autoPublish": false,
+    "studyAuthorized": false,
+    "mergeAuthorized": false,
+    "productionReleaseAuthorized": false
+  },
+  "items": [
+    {
+      "id": "T01",
+      "existingWorkingName": "着実な開拓者",
+      "existingGroup": "G1",
+      "axisSigns": {
+        "A": -1,
+        "B": -1,
+        "C": -1,
+        "D": -1
+      },
+      "conditionL": "今回の回答では、慣れた生活環境の継続、生活上の自分の希望、将来に向けた充実、経験の幅を相対的に重視する傾向が見られました。",
+      "conditionM": "今回の回答では、活動の進め方の継続、自分で決める裁量、将来に向けた充実、経験の幅を相対的に重視する傾向が見られました。",
+      "copyApproval": "NOT_APPROVED",
+      "nameIsWorldbuildingLabel": true,
+      "psychometricValidation": false
+    },
+    {
+      "id": "T02",
+      "existingWorkingName": "静かな探究者",
+      "existingGroup": "G1",
+      "axisSigns": {
+        "A": -1,
+        "B": -1,
+        "C": -1,
+        "D": 1
+      },
+      "conditionL": "今回の回答では、慣れた生活環境の継続、生活上の自分の希望、将来に向けた充実、特定の経験の深さを相対的に重視する傾向が見られました。",
+      "conditionM": "今回の回答では、活動の進め方の継続、自分で決める裁量、将来に向けた充実、特定の経験の深さを相対的に重視する傾向が見られました。",
+      "copyApproval": "NOT_APPROVED",
+      "nameIsWorldbuildingLabel": true,
+      "psychometricValidation": false
+    },
+    {
+      "id": "T03",
+      "existingWorkingName": "マイペースな発見家",
+      "existingGroup": "G1",
+      "axisSigns": {
+        "A": -1,
+        "B": -1,
+        "C": 1,
+        "D": -1
+      },
+      "conditionL": "今回の回答では、慣れた生活環境の継続、生活上の自分の希望、現在の充実、経験の幅を相対的に重視する傾向が見られました。",
+      "conditionM": "今回の回答では、活動の進め方の継続、自分で決める裁量、現在の充実、経験の幅を相対的に重視する傾向が見られました。",
+      "copyApproval": "NOT_APPROVED",
+      "nameIsWorldbuildingLabel": true,
+      "psychometricValidation": false
+    },
+    {
+      "id": "T04",
+      "existingWorkingName": "暮らしの職人",
+      "existingGroup": "G1",
+      "axisSigns": {
+        "A": -1,
+        "B": -1,
+        "C": 1,
+        "D": 1
+      },
+      "conditionL": "今回の回答では、慣れた生活環境の継続、生活上の自分の希望、現在の充実、特定の経験の深さを相対的に重視する傾向が見られました。",
+      "conditionM": "今回の回答では、活動の進め方の継続、自分で決める裁量、現在の充実、特定の経験の深さを相対的に重視する傾向が見られました。",
+      "copyApproval": "NOT_APPROVED",
+      "nameIsWorldbuildingLabel": true,
+      "psychometricValidation": false
+    },
+    {
+      "id": "T05",
+      "existingWorkingName": "未来を育む案内人",
+      "existingGroup": "G2",
+      "axisSigns": {
+        "A": -1,
+        "B": 1,
+        "C": -1,
+        "D": -1
+      },
+      "conditionL": "今回の回答では、慣れた生活環境の継続、関係する人の希望との調整、将来に向けた充実、経験の幅を相対的に重視する傾向が見られました。",
+      "conditionM": "今回の回答では、活動の進め方の継続、関係者とともに意思決定すること、将来に向けた充実、経験の幅を相対的に重視する傾向が見られました。",
+      "copyApproval": "NOT_APPROVED",
+      "nameIsWorldbuildingLabel": true,
+      "psychometricValidation": false
+    },
+    {
+      "id": "T06",
+      "existingWorkingName": "絆を育てる設計者",
+      "existingGroup": "G2",
+      "axisSigns": {
+        "A": -1,
+        "B": 1,
+        "C": -1,
+        "D": 1
+      },
+      "conditionL": "今回の回答では、慣れた生活環境の継続、関係する人の希望との調整、将来に向けた充実、特定の経験の深さを相対的に重視する傾向が見られました。",
+      "conditionM": "今回の回答では、活動の進め方の継続、関係者とともに意思決定すること、将来に向けた充実、特定の経験の深さを相対的に重視する傾向が見られました。",
+      "copyApproval": "NOT_APPROVED",
+      "nameIsWorldbuildingLabel": true,
+      "psychometricValidation": false
+    },
+    {
+      "id": "T07",
+      "existingWorkingName": "日常の発見家",
+      "existingGroup": "G2",
+      "axisSigns": {
+        "A": -1,
+        "B": 1,
+        "C": 1,
+        "D": -1
+      },
+      "conditionL": "今回の回答では、慣れた生活環境の継続、関係する人の希望との調整、現在の充実、経験の幅を相対的に重視する傾向が見られました。",
+      "conditionM": "今回の回答では、活動の進め方の継続、関係者とともに意思決定すること、現在の充実、経験の幅を相対的に重視する傾向が見られました。",
+      "copyApproval": "NOT_APPROVED",
+      "nameIsWorldbuildingLabel": true,
+      "psychometricValidation": false
+    },
+    {
+      "id": "T08",
+      "existingWorkingName": "穏やかな愛好家",
+      "existingGroup": "G2",
+      "axisSigns": {
+        "A": -1,
+        "B": 1,
+        "C": 1,
+        "D": 1
+      },
+      "conditionL": "今回の回答では、慣れた生活環境の継続、関係する人の希望との調整、現在の充実、特定の経験の深さを相対的に重視する傾向が見られました。",
+      "conditionM": "今回の回答では、活動の進め方の継続、関係者とともに意思決定すること、現在の充実、特定の経験の深さを相対的に重視する傾向が見られました。",
+      "copyApproval": "NOT_APPROVED",
+      "nameIsWorldbuildingLabel": true,
+      "psychometricValidation": false
+    },
+    {
+      "id": "T09",
+      "existingWorkingName": "未来のフロンティア",
+      "existingGroup": "G3",
+      "axisSigns": {
+        "A": 1,
+        "B": -1,
+        "C": -1,
+        "D": -1
+      },
+      "conditionL": "今回の回答では、生活環境に変化を取り入れること、生活上の自分の希望、将来に向けた充実、経験の幅を相対的に重視する傾向が見られました。",
+      "conditionM": "今回の回答では、活動の進め方の更新、自分で決める裁量、将来に向けた充実、経験の幅を相対的に重視する傾向が見られました。",
+      "copyApproval": "NOT_APPROVED",
+      "nameIsWorldbuildingLabel": true,
+      "psychometricValidation": false
+    },
+    {
+      "id": "T10",
+      "existingWorkingName": "変革の探究者",
+      "existingGroup": "G3",
+      "axisSigns": {
+        "A": 1,
+        "B": -1,
+        "C": -1,
+        "D": 1
+      },
+      "conditionL": "今回の回答では、生活環境に変化を取り入れること、生活上の自分の希望、将来に向けた充実、特定の経験の深さを相対的に重視する傾向が見られました。",
+      "conditionM": "今回の回答では、活動の進め方の更新、自分で決める裁量、将来に向けた充実、特定の経験の深さを相対的に重視する傾向が見られました。",
+      "copyApproval": "NOT_APPROVED",
+      "nameIsWorldbuildingLabel": true,
+      "psychometricValidation": false
+    },
+    {
+      "id": "T11",
+      "existingWorkingName": "自由な冒険者",
+      "existingGroup": "G3",
+      "axisSigns": {
+        "A": 1,
+        "B": -1,
+        "C": 1,
+        "D": -1
+      },
+      "conditionL": "今回の回答では、生活環境に変化を取り入れること、生活上の自分の希望、現在の充実、経験の幅を相対的に重視する傾向が見られました。",
+      "conditionM": "今回の回答では、活動の進め方の更新、自分で決める裁量、現在の充実、経験の幅を相対的に重視する傾向が見られました。",
+      "copyApproval": "NOT_APPROVED",
+      "nameIsWorldbuildingLabel": true,
+      "psychometricValidation": false
+    },
+    {
+      "id": "T12",
+      "existingWorkingName": "自由な求道者",
+      "existingGroup": "G3",
+      "axisSigns": {
+        "A": 1,
+        "B": -1,
+        "C": 1,
+        "D": 1
+      },
+      "conditionL": "今回の回答では、生活環境に変化を取り入れること、生活上の自分の希望、現在の充実、特定の経験の深さを相対的に重視する傾向が見られました。",
+      "conditionM": "今回の回答では、活動の進め方の更新、自分で決める裁量、現在の充実、特定の経験の深さを相対的に重視する傾向が見られました。",
+      "copyApproval": "NOT_APPROVED",
+      "nameIsWorldbuildingLabel": true,
+      "psychometricValidation": false
+    },
+    {
+      "id": "T13",
+      "existingWorkingName": "共創する開拓者",
+      "existingGroup": "G4",
+      "axisSigns": {
+        "A": 1,
+        "B": 1,
+        "C": -1,
+        "D": -1
+      },
+      "conditionL": "今回の回答では、生活環境に変化を取り入れること、関係する人の希望との調整、将来に向けた充実、経験の幅を相対的に重視する傾向が見られました。",
+      "conditionM": "今回の回答では、活動の進め方の更新、関係者とともに意思決定すること、将来に向けた充実、経験の幅を相対的に重視する傾向が見られました。",
+      "copyApproval": "NOT_APPROVED",
+      "nameIsWorldbuildingLabel": true,
+      "psychometricValidation": false
+    },
+    {
+      "id": "T14",
+      "existingWorkingName": "理想を育てる共創者",
+      "existingGroup": "G4",
+      "axisSigns": {
+        "A": 1,
+        "B": 1,
+        "C": -1,
+        "D": 1
+      },
+      "conditionL": "今回の回答では、生活環境に変化を取り入れること、関係する人の希望との調整、将来に向けた充実、特定の経験の深さを相対的に重視する傾向が見られました。",
+      "conditionM": "今回の回答では、活動の進め方の更新、関係者とともに意思決定すること、将来に向けた充実、特定の経験の深さを相対的に重視する傾向が見られました。",
+      "copyApproval": "NOT_APPROVED",
+      "nameIsWorldbuildingLabel": true,
+      "psychometricValidation": false
+    },
+    {
+      "id": "T15",
+      "existingWorkingName": "出会いを楽しむ旅人",
+      "existingGroup": "G4",
+      "axisSigns": {
+        "A": 1,
+        "B": 1,
+        "C": 1,
+        "D": -1
+      },
+      "conditionL": "今回の回答では、生活環境に変化を取り入れること、関係する人の希望との調整、現在の充実、経験の幅を相対的に重視する傾向が見られました。",
+      "conditionM": "今回の回答では、活動の進め方の更新、関係者とともに意思決定すること、現在の充実、経験の幅を相対的に重視する傾向が見られました。",
+      "copyApproval": "NOT_APPROVED",
+      "nameIsWorldbuildingLabel": true,
+      "psychometricValidation": false
+    },
+    {
+      "id": "T16",
+      "existingWorkingName": "情熱を分かち合う人",
+      "existingGroup": "G4",
+      "axisSigns": {
+        "A": 1,
+        "B": 1,
+        "C": 1,
+        "D": 1
+      },
+      "conditionL": "今回の回答では、生活環境に変化を取り入れること、関係する人の希望との調整、現在の充実、特定の経験の深さを相対的に重視する傾向が見られました。",
+      "conditionM": "今回の回答では、活動の進め方の更新、関係者とともに意思決定すること、現在の充実、特定の経験の深さを相対的に重視する傾向が見られました。",
+      "copyApproval": "NOT_APPROVED",
+      "nameIsWorldbuildingLabel": true,
+      "psychometricValidation": false
+    }
+  ],
+  "changeHistory": [
+    {
+      "date": "2026-10-26",
+      "version": "D75-001",
+      "change": "Introduce conditional, unapproved result copy for 16 types under both A/B construct models without changing existing type definitions."
+    }
+  ]
+}

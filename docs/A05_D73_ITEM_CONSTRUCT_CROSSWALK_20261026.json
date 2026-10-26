@@ -1,0 +1,739 @@
+{
+  "schema": "A05-D73-EDITORIAL-CROSSWALK-1",
+  "version": "D73-001",
+  "date": "2026-10-26",
+  "status": "RESEARCH_DESIGN_NOT_APPROVED",
+  "sources": [
+    "projects/kidp/life-design-lab/a05/questions.mjs",
+    "docs/A05_D57_QUESTION_EDITORIAL_MATRIX_20261026.md",
+    "docs/A05_D59_ITEM_AND_TYPE_COPY_PROPOSAL_20261026.md"
+  ],
+  "frozenVersions": {
+    "question": "A05-Q-1.0.0-draft",
+    "scoring": "A05-S-1.0.0-draft",
+    "type": "A05-T-1.0.0-draft",
+    "content": "A05-C-1.0.0-draft"
+  },
+  "gates": {
+    "constructDecision": "PENDING",
+    "humanEditorialReview": "PENDING",
+    "studyAuthorized": false,
+    "productionReleaseAuthorized": false,
+    "mergeAuthorized": false,
+    "existingRuntimeChanged": false,
+    "legacyRescoringAllowed": false
+  },
+  "constructOptions": {
+    "A": {
+      "incumbent": "環境・生活基盤の維持と変更",
+      "alternate": "活動方法・計画の継続と変更",
+      "decision": "PENDING",
+      "recommendation": "INCUMBENT_FOR_CONTINUITY_ONLY"
+    },
+    "B": {
+      "incumbent": "生活上の自分の希望と大切な人との調整",
+      "alternate": "共同意思決定・役割分担",
+      "decision": "PENDING",
+      "recommendation": "INCUMBENT_FOR_CONTINUITY_ONLY"
+    },
+    "C": {
+      "incumbent": "将来便益・現在の充実",
+      "alternate": "将来便益・現在便益の比較を具体化",
+      "decision": "PENDING"
+    },
+    "D": {
+      "incumbent": "経験・趣味・学習の幅と深さ",
+      "alternate": "状況別の学習・体験の幅と深さ",
+      "decision": "PENDING"
+    },
+    "E": {
+      "incumbent": "金銭／時間の双極比較",
+      "alternate": "E-A／E-B／E-C方式選択",
+      "decision": "PENDING"
+    }
+  },
+  "items": [
+    {
+      "id": "A01",
+      "axis": "A",
+      "originalConstruct": "生活環境の安定・変化",
+      "candidateConstruct": "活動の進め方の継続・変更",
+      "current": {
+        "negative": "一つの地域で暮らしを育てる",
+        "positive": "複数の地域で暮らしを経験する"
+      },
+      "candidate": {
+        "negative": "既存の方法を改善して使う",
+        "positive": "未経験の方法を試す",
+        "source": "D59"
+      },
+      "editorialStatus": "REVISE",
+      "decisionGate": "HOLD_CONSTRUCT",
+      "adoption": "NOT_APPROVED",
+      "competingWith": [
+        "A04"
+      ],
+      "probe": "A06と区別できるか"
+    },
+    {
+      "id": "A02",
+      "axis": "A",
+      "originalConstruct": "生活環境の安定・変化",
+      "candidateConstruct": "活動の進め方の継続・変更",
+      "current": {
+        "negative": "慣れた環境を長く活かす",
+        "positive": "新しい環境へ定期的に移る"
+      },
+      "candidate": {
+        "negative": "現在の活動環境を整える",
+        "positive": "新しい活動環境を試す",
+        "source": "D57"
+      },
+      "editorialStatus": "TRIAL",
+      "decisionGate": "HOLD_CONSTRUCT",
+      "adoption": "NOT_APPROVED",
+      "competingWith": [
+        "A03"
+      ],
+      "probe": "環境変更可能性の影響"
+    },
+    {
+      "id": "A03",
+      "axis": "A",
+      "originalConstruct": "生活環境の安定・変化",
+      "candidateConstruct": "活動の進め方の継続・変更",
+      "current": {
+        "negative": "心地よい日常の形を維持する",
+        "positive": "日常の形を更新し続ける"
+      },
+      "candidate": {
+        "negative": "既存の習慣を磨く",
+        "positive": "新しい習慣を取り入れる",
+        "source": "D57"
+      },
+      "editorialStatus": "TRIAL",
+      "decisionGate": "HOLD_CONSTRUCT",
+      "adoption": "NOT_APPROVED",
+      "competingWith": [
+        "A02"
+      ],
+      "probe": "両立する場合の優先度"
+    },
+    {
+      "id": "A04",
+      "axis": "A",
+      "originalConstruct": "生活環境の安定・変化",
+      "candidateConstruct": "活動の進め方の継続・変更",
+      "current": {
+        "negative": "今ある生活基盤を活かす",
+        "positive": "生活基盤を作り直す"
+      },
+      "candidate": {
+        "negative": "一度決めた活動計画を続ける",
+        "positive": "途中でも活動計画を見直す",
+        "source": "D59"
+      },
+      "editorialStatus": "BLOCK",
+      "decisionGate": "HOLD_CONSTRUCT",
+      "adoption": "NOT_APPROVED",
+      "competingWith": [
+        "A01"
+      ],
+      "probe": "A01との重複"
+    },
+    {
+      "id": "A05",
+      "axis": "A",
+      "originalConstruct": "生活環境の安定・変化",
+      "candidateConstruct": "活動の進め方の継続・変更",
+      "current": {
+        "negative": "一つの環境をより良く育てる",
+        "positive": "異なる環境を経験していく"
+      },
+      "candidate": {
+        "negative": "予想できる変化には従来の進め方を調整する",
+        "positive": "予想できる変化を機に進め方を組み替える",
+        "source": "D59"
+      },
+      "editorialStatus": "BLOCK",
+      "decisionGate": "HOLD_CONSTRUCT",
+      "adoption": "NOT_APPROVED",
+      "competingWith": [
+        "A06"
+      ],
+      "probe": "A06との差"
+    },
+    {
+      "id": "A06",
+      "axis": "A",
+      "originalConstruct": "生活環境の安定・変化",
+      "candidateConstruct": "活動の進め方の継続・変更",
+      "current": {
+        "negative": "現在の拠点を保って挑戦する",
+        "positive": "拠点そのものを変えて挑戦する"
+      },
+      "candidate": {
+        "negative": "予想外の変化には既存の手順を応用する",
+        "positive": "予想外の変化には別の手順を探す",
+        "source": "D59"
+      },
+      "editorialStatus": "REVISE",
+      "decisionGate": "HOLD_CONSTRUCT",
+      "adoption": "NOT_APPROVED",
+      "competingWith": [
+        "A05"
+      ],
+      "probe": "A05との冗長性"
+    },
+    {
+      "id": "B01",
+      "axis": "B",
+      "originalConstruct": "自律と大切な人との関係",
+      "candidateConstruct": "意思決定と実行の分担",
+      "current": {
+        "negative": "自分の希望を中心に決める",
+        "positive": "大切な人との希望の一致を重視する"
+      },
+      "candidate": {
+        "negative": "最終的な判断を自分で担う",
+        "positive": "最終的な判断を関係者と共同で担う",
+        "source": "D57"
+      },
+      "editorialStatus": "TRIAL",
+      "decisionGate": "HOLD_CONSTRUCT",
+      "adoption": "NOT_APPROVED",
+      "competingWith": [
+        "B06"
+      ],
+      "probe": "責任・権限の制約"
+    },
+    {
+      "id": "B02",
+      "axis": "B",
+      "originalConstruct": "自律と大切な人との関係",
+      "candidateConstruct": "意思決定と実行の分担",
+      "current": {
+        "negative": "自分で生活を組み立てる余地",
+        "positive": "身近な人と生活を共有する機会"
+      },
+      "candidate": {
+        "negative": "活動の進め方を自分で決める余地を重視",
+        "positive": "関係者と決める機会を重視",
+        "source": "D59"
+      },
+      "editorialStatus": "BLOCK",
+      "decisionGate": "HOLD_CONSTRUCT",
+      "adoption": "NOT_APPROVED",
+      "competingWith": [
+        "B05"
+      ],
+      "probe": "外向性との分離"
+    },
+    {
+      "id": "B03",
+      "axis": "B",
+      "originalConstruct": "自律と大切な人との関係",
+      "candidateConstruct": "意思決定と実行の分担",
+      "current": {
+        "negative": "自分が望む達成を大切にする",
+        "positive": "誰かと共有できる達成を大切にする"
+      },
+      "candidate": {
+        "negative": "達成後まず自分で振り返る",
+        "positive": "達成後まず関係者と振り返る",
+        "source": "D57"
+      },
+      "editorialStatus": "REVISE",
+      "decisionGate": "HOLD_CONSTRUCT",
+      "adoption": "NOT_APPROVED",
+      "competingWith": [
+        "B01"
+      ],
+      "probe": "対人嗜好との交差"
+    },
+    {
+      "id": "B04",
+      "axis": "B",
+      "originalConstruct": "自律と大切な人との関係",
+      "candidateConstruct": "意思決定と実行の分担",
+      "current": {
+        "negative": "自分の希望する場所を選ぶ",
+        "positive": "大切な人との距離を重視して選ぶ"
+      },
+      "candidate": {
+        "negative": "調整可能なら自分の予定を優先して組む",
+        "positive": "調整可能なら関係者と予定を合わせて組む",
+        "source": "D57"
+      },
+      "editorialStatus": "TRIAL",
+      "decisionGate": "HOLD_CONSTRUCT",
+      "adoption": "NOT_APPROVED",
+      "competingWith": [
+        "B02"
+      ],
+      "probe": "家庭事情の影響"
+    },
+    {
+      "id": "B05",
+      "axis": "B",
+      "originalConstruct": "自律と大切な人との関係",
+      "candidateConstruct": "意思決定と実行の分担",
+      "current": {
+        "negative": "自分だけでも実現したい目標",
+        "positive": "大切な人と実現したい目標"
+      },
+      "candidate": {
+        "negative": "同じ目標の実行を自分で組み立てる",
+        "positive": "同じ目標の実行を関係者と分担する",
+        "source": "D59"
+      },
+      "editorialStatus": "REVISE",
+      "decisionGate": "HOLD_CONSTRUCT",
+      "adoption": "NOT_APPROVED",
+      "competingWith": [
+        "B02"
+      ],
+      "probe": "B02との重複"
+    },
+    {
+      "id": "B06",
+      "axis": "B",
+      "originalConstruct": "自律と大切な人との関係",
+      "candidateConstruct": "意思決定と実行の分担",
+      "current": {
+        "negative": "自分の希望に合わせて方向を決める",
+        "positive": "関係者と方向をすり合わせる"
+      },
+      "candidate": {
+        "negative": "意見が分かれた際に自分の判断を重視する",
+        "positive": "意見が分かれた際に合意形成を重視する",
+        "source": "D57"
+      },
+      "editorialStatus": "REVISE",
+      "decisionGate": "HOLD_CONSTRUCT",
+      "adoption": "NOT_APPROVED",
+      "competingWith": [
+        "B01"
+      ],
+      "probe": "社会的望ましさ"
+    },
+    {
+      "id": "C01",
+      "axis": "C",
+      "originalConstruct": "将来と今日の充実",
+      "candidateConstruct": "将来便益と現在便益",
+      "current": {
+        "negative": "数年後の達成につながる日々",
+        "positive": "毎日の充実を感じられる日々"
+      },
+      "candidate": {
+        "negative": "将来の選択肢が増える活動を先に選ぶ",
+        "positive": "今日の充実が増える活動を先に選ぶ",
+        "source": "D57"
+      },
+      "editorialStatus": "TRIAL",
+      "decisionGate": "REVIEW_ONLY",
+      "adoption": "NOT_APPROVED",
+      "competingWith": [
+        "C02",
+        "C05"
+      ],
+      "probe": "実現可能性の差"
+    },
+    {
+      "id": "C02",
+      "axis": "C",
+      "originalConstruct": "将来と今日の充実",
+      "candidateConstruct": "将来便益と現在便益",
+      "current": {
+        "negative": "将来の目標に備える活動",
+        "positive": "今の満足につながる活動"
+      },
+      "candidate": {
+        "negative": "同じ負担なら将来便益の大きい時間を選ぶ",
+        "positive": "同じ負担なら今日便益の大きい時間を選ぶ",
+        "source": "D57"
+      },
+      "editorialStatus": "REVISE",
+      "decisionGate": "REVIEW_ONLY",
+      "adoption": "NOT_APPROVED",
+      "competingWith": [
+        "C01",
+        "C05"
+      ],
+      "probe": "C01と区別"
+    },
+    {
+      "id": "C03",
+      "axis": "C",
+      "originalConstruct": "将来と今日の充実",
+      "candidateConstruct": "将来便益と現在便益",
+      "current": {
+        "negative": "将来使いたい知識を身につける",
+        "positive": "今知りたいことを学ぶ"
+      },
+      "candidate": {
+        "negative": "後に役立つ知識を学ぶ",
+        "positive": "今日の関心を満たす知識を学ぶ",
+        "source": "D57"
+      },
+      "editorialStatus": "TRIAL",
+      "decisionGate": "REVIEW_ONLY",
+      "adoption": "NOT_APPROVED",
+      "competingWith": [
+        "C04"
+      ],
+      "probe": "学習機会の差"
+    },
+    {
+      "id": "C04",
+      "axis": "C",
+      "originalConstruct": "将来と今日の充実",
+      "candidateConstruct": "将来便益と現在便益",
+      "current": {
+        "negative": "長期的な成果につながる挑戦",
+        "positive": "取り組む過程を楽しめる挑戦"
+      },
+      "candidate": {
+        "negative": "同じ活動で将来得られる充実を重視する",
+        "positive": "同じ活動で今日得られる充実を重視する",
+        "source": "D57"
+      },
+      "editorialStatus": "BLOCK",
+      "decisionGate": "REVIEW_ONLY",
+      "adoption": "NOT_APPROVED",
+      "competingWith": [
+        "C03"
+      ],
+      "probe": "抽象度"
+    },
+    {
+      "id": "C05",
+      "axis": "C",
+      "originalConstruct": "将来と今日の充実",
+      "candidateConstruct": "将来便益と現在便益",
+      "current": {
+        "negative": "後から得られる充実を優先",
+        "positive": "すぐに得られる充実を優先"
+      },
+      "candidate": {
+        "negative": "余暇の一部を将来の便益に振り向ける",
+        "positive": "余暇の一部を今日の便益に振り向ける",
+        "source": "D57"
+      },
+      "editorialStatus": "REVISE",
+      "decisionGate": "REVIEW_ONLY",
+      "adoption": "NOT_APPROVED",
+      "competingWith": [
+        "C01",
+        "C02"
+      ],
+      "probe": "C02との重複"
+    },
+    {
+      "id": "C06",
+      "axis": "C",
+      "originalConstruct": "将来と今日の充実",
+      "candidateConstruct": "将来便益と現在便益",
+      "current": {
+        "negative": "将来の理想に近づく感覚",
+        "positive": "今の生活に満足できる感覚"
+      },
+      "candidate": {
+        "negative": "生活改善で将来の快適さを優先する",
+        "positive": "生活改善で今日の快適さを優先する",
+        "source": "D57"
+      },
+      "editorialStatus": "REVISE",
+      "decisionGate": "REVIEW_ONLY",
+      "adoption": "NOT_APPROVED",
+      "competingWith": [
+        "C04"
+      ],
+      "probe": "便益量の非対称"
+    },
+    {
+      "id": "D01",
+      "axis": "D",
+      "originalConstruct": "経験の幅と深さ",
+      "candidateConstruct": "学習・経験の幅と深さ",
+      "current": {
+        "negative": "さまざまな趣味を試す",
+        "positive": "好きな趣味を長く深める"
+      },
+      "candidate": {
+        "negative": "関心活動の種類を広げる",
+        "positive": "一つの関心活動を深める",
+        "source": "D57"
+      },
+      "editorialStatus": "TRIAL",
+      "decisionGate": "REVIEW_ONLY",
+      "adoption": "NOT_APPROVED",
+      "competingWith": [
+        "D06"
+      ],
+      "probe": "活動経験の差"
+    },
+    {
+      "id": "D02",
+      "axis": "D",
+      "originalConstruct": "経験の幅と深さ",
+      "candidateConstruct": "学習・経験の幅と深さ",
+      "current": {
+        "negative": "幅広い分野を知る",
+        "positive": "一つの分野を深く理解する"
+      },
+      "candidate": {
+        "negative": "複数分野の知識を広く学ぶ",
+        "positive": "一分野の知識を深く学ぶ",
+        "source": "D59"
+      },
+      "editorialStatus": "TRIAL",
+      "decisionGate": "REVIEW_ONLY",
+      "adoption": "NOT_APPROVED",
+      "competingWith": [
+        "D03",
+        "D05"
+      ],
+      "probe": "教育機会の差"
+    },
+    {
+      "id": "D03",
+      "axis": "D",
+      "originalConstruct": "経験の幅と深さ",
+      "candidateConstruct": "学習・経験の幅と深さ",
+      "current": {
+        "negative": "未経験のことを数多く経験する",
+        "positive": "気に入った経験を繰り返し深める"
+      },
+      "candidate": {
+        "negative": "複数分野の体験を試す",
+        "positive": "一分野の体験を掘り下げる",
+        "source": "D59"
+      },
+      "editorialStatus": "BLOCK",
+      "decisionGate": "REVIEW_ONLY",
+      "adoption": "NOT_APPROVED",
+      "competingWith": [
+        "D02"
+      ],
+      "probe": "D02との重複"
+    },
+    {
+      "id": "D04",
+      "axis": "D",
+      "originalConstruct": "経験の幅と深さ",
+      "candidateConstruct": "学習・経験の幅と深さ",
+      "current": {
+        "negative": "異なるテーマに取り組む",
+        "positive": "一つのテーマを追究する"
+      },
+      "candidate": {
+        "negative": "一つの課題で異なるテーマに触れる",
+        "positive": "一つの課題で特定テーマを掘り下げる",
+        "source": "D57"
+      },
+      "editorialStatus": "REVISE",
+      "decisionGate": "REVIEW_ONLY",
+      "adoption": "NOT_APPROVED",
+      "competingWith": [
+        "D01"
+      ],
+      "probe": "A軸との弁別"
+    },
+    {
+      "id": "D05",
+      "axis": "D",
+      "originalConstruct": "経験の幅と深さ",
+      "candidateConstruct": "学習・経験の幅と深さ",
+      "current": {
+        "negative": "複数領域に知識を広げる",
+        "positive": "特定領域への理解を深める"
+      },
+      "candidate": {
+        "negative": "鑑賞・制作で複数の表現に触れる",
+        "positive": "鑑賞・制作で一つの表現を深める",
+        "source": "D57"
+      },
+      "editorialStatus": "TRIAL",
+      "decisionGate": "REVIEW_ONLY",
+      "adoption": "NOT_APPROVED",
+      "competingWith": [
+        "D02"
+      ],
+      "probe": "創作未経験者"
+    },
+    {
+      "id": "D06",
+      "axis": "D",
+      "originalConstruct": "経験の幅と深さ",
+      "candidateConstruct": "学習・経験の幅と深さ",
+      "current": {
+        "negative": "経験の種類を増やす",
+        "positive": "大切な経験の深さを増やす"
+      },
+      "candidate": {
+        "negative": "旅行・外出で訪れる対象を広げる",
+        "positive": "旅行・外出で一つの対象を詳しく知る",
+        "source": "D57"
+      },
+      "editorialStatus": "REVISE",
+      "decisionGate": "REVIEW_ONLY",
+      "adoption": "NOT_APPROVED",
+      "competingWith": [
+        "D01"
+      ],
+      "probe": "移動制約・適用不能"
+    },
+    {
+      "id": "E01",
+      "axis": "E",
+      "originalConstruct": "金銭裁量と時間裁量",
+      "candidateConstruct": "相対・独立・非分類の方式比較",
+      "current": {
+        "negative": "収入に余裕のある働き方",
+        "positive": "自由時間に余裕のある働き方"
+      },
+      "candidate": {
+        "negative": "追加の支出裁量を先に確保する",
+        "positive": "追加の時間裁量を先に確保する",
+        "source": "D57"
+      },
+      "editorialStatus": "TRIAL",
+      "decisionGate": "HOLD_E_DESIGN",
+      "adoption": "NOT_APPROVED",
+      "competingWith": [
+        "E02",
+        "E04",
+        "E05",
+        "E06"
+      ],
+      "probe": "E02/E05との重複"
+    },
+    {
+      "id": "E02",
+      "axis": "E",
+      "originalConstruct": "金銭裁量と時間裁量",
+      "candidateConstruct": "相対・独立・非分類の方式比較",
+      "current": {
+        "negative": "追加収入を得る",
+        "positive": "自由時間を増やす"
+      },
+      "candidate": {
+        "negative": "余裕ができたら支出の選択肢を増やす",
+        "positive": "余裕ができたら予定の選択肢を増やす",
+        "source": "D57"
+      },
+      "editorialStatus": "REVISE",
+      "decisionGate": "HOLD_E_DESIGN",
+      "adoption": "NOT_APPROVED",
+      "competingWith": [
+        "E01",
+        "E04",
+        "E05",
+        "E06"
+      ],
+      "probe": "想定効果量の違い"
+    },
+    {
+      "id": "E03",
+      "axis": "E",
+      "originalConstruct": "金銭裁量と時間裁量",
+      "candidateConstruct": "相対・独立・非分類の方式比較",
+      "current": {
+        "negative": "収入のために使う時間を増やす",
+        "positive": "自分で使える時間を増やす"
+      },
+      "candidate": {
+        "negative": "趣味に使う予算の裁量を増やす",
+        "positive": "趣味に使う時間の裁量を増やす",
+        "source": "D57"
+      },
+      "editorialStatus": "REVISE",
+      "decisionGate": "HOLD_E_DESIGN",
+      "adoption": "NOT_APPROVED",
+      "competingWith": [
+        "E01"
+      ],
+      "probe": "趣味の有無"
+    },
+    {
+      "id": "E04",
+      "axis": "E",
+      "originalConstruct": "金銭裁量と時間裁量",
+      "candidateConstruct": "相対・独立・非分類の方式比較",
+      "current": {
+        "negative": "使えるお金の余裕を広げる",
+        "positive": "使える時間の余裕を広げる"
+      },
+      "candidate": {
+        "negative": "将来の支出先を選ぶ余地を増やす",
+        "positive": "将来の予定を選ぶ余地を増やす",
+        "source": "D57"
+      },
+      "editorialStatus": "BLOCK",
+      "decisionGate": "HOLD_E_DESIGN",
+      "adoption": "NOT_APPROVED",
+      "competingWith": [
+        "E01",
+        "E02",
+        "E05"
+      ],
+      "probe": "E02との重複"
+    },
+    {
+      "id": "E05",
+      "axis": "E",
+      "originalConstruct": "金銭裁量と時間裁量",
+      "candidateConstruct": "相対・独立・非分類の方式比較",
+      "current": {
+        "negative": "可処分所得を月3万円増やす",
+        "positive": "自由時間を週3時間増やす"
+      },
+      "candidate": {
+        "negative": "家計の追加的な余裕を先に確保する",
+        "positive": "自由に使える追加的な時間を先に確保する",
+        "source": "D57"
+      },
+      "editorialStatus": "BLOCK",
+      "decisionGate": "HOLD_E_DESIGN",
+      "adoption": "NOT_APPROVED",
+      "competingWith": [
+        "E01",
+        "E02",
+        "E04"
+      ],
+      "probe": "金額と時間の比較量が未統制"
+    },
+    {
+      "id": "E06",
+      "axis": "E",
+      "originalConstruct": "金銭裁量と時間裁量",
+      "candidateConstruct": "相対・独立・非分類の方式比較",
+      "current": {
+        "negative": "経済的な選択肢を広げる",
+        "positive": "時間の使い方の選択肢を広げる"
+      },
+      "candidate": {
+        "negative": "生活上の追加予算の使途を選べること",
+        "positive": "生活上の追加時間の使途を選べること",
+        "source": "D57"
+      },
+      "editorialStatus": "REVISE",
+      "decisionGate": "HOLD_E_DESIGN",
+      "adoption": "NOT_APPROVED",
+      "competingWith": [
+        "E01",
+        "E02"
+      ],
+      "probe": "E01/E02との重複"
+    }
+  ],
+  "changeHistory": [
+    {
+      "date": "2026-10-26",
+      "version": "D73-001",
+      "change": "Lock 30 source-aligned candidate pairs and construct-review gates without altering runtime or collected data."
+    }
+  ]
+}

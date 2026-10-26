@@ -1,0 +1,393 @@
+{
+  "schema": "A05-REVISE-OVERLAY-1",
+  "researchVersion": "A05-R-2.0.0-alpha.2-overlay",
+  "baseResearchVersion": "A05-R-2.0.0-alpha.1",
+  "created": "2026-10-26",
+  "status": "RESEARCH_ONLY_UNAPPROVED",
+  "derivation": "Append-only alternatives to the 13 D-35 REVISE entries; original D-35 file is immutable",
+  "permissions": {
+    "scoringAllowed": false,
+    "productionUseAllowed": false,
+    "autosaveAllowed": false,
+    "personalDataCollectionApproved": false,
+    "oldResultsComparable": false
+  },
+  "interpretation": "Candidate wording only; old score values, direction and question hashes are not interchangeable with this overlay",
+  "priorityRule": {
+    "P0": "High risk of construct overlap, contextual bias or E-axis validity problems; review first",
+    "P1": "Wording, context and redundancy improvements; review after P0",
+    "P2": "Reserved"
+  },
+  "entries": [
+    {
+      "id": "A01",
+      "priority": "P1",
+      "editorialStatus": "REVISE",
+      "constructHypothesis": "通常時の方法の継続と更新",
+      "overlapCandidates": [
+        "A06",
+        "D04"
+      ],
+      "interviewProbe": "通常時の改善と、未知の課題への挑戦のどちらを想像しましたか。",
+      "variants": [
+        {
+          "code": "A",
+          "negative": "普段の活動では、慣れた進め方を少しずつ調整する",
+          "positive": "普段の活動では、これまでと違う進め方へ切り替える",
+          "left": "普段の活動では、慣れた進め方を少しずつ調整する",
+          "right": "普段の活動では、これまでと違う進め方へ切り替える"
+        },
+        {
+          "code": "B",
+          "negative": "今の活動を良くするとき、既存の方法を活かして改善する",
+          "positive": "今の活動を良くするとき、別の方法から組み直してみる",
+          "left": "今の活動を良くするとき、既存の方法を活かして改善する",
+          "right": "今の活動を良くするとき、別の方法から組み直してみる"
+        }
+      ]
+    },
+    {
+      "id": "A06",
+      "priority": "P0",
+      "editorialStatus": "REVISE",
+      "constructHypothesis": "自発的に新しい課題へ取り組む際の方法選好",
+      "overlapCandidates": [
+        "A01",
+        "A05",
+        "D04"
+      ],
+      "interviewProbe": "A05のような予定外の変化への対処と、どう違うと感じましたか。",
+      "variants": [
+        {
+          "code": "A",
+          "negative": "初めての課題では、今までの経験を応用して進める",
+          "positive": "初めての課題では、使ったことのない進め方を試す",
+          "left": "初めての課題では、使ったことのない進め方を試す",
+          "right": "初めての課題では、今までの経験を応用して進める"
+        },
+        {
+          "code": "B",
+          "negative": "未知の課題に向かうとき、慣れた方法を土台に考える",
+          "positive": "未知の課題に向かうとき、従来と異なる方法から考える",
+          "left": "未知の課題に向かうとき、従来と異なる方法から考える",
+          "right": "未知の課題に向かうとき、慣れた方法を土台に考える"
+        }
+      ]
+    },
+    {
+      "id": "B03",
+      "priority": "P1",
+      "editorialStatus": "REVISE",
+      "constructHypothesis": "達成後に自己／他者と意味づけする優先度",
+      "overlapCandidates": [
+        "B01",
+        "B05"
+      ],
+      "interviewProbe": "達成を誰かに褒められたいという気持ちと、共有自体の希望は区別できましたか。",
+      "variants": [
+        {
+          "code": "A",
+          "negative": "何かを達成した後、まず自分の中で振り返る",
+          "positive": "何かを達成した後、まず誰かと振り返りを共有する",
+          "left": "何かを達成した後、まず誰かと振り返りを共有する",
+          "right": "何かを達成した後、まず自分の中で振り返る"
+        },
+        {
+          "code": "B",
+          "negative": "成果を得たとき、自分なりの評価を先に整理する",
+          "positive": "成果を得たとき、誰かとその意味を先に話し合う",
+          "left": "成果を得たとき、誰かとその意味を先に話し合う",
+          "right": "成果を得たとき、自分なりの評価を先に整理する"
+        }
+      ]
+    },
+    {
+      "id": "B05",
+      "priority": "P1",
+      "editorialStatus": "REVISE",
+      "constructHypothesis": "同一目標に向けた道筋の自己決定／共同決定",
+      "overlapCandidates": [
+        "B01",
+        "B02",
+        "B06"
+      ],
+      "interviewProbe": "目標自体の違いでなく、意思決定の仕方として答えられましたか。",
+      "variants": [
+        {
+          "code": "A",
+          "negative": "同じ目標へ向かうなら、進める道筋を自分で決めたい",
+          "positive": "同じ目標へ向かうなら、進める道筋を仲間と決めたい",
+          "left": "同じ目標へ向かうなら、進める道筋を仲間と決めたい",
+          "right": "同じ目標へ向かうなら、進める道筋を自分で決めたい"
+        },
+        {
+          "code": "B",
+          "negative": "目標の達成方法を選ぶとき、自分の判断の余地を優先する",
+          "positive": "目標の達成方法を選ぶとき、関係者との話し合いの余地を優先する",
+          "left": "目標の達成方法を選ぶとき、関係者との話し合いの余地を優先する",
+          "right": "目標の達成方法を選ぶとき、自分の判断の余地を優先する"
+        }
+      ]
+    },
+    {
+      "id": "B06",
+      "priority": "P0",
+      "editorialStatus": "REVISE",
+      "constructHypothesis": "意見不一致場面の意思決定主導／合意形成",
+      "overlapCandidates": [
+        "B01",
+        "B02",
+        "B05"
+      ],
+      "interviewProbe": "協調的で良い人に見える選択肢を選んだ面はありますか。",
+      "variants": [
+        {
+          "code": "A",
+          "negative": "意見が分かれたとき、自分の方針を保って解決を探す",
+          "positive": "意見が分かれたとき、皆が納得できる方針を探す",
+          "left": "意見が分かれたとき、自分の方針を保って解決を探す",
+          "right": "意見が分かれたとき、皆が納得できる方針を探す"
+        },
+        {
+          "code": "B",
+          "negative": "複数の方法が成り立つ場合、自分の判断に沿った方法を選ぶ",
+          "positive": "複数の方法が成り立つ場合、関係者との合意に沿った方法を選ぶ",
+          "left": "複数の方法が成り立つ場合、自分の判断に沿った方法を選ぶ",
+          "right": "複数の方法が成り立つ場合、関係者との合意に沿った方法を選ぶ"
+        }
+      ]
+    },
+    {
+      "id": "C02",
+      "priority": "P0",
+      "editorialStatus": "REVISE",
+      "constructHypothesis": "同程度の活動における効用の実現時点",
+      "overlapCandidates": [
+        "C01",
+        "C04",
+        "C05"
+      ],
+      "interviewProbe": "準備することが善い、遊ぶことが悪いという印象がありましたか。",
+      "variants": [
+        {
+          "code": "A",
+          "negative": "同じ時間を使うなら、後で実感できる充実を重視する",
+          "positive": "同じ時間を使うなら、今日実感できる充実を重視する",
+          "left": "同じ時間を使うなら、今日実感できる充実を重視する",
+          "right": "同じ時間を使うなら、後で実感できる充実を重視する"
+        },
+        {
+          "code": "B",
+          "negative": "活動を選ぶとき、先の生活で感じる満足を優先する",
+          "positive": "活動を選ぶとき、いまの生活で感じる満足を優先する",
+          "left": "活動を選ぶとき、いまの生活で感じる満足を優先する",
+          "right": "活動を選ぶとき、先の生活で感じる満足を優先する"
+        }
+      ]
+    },
+    {
+      "id": "C05",
+      "priority": "P1",
+      "editorialStatus": "REVISE",
+      "constructHypothesis": "日々の小さな時間配分における便益時点",
+      "overlapCandidates": [
+        "C01",
+        "C02",
+        "C04",
+        "C06"
+      ],
+      "interviewProbe": "C01と比べ、小さな自由時間に限定した意味の違いはありましたか。",
+      "variants": [
+        {
+          "code": "A",
+          "negative": "短い自由時間なら、後の楽しみにつながることを選ぶ",
+          "positive": "短い自由時間なら、その場で楽しめることを選ぶ",
+          "left": "短い自由時間なら、後の楽しみにつながることを選ぶ",
+          "right": "短い自由時間なら、その場で楽しめることを選ぶ"
+        },
+        {
+          "code": "B",
+          "negative": "少し時間が空いたら、先の満足を高める活動を優先する",
+          "positive": "少し時間が空いたら、今の満足を高める活動を優先する",
+          "left": "少し時間が空いたら、先の満足を高める活動を優先する",
+          "right": "少し時間が空いたら、今の満足を高める活動を優先する"
+        }
+      ]
+    },
+    {
+      "id": "C06",
+      "priority": "P0",
+      "editorialStatus": "REVISE",
+      "constructHypothesis": "同じ種類の生活満足を得たい時間軸",
+      "overlapCandidates": [
+        "C01",
+        "C02",
+        "C05"
+      ],
+      "interviewProbe": "同じ程度の満足が前提だと理解できましたか。期間のイメージで判断が変わりますか。",
+      "variants": [
+        {
+          "code": "A",
+          "negative": "同じように暮らしの満足を高めるなら、数年先の充実につなげたい",
+          "positive": "同じように暮らしの満足を高めるなら、近い時期の充実を優先したい",
+          "left": "同じように暮らしの満足を高めるなら、近い時期の充実を優先したい",
+          "right": "同じように暮らしの満足を高めるなら、数年先の充実につなげたい"
+        },
+        {
+          "code": "B",
+          "negative": "暮らしを良くする選択では、後から実感する満足を重視する",
+          "positive": "暮らしを良くする選択では、今実感できる満足を重視する",
+          "left": "暮らしを良くする選択では、今実感できる満足を重視する",
+          "right": "暮らしを良くする選択では、後から実感する満足を重視する"
+        }
+      ]
+    },
+    {
+      "id": "D04",
+      "priority": "P0",
+      "editorialStatus": "REVISE",
+      "constructHypothesis": "作業・活動を進める際の経験の幅／深さ",
+      "overlapCandidates": [
+        "A01",
+        "A06",
+        "D02",
+        "D03"
+      ],
+      "interviewProbe": "方法を変えるのが好きだからですか、経験の幅や深さを増やしたいからですか。",
+      "variants": [
+        {
+          "code": "A",
+          "negative": "一つの活動に取り組むなら、複数のやり方を幅広く体験する",
+          "positive": "一つの活動に取り組むなら、一つのやり方を繰り返し掘り下げる",
+          "left": "一つの活動に取り組むなら、複数のやり方を幅広く体験する",
+          "right": "一つの活動に取り組むなら、一つのやり方を繰り返し掘り下げる"
+        },
+        {
+          "code": "B",
+          "negative": "同じ時間があるなら、異なる作業方法を少しずつ知る",
+          "positive": "同じ時間があるなら、選んだ一つの作業方法を詳しく知る",
+          "left": "同じ時間があるなら、異なる作業方法を少しずつ知る",
+          "right": "同じ時間があるなら、選んだ一つの作業方法を詳しく知る"
+        }
+      ]
+    },
+    {
+      "id": "D06",
+      "priority": "P1",
+      "editorialStatus": "REVISE",
+      "constructHypothesis": "既に気に入った対象からの経験展開の幅／深さ",
+      "overlapCandidates": [
+        "D01",
+        "D02",
+        "D03"
+      ],
+      "interviewProbe": "D01・D02と異なる場面を想像しましたか。",
+      "variants": [
+        {
+          "code": "A",
+          "negative": "気に入った体験から、関連する別の体験へ広げたい",
+          "positive": "気に入った体験から、その内容をより詳しく知りたい",
+          "left": "気に入った体験から、関連する別の体験へ広げたい",
+          "right": "気に入った体験から、その内容をより詳しく知りたい"
+        },
+        {
+          "code": "B",
+          "negative": "関心が生まれた分野では、周辺のテーマも広く触れたい",
+          "positive": "関心が生まれた分野では、一つのテーマをさらに深く追いたい",
+          "left": "関心が生まれた分野では、周辺のテーマも広く触れたい",
+          "right": "関心が生まれた分野では、一つのテーマをさらに深く追いたい"
+        }
+      ]
+    },
+    {
+      "id": "E02",
+      "priority": "P0",
+      "editorialStatus": "REVISE",
+      "constructHypothesis": "今後の活動枠を経済／時間へ配分する優先度",
+      "overlapCandidates": [
+        "E01",
+        "E03",
+        "E04",
+        "E05",
+        "E06"
+      ],
+      "interviewProbe": "就業状況・家計の必要性を除いて考えられましたか。二つの活動時間は同じ負担だと思いましたか。",
+      "variants": [
+        {
+          "code": "A",
+          "negative": "負担を選べる場合、収入に結びつく活動の時間を先に増やす",
+          "positive": "負担を選べる場合、自分のために使う活動の時間を先に増やす",
+          "left": "負担を選べる場合、自分のために使う活動の時間を先に増やす",
+          "right": "負担を選べる場合、収入に結びつく活動の時間を先に増やす"
+        },
+        {
+          "code": "B",
+          "negative": "余裕のある時間の使い方を決めるなら、使えるお金を増やす機会を選ぶ",
+          "positive": "余裕のある時間の使い方を決めるなら、自由時間を広げる機会を選ぶ",
+          "left": "余裕のある時間の使い方を決めるなら、自由時間を広げる機会を選ぶ",
+          "right": "余裕のある時間の使い方を決めるなら、使えるお金を増やす機会を選ぶ"
+        }
+      ]
+    },
+    {
+      "id": "E03",
+      "priority": "P0",
+      "editorialStatus": "REVISE",
+      "constructHypothesis": "将来の不確実性に備える経済／時間裁量",
+      "overlapCandidates": [
+        "E01",
+        "E02",
+        "E04",
+        "E05",
+        "E06"
+      ],
+      "interviewProbe": "現在の不足感や不安を比較したのではないですか。E06との違いは説明できますか。",
+      "variants": [
+        {
+          "code": "A",
+          "negative": "予定が変わりやすい時期には、使える予算の余裕を先に増やしたい",
+          "positive": "予定が変わりやすい時期には、自由に動かせる時間の余裕を先に増やしたい",
+          "left": "予定が変わりやすい時期には、使える予算の余裕を先に増やしたい",
+          "right": "予定が変わりやすい時期には、自由に動かせる時間の余裕を先に増やしたい"
+        },
+        {
+          "code": "B",
+          "negative": "先の予定に備えるなら、支出の選択肢を確保したい",
+          "positive": "先の予定に備えるなら、自分の時間の選択肢を確保したい",
+          "left": "先の予定に備えるなら、支出の選択肢を確保したい",
+          "right": "先の予定に備えるなら、自分の時間の選択肢を確保したい"
+        }
+      ]
+    },
+    {
+      "id": "E06",
+      "priority": "P0",
+      "editorialStatus": "REVISE",
+      "constructHypothesis": "追加裁量の柔軟性を支出／予定でどう優先するか",
+      "overlapCandidates": [
+        "E01",
+        "E02",
+        "E03",
+        "E04",
+        "E05"
+      ],
+      "interviewProbe": "お金と時間の改善量は同じ程度だと想像しましたか。E03と区別できますか。",
+      "variants": [
+        {
+          "code": "A",
+          "negative": "急に希望が変わったとき、支出先を変更できる余地を重視する",
+          "positive": "急に希望が変わったとき、予定を変更できる余地を重視する",
+          "left": "急に希望が変わったとき、予定を変更できる余地を重視する",
+          "right": "急に希望が変わったとき、支出先を変更できる余地を重視する"
+        },
+        {
+          "code": "B",
+          "negative": "先の選択肢を確保するとき、使うお金の行き先を柔軟に決めたい",
+          "positive": "先の選択肢を確保するとき、使う時間の割り当てを柔軟に決めたい",
+          "left": "先の選択肢を確保するとき、使う時間の割り当てを柔軟に決めたい",
+          "right": "先の選択肢を確保するとき、使うお金の行き先を柔軟に決めたい"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1353 @@
+{
+  "schema": "A05-D54-PR-REVIEW-MANIFEST-1",
+  "version": "D86-001",
+  "date": "2026-10-26",
+  "repository": "k-ait0/k-aito-com",
+  "base": "main",
+  "headBranch": "feature/a05-d23-modular-diagnostic-20261025",
+  "prNumber": 61,
+  "baselineAtCreation": {
+    "ahead": 229,
+    "behind": 0,
+    "trackedDiffFiles": 64,
+    "manifestFutureIncluded": true
+  },
+  "state": "DRAFT_REVIEW_NOT_SIGNED_OFF",
+  "guards": {
+    "draftOnly": true,
+    "automaticMerge": false,
+    "productionReleaseAuthorized": false,
+    "studyAuthorized": false,
+    "g1DecisionsPending": 12,
+    "d42AcceptanceChecksPending": 16,
+    "noParticipantDataCollected": true,
+    "validationOfPsychometrics": false
+  },
+  "groups": [
+    {
+      "id": "A_UI_ACCESSIBILITY",
+      "meaning": "未公開A05画面、操作性、アクセシビリティ",
+      "reviewStatus": "PENDING_HUMAN_REVIEW",
+      "technicalCI": "VERIFIED_PREVIOUS_RUN_ONLY",
+      "releaseApproved": false,
+      "riskPriority": "P1_USER_ACCESS",
+      "requiredSignoffRole": "UI_ACCESSIBILITY_REVIEWER"
+    },
+    {
+      "id": "B_STORAGE_BACKUP",
+      "meaning": "端末保存、エクスポート、復元を実行しないプレビュー、データ保護",
+      "reviewStatus": "PENDING_HUMAN_REVIEW",
+      "technicalCI": "VERIFIED_PREVIOUS_RUN_ONLY",
+      "releaseApproved": false,
+      "riskPriority": "P0_DATA_PROTECTION",
+      "requiredSignoffRole": "DATA_PROTECTION_REVIEWER"
+    },
+    {
+      "id": "C_PROVISIONAL_SCORING",
+      "meaning": "未検証の30問・暫定採点・16タイプ。科学的妥当性は未証明",
+      "reviewStatus": "RESEARCH_VALIDATION_PENDING",
+      "technicalCI": "VERIFIED_PREVIOUS_RUN_ONLY",
+      "releaseApproved": false,
+      "riskPriority": "P0_RESEARCH_VALIDATION_BLOCKED",
+      "requiredSignoffRole": "SUBJECT_MATTER_REVIEWER"
+    },
+    {
+      "id": "D_RESEARCH_HUMAN_APPROVAL",
+      "meaning": "認知面接の草案、G1の人間による承認、収集なし",
+      "reviewStatus": "G1_12_AND_D42_16_PENDING",
+      "technicalCI": "NO_RESEARCH_AUTORIZATION",
+      "releaseApproved": false,
+      "riskPriority": "P0_HUMAN_APPROVAL_REQUIRED",
+      "requiredSignoffRole": "ACTUAL_RESEARCH_OWNER"
+    },
+    {
+      "id": "E_CROSSCUTTING_QA_AUDIT",
+      "meaning": "横断QA、GitHub Actions、実装履歴、レビュー資料",
+      "reviewStatus": "PENDING_HUMAN_REVIEW",
+      "technicalCI": "VERIFIED_PREVIOUS_RUN_ONLY",
+      "releaseApproved": false,
+      "riskPriority": "P1_ENGINEERING_GATE",
+      "requiredSignoffRole": "ENGINEERING_REVIEWER"
+    }
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/kidp-wave-a-browser-qa.yml",
+      "group": "E_CROSSCUTTING_QA_AUDIT",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "docs/A05_D23_IMPLEMENTATION_LOG_20261025.md",
+      "group": "E_CROSSCUTTING_QA_AUDIT",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "docs/A05_D28_REVIEW_20261025.md",
+      "group": "D_RESEARCH_HUMAN_APPROVAL",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "docs/A05_D30_QUESTION_SET_V2_PROPOSAL_20261025.md",
+      "group": "D_RESEARCH_HUMAN_APPROVAL",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "docs/A05_D31_FULL_QUESTION_REVIEW_20261025.md",
+      "group": "D_RESEARCH_HUMAN_APPROVAL",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "docs/A05_D33_COGNITIVE_INTERVIEW_PROTOCOL_20261026.md",
+      "group": "D_RESEARCH_HUMAN_APPROVAL",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "docs/A05_D33_ITEM_AUDIT_AND_VALIDATION_PLAN_20261026.md",
+      "group": "D_RESEARCH_HUMAN_APPROVAL",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "docs/A05_D34_BLOCKER_REWRITE_COMPARISON_20261026.md",
+      "group": "D_RESEARCH_HUMAN_APPROVAL",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "docs/A05_D35_INTERVIEW_CANDIDATES_20261026.json",
+      "group": "D_RESEARCH_HUMAN_APPROVAL",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "docs/A05_D35_INTERVIEW_CANDIDATE_GUIDE_20261026.md",
+      "group": "D_RESEARCH_HUMAN_APPROVAL",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "docs/A05_D36_PRIORITIZED_30ITEM_REVIEW_20261026.md",
+      "group": "D_RESEARCH_HUMAN_APPROVAL",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "docs/A05_D36_REVISE_CANDIDATES_20261026.json",
+      "group": "D_RESEARCH_HUMAN_APPROVAL",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "docs/A05_D37_INTERVIEW_READINESS_AND_DECISION_GATES_20261026.md",
+      "group": "D_RESEARCH_HUMAN_APPROVAL",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "docs/A05_D38_DATA_HANDLING_SOP_DRAFT_20261026.md",
+      "group": "D_RESEARCH_HUMAN_APPROVAL",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "docs/A05_D38_G1_APPROVAL_REGISTER_20261026.json",
+      "group": "D_RESEARCH_HUMAN_APPROVAL",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "docs/A05_D38_G1_DECISION_PACKET_20261026.md",
+      "group": "D_RESEARCH_HUMAN_APPROVAL",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "docs/A05_D38_PARTICIPANT_INFORMATION_AND_CONSENT_DRAFT_20261026.md",
+      "group": "D_RESEARCH_HUMAN_APPROVAL",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "docs/A05_D39_G1_DECISION_OPTIONS_20261026.json",
+      "group": "D_RESEARCH_HUMAN_APPROVAL",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "docs/A05_D39_HUMAN_DECISIONS_AND_RETENTION_20261026.md",
+      "group": "D_RESEARCH_HUMAN_APPROVAL",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "docs/A05_D40_SYNTHETIC_CONSENT_WITHDRAWAL_DELETION_REVIEW_20261026.md",
+      "group": "D_RESEARCH_HUMAN_APPROVAL",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "docs/A05_D41_WITHDRAWAL_IDENTITY_AND_RETENTION_DECISION_20261026.md",
+      "group": "D_RESEARCH_HUMAN_APPROVAL",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "docs/A05_D41_WITHDRAWAL_POLICY_OPTIONS_20261026.json",
+      "group": "D_RESEARCH_HUMAN_APPROVAL",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "docs/A05_D42_30DAY_ACCEPTANCE_REGISTER_20261026.json",
+      "group": "D_RESEARCH_HUMAN_APPROVAL",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "docs/A05_D42_30DAY_OPERATIONAL_ACCEPTANCE_20261026.md",
+      "group": "D_RESEARCH_HUMAN_APPROVAL",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "docs/A05_D43_OPERATOR_DECISION_GATE_20261026.md",
+      "group": "D_RESEARCH_HUMAN_APPROVAL",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "docs/A05_D44_UI_FOCUS_AND_PROGRESS_FIX_20261026.md",
+      "group": "E_CROSSCUTTING_QA_AUDIT",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "docs/A05_D45_D46_REVIEW_NAVIGATION_EXPORT_20261026.md",
+      "group": "E_CROSSCUTTING_QA_AUDIT",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "docs/A05_D48_MOBILE_ANSWER_TARGETS_20261026.md",
+      "group": "E_CROSSCUTTING_QA_AUDIT",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "docs/A05_D49_SKIP_LINK_AND_ERASE_SCOPE_20261026.md",
+      "group": "E_CROSSCUTTING_QA_AUDIT",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "docs/A05_D50_LOCAL_HISTORY_DATES_20261026.md",
+      "group": "E_CROSSCUTTING_QA_AUDIT",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "docs/A05_D51_ENGINEERING_VS_RESEARCH_RELEASE_REVIEW_20261026.md",
+      "group": "E_CROSSCUTTING_QA_AUDIT",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "docs/A05_D52_BACKUP_PREVIEW_AND_RELEASE_SPLIT_20261026.md",
+      "group": "E_CROSSCUTTING_QA_AUDIT",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "docs/A05_D53_RESTORE_DRY_RUN_AND_PR_RELEASE_GATES_20261026.md",
+      "group": "E_CROSSCUTTING_QA_AUDIT",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "docs/A05_D54_INTEGRATION_REVIEW_AND_GO_NO_GO_20261026.md",
+      "group": "E_CROSSCUTTING_QA_AUDIT",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "docs/A05_D54_PR_REVIEW_MANIFEST_20261026.json",
+      "group": "E_CROSSCUTTING_QA_AUDIT",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "docs/A05_D55_P0_BACKUP_REVIEW_AND_DOC_CI_GATE_20261026.md",
+      "group": "E_CROSSCUTTING_QA_AUDIT",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "docs/A05_D56_CROSS_TAB_DRAFT_IDENTITY_GUARD_20261026.md",
+      "group": "E_CROSSCUTTING_QA_AUDIT",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "docs/A05_D57_QUESTION_EDITORIAL_MATRIX_20261026.md",
+      "group": "C_PROVISIONAL_SCORING",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "docs/A05_D58_REDUNDANCY_TYPE_ALIGNMENT_20261026.md",
+      "group": "C_PROVISIONAL_SCORING",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "docs/A05_D59_ITEM_AND_TYPE_COPY_PROPOSAL_20261026.md",
+      "group": "C_PROVISIONAL_SCORING",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "docs/A05_D60_E_AXIS_VERSIONING_DECISION_20261026.md",
+      "group": "E_CROSSCUTTING_QA_AUDIT",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "docs/A05_D73_EDITORIAL_DECISION_PACKET_20261026.md",
+      "group": "C_PROVISIONAL_SCORING",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "docs/A05_D73_ITEM_CONSTRUCT_CROSSWALK_20261026.json",
+      "group": "C_PROVISIONAL_SCORING",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "docs/A05_D74_AB_ALTERNATIVES_20261026.json",
+      "group": "C_PROVISIONAL_SCORING",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "docs/A05_D74_AB_COMPARATIVE_REVIEW_20261026.md",
+      "group": "C_PROVISIONAL_SCORING",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "docs/A05_D75_CONDITIONAL_16TYPE_COPY_20261026.json",
+      "group": "C_PROVISIONAL_SCORING",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "docs/A05_D75_RESULT_COPY_VARIANTS_20261026.md",
+      "group": "C_PROVISIONAL_SCORING",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "docs/A05_D76_BLOCKER_DECISION_20261026.md",
+      "group": "C_PROVISIONAL_SCORING",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "docs/A05_D76_BLOCKER_DISPOSITION_20261026.json",
+      "group": "C_PROVISIONAL_SCORING",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "docs/A05_D77_CD_ITEM_REVIEW_20261026.json",
+      "group": "C_PROVISIONAL_SCORING",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "docs/A05_D77_CD_REVIEW_DECISION_20261026.md",
+      "group": "C_PROVISIONAL_SCORING",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "docs/A05_D78_E_DECISION_PROTOCOL_20261026.md",
+      "group": "C_PROVISIONAL_SCORING",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "docs/A05_D78_E_MODE_DECISION_MATRIX_20261026.json",
+      "group": "C_PROVISIONAL_SCORING",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "docs/A05_D79_AXIS_SELECTION_MATRIX_20261026.json",
+      "group": "C_PROVISIONAL_SCORING",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "docs/A05_D79_AXIS_SELECTION_RECOMMENDATION_20261026.md",
+      "group": "C_PROVISIONAL_SCORING",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "docs/A05_D80_PILOT_CANDIDATES_20261026.json",
+      "group": "C_PROVISIONAL_SCORING",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "docs/A05_D80_PILOT_POOL_REVIEW_20261026.md",
+      "group": "C_PROVISIONAL_SCORING",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "docs/A05_D81_E_PRODUCT_GATE_20261026.json",
+      "group": "C_PROVISIONAL_SCORING",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "docs/A05_D81_E_RECOMMENDATION_20261026.md",
+      "group": "C_PROVISIONAL_SCORING",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "docs/A05_D82_V2_CONTRACT_BLUEPRINT_20261026.json",
+      "group": "C_PROVISIONAL_SCORING",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "docs/A05_D82_VERSIONED_RUNTIME_BLUEPRINT_20261026.md",
+      "group": "C_PROVISIONAL_SCORING",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "docs/A05_D83_EDITORIAL_PREVIEW_20261026.md",
+      "group": "C_PROVISIONAL_SCORING",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "docs/A05_D84_AB_EDITORIAL_DECISION_20261026.md",
+      "group": "C_PROVISIONAL_SCORING",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "docs/A05_D84_AB_EDITORIAL_DISPOSITION_20261026.json",
+      "group": "C_PROVISIONAL_SCORING",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "docs/A05_D85_B_CONSTRUCT_AND_TYPE_GATE_20261026.md",
+      "group": "C_PROVISIONAL_SCORING",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "docs/A05_D85_B_MODE_COMPARISON_20261026.json",
+      "group": "C_PROVISIONAL_SCORING",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "docs/A05_D86_TYPE_STRUCTURE_DECISION_20261026.json",
+      "group": "C_PROVISIONAL_SCORING",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "docs/A05_D86_TYPE_STRUCTURE_REVIEW_20261026.md",
+      "group": "C_PROVISIONAL_SCORING",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "projects/kidp/life-design-lab/a05/README.md",
+      "group": "A_UI_ACCESSIBILITY",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "projects/kidp/life-design-lab/a05/app.mjs",
+      "group": "A_UI_ACCESSIBILITY",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "projects/kidp/life-design-lab/a05/b-experiment.mjs",
+      "group": "C_PROVISIONAL_SCORING",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "projects/kidp/life-design-lab/a05/b-preview-scenarios.mjs",
+      "group": "C_PROVISIONAL_SCORING",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "projects/kidp/life-design-lab/a05/b-preview.html",
+      "group": "A_UI_ACCESSIBILITY",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "projects/kidp/life-design-lab/a05/b-preview.mjs",
+      "group": "A_UI_ACCESSIBILITY",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "projects/kidp/life-design-lab/a05/backup-inspect.mjs",
+      "group": "B_STORAGE_BACKUP",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "projects/kidp/life-design-lab/a05/e-display.mjs",
+      "group": "C_PROVISIONAL_SCORING",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "projects/kidp/life-design-lab/a05/e-experiment.mjs",
+      "group": "C_PROVISIONAL_SCORING",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "projects/kidp/life-design-lab/a05/e-preview.html",
+      "group": "A_UI_ACCESSIBILITY",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "projects/kidp/life-design-lab/a05/editorial-preview-data.mjs",
+      "group": "C_PROVISIONAL_SCORING",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "projects/kidp/life-design-lab/a05/editorial-preview.html",
+      "group": "A_UI_ACCESSIBILITY",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "projects/kidp/life-design-lab/a05/editorial-preview.mjs",
+      "group": "A_UI_ACCESSIBILITY",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "projects/kidp/life-design-lab/a05/engine.mjs",
+      "group": "C_PROVISIONAL_SCORING",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "projects/kidp/life-design-lab/a05/export.mjs",
+      "group": "B_STORAGE_BACKUP",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "projects/kidp/life-design-lab/a05/format.mjs",
+      "group": "A_UI_ACCESSIBILITY",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "projects/kidp/life-design-lab/a05/index.html",
+      "group": "A_UI_ACCESSIBILITY",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "projects/kidp/life-design-lab/a05/questions.mjs",
+      "group": "C_PROVISIONAL_SCORING",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "projects/kidp/life-design-lab/a05/restore-review.mjs",
+      "group": "B_STORAGE_BACKUP",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "projects/kidp/life-design-lab/a05/storage.mjs",
+      "group": "B_STORAGE_BACKUP",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "projects/kidp/life-design-lab/a05/style.css",
+      "group": "A_UI_ACCESSIBILITY",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "projects/kidp/life-design-lab/a05/type-structure-experiment.mjs",
+      "group": "C_PROVISIONAL_SCORING",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "projects/kidp/life-design-lab/a05/type-structure-preview.html",
+      "group": "A_UI_ACCESSIBILITY",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "projects/kidp/life-design-lab/a05/type-structure-preview.mjs",
+      "group": "A_UI_ACCESSIBILITY",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "projects/kidp/life-design-lab/a05/types.mjs",
+      "group": "C_PROVISIONAL_SCORING",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "scripts/a05-research-assignment.mjs",
+      "group": "D_RESEARCH_HUMAN_APPROVAL",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "scripts/a05-research-d40-simulator.mjs",
+      "group": "D_RESEARCH_HUMAN_APPROVAL",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "scripts/a05-research-d41-withdrawal-review.mjs",
+      "group": "D_RESEARCH_HUMAN_APPROVAL",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "scripts/a05-research-d42-acceptance-audit.mjs",
+      "group": "D_RESEARCH_HUMAN_APPROVAL",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "scripts/a05-research-g1-gate.mjs",
+      "group": "D_RESEARCH_HUMAN_APPROVAL",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "scripts/a05-research-retention-proposal.mjs",
+      "group": "D_RESEARCH_HUMAN_APPROVAL",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "scripts/qa_a05_b_preview_browser.cjs",
+      "group": "E_CROSSCUTTING_QA_AUDIT",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "scripts/qa_a05_browser.cjs",
+      "group": "E_CROSSCUTTING_QA_AUDIT",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "scripts/qa_a05_e_preview_browser.cjs",
+      "group": "E_CROSSCUTTING_QA_AUDIT",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "scripts/qa_a05_editorial_preview_browser.cjs",
+      "group": "E_CROSSCUTTING_QA_AUDIT",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "scripts/qa_a05_type_structure_browser.cjs",
+      "group": "E_CROSSCUTTING_QA_AUDIT",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "scripts/test-a05-b-experiment.mjs",
+      "group": "E_CROSSCUTTING_QA_AUDIT",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "scripts/test-a05-backup-inspect.mjs",
+      "group": "E_CROSSCUTTING_QA_AUDIT",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "scripts/test-a05-e-display.mjs",
+      "group": "E_CROSSCUTTING_QA_AUDIT",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "scripts/test-a05-e-experiment.mjs",
+      "group": "E_CROSSCUTTING_QA_AUDIT",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "scripts/test-a05-e-preview.mjs",
+      "group": "E_CROSSCUTTING_QA_AUDIT",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "scripts/test-a05-editorial-d73.mjs",
+      "group": "E_CROSSCUTTING_QA_AUDIT",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "scripts/test-a05-editorial-d74.mjs",
+      "group": "E_CROSSCUTTING_QA_AUDIT",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "scripts/test-a05-editorial-d75.mjs",
+      "group": "E_CROSSCUTTING_QA_AUDIT",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "scripts/test-a05-editorial-d76-d78.mjs",
+      "group": "E_CROSSCUTTING_QA_AUDIT",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "scripts/test-a05-editorial-d79-d82.mjs",
+      "group": "E_CROSSCUTTING_QA_AUDIT",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "scripts/test-a05-editorial-d84.mjs",
+      "group": "E_CROSSCUTTING_QA_AUDIT",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "scripts/test-a05-editorial-preview.mjs",
+      "group": "E_CROSSCUTTING_QA_AUDIT",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "scripts/test-a05-engine.mjs",
+      "group": "E_CROSSCUTTING_QA_AUDIT",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "scripts/test-a05-format.mjs",
+      "group": "E_CROSSCUTTING_QA_AUDIT",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "scripts/test-a05-pr-review-manifest.mjs",
+      "group": "E_CROSSCUTTING_QA_AUDIT",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "scripts/test-a05-release-boundaries.mjs",
+      "group": "E_CROSSCUTTING_QA_AUDIT",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "scripts/test-a05-research-d36.mjs",
+      "group": "E_CROSSCUTTING_QA_AUDIT",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "scripts/test-a05-research-d40.mjs",
+      "group": "E_CROSSCUTTING_QA_AUDIT",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "scripts/test-a05-research-d41.mjs",
+      "group": "E_CROSSCUTTING_QA_AUDIT",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "scripts/test-a05-research-d42.mjs",
+      "group": "E_CROSSCUTTING_QA_AUDIT",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "scripts/test-a05-research-g1.mjs",
+      "group": "E_CROSSCUTTING_QA_AUDIT",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "scripts/test-a05-research-manifest.mjs",
+      "group": "E_CROSSCUTTING_QA_AUDIT",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "scripts/test-a05-restore-review.mjs",
+      "group": "E_CROSSCUTTING_QA_AUDIT",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "scripts/test-a05-storage.mjs",
+      "group": "E_CROSSCUTTING_QA_AUDIT",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "scripts/test-a05-type-structure.mjs",
+      "group": "E_CROSSCUTTING_QA_AUDIT",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    }
+  ],
+  "changeHistory": [
+    {
+      "date": "2026-10-26",
+      "version": "D54-001",
+      "before": "Draft PR held 229 commits across 64 files with only a narrative four-part review summary",
+      "after": "A nonauthorizing exact-path review manifest covering 64 existing changed paths plus 3 D54 additions, with per-file human-review status and five risk owners",
+      "reason": "Make changes auditable by review domain and prevent CI PASS being misread as release or research authorization"
+    },
+    {
+      "date": "2026-10-26",
+      "version": "D54-002",
+      "before": "All 67 files only stored NOT_REVIEWED and no proof fields, making future signoff evidence hard to track",
+      "after": "Every file has nullable non-identifying review evidence, role and date; each area has a risk priority and required reviewer role. All remain NOT_REVIEWED and nonauthorizing",
+      "reason": "Allow later accountable review without mixing CI QA with real human approval"
+    },
+    {
+      "date": "2026-10-26",
+      "version": "D55-001",
+      "before": "D54-002 covered 67 paths and QA did not run for docs-only A05 updates",
+      "after": "Added D55 risk/CI review memo as 68th NOT_REVIEWED path; retained original 64-path intake baseline and blocked authorizations",
+      "reason": "Preserve exact PR diff inventory and support lightweight docs-only checks"
+    },
+    {
+      "date": "2026-10-26",
+      "version": "D56-001",
+      "before": "D55 review inventory included 68 exact PR paths",
+      "after": "Add D56 cross-tab draft identity safety memo as 69th E_CROSSCUTTING_QA_AUDIT file; all human review evidence remains null and PR merge disallowed",
+      "reason": "Keep full PR merge-ref changed-file inventory exact and ensure no doc gets silently excluded"
+    },
+    {
+      "date": "2026-10-26",
+      "version": "D56-001",
+      "before": "D55 register covers 68 files but concurrent D56 technical safety document was not inventoried",
+      "after": "D56 cross-tab identity guard document added as 69th review-pending file; all user and release approvals remain false",
+      "reason": "Full-PR diff inventory must catch every new source, test and technical document"
+    },
+    {
+      "date": "2026-10-26",
+      "version": "D57-001",
+      "change": "Added provisional 30-item editorial matrix to exact PR review inventory; no human signoff or release authorization."
+    },
+    {
+      "date": "2026-10-26",
+      "version": "D59-001",
+      "change": "Add D58 and D59 editorial drafts to exact PR file inventory; all human signoffs remain pending."
+    },
+    {
+      "date": "2026-10-26",
+      "version": "D61-001",
+      "change": "Inventory D60 design and D61 isolated experimental model and tests. No human approval."
+    },
+    {
+      "date": "2026-10-26",
+      "version": "D62-001",
+      "change": "Added research-only E display mapping and local node tests; no production wiring, study approval, or release."
+    },
+    {
+      "date": "2026-10-26",
+      "version": "D63-001",
+      "change": "Add isolated noindex research preview and static test; no real participants or production wiring."
+    },
+    {
+      "date": "2026-10-26",
+      "version": "D65-001",
+      "change": "Normalize manifest path ordering to default JavaScript lexical order required by strict PR inventory test; no review approvals changed."
+    },
+    {
+      "date": "2026-10-26",
+      "version": "D68-001",
+      "change": "Add responsive Chromium QA for isolated E preview; retain draft-only and all approval gates."
+    },
+    {
+      "date": "2026-10-26",
+      "version": "D73-001",
+      "change": "Include D73 30-item source-aligned editorial crosswalk, decision packet and automated structural review, with no human signoff or release authorization."
+    },
+    {
+      "date": "2026-10-26",
+      "version": "D74-001",
+      "change": "Track A/B 12-item construct-continuity comparison proposal and CI checks; no questionnaire adoption, study approval or release."
+    },
+    {
+      "date": "2026-10-26",
+      "version": "D75-001",
+      "change": "Inventory unapproved 16-type L/M conditional result copy and regression checks; existing A05 question/scoring/type/content files unchanged."
+    },
+    {
+      "date": "2026-10-26",
+      "version": "D78-001",
+      "change": "D76 seven-blocker disposition, D77 C/D twelve-item quality review and D78 E-axis three-mode synthetic decision matrix added with safety tests; no research or release approval."
+    },
+    {
+      "date": "2026-10-26",
+      "version": "D82-001",
+      "change": "Add D79 A/B construct recommendation including R alternative, D80 30-item/24-slot candidate audit, D81 E baseline product gate, D82 v2 data-contract blueprint, and gated test. No participant recruitment, approvals, version assignment, production or legacy data modifications."
+    },
+    {
+      "date": "2026-10-26",
+      "version": "D83-001",
+      "change": "Add non-collecting 12-item A/B L/M/R editorial preview and Chromium/Node safety tests; existing questionnaire, storage, participant-study and release approval remain unchanged."
+    },
+    {
+      "date": "2026-10-26",
+      "version": "D84-001",
+      "change": "Triaged 12 A/B R candidates into four retain, four rewrite, four drop proposals, with original BLOCK unchanged; add read-only preview guidance, Node and Chromium guards. No human signoff or production changes."
+    },
+    {
+      "date": "2026-10-26",
+      "version": "D85-001",
+      "change": "Add isolated B bipolar/independent contracts, eight synthetic scenarios, noindex preview and Node/Chrome tests; preserve old scoring and 16-type meaning; no study or release approval."
+    },
+    {
+      "date": "2026-10-26",
+      "version": "D86-001",
+      "change": "Add B1/B2/B3 type-structure decision, isolated no-type comparator and noindex preview, Node and Chrome regression tests. Theory-only counts 16/8; no new type assignment, human validation, data migration, participant recruitment, merge or production approval."
+    }
+  ]
+}

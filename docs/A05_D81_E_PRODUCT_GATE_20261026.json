@@ -1,0 +1,92 @@
+{
+  "schema": "A05-D81-E-PRODUCT-GATE-1",
+  "version": "D81-001",
+  "date": "2026-10-26",
+  "state": "TECHNICAL_RECOMMENDATION_ONLY",
+  "engineeringSafeBaseline": "E-C",
+  "productDecision": "PENDING",
+  "unapprovedAlternatives": [
+    "E-A",
+    "E-B",
+    "E-C"
+  ],
+  "reason": "Unvalidated E polarity cannot justify making money/time type labels. E-B may support voluntary non-type reflection if future user testing supports it.",
+  "decisionTree": [
+    {
+      "condition": "No authorized E study and no proven comparable bipole",
+      "then": "Use E-C only as research-independent engineering blueprint; do not modify old runtime.",
+      "status": "RECOMMENDATION_ONLY"
+    },
+    {
+      "condition": "Bipolar comparison passes comprehension and increment-equivalence review",
+      "then": "Reconsider E-A in independently versioned result, not legacy wealth.",
+      "status": "HYPOTHESIS"
+    },
+    {
+      "condition": "Independent rating approach preferred with consent and manageable burden",
+      "then": "Consider E-B as separate optional value-reflection fields, not a 32-type modifier.",
+      "status": "HYPOTHESIS"
+    },
+    {
+      "condition": "None clears evidence gates",
+      "then": "Keep E unclassified or do not publicly release an E measure.",
+      "status": "SAFETY_FALLBACK"
+    }
+  ],
+  "comparatorEvidence": [
+    {
+      "id": "E-A",
+      "mode": "relative",
+      "adoption": "NOT_APPROVED",
+      "issues": [
+        "金銭と時間の増分が等価でない",
+        "両方強く求める場合と両方求めない場合を区別できない",
+        "現状の生活制約を選好と混同"
+      ]
+    },
+    {
+      "id": "E-B",
+      "mode": "independent",
+      "adoption": "NOT_APPROVED",
+      "issues": [
+        "二つの尺度を直ちに性格分類と扱えない",
+        "回答負担・質問数・欠測処理が変わる",
+        "生活状況による回答偏りは残る"
+      ]
+    },
+    {
+      "id": "E-C",
+      "mode": "omitted",
+      "adoption": "NOT_APPROVED",
+      "issues": [
+        "旧32派生案と製品仕様が変わる",
+        "個別の金銭／時間の希望を可視化しない場合の価値を再評価する"
+      ]
+    }
+  ],
+  "securityContract": {
+    "canReadLegacyWealth": "READ_ONLY_EXISTING_SNAPSHOTS",
+    "convertLegacyWealth": false,
+    "writeNewEIntoLegacyWealth": false,
+    "publishDerived32Types": false
+  },
+  "gates": {
+    "studyAuthorized": false,
+    "productionReleaseAuthorized": false,
+    "mergeAuthorized": false,
+    "humanAdoptionApproval": false,
+    "legacyRescoringAllowed": false,
+    "questionRuntimeChanged": false,
+    "eSelected": false,
+    "realParticipants": 0,
+    "optionalTwoScaleAllowed": false,
+    "versionedSchemaApproval": false
+  },
+  "changeHistory": [
+    {
+      "date": "2026-10-26",
+      "version": "D81-001",
+      "change": "Mark E-C as provisional engineering fallback and preserve human decision/empirical gates; E-A and E-B remain research alternatives."
+    }
+  ]
+}

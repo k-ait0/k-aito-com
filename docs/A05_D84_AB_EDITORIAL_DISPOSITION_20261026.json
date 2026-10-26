@@ -1,0 +1,374 @@
+{
+  "schema": "A05-D84-AB-EDITORIAL-DISPOSITION-1",
+  "version": "D84-001",
+  "date": "2026-10-26",
+  "state": "EDITORIAL_TRIAGE_ONLY",
+  "purpose": "A/B 12-item R candidate retention/rewrite/drop proposals, not final adopted questions or human signoff",
+  "source": [
+    "docs/A05_D73_ITEM_CONSTRUCT_CROSSWALK_20261026.json",
+    "docs/A05_D74_AB_ALTERNATIVES_20261026.json",
+    "docs/A05_D79_AXIS_SELECTION_MATRIX_20261026.json",
+    "docs/A05_D80_PILOT_CANDIDATES_20261026.json"
+  ],
+  "actionCounts": {
+    "RETAIN_FOR_REVIEW": 4,
+    "DROP_CANDIDATE": 4,
+    "REWRITE_FOR_REVIEW": 4
+  },
+  "items": [
+    {
+      "id": "A01",
+      "axis": "A",
+      "sourceVerdict": "REVISE",
+      "proposedAction": "RETAIN_FOR_REVIEW",
+      "approval": "NOT_APPROVED",
+      "basis": "EDITORIAL_HYPOTHESIS_NO_HUMAN_DATA",
+      "facet": "日々の生活",
+      "currentCandidateR": {
+        "negative": "日常の暮らし方を維持して整えることを重視",
+        "positive": "日常の暮らし方に変化を取り入れることを重視"
+      },
+      "linkedItems": [
+        "A04"
+      ],
+      "rationale": "日々の生活方針を問い、A04の計画実行場面と分離できる可能性がある。",
+      "disconfirmingQuestion": "A04とは違う生活上の選択理由が挙がるか。",
+      "failureDecision": "同じ基盤維持・変更の答えを繰り返すだけなら再設計。",
+      "revisionBrief": "基盤の継続と変化の選好を日常場面で比較し、実行能力を問わない",
+      "mayOverrideSourceBlock": false,
+      "psychometricEvidenceAvailable": false
+    },
+    {
+      "id": "A02",
+      "axis": "A",
+      "sourceVerdict": "TRIAL",
+      "proposedAction": "DROP_CANDIDATE",
+      "approval": "NOT_APPROVED",
+      "basis": "EDITORIAL_HYPOTHESIS_NO_HUMAN_DATA",
+      "facet": "活動環境",
+      "currentCandidateR": {
+        "negative": "活動する場所を一定に保つことを重視",
+        "positive": "活動する場所を変えることを重視"
+      },
+      "linkedItems": [
+        "A03"
+      ],
+      "rationale": "活動場所の選択が勤務形態・移動制約・住環境に左右され、Aの抽象的変化志向と混ざりやすい。",
+      "disconfirmingQuestion": "場所を変えられない状況でも選好が回答できるか。",
+      "failureDecision": "異なる回答理由を確保できれば別候補として再審査。",
+      "revisionBrief": "生活上の時間配分など場所に依存しない場面に差し替えを検討",
+      "mayOverrideSourceBlock": false,
+      "psychometricEvidenceAvailable": false
+    },
+    {
+      "id": "A03",
+      "axis": "A",
+      "sourceVerdict": "TRIAL",
+      "proposedAction": "RETAIN_FOR_REVIEW",
+      "approval": "NOT_APPROVED",
+      "basis": "EDITORIAL_HYPOTHESIS_NO_HUMAN_DATA",
+      "facet": "生活習慣",
+      "currentCandidateR": {
+        "negative": "今の習慣を継続して磨くことを重視",
+        "positive": "新しい習慣を試すことを重視"
+      },
+      "linkedItems": [
+        "A02"
+      ],
+      "rationale": "習慣の維持と試行という場面が生活環境・計画と一応区別できる。",
+      "disconfirmingQuestion": "維持と新規導入を両方望む場合に7段階で答えられるか。",
+      "failureDecision": "A05・D探索と同じ判断なら差し替え。",
+      "revisionBrief": "習慣という文脈を残し、変化の強制・実現可能性とは切り離す",
+      "mayOverrideSourceBlock": false,
+      "psychometricEvidenceAvailable": false
+    },
+    {
+      "id": "A04",
+      "axis": "A",
+      "sourceVerdict": "BLOCK",
+      "proposedAction": "REWRITE_FOR_REVIEW",
+      "approval": "NOT_APPROVED",
+      "basis": "EDITORIAL_HYPOTHESIS_NO_HUMAN_DATA",
+      "facet": "生活計画",
+      "currentCandidateR": {
+        "negative": "暮らしの計画を継続して調整することを重視",
+        "positive": "暮らしの計画を変えて組み直すことを重視"
+      },
+      "linkedItems": [
+        "A01"
+      ],
+      "rationale": "元のBLOCK。Rの『生活計画』はA01の生活方針、Mの計画変更と混ざり、構成概念の変更も含む。",
+      "disconfirmingQuestion": "暮らしの計画の見直しは変化を選好することと一致するか。",
+      "failureDecision": "計画の調整と変更が両立すれば対極を見直す。",
+      "revisionBrief": "生活の大切な選択を維持する／選択肢を広げるなど、目的に近い場面へ再設計。BLOCKを維持",
+      "mayOverrideSourceBlock": false,
+      "psychometricEvidenceAvailable": false
+    },
+    {
+      "id": "A05",
+      "axis": "A",
+      "sourceVerdict": "BLOCK",
+      "proposedAction": "DROP_CANDIDATE",
+      "approval": "NOT_APPROVED",
+      "basis": "EDITORIAL_HYPOTHESIS_NO_HUMAN_DATA",
+      "facet": "生活上の役割",
+      "currentCandidateR": {
+        "negative": "生活上の役割を維持して工夫することを重視",
+        "positive": "生活上の役割に新しい変化を加えることを重視"
+      },
+      "linkedItems": [
+        "A06"
+      ],
+      "rationale": "元のBLOCK。『生活上の役割』は家族・仕事の役割変更可能性やA06の環境対応と混入する。",
+      "disconfirmingQuestion": "本人の裁量で役割を変えられない場合に何を答えているか。",
+      "failureDecision": "独立性が説明できなければ削除し別場面を起案。",
+      "revisionBrief": "役割を前提としない選択場面へ差し替え。BLOCKを維持",
+      "mayOverrideSourceBlock": false,
+      "psychometricEvidenceAvailable": false
+    },
+    {
+      "id": "A06",
+      "axis": "A",
+      "sourceVerdict": "REVISE",
+      "proposedAction": "REWRITE_FOR_REVIEW",
+      "approval": "NOT_APPROVED",
+      "basis": "EDITORIAL_HYPOTHESIS_NO_HUMAN_DATA",
+      "facet": "変化への対応",
+      "currentCandidateR": {
+        "negative": "予想外の生活変化でも今の基盤を活かすことを重視",
+        "positive": "予想外の生活変化には新たな形を探すことを重視"
+      },
+      "linkedItems": [
+        "A05"
+      ],
+      "rationale": "予想外の変化への対処は自発的な安定／変化の選好でなく状況対応力を測りかねない。",
+      "disconfirmingQuestion": "同じ人が好む生き方と緊急時の対応を別々に答えるか。",
+      "failureDecision": "変化への適応能力と区別できなければ別場面へ差し替え。",
+      "revisionBrief": "本人の裁量がある将来の選択場面に置き換え、状況対応力を推定しない",
+      "mayOverrideSourceBlock": false,
+      "psychometricEvidenceAvailable": false
+    },
+    {
+      "id": "B01",
+      "axis": "B",
+      "sourceVerdict": "TRIAL",
+      "proposedAction": "RETAIN_FOR_REVIEW",
+      "approval": "NOT_APPROVED",
+      "basis": "EDITORIAL_HYPOTHESIS_NO_HUMAN_DATA",
+      "facet": "生活方針",
+      "currentCandidateR": {
+        "negative": "自分の希望を優先して生活方針を考えることを重視",
+        "positive": "関係する人の希望を優先して生活方針を考えることを重視"
+      },
+      "linkedItems": [
+        "B06"
+      ],
+      "rationale": "生活方針というBの中心に近いが、両者は併存しうるため尺度形式の検証を要する。",
+      "disconfirmingQuestion": "自分も周囲も重視する人が無理に片方を選ばないか。",
+      "failureDecision": "二極性が成立しなければ2項目独立評価へ設計変更。",
+      "revisionBrief": "本人の価値基準と他者への配慮を別々に答えられる方式も併走検討",
+      "mayOverrideSourceBlock": false,
+      "psychometricEvidenceAvailable": false
+    },
+    {
+      "id": "B02",
+      "axis": "B",
+      "sourceVerdict": "BLOCK",
+      "proposedAction": "REWRITE_FOR_REVIEW",
+      "approval": "NOT_APPROVED",
+      "basis": "EDITORIAL_HYPOTHESIS_NO_HUMAN_DATA",
+      "facet": "余暇",
+      "currentCandidateR": {
+        "negative": "余暇の過ごし方は自分の希望を起点に考えることを重視",
+        "positive": "余暇の過ごし方は関係する人の希望を起点に考えることを重視"
+      },
+      "linkedItems": [
+        "B05"
+      ],
+      "rationale": "元のBLOCK。余暇に他者がいることを前提にし、自分の希望と相談は対立とは限らない。",
+      "disconfirmingQuestion": "予定を自分で決めつつ誰かと相談する人はどう回答するか。",
+      "failureDecision": "相手がいない場合に判断不能を中立と誤認するなら二極化を断念。",
+      "revisionBrief": "想定する他者の範囲を定義するか、両希望の独立評価へ再設計。BLOCKを維持",
+      "mayOverrideSourceBlock": false,
+      "psychometricEvidenceAvailable": false
+    },
+    {
+      "id": "B03",
+      "axis": "B",
+      "sourceVerdict": "REVISE",
+      "proposedAction": "RETAIN_FOR_REVIEW",
+      "approval": "NOT_APPROVED",
+      "basis": "EDITORIAL_HYPOTHESIS_NO_HUMAN_DATA",
+      "facet": "目標の意義",
+      "currentCandidateR": {
+        "negative": "目標の意義は自分の納得を基準に考えることを重視",
+        "positive": "目標の意義は他者と共有できることを基準に考えることを重視"
+      },
+      "linkedItems": [
+        "B01"
+      ],
+      "rationale": "自分の納得と共有意義という目標の場面はBの候補だが、B05の達成喜びに近い。",
+      "disconfirmingQuestion": "目標設定時と達成時で答える理由が異なるか。",
+      "failureDecision": "B05と同じ理由なら一方を除く。",
+      "revisionBrief": "目標の選択時点に限定して目的と結果の混同を避ける",
+      "mayOverrideSourceBlock": false,
+      "psychometricEvidenceAvailable": false
+    },
+    {
+      "id": "B04",
+      "axis": "B",
+      "sourceVerdict": "TRIAL",
+      "proposedAction": "DROP_CANDIDATE",
+      "approval": "NOT_APPROVED",
+      "basis": "EDITORIAL_HYPOTHESIS_NO_HUMAN_DATA",
+      "facet": "居住選択",
+      "currentCandidateR": {
+        "negative": "暮らす場所は自分に合う条件を優先して考えることを重視",
+        "positive": "暮らす場所は関係する人との関わりを優先して考えることを重視"
+      },
+      "linkedItems": [
+        "B02"
+      ],
+      "rationale": "居住地選択はA軸の生活環境と横断的に重なり、家族・経済事情で回答が制限される。",
+      "disconfirmingQuestion": "本人が居住地を選べない場合にBの選好が残るか。",
+      "failureDecision": "他者との関係志向だけを分離できるなら別場面で再起案。",
+      "revisionBrief": "住居に依存しない価値選択場面を代替候補として起案",
+      "mayOverrideSourceBlock": false,
+      "psychometricEvidenceAvailable": false
+    },
+    {
+      "id": "B05",
+      "axis": "B",
+      "sourceVerdict": "REVISE",
+      "proposedAction": "DROP_CANDIDATE",
+      "approval": "NOT_APPROVED",
+      "basis": "EDITORIAL_HYPOTHESIS_NO_HUMAN_DATA",
+      "facet": "達成の受け止め",
+      "currentCandidateR": {
+        "negative": "達成の喜びは自分自身の実感を重視",
+        "positive": "達成の喜びは関係する人と共有する実感を重視"
+      },
+      "linkedItems": [
+        "B02"
+      ],
+      "rationale": "目標の共有というB03と近く、達成の喜びは相手との関係の有無や表現習慣に依存しうる。",
+      "disconfirmingQuestion": "B03と違う理由で回答できるか。",
+      "failureDecision": "同じ理由が続くなら削除して別概念を起案。",
+      "revisionBrief": "目標・達成と異なる生活場面での本人と他者の希望を検討",
+      "mayOverrideSourceBlock": false,
+      "psychometricEvidenceAvailable": false
+    },
+    {
+      "id": "B06",
+      "axis": "B",
+      "sourceVerdict": "REVISE",
+      "proposedAction": "REWRITE_FOR_REVIEW",
+      "approval": "NOT_APPROVED",
+      "basis": "EDITORIAL_HYPOTHESIS_NO_HUMAN_DATA",
+      "facet": "意見相違",
+      "currentCandidateR": {
+        "negative": "意見が異なる場面で自分の希望を伝えることを重視",
+        "positive": "意見が異なる場面で互いの希望をすり合わせることを重視"
+      },
+      "linkedItems": [
+        "B01"
+      ],
+      "rationale": "『互いの希望をすり合わせる』は社会的望ましさで片側が望ましく見え、B01とも近い。",
+      "disconfirmingQuestion": "意見の相違で自分の希望を伝えつつ歩み寄る場合の回答可能性。",
+      "failureDecision": "一方が倫理的に望ましく見えるなら両極として棄却。",
+      "revisionBrief": "対立場面の行動能力を測らず、重視する基準を独立尺度で問うことも検討",
+      "mayOverrideSourceBlock": false,
+      "psychometricEvidenceAvailable": false
+    }
+  ],
+  "overlapHypotheses": [
+    {
+      "left": "A01",
+      "right": "A04",
+      "mechanism": "life-policy-vs-plan",
+      "risk": "HIGH",
+      "claim": "区別が必要。選好対象が同じならA04を再設計する",
+      "empiricallyConfirmed": false
+    },
+    {
+      "left": "A02",
+      "right": "A03",
+      "mechanism": "place-vs-habit",
+      "risk": "MEDIUM",
+      "claim": "活動環境の実現可能性が混入するA02を削除候補とする",
+      "empiricallyConfirmed": false
+    },
+    {
+      "left": "A05",
+      "right": "A06",
+      "mechanism": "roles-vs-change-response",
+      "risk": "HIGH",
+      "claim": "A05の役割変更は実行機会差、A06は対応力と混ざる。両案の差し替え要",
+      "empiricallyConfirmed": false
+    },
+    {
+      "left": "B01",
+      "right": "B06",
+      "mechanism": "policy-vs-conflict",
+      "risk": "HIGH",
+      "claim": "二極が両立し社会的望ましさがある。B06を改稿",
+      "empiricallyConfirmed": false
+    },
+    {
+      "left": "B02",
+      "right": "B04",
+      "mechanism": "leisure-vs-housing",
+      "risk": "HIGH",
+      "claim": "他者の存在前提に加えB04は居住制約とA軸混入。B04削除候補",
+      "empiricallyConfirmed": false
+    },
+    {
+      "left": "B03",
+      "right": "B05",
+      "mechanism": "goal-value-vs-achievement",
+      "risk": "HIGH",
+      "claim": "目標を選ぶ意味と達成後の喜びの区別が必要。B05削除候補",
+      "empiricallyConfirmed": false
+    },
+    {
+      "left": "A02",
+      "right": "B04",
+      "mechanism": "cross-axis-place-choice",
+      "risk": "HIGH",
+      "claim": "住居や活動場所を選ぶ機会差がA・Bの両方へ混入",
+      "empiricallyConfirmed": false
+    }
+  ],
+  "bipolarity": {
+    "axis": "B",
+    "state": "UNRESOLVED",
+    "problem": "自分の希望と他者への配慮は共存し得る。二極で回答できないとき7段階の中点に押し込まない。",
+    "recommendedContrast": "二極7段階 vs 自分希望・他者配慮の独立2尺度（設計上の比較候補のみ）",
+    "warning": "Neither version is a validated scale, and no participant responses have been collected.",
+    "decision": "PENDING"
+  },
+  "decisionGate": {
+    "constructA": "PENDING",
+    "constructB": "PENDING",
+    "ownerSelection": false,
+    "approvedItems": 0,
+    "blockedItems": 7,
+    "ABBlocked": [
+      "A04",
+      "A05",
+      "B02"
+    ],
+    "published": false,
+    "studyAuthorized": false,
+    "legacyRescoringAllowed": false,
+    "mergeAuthorized": false,
+    "productionReleaseAuthorized": false
+  },
+  "changeHistory": [
+    {
+      "date": "2026-10-26",
+      "version": "D84-001",
+      "change": "Complete falsifiable 12-item retention/rewrite/drop triage, seven overlap hypotheses, B bipolarity gate. All source BLOCK items and runtime remain unchanged."
+    }
+  ]
+}
