@@ -1,6 +1,6 @@
 {
   "schema": "A05-D54-PR-REVIEW-MANIFEST-1",
-  "version": "D83-001",
+  "version": "D84-001",
   "date": "2026-10-26",
   "repository": "k-ait0/k-aito-com",
   "base": "main",
@@ -630,6 +630,24 @@
       "reviewedAt": null
     },
     {
+      "path": "docs/A05_D84_AB_EDITORIAL_DECISION_20261026.md",
+      "group": "C_PROVISIONAL_SCORING",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "path": "docs/A05_D84_AB_EDITORIAL_DISPOSITION_20261026.json",
+      "group": "C_PROVISIONAL_SCORING",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
       "path": "projects/kidp/life-design-lab/a05/README.md",
       "group": "A_UI_ACCESSIBILITY",
       "reviewStatus": "NOT_REVIEWED",
@@ -954,6 +972,15 @@
       "reviewedAt": null
     },
     {
+      "path": "scripts/test-a05-editorial-d84.mjs",
+      "group": "E_CROSSCUTTING_QA_AUDIT",
+      "reviewStatus": "NOT_REVIEWED",
+      "mergeAuthorized": false,
+      "reviewEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
       "path": "scripts/test-a05-editorial-preview.mjs",
       "group": "E_CROSSCUTTING_QA_AUDIT",
       "reviewStatus": "NOT_REVIEWED",
@@ -1171,6 +1198,11 @@
       "date": "2026-10-26",
       "version": "D83-001",
       "change": "Add non-collecting 12-item A/B L/M/R editorial preview and Chromium/Node safety tests; existing questionnaire, storage, participant-study and release approval remain unchanged."
+    },
+    {
+      "date": "2026-10-26",
+      "version": "D84-001",
+      "change": "Triaged 12 A/B R candidates into four retain, four rewrite, four drop proposals, with original BLOCK unchanged; add read-only preview guidance, Node and Chromium guards. No human signoff or production changes."
     }
   ]
 }
