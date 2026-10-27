@@ -33,3 +33,14 @@
 
 ## 改訂履歴
 - 2026-10-27 v1.0：実Node単体回帰・手動書込みYAML原本SHA照合・制限事項を記録。
+
+## 追加実査：GitHub実ブランチの全ワークフロー（2026-10-27）
+
+GitHub連携からDraft PR #64の実ブランチ上にある`.github/workflows/`配下の**11件すべての原本文字列**を取得し、top-level `on`ブロックを全数確認した。
+- 11/11件が`workflow_dispatch`のみ、`push`・`pull_request`・`schedule`等の自動トリガーは**0件**。
+- `contents: write`または`git push origin HEAD:main`の有無から、書込み可能な2件が`build-notebook-photo.yml`／`sync-published-content.yml`と一致することを確認。
+- 2件の原本SHAは上掲の実Nodeテストで利用したコピーと一致。
+- この全数確認は**GitHub連携から取得したテキストに対する独立したJavaScript監査**。隔離環境で実Node実行した2件のwriter回帰テストとは別の検査である。
+
+### 追記式改訂履歴
+- 2026-10-27 v1.1：実ブランチ全11件のトリガーを独立監査し、手動11・自動0・main書込み2を確認。
