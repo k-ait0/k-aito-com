@@ -16,6 +16,8 @@ for(const [name,token] of Object.entries(writers)){
   assert.equal(verifyMainWriter(content,name,token),true);
   for(const variant of [
     content.replace("inputs.confirm == '"+token+"'", "inputs.confirm == 'UNAPPROVED'"),
+    content.replace("      confirm:\n        description:", "      confirm:\n        required: false\n        description:"),
+    content.replace("      expected_main_sha:\n        description:", "      expected_main_sha:\n        required: false\n        description:"),
     content.replace("EXPECTED_MAIN_SHA: ${{ inputs.expected_main_sha }}","EXPECTED_MAIN_SHA: unreviewed"),
     content.replace("git rev-parse HEAD","git rev-parse HEADS"),
     content.replace('"$actual" == "$EXPECTED_MAIN_SHA"','"$actual" == "$UNKNOWN_SHA"'),
