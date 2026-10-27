@@ -11,8 +11,10 @@ const EXPECTED = Object.freeze({
 
 function verifyMainWriter(source, file, token) {
   assert.match(source, /\bon:\s*\n[\s\S]*?  workflow_dispatch:\s*\n    inputs:\s*\n/, file + ": requires explicit dispatch inputs");
-  assert.match(source, /      confirm:\s*\n[\s\S]*?        required: true/, file + ": confirmation must be required");
-  assert.match(source, /      expected_main_sha:\s*\n[\s\S]*?        required: true/, file + ": SHA must be required");
+  // Scope required:true to each input. A loose cross-input regex could
+  // accept confirm as optional merely because expected_main_sha is required.
+  assert.match(source, /^      confirm:\n        description:[^\n]*\n        required: true\n        type: string$/m, file + ": confirmation must be a required string");
+  assert.match(source, /^      expected_main_sha:\n        description:[^\n]*\n        required: true\n        type: string$/m, file + ": SHA must be a required string");
   assert.ok(source.includes("github.ref == 'refs/heads/main'"), file + ": only main ref may be dispatched");
   assert.ok(source.includes("inputs.confirm == '" + token + "'"), file + ": confirmation token mismatch");
   assert.ok(source.includes("EXPECTED_MAIN_SHA: ${{ inputs.expected_main_sha }}"), file + ": must use explicit reviewed SHA");
