@@ -11,3 +11,9 @@
 - Do not claim GitHub branch protection or local hooks are active unless verified.
 
 See docs/GITHUB_ACTIONS_POLICY.md and docs/GITHUB_ACTIONS_POLICY.json.
+
+## Manual write-capable workflow protection (2026-10-27)
+- Build-notebook-photo and sync-published-content are **main-write operations**, not ordinary QA. Prefer local generation and reviewed PRs instead of Actions.
+- Both require an exact confirmation input and the reviewed 40-character main HEAD SHA; only main dispatch is permitted. Run `node scripts/check-main-write-workflows.cjs` locally.
+- If main changes before a write, stop and review the new SHA. Never rebase/auto-retry generated changes onto an unreviewed main.
+- Keep automatic triggers at zero. Any manual invocation still requires explicit user approval and is not authorized by these safeguards alone.
