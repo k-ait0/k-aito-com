@@ -79,3 +79,17 @@
 
 ### 追加改訂履歴
 - 2026-10-27 v1.1.0：branch APIの全4件保護無効、public/privateとプラン制約、横断導入計画を追加。
+
+## v1.2.0追補｜全4リポジトリのローカル実走とサーバー側保護の状態（2026-10-27）
+
+- GitHub連携でアクセス可能なリポジトリは`list_repositories`で**4件**であることを再確認（この接続で認識できない別リポジトリは対象外）。
+- 4 mainブランチは全て`protected:false`。KAITOのみpublic、他の3件はprivate。連携のGitHub repo metadataではadmin権限がtrue。公開KAITOはFreeから保護可、privateの規則適用はGitHub Pro/Team等のプラン条件による。中央の追跡先は[Issue #63](https://github.com/k-ait0/k-aito-com/issues/63)。
+- KAITO Draft PR #64：GitHub原本SHAが一致する2 writerワークフローと検査JSを隔離し、Node v22.16.0で書込み監査・回帰テストPASS。GitHub実ブランチの11/11 workflowを全数確認（手動11／自動0）。`docs/KAITO_MANUAL_MAIN_WRITE_QA_20261027.md`。
+- FINOWA+ Draft PR #4：Node v22.16.0＋Python 3.13.5で`scripts/local-preflight.cjs`の**5/5 PASS**。危険なtar直接展開をPython 3.12+のデータフィルタ付き展開へ移行し、Python 7件PASS。**実v23圧縮アーカイブの内容は未確認**。`docs/FINOWA_PLUS_BOOTSTRAP_SAFETY_QA_20261027.md`。
+- FINOWA Draft PR #247：最新版JavaScriptのGitHub blob SHAを照合、実Node＋**合成Python検証器**の公開前後結合PASS。未追跡ファイル・前回PASSの無効化・証跡期限切れを拒否することを確認。実コンテンツ／本番XServer SHAは未照合。`docs/FINOWA_LOCAL_RELEASE_GATE_QA_20261027.md`。
+- 家系簿 Pro Draft PR #5：実Nodeの監視切替回帰試験**10/10 PASS**、実テンプレートのCLIは**21条件不足でBLOCKED**。`docs/EXTERNAL_MONITOR_CUTOVER_QA_20261027.md`。
+- 家系簿 Proの[2026-10-27 11:18 JST scheduled Run #40437651483](https://github.com/k-ait0/finowa-inheritance-rc12/actions/runs/40437651483)もJobが**skipped**。外部監視URL・通知試験は未実施、監視成功は未証明。Issue #4更新。
+- 4 PRはすべてDraft・未マージ・mainと競合なし。**Actionsの新規起動、main更新、公開設定、GitHub料金変更、外部監視サービス登録はしていない**。
+
+### 追記式改訂履歴
+- 2026-10-27 v1.2.0：実Node/Python QA、全接続リポジトリ一覧、main保護・料金プランの実査、監視run継続スキップを集約。
