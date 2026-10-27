@@ -53,3 +53,9 @@ mainの保護・変更レビュー必須化・必須チェック変更は、現�
 
 ### 調査履歴追記（2026-10-27）
 - A05 Draft PR #61の実際のブランチ`feature/a05-d23-modular-diagnostic-20261025`のワークフローを再確認し、`workflow_dispatch`のみと判定。旧来の自動起動復活懸念について、現時点で事実と異なる記述を訂正した。マージ後の状態を保証するものではない。
+
+### v1.1.1追補：入力ブロックの厳密検証（2026-10-27）
+
+ローカル書込みゲートで、`confirm`の`required: true`が抜けても後続の`expected_main_sha`の`required: true`を誤参照して合格する可能性を除去。`confirm`と`expected_main_sha`それぞれのYAML入力ブロックに`required: true`／`type: string`が存在することを独立して検証する。変異テストを追加し、V8依存モックで回帰試験PASS。Native Node／Actions実行は未実施。
+
+- 2026-10-27 v1.1.1：入力ごとの承認必須性の監査を強化。Actions自動起動0件を維持。
