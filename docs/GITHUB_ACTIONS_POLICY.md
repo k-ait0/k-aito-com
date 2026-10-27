@@ -37,3 +37,16 @@ A05 Draft PR #61には古い自動起動付きのkidp-wave-a-browser-qa.ymlが�
 ## 例外と改訂履歴
 自動起動の例外は**0件**。追加にはユーザーの明示承認、理由、コスト、代替手段、期限、変更履歴、独立レビューが必要。
 - 2026-10-26 v1.0.0：9件の自動トリガーを削除して11件を手動専用化。ローカルガード・AI運用・Gitフックを追加。手動の本番QAは維持。
+
+## v1.1.0追補：書込み可能な手動ワークフローを限定（2026-10-27）
+
+- `build-notebook-photo.yml` と `sync-published-content.yml` は`contents: write`でmainにpush可能なため、単に手動起動とするだけでは誤操作リスクが残る。
+- 両ワークフローに`confirm`（固定の確認文字列）と`expected_main_sha`（レビュー済みmain SHA）を入力必須化。選択ブランチはmainのみ。
+- 実行時に`git rev-parse HEAD`で対象SHAを確認し、異なれば作業を中断。対象SHAは確認時点でのmainをGitHub画面などで独立照合する。
+- 公開記事同期で、push失敗後に`git rebase origin/main`を繰り返す処理を削除。後続コミットを無承認で取り込まず停止する。
+- `scripts/check-main-write-workflows.cjs` と回帰試験を`scripts/local-preflight.cjs`に追加。未知の`contents: write`ワークフローを検出。
+- **推奨運用はローカル生成→PRレビュー**。手動Actions自体は原則使わない。今回の改修はActions利用を承認するものではない。
+- 現行mainの11ワークフローは引き続き手動専用。自動起動は0件のまま。
+
+### 改訂履歴（追記）
+- 2026-10-27 v1.1.0：main書込み可能な手動2件に確認文字列・期待SHAゲートを追加。同期処理の自動リベースを廃止し、ローカル回帰監査へ組み込む。
