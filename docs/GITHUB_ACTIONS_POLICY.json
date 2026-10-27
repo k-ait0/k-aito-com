@@ -1,6 +1,6 @@
 {
   "schema": "KAITO-ACTIONS-MANUAL-ONLY-1",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "effectiveDate": "2026-10-26",
   "repository": "k-ait0/k-aito-com",
   "allowedTriggers": [
@@ -27,6 +27,16 @@
       "date": "2026-10-26",
       "version": "1.0.0",
       "description": "9 auto workflows made manual; two already manual retained."
+    },
+    {
+      "date": "2026-10-27",
+      "version": "1.1.0",
+      "description": "Require manual confirmation + reviewed main SHA for write-capable workflows; stop unreviewed rebase retries; include local gate in preflight."
     }
+  ],
+  "manualMainWriteWorkflowGuard": true,
+  "manualMainWriters": [
+    "build-notebook-photo.yml",
+    "sync-published-content.yml"
   ]
 }

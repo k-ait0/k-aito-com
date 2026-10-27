@@ -1,3 +1,4 @@
 #!/bin/sh
 set -eu
 node scripts/check-actions-manual-only.cjs
+node scripts/check-main-write-workflows.cjs
