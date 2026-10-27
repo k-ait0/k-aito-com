@@ -71,3 +71,21 @@
 
 ## 追記式改訂履歴
 - 2026-10-27 v1.0.0：4 mainブランチのprotected=falseを実査し、Actions必須チェック非依存の段階的保護計画を作成。
+
+## v1.1.0補足：公開範囲と管理権限の実査（2026-10-27）
+
+GitHub連携のrepository metadataから次を追加確認した（ブランチ情報とは別API）：
+
+| Repository | visibility | 接続ユーザーのadmin権限 | 無償での保護設定可能性 |
+| --- | --- | --- | --- |
+| KAITO `k-ait0/k-aito-com` | **public** | **true** | GitHub Freeの公開リポジトリで利用可能 |
+| FINOWA+ `k-ait0/finowa-plus` | **private** | **true** | GitHub Pro/Team等のプラン条件による |
+| FINOWA `k-ait0/finowa-deplo` | **private** | **true** | 同上 |
+| 家系簿 Pro `k-ait0/finowa-inheritance-rc12` | **private** | **true** | 同上 |
+
+**admin権限はGitHub連携で確認できたが、この接続にルール設定の書込みAPIは公開されていない**。そのためUI/別途管理APIによる設定が必要。
+
+また、3件はprivateのため、前述の導入順（FINOWA+先行）は**ライセンス条件を満たす場合の優先順位**である。GitHub Pro/Team等を利用できない場合、**無償で利用可能な公開KAITOの保護を先に導入し、private 3件は契約・代替策を別途検討する**。課金プランの変更は未承認であり行わない。
+
+### 追記式改訂履歴
+- 2026-10-27 v1.1.0：GitHub repository metadataからpublic/privateとadmin権限を確認。public KAITOはFreeでも保護対象、private 3件はGitHubプラン条件が必要と修正。
