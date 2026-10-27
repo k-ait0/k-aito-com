@@ -68,3 +68,14 @@
 
 ## 追記式改訂履歴
 - 2026-10-27 v1.0.0：4リポジトリ／27ワークフローの集計、3自動例外と3手動main書込み、4つの改善Draft PR、残P0/P1作業を一元化。
+
+## P0追加：GitHubサーバー側で強制される保護の不足（2026-10-27）
+
+- 4リポジトリの`main`はbranch APIの`protected: false`を確認。参照権限・公開状態と具体的な導入手順は`docs/GITHUB_MAIN_PROTECTION_ROLLOUT_20261027.md`に記録。
+- KAITOはpublicで保護ルールをFreeから利用可能。FINOWA+・FINOWA本体・家系簿 Proはprivateで、GitHubプラン条件とRuleset APIの制限により現行接続からは適用できない。
+- `confirm`入力は認証ではない。ローカルhookは有効化しないと動かず、APIコミットを止めない。したがって既存ガードだけでmainが保護されていると誤認しない。
+- Actionsの自動必須ステータスを設定すると請求枠・ジョブ失敗時にPRが停止し得るため、まずPR必須、force push/削除禁止、ローカルQA証跡の運用を優先する。
+- 中央の追跡Issue：[KAITO #63](https://github.com/k-ait0/k-aito-com/issues/63)。
+
+### 追加改訂履歴
+- 2026-10-27 v1.1.0：branch APIの全4件保護無効、public/privateとプラン制約、横断導入計画を追加。
