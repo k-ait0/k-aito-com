@@ -17,7 +17,7 @@ function verifyMainWriter(source, file, token) {
   assert.ok(source.includes("inputs.confirm == '" + token + "'"), file + ": confirmation token mismatch");
   assert.ok(source.includes("EXPECTED_MAIN_SHA: ${{ inputs.expected_main_sha }}"), file + ": must use explicit reviewed SHA");
   assert.ok(source.includes("^[a-f0-9]{40}$"), file + ": SHA format check absent");
-  assert.ok(source.includes("git rev-parse HEAD") && source.includes('"$actual" == "$EXPECTED_MAIN_SHA"'), file + ": SHA match check absent");
+  assert.ok(source.includes('actual="$(git rev-parse HEAD)"') && source.includes('"$actual" == "$EXPECTED_MAIN_SHA"'), file + ": SHA match check absent");
   assert.match(source, /ref: main\s*(?:\n|$)/, file + ": must checkout main");
   const verifyAt = source.indexOf("Verify reviewed main SHA before any write-capable step");
   const pushAt = source.indexOf("git push origin HEAD:main");
