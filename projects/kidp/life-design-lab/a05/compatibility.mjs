@@ -35,7 +35,9 @@ export const COMPATIBILITY_AXES = SIDES;
 function assertRegistry() {
   if (TYPE_VERSION !== SOURCE_TYPE_VERSION || CONTENT_VERSION !== SOURCE_CONTENT_VERSION ||
       TYPES.length !== 16 || GROUPS.length !== 4 ||
-      AXES.slice(0, 4).map(x => x.id).join(",") !== "A,B,C,D") {
+      AXES.slice(0, 4).map(x => x.id).join(",") !== "A,B,C,D" ||
+      AXES.slice(0, 4).some((axis, i) =>
+        axis.negative !== SIDES[i].negative || axis.positive !== SIDES[i].positive)) {
     throw new Error("A05 draft registry changed: explicit compatibility review and versioning required");
   }
   for (let i = 0; i < TYPES.length; i++) {
