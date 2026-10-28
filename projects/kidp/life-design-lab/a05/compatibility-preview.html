@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta name="color-scheme" content="light">
+<meta name="description" content="A05の16タイプ・136組の編集用相性図鑑プレビュー。科学的な相性診断ではありません。">
+<title>A05 C-01｜人生価値観16タイプ相互理解図鑑（未承認プレビュー）</title>
+<style>
+:root{font-family:system-ui,-apple-system,"Hiragino Kaku Gothic ProN",sans-serif;color:#202b37;background:#f7f9fc;line-height:1.7}
+*{box-sizing:border-box}
+body{max-width:1050px;margin:0 auto;padding:22px 16px 64px}
+h1{font-size:clamp(1.5rem,4vw,2.35rem);line-height:1.35}h2{font-size:1.16rem}
+a{color:#165b9b}
+.skip{position:absolute;left:-9999px}.skip:focus{left:12px;top:8px;background:#fff;padding:10px;z-index:2}
+.notice{padding:15px 18px;border:2px solid #30475e;border-radius:12px;background:#fff}
+.kicker{font-size:.85rem;letter-spacing:.09em;font-weight:700;color:#476480}
+.controls{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin:20px 0}
+.controls>div{min-width:0}label{display:block;font-weight:700;margin-bottom:6px}
+select{font:inherit;width:100%;min-height:48px;border:1px solid #697a8b;border-radius:9px;padding:9px 12px;background:#fff;color:#202b37}
+select:focus-visible{outline:3px solid #0c6ec4;outline-offset:3px}
+.panel{background:#fff;border:1px solid #ccd5de;border-radius:14px;padding:18px;margin:16px 0;overflow-wrap:anywhere}
+.panel h2{margin-top:0}
+.hero{border-top:6px solid #3a79c1}
+.type-row{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0}
+.chip{border-radius:999px;padding:5px 11px;font-weight:700;background:#edf0f5}
+.chip[data-group="G1"]{background:#e8f2fe;color:#203e69}
+.chip[data-group="G2"]{background:#eaf7ef;color:#175b42}
+.chip[data-group="G3"]{background:#fff0ee;color:#792b2b}
+.chip[data-group="G4"]{background:#fff7d8;color:#604714}
+.columns{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+ul,ol{padding-left:1.45rem;margin-bottom:0}li+li{margin-top:9px}
+.small{font-size:.91rem;color:#46596a}
+@media(max-width:650px){.controls,.columns{grid-template-columns:1fr}.panel{padding:15px}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">本文へ移動</a>
+<main id="main">
+<p class="kicker">K. Aito LIFE DESIGN LAB / A05 C-01</p>
+<h1>人生価値観16タイプ｜相互理解図鑑</h1>
+<p class="notice"><strong>未承認の編集用プレビューです。</strong> 16タイプとRGBYは独自の未検証分類です。これは相性の良し悪し、関係満足度、将来の成功を診断・予測するものではありません。科学的根拠の総合調査は別工程で進行中です。</p>
+<p>既存の2つのタイプを選ぶだけで、4軸の設定上の共通点・違いと、会話のきっかけを表示します。追加の質問はありません。</p>
+<div class="controls" aria-label="タイプの組合せを選択">
+ <div><label for="type-a">タイプ1</label><select id="type-a"></select></div>
+ <div><label for="type-b">タイプ2</label><select id="type-b"></select></div>
+</div>
+<section class="panel hero" aria-labelledby="pair-heading">
+ <h2 id="pair-heading">選択した組合せ</h2>
+ <div class="type-row"><span id="chip-a" class="chip"></span><span id="chip-b" class="chip"></span></div>
+ <p id="pair-summary" role="status" aria-live="polite"></p>
+ <p class="small" id="pair-id"></p>
+</section>
+<div class="columns">
+ <section class="panel" aria-labelledby="shared-heading"><h2 id="shared-heading">共通するラベル</h2><ul id="shared"></ul></section>
+ <section class="panel" aria-labelledby="different-heading"><h2 id="different-heading">異なるラベル</h2><ul id="different"></ul></section>
+ <section class="panel" aria-labelledby="tension-heading"><h2 id="tension-heading">すり合わせたい点（仮説）</h2><ul id="tensions"></ul></section>
+ <section class="panel" aria-labelledby="complement-heading"><h2 id="complement-heading">補完の着想（未実証）</h2><ul id="complements"></ul></section>
+</div>
+<section class="panel" aria-labelledby="talk-heading"><h2 id="talk-heading">相互理解のヒント</h2><ol id="prompts"></ol></section>
+<section class="panel" aria-labelledby="evidence-heading">
+ <h2 id="evidence-heading">根拠と制約</h2>
+ <p id="evidence"></p>
+ <p><strong>B軸の注意：</strong>「自律」と「つながり」は両立し得ます。二極尺度として扱えるかは未確定で、B1／B2／B3の検討中です。</p>
+ <p><strong>E軸：</strong>補助E軸は本プレビューの組合せ生成に使用しません。追加質問・個人回答の収集・端末保存・外部送信はありません。</p>
+ <p class="small">同タイプ同士を含む136組を規則で生成しています。136組それぞれの固有の実証データや独自の相性評価が存在することを意味しません。研究完了・構造決裁・人手レビュー・公開承認まで本番導線に組み込みません。</p>
+</section>
+</main>
+<script type="module" src="./compatibility-preview.mjs"></script>
+</body>
+</html>
