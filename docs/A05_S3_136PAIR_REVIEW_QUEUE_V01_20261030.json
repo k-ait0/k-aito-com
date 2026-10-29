@@ -1,0 +1,5754 @@
+{
+  "schema": "A05-R1-S3-PENDING-136PAIR-REVIEW-QUEUE-0.1.0",
+  "generatedOn": "2026-10-30",
+  "origin": "GITHUB_SOURCE_STRUCTURAL_GENERATION_NOT_HUMAN_EDITORIAL_APPROVAL",
+  "sourceFiles": {
+    "projects/kidp/life-design-lab/a05/types.mjs": "ad8bda80ef0e5efe513b3a332ec47a600b8b9e59",
+    "projects/kidp/life-design-lab/a05/questions.mjs": "81cea4e1b7e19d26898532c16c35f5f4993799a0",
+    "projects/kidp/life-design-lab/a05/compatibility.mjs": "b9b612ae4f9f3c6c8ddc951a5e720ea6725e9615",
+    "projects/kidp/life-design-lab/a05/compatibility-literature-candidates.mjs": "1a258452654d740be1005bd69e1a7432bbc78c0a",
+    "projects/kidp/life-design-lab/a05/compatibility-evidence.mjs": "2290069a9f3902f9c7a07b775f0ad68edcaea17f",
+    "projects/kidp/life-design-lab/a05/compatibility-editorial.mjs": "dd3463731100acd51b634936a144282115bc201e",
+    "projects/kidp/life-design-lab/a05/compatibility-copy-audit.mjs": "755f8bf84d2311d1720dfd3234faab9c3dfb680f",
+    "projects/kidp/life-design-lab/a05/r1-s3-review-queue.mjs": "382dbf89cde519cbf6f7970ee5429c10f7434b18"
+  },
+  "sourceVersions": {
+    "c01": "A05-COMPAT-C01-0.1.0-editorial",
+    "c03": "A05-COMPAT-C03-0.1.0-unapproved",
+    "c05": "A05-COPY-C05-0.1.0-unapproved",
+    "s3": "A05-R1-S3-136PAIR-0.1.0-draft"
+  },
+  "sourceOriginalWorkbookV01": {
+    "filename": "A05_16タイプ相性_根拠評価台帳_v0.1_20261028.xlsx",
+    "reportedSha256": "2936e82b034cd8253891aca24285764839c853fc5efa7265935fc32187cd4972",
+    "structuralReconciliation": "PREVIOUSLY_REPORTED_IN_C04_NOT_NEWLY_BYTE_VERIFIED"
+  },
+  "sourceOriginalWorkbookV10": {
+    "status": "NOT_LOCATED",
+    "directReconciliation": false
+  },
+  "priorityCounts": {
+    "P0_SAME_TYPE": 16,
+    "P1_ALL_FOUR_DIFFERENT": 8,
+    "P2_B1_DIFFERENCE": 56,
+    "P3_OTHER": 56
+  },
+  "axisDistanceCounts": {
+    "0": 16,
+    "1": 32,
+    "2": 48,
+    "3": 32,
+    "4": 8
+  },
+  "reviewCounts": {
+    "generated": 136,
+    "firstHumanApproved": 0,
+    "secondIndependentApproved": 0,
+    "publishable": 0
+  },
+  "riskPolicy": {
+    "axisBMode": "UNRESOLVED_B2_RESEARCH_PRIORITY",
+    "claimTier": "EDITORIAL_ONLY",
+    "relationshipPredictions": "FORBIDDEN",
+    "legacyTypeAutoAssignment": "FORBIDDEN",
+    "release": "NO_GO"
+  },
+  "rows": [
+    {
+      "pairId": "T01-T01",
+      "typeIds": [
+        "T01",
+        "T01"
+      ],
+      "sameType": true,
+      "sharedAxes": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "differentAxes": [],
+      "draftStructuralDistance": 0,
+      "priority": "P0_SAME_TYPE",
+      "priorityReason": "同型16組：同型＝好相性という誤認と同型の摩擦仮説欠落",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "SAME_TYPE_FRICTION_HYPOTHESES_ABSENT",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T02-T02",
+      "typeIds": [
+        "T02",
+        "T02"
+      ],
+      "sameType": true,
+      "sharedAxes": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "differentAxes": [],
+      "draftStructuralDistance": 0,
+      "priority": "P0_SAME_TYPE",
+      "priorityReason": "同型16組：同型＝好相性という誤認と同型の摩擦仮説欠落",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "SAME_TYPE_FRICTION_HYPOTHESES_ABSENT",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T03-T03",
+      "typeIds": [
+        "T03",
+        "T03"
+      ],
+      "sameType": true,
+      "sharedAxes": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "differentAxes": [],
+      "draftStructuralDistance": 0,
+      "priority": "P0_SAME_TYPE",
+      "priorityReason": "同型16組：同型＝好相性という誤認と同型の摩擦仮説欠落",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "SAME_TYPE_FRICTION_HYPOTHESES_ABSENT",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T04-T04",
+      "typeIds": [
+        "T04",
+        "T04"
+      ],
+      "sameType": true,
+      "sharedAxes": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "differentAxes": [],
+      "draftStructuralDistance": 0,
+      "priority": "P0_SAME_TYPE",
+      "priorityReason": "同型16組：同型＝好相性という誤認と同型の摩擦仮説欠落",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "SAME_TYPE_FRICTION_HYPOTHESES_ABSENT",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T05-T05",
+      "typeIds": [
+        "T05",
+        "T05"
+      ],
+      "sameType": true,
+      "sharedAxes": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "differentAxes": [],
+      "draftStructuralDistance": 0,
+      "priority": "P0_SAME_TYPE",
+      "priorityReason": "同型16組：同型＝好相性という誤認と同型の摩擦仮説欠落",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "SAME_TYPE_FRICTION_HYPOTHESES_ABSENT",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T06-T06",
+      "typeIds": [
+        "T06",
+        "T06"
+      ],
+      "sameType": true,
+      "sharedAxes": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "differentAxes": [],
+      "draftStructuralDistance": 0,
+      "priority": "P0_SAME_TYPE",
+      "priorityReason": "同型16組：同型＝好相性という誤認と同型の摩擦仮説欠落",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "SAME_TYPE_FRICTION_HYPOTHESES_ABSENT",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T07-T07",
+      "typeIds": [
+        "T07",
+        "T07"
+      ],
+      "sameType": true,
+      "sharedAxes": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "differentAxes": [],
+      "draftStructuralDistance": 0,
+      "priority": "P0_SAME_TYPE",
+      "priorityReason": "同型16組：同型＝好相性という誤認と同型の摩擦仮説欠落",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "SAME_TYPE_FRICTION_HYPOTHESES_ABSENT",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T08-T08",
+      "typeIds": [
+        "T08",
+        "T08"
+      ],
+      "sameType": true,
+      "sharedAxes": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "differentAxes": [],
+      "draftStructuralDistance": 0,
+      "priority": "P0_SAME_TYPE",
+      "priorityReason": "同型16組：同型＝好相性という誤認と同型の摩擦仮説欠落",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "SAME_TYPE_FRICTION_HYPOTHESES_ABSENT",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T09-T09",
+      "typeIds": [
+        "T09",
+        "T09"
+      ],
+      "sameType": true,
+      "sharedAxes": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "differentAxes": [],
+      "draftStructuralDistance": 0,
+      "priority": "P0_SAME_TYPE",
+      "priorityReason": "同型16組：同型＝好相性という誤認と同型の摩擦仮説欠落",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "SAME_TYPE_FRICTION_HYPOTHESES_ABSENT",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T10-T10",
+      "typeIds": [
+        "T10",
+        "T10"
+      ],
+      "sameType": true,
+      "sharedAxes": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "differentAxes": [],
+      "draftStructuralDistance": 0,
+      "priority": "P0_SAME_TYPE",
+      "priorityReason": "同型16組：同型＝好相性という誤認と同型の摩擦仮説欠落",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "SAME_TYPE_FRICTION_HYPOTHESES_ABSENT",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T11-T11",
+      "typeIds": [
+        "T11",
+        "T11"
+      ],
+      "sameType": true,
+      "sharedAxes": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "differentAxes": [],
+      "draftStructuralDistance": 0,
+      "priority": "P0_SAME_TYPE",
+      "priorityReason": "同型16組：同型＝好相性という誤認と同型の摩擦仮説欠落",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "SAME_TYPE_FRICTION_HYPOTHESES_ABSENT",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T12-T12",
+      "typeIds": [
+        "T12",
+        "T12"
+      ],
+      "sameType": true,
+      "sharedAxes": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "differentAxes": [],
+      "draftStructuralDistance": 0,
+      "priority": "P0_SAME_TYPE",
+      "priorityReason": "同型16組：同型＝好相性という誤認と同型の摩擦仮説欠落",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "SAME_TYPE_FRICTION_HYPOTHESES_ABSENT",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T13-T13",
+      "typeIds": [
+        "T13",
+        "T13"
+      ],
+      "sameType": true,
+      "sharedAxes": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "differentAxes": [],
+      "draftStructuralDistance": 0,
+      "priority": "P0_SAME_TYPE",
+      "priorityReason": "同型16組：同型＝好相性という誤認と同型の摩擦仮説欠落",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "SAME_TYPE_FRICTION_HYPOTHESES_ABSENT",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T14-T14",
+      "typeIds": [
+        "T14",
+        "T14"
+      ],
+      "sameType": true,
+      "sharedAxes": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "differentAxes": [],
+      "draftStructuralDistance": 0,
+      "priority": "P0_SAME_TYPE",
+      "priorityReason": "同型16組：同型＝好相性という誤認と同型の摩擦仮説欠落",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "SAME_TYPE_FRICTION_HYPOTHESES_ABSENT",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T15-T15",
+      "typeIds": [
+        "T15",
+        "T15"
+      ],
+      "sameType": true,
+      "sharedAxes": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "differentAxes": [],
+      "draftStructuralDistance": 0,
+      "priority": "P0_SAME_TYPE",
+      "priorityReason": "同型16組：同型＝好相性という誤認と同型の摩擦仮説欠落",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "SAME_TYPE_FRICTION_HYPOTHESES_ABSENT",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T16-T16",
+      "typeIds": [
+        "T16",
+        "T16"
+      ],
+      "sameType": true,
+      "sharedAxes": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "differentAxes": [],
+      "draftStructuralDistance": 0,
+      "priority": "P0_SAME_TYPE",
+      "priorityReason": "同型16組：同型＝好相性という誤認と同型の摩擦仮説欠落",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "SAME_TYPE_FRICTION_HYPOTHESES_ABSENT",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T01-T16",
+      "typeIds": [
+        "T01",
+        "T16"
+      ],
+      "sameType": false,
+      "sharedAxes": [],
+      "differentAxes": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "draftStructuralDistance": 4,
+      "priority": "P1_ALL_FOUR_DIFFERENT",
+      "priorityReason": "4軸相違8組：相違＝不適合という誤認と暗黙の順位付け",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT",
+        "FOUR_AXIS_OPPOSITION_NOT_BAD_MATCH"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T02-T15",
+      "typeIds": [
+        "T02",
+        "T15"
+      ],
+      "sameType": false,
+      "sharedAxes": [],
+      "differentAxes": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "draftStructuralDistance": 4,
+      "priority": "P1_ALL_FOUR_DIFFERENT",
+      "priorityReason": "4軸相違8組：相違＝不適合という誤認と暗黙の順位付け",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT",
+        "FOUR_AXIS_OPPOSITION_NOT_BAD_MATCH"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T03-T14",
+      "typeIds": [
+        "T03",
+        "T14"
+      ],
+      "sameType": false,
+      "sharedAxes": [],
+      "differentAxes": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "draftStructuralDistance": 4,
+      "priority": "P1_ALL_FOUR_DIFFERENT",
+      "priorityReason": "4軸相違8組：相違＝不適合という誤認と暗黙の順位付け",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT",
+        "FOUR_AXIS_OPPOSITION_NOT_BAD_MATCH"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T04-T13",
+      "typeIds": [
+        "T04",
+        "T13"
+      ],
+      "sameType": false,
+      "sharedAxes": [],
+      "differentAxes": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "draftStructuralDistance": 4,
+      "priority": "P1_ALL_FOUR_DIFFERENT",
+      "priorityReason": "4軸相違8組：相違＝不適合という誤認と暗黙の順位付け",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT",
+        "FOUR_AXIS_OPPOSITION_NOT_BAD_MATCH"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T05-T12",
+      "typeIds": [
+        "T05",
+        "T12"
+      ],
+      "sameType": false,
+      "sharedAxes": [],
+      "differentAxes": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "draftStructuralDistance": 4,
+      "priority": "P1_ALL_FOUR_DIFFERENT",
+      "priorityReason": "4軸相違8組：相違＝不適合という誤認と暗黙の順位付け",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT",
+        "FOUR_AXIS_OPPOSITION_NOT_BAD_MATCH"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T06-T11",
+      "typeIds": [
+        "T06",
+        "T11"
+      ],
+      "sameType": false,
+      "sharedAxes": [],
+      "differentAxes": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "draftStructuralDistance": 4,
+      "priority": "P1_ALL_FOUR_DIFFERENT",
+      "priorityReason": "4軸相違8組：相違＝不適合という誤認と暗黙の順位付け",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT",
+        "FOUR_AXIS_OPPOSITION_NOT_BAD_MATCH"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T07-T10",
+      "typeIds": [
+        "T07",
+        "T10"
+      ],
+      "sameType": false,
+      "sharedAxes": [],
+      "differentAxes": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "draftStructuralDistance": 4,
+      "priority": "P1_ALL_FOUR_DIFFERENT",
+      "priorityReason": "4軸相違8組：相違＝不適合という誤認と暗黙の順位付け",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT",
+        "FOUR_AXIS_OPPOSITION_NOT_BAD_MATCH"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T08-T09",
+      "typeIds": [
+        "T08",
+        "T09"
+      ],
+      "sameType": false,
+      "sharedAxes": [],
+      "differentAxes": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "draftStructuralDistance": 4,
+      "priority": "P1_ALL_FOUR_DIFFERENT",
+      "priorityReason": "4軸相違8組：相違＝不適合という誤認と暗黙の順位付け",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT",
+        "FOUR_AXIS_OPPOSITION_NOT_BAD_MATCH"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T01-T05",
+      "typeIds": [
+        "T01",
+        "T05"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "A",
+        "C",
+        "D"
+      ],
+      "differentAxes": [
+        "B"
+      ],
+      "draftStructuralDistance": 1,
+      "priority": "P2_B1_DIFFERENCE",
+      "priorityReason": "B軸相違56組：未検証の二極性を個人の対立と誤読",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T01-T06",
+      "typeIds": [
+        "T01",
+        "T06"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "A",
+        "C"
+      ],
+      "differentAxes": [
+        "B",
+        "D"
+      ],
+      "draftStructuralDistance": 2,
+      "priority": "P2_B1_DIFFERENCE",
+      "priorityReason": "B軸相違56組：未検証の二極性を個人の対立と誤読",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T01-T07",
+      "typeIds": [
+        "T01",
+        "T07"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "A",
+        "D"
+      ],
+      "differentAxes": [
+        "B",
+        "C"
+      ],
+      "draftStructuralDistance": 2,
+      "priority": "P2_B1_DIFFERENCE",
+      "priorityReason": "B軸相違56組：未検証の二極性を個人の対立と誤読",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T01-T08",
+      "typeIds": [
+        "T01",
+        "T08"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "A"
+      ],
+      "differentAxes": [
+        "B",
+        "C",
+        "D"
+      ],
+      "draftStructuralDistance": 3,
+      "priority": "P2_B1_DIFFERENCE",
+      "priorityReason": "B軸相違56組：未検証の二極性を個人の対立と誤読",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T01-T13",
+      "typeIds": [
+        "T01",
+        "T13"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "C",
+        "D"
+      ],
+      "differentAxes": [
+        "A",
+        "B"
+      ],
+      "draftStructuralDistance": 2,
+      "priority": "P2_B1_DIFFERENCE",
+      "priorityReason": "B軸相違56組：未検証の二極性を個人の対立と誤読",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T01-T14",
+      "typeIds": [
+        "T01",
+        "T14"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "C"
+      ],
+      "differentAxes": [
+        "A",
+        "B",
+        "D"
+      ],
+      "draftStructuralDistance": 3,
+      "priority": "P2_B1_DIFFERENCE",
+      "priorityReason": "B軸相違56組：未検証の二極性を個人の対立と誤読",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T01-T15",
+      "typeIds": [
+        "T01",
+        "T15"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "D"
+      ],
+      "differentAxes": [
+        "A",
+        "B",
+        "C"
+      ],
+      "draftStructuralDistance": 3,
+      "priority": "P2_B1_DIFFERENCE",
+      "priorityReason": "B軸相違56組：未検証の二極性を個人の対立と誤読",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T02-T05",
+      "typeIds": [
+        "T02",
+        "T05"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "A",
+        "C"
+      ],
+      "differentAxes": [
+        "B",
+        "D"
+      ],
+      "draftStructuralDistance": 2,
+      "priority": "P2_B1_DIFFERENCE",
+      "priorityReason": "B軸相違56組：未検証の二極性を個人の対立と誤読",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T02-T06",
+      "typeIds": [
+        "T02",
+        "T06"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "A",
+        "C",
+        "D"
+      ],
+      "differentAxes": [
+        "B"
+      ],
+      "draftStructuralDistance": 1,
+      "priority": "P2_B1_DIFFERENCE",
+      "priorityReason": "B軸相違56組：未検証の二極性を個人の対立と誤読",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T02-T07",
+      "typeIds": [
+        "T02",
+        "T07"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "A"
+      ],
+      "differentAxes": [
+        "B",
+        "C",
+        "D"
+      ],
+      "draftStructuralDistance": 3,
+      "priority": "P2_B1_DIFFERENCE",
+      "priorityReason": "B軸相違56組：未検証の二極性を個人の対立と誤読",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T02-T08",
+      "typeIds": [
+        "T02",
+        "T08"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "A",
+        "D"
+      ],
+      "differentAxes": [
+        "B",
+        "C"
+      ],
+      "draftStructuralDistance": 2,
+      "priority": "P2_B1_DIFFERENCE",
+      "priorityReason": "B軸相違56組：未検証の二極性を個人の対立と誤読",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T02-T13",
+      "typeIds": [
+        "T02",
+        "T13"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "C"
+      ],
+      "differentAxes": [
+        "A",
+        "B",
+        "D"
+      ],
+      "draftStructuralDistance": 3,
+      "priority": "P2_B1_DIFFERENCE",
+      "priorityReason": "B軸相違56組：未検証の二極性を個人の対立と誤読",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T02-T14",
+      "typeIds": [
+        "T02",
+        "T14"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "C",
+        "D"
+      ],
+      "differentAxes": [
+        "A",
+        "B"
+      ],
+      "draftStructuralDistance": 2,
+      "priority": "P2_B1_DIFFERENCE",
+      "priorityReason": "B軸相違56組：未検証の二極性を個人の対立と誤読",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T02-T16",
+      "typeIds": [
+        "T02",
+        "T16"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "D"
+      ],
+      "differentAxes": [
+        "A",
+        "B",
+        "C"
+      ],
+      "draftStructuralDistance": 3,
+      "priority": "P2_B1_DIFFERENCE",
+      "priorityReason": "B軸相違56組：未検証の二極性を個人の対立と誤読",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T03-T05",
+      "typeIds": [
+        "T03",
+        "T05"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "A",
+        "D"
+      ],
+      "differentAxes": [
+        "B",
+        "C"
+      ],
+      "draftStructuralDistance": 2,
+      "priority": "P2_B1_DIFFERENCE",
+      "priorityReason": "B軸相違56組：未検証の二極性を個人の対立と誤読",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T03-T06",
+      "typeIds": [
+        "T03",
+        "T06"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "A"
+      ],
+      "differentAxes": [
+        "B",
+        "C",
+        "D"
+      ],
+      "draftStructuralDistance": 3,
+      "priority": "P2_B1_DIFFERENCE",
+      "priorityReason": "B軸相違56組：未検証の二極性を個人の対立と誤読",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T03-T07",
+      "typeIds": [
+        "T03",
+        "T07"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "A",
+        "C",
+        "D"
+      ],
+      "differentAxes": [
+        "B"
+      ],
+      "draftStructuralDistance": 1,
+      "priority": "P2_B1_DIFFERENCE",
+      "priorityReason": "B軸相違56組：未検証の二極性を個人の対立と誤読",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T03-T08",
+      "typeIds": [
+        "T03",
+        "T08"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "A",
+        "C"
+      ],
+      "differentAxes": [
+        "B",
+        "D"
+      ],
+      "draftStructuralDistance": 2,
+      "priority": "P2_B1_DIFFERENCE",
+      "priorityReason": "B軸相違56組：未検証の二極性を個人の対立と誤読",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T03-T13",
+      "typeIds": [
+        "T03",
+        "T13"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "D"
+      ],
+      "differentAxes": [
+        "A",
+        "B",
+        "C"
+      ],
+      "draftStructuralDistance": 3,
+      "priority": "P2_B1_DIFFERENCE",
+      "priorityReason": "B軸相違56組：未検証の二極性を個人の対立と誤読",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T03-T15",
+      "typeIds": [
+        "T03",
+        "T15"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "C",
+        "D"
+      ],
+      "differentAxes": [
+        "A",
+        "B"
+      ],
+      "draftStructuralDistance": 2,
+      "priority": "P2_B1_DIFFERENCE",
+      "priorityReason": "B軸相違56組：未検証の二極性を個人の対立と誤読",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T03-T16",
+      "typeIds": [
+        "T03",
+        "T16"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "C"
+      ],
+      "differentAxes": [
+        "A",
+        "B",
+        "D"
+      ],
+      "draftStructuralDistance": 3,
+      "priority": "P2_B1_DIFFERENCE",
+      "priorityReason": "B軸相違56組：未検証の二極性を個人の対立と誤読",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T04-T05",
+      "typeIds": [
+        "T04",
+        "T05"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "A"
+      ],
+      "differentAxes": [
+        "B",
+        "C",
+        "D"
+      ],
+      "draftStructuralDistance": 3,
+      "priority": "P2_B1_DIFFERENCE",
+      "priorityReason": "B軸相違56組：未検証の二極性を個人の対立と誤読",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T04-T06",
+      "typeIds": [
+        "T04",
+        "T06"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "A",
+        "D"
+      ],
+      "differentAxes": [
+        "B",
+        "C"
+      ],
+      "draftStructuralDistance": 2,
+      "priority": "P2_B1_DIFFERENCE",
+      "priorityReason": "B軸相違56組：未検証の二極性を個人の対立と誤読",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T04-T07",
+      "typeIds": [
+        "T04",
+        "T07"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "A",
+        "C"
+      ],
+      "differentAxes": [
+        "B",
+        "D"
+      ],
+      "draftStructuralDistance": 2,
+      "priority": "P2_B1_DIFFERENCE",
+      "priorityReason": "B軸相違56組：未検証の二極性を個人の対立と誤読",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T04-T08",
+      "typeIds": [
+        "T04",
+        "T08"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "A",
+        "C",
+        "D"
+      ],
+      "differentAxes": [
+        "B"
+      ],
+      "draftStructuralDistance": 1,
+      "priority": "P2_B1_DIFFERENCE",
+      "priorityReason": "B軸相違56組：未検証の二極性を個人の対立と誤読",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T04-T14",
+      "typeIds": [
+        "T04",
+        "T14"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "D"
+      ],
+      "differentAxes": [
+        "A",
+        "B",
+        "C"
+      ],
+      "draftStructuralDistance": 3,
+      "priority": "P2_B1_DIFFERENCE",
+      "priorityReason": "B軸相違56組：未検証の二極性を個人の対立と誤読",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T04-T15",
+      "typeIds": [
+        "T04",
+        "T15"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "C"
+      ],
+      "differentAxes": [
+        "A",
+        "B",
+        "D"
+      ],
+      "draftStructuralDistance": 3,
+      "priority": "P2_B1_DIFFERENCE",
+      "priorityReason": "B軸相違56組：未検証の二極性を個人の対立と誤読",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T04-T16",
+      "typeIds": [
+        "T04",
+        "T16"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "C",
+        "D"
+      ],
+      "differentAxes": [
+        "A",
+        "B"
+      ],
+      "draftStructuralDistance": 2,
+      "priority": "P2_B1_DIFFERENCE",
+      "priorityReason": "B軸相違56組：未検証の二極性を個人の対立と誤読",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T05-T09",
+      "typeIds": [
+        "T05",
+        "T09"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "C",
+        "D"
+      ],
+      "differentAxes": [
+        "A",
+        "B"
+      ],
+      "draftStructuralDistance": 2,
+      "priority": "P2_B1_DIFFERENCE",
+      "priorityReason": "B軸相違56組：未検証の二極性を個人の対立と誤読",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T05-T10",
+      "typeIds": [
+        "T05",
+        "T10"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "C"
+      ],
+      "differentAxes": [
+        "A",
+        "B",
+        "D"
+      ],
+      "draftStructuralDistance": 3,
+      "priority": "P2_B1_DIFFERENCE",
+      "priorityReason": "B軸相違56組：未検証の二極性を個人の対立と誤読",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T05-T11",
+      "typeIds": [
+        "T05",
+        "T11"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "D"
+      ],
+      "differentAxes": [
+        "A",
+        "B",
+        "C"
+      ],
+      "draftStructuralDistance": 3,
+      "priority": "P2_B1_DIFFERENCE",
+      "priorityReason": "B軸相違56組：未検証の二極性を個人の対立と誤読",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T06-T09",
+      "typeIds": [
+        "T06",
+        "T09"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "C"
+      ],
+      "differentAxes": [
+        "A",
+        "B",
+        "D"
+      ],
+      "draftStructuralDistance": 3,
+      "priority": "P2_B1_DIFFERENCE",
+      "priorityReason": "B軸相違56組：未検証の二極性を個人の対立と誤読",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T06-T10",
+      "typeIds": [
+        "T06",
+        "T10"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "C",
+        "D"
+      ],
+      "differentAxes": [
+        "A",
+        "B"
+      ],
+      "draftStructuralDistance": 2,
+      "priority": "P2_B1_DIFFERENCE",
+      "priorityReason": "B軸相違56組：未検証の二極性を個人の対立と誤読",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T06-T12",
+      "typeIds": [
+        "T06",
+        "T12"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "D"
+      ],
+      "differentAxes": [
+        "A",
+        "B",
+        "C"
+      ],
+      "draftStructuralDistance": 3,
+      "priority": "P2_B1_DIFFERENCE",
+      "priorityReason": "B軸相違56組：未検証の二極性を個人の対立と誤読",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T07-T09",
+      "typeIds": [
+        "T07",
+        "T09"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "D"
+      ],
+      "differentAxes": [
+        "A",
+        "B",
+        "C"
+      ],
+      "draftStructuralDistance": 3,
+      "priority": "P2_B1_DIFFERENCE",
+      "priorityReason": "B軸相違56組：未検証の二極性を個人の対立と誤読",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T07-T11",
+      "typeIds": [
+        "T07",
+        "T11"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "C",
+        "D"
+      ],
+      "differentAxes": [
+        "A",
+        "B"
+      ],
+      "draftStructuralDistance": 2,
+      "priority": "P2_B1_DIFFERENCE",
+      "priorityReason": "B軸相違56組：未検証の二極性を個人の対立と誤読",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T07-T12",
+      "typeIds": [
+        "T07",
+        "T12"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "C"
+      ],
+      "differentAxes": [
+        "A",
+        "B",
+        "D"
+      ],
+      "draftStructuralDistance": 3,
+      "priority": "P2_B1_DIFFERENCE",
+      "priorityReason": "B軸相違56組：未検証の二極性を個人の対立と誤読",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T08-T10",
+      "typeIds": [
+        "T08",
+        "T10"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "D"
+      ],
+      "differentAxes": [
+        "A",
+        "B",
+        "C"
+      ],
+      "draftStructuralDistance": 3,
+      "priority": "P2_B1_DIFFERENCE",
+      "priorityReason": "B軸相違56組：未検証の二極性を個人の対立と誤読",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T08-T11",
+      "typeIds": [
+        "T08",
+        "T11"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "C"
+      ],
+      "differentAxes": [
+        "A",
+        "B",
+        "D"
+      ],
+      "draftStructuralDistance": 3,
+      "priority": "P2_B1_DIFFERENCE",
+      "priorityReason": "B軸相違56組：未検証の二極性を個人の対立と誤読",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T08-T12",
+      "typeIds": [
+        "T08",
+        "T12"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "C",
+        "D"
+      ],
+      "differentAxes": [
+        "A",
+        "B"
+      ],
+      "draftStructuralDistance": 2,
+      "priority": "P2_B1_DIFFERENCE",
+      "priorityReason": "B軸相違56組：未検証の二極性を個人の対立と誤読",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T09-T13",
+      "typeIds": [
+        "T09",
+        "T13"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "A",
+        "C",
+        "D"
+      ],
+      "differentAxes": [
+        "B"
+      ],
+      "draftStructuralDistance": 1,
+      "priority": "P2_B1_DIFFERENCE",
+      "priorityReason": "B軸相違56組：未検証の二極性を個人の対立と誤読",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T09-T14",
+      "typeIds": [
+        "T09",
+        "T14"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "A",
+        "C"
+      ],
+      "differentAxes": [
+        "B",
+        "D"
+      ],
+      "draftStructuralDistance": 2,
+      "priority": "P2_B1_DIFFERENCE",
+      "priorityReason": "B軸相違56組：未検証の二極性を個人の対立と誤読",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T09-T15",
+      "typeIds": [
+        "T09",
+        "T15"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "A",
+        "D"
+      ],
+      "differentAxes": [
+        "B",
+        "C"
+      ],
+      "draftStructuralDistance": 2,
+      "priority": "P2_B1_DIFFERENCE",
+      "priorityReason": "B軸相違56組：未検証の二極性を個人の対立と誤読",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T09-T16",
+      "typeIds": [
+        "T09",
+        "T16"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "A"
+      ],
+      "differentAxes": [
+        "B",
+        "C",
+        "D"
+      ],
+      "draftStructuralDistance": 3,
+      "priority": "P2_B1_DIFFERENCE",
+      "priorityReason": "B軸相違56組：未検証の二極性を個人の対立と誤読",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T10-T13",
+      "typeIds": [
+        "T10",
+        "T13"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "A",
+        "C"
+      ],
+      "differentAxes": [
+        "B",
+        "D"
+      ],
+      "draftStructuralDistance": 2,
+      "priority": "P2_B1_DIFFERENCE",
+      "priorityReason": "B軸相違56組：未検証の二極性を個人の対立と誤読",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T10-T14",
+      "typeIds": [
+        "T10",
+        "T14"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "A",
+        "C",
+        "D"
+      ],
+      "differentAxes": [
+        "B"
+      ],
+      "draftStructuralDistance": 1,
+      "priority": "P2_B1_DIFFERENCE",
+      "priorityReason": "B軸相違56組：未検証の二極性を個人の対立と誤読",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T10-T15",
+      "typeIds": [
+        "T10",
+        "T15"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "A"
+      ],
+      "differentAxes": [
+        "B",
+        "C",
+        "D"
+      ],
+      "draftStructuralDistance": 3,
+      "priority": "P2_B1_DIFFERENCE",
+      "priorityReason": "B軸相違56組：未検証の二極性を個人の対立と誤読",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T10-T16",
+      "typeIds": [
+        "T10",
+        "T16"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "A",
+        "D"
+      ],
+      "differentAxes": [
+        "B",
+        "C"
+      ],
+      "draftStructuralDistance": 2,
+      "priority": "P2_B1_DIFFERENCE",
+      "priorityReason": "B軸相違56組：未検証の二極性を個人の対立と誤読",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T11-T13",
+      "typeIds": [
+        "T11",
+        "T13"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "A",
+        "D"
+      ],
+      "differentAxes": [
+        "B",
+        "C"
+      ],
+      "draftStructuralDistance": 2,
+      "priority": "P2_B1_DIFFERENCE",
+      "priorityReason": "B軸相違56組：未検証の二極性を個人の対立と誤読",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T11-T14",
+      "typeIds": [
+        "T11",
+        "T14"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "A"
+      ],
+      "differentAxes": [
+        "B",
+        "C",
+        "D"
+      ],
+      "draftStructuralDistance": 3,
+      "priority": "P2_B1_DIFFERENCE",
+      "priorityReason": "B軸相違56組：未検証の二極性を個人の対立と誤読",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T11-T15",
+      "typeIds": [
+        "T11",
+        "T15"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "A",
+        "C",
+        "D"
+      ],
+      "differentAxes": [
+        "B"
+      ],
+      "draftStructuralDistance": 1,
+      "priority": "P2_B1_DIFFERENCE",
+      "priorityReason": "B軸相違56組：未検証の二極性を個人の対立と誤読",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T11-T16",
+      "typeIds": [
+        "T11",
+        "T16"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "A",
+        "C"
+      ],
+      "differentAxes": [
+        "B",
+        "D"
+      ],
+      "draftStructuralDistance": 2,
+      "priority": "P2_B1_DIFFERENCE",
+      "priorityReason": "B軸相違56組：未検証の二極性を個人の対立と誤読",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T12-T13",
+      "typeIds": [
+        "T12",
+        "T13"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "A"
+      ],
+      "differentAxes": [
+        "B",
+        "C",
+        "D"
+      ],
+      "draftStructuralDistance": 3,
+      "priority": "P2_B1_DIFFERENCE",
+      "priorityReason": "B軸相違56組：未検証の二極性を個人の対立と誤読",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T12-T14",
+      "typeIds": [
+        "T12",
+        "T14"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "A",
+        "D"
+      ],
+      "differentAxes": [
+        "B",
+        "C"
+      ],
+      "draftStructuralDistance": 2,
+      "priority": "P2_B1_DIFFERENCE",
+      "priorityReason": "B軸相違56組：未検証の二極性を個人の対立と誤読",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T12-T15",
+      "typeIds": [
+        "T12",
+        "T15"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "A",
+        "C"
+      ],
+      "differentAxes": [
+        "B",
+        "D"
+      ],
+      "draftStructuralDistance": 2,
+      "priority": "P2_B1_DIFFERENCE",
+      "priorityReason": "B軸相違56組：未検証の二極性を個人の対立と誤読",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T12-T16",
+      "typeIds": [
+        "T12",
+        "T16"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "A",
+        "C",
+        "D"
+      ],
+      "differentAxes": [
+        "B"
+      ],
+      "draftStructuralDistance": 1,
+      "priority": "P2_B1_DIFFERENCE",
+      "priorityReason": "B軸相違56組：未検証の二極性を個人の対立と誤読",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T01-T02",
+      "typeIds": [
+        "T01",
+        "T02"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "A",
+        "B",
+        "C"
+      ],
+      "differentAxes": [
+        "D"
+      ],
+      "draftStructuralDistance": 1,
+      "priority": "P3_OTHER",
+      "priorityReason": "残る56組：軸ごとの機会制約、文章のテンプレート化を監査",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T01-T03",
+      "typeIds": [
+        "T01",
+        "T03"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "A",
+        "B",
+        "D"
+      ],
+      "differentAxes": [
+        "C"
+      ],
+      "draftStructuralDistance": 1,
+      "priority": "P3_OTHER",
+      "priorityReason": "残る56組：軸ごとの機会制約、文章のテンプレート化を監査",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T01-T04",
+      "typeIds": [
+        "T01",
+        "T04"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "A",
+        "B"
+      ],
+      "differentAxes": [
+        "C",
+        "D"
+      ],
+      "draftStructuralDistance": 2,
+      "priority": "P3_OTHER",
+      "priorityReason": "残る56組：軸ごとの機会制約、文章のテンプレート化を監査",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T01-T09",
+      "typeIds": [
+        "T01",
+        "T09"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "B",
+        "C",
+        "D"
+      ],
+      "differentAxes": [
+        "A"
+      ],
+      "draftStructuralDistance": 1,
+      "priority": "P3_OTHER",
+      "priorityReason": "残る56組：軸ごとの機会制約、文章のテンプレート化を監査",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T01-T10",
+      "typeIds": [
+        "T01",
+        "T10"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "B",
+        "C"
+      ],
+      "differentAxes": [
+        "A",
+        "D"
+      ],
+      "draftStructuralDistance": 2,
+      "priority": "P3_OTHER",
+      "priorityReason": "残る56組：軸ごとの機会制約、文章のテンプレート化を監査",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T01-T11",
+      "typeIds": [
+        "T01",
+        "T11"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "B",
+        "D"
+      ],
+      "differentAxes": [
+        "A",
+        "C"
+      ],
+      "draftStructuralDistance": 2,
+      "priority": "P3_OTHER",
+      "priorityReason": "残る56組：軸ごとの機会制約、文章のテンプレート化を監査",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T01-T12",
+      "typeIds": [
+        "T01",
+        "T12"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "B"
+      ],
+      "differentAxes": [
+        "A",
+        "C",
+        "D"
+      ],
+      "draftStructuralDistance": 3,
+      "priority": "P3_OTHER",
+      "priorityReason": "残る56組：軸ごとの機会制約、文章のテンプレート化を監査",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T02-T03",
+      "typeIds": [
+        "T02",
+        "T03"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "A",
+        "B"
+      ],
+      "differentAxes": [
+        "C",
+        "D"
+      ],
+      "draftStructuralDistance": 2,
+      "priority": "P3_OTHER",
+      "priorityReason": "残る56組：軸ごとの機会制約、文章のテンプレート化を監査",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T02-T04",
+      "typeIds": [
+        "T02",
+        "T04"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "A",
+        "B",
+        "D"
+      ],
+      "differentAxes": [
+        "C"
+      ],
+      "draftStructuralDistance": 1,
+      "priority": "P3_OTHER",
+      "priorityReason": "残る56組：軸ごとの機会制約、文章のテンプレート化を監査",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T02-T09",
+      "typeIds": [
+        "T02",
+        "T09"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "B",
+        "C"
+      ],
+      "differentAxes": [
+        "A",
+        "D"
+      ],
+      "draftStructuralDistance": 2,
+      "priority": "P3_OTHER",
+      "priorityReason": "残る56組：軸ごとの機会制約、文章のテンプレート化を監査",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T02-T10",
+      "typeIds": [
+        "T02",
+        "T10"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "B",
+        "C",
+        "D"
+      ],
+      "differentAxes": [
+        "A"
+      ],
+      "draftStructuralDistance": 1,
+      "priority": "P3_OTHER",
+      "priorityReason": "残る56組：軸ごとの機会制約、文章のテンプレート化を監査",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T02-T11",
+      "typeIds": [
+        "T02",
+        "T11"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "B"
+      ],
+      "differentAxes": [
+        "A",
+        "C",
+        "D"
+      ],
+      "draftStructuralDistance": 3,
+      "priority": "P3_OTHER",
+      "priorityReason": "残る56組：軸ごとの機会制約、文章のテンプレート化を監査",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T02-T12",
+      "typeIds": [
+        "T02",
+        "T12"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "B",
+        "D"
+      ],
+      "differentAxes": [
+        "A",
+        "C"
+      ],
+      "draftStructuralDistance": 2,
+      "priority": "P3_OTHER",
+      "priorityReason": "残る56組：軸ごとの機会制約、文章のテンプレート化を監査",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T03-T04",
+      "typeIds": [
+        "T03",
+        "T04"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "A",
+        "B",
+        "C"
+      ],
+      "differentAxes": [
+        "D"
+      ],
+      "draftStructuralDistance": 1,
+      "priority": "P3_OTHER",
+      "priorityReason": "残る56組：軸ごとの機会制約、文章のテンプレート化を監査",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T03-T09",
+      "typeIds": [
+        "T03",
+        "T09"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "B",
+        "D"
+      ],
+      "differentAxes": [
+        "A",
+        "C"
+      ],
+      "draftStructuralDistance": 2,
+      "priority": "P3_OTHER",
+      "priorityReason": "残る56組：軸ごとの機会制約、文章のテンプレート化を監査",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T03-T10",
+      "typeIds": [
+        "T03",
+        "T10"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "B"
+      ],
+      "differentAxes": [
+        "A",
+        "C",
+        "D"
+      ],
+      "draftStructuralDistance": 3,
+      "priority": "P3_OTHER",
+      "priorityReason": "残る56組：軸ごとの機会制約、文章のテンプレート化を監査",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T03-T11",
+      "typeIds": [
+        "T03",
+        "T11"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "B",
+        "C",
+        "D"
+      ],
+      "differentAxes": [
+        "A"
+      ],
+      "draftStructuralDistance": 1,
+      "priority": "P3_OTHER",
+      "priorityReason": "残る56組：軸ごとの機会制約、文章のテンプレート化を監査",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T03-T12",
+      "typeIds": [
+        "T03",
+        "T12"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "B",
+        "C"
+      ],
+      "differentAxes": [
+        "A",
+        "D"
+      ],
+      "draftStructuralDistance": 2,
+      "priority": "P3_OTHER",
+      "priorityReason": "残る56組：軸ごとの機会制約、文章のテンプレート化を監査",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T04-T09",
+      "typeIds": [
+        "T04",
+        "T09"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "B"
+      ],
+      "differentAxes": [
+        "A",
+        "C",
+        "D"
+      ],
+      "draftStructuralDistance": 3,
+      "priority": "P3_OTHER",
+      "priorityReason": "残る56組：軸ごとの機会制約、文章のテンプレート化を監査",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T04-T10",
+      "typeIds": [
+        "T04",
+        "T10"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "B",
+        "D"
+      ],
+      "differentAxes": [
+        "A",
+        "C"
+      ],
+      "draftStructuralDistance": 2,
+      "priority": "P3_OTHER",
+      "priorityReason": "残る56組：軸ごとの機会制約、文章のテンプレート化を監査",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T04-T11",
+      "typeIds": [
+        "T04",
+        "T11"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "B",
+        "C"
+      ],
+      "differentAxes": [
+        "A",
+        "D"
+      ],
+      "draftStructuralDistance": 2,
+      "priority": "P3_OTHER",
+      "priorityReason": "残る56組：軸ごとの機会制約、文章のテンプレート化を監査",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T04-T12",
+      "typeIds": [
+        "T04",
+        "T12"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "B",
+        "C",
+        "D"
+      ],
+      "differentAxes": [
+        "A"
+      ],
+      "draftStructuralDistance": 1,
+      "priority": "P3_OTHER",
+      "priorityReason": "残る56組：軸ごとの機会制約、文章のテンプレート化を監査",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T05-T06",
+      "typeIds": [
+        "T05",
+        "T06"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "A",
+        "B",
+        "C"
+      ],
+      "differentAxes": [
+        "D"
+      ],
+      "draftStructuralDistance": 1,
+      "priority": "P3_OTHER",
+      "priorityReason": "残る56組：軸ごとの機会制約、文章のテンプレート化を監査",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T05-T07",
+      "typeIds": [
+        "T05",
+        "T07"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "A",
+        "B",
+        "D"
+      ],
+      "differentAxes": [
+        "C"
+      ],
+      "draftStructuralDistance": 1,
+      "priority": "P3_OTHER",
+      "priorityReason": "残る56組：軸ごとの機会制約、文章のテンプレート化を監査",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T05-T08",
+      "typeIds": [
+        "T05",
+        "T08"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "A",
+        "B"
+      ],
+      "differentAxes": [
+        "C",
+        "D"
+      ],
+      "draftStructuralDistance": 2,
+      "priority": "P3_OTHER",
+      "priorityReason": "残る56組：軸ごとの機会制約、文章のテンプレート化を監査",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T05-T13",
+      "typeIds": [
+        "T05",
+        "T13"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "B",
+        "C",
+        "D"
+      ],
+      "differentAxes": [
+        "A"
+      ],
+      "draftStructuralDistance": 1,
+      "priority": "P3_OTHER",
+      "priorityReason": "残る56組：軸ごとの機会制約、文章のテンプレート化を監査",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T05-T14",
+      "typeIds": [
+        "T05",
+        "T14"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "B",
+        "C"
+      ],
+      "differentAxes": [
+        "A",
+        "D"
+      ],
+      "draftStructuralDistance": 2,
+      "priority": "P3_OTHER",
+      "priorityReason": "残る56組：軸ごとの機会制約、文章のテンプレート化を監査",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T05-T15",
+      "typeIds": [
+        "T05",
+        "T15"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "B",
+        "D"
+      ],
+      "differentAxes": [
+        "A",
+        "C"
+      ],
+      "draftStructuralDistance": 2,
+      "priority": "P3_OTHER",
+      "priorityReason": "残る56組：軸ごとの機会制約、文章のテンプレート化を監査",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T05-T16",
+      "typeIds": [
+        "T05",
+        "T16"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "B"
+      ],
+      "differentAxes": [
+        "A",
+        "C",
+        "D"
+      ],
+      "draftStructuralDistance": 3,
+      "priority": "P3_OTHER",
+      "priorityReason": "残る56組：軸ごとの機会制約、文章のテンプレート化を監査",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T06-T07",
+      "typeIds": [
+        "T06",
+        "T07"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "A",
+        "B"
+      ],
+      "differentAxes": [
+        "C",
+        "D"
+      ],
+      "draftStructuralDistance": 2,
+      "priority": "P3_OTHER",
+      "priorityReason": "残る56組：軸ごとの機会制約、文章のテンプレート化を監査",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T06-T08",
+      "typeIds": [
+        "T06",
+        "T08"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "A",
+        "B",
+        "D"
+      ],
+      "differentAxes": [
+        "C"
+      ],
+      "draftStructuralDistance": 1,
+      "priority": "P3_OTHER",
+      "priorityReason": "残る56組：軸ごとの機会制約、文章のテンプレート化を監査",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T06-T13",
+      "typeIds": [
+        "T06",
+        "T13"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "B",
+        "C"
+      ],
+      "differentAxes": [
+        "A",
+        "D"
+      ],
+      "draftStructuralDistance": 2,
+      "priority": "P3_OTHER",
+      "priorityReason": "残る56組：軸ごとの機会制約、文章のテンプレート化を監査",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T06-T14",
+      "typeIds": [
+        "T06",
+        "T14"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "B",
+        "C",
+        "D"
+      ],
+      "differentAxes": [
+        "A"
+      ],
+      "draftStructuralDistance": 1,
+      "priority": "P3_OTHER",
+      "priorityReason": "残る56組：軸ごとの機会制約、文章のテンプレート化を監査",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T06-T15",
+      "typeIds": [
+        "T06",
+        "T15"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "B"
+      ],
+      "differentAxes": [
+        "A",
+        "C",
+        "D"
+      ],
+      "draftStructuralDistance": 3,
+      "priority": "P3_OTHER",
+      "priorityReason": "残る56組：軸ごとの機会制約、文章のテンプレート化を監査",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T06-T16",
+      "typeIds": [
+        "T06",
+        "T16"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "B",
+        "D"
+      ],
+      "differentAxes": [
+        "A",
+        "C"
+      ],
+      "draftStructuralDistance": 2,
+      "priority": "P3_OTHER",
+      "priorityReason": "残る56組：軸ごとの機会制約、文章のテンプレート化を監査",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T07-T08",
+      "typeIds": [
+        "T07",
+        "T08"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "A",
+        "B",
+        "C"
+      ],
+      "differentAxes": [
+        "D"
+      ],
+      "draftStructuralDistance": 1,
+      "priority": "P3_OTHER",
+      "priorityReason": "残る56組：軸ごとの機会制約、文章のテンプレート化を監査",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T07-T13",
+      "typeIds": [
+        "T07",
+        "T13"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "B",
+        "D"
+      ],
+      "differentAxes": [
+        "A",
+        "C"
+      ],
+      "draftStructuralDistance": 2,
+      "priority": "P3_OTHER",
+      "priorityReason": "残る56組：軸ごとの機会制約、文章のテンプレート化を監査",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T07-T14",
+      "typeIds": [
+        "T07",
+        "T14"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "B"
+      ],
+      "differentAxes": [
+        "A",
+        "C",
+        "D"
+      ],
+      "draftStructuralDistance": 3,
+      "priority": "P3_OTHER",
+      "priorityReason": "残る56組：軸ごとの機会制約、文章のテンプレート化を監査",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T07-T15",
+      "typeIds": [
+        "T07",
+        "T15"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "B",
+        "C",
+        "D"
+      ],
+      "differentAxes": [
+        "A"
+      ],
+      "draftStructuralDistance": 1,
+      "priority": "P3_OTHER",
+      "priorityReason": "残る56組：軸ごとの機会制約、文章のテンプレート化を監査",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T07-T16",
+      "typeIds": [
+        "T07",
+        "T16"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "B",
+        "C"
+      ],
+      "differentAxes": [
+        "A",
+        "D"
+      ],
+      "draftStructuralDistance": 2,
+      "priority": "P3_OTHER",
+      "priorityReason": "残る56組：軸ごとの機会制約、文章のテンプレート化を監査",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T08-T13",
+      "typeIds": [
+        "T08",
+        "T13"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "B"
+      ],
+      "differentAxes": [
+        "A",
+        "C",
+        "D"
+      ],
+      "draftStructuralDistance": 3,
+      "priority": "P3_OTHER",
+      "priorityReason": "残る56組：軸ごとの機会制約、文章のテンプレート化を監査",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T08-T14",
+      "typeIds": [
+        "T08",
+        "T14"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "B",
+        "D"
+      ],
+      "differentAxes": [
+        "A",
+        "C"
+      ],
+      "draftStructuralDistance": 2,
+      "priority": "P3_OTHER",
+      "priorityReason": "残る56組：軸ごとの機会制約、文章のテンプレート化を監査",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T08-T15",
+      "typeIds": [
+        "T08",
+        "T15"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "B",
+        "C"
+      ],
+      "differentAxes": [
+        "A",
+        "D"
+      ],
+      "draftStructuralDistance": 2,
+      "priority": "P3_OTHER",
+      "priorityReason": "残る56組：軸ごとの機会制約、文章のテンプレート化を監査",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T08-T16",
+      "typeIds": [
+        "T08",
+        "T16"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "B",
+        "C",
+        "D"
+      ],
+      "differentAxes": [
+        "A"
+      ],
+      "draftStructuralDistance": 1,
+      "priority": "P3_OTHER",
+      "priorityReason": "残る56組：軸ごとの機会制約、文章のテンプレート化を監査",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T09-T10",
+      "typeIds": [
+        "T09",
+        "T10"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "A",
+        "B",
+        "C"
+      ],
+      "differentAxes": [
+        "D"
+      ],
+      "draftStructuralDistance": 1,
+      "priority": "P3_OTHER",
+      "priorityReason": "残る56組：軸ごとの機会制約、文章のテンプレート化を監査",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T09-T11",
+      "typeIds": [
+        "T09",
+        "T11"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "A",
+        "B",
+        "D"
+      ],
+      "differentAxes": [
+        "C"
+      ],
+      "draftStructuralDistance": 1,
+      "priority": "P3_OTHER",
+      "priorityReason": "残る56組：軸ごとの機会制約、文章のテンプレート化を監査",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T09-T12",
+      "typeIds": [
+        "T09",
+        "T12"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "A",
+        "B"
+      ],
+      "differentAxes": [
+        "C",
+        "D"
+      ],
+      "draftStructuralDistance": 2,
+      "priority": "P3_OTHER",
+      "priorityReason": "残る56組：軸ごとの機会制約、文章のテンプレート化を監査",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T10-T11",
+      "typeIds": [
+        "T10",
+        "T11"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "A",
+        "B"
+      ],
+      "differentAxes": [
+        "C",
+        "D"
+      ],
+      "draftStructuralDistance": 2,
+      "priority": "P3_OTHER",
+      "priorityReason": "残る56組：軸ごとの機会制約、文章のテンプレート化を監査",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T10-T12",
+      "typeIds": [
+        "T10",
+        "T12"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "A",
+        "B",
+        "D"
+      ],
+      "differentAxes": [
+        "C"
+      ],
+      "draftStructuralDistance": 1,
+      "priority": "P3_OTHER",
+      "priorityReason": "残る56組：軸ごとの機会制約、文章のテンプレート化を監査",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T11-T12",
+      "typeIds": [
+        "T11",
+        "T12"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "A",
+        "B",
+        "C"
+      ],
+      "differentAxes": [
+        "D"
+      ],
+      "draftStructuralDistance": 1,
+      "priority": "P3_OTHER",
+      "priorityReason": "残る56組：軸ごとの機会制約、文章のテンプレート化を監査",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T13-T14",
+      "typeIds": [
+        "T13",
+        "T14"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "A",
+        "B",
+        "C"
+      ],
+      "differentAxes": [
+        "D"
+      ],
+      "draftStructuralDistance": 1,
+      "priority": "P3_OTHER",
+      "priorityReason": "残る56組：軸ごとの機会制約、文章のテンプレート化を監査",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T13-T15",
+      "typeIds": [
+        "T13",
+        "T15"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "A",
+        "B",
+        "D"
+      ],
+      "differentAxes": [
+        "C"
+      ],
+      "draftStructuralDistance": 1,
+      "priority": "P3_OTHER",
+      "priorityReason": "残る56組：軸ごとの機会制約、文章のテンプレート化を監査",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T13-T16",
+      "typeIds": [
+        "T13",
+        "T16"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "A",
+        "B"
+      ],
+      "differentAxes": [
+        "C",
+        "D"
+      ],
+      "draftStructuralDistance": 2,
+      "priority": "P3_OTHER",
+      "priorityReason": "残る56組：軸ごとの機会制約、文章のテンプレート化を監査",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T14-T15",
+      "typeIds": [
+        "T14",
+        "T15"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "A",
+        "B"
+      ],
+      "differentAxes": [
+        "C",
+        "D"
+      ],
+      "draftStructuralDistance": 2,
+      "priority": "P3_OTHER",
+      "priorityReason": "残る56組：軸ごとの機会制約、文章のテンプレート化を監査",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T14-T16",
+      "typeIds": [
+        "T14",
+        "T16"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "A",
+        "B",
+        "D"
+      ],
+      "differentAxes": [
+        "C"
+      ],
+      "draftStructuralDistance": 1,
+      "priority": "P3_OTHER",
+      "priorityReason": "残る56組：軸ごとの機会制約、文章のテンプレート化を監査",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    },
+    {
+      "pairId": "T15-T16",
+      "typeIds": [
+        "T15",
+        "T16"
+      ],
+      "sameType": false,
+      "sharedAxes": [
+        "A",
+        "B",
+        "C"
+      ],
+      "differentAxes": [
+        "D"
+      ],
+      "draftStructuralDistance": 1,
+      "priority": "P3_OTHER",
+      "priorityReason": "残る56組：軸ごとの機会制約、文章のテンプレート化を監査",
+      "issueCodes": [
+        "S1_TAXONOMY_AND_B_AXIS_UNAPPROVED",
+        "S2_GENERAL_LITERATURE_NOT_A05_PAIR_EVIDENCE",
+        "S3_V1_WORKBOOK_ORIGINAL_UNAVAILABLE",
+        "S4_C_LAYER_QUALITATIVE_HUMAN_REVIEW_REQUIRED",
+        "S7_MISINTERPRETATION_STUDY_PENDING",
+        "STORY_DESCRIBES_ONLY_FIRST_DIFFERING_AXIS",
+        "B1_UNVALIDATED_BIPOLARITY_PRESENT"
+      ],
+      "reviews": {
+        "first": "PENDING",
+        "second": "PENDING",
+        "firstReviewer": null,
+        "secondReviewer": null,
+        "notes": null
+      },
+      "publishedClaims": {
+        "draftTextApproved": false,
+        "sourcesApproved": false,
+        "originalWorkbookV10Reconciled": false,
+        "scientificPairValidation": false,
+        "publicationApproved": false
+      }
+    }
+  ]
+}
