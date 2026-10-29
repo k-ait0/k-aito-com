@@ -1,0 +1,513 @@
+{
+  "schema": "A05-S1-BASELINE-SNAPSHOT-0.1.0",
+  "capturedDate": "2026-10-29",
+  "sourceRef": "feature/a05-r1-s1-axis-structure-gates-20261029",
+  "baselineFrozen": true,
+  "evidenceKind": "STATIC_REPOSITORY_STRUCTURAL_VERIFICATION",
+  "humanPsychometricApproval": false,
+  "productionAllowed": false,
+  "versions": {
+    "question": "A05-Q-1.0.0-draft",
+    "scoring": "A05-S-1.0.0-draft",
+    "type": "A05-T-1.0.0-draft",
+    "content": "A05-C-1.0.0-draft",
+    "compatibility": "A05-COMPAT-C01-0.1.0-editorial"
+  },
+  "sourceFiles": {
+    "questions": {
+      "path": "projects/kidp/life-design-lab/a05/questions.mjs",
+      "gitBlobSha": "81cea4e1b7e19d26898532c16c35f5f4993799a0"
+    },
+    "types": {
+      "path": "projects/kidp/life-design-lab/a05/types.mjs",
+      "gitBlobSha": "ad8bda80ef0e5efe513b3a332ec47a600b8b9e59"
+    },
+    "engine": {
+      "path": "projects/kidp/life-design-lab/a05/engine.mjs",
+      "gitBlobSha": "17dc4f5fa0b3e907c01af0f2582d6f618f48c35b"
+    },
+    "pairs": {
+      "path": "projects/kidp/life-design-lab/a05/compatibility.mjs",
+      "gitBlobSha": "b9b612ae4f9f3c6c8ddc951a5e720ea6725e9615"
+    },
+    "constructReview": {
+      "path": "docs/A05_D73_ITEM_CONSTRUCT_CROSSWALK_20261026.json",
+      "gitBlobSha": "a4a4a5210e9084b2e24f69d4fcb3cc695a2cc2dd"
+    },
+    "bComparison": {
+      "path": "docs/A05_D85_B_MODE_COMPARISON_20261026.json",
+      "gitBlobSha": "b9097f239ba587d508e4aa61fa17b2fd3f89a73e"
+    },
+    "bDecision": {
+      "path": "docs/A05_D86_TYPE_STRUCTURE_DECISION_20261026.json",
+      "gitBlobSha": "f8107bcacec2321e1b9c11ff20aabc0ddf6ace91"
+    },
+    "g1": {
+      "path": "docs/A05_D38_G1_APPROVAL_REGISTER_20261026.json",
+      "gitBlobSha": "864a9b2f0f88cc016ef131377c87fbcbe3e26f48"
+    },
+    "d42": {
+      "path": "docs/A05_D42_30DAY_ACCEPTANCE_REGISTER_20261026.json",
+      "gitBlobSha": "7dae8738ee821350a1f6e8eabf17404f28b8f38c"
+    }
+  },
+  "axes": [
+    {
+      "id": "A",
+      "name": "環境",
+      "negative": "安定",
+      "positive": "変化"
+    },
+    {
+      "id": "B",
+      "name": "関係",
+      "negative": "自律",
+      "positive": "つながり"
+    },
+    {
+      "id": "C",
+      "name": "時間",
+      "negative": "将来",
+      "positive": "現在"
+    },
+    {
+      "id": "D",
+      "name": "経験",
+      "negative": "探索",
+      "positive": "深耕"
+    },
+    {
+      "id": "E",
+      "name": "豊かさ",
+      "negative": "経済的余裕",
+      "positive": "時間的自由"
+    }
+  ],
+  "types16": [
+    {
+      "id": "T01",
+      "name": "着実な開拓者",
+      "group": "G1_BLUE",
+      "profile": {
+        "A": "安定",
+        "B": "自律",
+        "C": "将来",
+        "D": "探索"
+      }
+    },
+    {
+      "id": "T02",
+      "name": "静かな探究者",
+      "group": "G1_BLUE",
+      "profile": {
+        "A": "安定",
+        "B": "自律",
+        "C": "将来",
+        "D": "深耕"
+      }
+    },
+    {
+      "id": "T03",
+      "name": "マイペースな発見家",
+      "group": "G1_BLUE",
+      "profile": {
+        "A": "安定",
+        "B": "自律",
+        "C": "現在",
+        "D": "探索"
+      }
+    },
+    {
+      "id": "T04",
+      "name": "暮らしの職人",
+      "group": "G1_BLUE",
+      "profile": {
+        "A": "安定",
+        "B": "自律",
+        "C": "現在",
+        "D": "深耕"
+      }
+    },
+    {
+      "id": "T05",
+      "name": "未来を育む案内人",
+      "group": "G2_GREEN",
+      "profile": {
+        "A": "安定",
+        "B": "つながり",
+        "C": "将来",
+        "D": "探索"
+      }
+    },
+    {
+      "id": "T06",
+      "name": "絆を育てる設計者",
+      "group": "G2_GREEN",
+      "profile": {
+        "A": "安定",
+        "B": "つながり",
+        "C": "将来",
+        "D": "深耕"
+      }
+    },
+    {
+      "id": "T07",
+      "name": "日常の発見家",
+      "group": "G2_GREEN",
+      "profile": {
+        "A": "安定",
+        "B": "つながり",
+        "C": "現在",
+        "D": "探索"
+      }
+    },
+    {
+      "id": "T08",
+      "name": "穏やかな愛好家",
+      "group": "G2_GREEN",
+      "profile": {
+        "A": "安定",
+        "B": "つながり",
+        "C": "現在",
+        "D": "深耕"
+      }
+    },
+    {
+      "id": "T09",
+      "name": "未来のフロンティア",
+      "group": "G3_RED",
+      "profile": {
+        "A": "変化",
+        "B": "自律",
+        "C": "将来",
+        "D": "探索"
+      }
+    },
+    {
+      "id": "T10",
+      "name": "変革の探究者",
+      "group": "G3_RED",
+      "profile": {
+        "A": "変化",
+        "B": "自律",
+        "C": "将来",
+        "D": "深耕"
+      }
+    },
+    {
+      "id": "T11",
+      "name": "自由な冒険者",
+      "group": "G3_RED",
+      "profile": {
+        "A": "変化",
+        "B": "自律",
+        "C": "現在",
+        "D": "探索"
+      }
+    },
+    {
+      "id": "T12",
+      "name": "自由な求道者",
+      "group": "G3_RED",
+      "profile": {
+        "A": "変化",
+        "B": "自律",
+        "C": "現在",
+        "D": "深耕"
+      }
+    },
+    {
+      "id": "T13",
+      "name": "共創する開拓者",
+      "group": "G4_YELLOW",
+      "profile": {
+        "A": "変化",
+        "B": "つながり",
+        "C": "将来",
+        "D": "探索"
+      }
+    },
+    {
+      "id": "T14",
+      "name": "理想を育てる共創者",
+      "group": "G4_YELLOW",
+      "profile": {
+        "A": "変化",
+        "B": "つながり",
+        "C": "将来",
+        "D": "深耕"
+      }
+    },
+    {
+      "id": "T15",
+      "name": "出会いを楽しむ旅人",
+      "group": "G4_YELLOW",
+      "profile": {
+        "A": "変化",
+        "B": "つながり",
+        "C": "現在",
+        "D": "探索"
+      }
+    },
+    {
+      "id": "T16",
+      "name": "情熱を分かち合う人",
+      "group": "G4_YELLOW",
+      "profile": {
+        "A": "変化",
+        "B": "つながり",
+        "C": "現在",
+        "D": "深耕"
+      }
+    }
+  ],
+  "reviewItems30": [
+    {
+      "id": "A01",
+      "axis": "A",
+      "status": "REVISE",
+      "decisionGate": "HOLD_CONSTRUCT",
+      "adoption": "NOT_APPROVED"
+    },
+    {
+      "id": "A02",
+      "axis": "A",
+      "status": "TRIAL",
+      "decisionGate": "HOLD_CONSTRUCT",
+      "adoption": "NOT_APPROVED"
+    },
+    {
+      "id": "A03",
+      "axis": "A",
+      "status": "TRIAL",
+      "decisionGate": "HOLD_CONSTRUCT",
+      "adoption": "NOT_APPROVED"
+    },
+    {
+      "id": "A04",
+      "axis": "A",
+      "status": "BLOCK",
+      "decisionGate": "HOLD_CONSTRUCT",
+      "adoption": "NOT_APPROVED"
+    },
+    {
+      "id": "A05",
+      "axis": "A",
+      "status": "BLOCK",
+      "decisionGate": "HOLD_CONSTRUCT",
+      "adoption": "NOT_APPROVED"
+    },
+    {
+      "id": "A06",
+      "axis": "A",
+      "status": "REVISE",
+      "decisionGate": "HOLD_CONSTRUCT",
+      "adoption": "NOT_APPROVED"
+    },
+    {
+      "id": "B01",
+      "axis": "B",
+      "status": "TRIAL",
+      "decisionGate": "HOLD_CONSTRUCT",
+      "adoption": "NOT_APPROVED"
+    },
+    {
+      "id": "B02",
+      "axis": "B",
+      "status": "BLOCK",
+      "decisionGate": "HOLD_CONSTRUCT",
+      "adoption": "NOT_APPROVED"
+    },
+    {
+      "id": "B03",
+      "axis": "B",
+      "status": "REVISE",
+      "decisionGate": "HOLD_CONSTRUCT",
+      "adoption": "NOT_APPROVED"
+    },
+    {
+      "id": "B04",
+      "axis": "B",
+      "status": "TRIAL",
+      "decisionGate": "HOLD_CONSTRUCT",
+      "adoption": "NOT_APPROVED"
+    },
+    {
+      "id": "B05",
+      "axis": "B",
+      "status": "REVISE",
+      "decisionGate": "HOLD_CONSTRUCT",
+      "adoption": "NOT_APPROVED"
+    },
+    {
+      "id": "B06",
+      "axis": "B",
+      "status": "REVISE",
+      "decisionGate": "HOLD_CONSTRUCT",
+      "adoption": "NOT_APPROVED"
+    },
+    {
+      "id": "C01",
+      "axis": "C",
+      "status": "TRIAL",
+      "decisionGate": "REVIEW_ONLY",
+      "adoption": "NOT_APPROVED"
+    },
+    {
+      "id": "C02",
+      "axis": "C",
+      "status": "REVISE",
+      "decisionGate": "REVIEW_ONLY",
+      "adoption": "NOT_APPROVED"
+    },
+    {
+      "id": "C03",
+      "axis": "C",
+      "status": "TRIAL",
+      "decisionGate": "REVIEW_ONLY",
+      "adoption": "NOT_APPROVED"
+    },
+    {
+      "id": "C04",
+      "axis": "C",
+      "status": "BLOCK",
+      "decisionGate": "REVIEW_ONLY",
+      "adoption": "NOT_APPROVED"
+    },
+    {
+      "id": "C05",
+      "axis": "C",
+      "status": "REVISE",
+      "decisionGate": "REVIEW_ONLY",
+      "adoption": "NOT_APPROVED"
+    },
+    {
+      "id": "C06",
+      "axis": "C",
+      "status": "REVISE",
+      "decisionGate": "REVIEW_ONLY",
+      "adoption": "NOT_APPROVED"
+    },
+    {
+      "id": "D01",
+      "axis": "D",
+      "status": "TRIAL",
+      "decisionGate": "REVIEW_ONLY",
+      "adoption": "NOT_APPROVED"
+    },
+    {
+      "id": "D02",
+      "axis": "D",
+      "status": "TRIAL",
+      "decisionGate": "REVIEW_ONLY",
+      "adoption": "NOT_APPROVED"
+    },
+    {
+      "id": "D03",
+      "axis": "D",
+      "status": "BLOCK",
+      "decisionGate": "REVIEW_ONLY",
+      "adoption": "NOT_APPROVED"
+    },
+    {
+      "id": "D04",
+      "axis": "D",
+      "status": "REVISE",
+      "decisionGate": "REVIEW_ONLY",
+      "adoption": "NOT_APPROVED"
+    },
+    {
+      "id": "D05",
+      "axis": "D",
+      "status": "TRIAL",
+      "decisionGate": "REVIEW_ONLY",
+      "adoption": "NOT_APPROVED"
+    },
+    {
+      "id": "D06",
+      "axis": "D",
+      "status": "REVISE",
+      "decisionGate": "REVIEW_ONLY",
+      "adoption": "NOT_APPROVED"
+    },
+    {
+      "id": "E01",
+      "axis": "E",
+      "status": "TRIAL",
+      "decisionGate": "HOLD_E_DESIGN",
+      "adoption": "NOT_APPROVED"
+    },
+    {
+      "id": "E02",
+      "axis": "E",
+      "status": "REVISE",
+      "decisionGate": "HOLD_E_DESIGN",
+      "adoption": "NOT_APPROVED"
+    },
+    {
+      "id": "E03",
+      "axis": "E",
+      "status": "REVISE",
+      "decisionGate": "HOLD_E_DESIGN",
+      "adoption": "NOT_APPROVED"
+    },
+    {
+      "id": "E04",
+      "axis": "E",
+      "status": "BLOCK",
+      "decisionGate": "HOLD_E_DESIGN",
+      "adoption": "NOT_APPROVED"
+    },
+    {
+      "id": "E05",
+      "axis": "E",
+      "status": "BLOCK",
+      "decisionGate": "HOLD_E_DESIGN",
+      "adoption": "NOT_APPROVED"
+    },
+    {
+      "id": "E06",
+      "axis": "E",
+      "status": "REVISE",
+      "decisionGate": "HOLD_E_DESIGN",
+      "adoption": "NOT_APPROVED"
+    }
+  ],
+  "reviewCounts": {
+    "BLOCK": 7,
+    "REVISE": 13,
+    "TRIAL": 10
+  },
+  "bounds": {
+    "typeCount": 16,
+    "axisCount": 5,
+    "itemsPerAxis": 6,
+    "questionCount": 30,
+    "classificationAxisIds": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "auxiliaryAxisIds": [
+      "E"
+    ],
+    "unorderedPairCount": 136,
+    "sameTypeCount": 16
+  },
+  "evidenceHolds": {
+    "researchG1": {
+      "state": "DRAFT_NOT_APPROVED",
+      "approvalCount": 0,
+      "total": 12
+    },
+    "operationalD42": {
+      "state": "DRAFT_PENDING_NO_AUTHORIZATION",
+      "approvalCount": 0,
+      "total": 16
+    },
+    "bTypeDecision": "PENDING",
+    "bScenarioCount": 8
+  },
+  "caveat": "The registry and reviewed flags are a technical baseline only, not evidence that A05 has valid axes, 16-type classification, or relationship predictions."
+}
