@@ -1,0 +1,288 @@
+{
+  "schema": "A05-S1-B2-PAIRWISE-COPY-AUDIT-0.1.0",
+  "date": "2026-10-30",
+  "sourcePath": "docs/A05_S1_B2_ITEM_PROTOTYPES_V01_20261030.json",
+  "sourceGitBlobSha": "d015f2a81fbcf306c03166e31866da263170a77b",
+  "sourceVersion": "A05-S1-B2-ITEM-PROTOTYPES-0.1.0",
+  "state": "EDITING_AUDIT_NOT_HUMAN_VALIDATION",
+  "targetConstructs": {
+    "self": "OWN_WISH_CONSIDERATION",
+    "others": "OTHER_PEOPLE_WISH_CONSIDERATION"
+  },
+  "distinctFromSDTBasicNeeds": true,
+  "issuesNotResolvedByParallelPhrasing": [
+    "6 similar repeated contexts can make items redundant and inflate apparent consistency",
+    "No proof that self and others responses define independent dimensions or predict any outcome",
+    "High scores in both columns may reflect acquiescence/social desirability rather than independent preferences",
+    "Choice constraints, context access, role power, cultural differences and inapplicability can bias responses",
+    "A/C/D/E content cross-loadings require separate cognitive and quantitative evidence",
+    "Rating anchors, time frame and term '関係する人' are not operationally fixed"
+  ],
+  "itemPairs": [
+    {
+      "id": "B2P01",
+      "context": "日常の予定を決めるとき",
+      "source": {
+        "self": "日常の予定を決めるとき、自分がしたいことを大切にする度合いはどのくらいですか。",
+        "others": "同じ予定を決めるとき、関係する人の希望を把握し考慮する度合いはどのくらいですか。"
+      },
+      "editorialFindings": [
+        {
+          "code": "SCENE_APPLICABILITY_UNVERIFIED",
+          "severity": "REVIEW_REQUIRED"
+        },
+        {
+          "code": "MULTIPLE_VERBS_OTHERS",
+          "severity": "REWRITE_RECOMMENDED"
+        },
+        {
+          "code": "RELATIONSHIP_NOT_APPLICABLE",
+          "severity": "REVIEW_REQUIRED"
+        }
+      ],
+      "critique": "「把握」と「考慮」は別行動。関係者不在なら回答できない可能性がある",
+      "revisionCandidate": {
+        "status": "DRAFT_REWRITE_NOT_APPROVED",
+        "self": "日常の予定を決めるとき、自分の希望をどの程度考慮したいですか。",
+        "others": "日常の予定を決めるとき、関係する人の希望をどの程度考慮したいですか。",
+        "bothUseSameConstruct": true,
+        "responseOptions": "1-7 plus explicit not_applicable/cannot_judge/prefer_not_to_answer/unanswered; anchors and recall context remain unvalidated"
+      },
+      "acceptanceNeeded": [
+        "Does the two-sided phrasing genuinely target two independent constructs?",
+        "Does wording remain understandable if no other person is involved?",
+        "Can a respondent distinguish preference from ability/opportunity?",
+        "Does this scenario add coverage rather than redundant repetitions?"
+      ],
+      "humanReviewed": false,
+      "humanApproved": false,
+      "scientificallyValidated": false,
+      "productionApproved": false
+    },
+    {
+      "id": "B2P02",
+      "context": "学びや活動の内容を選ぶとき",
+      "source": {
+        "self": "学ぶ内容や取り組む活動を選ぶとき、自分の関心を大切にする度合いはどのくらいですか。",
+        "others": "同じ選択で、関係する人の希望や生活への影響を考慮する度合いはどのくらいですか。"
+      },
+      "editorialFindings": [
+        {
+          "code": "SCENE_APPLICABILITY_UNVERIFIED",
+          "severity": "REVIEW_REQUIRED"
+        },
+        {
+          "code": "CONSTRUCT_MIX_OTHERS",
+          "severity": "REWRITE_RECOMMENDED"
+        },
+        {
+          "code": "DOMAIN_CONFOUND_D",
+          "severity": "REVIEW_REQUIRED"
+        },
+        {
+          "code": "OPPORTUNITY_CONSTRAINT",
+          "severity": "REVIEW_REQUIRED"
+        }
+      ],
+      "critique": "本人は関心、相手は希望と生活への影響という異なる評価対象。機会制約や教育環境で回答が変わる",
+      "revisionCandidate": {
+        "status": "DRAFT_REWRITE_NOT_APPROVED",
+        "self": "学びや活動の内容を選ぶとき、自分の希望をどの程度考慮したいですか。",
+        "others": "学びや活動の内容を選ぶとき、関係する人の希望をどの程度考慮したいですか。",
+        "bothUseSameConstruct": true,
+        "responseOptions": "1-7 plus explicit not_applicable/cannot_judge/prefer_not_to_answer/unanswered; anchors and recall context remain unvalidated"
+      },
+      "acceptanceNeeded": [
+        "Does the two-sided phrasing genuinely target two independent constructs?",
+        "Does wording remain understandable if no other person is involved?",
+        "Can a respondent distinguish preference from ability/opportunity?",
+        "Does this scenario add coverage rather than redundant repetitions?"
+      ],
+      "humanReviewed": false,
+      "humanApproved": false,
+      "scientificallyValidated": false,
+      "productionApproved": false
+    },
+    {
+      "id": "B2P03",
+      "context": "暮らしの習慣を見直すとき",
+      "source": {
+        "self": "暮らしの習慣を見直すとき、自分が快適に感じることを大切にする度合いはどのくらいですか。",
+        "others": "同じ見直しで、関係する人が快適に過ごせることを考慮する度合いはどのくらいですか。"
+      },
+      "editorialFindings": [
+        {
+          "code": "SCENE_APPLICABILITY_UNVERIFIED",
+          "severity": "REVIEW_REQUIRED"
+        },
+        {
+          "code": "COMFORT_VS_PREFERENCE",
+          "severity": "REWRITE_RECOMMENDED"
+        },
+        {
+          "code": "LIVING_CONTEXT_CONFOUND",
+          "severity": "REVIEW_REQUIRED"
+        }
+      ],
+      "critique": "双方とも快適さを重視し、本人/関係者それぞれの選好を測るとは限らない。共同生活を前提にしやすい",
+      "revisionCandidate": {
+        "status": "DRAFT_REWRITE_NOT_APPROVED",
+        "self": "暮らしの習慣を見直すとき、自分の希望をどの程度考慮したいですか。",
+        "others": "暮らしの習慣を見直すとき、関係する人の希望をどの程度考慮したいですか。",
+        "bothUseSameConstruct": true,
+        "responseOptions": "1-7 plus explicit not_applicable/cannot_judge/prefer_not_to_answer/unanswered; anchors and recall context remain unvalidated"
+      },
+      "acceptanceNeeded": [
+        "Does the two-sided phrasing genuinely target two independent constructs?",
+        "Does wording remain understandable if no other person is involved?",
+        "Can a respondent distinguish preference from ability/opportunity?",
+        "Does this scenario add coverage rather than redundant repetitions?"
+      ],
+      "humanReviewed": false,
+      "humanApproved": false,
+      "scientificallyValidated": false,
+      "productionApproved": false
+    },
+    {
+      "id": "B2P04",
+      "context": "時間の使い方を決めるとき",
+      "source": {
+        "self": "自分の自由な時間をどう使うか決めるとき、自分の希望を考慮する度合いはどのくらいですか。",
+        "others": "同じ選択で、関係する人の希望や都合を考慮する度合いはどのくらいですか。"
+      },
+      "editorialFindings": [
+        {
+          "code": "SCENE_APPLICABILITY_UNVERIFIED",
+          "severity": "REVIEW_REQUIRED"
+        },
+        {
+          "code": "MIXED_OTHERS_WISH_AND_CONVENIENCE",
+          "severity": "REWRITE_RECOMMENDED"
+        },
+        {
+          "code": "DOMAIN_CONFOUND_C",
+          "severity": "REVIEW_REQUIRED"
+        },
+        {
+          "code": "DOMAIN_CONFOUND_E",
+          "severity": "REVIEW_REQUIRED"
+        },
+        {
+          "code": "OPPORTUNITY_CONSTRAINT",
+          "severity": "REVIEW_REQUIRED"
+        }
+      ],
+      "critique": "相手の希望と都合が混在。自由時間の有無・勤務事情と重視度を混同し得る",
+      "revisionCandidate": {
+        "status": "DRAFT_REWRITE_NOT_APPROVED",
+        "self": "時間の使い方を決めるとき、自分の希望をどの程度考慮したいですか。",
+        "others": "時間の使い方を決めるとき、関係する人の希望をどの程度考慮したいですか。",
+        "bothUseSameConstruct": true,
+        "responseOptions": "1-7 plus explicit not_applicable/cannot_judge/prefer_not_to_answer/unanswered; anchors and recall context remain unvalidated"
+      },
+      "acceptanceNeeded": [
+        "Does the two-sided phrasing genuinely target two independent constructs?",
+        "Does wording remain understandable if no other person is involved?",
+        "Can a respondent distinguish preference from ability/opportunity?",
+        "Does this scenario add coverage rather than redundant repetitions?"
+      ],
+      "humanReviewed": false,
+      "humanApproved": false,
+      "scientificallyValidated": false,
+      "productionApproved": false
+    },
+    {
+      "id": "B2P05",
+      "context": "生活や活動の進め方を決めるとき",
+      "source": {
+        "self": "生活や活動に変更が必要なとき、自分が望む進め方を考慮する度合いはどのくらいですか。",
+        "others": "同じ場面で、関係する人が望む進め方を考慮する度合いはどのくらいですか。"
+      },
+      "editorialFindings": [
+        {
+          "code": "SCENE_APPLICABILITY_UNVERIFIED",
+          "severity": "REVIEW_REQUIRED"
+        },
+        {
+          "code": "FORCED_CHANGE_CONTEXT",
+          "severity": "REWRITE_RECOMMENDED"
+        },
+        {
+          "code": "DOMAIN_CONFOUND_A",
+          "severity": "REVIEW_REQUIRED"
+        }
+      ],
+      "critique": "変更が『必要』という場面設定は変化への好悪や状況的制約を混入させる",
+      "revisionCandidate": {
+        "status": "DRAFT_REWRITE_NOT_APPROVED",
+        "self": "生活や活動の進め方を決めるとき、自分の希望をどの程度考慮したいですか。",
+        "others": "生活や活動の進め方を決めるとき、関係する人の希望をどの程度考慮したいですか。",
+        "bothUseSameConstruct": true,
+        "responseOptions": "1-7 plus explicit not_applicable/cannot_judge/prefer_not_to_answer/unanswered; anchors and recall context remain unvalidated"
+      },
+      "acceptanceNeeded": [
+        "Does the two-sided phrasing genuinely target two independent constructs?",
+        "Does wording remain understandable if no other person is involved?",
+        "Can a respondent distinguish preference from ability/opportunity?",
+        "Does this scenario add coverage rather than redundant repetitions?"
+      ],
+      "humanReviewed": false,
+      "humanApproved": false,
+      "scientificallyValidated": false,
+      "productionApproved": false
+    },
+    {
+      "id": "B2P06",
+      "context": "試してみる活動を選ぶとき",
+      "source": {
+        "self": "新しいことに挑戦するか決めるとき、自分の関心や意思を考慮する度合いはどのくらいですか。",
+        "others": "同じ判断で、関係する人の希望や影響を考慮する度合いはどのくらいですか。"
+      },
+      "editorialFindings": [
+        {
+          "code": "SCENE_APPLICABILITY_UNVERIFIED",
+          "severity": "REVIEW_REQUIRED"
+        },
+        {
+          "code": "CURIOSITY_AND_WILL_MIX",
+          "severity": "REWRITE_RECOMMENDED"
+        },
+        {
+          "code": "DOMAIN_CONFOUND_A",
+          "severity": "REVIEW_REQUIRED"
+        },
+        {
+          "code": "DOMAIN_CONFOUND_D",
+          "severity": "REVIEW_REQUIRED"
+        }
+      ],
+      "critique": "本人の関心と意思、相手の希望と影響が混在。探索志向の高低によって回答が変わる",
+      "revisionCandidate": {
+        "status": "DRAFT_REWRITE_NOT_APPROVED",
+        "self": "試してみる活動を選ぶとき、自分の希望をどの程度考慮したいですか。",
+        "others": "試してみる活動を選ぶとき、関係する人の希望をどの程度考慮したいですか。",
+        "bothUseSameConstruct": true,
+        "responseOptions": "1-7 plus explicit not_applicable/cannot_judge/prefer_not_to_answer/unanswered; anchors and recall context remain unvalidated"
+      },
+      "acceptanceNeeded": [
+        "Does the two-sided phrasing genuinely target two independent constructs?",
+        "Does wording remain understandable if no other person is involved?",
+        "Can a respondent distinguish preference from ability/opportunity?",
+        "Does this scenario add coverage rather than redundant repetitions?"
+      ],
+      "humanReviewed": false,
+      "humanApproved": false,
+      "scientificallyValidated": false,
+      "productionApproved": false
+    }
+  ],
+  "counts": {
+    "originalItemPairs": 6,
+    "originalItems": 12,
+    "criticallyFlaggedPairs": 6,
+    "humanApprovedPairs": 0,
+    "approvedRevisedItems": 0
+  },
+  "publishStatus": "BLOCKED",
+  "statusNote": "Qualitative critique supplied by the assistant. It is an editorial finding, not a psychometric test or human independent review."
+}
