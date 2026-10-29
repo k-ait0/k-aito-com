@@ -26,8 +26,7 @@ test("S1 four previously BLOCK items remain blocked and source-frozen",()=>{
   assert.equal(x.sourceDraftModified,false);
   assert.equal(x.readyForSurvey,false);
   assert.equal(x.readyForR1TypeAssignment,false);
-  assert.ok(x.conditionalDecisionPaths.includes("REMOVE_IF_REDUNDANT") ||
-            x.conditionalDecisionPaths.includes("REMOVE_IF_REDUNDANT"));
+  assert.ok(x.conditionalDecisionPaths.includes("REMOVE_IF_REDUNDANT"));
  }
 });
 test("S1-four proposed copy is conditional and never changes existing Q/S/T/C",()=>{
