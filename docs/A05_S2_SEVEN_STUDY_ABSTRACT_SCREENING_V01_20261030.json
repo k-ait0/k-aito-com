@@ -1,0 +1,229 @@
+{
+  "schemaVersion": "A05-R1-S2-SOURCE-SCREENING-0.1.0",
+  "preparedDate": "2026-10-30",
+  "ownerApproval": "NOT_GRANTED",
+  "independentScienceReviewer": "NOT_ASSIGNED",
+  "sourceFullTextAdjudication": "PENDING",
+  "intendedUse": "LIMITED_DESK_REVIEW_FOR_R1_NONPREDICTIVE_CLAIM_BOUNDARIES",
+  "existingSourceOfTruth": "projects/kidp/life-design-lab/a05/compatibility-literature-candidates.mjs",
+  "existingSourceGitBlobSha": "1a258452654d740be1005bd69e1a7432bbc78c0a",
+  "approvedForPublication": 0,
+  "allSourcesDirectlyValidateA05": false,
+  "sources": [
+    {
+      "id": "LIT-R001",
+      "doi": "10.1177/02654075251349720",
+      "primaryUrl": "https://journals.sagepub.com/doi/10.1177/02654075251349720",
+      "design": "SCOPING_REVIEW",
+      "population": "339 studies of similarity and outcomes in established romantic couples",
+      "checkLevel": "ABSTRACT_OR_AUTHOR_OR_PUBLISHER_TEXT_ONLY",
+      "checkDate": "2026-10-30",
+      "generalAbstractFinding": "Similarity association overall mixed across domains; perceived similarity may matter more than actual similarity",
+      "prohibitedInference": "Do not claim no association everywhere or numeric A05 pair compatibility",
+      "limitations": "Romantic couples; diverse outcomes and operational definitions; scoping review has no single pooled effect",
+      "sourceUsed": "PRIMARY_PUBLISHER_PUBMED_OR_AUTHOR",
+      "fullTextMethodReview": "PENDING",
+      "contraryEvidenceReview": "PENDING",
+      "japanPopulationApplicability": "NOT_ESTABLISHED",
+      "a05ConstructValidated": false,
+      "a05IndividualPairValidated": false,
+      "authorizesCompatibilityScoring": false,
+      "independentReview": "PENDING",
+      "publicationClaimApproval": false
+    },
+    {
+      "id": "LIT-R002",
+      "doi": "10.1111/j.1475-6811.2012.01417.x",
+      "primaryUrl": "https://onlinelibrary.wiley.com/doi/10.1111/j.1475-6811.2012.01417.x",
+      "design": "TWO_WAVE_PANEL",
+      "population": "German family panel n=3674 heterosexual couples, 2820 wave 2",
+      "checkLevel": "ABSTRACT_OR_AUTHOR_OR_PUBLISHER_TEXT_ONLY",
+      "checkDate": "2026-10-30",
+      "generalAbstractFinding": "Some similarity measures linked with small positive relationship-satisfaction associations; individual traits generally stronger predictors",
+      "prohibitedInference": "Do not generalize all types of similarity positively, infer causality, or extrapolate to arbitrary pairs",
+      "limitations": "Observational heterosexual German couple sample; dimensions and effect estimates require full-text review",
+      "sourceUsed": "PRIMARY_PUBLISHER_PUBMED_OR_AUTHOR",
+      "fullTextMethodReview": "PENDING",
+      "contraryEvidenceReview": "PENDING",
+      "japanPopulationApplicability": "NOT_ESTABLISHED",
+      "a05ConstructValidated": false,
+      "a05IndividualPairValidated": false,
+      "authorizesCompatibilityScoring": false,
+      "independentReview": "PENDING",
+      "publicationClaimApproval": false
+    },
+    {
+      "id": "LIT-R003",
+      "doi": "10.1016/j.jrp.2023.104378",
+      "primaryUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10312100/",
+      "design": "DYADIC_OBSERVATIONAL",
+      "population": "1294 female-male romantic couples",
+      "checkLevel": "ABSTRACT_OR_AUTHOR_OR_PUBLISHER_TEXT_ONLY",
+      "checkDate": "2026-10-30",
+      "generalAbstractFinding": "Trait/facet personality similarity was not robustly associated with relationship or life satisfaction in studied models",
+      "prohibitedInference": "Do not say all kinds of value similarity have zero influence; no A05 constructs tested",
+      "limitations": "Personality similarity is not identical to values or our editorial axes",
+      "sourceUsed": "PRIMARY_PUBLISHER_PUBMED_OR_AUTHOR",
+      "fullTextMethodReview": "PENDING",
+      "contraryEvidenceReview": "PENDING",
+      "japanPopulationApplicability": "NOT_ESTABLISHED",
+      "a05ConstructValidated": false,
+      "a05IndividualPairValidated": false,
+      "authorizesCompatibilityScoring": false,
+      "independentReview": "PENDING",
+      "publicationClaimApproval": false
+    },
+    {
+      "id": "LIT-R004",
+      "doi": "10.1073/pnas.1917036117",
+      "primaryUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7431040/",
+      "design": "MULTIDATASET_LONGITUDINAL_ML",
+      "population": "43 datasets from 11196 romantic couples",
+      "checkLevel": "ABSTRACT_OR_AUTHOR_OR_PUBLISHER_TEXT_ONLY",
+      "checkDate": "2026-10-30",
+      "generalAbstractFinding": "Relationship-specific self-reports predicted current relationship quality; changes were largely unpredictable with studied variables",
+      "prohibitedInference": "Do not transfer explained-variance numbers into a specific 16-type compatibility forecast",
+      "limitations": "Machine-learning associations, specific outcomes/sample types, not causal and not A05 pair validation",
+      "sourceUsed": "PRIMARY_PUBLISHER_PUBMED_OR_AUTHOR",
+      "fullTextMethodReview": "PENDING",
+      "contraryEvidenceReview": "PENDING",
+      "japanPopulationApplicability": "NOT_ESTABLISHED",
+      "a05ConstructValidated": false,
+      "a05IndividualPairValidated": false,
+      "authorizesCompatibilityScoring": false,
+      "independentReview": "PENDING",
+      "publicationClaimApproval": false
+    },
+    {
+      "id": "LIT-R005",
+      "doi": "10.1037/a0029393",
+      "primaryUrl": "https://pubmed.ncbi.nlm.nih.gov/22823292/",
+      "design": "PSYCHOMETRIC_MULTISAMPLE",
+      "population": "15 samples in 10 countries N=6059",
+      "checkLevel": "ABSTRACT_OR_AUTHOR_OR_PUBLISHER_TEXT_ONLY",
+      "checkDate": "2026-10-30",
+      "generalAbstractFinding": "Schwartz refined values theory considers 19 motivational values organized in a circular continuum",
+      "prohibitedInference": "Do not declare A05 A-axis or any of the 16 types validated from Schwartz",
+      "limitations": "Distinct value system and items; possible conceptual comparison only",
+      "sourceUsed": "PRIMARY_PUBLISHER_PUBMED_OR_AUTHOR",
+      "fullTextMethodReview": "PENDING",
+      "contraryEvidenceReview": "PENDING",
+      "japanPopulationApplicability": "NOT_ESTABLISHED",
+      "a05ConstructValidated": false,
+      "a05IndividualPairValidated": false,
+      "authorizesCompatibilityScoring": false,
+      "independentReview": "PENDING",
+      "publicationClaimApproval": false
+    },
+    {
+      "id": "LIT-R006",
+      "doi": "10.1037/1082-989X.7.1.19",
+      "primaryUrl": "https://pubmed.ncbi.nlm.nih.gov/11928888/",
+      "design": "METHODOLOGICAL",
+      "population": "Conceptual and analytical discussion of dichotomizing quantitative variables",
+      "checkLevel": "ABSTRACT_OR_AUTHOR_OR_PUBLISHER_TEXT_ONLY",
+      "checkDate": "2026-10-30",
+      "generalAbstractFinding": "Arbitrary dichotomization can lose information and distort relationships",
+      "prohibitedInference": "Do not assert that dichotomization always makes every type model invalid",
+      "limitations": "General methodological critique; no A05 empirical evaluation",
+      "sourceUsed": "PRIMARY_PUBLISHER_PUBMED_OR_AUTHOR",
+      "fullTextMethodReview": "PENDING",
+      "contraryEvidenceReview": "PENDING",
+      "japanPopulationApplicability": "NOT_ESTABLISHED",
+      "a05ConstructValidated": false,
+      "a05IndividualPairValidated": false,
+      "authorizesCompatibilityScoring": false,
+      "independentReview": "PENDING",
+      "publicationClaimApproval": false
+    },
+    {
+      "id": "LIT-R007",
+      "doi": "10.1037/0003-066X.55.1.68",
+      "primaryUrl": "https://doi.org/10.1037/0003-066X.55.1.68",
+      "design": "THEORETICAL_REVIEW",
+      "population": "SDT motivation and psychological needs framework",
+      "checkLevel": "ABSTRACT_OR_AUTHOR_OR_PUBLISHER_TEXT_ONLY",
+      "checkDate": "2026-10-30",
+      "generalAbstractFinding": "Autonomy, relatedness, competence are distinguished needs rather than the two poles of one preference",
+      "prohibitedInference": "Do not treat A05 B2-P preference weights as an already validated SDT need-satisfaction scale",
+      "limitations": "SDT framework and A05 decision-preference domains differ",
+      "sourceUsed": "PRIMARY_PUBLISHER_PUBMED_OR_AUTHOR",
+      "fullTextMethodReview": "PENDING",
+      "contraryEvidenceReview": "PENDING",
+      "japanPopulationApplicability": "NOT_ESTABLISHED",
+      "a05ConstructValidated": false,
+      "a05IndividualPairValidated": false,
+      "authorizesCompatibilityScoring": false,
+      "independentReview": "PENDING",
+      "publicationClaimApproval": false
+    }
+  ],
+  "claimPolicy": {
+    "structuralTypeLabel": "PERMITTED_AS_INTERNAL_EDITORIAL_FACT_ONLY",
+    "scienceInProduct": "BLOCKED_PENDING_FULL_REVIEW_AND_OWNER_SIGNOFF",
+    "claimsOfSimilarityGenerallyBeneficial": "BLOCKED",
+    "claimsOfSimilarityNeverRelevant": "BLOCKED",
+    "transferRomanticCoupleScienceToGeneralWorkFriendship": "BLOCKED",
+    "typeSpecificOutcomePrediction": "BLOCKED",
+    "individualRelationshipQualityPrediction": "BLOCKED",
+    "compatibilityPointOrRank": "BLOCKED",
+    "sourceCitationWithoutApplicabilityLimits": "BLOCKED"
+  },
+  "jointEvidenceFindings": [
+    {
+      "claim": "Similarity effects are mixed across romantic relationship studies",
+      "candidateStudies": [
+        "LIT-R001",
+        "LIT-R002",
+        "LIT-R003"
+      ],
+      "deskAssessment": "SUPPORTED_AS_CONDITIONAL_LITERATURE_SUMMARY",
+      "status": "INTERNAL_ONLY",
+      "caution": "Positive associations on some dimensions and no robust association in other datasets coexist; measurement/context heterogeneity. No A05 score inference."
+    },
+    {
+      "claim": "Individual and relationship-specific variables matter beyond simplified type similarity",
+      "candidateStudies": [
+        "LIT-R002",
+        "LIT-R004"
+      ],
+      "deskAssessment": "SUPPORTED_AS_CONDITIONAL_LITERATURE_SUMMARY",
+      "status": "INTERNAL_ONLY",
+      "caution": "Do not infer individual A05 pair probability from the predictor comparisons."
+    },
+    {
+      "claim": "A/C/D/B2 item design needs construct and content validity review before type assignment",
+      "candidateStudies": [
+        "LIT-R005",
+        "LIT-R006",
+        "LIT-R007"
+      ],
+      "deskAssessment": "METHODOLOGICAL_AND_THEORETICAL_CAUTION_ONLY",
+      "status": "INTERNAL_ONLY",
+      "caution": "These theories neither validate nor automatically reject A05 classification."
+    }
+  ],
+  "methodsSources": [
+    {
+      "citation": "Ryan and Deci 2020",
+      "url": "https://doi.org/10.1016/j.cedpsych.2020.101860",
+      "scope": "SDT autonomy/competence/relatedness; not B2-P validation"
+    },
+    {
+      "citation": "Mokkink et al 2025",
+      "url": "https://doi.org/10.1016/j.jclinepi.2025.111879",
+      "scope": "Relevance, comprehensiveness, comprehensibility of measurement content, adapted as methodological review"
+    },
+    {
+      "citation": "AERA APA NCME Standards 2014",
+      "url": "https://ncme.org/resources/books/testing-standards/",
+      "scope": "Interpretation/use-specific validity evidence"
+    }
+  ],
+  "nextRequirements": [
+    "Independent abstract-to-fulltext source confirmation where accessible, including effect definition, study design, populations, measurement and counterevidence",
+    "Reviewer signs off each claim statement separately; no study transfers to A05 pairs",
+    "Owner decides if nonpredictive reference notes may be used in R1; later S7 understanding check",
+    "Source register controls stay source-approved=false until reviewed; no production linkage"
+  ]
+}
