@@ -51,8 +51,9 @@ test("C02 permits only non-predictive editorial labels and dialogue prompts in p
   }
   assert.match(reviewClaimPermission(CLAIM_KINDS.CONVERSATION_PROMPT, ["B"])
     .cautions.join(" "), /二極|両立/);
-  assert.match(reviewClaimPermission(CLAIM_KINDS.DRAFT_LABEL_COMPARISON, ["E"])
-    .cautions.join(" "), /使用していません/);
+  const excludedE = reviewClaimPermission(CLAIM_KINDS.DRAFT_LABEL_COMPARISON, ["E"]);
+  assert.equal(excludedE.editorialPreviewAllowed, false);
+  assert.match(excludedE.cautions.join(" "), /使用していません/);
   assert.throws(() => reviewClaimPermission("SCIENTIFICALLY_PROVEN", []), TypeError);
   assert.throws(() => reviewClaimPermission(CLAIM_KINDS.CONVERSATION_PROMPT, ["Z"]), TypeError);
   assert.throws(() => reviewClaimPermission(CLAIM_KINDS.CONVERSATION_PROMPT, "B"), TypeError);
