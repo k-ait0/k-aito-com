@@ -1,0 +1,162 @@
+{
+  "schemaVersion": "A05-R1-RELEASE-TRACKER-0.1.0",
+  "updatedAt": "2026-10-29",
+  "timezone": "Asia/Tokyo",
+  "product": "A05 R1 16-type value understanding map",
+  "releaseTrack": "R1",
+  "userApprovedDecisions": [
+    "R1_UNDERSTANDING_GUIDE_FIRST",
+    "B2_RESEARCH_FIRST",
+    "AUTO_CLASSIFICATION_CONNECTION_WITHHELD",
+    "GENERAL_RELATIONSHIP_CONTEXT_ONLY"
+  ],
+  "overallReleaseStatus": "NO_GO",
+  "planningStatus": "S0_PARTIALLY_APPROVED",
+  "gates": [
+    {
+      "id": "S0-1",
+      "goal": "R1/R2目的・禁止表現の境界",
+      "status": "ACCEPTED_POLICY",
+      "decisionAuthority": "USER_PRODUCT_OWNER",
+      "evidence": "2026-10-29 user explicit R1/B2/general-scope decision",
+      "evidenceDocument": "docs/A05_S0_R1_RELEASE_CHARTER_AND_ACCEPTANCE_V02_20261029.md",
+      "productionApproval": false,
+      "issue": null
+    },
+    {
+      "id": "S0-2",
+      "goal": "公開名称・コピー・図解の意味",
+      "status": "PENDING_DECISION",
+      "decisionAuthority": "USER_PRODUCT_OWNER",
+      "evidence": "Proposed in S0 charter; user approval pending",
+      "evidenceDocument": "docs/A05_S0_R1_RELEASE_CHARTER_AND_ACCEPTANCE_V02_20261029.md",
+      "productionApproval": false,
+      "issue": "Approve title and safe-copy contract"
+    },
+    {
+      "id": "S0-3",
+      "goal": "2タイプ選択・入出力・通信保存",
+      "status": "PENDING_DECISION",
+      "decisionAuthority": "USER_PRODUCT_OWNER",
+      "evidence": "Proposed in S0 charter; user approval pending",
+      "evidenceDocument": "docs/A05_S0_R1_RELEASE_CHARTER_AND_ACCEPTANCE_V02_20261029.md",
+      "productionApproval": false,
+      "issue": "Approve manual T-ID input, no storage/analytics/data collection"
+    },
+    {
+      "id": "S0-4",
+      "goal": "B2研究優先と自動分類接続保留",
+      "status": "ACCEPTED_POLICY",
+      "decisionAuthority": "USER_PRODUCT_OWNER",
+      "evidence": "2026-10-29 user explicit R1/B2/general-scope decision",
+      "evidenceDocument": "docs/A05_S0_R1_RELEASE_CHARTER_AND_ACCEPTANCE_V02_20261029.md",
+      "productionApproval": false,
+      "issue": null
+    },
+    {
+      "id": "S0-5",
+      "goal": "人間関係別の適合断定を排除",
+      "status": "ACCEPTED_POLICY",
+      "decisionAuthority": "USER_PRODUCT_OWNER",
+      "evidence": "2026-10-29 user explicit R1/B2/general-scope decision",
+      "evidenceDocument": "docs/A05_S0_R1_RELEASE_CHARTER_AND_ACCEPTANCE_V02_20261029.md",
+      "productionApproval": false,
+      "issue": null
+    },
+    {
+      "id": "S0-6",
+      "goal": "最終承認者・審査責任とSTOP権限",
+      "status": "PENDING_DECISION",
+      "decisionAuthority": "USER_PRODUCT_OWNER",
+      "evidence": "Proposed in S0 charter; user approval pending",
+      "evidenceDocument": "docs/A05_S0_R1_RELEASE_CHARTER_AND_ACCEPTANCE_V02_20261029.md",
+      "productionApproval": false,
+      "issue": "Approve review roles, final GO/NO-GO and STOP triggers"
+    }
+  ],
+  "stages": [
+    {
+      "stage": "S0",
+      "goalCount": 6,
+      "acceptedCount": 3,
+      "status": "IN_PROGRESS"
+    },
+    {
+      "stage": "S1",
+      "goalCount": 8,
+      "acceptedCount": 0,
+      "status": "NOT_ACCEPTED"
+    },
+    {
+      "stage": "S2",
+      "goalCount": 7,
+      "acceptedCount": 0,
+      "status": "NOT_ACCEPTED"
+    },
+    {
+      "stage": "S3",
+      "goalCount": 6,
+      "acceptedCount": 0,
+      "status": "NOT_ACCEPTED"
+    },
+    {
+      "stage": "S4",
+      "goalCount": null,
+      "acceptedCount": 0,
+      "status": "NOT_ACCEPTED",
+      "firstReview": {
+        "completed": 0,
+        "total": 136
+      },
+      "secondReview": {
+        "completed": 0,
+        "total": 136
+      }
+    },
+    {
+      "stage": "S5",
+      "goalCount": 8,
+      "acceptedCount": 0,
+      "status": "NOT_ACCEPTED"
+    },
+    {
+      "stage": "S6",
+      "goalCount": 9,
+      "acceptedCount": 0,
+      "status": "NOT_ACCEPTED"
+    },
+    {
+      "stage": "S7",
+      "goalCount": 7,
+      "acceptedCount": 0,
+      "status": "NOT_ACCEPTED"
+    },
+    {
+      "stage": "S8",
+      "goalCount": 5,
+      "acceptedCount": 0,
+      "status": "NOT_ACCEPTED"
+    }
+  ],
+  "externalGateState": {
+    "researchG1": "NOT_APPROVED",
+    "operationsD42": "NOT_APPROVED",
+    "independentPRReview": "NOT_COMPLETED",
+    "finalHumanGoNoGo": "NOT_GRANTED"
+  },
+  "counters": {
+    "draftTypeDefinitions": 16,
+    "deterministicUnorderedPairs": 136,
+    "humanFirstReviewedPairs": 0,
+    "humanSecondReviewedPairs": 0,
+    "publishedPairs": 0,
+    "approvedStudiesForProduction": 0
+  },
+  "constraints": {
+    "R2PredictionNotIncluded": true,
+    "scoreAndRankingForbidden": true,
+    "noAutoClassifiedPeople": true,
+    "publicationRequiresAllStagesAndIndependentApproval": true,
+    "notAnImplementationOrScientificValidationCertificate": true
+  }
+}
