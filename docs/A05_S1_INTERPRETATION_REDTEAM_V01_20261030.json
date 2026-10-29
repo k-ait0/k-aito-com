@@ -1,0 +1,131 @@
+{
+  "schema": "A05-S1-INTERPRETATION-REDTEAM-0.1.0",
+  "updated": "2026-10-30",
+  "scope": "Adversarial misunderstanding scenarios for manual 16-character value-comparison R1",
+  "kind": "SYNTHETIC_EDITORIAL_QA_NO_REAL_USER_TEST",
+  "evidenceLevel": "Engineering and desk review only; no proof that real users correctly understand the UI",
+  "cases": [
+    {
+      "id": "RT01",
+      "claim": "同じタイプ同士なら相性が良い",
+      "severity": "CRITICAL",
+      "mitigation": "同型は4軸設定一致のみ。関係の良し悪しは未判定",
+      "codeBound": "sameTypeHasNoScore"
+    },
+    {
+      "id": "RT02",
+      "claim": "同じタイプ同士は必ず同族嫌悪が生じる",
+      "severity": "CRITICAL",
+      "mitigation": "同型でも摩擦の可能性はあるが、発生の予測はしない",
+      "codeBound": "sameTypeHasNoPrediction"
+    },
+    {
+      "id": "RT03",
+      "claim": "異なる軸が4つなら関係が難しい",
+      "severity": "CRITICAL",
+      "mitigation": "相違4軸は構造差分。成功率・失敗率ではない",
+      "codeBound": "noRankOrPrediction"
+    },
+    {
+      "id": "RT04",
+      "claim": "4軸一致率で相性を順位付けできる",
+      "severity": "CRITICAL",
+      "mitigation": "一致数は構造のみ。色、熱量、星、ベストマッチを禁止",
+      "codeBound": "countNotMatchScore"
+    },
+    {
+      "id": "RT05",
+      "claim": "自律とつながりは相互排他的な性格特性である",
+      "severity": "HIGH",
+      "mitigation": "B1は旧編集設定として未検証。B2独立尺度を研究優先",
+      "codeBound": "bAxisAlwaysCautioned"
+    },
+    {
+      "id": "RT06",
+      "claim": "16タイプは妥当性が実証済み",
+      "severity": "CRITICAL",
+      "mitigation": "旧16タイプは暫定の物語キャラクターで、本人の診断類型を保証しない",
+      "codeBound": "researchNotValidated"
+    },
+    {
+      "id": "RT07",
+      "claim": "B2の二尺度が本人のタイプT01-T16を判定する",
+      "severity": "CRITICAL",
+      "mitigation": "B2独立値→旧Bビット/旧T-IDの自動変換禁止",
+      "codeBound": "noB2TypeAssignment"
+    },
+    {
+      "id": "RT08",
+      "claim": "RGBYの赤は悪い相性、青は良い相性",
+      "severity": "HIGH",
+      "mitigation": "RGBYは暫定キャラクターグループ色。良否尺度と結び付けない",
+      "codeBound": "noColorQualityMeaning"
+    },
+    {
+      "id": "RT09",
+      "claim": "研究一般論がA05の特定ペアを直接検証している",
+      "severity": "CRITICAL",
+      "mitigation": "個別ペア直接検証は0。一般研究の出典と限界を表示",
+      "codeBound": "noPairSpecificEvidenceClaim"
+    },
+    {
+      "id": "RT10",
+      "claim": "恋愛、友情、仕事などでの成功を予測できる",
+      "severity": "CRITICAL",
+      "mitigation": "R1は関係分野共通の理解ガイドのみ。予測を一切行わない",
+      "codeBound": "noRelationshipOutcome"
+    },
+    {
+      "id": "RT11",
+      "claim": "個人の回答や年齢を送信し自動分類する",
+      "severity": "CRITICAL",
+      "mitigation": "手動T-ID2個の純粋関数。実診断回答・氏名・属性を拒否",
+      "codeBound": "strictManualOnly"
+    },
+    {
+      "id": "RT12",
+      "claim": "未回答は中間値4として採点できる",
+      "severity": "HIGH",
+      "mitigation": "B2研究では欠測理由を分けて保持。補完を禁止",
+      "codeBound": "noMissingnessImputation"
+    },
+    {
+      "id": "RT13",
+      "claim": "32通りを計算したから32の心理学的タイプがある",
+      "severity": "CRITICAL",
+      "mitigation": "32は二値化したときの数学的組合せ。心理学的分類を意味しない",
+      "codeBound": "mathCountNotTypeValidity"
+    },
+    {
+      "id": "RT14",
+      "claim": "16組の同型は不適切なので相関図から除く",
+      "severity": "HIGH",
+      "mitigation": "対角の16組は必ず表示し、長所・摩擦とも将来の編集レビュー対象にする",
+      "codeBound": "sameTypeCoverage"
+    },
+    {
+      "id": "RT15",
+      "claim": "本番公開GO済み",
+      "severity": "CRITICAL",
+      "mitigation": "S0政策だけ合格。S1=2/8、S2-S8未合格、本番NO-GO",
+      "codeBound": "publicationNoGo"
+    }
+  ],
+  "counters": {
+    "syntheticCases": 15,
+    "adversarialHumanInterviews": 0,
+    "independentHumanReviews": 0
+  },
+  "invariants": {
+    "sameTypePairs": 16,
+    "unorderedPairs": 136,
+    "orderedSelections": 256,
+    "allWarningsRequired": true,
+    "noScore": true,
+    "noInference": true,
+    "noPublicRelease": true
+  },
+  "ownerApproval": null,
+  "realUserComprehensionTestComplete": false,
+  "release": "NO_GO"
+}
