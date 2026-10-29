@@ -1,0 +1,600 @@
+{
+  "schema": "A05-S1-ACD-18ITEM-CRITICAL-AUDIT-0.1.0",
+  "date": "2026-10-30",
+  "sourcePath": "docs/A05_D73_ITEM_CONSTRUCT_CROSSWALK_20261026.json",
+  "sourceGitBlobSha": "a4a4a5210e9084b2e24f69d4fcb3cc695a2cc2dd",
+  "sourceVersion": "D73-001",
+  "state": "SECONDARY_EDITING_REVIEW_NOT_ADOPTION",
+  "scope": "18 existing draft A/C/D items and earlier unapproved rewrite options. E is auxiliary; B is audited separately.",
+  "counts": {
+    "items": 18,
+    "byOriginalStatus": {
+      "BLOCK": 4,
+      "REVISE": 7,
+      "TRIAL": 7
+    },
+    "currentlyApproved": 0,
+    "ownerApprovedConstructs": 0
+  },
+  "collisionDirections": [
+    {
+      "axes": "A×D",
+      "problem": "A currently includes changing routines/methods, D includes novelty/exploration; their newness content may overlap",
+      "requiredEvidence": "Distinct interpretation of 'environment change' vs 'range/depth of experiences' from responses and cognitive interviews"
+    },
+    {
+      "axes": "C×E",
+      "problem": "C future/current preferences can be confounded by financial/time opportunity in auxiliary E",
+      "requiredEvidence": "Show that resource scarcity is not interpreted as a person's long-term value"
+    },
+    {
+      "axes": "B2×A/C/D",
+      "problem": "B2 contexts reuse change/time/novelty scenarios, potentially measuring A/C/D instead of independent self/others values",
+      "requiredEvidence": "Cross-domain cognitive review; compare constant wording in B2 and domain-specific value choices"
+    },
+    {
+      "axes": "D×D",
+      "problem": "D02/03 knowledge versus lived experience and D01/D06 hobbies versus travel can duplicate scope",
+      "requiredEvidence": "Discriminating evidence and content coverage review"
+    },
+    {
+      "axes": "C×C",
+      "problem": "C01/02/05 future-versus-now repeatedly rephrase the same choice",
+      "requiredEvidence": "Show added coverage rather than repeated wording"
+    }
+  ],
+  "rows": [
+    {
+      "id": "A01",
+      "axis": "A",
+      "sourceEditorialStatus": "REVISE",
+      "original": {
+        "negative": "一つの地域で暮らしを育てる",
+        "positive": "複数の地域で暮らしを経験する"
+      },
+      "previousUnapprovedCandidate": {
+        "negative": "既存の方法を改善して使う",
+        "positive": "未経験の方法を試す",
+        "source": "D59"
+      },
+      "competingWith": [
+        "A04"
+      ],
+      "sourceProbe": "A06と区別できるか",
+      "reviewerCritique": {
+        "riskIds": [
+          "RELOCATION_ACCESS",
+          "A_D_METHOD_NOVELTY"
+        ],
+        "note": "居住可能性と人生選好を混同しやすい。代替案はDの新しい方法を試す嗜好と重なる",
+        "qualitativeOnly": true
+      },
+      "recommendedDisposition": "REVISE_FOR_COGNITIVE_REVIEW",
+      "sourceCandidateApproved": false,
+      "reviewerApproved": false,
+      "scientificallyValidated": false
+    },
+    {
+      "id": "A02",
+      "axis": "A",
+      "sourceEditorialStatus": "TRIAL",
+      "original": {
+        "negative": "慣れた環境を長く活かす",
+        "positive": "新しい環境へ定期的に移る"
+      },
+      "previousUnapprovedCandidate": {
+        "negative": "現在の活動環境を整える",
+        "positive": "新しい活動環境を試す",
+        "source": "D57"
+      },
+      "competingWith": [
+        "A03"
+      ],
+      "sourceProbe": "環境変更可能性の影響",
+      "reviewerCritique": {
+        "riskIds": [
+          "OPPORTUNITY_CONSTRAINT",
+          "A_D_ENVIRONMENT_NOVELTY"
+        ],
+        "note": "活動環境を変えられない場合の選好を測るのが難しい",
+        "qualitativeOnly": true
+      },
+      "recommendedDisposition": "TRIAL_ONLY_AFTER_CONSTRUCT_APPROVAL",
+      "sourceCandidateApproved": false,
+      "reviewerApproved": false,
+      "scientificallyValidated": false
+    },
+    {
+      "id": "A03",
+      "axis": "A",
+      "sourceEditorialStatus": "TRIAL",
+      "original": {
+        "negative": "心地よい日常の形を維持する",
+        "positive": "日常の形を更新し続ける"
+      },
+      "previousUnapprovedCandidate": {
+        "negative": "既存の習慣を磨く",
+        "positive": "新しい習慣を取り入れる",
+        "source": "D57"
+      },
+      "competingWith": [
+        "A02"
+      ],
+      "sourceProbe": "両立する場合の優先度",
+      "reviewerCritique": {
+        "riskIds": [
+          "A_D_HABIT_CHANGE",
+          "BOTH_HIGH_POSSIBLE"
+        ],
+        "note": "新しい習慣を導入しながら既存の習慣を磨くことは両立する",
+        "qualitativeOnly": true
+      },
+      "recommendedDisposition": "TRIAL_ONLY_AFTER_CONSTRUCT_APPROVAL",
+      "sourceCandidateApproved": false,
+      "reviewerApproved": false,
+      "scientificallyValidated": false
+    },
+    {
+      "id": "A04",
+      "axis": "A",
+      "sourceEditorialStatus": "BLOCK",
+      "original": {
+        "negative": "今ある生活基盤を活かす",
+        "positive": "生活基盤を作り直す"
+      },
+      "previousUnapprovedCandidate": {
+        "negative": "一度決めた活動計画を続ける",
+        "positive": "途中でも活動計画を見直す",
+        "source": "D59"
+      },
+      "competingWith": [
+        "A01"
+      ],
+      "sourceProbe": "A01との重複",
+      "reviewerCritique": {
+        "riskIds": [
+          "A_D_PLAN_METHOD_OVERLAP",
+          "INTRA_A_REDUNDANCY"
+        ],
+        "note": "既存D73でBLOCK。活動計画の変更とD軸の探索が分離できない",
+        "qualitativeOnly": true
+      },
+      "recommendedDisposition": "HOLD_BLOCK_REWRITE",
+      "sourceCandidateApproved": false,
+      "reviewerApproved": false,
+      "scientificallyValidated": false
+    },
+    {
+      "id": "A05",
+      "axis": "A",
+      "sourceEditorialStatus": "BLOCK",
+      "original": {
+        "negative": "一つの環境をより良く育てる",
+        "positive": "異なる環境を経験していく"
+      },
+      "previousUnapprovedCandidate": {
+        "negative": "予想できる変化には従来の進め方を調整する",
+        "positive": "予想できる変化を機に進め方を組み替える",
+        "source": "D59"
+      },
+      "competingWith": [
+        "A06"
+      ],
+      "sourceProbe": "A06との差",
+      "reviewerCritique": {
+        "riskIds": [
+          "A_D_PLAN_METHOD_OVERLAP",
+          "INTRA_A_REDUNDANCY"
+        ],
+        "note": "既存D73でBLOCK。A06と予想変化への対応が重複する",
+        "qualitativeOnly": true
+      },
+      "recommendedDisposition": "HOLD_BLOCK_REWRITE",
+      "sourceCandidateApproved": false,
+      "reviewerApproved": false,
+      "scientificallyValidated": false
+    },
+    {
+      "id": "A06",
+      "axis": "A",
+      "sourceEditorialStatus": "REVISE",
+      "original": {
+        "negative": "現在の拠点を保って挑戦する",
+        "positive": "拠点そのものを変えて挑戦する"
+      },
+      "previousUnapprovedCandidate": {
+        "negative": "予想外の変化には既存の手順を応用する",
+        "positive": "予想外の変化には別の手順を探す",
+        "source": "D59"
+      },
+      "competingWith": [
+        "A05"
+      ],
+      "sourceProbe": "A05との冗長性",
+      "reviewerCritique": {
+        "riskIds": [
+          "A_D_METHOD_OVERLAP",
+          "OPPORTUNITY_CONSTRAINT"
+        ],
+        "note": "本人の新規性嗜好より予想外の環境制約・既存手順の可用性が反映され得る",
+        "qualitativeOnly": true
+      },
+      "recommendedDisposition": "REVISE_FOR_COGNITIVE_REVIEW",
+      "sourceCandidateApproved": false,
+      "reviewerApproved": false,
+      "scientificallyValidated": false
+    },
+    {
+      "id": "C01",
+      "axis": "C",
+      "sourceEditorialStatus": "TRIAL",
+      "original": {
+        "negative": "数年後の達成につながる日々",
+        "positive": "毎日の充実を感じられる日々"
+      },
+      "previousUnapprovedCandidate": {
+        "negative": "将来の選択肢が増える活動を先に選ぶ",
+        "positive": "今日の充実が増える活動を先に選ぶ",
+        "source": "D57"
+      },
+      "competingWith": [
+        "C02",
+        "C05"
+      ],
+      "sourceProbe": "実現可能性の差",
+      "reviewerCritique": {
+        "riskIds": [
+          "INTRA_C_REDUNDANCY",
+          "TIME_HORIZON_TRADEOFF"
+        ],
+        "note": "将来選択肢と今日充実の両立・負担差を統制していない",
+        "qualitativeOnly": true
+      },
+      "recommendedDisposition": "TRIAL_ONLY_AFTER_CONSTRUCT_APPROVAL",
+      "sourceCandidateApproved": false,
+      "reviewerApproved": false,
+      "scientificallyValidated": false
+    },
+    {
+      "id": "C02",
+      "axis": "C",
+      "sourceEditorialStatus": "REVISE",
+      "original": {
+        "negative": "将来の目標に備える活動",
+        "positive": "今の満足につながる活動"
+      },
+      "previousUnapprovedCandidate": {
+        "negative": "同じ負担なら将来便益の大きい時間を選ぶ",
+        "positive": "同じ負担なら今日便益の大きい時間を選ぶ",
+        "source": "D57"
+      },
+      "competingWith": [
+        "C01",
+        "C05"
+      ],
+      "sourceProbe": "C01と区別",
+      "reviewerCritique": {
+        "riskIds": [
+          "INTRA_C_REDUNDANCY",
+          "INCOMPARABLE_BENEFIT"
+        ],
+        "note": "同じ負担のつもりでも未来の便益の大きさ・不確実性が異なる",
+        "qualitativeOnly": true
+      },
+      "recommendedDisposition": "REVISE_FOR_COGNITIVE_REVIEW",
+      "sourceCandidateApproved": false,
+      "reviewerApproved": false,
+      "scientificallyValidated": false
+    },
+    {
+      "id": "C03",
+      "axis": "C",
+      "sourceEditorialStatus": "TRIAL",
+      "original": {
+        "negative": "将来使いたい知識を身につける",
+        "positive": "今知りたいことを学ぶ"
+      },
+      "previousUnapprovedCandidate": {
+        "negative": "後に役立つ知識を学ぶ",
+        "positive": "今日の関心を満たす知識を学ぶ",
+        "source": "D57"
+      },
+      "competingWith": [
+        "C04"
+      ],
+      "sourceProbe": "学習機会の差",
+      "reviewerCritique": {
+        "riskIds": [
+          "LEARNING_OPPORTUNITY",
+          "BOTH_HIGH_POSSIBLE"
+        ],
+        "note": "学習の内容は現在の関心にも将来の効用にもつながり得る",
+        "qualitativeOnly": true
+      },
+      "recommendedDisposition": "TRIAL_ONLY_AFTER_CONSTRUCT_APPROVAL",
+      "sourceCandidateApproved": false,
+      "reviewerApproved": false,
+      "scientificallyValidated": false
+    },
+    {
+      "id": "C04",
+      "axis": "C",
+      "sourceEditorialStatus": "BLOCK",
+      "original": {
+        "negative": "長期的な成果につながる挑戦",
+        "positive": "取り組む過程を楽しめる挑戦"
+      },
+      "previousUnapprovedCandidate": {
+        "negative": "同じ活動で将来得られる充実を重視する",
+        "positive": "同じ活動で今日得られる充実を重視する",
+        "source": "D57"
+      },
+      "competingWith": [
+        "C03"
+      ],
+      "sourceProbe": "抽象度",
+      "reviewerCritique": {
+        "riskIds": [
+          "INTRA_C_REDUNDANCY",
+          "PROCESS_VS_OUTCOME"
+        ],
+        "note": "既存D73でBLOCK。成果と過程という別概念を時間差と混同",
+        "qualitativeOnly": true
+      },
+      "recommendedDisposition": "HOLD_BLOCK_REWRITE",
+      "sourceCandidateApproved": false,
+      "reviewerApproved": false,
+      "scientificallyValidated": false
+    },
+    {
+      "id": "C05",
+      "axis": "C",
+      "sourceEditorialStatus": "REVISE",
+      "original": {
+        "negative": "後から得られる充実を優先",
+        "positive": "すぐに得られる充実を優先"
+      },
+      "previousUnapprovedCandidate": {
+        "negative": "余暇の一部を将来の便益に振り向ける",
+        "positive": "余暇の一部を今日の便益に振り向ける",
+        "source": "D57"
+      },
+      "competingWith": [
+        "C01",
+        "C02"
+      ],
+      "sourceProbe": "C02との重複",
+      "reviewerCritique": {
+        "riskIds": [
+          "INTRA_C_REDUNDANCY",
+          "C_E_TIME_CONSTRAINT"
+        ],
+        "note": "余暇や資源配分はE軸・生活上の自由時間に影響される",
+        "qualitativeOnly": true
+      },
+      "recommendedDisposition": "REVISE_FOR_COGNITIVE_REVIEW",
+      "sourceCandidateApproved": false,
+      "reviewerApproved": false,
+      "scientificallyValidated": false
+    },
+    {
+      "id": "C06",
+      "axis": "C",
+      "sourceEditorialStatus": "REVISE",
+      "original": {
+        "negative": "将来の理想に近づく感覚",
+        "positive": "今の生活に満足できる感覚"
+      },
+      "previousUnapprovedCandidate": {
+        "negative": "生活改善で将来の快適さを優先する",
+        "positive": "生活改善で今日の快適さを優先する",
+        "source": "D57"
+      },
+      "competingWith": [
+        "C04"
+      ],
+      "sourceProbe": "便益量の非対称",
+      "reviewerCritique": {
+        "riskIds": [
+          "OUTCOME_AMOUNT_UNBALANCED",
+          "BOTH_HIGH_POSSIBLE"
+        ],
+        "note": "将来と現在の快適さの大小や必要度が異なる",
+        "qualitativeOnly": true
+      },
+      "recommendedDisposition": "REVISE_FOR_COGNITIVE_REVIEW",
+      "sourceCandidateApproved": false,
+      "reviewerApproved": false,
+      "scientificallyValidated": false
+    },
+    {
+      "id": "D01",
+      "axis": "D",
+      "sourceEditorialStatus": "TRIAL",
+      "original": {
+        "negative": "さまざまな趣味を試す",
+        "positive": "好きな趣味を長く深める"
+      },
+      "previousUnapprovedCandidate": {
+        "negative": "関心活動の種類を広げる",
+        "positive": "一つの関心活動を深める",
+        "source": "D57"
+      },
+      "competingWith": [
+        "D06"
+      ],
+      "sourceProbe": "活動経験の差",
+      "reviewerCritique": {
+        "riskIds": [
+          "D_REPETITION",
+          "ACTIVITY_ACCESS"
+        ],
+        "note": "趣味の種類・深さは機会差を含みD06と重なる",
+        "qualitativeOnly": true
+      },
+      "recommendedDisposition": "TRIAL_ONLY_AFTER_CONSTRUCT_APPROVAL",
+      "sourceCandidateApproved": false,
+      "reviewerApproved": false,
+      "scientificallyValidated": false
+    },
+    {
+      "id": "D02",
+      "axis": "D",
+      "sourceEditorialStatus": "TRIAL",
+      "original": {
+        "negative": "幅広い分野を知る",
+        "positive": "一つの分野を深く理解する"
+      },
+      "previousUnapprovedCandidate": {
+        "negative": "複数分野の知識を広く学ぶ",
+        "positive": "一分野の知識を深く学ぶ",
+        "source": "D59"
+      },
+      "competingWith": [
+        "D03",
+        "D05"
+      ],
+      "sourceProbe": "教育機会の差",
+      "reviewerCritique": {
+        "riskIds": [
+          "D_KNOWLEDGE_EXPERIENCE",
+          "LEARNING_ACCESS"
+        ],
+        "note": "学ぶ分野の広さは教育機会・仕事役割に左右される",
+        "qualitativeOnly": true
+      },
+      "recommendedDisposition": "TRIAL_ONLY_AFTER_CONSTRUCT_APPROVAL",
+      "sourceCandidateApproved": false,
+      "reviewerApproved": false,
+      "scientificallyValidated": false
+    },
+    {
+      "id": "D03",
+      "axis": "D",
+      "sourceEditorialStatus": "BLOCK",
+      "original": {
+        "negative": "未経験のことを数多く経験する",
+        "positive": "気に入った経験を繰り返し深める"
+      },
+      "previousUnapprovedCandidate": {
+        "negative": "複数分野の体験を試す",
+        "positive": "一分野の体験を掘り下げる",
+        "source": "D59"
+      },
+      "competingWith": [
+        "D02"
+      ],
+      "sourceProbe": "D02との重複",
+      "reviewerCritique": {
+        "riskIds": [
+          "D_KNOWLEDGE_EXPERIENCE",
+          "INTRA_D_REDUNDANCY"
+        ],
+        "note": "既存D73でBLOCK。D02と区別できるか未確定",
+        "qualitativeOnly": true
+      },
+      "recommendedDisposition": "HOLD_BLOCK_REWRITE",
+      "sourceCandidateApproved": false,
+      "reviewerApproved": false,
+      "scientificallyValidated": false
+    },
+    {
+      "id": "D04",
+      "axis": "D",
+      "sourceEditorialStatus": "REVISE",
+      "original": {
+        "negative": "異なるテーマに取り組む",
+        "positive": "一つのテーマを追究する"
+      },
+      "previousUnapprovedCandidate": {
+        "negative": "一つの課題で異なるテーマに触れる",
+        "positive": "一つの課題で特定テーマを掘り下げる",
+        "source": "D57"
+      },
+      "competingWith": [
+        "D01"
+      ],
+      "sourceProbe": "A軸との弁別",
+      "reviewerCritique": {
+        "riskIds": [
+          "A_D_METHOD_OVERLAP",
+          "TASK_DEPENDENCE"
+        ],
+        "note": "Aの活動方法を変更する志向と、Dの広いテーマを扱う志向が混同される",
+        "qualitativeOnly": true
+      },
+      "recommendedDisposition": "REVISE_FOR_COGNITIVE_REVIEW",
+      "sourceCandidateApproved": false,
+      "reviewerApproved": false,
+      "scientificallyValidated": false
+    },
+    {
+      "id": "D05",
+      "axis": "D",
+      "sourceEditorialStatus": "TRIAL",
+      "original": {
+        "negative": "複数領域に知識を広げる",
+        "positive": "特定領域への理解を深める"
+      },
+      "previousUnapprovedCandidate": {
+        "negative": "鑑賞・制作で複数の表現に触れる",
+        "positive": "鑑賞・制作で一つの表現を深める",
+        "source": "D57"
+      },
+      "competingWith": [
+        "D02"
+      ],
+      "sourceProbe": "創作未経験者",
+      "reviewerCritique": {
+        "riskIds": [
+          "EXPERIENCE_REQUIRED",
+          "D_KNOWLEDGE_EXPERIENCE"
+        ],
+        "note": "創作経験の有無によって質問が適用できない可能性",
+        "qualitativeOnly": true
+      },
+      "recommendedDisposition": "TRIAL_ONLY_AFTER_CONSTRUCT_APPROVAL",
+      "sourceCandidateApproved": false,
+      "reviewerApproved": false,
+      "scientificallyValidated": false
+    },
+    {
+      "id": "D06",
+      "axis": "D",
+      "sourceEditorialStatus": "REVISE",
+      "original": {
+        "negative": "経験の種類を増やす",
+        "positive": "大切な経験の深さを増やす"
+      },
+      "previousUnapprovedCandidate": {
+        "negative": "旅行・外出で訪れる対象を広げる",
+        "positive": "旅行・外出で一つの対象を詳しく知る",
+        "source": "D57"
+      },
+      "competingWith": [
+        "D01"
+      ],
+      "sourceProbe": "移動制約・適用不能",
+      "reviewerCritique": {
+        "riskIds": [
+          "RELOCATION_ACCESS",
+          "INTRA_D_REDUNDANCY"
+        ],
+        "note": "旅行/外出できるかどうかと、経験の幅・深さの嗜好が混同される",
+        "qualitativeOnly": true
+      },
+      "recommendedDisposition": "REVISE_FOR_COGNITIVE_REVIEW",
+      "sourceCandidateApproved": false,
+      "reviewerApproved": false,
+      "scientificallyValidated": false
+    }
+  ],
+  "evidenceGates": {
+    "researchG1Approved": false,
+    "ownerS1ModelApproved": false,
+    "realParticipantsStudied": false,
+    "nativeNodeExecuted": false,
+    "publicationApproved": false
+  },
+  "qualityCaution": "These findings are assistant editorial criticisms and source consistency checks. They do not constitute an independent expert review or psychometric validation."
+}
