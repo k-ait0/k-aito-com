@@ -1,0 +1,209 @@
+{
+  "schema": "A05-S1-B2-ITEM-PROTOTYPES-0.1.0",
+  "date": "2026-10-30",
+  "status": "EDITORIAL_PROTOTYPE_NOT_APPROVED",
+  "purpose": "Compare independent consideration of own wishes and others' wishes in life choices, without claiming validated SDT autonomy/relatedness measurement",
+  "scientificValidity": "NOT_ESTABLISHED",
+  "userApproval": "NOT_GRANTED_FOR_NEW_ITEMS",
+  "notInCurrent30Questions": true,
+  "noActualParticipantData": true,
+  "noLegacyBConversion": true,
+  "noAutomaticTypeAssignment": true,
+  "noUserFacingRelease": true,
+  "constructs": {
+    "self": {
+      "id": "SELF_PREFERENCE_CONSIDERATION",
+      "workingLabel": "本人の希望を判断に取り入れる重視度",
+      "not": "SDT autonomy need satisfaction or selfishness"
+    },
+    "others": {
+      "id": "OTHERS_WISH_CONSIDERATION",
+      "workingLabel": "関係者の希望・影響を判断に取り入れる重視度",
+      "not": "SDT relatedness need satisfaction or sociability"
+    }
+  },
+  "responseDraft": {
+    "scale": "1..7 each, separately; unvalidated",
+    "minimum": 1,
+    "maximum": 7,
+    "interpretation": {
+      "1": "まったく重視しない",
+      "4": "どちらともいえない・中程度（定義未決）",
+      "7": "非常に重視する"
+    },
+    "distinctNoAnswerStates": [
+      "not_applicable",
+      "cannot_judge",
+      "prefer_not_to_answer",
+      "unanswered"
+    ],
+    "doNotConvertNoAnswerTo": 4,
+    "doNotInferOneFromOther": true
+  },
+  "scenarios": [
+    {
+      "id": "B2P01",
+      "context": "日常の予定",
+      "self": {
+        "itemId": "B2P01-SELF",
+        "text": "日常の予定を決めるとき、自分がしたいことを大切にする度合いはどのくらいですか。"
+      },
+      "others": {
+        "itemId": "B2P01-OTHERS",
+        "text": "同じ予定を決めるとき、関係する人の希望を把握し考慮する度合いはどのくらいですか。"
+      },
+      "editorialRisk": "関係する人が存在しないことがある",
+      "status": "DRAFT_NOT_APPROVED"
+    },
+    {
+      "id": "B2P02",
+      "context": "学び・活動",
+      "self": {
+        "itemId": "B2P02-SELF",
+        "text": "学ぶ内容や取り組む活動を選ぶとき、自分の関心を大切にする度合いはどのくらいですか。"
+      },
+      "others": {
+        "itemId": "B2P02-OTHERS",
+        "text": "同じ選択で、関係する人の希望や生活への影響を考慮する度合いはどのくらいですか。"
+      },
+      "editorialRisk": "学習の自由度や関係者の有無に差がある",
+      "status": "DRAFT_NOT_APPROVED"
+    },
+    {
+      "id": "B2P03",
+      "context": "暮らしの習慣",
+      "self": {
+        "itemId": "B2P03-SELF",
+        "text": "暮らしの習慣を見直すとき、自分が快適に感じることを大切にする度合いはどのくらいですか。"
+      },
+      "others": {
+        "itemId": "B2P03-OTHERS",
+        "text": "同じ見直しで、関係する人が快適に過ごせることを考慮する度合いはどのくらいですか。"
+      },
+      "editorialRisk": "同居者を前提にしない",
+      "status": "DRAFT_NOT_APPROVED"
+    },
+    {
+      "id": "B2P04",
+      "context": "時間の使い方",
+      "self": {
+        "itemId": "B2P04-SELF",
+        "text": "自分の自由な時間をどう使うか決めるとき、自分の希望を考慮する度合いはどのくらいですか。"
+      },
+      "others": {
+        "itemId": "B2P04-OTHERS",
+        "text": "同じ選択で、関係する人の希望や都合を考慮する度合いはどのくらいですか。"
+      },
+      "editorialRisk": "C軸・E軸との概念交差を監査",
+      "status": "DRAFT_NOT_APPROVED"
+    },
+    {
+      "id": "B2P05",
+      "context": "変化への対応",
+      "self": {
+        "itemId": "B2P05-SELF",
+        "text": "生活や活動に変更が必要なとき、自分が望む進め方を考慮する度合いはどのくらいですか。"
+      },
+      "others": {
+        "itemId": "B2P05-OTHERS",
+        "text": "同じ場面で、関係する人が望む進め方を考慮する度合いはどのくらいですか。"
+      },
+      "editorialRisk": "A軸の変化志向との混同に注意",
+      "status": "DRAFT_NOT_APPROVED"
+    },
+    {
+      "id": "B2P06",
+      "context": "新しい挑戦",
+      "self": {
+        "itemId": "B2P06-SELF",
+        "text": "新しいことに挑戦するか決めるとき、自分の関心や意思を考慮する度合いはどのくらいですか。"
+      },
+      "others": {
+        "itemId": "B2P06-OTHERS",
+        "text": "同じ判断で、関係する人の希望や影響を考慮する度合いはどのくらいですか。"
+      },
+      "editorialRisk": "A軸・D軸の探索志向との混同に注意",
+      "status": "DRAFT_NOT_APPROVED"
+    }
+  ],
+  "failureCases": [
+    {
+      "id": "BOTH_HIGH",
+      "self": 7,
+      "others": 7,
+      "expected": "independent ratings both high, never collapsed to B1 middle"
+    },
+    {
+      "id": "BOTH_LOW",
+      "self": 1,
+      "others": 1,
+      "expected": "both low is not the same as both high"
+    },
+    {
+      "id": "SELF_ONLY",
+      "self": 7,
+      "others": 1,
+      "expected": "self priority does not establish lack of relational capacity"
+    },
+    {
+      "id": "OTHERS_ONLY",
+      "self": 1,
+      "others": 7,
+      "expected": "other priority does not establish lack of autonomy"
+    },
+    {
+      "id": "NO_RELATIONSHIP_CONTEXT",
+      "self": 7,
+      "others": null,
+      "othersReason": "not_applicable",
+      "expected": "other item can be inapplicable, not low"
+    },
+    {
+      "id": "UNCERTAIN_SELF",
+      "self": null,
+      "selfReason": "cannot_judge",
+      "others": 5,
+      "expected": "partial answer retained without imputation"
+    },
+    {
+      "id": "DECLINED",
+      "self": null,
+      "selfReason": "prefer_not_to_answer",
+      "others": null,
+      "othersReason": "prefer_not_to_answer",
+      "expected": "missing does not equal low or midpoint"
+    },
+    {
+      "id": "CONTEXT_SHIFT",
+      "self": 5,
+      "others": 5,
+      "expected": "single scenario does not establish stable personality trait"
+    }
+  ],
+  "contentValidityPreconditions": [
+    "Construct definitions and excluded neighboring constructs explicitly specified",
+    "Review relevance to target audience and general relationship scope",
+    "Review comprehensiveness: important aspects not systematically omitted",
+    "Review comprehensibility: item stems, options and missingness reasons understood as intended",
+    "Review independence and social desirability; two high ratings do not mean high validity",
+    "Assess respondent burden before considering 12 versus legacy 6 B items",
+    "Check A/C/D/E crossloading and domain-specific influence",
+    "Obtain G1 and applicable D42 operational authorizations before any real-person data collection"
+  ],
+  "sources": [
+    {
+      "role": "THEORETICAL_BACKGROUND_NOT_DIRECT_VALIDATION",
+      "url": "https://doi.org/10.1016/j.cedpsych.2020.101860",
+      "note": "Ryan & Deci 2020 distinguishes autonomy and relatedness basic needs; A05 candidates measure something else"
+    },
+    {
+      "role": "METHODOLOGICAL_GUIDANCE_NOT_A05_VALIDATION",
+      "url": "https://doi.org/10.1016/j.jclinepi.2025.111879",
+      "note": "COSMIN content validity relevance, comprehensiveness and comprehensibility; designed for measurement studies and applied here heuristically"
+    },
+    {
+      "role": "INTERNAL_PRIOR_ARTIFACT",
+      "path": "docs/A05_D85_B_MODE_COMPARISON_20261026.json"
+    }
+  ]
+}
