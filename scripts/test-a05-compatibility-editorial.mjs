@@ -9,7 +9,7 @@ import { EVIDENCE_SOURCE_RECORDS, EVIDENCE_DECISIONS } from
 import { LITERATURE_CANDIDATES, SOURCE_BY_ID } from
   "../projects/kidp/life-design-lab/a05/compatibility-literature-candidates.mjs";
 import { EDITORIAL_DISPLAY_VERSION, EDITORIAL_PAIRS, EDITORIAL_GENERAL_SOURCES,
-  STRUCTURAL_LABELS, getEditorialPair } from
+  STRUCTURAL_LABELS, getEditorialPair, getSelectedPairLabels } from
   "../projects/kidp/life-design-lab/a05/compatibility-editorial.mjs";
 
 const read = p => readFileSync(new URL("../"+p,import.meta.url),"utf8");
@@ -62,6 +62,31 @@ test("C03 A facts reflect immutable C01 type bits and no respondent data", () =>
   assert.equal(getEditorialPair("T01","T01").facts.differentAxesCount,0);
   assert.equal(getEditorialPair("T01","T16").facts.differentAxesCount,4);
   assert.throws(()=>getEditorialPair("T00","T01"),TypeError);
+});
+
+test("C03 displays label directions in user's selection order", () => {
+  for (const a of TYPES) for (const b of TYPES) {
+    const left = getSelectedPairLabels(a.id, b.id);
+    const reverse = getSelectedPairLabels(b.id, a.id);
+    assert.deepEqual(left.selectedTypeIds, [a.id, b.id]);
+    assert.equal(left.pairId, reverse.pairId);
+    assert.equal(left.reversed, a.id !== b.id ? !reverse.reversed : false);
+    assert.ok(Object.isFrozen(left));
+    assert.ok(Object.isFrozen(left.differences));
+    for (let i = 0; i < left.differences.length; i++) {
+      assert.equal(left.differences[i].axis, reverse.differences[i].axis);
+      assert.equal(left.differences[i].first, reverse.differences[i].second);
+      assert.equal(left.differences[i].second, reverse.differences[i].first);
+    }
+  }
+  const forward = getSelectedPairLabels("T02", "T11");
+  const reversed = getSelectedPairLabels("T11", "T02");
+  assert.deepEqual(forward.differences.map(x => x.axis), ["A","C","D"]);
+  assert.equal(forward.differences[0].first, "安定");
+  assert.equal(forward.differences[0].second, "変化");
+  assert.equal(reversed.differences[0].first, "変化");
+  assert.equal(reversed.differences[0].second, "安定");
+  assert.throws(() => getSelectedPairLabels("T99","T01"), TypeError);
 });
 
 test("C03 general research is not credited as pair-specific validation", () => {
