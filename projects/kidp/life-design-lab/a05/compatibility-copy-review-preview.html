@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta name="color-scheme" content="light">
+<title>A05 C-05｜136組・編集文章監査（未承認）</title>
+<style>
+:root{font-family:system-ui,-apple-system,"Hiragino Kaku Gothic ProN",sans-serif;background:#f5f7fb;color:#243341;line-height:1.65}
+*{box-sizing:border-box}
+body{max-width:1000px;margin:0 auto;padding:18px 15px 60px}
+h1{font-size:clamp(1.5rem,4vw,2.2rem);line-height:1.3}
+h2{font-size:1.2rem}
+.notice,.panel{background:#fff;border:1px solid #b8c5d5;border-radius:13px;padding:16px;margin:15px 0;overflow-wrap:anywhere}
+.notice{border:2px solid #304e6a}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+label{display:block;font-weight:700}
+select,button{font:inherit;min-height:46px;border-radius:8px;padding:6px 10px;background:#fff;color:#22354a;border:1px solid #697c91;width:100%}
+select:focus-visible,button:focus-visible,a:focus-visible{outline:3px solid #146fc1;outline-offset:2px}
+.controls{display:flex;gap:8px;margin:12px 0}
+.controls button{width:auto;min-width:110px}
+button:disabled{opacity:.45}
+small,.muted{font-size:.9rem;color:#495f70}
+.tier{font-weight:800;font-size:.85rem;padding:3px 10px;border-radius:999px;background:#e3ebf4;color:#153e67}
+.a{background:#e1efff}.b{background:#e4f5e8}.c{background:#fff1d9}
+ul{padding-left:1.4rem}li+li{margin-top:8px}
+pre{white-space:pre-wrap;overflow-wrap:anywhere}
+@media(max-width:650px){.grid{grid-template-columns:1fr}.panel,.notice{padding:13px}}
+</style>
+</head>
+<body>
+<main>
+<p class="muted">K. Aito LIFE DESIGN LAB / A05 / C-05</p>
+<h1>136組・編集文章監査</h1>
+<div class="notice">
+ <strong>編集チーム専用の未承認プレビューです。</strong>
+ <p>「自動監査で検出なし」は人手レビュー、科学的な実証、公開承認を意味しません。現時点の全136組は人手未レビューです。相性点数、成功予測、相性の優劣は扱いません。</p>
+</div>
+<div class="grid">
+ <div><label for="type-filter">タイプで絞り込む</label><select id="type-filter"></select></div>
+ <div><label for="diff-filter">設定上の相違軸数</label><select id="diff-filter"></select></div>
+ <div><label for="flag-filter">自動監査結果</label><select id="flag-filter"></select></div>
+</div>
+<section class="panel">
+ <label for="pair-select">確認する組合せ</label><select id="pair-select"></select>
+ <div class="controls"><button id="previous" type="button">前の組</button><button id="next" type="button">次の組</button></div>
+ <p id="list-count" role="status" aria-live="polite"></p>
+ <h2 id="pair-heading" tabindex="-1">選択中の組合せ</h2>
+ <p id="review-status"></p>
+ <p class="muted" id="review-restrictions"></p>
+</section>
+<section class="panel" aria-labelledby="a-heading">
+ <h2 id="a-heading"><span class="tier a">A｜仕様事実</span> 4軸のラベル差分</h2>
+ <h3>共通</h3><ul id="agreements"></ul>
+ <h3>相違</h3><ul id="differences"></ul>
+ <p class="muted">A05内部の未検証のキャラクター設定を比較しています。現実の個人差や心理測定上の距離ではありません。</p>
+</section>
+<section class="panel" aria-labelledby="b-heading">
+ <h2 id="b-heading"><span class="tier b">B｜一般研究候補</span> 適用範囲</h2>
+ <p id="research"></p>
+ <p id="scope" class="muted"></p>
+ <p>これらは編集段階の一般的研究候補であり、A05の16タイプや個別ペアの実証ではありません。原典全文・効果量の人手照合と公開許可は未完了です。</p>
+ <ul id="literature"></ul>
+</section>
+<section class="panel" aria-labelledby="c-heading">
+ <h2 id="c-heading"><span class="tier c">C｜編集仮説</span> 文章案</h2>
+ <h3>キャラクター物語</h3><p id="story"></p>
+ <h3>注意点・補完の着想（未実証）</h3><ul id="hypotheses"></ul>
+ <h3>会話のきっかけ（採点しない）</h3><ol id="prompts"></ol>
+ <h3>自動検査で検出した問題</h3><ul id="findings"></ul>
+</section>
+<p class="muted">記録・通信・参加者情報の収集はありません。研究G1・D-42・原本v1.0との照合・実機QA・公開判断はすべて保留中です。</p>
+</main>
+<script type="module" src="./compatibility-copy-review-preview.mjs"></script>
+</body>
+</html>
