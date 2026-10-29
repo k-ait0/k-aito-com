@@ -17,7 +17,7 @@ export const COPY_AUDIT_SOURCE_VERSION = "A05-COMPAT-C03-0.1.0-unapproved";
 
 const BLOCKED_CLAIMS = Object.freeze([
   Object.freeze({ id: "RATE_OR_SCORE",
-    pattern: /(?:\d+(?:\.\d+)?\s*[%％点]|一致率|相性点数|相性スコア|相性ランク|適合率|成功率|離婚率)/u }),
+    pattern: /(?:\d+(?:\.\d+)?\s*[%％点]|[SABCDE]\s*ランク|一致率|相性点数|相性スコア|相性ランク|適合率|成功率|離婚率)/u }),
   Object.freeze({ id: "BEST_OR_WORST_MATCH",
     pattern: /(?:最高の相性|最悪の相性|相性が(?:良い|悪い|最高|最悪)|相性は(?:良い|悪い|最高|最悪)|ベスト相性|ワースト相性)/u }),
   Object.freeze({ id: "PREDICTED_RELATIONSHIP_OUTCOME",
