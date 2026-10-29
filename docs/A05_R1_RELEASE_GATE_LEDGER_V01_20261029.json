@@ -197,6 +197,13 @@
       ],
       "decision": "Technical evidence accepted for baseline/source freeze and E-exclusion research hold; B taxonomy remains pending",
       "scope": "STATIC_EVIDENCE_ONLY"
+    },
+    {
+      "eventId": "S1-004",
+      "date": "2026-10-29",
+      "acceptedGateIds": [],
+      "decision": "S1 v0.2 acceptance report and A/C/D candidate definitions issued; no additional gate approval",
+      "scope": "DOCUMENTATION_ONLY"
     }
   ],
   "policyGatePassed": true,
@@ -267,5 +274,11 @@
       "browserExecuted": false,
       "scientificOrOwnerApproval": false
     }
+  ],
+  "s1AcceptanceDocument": "docs/A05_S1_AXES_CONSTRUCT_AND_MODEL_ACCEPTANCE_V02_20261029.md",
+  "s1DecisionDocuments": [
+    "docs/A05_S1_BASELINE_MANIFEST_V01_20261029.json",
+    "docs/A05_S1_B_AXIS_AND_TAXONOMY_MIGRATION_REVIEW_V01_20261029.md",
+    "docs/A05_S1_ACD_CONSTRUCT_OPTIONS_V01_20261029.json"
   ]
 }
