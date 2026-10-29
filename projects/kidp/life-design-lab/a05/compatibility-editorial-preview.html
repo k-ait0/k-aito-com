@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta name="color-scheme" content="light">
+<meta name="description" content="A05の16タイプ相互理解図鑑。A仕様事実・B一般研究・C編集仮説を区別する研究用プレビュー。">
+<title>A05 C-03｜136組 相互理解図鑑・根拠階層プレビュー</title>
+<style>
+:root{font-family:system-ui,-apple-system,"Hiragino Kaku Gothic ProN",sans-serif;color:#1f3042;background:#f5f7fb;line-height:1.7}
+*{box-sizing:border-box}body{max-width:1050px;margin:0 auto;padding:24px 16px 64px}
+h1{font-size:clamp(1.55rem,4vw,2.35rem);line-height:1.4}h2{font-size:1.26rem}h3{font-size:1.05rem}
+.kicker{letter-spacing:.1em;font-weight:800;color:#506c83;font-size:.85rem}
+.notice,.panel{border-radius:14px;padding:16px 18px;background:#fff;border:1px solid #cbd7e2;margin:15px 0;overflow-wrap:anywhere}
+.notice{border:2px solid #3b5269}.controls{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+label{display:block;font-weight:700;margin-bottom:6px}select{width:100%;min-height:48px;border:1px solid #63778b;border-radius:9px;background:#fff;color:#172f43;font:inherit;padding:8px 10px}
+select:focus-visible,button:focus-visible,a:focus-visible{outline:3px solid #1678cf;outline-offset:3px}
+.panel h2{margin-top:0}.tier{font-weight:800;border-radius:999px;padding:4px 11px;font-size:.81rem;display:inline-block;margin-right:6px}
+.tier-a{background:#dcebf9;color:#17436b}.tier-b{background:#e4f3e5;color:#275c3a}.tier-c{background:#fff1d5;color:#624213}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.pair{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:14px}
+.pill{border-radius:99px;padding:5px 12px;font-weight:700;background:#e9edf2}
+.pill[data-group="G1"]{background:#e8f2fe;color:#203e69}
+.pill[data-group="G2"]{background:#eaf7ef;color:#175b42}
+.pill[data-group="G3"]{background:#fff0ee;color:#792b2b}
+.pill[data-group="G4"]{background:#fff7d8;color:#604714}
+ul,ol{padding-left:1.4rem;margin:8px 0}li+li{margin-top:8px}
+.small{font-size:.91rem;color:#4e6576}.minor{font-size:.87rem;color:#496071}
+#nearby{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+#nearby button{font:inherit;text-align:left;background:#fff;color:#1c3a58;border:1px solid #9eb3c9;border-radius:9px;min-height:44px;padding:8px 10px;cursor:pointer}
+#nearby button[aria-current="true"]{border-width:2px;border-color:#1a6dae;background:#e8f2fe}
+a{color:#155b9d;overflow-wrap:anywhere}
+@media(max-width:680px){.controls,.grid,#nearby{grid-template-columns:1fr}.notice,.panel{padding:14px}}
+</style>
+</head>
+<body>
+<main>
+<p class="kicker">LIFE DESIGN LAB / A05 / EDITORIAL REVIEW C-03</p>
+<h1>16タイプ相互理解図鑑</h1>
+<p class="notice"><strong>未承認の研究・編集用プレビューです。</strong> 4軸・16分類・136組の心理測定上の妥当性は未検証です。関係の成功、恋愛適合度、将来予測を行いません。文献は要旨・公開情報を照合した候補であり、A05への適用・公開は未承認です。</p>
+<div class="controls" aria-label="タイプを選ぶ">
+ <div><label for="first">タイプ1</label><select id="first"></select></div>
+ <div><label for="second">タイプ2</label><select id="second"></select></div>
+</div>
+<section class="panel" aria-labelledby="pair-heading">
+ <h2 id="pair-heading" tabindex="-1">選択中の組合せ</h2>
+ <div class="pair"><span class="pill" id="first-name"></span><span class="pill" id="second-name"></span></div>
+ <p id="pair-status" role="status" aria-live="polite"></p>
+ <p class="small" id="pair-meta"></p>
+</section>
+<div class="grid">
+ <section class="panel" aria-labelledby="a-heading">
+  <h2 id="a-heading"><span class="tier tier-a">A｜仕様事実</span>ラベルの共通点と違い</h2>
+  <h3>共通する軸</h3><ul id="shared"></ul>
+  <h3>異なる軸</h3><ul id="different"></ul>
+  <p class="small" id="facts-disclaimer"></p>
+ </section>
+ <section class="panel" aria-labelledby="b-heading">
+  <h2 id="b-heading"><span class="tier tier-b">B｜一般研究</span>研究から慎重に言えること</h2>
+  <p id="research-summary"></p><p class="small" id="research-note"></p>
+  <h3>参考文献（要旨確認・未承認）</h3><ul id="sources"></ul>
+ </section>
+</div>
+<section class="panel" aria-labelledby="c-heading">
+ <h2 id="c-heading"><span class="tier tier-c">C｜編集仮説</span>二人の関係ストーリー</h2>
+ <h3 id="story-title"></h3><p id="story"></p>
+ <h3>すり合わせの着眼点・補完の着想（未実証）</h3><ul id="hypotheses"></ul>
+ <h3>会話のヒント（診断への追加質問ではありません）</h3><ol id="prompts"></ol>
+ <p class="small" id="story-caveat"></p>
+</section>
+<section class="panel" aria-labelledby="index-heading">
+ <h2 id="index-heading">選択したタイプと組み合わせる16タイプ</h2>
+ <p class="small">すべてのタイプを含む136組の中から、1つ目のタイプに対応する16組を閲覧できます。同タイプ同士も含みます。</p>
+ <div id="nearby"></div>
+</section>
+<footer class="small">
+ <p>4軸の相違数は「心理学的距離」や「相性の優劣」ではありません。B軸は自律・つながりが独立して成立し得るため再設計を検討中。E軸は136組に含みません。</p>
+ <p>個人の回答、履歴、外部送信、端末保存、計測、追加質問はありません。実機アクセシビリティ・研究評価・人手の最終承認は未完了です。</p>
+</footer>
+</main>
+<script type="module" src="./compatibility-editorial-preview.mjs"></script>
+</body>
+</html>
