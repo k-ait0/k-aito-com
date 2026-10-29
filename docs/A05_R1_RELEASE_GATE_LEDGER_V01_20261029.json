@@ -1,6 +1,6 @@
 {
-  "schemaVersion": "A05-R1-RELEASE-TRACKER-0.3.0",
-  "updatedAt": "2026-10-29",
+  "schemaVersion": "A05-R1-RELEASE-TRACKER-0.4.0",
+  "updatedAt": "2026-10-30",
   "timezone": "Asia/Tokyo",
   "product": "A05 R1 16-type value understanding map",
   "releaseTrack": "R1",
@@ -14,7 +14,7 @@
     "S0_6_HUMAN_FINAL_APPROVAL_AND_STOP_GATES"
   ],
   "overallReleaseStatus": "NO_GO",
-  "planningStatus": "S1_2_OF_8_EVIDENCE_PASSED",
+  "planningStatus": "S1_2_OF_8_PASS_B2_RESEARCH_PROTOTYPE_PREPARED",
   "gates": [
     {
       "id": "S0-1",
@@ -204,6 +204,13 @@
       "acceptedGateIds": [],
       "decision": "S1 v0.2 acceptance report and A/C/D candidate definitions issued; no additional gate approval",
       "scope": "DOCUMENTATION_ONLY"
+    },
+    {
+      "eventId": "S1-005",
+      "date": "2026-10-30",
+      "acceptedGateIds": [],
+      "decision": "B2 independent research draft (6 contexts x 2 items) and explicit missingness/legacy-type isolation prototyped; no owner or research authorization granted",
+      "scope": "RESEARCH_DESIGN_ONLY"
     }
   ],
   "policyGatePassed": true,
@@ -223,7 +230,8 @@
       "id": "S1-2",
       "status": "PENDING_OWNER_DECISION",
       "scope": "B1/B2/B3 theory and operational construct selection",
-      "sourceRef": "docs/A05_S1_B_AXIS_AND_TAXONOMY_MIGRATION_REVIEW_V01_20261029.md"
+      "sourceRef": "docs/A05_S1_B_AXIS_AND_TAXONOMY_MIGRATION_REVIEW_V01_20261029.md",
+      "preparedEvidence": "docs/A05_S1_B2_METHOD_AND_DECISION_PACKET_V01_20261030.md"
     },
     {
       "id": "S1-3",
@@ -253,7 +261,8 @@
       "id": "S1-7",
       "status": "DRAFT_SPEC_NOT_APPROVED",
       "scope": "16/32/8 models and migration design",
-      "sourceRef": "docs/A05_S1_B_AXIS_AND_TAXONOMY_MIGRATION_REVIEW_V01_20261029.md"
+      "sourceRef": "docs/A05_S1_B_AXIS_AND_TAXONOMY_MIGRATION_REVIEW_V01_20261029.md",
+      "preparedEvidence": "docs/A05_S1_TAXONOMY_MIGRATION_TRACE_V01_20261030.json"
     },
     {
       "id": "S1-8",
@@ -279,6 +288,25 @@
   "s1DecisionDocuments": [
     "docs/A05_S1_BASELINE_MANIFEST_V01_20261029.json",
     "docs/A05_S1_B_AXIS_AND_TAXONOMY_MIGRATION_REVIEW_V01_20261029.md",
-    "docs/A05_S1_ACD_CONSTRUCT_OPTIONS_V01_20261029.json"
-  ]
+    "docs/A05_S1_ACD_CONSTRUCT_OPTIONS_V01_20261029.json",
+    "docs/A05_S1_B2_METHOD_AND_DECISION_PACKET_V01_20261030.md",
+    "docs/A05_S1_B2_ITEM_PROTOTYPES_V01_20261030.json",
+    "docs/A05_S1_TAXONOMY_MIGRATION_TRACE_V01_20261030.json"
+  ],
+  "s1ResearchProgress": {
+    "id": "S1-005",
+    "b2IndependentCandidateContexts": 6,
+    "b2IndependentCandidateItems": 12,
+    "b2NewItemsApproved": 0,
+    "b2NativeNodeTestsRun": false,
+    "b2ActualParticipantResponses": 0,
+    "independentlyExecutedV8Assertions": 94,
+    "independentlyExecutedV8AssertionFailures": 0,
+    "source": "docs/A05_S1_B2_ITEM_PROTOTYPES_V01_20261030.json",
+    "methodReview": "docs/A05_S1_B2_METHOD_AND_DECISION_PACKET_V01_20261030.md",
+    "prototypeContract": "projects/kidp/life-design-lab/a05/b2-prototype-contract.mjs",
+    "migrationTrace": "docs/A05_S1_TAXONOMY_MIGRATION_TRACE_V01_20261030.json",
+    "modelHumanApproval": "NOT_GRANTED",
+    "releaseState": "NO_GO"
+  }
 }
