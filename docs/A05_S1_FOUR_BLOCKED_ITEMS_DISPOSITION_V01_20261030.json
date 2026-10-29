@@ -1,0 +1,168 @@
+{
+  "schema": "A05-S1-BLOCK4-ALTERNATE-DISPOSITION-0.1.0",
+  "dated": "2026-10-30",
+  "stage": "S1",
+  "status": "FOUR_BLOCKERS_STILL_BLOCKED",
+  "source": {
+    "file": "docs/A05_D73_ITEM_CONSTRUCT_CROSSWALK_20261026.json",
+    "sha": "a4a4a5210e9084b2e24f69d4fcb3cc695a2cc2dd"
+  },
+  "total": 4,
+  "rows": [
+    {
+      "id": "A04",
+      "axis": "A",
+      "sourceStatus": "BLOCK",
+      "original": {
+        "negative": "今ある生活基盤を活かす",
+        "positive": "生活基盤を作り直す"
+      },
+      "previouslyProposedAndUnapproved": {
+        "negative": "一度決めた活動計画を続ける",
+        "positive": "途中でも活動計画を見直す",
+        "source": "D59"
+      },
+      "baselineComment": "A01との重複",
+      "suggestedAlternateCopy": {
+        "negative": "生活を整えるとき、慣れた環境を活かして工夫したい",
+        "positive": "生活を整えるとき、環境の前提から新しく組み替えたい"
+      },
+      "contaminationRisks": [
+        "D軸の新しい方法の探索",
+        "A01の生活の基盤づくり"
+      ],
+      "falsifyingScenario": "同じ家で新しい学びを試したい人は、環境は安定志向で経験は探索志向",
+      "cognitiveInterviewProbe": "住まいを変えられない事情があっても、希望として回答できるか",
+      "conditionalDecisionPaths": [
+        "REWRITE_AFTER_CONSTRUCT_DEFINITION",
+        "REMOVE_IF_REDUNDANT"
+      ],
+      "recommendation": "KEEP_BLOCKED_UNTIL_MEASUREMENT_CONSTRUCT_SELECTED",
+      "ownerApproval": "PENDING",
+      "independentReview": "PENDING",
+      "sourceDraftModified": false,
+      "readyForSurvey": false,
+      "readyForR1TypeAssignment": false
+    },
+    {
+      "id": "A05",
+      "axis": "A",
+      "sourceStatus": "BLOCK",
+      "original": {
+        "negative": "一つの環境をより良く育てる",
+        "positive": "異なる環境を経験していく"
+      },
+      "previouslyProposedAndUnapproved": {
+        "negative": "予想できる変化には従来の進め方を調整する",
+        "positive": "予想できる変化を機に進め方を組み替える",
+        "source": "D59"
+      },
+      "baselineComment": "A06との差",
+      "suggestedAlternateCopy": {
+        "negative": "選択肢が増えたとき、今の生活基盤を整えて維持したい",
+        "positive": "選択肢が増えたとき、生活基盤を別の形へ変えたい"
+      },
+      "contaminationRisks": [
+        "A04とA06の再表現",
+        "本人の経済的余裕／転居可能性"
+      ],
+      "falsifyingScenario": "現在の住居を保ちながら頻繁に活動内容だけを変える人",
+      "cognitiveInterviewProbe": "『基盤を変える』が住居だけを意味しないか、A04と別の判断理由か",
+      "conditionalDecisionPaths": [
+        "REWRITE_ONLY_IF_DISTINCT_FROM_A04_A06",
+        "REMOVE_IF_REDUNDANT"
+      ],
+      "recommendation": "KEEP_BLOCKED_UNTIL_MEASUREMENT_CONSTRUCT_SELECTED",
+      "ownerApproval": "PENDING",
+      "independentReview": "PENDING",
+      "sourceDraftModified": false,
+      "readyForSurvey": false,
+      "readyForR1TypeAssignment": false
+    },
+    {
+      "id": "C04",
+      "axis": "C",
+      "sourceStatus": "BLOCK",
+      "original": {
+        "negative": "長期的な成果につながる挑戦",
+        "positive": "取り組む過程を楽しめる挑戦"
+      },
+      "previouslyProposedAndUnapproved": {
+        "negative": "同じ活動で将来得られる充実を重視する",
+        "positive": "同じ活動で今日得られる充実を重視する",
+        "source": "D57"
+      },
+      "baselineComment": "抽象度",
+      "suggestedAlternateCopy": {
+        "negative": "同じ活動を選ぶとき、将来役立つ点を重視したい",
+        "positive": "同じ活動を選ぶとき、今得られる充実を重視したい"
+      },
+      "contaminationRisks": [
+        "C01/C02/C05の言い換え",
+        "成果と過程という異なる概念"
+      ],
+      "falsifyingScenario": "今楽しく取り組めて将来にも役立つ活動を選ぶ人",
+      "cognitiveInterviewProbe": "現在・将来の魅力が両方高い場合にどう答えるか、両方の便益の規模が揃っているか",
+      "conditionalDecisionPaths": [
+        "REWRITE_IF_NEW_FACET_VALIDATED",
+        "REMOVE_IF_REDUNDANT"
+      ],
+      "recommendation": "KEEP_BLOCKED_UNTIL_MEASUREMENT_CONSTRUCT_SELECTED",
+      "ownerApproval": "PENDING",
+      "independentReview": "PENDING",
+      "sourceDraftModified": false,
+      "readyForSurvey": false,
+      "readyForR1TypeAssignment": false
+    },
+    {
+      "id": "D03",
+      "axis": "D",
+      "sourceStatus": "BLOCK",
+      "original": {
+        "negative": "未経験のことを数多く経験する",
+        "positive": "気に入った経験を繰り返し深める"
+      },
+      "previouslyProposedAndUnapproved": {
+        "negative": "複数分野の体験を試す",
+        "positive": "一分野の体験を掘り下げる",
+        "source": "D59"
+      },
+      "baselineComment": "D02との重複",
+      "suggestedAlternateCopy": {
+        "negative": "限られた余暇で、まだ知らない種類の体験を増やしたい",
+        "positive": "限られた余暇で、経験済みの活動をより深く理解したい"
+      },
+      "contaminationRisks": [
+        "D02の知識の幅・深さ",
+        "D01/D06の体験数",
+        "時間と移動の制約"
+      ],
+      "falsifyingScenario": "旅行は一か所を深く楽しむが学習分野は幅広く試す人",
+      "cognitiveInterviewProbe": "『新しい種類の体験』と『既知の体験を深める』を同程度の費用と労力で比較できるか",
+      "conditionalDecisionPaths": [
+        "REWRITE_IF_EXPERIENCE_FACET_DISTINCT",
+        "REMOVE_IF_REDUNDANT"
+      ],
+      "recommendation": "KEEP_BLOCKED_UNTIL_MEASUREMENT_CONSTRUCT_SELECTED",
+      "ownerApproval": "PENDING",
+      "independentReview": "PENDING",
+      "sourceDraftModified": false,
+      "readyForSurvey": false,
+      "readyForR1TypeAssignment": false
+    }
+  ],
+  "designPrinciple": "Do not fill a 6-item axis bank merely for numerical symmetry. If redundant or conceptually impure, retire an item and version the instrument; no automatic substitution into existing Q/S/T/C.",
+  "validationChecklist": [
+    "Choose operational construct for A/C/D before adoption",
+    "Verify alternative items are not reformulations of an existing item",
+    "Verify response target and scenario applicability across target groups",
+    "Probe high-high and low-low counterexamples; avoid forced bipolarity",
+    "Ensure zero participant collection until G1 and applicable D42 approvals",
+    "Any revised question ID or scoring semantics needs new version and owner approval"
+  ],
+  "finalOwnerDecision": "PENDING",
+  "anyBlockResolved": false,
+  "noExistingQuestionChange": true,
+  "noRealPersonStudy": true,
+  "release": "NO_GO"
+}
