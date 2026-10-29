@@ -65,7 +65,9 @@ export function reviewClaimPermission(kind, axisIds = []) {
   if (!Array.isArray(axisIds) ||
       axisIds.some(id => !EVIDENCE_AXIS_REGISTER.some(axis => axis.id === id)))
     throw new TypeError("Unknown evidence axis");
-  const editorialPreviewAllowed = previewOnly.has(kind);
+  // E is excluded from the C01 136-pair label generator; do not imply otherwise.
+  const editorialPreviewAllowed = previewOnly.has(kind) &&
+    !(kind === CLAIM_KINDS.DRAFT_LABEL_COMPARISON && axisIds.includes("E"));
   const cautions = ["A05の軸・16分類・136組は未検証です。"];
   if (axisIds.includes("B")) cautions.push(EVIDENCE_AXIS_REGISTER[1].caveat);
   if (axisIds.includes("E")) cautions.push(EVIDENCE_AXIS_REGISTER[4].caveat);
