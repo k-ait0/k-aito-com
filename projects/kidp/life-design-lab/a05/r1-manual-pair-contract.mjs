@@ -9,7 +9,7 @@ import { getCompatibilityPair, COMPATIBILITY_VERSION } from "./compatibility.mjs
 export const R1_MANUAL_PAIR_CONTRACT_VERSION = "A05-R1-S1-MANUAL-PAIR-0.1.0-unapproved";
 export const R1_SOURCE_COMPATIBILITY_VERSION = "A05-COMPAT-C01-0.1.0-editorial";
 const DISCLAIMER = "暫定的な16キャラクターの価値観ラベルを比較しています。個人の性格や二者の相性・関係の将来を判定するものではありません。";
-const B_WARNING = "B軸「自律／つながり」は研究中の編集上の対比であり、相反する心理的特性として検証されたものではありません。";
+const B_WARNING = "B軸「自律／つながり」は暫定的な編集上の対比であり、二極性は未検証です。自律と他者とのつながりは両立する可能性があります。";
 const names = new Map(TYPES.map(type => [type.id,type.name]));
 function frozenList(a) { return Object.freeze(a.map(x => Object.freeze(x))); }
 if (COMPATIBILITY_VERSION !== R1_SOURCE_COMPATIBILITY_VERSION || TYPES.length !== 16)
