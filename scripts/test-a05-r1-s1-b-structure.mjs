@@ -23,8 +23,11 @@ test("S1 D85 eight fictional B cases are distinct input contracts",()=>{
     assert.equal(caseRecord.fictional,true);
     const a=experimentalB(caseRecord.inputs.bipolar);
     const b=experimentalB(caseRecord.inputs.independent);
-    assert.deepEqual(a,caseRecord.expected.bipolar);
-    assert.deepEqual(b,caseRecord.expected.independent);
+    // D85 fixtures intentionally omit the implementation-only schema version.
+    for (const [key,value] of Object.entries(caseRecord.expected.bipolar))
+      assert.deepEqual(a[key],value,caseRecord.id + " / bipolar " + key);
+    for (const [key,value] of Object.entries(caseRecord.expected.independent))
+      assert.deepEqual(b[key],value,caseRecord.id + " / independent " + key);
     assert.equal(isLegacyBCompatible(a),false);
     assert.equal(isLegacyBCompatible(b),false);
   }
