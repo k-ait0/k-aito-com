@@ -1,5 +1,5 @@
 import { TYPES, GROUPS } from "./types.mjs";
-import { getEditorialPair, EDITORIAL_PAIRS, EDITORIAL_GENERAL_SOURCES } from "./compatibility-editorial.mjs";
+import { getEditorialPair, getSelectedPairLabels, EDITORIAL_PAIRS, EDITORIAL_GENERAL_SOURCES } from "./compatibility-editorial.mjs";
 
 const $ = id => document.getElementById(id);
 const byId = new Map(TYPES.map(type => [type.id, type]));
@@ -70,17 +70,18 @@ function renderIndex() {
 
 function render() {
   const pair = getEditorialPair(first.value, second.value);
-  chip("first-name", pair.typeIds[0]);
-  chip("second-name", pair.typeIds[1]);
+  const selectedLabels = getSelectedPairLabels(first.value, second.value);
+  chip("first-name", first.value);
+  chip("second-name", second.value);
   $("pair-status").textContent = pair.facts.sharedAxesCount + "軸のラベルが共通、" +
     pair.facts.differentAxesCount + "軸のラベルが相違します（良し悪しの評価ではありません）。";
   $("pair-meta").textContent = "組合せID " + pair.id + "／構造："+
     pair.facts.structure + "／順序を変えても同じ結果。";
   items("shared", pair.facts.shared.map(x => x.axis + "軸｜" + x.label),
     "共通する軸ラベルはありません。実際の価値観に共通点がないという意味ではありません。");
-  items("different", pair.facts.differences.map(x =>
-    x.axis + "軸｜" + pair.typeIds[0] + "「" + x.first + "」／" +
-      pair.typeIds[1] + "「" + x.second + "」"),
+  items("different", selectedLabels.differences.map(x =>
+    x.axis + "軸｜" + first.value + "「" + x.first + "」／" +
+      second.value + "「" + x.second + "」"),
     "異なる軸ラベルはありません。実際の価値観が完全一致するわけではありません。");
   $("facts-disclaimer").textContent = pair.facts.disclaimer;
   $("research-summary").textContent = pair.generalResearch.researchSummary;
