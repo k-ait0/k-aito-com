@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "A05-R1-RELEASE-TRACKER-0.6.0",
+  "schemaVersion": "A05-R1-RELEASE-TRACKER-0.7.0",
   "updatedAt": "2026-10-30",
   "timezone": "Asia/Tokyo",
   "product": "A05 R1 16-type value understanding map",
@@ -14,7 +14,7 @@
     "S0_6_HUMAN_FINAL_APPROVAL_AND_STOP_GATES"
   ],
   "overallReleaseStatus": "NO_GO",
-  "planningStatus": "S1_2_OF_8_PASS_MANUAL_R1_PAIR_BOUNDARY_PROTOTYPED",
+  "planningStatus": "S1_2_OF_8_AND_S2_PRELIMINARY_ABSTRACT_SCREENING",
   "gates": [
     {
       "id": "S0-1",
@@ -232,6 +232,13 @@
       "acceptedGateIds": [],
       "decision": "Added manual R1 draft type-only comparison contract; generated 256 ordered pair checks, 16 diagonal cases; documented 4 blocked question alternatives. S1-7 remains unapproved.",
       "scope": "ENGINEERING_EVIDENCE_ONLY"
+    },
+    {
+      "eventId": "S2-001",
+      "date": "2026-10-30",
+      "acceptedGateIds": [],
+      "decision": "Seven candidate sources cross-checked at publisher/PubMed/author abstract or text level; nonpredictive applicability matrix and 7 pending S2 gates prepared. No full-text methodological adjudication or scientific/owner approval.",
+      "scope": "PRELIMINARY_SCIENCE_SCREENING_ONLY"
     }
   ],
   "policyGatePassed": true,
@@ -326,6 +333,13 @@
       "method": "Live GitHub code V8 1,799 assertions across 256 ordered draft pairs; blocked 4 source/check 23 assertions; not native Node or independent human review",
       "status": "PREPARATORY_ONLY",
       "nativeNodeExecuted": false
+    },
+    {
+      "date": "2026-10-30",
+      "event": "S2-001",
+      "method": "GitHub original candidate and new source register V8 evidence claim firewall: 92 assertions / 0 discrepancies",
+      "nativeNodeExecuted": false,
+      "status": "STRUCTURAL_RESEARCH_PREPARATION_ONLY"
     }
   ],
   "s1AcceptanceDocument": "docs/A05_S1_CONSTRUCT_CRITICAL_REVIEW_AND_DECISION_V04_20261030.md",
@@ -395,5 +409,24 @@
     "blockedSourceAuditErrors": 0,
     "s1MigrationReview": "docs/A05_S1_MANUAL_PAIR_MIGRATION_ACCEPTANCE_V01_20261030.md",
     "s1MigrationHumanApproved": false
+  },
+  "s2EvidenceProgress": {
+    "id": "S2-001",
+    "screeningProtocol": "docs/A05_S2_CLAIM_SCOPE_AND_SEVEN_GATES_V01_20261030.md",
+    "sourceRegistry": "docs/A05_S2_SEVEN_STUDY_ABSTRACT_SCREENING_V01_20261030.json",
+    "sourceScreenedAbstractOrPublisherText": 7,
+    "sourceOriginalCandidateCount": 7,
+    "sourcesIndependentlyHumanApproved": 0,
+    "sourceFullTextMethodologicallyReviewed": 0,
+    "sourceClaimsApprovedForPublication": 0,
+    "s2AcceptedGates": 0,
+    "s2TotalGates": 7,
+    "automatedCodeFirewallV8Assertions": 92,
+    "automatedCodeFirewallV8Failures": 0,
+    "nativeNodeExecuted": false,
+    "independentScientificReviewConducted": false,
+    "individualPairValidationStudies": 0,
+    "authorizedRelationshipQualityPrediction": false,
+    "productionStatus": "NO_GO"
   }
 }
