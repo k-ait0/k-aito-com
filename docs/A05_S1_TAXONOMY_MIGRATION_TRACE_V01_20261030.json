@@ -1,0 +1,129 @@
+{
+  "schema": "A05-S1-LEGACY-TYPE-MIGRATION-TRACE-0.1.0",
+  "date": "2026-10-30",
+  "status": "CANDIDATE_CONTRACT_NOT_APPROVED",
+  "ownerApproval": "PENDING",
+  "productionRelease": "NO_GO",
+  "legacy": {
+    "question": "A05-Q-1.0.0-draft",
+    "scoring": "A05-S-1.0.0-draft",
+    "types": "A05-T-1.0.0-draft",
+    "content": "A05-C-1.0.0-draft",
+    "pairModule": "A05-COMPAT-C01-0.1.0-editorial",
+    "questionCount": 30,
+    "typeCount": 16,
+    "unorderedPairs": 136,
+    "r1Meaning": "DRAFT_EDITORIAL_CHARACTER_NOT_PERSONALITY_MEASUREMENT",
+    "frozenBaseline": "docs/A05_S1_BASELINE_MANIFEST_V01_20261029.json"
+  },
+  "branches": [
+    {
+      "id": "A",
+      "name": "Legacy draft R1 characters retained without auto classification",
+      "treatment": "Keep 16 editorial character IDs and 136 unordered explanation records as *fictional comparison material* only. B1 labels must be explicitly provisional until S1 axis decision.",
+      "autoAssignUsers": false,
+      "legacyScoreCompatible": false,
+      "publicReleaseApproved": false,
+      "copyReworkNeeded": true
+    },
+    {
+      "id": "B",
+      "name": "Research B2 independent continuous scales",
+      "treatment": "New measured-data model would have independent self/others ratings and missingness; there is NO one-to-one conversion from legacy B bit or T01-T16.",
+      "autoAssignUsers": false,
+      "legacyScoreCompatible": false,
+      "publicReleaseApproved": false,
+      "newTypeCount": null,
+      "requiresResearchAuthorization": true
+    },
+    {
+      "id": "C",
+      "name": "Later redesigned taxonomy",
+      "treatment": "If construct research supports a new model, issue NEW question/scoring/type/content versions and distinct namespace. Do not rewrite old snapshots, existing 136 pairs or original RGBY semantic labels.",
+      "autoAssignUsers": false,
+      "legacyScoreCompatible": false,
+      "publicReleaseApproved": false,
+      "newTypeCount": null,
+      "requiresOwnerFinalDecision": true
+    },
+    {
+      "id": "D",
+      "name": "Classification withheld",
+      "treatment": "If validity insufficient, R1 may present a non-diagnostic editorial map only if it passes S7 user comprehension testing; a trait classification should be omitted.",
+      "autoAssignUsers": false,
+      "legacyScoreCompatible": false,
+      "publicReleaseApproved": false
+    }
+  ],
+  "invariantChecks": [
+    "M-01 legacy Q/S/T/C versions and stored snapshot meaning unchanged",
+    "M-02 B2 and B1 scores are not interchangeable and no B2-to-legacy-B-bit conversion exists",
+    "M-03 T01-T16 are never assigned to a real person by a B2 prototype",
+    "M-04 provisional 16 characters and 136 unordered narrative pairs remain separate from any future measured dimensions",
+    "M-05 32 or 8 classifications are mathematical hypotheses not approved psychological types",
+    "M-06 all explanatory graphics and pair descriptions carry non-predictive, non-validated labels",
+    "M-07 all human data collection requires explicit G1 and applicable D42 signoff"
+  ],
+  "downstreamImpacts": [
+    {
+      "step": "S3",
+      "affected": "136-pair source data, ID semantics, source manifest",
+      "hold": "Do not finalize until S1 signoff"
+    },
+    {
+      "step": "S4",
+      "affected": "same-type and cross-type stories, identity labels, compatibility connotations",
+      "hold": "All 136 require explicit human review"
+    },
+    {
+      "step": "S5",
+      "affected": "16x16 map, legend, RGBY group labels and link from diagnosis",
+      "hold": "No positive/negative affinity heatmap; no diagnosis auto linkage"
+    },
+    {
+      "step": "S6",
+      "affected": "no network, local storage, accidental prediction inference, old data mutation",
+      "hold": "Native browser and Node regression required"
+    },
+    {
+      "step": "S7",
+      "affected": "potentially misleading self-identification with unvalidated type",
+      "hold": "Comprehension test required before release"
+    }
+  ],
+  "syntheticProofPoints": [
+    {
+      "id": "BOTH_HIGH",
+      "b2": {
+        "self": 7,
+        "others": 7
+      },
+      "legacyB": "NOT_DERIVABLE",
+      "typeId": null
+    },
+    {
+      "id": "BOTH_LOW",
+      "b2": {
+        "self": 1,
+        "others": 1
+      },
+      "legacyB": "NOT_DERIVABLE",
+      "typeId": null
+    },
+    {
+      "id": "NO_OTHERS_CONTEXT",
+      "b2": {
+        "self": 7,
+        "others": null
+      },
+      "legacyB": "NOT_DERIVABLE",
+      "typeId": null
+    }
+  ],
+  "sources": [
+    "docs/A05_D86_TYPE_STRUCTURE_DECISION_20261026.json",
+    "docs/A05_S1_B_AXIS_AND_TAXONOMY_MIGRATION_REVIEW_V01_20261029.md",
+    "docs/A05_S1_B2_ITEM_PROTOTYPES_V01_20261030.json",
+    "projects/kidp/life-design-lab/a05/b2-prototype-contract.mjs"
+  ]
+}
