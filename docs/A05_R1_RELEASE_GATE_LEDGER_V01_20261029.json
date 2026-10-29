@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "A05-R1-RELEASE-TRACKER-0.4.0",
+  "schemaVersion": "A05-R1-RELEASE-TRACKER-0.5.0",
   "updatedAt": "2026-10-30",
   "timezone": "Asia/Tokyo",
   "product": "A05 R1 16-type value understanding map",
@@ -14,7 +14,7 @@
     "S0_6_HUMAN_FINAL_APPROVAL_AND_STOP_GATES"
   ],
   "overallReleaseStatus": "NO_GO",
-  "planningStatus": "S1_2_OF_8_PASS_B2_RESEARCH_PROTOTYPE_PREPARED",
+  "planningStatus": "S1_2_OF_8_PASS_B2_AND_ACD_EDITORIAL_AUDITED",
   "gates": [
     {
       "id": "S0-1",
@@ -218,6 +218,13 @@
       "acceptedGateIds": [],
       "decision": "v0.3 acceptance-status report issued; no new gate acceptance",
       "scope": "DOCUMENTATION_ONLY"
+    },
+    {
+      "eventId": "S1-007",
+      "date": "2026-10-30",
+      "acceptedGateIds": [],
+      "decision": "12 B2 candidate items critically assessed in six paired contexts (all 6 flagged); 18 old A/C/D items audited with prior BLOCK4 REVISE7 TRIAL7 intact; no new scientific or product approvals",
+      "scope": "EDITORIAL_REVIEW_NOT_GATE_PASS"
     }
   ],
   "policyGatePassed": true,
@@ -238,22 +245,26 @@
       "status": "PENDING_OWNER_DECISION",
       "scope": "B1/B2/B3 theory and operational construct selection",
       "sourceRef": "docs/A05_S1_B_AXIS_AND_TAXONOMY_MIGRATION_REVIEW_V01_20261029.md",
-      "preparedEvidence": "docs/A05_S1_B2_METHOD_AND_DECISION_PACKET_V01_20261030.md"
+      "preparedEvidence": "docs/A05_S1_B2_METHOD_AND_DECISION_PACKET_V01_20261030.md",
+      "preliminaryEditorialAuditEvidence": "docs/A05_S1_B2_12ITEM_CRITICAL_AUDIT_V01_20261030.json"
     },
     {
       "id": "S1-3",
       "status": "PENDING_OWNER_DECISION",
-      "scope": "A-axis operational definition"
+      "scope": "A-axis operational definition",
+      "preliminaryEditorialAuditEvidence": "docs/A05_S1_ACD_18ITEM_CROSS_AXIS_AUDIT_V01_20261030.json"
     },
     {
       "id": "S1-4",
       "status": "PENDING_OWNER_DECISION",
-      "scope": "C-axis operational definition"
+      "scope": "C-axis operational definition",
+      "preliminaryEditorialAuditEvidence": "docs/A05_S1_ACD_18ITEM_CROSS_AXIS_AUDIT_V01_20261030.json"
     },
     {
       "id": "S1-5",
       "status": "PENDING_OWNER_DECISION",
-      "scope": "D-axis operational definition"
+      "scope": "D-axis operational definition",
+      "preliminaryEditorialAuditEvidence": "docs/A05_S1_ACD_18ITEM_CROSS_AXIS_AUDIT_V01_20261030.json"
     },
     {
       "id": "S1-6",
@@ -289,9 +300,16 @@
       "nativeNodeExecuted": false,
       "browserExecuted": false,
       "scientificOrOwnerApproval": false
+    },
+    {
+      "date": "2026-10-30",
+      "event": "S1-007",
+      "method": "GitHub connector refetch; 155 structural source/audit assertions, 0 discrepancies",
+      "status": "PREPARATORY_ONLY",
+      "nativeNodeExecuted": false
     }
   ],
-  "s1AcceptanceDocument": "docs/A05_S1_AXES_CONSTRUCT_AND_MODEL_ACCEPTANCE_V03_20261030.md",
+  "s1AcceptanceDocument": "docs/A05_S1_CONSTRUCT_CRITICAL_REVIEW_AND_DECISION_V04_20261030.md",
   "s1DecisionDocuments": [
     "docs/A05_S1_BASELINE_MANIFEST_V01_20261029.json",
     "docs/A05_S1_B_AXIS_AND_TAXONOMY_MIGRATION_REVIEW_V01_20261029.md",
@@ -314,6 +332,26 @@
     "prototypeContract": "projects/kidp/life-design-lab/a05/b2-prototype-contract.mjs",
     "migrationTrace": "docs/A05_S1_TAXONOMY_MIGRATION_TRACE_V01_20261030.json",
     "modelHumanApproval": "NOT_GRANTED",
-    "releaseState": "NO_GO"
+    "releaseState": "NO_GO",
+    "b2OriginalItemPairsEditoriallyAudited": 6,
+    "b2OriginalItemsEditoriallyAudited": 12,
+    "b2PairsFlaggedForRevision": 6,
+    "b2RevisedItemsHumanApproved": 0,
+    "originalACDItemsEditoriallyAudited": 18,
+    "originalACDStatusCounts": {
+      "BLOCK": 4,
+      "REVISE": 7,
+      "TRIAL": 7
+    },
+    "originalACDItemsApproved": 0,
+    "editorialAuditEvidence": [
+      "docs/A05_S1_B2_12ITEM_CRITICAL_AUDIT_V01_20261030.json",
+      "docs/A05_S1_ACD_18ITEM_CROSS_AXIS_AUDIT_V01_20261030.json"
+    ],
+    "sourceReconciliationChecks": 155,
+    "sourceReconciliationFailures": 0,
+    "sourceReconciliationMode": "GITHUB_SOURCE_STRUCTURAL_CHECK_NOT_NATIVE_NODE",
+    "independentHumanReviewPerformed": false,
+    "scientificValidityEstablished": false
   }
 }
