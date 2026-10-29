@@ -1,0 +1,319 @@
+{
+  "schema": "A05-R1-S4-P0-16-SAMETYPE-DRAFT-0.1.0",
+  "date": "2026-10-30",
+  "state": "EDITORIAL_CANDIDATES_NOT_REVIEWED_OR_APPROVED",
+  "source": "projects/kidp/life-design-lab/a05/types.mjs",
+  "applicability": "Two MANUALLY selected draft characters of same T-ID, NOT inferred personalities",
+  "doNotInfer": [
+    "same-type match is good",
+    "same-type match is bad",
+    "a concrete person's values follow from their chosen draft label",
+    "these prompts predict a couple's outcome"
+  ],
+  "reviewOrder": "P0_SAME_TYPE",
+  "counts": {
+    "draftRecords": 16,
+    "firstHumanReviewed": 0,
+    "independentSecondReviewed": 0,
+    "publishable": 0
+  },
+  "issue": "Original C03 16 same-type pairs contain zero difference-axis hypotheses; these draft notes ask for concrete contextual differences without asserting an outcome",
+  "items": [
+    {
+      "pairId": "T01-T01",
+      "typeId": "T01",
+      "typeName": "着実な開拓者",
+      "draftNotice": "同じキャラクター設定でも、本人たちの実際の価値観や行動が一致するとは限りません。",
+      "neutralDraft": "同じく落ち着いた基盤から新しいことを探す設定でも、挑戦する領域や許容する負担は違う場合があります。",
+      "dialogueQuestions": [
+        "新しい取り組みを選ぶとき、生活の何を維持したいですか。",
+        "それぞれが将来の選択肢として重視するものは何ですか。"
+      ],
+      "interpretation": "C_EDITED_HYPOTHESIS_NOT_PERSONAL_PREDICTION",
+      "directEmpiricalSupport": false,
+      "firstHumanReview": "PENDING",
+      "secondIndependentReview": "PENDING",
+      "copyApproved": false,
+      "researchApproved": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T02-T02",
+      "typeId": "T02",
+      "typeName": "静かな探究者",
+      "draftNotice": "同じキャラクター設定でも、本人たちの実際の価値観や行動が一致するとは限りません。",
+      "neutralDraft": "同じく長期的に一つを深める設定でも、関心の対象や一人で考えたい時間は一致するとは限りません。",
+      "dialogueQuestions": [
+        "深く取り組みたいテーマを、それぞれ具体的に説明できますか。",
+        "相談したい場面と、自分で決めたい場面は同じですか。"
+      ],
+      "interpretation": "C_EDITED_HYPOTHESIS_NOT_PERSONAL_PREDICTION",
+      "directEmpiricalSupport": false,
+      "firstHumanReview": "PENDING",
+      "secondIndependentReview": "PENDING",
+      "copyApproved": false,
+      "researchApproved": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T03-T03",
+      "typeId": "T03",
+      "typeName": "マイペースな発見家",
+      "draftNotice": "同じキャラクター設定でも、本人たちの実際の価値観や行動が一致するとは限りません。",
+      "neutralDraft": "同じく日々の暮らしで多様な経験を楽しむ設定でも、心地よい変化の頻度や内容は異なるかもしれません。",
+      "dialogueQuestions": [
+        "新しい経験に割ける時間や費用をどう考えていますか。",
+        "安心できる日常の条件はそれぞれ何ですか。"
+      ],
+      "interpretation": "C_EDITED_HYPOTHESIS_NOT_PERSONAL_PREDICTION",
+      "directEmpiricalSupport": false,
+      "firstHumanReview": "PENDING",
+      "secondIndependentReview": "PENDING",
+      "copyApproved": false,
+      "researchApproved": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T04-T04",
+      "typeId": "T04",
+      "typeName": "暮らしの職人",
+      "draftNotice": "同じキャラクター設定でも、本人たちの実際の価値観や行動が一致するとは限りません。",
+      "neutralDraft": "同じく好きなことを丁寧に続ける設定でも、習慣の優先順位や譲りたくない条件は異なる場合があります。",
+      "dialogueQuestions": [
+        "今の生活で特に大切にしている習慣は何ですか。",
+        "同じ習慣について意見が違った場合、何を確かめたいですか。"
+      ],
+      "interpretation": "C_EDITED_HYPOTHESIS_NOT_PERSONAL_PREDICTION",
+      "directEmpiricalSupport": false,
+      "firstHumanReview": "PENDING",
+      "secondIndependentReview": "PENDING",
+      "copyApproved": false,
+      "researchApproved": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T05-T05",
+      "typeId": "T05",
+      "typeName": "未来を育む案内人",
+      "draftNotice": "同じキャラクター設定でも、本人たちの実際の価値観や行動が一致するとは限りません。",
+      "neutralDraft": "同じく関係者との将来の可能性を重視する設定でも、共有したい目標や協力する範囲は異なり得ます。",
+      "dialogueQuestions": [
+        "共同で考えたい将来の目標は具体的に何ですか。",
+        "個人で決めてよい範囲をどう考えていますか。"
+      ],
+      "interpretation": "C_EDITED_HYPOTHESIS_NOT_PERSONAL_PREDICTION",
+      "directEmpiricalSupport": false,
+      "firstHumanReview": "PENDING",
+      "secondIndependentReview": "PENDING",
+      "copyApproved": false,
+      "researchApproved": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T06-T06",
+      "typeId": "T06",
+      "typeName": "絆を育てる設計者",
+      "draftNotice": "同じキャラクター設定でも、本人たちの実際の価値観や行動が一致するとは限りません。",
+      "neutralDraft": "同じく信頼関係と長期計画を重視する設定でも、信頼の確かめ方や将来の時間軸は一様ではありません。",
+      "dialogueQuestions": [
+        "信頼できると感じる具体的な行動は何ですか。",
+        "長期的な計画を変更するとき、どのように話し合いたいですか。"
+      ],
+      "interpretation": "C_EDITED_HYPOTHESIS_NOT_PERSONAL_PREDICTION",
+      "directEmpiricalSupport": false,
+      "firstHumanReview": "PENDING",
+      "secondIndependentReview": "PENDING",
+      "copyApproved": false,
+      "researchApproved": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T07-T07",
+      "typeId": "T07",
+      "typeName": "日常の発見家",
+      "draftNotice": "同じキャラクター設定でも、本人たちの実際の価値観や行動が一致するとは限りません。",
+      "neutralDraft": "同じく身近な人との日々の発見を重視する設定でも、交流の頻度や一緒にしたい活動は人によって異なります。",
+      "dialogueQuestions": [
+        "一緒に楽しみたい活動と、一人で楽しみたい活動は何ですか。",
+        "予定が合わないとき、何を大切にしたいですか。"
+      ],
+      "interpretation": "C_EDITED_HYPOTHESIS_NOT_PERSONAL_PREDICTION",
+      "directEmpiricalSupport": false,
+      "firstHumanReview": "PENDING",
+      "secondIndependentReview": "PENDING",
+      "copyApproved": false,
+      "researchApproved": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T08-T08",
+      "typeId": "T08",
+      "typeName": "穏やかな愛好家",
+      "draftNotice": "同じキャラクター設定でも、本人たちの実際の価値観や行動が一致するとは限りません。",
+      "neutralDraft": "同じく親しい人と日常を大切にする設定でも、親密さの表し方や自分の時間の必要性は一致しないことがあります。",
+      "dialogueQuestions": [
+        "心地よい距離感をどんな場面で感じますか。",
+        "今の習慣を守ることと変更することの境界はどこですか。"
+      ],
+      "interpretation": "C_EDITED_HYPOTHESIS_NOT_PERSONAL_PREDICTION",
+      "directEmpiricalSupport": false,
+      "firstHumanReview": "PENDING",
+      "secondIndependentReview": "PENDING",
+      "copyApproved": false,
+      "researchApproved": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T09-T09",
+      "typeId": "T09",
+      "typeName": "未来のフロンティア",
+      "draftNotice": "同じキャラクター設定でも、本人たちの実際の価値観や行動が一致するとは限りません。",
+      "neutralDraft": "同じく新しい環境に挑む設定でも、変更する速度や備えたいリスクは同一とは限りません。",
+      "dialogueQuestions": [
+        "新たな挑戦の前に確認したい条件は何ですか。",
+        "将来のために維持しておきたい基盤は何ですか。"
+      ],
+      "interpretation": "C_EDITED_HYPOTHESIS_NOT_PERSONAL_PREDICTION",
+      "directEmpiricalSupport": false,
+      "firstHumanReview": "PENDING",
+      "secondIndependentReview": "PENDING",
+      "copyApproved": false,
+      "researchApproved": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T10-T10",
+      "typeId": "T10",
+      "typeName": "変革の探究者",
+      "draftNotice": "同じキャラクター設定でも、本人たちの実際の価値観や行動が一致するとは限りません。",
+      "neutralDraft": "同じく変化を取り入れながら一つの理想を深める設定でも、変える対象や集中するテーマは異なります。",
+      "dialogueQuestions": [
+        "今変えたいことと、維持したいことを分けて話せますか。",
+        "深めたい理想や活動の優先順位は同じですか。"
+      ],
+      "interpretation": "C_EDITED_HYPOTHESIS_NOT_PERSONAL_PREDICTION",
+      "directEmpiricalSupport": false,
+      "firstHumanReview": "PENDING",
+      "secondIndependentReview": "PENDING",
+      "copyApproved": false,
+      "researchApproved": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T11-T11",
+      "typeId": "T11",
+      "typeName": "自由な冒険者",
+      "draftNotice": "同じキャラクター設定でも、本人たちの実際の価値観や行動が一致するとは限りません。",
+      "neutralDraft": "同じく自分の意思と新しい経験を重視する設定でも、予定を立てる程度や挑戦の幅は人ごとに異なります。",
+      "dialogueQuestions": [
+        "即興で決めたいことと事前に決めたいことは何ですか。",
+        "別々に挑戦したい活動についてどう考えていますか。"
+      ],
+      "interpretation": "C_EDITED_HYPOTHESIS_NOT_PERSONAL_PREDICTION",
+      "directEmpiricalSupport": false,
+      "firstHumanReview": "PENDING",
+      "secondIndependentReview": "PENDING",
+      "copyApproved": false,
+      "researchApproved": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T12-T12",
+      "typeId": "T12",
+      "typeName": "自由な求道者",
+      "draftNotice": "同じキャラクター設定でも、本人たちの実際の価値観や行動が一致するとは限りません。",
+      "neutralDraft": "同じく自由さと一つの対象を深める設定でも、活動への集中時間や周囲への相談の必要度は異なり得ます。",
+      "dialogueQuestions": [
+        "集中できる環境に必要な条件は何ですか。",
+        "活動の進め方を変える場面をどう見極めますか。"
+      ],
+      "interpretation": "C_EDITED_HYPOTHESIS_NOT_PERSONAL_PREDICTION",
+      "directEmpiricalSupport": false,
+      "firstHumanReview": "PENDING",
+      "secondIndependentReview": "PENDING",
+      "copyApproved": false,
+      "researchApproved": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T13-T13",
+      "typeId": "T13",
+      "typeName": "共創する開拓者",
+      "draftNotice": "同じキャラクター設定でも、本人たちの実際の価値観や行動が一致するとは限りません。",
+      "neutralDraft": "同じく人と新しい未来をつくる設定でも、参加してほしい人や意思決定の進め方は異なる場合があります。",
+      "dialogueQuestions": [
+        "一緒に進める目標と個人で決める目標をどう分けますか。",
+        "新しい提案への賛否が異なるとき、まず何を確認しますか。"
+      ],
+      "interpretation": "C_EDITED_HYPOTHESIS_NOT_PERSONAL_PREDICTION",
+      "directEmpiricalSupport": false,
+      "firstHumanReview": "PENDING",
+      "secondIndependentReview": "PENDING",
+      "copyApproved": false,
+      "researchApproved": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T14-T14",
+      "typeId": "T14",
+      "typeName": "理想を育てる共創者",
+      "draftNotice": "同じキャラクター設定でも、本人たちの実際の価値観や行動が一致するとは限りません。",
+      "neutralDraft": "同じく仲間と長期的な理想を形にする設定でも、役割分担や理想の実現順序は一致しないことがあります。",
+      "dialogueQuestions": [
+        "互いの得意分野や役割をどのように決めたいですか。",
+        "長期目標の途中で意見が変わった場合、何を話し合いますか。"
+      ],
+      "interpretation": "C_EDITED_HYPOTHESIS_NOT_PERSONAL_PREDICTION",
+      "directEmpiricalSupport": false,
+      "firstHumanReview": "PENDING",
+      "secondIndependentReview": "PENDING",
+      "copyApproved": false,
+      "researchApproved": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T15-T15",
+      "typeId": "T15",
+      "typeName": "出会いを楽しむ旅人",
+      "draftNotice": "同じキャラクター設定でも、本人たちの実際の価値観や行動が一致するとは限りません。",
+      "neutralDraft": "同じく新しい出会いと経験を楽しむ設定でも、交流の頻度や新しい場への参加意欲は場面で異なり得ます。",
+      "dialogueQuestions": [
+        "どのような交流の場に心地よさを感じますか。",
+        "一緒の行動と別々の行動をどう区別したいですか。"
+      ],
+      "interpretation": "C_EDITED_HYPOTHESIS_NOT_PERSONAL_PREDICTION",
+      "directEmpiricalSupport": false,
+      "firstHumanReview": "PENDING",
+      "secondIndependentReview": "PENDING",
+      "copyApproved": false,
+      "researchApproved": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T16-T16",
+      "typeId": "T16",
+      "typeName": "情熱を分かち合う人",
+      "draftNotice": "同じキャラクター設定でも、本人たちの実際の価値観や行動が一致するとは限りません。",
+      "neutralDraft": "同じく大切な活動を人と分かち合う設定でも、活動の熱量や共有したい範囲は必ずしも一致しません。",
+      "dialogueQuestions": [
+        "何を共有できると嬉しく、何は個人の楽しみにしたいですか。",
+        "熱量の違いがあるとき、互いに確認したい条件は何ですか。"
+      ],
+      "interpretation": "C_EDITED_HYPOTHESIS_NOT_PERSONAL_PREDICTION",
+      "directEmpiricalSupport": false,
+      "firstHumanReview": "PENDING",
+      "secondIndependentReview": "PENDING",
+      "copyApproved": false,
+      "researchApproved": false,
+      "publicationApproved": false
+    }
+  ],
+  "blockers": [
+    "S1 taxonomy unapproved",
+    "S2 general science not direct pair evidence",
+    "human qualitative review 0/16",
+    "no reference v1.0 reconciliation",
+    "S7 misinterpretation study missing"
+  ],
+  "release": "NO_GO"
+}
