@@ -211,6 +211,13 @@
       "acceptedGateIds": [],
       "decision": "B2 independent research draft (6 contexts x 2 items) and explicit missingness/legacy-type isolation prototyped; no owner or research authorization granted",
       "scope": "RESEARCH_DESIGN_ONLY"
+    },
+    {
+      "eventId": "S1-006",
+      "date": "2026-10-30",
+      "acceptedGateIds": [],
+      "decision": "v0.3 acceptance-status report issued; no new gate acceptance",
+      "scope": "DOCUMENTATION_ONLY"
     }
   ],
   "policyGatePassed": true,
@@ -284,7 +291,7 @@
       "scientificOrOwnerApproval": false
     }
   ],
-  "s1AcceptanceDocument": "docs/A05_S1_AXES_CONSTRUCT_AND_MODEL_ACCEPTANCE_V02_20261029.md",
+  "s1AcceptanceDocument": "docs/A05_S1_AXES_CONSTRUCT_AND_MODEL_ACCEPTANCE_V03_20261030.md",
   "s1DecisionDocuments": [
     "docs/A05_S1_BASELINE_MANIFEST_V01_20261029.json",
     "docs/A05_S1_B_AXIS_AND_TAXONOMY_MIGRATION_REVIEW_V01_20261029.md",
