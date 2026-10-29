@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "A05-R1-RELEASE-TRACKER-0.2.0",
+  "schemaVersion": "A05-R1-RELEASE-TRACKER-0.3.0",
   "updatedAt": "2026-10-29",
   "timezone": "Asia/Tokyo",
   "product": "A05 R1 16-type value understanding map",
@@ -14,7 +14,7 @@
     "S0_6_HUMAN_FINAL_APPROVAL_AND_STOP_GATES"
   ],
   "overallReleaseStatus": "NO_GO",
-  "planningStatus": "S0_POLICY_PASSED_S1_SCOPING",
+  "planningStatus": "S1_2_OF_8_EVIDENCE_PASSED",
   "gates": [
     {
       "id": "S0-1",
@@ -90,8 +90,8 @@
     {
       "stage": "S1",
       "goalCount": 8,
-      "acceptedCount": 0,
-      "status": "SCOPING_NOT_ACCEPTED"
+      "acceptedCount": 2,
+      "status": "IN_PROGRESS"
     },
     {
       "stage": "S2",
@@ -187,9 +187,85 @@
       ],
       "decision": "User approved specific proposed name, manually selected non-stored input and review/stop governance",
       "scope": "POLICY_ONLY"
+    },
+    {
+      "eventId": "S1-003",
+      "date": "2026-10-29",
+      "acceptedGateIds": [
+        "S1-1",
+        "S1-6"
+      ],
+      "decision": "Technical evidence accepted for baseline/source freeze and E-exclusion research hold; B taxonomy remains pending",
+      "scope": "STATIC_EVIDENCE_ONLY"
     }
   ],
   "policyGatePassed": true,
   "implementationValidationPassed": false,
-  "releaseDecisionGranted": false
+  "releaseDecisionGranted": false,
+  "axisGateChecks": [
+    {
+      "id": "S1-1",
+      "status": "EVIDENCE_VERIFIED",
+      "scope": "9 Git blob SHA, five source versions, 16 type names/4 profiles, 136 pairing rules, 30 item status review",
+      "sourceRef": "docs/A05_S1_BASELINE_MANIFEST_V01_20261029.json",
+      "reviewMethod": "GitHub source structural audit (36 checks, 0 issues)",
+      "scientificValidation": false,
+      "ownerFinalTaxonomyApproval": false
+    },
+    {
+      "id": "S1-2",
+      "status": "PENDING_OWNER_DECISION",
+      "scope": "B1/B2/B3 theory and operational construct selection",
+      "sourceRef": "docs/A05_S1_B_AXIS_AND_TAXONOMY_MIGRATION_REVIEW_V01_20261029.md"
+    },
+    {
+      "id": "S1-3",
+      "status": "PENDING_OWNER_DECISION",
+      "scope": "A-axis operational definition"
+    },
+    {
+      "id": "S1-4",
+      "status": "PENDING_OWNER_DECISION",
+      "scope": "C-axis operational definition"
+    },
+    {
+      "id": "S1-5",
+      "status": "PENDING_OWNER_DECISION",
+      "scope": "D-axis operational definition"
+    },
+    {
+      "id": "S1-6",
+      "status": "EVIDENCE_VERIFIED",
+      "scope": "E excluded from 16/136; six E questions retained in draft but blocked from adoption; 7/13/10 statuses and G1/D42 holds",
+      "sourceRef": "docs/A05_S1_BASELINE_MANIFEST_V01_20261029.json",
+      "reviewMethod": "GitHub source structural audit (36 checks, 0 issues)",
+      "researchApproval": false,
+      "ownerFinalTaxonomyApproval": false
+    },
+    {
+      "id": "S1-7",
+      "status": "DRAFT_SPEC_NOT_APPROVED",
+      "scope": "16/32/8 models and migration design",
+      "sourceRef": "docs/A05_S1_B_AXIS_AND_TAXONOMY_MIGRATION_REVIEW_V01_20261029.md"
+    },
+    {
+      "id": "S1-8",
+      "status": "INDEPENDENT_HUMAN_REVIEW_PENDING",
+      "scope": "Independent review and explicit final S1 owner decision"
+    }
+  ],
+  "qualityEvents": [
+    {
+      "date": "2026-10-29",
+      "event": "S1-003",
+      "method": "Repository sources fetched via GitHub connector, static 36 invariant checks passed without issue",
+      "s1TechnicalAccepted": [
+        "S1-1",
+        "S1-6"
+      ],
+      "nativeNodeExecuted": false,
+      "browserExecuted": false,
+      "scientificOrOwnerApproval": false
+    }
+  ]
 }
