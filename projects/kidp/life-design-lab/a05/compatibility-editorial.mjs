@@ -113,5 +113,25 @@ export function getEditorialPair(typeIdA, typeIdB) {
   return pairById.get(pair.id);
 }
 
+/**
+ * Keep canonical pair IDs order-independent, but orient displayed axis labels
+ * to the viewer's two select controls. This does not mutate pair facts.
+ */
+export function getSelectedPairLabels(typeIdA, typeIdB) {
+  const pair = getEditorialPair(typeIdA, typeIdB);
+  const reversed = pair.typeIds[0] !== typeIdA;
+  return Object.freeze({
+    pairId: pair.id,
+    selectedTypeIds: Object.freeze([typeIdA, typeIdB]),
+    reversed,
+    shared: pair.facts.shared,
+    differences: Object.freeze(pair.facts.differences.map(x => Object.freeze({
+      axis: x.axis,
+      first: reversed ? x.second : x.first,
+      second: reversed ? x.first : x.second
+    })))
+  });
+}
+
 /** Displayable B-layer sources are only abstract-checked, not A05-approved. */
 export const EDITORIAL_GENERAL_SOURCES = generalSources;
