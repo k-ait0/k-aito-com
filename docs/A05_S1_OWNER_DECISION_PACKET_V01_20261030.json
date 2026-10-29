@@ -1,0 +1,194 @@
+{
+  "schemaVersion": "A05-S1-OWNER-DECISION-PACKET-0.1.0",
+  "preparedOn": "2026-10-30",
+  "intent": "Turn already approved R1-first/B2 research-first policy into specific conditional human decisions without treating drafting as validation",
+  "approvalStatus": "DRAFT_FOR_OWNER_SIGNOFF",
+  "ownerSignoff": null,
+  "independentScienceReview": "NOT_PERFORMED",
+  "individualParticipantResearch": "NOT_AUTHORIZED",
+  "technicalR1SafetyReview": "PARTIAL_SYNTHETIC_ONLY",
+  "publication": "NO_GO",
+  "basis": {
+    "approved": [
+      "R1_GENERAL_MUTUAL_UNDERSTANDING_FIRST",
+      "B2_RESEARCH_PRIORITY",
+      "NO_AUTO_DIAGNOSTIC_TYPE_LINK",
+      "MANUAL_CHARACTER_COMPARISON_ONLY",
+      "NO_MATCH_SCORE_OR_PREDICTION"
+    ],
+    "unapproved": [
+      "B2_P_MEASUREMENT_CONSTRUCT",
+      "B2_SDT_MEASUREMENT_CONSTRUCT",
+      "A_C_D_OPERATIONAL_DEFINITIONS",
+      "LEGACY16_MIGRATION_DECISION",
+      "HUMAN_INDEPENDENT_REVIEW"
+    ],
+    "legacy16": "EDITORIAL_FICTIONAL_CHARACTERS_NOT_ESTABLISHED_PSYCHOMETRIC_TYPES"
+  },
+  "decisions": [
+    {
+      "gate": "S1-2",
+      "subject": "B research construct",
+      "recommendation": "B2_P_PRIORITIES_AS_A_RESEARCH_HYPOTHESIS",
+      "ownerChoice": null,
+      "reason": "A05 aims to compare how people think about life choices; measuring SDT psychological need satisfaction would change the question and should be a separate study",
+      "scientificallyEstablished": false,
+      "neededEvidence": [
+        "Construct domain: whose preferences, which decisions, when/no others involved",
+        "Independent content validity review and target-population comprehension",
+        "Assess social desirability, dual high/low responding and 12-item burden",
+        "Research authorization G1 and applicable D42 before collecting real answers"
+      ],
+      "alternativeOptions": [
+        "B2_SDT_AS_SEPARATE_RESEARCH_NOT_LEGACY_TRANSFER",
+        "B3_CLASSIFICATION_WITHHELD",
+        "B1_LEGACY_BINARY_AS_NONVALIDATED_EDITORIAL_LABEL_ONLY"
+      ],
+      "productionRules": [
+        "No B2_P scores or diagnostic assignment in R1",
+        "No mapping B2 to old B1 bipolar bit"
+      ]
+    },
+    {
+      "gate": "S1-3",
+      "subject": "A operating meaning",
+      "recommendation": "LIFE_ENVIRONMENT_CONTINUITY_VS_CHANGE_CONSIDERATION",
+      "ownerChoice": null,
+      "scientificallyEstablished": false,
+      "exclusions": [
+        "Not relocation capability",
+        "Not generalized risk aversion",
+        "Not D exploration breadth"
+      ],
+      "counterexamples": [
+        "Stable residence while exploring new fields",
+        "Cannot move but seeks changes in routines"
+      ],
+      "neededEvidence": [
+        "Operational domain selection",
+        "6-item relevance and nonredundancy check",
+        "Opportunity constraint controls",
+        "Distinctiveness from D"
+      ]
+    },
+    {
+      "gate": "S1-4",
+      "subject": "C operating meaning",
+      "recommendation": "PRESENT_VS_FUTURE_BENEFIT_PRIORITY_UNDER_COMPARABLE_RESOURCE_CONSTRAINT",
+      "ownerChoice": null,
+      "scientificallyEstablished": false,
+      "exclusions": [
+        "Not mere attention to time",
+        "Not self control or patience",
+        "Not actual wealth/available free time"
+      ],
+      "counterexamples": [
+        "Enjoys today while planning for future",
+        "Priorities vary under unequal costs and gains"
+      ],
+      "neededEvidence": [
+        "Specify time horizon and equal effort assumptions",
+        "Control magnitude/probability of benefits",
+        "Distinguish auxiliary E and current obligations",
+        "Nonredundant C01,C02,C05"
+      ]
+    },
+    {
+      "gate": "S1-5",
+      "subject": "D operating meaning",
+      "recommendation": "EXPERIENCE_BREADTH_VS_DEPTH_WITHIN_A_DEFINED_DOMAIN",
+      "ownerChoice": null,
+      "scientificallyEstablished": false,
+      "exclusions": [
+        "Not intellectual capability",
+        "Not personality openness",
+        "Not A environment change",
+        "Not high or low accomplishment"
+      ],
+      "counterexamples": [
+        "Broad interests, deep specialization in one",
+        "Stable living environment, novel hobbies"
+      ],
+      "neededEvidence": [
+        "Define interest domains and response frame",
+        "Avoid travel/resource opportunity confounds",
+        "Distinguish A change orientation and D02/D03 duplication"
+      ]
+    },
+    {
+      "gate": "S1-7",
+      "subject": "R1 draft IDs and measured taxonomy migration",
+      "recommendation": "T01_T16_UNCHANGED_EDITING_NAMESPACE_NO_AUTOMATIC_DIAGNOSTIC_LINK",
+      "ownerChoice": null,
+      "scientificallyEstablished": false,
+      "conditions": [
+        "Keep current draft 16 characters/136 pairs as archive and manual editorial materials",
+        "Do not assign real people types from new B2 answers",
+        "Do not change legacy question/scoring/type/content version semantics",
+        "A future validated taxonomy would have new IDs and versioned migration",
+        "Do not treat mathematical 16/32/8 patterns as validated personality types",
+        "S5/S7 must validate confusion risk before publication"
+      ],
+      "neededEvidence": [
+        "Independent technical and editorial signoff",
+        "Owner decision that manual draft characters are acceptable with explicit limitations",
+        "R1-only code QA and UX nonmisinterpretation review"
+      ]
+    },
+    {
+      "gate": "S1-8",
+      "subject": "Independent review plus stage approval",
+      "recommendation": "DO_NOT_PASS_UNTIL_NAMED_INDEPENDENT_REVIEW_AND_OWNER_DECISION",
+      "ownerChoice": null,
+      "neededEvidence": [
+        "Science reviewer role assigned + signed evidence",
+        "Editorial reviewer role assigned + signed evidence",
+        "Engineering QA reviewer role assigned + signed evidence",
+        "Updated register and owner final S1 signoff"
+      ],
+      "prospectiveApprovers": [],
+      "scientificallyEstablished": false
+    }
+  ],
+  "stopConditions": [
+    "Study recruitment or collection before human authorization",
+    "Mislabel B2-P as SDT autonomy/relatedness scale",
+    "Positive or negative compatibility inferred from matched axes",
+    "Silent assignment of old T01-T16 by B2 scores",
+    "Reword or reuse blocked items without version/approval",
+    "Any auto-publication or PR merge without S8 human GO"
+  ],
+  "sourceRecords": [
+    {
+      "url": "https://doi.org/10.1016/j.cedpsych.2020.101860",
+      "type": "THEORY",
+      "usage": "SDT need definitions, NOT B2-P validation"
+    },
+    {
+      "url": "https://doi.org/10.1016/j.jclinepi.2025.111879",
+      "type": "METHODOLOGY",
+      "usage": "Relevance/comprehensiveness/comprehensibility methodology; A05 is not validated"
+    },
+    {
+      "url": "https://ncme.org/resources/books/testing-standards/",
+      "type": "STANDARDS",
+      "usage": "Validity evidence relevant to intended interpretations and use"
+    }
+  ],
+  "requiredSources": [
+    "docs/A05_D86_TYPE_STRUCTURE_DECISION_20261026.json",
+    "docs/A05_S1_B2_12ITEM_CRITICAL_AUDIT_V01_20261030.json",
+    "docs/A05_S1_ACD_18ITEM_CROSS_AXIS_AUDIT_V01_20261030.json",
+    "docs/A05_S1_TAXONOMY_MIGRATION_TRACE_V01_20261030.json",
+    "docs/A05_S1_MANUAL_PAIR_MIGRATION_ACCEPTANCE_V01_20261030.md"
+  ],
+  "acceptanceCountBefore": 2,
+  "acceptanceCountAfterDraft": 2,
+  "explicitlyNotDecided": [
+    "Whether future R1 will continue using existing character names unchanged",
+    "Whether B2-P pilot proceeds",
+    "Any scientific endorsement of the proposed axis constructs",
+    "S1 owner GO",
+    "R1 production GO"
+  ]
+}
