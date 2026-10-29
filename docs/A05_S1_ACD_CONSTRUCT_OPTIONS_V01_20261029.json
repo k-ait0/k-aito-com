@@ -1,0 +1,118 @@
+{
+  "schema": "A05-S1-ACD-CONSTRUCT-OPTIONS-0.1.0",
+  "date": "2026-10-29",
+  "scope": "R1 editorial 16 character draft and future independent psychometric research",
+  "state": "DESIGN_CANDIDATES_NOT_APPROVED",
+  "scientificValidation": false,
+  "participantResearchConducted": false,
+  "decisions": [
+    {
+      "gate": "S1-3",
+      "axis": "A",
+      "legacy": {
+        "negative": "安定",
+        "positive": "変化",
+        "construct": "暮らし・環境の安定／変化",
+        "itemIds": [
+          "A01",
+          "A02",
+          "A03",
+          "A04",
+          "A05",
+          "A06"
+        ]
+      },
+      "proposed": "限られた選択で既存の基盤を維持・改良することと、環境に変化を取り込むことの優先配分",
+      "avoid": [
+        "一般的人格の保守／革新と同一視",
+        "SchwartzのConservation/Openness to Change尺度として表示",
+        "引越しできない事情を価値観の低さとみなす"
+      ],
+      "counterexamples": [
+        "安定した住居を維持しながら、仕事や学習では新分野に挑戦したい",
+        "家族の事情で転居はできないが変化への意欲は高い"
+      ],
+      "acceptance": [
+        "対象を環境の変更嗜好と人生の価値優先配分のどちらとするか決裁",
+        "従来6問の住まい偏りとD軸重複を確認",
+        "両方高い・状況で変わる選好を無理に二極化しない"
+      ],
+      "status": "DRAFT_FOR_OWNER_REVIEW"
+    },
+    {
+      "gate": "S1-4",
+      "axis": "C",
+      "legacy": {
+        "negative": "将来",
+        "positive": "現在",
+        "construct": "将来の達成／現在の充実",
+        "itemIds": [
+          "C01",
+          "C02",
+          "C03",
+          "C04",
+          "C05",
+          "C06"
+        ]
+      },
+      "proposed": "時間等の資源制約下で、将来得られる価値と現在得られる充実のどちらを優先するかの選択傾向",
+      "avoid": [
+        "未来を重視する人は現在を楽しまないという断定",
+        "Temporal Focus Scaleなどの時間的注意の検証済み尺度と混同",
+        "人間関係や健康制約を性格の弱点として判定"
+      ],
+      "counterexamples": [
+        "将来に備えながら今日の生活も非常に充実している",
+        "資金が制約される場面のみ将来を優先するが、休日は現在を優先"
+      ],
+      "acceptance": [
+        "時間への注意と資源配分トレードオフを区別",
+        "両方重視する反例を扱う",
+        "リスク・時間割引・自己統制など別概念と混同しない"
+      ],
+      "status": "DRAFT_FOR_OWNER_REVIEW"
+    },
+    {
+      "gate": "S1-5",
+      "axis": "D",
+      "legacy": {
+        "negative": "探索",
+        "positive": "深耕",
+        "construct": "経験の広さ／深さ",
+        "itemIds": [
+          "D01",
+          "D02",
+          "D03",
+          "D04",
+          "D05",
+          "D06"
+        ]
+      },
+      "proposed": "資源が限られる場面で、経験の幅を広げることと、既知の関心を継続的に深めることの優先配分",
+      "avoid": [
+        "経済学・神経科学のexploration/exploitationと同一尺度と主張",
+        "探索型が浅い・深耕型が閉鎖的という価値判断",
+        "仕事と趣味の傾向が必ず同じとみなす"
+      ],
+      "counterexamples": [
+        "幅広く試したうえで一つに集中する",
+        "専門職は深耕を重視するが私生活では探索を重視"
+      ],
+      "acceptance": [
+        "趣味/学習/仕事の文脈依存性を明示",
+        "幅と深さが両立する場合を説明",
+        "A軸の変化・挑戦との重複を検証"
+      ],
+      "status": "DRAFT_FOR_OWNER_REVIEW"
+    }
+  ],
+  "excludedAxisE": true,
+  "bAxisPrioritization": "B2_RESEARCH_PRIORITY_OWNER_APPROVED_NOT_VALIDATED",
+  "releaseStatus": "NO_GO",
+  "sources": [
+    "projects/kidp/life-design-lab/a05/questions.mjs",
+    "docs/A05_D79_AXIS_SELECTION_MATRIX_20261026.json",
+    "docs/A05_D77_CD_ITEM_REVIEW_20261026.json",
+    "docs/A05_S1_B_AXIS_AND_TAXONOMY_MIGRATION_REVIEW_V01_20261029.md"
+  ]
+}
