@@ -1,0 +1,335 @@
+{
+  "schema": "A05-S4-P1-EIGHT-CONTEXTUAL-REWRITES-0.1.0",
+  "created": "2026-10-30",
+  "sourceMasterPath": "docs/A05_S4_ALL136_EDITORIAL_REVIEW_MASTER_V02_20261030.json",
+  "sourceMasterGitBlobSha": "10fe4f8b15ec5e3a2a54d4512230ad4abffb511f",
+  "sourceLevel": "DRAFT_EDITORIAL_CHARACTERS_ONLY",
+  "status": "PROPOSED_REWRITE_NOT_HUMAN_REVIEW",
+  "counts": {
+    "proposals": 8,
+    "proposedQuestions": 24,
+    "humanFirstReviewed": 0,
+    "secondIndependentReviewed": 0,
+    "publicationApproved": 0
+  },
+  "textSafety": {
+    "noPositiveNegativeMatchPrediction": true,
+    "relationCategorySpecificSuitability": false,
+    "noB2ScoreInference": true
+  },
+  "proposals": [
+    {
+      "pairId": "T01-T16",
+      "typeIds": [
+        "T01",
+        "T16"
+      ],
+      "displayNames": [
+        "着実な開拓者",
+        "情熱を分かち合う人"
+      ],
+      "sourcePriority": "P1_ALL_FOUR_DIFFERENT",
+      "sourceCopyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "proposedDescription": "学びを増やす計画と、好きな活動の楽しさを人と共有する企画を仮に並べます。設定上は生活基盤・時間の使い方・意思決定の関わり方に異なる視点がありますが、実際の希望が反対だとは限りません。",
+      "proposedQuestions": [
+        "新しい活動を考えるとき、まず維持しておきたい生活上の条件は何ですか。",
+        "誰かと楽しみを共有する場合、各自で決めたい部分と相談したい部分をどう分けますか。",
+        "今の充実と将来への準備を両方考えるなら、無理のない進め方は何ですか。"
+      ],
+      "focusAxisIds": [
+        "A",
+        "B",
+        "C"
+      ],
+      "retainedUnvalidatedAxisStructure": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "researchTransferStatus": "NO_DIRECT_PAIR_SPECIFIC_EVIDENCE",
+      "note": "Suggested fictional activities are illustrations, not observations about actual people or a prediction.",
+      "status": "AI_DRAFT_FOR_FIRST_HUMAN_REVIEW",
+      "firstHumanReviewer": null,
+      "firstHumanDecision": "PENDING",
+      "independentSecondReviewer": null,
+      "independentSecondDecision": "PENDING",
+      "ownerApproval": false,
+      "productionApproved": false
+    },
+    {
+      "pairId": "T02-T15",
+      "typeIds": [
+        "T02",
+        "T15"
+      ],
+      "displayNames": [
+        "静かな探究者",
+        "出会いを楽しむ旅人"
+      ],
+      "sourcePriority": "P1_ALL_FOUR_DIFFERENT",
+      "sourceCopyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "proposedDescription": "一つの分野をじっくり学ぶ活動と、新しい人や体験に触れる活動を例に考えます。どちらも個人の関心から始められ、時間や交流への希望は場面によって異なります。",
+      "proposedQuestions": [
+        "関心のあるテーマを深く学ぶ時間と、初めての場へ行く時間をどう確保したいですか。",
+        "交流する人数や頻度について、互いが心地よい条件は何ですか。",
+        "将来続けたいことと、今試してみたいことを両方挙げられますか。"
+      ],
+      "focusAxisIds": [
+        "B",
+        "C",
+        "D"
+      ],
+      "retainedUnvalidatedAxisStructure": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "researchTransferStatus": "NO_DIRECT_PAIR_SPECIFIC_EVIDENCE",
+      "note": "Suggested fictional activities are illustrations, not observations about actual people or a prediction.",
+      "status": "AI_DRAFT_FOR_FIRST_HUMAN_REVIEW",
+      "firstHumanReviewer": null,
+      "firstHumanDecision": "PENDING",
+      "independentSecondReviewer": null,
+      "independentSecondDecision": "PENDING",
+      "ownerApproval": false,
+      "productionApproved": false
+    },
+    {
+      "pairId": "T03-T14",
+      "typeIds": [
+        "T03",
+        "T14"
+      ],
+      "displayNames": [
+        "マイペースな発見家",
+        "理想を育てる共創者"
+      ],
+      "sourcePriority": "P1_ALL_FOUR_DIFFERENT",
+      "sourceCopyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "proposedDescription": "身近な新しい体験を楽しむ企画と、仲間と長期的な目標に取り組む企画を並べます。楽しむ時間と計画に使う時間は両立できることもあり、具体的な役割や負担を確認する題材になります。",
+      "proposedQuestions": [
+        "日常の小さな体験と長期の計画、それぞれに使いたい時間はどのくらいですか。",
+        "共同で進める活動では、誰が何を決めると進めやすいと思いますか。",
+        "変えてみたい習慣と続けておきたい習慣を一つずつ挙げられますか。"
+      ],
+      "focusAxisIds": [
+        "A",
+        "B",
+        "C"
+      ],
+      "retainedUnvalidatedAxisStructure": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "researchTransferStatus": "NO_DIRECT_PAIR_SPECIFIC_EVIDENCE",
+      "note": "Suggested fictional activities are illustrations, not observations about actual people or a prediction.",
+      "status": "AI_DRAFT_FOR_FIRST_HUMAN_REVIEW",
+      "firstHumanReviewer": null,
+      "firstHumanDecision": "PENDING",
+      "independentSecondReviewer": null,
+      "independentSecondDecision": "PENDING",
+      "ownerApproval": false,
+      "productionApproved": false
+    },
+    {
+      "pairId": "T04-T13",
+      "typeIds": [
+        "T04",
+        "T13"
+      ],
+      "displayNames": [
+        "暮らしの職人",
+        "共創する開拓者"
+      ],
+      "sourcePriority": "P1_ALL_FOUR_DIFFERENT",
+      "sourceCopyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "proposedDescription": "好きな習慣を毎週続けることと、新しい共同企画を立ち上げることを例にします。継続か変化かだけでなく、一人で取り組む時間と協力する時間の配分も考えられます。",
+      "proposedQuestions": [
+        "今まで続けてきた習慣のうち、新しい企画でも守りたいことは何ですか。",
+        "新しい共同企画では、参加する人の希望をどの時点で確認したいですか。",
+        "挑戦することが増えても、今の楽しみを続ける方法はありますか。"
+      ],
+      "focusAxisIds": [
+        "A",
+        "B",
+        "D"
+      ],
+      "retainedUnvalidatedAxisStructure": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "researchTransferStatus": "NO_DIRECT_PAIR_SPECIFIC_EVIDENCE",
+      "note": "Suggested fictional activities are illustrations, not observations about actual people or a prediction.",
+      "status": "AI_DRAFT_FOR_FIRST_HUMAN_REVIEW",
+      "firstHumanReviewer": null,
+      "firstHumanDecision": "PENDING",
+      "independentSecondReviewer": null,
+      "independentSecondDecision": "PENDING",
+      "ownerApproval": false,
+      "productionApproved": false
+    },
+    {
+      "pairId": "T05-T12",
+      "typeIds": [
+        "T05",
+        "T12"
+      ],
+      "displayNames": [
+        "未来を育む案内人",
+        "自由な求道者"
+      ],
+      "sourcePriority": "P1_ALL_FOUR_DIFFERENT",
+      "sourceCopyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "proposedDescription": "身近な人と将来の計画を相談する場面と、一つの制作・学習に集中する場面を考えます。共同で未来を考えることと個人の関心を深めることは、対立するとは限りません。",
+      "proposedQuestions": [
+        "長期の計画で周囲と共有したいことと、各自で選びたいことは何ですか。",
+        "集中して取り組む時間を確保するとき、どんな生活上の条件が必要ですか。",
+        "一緒に試す新しい活動と、個人で深めたい活動を分けられますか。"
+      ],
+      "focusAxisIds": [
+        "B",
+        "C",
+        "D"
+      ],
+      "retainedUnvalidatedAxisStructure": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "researchTransferStatus": "NO_DIRECT_PAIR_SPECIFIC_EVIDENCE",
+      "note": "Suggested fictional activities are illustrations, not observations about actual people or a prediction.",
+      "status": "AI_DRAFT_FOR_FIRST_HUMAN_REVIEW",
+      "firstHumanReviewer": null,
+      "firstHumanDecision": "PENDING",
+      "independentSecondReviewer": null,
+      "independentSecondDecision": "PENDING",
+      "ownerApproval": false,
+      "productionApproved": false
+    },
+    {
+      "pairId": "T06-T11",
+      "typeIds": [
+        "T06",
+        "T11"
+      ],
+      "displayNames": [
+        "絆を育てる設計者",
+        "自由な冒険者"
+      ],
+      "sourcePriority": "P1_ALL_FOUR_DIFFERENT",
+      "sourceCopyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "proposedDescription": "長期にわたる協力の計画と、自由なタイミングで新しい経験を選ぶ活動を例にします。予定の立て方や相談の範囲は、同じ人でも活動に応じて変わり得ます。",
+      "proposedQuestions": [
+        "長期計画の中で、事前に共有しておきたい約束は何ですか。",
+        "その場で新しい体験を選ぶとき、どこまで一人で決めたいですか。",
+        "継続して深める活動と新しく試す活動に、どのように時間を分けたいですか。"
+      ],
+      "focusAxisIds": [
+        "B",
+        "C",
+        "D"
+      ],
+      "retainedUnvalidatedAxisStructure": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "researchTransferStatus": "NO_DIRECT_PAIR_SPECIFIC_EVIDENCE",
+      "note": "Suggested fictional activities are illustrations, not observations about actual people or a prediction.",
+      "status": "AI_DRAFT_FOR_FIRST_HUMAN_REVIEW",
+      "firstHumanReviewer": null,
+      "firstHumanDecision": "PENDING",
+      "independentSecondReviewer": null,
+      "independentSecondDecision": "PENDING",
+      "ownerApproval": false,
+      "productionApproved": false
+    },
+    {
+      "pairId": "T07-T10",
+      "typeIds": [
+        "T07",
+        "T10"
+      ],
+      "displayNames": [
+        "日常の発見家",
+        "変革の探究者"
+      ],
+      "sourcePriority": "P1_ALL_FOUR_DIFFERENT",
+      "sourceCopyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "proposedDescription": "身近な人と今日の小さな発見を楽しむ活動と、一つの理想に向けて方法を変えていく活動を考えます。日々の楽しみと将来への取り組みをどちらも大切にできる場合があります。",
+      "proposedQuestions": [
+        "今日楽しみたいことと、長い時間をかけて変えたいことをそれぞれ一つ挙げられますか。",
+        "新しい方法を試す際、守りたい普段の生活の条件は何ですか。",
+        "一緒に体験を選ぶ場面と、自分で深く考えたい場面をどう分けますか。"
+      ],
+      "focusAxisIds": [
+        "A",
+        "C",
+        "D"
+      ],
+      "retainedUnvalidatedAxisStructure": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "researchTransferStatus": "NO_DIRECT_PAIR_SPECIFIC_EVIDENCE",
+      "note": "Suggested fictional activities are illustrations, not observations about actual people or a prediction.",
+      "status": "AI_DRAFT_FOR_FIRST_HUMAN_REVIEW",
+      "firstHumanReviewer": null,
+      "firstHumanDecision": "PENDING",
+      "independentSecondReviewer": null,
+      "independentSecondDecision": "PENDING",
+      "ownerApproval": false,
+      "productionApproved": false
+    },
+    {
+      "pairId": "T08-T09",
+      "typeIds": [
+        "T08",
+        "T09"
+      ],
+      "displayNames": [
+        "穏やかな愛好家",
+        "未来のフロンティア"
+      ],
+      "sourcePriority": "P1_ALL_FOUR_DIFFERENT",
+      "sourceCopyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "proposedDescription": "親しい人と落ち着いた日常を過ごす計画と、新しい環境で将来に向けて試す計画を例にします。変化の大きさや負担を具体化すれば、安心と挑戦を同時に考えることもできます。",
+      "proposedQuestions": [
+        "新しいことを試す場合でも、維持しておきたい日常の習慣は何ですか。",
+        "将来の挑戦に使う時間と、今の暮らしを楽しむ時間をどう見積もりますか。",
+        "相談して決めたいことと、各自の判断に任せたいことは何ですか。"
+      ],
+      "focusAxisIds": [
+        "A",
+        "B",
+        "C"
+      ],
+      "retainedUnvalidatedAxisStructure": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "researchTransferStatus": "NO_DIRECT_PAIR_SPECIFIC_EVIDENCE",
+      "note": "Suggested fictional activities are illustrations, not observations about actual people or a prediction.",
+      "status": "AI_DRAFT_FOR_FIRST_HUMAN_REVIEW",
+      "firstHumanReviewer": null,
+      "firstHumanDecision": "PENDING",
+      "independentSecondReviewer": null,
+      "independentSecondDecision": "PENDING",
+      "ownerApproval": false,
+      "productionApproved": false
+    }
+  ],
+  "release": "NO_GO"
+}
