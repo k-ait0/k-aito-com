@@ -14,7 +14,7 @@
     "S0_6_HUMAN_FINAL_APPROVAL_AND_STOP_GATES"
   ],
   "overallReleaseStatus": "NO_GO",
-  "planningStatus": "S4_V04_STATIC_136_READY_WITH_112_SEMANTIC_SCAFFOLD_RISK__S5_V01_UI_SOURCE_IMPLEMENTED_STATIC_QA_ONLY",
+  "planningStatus": "S5_OFFLINE_SINGLE_FILE_136_PAIRS_PLUS_8_ALTERNATES_READY_STATIC_INTEGRITY_VERIFIED_NATIVE_QA_PENDING__S4_SEMANTIC_SCAFFOLD_112_STILL_OPEN",
   "gates": [
     {
       "id": "S0-1",
@@ -123,7 +123,7 @@
       "stage": "S5",
       "goalCount": 8,
       "acceptedCount": 0,
-      "status": "STATIC_PREVIEW_V01_IMPLEMENTED_SOURCE_QA_ONLY_BROWSER_AND_INDEPENDENT_ACCEPTANCE_PENDING"
+      "status": "OFFLINE_136PAIR_SINGLE_HTML_V02_GENERATED_PLUS_SERVER_PREVIEW_STATIC_QA_ONLY_NATIVE_CHROME_QA_PENDING"
     },
     {
       "stage": "S6",
@@ -350,6 +350,34 @@
       "nodeTestExecuted": false,
       "firstHumanReviewed": 0,
       "independentSecondReviewed": 0,
+      "publication": "NO_GO"
+    },
+    {
+      "eventId": "S5-OFFLINE-002",
+      "date": "2026-10-30",
+      "acceptedGateIds": [],
+      "scope": "S5_SINGLE_FILE_OFFLINE_UI_DEVELOPMENT_STATIC_INTEGRITY_ONLY",
+      "decision": "Created fully self-contained S5 offline HTML embedding all 136 unapproved v0.4 rows, type labels, RGBY groups, eight v0.5 alternatives, CSS and controller logic. Added deterministic Node builder, offline Node integrity test, offline Chrome QA script, combined local preflight runner. Re-fetched committed HTML and source JSON/JS/CSS via connected GitHub; 12 static checks passed including 136 pairs, 16 types, 8 alternatives, no duplicate IDs, data snapshot equivalence, no external script/style/fetch/storage. Native Node, actual browser and visual a11y tests not run owing to GitHub DNS/unavailable local repo checkout. All original gate counts and release NO-GO unchanged.",
+      "documents": [
+        "projects/kidp/life-design-lab/a05/r1-s5-offline.html",
+        "projects/kidp/life-design-lab/a05/r1-s5-offline-controller.js",
+        "scripts/build-a05-r1-s5-offline.mjs",
+        "scripts/test-a05-r1-s5-offline.mjs",
+        "scripts/qa_a05_r1_s5_offline_browser.cjs",
+        "scripts/run-a05-r1-local-preflight.cjs"
+      ],
+      "staticChecks": {
+        "verified": 12,
+        "failed": 0,
+        "orderedPairs": 256,
+        "uniquePairs": 136,
+        "variants": 8,
+        "persistedData": false,
+        "noExternalRequestsBySource": true
+      },
+      "nativeNodeExecuted": false,
+      "browserQAExecuted": false,
+      "ownerApproval": false,
       "publication": "NO_GO"
     }
   ],
