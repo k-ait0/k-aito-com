@@ -14,7 +14,7 @@
     "S0_6_HUMAN_FINAL_APPROVAL_AND_STOP_GATES"
   ],
   "overallReleaseStatus": "NO_GO",
-  "planningStatus": "S5_OFFLINE_112_STARTUP_GUARD_AND_BROWSER_TEST_DEFECT_FIXED__SIDE_BY_SIDE_EDITORIAL_UI_COMMITTED__RUNTIME_QA_PENDING",
+  "planningStatus": "S5_ACTUAL_CONTROLLER_V8_DOM_DOUBLE_256_PASS__S4_NGRAM_104_HIGH_TEMPLATE_RISK_V06_EIGHT_REWRITES_DECREASE_TO_96__NATIVE_AND_BROWSER_QA_PENDING",
   "gates": [
     {
       "id": "S0-1",
@@ -109,7 +109,7 @@
       "stage": "S4",
       "goalCount": null,
       "acceptedCount": 0,
-      "status": "V05_112_ALTERNATIVE_DRAFTS_8_PREVIOUS_PLUS_104_RULE_GENERATED_UNAPPROVED_NO_HUMAN_SEMANTIC_REVIEW",
+      "status": "V05_112_DRAFTS__104_REPETITIVE_HIGH_RISK__V06_8_INDIVIDUAL_REWRITE_PILOT_NOT_ACCEPTED__HUMAN_REVIEW_PENDING",
       "firstReview": {
         "completed": 0,
         "total": 136
@@ -123,13 +123,13 @@
       "stage": "S5",
       "goalCount": 8,
       "acceptedCount": 0,
-      "status": "OFFLINE_V03_112_VARIANT_STARTUP_BUG_FIXED_SIDE_BY_SIDE_UI_STATIC_QA_13_OF_13_NATIVE_AND_BROWSER_BLOCKED"
+      "status": "ACTUAL_CONTROLLER_EXECUTED_V8_FAKE_DOM_256_ORDERED_PAIRS_112_ALTS_PASS__NATIVE_NODE_AND_REAL_BROWSER_QA_PENDING"
     },
     {
       "stage": "S6",
       "goalCount": 9,
       "acceptedCount": 0,
-      "status": "NOT_ACCEPTED"
+      "status": "V8_CONTROLLER_SIMULATION_PASS_NOT_NATIVE_NODE_OR_REAL_BROWSER__FORMAL_QA_NOT_ACCEPTED"
     },
     {
       "stage": "S7",
@@ -438,6 +438,41 @@
         "safariRun": false,
         "staticAuditPasses": 13,
         "staticAuditFailures": 0
+      },
+      "publication": "NO_GO"
+    },
+    {
+      "eventId": "S4S5-V06-V8-RUNTIME-004",
+      "date": "2026-10-30",
+      "acceptedGateIds": [],
+      "decision": "Actual GitHub S5 controller executed in isolated V8 with a DOM double: clean startup, 256 ordered renders, 136 unordered pairs, 112 distinct alternative pairs, 224 ordered alternative comparisons, canonical swap pass. Four intentionally malformed source states fail closed. Actual GitHub 104-pair copy generator executed in V8 and matched saved v0.5 JSON exactly. Quantitative 14-character n-gram audit of 112 descriptions shows 104/104 formula-generated narratives with >=50% repeated-span coverage (mean 79.1%), versus 0/8 earlier AI drafts. Audit code executed in V8 and matched committed JSON exactly; 104 template drafts flagged for rewrite; not evidence of psychometric validity. Eight highest-risk pairs received separate v0.6 AI individual rewrites with lower 14-gram coverage (high-repeat count 104=>96) and unapproved status. Added offline Node vm regression suite and local preflight. Native Node on checked-out repository, Chrome/Safari, accessibility, independent human review and owner release decision NOT executed/approved.",
+      "scope": "ISOLATED_V8_EXECUTION_WITH_SIMULATED_DOM_AND_EDITORIAL_HEURISTIC_NOT_NATIVE_BROWSER_QA",
+      "documents": [
+        "scripts/test-a05-r1-s5-controller-runtime.mjs",
+        "scripts/run-a05-r1-local-preflight.cjs",
+        "scripts/audit-a05-r1-s4-v05-repetition.mjs",
+        "docs/A05_S4_V05_REPEAT_14GRAM_AUDIT_20261030.json",
+        "docs/A05_S4_V06_HIGH_REPEAT8_INDIVIDUAL_REWRITE_PILOT_20261030.json",
+        "scripts/test-a05-r1-s4-v06-pilot.mjs"
+      ],
+      "evidence": {
+        "initialRuntimePass": true,
+        "orderedRenders": 256,
+        "uniquePairs": 136,
+        "uniqueAltPairs": 112,
+        "orderedAltChecks": 224,
+        "sourceRejectionCases": 4,
+        "generatorParity": 104,
+        "copyNgramSize": 14,
+        "minSharedDocuments": 16,
+        "templateMeanCoverage": 0.791,
+        "highRepeatPrior": 104,
+        "highRepeatProposed": 96,
+        "individualRewrites": 8,
+        "nativeNodeExecuted": false,
+        "realChromeExecuted": false,
+        "realSafariExecuted": false,
+        "humanApprovals": 0
       },
       "publication": "NO_GO"
     }
