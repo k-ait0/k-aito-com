@@ -68,8 +68,8 @@ function build(row) {
  const questions=[
   "「"+a.name+"」の「"+a.example+"」と「"+b.name+"」の「"+b.example+
    "」を同じ日に考えるなら、互いに何を優先したいか、どんな事情を先に確認しますか。",
-  firstScene+"を話すとき、設定上の「"+aLabel+"」と「"+bLabel+
-   "」はどのような具体例を指し得ますか。両方を重視する場面も挙げられますか。",
+  "「"+a.name+"」の「"+aLabel+"」と「"+b.name+"」の「"+bLabel+
+   "」について、"+firstScene+"という場面ではどんな希望の違いや共通点を確認しますか。両方を重視する例も挙げられますか。",
   secondScene+"について、「"+a.name+"」の「"+a.questionAnchor+"」と「"+b.name+
    "」の「"+b.questionAnchor+"」をそれぞれ確かめるなら、どんな問い方が適切ですか。"
  ];
