@@ -1,0 +1,215 @@
+{
+  "schema": "A05-R1-S4-P1-8-ALL-AXES-DIFFERENT-0.1.0",
+  "dated": "2026-10-30",
+  "status": "PROVISIONAL_EDITORIAL_ONLY_PENDING_REVIEWS",
+  "claimBound": "All four axes differ in fictional draft definitions; NOT evidence of incompatibility or complementarity.",
+  "category": "P1_ALL_FOUR_DIFFERENT",
+  "counts": {
+    "records": 8,
+    "firstHumanApproved": 0,
+    "secondIndependentApproved": 0,
+    "publishable": 0
+  },
+  "items": [
+    {
+      "pairId": "T01-T16",
+      "typeIds": [
+        "T01",
+        "T16"
+      ],
+      "displayNames": [
+        "着実な開拓者",
+        "情熱を分かち合う人"
+      ],
+      "measuredRelationshipDistance": null,
+      "allFourDraftAxisLabelsDiffer": true,
+      "disclaimer": "設定上の4軸が異なっても、個人の相性・関係の良し悪しは判定できません。",
+      "neutralDraft": "異なるラベルは話し合いの観点です。実際の希望や状況が反対であるとは限りません。",
+      "dialogueQuestions": [
+        "生活の基盤と活動を変えることを、それぞれどんな場面で重視しますか。",
+        "一人で決める範囲と周囲に相談する範囲を、どのように確認しますか。"
+      ],
+      "interpretationTier": "C_EDITORIAL_HYPOTHESIS_NOT_VALIDATED",
+      "humanFirstReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificPairEvidence": false,
+      "productionApproved": false
+    },
+    {
+      "pairId": "T02-T15",
+      "typeIds": [
+        "T02",
+        "T15"
+      ],
+      "displayNames": [
+        "静かな探究者",
+        "出会いを楽しむ旅人"
+      ],
+      "measuredRelationshipDistance": null,
+      "allFourDraftAxisLabelsDiffer": true,
+      "disclaimer": "設定上の4軸が異なっても、個人の相性・関係の良し悪しは判定できません。",
+      "neutralDraft": "異なるラベルは話し合いの観点です。実際の希望や状況が反対であるとは限りません。",
+      "dialogueQuestions": [
+        "一つを深める時間と新しい経験に触れる時間を、どう考えていますか。",
+        "将来の目標と今日の充実について、それぞれ具体的に話せますか。"
+      ],
+      "interpretationTier": "C_EDITORIAL_HYPOTHESIS_NOT_VALIDATED",
+      "humanFirstReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificPairEvidence": false,
+      "productionApproved": false
+    },
+    {
+      "pairId": "T03-T14",
+      "typeIds": [
+        "T03",
+        "T14"
+      ],
+      "displayNames": [
+        "マイペースな発見家",
+        "理想を育てる共創者"
+      ],
+      "measuredRelationshipDistance": null,
+      "allFourDraftAxisLabelsDiffer": true,
+      "disclaimer": "設定上の4軸が異なっても、個人の相性・関係の良し悪しは判定できません。",
+      "neutralDraft": "異なるラベルは話し合いの観点です。実際の希望や状況が反対であるとは限りません。",
+      "dialogueQuestions": [
+        "毎日の発見と長期的な理想を、どういう場面で大切にしたいですか。",
+        "生活の安定と活動の変化について、どこに境界を置きたいですか。"
+      ],
+      "interpretationTier": "C_EDITORIAL_HYPOTHESIS_NOT_VALIDATED",
+      "humanFirstReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificPairEvidence": false,
+      "productionApproved": false
+    },
+    {
+      "pairId": "T04-T13",
+      "typeIds": [
+        "T04",
+        "T13"
+      ],
+      "displayNames": [
+        "暮らしの職人",
+        "共創する開拓者"
+      ],
+      "measuredRelationshipDistance": null,
+      "allFourDraftAxisLabelsDiffer": true,
+      "disclaimer": "設定上の4軸が異なっても、個人の相性・関係の良し悪しは判定できません。",
+      "neutralDraft": "異なるラベルは話し合いの観点です。実際の希望や状況が反対であるとは限りません。",
+      "dialogueQuestions": [
+        "慣れた習慣を維持することと新しい協働を始めることを、どう両立させたいですか。",
+        "自分の時間と共同の計画について、期待している範囲を話せますか。"
+      ],
+      "interpretationTier": "C_EDITORIAL_HYPOTHESIS_NOT_VALIDATED",
+      "humanFirstReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificPairEvidence": false,
+      "productionApproved": false
+    },
+    {
+      "pairId": "T05-T12",
+      "typeIds": [
+        "T05",
+        "T12"
+      ],
+      "displayNames": [
+        "未来を育む案内人",
+        "自由な求道者"
+      ],
+      "measuredRelationshipDistance": null,
+      "allFourDraftAxisLabelsDiffer": true,
+      "disclaimer": "設定上の4軸が異なっても、個人の相性・関係の良し悪しは判定できません。",
+      "neutralDraft": "異なるラベルは話し合いの観点です。実際の希望や状況が反対であるとは限りません。",
+      "dialogueQuestions": [
+        "周囲と将来を考える場面と、個人で今取り組みたい場面を分けて説明できますか。",
+        "新しい可能性を広げることと一つを深めることに、どのように時間を使いたいですか。"
+      ],
+      "interpretationTier": "C_EDITORIAL_HYPOTHESIS_NOT_VALIDATED",
+      "humanFirstReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificPairEvidence": false,
+      "productionApproved": false
+    },
+    {
+      "pairId": "T06-T11",
+      "typeIds": [
+        "T06",
+        "T11"
+      ],
+      "displayNames": [
+        "絆を育てる設計者",
+        "自由な冒険者"
+      ],
+      "measuredRelationshipDistance": null,
+      "allFourDraftAxisLabelsDiffer": true,
+      "disclaimer": "設定上の4軸が異なっても、個人の相性・関係の良し悪しは判定できません。",
+      "neutralDraft": "異なるラベルは話し合いの観点です。実際の希望や状況が反対であるとは限りません。",
+      "dialogueQuestions": [
+        "長期的な協力の計画と、その時々の自由な活動について何を話し合いたいですか。",
+        "継続して深めたい関心と新しい経験を増やしたい関心は何ですか。"
+      ],
+      "interpretationTier": "C_EDITORIAL_HYPOTHESIS_NOT_VALIDATED",
+      "humanFirstReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificPairEvidence": false,
+      "productionApproved": false
+    },
+    {
+      "pairId": "T07-T10",
+      "typeIds": [
+        "T07",
+        "T10"
+      ],
+      "displayNames": [
+        "日常の発見家",
+        "変革の探究者"
+      ],
+      "measuredRelationshipDistance": null,
+      "allFourDraftAxisLabelsDiffer": true,
+      "disclaimer": "設定上の4軸が異なっても、個人の相性・関係の良し悪しは判定できません。",
+      "neutralDraft": "異なるラベルは話し合いの観点です。実際の希望や状況が反対であるとは限りません。",
+      "dialogueQuestions": [
+        "日々を楽しむ活動と将来の変化を目指す活動のどちらを、どの場面で優先しますか。",
+        "一緒に経験を広げたいことと、個人で深めたいことをどう区分しますか。"
+      ],
+      "interpretationTier": "C_EDITORIAL_HYPOTHESIS_NOT_VALIDATED",
+      "humanFirstReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificPairEvidence": false,
+      "productionApproved": false
+    },
+    {
+      "pairId": "T08-T09",
+      "typeIds": [
+        "T08",
+        "T09"
+      ],
+      "displayNames": [
+        "穏やかな愛好家",
+        "未来のフロンティア"
+      ],
+      "measuredRelationshipDistance": null,
+      "allFourDraftAxisLabelsDiffer": true,
+      "disclaimer": "設定上の4軸が異なっても、個人の相性・関係の良し悪しは判定できません。",
+      "neutralDraft": "異なるラベルは話し合いの観点です。実際の希望や状況が反対であるとは限りません。",
+      "dialogueQuestions": [
+        "今の暮らしに残したいものと、将来に向けて変えたいものは何ですか。",
+        "周囲と共有したい習慣と、自分の判断で新しく試したいことをそれぞれ挙げられますか。"
+      ],
+      "interpretationTier": "C_EDITORIAL_HYPOTHESIS_NOT_VALIDATED",
+      "humanFirstReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificPairEvidence": false,
+      "productionApproved": false
+    }
+  ],
+  "constraints": [
+    "S1 classification unresolved",
+    "S2 literature not pair validation",
+    "S4 human reviews missing",
+    "v1.0 source workbook unlocated",
+    "No ranking, prediction, compatibility scores or positive/negative color"
+  ],
+  "release": "NO_GO"
+}
