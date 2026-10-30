@@ -59,7 +59,7 @@ const widths=[320,390,768,1280];
    assert.equal(await page.locator("#draft-variants").isVisible(),false);
    assert.match(await page.locator("#source-status").innerText(),/v0.4/);
    if(width===1280) {
-    const seen=new Set();
+    const seen=new Set(),variantPairs=new Set();
     for(let a=1;a<=16;a++) {
      await page.locator("#first").selectOption("T"+String(a).padStart(2,"0"));
      for(let b=1;b<=16;b++) {
