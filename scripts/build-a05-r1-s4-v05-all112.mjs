@@ -53,7 +53,7 @@ function makeNew(master,eight){
    approved:false,publicationApproved:false,scientificValidation:false};
  });
 }
-const additional=makeNew(master,eight);const proposals=[...eight.proposals.map(x=>({...x,provenance:"ORIGINAL_EIGHT_AI_EDITORIAL_DRAFT_NO_HUMAN_REVIEW"})),...additional].sort((a,b)=>a.pairId.localeCompare(b.pairId));
+const additional=makeNew(master,eight);const proposals=[...eight.proposals.map(x=>({...x})),...additional].sort((a,b)=>a.pairId.localeCompare(b.pairId));
 const counts={"additional":104,"total":112,"P2":56,"P3":56,"uniqueDescriptions":112,"uniqueQuestions":336,"firstHumanApproved":0,"secondHumanApproved":0};
 if(additional.length!==104||proposals.length!==112||new Set(proposals.flatMap(x=>x.candidatePrompts)).size!==336)throw Error("Generation mismatch");
 const output={schema:"A05-R1-S4-V05-112PAIR-CANDIDATES-0.1.0-unapproved",preparedOn:"2026-10-30",sourceMaster:{"path":"docs/A05_S4_ALL136_EDITORIAL_REVIEW_MASTER_V04_20261030.json","sha":"50e1ff7b1cc7fcae27c13b81fd33be46f8ff64a3"},sourceEight:{"path":"docs/A05_S4_V05_P2P3_EIGHT_SEMANTIC_ALTERNATES_20261030.json","sha":"6f94fb1add91c1de55308f803f2d6ef9f1ec966b"},counts,limitations:["104 candidates use 16 stock activity descriptors, 16 scene classes, five paragraph openings and three shared query patterns; they are not independently authored.","Unique strings do not establish semantic difference, editorial usefulness, psychological validity or factual assertions about people.","8 prior alternative pairs are preserved; 136-row v0.4 master remains unchanged.","Independent primary and secondary review, science and owner publication approval remain 0/136."],publication:"NO_GO",proposals};
