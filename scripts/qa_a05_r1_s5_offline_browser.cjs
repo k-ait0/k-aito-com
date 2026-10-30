@@ -30,7 +30,7 @@ const widths=[320,390,768,1280];
    const navigation=await page.goto(url);
    assert.ok(navigation,"No local file response");
    await page.waitForFunction(()=>document.documentElement.dataset.offlineReady==="true");
-   assert.match(await page.locator("#offline-integrity").innerText(),/256通り／136組/);
+   assert.match(await page.locator("#offline-integrity").innerText(),/256通り／136組、編集候補112組/);
    assert.equal(await page.locator("#first option").count(),16);
    assert.equal(await page.locator("#second option").count(),16);
    assert.equal(await page.locator("#axis-rows tr").count(),4);
@@ -54,6 +54,8 @@ const widths=[320,390,768,1280];
    assert.match(v05,/地域の学習会/);
    assert.equal(await page.locator("#draft-prompts li").count(),3);
    await page.locator("#second").selectOption("T06");
+   assert.equal(await page.locator("#draft-variants").isVisible(),true);
+   await page.locator("#second").selectOption("T16");
    assert.equal(await page.locator("#draft-variants").isVisible(),false);
    assert.match(await page.locator("#source-status").innerText(),/v0.4/);
    if(width===1280) {
@@ -63,24 +65,31 @@ const widths=[320,390,768,1280];
      for(let b=1;b<=16;b++) {
       await page.locator("#second").selectOption("T"+String(b).padStart(2,"0"));
       const line=await page.locator("#pair-meta").innerText();
-      seen.add(line.match(/T\d\d-T\d\d/)[0]);
+      const pairId=line.match(/T\d\d-T\d\d/)[0];
+      seen.add(pairId);
+      if(await page.locator("#draft-variants").isVisible())variantPairs.add(pairId);
       assert.equal(await page.locator("#axis-rows tr").count(),4);
      }
     }
     assert.equal(seen.size,136);
+    assert.equal(variantPairs.size,112);
    }
    assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),
      true,"Horizontal overflow at "+width);
-   const persisted=await page.evaluate(async()=>({
-    local:Object.keys(localStorage),
-    session:Object.keys(sessionStorage),
-    databases:typeof indexedDB.databases==="function"
-     ?(await indexedDB.databases()).map(d=>d.name):[]
-   }));
-   assert.deepEqual(persisted,{local:[],session:[],databases:[]});
+   const persisted=await page.evaluate(async()=>{
+     const safe=async(fn)=>{try{return await fn()}catch(e){if(e?.name==="SecurityError")return "INACCESSIBLE";throw e;}};
+     return {
+       local:await safe(()=>Object.keys(localStorage)),
+       session:await safe(()=>Object.keys(sessionStorage)),
+       databases:await safe(async()=>typeof indexedDB.databases==="function"?(await indexedDB.databases()).map(d=>d.name):[])
+     };
+   });
+   for(const [key,value] of Object.entries(persisted)) {
+     assert.ok(value==="INACCESSIBLE"||(Array.isArray(value)&&value.length===0),key+" storage unexpectedly used");
+   }
    assert.deepEqual(failures,[]);
    await context.close();
   }
-  console.log("A05 R1 S5 offline browser QA PASS: 4 widths, 256 selections, zero network/storage.");
+  console.log("A05 R1 S5 offline browser QA PASS: 4 widths, 256 selections, 112 variants, no unexpected network/storage.");
  }finally{await browser.close();}
 })().catch(error=>{console.error(error);process.exitCode=1});
