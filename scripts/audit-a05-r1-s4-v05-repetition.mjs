@@ -23,7 +23,7 @@ function audit(input){
     for(let j=i;j<i+gramSize;j++)used[j]=1;
   const chars=used.reduce((n,v)=>n+v,0);
   const fraction=r.text.length?+(chars/r.text.length).toFixed(3):0;
-  return {pairId:r.pairId,origin:r.origin,priority:r.priority,descriptionCharacters:r.text.length,repeatCoverage14gramAtLeast16:fraction,automatedReview:"REWRITE_PRIORITY_HIGH"+(fraction>=.5?"":"_NOT_FLAGGED")};
+  return {pairId:r.pairId,origin:r.origin,priority:r.priority,descriptionCharacters:r.text.length,repeatCoverage14gramAtLeast16:fraction,automatedReview:(fraction>=.5?"REWRITE_PRIORITY_HIGH":"NOT_FLAGGED_BY_THIS_HEURISTIC")};
  });
  const stats=origin=>{
   const items=examined.filter(x=>x.origin===origin);
