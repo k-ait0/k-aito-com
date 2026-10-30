@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<meta name="color-scheme" content="light">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; connect-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta name="description" content="A05 R1・非公開の編集用比較画面。暫定16キャラクターのラベルと会話案の閲覧のみ。">
+<title>A05 R1｜16タイプ価値観関係マップ（未承認プレビュー）</title>
+<link rel="stylesheet" href="./r1-s5-preview.css">
+<script type="module" src="./r1-s5-preview.mjs"></script>
+</head>
+<body>
+<a class="skip" href="#main">本文へ移動</a>
+<main id="main" class="shell">
+  <header class="hero">
+    <p class="kicker">LIFE DESIGN LAB / A05 / R1 REVIEW PREVIEW</p>
+    <h1>16タイプ価値観関係マップ</h1>
+    <p class="subtitle">2つのタイプの共通点と違いを見比べる</p>
+    <div class="notice" role="note">
+      <strong>未承認の編集用プレビューです。</strong>
+      A05の暫定タイプ設定に基づく比較です。実際の人間関係の相性や未来を判定しません。
+      16タイプの心理測定上の妥当性は未検証です。
+    </div>
+  </header>
+  <section class="panel selection" aria-labelledby="selection-heading">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">STEP 01</p>
+        <h2 id="selection-heading">2つのキャラクターを選ぶ</h2>
+      </div>
+      <span class="hint">手動選択のみ・保存しません</span>
+    </div>
+    <div class="controls">
+      <div class="field"><label for="first">タイプ1</label><select id="first" name="first"></select></div>
+      <button class="swap" type="button" id="swap" aria-label="タイプ1とタイプ2を入れ替える">⇄ <span>入れ替える</span></button>
+      <div class="field"><label for="second">タイプ2</label><select id="second" name="second"></select></div>
+    </div>
+    <div class="pair" aria-label="選択中の2タイプ">
+      <div id="type-card-a" class="type-card"></div>
+      <span class="connector" aria-hidden="true">＋</span>
+      <div id="type-card-b" class="type-card"></div>
+    </div>
+    <p class="muted" id="pair-meta"></p>
+    <p class="error" id="load-error" role="alert" hidden>データを読み込めませんでした。ローカル静的サーバーで開き、ファイル構成を確認してください。</p>
+  </section>
+  <div id="results" hidden>
+    <section class="panel" aria-labelledby="axes-heading">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">STEP 02 / A：暫定仕様上のラベル</p>
+          <h2 id="axes-heading">共通する視点・異なる視点</h2>
+        </div>
+      </div>
+      <p class="muted">下の「共通」「相違」はタイプ設定の文字ラベルについての説明です。相性、性格、距離、良否の指標ではありません。</p>
+      <div class="axis-scroller">
+        <table class="axis-table">
+          <thead><tr><th scope="col">軸</th><th scope="col">タイプ1</th><th scope="col">タイプ2</th><th scope="col">表示上の関係</th></tr></thead>
+          <tbody id="axis-rows"></tbody>
+        </table>
+      </div>
+      <p class="small" id="axis-note"></p>
+    </section>
+    <section class="panel" aria-labelledby="story-heading">
+      <p class="eyebrow">STEP 03 / C：編集上の仮説・未実証</p>
+      <h2 id="story-heading">この2タイプを考えるための例</h2>
+      <p class="story" id="draft-description"></p>
+      <p class="caution">これは機械・AIが作成した未承認の編集原案です。実際の人にこの特徴があるとは限りません。</p>
+    </section>
+    <section class="panel" aria-labelledby="prompts-heading">
+      <p class="eyebrow">STEP 04 / C：問いの候補</p>
+      <h2 id="prompts-heading">話してみたいこと</h2>
+      <ol class="questions" id="draft-prompts"></ol>
+      <p class="small">実際の回答を入力する欄はありません。問いは互いの考えを整理するための例です。</p>
+    </section>
+    <section class="panel limit" aria-labelledby="limits-heading">
+      <p class="eyebrow">表示と研究の境界</p>
+      <h2 id="limits-heading">この画面で分からないこと</h2>
+      <p><strong>B軸の注意：</strong>「自律／つながり」は未検証の二極的な編集ラベルです。本人の希望と関係者への配慮は両立し得ます。</p>
+      <p><strong>科学的根拠：</strong>一般的な対人研究を、A05の個々の136組が合う・合わないという証拠として利用できません。承認前の研究論文は本画面に表示しません。</p>
+      <p><strong>個人情報：</strong>タイプの選択結果・個人回答・履歴を保存、共有URLに埋め込み、外部送信する処理はありません。データファイルは初回表示時に同一サイトから一度だけ取得します。</p>
+      <p class="small">E軸は比較対象外。S1分類決裁、S2科学審査、S3原本照合、S4人手レビュー、S5〜S8正式受入は未完了。本番公開 NO-GO。</p>
+    </section>
+  </div>
+  <footer>内部編集プレビュー / R1 S5 v0.1 / 画面の設計・検証用。正式公開版ではありません。</footer>
+</main>
+</body>
+</html>
