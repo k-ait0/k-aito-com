@@ -22,6 +22,7 @@ const steps=[
  ["S5 static UI contract",process.execPath,["--test","scripts/test-a05-r1-s5-preview.mjs"]],
  ["S5 standalone builder",process.execPath,["scripts/build-a05-r1-s5-offline.mjs"]],
  ["S5 standalone integrity",process.execPath,["--test","scripts/test-a05-r1-s5-offline.mjs"]],
+ ["S5 actual controller + simulated DOM 256-pair execution",process.execPath,["--test","scripts/test-a05-r1-s5-controller-runtime.mjs"]],
  ["S5 generated-file reproducibility","git",["diff","--exit-code","--","projects/kidp/life-design-lab/a05/r1-s5-offline.html"]]
 ];
 if(processArgs.includes("--browser")) {
