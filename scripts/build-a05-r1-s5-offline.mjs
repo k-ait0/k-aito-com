@@ -26,14 +26,14 @@ let output=html
   .replace('<link rel="stylesheet" href="./r1-s5-preview.css">',"<style>\n"+css+"\n</style>")
   .replace('<script type="module" src="./r1-s5-preview.mjs"></script>','')
   .replace('<p class="story" id="draft-description"></p>',
-    '<fieldset id="draft-variants" class="variants" hidden><legend>原案と改稿候補を比較</legend><label><input type="radio" id="option-v04" name="draft-variant" value="v04" checked> v0.4原案</label><label><input type="radio" name="draft-variant" value="v05"> v0.5改稿候補</label></fieldset><p class="small" id="source-status"></p><p class="story" id="draft-description"></p>')
+    '<fieldset id="draft-variants" class="variants" hidden><legend>原案と改稿候補を比較</legend><label><input type="radio" id="option-v04" name="draft-variant" value="v04" checked> v0.4原案</label><label><input type="radio" name="draft-variant" value="v05"> v0.5改稿候補</label></fieldset><p class="small" id="source-status"></p><p class="story" id="draft-description"></p><details class="review-compare" id="review-compare" hidden><summary>原案・改稿を並べて確認する（審査用）</summary><div class="review-grid"><div><h3>v0.4 原案（未承認）</h3><p class="story" id="compare-v04-description"></p><ol id="compare-v04-prompts"></ol></div><div><h3>v0.5 改稿候補（未承認）</h3><p class="story" id="compare-v05-description"></p><ol id="compare-v05-prompts"></ol></div></div></details>')
   .replace('<footer>内部編集プレビュー', '<p class="small" id="offline-integrity"></p><footer>内部編集プレビュー')
   .replace('</body>',
    '<script type="application/json" id="offline-master-data">'+embedded(master)+'</script>\n'+
    '<script type="application/json" id="offline-alternates-data">'+embedded(alternate)+'</script>\n'+
    '<script type="application/json" id="offline-types-data">'+embedded(types)+'</script>\n'+
    '<script>\n'+controller+'\n</script>\n</body>')
-  .replace('</style>','\n.variants{display:flex;gap:16px;align-items:center;flex-wrap:wrap;border:1px solid #c3cfdb;border-radius:10px;padding:8px 12px;margin-bottom:12px}.variants legend{font-size:.85rem;font-weight:700;padding:0 4px}.variants label{cursor:pointer;font-size:.9rem}.variants input{accent-color:#256da7}\n</style>');
+  .replace('</style>','\n.variants{display:flex;gap:16px;align-items:center;flex-wrap:wrap;border:1px solid #c3cfdb;border-radius:10px;padding:8px 12px;margin-bottom:12px}.variants legend{font-size:.85rem;font-weight:700;padding:0 4px}.variants label{cursor:pointer;font-size:.9rem}.variants input{accent-color:#256da7}\n.review-compare{margin-top:18px;border:1px solid #c3cfdb;border-radius:12px;padding:12px;background:#f8fafc}.review-compare summary{font-weight:700;cursor:pointer}.review-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px;margin-top:13px}.review-grid>div{min-width:0;border:1px solid #d7e0e9;padding:11px;border-radius:10px;background:#fff}.review-grid h3{font-size:1rem;margin:.1em 0 .6em}.review-grid p,.review-grid li{overflow-wrap:anywhere}@media(max-width:700px){.review-grid{grid-template-columns:1fr}}\n</style>');
 if(output.includes('src="./r1-s5-preview.mjs"')||output.includes('href="./r1-s5-preview.css"'))throw Error("Offline external reference");
 writeFileSync(new URL("projects/kidp/life-design-lab/a05/r1-s5-offline.html",root),output);
 console.log("Offline A05 R1 bundle built:",master.rows.length,"pairs and",alternate.proposals.length,"candidate variants");
