@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "A05-R1-RELEASE-TRACKER-0.8.0",
+  "schemaVersion": "A05-R1-RELEASE-TRACKER-0.9.0",
   "updatedAt": "2026-10-30",
   "timezone": "Asia/Tokyo",
   "product": "A05 R1 16-type value understanding map",
@@ -14,7 +14,7 @@
     "S0_6_HUMAN_FINAL_APPROVAL_AND_STOP_GATES"
   ],
   "overallReleaseStatus": "NO_GO",
-  "planningStatus": "S1_2_OF_8_S2_0_OF_7_S3_REVIEW_QUEUE_PREPARED_S4_24_CANDIDATES",
+  "planningStatus": "S4_ALL136_MACHINE_EDITORIAL_CANDIDATES_PREPARED_ALL_HUMAN_REVIEWS_PENDING",
   "gates": [
     {
       "id": "S0-1",
@@ -109,7 +109,7 @@
       "stage": "S4",
       "goalCount": null,
       "acceptedCount": 0,
-      "status": "EDITORIAL_DRAFTS_PREPARED_HUMAN_REVIEW_0",
+      "status": "DRAFT136_COMPLETE_HUMAN_REVIEW_0",
       "firstReview": {
         "completed": 0,
         "total": 136
@@ -253,6 +253,13 @@
       "acceptedGateIds": [],
       "decision": "Drafted 16 same-type and 8 all-four-different unique, nonpredictive dialogue notes; 24 candidates prepared but first/second human review still 0.",
       "scope": "C_LAYER_EDITORIAL_CANDIDATES_ONLY"
+    },
+    {
+      "eventId": "S4-112-001",
+      "date": "2026-10-30",
+      "acceptedGateIds": [],
+      "decision": "Generated 112 machine-assembled P2/P3 pair prompts; integrated into 136-pair review master with 24 previously drafted pairs. 496 questions total/96 unique; duplicate risk and all human review gates pending.",
+      "scope": "MACHINE_GENERATED_EDITING_MATERIAL_ONLY"
     }
   ],
   "policyGatePassed": true,
@@ -361,6 +368,13 @@
       "method": "Source modules from GitHub evaluated in V8: 820 assertions, no issues; draft P0 JSON 88 structural checks, draft P1 JSON 42 structural checks, no issues",
       "nativeNodeExecuted": false,
       "status": "TECHNICAL_PRECHECK_ONLY"
+    },
+    {
+      "date": "2026-10-30",
+      "event": "S4-112-001",
+      "method": "Live GitHub source evaluated in V8; 786 structural assertions / 0 failures for 112 pairs; integrated 136 source provenance and duplicate-copy counts; native Node and human review not executed",
+      "nativeNodeExecuted": false,
+      "status": "EDITORIAL_DRAFTS_ONLY"
     }
   ],
   "s1AcceptanceDocument": "docs/A05_S1_CONSTRUCT_CRITICAL_REVIEW_AND_DECISION_V04_20261030.md",
@@ -490,17 +504,36 @@
     "release": "NO_GO"
   },
   "s4DraftPreparation": {
-    "id": "S4-P0P1-001",
+    "id": "S4-112-001",
     "sameTypeCandidatesFile": "docs/A05_S4_P0_SAMETYPE_16_EDITORIAL_CANDIDATES_V01_20261030.json",
     "fourAxisDifferentCandidatesFile": "docs/A05_S4_P1_OPPOSITE_8_EDITORIAL_CANDIDATES_V01_20261030.json",
     "sameTypeDrafts": 16,
     "fourAxisDifferentDrafts": 8,
-    "preparedEditorialCandidates": 24,
-    "distinctPairs": 24,
+    "preparedEditorialCandidates": 136,
+    "distinctPairs": 136,
     "firstHumanReviewed": 0,
     "independentSecondHumanReviewed": 0,
     "publicationApproved": 0,
     "reviewPriority": "P0_SAME_TYPE_THEN_P1_ALL_FOUR_DIFFERENT",
-    "scientificPairValidation": 0
+    "scientificPairValidation": 0,
+    "remaining112Generator": "projects/kidp/life-design-lab/a05/r1-s4-remaining112-candidates.mjs",
+    "remaining112DraftsFile": "docs/A05_S4_P2_P3_REMAINING112_EDITORIAL_CANDIDATES_V01_20261030.json",
+    "all136Master": "docs/A05_S4_ALL136_EDITORIAL_REVIEW_MASTER_V01_20261030.json",
+    "progressReport": "docs/A05_S4_ALL136_DRAFT_COVERAGE_AND_QA_V01_20261030.md",
+    "remainingP2Drafts": 56,
+    "remainingP3Drafts": 56,
+    "questionsDrafted": 496,
+    "uniqueDialogueQuestionStrings": 96,
+    "pairsWithRepeatedQuestions": 112,
+    "sameDescriptionDuplicatedRows": 8,
+    "duplicateCopyNeedsIndependentEditorialRevision": true,
+    "firstHumanApproved": 0,
+    "independentSecondApproved": 0,
+    "researchDirectPairValidation": 0,
+    "machineGenerated113": 0,
+    "machineGenerated112": 112,
+    "nativeNodeSuiteExecuted": false,
+    "noReviewPromotions": true,
+    "evidenceStatus": "MACHINE_GENERATED_UNAPPROVED"
   }
 }
