@@ -14,7 +14,7 @@
     "S0_6_HUMAN_FINAL_APPROVAL_AND_STOP_GATES"
   ],
   "overallReleaseStatus": "NO_GO",
-  "planningStatus": "S4_V05_112_ALTERNATIVES_CREATED_104_TEMPLATED_QA_PENDING__S5_OFFLINE_UI_112_TOGGLES_STATIC_INTEGRITY_PASS__NATIVE_RUNTIME_BLOCKED",
+  "planningStatus": "S5_OFFLINE_112_STARTUP_GUARD_AND_BROWSER_TEST_DEFECT_FIXED__SIDE_BY_SIDE_EDITORIAL_UI_COMMITTED__RUNTIME_QA_PENDING",
   "gates": [
     {
       "id": "S0-1",
@@ -123,7 +123,7 @@
       "stage": "S5",
       "goalCount": 8,
       "acceptedCount": 0,
-      "status": "OFFLINE_136_PAIR_SINGLE_HTML_WITH_112_DRAFT_VERSION_TOGGLES_STATIC_QA_READY_NATIVE_QA_PENDING"
+      "status": "OFFLINE_V03_112_VARIANT_STARTUP_BUG_FIXED_SIDE_BY_SIDE_UI_STATIC_QA_13_OF_13_NATIVE_AND_BROWSER_BLOCKED"
     },
     {
       "stage": "S6",
@@ -414,6 +414,31 @@
       ],
       "nativeNodeExecuted": false,
       "actualBrowserExecuted": false,
+      "publication": "NO_GO"
+    },
+    {
+      "eventId": "S5-STARTUP-DEFECT-003",
+      "date": "2026-10-30",
+      "acceptedGateIds": [],
+      "decision": "Source audit found two implementation defects in S5: byAlternative map-size startup guard still required 8 despite 112 candidate records (fatal bootstrap failure), and browser regression referenced variantPairs without declaring it. Corrected inline controller, checked-in standalone HTML and Chromium QA source; added native test guard; added an accessible collapsible side-by-side v0.4/v0.5 editorial comparison view for all 112 alternate pairs. UI labels differentiate 8 earlier AI-edited alternatives from 104 template-generated alternatives. Re-fetched actual GitHub sources and confirmed 13/13 static structural checks. No native Node, Chrome/Safari runtime success claimed.",
+      "detection": "GITHUB_SOURCE_INSPECTION_NOT_BROWSER_EXECUTION",
+      "correctedFiles": [
+        "projects/kidp/life-design-lab/a05/r1-s5-offline-controller.js",
+        "projects/kidp/life-design-lab/a05/r1-s5-offline.html",
+        "scripts/qa_a05_r1_s5_offline_browser.cjs",
+        "scripts/test-a05-r1-s5-offline.mjs",
+        "scripts/build-a05-r1-s5-offline.mjs"
+      ],
+      "qualityGates": {
+        "s5FormalAccepted": 0,
+        "firstHumanReviewed": 0,
+        "secondIndependentHumanReviewed": 0,
+        "nodeTestRun": false,
+        "chromeRun": false,
+        "safariRun": false,
+        "staticAuditPasses": 13,
+        "staticAuditFailures": 0
+      },
       "publication": "NO_GO"
     }
   ],
