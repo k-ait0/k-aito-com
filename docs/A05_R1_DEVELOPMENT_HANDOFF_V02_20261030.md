@@ -23,3 +23,13 @@
 ## テストと公開の注意
 
 この実行環境ではGitHubへのDNS解決が不可で、ローカルのChromiumナビゲーションも管理上拒否された。コードをGitHubへ保存できたこととブラウザ上で動いたことは別。GitHub Actionsの実行・自動発火をしない。未承認の科学的な相性判定、点数、予測、人格の自動分類を復活させない。
+
+
+## 追補｜S4 v0.6・S5模擬DOM実行QA（2026-10-30）
+
+- 実GitHub上のS5制御JSを隔離V8+模擬DOMで実行。256順序選択・136組・改稿112組・224表示比較と4件の安全側停止を確認。**本物のDOM/Chrome/SafariでもネイティブNodeでもない**。
+- 保存先：`scripts/test-a05-r1-s5-controller-runtime.mjs`（実コードをNode VMとDOMダブルでテストする実行スクリプト）。ローカル実行結果はまだ未取得。
+- `docs/A05_S4_V05_REPEAT_14GRAM_AUDIT_20261030.json` で高反復104/104（中央値80.0%、平均79.1%）を検出。人手編集・科学検証済みと扱わない。
+- `docs/A05_S4_V06_HIGH_REPEAT8_INDIVIDUAL_REWRITE_PILOT_20261030.json` に上位8組の個別AI改稿を保存。同じ反復検出で高反復104→96組。v0.5／v0.4原本は未変更。
+- S4/S5/S6正式受入はすべて0、本番NO-GO、GitHub Actions使用なし。
+- 次：現地PCで `node scripts/run-a05-r1-local-preflight.cjs`、Chrome/Playwright、Safari/VoiceOver実査、その後8組の人手評価結果を見て残り96組の個別改稿基準を確定。
