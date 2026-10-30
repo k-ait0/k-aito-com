@@ -1,0 +1,2289 @@
+{
+  "schema": "A05-S4-SEMANTIC-RISK-RULES-0.1.0",
+  "date": "2026-10-30",
+  "sourcePath": "docs/A05_S4_ALL136_EDITORIAL_REVIEW_MASTER_V02_20261030.json",
+  "sourceGitBlobSha": "10fe4f8b15ec5e3a2a54d4512230ad4abffb511f",
+  "kind": "AUTOMATED_PHRASE_HEURISTIC_NOT_SEMANTIC_VALIDATION",
+  "checkScope": "136 editorial records and their v0.2 draft descriptions and questions",
+  "caveat": "This catches exact-pattern authoring risks; zero matches cannot prove conversational quality or psychological validity.",
+  "riskRules": [
+    {
+      "code": "FORCED_SAME_DAY",
+      "explanation": "Unnatural combined-day scenario that artificially combines two activities"
+    },
+    {
+      "code": "META_QUESTION",
+      "explanation": "Asks how to phrase a question rather than inviting a concrete answer"
+    },
+    {
+      "code": "ABSTRACT_GENERIC_QUESTION",
+      "explanation": "Axis-polarity phrasing may be vacuous despite distinct proper names"
+    },
+    {
+      "code": "AXIS_LIST_AS_NARRATIVE",
+      "explanation": "Enumerates axis codes without integrating an everyday scene"
+    }
+  ],
+  "results": {
+    "pairs": 136,
+    "flaggedPairs": 120,
+    "flagCounts": {
+      "FORCED_SAME_DAY": 120,
+      "META_QUESTION": 120,
+      "ABSTRACT_GENERIC_QUESTION": 120,
+      "AXIS_LIST_AS_NARRATIVE": 120
+    },
+    "flaggedByPriority": {
+      "P0_SAME_TYPE": 0,
+      "P1_ALL_FOUR_DIFFERENT": 8,
+      "P2_B1_DIFFERENCE": 56,
+      "P3_OTHER": 56
+    },
+    "originalHumanApproved": 0,
+    "independentHumanApproved": 0,
+    "publicationApproved": 0
+  },
+  "additionalManualRisks": [
+    "Even unique names and phrases can be interchangeable templates",
+    "A-axis change and D-axis exploration may overlap, and B1 bipolarity has not been validated",
+    "Any P0 same-type story may still be perceived as a compatibility assessment",
+    "P1 four-axis difference must not be used to infer poor fit or guaranteed complementarity",
+    "Individual circumstances, financial constraints, disabilities and social norms require review",
+    "Specific relationship contexts are outside R1 general-purpose scope"
+  ],
+  "rows": [
+    {
+      "pairId": "T01-T01",
+      "priority": "P0_SAME_TYPE",
+      "copyVersion": "V01_P0_RETAINED",
+      "flags": [],
+      "flagsRequireEditorialRewrite": false,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T02-T02",
+      "priority": "P0_SAME_TYPE",
+      "copyVersion": "V01_P0_RETAINED",
+      "flags": [],
+      "flagsRequireEditorialRewrite": false,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T03-T03",
+      "priority": "P0_SAME_TYPE",
+      "copyVersion": "V01_P0_RETAINED",
+      "flags": [],
+      "flagsRequireEditorialRewrite": false,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T04-T04",
+      "priority": "P0_SAME_TYPE",
+      "copyVersion": "V01_P0_RETAINED",
+      "flags": [],
+      "flagsRequireEditorialRewrite": false,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T05-T05",
+      "priority": "P0_SAME_TYPE",
+      "copyVersion": "V01_P0_RETAINED",
+      "flags": [],
+      "flagsRequireEditorialRewrite": false,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T06-T06",
+      "priority": "P0_SAME_TYPE",
+      "copyVersion": "V01_P0_RETAINED",
+      "flags": [],
+      "flagsRequireEditorialRewrite": false,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T07-T07",
+      "priority": "P0_SAME_TYPE",
+      "copyVersion": "V01_P0_RETAINED",
+      "flags": [],
+      "flagsRequireEditorialRewrite": false,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T08-T08",
+      "priority": "P0_SAME_TYPE",
+      "copyVersion": "V01_P0_RETAINED",
+      "flags": [],
+      "flagsRequireEditorialRewrite": false,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T09-T09",
+      "priority": "P0_SAME_TYPE",
+      "copyVersion": "V01_P0_RETAINED",
+      "flags": [],
+      "flagsRequireEditorialRewrite": false,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T10-T10",
+      "priority": "P0_SAME_TYPE",
+      "copyVersion": "V01_P0_RETAINED",
+      "flags": [],
+      "flagsRequireEditorialRewrite": false,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T11-T11",
+      "priority": "P0_SAME_TYPE",
+      "copyVersion": "V01_P0_RETAINED",
+      "flags": [],
+      "flagsRequireEditorialRewrite": false,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T12-T12",
+      "priority": "P0_SAME_TYPE",
+      "copyVersion": "V01_P0_RETAINED",
+      "flags": [],
+      "flagsRequireEditorialRewrite": false,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T13-T13",
+      "priority": "P0_SAME_TYPE",
+      "copyVersion": "V01_P0_RETAINED",
+      "flags": [],
+      "flagsRequireEditorialRewrite": false,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T14-T14",
+      "priority": "P0_SAME_TYPE",
+      "copyVersion": "V01_P0_RETAINED",
+      "flags": [],
+      "flagsRequireEditorialRewrite": false,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T15-T15",
+      "priority": "P0_SAME_TYPE",
+      "copyVersion": "V01_P0_RETAINED",
+      "flags": [],
+      "flagsRequireEditorialRewrite": false,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T16-T16",
+      "priority": "P0_SAME_TYPE",
+      "copyVersion": "V01_P0_RETAINED",
+      "flags": [],
+      "flagsRequireEditorialRewrite": false,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T01-T16",
+      "priority": "P1_ALL_FOUR_DIFFERENT",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T02-T15",
+      "priority": "P1_ALL_FOUR_DIFFERENT",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T03-T14",
+      "priority": "P1_ALL_FOUR_DIFFERENT",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T04-T13",
+      "priority": "P1_ALL_FOUR_DIFFERENT",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T05-T12",
+      "priority": "P1_ALL_FOUR_DIFFERENT",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T06-T11",
+      "priority": "P1_ALL_FOUR_DIFFERENT",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T07-T10",
+      "priority": "P1_ALL_FOUR_DIFFERENT",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T08-T09",
+      "priority": "P1_ALL_FOUR_DIFFERENT",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T01-T05",
+      "priority": "P2_B1_DIFFERENCE",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T01-T06",
+      "priority": "P2_B1_DIFFERENCE",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T01-T07",
+      "priority": "P2_B1_DIFFERENCE",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T01-T08",
+      "priority": "P2_B1_DIFFERENCE",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T01-T13",
+      "priority": "P2_B1_DIFFERENCE",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T01-T14",
+      "priority": "P2_B1_DIFFERENCE",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T01-T15",
+      "priority": "P2_B1_DIFFERENCE",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T02-T05",
+      "priority": "P2_B1_DIFFERENCE",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T02-T06",
+      "priority": "P2_B1_DIFFERENCE",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T02-T07",
+      "priority": "P2_B1_DIFFERENCE",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T02-T08",
+      "priority": "P2_B1_DIFFERENCE",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T02-T13",
+      "priority": "P2_B1_DIFFERENCE",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T02-T14",
+      "priority": "P2_B1_DIFFERENCE",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T02-T16",
+      "priority": "P2_B1_DIFFERENCE",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T03-T05",
+      "priority": "P2_B1_DIFFERENCE",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T03-T06",
+      "priority": "P2_B1_DIFFERENCE",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T03-T07",
+      "priority": "P2_B1_DIFFERENCE",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T03-T08",
+      "priority": "P2_B1_DIFFERENCE",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T03-T13",
+      "priority": "P2_B1_DIFFERENCE",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T03-T15",
+      "priority": "P2_B1_DIFFERENCE",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T03-T16",
+      "priority": "P2_B1_DIFFERENCE",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T04-T05",
+      "priority": "P2_B1_DIFFERENCE",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T04-T06",
+      "priority": "P2_B1_DIFFERENCE",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T04-T07",
+      "priority": "P2_B1_DIFFERENCE",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T04-T08",
+      "priority": "P2_B1_DIFFERENCE",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T04-T14",
+      "priority": "P2_B1_DIFFERENCE",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T04-T15",
+      "priority": "P2_B1_DIFFERENCE",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T04-T16",
+      "priority": "P2_B1_DIFFERENCE",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T05-T09",
+      "priority": "P2_B1_DIFFERENCE",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T05-T10",
+      "priority": "P2_B1_DIFFERENCE",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T05-T11",
+      "priority": "P2_B1_DIFFERENCE",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T06-T09",
+      "priority": "P2_B1_DIFFERENCE",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T06-T10",
+      "priority": "P2_B1_DIFFERENCE",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T06-T12",
+      "priority": "P2_B1_DIFFERENCE",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T07-T09",
+      "priority": "P2_B1_DIFFERENCE",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T07-T11",
+      "priority": "P2_B1_DIFFERENCE",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T07-T12",
+      "priority": "P2_B1_DIFFERENCE",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T08-T10",
+      "priority": "P2_B1_DIFFERENCE",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T08-T11",
+      "priority": "P2_B1_DIFFERENCE",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T08-T12",
+      "priority": "P2_B1_DIFFERENCE",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T09-T13",
+      "priority": "P2_B1_DIFFERENCE",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T09-T14",
+      "priority": "P2_B1_DIFFERENCE",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T09-T15",
+      "priority": "P2_B1_DIFFERENCE",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T09-T16",
+      "priority": "P2_B1_DIFFERENCE",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T10-T13",
+      "priority": "P2_B1_DIFFERENCE",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T10-T14",
+      "priority": "P2_B1_DIFFERENCE",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T10-T15",
+      "priority": "P2_B1_DIFFERENCE",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T10-T16",
+      "priority": "P2_B1_DIFFERENCE",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T11-T13",
+      "priority": "P2_B1_DIFFERENCE",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T11-T14",
+      "priority": "P2_B1_DIFFERENCE",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T11-T15",
+      "priority": "P2_B1_DIFFERENCE",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T11-T16",
+      "priority": "P2_B1_DIFFERENCE",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T12-T13",
+      "priority": "P2_B1_DIFFERENCE",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T12-T14",
+      "priority": "P2_B1_DIFFERENCE",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T12-T15",
+      "priority": "P2_B1_DIFFERENCE",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T12-T16",
+      "priority": "P2_B1_DIFFERENCE",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T01-T02",
+      "priority": "P3_OTHER",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T01-T03",
+      "priority": "P3_OTHER",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T01-T04",
+      "priority": "P3_OTHER",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T01-T09",
+      "priority": "P3_OTHER",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T01-T10",
+      "priority": "P3_OTHER",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T01-T11",
+      "priority": "P3_OTHER",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T01-T12",
+      "priority": "P3_OTHER",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T02-T03",
+      "priority": "P3_OTHER",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T02-T04",
+      "priority": "P3_OTHER",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T02-T09",
+      "priority": "P3_OTHER",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T02-T10",
+      "priority": "P3_OTHER",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T02-T11",
+      "priority": "P3_OTHER",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T02-T12",
+      "priority": "P3_OTHER",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T03-T04",
+      "priority": "P3_OTHER",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T03-T09",
+      "priority": "P3_OTHER",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T03-T10",
+      "priority": "P3_OTHER",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T03-T11",
+      "priority": "P3_OTHER",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T03-T12",
+      "priority": "P3_OTHER",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T04-T09",
+      "priority": "P3_OTHER",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T04-T10",
+      "priority": "P3_OTHER",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T04-T11",
+      "priority": "P3_OTHER",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T04-T12",
+      "priority": "P3_OTHER",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T05-T06",
+      "priority": "P3_OTHER",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T05-T07",
+      "priority": "P3_OTHER",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T05-T08",
+      "priority": "P3_OTHER",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T05-T13",
+      "priority": "P3_OTHER",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T05-T14",
+      "priority": "P3_OTHER",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T05-T15",
+      "priority": "P3_OTHER",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T05-T16",
+      "priority": "P3_OTHER",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T06-T07",
+      "priority": "P3_OTHER",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T06-T08",
+      "priority": "P3_OTHER",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T06-T13",
+      "priority": "P3_OTHER",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T06-T14",
+      "priority": "P3_OTHER",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T06-T15",
+      "priority": "P3_OTHER",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T06-T16",
+      "priority": "P3_OTHER",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T07-T08",
+      "priority": "P3_OTHER",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T07-T13",
+      "priority": "P3_OTHER",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T07-T14",
+      "priority": "P3_OTHER",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T07-T15",
+      "priority": "P3_OTHER",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T07-T16",
+      "priority": "P3_OTHER",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T08-T13",
+      "priority": "P3_OTHER",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T08-T14",
+      "priority": "P3_OTHER",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T08-T15",
+      "priority": "P3_OTHER",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T08-T16",
+      "priority": "P3_OTHER",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T09-T10",
+      "priority": "P3_OTHER",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T09-T11",
+      "priority": "P3_OTHER",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T09-T12",
+      "priority": "P3_OTHER",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T10-T11",
+      "priority": "P3_OTHER",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T10-T12",
+      "priority": "P3_OTHER",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T11-T12",
+      "priority": "P3_OTHER",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T13-T14",
+      "priority": "P3_OTHER",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T13-T15",
+      "priority": "P3_OTHER",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T13-T16",
+      "priority": "P3_OTHER",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T14-T15",
+      "priority": "P3_OTHER",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T14-T16",
+      "priority": "P3_OTHER",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T15-T16",
+      "priority": "P3_OTHER",
+      "copyVersion": "V02_PERSONA_AND_CROSS_AXIS",
+      "flags": [
+        "FORCED_SAME_DAY",
+        "META_QUESTION",
+        "ABSTRACT_GENERIC_QUESTION",
+        "AXIS_LIST_AS_NARRATIVE"
+      ],
+      "flagsRequireEditorialRewrite": true,
+      "ownerApproval": "PENDING",
+      "firstHumanReview": "PENDING",
+      "independentSecondReview": "PENDING",
+      "scientificValidation": false,
+      "publicationApproved": false
+    }
+  ],
+  "release": "NO_GO"
+}
