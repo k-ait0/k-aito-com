@@ -1,8 +1,8 @@
 # A05 R1「16タイプ価値観関係マップ」開発引き継ぎ資料 v1.0
 
 **作成日：2026-10-30（JST）**  
-**対象：GitHub \`k-ait0/k-aito-com\`**  
-**基点ブランチ：\`feature/a05-r1-s4-p2p3-contextual-v04-20261030\`**  
+**対象：GitHub `k-ait0/k-aito-com`**  
+**基点ブランチ：`feature/a05-r1-s4-p2p3-contextual-v04-20261030`**  
 **最重要状態：編集原案136組あり／P2・P3のv0.4改稿生成コード作成済み／v0.4の統合原本は未作成／本番公開 NO-GO**
 
 > この資料は次の開発担当AI・開発者が作業を再開するための引き継ぎ原本である。ここでいうテスト合格、原案作成、研究準備は、独立した人間の編集承認・科学的妥当性の立証・本番公開承認を意味しない。
@@ -25,7 +25,7 @@ S0で承認済みの不変条件：
 
 ## 2. 公開工程の正式進捗（2026-10-30時点）
 
-以下は最新版 \`docs/A05_R1_RELEASE_GATE_LEDGER_V01_20261029.json\` を確認した値。**S4 v0.4生成コードの作成によって正式合格数を増やしていない。**
+以下は最新版 `docs/A05_R1_RELEASE_GATE_LEDGER_V01_20261029.json` を確認した値。**S4 v0.4生成コードの作成によって正式合格数を増やしていない。**
 
 | 工程 | 正式受入 | 内容・残作業 |
 |---|---:|---|
@@ -49,18 +49,18 @@ GitHub PR **#61はDraft／open／未マージ**。本番公開・既存の質問
 
 | 順序 | ブランチ | 主要成果 |
 |---|---|---|
-| 1 | \`feature/a05-r1-s1-axis-structure-gates-20261029\` | S0からS1への構造境界・ベースライン固定 |
-| 2 | \`feature/a05-r1-s1-b2-prototype-20261030\` | B2の12項目原案、SDTとの区別、移行検討 |
-| 3 | \`feature/a05-r1-s1-safe-pair-contract-20261030\` | 手動2タイプ専用の読み取り契約、256通り/136組 |
-| 4 | \`feature/a05-r1-s1-construct-decision-safety-20261030\` | S1の6つの決裁資料、誤認リスク15件 |
-| 5 | \`feature/a05-r1-s1-s2-evidence-screening-20261030\` | S2の論文候補7件と根拠隔離 |
-| 6 | \`feature/a05-r1-s3-136pair-review-workflow-20261030\` | 136組のS3レビューキュー、P0/P1初稿24組 |
-| 7 | \`feature/a05-r1-s4-all136-candidate-drafts-20261030\` | P2/P3の112組追加、全136組の原案初期統合 |
-| 8 | \`feature/a05-r1-s4-editorial-quality-v02-20261030\` | 120組のv0.2編集改稿、文字列重複解消 |
-| 9 | \`feature/a05-r1-s4-semantic-review-v03-20261030\` | 4種の定型表現監査、P1の8組を具体的な活動場面で改稿 |
-| **10（現在）** | **\`feature/a05-r1-s4-p2p3-contextual-v04-20261030\`** | **P2/P3の112組を改稿する新たなJS生成器を追加。静的v0.4統合原本・Nodeテスト・台帳更新はまだない** |
+| 1 | `feature/a05-r1-s1-axis-structure-gates-20261029` | S0からS1への構造境界・ベースライン固定 |
+| 2 | `feature/a05-r1-s1-b2-prototype-20261030` | B2の12項目原案、SDTとの区別、移行検討 |
+| 3 | `feature/a05-r1-s1-safe-pair-contract-20261030` | 手動2タイプ専用の読み取り契約、256通り/136組 |
+| 4 | `feature/a05-r1-s1-construct-decision-safety-20261030` | S1の6つの決裁資料、誤認リスク15件 |
+| 5 | `feature/a05-r1-s1-s2-evidence-screening-20261030` | S2の論文候補7件と根拠隔離 |
+| 6 | `feature/a05-r1-s3-136pair-review-workflow-20261030` | 136組のS3レビューキュー、P0/P1初稿24組 |
+| 7 | `feature/a05-r1-s4-all136-candidate-drafts-20261030` | P2/P3の112組追加、全136組の原案初期統合 |
+| 8 | `feature/a05-r1-s4-editorial-quality-v02-20261030` | 120組のv0.2編集改稿、文字列重複解消 |
+| 9 | `feature/a05-r1-s4-semantic-review-v03-20261030` | 4種の定型表現監査、P1の8組を具体的な活動場面で改稿 |
+| **10（現在）** | **`feature/a05-r1-s4-p2p3-contextual-v04-20261030`** | **P2/P3の112組を改稿する新たなJS生成器を追加。静的v0.4統合原本・Nodeテスト・台帳更新はまだない** |
 
-現在ブランチは直前v0.3ブランチより**2コミット先行・0コミット遅れ**。比較時点での開発ファイルの追加は \`projects/kidp/life-design-lab/a05/r1-s4-contextual112-v04.mjs\` のみ（この引き継ぎ資料の追加前）。
+現在ブランチは直前v0.3ブランチより**2コミット先行・0コミット遅れ**。比較時点での開発ファイルの追加は `projects/kidp/life-design-lab/a05/r1-s4-contextual112-v04.mjs` のみ（この引き継ぎ資料の追加前）。
 
 ## 4. 引き継ぐべき正規成果物
 
@@ -68,22 +68,22 @@ GitHub PR **#61はDraft／open／未マージ**。本番公開・既存の質問
 
 ### 方針・承認台帳
 
-- \`docs/A05_S0_R1_RELEASE_CHARTER_AND_ACCEPTANCE_V02_20261029.md\`：S0公開方針。
-- \`docs/A05_R1_RELEASE_GATE_LEDGER_V01_20261029.json\`：工程ごとの正式な受入数とNO-GOを管理する**現行台帳**。
-- \`docs/A05_S1_OWNER_DECISION_PACKET_V01_20261030.json\`：S1-2、S1-3、S1-4、S1-5、S1-7、S1-8の未承認決裁案。
-- \`docs/A05_S1_B2_12ITEM_CRITICAL_AUDIT_V01_20261030.json\`：B2の6場面×2問の批判的編集監査。
-- \`docs/A05_S1_ACD_18ITEM_CROSS_AXIS_AUDIT_V01_20261030.json\`：A/C/D計18問の編集・軸重複監査。
-- \`docs/A05_S2_SEVEN_STUDY_ABSTRACT_SCREENING_V01_20261030.json\`：論文候補7件の要旨レベル調査（公開承認0）。
-- \`docs/A05_S3_136PAIR_REVIEW_QUEUE_V01_20261030.json\`：S3全136組の優先度とレビュー未承認フラグ。
+- `docs/A05_S0_R1_RELEASE_CHARTER_AND_ACCEPTANCE_V02_20261029.md`：S0公開方針。
+- `docs/A05_R1_RELEASE_GATE_LEDGER_V01_20261029.json`：工程ごとの正式な受入数とNO-GOを管理する**現行台帳**。
+- `docs/A05_S1_OWNER_DECISION_PACKET_V01_20261030.json`：S1-2、S1-3、S1-4、S1-5、S1-7、S1-8の未承認決裁案。
+- `docs/A05_S1_B2_12ITEM_CRITICAL_AUDIT_V01_20261030.json`：B2の6場面×2問の批判的編集監査。
+- `docs/A05_S1_ACD_18ITEM_CROSS_AXIS_AUDIT_V01_20261030.json`：A/C/D計18問の編集・軸重複監査。
+- `docs/A05_S2_SEVEN_STUDY_ABSTRACT_SCREENING_V01_20261030.json`：論文候補7件の要旨レベル調査（公開承認0）。
+- `docs/A05_S3_136PAIR_REVIEW_QUEUE_V01_20261030.json`：S3全136組の優先度とレビュー未承認フラグ。
 
 ### S4編集・監査
 
-- \`docs/A05_S4_ALL136_EDITORIAL_REVIEW_MASTER_V03_20261030.json\`：**現時点で最後に存在を確認した全136行の静的編集原本**。P0/P1の24組は改善済み候補、P2/P3の112組には定型表現が残る。Git blob SHA: \`cbd92eae0dd337394e2b7ad37ae100df3ef236c5\`。
-- \`docs/A05_S4_SEMANTIC_RISK_AUDIT_V01_20261030.json\`：v0.2から「同じ日に考えるなら」「どんな問い方が適切ですか」など4つの定型表現の問題を抽出。
-- \`docs/A05_S4_P1_EIGHT_CONTEXTUAL_REWRITES_V01_20261030.json\`：P1全4軸相違8組の具体的改稿案。
-- \`docs/A05_S4_P0P1_24PAIR_INDEPENDENT_REVIEW_PACKET_V01_20261030.json\`：P0 16組/P1 8組のC1〜C7人手レビュー資料。一次・二次とも未実施。
-- \`docs/A05_S4_HUMAN_REVIEW_RUBRIC_AND_COPY_QA_V02_20261030.md\`：人手レビューの7観点・判定基準。
-- \`projects/kidp/life-design-lab/a05/r1-s4-contextual112-v04.mjs\`：**現在の作業中ファイル**。P2/P3 112組の文面と対話質問をプログラムで生成。実際の人物の性格・相性を判定しない。Git blob SHA: \`3a3c296f98f0c8f3d821e3e88eaffc52ef4bac8a\`。
+- `docs/A05_S4_ALL136_EDITORIAL_REVIEW_MASTER_V03_20261030.json`：**現時点で最後に存在を確認した全136行の静的編集原本**。P0/P1の24組は改善済み候補、P2/P3の112組には定型表現が残る。Git blob SHA: `cbd92eae0dd337394e2b7ad37ae100df3ef236c5`。
+- `docs/A05_S4_SEMANTIC_RISK_AUDIT_V01_20261030.json`：v0.2から「同じ日に考えるなら」「どんな問い方が適切ですか」など4つの定型表現の問題を抽出。
+- `docs/A05_S4_P1_EIGHT_CONTEXTUAL_REWRITES_V01_20261030.json`：P1全4軸相違8組の具体的改稿案。
+- `docs/A05_S4_P0P1_24PAIR_INDEPENDENT_REVIEW_PACKET_V01_20261030.json`：P0 16組/P1 8組のC1〜C7人手レビュー資料。一次・二次とも未実施。
+- `docs/A05_S4_HUMAN_REVIEW_RUBRIC_AND_COPY_QA_V02_20261030.md`：人手レビューの7観点・判定基準。
+- `projects/kidp/life-design-lab/a05/r1-s4-contextual112-v04.mjs`：**現在の作業中ファイル**。P2/P3 112組の文面と対話質問をプログラムで生成。実際の人物の性格・相性を判定しない。Git blob SHA: `3a3c296f98f0c8f3d821e3e88eaffc52ef4bac8a`。
 
 ## 5. 136組の区分・文章品質の状態
 
@@ -105,21 +105,21 @@ v0.3の文章監査：
 
 ### 実施済み
 
-1. \`feature/a05-r1-s4-p2p3-contextual-v04-20261030\` ブランチ作成。
-2. \`projects/kidp/life-design-lab/a05/r1-s4-contextual112-v04.mjs\` を新規追加。16キャラクターの活動例、4軸の共通点・相違点、具体的に回答しやすい問いを用いて112組の編集案を生成する。
+1. `feature/a05-r1-s4-p2p3-contextual-v04-20261030` ブランチ作成。
+2. `projects/kidp/life-design-lab/a05/r1-s4-contextual112-v04.mjs` を新規追加。16キャラクターの活動例、4軸の共通点・相違点、具体的に回答しやすい問いを用いて112組の編集案を生成する。
 3. GitHubの実MJSソース9ファイルを取得して隔離V8で実行し、**112組×主要10条件＋全体条件の1,123アサーションを照合、不一致0**。
 4. そのときの生成結果：112件の説明文、336件の対話質問。**112説明文・336質問文の文字列はいずれも固有**。旧4種の定型フレーズは112組中に検出されなかった。P2=56、P3=56。
 5. B軸二極性の未検証警告、相性点null、関係予測null、人手未承認・公開未承認の状態を確認。
 
 ### **未実施 — 作業再開時の最初の対象**
 
-- \`docs/A05_S4_P2_P3_CONTEXTUAL112_CANDIDATES_V04_20261030.json\` **未作成**。生成JSを評価した結果を、参照元のGit blob SHAを含む静的JSONに出力すること。
-- \`docs/A05_S4_ALL136_EDITORIAL_REVIEW_MASTER_V04_20261030.json\` **未作成**。v0.3のP0/P1計24組を保全し、P2/P3計112組のみv0.4の改稿内容に置換すること。
-- v0.4専用 \`scripts/test-a05-r1-s4-contextual112-v04.mjs\`、静的統合原本の回帰テスト **未作成**。
-- \`docs/A05_R1_RELEASE_GATE_LEDGER_V01_20261029.json\` への**v0.4作業進捗は未反映**。直近台帳はv0.3の内容であり、v0.4の承認や公開完了を示していない。
+- `docs/A05_S4_P2_P3_CONTEXTUAL112_CANDIDATES_V04_20261030.json` **未作成**。生成JSを評価した結果を、参照元のGit blob SHAを含む静的JSONに出力すること。
+- `docs/A05_S4_ALL136_EDITORIAL_REVIEW_MASTER_V04_20261030.json` **未作成**。v0.3のP0/P1計24組を保全し、P2/P3計112組のみv0.4の改稿内容に置換すること。
+- v0.4専用 `scripts/test-a05-r1-s4-contextual112-v04.mjs`、静的統合原本の回帰テスト **未作成**。
+- `docs/A05_R1_RELEASE_GATE_LEDGER_V01_20261029.json` への**v0.4作業進捗は未反映**。直近台帳はv0.3の内容であり、v0.4の承認や公開完了を示していない。
 - native Nodeの回帰テスト、ブラウザ/実機QA、人手二重レビュー、研究妥当性審査 **未実施**。
 
-今回のV8テストは実ソースの簡易・独立評価であり、Nodeの \`node --test\` 実行とは**区別**する。作業コンテナにはNode v22.16.0があるが、GitHubへの \`git clone\` はDNSエラーで失敗した（\`Could not resolve host: github.com\`）。GitHub Actionsで代替しない。
+今回のV8テストは実ソースの簡易・独立評価であり、Nodeの `node --test` 実行とは**区別**する。作業コンテナにはNode v22.16.0があるが、GitHubへの `git clone` はDNSエラーで失敗した（`Could not resolve host: github.com`）。GitHub Actionsで代替しない。
 
 ### v0.4完了の最低技術条件
 
@@ -129,7 +129,7 @@ v0.3の文章監査：
 4. 旧4種の定型フレーズが統合版で0件か確認する。ただし「0件」は文章品質や科学的妥当性の証明ではない。
 5. 説明文・質問の完全一致による重複、類似文の意味上の重複、長さ、可読性を別々に測定する。
 6. 136組すべての一次人手/独立二次ステータスがPENDING、公開承認false、相性得点・予測値なしであることを確認。
-7. \`node --test\` で対象テストを実行できた場合のみ「ネイティブNode合格」と書く。実行できなければV8チェックと未実施を明記。
+7. `node --test` で対象テストを実行できた場合のみ「ネイティブNode合格」と書く。実行できなければV8チェックと未実施を明記。
 8. 合格条件を満たした技術準備だけ台帳に追記し、S1/S2/S3やS4人手正式合格数を増やさない。
 
 ## 7. 現時点の最大ブロッカー
@@ -144,15 +144,15 @@ v0.3の文章監査：
 
 ### 優先1 — S4 v0.4の静的成果物化と技術QA
 
-- 作業開始ブランチは \`feature/a05-r1-s4-p2p3-contextual-v04-20261030\`。
-- 生成器 \`r1-s4-contextual112-v04.mjs\` を実行・評価し112行の静的原案を保存。全参照Git blob SHAと生成器の版を固定。
+- 作業開始ブランチは `feature/a05-r1-s4-p2p3-contextual-v04-20261030`。
+- 生成器 `r1-s4-contextual112-v04.mjs` を実行・評価し112行の静的原案を保存。全参照Git blob SHAと生成器の版を固定。
 - v0.3の136行JSONをコピーして、P2/P3だけをv0.4に置換。旧v0.3を削除・上書きしない。
 - Node回帰テストを新設し、全136組の不変条件・出典・レビュー未承認を検査。
 - 暫定の定型表現リスクが112→0になった場合も「**検出済みの4パターンが0**」と表記。**意味的重複ゼロ・品質保証完了とは書かない**。
 
 ### 優先2 — S4人手レビューの運用
 
-- \`docs/A05_S4_P0P1_24PAIR_INDEPENDENT_REVIEW_PACKET_V01_20261030.json\` を使い、P0・P1の24組を一次/独立二次レビューへ渡す。
+- `docs/A05_S4_P0P1_24PAIR_INDEPENDENT_REVIEW_PACKET_V01_20261030.json` を使い、P0・P1の24組を一次/独立二次レビューへ渡す。
 - C1具体性、C2複数軸、C3自然さ、C4中立・非予測、C5 B1/B2境界、C6背景条件、C7科学的根拠の階層を各組でPASS/REVISE/FAIL判定。
 - P2/P3のv0.4改稿についても同様のレビュー資料を準備。少なくともP2/P3各4組のパイロットレビューで基準をすり合わせる。
 - **実際のレビュアー名、日時、判定証跡がない限り、レビュー完了件数を増やさない**。
@@ -166,7 +166,7 @@ v0.3の文章監査：
 
 ## 9. 次の担当AIにそのまま渡す指示
 
-> A05 R1「16タイプ価値観関係マップ」のGitHub開発を継続してください。基点は \`k-ait0/k-aito-com\` の \`feature/a05-r1-s4-p2p3-contextual-v04-20261030\`。引き継ぎ資料 \`docs/A05_R1_DEVELOPMENT_HANDOFF_V01_20261030.md\` を読んでください。現時点でS0=6/6、S1=2/8、S2=0/7、S3=0/6、S4原案136/136、一次・二次人手承認0/136、本番NO-GOです。直近追加の \`r1-s4-contextual112-v04.mjs\` はP2/P3 112組を生成し、GitHub実ソースの独立V8検証1,123項目で不一致0でしたが、静的v0.4原本・統合136行・Node回帰テスト・進捗台帳への反映は未完了です。まずP2/P3 112行を静的JSONへ生成、v0.3のP0/P1 24行を保持して統合136行v0.4を作成、出典Git blob SHA・全組・4軸・禁止主張・人手承認0の不変条件をテストし、完了事項だけ進捗台帳へ記録してください。機械検査・AIによる原案作成を科学的妥当性や独立した人間のレビューと同一視しないこと。GitHub Actions使用・既存質問/採点の改変・PR #61のマージ・本番公開は禁止します。
+> A05 R1「16タイプ価値観関係マップ」のGitHub開発を継続してください。基点は `k-ait0/k-aito-com` の `feature/a05-r1-s4-p2p3-contextual-v04-20261030`。引き継ぎ資料 `docs/A05_R1_DEVELOPMENT_HANDOFF_V01_20261030.md` を読んでください。現時点でS0=6/6、S1=2/8、S2=0/7、S3=0/6、S4原案136/136、一次・二次人手承認0/136、本番NO-GOです。直近追加の `r1-s4-contextual112-v04.mjs` はP2/P3 112組を生成し、GitHub実ソースの独立V8検証1,123項目で不一致0でしたが、静的v0.4原本・統合136行・Node回帰テスト・進捗台帳への反映は未完了です。まずP2/P3 112行を静的JSONへ生成、v0.3のP0/P1 24行を保持して統合136行v0.4を作成、出典Git blob SHA・全組・4軸・禁止主張・人手承認0の不変条件をテストし、完了事項だけ進捗台帳へ記録してください。機械検査・AIによる原案作成を科学的妥当性や独立した人間のレビューと同一視しないこと。GitHub Actions使用・既存質問/採点の改変・PR #61のマージ・本番公開は禁止します。
 
 ## 10. 完了・再開時のチェックリスト
 
