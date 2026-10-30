@@ -83,7 +83,7 @@
   need(master.schema==="A05-R1-S4-136PAIR-EDITORIAL-MASTER-0.4.0-unapproved"&&master.release==="NO_GO","Unsupported master");
   need(types.length===16&&byType.size===16,"Type registry invalid");
   need(master.rows.length===136&&byPair.size===136,"Pair registry invalid");
-  need(alternates.proposals.length===8&&byAlternative.size===8&&alternates.publication==="NO_GO","Alternative set invalid");
+  need(alternates.proposals.length===112&&byAlternative.size===8&&alternates.publication==="NO_GO","Alternative set invalid");
   let ordered=0;const unique=new Set();
   for(const t of types)for(const u of types){
    const id=[t.id,u.id].sort().join("-"),row=byPair.get(id);
@@ -113,7 +113,7 @@
   }
   render(true);
   document.documentElement.dataset.offlineReady="true";
-  $("offline-integrity").textContent="組合せの静的整合性：256通り／136組を読み込み時に検査済み。";
+  $("offline-integrity").textContent="組合せの静的整合性：256通り／136組、編集候補112組を読み込み時に検査済み。";
  }catch(error){
   console.error("A05 offline preview error:",error);
   $("results").hidden=true;$("load-error").hidden=false;
