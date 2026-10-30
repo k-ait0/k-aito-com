@@ -75,7 +75,7 @@
   const list=$("draft-prompts");list.replaceChildren();
   for(const question of prompts){const li=document.createElement("li");li.textContent=question;list.append(li);}
   $("source-status").textContent=chosen
-    ?"表示中：v0.5の個別改稿候補。人手一次・独立二次レビュー未実施。"
+    ?"表示中：v0.5のAI生成・要審査原案。先行8組と定型生成104組を含み、人手一次・独立二次レビューは未実施。"
     :"表示中：v0.4の未承認原案。人手一次・独立二次レビュー未実施。";
   $("results").hidden=false;
  }
