@@ -66,8 +66,8 @@ function build(row) {
  const c=sameScene[common[0].axis];
  const multi=secondary.axis===primary.axis?null:secondary.axis;
  if(!multi)throw new Error("Requires two different axis perspectives");
- const firstText="たとえば、「"+a.activity+"」という案と「"+b.activity+
-   "」という案を見比べます。どちらを優先すべきかは、実際の希望や使える時間によって変わります。";
+ const firstText="たとえば、「"+a.activity+"」と「"+b.activity+
+   "」をそれぞれ考えます。どちらか一方を選ぶ必要はなく、実際の希望や使える時間は人によって異なります。";
  const contrastText="設定上の相違の一つは「"+d.topic+"」です。一方のラベルは「"+
   primary.first+"」、他方は「"+primary.second+"」ですが、"+
   d.counter+"。";
@@ -77,7 +77,7 @@ function build(row) {
  const prompts=[
   "「"+a.name+"」の例である「"+a.anchor+"」と、「"+b.name+"」の例である「"+
    b.anchor+"」を考えたとき、実際に取り組みたいことと、使える時間・負担をそれぞれどう整理しますか。",
-  "「"+a.activity+"」と「"+b.activity+"」のどちらにも当てはまる場合、"+
+  "「"+a.activity+"」や「"+b.activity+"」について話すなら、"+
    d.prompt,
   "「"+a.name+"」の例では"+a.practical+"こと、「"+b.name+"」の例では"+
    b.practical+"ことを取り上げます。"+c.probe
