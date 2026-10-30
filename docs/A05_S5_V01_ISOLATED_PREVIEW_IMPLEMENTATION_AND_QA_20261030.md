@@ -55,3 +55,32 @@ node scripts/qa_a05_r1_s5_browser.cjs
 ## 進捗の境界
 
 これは「S5の非公開UIプロトタイプをGitHubに追加」という開発成果であり、「公開画面の品質受入」ではない。人手承認、マージ、デプロイ、本番導線変更、GitHub Actions使用は行わない。
+
+
+## S5-OFFLINE-002｜サーバー不要の単一HTML版（2026-10-30）
+
+S5 v0.1のサーバー版は変更せず、単独で開く別ファイルを追加した。
+
+- オフライン画面：`projects/kidp/life-design-lab/a05/r1-s5-offline.html`
+- ビルド手順：`scripts/build-a05-r1-s5-offline.mjs`
+- オフライン表示制御：`projects/kidp/life-design-lab/a05/r1-s5-offline-controller.js`
+- Node検査：`scripts/test-a05-r1-s5-offline.mjs`
+- 実画面Chrome検査：`scripts/qa_a05_r1_s5_offline_browser.cjs`
+- ローカルまとめ検査：`scripts/run-a05-r1-local-preflight.cjs`
+
+収録内容はv0.4の全136組、RGBYを保持した16タイプ、S4 v0.5の8組の代替文章と質問。8組についてはv0.4とv0.5を切り替えて比較でき、別組へ移動時はv0.4に戻る。いずれも人手のレビュー未実施・編集原案・科学未承認と表示する。バンドルには外部スクリプト・外部CSS・外部画像・通信・保存APIを含めない。CSPのconnect-srcとimg-srcはnone。実端末の通信・Storage実査は別途必要。
+
+GitHubへコミットした完成HTMLを**再取得し、**収録JSONが正規原本2件と完全一致すること、HTML内に同一コントローラーJS・CSSが含まれること、16/136/8件、重複ID 0件、禁止したリソース参照/API 0件を確認。12/12静的確認は通過。生成後のnative Node実行、Playwright、Chrome、Safari、VoiceOverは**未実施**。
+
+### 実機確認の方法
+```sh
+git switch feature/a05-r1-s5-manual-comparison-preview-20261030
+node scripts/run-a05-r1-local-preflight.cjs
+# Chrome/Playwrightが使える環境で
+node scripts/qa_a05_r1_s5_offline_browser.cjs
+```
+
+
+オフライン版は `r1-s5-offline.html` を端末のブラウザで直接開ける構成。サーバー版と異なり `file://` での利用を意図した。Chrome/OSによる具体的挙動は未検証につき、現時点で「実ブラウザ合格」と記録しない。
+
+**公開審査：S5 0/8、S6 0/9、全体NO-GO。** GitHub Actions、本番、PR #61、既存診断の変更なし。
