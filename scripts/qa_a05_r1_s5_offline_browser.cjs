@@ -30,7 +30,7 @@ const widths=[320,390,768,1280];
    const navigation=await page.goto(url);
    assert.ok(navigation,"No local file response");
    await page.waitForFunction(()=>document.documentElement.dataset.offlineReady==="true");
-   assert.match(await page.locator("#offline-integrity").innerText(),/256通り／136組、編集候補112組/);
+   assert.match(await page.locator("#offline-integrity").innerText(),/256通り／136組、v0.5候補112組、v0.6候補8組/);
    assert.equal(await page.locator("#first option").count(),16);
    assert.equal(await page.locator("#second option").count(),16);
    assert.equal(await page.locator("#axis-rows tr").count(),4);
@@ -63,12 +63,22 @@ const widths=[320,390,768,1280];
    assert.equal(await page.locator("#draft-variants").isVisible(),true);
    await page.locator('input[name="draft-variant"][value="v05"]').check();
    assert.match(await page.locator("#source-status").innerText(),/定型生成の104組/);
+   await page.locator("#first").selectOption("T12");
+   await page.locator("#second").selectOption("T15");
+   assert.equal(await page.locator("#option-v06-label").isVisible(),true);
+   await page.locator('input[name="draft-variant"][value="v06"]').check();
+   assert.match(await page.locator("#draft-description").innerText(),/地域のアートイベント/);
+   assert.match(await page.locator("#source-status").innerText(),/v0.6高反復8組/);
+   assert.equal(await page.locator("#compare-v06-panel").isVisible(),true);
+   assert.equal(await page.locator("#compare-v06-prompts li").count(),3);
+   assert.notEqual(await page.locator("#compare-v05-description").innerText(),await page.locator("#compare-v06-description").innerText());
+   await page.locator("#first").selectOption("T01");
    await page.locator("#second").selectOption("T16");
    assert.equal(await page.locator("#draft-variants").isVisible(),false);
    assert.equal(await page.locator("#review-compare").isVisible(),false);
    assert.match(await page.locator("#source-status").innerText(),/v0.4/);
    if(width===1280) {
-    const seen=new Set(),variantPairs=new Set();
+    const seen=new Set(),variantPairs=new Set(),pilotPairs=new Set();
     for(let a=1;a<=16;a++) {
      await page.locator("#first").selectOption("T"+String(a).padStart(2,"0"));
      for(let b=1;b<=16;b++) {
@@ -77,11 +87,13 @@ const widths=[320,390,768,1280];
       const pairId=line.match(/T\d\d-T\d\d/)[0];
       seen.add(pairId);
       if(await page.locator("#draft-variants").isVisible())variantPairs.add(pairId);
+      if(await page.locator("#option-v06-label").isVisible())pilotPairs.add(pairId);
       assert.equal(await page.locator("#axis-rows tr").count(),4);
      }
     }
     assert.equal(seen.size,136);
     assert.equal(variantPairs.size,112);
+    assert.equal(pilotPairs.size,8);
    }
    assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),
      true,"Horizontal overflow at "+width);
@@ -99,6 +111,6 @@ const widths=[320,390,768,1280];
    assert.deepEqual(failures,[]);
    await context.close();
   }
-  console.log("A05 R1 S5 offline browser QA PASS: 4 widths, 256 selections, 112 variants, no unexpected network/storage.");
+  console.log("A05 R1 S5 offline browser QA PASS: 4 widths, 256 selections, 112 v0.5 alternatives, 8 v0.6 pilots, no unexpected network/storage.");
  }finally{await browser.close();}
 })().catch(error=>{console.error(error);process.exitCode=1});
