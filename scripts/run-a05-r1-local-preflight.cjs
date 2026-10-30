@@ -16,6 +16,9 @@ if(processArgs.some(x=>x!=="--browser")) {
 const steps=[
  ["S4 v0.4 generator parity",process.execPath,["--test","scripts/test-a05-r1-s4-contextual112-v04.mjs"]],
  ["S4 v0.5 eight alternates",process.execPath,["--test","scripts/test-a05-r1-s4-v05-alternates.mjs"]],
+ ["S4 v0.5 full 112 candidate integrity",process.execPath,["--test","scripts/test-a05-r1-s4-v05-all112.mjs"]],
+ ["S4 v0.5 deterministic generation",process.execPath,["scripts/build-a05-r1-s4-v05-all112.mjs"]],
+ ["S4 v0.5 generated-file reproducibility","git",["diff","--exit-code","--","docs/A05_S4_V05_ALL112_CONTEXTUAL_ALTERNATES_20261030.json"]],
  ["S5 static UI contract",process.execPath,["--test","scripts/test-a05-r1-s5-preview.mjs"]],
  ["S5 standalone builder",process.execPath,["scripts/build-a05-r1-s5-offline.mjs"]],
  ["S5 standalone integrity",process.execPath,["--test","scripts/test-a05-r1-s5-offline.mjs"]],
