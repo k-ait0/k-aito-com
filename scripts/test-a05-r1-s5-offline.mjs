@@ -8,12 +8,12 @@ const jsonFromId=id=>{
  assert.ok(match,"Missing "+id);
  return JSON.parse(match[1]);
 };
-test("offline page embeds complete source and eight candidates",()=>{
+test("offline page embeds complete source and 112 candidates",()=>{
  const m=jsonFromId("offline-master-data");
  const a=jsonFromId("offline-alternates-data");
  const t=jsonFromId("offline-types-data");
  assert.equal(m.rows.length,136);
- assert.equal(a.proposals.length,8);
+ assert.equal(a.proposals.length,112);
  assert.equal(t.length,16);
  assert.equal(new Set(m.rows.map(x=>x.pairId)).size,136);
  assert.equal(m.release,"NO_GO");
