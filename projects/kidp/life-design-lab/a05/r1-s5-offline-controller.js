@@ -74,6 +74,16 @@
   const prompts=chosen?chosen.candidatePrompts:row.draftConversationQuestions;
   const list=$("draft-prompts");list.replaceChildren();
   for(const question of prompts){const li=document.createElement("li");li.textContent=question;list.append(li);}
+  const review=$("review-compare");
+  review.hidden=!alt;
+  if(alt){
+    $("compare-v04-description").textContent=row.draftDescription;
+    $("compare-v05-description").textContent=alt.candidateDescription;
+    for(const [id,questions] of [["compare-v04-prompts",row.draftConversationQuestions],["compare-v05-prompts",alt.candidatePrompts]]){
+      const target=$(id);target.replaceChildren();
+      for(const q of questions){const li=document.createElement("li");li.textContent=q;target.append(li);}
+    }
+  }else review.open=false;
   $("source-status").textContent=chosen
     ?"表示中：v0.5のAI生成・要審査原案。先行8組と定型生成104組を含み、人手一次・独立二次レビューは未実施。"
     :"表示中：v0.4の未承認原案。人手一次・独立二次レビュー未実施。";
