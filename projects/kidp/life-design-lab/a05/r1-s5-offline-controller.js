@@ -9,10 +9,12 @@
  const master=JSON.parse($("offline-master-data").textContent);
  const alternates=JSON.parse($("offline-alternates-data").textContent);
  const types=JSON.parse($("offline-types-data").textContent);
+ const v06=JSON.parse($("offline-v06-data").textContent);
  const first=$("first"),second=$("second"),variantBox=$("draft-variants");
  const byType=new Map(types.map(t=>[t.id,t]));
  const byPair=new Map(master.rows.map(r=>[r.pairId,r]));
  const byAlternative=new Map(alternates.proposals.map(r=>[r.pairId,r]));
+ const byV06=new Map(v06.rows.map(r=>[r.pairId,r]));
  const axes={A:["安定","変化"],B:["自律","つながり"],C:["将来","現在"],D:["探索","深耕"]};
  let variant="v04";
  function need(ok,reason){if(!ok)throw Error(reason);}
@@ -60,7 +62,7 @@
   const a=byType.get(first.value),b=byType.get(second.value);
   need(a&&b,"Selected ID invalid");
   const pairId=[a.id,b.id].sort().join("-");
-  const row=byPair.get(pairId),alt=byAlternative.get(pairId);
+  const row=byPair.get(pairId),alt=byAlternative.get(pairId),final=byV06.get(pairId);
   need(row,"Pair not found "+pairId);
   drawCard("type-card-a",a);drawCard("type-card-b",b);drawAxes(row);
   $("pair-meta").textContent="組合せ "+pairId+" ／ 136組中の1組（表示順序を入れ替えても同じ組合せ）";
@@ -68,25 +70,37 @@
    ?"4軸の設定ラベルは同じですが、実際の人の希望や行動が一致することを意味しません。"
    :"設定上の共通・相違を示しています。軸の相違数に価値判断はありません。";
   variantBox.hidden=!alt;
+  $("option-v06-label").hidden=!final;
   if(!alt)variant="v04";
   const chosen=alt&&variant==="v05"?alt:null;
-  $("draft-description").textContent=chosen?chosen.candidateDescription:row.draftDescription;
-  const prompts=chosen?chosen.candidatePrompts:row.draftConversationQuestions;
+  const latest=final&&variant==="v06"?final:null;
+  $("draft-description").textContent=latest?latest.proposedV06Description:chosen?chosen.candidateDescription:row.draftDescription;
+  const prompts=latest?latest.proposedV06Prompts:chosen?chosen.candidatePrompts:row.draftConversationQuestions;
   const list=$("draft-prompts");list.replaceChildren();
   for(const question of prompts){const li=document.createElement("li");li.textContent=question;list.append(li);}
   const review=$("review-compare");
   review.hidden=!alt;
+  $("compare-v06-panel").hidden=!final;
+  $("review-grid").dataset.threeway=final?"true":"false";
   if(alt){
     $("compare-v04-description").textContent=row.draftDescription;
     $("compare-v05-description").textContent=alt.candidateDescription;
-    for(const [id,questions] of [["compare-v04-prompts",row.draftConversationQuestions],["compare-v05-prompts",alt.candidatePrompts]]){
+    if(final)$("compare-v06-description").textContent=final.proposedV06Description;
+    else $("compare-v06-description").textContent="";
+    for(const [id,questions] of [
+      ["compare-v04-prompts",row.draftConversationQuestions],
+      ["compare-v05-prompts",alt.candidatePrompts],
+      ["compare-v06-prompts",final?final.proposedV06Prompts:[]]
+    ]){
       const target=$(id);target.replaceChildren();
       for(const q of questions){const li=document.createElement("li");li.textContent=q;target.append(li);}
     }
   }else review.open=false;
-  $("source-status").textContent=chosen
-    ?(chosen.provenance==="PROGRAMMATIC_104_PAIR_EDITORIAL_DRAFT_NO_HUMAN_REVIEW" ? "表示中：v0.5定型生成の104組候補の一つ。" : "表示中：v0.5先行AI個別改稿8組の一つ。")+"人手一次・独立二次レビューは未実施。意味上の独自性も未認定。"
-    :"表示中：v0.4の未承認原案。人手一次・独立二次レビュー未実施。";
+  $("source-status").textContent=latest
+    ?"表示中：v0.6高反復8組の個別改稿候補。反復率は低下したものの人手・科学審査は未実施。"
+    :chosen
+      ?(chosen.provenance==="PROGRAMMATIC_104_PAIR_EDITORIAL_DRAFT_NO_HUMAN_REVIEW" ? "表示中：v0.5定型生成の104組候補の一つ。" : "表示中：v0.5先行AI個別改稿8組の一つ。")+"人手一次・独立二次レビューは未実施。意味上の独自性も未認定。"
+      :"表示中：v0.4の未承認原案。人手一次・独立二次レビュー未実施.";
   $("results").hidden=false;
  }
  function validate(){
@@ -94,6 +108,7 @@
   need(types.length===16&&byType.size===16,"Type registry invalid");
   need(master.rows.length===136&&byPair.size===136,"Pair registry invalid");
   need(alternates.proposals.length===112&&byAlternative.size===112&&alternates.publication==="NO_GO","Alternative set invalid");
+  need(v06.count===8&&v06.rows.length===8&&byV06.size===8&&v06.publicRelease==="NO_GO","V06 pilot set invalid");
   let ordered=0;const unique=new Set();
   for(const t of types)for(const u of types){
    const id=[t.id,u.id].sort().join("-"),row=byPair.get(id);
@@ -106,6 +121,16 @@
   need(ordered===256&&unique.size===136,"Selection coverage");
   for(const alt of alternates.proposals){
    need(byPair.has(alt.pairId)&&alt.approved===false&&alt.firstReviewStatus==="PENDING"&&alt.secondReviewStatus==="PENDING","Alternative approval");
+  }
+  for(const pilot of v06.rows){
+   const alt=byAlternative.get(pilot.pairId),base=byPair.get(pilot.pairId);
+   need(Boolean(alt&&base)&&pilot.approved===false&&pilot.publicationApproved===false&&
+     pilot.firstHumanReview==="PENDING"&&pilot.secondIndependentHumanReview==="PENDING"&&
+     pilot.typeIds.join("|")===base.typeIds.join("|")&&
+     pilot.baselineV05Description===alt.candidateDescription&&
+     JSON.stringify(pilot.baselineV05Prompts)===JSON.stringify(alt.candidatePrompts)&&
+     pilot.proposedV06Prompts.length===3,
+     "V06 reference drift or approval: "+pilot.pairId);
   }
  }
  try{
@@ -123,7 +148,7 @@
   }
   render(true);
   document.documentElement.dataset.offlineReady="true";
-  $("offline-integrity").textContent="組合せの静的整合性：256通り／136組、編集候補112組を読み込み時に検査済み。";
+  $("offline-integrity").textContent="組合せの静的整合性：256通り／136組、v0.5候補112組、v0.6候補8組を読み込み時に検査済み。";
  }catch(error){
   console.error("A05 offline preview error:",error);
   $("results").hidden=true;$("load-error").hidden=false;
