@@ -14,7 +14,7 @@
     "S0_6_HUMAN_FINAL_APPROVAL_AND_STOP_GATES"
   ],
   "overallReleaseStatus": "NO_GO",
-  "planningStatus": "S5_OFFLINE_SINGLE_FILE_136_PAIRS_PLUS_8_ALTERNATES_READY_STATIC_INTEGRITY_VERIFIED_NATIVE_QA_PENDING__S4_SEMANTIC_SCAFFOLD_112_STILL_OPEN",
+  "planningStatus": "S4_V05_112_ALTERNATIVES_CREATED_104_TEMPLATED_QA_PENDING__S5_OFFLINE_UI_112_TOGGLES_STATIC_INTEGRITY_PASS__NATIVE_RUNTIME_BLOCKED",
   "gates": [
     {
       "id": "S0-1",
@@ -109,7 +109,7 @@
       "stage": "S4",
       "goalCount": null,
       "acceptedCount": 0,
-      "status": "V04_STATIC_CANDIDATES_READY_112_FORMULAIC_SCAFFOLDS_C1_C3_HUMAN_REVIEW_PENDING",
+      "status": "V05_112_ALTERNATIVE_DRAFTS_8_PREVIOUS_PLUS_104_RULE_GENERATED_UNAPPROVED_NO_HUMAN_SEMANTIC_REVIEW",
       "firstReview": {
         "completed": 0,
         "total": 136
@@ -123,7 +123,7 @@
       "stage": "S5",
       "goalCount": 8,
       "acceptedCount": 0,
-      "status": "OFFLINE_136PAIR_SINGLE_HTML_V02_GENERATED_PLUS_SERVER_PREVIEW_STATIC_QA_ONLY_NATIVE_CHROME_QA_PENDING"
+      "status": "OFFLINE_136_PAIR_SINGLE_HTML_WITH_112_DRAFT_VERSION_TOGGLES_STATIC_QA_READY_NATIVE_QA_PENDING"
     },
     {
       "stage": "S6",
@@ -378,6 +378,42 @@
       "nativeNodeExecuted": false,
       "browserQAExecuted": false,
       "ownerApproval": false,
+      "publication": "NO_GO"
+    },
+    {
+      "eventId": "S4S5-V05-112-BATCH-001",
+      "date": "2026-10-30",
+      "acceptedGateIds": [],
+      "scope": "AI_DRAFT_EXPANSION_AND_STATIC_UI_BUNDLE_VERIFICATION_ONLY",
+      "decision": "Added 104 machine-pattern editorial alternatives to 8 earlier AI-authored drafts (112 total P2=56 P3=56), left original 136-row S4 v0.4 master unchanged and kept primary/independent reviews at zero. Fixed a regression accidentally overwriting provenance of the original eight; all original eight entries now identical to source. Bundled all 112 into one 500KB standalone S5 HTML to toggle v0.4/v0.5, regenerated build/test scripts, corrected Chrome QA to expect 112 toggles. Browser and native Node test execution remained blocked in this session: container GitHub DNS and managed Chromium navigation denied. No GitHub Actions or production edits. All official gates unchanged.",
+      "staticAudit": {
+        "candidateCount": 112,
+        "newMachineCandidates": 104,
+        "prior8Preserved": true,
+        "uniqueDescriptions": 112,
+        "uniqueQuestions": 336,
+        "offlinePairs": 136,
+        "typeCount": 16,
+        "embeddedContentMatchesSources": true,
+        "reviewApprovalCount": 0
+      },
+      "knownLimitations": [
+        "104 generated records have repeated scene/axis grammar: semantic originality not proven",
+        "Real Chrome, Safari/VoiceOver, native Node, user comprehension QA not executed",
+        "Public release remains NO_GO"
+      ],
+      "documents": [
+        "docs/A05_S4_V05_ALL112_CONTEXTUAL_ALTERNATES_20261030.json",
+        "scripts/build-a05-r1-s4-v05-all112.mjs",
+        "scripts/test-a05-r1-s4-v05-all112.mjs",
+        "projects/kidp/life-design-lab/a05/r1-s5-offline.html",
+        "projects/kidp/life-design-lab/a05/r1-s5-offline-controller.js",
+        "scripts/qa_a05_r1_s5_offline_browser.cjs",
+        "scripts/run-a05-r1-local-preflight.cjs",
+        "docs/A05_S4S5_V05_112PAIR_INTEGRATION_QA_20261030.md"
+      ],
+      "nativeNodeExecuted": false,
+      "actualBrowserExecuted": false,
       "publication": "NO_GO"
     }
   ],
