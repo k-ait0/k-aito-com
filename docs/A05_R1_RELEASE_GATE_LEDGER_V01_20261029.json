@@ -14,7 +14,7 @@
     "S0_6_HUMAN_FINAL_APPROVAL_AND_STOP_GATES"
   ],
   "overallReleaseStatus": "NO_GO",
-  "planningStatus": "S4_V04_STATIC_136_CANDIDATES_READY_OLD_PHRASES_ZERO_NEW_SCAFFOLD_112_REVIEW_PENDING",
+  "planningStatus": "S4_V04_STATIC_136_READY_WITH_112_SEMANTIC_SCAFFOLD_RISK__S5_V01_UI_SOURCE_IMPLEMENTED_STATIC_QA_ONLY",
   "gates": [
     {
       "id": "S0-1",
@@ -123,7 +123,7 @@
       "stage": "S5",
       "goalCount": 8,
       "acceptedCount": 0,
-      "status": "NOT_ACCEPTED"
+      "status": "STATIC_PREVIEW_V01_IMPLEMENTED_SOURCE_QA_ONLY_BROWSER_AND_INDEPENDENT_ACCEPTANCE_PENDING"
     },
     {
       "stage": "S6",
@@ -302,6 +302,39 @@
         "firstHumanReviewed": 0,
         "independentSecondReviewed": 0
       },
+      "publication": "NO_GO"
+    },
+    {
+      "eventId": "S5-PREVIEW-001",
+      "date": "2026-10-30",
+      "acceptedGateIds": [],
+      "scope": "ISOLATED_STATIC_UI_PROTOTYPE_AND_V8_SOURCE_AUDIT_ONLY",
+      "decision": "Created a standalone, noindex, same-origin-only S5 manual two-type compare preview using existing v0.4 static 136-pair master, type registry and compatibility domain model. Added CSS, a native Node test file and a Playwright browser QA file. Re-fetched GitHub files and checked 256 ordered type selections => 136 unordered pairs, 16/32/48/32/8 axis-distance distribution, source labels and policy restrictions. Native Node, Playwright, real Safari, screen readers, editorial and owner acceptance NOT executed/NOT granted. Existing app, PR #61, main and production untouched.",
+      "documents": [
+        "projects/kidp/life-design-lab/a05/r1-s5-preview.html",
+        "projects/kidp/life-design-lab/a05/r1-s5-preview.css",
+        "projects/kidp/life-design-lab/a05/r1-s5-preview.mjs",
+        "scripts/test-a05-r1-s5-preview.mjs",
+        "scripts/qa_a05_r1_s5_browser.cjs",
+        "docs/A05_S5_V01_ISOLATED_PREVIEW_IMPLEMENTATION_AND_QA_20261030.md"
+      ],
+      "staticAudit": {
+        "orderedSelections": 256,
+        "unorderedPairs": 136,
+        "axisDifferenceDistribution": [
+          16,
+          32,
+          48,
+          32,
+          8
+        ],
+        "missingElementRefs": 0,
+        "unexpectedSourceRestrictions": 0,
+        "reportedFailures": 0
+      },
+      "nativeNodeExecuted": false,
+      "browserQAExecuted": false,
+      "independentHumanAcceptance": false,
       "publication": "NO_GO"
     }
   ],
