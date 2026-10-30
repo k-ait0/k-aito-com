@@ -39,3 +39,12 @@ test("112-pair startup guard and browser QA assertions are version-aligned",()=>
  assert.match(browserTest,/variantPairs=new Set\(\)/);
  assert.match(browserTest,/variantPairs\.size,112/);
 });
+
+test("offline side-by-side review exposes both versions without approval",()=>{
+ assert.match(text,/id="review-compare"/);
+ assert.match(text,/id="compare-v04-description"/);
+ assert.match(text,/id="compare-v05-description"/);
+ assert.match(text,/id="compare-v04-prompts"/);
+ assert.match(text,/id="compare-v05-prompts"/);
+ assert.match(text,/review\.hidden=!alt/);
+});
