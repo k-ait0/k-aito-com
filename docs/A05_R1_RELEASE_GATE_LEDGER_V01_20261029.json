@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "A05-R1-RELEASE-TRACKER-0.7.0",
+  "schemaVersion": "A05-R1-RELEASE-TRACKER-0.8.0",
   "updatedAt": "2026-10-30",
   "timezone": "Asia/Tokyo",
   "product": "A05 R1 16-type value understanding map",
@@ -14,7 +14,7 @@
     "S0_6_HUMAN_FINAL_APPROVAL_AND_STOP_GATES"
   ],
   "overallReleaseStatus": "NO_GO",
-  "planningStatus": "S1_2_OF_8_AND_S2_PRELIMINARY_ABSTRACT_SCREENING",
+  "planningStatus": "S1_2_OF_8_S2_0_OF_7_S3_REVIEW_QUEUE_PREPARED_S4_24_CANDIDATES",
   "gates": [
     {
       "id": "S0-1",
@@ -103,13 +103,13 @@
       "stage": "S3",
       "goalCount": 6,
       "acceptedCount": 0,
-      "status": "NOT_ACCEPTED"
+      "status": "PREPARATION_ONLY_NOT_ACCEPTED"
     },
     {
       "stage": "S4",
       "goalCount": null,
       "acceptedCount": 0,
-      "status": "NOT_ACCEPTED",
+      "status": "EDITORIAL_DRAFTS_PREPARED_HUMAN_REVIEW_0",
       "firstReview": {
         "completed": 0,
         "total": 136
@@ -239,6 +239,20 @@
       "acceptedGateIds": [],
       "decision": "Seven candidate sources cross-checked at publisher/PubMed/author abstract or text level; nonpredictive applicability matrix and 7 pending S2 gates prepared. No full-text methodological adjudication or scientific/owner approval.",
       "scope": "PRELIMINARY_SCIENCE_SCREENING_ONLY"
+    },
+    {
+      "eventId": "S3-001",
+      "date": "2026-10-30",
+      "acceptedGateIds": [],
+      "decision": "S3 136-row prioritized machine-readable editorial review queue pinned to source SHA; technical V8 820/820 clear, original v1.0 unavailable, no formal approval.",
+      "scope": "STRUCTURAL_PREPARATION_ONLY"
+    },
+    {
+      "eventId": "S4-P0P1-001",
+      "date": "2026-10-30",
+      "acceptedGateIds": [],
+      "decision": "Drafted 16 same-type and 8 all-four-different unique, nonpredictive dialogue notes; 24 candidates prepared but first/second human review still 0.",
+      "scope": "C_LAYER_EDITORIAL_CANDIDATES_ONLY"
     }
   ],
   "policyGatePassed": true,
@@ -340,6 +354,13 @@
       "method": "GitHub original candidate and new source register V8 evidence claim firewall: 92 assertions / 0 discrepancies",
       "nativeNodeExecuted": false,
       "status": "STRUCTURAL_RESEARCH_PREPARATION_ONLY"
+    },
+    {
+      "date": "2026-10-30",
+      "event": "S3-001",
+      "method": "Source modules from GitHub evaluated in V8: 820 assertions, no issues; draft P0 JSON 88 structural checks, draft P1 JSON 42 structural checks, no issues",
+      "nativeNodeExecuted": false,
+      "status": "TECHNICAL_PRECHECK_ONLY"
     }
   ],
   "s1AcceptanceDocument": "docs/A05_S1_CONSTRUCT_CRITICAL_REVIEW_AND_DECISION_V04_20261030.md",
@@ -428,5 +449,58 @@
     "individualPairValidationStudies": 0,
     "authorizedRelationshipQualityPrediction": false,
     "productionStatus": "NO_GO"
+  },
+  "s3Preparation": {
+    "id": "S3-001",
+    "acceptanceSpecification": "docs/A05_S3_136PAIR_NORMALIZATION_AND_ACCEPTANCE_V01_20261030.md",
+    "reviewQueueModule": "projects/kidp/life-design-lab/a05/r1-s3-review-queue.mjs",
+    "reviewQueueSnapshot": "docs/A05_S3_136PAIR_REVIEW_QUEUE_V01_20261030.json",
+    "generatedPairRows": 136,
+    "priorityCounts": {
+      "P0_SAME_TYPE": 16,
+      "P1_ALL_FOUR_DIFFERENT": 8,
+      "P2_B1_DIFFERENCE": 56,
+      "P3_OTHER": 56
+    },
+    "axisDistanceCounts": {
+      "0": 16,
+      "1": 32,
+      "2": 48,
+      "3": 32,
+      "4": 8
+    },
+    "structuralSourceAssertions": 820,
+    "structuralSourceAssertionFailures": 0,
+    "nativeNodeSuiteExecuted": false,
+    "originalWorkbookV01": {
+      "presentInUserLibrary": true,
+      "previousStructuralMatch": "REPORTED_C04_PRIOR_TURN",
+      "bytesRecheckedCurrentTurn": false
+    },
+    "originalWorkbookV10": {
+      "presentInAccessibleSearch": false,
+      "hashVerified": false,
+      "structurallyReconciled": false
+    },
+    "technicalReviewQueueGenerated": true,
+    "s1FinalTaxonomyApproved": false,
+    "ownerS3AcceptanceGranted": false,
+    "acceptedGates": 0,
+    "totalGates": 6,
+    "release": "NO_GO"
+  },
+  "s4DraftPreparation": {
+    "id": "S4-P0P1-001",
+    "sameTypeCandidatesFile": "docs/A05_S4_P0_SAMETYPE_16_EDITORIAL_CANDIDATES_V01_20261030.json",
+    "fourAxisDifferentCandidatesFile": "docs/A05_S4_P1_OPPOSITE_8_EDITORIAL_CANDIDATES_V01_20261030.json",
+    "sameTypeDrafts": 16,
+    "fourAxisDifferentDrafts": 8,
+    "preparedEditorialCandidates": 24,
+    "distinctPairs": 24,
+    "firstHumanReviewed": 0,
+    "independentSecondHumanReviewed": 0,
+    "publicationApproved": 0,
+    "reviewPriority": "P0_SAME_TYPE_THEN_P1_ALL_FOUR_DIFFERENT",
+    "scientificPairValidation": 0
   }
 }
