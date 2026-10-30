@@ -14,7 +14,7 @@
     "S0_6_HUMAN_FINAL_APPROVAL_AND_STOP_GATES"
   ],
   "overallReleaseStatus": "NO_GO",
-  "planningStatus": "S5_ACTUAL_CONTROLLER_V8_DOM_DOUBLE_256_PASS__S4_NGRAM_104_HIGH_TEMPLATE_RISK_V06_EIGHT_REWRITES_DECREASE_TO_96__NATIVE_AND_BROWSER_QA_PENDING",
+  "planningStatus": "S5_THREE_VERSION_OFFLINE_V8_256_PASS_V05_112_V06_8_SOURCE_CONSISTENCY_CONFIRMED__NATIVE_BROWSER_AND_HUMAN_QA_PENDING",
   "gates": [
     {
       "id": "S0-1",
@@ -123,7 +123,7 @@
       "stage": "S5",
       "goalCount": 8,
       "acceptedCount": 0,
-      "status": "ACTUAL_CONTROLLER_EXECUTED_V8_FAKE_DOM_256_ORDERED_PAIRS_112_ALTS_PASS__NATIVE_NODE_AND_REAL_BROWSER_QA_PENDING"
+      "status": "S5_V06_THREEWAY_SINGLE_FILE_UI_IMPLEMENTED_AND_ISOLATED_V8_256_PASS__NATIVE_NODE_REAL_BROWSER_HUMAN_GATE_PENDING"
     },
     {
       "stage": "S6",
@@ -474,6 +474,39 @@
         "realSafariExecuted": false,
         "humanApprovals": 0
       },
+      "publication": "NO_GO"
+    },
+    {
+      "eventId": "S5-V06-THREEWAY-ISOLATED-V8-005",
+      "date": "2026-10-30",
+      "acceptedGateIds": [],
+      "scope": "NONPUBLIC_S5_THREE_VERSION_EDITORIAL_UI_SOURCE_AND_ISOLATED_V8_RUNTIME",
+      "decision": "On independent descendant branch, wired eight previously prepared S4 v0.6 high-repeat individual rewrite pilots into S5 self-contained offline HTML alongside existing v0.4 136 master and v0.5 112 alternatives. All sources remain immutable and unapproved. Executed checked-in deterministic HTML builder with in-memory FS and verified full HTML parity. Executed actual controller via V8 DOM double for 256 selections, 136 unordered pairs, 112 v0.5 alternatives and 8 v0.6 alternatives (16 ordered views); rejected 5 tampered source states. Verified matching embedded controller/CSS/master JSON/v0.5/v0.6, 36 unique HTML IDs and zero external fetch/storage APIs. Updated native VM, standalone, Chrome QA test sources, but neither native Node nor real browser suite ran.",
+      "evidence": {
+        "v8OrderedSelections": 256,
+        "uniquePairs": 136,
+        "v05Variants": 112,
+        "v06Variants": 8,
+        "v06OrderedRenders": 16,
+        "rejectedTamperedFixtures": 5,
+        "htmlIdCount": 36,
+        "duplicateHtmlIds": 0,
+        "deterministicHtmlBuilderMatchesCommitted": true,
+        "embeddedSourcesMatch": true,
+        "nativeNodeExecuted": false,
+        "chromeExecuted": false,
+        "safariExecuted": false,
+        "humanEditorialReviewed": 0
+      },
+      "documents": [
+        "docs/A05_R1_S5_V06_THREEWAY_OFFLINE_PREVIEW_QA_20261030.md",
+        "projects/kidp/life-design-lab/a05/r1-s5-offline-controller.js",
+        "projects/kidp/life-design-lab/a05/r1-s5-offline.html",
+        "scripts/build-a05-r1-s5-offline.mjs",
+        "scripts/test-a05-r1-s5-controller-runtime.mjs",
+        "scripts/qa_a05_r1_s5_offline_browser.cjs",
+        "scripts/test-a05-r1-s5-offline.mjs"
+      ],
       "publication": "NO_GO"
     }
   ],
