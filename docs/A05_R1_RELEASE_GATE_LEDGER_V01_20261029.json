@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "A05-R1-RELEASE-TRACKER-1.0.0",
+  "schemaVersion": "A05-R1-RELEASE-TRACKER-1.1.0",
   "updatedAt": "2026-10-30",
   "timezone": "Asia/Tokyo",
   "product": "A05 R1 16-type value understanding map",
@@ -14,7 +14,7 @@
     "S0_6_HUMAN_FINAL_APPROVAL_AND_STOP_GATES"
   ],
   "overallReleaseStatus": "NO_GO",
-  "planningStatus": "S4_DRAFT136_V02_120_REWRITTEN_PENDING_INDEPENDENT_HUMAN_REVIEW",
+  "planningStatus": "S4_V03_P1_EIGHT_CONTEXTUAL_REWRITES_P2_P3_112_TEXT_RISK_REMAINING",
   "gates": [
     {
       "id": "S0-1",
@@ -109,7 +109,7 @@
       "stage": "S4",
       "goalCount": null,
       "acceptedCount": 0,
-      "status": "V02_DRAFT136_PRESENT_HUMAN_APPROVAL_ZERO",
+      "status": "V03_CONTEXTUAL_DRAFTS_P0P1_REVIEW_PACKET_READY_NO_HUMAN_APPROVAL",
       "firstReview": {
         "completed": 0,
         "total": 136
@@ -267,6 +267,13 @@
       "acceptedGateIds": [],
       "decision": "Revised 120 P1/P2/P3 editorial pair drafts, retained P0 16. Exact string diversity now 136 descriptions / 392 prompts. Semantic redundancy and all human reviews remain pending, release NO-GO.",
       "scope": "MACHINE_GENERATED_COPY_VERSIONING_ONLY"
+    },
+    {
+      "eventId": "S4-SEM-003",
+      "date": "2026-10-30",
+      "acceptedGateIds": [],
+      "decision": "Documented four recurring text risks in 120 v0.2 pair drafts; rewrote P1 eight pairs with contextual prompts, lowering literal risk count to 112; prepared P0/P1 24-pair human review packet, 0 human reviews passed.",
+      "scope": "AI_EDITORIAL_PREPARATION_ONLY"
     }
   ],
   "policyGatePassed": true,
@@ -389,6 +396,13 @@
       "method": "V8 real GitHub code 963/963; v02 master source SHA and 136 row cross-reference 1208/1208; native Node not executed",
       "status": "EDITORIAL_CANDIDATE_PRECHECK_ONLY",
       "nativeNodeExecuted": false
+    },
+    {
+      "date": "2026-10-30",
+      "event": "S4-SEM-003",
+      "method": "GitHub source re-fetch 886 cross-checks, 0 failures; no native Node, human/psychometric review or actual release",
+      "nativeNodeExecuted": false,
+      "status": "PREPARATORY_ONLY"
     }
   ],
   "s1AcceptanceDocument": "docs/A05_S1_CONSTRUCT_CRITICAL_REVIEW_AND_DECISION_V04_20261030.md",
@@ -585,5 +599,41 @@
       "nativeNodeExecuted": false
     },
     "releaseStatus": "NO_GO"
+  },
+  "s4SemanticQualityV03": {
+    "eventId": "S4-SEM-003",
+    "master": "docs/A05_S4_ALL136_EDITORIAL_REVIEW_MASTER_V03_20261030.json",
+    "phraseRiskAudit": "docs/A05_S4_SEMANTIC_RISK_AUDIT_V01_20261030.json",
+    "p1Rewrites": "docs/A05_S4_P1_EIGHT_CONTEXTUAL_REWRITES_V01_20261030.json",
+    "p0p1ReviewPacket": "docs/A05_S4_P0P1_24PAIR_INDEPENDENT_REVIEW_PACKET_V01_20261030.json",
+    "qaReport": "docs/A05_S4_SEMANTIC_COPY_QA_REPORT_V03_20261030.md",
+    "regressionTest": "scripts/test-a05-r1-s4-semantic-review-v03.mjs",
+    "baselineRows": 136,
+    "rewrittenP1": 8,
+    "retainedOtherRows": 128,
+    "baselineLiteralPhraseRiskPairs": 120,
+    "revisedLiteralPhraseRiskPairs": 112,
+    "revisedPhraseRiskByPriority": {
+      "P0_SAME_TYPE": 0,
+      "P1_ALL_FOUR_DIFFERENT": 0,
+      "P2_B1_DIFFERENCE": 56,
+      "P3_OTHER": 56
+    },
+    "literalPhraseRiskCategories": [
+      "FORCED_SAME_DAY",
+      "META_QUESTION",
+      "ABSTRACT_GENERIC_QUESTION",
+      "AXIS_LIST_AS_NARRATIVE"
+    ],
+    "reviewedMaterialPrepared": 24,
+    "humanFirstReviewApproved": 0,
+    "independentSecondHumanReviewApproved": 0,
+    "sourceReconciliationAssertions": 886,
+    "sourceReconciliationFailures": 0,
+    "nativeNodeTestExecuted": false,
+    "realUsersTested": 0,
+    "scientificValidation": false,
+    "caution": "Risk flags are literal pattern checks, not proof of semantic quality",
+    "release": "NO_GO"
   }
 }
