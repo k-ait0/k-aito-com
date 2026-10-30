@@ -14,7 +14,7 @@
     "S0_6_HUMAN_FINAL_APPROVAL_AND_STOP_GATES"
   ],
   "overallReleaseStatus": "NO_GO",
-  "planningStatus": "S4_V03_P1_EIGHT_CONTEXTUAL_REWRITES_P2_P3_112_TEXT_RISK_REMAINING",
+  "planningStatus": "S4_V04_STATIC_136_CANDIDATES_READY_OLD_PHRASES_ZERO_NEW_SCAFFOLD_112_REVIEW_PENDING",
   "gates": [
     {
       "id": "S0-1",
@@ -109,7 +109,7 @@
       "stage": "S4",
       "goalCount": null,
       "acceptedCount": 0,
-      "status": "V03_CONTEXTUAL_DRAFTS_P0P1_REVIEW_PACKET_READY_NO_HUMAN_APPROVAL",
+      "status": "V04_STATIC_CANDIDATES_READY_112_FORMULAIC_SCAFFOLDS_C1_C3_HUMAN_REVIEW_PENDING",
       "firstReview": {
         "completed": 0,
         "total": 136
@@ -274,6 +274,35 @@
       "acceptedGateIds": [],
       "decision": "Documented four recurring text risks in 120 v0.2 pair drafts; rewrote P1 eight pairs with contextual prompts, lowering literal risk count to 112; prepared P0/P1 24-pair human review packet, 0 human reviews passed.",
       "scope": "AI_EDITORIAL_PREPARATION_ONLY"
+    },
+    {
+      "eventId": "S4-V04-STATIC-001",
+      "date": "2026-10-30",
+      "acceptedGateIds": [],
+      "decision": "Saved 112 machine-authored P2/P3 contextual drafts and integrated v0.4 136-pair static master retaining all P0/P1 v0.3 rows. Created native Node generator-equality regression test but NOT executed it. Re-fetched GitHub JSON and verified 136/112 counts, P0/P1 24 unchanged, all review/production flags pending. Exact descriptions 136 unique, questions 392 unique, four old phrase flags 0. Found five new generic scaffold phrases present in each of 112 P2/P3 rows. Prepared 16-pair human pilot queue (P0..P3 each 4). No human/science approval.",
+      "scope": "STATIC_INTEGRATION_V8_REFETCH_AND_SEMANTIC_PATTERN_REPORT_ONLY",
+      "documents": [
+        "docs/A05_S4_P2_P3_CONTEXTUAL112_CANDIDATES_V04_20261030.json",
+        "docs/A05_S4_ALL136_EDITORIAL_REVIEW_MASTER_V04_20261030.json",
+        "scripts/test-a05-r1-s4-contextual112-v04.mjs",
+        "docs/A05_S4_STATIC_INTEGRATION_QA_REPORT_V04_20261030.md",
+        "docs/A05_S4_V04_SEMANTIC_PATTERN_FINDINGS_20261030.md",
+        "docs/A05_S4_V04_SEMANTIC_REVIEW_PILOT_16_V01_20261030.json"
+      ],
+      "sourceMasterBlobSha": "50e1ff7b1cc7fcae27c13b81fd33be46f8ff64a3",
+      "nodeTestExecuted": false,
+      "technicalCounts": {
+        "total": 136,
+        "oldUnchanged": 24,
+        "newCandidates": 112,
+        "uniqueDescriptions": 136,
+        "uniqueQuestions": 392,
+        "oldPatternMatches": 0,
+        "newGenericScaffoldPairs": 112,
+        "firstHumanReviewed": 0,
+        "independentSecondReviewed": 0
+      },
+      "publication": "NO_GO"
     }
   ],
   "policyGatePassed": true,
