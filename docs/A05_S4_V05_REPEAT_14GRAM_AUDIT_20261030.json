@@ -204,7 +204,7 @@
       "priority": "P3_OTHER",
       "descriptionCharacters": 139,
       "repeatCoverage14gramAtLeast16": 0,
-      "automatedReview": "REWRITE_PRIORITY_HIGH_NOT_FLAGGED"
+      "automatedReview": "NOT_FLAGGED_BY_THIS_HEURISTIC"
     },
     {
       "pairId": "T01-T03",
@@ -228,7 +228,7 @@
       "priority": "P2_B1_DIFFERENCE",
       "descriptionCharacters": 148,
       "repeatCoverage14gramAtLeast16": 0,
-      "automatedReview": "REWRITE_PRIORITY_HIGH_NOT_FLAGGED"
+      "automatedReview": "NOT_FLAGGED_BY_THIS_HEURISTIC"
     },
     {
       "pairId": "T01-T06",
@@ -292,7 +292,7 @@
       "priority": "P2_B1_DIFFERENCE",
       "descriptionCharacters": 144,
       "repeatCoverage14gramAtLeast16": 0,
-      "automatedReview": "REWRITE_PRIORITY_HIGH_NOT_FLAGGED"
+      "automatedReview": "NOT_FLAGGED_BY_THIS_HEURISTIC"
     },
     {
       "pairId": "T01-T14",
@@ -620,7 +620,7 @@
       "priority": "P3_OTHER",
       "descriptionCharacters": 150,
       "repeatCoverage14gramAtLeast16": 0,
-      "automatedReview": "REWRITE_PRIORITY_HIGH_NOT_FLAGGED"
+      "automatedReview": "NOT_FLAGGED_BY_THIS_HEURISTIC"
     },
     {
       "pairId": "T05-T09",
@@ -708,7 +708,7 @@
       "priority": "P2_B1_DIFFERENCE",
       "descriptionCharacters": 149,
       "repeatCoverage14gramAtLeast16": 0,
-      "automatedReview": "REWRITE_PRIORITY_HIGH_NOT_FLAGGED"
+      "automatedReview": "NOT_FLAGGED_BY_THIS_HEURISTIC"
     },
     {
       "pairId": "T06-T12",
@@ -844,7 +844,7 @@
       "priority": "P3_OTHER",
       "descriptionCharacters": 146,
       "repeatCoverage14gramAtLeast16": 0,
-      "automatedReview": "REWRITE_PRIORITY_HIGH_NOT_FLAGGED"
+      "automatedReview": "NOT_FLAGGED_BY_THIS_HEURISTIC"
     },
     {
       "pairId": "T08-T14",
@@ -892,7 +892,7 @@
       "priority": "P3_OTHER",
       "descriptionCharacters": 160,
       "repeatCoverage14gramAtLeast16": 0,
-      "automatedReview": "REWRITE_PRIORITY_HIGH_NOT_FLAGGED"
+      "automatedReview": "NOT_FLAGGED_BY_THIS_HEURISTIC"
     },
     {
       "pairId": "T09-T13",
@@ -924,7 +924,7 @@
       "priority": "P2_B1_DIFFERENCE",
       "descriptionCharacters": 152,
       "repeatCoverage14gramAtLeast16": 0,
-      "automatedReview": "REWRITE_PRIORITY_HIGH_NOT_FLAGGED"
+      "automatedReview": "NOT_FLAGGED_BY_THIS_HEURISTIC"
     },
     {
       "pairId": "T10-T11",
