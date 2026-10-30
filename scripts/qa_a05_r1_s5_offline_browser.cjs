@@ -52,11 +52,17 @@ const widths=[320,390,768,1280];
    const v05=await page.locator("#draft-description").innerText();
    assert.notEqual(v04,v05);
    assert.match(v05,/地域の学習会/);
+   assert.equal(await page.locator("#review-compare").isVisible(),true);
+   await page.locator("#review-compare summary").click();
+   assert.equal(await page.locator("#compare-v04-prompts li").count(),3);
+   assert.equal(await page.locator("#compare-v05-prompts li").count(),3);
+   assert.notEqual(await page.locator("#compare-v04-description").innerText(),await page.locator("#compare-v05-description").innerText());
    assert.equal(await page.locator("#draft-prompts li").count(),3);
    await page.locator("#second").selectOption("T06");
    assert.equal(await page.locator("#draft-variants").isVisible(),true);
    await page.locator("#second").selectOption("T16");
    assert.equal(await page.locator("#draft-variants").isVisible(),false);
+   assert.equal(await page.locator("#review-compare").isVisible(),false);
    assert.match(await page.locator("#source-status").innerText(),/v0.4/);
    if(width===1280) {
     const seen=new Set(),variantPairs=new Set();
