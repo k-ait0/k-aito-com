@@ -1,0 +1,820 @@
+{
+  "schema": "A05-R1-S4-V04-PILOT-16-REVIEW-QUEUE-0.1.0-unapproved",
+  "generatedOn": "2026-10-30",
+  "originMaster": "docs/A05_S4_ALL136_EDITORIAL_REVIEW_MASTER_V04_20261030.json",
+  "originMasterBlobSha": "50e1ff7b1cc7fcae27c13b81fd33be46f8ff64a3",
+  "selectionMethod": "P0 four group representatives, P1 four all-four-opposites, P2/P3 each four with structural-distance variety; deterministic proposed sample, not review approval.",
+  "auditPolicy": "Any REVISE or FAIL -> not approved; C4/C5/C7 FAIL -> blocking; first and independent second reviewers must differ and provide real identifiers/dates.",
+  "generalRisks": {
+    "allP2P3HaveIdenticalScaffold": true,
+    "repeatedFormulaCountAcrossP2P3": 112,
+    "humanSemanticReviewCount": 0,
+    "languageNaturalnessNotMachineCertified": true
+  },
+  "samples": [
+    {
+      "pairId": "T01-T01",
+      "priority": "P0_SAME_TYPE",
+      "typeIds": [
+        "T01",
+        "T01"
+      ],
+      "names": [
+        "着実な開拓者",
+        "着実な開拓者"
+      ],
+      "sharedAxes": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "differentAxes": [],
+      "draftDescription": "同じく落ち着いた基盤から新しいことを探す設定でも、挑戦する領域や許容する負担は違う場合があります。",
+      "draftConversationQuestions": [
+        "新しい取り組みを選ぶとき、生活の何を維持したいですか。",
+        "それぞれが将来の選択肢として重視するものは何ですか。"
+      ],
+      "riskFocus": "同型＝好相性の暗示を排除",
+      "criteria": {
+        "C1_PERSONA_SPECIFICITY": null,
+        "C2_MULTI_AXIS": null,
+        "C3_NATURALNESS": null,
+        "C4_NEUTRAL_NON_PREDICTIVE": null,
+        "C5_B1_B2_BOUNDARY": null,
+        "C6_CONTEXT_CONSTRAINTS": null,
+        "C7_EVIDENCE_SCOPE": null
+      },
+      "firstReview": {
+        "reviewerId": null,
+        "reviewedAt": null,
+        "decision": "PENDING",
+        "comments": null
+      },
+      "independentSecondReview": {
+        "reviewerId": null,
+        "reviewedAt": null,
+        "decision": "PENDING",
+        "comments": null
+      },
+      "ownerDecision": "PENDING",
+      "copyApproved": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T05-T05",
+      "priority": "P0_SAME_TYPE",
+      "typeIds": [
+        "T05",
+        "T05"
+      ],
+      "names": [
+        "未来を育む案内人",
+        "未来を育む案内人"
+      ],
+      "sharedAxes": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "differentAxes": [],
+      "draftDescription": "同じく関係者との将来の可能性を重視する設定でも、共有したい目標や協力する範囲は異なり得ます。",
+      "draftConversationQuestions": [
+        "共同で考えたい将来の目標は具体的に何ですか。",
+        "個人で決めてよい範囲をどう考えていますか。"
+      ],
+      "riskFocus": "同型＝好相性の暗示を排除",
+      "criteria": {
+        "C1_PERSONA_SPECIFICITY": null,
+        "C2_MULTI_AXIS": null,
+        "C3_NATURALNESS": null,
+        "C4_NEUTRAL_NON_PREDICTIVE": null,
+        "C5_B1_B2_BOUNDARY": null,
+        "C6_CONTEXT_CONSTRAINTS": null,
+        "C7_EVIDENCE_SCOPE": null
+      },
+      "firstReview": {
+        "reviewerId": null,
+        "reviewedAt": null,
+        "decision": "PENDING",
+        "comments": null
+      },
+      "independentSecondReview": {
+        "reviewerId": null,
+        "reviewedAt": null,
+        "decision": "PENDING",
+        "comments": null
+      },
+      "ownerDecision": "PENDING",
+      "copyApproved": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T09-T09",
+      "priority": "P0_SAME_TYPE",
+      "typeIds": [
+        "T09",
+        "T09"
+      ],
+      "names": [
+        "未来のフロンティア",
+        "未来のフロンティア"
+      ],
+      "sharedAxes": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "differentAxes": [],
+      "draftDescription": "同じく新しい環境に挑む設定でも、変更する速度や備えたいリスクは同一とは限りません。",
+      "draftConversationQuestions": [
+        "新たな挑戦の前に確認したい条件は何ですか。",
+        "将来のために維持しておきたい基盤は何ですか。"
+      ],
+      "riskFocus": "同型＝好相性の暗示を排除",
+      "criteria": {
+        "C1_PERSONA_SPECIFICITY": null,
+        "C2_MULTI_AXIS": null,
+        "C3_NATURALNESS": null,
+        "C4_NEUTRAL_NON_PREDICTIVE": null,
+        "C5_B1_B2_BOUNDARY": null,
+        "C6_CONTEXT_CONSTRAINTS": null,
+        "C7_EVIDENCE_SCOPE": null
+      },
+      "firstReview": {
+        "reviewerId": null,
+        "reviewedAt": null,
+        "decision": "PENDING",
+        "comments": null
+      },
+      "independentSecondReview": {
+        "reviewerId": null,
+        "reviewedAt": null,
+        "decision": "PENDING",
+        "comments": null
+      },
+      "ownerDecision": "PENDING",
+      "copyApproved": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T13-T13",
+      "priority": "P0_SAME_TYPE",
+      "typeIds": [
+        "T13",
+        "T13"
+      ],
+      "names": [
+        "共創する開拓者",
+        "共創する開拓者"
+      ],
+      "sharedAxes": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "differentAxes": [],
+      "draftDescription": "同じく人と新しい未来をつくる設定でも、参加してほしい人や意思決定の進め方は異なる場合があります。",
+      "draftConversationQuestions": [
+        "一緒に進める目標と個人で決める目標をどう分けますか。",
+        "新しい提案への賛否が異なるとき、まず何を確認しますか。"
+      ],
+      "riskFocus": "同型＝好相性の暗示を排除",
+      "criteria": {
+        "C1_PERSONA_SPECIFICITY": null,
+        "C2_MULTI_AXIS": null,
+        "C3_NATURALNESS": null,
+        "C4_NEUTRAL_NON_PREDICTIVE": null,
+        "C5_B1_B2_BOUNDARY": null,
+        "C6_CONTEXT_CONSTRAINTS": null,
+        "C7_EVIDENCE_SCOPE": null
+      },
+      "firstReview": {
+        "reviewerId": null,
+        "reviewedAt": null,
+        "decision": "PENDING",
+        "comments": null
+      },
+      "independentSecondReview": {
+        "reviewerId": null,
+        "reviewedAt": null,
+        "decision": "PENDING",
+        "comments": null
+      },
+      "ownerDecision": "PENDING",
+      "copyApproved": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T01-T16",
+      "priority": "P1_ALL_FOUR_DIFFERENT",
+      "typeIds": [
+        "T01",
+        "T16"
+      ],
+      "names": [
+        "着実な開拓者",
+        "情熱を分かち合う人"
+      ],
+      "sharedAxes": [],
+      "differentAxes": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "draftDescription": "学びを増やす計画と、好きな活動の楽しさを人と共有する企画を仮に並べます。設定上は生活基盤・時間の使い方・意思決定の関わり方に異なる視点がありますが、実際の希望が反対だとは限りません。",
+      "draftConversationQuestions": [
+        "新しい活動を考えるとき、まず維持しておきたい生活上の条件は何ですか。",
+        "誰かと楽しみを共有する場合、各自で決めたい部分と相談したい部分をどう分けますか。",
+        "今の充実と将来への準備を両方考えるなら、無理のない進め方は何ですか。"
+      ],
+      "riskFocus": "全軸相違＝不適合の暗示を排除",
+      "criteria": {
+        "C1_PERSONA_SPECIFICITY": null,
+        "C2_MULTI_AXIS": null,
+        "C3_NATURALNESS": null,
+        "C4_NEUTRAL_NON_PREDICTIVE": null,
+        "C5_B1_B2_BOUNDARY": null,
+        "C6_CONTEXT_CONSTRAINTS": null,
+        "C7_EVIDENCE_SCOPE": null
+      },
+      "firstReview": {
+        "reviewerId": null,
+        "reviewedAt": null,
+        "decision": "PENDING",
+        "comments": null
+      },
+      "independentSecondReview": {
+        "reviewerId": null,
+        "reviewedAt": null,
+        "decision": "PENDING",
+        "comments": null
+      },
+      "ownerDecision": "PENDING",
+      "copyApproved": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T02-T15",
+      "priority": "P1_ALL_FOUR_DIFFERENT",
+      "typeIds": [
+        "T02",
+        "T15"
+      ],
+      "names": [
+        "静かな探究者",
+        "出会いを楽しむ旅人"
+      ],
+      "sharedAxes": [],
+      "differentAxes": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "draftDescription": "一つの分野をじっくり学ぶ活動と、新しい人や体験に触れる活動を例に考えます。どちらも個人の関心から始められ、時間や交流への希望は場面によって異なります。",
+      "draftConversationQuestions": [
+        "関心のあるテーマを深く学ぶ時間と、初めての場へ行く時間をどう確保したいですか。",
+        "交流する人数や頻度について、互いが心地よい条件は何ですか。",
+        "将来続けたいことと、今試してみたいことを両方挙げられますか。"
+      ],
+      "riskFocus": "全軸相違＝不適合の暗示を排除",
+      "criteria": {
+        "C1_PERSONA_SPECIFICITY": null,
+        "C2_MULTI_AXIS": null,
+        "C3_NATURALNESS": null,
+        "C4_NEUTRAL_NON_PREDICTIVE": null,
+        "C5_B1_B2_BOUNDARY": null,
+        "C6_CONTEXT_CONSTRAINTS": null,
+        "C7_EVIDENCE_SCOPE": null
+      },
+      "firstReview": {
+        "reviewerId": null,
+        "reviewedAt": null,
+        "decision": "PENDING",
+        "comments": null
+      },
+      "independentSecondReview": {
+        "reviewerId": null,
+        "reviewedAt": null,
+        "decision": "PENDING",
+        "comments": null
+      },
+      "ownerDecision": "PENDING",
+      "copyApproved": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T03-T14",
+      "priority": "P1_ALL_FOUR_DIFFERENT",
+      "typeIds": [
+        "T03",
+        "T14"
+      ],
+      "names": [
+        "マイペースな発見家",
+        "理想を育てる共創者"
+      ],
+      "sharedAxes": [],
+      "differentAxes": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "draftDescription": "身近な新しい体験を楽しむ企画と、仲間と長期的な目標に取り組む企画を並べます。楽しむ時間と計画に使う時間は両立できることもあり、具体的な役割や負担を確認する題材になります。",
+      "draftConversationQuestions": [
+        "日常の小さな体験と長期の計画、それぞれに使いたい時間はどのくらいですか。",
+        "共同で進める活動では、誰が何を決めると進めやすいと思いますか。",
+        "変えてみたい習慣と続けておきたい習慣を一つずつ挙げられますか。"
+      ],
+      "riskFocus": "全軸相違＝不適合の暗示を排除",
+      "criteria": {
+        "C1_PERSONA_SPECIFICITY": null,
+        "C2_MULTI_AXIS": null,
+        "C3_NATURALNESS": null,
+        "C4_NEUTRAL_NON_PREDICTIVE": null,
+        "C5_B1_B2_BOUNDARY": null,
+        "C6_CONTEXT_CONSTRAINTS": null,
+        "C7_EVIDENCE_SCOPE": null
+      },
+      "firstReview": {
+        "reviewerId": null,
+        "reviewedAt": null,
+        "decision": "PENDING",
+        "comments": null
+      },
+      "independentSecondReview": {
+        "reviewerId": null,
+        "reviewedAt": null,
+        "decision": "PENDING",
+        "comments": null
+      },
+      "ownerDecision": "PENDING",
+      "copyApproved": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T04-T13",
+      "priority": "P1_ALL_FOUR_DIFFERENT",
+      "typeIds": [
+        "T04",
+        "T13"
+      ],
+      "names": [
+        "暮らしの職人",
+        "共創する開拓者"
+      ],
+      "sharedAxes": [],
+      "differentAxes": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "draftDescription": "好きな習慣を毎週続けることと、新しい共同企画を立ち上げることを例にします。継続か変化かだけでなく、一人で取り組む時間と協力する時間の配分も考えられます。",
+      "draftConversationQuestions": [
+        "今まで続けてきた習慣のうち、新しい企画でも守りたいことは何ですか。",
+        "新しい共同企画では、参加する人の希望をどの時点で確認したいですか。",
+        "挑戦することが増えても、今の楽しみを続ける方法はありますか。"
+      ],
+      "riskFocus": "全軸相違＝不適合の暗示を排除",
+      "criteria": {
+        "C1_PERSONA_SPECIFICITY": null,
+        "C2_MULTI_AXIS": null,
+        "C3_NATURALNESS": null,
+        "C4_NEUTRAL_NON_PREDICTIVE": null,
+        "C5_B1_B2_BOUNDARY": null,
+        "C6_CONTEXT_CONSTRAINTS": null,
+        "C7_EVIDENCE_SCOPE": null
+      },
+      "firstReview": {
+        "reviewerId": null,
+        "reviewedAt": null,
+        "decision": "PENDING",
+        "comments": null
+      },
+      "independentSecondReview": {
+        "reviewerId": null,
+        "reviewedAt": null,
+        "decision": "PENDING",
+        "comments": null
+      },
+      "ownerDecision": "PENDING",
+      "copyApproved": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T01-T05",
+      "priority": "P2_B1_DIFFERENCE",
+      "typeIds": [
+        "T01",
+        "T05"
+      ],
+      "names": [
+        "着実な開拓者",
+        "未来を育む案内人"
+      ],
+      "sharedAxes": [
+        "A",
+        "C",
+        "D"
+      ],
+      "differentAxes": [
+        "B"
+      ],
+      "draftDescription": "たとえば、「新しい学習テーマを選ぶ」と「大切な人と将来の選択肢を話す」をそれぞれ考えます。どちらか一方を選ぶ必要はなく、実際の希望や使える時間は人によって異なります。設定上の相違の一つは「自分で決める部分と関係者と相談する部分」です。一方のラベルは「自律」、他方は「つながり」ですが、個人の意思と関係者への配慮は、同時に重視できます。共通する暫定ラベルは「安定」です。ただし、安心できる生活基盤について考える場合も、具体的な希望が一致するとは限りません。",
+      "draftConversationQuestions": [
+        "「着実な開拓者」の例である「学びたい分野」と、「未来を育む案内人」の例である「将来の希望」を考えたとき、実際に取り組みたいことと、使える時間・負担をそれぞれどう整理しますか。",
+        "「新しい学習テーマを選ぶ」や「大切な人と将来の選択肢を話す」について話すなら、各自が決めたいことと、関係者の希望を確認したいことを分けると、具体的に何が挙がりますか。",
+        "「着実な開拓者」の例では学びたい内容と生活の負担をすり合わせること、「未来を育む案内人」の例では共有したい計画と個人の選択を区別することを取り上げます。両方の活動を行うために、どの生活上の条件を維持しておきたいですか。"
+      ],
+      "riskFocus": "B1二極性を実人格に投影しない",
+      "criteria": {
+        "C1_PERSONA_SPECIFICITY": null,
+        "C2_MULTI_AXIS": null,
+        "C3_NATURALNESS": null,
+        "C4_NEUTRAL_NON_PREDICTIVE": null,
+        "C5_B1_B2_BOUNDARY": null,
+        "C6_CONTEXT_CONSTRAINTS": null,
+        "C7_EVIDENCE_SCOPE": null
+      },
+      "firstReview": {
+        "reviewerId": null,
+        "reviewedAt": null,
+        "decision": "PENDING",
+        "comments": null
+      },
+      "independentSecondReview": {
+        "reviewerId": null,
+        "reviewedAt": null,
+        "decision": "PENDING",
+        "comments": null
+      },
+      "ownerDecision": "PENDING",
+      "copyApproved": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T01-T06",
+      "priority": "P2_B1_DIFFERENCE",
+      "typeIds": [
+        "T01",
+        "T06"
+      ],
+      "names": [
+        "着実な開拓者",
+        "絆を育てる設計者"
+      ],
+      "sharedAxes": [
+        "A",
+        "C"
+      ],
+      "differentAxes": [
+        "B",
+        "D"
+      ],
+      "draftDescription": "たとえば、「新しい学習テーマを選ぶ」と「長期の計画を誰かと考える」をそれぞれ考えます。どちらか一方を選ぶ必要はなく、実際の希望や使える時間は人によって異なります。設定上の相違の一つは「自分で決める部分と関係者と相談する部分」です。一方のラベルは「自律」、他方は「つながり」ですが、個人の意思と関係者への配慮は、同時に重視できます。共通する暫定ラベルは「安定」です。ただし、安心できる生活基盤について考える場合も、具体的な希望が一致するとは限りません。",
+      "draftConversationQuestions": [
+        "「着実な開拓者」の例である「学びたい分野」と、「絆を育てる設計者」の例である「計画を見直す条件」を考えたとき、実際に取り組みたいことと、使える時間・負担をそれぞれどう整理しますか。",
+        "「新しい学習テーマを選ぶ」や「長期の計画を誰かと考える」について話すなら、各自が決めたいことと、関係者の希望を確認したいことを分けると、具体的に何が挙がりますか。",
+        "「着実な開拓者」の例では学びたい内容と生活の負担をすり合わせること、「絆を育てる設計者」の例では信頼や役割分担の条件を相談することを取り上げます。両方の活動を行うために、どの生活上の条件を維持しておきたいですか。"
+      ],
+      "riskFocus": "B1二極性を実人格に投影しない",
+      "criteria": {
+        "C1_PERSONA_SPECIFICITY": null,
+        "C2_MULTI_AXIS": null,
+        "C3_NATURALNESS": null,
+        "C4_NEUTRAL_NON_PREDICTIVE": null,
+        "C5_B1_B2_BOUNDARY": null,
+        "C6_CONTEXT_CONSTRAINTS": null,
+        "C7_EVIDENCE_SCOPE": null
+      },
+      "firstReview": {
+        "reviewerId": null,
+        "reviewedAt": null,
+        "decision": "PENDING",
+        "comments": null
+      },
+      "independentSecondReview": {
+        "reviewerId": null,
+        "reviewedAt": null,
+        "decision": "PENDING",
+        "comments": null
+      },
+      "ownerDecision": "PENDING",
+      "copyApproved": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T01-T08",
+      "priority": "P2_B1_DIFFERENCE",
+      "typeIds": [
+        "T01",
+        "T08"
+      ],
+      "names": [
+        "着実な開拓者",
+        "穏やかな愛好家"
+      ],
+      "sharedAxes": [
+        "A"
+      ],
+      "differentAxes": [
+        "B",
+        "C",
+        "D"
+      ],
+      "draftDescription": "たとえば、「新しい学習テーマを選ぶ」と「親しい人と日常の楽しみを選ぶ」をそれぞれ考えます。どちらか一方を選ぶ必要はなく、実際の希望や使える時間は人によって異なります。設定上の相違の一つは「自分で決める部分と関係者と相談する部分」です。一方のラベルは「自律」、他方は「つながり」ですが、個人の意思と関係者への配慮は、同時に重視できます。共通する暫定ラベルは「安定」です。ただし、安心できる生活基盤について考える場合も、具体的な希望が一致するとは限りません。",
+      "draftConversationQuestions": [
+        "「着実な開拓者」の例である「学びたい分野」と、「穏やかな愛好家」の例である「心地よい距離」を考えたとき、実際に取り組みたいことと、使える時間・負担をそれぞれどう整理しますか。",
+        "「新しい学習テーマを選ぶ」や「親しい人と日常の楽しみを選ぶ」について話すなら、各自が決めたいことと、関係者の希望を確認したいことを分けると、具体的に何が挙がりますか。",
+        "「着実な開拓者」の例では学びたい内容と生活の負担をすり合わせること、「穏やかな愛好家」の例では関わる頻度と一人で過ごす時間を確認することを取り上げます。両方の活動を行うために、どの生活上の条件を維持しておきたいですか。"
+      ],
+      "riskFocus": "B1二極性を実人格に投影しない",
+      "criteria": {
+        "C1_PERSONA_SPECIFICITY": null,
+        "C2_MULTI_AXIS": null,
+        "C3_NATURALNESS": null,
+        "C4_NEUTRAL_NON_PREDICTIVE": null,
+        "C5_B1_B2_BOUNDARY": null,
+        "C6_CONTEXT_CONSTRAINTS": null,
+        "C7_EVIDENCE_SCOPE": null
+      },
+      "firstReview": {
+        "reviewerId": null,
+        "reviewedAt": null,
+        "decision": "PENDING",
+        "comments": null
+      },
+      "independentSecondReview": {
+        "reviewerId": null,
+        "reviewedAt": null,
+        "decision": "PENDING",
+        "comments": null
+      },
+      "ownerDecision": "PENDING",
+      "copyApproved": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T01-T07",
+      "priority": "P2_B1_DIFFERENCE",
+      "typeIds": [
+        "T01",
+        "T07"
+      ],
+      "names": [
+        "着実な開拓者",
+        "日常の発見家"
+      ],
+      "sharedAxes": [
+        "A",
+        "D"
+      ],
+      "differentAxes": [
+        "B",
+        "C"
+      ],
+      "draftDescription": "たとえば、「新しい学習テーマを選ぶ」と「身近な人と新しい体験を探す」をそれぞれ考えます。どちらか一方を選ぶ必要はなく、実際の希望や使える時間は人によって異なります。設定上の相違の一つは「自分で決める部分と関係者と相談する部分」です。一方のラベルは「自律」、他方は「つながり」ですが、個人の意思と関係者への配慮は、同時に重視できます。共通する暫定ラベルは「安定」です。ただし、安心できる生活基盤について考える場合も、具体的な希望が一致するとは限りません。",
+      "draftConversationQuestions": [
+        "「着実な開拓者」の例である「学びたい分野」と、「日常の発見家」の例である「共有する体験」を考えたとき、実際に取り組みたいことと、使える時間・負担をそれぞれどう整理しますか。",
+        "「新しい学習テーマを選ぶ」や「身近な人と新しい体験を探す」について話すなら、各自が決めたいことと、関係者の希望を確認したいことを分けると、具体的に何が挙がりますか。",
+        "「着実な開拓者」の例では学びたい内容と生活の負担をすり合わせること、「日常の発見家」の例では一緒にすることと別々にすることを選ぶことを取り上げます。両方の活動を行うために、どの生活上の条件を維持しておきたいですか。"
+      ],
+      "riskFocus": "B1二極性を実人格に投影しない",
+      "criteria": {
+        "C1_PERSONA_SPECIFICITY": null,
+        "C2_MULTI_AXIS": null,
+        "C3_NATURALNESS": null,
+        "C4_NEUTRAL_NON_PREDICTIVE": null,
+        "C5_B1_B2_BOUNDARY": null,
+        "C6_CONTEXT_CONSTRAINTS": null,
+        "C7_EVIDENCE_SCOPE": null
+      },
+      "firstReview": {
+        "reviewerId": null,
+        "reviewedAt": null,
+        "decision": "PENDING",
+        "comments": null
+      },
+      "independentSecondReview": {
+        "reviewerId": null,
+        "reviewedAt": null,
+        "decision": "PENDING",
+        "comments": null
+      },
+      "ownerDecision": "PENDING",
+      "copyApproved": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T01-T02",
+      "priority": "P3_OTHER",
+      "typeIds": [
+        "T01",
+        "T02"
+      ],
+      "names": [
+        "着実な開拓者",
+        "静かな探究者"
+      ],
+      "sharedAxes": [
+        "A",
+        "B",
+        "C"
+      ],
+      "differentAxes": [
+        "D"
+      ],
+      "draftDescription": "たとえば、「新しい学習テーマを選ぶ」と「関心のある分野を継続して学ぶ」をそれぞれ考えます。どちらか一方を選ぶ必要はなく、実際の希望や使える時間は人によって異なります。設定上の相違の一つは「経験を広げることと一つを深めること」です。一方のラベルは「探索」、他方は「深耕」ですが、広く試す分野と深く続ける分野は同じ人の中にもあり得ます。共通する暫定ラベルは「安定」です。ただし、安心できる生活基盤について考える場合も、具体的な希望が一致するとは限りません。",
+      "draftConversationQuestions": [
+        "「着実な開拓者」の例である「学びたい分野」と、「静かな探究者」の例である「集中する時間」を考えたとき、実際に取り組みたいことと、使える時間・負担をそれぞれどう整理しますか。",
+        "「新しい学習テーマを選ぶ」や「関心のある分野を継続して学ぶ」について話すなら、新しく試したいことと、じっくり続けたいことをそれぞれ一つ挙げられますか。",
+        "「着実な開拓者」の例では学びたい内容と生活の負担をすり合わせること、「静かな探究者」の例では集中して取り組める時間や場所を整えることを取り上げます。両方の活動を行うために、どの生活上の条件を維持しておきたいですか。"
+      ],
+      "riskFocus": "意味的な汎用化・軸の重複を点検",
+      "criteria": {
+        "C1_PERSONA_SPECIFICITY": null,
+        "C2_MULTI_AXIS": null,
+        "C3_NATURALNESS": null,
+        "C4_NEUTRAL_NON_PREDICTIVE": null,
+        "C5_B1_B2_BOUNDARY": null,
+        "C6_CONTEXT_CONSTRAINTS": null,
+        "C7_EVIDENCE_SCOPE": null
+      },
+      "firstReview": {
+        "reviewerId": null,
+        "reviewedAt": null,
+        "decision": "PENDING",
+        "comments": null
+      },
+      "independentSecondReview": {
+        "reviewerId": null,
+        "reviewedAt": null,
+        "decision": "PENDING",
+        "comments": null
+      },
+      "ownerDecision": "PENDING",
+      "copyApproved": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T01-T04",
+      "priority": "P3_OTHER",
+      "typeIds": [
+        "T01",
+        "T04"
+      ],
+      "names": [
+        "着実な開拓者",
+        "暮らしの職人"
+      ],
+      "sharedAxes": [
+        "A",
+        "B"
+      ],
+      "differentAxes": [
+        "C",
+        "D"
+      ],
+      "draftDescription": "たとえば、「新しい学習テーマを選ぶ」と「好きな活動を続ける」をそれぞれ考えます。どちらか一方を選ぶ必要はなく、実際の希望や使える時間は人によって異なります。設定上の相違の一つは「今の充実と将来への準備」です。一方のラベルは「将来」、他方は「現在」ですが、今を大切にすることと将来を考えることは両立できます。共通する暫定ラベルは「安定」です。ただし、安心できる生活基盤について考える場合も、具体的な希望が一致するとは限りません。",
+      "draftConversationQuestions": [
+        "「着実な開拓者」の例である「学びたい分野」と、「暮らしの職人」の例である「継続したい習慣」を考えたとき、実際に取り組みたいことと、使える時間・負担をそれぞれどう整理しますか。",
+        "「新しい学習テーマを選ぶ」や「好きな活動を続ける」について話すなら、今日の楽しみを残しながら、将来のために備える時間をどう確保したいですか。",
+        "「着実な開拓者」の例では学びたい内容と生活の負担をすり合わせること、「暮らしの職人」の例では大切にしたい日々の習慣を確認することを取り上げます。両方の活動を行うために、どの生活上の条件を維持しておきたいですか。"
+      ],
+      "riskFocus": "意味的な汎用化・軸の重複を点検",
+      "criteria": {
+        "C1_PERSONA_SPECIFICITY": null,
+        "C2_MULTI_AXIS": null,
+        "C3_NATURALNESS": null,
+        "C4_NEUTRAL_NON_PREDICTIVE": null,
+        "C5_B1_B2_BOUNDARY": null,
+        "C6_CONTEXT_CONSTRAINTS": null,
+        "C7_EVIDENCE_SCOPE": null
+      },
+      "firstReview": {
+        "reviewerId": null,
+        "reviewedAt": null,
+        "decision": "PENDING",
+        "comments": null
+      },
+      "independentSecondReview": {
+        "reviewerId": null,
+        "reviewedAt": null,
+        "decision": "PENDING",
+        "comments": null
+      },
+      "ownerDecision": "PENDING",
+      "copyApproved": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T01-T12",
+      "priority": "P3_OTHER",
+      "typeIds": [
+        "T01",
+        "T12"
+      ],
+      "names": [
+        "着実な開拓者",
+        "自由な求道者"
+      ],
+      "sharedAxes": [
+        "B"
+      ],
+      "differentAxes": [
+        "A",
+        "C",
+        "D"
+      ],
+      "draftDescription": "たとえば、「新しい学習テーマを選ぶ」と「制作や学習にじっくり取り組む」をそれぞれ考えます。どちらか一方を選ぶ必要はなく、実際の希望や使える時間は人によって異なります。設定上の相違の一つは「生活環境を変えるか維持するか」です。一方のラベルは「安定」、他方は「変化」ですが、住む環境は維持しつつ、新しい活動を試すという選択も考えられます。共通する暫定ラベルは「自律」です。ただし、意思決定の進め方について考える場合も、具体的な希望が一致するとは限りません。",
+      "draftConversationQuestions": [
+        "「着実な開拓者」の例である「学びたい分野」と、「自由な求道者」の例である「集中の環境」を考えたとき、実際に取り組みたいことと、使える時間・負担をそれぞれどう整理しますか。",
+        "「新しい学習テーマを選ぶ」や「制作や学習にじっくり取り組む」について話すなら、生活の基盤を残したい部分と見直したい部分を、それぞれ一つずつ挙げるとどうなりますか。",
+        "「着実な開拓者」の例では学びたい内容と生活の負担をすり合わせること、「自由な求道者」の例では集中時間と周囲に相談したい場面を分けることを取り上げます。それぞれの活動で、各自で決めたい範囲と他者に相談したい範囲は同じでしょうか。"
+      ],
+      "riskFocus": "意味的な汎用化・軸の重複を点検",
+      "criteria": {
+        "C1_PERSONA_SPECIFICITY": null,
+        "C2_MULTI_AXIS": null,
+        "C3_NATURALNESS": null,
+        "C4_NEUTRAL_NON_PREDICTIVE": null,
+        "C5_B1_B2_BOUNDARY": null,
+        "C6_CONTEXT_CONSTRAINTS": null,
+        "C7_EVIDENCE_SCOPE": null
+      },
+      "firstReview": {
+        "reviewerId": null,
+        "reviewedAt": null,
+        "decision": "PENDING",
+        "comments": null
+      },
+      "independentSecondReview": {
+        "reviewerId": null,
+        "reviewedAt": null,
+        "decision": "PENDING",
+        "comments": null
+      },
+      "ownerDecision": "PENDING",
+      "copyApproved": false,
+      "publicationApproved": false
+    },
+    {
+      "pairId": "T01-T03",
+      "priority": "P3_OTHER",
+      "typeIds": [
+        "T01",
+        "T03"
+      ],
+      "names": [
+        "着実な開拓者",
+        "マイペースな発見家"
+      ],
+      "sharedAxes": [
+        "A",
+        "B",
+        "D"
+      ],
+      "differentAxes": [
+        "C"
+      ],
+      "draftDescription": "たとえば、「新しい学習テーマを選ぶ」と「日常に小さな体験を加える」をそれぞれ考えます。どちらか一方を選ぶ必要はなく、実際の希望や使える時間は人によって異なります。設定上の相違の一つは「今の充実と将来への準備」です。一方のラベルは「将来」、他方は「現在」ですが、今を大切にすることと将来を考えることは両立できます。共通する暫定ラベルは「安定」です。ただし、安心できる生活基盤について考える場合も、具体的な希望が一致するとは限りません。",
+      "draftConversationQuestions": [
+        "「着実な開拓者」の例である「学びたい分野」と、「マイペースな発見家」の例である「身近な体験」を考えたとき、実際に取り組みたいことと、使える時間・負担をそれぞれどう整理しますか。",
+        "「新しい学習テーマを選ぶ」や「日常に小さな体験を加える」について話すなら、今日の楽しみを残しながら、将来のために備える時間をどう確保したいですか。",
+        "「着実な開拓者」の例では学びたい内容と生活の負担をすり合わせること、「マイペースな発見家」の例では新しい体験に使える時間や費用を調整することを取り上げます。両方の活動を行うために、どの生活上の条件を維持しておきたいですか。"
+      ],
+      "riskFocus": "意味的な汎用化・軸の重複を点検",
+      "criteria": {
+        "C1_PERSONA_SPECIFICITY": null,
+        "C2_MULTI_AXIS": null,
+        "C3_NATURALNESS": null,
+        "C4_NEUTRAL_NON_PREDICTIVE": null,
+        "C5_B1_B2_BOUNDARY": null,
+        "C6_CONTEXT_CONSTRAINTS": null,
+        "C7_EVIDENCE_SCOPE": null
+      },
+      "firstReview": {
+        "reviewerId": null,
+        "reviewedAt": null,
+        "decision": "PENDING",
+        "comments": null
+      },
+      "independentSecondReview": {
+        "reviewerId": null,
+        "reviewedAt": null,
+        "decision": "PENDING",
+        "comments": null
+      },
+      "ownerDecision": "PENDING",
+      "copyApproved": false,
+      "publicationApproved": false
+    }
+  ]
+}
