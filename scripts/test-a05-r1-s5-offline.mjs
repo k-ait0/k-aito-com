@@ -29,3 +29,13 @@ test("no network or external dependencies in standalone HTML",()=>{
  assert.match(text,/offlineReady/);
  assert.match(text,/draft-variants/);
 });
+
+test("112-pair startup guard and browser QA assertions are version-aligned",()=>{
+ const controller=readFileSync(new URL("../projects/kidp/life-design-lab/a05/r1-s5-offline-controller.js",import.meta.url),"utf8");
+ const browserTest=readFileSync(new URL("qa_a05_r1_s5_offline_browser.cjs",import.meta.url),"utf8");
+ assert.match(controller,/alternates\.proposals\.length===112&&byAlternative\.size===112/);
+ assert.match(text,/alternates\.proposals\.length===112&&byAlternative\.size===112/);
+ assert.doesNotMatch(text,/byAlternative\.size===8/);
+ assert.match(browserTest,/variantPairs=new Set\(\)/);
+ assert.match(browserTest,/variantPairs\.size,112/);
+});
