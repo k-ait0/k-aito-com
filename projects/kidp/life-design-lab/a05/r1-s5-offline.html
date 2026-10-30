@@ -227,7 +227,7 @@ footer{text-align:center;color:#607383;font-size:.78rem;padding:24px 6px}
     }
   }else review.open=false;
   $("source-status").textContent=chosen
-    ?"表示中：v0.5のAI生成・要審査原案。先行8組と定型生成104組を含み、人手一次・独立二次レビューは未実施。"
+    ?(chosen.provenance==="PROGRAMMATIC_104_PAIR_EDITORIAL_DRAFT_NO_HUMAN_REVIEW" ? "表示中：v0.5定型生成の104組候補の一つ。" : "表示中：v0.5先行AI個別改稿8組の一つ。")+"人手一次・独立二次レビューは未実施。意味上の独自性も未認定。"
     :"表示中：v0.4の未承認原案。人手一次・独立二次レビュー未実施。";
   $("results").hidden=false;
  }
