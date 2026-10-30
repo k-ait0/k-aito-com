@@ -12,9 +12,13 @@ test("offline page embeds complete source and 112 candidates",()=>{
  const m=jsonFromId("offline-master-data");
  const a=jsonFromId("offline-alternates-data");
  const t=jsonFromId("offline-types-data");
+ const p=jsonFromId("offline-v06-data");
  assert.equal(m.rows.length,136);
  assert.equal(a.proposals.length,112);
  assert.equal(t.length,16);
+ assert.equal(p.rows.length,8);
+ assert.equal(p.publicRelease,"NO_GO");
+ assert.equal(new Set(p.rows.map(r=>r.pairId)).size,8);
  assert.equal(new Set(m.rows.map(x=>x.pairId)).size,136);
  assert.equal(m.release,"NO_GO");
  assert.ok(m.rows.every(r=>r.firstHumanReview==="PENDING"&&r.publicationApproved===false));
@@ -28,6 +32,10 @@ test("no network or external dependencies in standalone HTML",()=>{
  assert.doesNotMatch(text,/XMLHttpRequest|sendBeacon|localStorage|sessionStorage|indexedDB/);
  assert.match(text,/offlineReady/);
  assert.match(text,/draft-variants/);
+ assert.match(text,/compare-v06-panel/);
+ assert.match(text,/option-v06-label/);
+ assert.match(text,/offline-v06-data/);
+ assert.match(text,/role="region" tabindex="0"/);
 });
 
 test("112-pair startup guard and browser QA assertions are version-aligned",()=>{
@@ -38,6 +46,9 @@ test("112-pair startup guard and browser QA assertions are version-aligned",()=>
  assert.doesNotMatch(text,/byAlternative\.size===8/);
  assert.match(browserTest,/variantPairs=new Set\(\)/);
  assert.match(browserTest,/variantPairs\.size,112/);
+ assert.match(browserTest,/pilotPairs\.size,8/);
+ assert.match(controller,/v06\.rows\.length===8&&byV06\.size===8/);
+ assert.match(text,/v06\.rows\.length===8&&byV06\.size===8/);
 });
 
 test("offline side-by-side review exposes both versions without approval",()=>{
@@ -47,6 +58,9 @@ test("offline side-by-side review exposes both versions without approval",()=>{
  assert.match(text,/id="compare-v04-prompts"/);
  assert.match(text,/id="compare-v05-prompts"/);
  assert.match(text,/review\.hidden=!alt/);
+ assert.match(text,/compare-v06-description/);
+ assert.match(text,/compare-v06-prompts/);
+ assert.match(text,/data-threeway/);
 });
 
 test("only P2/P3 have 112 reversible, unapproved v0.5 drafts",()=>{
@@ -71,4 +85,26 @@ test("only P2/P3 have 112 reversible, unapproved v0.5 drafts",()=>{
  assert.equal(originalEight,8);
  assert.equal(programmatic104,104);
  assert.equal(new Set(changes.proposals.map(x=>x.pairId)).size,112);
+});
+
+
+test("v0.6 eight pilot records preserve both prior sources and review status",()=>{
+ const master=jsonFromId("offline-master-data"),v05=jsonFromId("offline-alternates-data");
+ const v06=jsonFromId("offline-v06-data");
+ const baseline=new Map(master.rows.map(r=>[r.pairId,r]));
+ const mid=new Map(v05.proposals.map(r=>[r.pairId,r]));
+ assert.equal(v06.rows.length,8);
+ for(const r of v06.rows){
+  const old=baseline.get(r.pairId),previous=mid.get(r.pairId);
+  assert.ok(old && previous,r.pairId);
+  assert.deepEqual(r.typeIds,old.typeIds,r.pairId);
+  assert.equal(r.baselineV05Description,previous.candidateDescription,r.pairId);
+  assert.deepEqual(r.baselineV05Prompts,previous.candidatePrompts,r.pairId);
+  assert.equal(r.firstHumanReview,"PENDING");
+  assert.equal(r.secondIndependentHumanReview,"PENDING");
+  assert.equal(r.approved,false);
+  assert.equal(r.publicationApproved,false);
+  assert.equal(r.proposedV06Prompts.length,3);
+  assert.notEqual(r.proposedV06Description,r.baselineV05Description);
+ }
 });
