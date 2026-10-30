@@ -48,3 +48,27 @@ test("offline side-by-side review exposes both versions without approval",()=>{
  assert.match(text,/id="compare-v05-prompts"/);
  assert.match(text,/review\.hidden=!alt/);
 });
+
+test("only P2/P3 have 112 reversible, unapproved v0.5 drafts",()=>{
+ const master=jsonFromId("offline-master-data"),changes=jsonFromId("offline-alternates-data");
+ const byId=new Map(master.rows.map(row=>[row.pairId,row]));
+ const allowed=master.rows.filter(row=>row.priority==="P2_B1_DIFFERENCE"||row.priority==="P3_OTHER");
+ assert.equal(allowed.length,112);
+ let originalEight=0,programmatic104=0;
+ for(const alt of changes.proposals){
+   const row=byId.get(alt.pairId);
+   assert.ok(row,alt.pairId);
+   assert.ok(allowed.some(x=>x.pairId===alt.pairId),alt.pairId);
+   assert.equal(alt.sourceDescription,row.draftDescription,alt.pairId);
+   assert.deepEqual(alt.sourcePrompts,row.draftConversationQuestions,alt.pairId);
+   assert.equal(alt.firstReviewStatus,"PENDING");
+   assert.equal(alt.secondReviewStatus,"PENDING");
+   assert.equal(alt.approved,false);
+   assert.equal(alt.publicationApproved,false);
+   if(alt.provenance==="PROGRAMMATIC_104_PAIR_EDITORIAL_DRAFT_NO_HUMAN_REVIEW")programmatic104++;
+   else originalEight++;
+ }
+ assert.equal(originalEight,8);
+ assert.equal(programmatic104,104);
+ assert.equal(new Set(changes.proposals.map(x=>x.pairId)).size,112);
+});
