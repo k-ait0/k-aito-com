@@ -1,0 +1,1103 @@
+{
+  "schema": "A05-R1-S4-V05-CHARACTER_NGRAM_REPEAT_AUDIT-0.1.0",
+  "analyzedOn": "2026-10-30",
+  "sourceFile": "docs/A05_S4_V05_ALL112_CONTEXTUAL_ALTERNATES_20261030.json",
+  "method": {
+    "gramSize": 14,
+    "minDocuments": 16,
+    "normalization": "remove whitespace",
+    "metric": "Fraction of each description covered by at least one 14-char sequence shared by >=16 of 112 descriptions.",
+    "meaning": "Mechanical formulaicity signal; not semantic/psychological validation, nor evidence of personal traits."
+  },
+  "outcome": "BLOCKED_EDITORIAL_REVIEW_REQUIRED",
+  "counts": {
+    "source": 112,
+    "priorEight": {
+      "n": 8,
+      "min": 0,
+      "median": 0,
+      "mean": 0,
+      "max": 0,
+      "atLeast50Percent": 0
+    },
+    "machineGenerated104": {
+      "n": 104,
+      "min": 0.708,
+      "median": 0.8,
+      "mean": 0.791,
+      "max": 0.858,
+      "atLeast50Percent": 104
+    }
+  },
+  "frequentSegments": [
+    {
+      "gram": "・費用まで等しいとは限りませ",
+      "documents": 104
+    },
+    {
+      "gram": "」についての実際の希望を確認",
+      "documents": 104
+    },
+    {
+      "gram": "いての実際の希望を確認する必",
+      "documents": 104
+    },
+    {
+      "gram": "える時間・費用まで等しいとは",
+      "documents": 104
+    },
+    {
+      "gram": "ついての実際の希望を確認する",
+      "documents": 104
+    },
+    {
+      "gram": "ての実際の希望を確認する必要",
+      "documents": 104
+    },
+    {
+      "gram": "についての実際の希望を確認す",
+      "documents": 104
+    },
+    {
+      "gram": "に使える時間・費用まで等しい",
+      "documents": 104
+    },
+    {
+      "gram": "の実際の希望を確認する必要が",
+      "documents": 104
+    },
+    {
+      "gram": "の希望を確認する必要がありま",
+      "documents": 104
+    },
+    {
+      "gram": "の設定ラベルは共通しても、各",
+      "documents": 104
+    },
+    {
+      "gram": "る時間・費用まで等しいとは限",
+      "documents": 104
+    },
+    {
+      "gram": "使える時間・費用まで等しいと",
+      "documents": 104
+    },
+    {
+      "gram": "定ラベルは共通しても、各自が",
+      "documents": 104
+    },
+    {
+      "gram": "実際の希望を確認する必要があ",
+      "documents": 104
+    }
+  ],
+  "priorityPairs": [
+    "T12-T15",
+    "T06-T07",
+    "T03-T08",
+    "T06-T13",
+    "T04-T16",
+    "T01-T12",
+    "T03-T13",
+    "T04-T07",
+    "T10-T15",
+    "T02-T11",
+    "T04-T06",
+    "T06-T12",
+    "T04-T12",
+    "T05-T14",
+    "T05-T09",
+    "T07-T15",
+    "T11-T13",
+    "T03-T12",
+    "T01-T07",
+    "T02-T05",
+    "T14-T15",
+    "T04-T11",
+    "T07-T11",
+    "T02-T06",
+    "T08-T14",
+    "T08-T12",
+    "T02-T16",
+    "T10-T14",
+    "T11-T12",
+    "T14-T16",
+    "T01-T06",
+    "T07-T16",
+    "T11-T16",
+    "T02-T10",
+    "T10-T13",
+    "T03-T04",
+    "T03-T09",
+    "T06-T08",
+    "T09-T11",
+    "T06-T16",
+    "T12-T14",
+    "T12-T16",
+    "T01-T03",
+    "T03-T07",
+    "T04-T05",
+    "T05-T15",
+    "T09-T15",
+    "T04-T10",
+    "T07-T14",
+    "T01-T11",
+    "T09-T10",
+    "T13-T14",
+    "T05-T13",
+    "T04-T15",
+    "T07-T09",
+    "T03-T10",
+    "T02-T09",
+    "T15-T16",
+    "T02-T14",
+    "T13-T15",
+    "T12-T13",
+    "T02-T04",
+    "T11-T14",
+    "T05-T10",
+    "T03-T15",
+    "T13-T16",
+    "T01-T04",
+    "T07-T12",
+    "T03-T05",
+    "T08-T15",
+    "T01-T08",
+    "T03-T16",
+    "T05-T16",
+    "T07-T13",
+    "T10-T16",
+    "T09-T14",
+    "T01-T09",
+    "T09-T13",
+    "T02-T12",
+    "T05-T06",
+    "T08-T10",
+    "T02-T07",
+    "T10-T12",
+    "T02-T08",
+    "T05-T11",
+    "T03-T06",
+    "T11-T15",
+    "T07-T08",
+    "T06-T09",
+    "T08-T11",
+    "T06-T14",
+    "T03-T11",
+    "T10-T11",
+    "T04-T08",
+    "T02-T13",
+    "T04-T09",
+    "T01-T10",
+    "T04-T14",
+    "T02-T03",
+    "T01-T15",
+    "T05-T07",
+    "T08-T16",
+    "T01-T14",
+    "T06-T15"
+  ],
+  "rows": [
+    {
+      "pairId": "T01-T02",
+      "origin": "EARLIER_AI_8",
+      "priority": "P3_OTHER",
+      "descriptionCharacters": 139,
+      "repeatCoverage14gramAtLeast16": 0,
+      "automatedReview": "REWRITE_PRIORITY_HIGH_NOT_FLAGGED"
+    },
+    {
+      "pairId": "T01-T03",
+      "origin": "PROGRAMMATIC_104",
+      "priority": "P3_OTHER",
+      "descriptionCharacters": 229,
+      "repeatCoverage14gramAtLeast16": 0.808,
+      "automatedReview": "REWRITE_PRIORITY_HIGH"
+    },
+    {
+      "pairId": "T01-T04",
+      "origin": "PROGRAMMATIC_104",
+      "priority": "P3_OTHER",
+      "descriptionCharacters": 228,
+      "repeatCoverage14gramAtLeast16": 0.776,
+      "automatedReview": "REWRITE_PRIORITY_HIGH"
+    },
+    {
+      "pairId": "T01-T05",
+      "origin": "EARLIER_AI_8",
+      "priority": "P2_B1_DIFFERENCE",
+      "descriptionCharacters": 148,
+      "repeatCoverage14gramAtLeast16": 0,
+      "automatedReview": "REWRITE_PRIORITY_HIGH_NOT_FLAGGED"
+    },
+    {
+      "pairId": "T01-T06",
+      "origin": "PROGRAMMATIC_104",
+      "priority": "P2_B1_DIFFERENCE",
+      "descriptionCharacters": 233,
+      "repeatCoverage14gramAtLeast16": 0.815,
+      "automatedReview": "REWRITE_PRIORITY_HIGH"
+    },
+    {
+      "pairId": "T01-T07",
+      "origin": "PROGRAMMATIC_104",
+      "priority": "P2_B1_DIFFERENCE",
+      "descriptionCharacters": 238,
+      "repeatCoverage14gramAtLeast16": 0.828,
+      "automatedReview": "REWRITE_PRIORITY_HIGH"
+    },
+    {
+      "pairId": "T01-T08",
+      "origin": "PROGRAMMATIC_104",
+      "priority": "P2_B1_DIFFERENCE",
+      "descriptionCharacters": 232,
+      "repeatCoverage14gramAtLeast16": 0.772,
+      "automatedReview": "REWRITE_PRIORITY_HIGH"
+    },
+    {
+      "pairId": "T01-T09",
+      "origin": "PROGRAMMATIC_104",
+      "priority": "P3_OTHER",
+      "descriptionCharacters": 226,
+      "repeatCoverage14gramAtLeast16": 0.761,
+      "automatedReview": "REWRITE_PRIORITY_HIGH"
+    },
+    {
+      "pairId": "T01-T10",
+      "origin": "PROGRAMMATIC_104",
+      "priority": "P3_OTHER",
+      "descriptionCharacters": 237,
+      "repeatCoverage14gramAtLeast16": 0.734,
+      "automatedReview": "REWRITE_PRIORITY_HIGH"
+    },
+    {
+      "pairId": "T01-T11",
+      "origin": "PROGRAMMATIC_104",
+      "priority": "P3_OTHER",
+      "descriptionCharacters": 230,
+      "repeatCoverage14gramAtLeast16": 0.8,
+      "automatedReview": "REWRITE_PRIORITY_HIGH"
+    },
+    {
+      "pairId": "T01-T12",
+      "origin": "PROGRAMMATIC_104",
+      "priority": "P3_OTHER",
+      "descriptionCharacters": 230,
+      "repeatCoverage14gramAtLeast16": 0.843,
+      "automatedReview": "REWRITE_PRIORITY_HIGH"
+    },
+    {
+      "pairId": "T01-T13",
+      "origin": "EARLIER_AI_8",
+      "priority": "P2_B1_DIFFERENCE",
+      "descriptionCharacters": 144,
+      "repeatCoverage14gramAtLeast16": 0,
+      "automatedReview": "REWRITE_PRIORITY_HIGH_NOT_FLAGGED"
+    },
+    {
+      "pairId": "T01-T14",
+      "origin": "PROGRAMMATIC_104",
+      "priority": "P2_B1_DIFFERENCE",
+      "descriptionCharacters": 237,
+      "repeatCoverage14gramAtLeast16": 0.722,
+      "automatedReview": "REWRITE_PRIORITY_HIGH"
+    },
+    {
+      "pairId": "T01-T15",
+      "origin": "PROGRAMMATIC_104",
+      "priority": "P2_B1_DIFFERENCE",
+      "descriptionCharacters": 228,
+      "repeatCoverage14gramAtLeast16": 0.732,
+      "automatedReview": "REWRITE_PRIORITY_HIGH"
+    },
+    {
+      "pairId": "T02-T03",
+      "origin": "PROGRAMMATIC_104",
+      "priority": "P3_OTHER",
+      "descriptionCharacters": 236,
+      "repeatCoverage14gramAtLeast16": 0.733,
+      "automatedReview": "REWRITE_PRIORITY_HIGH"
+    },
+    {
+      "pairId": "T02-T04",
+      "origin": "PROGRAMMATIC_104",
+      "priority": "P3_OTHER",
+      "descriptionCharacters": 226,
+      "repeatCoverage14gramAtLeast16": 0.783,
+      "automatedReview": "REWRITE_PRIORITY_HIGH"
+    },
+    {
+      "pairId": "T02-T05",
+      "origin": "PROGRAMMATIC_104",
+      "priority": "P2_B1_DIFFERENCE",
+      "descriptionCharacters": 239,
+      "repeatCoverage14gramAtLeast16": 0.828,
+      "automatedReview": "REWRITE_PRIORITY_HIGH"
+    },
+    {
+      "pairId": "T02-T06",
+      "origin": "PROGRAMMATIC_104",
+      "priority": "P2_B1_DIFFERENCE",
+      "descriptionCharacters": 236,
+      "repeatCoverage14gramAtLeast16": 0.822,
+      "automatedReview": "REWRITE_PRIORITY_HIGH"
+    },
+    {
+      "pairId": "T02-T07",
+      "origin": "PROGRAMMATIC_104",
+      "priority": "P2_B1_DIFFERENCE",
+      "descriptionCharacters": 221,
+      "repeatCoverage14gramAtLeast16": 0.751,
+      "automatedReview": "REWRITE_PRIORITY_HIGH"
+    },
+    {
+      "pairId": "T02-T08",
+      "origin": "PROGRAMMATIC_104",
+      "priority": "P2_B1_DIFFERENCE",
+      "descriptionCharacters": 231,
+      "repeatCoverage14gramAtLeast16": 0.749,
+      "automatedReview": "REWRITE_PRIORITY_HIGH"
+    },
+    {
+      "pairId": "T02-T09",
+      "origin": "PROGRAMMATIC_104",
+      "priority": "P3_OTHER",
+      "descriptionCharacters": 239,
+      "repeatCoverage14gramAtLeast16": 0.791,
+      "automatedReview": "REWRITE_PRIORITY_HIGH"
+    },
+    {
+      "pairId": "T02-T10",
+      "origin": "PROGRAMMATIC_104",
+      "priority": "P3_OTHER",
+      "descriptionCharacters": 237,
+      "repeatCoverage14gramAtLeast16": 0.814,
+      "automatedReview": "REWRITE_PRIORITY_HIGH"
+    },
+    {
+      "pairId": "T02-T11",
+      "origin": "PROGRAMMATIC_104",
+      "priority": "P3_OTHER",
+      "descriptionCharacters": 227,
+      "repeatCoverage14gramAtLeast16": 0.837,
+      "automatedReview": "REWRITE_PRIORITY_HIGH"
+    },
+    {
+      "pairId": "T02-T12",
+      "origin": "PROGRAMMATIC_104",
+      "priority": "P3_OTHER",
+      "descriptionCharacters": 225,
+      "repeatCoverage14gramAtLeast16": 0.76,
+      "automatedReview": "REWRITE_PRIORITY_HIGH"
+    },
+    {
+      "pairId": "T02-T13",
+      "origin": "PROGRAMMATIC_104",
+      "priority": "P2_B1_DIFFERENCE",
+      "descriptionCharacters": 231,
+      "repeatCoverage14gramAtLeast16": 0.736,
+      "automatedReview": "REWRITE_PRIORITY_HIGH"
+    },
+    {
+      "pairId": "T02-T14",
+      "origin": "PROGRAMMATIC_104",
+      "priority": "P2_B1_DIFFERENCE",
+      "descriptionCharacters": 236,
+      "repeatCoverage14gramAtLeast16": 0.788,
+      "automatedReview": "REWRITE_PRIORITY_HIGH"
+    },
+    {
+      "pairId": "T02-T16",
+      "origin": "PROGRAMMATIC_104",
+      "priority": "P2_B1_DIFFERENCE",
+      "descriptionCharacters": 226,
+      "repeatCoverage14gramAtLeast16": 0.819,
+      "automatedReview": "REWRITE_PRIORITY_HIGH"
+    },
+    {
+      "pairId": "T03-T04",
+      "origin": "PROGRAMMATIC_104",
+      "priority": "P3_OTHER",
+      "descriptionCharacters": 230,
+      "repeatCoverage14gramAtLeast16": 0.813,
+      "automatedReview": "REWRITE_PRIORITY_HIGH"
+    },
+    {
+      "pairId": "T03-T05",
+      "origin": "PROGRAMMATIC_104",
+      "priority": "P2_B1_DIFFERENCE",
+      "descriptionCharacters": 227,
+      "repeatCoverage14gramAtLeast16": 0.775,
+      "automatedReview": "REWRITE_PRIORITY_HIGH"
+    },
+    {
+      "pairId": "T03-T06",
+      "origin": "PROGRAMMATIC_104",
+      "priority": "P2_B1_DIFFERENCE",
+      "descriptionCharacters": 226,
+      "repeatCoverage14gramAtLeast16": 0.748,
+      "automatedReview": "REWRITE_PRIORITY_HIGH"
+    },
+    {
+      "pairId": "T03-T07",
+      "origin": "PROGRAMMATIC_104",
+      "priority": "P2_B1_DIFFERENCE",
+      "descriptionCharacters": 229,
+      "repeatCoverage14gramAtLeast16": 0.808,
+      "automatedReview": "REWRITE_PRIORITY_HIGH"
+    },
+    {
+      "pairId": "T03-T08",
+      "origin": "PROGRAMMATIC_104",
+      "priority": "P2_B1_DIFFERENCE",
+      "descriptionCharacters": 236,
+      "repeatCoverage14gramAtLeast16": 0.852,
+      "automatedReview": "REWRITE_PRIORITY_HIGH"
+    },
+    {
+      "pairId": "T03-T09",
+      "origin": "PROGRAMMATIC_104",
+      "priority": "P3_OTHER",
+      "descriptionCharacters": 224,
+      "repeatCoverage14gramAtLeast16": 0.813,
+      "automatedReview": "REWRITE_PRIORITY_HIGH"
+    },
+    {
+      "pairId": "T03-T10",
+      "origin": "PROGRAMMATIC_104",
+      "priority": "P3_OTHER",
+      "descriptionCharacters": 222,
+      "repeatCoverage14gramAtLeast16": 0.793,
+      "automatedReview": "REWRITE_PRIORITY_HIGH"
+    },
+    {
+      "pairId": "T03-T11",
+      "origin": "PROGRAMMATIC_104",
+      "priority": "P3_OTHER",
+      "descriptionCharacters": 227,
+      "repeatCoverage14gramAtLeast16": 0.74,
+      "automatedReview": "REWRITE_PRIORITY_HIGH"
+    },
+    {
+      "pairId": "T03-T12",
+      "origin": "PROGRAMMATIC_104",
+      "priority": "P3_OTHER",
+      "descriptionCharacters": 224,
+      "repeatCoverage14gramAtLeast16": 0.83,
+      "automatedReview": "REWRITE_PRIORITY_HIGH"
+    },
+    {
+      "pairId": "T03-T13",
+      "origin": "PROGRAMMATIC_104",
+      "priority": "P2_B1_DIFFERENCE",
+      "descriptionCharacters": 225,
+      "repeatCoverage14gramAtLeast16": 0.84,
+      "automatedReview": "REWRITE_PRIORITY_HIGH"
+    },
+    {
+      "pairId": "T03-T15",
+      "origin": "PROGRAMMATIC_104",
+      "priority": "P2_B1_DIFFERENCE",
+      "descriptionCharacters": 222,
+      "repeatCoverage14gramAtLeast16": 0.779,
+      "automatedReview": "REWRITE_PRIORITY_HIGH"
+    },
+    {
+      "pairId": "T03-T16",
+      "origin": "PROGRAMMATIC_104",
+      "priority": "P2_B1_DIFFERENCE",
+      "descriptionCharacters": 231,
+      "repeatCoverage14gramAtLeast16": 0.766,
+      "automatedReview": "REWRITE_PRIORITY_HIGH"
+    },
+    {
+      "pairId": "T04-T05",
+      "origin": "PROGRAMMATIC_104",
+      "priority": "P2_B1_DIFFERENCE",
+      "descriptionCharacters": 228,
+      "repeatCoverage14gramAtLeast16": 0.807,
+      "automatedReview": "REWRITE_PRIORITY_HIGH"
+    },
+    {
+      "pairId": "T04-T06",
+      "origin": "PROGRAMMATIC_104",
+      "priority": "P2_B1_DIFFERENCE",
+      "descriptionCharacters": 232,
+      "repeatCoverage14gramAtLeast16": 0.836,
+      "automatedReview": "REWRITE_PRIORITY_HIGH"
+    },
+    {
+      "pairId": "T04-T07",
+      "origin": "PROGRAMMATIC_104",
+      "priority": "P2_B1_DIFFERENCE",
+      "descriptionCharacters": 230,
+      "repeatCoverage14gramAtLeast16": 0.839,
+      "automatedReview": "REWRITE_PRIORITY_HIGH"
+    },
+    {
+      "pairId": "T04-T08",
+      "origin": "PROGRAMMATIC_104",
+      "priority": "P2_B1_DIFFERENCE",
+      "descriptionCharacters": 225,
+      "repeatCoverage14gramAtLeast16": 0.738,
+      "automatedReview": "REWRITE_PRIORITY_HIGH"
+    },
+    {
+      "pairId": "T04-T09",
+      "origin": "PROGRAMMATIC_104",
+      "priority": "P3_OTHER",
+      "descriptionCharacters": 234,
+      "repeatCoverage14gramAtLeast16": 0.735,
+      "automatedReview": "REWRITE_PRIORITY_HIGH"
+    },
+    {
+      "pairId": "T04-T10",
+      "origin": "PROGRAMMATIC_104",
+      "priority": "P3_OTHER",
+      "descriptionCharacters": 229,
+      "repeatCoverage14gramAtLeast16": 0.803,
+      "automatedReview": "REWRITE_PRIORITY_HIGH"
+    },
+    {
+      "pairId": "T04-T11",
+      "origin": "PROGRAMMATIC_104",
+      "priority": "P3_OTHER",
+      "descriptionCharacters": 235,
+      "repeatCoverage14gramAtLeast16": 0.826,
+      "automatedReview": "REWRITE_PRIORITY_HIGH"
+    },
+    {
+      "pairId": "T04-T12",
+      "origin": "PROGRAMMATIC_104",
+      "priority": "P3_OTHER",
+      "descriptionCharacters": 227,
+      "repeatCoverage14gramAtLeast16": 0.833,
+      "automatedReview": "REWRITE_PRIORITY_HIGH"
+    },
+    {
+      "pairId": "T04-T14",
+      "origin": "PROGRAMMATIC_104",
+      "priority": "P2_B1_DIFFERENCE",
+      "descriptionCharacters": 233,
+      "repeatCoverage14gramAtLeast16": 0.734,
+      "automatedReview": "REWRITE_PRIORITY_HIGH"
+    },
+    {
+      "pairId": "T04-T15",
+      "origin": "PROGRAMMATIC_104",
+      "priority": "P2_B1_DIFFERENCE",
+      "descriptionCharacters": 238,
+      "repeatCoverage14gramAtLeast16": 0.798,
+      "automatedReview": "REWRITE_PRIORITY_HIGH"
+    },
+    {
+      "pairId": "T04-T16",
+      "origin": "PROGRAMMATIC_104",
+      "priority": "P2_B1_DIFFERENCE",
+      "descriptionCharacters": 236,
+      "repeatCoverage14gramAtLeast16": 0.847,
+      "automatedReview": "REWRITE_PRIORITY_HIGH"
+    },
+    {
+      "pairId": "T05-T06",
+      "origin": "PROGRAMMATIC_104",
+      "priority": "P3_OTHER",
+      "descriptionCharacters": 228,
+      "repeatCoverage14gramAtLeast16": 0.754,
+      "automatedReview": "REWRITE_PRIORITY_HIGH"
+    },
+    {
+      "pairId": "T05-T07",
+      "origin": "PROGRAMMATIC_104",
+      "priority": "P3_OTHER",
+      "descriptionCharacters": 226,
+      "repeatCoverage14gramAtLeast16": 0.73,
+      "automatedReview": "REWRITE_PRIORITY_HIGH"
+    },
+    {
+      "pairId": "T05-T08",
+      "origin": "EARLIER_AI_8",
+      "priority": "P3_OTHER",
+      "descriptionCharacters": 150,
+      "repeatCoverage14gramAtLeast16": 0,
+      "automatedReview": "REWRITE_PRIORITY_HIGH_NOT_FLAGGED"
+    },
+    {
+      "pairId": "T05-T09",
+      "origin": "PROGRAMMATIC_104",
+      "priority": "P2_B1_DIFFERENCE",
+      "descriptionCharacters": 238,
+      "repeatCoverage14gramAtLeast16": 0.832,
+      "automatedReview": "REWRITE_PRIORITY_HIGH"
+    },
+    {
+      "pairId": "T05-T10",
+      "origin": "PROGRAMMATIC_104",
+      "priority": "P2_B1_DIFFERENCE",
+      "descriptionCharacters": 237,
+      "repeatCoverage14gramAtLeast16": 0.781,
+      "automatedReview": "REWRITE_PRIORITY_HIGH"
+    },
+    {
+      "pairId": "T05-T11",
+      "origin": "PROGRAMMATIC_104",
+      "priority": "P2_B1_DIFFERENCE",
+      "descriptionCharacters": 223,
+      "repeatCoverage14gramAtLeast16": 0.749,
+      "automatedReview": "REWRITE_PRIORITY_HIGH"
+    },
+    {
+      "pairId": "T05-T13",
+      "origin": "PROGRAMMATIC_104",
+      "priority": "P3_OTHER",
+      "descriptionCharacters": 229,
+      "repeatCoverage14gramAtLeast16": 0.799,
+      "automatedReview": "REWRITE_PRIORITY_HIGH"
+    },
+    {
+      "pairId": "T05-T14",
+      "origin": "PROGRAMMATIC_104",
+      "priority": "P3_OTHER",
+      "descriptionCharacters": 233,
+      "repeatCoverage14gramAtLeast16": 0.833,
+      "automatedReview": "REWRITE_PRIORITY_HIGH"
+    },
+    {
+      "pairId": "T05-T15",
+      "origin": "PROGRAMMATIC_104",
+      "priority": "P3_OTHER",
+      "descriptionCharacters": 228,
+      "repeatCoverage14gramAtLeast16": 0.807,
+      "automatedReview": "REWRITE_PRIORITY_HIGH"
+    },
+    {
+      "pairId": "T05-T16",
+      "origin": "PROGRAMMATIC_104",
+      "priority": "P3_OTHER",
+      "descriptionCharacters": 221,
+      "repeatCoverage14gramAtLeast16": 0.765,
+      "automatedReview": "REWRITE_PRIORITY_HIGH"
+    },
+    {
+      "pairId": "T06-T07",
+      "origin": "PROGRAMMATIC_104",
+      "priority": "P3_OTHER",
+      "descriptionCharacters": 230,
+      "repeatCoverage14gramAtLeast16": 0.857,
+      "automatedReview": "REWRITE_PRIORITY_HIGH"
+    },
+    {
+      "pairId": "T06-T08",
+      "origin": "PROGRAMMATIC_104",
+      "priority": "P3_OTHER",
+      "descriptionCharacters": 230,
+      "repeatCoverage14gramAtLeast16": 0.813,
+      "automatedReview": "REWRITE_PRIORITY_HIGH"
+    },
+    {
+      "pairId": "T06-T09",
+      "origin": "PROGRAMMATIC_104",
+      "priority": "P2_B1_DIFFERENCE",
+      "descriptionCharacters": 228,
+      "repeatCoverage14gramAtLeast16": 0.746,
+      "automatedReview": "REWRITE_PRIORITY_HIGH"
+    },
+    {
+      "pairId": "T06-T10",
+      "origin": "EARLIER_AI_8",
+      "priority": "P2_B1_DIFFERENCE",
+      "descriptionCharacters": 149,
+      "repeatCoverage14gramAtLeast16": 0,
+      "automatedReview": "REWRITE_PRIORITY_HIGH_NOT_FLAGGED"
+    },
+    {
+      "pairId": "T06-T12",
+      "origin": "PROGRAMMATIC_104",
+      "priority": "P2_B1_DIFFERENCE",
+      "descriptionCharacters": 232,
+      "repeatCoverage14gramAtLeast16": 0.836,
+      "automatedReview": "REWRITE_PRIORITY_HIGH"
+    },
+    {
+      "pairId": "T06-T13",
+      "origin": "PROGRAMMATIC_104",
+      "priority": "P3_OTHER",
+      "descriptionCharacters": 221,
+      "repeatCoverage14gramAtLeast16": 0.851,
+      "automatedReview": "REWRITE_PRIORITY_HIGH"
+    },
+    {
+      "pairId": "T06-T14",
+      "origin": "PROGRAMMATIC_104",
+      "priority": "P3_OTHER",
+      "descriptionCharacters": 226,
+      "repeatCoverage14gramAtLeast16": 0.743,
+      "automatedReview": "REWRITE_PRIORITY_HIGH"
+    },
+    {
+      "pairId": "T06-T15",
+      "origin": "PROGRAMMATIC_104",
+      "priority": "P3_OTHER",
+      "descriptionCharacters": 233,
+      "repeatCoverage14gramAtLeast16": 0.708,
+      "automatedReview": "REWRITE_PRIORITY_HIGH"
+    },
+    {
+      "pairId": "T06-T16",
+      "origin": "PROGRAMMATIC_104",
+      "priority": "P3_OTHER",
+      "descriptionCharacters": 223,
+      "repeatCoverage14gramAtLeast16": 0.812,
+      "automatedReview": "REWRITE_PRIORITY_HIGH"
+    },
+    {
+      "pairId": "T07-T08",
+      "origin": "PROGRAMMATIC_104",
+      "priority": "P3_OTHER",
+      "descriptionCharacters": 229,
+      "repeatCoverage14gramAtLeast16": 0.747,
+      "automatedReview": "REWRITE_PRIORITY_HIGH"
+    },
+    {
+      "pairId": "T07-T09",
+      "origin": "PROGRAMMATIC_104",
+      "priority": "P2_B1_DIFFERENCE",
+      "descriptionCharacters": 226,
+      "repeatCoverage14gramAtLeast16": 0.796,
+      "automatedReview": "REWRITE_PRIORITY_HIGH"
+    },
+    {
+      "pairId": "T07-T11",
+      "origin": "PROGRAMMATIC_104",
+      "priority": "P2_B1_DIFFERENCE",
+      "descriptionCharacters": 227,
+      "repeatCoverage14gramAtLeast16": 0.824,
+      "automatedReview": "REWRITE_PRIORITY_HIGH"
+    },
+    {
+      "pairId": "T07-T12",
+      "origin": "PROGRAMMATIC_104",
+      "priority": "P2_B1_DIFFERENCE",
+      "descriptionCharacters": 228,
+      "repeatCoverage14gramAtLeast16": 0.776,
+      "automatedReview": "REWRITE_PRIORITY_HIGH"
+    },
+    {
+      "pairId": "T07-T13",
+      "origin": "PROGRAMMATIC_104",
+      "priority": "P3_OTHER",
+      "descriptionCharacters": 226,
+      "repeatCoverage14gramAtLeast16": 0.765,
+      "automatedReview": "REWRITE_PRIORITY_HIGH"
+    },
+    {
+      "pairId": "T07-T14",
+      "origin": "PROGRAMMATIC_104",
+      "priority": "P3_OTHER",
+      "descriptionCharacters": 226,
+      "repeatCoverage14gramAtLeast16": 0.801,
+      "automatedReview": "REWRITE_PRIORITY_HIGH"
+    },
+    {
+      "pairId": "T07-T15",
+      "origin": "PROGRAMMATIC_104",
+      "priority": "P3_OTHER",
+      "descriptionCharacters": 232,
+      "repeatCoverage14gramAtLeast16": 0.832,
+      "automatedReview": "REWRITE_PRIORITY_HIGH"
+    },
+    {
+      "pairId": "T07-T16",
+      "origin": "PROGRAMMATIC_104",
+      "priority": "P3_OTHER",
+      "descriptionCharacters": 232,
+      "repeatCoverage14gramAtLeast16": 0.815,
+      "automatedReview": "REWRITE_PRIORITY_HIGH"
+    },
+    {
+      "pairId": "T08-T10",
+      "origin": "PROGRAMMATIC_104",
+      "priority": "P2_B1_DIFFERENCE",
+      "descriptionCharacters": 227,
+      "repeatCoverage14gramAtLeast16": 0.753,
+      "automatedReview": "REWRITE_PRIORITY_HIGH"
+    },
+    {
+      "pairId": "T08-T11",
+      "origin": "PROGRAMMATIC_104",
+      "priority": "P2_B1_DIFFERENCE",
+      "descriptionCharacters": 239,
+      "repeatCoverage14gramAtLeast16": 0.745,
+      "automatedReview": "REWRITE_PRIORITY_HIGH"
+    },
+    {
+      "pairId": "T08-T12",
+      "origin": "PROGRAMMATIC_104",
+      "priority": "P2_B1_DIFFERENCE",
+      "descriptionCharacters": 233,
+      "repeatCoverage14gramAtLeast16": 0.82,
+      "automatedReview": "REWRITE_PRIORITY_HIGH"
+    },
+    {
+      "pairId": "T08-T13",
+      "origin": "EARLIER_AI_8",
+      "priority": "P3_OTHER",
+      "descriptionCharacters": 146,
+      "repeatCoverage14gramAtLeast16": 0,
+      "automatedReview": "REWRITE_PRIORITY_HIGH_NOT_FLAGGED"
+    },
+    {
+      "pairId": "T08-T14",
+      "origin": "PROGRAMMATIC_104",
+      "priority": "P3_OTHER",
+      "descriptionCharacters": 224,
+      "repeatCoverage14gramAtLeast16": 0.821,
+      "automatedReview": "REWRITE_PRIORITY_HIGH"
+    },
+    {
+      "pairId": "T08-T15",
+      "origin": "PROGRAMMATIC_104",
+      "priority": "P3_OTHER",
+      "descriptionCharacters": 225,
+      "repeatCoverage14gramAtLeast16": 0.773,
+      "automatedReview": "REWRITE_PRIORITY_HIGH"
+    },
+    {
+      "pairId": "T08-T16",
+      "origin": "PROGRAMMATIC_104",
+      "priority": "P3_OTHER",
+      "descriptionCharacters": 231,
+      "repeatCoverage14gramAtLeast16": 0.723,
+      "automatedReview": "REWRITE_PRIORITY_HIGH"
+    },
+    {
+      "pairId": "T09-T10",
+      "origin": "PROGRAMMATIC_104",
+      "priority": "P3_OTHER",
+      "descriptionCharacters": 230,
+      "repeatCoverage14gramAtLeast16": 0.8,
+      "automatedReview": "REWRITE_PRIORITY_HIGH"
+    },
+    {
+      "pairId": "T09-T11",
+      "origin": "PROGRAMMATIC_104",
+      "priority": "P3_OTHER",
+      "descriptionCharacters": 240,
+      "repeatCoverage14gramAtLeast16": 0.813,
+      "automatedReview": "REWRITE_PRIORITY_HIGH"
+    },
+    {
+      "pairId": "T09-T12",
+      "origin": "EARLIER_AI_8",
+      "priority": "P3_OTHER",
+      "descriptionCharacters": 160,
+      "repeatCoverage14gramAtLeast16": 0,
+      "automatedReview": "REWRITE_PRIORITY_HIGH_NOT_FLAGGED"
+    },
+    {
+      "pairId": "T09-T13",
+      "origin": "PROGRAMMATIC_104",
+      "priority": "P2_B1_DIFFERENCE",
+      "descriptionCharacters": 222,
+      "repeatCoverage14gramAtLeast16": 0.761,
+      "automatedReview": "REWRITE_PRIORITY_HIGH"
+    },
+    {
+      "pairId": "T09-T14",
+      "origin": "PROGRAMMATIC_104",
+      "priority": "P2_B1_DIFFERENCE",
+      "descriptionCharacters": 235,
+      "repeatCoverage14gramAtLeast16": 0.762,
+      "automatedReview": "REWRITE_PRIORITY_HIGH"
+    },
+    {
+      "pairId": "T09-T15",
+      "origin": "PROGRAMMATIC_104",
+      "priority": "P2_B1_DIFFERENCE",
+      "descriptionCharacters": 230,
+      "repeatCoverage14gramAtLeast16": 0.804,
+      "automatedReview": "REWRITE_PRIORITY_HIGH"
+    },
+    {
+      "pairId": "T09-T16",
+      "origin": "EARLIER_AI_8",
+      "priority": "P2_B1_DIFFERENCE",
+      "descriptionCharacters": 152,
+      "repeatCoverage14gramAtLeast16": 0,
+      "automatedReview": "REWRITE_PRIORITY_HIGH_NOT_FLAGGED"
+    },
+    {
+      "pairId": "T10-T11",
+      "origin": "PROGRAMMATIC_104",
+      "priority": "P3_OTHER",
+      "descriptionCharacters": 231,
+      "repeatCoverage14gramAtLeast16": 0.74,
+      "automatedReview": "REWRITE_PRIORITY_HIGH"
+    },
+    {
+      "pairId": "T10-T12",
+      "origin": "PROGRAMMATIC_104",
+      "priority": "P3_OTHER",
+      "descriptionCharacters": 228,
+      "repeatCoverage14gramAtLeast16": 0.75,
+      "automatedReview": "REWRITE_PRIORITY_HIGH"
+    },
+    {
+      "pairId": "T10-T13",
+      "origin": "PROGRAMMATIC_104",
+      "priority": "P2_B1_DIFFERENCE",
+      "descriptionCharacters": 236,
+      "repeatCoverage14gramAtLeast16": 0.814,
+      "automatedReview": "REWRITE_PRIORITY_HIGH"
+    },
+    {
+      "pairId": "T10-T14",
+      "origin": "PROGRAMMATIC_104",
+      "priority": "P2_B1_DIFFERENCE",
+      "descriptionCharacters": 236,
+      "repeatCoverage14gramAtLeast16": 0.818,
+      "automatedReview": "REWRITE_PRIORITY_HIGH"
+    },
+    {
+      "pairId": "T10-T15",
+      "origin": "PROGRAMMATIC_104",
+      "priority": "P2_B1_DIFFERENCE",
+      "descriptionCharacters": 223,
+      "repeatCoverage14gramAtLeast16": 0.839,
+      "automatedReview": "REWRITE_PRIORITY_HIGH"
+    },
+    {
+      "pairId": "T10-T16",
+      "origin": "PROGRAMMATIC_104",
+      "priority": "P2_B1_DIFFERENCE",
+      "descriptionCharacters": 228,
+      "repeatCoverage14gramAtLeast16": 0.763,
+      "automatedReview": "REWRITE_PRIORITY_HIGH"
+    },
+    {
+      "pairId": "T11-T12",
+      "origin": "PROGRAMMATIC_104",
+      "priority": "P3_OTHER",
+      "descriptionCharacters": 240,
+      "repeatCoverage14gramAtLeast16": 0.817,
+      "automatedReview": "REWRITE_PRIORITY_HIGH"
+    },
+    {
+      "pairId": "T11-T13",
+      "origin": "PROGRAMMATIC_104",
+      "priority": "P2_B1_DIFFERENCE",
+      "descriptionCharacters": 226,
+      "repeatCoverage14gramAtLeast16": 0.832,
+      "automatedReview": "REWRITE_PRIORITY_HIGH"
+    },
+    {
+      "pairId": "T11-T14",
+      "origin": "PROGRAMMATIC_104",
+      "priority": "P2_B1_DIFFERENCE",
+      "descriptionCharacters": 225,
+      "repeatCoverage14gramAtLeast16": 0.782,
+      "automatedReview": "REWRITE_PRIORITY_HIGH"
+    },
+    {
+      "pairId": "T11-T15",
+      "origin": "PROGRAMMATIC_104",
+      "priority": "P2_B1_DIFFERENCE",
+      "descriptionCharacters": 238,
+      "repeatCoverage14gramAtLeast16": 0.748,
+      "automatedReview": "REWRITE_PRIORITY_HIGH"
+    },
+    {
+      "pairId": "T11-T16",
+      "origin": "PROGRAMMATIC_104",
+      "priority": "P2_B1_DIFFERENCE",
+      "descriptionCharacters": 232,
+      "repeatCoverage14gramAtLeast16": 0.815,
+      "automatedReview": "REWRITE_PRIORITY_HIGH"
+    },
+    {
+      "pairId": "T12-T13",
+      "origin": "PROGRAMMATIC_104",
+      "priority": "P2_B1_DIFFERENCE",
+      "descriptionCharacters": 224,
+      "repeatCoverage14gramAtLeast16": 0.786,
+      "automatedReview": "REWRITE_PRIORITY_HIGH"
+    },
+    {
+      "pairId": "T12-T14",
+      "origin": "PROGRAMMATIC_104",
+      "priority": "P2_B1_DIFFERENCE",
+      "descriptionCharacters": 232,
+      "repeatCoverage14gramAtLeast16": 0.81,
+      "automatedReview": "REWRITE_PRIORITY_HIGH"
+    },
+    {
+      "pairId": "T12-T15",
+      "origin": "PROGRAMMATIC_104",
+      "priority": "P2_B1_DIFFERENCE",
+      "descriptionCharacters": 232,
+      "repeatCoverage14gramAtLeast16": 0.858,
+      "automatedReview": "REWRITE_PRIORITY_HIGH"
+    },
+    {
+      "pairId": "T12-T16",
+      "origin": "PROGRAMMATIC_104",
+      "priority": "P2_B1_DIFFERENCE",
+      "descriptionCharacters": 226,
+      "repeatCoverage14gramAtLeast16": 0.81,
+      "automatedReview": "REWRITE_PRIORITY_HIGH"
+    },
+    {
+      "pairId": "T13-T14",
+      "origin": "PROGRAMMATIC_104",
+      "priority": "P3_OTHER",
+      "descriptionCharacters": 230,
+      "repeatCoverage14gramAtLeast16": 0.8,
+      "automatedReview": "REWRITE_PRIORITY_HIGH"
+    },
+    {
+      "pairId": "T13-T15",
+      "origin": "PROGRAMMATIC_104",
+      "priority": "P3_OTHER",
+      "descriptionCharacters": 221,
+      "repeatCoverage14gramAtLeast16": 0.787,
+      "automatedReview": "REWRITE_PRIORITY_HIGH"
+    },
+    {
+      "pairId": "T13-T16",
+      "origin": "PROGRAMMATIC_104",
+      "priority": "P3_OTHER",
+      "descriptionCharacters": 224,
+      "repeatCoverage14gramAtLeast16": 0.777,
+      "automatedReview": "REWRITE_PRIORITY_HIGH"
+    },
+    {
+      "pairId": "T14-T15",
+      "origin": "PROGRAMMATIC_104",
+      "priority": "P3_OTHER",
+      "descriptionCharacters": 231,
+      "repeatCoverage14gramAtLeast16": 0.827,
+      "automatedReview": "REWRITE_PRIORITY_HIGH"
+    },
+    {
+      "pairId": "T14-T16",
+      "origin": "PROGRAMMATIC_104",
+      "priority": "P3_OTHER",
+      "descriptionCharacters": 229,
+      "repeatCoverage14gramAtLeast16": 0.817,
+      "automatedReview": "REWRITE_PRIORITY_HIGH"
+    },
+    {
+      "pairId": "T15-T16",
+      "origin": "PROGRAMMATIC_104",
+      "priority": "P3_OTHER",
+      "descriptionCharacters": 219,
+      "repeatCoverage14gramAtLeast16": 0.79,
+      "automatedReview": "REWRITE_PRIORITY_HIGH"
+    }
+  ],
+  "approval": {
+    "humanPrimary": 0,
+    "humanIndependent": 0,
+    "publication": "NO_GO"
+  }
+}
