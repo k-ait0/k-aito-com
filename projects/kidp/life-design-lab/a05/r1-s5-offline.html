@@ -56,13 +56,9 @@ footer{text-align:center;color:#607383;font-size:.78rem;padding:24px 6px}
 @media(max-width:680px){.shell{width:min(100% - 24px,1040px);padding-top:18px}.panel{padding:17px 16px;border-radius:14px}.controls{grid-template-columns:1fr}.swap{justify-self:center;padding:7px 18px}.pair{grid-template-columns:minmax(0,1fr) 18px minmax(0,1fr)}.type-card{padding:10px;border-left-width:4px}.type-caption{font-size:.72rem}.notice{padding:13px}.axis-table th,.axis-table td{padding:9px 7px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 
-.variants{display:flex;gap:16px;align-items:center;flex-wrap:wrap;border:1px solid #c3cfdb;border-radius:10px;padding:8px 12px;margin-bottom:12px}
-.variants legend{font-size:.85rem;font-weight:700;padding:0 4px}.variants label{cursor:pointer;font-size:.9rem}.variants input{accent-color:#256da7}
-.review-compare{margin-top:18px;border:1px solid #c3cfdb;border-radius:12px;padding:12px;background:#f8fafc}.review-compare summary{font-weight:700;cursor:pointer}
-.review-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px;margin-top:13px}
-.review-grid[data-threeway="true"]{grid-template-columns:repeat(3,minmax(0,1fr))}
-.review-grid>div{min-width:0;border:1px solid #d7e0e9;padding:11px;border-radius:10px;background:#fff}.review-grid h3{font-size:1rem;margin:.1em 0 .6em}.review-grid p,.review-grid li{overflow-wrap:anywhere}
-@media(max-width:950px){.review-grid[data-threeway="true"]{grid-template-columns:1fr}}@media(max-width:700px){.review-grid{grid-template-columns:1fr}}
+
+.variants{display:flex;gap:16px;align-items:center;flex-wrap:wrap;border:1px solid #c3cfdb;border-radius:10px;padding:8px 12px;margin-bottom:12px}.variants legend{font-size:.85rem;font-weight:700;padding:0 4px}.variants label{cursor:pointer;font-size:.9rem}.variants input{accent-color:#256da7}
+.review-compare{margin-top:18px;border:1px solid #c3cfdb;border-radius:12px;padding:12px;background:#f8fafc}.review-compare summary{font-weight:700;cursor:pointer}.review-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px;margin-top:13px}.review-grid[data-threeway="true"]{grid-template-columns:repeat(3,minmax(0,1fr))}.review-grid>div{min-width:0;border:1px solid #d7e0e9;padding:11px;border-radius:10px;background:#fff}.review-grid h3{font-size:1rem;margin:.1em 0 .6em}.review-grid p,.review-grid li{overflow-wrap:anywhere}@media(max-width:950px){.review-grid[data-threeway="true"]{grid-template-columns:1fr}}@media(max-width:700px){.review-grid{grid-template-columns:1fr}}
 </style>
 
 </head>
@@ -120,17 +116,7 @@ footer{text-align:center;color:#607383;font-size:.78rem;padding:24px 6px}
     <section class="panel" aria-labelledby="story-heading">
       <p class="eyebrow">STEP 03 / C：編集上の仮説・未実証</p>
       <h2 id="story-heading">この2タイプを考えるための例</h2>
-      <fieldset id="draft-variants" class="variants" hidden><legend>原案と改稿候補を比較</legend>
-<label><input type="radio" id="option-v04" name="draft-variant" value="v04" checked> v0.4原案</label>
-<label><input type="radio" name="draft-variant" value="v05"> v0.5改稿候補</label>
-<label id="option-v06-label" hidden><input type="radio" name="draft-variant" value="v06"> v0.6個別改稿（8組限定）</label></fieldset>
-<p class="small" id="source-status"></p><p class="story" id="draft-description"></p>
-<details class="review-compare" id="review-compare" hidden><summary>原案・改稿を並べて確認する（審査用）</summary>
-<div class="review-grid" id="review-grid">
-<div><h3>v0.4 原案（未承認）</h3><p class="story" id="compare-v04-description"></p><ol id="compare-v04-prompts"></ol></div>
-<div><h3>v0.5 改稿候補（未承認）</h3><p class="story" id="compare-v05-description"></p><ol id="compare-v05-prompts"></ol></div>
-<div id="compare-v06-panel" hidden><h3>v0.6 高反復8組の改稿（未承認）</h3><p class="story" id="compare-v06-description"></p><ol id="compare-v06-prompts"></ol></div>
-</div></details>
+      <fieldset id="draft-variants" class="variants" hidden><legend>原案と改稿候補を比較</legend><label><input type="radio" id="option-v04" name="draft-variant" value="v04" checked> v0.4原案</label><label><input type="radio" name="draft-variant" value="v05"> v0.5改稿候補</label><label id="option-v06-label" hidden><input type="radio" name="draft-variant" value="v06"> v0.6個別改稿（8組限定）</label></fieldset><p class="small" id="source-status"></p><p class="story" id="draft-description"></p><details class="review-compare" id="review-compare" hidden><summary>原案・改稿を並べて確認する（審査用）</summary><div class="review-grid" id="review-grid"><div><h3>v0.4 原案（未承認）</h3><p class="story" id="compare-v04-description"></p><ol id="compare-v04-prompts"></ol></div><div><h3>v0.5 改稿候補（未承認）</h3><p class="story" id="compare-v05-description"></p><ol id="compare-v05-prompts"></ol></div><div id="compare-v06-panel" hidden><h3>v0.6 高反復8組の改稿（未承認）</h3><p class="story" id="compare-v06-description"></p><ol id="compare-v06-prompts"></ol></div></div></details>
       <p class="caution">これは機械・AIが作成した未承認の編集原案です。実際の人にこの特徴があるとは限りません。</p>
     </section>
     <section class="panel" aria-labelledby="prompts-heading">
