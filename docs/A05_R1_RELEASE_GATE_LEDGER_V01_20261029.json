@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "A05-R1-RELEASE-TRACKER-0.9.0",
+  "schemaVersion": "A05-R1-RELEASE-TRACKER-1.0.0",
   "updatedAt": "2026-10-30",
   "timezone": "Asia/Tokyo",
   "product": "A05 R1 16-type value understanding map",
@@ -14,7 +14,7 @@
     "S0_6_HUMAN_FINAL_APPROVAL_AND_STOP_GATES"
   ],
   "overallReleaseStatus": "NO_GO",
-  "planningStatus": "S4_ALL136_MACHINE_EDITORIAL_CANDIDATES_PREPARED_ALL_HUMAN_REVIEWS_PENDING",
+  "planningStatus": "S4_DRAFT136_V02_120_REWRITTEN_PENDING_INDEPENDENT_HUMAN_REVIEW",
   "gates": [
     {
       "id": "S0-1",
@@ -109,7 +109,7 @@
       "stage": "S4",
       "goalCount": null,
       "acceptedCount": 0,
-      "status": "DRAFT136_COMPLETE_HUMAN_REVIEW_0",
+      "status": "V02_DRAFT136_PRESENT_HUMAN_APPROVAL_ZERO",
       "firstReview": {
         "completed": 0,
         "total": 136
@@ -260,6 +260,13 @@
       "acceptedGateIds": [],
       "decision": "Generated 112 machine-assembled P2/P3 pair prompts; integrated into 136-pair review master with 24 previously drafted pairs. 496 questions total/96 unique; duplicate risk and all human review gates pending.",
       "scope": "MACHINE_GENERATED_EDITING_MATERIAL_ONLY"
+    },
+    {
+      "eventId": "S4-QUALITY-002",
+      "date": "2026-10-30",
+      "acceptedGateIds": [],
+      "decision": "Revised 120 P1/P2/P3 editorial pair drafts, retained P0 16. Exact string diversity now 136 descriptions / 392 prompts. Semantic redundancy and all human reviews remain pending, release NO-GO.",
+      "scope": "MACHINE_GENERATED_COPY_VERSIONING_ONLY"
     }
   ],
   "policyGatePassed": true,
@@ -375,6 +382,13 @@
       "method": "Live GitHub source evaluated in V8; 786 structural assertions / 0 failures for 112 pairs; integrated 136 source provenance and duplicate-copy counts; native Node and human review not executed",
       "nativeNodeExecuted": false,
       "status": "EDITORIAL_DRAFTS_ONLY"
+    },
+    {
+      "date": "2026-10-30",
+      "event": "S4-QUALITY-002",
+      "method": "V8 real GitHub code 963/963; v02 master source SHA and 136 row cross-reference 1208/1208; native Node not executed",
+      "status": "EDITORIAL_CANDIDATE_PRECHECK_ONLY",
+      "nativeNodeExecuted": false
     }
   ],
   "s1AcceptanceDocument": "docs/A05_S1_CONSTRUCT_CRITICAL_REVIEW_AND_DECISION_V04_20261030.md",
@@ -535,5 +549,41 @@
     "nativeNodeSuiteExecuted": false,
     "noReviewPromotions": true,
     "evidenceStatus": "MACHINE_GENERATED_UNAPPROVED"
+  },
+  "s4EditorialQualityV02": {
+    "eventId": "S4-QUALITY-002",
+    "dated": "2026-10-30",
+    "baseline": "docs/A05_S4_ALL136_EDITORIAL_REVIEW_MASTER_V01_20261030.json",
+    "generatedModule": "projects/kidp/life-design-lab/a05/r1-s4-pair-specific-copy-v02.mjs",
+    "revisedMaster": "docs/A05_S4_ALL136_EDITORIAL_REVIEW_MASTER_V02_20261030.json",
+    "humanRubric": "docs/A05_S4_HUMAN_REVIEW_RUBRIC_AND_COPY_QA_V02_20261030.md",
+    "regressionTest": "scripts/test-a05-r1-s4-copy-v02.mjs",
+    "oldCounts": {
+      "pairs": 136,
+      "draftQuestions": 496,
+      "uniqueQuestionStrings": 96,
+      "uniqueDescriptionStrings": 129
+    },
+    "newCounts": {
+      "pairs": 136,
+      "rewritten": 120,
+      "retained": 16,
+      "questions": 392,
+      "uniqueQuestionStrings": 392,
+      "uniqueDescriptionStrings": 136
+    },
+    "mechanicalExactStringDuplicateCount": 0,
+    "estimatedSemanticRedundancy": "NOT_MEASURED_AND_POSSIBLE",
+    "scientificallyValidated": false,
+    "editorialHumanApprovals": 0,
+    "secondIndependentHumanApprovals": 0,
+    "codeExecution": {
+      "method": "Actual GitHub source evaluated using isolated V8",
+      "focusedChecks": 963,
+      "fullMasterChecks": 1208,
+      "errors": 0,
+      "nativeNodeExecuted": false
+    },
+    "releaseStatus": "NO_GO"
   }
 }
