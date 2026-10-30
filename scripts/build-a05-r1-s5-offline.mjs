@@ -10,7 +10,7 @@ const html=read("projects/kidp/life-design-lab/a05/r1-s5-preview.html");
 const css=read("projects/kidp/life-design-lab/a05/r1-s5-preview.css");
 const controller=read("projects/kidp/life-design-lab/a05/r1-s5-offline-controller.js");
 const master=JSON.parse(read("docs/A05_S4_ALL136_EDITORIAL_REVIEW_MASTER_V04_20261030.json"));
-const alternate=JSON.parse(read("docs/A05_S4_V05_P2P3_EIGHT_SEMANTIC_ALTERNATES_20261030.json"));
+const alternate=JSON.parse(read("docs/A05_S4_V05_ALL112_CONTEXTUAL_ALTERNATES_20261030.json"));
 const names=["基盤を築く人々","暮らしを育む人々","可能性を拓く人々","未来を共創する人々"];
 const types=Array.from({length:16},(_,i)=>{
   const id="T"+String(i+1).padStart(2,"0");
@@ -18,7 +18,7 @@ const types=Array.from({length:16},(_,i)=>{
   if(!source)throw Error("Missing same-type "+id);
   return {id,name:source.displayNames[0],group:"G"+(Math.floor(i/4)+1),groupName:names[Math.floor(i/4)]};
 });
-if(master.rows.length!==136||alternate.proposals.length!==8)throw Error("Unexpected source count");
+if(master.rows.length!==136||alternate.proposals.length!==112)throw Error("Unexpected source count");
 const embedded=x=>JSON.stringify(x).replace(/</g,"\\u003c");
 let output=html
   .replace('<meta http-equiv="Content-Security-Policy" content="default-src \'none\'; script-src \'self\'; style-src \'self\'; connect-src \'self\'; base-uri \'none\'; form-action \'none\'; object-src \'none\'">',
