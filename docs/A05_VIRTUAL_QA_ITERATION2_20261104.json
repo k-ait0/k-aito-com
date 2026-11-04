@@ -1,0 +1,208 @@
+{
+  "schema": "A05-VIRTUAL-QA-ITERATION-2.0.0",
+  "dateJST": "2026-11-04",
+  "repo": "k-ait0/k-aito-com",
+  "branch": "qa/a05-phase1-virtual-qa-20261104",
+  "purpose": "Repair 16+136 phase-1 report rendering and content; extend current A05 diagnostic core tests without device QA",
+  "sourceManifest": [
+    {
+      "path": "docs/A05_PHASE1_PAIR136_SHORT_REPORTS_20261104.json",
+      "gitBlobSha": "f51ca208071ae7378e5b8406bb36a75b1ec1eba1"
+    },
+    {
+      "path": "docs/A05_PHASE1_SELF16_SHORT_REPORTS_20261104.json",
+      "gitBlobSha": "f37da301ddb1352f3d47e619584c75ba74bb7234"
+    },
+    {
+      "path": "projects/kidp/life-design-lab/a05/phase1-short-report-preview-20261104.html",
+      "gitBlobSha": "8e48f702795819b67874ce657727fbe4687933b4"
+    },
+    {
+      "path": "docs/A05_PHASE1_COPY_REPETITION_QA_20261104.json",
+      "gitBlobSha": "2454ace79aa612ffc41ca40f8fac704c5c805d95"
+    },
+    {
+      "path": "scripts/test-a05-phase1-vdom-20261104.mjs",
+      "gitBlobSha": "c9c5558dc026a7311d04034dc5ff4515bc819c35"
+    },
+    {
+      "path": "scripts/test-a05-diagnostic-core-virtual-20261104.mjs",
+      "gitBlobSha": "1a5dc350da782c21f26f8a9af6f7a00713ac566c"
+    }
+  ],
+  "defectsResolved": [
+    {
+      "id": "COPY-001",
+      "severity": "P0",
+      "finding": "All 136 pair reports' section 01 showed undefined placeholders: 256 literal tokens",
+      "rootCause": "Generator referenced a.summary while self report schema uses shortSummary",
+      "resolution": "Replace all tokens from existing 16 shortSummary values and embed same JSON in preview",
+      "affectedReports": 136,
+      "affectedTokens": 256,
+      "after": "NO_UNRESOLVED_PLACEHOLDERS"
+    },
+    {
+      "id": "COPY-002",
+      "severity": "P1",
+      "finding": "Four same-type pair dilemma paragraphs compared the same activity with itself",
+      "affectedReports": 4,
+      "resolution": "Wrote distinct practical dilemmas for T01-T01/T05-T05/T09-T09/T13-T13",
+      "after": "NO_DUPLICATE_GOALS"
+    },
+    {
+      "id": "COPY-003",
+      "severity": "P2",
+      "finding": "One T16-T16 stutter and one 'の企画の企画' phrase",
+      "resolution": "Corrected Japanese phrasing",
+      "after": "FIXED"
+    },
+    {
+      "id": "COPY-004",
+      "severity": "P1_EDITORIAL",
+      "finding": "High repetition in difference and dilemma chapters",
+      "resolution": "Wrote two distinct, situation-anchored paragraphs for each of the ten worst-repetition pair reports",
+      "affectedReports": 10,
+      "affectedSections": 20,
+      "after": "AI_CANDIDATE_UNREVIEWED"
+    }
+  ],
+  "virtualQA": {
+    "engine": {
+      "method": "GitHub engine.mjs/questions.mjs/types.mjs code executed in V8 by stripping only ESM import/export directives, injecting actual module exports",
+      "assertions": 81,
+      "failures": 0,
+      "covers": [
+        "16/16 output IDs under dominant answers",
+        "Independent E wealth direction money/time",
+        "30 answer schema and invalid input",
+        "Missing/null/neutral responses",
+        "Provisional/exact classified threshold",
+        "Snapshot verified, altered record quarantined, previous version legacy"
+      ],
+      "nativeNode": "NOT_RUN"
+    },
+    "reports": {
+      "method": "GitHub JSON/preview exact-parity and content checks executed in V8",
+      "contentChecks": 1245,
+      "failures": 0,
+      "completeSelf": 16,
+      "completePair": 136,
+      "uniquePrompts": 408,
+      "unresolvedPlaceholders": 0
+    },
+    "rendering": {
+      "method": "Actual inline HTML JavaScript in V8 with minimal in-memory virtual DOM",
+      "caseCount": {
+        "self": 16,
+        "orderedPairs": 256
+      },
+      "assertions": 2608,
+      "failed": 0,
+      "fixFromPriorIteration": "selection order headers+axes",
+      "nativeChromium": "BLOCKED_SOURCE_NOT_MOUNTED"
+    },
+    "copyRepetition": {
+      "method": {
+        "gramSize": 14,
+        "minDocuments": 16,
+        "normalization": "remove whitespace",
+        "threshold": 0.5,
+        "scope": "within same section across 136 pair reports; also combined main four narrative sections; only indicator for editorial triage, not acceptance or scientific validity"
+      },
+      "before": {
+        "shared": {
+          "flagged": 128,
+          "mean": 0.864
+        },
+        "different": {
+          "flagged": 136,
+          "mean": 0.973
+        },
+        "scenario": {
+          "flagged": 73,
+          "mean": 0.366
+        },
+        "dilemma": {
+          "flagged": 116,
+          "mean": 0.643
+        },
+        "all": {
+          "flagged": 122,
+          "mean": 0.691
+        }
+      },
+      "after": {
+        "shared": {
+          "flagged": 128,
+          "mean": 0.81
+        },
+        "different": {
+          "flagged": 126,
+          "mean": 0.889
+        },
+        "scenario": {
+          "flagged": 73,
+          "mean": 0.366
+        },
+        "dilemma": {
+          "flagged": 96,
+          "mean": 0.55
+        },
+        "all": {
+          "flagged": 108,
+          "mean": 0.64
+        }
+      },
+      "notProofOfBadQuality": true
+    }
+  },
+  "scopeBoundary": {
+    "draftOnly": true,
+    "production": false,
+    "mainMerged": false,
+    "questionSetChanged": false,
+    "engineChanged": false,
+    "classificationModelChanged": false,
+    "ownerCopyApproved": false,
+    "humanPrimaryApproved": 0,
+    "humanIndependentApproved": 0,
+    "psychometricValidity": false,
+    "physicalSafariVoiceOver": "DEFERRED",
+    "githubActionsUsed": false
+  },
+  "remaining": [
+    {
+      "code": "ENV-01",
+      "status": "BLOCKED",
+      "reason": "GitHub connector can inspect and update files but container cannot resolve github.com DNS and current environment does not mount repo source; real HTML Chromium browser not yet exercised",
+      "alternativeCompleted": "Real source V8 DOM + content and engine checks",
+      "next": "Use supported file materialization or browser route if available; keep unexecuted status explicit"
+    },
+    {
+      "code": "CONTENT-02",
+      "status": "IN_PROGRESS",
+      "reason": "High shared/different/dilemma textual repetition remains; 108/136 flagged in combined section heuristic",
+      "next": "Review priorityQueue; rewrite distinctive scenarios and verify independent editorial quality"
+    },
+    {
+      "code": "DIAG-02",
+      "status": "IN_PROGRESS",
+      "reason": "New native Node regression script written but not run; browser IndexedDB and 30Q end-to-end not tested",
+      "next": "Virtual IndexedDB mocks, explicit consent, history corruption and boundary cases"
+    },
+    {
+      "code": "DEVICE-FINAL",
+      "status": "DEFERRED",
+      "reason": "Per user instruction, real iOS Safari and VoiceOver occur only at last acceptance gate"
+    }
+  ],
+  "summary": {
+    "contentDefectFix": "256/256 undefined placeholders corrected",
+    "copyEditedPairs": 14,
+    "copyEditedDilemmaChapters": 14,
+    "copyEditedDifferenceChapters": 10,
+    "combinedHighRepeatFlagsBefore": 122,
+    "combinedHighRepeatFlagsAfter": 108,
+    "goNoGo": "NO_GO"
+  }
+}
