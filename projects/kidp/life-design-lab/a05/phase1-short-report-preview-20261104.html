@@ -56,6 +56,8 @@ function render(){
  const a=$("first").value,b=$("second").value;
  let data=mode==="self"?SELF[ids.get(a)]:pairs.get(pairsKey(a,b));
  if(!data){toText(target,"p","レポートが見つかりません。");return;}
+ const pairReversed=mode==="pair" && a!==data.typeIds[0];
+ const displayNames=mode==="pair"?[SELF[ids.get(a)].name,SELF[ids.get(b)].name]:null;
  const header=document.createElement("section");header.className="report-head";
  toText(header,"p",mode==="self"?"SELF-REFLECTION / 16 TYPES":"VALUE CONVERSATION / 136 PAIRS","kicker");
  if(mode==="self"){
@@ -63,7 +65,7 @@ function render(){
   toText(header,"p","「"+data.tagline+"」","tagline");
   toText(header,"p",data.shortSummary,"subtitle");
  }else{
-  toText(header,"h2",data.typeNames[0]+" × "+data.typeNames[1]);
+  toText(header,"h2",displayNames[0]+" × "+displayNames[1]);
   const line=document.createElement("p");line.className="subtitle";
   toText(line,"span","共通 "+data.structuralSharedAxisCount+"軸","count");
   toText(line,"span","相違 "+data.structuralDifferentAxisCount+"軸","count");
@@ -74,11 +76,11 @@ function render(){
   const ap=document.createElement("section");ap.className="axis-panel";
   toText(ap,"h3","4軸の設定上の比較");
   const table=document.createElement("table");table.className="axis-table";const row=document.createElement("tr");
-  for(const h of ["観点",data.typeNames[0],data.typeNames[1]])toText(row,"th",h);
+  for(const h of ["観点",displayNames[0],displayNames[1]])toText(row,"th",h);
   const head=document.createElement("thead");head.append(row);table.append(head);
   const body=document.createElement("tbody");
   for(const ax of data.axisComparison){const tr=document.createElement("tr");
-   for(const v of [ax.label+"（"+(ax.relation==="shared"?"共通":"相違")+"）",ax.first,ax.second])toText(tr,"td",v);
+   for(const v of [ax.label+"（"+(ax.relation==="shared"?"共通":"相違")+"）",pairReversed?ax.second:ax.first,pairReversed?ax.first:ax.second])toText(tr,"td",v);
    body.append(tr);
   }table.append(body);ap.append(table);target.append(ap);
  }
