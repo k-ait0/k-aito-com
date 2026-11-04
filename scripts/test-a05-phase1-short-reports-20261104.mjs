@@ -96,3 +96,22 @@ test('preview embeds exact drafts offline without network or local answer storag
  assert.ok(html.includes('[hidden]{display:none!important}'));
  assert.doesNotMatch(html,/fetch\(|XMLHttpRequest|localStorage|indexedDB|sendBeacon|https?:\/\//);
 });
+
+
+test('regression: no unresolved copy placeholders or duplicated same-type action text',()=>{
+ const typeById=new Map(self.reports.map(x=>[x.typeId,x]));
+ const forbidden=/undefined|NaN|\[object Object\]|の企画の企画|時間を作る時間/;
+ for(const p of pair.reports){
+  for(const section of p.sections){
+   assert.doesNotMatch(section.body||'',forbidden,p.pairId+':'+section.id);
+   for(const question of section.questions||[])assert.doesNotMatch(question,forbidden,p.pairId+':'+section.id);
+  }
+  const shared=p.sections.find(x=>x.id==='shared')?.body;
+  assert.ok(shared,p.pairId);
+  for(const id of p.typeIds)assert.ok(shared.includes(typeById.get(id).shortSummary),p.pairId+' '+id+' missing shortSummary');
+  if(p.sameType){
+   const dilemma=p.sections.find(x=>x.id==='dilemma').body;
+   assert.doesNotMatch(dilemma,/「([^」]+)」ことと「\1」こと/,p.pairId+' duplicated goals');
+  }
+ }
+});

@@ -1,0 +1,144 @@
+{
+  "schema": "A05-VIRTUAL-QA-ITERATION4-20261104-v1",
+  "dateJST": "2026-11-04",
+  "project": "A05 life-values 16 type",
+  "repo": "k-ait0/k-aito-com",
+  "branch": "qa/a05-phase1-virtual-qa-20261104",
+  "purpose": "Advance content uniqueness without sacrificing type metadata, and extend storage abnormal-path test coverage",
+  "inputs": [
+    {
+      "path": "docs/A05_PHASE1_SELF16_SHORT_REPORTS_20261104.json",
+      "gitBlobSha": "f37da301ddb1352f3d47e619584c75ba74bb7234"
+    },
+    {
+      "path": "docs/A05_PHASE1_PAIR136_SHORT_REPORTS_20261104.json",
+      "gitBlobSha": "4f48cc2d618dae4be196a4a3d90766b7efc50b53"
+    },
+    {
+      "path": "projects/kidp/life-design-lab/a05/phase1-short-report-preview-20261104.html",
+      "gitBlobSha": "22749c14481a5e1a8401363fc559e1b8e1b05177"
+    },
+    {
+      "path": "docs/A05_PHASE1_COPY_REPETITION_QA_20261104.json",
+      "gitBlobSha": "0d5934a2e056d739cb1b4964f8c39dceab49bb57"
+    },
+    {
+      "path": "scripts/test-a05-storage-contract-virtual-20261104.mjs",
+      "gitBlobSha": "0e22603e2c1016c1113098fe9fe0a82f3c0dde6c"
+    },
+    {
+      "path": "scripts/audit-a05-phase1-repetition-20261104.mjs",
+      "gitBlobSha": "1850cb7f51207202e8fe5134e1948803b6f0e855"
+    }
+  ],
+  "content": {
+    "modifiedPairCount": 12,
+    "modifiedChapterCount": 48,
+    "updatedIds": [
+      "T01-T06",
+      "T01-T08",
+      "T01-T14",
+      "T02-T13",
+      "T02-T14",
+      "T08-T11",
+      "T08-T12",
+      "T11-T16",
+      "T03-T10",
+      "T04-T09",
+      "T05-T16",
+      "T06-T15"
+    ],
+    "decision": "All edits remain AI-written candidates; human review/independent review 0, no acceptance or scientific validation",
+    "regressionFound": "Initial four-chapter rewrites omitted original type shortSummary in 12 shared-section intros",
+    "regressionFixed": "Re-introduced both existing type shortSummary values for each of 12; QA restored 12/12",
+    "otherFix": "Eliminated remaining duplicated '企画の企画' in source copy",
+    "summaryBefore": {
+      "shared": {
+        "flagged": 128,
+        "mean": 0.81
+      },
+      "different": {
+        "flagged": 126,
+        "mean": 0.889
+      },
+      "scenario": {
+        "flagged": 73,
+        "mean": 0.366
+      },
+      "dilemma": {
+        "flagged": 96,
+        "mean": 0.55
+      },
+      "all": {
+        "flagged": 108,
+        "mean": 0.64
+      }
+    },
+    "summaryAfter": {
+      "shared": {
+        "flagged": 116,
+        "mean": 0.747
+      },
+      "different": {
+        "flagged": 114,
+        "mean": 0.8
+      },
+      "scenario": {
+        "flagged": 35,
+        "mean": 0.21
+      },
+      "dilemma": {
+        "flagged": 84,
+        "mean": 0.483
+      },
+      "all": {
+        "flagged": 90,
+        "mean": 0.545
+      }
+    },
+    "comparison": {
+      "combinedHighRepeatCountReduced": 18,
+      "previousFlagged": 108,
+      "currentFlagged": 90
+    },
+    "claimLimit": "14-character 16-document frequency heuristic gauges templated repetition; a reduction is not proof of semantic richness or relationship validity"
+  },
+  "qa": {
+    "checkedSources": "Latest GitHub JSON and its actual inline HTML JavaScript",
+    "structuralAndMetadataAssertions": 1094,
+    "structuralFailures": 0,
+    "renderCases": {
+      "self": 16,
+      "uniquePairs": 136,
+      "orderedPairs": 256
+    },
+    "virtualDOMAssertions": 2608,
+    "virtualDOMFailures": 0,
+    "storageAbnormalChecks": 24,
+    "storageAbnormalFailures": 0,
+    "storageRunner": "Actual storage.mjs with in-memory asynchronous IndexedDB transaction/rollback emulator in V8",
+    "nativeNodeTestSourceUpdated": true,
+    "nativeNodeExecuted": false,
+    "nativeChromiumHTMLExecuted": false,
+    "physicalDeviceQA": "DEFERRED_BY_USER"
+  },
+  "remaining": {
+    "narrativeReportsAboveRepeatHeuristic": 90,
+    "editorialPrimaryApproved": 0,
+    "editorialIndependentApproved": 0,
+    "psychometricApproval": false,
+    "P2ClassificationDecision": "NOT_APPROVED",
+    "nativeBrowser": "BLOCKED_ON_SOURCE_MATERIALIZATION",
+    "nativeNode": "BLOCKED_ON_SOURCE_MATERIALIZATION",
+    "device": "FINAL_GATE",
+    "publicRelease": "NO_GO"
+  },
+  "constraints": {
+    "actionsUsed": false,
+    "mainMerged": false,
+    "originalDiagnosticScoringUnchanged": true,
+    "originalQuestionBankUnchanged": true,
+    "existingTypeIdsUnchanged": true,
+    "existingStorageModuleUnchanged": true
+  }
+}
