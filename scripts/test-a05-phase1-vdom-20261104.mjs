@@ -67,6 +67,7 @@ test('256 ordered pairs: selected-order heading, table headers, four correctly o
   });
   assert.equal(nodes('section','section').length,6,a+'x'+b);
   assert.equal(nodes('li').length,3,a+'x'+b);
+  assert.doesNotMatch(walk(elements.result).map(x=>x.textContent||'').join(' '),/undefined|NaN|\[object Object\]/,a+'x'+b+' rendered unresolved value');
  }
 });
 test('switch to self view hides pair selector and updates ARIA state',()=>{
