@@ -96,10 +96,24 @@ def perform(page, by_id, by_pair, full, viewport_name, out_dir):
             key = "-".join(sorted([a,b]))
             expected = by_pair[key]
             result = page.locator("#result")
+            name_a = by_id[a]["name"]
+            name_b = by_id[b]["name"]
             actual_title = result.locator("h2").first.inner_text()
-            check(all(name in actual_title for name in expected["typeNames"]), "wrong pair title")
+            check(actual_title == f"{name_a} × {name_b}", "pair title ignores selected order")
             check(result.locator("section.section").count() == 6, "pair chapters != 6")
-            check(result.locator("table.axis-table tbody tr").count() == 4, "axis rows != 4")
+            table = result.locator("table.axis-table")
+            check(table.locator("thead th").all_inner_texts() == ["観点", name_a, name_b],
+                  "table headers ignore selected order")
+            rows = table.locator("tbody tr")
+            check(rows.count() == 4, "axis rows != 4")
+            reverse = a != expected["typeIds"][0]
+            for i, axis in enumerate(expected["axisComparison"]):
+                actual = rows.nth(i).locator("td").all_inner_texts()
+                status = "共通" if axis["relation"] == "shared" else "相違"
+                left = axis["second"] if reverse else axis["first"]
+                right = axis["first"] if reverse else axis["second"]
+                wanted = [axis["label"] + "（" + status + "）", left, right]
+                check(actual == wanted, f"axis {axis['axis']} swapped or mislabeled")
             check(result.locator("ol.prompts li").count() == 3, "prompts != 3")
             check(no_overflow(), "horizontal overflow")
         attempt(f"pair {a}×{b}", test_pair)
