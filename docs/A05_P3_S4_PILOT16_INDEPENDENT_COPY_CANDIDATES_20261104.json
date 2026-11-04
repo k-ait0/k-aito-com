@@ -1,0 +1,797 @@
+{
+  "schema": "A05-P3-S4-16-PAIR-HUMAN-REVIEW-INPUT-1.0.0-unapproved",
+  "created": "2026-11-04",
+  "status": "AI_AUTHORED_EDITORIAL_PROPOSALS_NOT_HUMAN_REVIEWED",
+  "source": {
+    "implementationBranch": "feature/a05-r1-s5-v06-editorial-threeway-20261030",
+    "implementationCommit": "8183c031732a04480256776b684f8a5f5a083d6f",
+    "pilotPath": "docs/A05_S4_V04_SEMANTIC_REVIEW_PILOT_16_V01_20261030.json",
+    "pilotBlobSha": "f9ddbeeb2d88dd9bd33ed7c77e682c0800d96f59",
+    "baseMasterPath": "docs/A05_S4_ALL136_EDITORIAL_REVIEW_MASTER_V04_20261030.json",
+    "baseMasterBlobSha": "50e1ff7b1cc7fcae27c13b81fd33be46f8ff64a3"
+  },
+  "sampling": {
+    "count": 16,
+    "priorityCounts": {
+      "P0_SAME_TYPE": 4,
+      "P1_ALL_FOUR_DIFFERENT": 4,
+      "P2_B1_DIFFERENCE": 4,
+      "P3_OTHER": 4
+    },
+    "method": "Risk-stratified manual deterministic sample: P0 one each RGBY group; P1 2 G1-G4 and 2 G2-G3; P2/P3 4 each covering multiple RGBY groups and axis distances (1/2/3). Sampling is not a human review."
+  },
+  "principles": [
+    "Not 16 actual people or validated personality categories; character settings only",
+    "Do not imply similarity guarantees compatibility, difference predicts conflict, or color indicates rank",
+    "Do not map B1 binary to B2 research construct",
+    "Do not overwrite 136-pair v0.4 master or 112 v0.5 / 8 v0.6 alternatives",
+    "No respondent data collected, no questionnaire auto-link, no publication approval"
+  ],
+  "counts": {
+    "revisedPairs": 16,
+    "questions": 48,
+    "uniqueQuestions": 48,
+    "humanFirstApproved": 0,
+    "humanSecondApproved": 0,
+    "ownerApproved": 0,
+    "published": 0
+  },
+  "rows": [
+    {
+      "pairId": "T01-T01",
+      "priority": "P0_SAME_TYPE",
+      "typeIds": [
+        "T01",
+        "T01"
+      ],
+      "typeNames": [
+        "着実な開拓者",
+        "着実な開拓者"
+      ],
+      "sharedAxes": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "differentAxes": [],
+      "sourceOriginalDescription": "同じく落ち着いた基盤から新しいことを探す設定でも、挑戦する領域や許容する負担は違う場合があります。",
+      "proposedDescription": "仮に二人が半年の学習計画を作るなら、同じ「着実な開拓者」の設定でも、試したい分野や支出できる時間は別々に確認できます。生活の安定を大切にしながら将来に備えるという共通ラベルは、同じ課題や結論を選ぶ証拠ではありません。各自で決める部分を残し、探索する範囲を相談する場面として扱います。",
+      "sourceOriginalQuestions": [
+        "新しい取り組みを選ぶとき、生活の何を維持したいですか。",
+        "それぞれが将来の選択肢として重視するものは何ですか。"
+      ],
+      "proposedConversationQuestions": [
+        "半年後に学びを役立てたい場面を、各自一つずつ挙げると何ですか。",
+        "今の生活習慣を守るため、週に何時間まで新しい分野を試せますか。",
+        "別々の学習テーマを選んだ場合、進み具合を共有する頻度はどう決めますか。"
+      ],
+      "claimTier": "C_EDITORIAL_HYPOTHESIS_WITH_A_STRUCTURAL_LABELS_ONLY",
+      "reviewRiskFocus": "同型＝好相性の暗示を排除",
+      "firstHumanReview": {
+        "reviewerId": null,
+        "reviewedAt": null,
+        "status": "NOT_REVIEWED",
+        "criteriaC1toC7": null
+      },
+      "secondIndependentReview": {
+        "reviewerId": null,
+        "reviewedAt": null,
+        "status": "NOT_REVIEWED",
+        "criteriaC1toC7": null
+      },
+      "ownerApproval": false,
+      "publish": false
+    },
+    {
+      "pairId": "T05-T05",
+      "priority": "P0_SAME_TYPE",
+      "typeIds": [
+        "T05",
+        "T05"
+      ],
+      "typeNames": [
+        "未来を育む案内人",
+        "未来を育む案内人"
+      ],
+      "sharedAxes": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "differentAxes": [],
+      "sourceOriginalDescription": "同じく関係者との将来の可能性を重視する設定でも、共有したい目標や協力する範囲は異なり得ます。",
+      "proposedDescription": "地域の小さな活動を一年続ける企画を考えます。「未来を育む案内人」という設定が同じ二人にも、協力してほしい相手や広げたい活動の種類には違いがあり得ます。安定した基盤、関係者との相談、将来の目標、経験の幅というラベルを、同じ行動を取る根拠にはせず、実際の負担と意思決定の範囲を確かめます。",
+      "sourceOriginalQuestions": [
+        "共同で考えたい将来の目標は具体的に何ですか。",
+        "個人で決めてよい範囲をどう考えていますか。"
+      ],
+      "proposedConversationQuestions": [
+        "一年後に残したい活動の成果を、互いに別々に書くと何になりますか。",
+        "新しい活動を試す前に、今の参加者にどんな負担を確認したいですか。",
+        "意見が分かれた場合、どの決定は各自に委ね、どの決定を共同で行いますか。"
+      ],
+      "claimTier": "C_EDITORIAL_HYPOTHESIS_WITH_A_STRUCTURAL_LABELS_ONLY",
+      "reviewRiskFocus": "同型＝好相性の暗示を排除",
+      "firstHumanReview": {
+        "reviewerId": null,
+        "reviewedAt": null,
+        "status": "NOT_REVIEWED",
+        "criteriaC1toC7": null
+      },
+      "secondIndependentReview": {
+        "reviewerId": null,
+        "reviewedAt": null,
+        "status": "NOT_REVIEWED",
+        "criteriaC1toC7": null
+      },
+      "ownerApproval": false,
+      "publish": false
+    },
+    {
+      "pairId": "T09-T09",
+      "priority": "P0_SAME_TYPE",
+      "typeIds": [
+        "T09",
+        "T09"
+      ],
+      "typeNames": [
+        "未来のフロンティア",
+        "未来のフロンティア"
+      ],
+      "sharedAxes": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "differentAxes": [],
+      "sourceOriginalDescription": "同じく新しい環境に挑む設定でも、変更する速度や備えたいリスクは同一とは限りません。",
+      "proposedDescription": "二人が新しい活動拠点を検討する設定を置きます。ともに「未来のフロンティア」のラベルを選んでも、生活を変えられる条件、試したい経験、計画の時間幅が同じとは限りません。実際に移動できるかは収入や家族の事情にも左右されるため、変化への希望と実行可能性を分け、代替案も含めて話す題材にします。",
+      "sourceOriginalQuestions": [
+        "新たな挑戦の前に確認したい条件は何ですか。",
+        "将来のために維持しておきたい基盤は何ですか。"
+      ],
+      "proposedConversationQuestions": [
+        "拠点を変えずに新しい経験を得る案をそれぞれ一つ作るとしたら何ですか。",
+        "将来の計画を進める際、動かせない生活上の条件はどれですか。",
+        "試す活動の数と一つに集中する時間を、各自どのように配分したいですか。"
+      ],
+      "claimTier": "C_EDITORIAL_HYPOTHESIS_WITH_A_STRUCTURAL_LABELS_ONLY",
+      "reviewRiskFocus": "同型＝好相性の暗示を排除",
+      "firstHumanReview": {
+        "reviewerId": null,
+        "reviewedAt": null,
+        "status": "NOT_REVIEWED",
+        "criteriaC1toC7": null
+      },
+      "secondIndependentReview": {
+        "reviewerId": null,
+        "reviewedAt": null,
+        "status": "NOT_REVIEWED",
+        "criteriaC1toC7": null
+      },
+      "ownerApproval": false,
+      "publish": false
+    },
+    {
+      "pairId": "T13-T13",
+      "priority": "P0_SAME_TYPE",
+      "typeIds": [
+        "T13",
+        "T13"
+      ],
+      "typeNames": [
+        "共創する開拓者",
+        "共創する開拓者"
+      ],
+      "sharedAxes": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "differentAxes": [],
+      "sourceOriginalDescription": "同じく人と新しい未来をつくる設定でも、参加してほしい人や意思決定の進め方は異なる場合があります。",
+      "proposedDescription": "二人が共同制作の企画書を作る場面です。同じ「共創する開拓者」の暫定ラベルでも、関わってほしい人、変えてみたい制作環境、将来の目標は異なる可能性があります。共通する探索志向の設定を役割の固定につなげず、一人で進める試作と相談して決める工程を具体的に分けてみます。",
+      "sourceOriginalQuestions": [
+        "一緒に進める目標と個人で決める目標をどう分けますか。",
+        "新しい提案への賛否が異なるとき、まず何を確認しますか。"
+      ],
+      "proposedConversationQuestions": [
+        "共同制作で最初に試したいアイデアを、各自一つずつ挙げると何ですか。",
+        "環境を変える案が出たとき、既存の作業時間をどう守れそうですか。",
+        "参加者の意見を求める段階と、個別に決める段階をどのように設定しますか。"
+      ],
+      "claimTier": "C_EDITORIAL_HYPOTHESIS_WITH_A_STRUCTURAL_LABELS_ONLY",
+      "reviewRiskFocus": "同型＝好相性の暗示を排除",
+      "firstHumanReview": {
+        "reviewerId": null,
+        "reviewedAt": null,
+        "status": "NOT_REVIEWED",
+        "criteriaC1toC7": null
+      },
+      "secondIndependentReview": {
+        "reviewerId": null,
+        "reviewedAt": null,
+        "status": "NOT_REVIEWED",
+        "criteriaC1toC7": null
+      },
+      "ownerApproval": false,
+      "publish": false
+    },
+    {
+      "pairId": "T01-T16",
+      "priority": "P1_ALL_FOUR_DIFFERENT",
+      "typeIds": [
+        "T01",
+        "T16"
+      ],
+      "typeNames": [
+        "着実な開拓者",
+        "情熱を分かち合う人"
+      ],
+      "sharedAxes": [],
+      "differentAxes": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "sourceOriginalDescription": "学びを増やす計画と、好きな活動の楽しさを人と共有する企画を仮に並べます。設定上は生活基盤・時間の使い方・意思決定の関わり方に異なる視点がありますが、実際の希望が反対だとは限りません。",
+      "proposedDescription": "一か月の展示企画を例に、学習テーマを複数試す活動と、好きな作品を人と深く味わう活動を並べます。二つの設定は生活環境・相談の仕方・時間の見通し・経験の幅の4軸で異なります。ただし展示準備で将来を考えつつ当日の楽しみも作れます。どちらが適しているかを決めるのでなく、時間・費用と関係者への相談の仕方を具体化します。",
+      "sourceOriginalQuestions": [
+        "新しい活動を考えるとき、まず維持しておきたい生活上の条件は何ですか。",
+        "誰かと楽しみを共有する場合、各自で決めたい部分と相談したい部分をどう分けますか。",
+        "今の充実と将来への準備を両方考えるなら、無理のない進め方は何ですか。"
+      ],
+      "proposedConversationQuestions": [
+        "一か月の準備期間で、試作する活動と展示当日を楽しむ活動にそれぞれ何日使えますか。",
+        "会場や企画を変える判断では、個人で決めたい内容と参加者に相談したい内容は何ですか。",
+        "展示後に残したい成果と、当日体験したいことをそれぞれ一つ挙げると何ですか。"
+      ],
+      "claimTier": "C_EDITORIAL_HYPOTHESIS_WITH_A_STRUCTURAL_LABELS_ONLY",
+      "reviewRiskFocus": "全軸相違＝不適合の暗示を排除",
+      "firstHumanReview": {
+        "reviewerId": null,
+        "reviewedAt": null,
+        "status": "NOT_REVIEWED",
+        "criteriaC1toC7": null
+      },
+      "secondIndependentReview": {
+        "reviewerId": null,
+        "reviewedAt": null,
+        "status": "NOT_REVIEWED",
+        "criteriaC1toC7": null
+      },
+      "ownerApproval": false,
+      "publish": false
+    },
+    {
+      "pairId": "T03-T14",
+      "priority": "P1_ALL_FOUR_DIFFERENT",
+      "typeIds": [
+        "T03",
+        "T14"
+      ],
+      "typeNames": [
+        "マイペースな発見家",
+        "理想を育てる共創者"
+      ],
+      "sharedAxes": [],
+      "differentAxes": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "sourceOriginalDescription": "身近な新しい体験を楽しむ企画と、仲間と長期的な目標に取り組む企画を並べます。楽しむ時間と計画に使う時間は両立できることもあり、具体的な役割や負担を確認する題材になります。",
+      "proposedDescription": "身近な体験を選ぶ週末企画と、仲間と一つの長期プロジェクトを深める企画を並べます。「マイペースな発見家」と「理想を育てる共創者」は4軸の設定が異なりますが、同じ人が時期によって両方を選ぶこともあります。活動場所の変更や共同決定の必要性は機会や関係者にも依存するため、実際の希望を確かめる比較題材にします。",
+      "sourceOriginalQuestions": [
+        "日常の小さな体験と長期の計画、それぞれに使いたい時間はどのくらいですか。",
+        "共同で進める活動では、誰が何を決めると進めやすいと思いますか。",
+        "変えてみたい習慣と続けておきたい習慣を一つずつ挙げられますか。"
+      ],
+      "proposedConversationQuestions": [
+        "週末に試したい小さな体験と、半年継続したいテーマをそれぞれ一つ挙げられますか。",
+        "新しい場所を使えない場合、今の環境で代わりにできることは何ですか。",
+        "共同企画に参加するなら、誰に相談したい決定と自分で決めたい決定は何ですか。"
+      ],
+      "claimTier": "C_EDITORIAL_HYPOTHESIS_WITH_A_STRUCTURAL_LABELS_ONLY",
+      "reviewRiskFocus": "全軸相違＝不適合の暗示を排除",
+      "firstHumanReview": {
+        "reviewerId": null,
+        "reviewedAt": null,
+        "status": "NOT_REVIEWED",
+        "criteriaC1toC7": null
+      },
+      "secondIndependentReview": {
+        "reviewerId": null,
+        "reviewedAt": null,
+        "status": "NOT_REVIEWED",
+        "criteriaC1toC7": null
+      },
+      "ownerApproval": false,
+      "publish": false
+    },
+    {
+      "pairId": "T05-T12",
+      "priority": "P1_ALL_FOUR_DIFFERENT",
+      "typeIds": [
+        "T05",
+        "T12"
+      ],
+      "typeNames": [
+        "未来を育む案内人",
+        "自由な求道者"
+      ],
+      "sharedAxes": [],
+      "differentAxes": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "sourceOriginalDescription": "身近な人と将来の計画を相談する場面と、一つの制作・学習に集中する場面を考えます。共同で未来を考えることと個人の関心を深めることは、対立するとは限りません。",
+      "proposedDescription": "地域の企画を考える時間と、個人の制作を深める時間をどう確保するかを例にします。「未来を育む案内人」と「自由な求道者」は暫定4軸のラベルがすべて異なります。共同で将来の選択肢を広げる活動と、現在の制作を深める活動は一人の生活でも共存し得るため、関わる人数や変える環境を固定せず希望と制約を分けて確認します。",
+      "sourceOriginalQuestions": [
+        "長期の計画で周囲と共有したいことと、各自で選びたいことは何ですか。",
+        "集中して取り組む時間を確保するとき、どんな生活上の条件が必要ですか。",
+        "一緒に試す新しい活動と、個人で深めたい活動を分けられますか。"
+      ],
+      "proposedConversationQuestions": [
+        "地域企画の相談と一人での制作に、今週どれだけ時間を使いたいですか。",
+        "今の環境を維持したい部分と、制作のために変えてもよい部分はどこですか。",
+        "将来に残す成果と、制作中に得たい充実をそれぞれどのように確かめますか。"
+      ],
+      "claimTier": "C_EDITORIAL_HYPOTHESIS_WITH_A_STRUCTURAL_LABELS_ONLY",
+      "reviewRiskFocus": "全軸相違＝不適合の暗示を排除",
+      "firstHumanReview": {
+        "reviewerId": null,
+        "reviewedAt": null,
+        "status": "NOT_REVIEWED",
+        "criteriaC1toC7": null
+      },
+      "secondIndependentReview": {
+        "reviewerId": null,
+        "reviewedAt": null,
+        "status": "NOT_REVIEWED",
+        "criteriaC1toC7": null
+      },
+      "ownerApproval": false,
+      "publish": false
+    },
+    {
+      "pairId": "T07-T10",
+      "priority": "P1_ALL_FOUR_DIFFERENT",
+      "typeIds": [
+        "T07",
+        "T10"
+      ],
+      "typeNames": [
+        "日常の発見家",
+        "変革の探究者"
+      ],
+      "sharedAxes": [],
+      "differentAxes": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "sourceOriginalDescription": "身近な人と今日の小さな発見を楽しむ活動と、一つの理想に向けて方法を変えていく活動を考えます。日々の楽しみと将来への取り組みをどちらも大切にできる場合があります。",
+      "proposedDescription": "毎週の観察会を続けながら、一つの調査テーマを長期的に深める場面を仮定します。「日常の発見家」と「変革の探究者」の4軸ラベルは異なりますが、観察を楽しみながら手法を見直す選択も可能です。活動方法を変えることと、扱うテーマを広げることを区別し、関係者と相談する範囲や今週・半年後の目標を確認します。",
+      "sourceOriginalQuestions": [
+        "今日楽しみたいことと、長い時間をかけて変えたいことをそれぞれ一つ挙げられますか。",
+        "新しい方法を試す際、守りたい普段の生活の条件は何ですか。",
+        "一緒に体験を選ぶ場面と、自分で深く考えたい場面をどう分けますか。"
+      ],
+      "proposedConversationQuestions": [
+        "次回の観察会で楽しみたいことと、半年後に明らかにしたいことはそれぞれ何ですか。",
+        "観察方法を一つ変えるなら、活動場所や参加条件はどこまで維持したいですか。",
+        "テーマの選定と記録方法について、個人で試す部分と全員に相談する部分をどう分けますか。"
+      ],
+      "claimTier": "C_EDITORIAL_HYPOTHESIS_WITH_A_STRUCTURAL_LABELS_ONLY",
+      "reviewRiskFocus": "全軸相違＝不適合の暗示を排除",
+      "firstHumanReview": {
+        "reviewerId": null,
+        "reviewedAt": null,
+        "status": "NOT_REVIEWED",
+        "criteriaC1toC7": null
+      },
+      "secondIndependentReview": {
+        "reviewerId": null,
+        "reviewedAt": null,
+        "status": "NOT_REVIEWED",
+        "criteriaC1toC7": null
+      },
+      "ownerApproval": false,
+      "publish": false
+    },
+    {
+      "pairId": "T01-T05",
+      "priority": "P2_B1_DIFFERENCE",
+      "typeIds": [
+        "T01",
+        "T05"
+      ],
+      "typeNames": [
+        "着実な開拓者",
+        "未来を育む案内人"
+      ],
+      "sharedAxes": [
+        "A",
+        "C",
+        "D"
+      ],
+      "differentAxes": [
+        "B"
+      ],
+      "sourceOriginalDescription": "たとえば、「新しい学習テーマを選ぶ」と「大切な人と将来の選択肢を話す」をそれぞれ考えます。どちらか一方を選ぶ必要はなく、実際の希望や使える時間は人によって異なります。設定上の相違の一つは「自分で決める部分と関係者と相談する部分」です。一方のラベルは「自律」、他方は「つながり」ですが、個人の意思と関係者への配慮は、同時に重視できます。共通する暫定ラベルは「安定」です。ただし、安心できる生活基盤について考える場合も、具体的な希望が一致するとは限りません。",
+      "proposedDescription": "新しい学びの場を半年間試す仮の企画を考えます。「着実な開拓者」と「未来を育む案内人」は、生活基盤を保ち、将来を考え、経験の幅を広げる設定が共通します。一方、B軸の自律・つながりは未検証の編集ラベルであり、相反する性格を意味しません。テーマを各自で選ぶ機会と参加者の希望を聞く機会を、両立できる設計として検討します。",
+      "sourceOriginalQuestions": [
+        "「着実な開拓者」の例である「学びたい分野」と、「未来を育む案内人」の例である「将来の希望」を考えたとき、実際に取り組みたいことと、使える時間・負担をそれぞれどう整理しますか。",
+        "「新しい学習テーマを選ぶ」や「大切な人と将来の選択肢を話す」について話すなら、各自が決めたいことと、関係者の希望を確認したいことを分けると、具体的に何が挙がりますか。",
+        "「着実な開拓者」の例では学びたい内容と生活の負担をすり合わせること、「未来を育む案内人」の例では共有したい計画と個人の選択を区別することを取り上げます。両方の活動を行うために、どの生活上の条件を維持しておきたいですか。"
+      ],
+      "proposedConversationQuestions": [
+        "学びのテーマを自由に提案できる時間と、参加者の意見を集める時間をどう設けますか。",
+        "半年の活動で守りたい既存の予定は何で、新しく試したい分野は何ですか。",
+        "提案が二つに分かれたら、どの情報を確かめてから決めたいですか。"
+      ],
+      "claimTier": "C_EDITORIAL_HYPOTHESIS_WITH_A_STRUCTURAL_LABELS_ONLY",
+      "reviewRiskFocus": "B1二極性を実人格に投影しない",
+      "firstHumanReview": {
+        "reviewerId": null,
+        "reviewedAt": null,
+        "status": "NOT_REVIEWED",
+        "criteriaC1toC7": null
+      },
+      "secondIndependentReview": {
+        "reviewerId": null,
+        "reviewedAt": null,
+        "status": "NOT_REVIEWED",
+        "criteriaC1toC7": null
+      },
+      "ownerApproval": false,
+      "publish": false
+    },
+    {
+      "pairId": "T06-T10",
+      "priority": "P2_B1_DIFFERENCE",
+      "typeIds": [
+        "T06",
+        "T10"
+      ],
+      "typeNames": [
+        "絆を育てる設計者",
+        "変革の探究者"
+      ],
+      "sharedAxes": [
+        "C",
+        "D"
+      ],
+      "differentAxes": [
+        "A",
+        "B"
+      ],
+      "sourceOriginalDescription": "たとえば、「長期の計画を誰かと考える」と「理想に向けて活動方法を見直す」をそれぞれ考えます。どちらか一方を選ぶ必要はなく、実際の希望や使える時間は人によって異なります。設定上の相違の一つは「生活環境を変えるか維持するか」です。一方のラベルは「安定」、他方は「変化」ですが、住む環境は維持しつつ、新しい活動を試すという選択も考えられます。共通する暫定ラベルは「将来」です。ただし、時間の優先順位について考える場合も、具体的な希望が一致するとは限りません。",
+      "proposedDescription": "継続中の勉強会を改める想定です。「絆を育てる設計者」には関係者との調整、「変革の探究者」には方法の再検討という編集上の例を置けます。双方とも長期の目標と一つのテーマを深める設定は共通しますが、運営環境の維持・変更、誰の意見を考慮するかは別々に確かめる必要があります。役割は固定せず入れ替えも可能とします。",
+      "sourceOriginalQuestions": [
+        "「絆を育てる設計者」の例である「計画を見直す条件」と、「変革の探究者」の例である「進め方の変更」を考えたとき、実際に取り組みたいことと、使える時間・負担をそれぞれどう整理しますか。",
+        "「長期の計画を誰かと考える」や「理想に向けて活動方法を見直す」について話すなら、生活の基盤を残したい部分と見直したい部分を、それぞれ一つずつ挙げるとどうなりますか。",
+        "「絆を育てる設計者」の例では信頼や役割分担の条件を相談すること、「変革の探究者」の例では変えたい方法と続けたい目的を整理することを取り上げます。短期の満足と長期の見通しについて、それぞれどのような希望がありますか。"
+      ],
+      "proposedConversationQuestions": [
+        "勉強会の目的を変えずに改善できる手順と、環境から変える必要がある手順は何ですか。",
+        "半年後の目標について、参加者の意向を確認するのはどの段階がよいですか。",
+        "一人が試案を作った場合、他の参加者が修正を提案する方法をどう設けますか。"
+      ],
+      "claimTier": "C_EDITORIAL_HYPOTHESIS_WITH_A_STRUCTURAL_LABELS_ONLY",
+      "reviewRiskFocus": "B1二極性を実人格に投影しない",
+      "firstHumanReview": {
+        "reviewerId": null,
+        "reviewedAt": null,
+        "status": "NOT_REVIEWED",
+        "criteriaC1toC7": null
+      },
+      "secondIndependentReview": {
+        "reviewerId": null,
+        "reviewedAt": null,
+        "status": "NOT_REVIEWED",
+        "criteriaC1toC7": null
+      },
+      "ownerApproval": false,
+      "publish": false
+    },
+    {
+      "pairId": "T09-T16",
+      "priority": "P2_B1_DIFFERENCE",
+      "typeIds": [
+        "T09",
+        "T16"
+      ],
+      "typeNames": [
+        "未来のフロンティア",
+        "情熱を分かち合う人"
+      ],
+      "sharedAxes": [
+        "A"
+      ],
+      "differentAxes": [
+        "B",
+        "C",
+        "D"
+      ],
+      "sourceOriginalDescription": "たとえば、「新たな環境での挑戦を検討する」と「好きなことを人と共有する」をそれぞれ考えます。どちらか一方を選ぶ必要はなく、実際の希望や使える時間は人によって異なります。設定上の相違の一つは「自分で決める部分と関係者と相談する部分」です。一方のラベルは「自律」、他方は「つながり」ですが、個人の意思と関係者への配慮は、同時に重視できます。共通する暫定ラベルは「変化」です。ただし、安心できる生活基盤について考える場合も、具体的な希望が一致するとは限りません。",
+      "proposedDescription": "新しいイベントの開催を考えるとき、次の機会につながる実験と、今回の好きな表現を来場者と味わう時間を並べます。二つの暫定タイプは環境の変化というラベルを共有しますが、関わる人、活動の幅・深さ、今と将来の配分には違いがあります。現実の選好や適性を推測せず、企画の選択肢を話し合う材料とします。",
+      "sourceOriginalQuestions": [
+        "「未来のフロンティア」の例である「挑戦する条件」と、「情熱を分かち合う人」の例である「共有する活動」を考えたとき、実際に取り組みたいことと、使える時間・負担をそれぞれどう整理しますか。",
+        "「新たな環境での挑戦を検討する」や「好きなことを人と共有する」について話すなら、各自が決めたいことと、関係者の希望を確認したいことを分けると、具体的に何が挙がりますか。",
+        "「未来のフロンティア」の例では変化に必要な備えと維持したい基盤を確認すること、「情熱を分かち合う人」の例では一緒に楽しむ活動と個人の楽しみを区別することを取り上げます。両方の活動を行うために、どの生活上の条件を維持しておきたいですか。"
+      ],
+      "proposedConversationQuestions": [
+        "今回の催しでじっくり紹介したい表現と、次回へ向けて試したい新要素は何ですか。",
+        "企画変更に際して、主催者の判断と来場者・協力者の希望確認をどう分けますか。",
+        "当日使える時間を確保しながら、次回への準備をどこまで進めたいですか。"
+      ],
+      "claimTier": "C_EDITORIAL_HYPOTHESIS_WITH_A_STRUCTURAL_LABELS_ONLY",
+      "reviewRiskFocus": "B1二極性を実人格に投影しない",
+      "firstHumanReview": {
+        "reviewerId": null,
+        "reviewedAt": null,
+        "status": "NOT_REVIEWED",
+        "criteriaC1toC7": null
+      },
+      "secondIndependentReview": {
+        "reviewerId": null,
+        "reviewedAt": null,
+        "status": "NOT_REVIEWED",
+        "criteriaC1toC7": null
+      },
+      "ownerApproval": false,
+      "publish": false
+    },
+    {
+      "pairId": "T01-T13",
+      "priority": "P2_B1_DIFFERENCE",
+      "typeIds": [
+        "T01",
+        "T13"
+      ],
+      "typeNames": [
+        "着実な開拓者",
+        "共創する開拓者"
+      ],
+      "sharedAxes": [
+        "C",
+        "D"
+      ],
+      "differentAxes": [
+        "A",
+        "B"
+      ],
+      "sourceOriginalDescription": "たとえば、「新しい学習テーマを選ぶ」と「新しい企画を誰かと進める」をそれぞれ考えます。どちらか一方を選ぶ必要はなく、実際の希望や使える時間は人によって異なります。設定上の相違の一つは「生活環境を変えるか維持するか」です。一方のラベルは「安定」、他方は「変化」ですが、住む環境は維持しつつ、新しい活動を試すという選択も考えられます。共通する暫定ラベルは「将来」です。ただし、時間の優先順位について考える場合も、具体的な希望が一致するとは限りません。",
+      "proposedDescription": "小さな情報サイトの試作を例に、生活時間を保って個人で新分野を調べる方法と、協力者と制作環境を変えて取り組む方法を並べます。両タイプは将来志向と探索という暫定ラベルを共有しますが、A軸の環境とB軸の相談方針は異なります。どちらも必要に応じて単独作業と共同作業を選べるため、実際の負担と合意点を確認します。",
+      "sourceOriginalQuestions": [
+        "「着実な開拓者」の例である「学びたい分野」と、「共創する開拓者」の例である「共同企画」を考えたとき、実際に取り組みたいことと、使える時間・負担をそれぞれどう整理しますか。",
+        "「新しい学習テーマを選ぶ」や「新しい企画を誰かと進める」について話すなら、生活の基盤を残したい部分と見直したい部分を、それぞれ一つずつ挙げるとどうなりますか。",
+        "「着実な開拓者」の例では学びたい内容と生活の負担をすり合わせること、「共創する開拓者」の例では共同で決める部分と個人で進める部分を整理することを取り上げます。短期の満足と長期の見通しについて、それぞれどのような希望がありますか。"
+      ],
+      "proposedConversationQuestions": [
+        "新しい制作環境を導入する場合、今の生活で維持したい予定は何ですか。",
+        "サイトの情報収集は各自で決め、公開内容は共同確認するなど、判断をどう分担しますか。",
+        "将来追加したい機能を見据え、今週試せる小さな実験は何ですか。"
+      ],
+      "claimTier": "C_EDITORIAL_HYPOTHESIS_WITH_A_STRUCTURAL_LABELS_ONLY",
+      "reviewRiskFocus": "B1二極性を実人格に投影しない",
+      "firstHumanReview": {
+        "reviewerId": null,
+        "reviewedAt": null,
+        "status": "NOT_REVIEWED",
+        "criteriaC1toC7": null
+      },
+      "secondIndependentReview": {
+        "reviewerId": null,
+        "reviewedAt": null,
+        "status": "NOT_REVIEWED",
+        "criteriaC1toC7": null
+      },
+      "ownerApproval": false,
+      "publish": false
+    },
+    {
+      "pairId": "T01-T02",
+      "priority": "P3_OTHER",
+      "typeIds": [
+        "T01",
+        "T02"
+      ],
+      "typeNames": [
+        "着実な開拓者",
+        "静かな探究者"
+      ],
+      "sharedAxes": [
+        "A",
+        "B",
+        "C"
+      ],
+      "differentAxes": [
+        "D"
+      ],
+      "sourceOriginalDescription": "たとえば、「新しい学習テーマを選ぶ」と「関心のある分野を継続して学ぶ」をそれぞれ考えます。どちらか一方を選ぶ必要はなく、実際の希望や使える時間は人によって異なります。設定上の相違の一つは「経験を広げることと一つを深めること」です。一方のラベルは「探索」、他方は「深耕」ですが、広く試す分野と深く続ける分野は同じ人の中にもあり得ます。共通する暫定ラベルは「安定」です。ただし、安心できる生活基盤について考える場合も、具体的な希望が一致するとは限りません。",
+      "proposedDescription": "同じ半年の学習時間を、複数の話題を試す期間と、一つの話題を深く調べる期間に分ける案です。「着実な開拓者」と「静かな探究者」は生活基盤・自分で決める姿勢・将来への見通しという設定が共通し、D軸の探索と深耕だけが異なります。どちらの進め方も一人の中で使い分けられ、学習環境や費用の条件を別に確かめます。",
+      "sourceOriginalQuestions": [
+        "「着実な開拓者」の例である「学びたい分野」と、「静かな探究者」の例である「集中する時間」を考えたとき、実際に取り組みたいことと、使える時間・負担をそれぞれどう整理しますか。",
+        "「新しい学習テーマを選ぶ」や「関心のある分野を継続して学ぶ」について話すなら、新しく試したいことと、じっくり続けたいことをそれぞれ一つ挙げられますか。",
+        "「着実な開拓者」の例では学びたい内容と生活の負担をすり合わせること、「静かな探究者」の例では集中して取り組める時間や場所を整えることを取り上げます。両方の活動を行うために、どの生活上の条件を維持しておきたいですか。"
+      ],
+      "proposedConversationQuestions": [
+        "最初の四週間で触れたいテーマと、その後に深く続けたいテーマは何ですか。",
+        "学習に使える時間が週二時間なら、幅と深さをどう配分したいですか。",
+        "計画を途中で変えるとき、継続したい生活上の条件はどれですか。"
+      ],
+      "claimTier": "C_EDITORIAL_HYPOTHESIS_WITH_A_STRUCTURAL_LABELS_ONLY",
+      "reviewRiskFocus": "意味的な汎用化・軸の重複を点検",
+      "firstHumanReview": {
+        "reviewerId": null,
+        "reviewedAt": null,
+        "status": "NOT_REVIEWED",
+        "criteriaC1toC7": null
+      },
+      "secondIndependentReview": {
+        "reviewerId": null,
+        "reviewedAt": null,
+        "status": "NOT_REVIEWED",
+        "criteriaC1toC7": null
+      },
+      "ownerApproval": false,
+      "publish": false
+    },
+    {
+      "pairId": "T05-T08",
+      "priority": "P3_OTHER",
+      "typeIds": [
+        "T05",
+        "T08"
+      ],
+      "typeNames": [
+        "未来を育む案内人",
+        "穏やかな愛好家"
+      ],
+      "sharedAxes": [
+        "A",
+        "B"
+      ],
+      "differentAxes": [
+        "C",
+        "D"
+      ],
+      "sourceOriginalDescription": "たとえば、「大切な人と将来の選択肢を話す」と「親しい人と日常の楽しみを選ぶ」をそれぞれ考えます。どちらか一方を選ぶ必要はなく、実際の希望や使える時間は人によって異なります。設定上の相違の一つは「今の充実と将来への準備」です。一方のラベルは「将来」、他方は「現在」ですが、今を大切にすることと将来を考えることは両立できます。共通する暫定ラベルは「安定」です。ただし、安心できる生活基盤について考える場合も、具体的な希望が一致するとは限りません。",
+      "proposedDescription": "親しい人との定期的な集まりを考えます。「未来を育む案内人」と「穏やかな愛好家」は落ち着いた環境と人との関わりを大切にする暫定設定が共通します。一方で、将来に向けて新しい体験を試す時間と、今ある日常の楽しみを深める時間は別の視点です。相手の優先度を推定せず、次回と半年後の希望をそれぞれ聞く場面として扱います。",
+      "sourceOriginalQuestions": [
+        "「未来を育む案内人」の例である「将来の希望」と、「穏やかな愛好家」の例である「心地よい距離」を考えたとき、実際に取り組みたいことと、使える時間・負担をそれぞれどう整理しますか。",
+        "「大切な人と将来の選択肢を話す」や「親しい人と日常の楽しみを選ぶ」について話すなら、今日の楽しみを残しながら、将来のために備える時間をどう確保したいですか。",
+        "「未来を育む案内人」の例では共有したい計画と個人の選択を区別すること、「穏やかな愛好家」の例では関わる頻度と一人で過ごす時間を確認することを取り上げます。両方の活動を行うために、どの生活上の条件を維持しておきたいですか。"
+      ],
+      "proposedConversationQuestions": [
+        "次の集まりで続けたい過ごし方と、半年後に試したい新しい企画は何ですか。",
+        "いつもの場所を維持しつつ、活動の内容だけ変える案はありますか。",
+        "それぞれの予定を尊重するため、相談を始める時期や頻度をどうしたいですか。"
+      ],
+      "claimTier": "C_EDITORIAL_HYPOTHESIS_WITH_A_STRUCTURAL_LABELS_ONLY",
+      "reviewRiskFocus": "意味的な汎用化・軸の重複を点検",
+      "firstHumanReview": {
+        "reviewerId": null,
+        "reviewedAt": null,
+        "status": "NOT_REVIEWED",
+        "criteriaC1toC7": null
+      },
+      "secondIndependentReview": {
+        "reviewerId": null,
+        "reviewedAt": null,
+        "status": "NOT_REVIEWED",
+        "criteriaC1toC7": null
+      },
+      "ownerApproval": false,
+      "publish": false
+    },
+    {
+      "pairId": "T08-T13",
+      "priority": "P3_OTHER",
+      "typeIds": [
+        "T08",
+        "T13"
+      ],
+      "typeNames": [
+        "穏やかな愛好家",
+        "共創する開拓者"
+      ],
+      "sharedAxes": [
+        "B"
+      ],
+      "differentAxes": [
+        "A",
+        "C",
+        "D"
+      ],
+      "sourceOriginalDescription": "たとえば、「親しい人と日常の楽しみを選ぶ」と「新しい企画を誰かと進める」をそれぞれ考えます。どちらか一方を選ぶ必要はなく、実際の希望や使える時間は人によって異なります。設定上の相違の一つは「生活環境を変えるか維持するか」です。一方のラベルは「安定」、他方は「変化」ですが、住む環境は維持しつつ、新しい活動を試すという選択も考えられます。共通する暫定ラベルは「つながり」です。ただし、意思決定の進め方について考える場合も、具体的な希望が一致するとは限りません。",
+      "proposedDescription": "地域の交流スペースの使い方を考える例です。「穏やかな愛好家」には日常の安心できる楽しみ、「共創する開拓者」には新しい共同企画という編集上の活動例を置けます。人と関わるラベルは共通しますが、環境を維持・変更すること、今と将来、活動を深めることと広げることは異なる軸です。実際の事情を先に確認し、どちらかの役割を固定しないようにします。",
+      "sourceOriginalQuestions": [
+        "「穏やかな愛好家」の例である「心地よい距離」と、「共創する開拓者」の例である「共同企画」を考えたとき、実際に取り組みたいことと、使える時間・負担をそれぞれどう整理しますか。",
+        "「親しい人と日常の楽しみを選ぶ」や「新しい企画を誰かと進める」について話すなら、生活の基盤を残したい部分と見直したい部分を、それぞれ一つずつ挙げるとどうなりますか。",
+        "「穏やかな愛好家」の例では関わる頻度と一人で過ごす時間を確認すること、「共創する開拓者」の例では共同で決める部分と個人で進める部分を整理することを取り上げます。それぞれの活動で、各自で決めたい範囲と他者に相談したい範囲は同じでしょうか。"
+      ],
+      "proposedConversationQuestions": [
+        "交流スペースで残したい定例活動と、短期間だけ試せる企画は何ですか。",
+        "参加者の負担が増える場合、どの条件を先に確認する必要がありますか。",
+        "次回の楽しさと一年後の選択肢の双方を考えるなら、どんな記録を残しますか。"
+      ],
+      "claimTier": "C_EDITORIAL_HYPOTHESIS_WITH_A_STRUCTURAL_LABELS_ONLY",
+      "reviewRiskFocus": "意味的な汎用化・軸の重複を点検",
+      "firstHumanReview": {
+        "reviewerId": null,
+        "reviewedAt": null,
+        "status": "NOT_REVIEWED",
+        "criteriaC1toC7": null
+      },
+      "secondIndependentReview": {
+        "reviewerId": null,
+        "reviewedAt": null,
+        "status": "NOT_REVIEWED",
+        "criteriaC1toC7": null
+      },
+      "ownerApproval": false,
+      "publish": false
+    },
+    {
+      "pairId": "T09-T12",
+      "priority": "P3_OTHER",
+      "typeIds": [
+        "T09",
+        "T12"
+      ],
+      "typeNames": [
+        "未来のフロンティア",
+        "自由な求道者"
+      ],
+      "sharedAxes": [
+        "A",
+        "B"
+      ],
+      "differentAxes": [
+        "C",
+        "D"
+      ],
+      "sourceOriginalDescription": "たとえば、「新たな環境での挑戦を検討する」と「制作や学習にじっくり取り組む」をそれぞれ考えます。どちらか一方を選ぶ必要はなく、実際の希望や使える時間は人によって異なります。設定上の相違の一つは「今の充実と将来への準備」です。一方のラベルは「将来」、他方は「現在」ですが、今を大切にすることと将来を考えることは両立できます。共通する暫定ラベルは「変化」です。ただし、安心できる生活基盤について考える場合も、具体的な希望が一致するとは限りません。",
+      "proposedDescription": "試作会を一か月開く場面で、将来へ向けて案を複数試す時間と、目の前の制作を一つ深く磨く時間を並べます。「未来のフロンティア」と「自由な求道者」は変化と個人の意思決定という設定が共通します。一方、C軸の時間の優先とD軸の幅・深さは異なるため、どちらかが優れているという結論を置かず、実際の配分を検討します。",
+      "sourceOriginalQuestions": [
+        "「未来のフロンティア」の例である「挑戦する条件」と、「自由な求道者」の例である「集中の環境」を考えたとき、実際に取り組みたいことと、使える時間・負担をそれぞれどう整理しますか。",
+        "「新たな環境での挑戦を検討する」や「制作や学習にじっくり取り組む」について話すなら、今日の楽しみを残しながら、将来のために備える時間をどう確保したいですか。",
+        "「未来のフロンティア」の例では変化に必要な備えと維持したい基盤を確認すること、「自由な求道者」の例では集中時間と周囲に相談したい場面を分けることを取り上げます。両方の活動を行うために、どの生活上の条件を維持しておきたいですか。"
+      ],
+      "proposedConversationQuestions": [
+        "四週間のうち、異なる案の試作と一つの作品の仕上げに何日ずつ使いたいですか。",
+        "今つくる楽しみと半年後の発展可能性を、それぞれどのような形で確認したいですか。",
+        "新しい制作方法を試す場合、既存の作業環境のうち何を維持する必要がありますか。"
+      ],
+      "claimTier": "C_EDITORIAL_HYPOTHESIS_WITH_A_STRUCTURAL_LABELS_ONLY",
+      "reviewRiskFocus": "意味的な汎用化・軸の重複を点検",
+      "firstHumanReview": {
+        "reviewerId": null,
+        "reviewedAt": null,
+        "status": "NOT_REVIEWED",
+        "criteriaC1toC7": null
+      },
+      "secondIndependentReview": {
+        "reviewerId": null,
+        "reviewedAt": null,
+        "status": "NOT_REVIEWED",
+        "criteriaC1toC7": null
+      },
+      "ownerApproval": false,
+      "publish": false
+    }
+  ]
+}
