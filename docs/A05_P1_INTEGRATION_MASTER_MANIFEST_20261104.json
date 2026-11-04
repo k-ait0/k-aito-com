@@ -1,0 +1,392 @@
+{
+  "schemaVersion": "A05-P1-INVENTORY-1.0.0",
+  "snapshotDateJst": "2026-11-04",
+  "project": "A05 LIFE DESIGN LAB / R1 16-type mutual understanding",
+  "p1Status": "COMPLETE_INVENTORY_AND_OWNERSHIP_ONLY",
+  "productReleaseStatus": "NO_GO",
+  "manifestBranch": "docs/a05-p1-master-inventory-20261104",
+  "manifestBranchBaseSha": "3761211bf329d3a37685b144b19c82e1e8f3dd32",
+  "inventoryCoverage": {
+    "a05BranchesFound": 18,
+    "a05BranchesCompared": 18,
+    "ancestorsOfCandidate": 17,
+    "divergedBranches": 0,
+    "codeOnlyChangesFromOriginalDraftToCandidate": 112,
+    "nonA05PathsInIncrement": 0,
+    "pathsChangedFromMainToCandidate": 241,
+    "excludedWorkflowPath": ".github/workflows/kidp-wave-a-browser-qa.yml"
+  },
+  "implementationCandidate": {
+    "repo": "k-ait0/k-aito-com",
+    "ref": "feature/a05-r1-s5-v06-editorial-threeway-20261030",
+    "commitSha": "8183c031732a04480256776b684f8a5f5a083d6f",
+    "classification": "LATEST_CUMULATIVE_BRANCH_NOT_APPROVED_PRODUCTION",
+    "directAncestorOfCandidate": "feature/a05-d23-modular-diagnostic-20261025",
+    "ancestorCommitSha": "0bb9be28220a0f49849adaa1d026dc10cc9aeef1",
+    "draftPr61": "https://github.com/k-ait0/k-aito-com/pull/61",
+    "draftPr61State": "OPEN_DRAFT_UNMERGED",
+    "mainSha": "3761211bf329d3a37685b144b19c82e1e8f3dd32",
+    "mainIntegrated": false,
+    "liveDeployed": false
+  },
+  "branches": [
+    {
+      "ref": "feature/a05-d23-modular-diagnostic-20261025",
+      "headSha": "0bb9be28220a0f49849adaa1d026dc10cc9aeef1",
+      "track": "diagnosis",
+      "relationToCandidate": "ancestor",
+      "candidateAheadCommits": 188,
+      "candidateBehindCommits": 0
+    },
+    {
+      "ref": "feature/a05-compatibility-c01-preview-20261029",
+      "headSha": "33b75b6271dfeb3c949a0814d1d58e62a238d1c6",
+      "track": "compatibility",
+      "relationToCandidate": "ancestor",
+      "candidateAheadCommits": 182,
+      "candidateBehindCommits": 0
+    },
+    {
+      "ref": "feature/a05-compatibility-c02-evidence-gates-20261029",
+      "headSha": "d42e75a2ddd2d108c532b34f1402c55051e72a68",
+      "track": "compatibility",
+      "relationToCandidate": "ancestor",
+      "candidateAheadCommits": 177,
+      "candidateBehindCommits": 0
+    },
+    {
+      "ref": "feature/a05-compatibility-c03-evidence-editorial-20261029",
+      "headSha": "9a8ec8304e0f195878a839a476424049aa7e205a",
+      "track": "compatibility",
+      "relationToCandidate": "ancestor",
+      "candidateAheadCommits": 166,
+      "candidateBehindCommits": 0
+    },
+    {
+      "ref": "feature/a05-compatibility-c05-copy-audit-20261029",
+      "headSha": "48288447a73469fc1c0f2bfd010155c7c56ba8c1",
+      "track": "compatibility",
+      "relationToCandidate": "ancestor",
+      "candidateAheadCommits": 158,
+      "candidateBehindCommits": 0
+    },
+    {
+      "ref": "feature/a05-r1-release-s0-charter-20261029",
+      "headSha": "d45b0050514ddeca15b18071e26f9c2526454989",
+      "track": "S0",
+      "relationToCandidate": "ancestor",
+      "candidateAheadCommits": 154,
+      "candidateBehindCommits": 0
+    },
+    {
+      "ref": "feature/a05-r1-s1-axis-structure-gates-20261029",
+      "headSha": "04b9f3249bbd187801da5c33830904a557f2a184",
+      "track": "S1",
+      "relationToCandidate": "ancestor",
+      "candidateAheadCommits": 144,
+      "candidateBehindCommits": 0
+    },
+    {
+      "ref": "feature/a05-r1-s1-b2-prototype-20261030",
+      "headSha": "e779612393fca1d06d38e7cd05d906640b9ba75d",
+      "track": "S1",
+      "relationToCandidate": "ancestor",
+      "candidateAheadCommits": 130,
+      "candidateBehindCommits": 0
+    },
+    {
+      "ref": "feature/a05-r1-s1-safe-pair-contract-20261030",
+      "headSha": "75cab2aa929c7de7d8a90fc57315e17d5583fe0f",
+      "track": "S1",
+      "relationToCandidate": "ancestor",
+      "candidateAheadCommits": 123,
+      "candidateBehindCommits": 0
+    },
+    {
+      "ref": "feature/a05-r1-s1-construct-decision-safety-20261030",
+      "headSha": "1459d3a52ba69da203f0f95de99f73f2a730de13",
+      "track": "S1",
+      "relationToCandidate": "ancestor",
+      "candidateAheadCommits": 119,
+      "candidateBehindCommits": 0
+    },
+    {
+      "ref": "feature/a05-r1-s1-s2-evidence-screening-20261030",
+      "headSha": "4a3a5ab2dacc0e2ed97824ec522493a423df754e",
+      "track": "S1/S2",
+      "relationToCandidate": "ancestor",
+      "candidateAheadCommits": 115,
+      "candidateBehindCommits": 0
+    },
+    {
+      "ref": "feature/a05-r1-s3-136pair-review-workflow-20261030",
+      "headSha": "3c069dc1a9d7d52f21fe4581f5122f533945663e",
+      "track": "S3",
+      "relationToCandidate": "ancestor",
+      "candidateAheadCommits": 105,
+      "candidateBehindCommits": 0
+    },
+    {
+      "ref": "feature/a05-r1-s4-all136-candidate-drafts-20261030",
+      "headSha": "78ebd6e0c0f91f6f1f487d16807c14733bfee217",
+      "track": "S4",
+      "relationToCandidate": "ancestor",
+      "candidateAheadCommits": 99,
+      "candidateBehindCommits": 0
+    },
+    {
+      "ref": "feature/a05-r1-s4-editorial-quality-v02-20261030",
+      "headSha": "3ee143089b27d67354f062e5af83e2ef84d7b3eb",
+      "track": "S4",
+      "relationToCandidate": "ancestor",
+      "candidateAheadCommits": 93,
+      "candidateBehindCommits": 0
+    },
+    {
+      "ref": "feature/a05-r1-s4-semantic-review-v03-20261030",
+      "headSha": "b998214593707ee6b1c5ede19a9e30060f056868",
+      "track": "S4",
+      "relationToCandidate": "ancestor",
+      "candidateAheadCommits": 86,
+      "candidateBehindCommits": 0
+    },
+    {
+      "ref": "feature/a05-r1-s4-p2p3-contextual-v04-20261030",
+      "headSha": "ef6a7f6e0a3d173111a25e9cdba542104cd5c921",
+      "track": "S4",
+      "relationToCandidate": "ancestor",
+      "candidateAheadCommits": 72,
+      "candidateBehindCommits": 0
+    },
+    {
+      "ref": "feature/a05-r1-s5-manual-comparison-preview-20261030",
+      "headSha": "f09239906e0b8262dcba61798089e310676c3f9d",
+      "track": "S5",
+      "relationToCandidate": "ancestor",
+      "candidateAheadCommits": 9,
+      "candidateBehindCommits": 0
+    },
+    {
+      "ref": "feature/a05-r1-s5-v06-editorial-threeway-20261030",
+      "headSha": "8183c031732a04480256776b684f8a5f5a083d6f",
+      "track": "S4/S5 v0.6",
+      "relationToCandidate": "identical",
+      "candidateAheadCommits": 0,
+      "candidateBehindCommits": 0
+    }
+  ],
+  "sourceOwnership": {
+    "diagnosticQuestions": {
+      "path": "projects/kidp/life-design-lab/a05/questions.mjs",
+      "gitBlobSha": "81cea4e1b7e19d26898532c16c35f5f4993799a0",
+      "role": "30 questions, 5 provisional axes; do not edit silently",
+      "reviewState": "DRAFT",
+      "ref": "feature/a05-r1-s5-v06-editorial-threeway-20261030"
+    },
+    "diagnosticTypes": {
+      "path": "projects/kidp/life-design-lab/a05/types.mjs",
+      "gitBlobSha": "ad8bda80ef0e5efe513b3a332ec47a600b8b9e59",
+      "role": "16 provisional type IDs and RGBY registry",
+      "reviewState": "DRAFT",
+      "ref": "feature/a05-r1-s5-v06-editorial-threeway-20261030"
+    },
+    "scoringCandidate": {
+      "path": "projects/kidp/life-design-lab/a05/engine.mjs",
+      "gitBlobSha": "17dc4f5fa0b3e907c01af0f2582d6f618f48c35b",
+      "role": "provisional scoring implementation; not psychometrically validated",
+      "reviewState": "DRAFT",
+      "ref": "feature/a05-r1-s5-v06-editorial-threeway-20261030"
+    },
+    "gateLedger": {
+      "path": "docs/A05_R1_RELEASE_GATE_LEDGER_V01_20261029.json",
+      "gitBlobSha": "7b004f943adf27bf611070798a345f25cb7fbbc2",
+      "role": "authoritative product acceptance, no release",
+      "reviewState": "S0_ACCEPTED_6_OF_6_S1_ACCEPTED_2_OF_8_OTHERS_PENDING",
+      "ref": "feature/a05-r1-s5-v06-editorial-threeway-20261030"
+    },
+    "s1DecisionPacket": {
+      "path": "docs/A05_S1_OWNER_DECISION_PACKET_V01_20261030.json",
+      "gitBlobSha": "c68ee8be4d55f9a90cf7cde8f637792303339fb0",
+      "role": "B2/A/C/D/T-ID owner decisions",
+      "reviewState": "UNAPPROVED_6_GATES",
+      "ref": "feature/a05-r1-s5-v06-editorial-threeway-20261030"
+    },
+    "s2ResearchScreening": {
+      "path": "docs/A05_S2_SEVEN_STUDY_ABSTRACT_SCREENING_V01_20261030.json",
+      "gitBlobSha": "e53fcfd0f9914d1869505e104f3412721baa0013",
+      "role": "seven study screening, not full-text independent approval",
+      "reviewState": "NOT_APPROVED",
+      "ref": "feature/a05-r1-s5-v06-editorial-threeway-20261030"
+    },
+    "s3ReviewQueue": {
+      "path": "docs/A05_S3_136PAIR_REVIEW_QUEUE_V01_20261030.json",
+      "gitBlobSha": "8a7b5c8e12e986d9309d395ff5ef2e784a593664",
+      "role": "pair structural review queue, not accepted source workbook",
+      "reviewState": "STRUCTURAL_CANDIDATE",
+      "ref": "feature/a05-r1-s5-v06-editorial-threeway-20261030"
+    },
+    "s4PrimaryDraft": {
+      "path": "docs/A05_S4_ALL136_EDITORIAL_REVIEW_MASTER_V04_20261030.json",
+      "gitBlobSha": "50e1ff7b1cc7fcae27c13b81fd33be46f8ff64a3",
+      "role": "136/136 nonapproved baseline descriptions",
+      "reviewState": "HUMAN_REVIEW_0_OF_136",
+      "ref": "feature/a05-r1-s5-v06-editorial-threeway-20261030"
+    },
+    "s4OptionalV05": {
+      "path": "docs/A05_S4_V05_ALL112_CONTEXTUAL_ALTERNATES_20261030.json",
+      "gitBlobSha": "b21dd54ec11d4220ce93d603d43ee6c625d56d0a",
+      "role": "112 unapproved alternatives; do not overwrite v0.4",
+      "reviewState": "HUMAN_REVIEW_0_OF_112",
+      "ref": "feature/a05-r1-s5-v06-editorial-threeway-20261030"
+    },
+    "s4OptionalV06": {
+      "path": "docs/A05_S4_V06_HIGH_REPEAT8_INDIVIDUAL_REWRITE_PILOT_20261030.json",
+      "gitBlobSha": "8ff9e770ef4d5e286a38e98fca0c428e8d7d0884",
+      "role": "eight unapproved v0.6 rewrites; overlay only",
+      "reviewState": "HUMAN_REVIEW_0_OF_8",
+      "ref": "feature/a05-r1-s5-v06-editorial-threeway-20261030"
+    },
+    "s5PreviewHtml": {
+      "path": "projects/kidp/life-design-lab/a05/r1-s5-offline.html",
+      "gitBlobSha": "a161e2ac1565c514762ff272c7b7538966770e98",
+      "role": "offline noindex manual type selection, 136 pairs; NOT a production integration",
+      "reviewState": "ISOLATED_PREVIEW",
+      "ref": "feature/a05-r1-s5-v06-editorial-threeway-20261030"
+    },
+    "s5Controller": {
+      "path": "projects/kidp/life-design-lab/a05/r1-s5-offline-controller.js",
+      "gitBlobSha": "f50b52264f1a77e20f565128891f780d2a8c1e1f",
+      "role": "three-version comparison and no-persistence control",
+      "reviewState": "ISOLATED_PREVIEW",
+      "ref": "feature/a05-r1-s5-v06-editorial-threeway-20261030"
+    },
+    "researchIntegrationReport": {
+      "path": "docs/A05_C03_DEEP_RESEARCH_INTEGRATION_20261029.md",
+      "gitBlobSha": "f3723193b6b91d02ee0c517e7c72bfd971e34af4",
+      "role": "user report reviewed; original xlsx/csv/pdf binary not byte-verified",
+      "reviewState": "SECONDARY_REVIEW_NOT_SOURCE_VERIFIED",
+      "ref": "feature/a05-r1-s5-v06-editorial-threeway-20261030"
+    }
+  },
+  "supplementaryUserLibrary": [
+    {
+      "name": "A05_16タイプ相性_根拠評価台帳_v0.1_20261028.xlsx",
+      "libraryFileId": "file_000000006e208209bce4dedb25c6d63d",
+      "status": "LIBRARY_RETRIEVABLE_NOT_VERIFIED_AS_20261029_V1_CANONICAL_SOURCE"
+    },
+    {
+      "name": "A05_相性機能_公開ロードマップ_方針決定案_v0.1_20261029.md",
+      "libraryFileId": "file_000000006b28820996ed987f0b870a6d",
+      "status": "LIBRARY_REFERENCE_ONLY_REPLACED_BY_GITHUB_ACCEPTANCE_LEDGER_FOR_APPROVAL_STATUS"
+    },
+    {
+      "name": "A05｜人生価値観16タイプ相性診断の科学的根拠・総合調査",
+      "libraryFileId": "file_00000000cb548230ad73d1de91eced55",
+      "status": "SECONDARY_RESEARCH_REPORT_NOT_INDEPENDENTLY_VALIDATED"
+    },
+    {
+      "name": "A05_相性科学的根拠_総合データブック_v1.0_20261029.xlsx",
+      "libraryFileId": null,
+      "status": "NAMED_IN_RESEARCH_REPORT_BUT_NATIVE_BINARY_NOT_FOUND_BY_LIBRARY_TITLE_SEARCH_AND_NOT_BYTE_VERIFIED_ON_GITHUB"
+    }
+  ],
+  "releaseGates": [
+    {
+      "id": "S0",
+      "status": "ACCEPTED",
+      "accepted": 6,
+      "total": 6,
+      "scope": "policy only"
+    },
+    {
+      "id": "S1",
+      "status": "PARTIAL",
+      "accepted": 2,
+      "total": 8,
+      "scope": "type construct / taxonomy"
+    },
+    {
+      "id": "S2",
+      "status": "UNACCEPTED",
+      "accepted": 0,
+      "total": 7,
+      "scope": "research"
+    },
+    {
+      "id": "S3",
+      "status": "UNACCEPTED",
+      "accepted": 0,
+      "total": 6,
+      "scope": "canonical pair source"
+    },
+    {
+      "id": "S4",
+      "status": "UNACCEPTED",
+      "firstPassApproved": 0,
+      "secondPassApproved": 0,
+      "totalPairs": 136,
+      "scope": "pair copy"
+    },
+    {
+      "id": "S5",
+      "status": "UNACCEPTED",
+      "accepted": 0,
+      "total": 8,
+      "scope": "manual pair UI"
+    },
+    {
+      "id": "S6",
+      "status": "UNACCEPTED",
+      "accepted": 0,
+      "total": 9,
+      "scope": "QA"
+    },
+    {
+      "id": "S7",
+      "status": "UNACCEPTED",
+      "scope": "user understanding"
+    },
+    {
+      "id": "S8",
+      "status": "UNACCEPTED",
+      "scope": "owner go/no-go"
+    }
+  ],
+  "freezeRules": [
+    "Do not merge any of the 18 source branches into main as part of P1",
+    "Keep the existing PR #61 open and Draft; it does not include R1 S5",
+    "Do not auto-connect questionnaire results to R1 before S1 classification is formally approved",
+    "Treat 136 v0.4, 112 v0.5, and 8 v0.6 as parallel layers rather than 256 or 136 independent approved manuscripts",
+    "Do not change types/questions/scoring or pair IDs without version bump, explicit owner decision and migration plan",
+    "Do not treat synthetic V8 DOM checks as native browser or accessibility acceptance",
+    "Do not trigger GitHub Actions; local Node/Chromium/Safari verification first",
+    "Research evidence claims remain separated from internal structural facts and editorial hypotheses",
+    "P1 docs-only PR is inventory progress, not release authorization"
+  ],
+  "phase2Entry": {
+    "readyForPlanning": true,
+    "blockedForFinalDecisionOn": [
+      "S1-B2 construct choice",
+      "A/C/D operational definitions",
+      "legacy T-ID publication/migration",
+      "independent human review assignment"
+    ],
+    "diagnosticRuntimeChangesPermitted": false
+  },
+  "phase3Entry": {
+    "readyForEditorialWork": true,
+    "blockedForPublicationOn": [
+      "112 high-repeat copy draft review: 96 remain after 8 v0.6 pilot",
+      "first and independent second 136-pair reviews",
+      "S3 external 2026-10-29 canonical workbook verification",
+      "native Node, Chrome, Safari and accessibility QA"
+    ],
+    "draftSourcePath": "docs/A05_S4_ALL136_EDITORIAL_REVIEW_MASTER_V04_20261030.json"
+  },
+  "auditEvidence": {
+    "branchTopology": "GitHub compare commits: each of 17 a05 ancestors vs S5 v0.6 HEAD, ahead 9..188, behind 0",
+    "fileHashes": "GitHub contents API fetched exact blob SHA for 14 critical paths",
+    "pr": "GitHub PR #61 fetch: OPEN Draft not merged",
+    "librarySearch": "Title search for 2026-10-29 v1.0 workbook yielded no binary match"
+  }
+}
