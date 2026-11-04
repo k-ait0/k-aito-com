@@ -11,10 +11,10 @@
     "a05BranchesCompared": 18,
     "ancestorsOfCandidate": 17,
     "divergedBranches": 0,
-    "codeOnlyChangesFromOriginalDraftToCandidate": 112,
     "nonA05PathsInIncrement": 0,
     "pathsChangedFromMainToCandidate": 241,
-    "excludedWorkflowPath": ".github/workflows/kidp-wave-a-browser-qa.yml"
+    "excludedWorkflowPath": ".github/workflows/kidp-wave-a-browser-qa.yml",
+    "changedFilePathsFromOriginalDraftToCandidate": 112
   },
   "implementationCandidate": {
     "repo": "k-ait0/k-aito-com",
