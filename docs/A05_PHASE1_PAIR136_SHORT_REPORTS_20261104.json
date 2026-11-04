@@ -115,7 +115,7 @@
         {
           "id": "dilemma",
           "title": "04｜考え方が食い違ったとき",
-          "body": "「学びに使う時間を確保する」ことと「学びに使う時間を確保する」ことのどちらから進めるかで意見が違うかもしれません。その場合は、週末の体験講座で先に決める必要があることと、後から変更できることを分けてみます。 共通ラベルがあっても実際の希望は確かめる必要があります。"
+          "body": "二人とも学びを広げる設定でも、片方は資格の基礎を週に少しずつ試し、もう片方は将来の仕事に役立つ分野を調べたいかもしれません。同じ『学習時間を確保する』希望でも、必要な時間や予算、成果の測り方は異なります。週末の体験講座を使うなら、各自が選ぶ講座と、互いの発見を共有する時間を分けて決められます。"
         },
         {
           "id": "questions",
@@ -138,7 +138,16 @@
       "independentReviewed": false,
       "ownerApprovedForPublication": false,
       "scientificValidated": false,
-      "production": false
+      "production": false,
+      "qaEditorNotes": [
+        {
+          "revision": "R2",
+          "date": "2026-11-04",
+          "section": "dilemma",
+          "issue": "duplicated self-comparison action",
+          "status": "AI_DRAFT_NOT_APPROVED"
+        }
+      ]
     },
     {
       "pairId": "T02-T02",
@@ -479,7 +488,7 @@
         {
           "id": "dilemma",
           "title": "04｜考え方が食い違ったとき",
-          "body": "「共同の候補を複数考える」ことと「共同の候補を複数考える」ことのどちらから進めるかで意見が違うかもしれません。その場合は、週末の体験講座で先に決める必要があることと、後から変更できることを分けてみます。 共通ラベルがあっても実際の希望は確かめる必要があります。"
+          "body": "地域活動を一年続けたいという大枠が似ていても、一方は新しい参加者の希望を聞くこと、もう一方は既存の活動を着実に続けることを優先する場合があります。『参加者に配慮する』という同じ言葉から、役割分担や開催回数まで自動的には決まりません。負担を減らしたい人の意見も確認し、継続できる企画から始める方法を話し合えます。"
         },
         {
           "id": "questions",
@@ -502,7 +511,16 @@
       "independentReviewed": false,
       "ownerApprovedForPublication": false,
       "scientificValidated": false,
-      "production": false
+      "production": false,
+      "qaEditorNotes": [
+        {
+          "revision": "R2",
+          "date": "2026-11-04",
+          "section": "dilemma",
+          "issue": "duplicated self-comparison action",
+          "status": "AI_DRAFT_NOT_APPROVED"
+        }
+      ]
     },
     {
       "pairId": "T06-T06",
@@ -843,7 +861,7 @@
         {
           "id": "dilemma",
           "title": "04｜考え方が食い違ったとき",
-          "body": "「試せる選択肢を増やす」ことと「試せる選択肢を増やす」ことのどちらから進めるかで意見が違うかもしれません。その場合は、週末の体験講座で先に決める必要があることと、後から変更できることを分けてみます。 共通ラベルがあっても実際の希望は確かめる必要があります。"
+          "body": "新しい拠点を探す設定が共通していても、一方は実際の移転を検討し、もう一方は今の拠点で活動内容だけを変えたいかもしれません。変化への希望と、移動費用・生活条件などの実行可能性を混同しないことが重要です。最初の一か月は場所を変えずに試す案と、候補地を短期間見学する案を並べて比較できます。"
         },
         {
           "id": "questions",
@@ -866,7 +884,16 @@
       "independentReviewed": false,
       "ownerApprovedForPublication": false,
       "scientificValidated": false,
-      "production": false
+      "production": false,
+      "qaEditorNotes": [
+        {
+          "revision": "R2",
+          "date": "2026-11-04",
+          "section": "dilemma",
+          "issue": "duplicated self-comparison action",
+          "status": "AI_DRAFT_NOT_APPROVED"
+        }
+      ]
     },
     {
       "pairId": "T10-T10",
@@ -1207,7 +1234,7 @@
         {
           "id": "dilemma",
           "title": "04｜考え方が食い違ったとき",
-          "body": "「参加する人の希望を集める」ことと「参加する人の希望を集める」ことのどちらから進めるかで意見が違うかもしれません。その場合は、週末の体験講座で先に決める必要があることと、後から変更できることを分けてみます。 共通ラベルがあっても実際の希望は確かめる必要があります。"
+          "body": "共同制作を進めたい二人でも、一方はアイデアを広く集める工程を重視し、もう一方は協力者を絞って試作品を完成させたいと考えるかもしれません。どちらも人との協力を大切にする設定であり、片方だけを調整役に固定する必要はありません。個別に試作してよい部分と、全員が合意する必要のある変更を区別できます。"
         },
         {
           "id": "questions",
@@ -1230,7 +1257,16 @@
       "independentReviewed": false,
       "ownerApprovedForPublication": false,
       "scientificValidated": false,
-      "production": false
+      "production": false,
+      "qaEditorNotes": [
+        {
+          "revision": "R2",
+          "date": "2026-11-04",
+          "section": "dilemma",
+          "issue": "duplicated self-comparison action",
+          "status": "AI_DRAFT_NOT_APPROVED"
+        }
+      ]
     },
     {
       "pairId": "T14-T14",
@@ -4660,7 +4696,7 @@
         {
           "id": "scenario",
           "title": "03｜具体的な場面で考える",
-          "body": "図書館の企画の企画なら、「好きな活動の工程を丁寧に磨く」案と「新しい出会いから活動の幅を広げる」案を先に別々に出せます。テーマの選定と当日の運営条件を確認するためには、できる条件とやりたい条件を混同せず、一度だけ試す選択肢を残します。 この二つの案に優劣を付ける必要はありません。実際に使える時間や費用が違えば、実行できる順番も変わります。"
+          "body": "図書館の企画なら、「好きな活動の工程を丁寧に磨く」案と「新しい出会いから活動の幅を広げる」案を先に別々に出せます。テーマの選定と当日の運営条件を確認するためには、できる条件とやりたい条件を混同せず、一度だけ試す選択肢を残します。 この二つの案に優劣を付ける必要はありません。実際に使える時間や費用が違えば、実行できる順番も変わります。"
         },
         {
           "id": "dilemma",
@@ -12447,6 +12483,14 @@
       "count": 136,
       "tokensCorrected": 256,
       "relatedSource": "docs/A05_PHASE1_SELF16_SHORT_REPORTS_20261104.json",
+      "humanApproved": false
+    },
+    {
+      "date": "2026-11-04",
+      "revision": "0.1.4",
+      "change": "Replace four same-type duplicate dilemma sentences with distinct realistic decision situations; fix duplicated の企画",
+      "sameTypeRevisions": 4,
+      "grammarFixes": 1,
       "humanApproved": false
     }
   ]
