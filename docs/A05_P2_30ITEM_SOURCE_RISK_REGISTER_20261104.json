@@ -1,0 +1,1068 @@
+{
+  "schema": "A05-P2-30ITEM-SOURCE-AND-DECISION-AUDIT-1.0.0",
+  "created": "2026-11-04",
+  "status": "RESEARCH_EDITORIAL_WORK_ONLY_NOT_OWNER_APPROVED",
+  "sourceSnapshot": {
+    "implementationBranch": "feature/a05-r1-s5-v06-editorial-threeway-20261030",
+    "implementationSha": "8183c031732a04480256776b684f8a5f5a083d6f",
+    "files": {
+      "docs/A05_D36_PRIORITIZED_30ITEM_REVIEW_20261026.md": "cf2fafec71653ee7e503d60da5e659e5d40821bb",
+      "docs/A05_D73_ITEM_CONSTRUCT_CROSSWALK_20261026.json": "a4a4a5210e9084b2e24f69d4fcb3cc695a2cc2dd",
+      "docs/A05_S1_B2_12ITEM_CRITICAL_AUDIT_V01_20261030.json": "ebaad9562005da2577ed63efd9859da593b50b81",
+      "docs/A05_S1_ACD_18ITEM_CROSS_AXIS_AUDIT_V01_20261030.json": "82990b9f5a80d9030c97be81514aec0d75a4f074",
+      "docs/A05_S1_OWNER_DECISION_PACKET_V01_20261030.json": "c68ee8be4d55f9a90cf7cde8f637792303339fb0"
+    }
+  },
+  "counts": {
+    "status": {
+      "REVISE": 13,
+      "TRIAL": 10,
+      "BLOCK": 7
+    },
+    "priority": {
+      "P1": 5,
+      "P2": 10,
+      "P0": 15
+    },
+    "items": 30,
+    "b2PairCandidateCount": 6,
+    "b2CandidateItems": 12,
+    "acdSecondaryReviewed": 18,
+    "existingBlockItems": 7,
+    "existingBlockItemsResolved": 0
+  },
+  "note": "B2-P twelve candidates are a separate research-only draft, NOT 12 additional validated questions of the existing 30-item product.",
+  "originalQuestions": [
+    {
+      "id": "A01",
+      "axis": "A",
+      "editorialStatus": "REVISE",
+      "triagePriority": "P1",
+      "candidatePairs": 3,
+      "originalQuestion": {
+        "negative": "一つの地域で暮らしを育てる",
+        "positive": "複数の地域で暮らしを経験する"
+      },
+      "unapprovedCandidate": {
+        "negative": "既存の方法を改善して使う",
+        "positive": "未経験の方法を試す",
+        "source": "D59"
+      },
+      "originalConstruct": "生活環境の安定・変化",
+      "candidateConstruct": "活動の進め方の継続・変更",
+      "overlapHypotheses": "A06",
+      "editorialNextTask": "D-31旧案＋D-36案A/Bの意味を比較",
+      "additionalAudit": {
+        "riskIds": [
+          "RELOCATION_ACCESS",
+          "A_D_METHOD_NOVELTY"
+        ],
+        "disposition": "REVISE_FOR_COGNITIVE_REVIEW"
+      },
+      "ownerAdopted": false,
+      "scientificValidityEstablished": false,
+      "publicationAllowed": false
+    },
+    {
+      "id": "A02",
+      "axis": "A",
+      "editorialStatus": "TRIAL",
+      "triagePriority": "P2",
+      "candidatePairs": 1,
+      "originalQuestion": {
+        "negative": "慣れた環境を長く活かす",
+        "positive": "新しい環境へ定期的に移る"
+      },
+      "unapprovedCandidate": {
+        "negative": "現在の活動環境を整える",
+        "positive": "新しい活動環境を試す",
+        "source": "D57"
+      },
+      "originalConstruct": "生活環境の安定・変化",
+      "candidateConstruct": "活動の進め方の継続・変更",
+      "overlapHypotheses": "—",
+      "editorialNextTask": "D-31案の読解・回答不能を確認",
+      "additionalAudit": {
+        "riskIds": [
+          "OPPORTUNITY_CONSTRAINT",
+          "A_D_ENVIRONMENT_NOVELTY"
+        ],
+        "disposition": "TRIAL_ONLY_AFTER_CONSTRUCT_APPROVAL"
+      },
+      "ownerAdopted": false,
+      "scientificValidityEstablished": false,
+      "publicationAllowed": false
+    },
+    {
+      "id": "A03",
+      "axis": "A",
+      "editorialStatus": "TRIAL",
+      "triagePriority": "P2",
+      "candidatePairs": 1,
+      "originalQuestion": {
+        "negative": "心地よい日常の形を維持する",
+        "positive": "日常の形を更新し続ける"
+      },
+      "unapprovedCandidate": {
+        "negative": "既存の習慣を磨く",
+        "positive": "新しい習慣を取り入れる",
+        "source": "D57"
+      },
+      "originalConstruct": "生活環境の安定・変化",
+      "candidateConstruct": "活動の進め方の継続・変更",
+      "overlapHypotheses": "—",
+      "editorialNextTask": "D-31案の読解・回答不能を確認",
+      "additionalAudit": {
+        "riskIds": [
+          "A_D_HABIT_CHANGE",
+          "BOTH_HIGH_POSSIBLE"
+        ],
+        "disposition": "TRIAL_ONLY_AFTER_CONSTRUCT_APPROVAL"
+      },
+      "ownerAdopted": false,
+      "scientificValidityEstablished": false,
+      "publicationAllowed": false
+    },
+    {
+      "id": "A04",
+      "axis": "A",
+      "editorialStatus": "BLOCK",
+      "triagePriority": "P0",
+      "candidatePairs": 2,
+      "originalQuestion": {
+        "negative": "今ある生活基盤を活かす",
+        "positive": "生活基盤を作り直す"
+      },
+      "unapprovedCandidate": {
+        "negative": "一度決めた活動計画を続ける",
+        "positive": "途中でも活動計画を見直す",
+        "source": "D59"
+      },
+      "originalConstruct": "生活環境の安定・変化",
+      "candidateConstruct": "活動の進め方の継続・変更",
+      "overlapHypotheses": "A06・D04",
+      "editorialNextTask": "D-34案A/Bの読解差を検証",
+      "additionalAudit": {
+        "riskIds": [
+          "A_D_PLAN_METHOD_OVERLAP",
+          "INTRA_A_REDUNDANCY"
+        ],
+        "disposition": "HOLD_BLOCK_REWRITE"
+      },
+      "ownerAdopted": false,
+      "scientificValidityEstablished": false,
+      "publicationAllowed": false
+    },
+    {
+      "id": "A05",
+      "axis": "A",
+      "editorialStatus": "BLOCK",
+      "triagePriority": "P0",
+      "candidatePairs": 2,
+      "originalQuestion": {
+        "negative": "一つの環境をより良く育てる",
+        "positive": "異なる環境を経験していく"
+      },
+      "unapprovedCandidate": {
+        "negative": "予想できる変化には従来の進め方を調整する",
+        "positive": "予想できる変化を機に進め方を組み替える",
+        "source": "D59"
+      },
+      "originalConstruct": "生活環境の安定・変化",
+      "candidateConstruct": "活動の進め方の継続・変更",
+      "overlapHypotheses": "A06",
+      "editorialNextTask": "D-34案A/Bの読解差を検証",
+      "additionalAudit": {
+        "riskIds": [
+          "A_D_PLAN_METHOD_OVERLAP",
+          "INTRA_A_REDUNDANCY"
+        ],
+        "disposition": "HOLD_BLOCK_REWRITE"
+      },
+      "ownerAdopted": false,
+      "scientificValidityEstablished": false,
+      "publicationAllowed": false
+    },
+    {
+      "id": "A06",
+      "axis": "A",
+      "editorialStatus": "REVISE",
+      "triagePriority": "P0",
+      "candidatePairs": 3,
+      "originalQuestion": {
+        "negative": "現在の拠点を保って挑戦する",
+        "positive": "拠点そのものを変えて挑戦する"
+      },
+      "unapprovedCandidate": {
+        "negative": "予想外の変化には既存の手順を応用する",
+        "positive": "予想外の変化には別の手順を探す",
+        "source": "D59"
+      },
+      "originalConstruct": "生活環境の安定・変化",
+      "candidateConstruct": "活動の進め方の継続・変更",
+      "overlapHypotheses": "A01・A04・D04・A05",
+      "editorialNextTask": "D-31旧案＋D-36案A/Bの意味を比較",
+      "additionalAudit": {
+        "riskIds": [
+          "A_D_METHOD_OVERLAP",
+          "OPPORTUNITY_CONSTRAINT"
+        ],
+        "disposition": "REVISE_FOR_COGNITIVE_REVIEW"
+      },
+      "ownerAdopted": false,
+      "scientificValidityEstablished": false,
+      "publicationAllowed": false
+    },
+    {
+      "id": "B01",
+      "axis": "B",
+      "editorialStatus": "TRIAL",
+      "triagePriority": "P2",
+      "candidatePairs": 1,
+      "originalQuestion": {
+        "negative": "自分の希望を中心に決める",
+        "positive": "大切な人との希望の一致を重視する"
+      },
+      "unapprovedCandidate": {
+        "negative": "最終的な判断を自分で担う",
+        "positive": "最終的な判断を関係者と共同で担う",
+        "source": "D57"
+      },
+      "originalConstruct": "自律と大切な人との関係",
+      "candidateConstruct": "意思決定と実行の分担",
+      "overlapHypotheses": "B02・B06",
+      "editorialNextTask": "D-31案の読解・回答不能を確認",
+      "additionalAudit": null,
+      "ownerAdopted": false,
+      "scientificValidityEstablished": false,
+      "publicationAllowed": false
+    },
+    {
+      "id": "B02",
+      "axis": "B",
+      "editorialStatus": "BLOCK",
+      "triagePriority": "P0",
+      "candidatePairs": 2,
+      "originalQuestion": {
+        "negative": "自分で生活を組み立てる余地",
+        "positive": "身近な人と生活を共有する機会"
+      },
+      "unapprovedCandidate": {
+        "negative": "活動の進め方を自分で決める余地を重視",
+        "positive": "関係者と決める機会を重視",
+        "source": "D59"
+      },
+      "originalConstruct": "自律と大切な人との関係",
+      "candidateConstruct": "意思決定と実行の分担",
+      "overlapHypotheses": "B01・B06",
+      "editorialNextTask": "D-34案A/Bの読解差を検証",
+      "additionalAudit": null,
+      "ownerAdopted": false,
+      "scientificValidityEstablished": false,
+      "publicationAllowed": false
+    },
+    {
+      "id": "B03",
+      "axis": "B",
+      "editorialStatus": "REVISE",
+      "triagePriority": "P1",
+      "candidatePairs": 3,
+      "originalQuestion": {
+        "negative": "自分が望む達成を大切にする",
+        "positive": "誰かと共有できる達成を大切にする"
+      },
+      "unapprovedCandidate": {
+        "negative": "達成後まず自分で振り返る",
+        "positive": "達成後まず関係者と振り返る",
+        "source": "D57"
+      },
+      "originalConstruct": "自律と大切な人との関係",
+      "candidateConstruct": "意思決定と実行の分担",
+      "overlapHypotheses": "B05",
+      "editorialNextTask": "D-31旧案＋D-36案A/Bの意味を比較",
+      "additionalAudit": null,
+      "ownerAdopted": false,
+      "scientificValidityEstablished": false,
+      "publicationAllowed": false
+    },
+    {
+      "id": "B04",
+      "axis": "B",
+      "editorialStatus": "TRIAL",
+      "triagePriority": "P2",
+      "candidatePairs": 1,
+      "originalQuestion": {
+        "negative": "自分の希望する場所を選ぶ",
+        "positive": "大切な人との距離を重視して選ぶ"
+      },
+      "unapprovedCandidate": {
+        "negative": "調整可能なら自分の予定を優先して組む",
+        "positive": "調整可能なら関係者と予定を合わせて組む",
+        "source": "D57"
+      },
+      "originalConstruct": "自律と大切な人との関係",
+      "candidateConstruct": "意思決定と実行の分担",
+      "overlapHypotheses": "—",
+      "editorialNextTask": "D-31案の読解・回答不能を確認",
+      "additionalAudit": null,
+      "ownerAdopted": false,
+      "scientificValidityEstablished": false,
+      "publicationAllowed": false
+    },
+    {
+      "id": "B05",
+      "axis": "B",
+      "editorialStatus": "REVISE",
+      "triagePriority": "P1",
+      "candidatePairs": 3,
+      "originalQuestion": {
+        "negative": "自分だけでも実現したい目標",
+        "positive": "大切な人と実現したい目標"
+      },
+      "unapprovedCandidate": {
+        "negative": "同じ目標の実行を自分で組み立てる",
+        "positive": "同じ目標の実行を関係者と分担する",
+        "source": "D59"
+      },
+      "originalConstruct": "自律と大切な人との関係",
+      "candidateConstruct": "意思決定と実行の分担",
+      "overlapHypotheses": "B03",
+      "editorialNextTask": "D-31旧案＋D-36案A/Bの意味を比較",
+      "additionalAudit": null,
+      "ownerAdopted": false,
+      "scientificValidityEstablished": false,
+      "publicationAllowed": false
+    },
+    {
+      "id": "B06",
+      "axis": "B",
+      "editorialStatus": "REVISE",
+      "triagePriority": "P0",
+      "candidatePairs": 3,
+      "originalQuestion": {
+        "negative": "自分の希望に合わせて方向を決める",
+        "positive": "関係者と方向をすり合わせる"
+      },
+      "unapprovedCandidate": {
+        "negative": "意見が分かれた際に自分の判断を重視する",
+        "positive": "意見が分かれた際に合意形成を重視する",
+        "source": "D57"
+      },
+      "originalConstruct": "自律と大切な人との関係",
+      "candidateConstruct": "意思決定と実行の分担",
+      "overlapHypotheses": "B01・B02",
+      "editorialNextTask": "D-31旧案＋D-36案A/Bの意味を比較",
+      "additionalAudit": null,
+      "ownerAdopted": false,
+      "scientificValidityEstablished": false,
+      "publicationAllowed": false
+    },
+    {
+      "id": "C01",
+      "axis": "C",
+      "editorialStatus": "TRIAL",
+      "triagePriority": "P2",
+      "candidatePairs": 1,
+      "originalQuestion": {
+        "negative": "数年後の達成につながる日々",
+        "positive": "毎日の充実を感じられる日々"
+      },
+      "unapprovedCandidate": {
+        "negative": "将来の選択肢が増える活動を先に選ぶ",
+        "positive": "今日の充実が増える活動を先に選ぶ",
+        "source": "D57"
+      },
+      "originalConstruct": "将来と今日の充実",
+      "candidateConstruct": "将来便益と現在便益",
+      "overlapHypotheses": "C02・C05・C06・C04",
+      "editorialNextTask": "D-31案の読解・回答不能を確認",
+      "additionalAudit": {
+        "riskIds": [
+          "INTRA_C_REDUNDANCY",
+          "TIME_HORIZON_TRADEOFF"
+        ],
+        "disposition": "TRIAL_ONLY_AFTER_CONSTRUCT_APPROVAL"
+      },
+      "ownerAdopted": false,
+      "scientificValidityEstablished": false,
+      "publicationAllowed": false
+    },
+    {
+      "id": "C02",
+      "axis": "C",
+      "editorialStatus": "REVISE",
+      "triagePriority": "P0",
+      "candidatePairs": 3,
+      "originalQuestion": {
+        "negative": "将来の目標に備える活動",
+        "positive": "今の満足につながる活動"
+      },
+      "unapprovedCandidate": {
+        "negative": "同じ負担なら将来便益の大きい時間を選ぶ",
+        "positive": "同じ負担なら今日便益の大きい時間を選ぶ",
+        "source": "D57"
+      },
+      "originalConstruct": "将来と今日の充実",
+      "candidateConstruct": "将来便益と現在便益",
+      "overlapHypotheses": "C01・C05・C06・C04",
+      "editorialNextTask": "D-31旧案＋D-36案A/Bの意味を比較",
+      "additionalAudit": {
+        "riskIds": [
+          "INTRA_C_REDUNDANCY",
+          "INCOMPARABLE_BENEFIT"
+        ],
+        "disposition": "REVISE_FOR_COGNITIVE_REVIEW"
+      },
+      "ownerAdopted": false,
+      "scientificValidityEstablished": false,
+      "publicationAllowed": false
+    },
+    {
+      "id": "C03",
+      "axis": "C",
+      "editorialStatus": "TRIAL",
+      "triagePriority": "P2",
+      "candidatePairs": 1,
+      "originalQuestion": {
+        "negative": "将来使いたい知識を身につける",
+        "positive": "今知りたいことを学ぶ"
+      },
+      "unapprovedCandidate": {
+        "negative": "後に役立つ知識を学ぶ",
+        "positive": "今日の関心を満たす知識を学ぶ",
+        "source": "D57"
+      },
+      "originalConstruct": "将来と今日の充実",
+      "candidateConstruct": "将来便益と現在便益",
+      "overlapHypotheses": "—",
+      "editorialNextTask": "D-31案の読解・回答不能を確認",
+      "additionalAudit": {
+        "riskIds": [
+          "LEARNING_OPPORTUNITY",
+          "BOTH_HIGH_POSSIBLE"
+        ],
+        "disposition": "TRIAL_ONLY_AFTER_CONSTRUCT_APPROVAL"
+      },
+      "ownerAdopted": false,
+      "scientificValidityEstablished": false,
+      "publicationAllowed": false
+    },
+    {
+      "id": "C04",
+      "axis": "C",
+      "editorialStatus": "BLOCK",
+      "triagePriority": "P0",
+      "candidatePairs": 2,
+      "originalQuestion": {
+        "negative": "長期的な成果につながる挑戦",
+        "positive": "取り組む過程を楽しめる挑戦"
+      },
+      "unapprovedCandidate": {
+        "negative": "同じ活動で将来得られる充実を重視する",
+        "positive": "同じ活動で今日得られる充実を重視する",
+        "source": "D57"
+      },
+      "originalConstruct": "将来と今日の充実",
+      "candidateConstruct": "将来便益と現在便益",
+      "overlapHypotheses": "C01・C02・C05",
+      "editorialNextTask": "D-34案A/Bの読解差を検証",
+      "additionalAudit": {
+        "riskIds": [
+          "INTRA_C_REDUNDANCY",
+          "PROCESS_VS_OUTCOME"
+        ],
+        "disposition": "HOLD_BLOCK_REWRITE"
+      },
+      "ownerAdopted": false,
+      "scientificValidityEstablished": false,
+      "publicationAllowed": false
+    },
+    {
+      "id": "C05",
+      "axis": "C",
+      "editorialStatus": "REVISE",
+      "triagePriority": "P1",
+      "candidatePairs": 3,
+      "originalQuestion": {
+        "negative": "後から得られる充実を優先",
+        "positive": "すぐに得られる充実を優先"
+      },
+      "unapprovedCandidate": {
+        "negative": "余暇の一部を将来の便益に振り向ける",
+        "positive": "余暇の一部を今日の便益に振り向ける",
+        "source": "D57"
+      },
+      "originalConstruct": "将来と今日の充実",
+      "candidateConstruct": "将来便益と現在便益",
+      "overlapHypotheses": "C01・C02・C06・C04",
+      "editorialNextTask": "D-31旧案＋D-36案A/Bの意味を比較",
+      "additionalAudit": {
+        "riskIds": [
+          "INTRA_C_REDUNDANCY",
+          "C_E_TIME_CONSTRAINT"
+        ],
+        "disposition": "REVISE_FOR_COGNITIVE_REVIEW"
+      },
+      "ownerAdopted": false,
+      "scientificValidityEstablished": false,
+      "publicationAllowed": false
+    },
+    {
+      "id": "C06",
+      "axis": "C",
+      "editorialStatus": "REVISE",
+      "triagePriority": "P0",
+      "candidatePairs": 3,
+      "originalQuestion": {
+        "negative": "将来の理想に近づく感覚",
+        "positive": "今の生活に満足できる感覚"
+      },
+      "unapprovedCandidate": {
+        "negative": "生活改善で将来の快適さを優先する",
+        "positive": "生活改善で今日の快適さを優先する",
+        "source": "D57"
+      },
+      "originalConstruct": "将来と今日の充実",
+      "candidateConstruct": "将来便益と現在便益",
+      "overlapHypotheses": "C01・C02・C05",
+      "editorialNextTask": "D-31旧案＋D-36案A/Bの意味を比較",
+      "additionalAudit": {
+        "riskIds": [
+          "OUTCOME_AMOUNT_UNBALANCED",
+          "BOTH_HIGH_POSSIBLE"
+        ],
+        "disposition": "REVISE_FOR_COGNITIVE_REVIEW"
+      },
+      "ownerAdopted": false,
+      "scientificValidityEstablished": false,
+      "publicationAllowed": false
+    },
+    {
+      "id": "D01",
+      "axis": "D",
+      "editorialStatus": "TRIAL",
+      "triagePriority": "P2",
+      "candidatePairs": 1,
+      "originalQuestion": {
+        "negative": "さまざまな趣味を試す",
+        "positive": "好きな趣味を長く深める"
+      },
+      "unapprovedCandidate": {
+        "negative": "関心活動の種類を広げる",
+        "positive": "一つの関心活動を深める",
+        "source": "D57"
+      },
+      "originalConstruct": "経験の幅と深さ",
+      "candidateConstruct": "学習・経験の幅と深さ",
+      "overlapHypotheses": "D03・D06",
+      "editorialNextTask": "D-31案の読解・回答不能を確認",
+      "additionalAudit": {
+        "riskIds": [
+          "D_REPETITION",
+          "ACTIVITY_ACCESS"
+        ],
+        "disposition": "TRIAL_ONLY_AFTER_CONSTRUCT_APPROVAL"
+      },
+      "ownerAdopted": false,
+      "scientificValidityEstablished": false,
+      "publicationAllowed": false
+    },
+    {
+      "id": "D02",
+      "axis": "D",
+      "editorialStatus": "TRIAL",
+      "triagePriority": "P2",
+      "candidatePairs": 1,
+      "originalQuestion": {
+        "negative": "幅広い分野を知る",
+        "positive": "一つの分野を深く理解する"
+      },
+      "unapprovedCandidate": {
+        "negative": "複数分野の知識を広く学ぶ",
+        "positive": "一分野の知識を深く学ぶ",
+        "source": "D59"
+      },
+      "originalConstruct": "経験の幅と深さ",
+      "candidateConstruct": "学習・経験の幅と深さ",
+      "overlapHypotheses": "D03・D06",
+      "editorialNextTask": "D-31案の読解・回答不能を確認",
+      "additionalAudit": {
+        "riskIds": [
+          "D_KNOWLEDGE_EXPERIENCE",
+          "LEARNING_ACCESS"
+        ],
+        "disposition": "TRIAL_ONLY_AFTER_CONSTRUCT_APPROVAL"
+      },
+      "ownerAdopted": false,
+      "scientificValidityEstablished": false,
+      "publicationAllowed": false
+    },
+    {
+      "id": "D03",
+      "axis": "D",
+      "editorialStatus": "BLOCK",
+      "triagePriority": "P0",
+      "candidatePairs": 2,
+      "originalQuestion": {
+        "negative": "未経験のことを数多く経験する",
+        "positive": "気に入った経験を繰り返し深める"
+      },
+      "unapprovedCandidate": {
+        "negative": "複数分野の体験を試す",
+        "positive": "一分野の体験を掘り下げる",
+        "source": "D59"
+      },
+      "originalConstruct": "経験の幅と深さ",
+      "candidateConstruct": "学習・経験の幅と深さ",
+      "overlapHypotheses": "D01・D06・D02",
+      "editorialNextTask": "D-34案A/Bの読解差を検証",
+      "additionalAudit": {
+        "riskIds": [
+          "D_KNOWLEDGE_EXPERIENCE",
+          "INTRA_D_REDUNDANCY"
+        ],
+        "disposition": "HOLD_BLOCK_REWRITE"
+      },
+      "ownerAdopted": false,
+      "scientificValidityEstablished": false,
+      "publicationAllowed": false
+    },
+    {
+      "id": "D04",
+      "axis": "D",
+      "editorialStatus": "REVISE",
+      "triagePriority": "P0",
+      "candidatePairs": 3,
+      "originalQuestion": {
+        "negative": "異なるテーマに取り組む",
+        "positive": "一つのテーマを追究する"
+      },
+      "unapprovedCandidate": {
+        "negative": "一つの課題で異なるテーマに触れる",
+        "positive": "一つの課題で特定テーマを掘り下げる",
+        "source": "D57"
+      },
+      "originalConstruct": "経験の幅と深さ",
+      "candidateConstruct": "学習・経験の幅と深さ",
+      "overlapHypotheses": "A04・A06",
+      "editorialNextTask": "D-31旧案＋D-36案A/Bの意味を比較",
+      "additionalAudit": {
+        "riskIds": [
+          "A_D_METHOD_OVERLAP",
+          "TASK_DEPENDENCE"
+        ],
+        "disposition": "REVISE_FOR_COGNITIVE_REVIEW"
+      },
+      "ownerAdopted": false,
+      "scientificValidityEstablished": false,
+      "publicationAllowed": false
+    },
+    {
+      "id": "D05",
+      "axis": "D",
+      "editorialStatus": "TRIAL",
+      "triagePriority": "P2",
+      "candidatePairs": 1,
+      "originalQuestion": {
+        "negative": "複数領域に知識を広げる",
+        "positive": "特定領域への理解を深める"
+      },
+      "unapprovedCandidate": {
+        "negative": "鑑賞・制作で複数の表現に触れる",
+        "positive": "鑑賞・制作で一つの表現を深める",
+        "source": "D57"
+      },
+      "originalConstruct": "経験の幅と深さ",
+      "candidateConstruct": "学習・経験の幅と深さ",
+      "overlapHypotheses": "—",
+      "editorialNextTask": "D-31案の読解・回答不能を確認",
+      "additionalAudit": {
+        "riskIds": [
+          "EXPERIENCE_REQUIRED",
+          "D_KNOWLEDGE_EXPERIENCE"
+        ],
+        "disposition": "TRIAL_ONLY_AFTER_CONSTRUCT_APPROVAL"
+      },
+      "ownerAdopted": false,
+      "scientificValidityEstablished": false,
+      "publicationAllowed": false
+    },
+    {
+      "id": "D06",
+      "axis": "D",
+      "editorialStatus": "REVISE",
+      "triagePriority": "P1",
+      "candidatePairs": 3,
+      "originalQuestion": {
+        "negative": "経験の種類を増やす",
+        "positive": "大切な経験の深さを増やす"
+      },
+      "unapprovedCandidate": {
+        "negative": "旅行・外出で訪れる対象を広げる",
+        "positive": "旅行・外出で一つの対象を詳しく知る",
+        "source": "D57"
+      },
+      "originalConstruct": "経験の幅と深さ",
+      "candidateConstruct": "学習・経験の幅と深さ",
+      "overlapHypotheses": "D01・D03・D02",
+      "editorialNextTask": "D-31旧案＋D-36案A/Bの意味を比較",
+      "additionalAudit": {
+        "riskIds": [
+          "RELOCATION_ACCESS",
+          "INTRA_D_REDUNDANCY"
+        ],
+        "disposition": "REVISE_FOR_COGNITIVE_REVIEW"
+      },
+      "ownerAdopted": false,
+      "scientificValidityEstablished": false,
+      "publicationAllowed": false
+    },
+    {
+      "id": "E01",
+      "axis": "E",
+      "editorialStatus": "TRIAL",
+      "triagePriority": "P2",
+      "candidatePairs": 1,
+      "originalQuestion": {
+        "negative": "収入に余裕のある働き方",
+        "positive": "自由時間に余裕のある働き方"
+      },
+      "unapprovedCandidate": {
+        "negative": "追加の支出裁量を先に確保する",
+        "positive": "追加の時間裁量を先に確保する",
+        "source": "D57"
+      },
+      "originalConstruct": "金銭裁量と時間裁量",
+      "candidateConstruct": "相対・独立・非分類の方式比較",
+      "overlapHypotheses": "E02・E03・E04・E05・E06",
+      "editorialNextTask": "D-31案の読解・回答不能を確認",
+      "additionalAudit": null,
+      "ownerAdopted": false,
+      "scientificValidityEstablished": false,
+      "publicationAllowed": false
+    },
+    {
+      "id": "E02",
+      "axis": "E",
+      "editorialStatus": "REVISE",
+      "triagePriority": "P0",
+      "candidatePairs": 3,
+      "originalQuestion": {
+        "negative": "追加収入を得る",
+        "positive": "自由時間を増やす"
+      },
+      "unapprovedCandidate": {
+        "negative": "余裕ができたら支出の選択肢を増やす",
+        "positive": "余裕ができたら予定の選択肢を増やす",
+        "source": "D57"
+      },
+      "originalConstruct": "金銭裁量と時間裁量",
+      "candidateConstruct": "相対・独立・非分類の方式比較",
+      "overlapHypotheses": "E01・E03・E04・E05・E06",
+      "editorialNextTask": "D-31旧案＋D-36案A/Bの意味を比較",
+      "additionalAudit": null,
+      "ownerAdopted": false,
+      "scientificValidityEstablished": false,
+      "publicationAllowed": false
+    },
+    {
+      "id": "E03",
+      "axis": "E",
+      "editorialStatus": "REVISE",
+      "triagePriority": "P0",
+      "candidatePairs": 3,
+      "originalQuestion": {
+        "negative": "収入のために使う時間を増やす",
+        "positive": "自分で使える時間を増やす"
+      },
+      "unapprovedCandidate": {
+        "negative": "趣味に使う予算の裁量を増やす",
+        "positive": "趣味に使う時間の裁量を増やす",
+        "source": "D57"
+      },
+      "originalConstruct": "金銭裁量と時間裁量",
+      "candidateConstruct": "相対・独立・非分類の方式比較",
+      "overlapHypotheses": "E01・E02・E04・E05・E06",
+      "editorialNextTask": "D-31旧案＋D-36案A/Bの意味を比較",
+      "additionalAudit": null,
+      "ownerAdopted": false,
+      "scientificValidityEstablished": false,
+      "publicationAllowed": false
+    },
+    {
+      "id": "E04",
+      "axis": "E",
+      "editorialStatus": "BLOCK",
+      "triagePriority": "P0",
+      "candidatePairs": 2,
+      "originalQuestion": {
+        "negative": "使えるお金の余裕を広げる",
+        "positive": "使える時間の余裕を広げる"
+      },
+      "unapprovedCandidate": {
+        "negative": "将来の支出先を選ぶ余地を増やす",
+        "positive": "将来の予定を選ぶ余地を増やす",
+        "source": "D57"
+      },
+      "originalConstruct": "金銭裁量と時間裁量",
+      "candidateConstruct": "相対・独立・非分類の方式比較",
+      "overlapHypotheses": "E01・E02・E03・E05・E06",
+      "editorialNextTask": "D-34案A/Bの読解差を検証",
+      "additionalAudit": null,
+      "ownerAdopted": false,
+      "scientificValidityEstablished": false,
+      "publicationAllowed": false
+    },
+    {
+      "id": "E05",
+      "axis": "E",
+      "editorialStatus": "BLOCK",
+      "triagePriority": "P0",
+      "candidatePairs": 2,
+      "originalQuestion": {
+        "negative": "可処分所得を月3万円増やす",
+        "positive": "自由時間を週3時間増やす"
+      },
+      "unapprovedCandidate": {
+        "negative": "家計の追加的な余裕を先に確保する",
+        "positive": "自由に使える追加的な時間を先に確保する",
+        "source": "D57"
+      },
+      "originalConstruct": "金銭裁量と時間裁量",
+      "candidateConstruct": "相対・独立・非分類の方式比較",
+      "overlapHypotheses": "E01・E02・E03・E04・E06",
+      "editorialNextTask": "D-34案A/Bの読解差を検証",
+      "additionalAudit": null,
+      "ownerAdopted": false,
+      "scientificValidityEstablished": false,
+      "publicationAllowed": false
+    },
+    {
+      "id": "E06",
+      "axis": "E",
+      "editorialStatus": "REVISE",
+      "triagePriority": "P0",
+      "candidatePairs": 3,
+      "originalQuestion": {
+        "negative": "経済的な選択肢を広げる",
+        "positive": "時間の使い方の選択肢を広げる"
+      },
+      "unapprovedCandidate": {
+        "negative": "生活上の追加予算の使途を選べること",
+        "positive": "生活上の追加時間の使途を選べること",
+        "source": "D57"
+      },
+      "originalConstruct": "金銭裁量と時間裁量",
+      "candidateConstruct": "相対・独立・非分類の方式比較",
+      "overlapHypotheses": "E01・E02・E03・E04・E05",
+      "editorialNextTask": "D-31旧案＋D-36案A/Bの意味を比較",
+      "additionalAudit": null,
+      "ownerAdopted": false,
+      "scientificValidityEstablished": false,
+      "publicationAllowed": false
+    }
+  ],
+  "b2ResearchPairs": [
+    {
+      "id": "B2P01",
+      "context": "日常の予定を決めるとき",
+      "editorialFlags": [
+        "SCENE_APPLICABILITY_UNVERIFIED",
+        "MULTIPLE_VERBS_OTHERS",
+        "RELATIONSHIP_NOT_APPLICABLE"
+      ],
+      "proposedSymmetricLanguage": {
+        "status": "DRAFT_REWRITE_NOT_APPROVED",
+        "self": "日常の予定を決めるとき、自分の希望をどの程度考慮したいですか。",
+        "others": "日常の予定を決めるとき、関係する人の希望をどの程度考慮したいですか。",
+        "bothUseSameConstruct": true,
+        "responseOptions": "1-7 plus explicit not_applicable/cannot_judge/prefer_not_to_answer/unanswered; anchors and recall context remain unvalidated"
+      },
+      "approved": false
+    },
+    {
+      "id": "B2P02",
+      "context": "学びや活動の内容を選ぶとき",
+      "editorialFlags": [
+        "SCENE_APPLICABILITY_UNVERIFIED",
+        "CONSTRUCT_MIX_OTHERS",
+        "DOMAIN_CONFOUND_D",
+        "OPPORTUNITY_CONSTRAINT"
+      ],
+      "proposedSymmetricLanguage": {
+        "status": "DRAFT_REWRITE_NOT_APPROVED",
+        "self": "学びや活動の内容を選ぶとき、自分の希望をどの程度考慮したいですか。",
+        "others": "学びや活動の内容を選ぶとき、関係する人の希望をどの程度考慮したいですか。",
+        "bothUseSameConstruct": true,
+        "responseOptions": "1-7 plus explicit not_applicable/cannot_judge/prefer_not_to_answer/unanswered; anchors and recall context remain unvalidated"
+      },
+      "approved": false
+    },
+    {
+      "id": "B2P03",
+      "context": "暮らしの習慣を見直すとき",
+      "editorialFlags": [
+        "SCENE_APPLICABILITY_UNVERIFIED",
+        "COMFORT_VS_PREFERENCE",
+        "LIVING_CONTEXT_CONFOUND"
+      ],
+      "proposedSymmetricLanguage": {
+        "status": "DRAFT_REWRITE_NOT_APPROVED",
+        "self": "暮らしの習慣を見直すとき、自分の希望をどの程度考慮したいですか。",
+        "others": "暮らしの習慣を見直すとき、関係する人の希望をどの程度考慮したいですか。",
+        "bothUseSameConstruct": true,
+        "responseOptions": "1-7 plus explicit not_applicable/cannot_judge/prefer_not_to_answer/unanswered; anchors and recall context remain unvalidated"
+      },
+      "approved": false
+    },
+    {
+      "id": "B2P04",
+      "context": "時間の使い方を決めるとき",
+      "editorialFlags": [
+        "SCENE_APPLICABILITY_UNVERIFIED",
+        "MIXED_OTHERS_WISH_AND_CONVENIENCE",
+        "DOMAIN_CONFOUND_C",
+        "DOMAIN_CONFOUND_E",
+        "OPPORTUNITY_CONSTRAINT"
+      ],
+      "proposedSymmetricLanguage": {
+        "status": "DRAFT_REWRITE_NOT_APPROVED",
+        "self": "時間の使い方を決めるとき、自分の希望をどの程度考慮したいですか。",
+        "others": "時間の使い方を決めるとき、関係する人の希望をどの程度考慮したいですか。",
+        "bothUseSameConstruct": true,
+        "responseOptions": "1-7 plus explicit not_applicable/cannot_judge/prefer_not_to_answer/unanswered; anchors and recall context remain unvalidated"
+      },
+      "approved": false
+    },
+    {
+      "id": "B2P05",
+      "context": "生活や活動の進め方を決めるとき",
+      "editorialFlags": [
+        "SCENE_APPLICABILITY_UNVERIFIED",
+        "FORCED_CHANGE_CONTEXT",
+        "DOMAIN_CONFOUND_A"
+      ],
+      "proposedSymmetricLanguage": {
+        "status": "DRAFT_REWRITE_NOT_APPROVED",
+        "self": "生活や活動の進め方を決めるとき、自分の希望をどの程度考慮したいですか。",
+        "others": "生活や活動の進め方を決めるとき、関係する人の希望をどの程度考慮したいですか。",
+        "bothUseSameConstruct": true,
+        "responseOptions": "1-7 plus explicit not_applicable/cannot_judge/prefer_not_to_answer/unanswered; anchors and recall context remain unvalidated"
+      },
+      "approved": false
+    },
+    {
+      "id": "B2P06",
+      "context": "試してみる活動を選ぶとき",
+      "editorialFlags": [
+        "SCENE_APPLICABILITY_UNVERIFIED",
+        "CURIOSITY_AND_WILL_MIX",
+        "DOMAIN_CONFOUND_A",
+        "DOMAIN_CONFOUND_D"
+      ],
+      "proposedSymmetricLanguage": {
+        "status": "DRAFT_REWRITE_NOT_APPROVED",
+        "self": "試してみる活動を選ぶとき、自分の希望をどの程度考慮したいですか。",
+        "others": "試してみる活動を選ぶとき、関係する人の希望をどの程度考慮したいですか。",
+        "bothUseSameConstruct": true,
+        "responseOptions": "1-7 plus explicit not_applicable/cannot_judge/prefer_not_to_answer/unanswered; anchors and recall context remain unvalidated"
+      },
+      "approved": false
+    }
+  ],
+  "decisionGates": [
+    {
+      "id": "S1-2",
+      "subject": "B research construct",
+      "proposedOption": "B2_P_PRIORITIES_AS_A_RESEARCH_HYPOTHESIS",
+      "status": "AWAITING_OWNER_DECISION",
+      "ownerChoice": null,
+      "independentReview": "NOT_PERFORMED",
+      "releaseAllowed": false
+    },
+    {
+      "id": "S1-3",
+      "subject": "A operating meaning",
+      "proposedOption": "LIFE_ENVIRONMENT_CONTINUITY_VS_CHANGE_CONSIDERATION",
+      "status": "AWAITING_OWNER_DECISION",
+      "ownerChoice": null,
+      "independentReview": "NOT_PERFORMED",
+      "releaseAllowed": false
+    },
+    {
+      "id": "S1-4",
+      "subject": "C operating meaning",
+      "proposedOption": "PRESENT_VS_FUTURE_BENEFIT_PRIORITY_UNDER_COMPARABLE_RESOURCE_CONSTRAINT",
+      "status": "AWAITING_OWNER_DECISION",
+      "ownerChoice": null,
+      "independentReview": "NOT_PERFORMED",
+      "releaseAllowed": false
+    },
+    {
+      "id": "S1-5",
+      "subject": "D operating meaning",
+      "proposedOption": "EXPERIENCE_BREADTH_VS_DEPTH_WITHIN_A_DEFINED_DOMAIN",
+      "status": "AWAITING_OWNER_DECISION",
+      "ownerChoice": null,
+      "independentReview": "NOT_PERFORMED",
+      "releaseAllowed": false
+    },
+    {
+      "id": "S1-7",
+      "subject": "R1 draft IDs and measured taxonomy migration",
+      "proposedOption": "T01_T16_UNCHANGED_EDITING_NAMESPACE_NO_AUTOMATIC_DIAGNOSTIC_LINK",
+      "status": "AWAITING_OWNER_DECISION",
+      "ownerChoice": null,
+      "independentReview": "NOT_PERFORMED",
+      "releaseAllowed": false
+    },
+    {
+      "id": "S1-8",
+      "subject": "Independent review plus stage approval",
+      "proposedOption": "DO_NOT_PASS_UNTIL_NAMED_INDEPENDENT_REVIEW_AND_OWNER_DECISION",
+      "status": "AWAITING_OWNER_DECISION",
+      "ownerChoice": null,
+      "independentReview": "NOT_PERFORMED",
+      "releaseAllowed": false
+    }
+  ],
+  "crossAxisPredeclaredCounterexamples": [
+    {
+      "axes": "A/D",
+      "case": "同じ住環境を長期間保ちつつ、趣味や知識は多方面に探索する",
+      "question": "住環境と活動の幅を混同していないか"
+    },
+    {
+      "axes": "C/E",
+      "case": "将来のために貯蓄を重視しつつ、日常の余暇は今の楽しみを選ぶ",
+      "question": "効用の時点と時間/金銭制約を分けて問えるか"
+    },
+    {
+      "axes": "B2/A",
+      "case": "大きな環境変化を希望しつつ、関係者の希望も十分に考慮する",
+      "question": "B2の回答で環境志向を推定していないか"
+    },
+    {
+      "axes": "B2/D",
+      "case": "新分野の探索を好むが、決め方は毎回相談して選ぶ",
+      "question": "活動の新奇性と決定への希望の考慮を混同していないか"
+    }
+  ],
+  "gates": {
+    "G1": "NOT_AUTHORIZED",
+    "D42": "NOT_AUTHORIZED",
+    "nativeTests": "NOT_RUN_IN_THIS_TURN",
+    "humanParticipants": "NONE",
+    "diagnosticScoringChanged": false,
+    "questionBankChanged": false,
+    "oldTypeIdsChanged": false,
+    "ownerApproval": false,
+    "publication": "NO_GO"
+  },
+  "nextAcceptedWork": [
+    "Independent editorial construct review with stop criteria before asking owner to select B2-P/SDT/B3",
+    "A/C/D operational definition split and 4 blocked item dispositions",
+    "Participant research ethics, recruitment, storage, withdrawal and data-management G1/D42 prior to recruitment",
+    "New Q/S/T/C versions instead of overwriting legacy diagnosis if model changes"
+  ]
+}
