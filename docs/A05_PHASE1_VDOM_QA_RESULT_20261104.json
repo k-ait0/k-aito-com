@@ -1,0 +1,120 @@
+{
+  "schema": "A05-VIRTUAL-DOM-QA-RESULT-20261104-v1.0.0",
+  "verifiedOn": "2026-11-04",
+  "qaScope": "Phase 1 simplified results / self 16 and pair 136; 256 ordered selections",
+  "repo": "k-ait0/k-aito-com",
+  "branch": "qa/a05-phase1-virtual-qa-20261104",
+  "testMethod": "Execute actual inline JS from GitHub HTML in V8 with in-memory minimal DOM adapter. Not actual Chromium or iOS.",
+  "source": {
+    "path": "projects/kidp/life-design-lab/a05/phase1-short-report-preview-20261104.html",
+    "baselineBlobSha": "af17e696242d773963ada621b0d92aaf72a40923",
+    "fixedBlobSha": "6ad508426e9faecf637fe4e3217791c3b2fe6f9f",
+    "pairSourcePath": "docs/A05_PHASE1_PAIR136_SHORT_REPORTS_20261104.json",
+    "pairSourceBlobSha": "239ab98195bb4880695c4e3026ab52ef0b10d227"
+  },
+  "before": {
+    "tests": "16 self plus 256 ordered pair selections",
+    "selfSelectionPass": 16,
+    "canonicalOrderedPairHeadingsCorrect": 136,
+    "reversedOrderPairHeadingsIncorrect": 120,
+    "axisTableCellOrientationFailures": 256,
+    "condition": "FAIL",
+    "sample": {
+      "selection": [
+        "T02",
+        "T01"
+      ],
+      "expected": "静かな探究者 × 着実な開拓者",
+      "actual": "着実な開拓者 × 静かな探究者"
+    }
+  },
+  "fix": {
+    "type": "UI_ORDER_ORIENTATION_ONLY",
+    "title": "Use current selector order for pair header and comparison table; reverse axis value columns when ID order is reversed",
+    "changedFiles": [
+      "projects/kidp/life-design-lab/a05/phase1-short-report-preview-20261104.html"
+    ],
+    "originalContentChanged": false,
+    "questionnaireChanged": false,
+    "taxonomyChanged": false,
+    "scoringChanged": false,
+    "releaseChanged": false
+  },
+  "after": {
+    "mode": "ACTUAL_GITHUB_JS_IN_V8_WITH_VIRTUAL_DOM",
+    "selfTypeCases": 16,
+    "orderedPairCases": 256,
+    "totalAssertedChecks": 2352,
+    "checksFailed": 0,
+    "result": "PASS",
+    "nativeChromiumApplicationRun": "NOT_RUN",
+    "nativeNodeApplicationRun": "NOT_RUN",
+    "physicalSafariVoiceOver": "DEFERRED_TO_FINAL"
+  },
+  "editorialRiskScan": {
+    "method": "Whitespace-normalized 14-character contiguous grams that occur in at least 16 of 136 report concatenations; measure coverage across shared+different+scenario+dilemma chapters; flag if >=0.5",
+    "pairsFlagged": 122,
+    "pairsTotal": 136,
+    "groups": {
+      "P3_PILOT16_20261104": {
+        "count": 16,
+        "flagged": 16
+      },
+      "NEW_COMPOSED_PHASE1": {
+        "count": 104,
+        "flagged": 92
+      },
+      "S4_V06_8_PILOT_20261030": {
+        "count": 8,
+        "flagged": 8
+      },
+      "P3_HIGH_REPEAT_NEXT8_20261104": {
+        "count": 8,
+        "flagged": 6
+      }
+    },
+    "highestRepeatExamples": [
+      "T02-T07",
+      "T03-T16",
+      "T05-T10",
+      "T07-T11",
+      "T10-T11"
+    ],
+    "caution": "This is a preliminary mechanical copy variation flag, not 122 proven quality defects. Includes recurring cautious phrases across multiple sections; this differs from previous v0.5 88/112 scenario-only/source audit."
+  },
+  "openIssues": [
+    {
+      "code": "ENV-01",
+      "state": "BLOCKED",
+      "problem": "Real A05 source not materialized in local runtime; git clone DNS unavailable",
+      "attempts": [
+        "git ls-remote -> github.com DNS failure",
+        "container raw-download route not available"
+      ],
+      "alternative": "GitHub connector source fetch and execute exact script in V8 virtual DOM",
+      "nextAction": "Use browser executable after source is materialized by a supported channel; don't certify Chromium before execution"
+    },
+    {
+      "code": "QA-EDITORIAL-01",
+      "state": "OPEN",
+      "problem": "122/136 combined narratives trigger high-repeat heuristic; human copy signoff 0",
+      "nextAction": "Prioritize per-pair semantic rewrites and independent editorial review"
+    },
+    {
+      "code": "QA-DEVICE-01",
+      "state": "DEFERRED",
+      "problem": "Physical iOS Safari/VoiceOver tests not yet executed by user direction",
+      "nextAction": "Final pre-release gate"
+    }
+  ],
+  "release": {
+    "goNoGo": "NO_GO",
+    "PRdraft": true,
+    "mainMerged": false,
+    "githubActionsExecuted": false
+  },
+  "testFiles": [
+    "scripts/test-a05-phase1-vdom-20261104.mjs",
+    "scripts/qa-a05-phase1-virtual-browser-20261104.py"
+  ]
+}
