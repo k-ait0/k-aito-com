@@ -3,7 +3,7 @@
   "runDateJst": "2026-11-04",
   "source": {
     "path": "docs/A05_PHASE1_PAIR136_SHORT_REPORTS_20261104.json",
-    "blobSha": "f51ca208071ae7378e5b8406bb36a75b1ec1eba1"
+    "blobSha": "4f48cc2d618dae4be196a4a3d90766b7efc50b53"
   },
   "method": {
     "gramSize": 14,
@@ -14,258 +14,27 @@
   },
   "summary": {
     "shared": {
-      "flagged": 128,
-      "mean": 0.81
+      "flagged": 116,
+      "mean": 0.747
     },
     "different": {
-      "flagged": 126,
-      "mean": 0.889
+      "flagged": 114,
+      "mean": 0.8
     },
     "scenario": {
-      "flagged": 73,
-      "mean": 0.366
+      "flagged": 35,
+      "mean": 0.21
     },
     "dilemma": {
-      "flagged": 96,
-      "mean": 0.55
+      "flagged": 84,
+      "mean": 0.483
     },
     "all": {
-      "flagged": 108,
-      "mean": 0.64
+      "flagged": 90,
+      "mean": 0.545
     }
   },
   "priorityQueue": [
-    {
-      "pairId": "T04-T09",
-      "narrativeSource": "NEW_COMPOSED_PHASE1",
-      "shared": 0.825,
-      "different": 1,
-      "scenario": 0.587,
-      "dilemma": 0.742,
-      "all": 0.775,
-      "needsEditorialReview": true,
-      "humanApproved": false
-    },
-    {
-      "pairId": "T01-T06",
-      "narrativeSource": "NEW_COMPOSED_PHASE1",
-      "shared": 0.846,
-      "different": 1,
-      "scenario": 0.59,
-      "dilemma": 0.74,
-      "all": 0.77,
-      "needsEditorialReview": true,
-      "humanApproved": false
-    },
-    {
-      "pairId": "T02-T14",
-      "narrativeSource": "NEW_COMPOSED_PHASE1",
-      "shared": 0.837,
-      "different": 1,
-      "scenario": 0.55,
-      "dilemma": 0.765,
-      "all": 0.77,
-      "needsEditorialReview": true,
-      "humanApproved": false
-    },
-    {
-      "pairId": "T06-T15",
-      "narrativeSource": "NEW_COMPOSED_PHASE1",
-      "shared": 0.815,
-      "different": 1,
-      "scenario": 0.585,
-      "dilemma": 0.721,
-      "all": 0.768,
-      "needsEditorialReview": true,
-      "humanApproved": false
-    },
-    {
-      "pairId": "T01-T14",
-      "narrativeSource": "NEW_COMPOSED_PHASE1",
-      "shared": 0.832,
-      "different": 1,
-      "scenario": 0.572,
-      "dilemma": 0.723,
-      "all": 0.767,
-      "needsEditorialReview": true,
-      "humanApproved": false
-    },
-    {
-      "pairId": "T02-T13",
-      "narrativeSource": "NEW_COMPOSED_PHASE1",
-      "shared": 0.84,
-      "different": 1,
-      "scenario": 0.508,
-      "dilemma": 0.767,
-      "all": 0.767,
-      "needsEditorialReview": true,
-      "humanApproved": false
-    },
-    {
-      "pairId": "T08-T12",
-      "narrativeSource": "NEW_COMPOSED_PHASE1",
-      "shared": 0.846,
-      "different": 1,
-      "scenario": 0.547,
-      "dilemma": 0.75,
-      "all": 0.766,
-      "needsEditorialReview": true,
-      "humanApproved": false
-    },
-    {
-      "pairId": "T05-T16",
-      "narrativeSource": "NEW_COMPOSED_PHASE1",
-      "shared": 0.815,
-      "different": 1,
-      "scenario": 0.523,
-      "dilemma": 0.76,
-      "all": 0.766,
-      "needsEditorialReview": true,
-      "humanApproved": false
-    },
-    {
-      "pairId": "T11-T16",
-      "narrativeSource": "NEW_COMPOSED_PHASE1",
-      "shared": 0.837,
-      "different": 1,
-      "scenario": 0.593,
-      "dilemma": 0.718,
-      "all": 0.764,
-      "needsEditorialReview": true,
-      "humanApproved": false
-    },
-    {
-      "pairId": "T03-T10",
-      "narrativeSource": "NEW_COMPOSED_PHASE1",
-      "shared": 0.831,
-      "different": 1,
-      "scenario": 0.52,
-      "dilemma": 0.74,
-      "all": 0.764,
-      "needsEditorialReview": true,
-      "humanApproved": false
-    },
-    {
-      "pairId": "T01-T08",
-      "narrativeSource": "NEW_COMPOSED_PHASE1",
-      "shared": 0.844,
-      "different": 1,
-      "scenario": 0.514,
-      "dilemma": 0.745,
-      "all": 0.763,
-      "needsEditorialReview": true,
-      "humanApproved": false
-    },
-    {
-      "pairId": "T08-T11",
-      "narrativeSource": "NEW_COMPOSED_PHASE1",
-      "shared": 0.841,
-      "different": 1,
-      "scenario": 0.514,
-      "dilemma": 0.734,
-      "all": 0.762,
-      "needsEditorialReview": true,
-      "humanApproved": false
-    },
-    {
-      "pairId": "T11-T14",
-      "narrativeSource": "NEW_COMPOSED_PHASE1",
-      "shared": 0.827,
-      "different": 1,
-      "scenario": 0.533,
-      "dilemma": 0.727,
-      "all": 0.762,
-      "needsEditorialReview": true,
-      "humanApproved": false
-    },
-    {
-      "pairId": "T03-T15",
-      "narrativeSource": "NEW_COMPOSED_PHASE1",
-      "shared": 0.825,
-      "different": 1,
-      "scenario": 0.54,
-      "dilemma": 0.754,
-      "all": 0.761,
-      "needsEditorialReview": true,
-      "humanApproved": false
-    },
-    {
-      "pairId": "T04-T08",
-      "narrativeSource": "NEW_COMPOSED_PHASE1",
-      "shared": 0.854,
-      "different": 1,
-      "scenario": 0.56,
-      "dilemma": 0.728,
-      "all": 0.761,
-      "needsEditorialReview": true,
-      "humanApproved": false
-    },
-    {
-      "pairId": "T09-T14",
-      "narrativeSource": "NEW_COMPOSED_PHASE1",
-      "shared": 0.815,
-      "different": 1,
-      "scenario": 0.599,
-      "dilemma": 0.718,
-      "all": 0.761,
-      "needsEditorialReview": true,
-      "humanApproved": false
-    },
-    {
-      "pairId": "T07-T14",
-      "narrativeSource": "NEW_COMPOSED_PHASE1",
-      "shared": 0.824,
-      "different": 1,
-      "scenario": 0.52,
-      "dilemma": 0.735,
-      "all": 0.761,
-      "needsEditorialReview": true,
-      "humanApproved": false
-    },
-    {
-      "pairId": "T03-T07",
-      "narrativeSource": "NEW_COMPOSED_PHASE1",
-      "shared": 0.846,
-      "different": 1,
-      "scenario": 0.56,
-      "dilemma": 0.726,
-      "all": 0.76,
-      "needsEditorialReview": true,
-      "humanApproved": false
-    },
-    {
-      "pairId": "T03-T06",
-      "narrativeSource": "NEW_COMPOSED_PHASE1",
-      "shared": 0.818,
-      "different": 1,
-      "scenario": 0.517,
-      "dilemma": 0.745,
-      "all": 0.759,
-      "needsEditorialReview": true,
-      "humanApproved": false
-    },
-    {
-      "pairId": "T10-T13",
-      "narrativeSource": "NEW_COMPOSED_PHASE1",
-      "shared": 0.846,
-      "different": 1,
-      "scenario": 0.529,
-      "dilemma": 0.744,
-      "all": 0.759,
-      "needsEditorialReview": true,
-      "humanApproved": false
-    },
-    {
-      "pairId": "T11-T15",
-      "narrativeSource": "NEW_COMPOSED_PHASE1",
-      "shared": 0.846,
-      "different": 1,
-      "scenario": 0.556,
-      "dilemma": 0.728,
-      "all": 0.759,
-      "needsEditorialReview": true,
-      "humanApproved": false
-    },
     {
       "pairId": "T04-T10",
       "narrativeSource": "NEW_COMPOSED_PHASE1",
@@ -285,28 +54,6 @@
       "scenario": 0.506,
       "dilemma": 0.745,
       "all": 0.757,
-      "needsEditorialReview": true,
-      "humanApproved": false
-    },
-    {
-      "pairId": "T10-T14",
-      "narrativeSource": "NEW_COMPOSED_PHASE1",
-      "shared": 0.843,
-      "different": 1,
-      "scenario": 0.55,
-      "dilemma": 0.733,
-      "all": 0.756,
-      "needsEditorialReview": true,
-      "humanApproved": false
-    },
-    {
-      "pairId": "T06-T09",
-      "narrativeSource": "NEW_COMPOSED_PHASE1",
-      "shared": 0.815,
-      "different": 1,
-      "scenario": 0.5,
-      "dilemma": 0.754,
-      "all": 0.755,
       "needsEditorialReview": true,
       "humanApproved": false
     },
@@ -333,6 +80,17 @@
       "humanApproved": false
     },
     {
+      "pairId": "T09-T14",
+      "narrativeSource": "NEW_COMPOSED_PHASE1",
+      "shared": 0.778,
+      "different": 1,
+      "scenario": 0.599,
+      "dilemma": 0.718,
+      "all": 0.753,
+      "needsEditorialReview": true,
+      "humanApproved": false
+    },
+    {
       "pairId": "T02-T12",
       "narrativeSource": "NEW_COMPOSED_PHASE1",
       "shared": 0.853,
@@ -340,17 +98,6 @@
       "scenario": 0.497,
       "dilemma": 0.748,
       "all": 0.753,
-      "needsEditorialReview": true,
-      "humanApproved": false
-    },
-    {
-      "pairId": "T12-T16",
-      "narrativeSource": "NEW_COMPOSED_PHASE1",
-      "shared": 0.842,
-      "different": 1,
-      "scenario": 0.553,
-      "dilemma": 0.71,
-      "all": 0.751,
       "needsEditorialReview": true,
       "humanApproved": false
     },
@@ -395,17 +142,6 @@
       "scenario": 0.497,
       "dilemma": 0.721,
       "all": 0.75,
-      "needsEditorialReview": true,
-      "humanApproved": false
-    },
-    {
-      "pairId": "T09-T13",
-      "narrativeSource": "NEW_COMPOSED_PHASE1",
-      "shared": 0.837,
-      "different": 1,
-      "scenario": 0.54,
-      "dilemma": 0.723,
-      "all": 0.748,
       "needsEditorialReview": true,
       "humanApproved": false
     },
@@ -531,17 +267,6 @@
       "humanApproved": false
     },
     {
-      "pairId": "T02-T06",
-      "narrativeSource": "NEW_COMPOSED_PHASE1",
-      "shared": 0.85,
-      "different": 1,
-      "scenario": 0.525,
-      "dilemma": 0.692,
-      "all": 0.737,
-      "needsEditorialReview": true,
-      "humanApproved": false
-    },
-    {
       "pairId": "T08-T14",
       "narrativeSource": "NEW_COMPOSED_PHASE1",
       "shared": 0.828,
@@ -564,28 +289,6 @@
       "humanApproved": false
     },
     {
-      "pairId": "T02-T05",
-      "narrativeSource": "NEW_COMPOSED_PHASE1",
-      "shared": 0.841,
-      "different": 1,
-      "scenario": 0.503,
-      "dilemma": 0.697,
-      "all": 0.735,
-      "needsEditorialReview": true,
-      "humanApproved": false
-    },
-    {
-      "pairId": "T13-T16",
-      "narrativeSource": "NEW_COMPOSED_PHASE1",
-      "shared": 0.827,
-      "different": 0.91,
-      "scenario": 0.539,
-      "dilemma": 0.729,
-      "all": 0.735,
-      "needsEditorialReview": true,
-      "humanApproved": false
-    },
-    {
       "pairId": "T12-T14",
       "narrativeSource": "NEW_COMPOSED_PHASE1",
       "shared": 0.832,
@@ -593,17 +296,6 @@
       "scenario": 0.482,
       "dilemma": 0.723,
       "all": 0.734,
-      "needsEditorialReview": true,
-      "humanApproved": false
-    },
-    {
-      "pairId": "T01-T04",
-      "narrativeSource": "NEW_COMPOSED_PHASE1",
-      "shared": 0.856,
-      "different": 0.91,
-      "scenario": 0.526,
-      "dilemma": 0.707,
-      "all": 0.731,
       "needsEditorialReview": true,
       "humanApproved": false
     },
@@ -637,17 +329,6 @@
       "scenario": 0.485,
       "dilemma": 0.72,
       "all": 0.715,
-      "needsEditorialReview": true,
-      "humanApproved": false
-    },
-    {
-      "pairId": "T04-T11",
-      "narrativeSource": "NEW_COMPOSED_PHASE1",
-      "shared": 0.854,
-      "different": 1,
-      "scenario": 0.542,
-      "dilemma": 0.5,
-      "all": 0.714,
       "needsEditorialReview": true,
       "humanApproved": false
     },
@@ -729,17 +410,6 @@
       "humanApproved": false
     },
     {
-      "pairId": "T08-T15",
-      "narrativeSource": "NEW_COMPOSED_PHASE1",
-      "shared": 0.828,
-      "different": 1,
-      "scenario": 0.529,
-      "dilemma": 0.492,
-      "all": 0.701,
-      "needsEditorialReview": true,
-      "humanApproved": false
-    },
-    {
       "pairId": "T09-T10",
       "narrativeSource": "NEW_COMPOSED_PHASE1",
       "shared": 0.804,
@@ -778,8 +448,8 @@
       "shared": 0.799,
       "different": 0.901,
       "scenario": 0.59,
-      "dilemma": 0.537,
-      "all": 0.69,
+      "dilemma": 0.528,
+      "all": 0.688,
       "needsEditorialReview": true,
       "humanApproved": false
     },
@@ -789,8 +459,8 @@
       "shared": 0.807,
       "different": 0.901,
       "scenario": 0.581,
-      "dilemma": 0.532,
-      "all": 0.688,
+      "dilemma": 0.524,
+      "all": 0.686,
       "needsEditorialReview": true,
       "humanApproved": false
     },
@@ -800,19 +470,8 @@
       "shared": 0.813,
       "different": 0.901,
       "scenario": 0.578,
-      "dilemma": 0.52,
-      "all": 0.683,
-      "needsEditorialReview": true,
-      "humanApproved": false
-    },
-    {
-      "pairId": "T15-T16",
-      "narrativeSource": "NEW_COMPOSED_PHASE1",
-      "shared": 0.79,
-      "different": 0.901,
-      "scenario": 0.578,
-      "dilemma": 0.528,
-      "all": 0.682,
+      "dilemma": 0.512,
+      "all": 0.681,
       "needsEditorialReview": true,
       "humanApproved": false
     },
@@ -828,24 +487,24 @@
       "humanApproved": false
     },
     {
+      "pairId": "T15-T16",
+      "narrativeSource": "NEW_COMPOSED_PHASE1",
+      "shared": 0.79,
+      "different": 0.901,
+      "scenario": 0.578,
+      "dilemma": 0.52,
+      "all": 0.68,
+      "needsEditorialReview": true,
+      "humanApproved": false
+    },
+    {
       "pairId": "T11-T12",
       "narrativeSource": "NEW_COMPOSED_PHASE1",
       "shared": 0.82,
       "different": 0.901,
       "scenario": 0.572,
-      "dilemma": 0.512,
-      "all": 0.679,
-      "needsEditorialReview": true,
-      "humanApproved": false
-    },
-    {
-      "pairId": "T02-T09",
-      "narrativeSource": "NEW_COMPOSED_PHASE1",
-      "shared": 0.835,
-      "different": 1,
-      "scenario": 0.486,
-      "dilemma": 0.47,
-      "all": 0.677,
+      "dilemma": 0.504,
+      "all": 0.678,
       "needsEditorialReview": true,
       "humanApproved": false
     },
@@ -877,18 +536,7 @@
       "shared": 0.809,
       "different": 1,
       "scenario": 0,
-      "dilemma": 0.761,
-      "all": 0.64,
-      "needsEditorialReview": true,
-      "humanApproved": false
-    },
-    {
-      "pairId": "T03-T11",
-      "narrativeSource": "NEW_COMPOSED_PHASE1",
-      "shared": 0.848,
-      "different": 0.645,
-      "scenario": 0.566,
-      "dilemma": 0.488,
+      "dilemma": 0.754,
       "all": 0.639,
       "needsEditorialReview": true,
       "humanApproved": false
@@ -899,8 +547,8 @@
       "shared": 0.838,
       "different": 1,
       "scenario": 0,
-      "dilemma": 0.779,
-      "all": 0.637,
+      "dilemma": 0.771,
+      "all": 0.635,
       "needsEditorialReview": true,
       "humanApproved": false
     },
@@ -910,19 +558,8 @@
       "shared": 0.848,
       "different": 1,
       "scenario": 0,
-      "dilemma": 0.748,
-      "all": 0.637,
-      "needsEditorialReview": true,
-      "humanApproved": false
-    },
-    {
-      "pairId": "T02-T10",
-      "narrativeSource": "NEW_COMPOSED_PHASE1",
-      "shared": 0.862,
-      "different": 0.645,
-      "scenario": 0.553,
-      "dilemma": 0.477,
-      "all": 0.631,
+      "dilemma": 0.74,
+      "all": 0.635,
       "needsEditorialReview": true,
       "humanApproved": false
     },
@@ -943,30 +580,8 @@
       "shared": 0.854,
       "different": 1,
       "scenario": 0,
-      "dilemma": 0.75,
-      "all": 0.627,
-      "needsEditorialReview": true,
-      "humanApproved": false
-    },
-    {
-      "pairId": "T05-T13",
-      "narrativeSource": "NEW_COMPOSED_PHASE1",
-      "shared": 0.843,
-      "different": 0.645,
-      "scenario": 0.543,
-      "dilemma": 0.488,
-      "all": 0.627,
-      "needsEditorialReview": true,
-      "humanApproved": false
-    },
-    {
-      "pairId": "T08-T16",
-      "narrativeSource": "NEW_COMPOSED_PHASE1",
-      "shared": 0.838,
-      "different": 0.645,
-      "scenario": 0.543,
-      "dilemma": 0.484,
-      "all": 0.626,
+      "dilemma": 0.743,
+      "all": 0.625,
       "needsEditorialReview": true,
       "humanApproved": false
     },
@@ -993,39 +608,6 @@
       "humanApproved": false
     },
     {
-      "pairId": "T06-T14",
-      "narrativeSource": "NEW_COMPOSED_PHASE1",
-      "shared": 0.831,
-      "different": 0.645,
-      "scenario": 0.547,
-      "dilemma": 0.477,
-      "all": 0.622,
-      "needsEditorialReview": true,
-      "humanApproved": false
-    },
-    {
-      "pairId": "T01-T09",
-      "narrativeSource": "NEW_COMPOSED_PHASE1",
-      "shared": 0.848,
-      "different": 0.645,
-      "scenario": 0.531,
-      "dilemma": 0.466,
-      "all": 0.619,
-      "needsEditorialReview": true,
-      "humanApproved": false
-    },
-    {
-      "pairId": "T12-T15",
-      "narrativeSource": "S4_V06_8_PILOT_20261030",
-      "shared": 0.832,
-      "different": 1,
-      "scenario": 0,
-      "dilemma": 0.707,
-      "all": 0.617,
-      "needsEditorialReview": true,
-      "humanApproved": false
-    },
-    {
       "pairId": "T03-T13",
       "narrativeSource": "S4_V06_8_PILOT_20261030",
       "shared": 0.774,
@@ -1033,17 +615,6 @@
       "scenario": 0,
       "dilemma": 0.739,
       "all": 0.614,
-      "needsEditorialReview": true,
-      "humanApproved": false
-    },
-    {
-      "pairId": "T03-T08",
-      "narrativeSource": "S4_V06_8_PILOT_20261030",
-      "shared": 0.831,
-      "different": 1,
-      "scenario": 0,
-      "dilemma": 0.712,
-      "all": 0.612,
       "needsEditorialReview": true,
       "humanApproved": false
     },
@@ -1070,6 +641,17 @@
       "humanApproved": false
     },
     {
+      "pairId": "T07-T14",
+      "narrativeSource": "NEW_COMPOSED_PHASE1",
+      "shared": 0.824,
+      "different": 1,
+      "scenario": 0,
+      "dilemma": 0.735,
+      "all": 0.61,
+      "needsEditorialReview": true,
+      "humanApproved": false
+    },
+    {
       "pairId": "T05-T09",
       "narrativeSource": "P3_HIGH_REPEAT_NEXT8_20261104",
       "shared": 0.826,
@@ -1081,13 +663,35 @@
       "humanApproved": false
     },
     {
-      "pairId": "T04-T07",
-      "narrativeSource": "S4_V06_8_PILOT_20261030",
-      "shared": 0.852,
+      "pairId": "T11-T14",
+      "narrativeSource": "NEW_COMPOSED_PHASE1",
+      "shared": 0.827,
       "different": 1,
       "scenario": 0,
-      "dilemma": 0.731,
+      "dilemma": 0.727,
+      "all": 0.609,
+      "needsEditorialReview": true,
+      "humanApproved": false
+    },
+    {
+      "pairId": "T12-T15",
+      "narrativeSource": "S4_V06_8_PILOT_20261030",
+      "shared": 0.794,
+      "different": 1,
+      "scenario": 0,
+      "dilemma": 0.707,
       "all": 0.608,
+      "needsEditorialReview": true,
+      "humanApproved": false
+    },
+    {
+      "pairId": "T03-T06",
+      "narrativeSource": "NEW_COMPOSED_PHASE1",
+      "shared": 0.818,
+      "different": 1,
+      "scenario": 0,
+      "dilemma": 0.737,
+      "all": 0.605,
       "needsEditorialReview": true,
       "humanApproved": false
     },
@@ -1103,6 +707,17 @@
       "humanApproved": false
     },
     {
+      "pairId": "T03-T08",
+      "narrativeSource": "S4_V06_8_PILOT_20261030",
+      "shared": 0.794,
+      "different": 1,
+      "scenario": 0,
+      "dilemma": 0.712,
+      "all": 0.603,
+      "needsEditorialReview": true,
+      "humanApproved": false
+    },
+    {
       "pairId": "T01-T05",
       "narrativeSource": "P3_PILOT16_20261104",
       "shared": 0.854,
@@ -1114,6 +729,39 @@
       "humanApproved": false
     },
     {
+      "pairId": "T04-T07",
+      "narrativeSource": "S4_V06_8_PILOT_20261030",
+      "shared": 0.813,
+      "different": 1,
+      "scenario": 0,
+      "dilemma": 0.731,
+      "all": 0.599,
+      "needsEditorialReview": true,
+      "humanApproved": false
+    },
+    {
+      "pairId": "T03-T15",
+      "narrativeSource": "NEW_COMPOSED_PHASE1",
+      "shared": 0.825,
+      "different": 1,
+      "scenario": 0,
+      "dilemma": 0.754,
+      "all": 0.598,
+      "needsEditorialReview": true,
+      "humanApproved": false
+    },
+    {
+      "pairId": "T06-T09",
+      "narrativeSource": "NEW_COMPOSED_PHASE1",
+      "shared": 0.777,
+      "different": 1,
+      "scenario": 0,
+      "dilemma": 0.754,
+      "all": 0.597,
+      "needsEditorialReview": true,
+      "humanApproved": false
+    },
+    {
       "pairId": "T06-T07",
       "narrativeSource": "S4_V06_8_PILOT_20261030",
       "shared": 0.838,
@@ -1121,6 +769,83 @@
       "scenario": 0,
       "dilemma": 0.72,
       "all": 0.595,
+      "needsEditorialReview": true,
+      "humanApproved": false
+    },
+    {
+      "pairId": "T03-T07",
+      "narrativeSource": "NEW_COMPOSED_PHASE1",
+      "shared": 0.846,
+      "different": 1,
+      "scenario": 0,
+      "dilemma": 0.726,
+      "all": 0.59,
+      "needsEditorialReview": true,
+      "humanApproved": false
+    },
+    {
+      "pairId": "T04-T08",
+      "narrativeSource": "NEW_COMPOSED_PHASE1",
+      "shared": 0.854,
+      "different": 1,
+      "scenario": 0,
+      "dilemma": 0.728,
+      "all": 0.59,
+      "needsEditorialReview": true,
+      "humanApproved": false
+    },
+    {
+      "pairId": "T11-T15",
+      "narrativeSource": "NEW_COMPOSED_PHASE1",
+      "shared": 0.846,
+      "different": 1,
+      "scenario": 0,
+      "dilemma": 0.728,
+      "all": 0.59,
+      "needsEditorialReview": true,
+      "humanApproved": false
+    },
+    {
+      "pairId": "T10-T13",
+      "narrativeSource": "NEW_COMPOSED_PHASE1",
+      "shared": 0.808,
+      "different": 1,
+      "scenario": 0,
+      "dilemma": 0.744,
+      "all": 0.589,
+      "needsEditorialReview": true,
+      "humanApproved": false
+    },
+    {
+      "pairId": "T10-T14",
+      "narrativeSource": "NEW_COMPOSED_PHASE1",
+      "shared": 0.843,
+      "different": 1,
+      "scenario": 0,
+      "dilemma": 0.733,
+      "all": 0.587,
+      "needsEditorialReview": true,
+      "humanApproved": false
+    },
+    {
+      "pairId": "T12-T16",
+      "narrativeSource": "NEW_COMPOSED_PHASE1",
+      "shared": 0.842,
+      "different": 1,
+      "scenario": 0,
+      "dilemma": 0.71,
+      "all": 0.582,
+      "needsEditorialReview": true,
+      "humanApproved": false
+    },
+    {
+      "pairId": "T09-T13",
+      "narrativeSource": "NEW_COMPOSED_PHASE1",
+      "shared": 0.837,
+      "different": 1,
+      "scenario": 0,
+      "dilemma": 0.723,
+      "all": 0.58,
       "needsEditorialReview": true,
       "humanApproved": false
     },
@@ -1147,6 +872,50 @@
       "humanApproved": false
     },
     {
+      "pairId": "T02-T06",
+      "narrativeSource": "NEW_COMPOSED_PHASE1",
+      "shared": 0.85,
+      "different": 1,
+      "scenario": 0,
+      "dilemma": 0.692,
+      "all": 0.572,
+      "needsEditorialReview": true,
+      "humanApproved": false
+    },
+    {
+      "pairId": "T13-T16",
+      "narrativeSource": "NEW_COMPOSED_PHASE1",
+      "shared": 0.827,
+      "different": 0.91,
+      "scenario": 0,
+      "dilemma": 0.729,
+      "all": 0.572,
+      "needsEditorialReview": true,
+      "humanApproved": false
+    },
+    {
+      "pairId": "T02-T05",
+      "narrativeSource": "NEW_COMPOSED_PHASE1",
+      "shared": 0.803,
+      "different": 1,
+      "scenario": 0,
+      "dilemma": 0.697,
+      "all": 0.57,
+      "needsEditorialReview": true,
+      "humanApproved": false
+    },
+    {
+      "pairId": "T01-T04",
+      "narrativeSource": "NEW_COMPOSED_PHASE1",
+      "shared": 0.856,
+      "different": 0.91,
+      "scenario": 0,
+      "dilemma": 0.707,
+      "all": 0.57,
+      "needsEditorialReview": true,
+      "humanApproved": false
+    },
+    {
       "pairId": "T06-T13",
       "narrativeSource": "S4_V06_8_PILOT_20261030",
       "shared": 0.833,
@@ -1154,6 +923,17 @@
       "scenario": 0,
       "dilemma": 0.492,
       "all": 0.56,
+      "needsEditorialReview": true,
+      "humanApproved": false
+    },
+    {
+      "pairId": "T04-T11",
+      "narrativeSource": "NEW_COMPOSED_PHASE1",
+      "shared": 0.854,
+      "different": 1,
+      "scenario": 0,
+      "dilemma": 0.5,
+      "all": 0.55,
       "needsEditorialReview": true,
       "humanApproved": false
     },
@@ -1174,8 +954,8 @@
       "shared": 0.827,
       "different": 0.901,
       "scenario": 0,
-      "dilemma": 0.555,
-      "all": 0.546,
+      "dilemma": 0.546,
+      "all": 0.544,
       "needsEditorialReview": true,
       "humanApproved": false
     },
@@ -1186,6 +966,17 @@
       "different": 0.994,
       "scenario": 0,
       "dilemma": 0.74,
+      "all": 0.54,
+      "needsEditorialReview": true,
+      "humanApproved": false
+    },
+    {
+      "pairId": "T08-T15",
+      "narrativeSource": "NEW_COMPOSED_PHASE1",
+      "shared": 0.828,
+      "different": 1,
+      "scenario": 0,
+      "dilemma": 0.492,
       "all": 0.54,
       "needsEditorialReview": true,
       "humanApproved": false
@@ -1220,6 +1011,17 @@
       "scenario": 0,
       "dilemma": 0.707,
       "all": 0.527,
+      "needsEditorialReview": true,
+      "humanApproved": false
+    },
+    {
+      "pairId": "T02-T09",
+      "narrativeSource": "NEW_COMPOSED_PHASE1",
+      "shared": 0.835,
+      "different": 1,
+      "scenario": 0,
+      "dilemma": 0.47,
+      "all": 0.522,
       "needsEditorialReview": true,
       "humanApproved": false
     },
@@ -1274,6 +1076,17 @@
       "different": 1,
       "scenario": 0,
       "dilemma": 0,
+      "all": 0.467,
+      "needsEditorialReview": true,
+      "humanApproved": false
+    },
+    {
+      "pairId": "T03-T11",
+      "narrativeSource": "NEW_COMPOSED_PHASE1",
+      "shared": 0.848,
+      "different": 0.645,
+      "scenario": 0,
+      "dilemma": 0.488,
       "all": 0.467,
       "needsEditorialReview": true,
       "humanApproved": false
@@ -1345,6 +1158,17 @@
       "humanApproved": false
     },
     {
+      "pairId": "T02-T10",
+      "narrativeSource": "NEW_COMPOSED_PHASE1",
+      "shared": 0.862,
+      "different": 0.645,
+      "scenario": 0,
+      "dilemma": 0.477,
+      "all": 0.46,
+      "needsEditorialReview": true,
+      "humanApproved": false
+    },
+    {
       "pairId": "T12-T12",
       "narrativeSource": "NEW_COMPOSED_PHASE1",
       "shared": 0.873,
@@ -1389,12 +1213,34 @@
       "humanApproved": false
     },
     {
+      "pairId": "T05-T13",
+      "narrativeSource": "NEW_COMPOSED_PHASE1",
+      "shared": 0.843,
+      "different": 0.645,
+      "scenario": 0,
+      "dilemma": 0.488,
+      "all": 0.457,
+      "needsEditorialReview": true,
+      "humanApproved": false
+    },
+    {
       "pairId": "T14-T14",
       "narrativeSource": "NEW_COMPOSED_PHASE1",
       "shared": 0.858,
       "different": 1,
       "scenario": 0,
       "dilemma": 0,
+      "all": 0.456,
+      "needsEditorialReview": true,
+      "humanApproved": false
+    },
+    {
+      "pairId": "T08-T16",
+      "narrativeSource": "NEW_COMPOSED_PHASE1",
+      "shared": 0.838,
+      "different": 0.645,
+      "scenario": 0,
+      "dilemma": 0.484,
       "all": 0.456,
       "needsEditorialReview": true,
       "humanApproved": false
@@ -1407,6 +1253,28 @@
       "scenario": 0,
       "dilemma": 0,
       "all": 0.455,
+      "needsEditorialReview": true,
+      "humanApproved": false
+    },
+    {
+      "pairId": "T01-T09",
+      "narrativeSource": "NEW_COMPOSED_PHASE1",
+      "shared": 0.848,
+      "different": 0.645,
+      "scenario": 0,
+      "dilemma": 0.466,
+      "all": 0.453,
+      "needsEditorialReview": true,
+      "humanApproved": false
+    },
+    {
+      "pairId": "T06-T14",
+      "narrativeSource": "NEW_COMPOSED_PHASE1",
+      "shared": 0.831,
+      "different": 0.645,
+      "scenario": 0,
+      "dilemma": 0.477,
+      "all": 0.453,
       "needsEditorialReview": true,
       "humanApproved": false
     },
@@ -1455,28 +1323,6 @@
       "humanApproved": false
     },
     {
-      "pairId": "T03-T16",
-      "narrativeSource": "NEW_COMPOSED_PHASE1",
-      "shared": 0.815,
-      "different": 0,
-      "scenario": 0.615,
-      "dilemma": 0,
-      "all": 0.37,
-      "needsEditorialReview": true,
-      "humanApproved": false
-    },
-    {
-      "pairId": "T07-T12",
-      "narrativeSource": "NEW_COMPOSED_PHASE1",
-      "shared": 0.843,
-      "different": 0,
-      "scenario": 0.581,
-      "dilemma": 0,
-      "all": 0.367,
-      "needsEditorialReview": true,
-      "humanApproved": false
-    },
-    {
       "pairId": "T12-T13",
       "narrativeSource": "NEW_COMPOSED_PHASE1",
       "shared": 0.835,
@@ -1488,24 +1334,24 @@
       "humanApproved": false
     },
     {
-      "pairId": "T05-T10",
+      "pairId": "T03-T16",
       "narrativeSource": "NEW_COMPOSED_PHASE1",
-      "shared": 0.835,
+      "shared": 0.778,
       "different": 0,
-      "scenario": 0.602,
+      "scenario": 0.615,
       "dilemma": 0,
       "all": 0.362,
       "needsEditorialReview": true,
       "humanApproved": false
     },
     {
-      "pairId": "T07-T11",
+      "pairId": "T07-T12",
       "narrativeSource": "NEW_COMPOSED_PHASE1",
-      "shared": 0.857,
+      "shared": 0.802,
       "different": 0,
-      "scenario": 0.563,
+      "scenario": 0.581,
       "dilemma": 0,
-      "all": 0.357,
+      "all": 0.359,
       "needsEditorialReview": true,
       "humanApproved": false
     },
@@ -1521,13 +1367,167 @@
       "humanApproved": false
     },
     {
+      "pairId": "T05-T10",
+      "narrativeSource": "NEW_COMPOSED_PHASE1",
+      "shared": 0.795,
+      "different": 0,
+      "scenario": 0.602,
+      "dilemma": 0,
+      "all": 0.354,
+      "needsEditorialReview": true,
+      "humanApproved": false
+    },
+    {
+      "pairId": "T07-T11",
+      "narrativeSource": "NEW_COMPOSED_PHASE1",
+      "shared": 0.857,
+      "different": 0,
+      "scenario": 0,
+      "dilemma": 0,
+      "all": 0.196,
+      "needsEditorialReview": true,
+      "humanApproved": false
+    },
+    {
       "pairId": "T04-T15",
       "narrativeSource": "NEW_COMPOSED_PHASE1",
-      "shared": 0.828,
+      "shared": 0.789,
       "different": 0,
-      "scenario": 0.542,
+      "scenario": 0,
       "dilemma": 0,
-      "all": 0.339,
+      "all": 0.174,
+      "needsEditorialReview": true,
+      "humanApproved": false
+    },
+    {
+      "pairId": "T03-T10",
+      "narrativeSource": "NEW_COMPOSED_PHASE1",
+      "shared": 0.172,
+      "different": 0,
+      "scenario": 0,
+      "dilemma": 0,
+      "all": 0.071,
+      "needsEditorialReview": true,
+      "humanApproved": false
+    },
+    {
+      "pairId": "T01-T08",
+      "narrativeSource": "NEW_COMPOSED_PHASE1",
+      "shared": 0.169,
+      "different": 0,
+      "scenario": 0,
+      "dilemma": 0,
+      "all": 0.07,
+      "needsEditorialReview": true,
+      "humanApproved": false
+    },
+    {
+      "pairId": "T01-T14",
+      "narrativeSource": "NEW_COMPOSED_PHASE1",
+      "shared": 0.16,
+      "different": 0,
+      "scenario": 0,
+      "dilemma": 0,
+      "all": 0.068,
+      "needsEditorialReview": true,
+      "humanApproved": false
+    },
+    {
+      "pairId": "T08-T11",
+      "narrativeSource": "NEW_COMPOSED_PHASE1",
+      "shared": 0.173,
+      "different": 0,
+      "scenario": 0,
+      "dilemma": 0,
+      "all": 0.068,
+      "needsEditorialReview": true,
+      "humanApproved": false
+    },
+    {
+      "pairId": "T05-T16",
+      "narrativeSource": "NEW_COMPOSED_PHASE1",
+      "shared": 0.161,
+      "different": 0,
+      "scenario": 0,
+      "dilemma": 0,
+      "all": 0.067,
+      "needsEditorialReview": true,
+      "humanApproved": false
+    },
+    {
+      "pairId": "T01-T06",
+      "narrativeSource": "NEW_COMPOSED_PHASE1",
+      "shared": 0.17,
+      "different": 0,
+      "scenario": 0,
+      "dilemma": 0,
+      "all": 0.066,
+      "needsEditorialReview": true,
+      "humanApproved": false
+    },
+    {
+      "pairId": "T11-T16",
+      "narrativeSource": "NEW_COMPOSED_PHASE1",
+      "shared": 0.156,
+      "different": 0,
+      "scenario": 0,
+      "dilemma": 0,
+      "all": 0.065,
+      "needsEditorialReview": true,
+      "humanApproved": false
+    },
+    {
+      "pairId": "T02-T13",
+      "narrativeSource": "NEW_COMPOSED_PHASE1",
+      "shared": 0.156,
+      "different": 0,
+      "scenario": 0,
+      "dilemma": 0,
+      "all": 0.063,
+      "needsEditorialReview": true,
+      "humanApproved": false
+    },
+    {
+      "pairId": "T06-T15",
+      "narrativeSource": "NEW_COMPOSED_PHASE1",
+      "shared": 0.156,
+      "different": 0,
+      "scenario": 0,
+      "dilemma": 0,
+      "all": 0.063,
+      "needsEditorialReview": true,
+      "humanApproved": false
+    },
+    {
+      "pairId": "T02-T14",
+      "narrativeSource": "NEW_COMPOSED_PHASE1",
+      "shared": 0.148,
+      "different": 0,
+      "scenario": 0,
+      "dilemma": 0,
+      "all": 0.059,
+      "needsEditorialReview": true,
+      "humanApproved": false
+    },
+    {
+      "pairId": "T08-T12",
+      "narrativeSource": "NEW_COMPOSED_PHASE1",
+      "shared": 0.133,
+      "different": 0,
+      "scenario": 0,
+      "dilemma": 0,
+      "all": 0.054,
+      "needsEditorialReview": true,
+      "humanApproved": false
+    },
+    {
+      "pairId": "T04-T09",
+      "narrativeSource": "NEW_COMPOSED_PHASE1",
+      "shared": 0.141,
+      "different": 0,
+      "scenario": 0,
+      "dilemma": 0,
+      "all": 0.054,
       "needsEditorialReview": true,
       "humanApproved": false
     }
@@ -1537,30 +1537,40 @@
     "independentApproved": 0,
     "productionApproved": false
   },
-  "baselineSourceSha": "239ab98195bb4880695c4e3026ab52ef0b10d227",
+  "baselineSourceSha": "f51ca208071ae7378e5b8406bb36a75b1ec1eba1",
   "baselineSummary": {
     "shared": {
       "flagged": 128,
-      "mean": 0.864
+      "mean": 0.81
     },
     "different": {
-      "flagged": 136,
-      "mean": 0.973
+      "flagged": 126,
+      "mean": 0.889
     },
     "scenario": {
       "flagged": 73,
       "mean": 0.366
     },
     "dilemma": {
-      "flagged": 116,
-      "mean": 0.643
+      "flagged": 96,
+      "mean": 0.55
     },
     "all": {
-      "flagged": 122,
-      "mean": 0.691
+      "flagged": 108,
+      "mean": 0.64
     }
   },
-  "revision": "QA-ITERATION2",
+  "revision": "QA-ITERATION4",
   "retestedOn": "2026-11-04",
-  "revisionScope": "136 short summaries corrected; four same-type dilemma copies; 10 high-repeat difference/conflict rewrites; one doubled phrase; no human signoff"
+  "revisionScope": "Twelve top-ranked high-repetition pairs rewritten in 4 chapters, 48 new paragraphs; 12 type shortSummary restored; one duplicated phrase; editorial approval still zero",
+  "iterativeHistory": [
+    {
+      "date": "2026-11-04",
+      "previousFlagged": 108,
+      "currentFlagged": 90,
+      "modifiedPairCount": 12,
+      "chaptersRewritten": 48,
+      "qaGate": "DRAFT_ONLY"
+    }
+  ]
 }
