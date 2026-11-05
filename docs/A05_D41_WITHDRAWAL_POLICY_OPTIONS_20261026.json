@@ -1,0 +1,137 @@
+{
+  "schema": "A05-D41-WITHDRAWAL-POLICY-OPTIONS-1",
+  "version": "D41-0.1",
+  "date": "2026-10-26",
+  "state": "OPTIONS_UNAPPROVED",
+  "sourceVersions": {
+    "g1": "A05-D38-G1-0.1",
+    "retention": "A05-D39-RETENTION-0.1",
+    "simulation": "D40-001"
+  },
+  "purpose": "G1-05/08/09: align participant withdrawal verification and pseudonym linkage with actual note retention; never issue a research authorization",
+  "approval": {
+    "allG1DecisionsPending": true,
+    "participantRecruitmentAuthorized": false,
+    "responseCollectionAuthorized": false,
+    "realTokenSystemApproved": false,
+    "realDeletionSystemApproved": false
+  },
+  "interpretation": {
+    "deadlineBoundary": "elapsed day equal to duration => marker expired; day 0 is a hypothetical interview day",
+    "identityEvidence": "Only predefined synthetic MATCH fixture, not proof of real identity or secure verification",
+    "result": "REVIEWABLE_ONLY means a theoretical operator might review a request; NEVER deletion authorization, confirmation, or research approval"
+  },
+  "policies": [
+    {
+      "id": "A_30DAY_ALIGNMENT",
+      "rank": "PREFERRED_FOR_HUMAN_REVIEW",
+      "description": "Contact 14 days, mapping 30 days and individually identifiable raw notes 30 days; no 30–90 day unmatched-note interval",
+      "contactDays": 14,
+      "linkDays": 30,
+      "noteDays": 30,
+      "individualWithdrawalWindowDays": 30,
+      "retainsIndividualData": true,
+      "benefits": [
+        "No identifiable notes after lookup expires",
+        "Minimizes individual-record lifetime",
+        "Simple expiry and disclosure anchor"
+      ],
+      "costs": [
+        "30 days may be too short for editorial consolidation",
+        "Human review and actual backup deletion still required",
+        "Token/custody design unimplemented"
+      ],
+      "preconditions": [
+        "Human consent and retention approvals",
+        "Safe verified withdrawal method until lookup expiry",
+        "Concrete deletion proof for copies/backups",
+        "Aggregate only after documented deidentification review"
+      ],
+      "status": "UNAPPROVED"
+    },
+    {
+      "id": "B_90DAY_ALIGNMENT",
+      "rank": "FALLBACK_FOR_HUMAN_REVIEW",
+      "description": "Contact 14 days, mapping 90 days, notes 90 days; preserves per-person lookup throughout proposed retention",
+      "contactDays": 14,
+      "linkDays": 90,
+      "noteDays": 90,
+      "individualWithdrawalWindowDays": 90,
+      "retainsIndividualData": true,
+      "benefits": [
+        "Larger editorial review window",
+        "No unmatched 30–90 day raw note interval by design"
+      ],
+      "costs": [
+        "Pseudonym linkage and potentially identifiable notes held 90 days",
+        "Prolonged access-control and breach exposure",
+        "Strong token custody and deletion verification required"
+      ],
+      "preconditions": [
+        "Explicitly justify longer retention",
+        "Separate vault/link access roles",
+        "Safe verified withdrawal method through end of note retention",
+        "Human review of storage, backup and legal requirements"
+      ],
+      "status": "UNAPPROVED"
+    },
+    {
+      "id": "C_NO_IDENTIFIABLE_NOTES",
+      "rank": "PRIVACY_MINIMAL_ALTERNATIVE",
+      "description": "Do not retain individually identifiable raw notes or contact-mapping; a live non-recorded discussion or independently reviewed non-identifying aggregate only",
+      "contactDays": 0,
+      "linkDays": 0,
+      "noteDays": 0,
+      "individualWithdrawalWindowDays": 0,
+      "retainsIndividualData": false,
+      "benefits": [
+        "Minimizes persistent record risk",
+        "No link-versus-note deadline inconsistency"
+      ],
+      "costs": [
+        "Weak per-question audit and variant attribution",
+        "If any genuinely nonidentifying aggregate is produced it may no longer be individually withdrawable",
+        "Aggregate eligibility and consent still require explicit review"
+      ],
+      "preconditions": [
+        "Specify what 'non-identifying' means and small-cell thresholds",
+        "No actual response storage until G1 approval",
+        "Participant communication about aggregate withdrawal limits"
+      ],
+      "status": "UNAPPROVED"
+    }
+  ],
+  "tokenProtocolProposal": {
+    "state": "NOT_IMPLEMENTED_NOT_APPROVED",
+    "scope": "Participants would need a separate verifiable way to submit per-record withdrawal requests if notes are ever collected",
+    "guidance": [
+      "Use fresh high-entropy single-purpose random token from a vetted cryptographic RNG, never derive it from name, birthday, email, session number or sequential ID",
+      "Store only securely derived verifier under separate restricted permissions and protect token distribution; never record raw tokens in logs, PR, analytics or GitHub",
+      "Avoid making mere possession a claim of real-world identity: implement clear bearer-token caveat, loss, theft, replay and incorrect-request handling",
+      "Provide expiry matching individual identifiable note retention, not only contact retention",
+      "Make verified requests an approval-controlled queue, never silent automated deletion or claim of success before storage and backup confirmation",
+      "Test constant-time comparison, rate limiting and secure redaction in any later actual implementation; these are requirements, not implemented features"
+    ],
+    "neverTreatSyntheticMatchAsRealAuthentication": true
+  },
+  "decisionsToEscalate": [
+    "G1-01",
+    "G1-03",
+    "G1-05",
+    "G1-06",
+    "G1-07",
+    "G1-08",
+    "G1-09",
+    "G1-10",
+    "G1-12"
+  ],
+  "changeHistory": [
+    {
+      "version": "D41-001",
+      "date": "2026-10-26",
+      "before": "D39: 14/30/90 with 30–90 day unmatched-note interval; D40: conceptual match assumed",
+      "after": "Three alternative retention/withdrawal contracts; match/no-match model is synthetic, with explicit inability to issue identity proof or real deletion",
+      "reason": "Eliminate contradictory proposal through human choice rather than claiming an automated fix"
+    }
+  ]
+}

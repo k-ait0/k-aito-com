@@ -1,0 +1,200 @@
+{
+  "schema": "A05-D79-AXIS-DECISION-1",
+  "version": "D79-001",
+  "date": "2026-10-26",
+  "status": "EDITORIAL_RECOMMENDATION_NOT_APPROVED",
+  "purpose": "Select construct definitions before revising questionnaire items or changing 16-type meanings.",
+  "rubric": {
+    "scale": "QUALITATIVE_EDITORIAL_NOT_EMPIRICAL",
+    "dimensions": [
+      {
+        "id": "lifeRelevance",
+        "meaning": "Life goal and personal value-reflection fit"
+      },
+      {
+        "id": "scope",
+        "meaning": "Coverage of multiple life domains instead of a single setting"
+      },
+      {
+        "id": "responseAccessibility",
+        "meaning": "Answerable without existing housing, job or close relationships"
+      },
+      {
+        "id": "bipolarInterpretability",
+        "meaning": "Whether opposite endpoints can reasonably be compared"
+      },
+      {
+        "id": "distinctness",
+        "meaning": "Six facets and separation from axes C/D"
+      },
+      {
+        "id": "typeCompatibility",
+        "meaning": "Explaining 16 combinations without identity or ability claims"
+      },
+      {
+        "id": "legacyContinuity",
+        "meaning": "Cost of interpreting historical scores; not validation"
+      }
+    ]
+  },
+  "axes": [
+    {
+      "id": "A",
+      "options": [
+        {
+          "id": "L",
+          "concept": "生活拠点・環境の安定対変化",
+          "ratings": {
+            "lifeRelevance": "mixed",
+            "scope": "risk",
+            "responseAccessibility": "risk",
+            "bipolarInterpretability": "mixed",
+            "distinctness": "risk",
+            "typeCompatibility": "mixed",
+            "legacyContinuity": "favorable"
+          },
+          "risks": [
+            "住まいや転居に偏る",
+            "移動・居住条件の違いを選好と混同"
+          ]
+        },
+        {
+          "id": "M",
+          "concept": "活動方法・手順の継続対変更",
+          "ratings": {
+            "lifeRelevance": "mixed",
+            "scope": "mixed",
+            "responseAccessibility": "favorable",
+            "bipolarInterpretability": "mixed",
+            "distinctness": "risk",
+            "typeCompatibility": "risk",
+            "legacyContinuity": "risk"
+          },
+          "risks": [
+            "D軸の探索傾向と混同",
+            "人生の選択より実行方法の嗜好になりやすい"
+          ]
+        },
+        {
+          "id": "R",
+          "concept": "人生の選択で現状を維持・整えること対変化を取り入れること",
+          "ratings": {
+            "lifeRelevance": "favorable",
+            "scope": "favorable",
+            "responseAccessibility": "mixed",
+            "bipolarInterpretability": "mixed",
+            "distinctness": "unknown",
+            "typeCompatibility": "unknown",
+            "legacyContinuity": "risk"
+          },
+          "risks": [
+            "選択の領域によって反応が変わる",
+            "抽象化により6問の重複・D軸との混入が発生し得る"
+          ]
+        }
+      ],
+      "editorialPriority": "R",
+      "selection": "PENDING",
+      "reason": "人生の設計という製品目的に最も直接的だが、質問・16タイプは新たに構築し直す必要がある。推奨は実測優位性の証拠ではない。",
+      "goNoGo": [
+        "事前に6つの異なる生活文脈を列挙",
+        "機会の制約と選好を別記",
+        "D探索・深耕とは異なる回答理由を認知面接で確認"
+      ]
+    },
+    {
+      "id": "B",
+      "options": [
+        {
+          "id": "L",
+          "concept": "生活上の自分の希望対周囲の希望の調整",
+          "ratings": {
+            "lifeRelevance": "favorable",
+            "scope": "mixed",
+            "responseAccessibility": "risk",
+            "bipolarInterpretability": "risk",
+            "distinctness": "risk",
+            "typeCompatibility": "mixed",
+            "legacyContinuity": "favorable"
+          },
+          "risks": [
+            "対人関係の存在を前提にしがち",
+            "調整することが良い行動と見られる"
+          ]
+        },
+        {
+          "id": "M",
+          "concept": "意思決定や実行における自己裁量対共同手続",
+          "ratings": {
+            "lifeRelevance": "mixed",
+            "scope": "mixed",
+            "responseAccessibility": "mixed",
+            "bipolarInterpretability": "risk",
+            "distinctness": "risk",
+            "typeCompatibility": "risk",
+            "legacyContinuity": "risk"
+          },
+          "risks": [
+            "仕事などで決裁権がない人の機会差",
+            "相談と自律は両立する"
+          ]
+        },
+        {
+          "id": "R",
+          "concept": "人生の選択時に自分の希望を優先して考えること対関係者との調和を優先して考えること",
+          "ratings": {
+            "lifeRelevance": "favorable",
+            "scope": "favorable",
+            "responseAccessibility": "mixed",
+            "bipolarInterpretability": "risk",
+            "distinctness": "unknown",
+            "typeCompatibility": "unknown",
+            "legacyContinuity": "risk"
+          },
+          "risks": [
+            "両者は論理的な反対概念でない",
+            "相手がいない場合や不利益を受ける立場では評価が難しい"
+          ]
+        }
+      ],
+      "editorialPriority": "R_WITH_BIPOLARITY_GATE",
+      "selection": "PENDING",
+      "reason": "人生の選択基準としてはRを優先比較。ただし自律と他者配慮の両立可能性が強く、二極7段階が成立しなければ独立指標またはB軸自体の再設計を選ぶ。",
+      "goNoGo": [
+        "双方同程度に重視する理由を確認",
+        "判断不能を中立4と混ぜない",
+        "社会的望ましさと裁量権の偏りを調べる"
+      ]
+    }
+  ],
+  "fallbackIfNoApprovedBipolarity": "Do not force 16 types; present separately observed value dimensions and reconsider the four-binary-axis product requirement.",
+  "typePolicy": {
+    "colorMapping": "RGBY_PROVISIONAL",
+    "typesCount": 16,
+    "conditionalCopies": "D75_L_AND_M_NOT_REUSABLE_AS_R_COPY",
+    "unverifiedNameStatus": "WORKING_LABELS_ONLY",
+    "publishProfiles": false
+  },
+  "gates": {
+    "studyAuthorized": false,
+    "productionReleaseAuthorized": false,
+    "mergeAuthorized": false,
+    "humanAdoptionApproval": false,
+    "legacyRescoringAllowed": false,
+    "questionRuntimeChanged": false,
+    "constructChoiceByOwner": "PENDING",
+    "requiredEvidence": [
+      "OWNER_PRODUCT_DEFINITION",
+      "EDITORIAL_RISK_REVIEW",
+      "APPROVED_COGNITIVE_INTERVIEWS",
+      "SEPARATE_VERSIONED_ENGINE_REVIEW"
+    ]
+  },
+  "changeHistory": [
+    {
+      "date": "2026-10-26",
+      "version": "D79-001",
+      "change": "Make explicit R-reconstruction comparison and provisional editorial recommendation for A/B without claiming a human approval or psychometric evidence."
+    }
+  ]
+}

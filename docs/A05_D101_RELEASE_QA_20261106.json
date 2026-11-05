@@ -1,0 +1,165 @@
+{
+  "schema": "A05-D101-RELEASE-QA-1",
+  "date": "2026-11-06",
+  "result": "NO_GO_PRODUCTION",
+  "release_approved": false,
+  "candidate": {
+    "path": "projects/kidp/life-design-lab/a05/reflection-d101.html",
+    "git_blob_sha": "a20c5676e3e22a547f03141b0907e852ac2edebf",
+    "replaces_in_repo": false,
+    "previous_version_blob": "0ed6a91d5a0dc57a74cc45569b1b5c1969b22ccb",
+    "diagnostic": false,
+    "collects_answers": false,
+    "issues_type_ids": false,
+    "public_navigation_added": false
+  },
+  "completed_changes": [
+    "Fixed duplicate Japanese full stops in atomic case announcement; checked actual Chromium accessibility tree",
+    "Recomputed exact CSP script hash for changed inline JavaScript",
+    "Created read-only HTTP preflight that refuses redirects and enforces exact approved staging host",
+    "Created six loopback regression cases including tampered bytes and absent headers",
+    "Added inactive header configuration example; no server configuration edited"
+  ],
+  "run_evidence": {
+    "local_http_get_head": {
+      "status": "PASS",
+      "get": 200,
+      "head": 200,
+      "content_type": "text/html",
+      "git_blob_matches": true,
+      "host": "127.0.0.1",
+      "production_or_staging": false
+    },
+    "local_strict_header_check": {
+      "status": "EXPECTED_FAIL",
+      "missing": [
+        "Content-Security-Policy HTTP header",
+        "frame-ancestors header",
+        "X-Content-Type-Options",
+        "Referrer-Policy",
+        "Cache-Control no-store"
+      ],
+      "meaning": "Local Python SimpleHTTPServer has no configured staging security headers"
+    },
+    "simulated_http_header_fixture": {
+      "status": "PASS",
+      "real_host": false,
+      "meaning": "The checker detects both missing and correctly shaped security headers in loopback fixtures"
+    },
+    "python_http_unittests": {
+      "status": "PASS",
+      "passed": 6,
+      "total": 6,
+      "source_sha_verified": true,
+      "paths": [
+        "scripts/qa_a05_d101_http_preflight.py",
+        "scripts/test_a05_d101_http_preflight.py"
+      ]
+    },
+    "chromium_ax_tree": {
+      "status": "PASS",
+      "viewports_px": [
+        280,
+        320,
+        390,
+        820,
+        1280
+      ],
+      "cases_per_viewport": 8,
+      "steps_per_viewport": 4,
+      "accessibility_tree_live_status": 1,
+      "duplicate_punctuation_found": false,
+      "print_preview_checked": true,
+      "csp_tamper_rejected": true,
+      "network_requests": 0,
+      "page_errors": 0,
+      "method": "Python Playwright Chromium page.set_content with exact HTML Git blob; NOT real URL and NOT screenreader speech"
+    },
+    "browser_url_navigation": {
+      "status": "BLOCKED_BY_ADMINISTRATOR",
+      "test_urls": [
+        "http://127.0.0.1:18765/reflection-d100.html",
+        "http://localhost:18765/reflection-d100.html"
+      ],
+      "real_staging_url_checked": false
+    },
+    "native_node_ax_test": {
+      "status": "REGISTERED_NOT_RUN",
+      "path": "scripts/qa_a05_d101_ax_tree_browser.cjs"
+    },
+    "github_actions": {
+      "status": "NOT_DISPATCHED",
+      "manual_only": true
+    },
+    "external_methodology": {
+      "source": "XServer Static official server spec",
+      "finding": ".htaccess is supported in general; specific mod_headers response behavior remains unverified",
+      "url": "https://static.xserver.ne.jp/support/manual/man_server_spec.php"
+    }
+  },
+  "gates": [
+    {
+      "id": "G01",
+      "label": "D101 original blob, no-data and CSP compatibility",
+      "status": "PASS"
+    },
+    {
+      "id": "G02",
+      "label": "Local HTTP GET/HEAD, correct MIME and byte identity",
+      "status": "PASS_LOCAL_ONLY"
+    },
+    {
+      "id": "G03",
+      "label": "Chromium accessibility structure and responsive interactions",
+      "status": "PASS_LIMITED"
+    },
+    {
+      "id": "G04",
+      "label": "Unmodified published D100 and 30-question history",
+      "status": "PASS"
+    },
+    {
+      "id": "G05",
+      "label": "Browser navigation to real staging URL and reload/cache QA",
+      "status": "BLOCKED_ENVIRONMENT_AND_NO_STAGING_URL"
+    },
+    {
+      "id": "G06",
+      "label": "Actual XServer Static staging HTTPS response headers",
+      "status": "NOT_TESTED"
+    },
+    {
+      "id": "G07",
+      "label": "Safari VoiceOver/TalkBack actual assistive speech",
+      "status": "NOT_TESTED"
+    },
+    {
+      "id": "G08",
+      "label": "Owner editorial approval for two unvalidated prompts and copy",
+      "status": "PENDING_HUMAN"
+    },
+    {
+      "id": "G09",
+      "label": "Owner staging/publication and PR merge approval",
+      "status": "PENDING_HUMAN"
+    }
+  ],
+  "limitations": [
+    "A Chrome accessibility-tree check does not replace VoiceOver or TalkBack speech testing.",
+    "A Python loopback HTTP GET/HEAD pass does not imply browser navigation success or deployed-host security headers.",
+    "The .htaccess file in docs is an inactive proposal. Root .htaccess and production were not modified.",
+    "Neither the 2-domain questionnaire nor the legacy 30-question 16-type model has been psychometrically validated."
+  ],
+  "next_decision": {
+    "user_controlled": "Explicitly authorize private staging destination and editorial review; actual assistive-device QA remains required before publication",
+    "assistant_can_do_without_approval": "Maintain offline regression checks, monitor pending gates, review any staging evidence the user provides",
+    "actions_not_authorized": [
+      "staging upload",
+      "production deploy",
+      "merge PR #61",
+      "public navigation change",
+      "participant data collection",
+      "release 16 type classification"
+    ]
+  }
+}

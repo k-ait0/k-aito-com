@@ -1,0 +1,367 @@
+{
+  "schema": "A05-D39-G1-DECISION-OPTIONS-1",
+  "version": "A05-D39-0.1",
+  "created": "2026-10-26",
+  "status": "PROPOSALS_ONLY_ALL_G1_PENDING",
+  "reviewedAgainst": "docs/A05_D38_G1_APPROVAL_REGISTER_20261026.json",
+  "decisionCount": 8,
+  "allowedMeaningOfPreference": "提案の優先順位。採用・承認・同意取得・個人データ処理の許可ではない。",
+  "decisions": [
+    {
+      "id": "G1-01",
+      "topic": "研究実施・停止・削除の責任者",
+      "preferredOption": "A",
+      "options": [
+        {
+          "code": "A",
+          "label": "実施責任者とデータ管理責任者を役割別に指定（同一人物の兼任も許容）",
+          "advantages": [
+            "募集停止・データ削除の責任分界を記録できる",
+            "小規模実施では兼任でも運用可能"
+          ],
+          "risks": [
+            "役割の兼任による牽制不足",
+            "責任者・代理・撤回窓口を実名で確定する必要"
+          ]
+        },
+        {
+          "code": "B",
+          "label": "外部研究実施担当へ業務委託",
+          "advantages": [
+            "面接運営の経験を活用し得る"
+          ],
+          "risks": [
+            "委託先・契約・情報移転と費用の追加審査が必要"
+          ]
+        }
+      ],
+      "recommendation": "まず内部の責任者とデータ管理者の役割を明文化する。担当者の氏名、連絡方法、代理、権限は正式承認時のみ非公開記録に記載。",
+      "decisionRequired": [
+        "責任者役割",
+        "データ管理者役割",
+        "代理・停止権限",
+        "問い合わせ・撤回窓口",
+        "承認記録"
+      ],
+      "decisionStatus": "PROPOSED_NOT_DECIDED",
+      "selectedByAuthority": null,
+      "approvalEvidence": null
+    },
+    {
+      "id": "G1-03",
+      "topic": "参加者向け説明・同意",
+      "preferredOption": "A",
+      "options": [
+        {
+          "code": "A",
+          "label": "説明文書と録音なし面接の記録同意を分けて確認",
+          "advantages": [
+            "記録の対象と不参加・撤回を説明できる",
+            "録音を前提にせず負担が小さい"
+          ],
+          "risks": [
+            "同意履歴を必要最小限で管理する仕組みが必要"
+          ]
+        },
+        {
+          "code": "B",
+          "label": "録音を伴う面接も候補とする",
+          "advantages": [
+            "後で発言文脈を確認しやすい"
+          ],
+          "risks": [
+            "別の明示同意、機微発話・音声データの保存・削除責任が増す"
+          ]
+        }
+      ],
+      "recommendation": "初回は録音・録画・画面共有なしを原則とし、構造化した短い回答理由だけを明示同意の下で記録する案。",
+      "decisionRequired": [
+        "確定した説明文書版",
+        "目的と利用範囲",
+        "記録内容",
+        "断り・中断・撤回手順",
+        "窓口と保持期間",
+        "募集対象と謝礼"
+      ],
+      "decisionStatus": "PROPOSED_NOT_DECIDED",
+      "selectedByAuthority": null,
+      "approvalEvidence": null
+    },
+    {
+      "id": "G1-05",
+      "topic": "参加者連絡先と研究データの分離",
+      "preferredOption": "A",
+      "options": [
+        {
+          "code": "A",
+          "label": "研究IDと連絡先の対応表は隔離し、必要な場合のみ短期保持",
+          "advantages": [
+            "削除依頼に応じるための最小限の照合が可能"
+          ],
+          "risks": [
+            "対応表が残る期間は仮名情報が再識別可能"
+          ]
+        },
+        {
+          "code": "B",
+          "label": "個人の識別を伴わない完全無記録の説明対話のみ",
+          "advantages": [
+            "記録・撤回照合の負担を極小化"
+          ],
+          "risks": [
+            "質問比較に必要な回答理由・候補別の母数が追跡しにくい"
+          ]
+        }
+      ],
+      "recommendation": "対面・招待時に連絡先を必須にしない。必要な場合は研究回答と別の権限で保持し、保管期限を先に告知。",
+      "decisionRequired": [
+        "連絡先の必要性",
+        "仮名ID対応表の要否",
+        "個票撤回の識別方法",
+        "集計後の撤回境界"
+      ],
+      "decisionStatus": "PROPOSED_NOT_DECIDED",
+      "selectedByAuthority": null,
+      "approvalEvidence": null
+    },
+    {
+      "id": "G1-06",
+      "topic": "保存環境と暗号化",
+      "preferredOption": "A",
+      "options": [
+        {
+          "code": "A",
+          "label": "管理者の端末上の暗号化された私的ストレージ（オフライン中心）",
+          "advantages": [
+            "外部クラウドへの転送を最小化",
+            "少人数の短期調査向き"
+          ],
+          "risks": [
+            "端末紛失・障害・誤同期・バックアップ欠落への対策が必要",
+            "端末暗号化・アクセス制御の実装と実機確認が必要"
+          ]
+        },
+        {
+          "code": "B",
+          "label": "契約と権限を確認した暗号化・アクセス制御付き民間クラウド",
+          "advantages": [
+            "共有・バックアップ・アクセス監査を設計しやすい場合がある"
+          ],
+          "risks": [
+            "委託・外部移転・保管地域・共有設定・費用の審査が必要"
+          ]
+        }
+      ],
+      "recommendation": "最小人数による短期実施ならAを第一候補。ただし暗号化、端末ログイン、誤同期防止、バックアップ、削除可能性を**実機で検証**できないなら採用しない。",
+      "decisionRequired": [
+        "具体的なサービス／端末",
+        "管理者とアクセスロール",
+        "暗号化と同期設定",
+        "バックアップ・削除方法",
+        "保管地域・委託契約"
+      ],
+      "decisionStatus": "PROPOSED_NOT_DECIDED",
+      "selectedByAuthority": null,
+      "approvalEvidence": null
+    },
+    {
+      "id": "G1-07",
+      "topic": "閲覧権・委託・外部サービス",
+      "preferredOption": "A",
+      "options": [
+        {
+          "code": "A",
+          "label": "実施・編集判断の必要最小限の担当者のみ閲覧、外部AI送信なし",
+          "advantages": [
+            "個票の二次利用・誤転送のリスクを下げる"
+          ],
+          "risks": [
+            "編集レビューに必要な情報の共有は非識別の集計に限定される"
+          ]
+        },
+        {
+          "code": "B",
+          "label": "関係者とデータ処理事業者へ権限付き共有",
+          "advantages": [
+            "外部レビューの選択肢が広がる"
+          ],
+          "risks": [
+            "委託契約・外部移転・再委託・権限と保存期限の管理が複雑"
+          ]
+        }
+      ],
+      "recommendation": "個票は最小権限。PR・Issue・Actions・本番DB・外部生成AIには送らない。",
+      "decisionRequired": [
+        "担当者の人数と権限",
+        "外部転送の有無",
+        "共有方法",
+        "監査ログ",
+        "外部委託可否"
+      ],
+      "decisionStatus": "PROPOSED_NOT_DECIDED",
+      "selectedByAuthority": null,
+      "approvalEvidence": null
+    },
+    {
+      "id": "G1-08",
+      "topic": "保存期限・削除",
+      "preferredOption": "A",
+      "options": [
+        {
+          "code": "A",
+          "label": "各面接日を起点に連絡先14日・対応表30日・個票/メモ90日を上限とする案",
+          "advantages": [
+            "編集判断が遅れても保存期間が無期限化しない",
+            "削除期限が日付で計算できる"
+          ],
+          "risks": [
+            "30日以降は対応表がなく個人別削除が難しくなる",
+            "集計確定時点・バックアップ削除は別管理が必要"
+          ]
+        },
+        {
+          "code": "B",
+          "label": "編集判断終了日を起点に90日とする案（D-38の暫定案）",
+          "advantages": [
+            "追加レビュー期間を取れる"
+          ],
+          "risks": [
+            "編集判断終了が延期されると保存が長期化し得る"
+          ]
+        }
+      ],
+      "recommendation": "原則として各面接日を起点に期限を固定し、より早い目的終了・撤回で速やかに削除。録音・録画は初回非収集。法令等と撤回の整合性を承認者が確認。",
+      "decisionRequired": [
+        "イベント起点とハード上限",
+        "データ種別別期限",
+        "撤回受付期限",
+        "バックアップと対応表の消去",
+        "期限到来時の削除確認者"
+      ],
+      "decisionStatus": "PROPOSED_NOT_DECIDED",
+      "selectedByAuthority": null,
+      "approvalEvidence": null
+    },
+    {
+      "id": "G1-09",
+      "topic": "中止・撤回・問い合わせ",
+      "preferredOption": "A",
+      "options": [
+        {
+          "code": "A",
+          "label": "窓口と受付方法を事前案内し、仮名ID照合が可能な範囲で個票削除に対応",
+          "advantages": [
+            "具体的な撤回経路と削除対象を説明できる"
+          ],
+          "risks": [
+            "照合表削除後・個人識別できない集計後は追跡が難しい"
+          ]
+        },
+        {
+          "code": "B",
+          "label": "面接中止のみ受け付け、後日の照合を行わない形式",
+          "advantages": [
+            "連絡先の保持を不要にできる"
+          ],
+          "risks": [
+            "記録した回答の削除に関する参加者期待とずれやすい"
+          ]
+        }
+      ],
+      "recommendation": "Aを第一候補。研究IDと連絡方法、対応可能期間、削除確認の期限を同意文書に明記する。",
+      "decisionRequired": [
+        "連絡先または連絡手段",
+        "返信目安",
+        "撤回できる期間・範囲",
+        "集計の不可逆性の説明",
+        "削除確認方法"
+      ],
+      "decisionStatus": "PROPOSED_NOT_DECIDED",
+      "selectedByAuthority": null,
+      "approvalEvidence": null
+    },
+    {
+      "id": "G1-12",
+      "topic": "適用法令・研究倫理等の審査",
+      "preferredOption": "A",
+      "options": [
+        {
+          "code": "A",
+          "label": "国内での小規模・成人の任意調査を前提に、実施主体の適用規程を先に確認",
+          "advantages": [
+            "必要な許諾・責任分界を先に特定できる"
+          ],
+          "risks": [
+            "国内利用者のみと断定する根拠はない",
+            "法令・倫理審査の要否は実施体制に依存する"
+          ]
+        },
+        {
+          "code": "B",
+          "label": "対象地域や年齢を広げ、複数管轄の要件を別途審査",
+          "advantages": [
+            "将来的な比較対象が広がる"
+          ],
+          "risks": [
+            "年齢・移転・倫理審査・翻訳等の追加コスト"
+          ]
+        }
+      ],
+      "recommendation": "まず国内成人のみの調査を**案**とし、実施主体・対象国・募集媒体の確定後に適用される要求を専門担当が審査する。",
+      "decisionRequired": [
+        "実施主体と国／地域",
+        "個人情報の適用要件",
+        "大学・企業内研究倫理等の要否",
+        "未成年者を含めない境界",
+        "外部提供・委託の規程"
+      ],
+      "decisionStatus": "PROPOSED_NOT_DECIDED",
+      "selectedByAuthority": null,
+      "approvalEvidence": null
+    }
+  ],
+  "interviewRecruitmentAuthorized": false,
+  "responseCollectionAuthorized": false,
+  "publicationAuthorized": false,
+  "unresolvedOtherG1Ids": [
+    "G1-02",
+    "G1-04",
+    "G1-10",
+    "G1-11"
+  ],
+  "retentionProposals": {
+    "anchor": "participant-session-date",
+    "notApproved": true,
+    "records": [
+      {
+        "category": "contact",
+        "limitDays": 14,
+        "dependsOn": "session-date",
+        "approvalRequired": true
+      },
+      {
+        "category": "pseudonym-link",
+        "limitDays": 30,
+        "dependsOn": "session-date",
+        "approvalRequired": true
+      },
+      {
+        "category": "raw-responses-and-notes",
+        "limitDays": 90,
+        "dependsOn": "session-date",
+        "approvalRequired": true
+      }
+    ],
+    "audioVideoDefault": "DO_NOT_COLLECT",
+    "backups": "DELETE_WITH_PRIMARY_IF_COLLECTED_AND_APPROVED"
+  },
+  "changeHistory": [
+    {
+      "date": "2026-10-26",
+      "version": "D-39-001",
+      "before": "D-38 lists pending choices with loosely anchored temporary retention proposals",
+      "after": "8 critical G1 choices have A/B alternatives, explicit evaluation criteria and an interview-session anchored time-limit option, without changing pending register",
+      "reason": "make accountable human decisions concrete without conferring approval"
+    }
+  ]
+}

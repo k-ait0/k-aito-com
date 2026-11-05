@@ -1,0 +1,259 @@
+{
+  "schema": "A05-D94-CP1-CONTENT-COVERAGE-1",
+  "status": "EDITORIAL_ANALYSIS_ONLY_UNVALIDATED",
+  "reviewed_at": "2026-11-05",
+  "sources": [
+    {
+      "path": "docs/A05_D93_ITEM_CONSTRUCT_MAPPING_20261105.json",
+      "git_blob_sha": "7bd5d652217cdd58c64c5dd99a9f266b3db40e88"
+    },
+    {
+      "path": "docs/A05_D92_CONSTRUCT_CHOICE_MATRIX_20261105.json",
+      "git_blob_sha": "1e867e0506c5d1fde3fb78a67e37c4987dce47d7"
+    },
+    {
+      "path": "docs/A05_D90_BC_PILOT_0_2_20261105.json",
+      "git_blob_sha": "69fd5e3d31cc40a54f6e9e63dade60c65ffcbf38"
+    }
+  ],
+  "target": {
+    "option": "CP1",
+    "scale": "C_present",
+    "definition": "将来の成果に直接結びつかなくても、いま経験する活動・出来事自体に価値を置く傾向",
+    "formal_approval": "PENDING"
+  },
+  "method": {
+    "type": "manual_qualitative_semantic_content_review",
+    "semantic_overlap_is_numeric": false,
+    "item_response_data_collected": false,
+    "psychometric_analysis_performed": false,
+    "references": [
+      {
+        "url": "https://pubmed.ncbi.nlm.nih.gov/40562250/",
+        "role": "COSMIN: relevance, comprehensiveness, comprehensibility; method analogy only"
+      },
+      {
+        "url": "https://www.cdc.gov/nchs/ccqder/question-evaluation/cognitive-interviewing.html",
+        "role": "CDC: examine respondents' understanding and response processes; not performed"
+      }
+    ]
+  },
+  "items": [
+    {
+      "id": "C-P01",
+      "text": "将来の成果に直接つながらなくても、日々の時間を楽しめる活動を大切にしたい。",
+      "source_unchanged": true,
+      "domain_claim": "過程そのものの価値",
+      "elicits": "楽しさ／将来成果に役立たない活動の評価",
+      "status": "BLOCK_FOR_CP1_AGGREGATE",
+      "method_risks": [
+        "HEDONIC_CONFLATION",
+        "IMPLICIT_FUTURE_CONTRAST"
+      ],
+      "why": "楽しめる活動は快感・娯楽に近く、現在の経験一般に内在的価値を置く志向とは同義ではない。将来成果との暗黙の対比も含む。",
+      "counterexample": "楽しさは少ないが意義のある活動の過程を大切にする人",
+      "must_demonstrate": "楽しめるかどうかに依存せず現在の過程そのものを重視すると解釈されること"
+    },
+    {
+      "id": "C-P02",
+      "text": "日常生活の中で、今の充実を実感する機会を大切にしたい。",
+      "source_unchanged": true,
+      "domain_claim": "平凡な日々の経験の価値",
+      "elicits": "現在の生活満足・充実感",
+      "status": "BLOCK_FOR_CP1_AGGREGATE",
+      "method_risks": [
+        "WELLBEING_STATE_CONFLATION",
+        "CURRENT_RESOURCE_DEPENDENCE"
+      ],
+      "why": "『充実を実感』は人生で何を価値あるものと考えるかではなく、現在その状態にあるかを想起させる。",
+      "counterexample": "日々の生活に不満はあるが、平凡な経験を大切にしたい人",
+      "must_demonstrate": "生活満足の高低にかかわらず、日常経験の価値に基づく回答となること"
+    },
+    {
+      "id": "C-P03",
+      "text": "その日に経験している出来事そのものに価値を見いだすことを大切にしたい。",
+      "source_unchanged": true,
+      "domain_claim": "経験それ自体の内在的な意味",
+      "elicits": "その瞬間の出来事への価値付け／気づき",
+      "status": "BLOCK_FOR_CP1_AGGREGATE",
+      "method_risks": [
+        "ATTENTION_SKILL_CONFLATION",
+        "NON_DISTINCT_DOMAIN"
+      ],
+      "why": "『見いだす』には注意・気づき能力が混在する。P02の『実感』やP01の『過程』と区別できる第三の内容領域が示されていない。",
+      "counterexample": "注意が散りやすくても、現在経験の価値を大切にしたい人",
+      "must_demonstrate": "注意力ではなく価値選好を問うこと、P01/P02とは別の有意味な内容領域を提示できること"
+    }
+  ],
+  "pairs": [
+    {
+      "ids": [
+        "C-P01",
+        "C-P02"
+      ],
+      "category": "CONCEPTUAL_OVERLAP_WITH_DISTINCT_CONTAMINATION",
+      "shared_target": "日常の現在経験を大切にするという大枠",
+      "difference": "楽しさの重視 vs 生活満足の実感",
+      "problem": "別の構成概念をそれぞれ含むため、互いに相関しても単一CP1尺度とみなせない"
+    },
+    {
+      "ids": [
+        "C-P01",
+        "C-P03"
+      ],
+      "category": "CONCEPTUAL_OVERLAP_WITH_DISTINCT_CONTAMINATION",
+      "shared_target": "経験・活動が進行している時点の価値",
+      "difference": "楽しさの優先 vs 価値に気づくこと",
+      "problem": "第三の独立領域とは断定できず、快感と注意能力の混入が残る"
+    },
+    {
+      "ids": [
+        "C-P02",
+        "C-P03"
+      ],
+      "category": "STRONG_EDITORIAL_SEMANTIC_OVERLAP",
+      "shared_target": "日々の出来事の価値・充実の自覚",
+      "difference": "充実を実感する vs 価値を見いだす",
+      "problem": "感覚・気づきという表現差であり、内容領域の独立性は示されない"
+    }
+  ],
+  "candidate_domains": [
+    {
+      "id": "process_value",
+      "label": "活動の最中の過程を大切にする",
+      "status": "DRAFT_DOMAIN_NEEDS_BOUNDARY_TEST",
+      "current_items": [
+        "C-P01",
+        "C-P03"
+      ],
+      "risk": "快楽・結果との強制比較を除外する"
+    },
+    {
+      "id": "ordinary_experience",
+      "label": "平凡な日常経験自体を価値づける",
+      "status": "DRAFT_DOMAIN_NEEDS_BOUNDARY_TEST",
+      "current_items": [
+        "C-P02",
+        "C-P03"
+      ],
+      "risk": "現在の幸福状態・資源の有無とは分ける"
+    },
+    {
+      "id": "third_nonredundant_domain",
+      "label": "第三の独自内容領域",
+      "status": "NOT_IDENTIFIED",
+      "current_items": [],
+      "risk": "別の語句の言い換えやB/D/E軸との混同を避ける候補がまだない"
+    }
+  ],
+  "architecture_options": [
+    {
+      "id": "O1",
+      "label": "v0.2の既存3問を維持して参考表示",
+      "editorial_role": "LEGACY_COMPARATOR_ONLY",
+      "number_of_items": 3,
+      "disposition": "NO_GO_FOR_MEASUREMENT",
+      "numeric_score_allowed": false,
+      "benefit": "歴史的な設問比較と現在の実装検証を保持できる",
+      "limitation": "3問の意味重複と快楽・幸福度・注意能力の混入が未解決"
+    },
+    {
+      "id": "O2",
+      "label": "2つの独立した自己理解用の問いに絞る",
+      "editorial_role": "NEXT_EDITORIAL_EXPERIMENT_PREFERRED",
+      "number_of_items": 2,
+      "disposition": "CONDITIONAL_EDITORIAL_PREFERENCE",
+      "numeric_score_allowed": false,
+      "benefit": "未証明の第三領域を捏造せず、過程と日常という2つの候補内容を明示できる",
+      "limitation": "2項目を平均した心理尺度ではない。2領域の区別さえ未確認"
+    },
+    {
+      "id": "O3",
+      "label": "第三領域を定義できてから3問の新規尺度を設計",
+      "editorial_role": "FUTURE_PSYCHOMETRIC_CANDIDATE",
+      "number_of_items": 3,
+      "disposition": "DEFER_UNTIL_CONSTRUCT_BOUNDARY_AND_ITEM_COVERAGE",
+      "numeric_score_allowed": false,
+      "benefit": "将来、内容網羅・項目間の弁別を別々に検証できる",
+      "limitation": "第三領域未定義、対象者研究未承認、尺度一貫性・信頼性・妥当性は証拠なし"
+    }
+  ],
+  "draft_editorial_prompts": [
+    {
+      "id": "DRAFT-PROCESS",
+      "domain": "process_value",
+      "status": "NOT_A_BANK_ITEM",
+      "text": "何かに取り組んでいる間の経験そのものを大切にしたい。",
+      "risks": [
+        "天井効果",
+        "日常全般を扱えるか"
+      ],
+      "never_reuse_old_id": true
+    },
+    {
+      "id": "DRAFT-ORDINARY",
+      "domain": "ordinary_experience",
+      "status": "NOT_A_BANK_ITEM",
+      "text": "特別な出来事に限らず、日々の小さな経験も人生の大切な一部として考えたい。",
+      "risks": [
+        "天井効果",
+        "過程の価値との意味重複"
+      ],
+      "never_reuse_old_id": true
+    }
+  ],
+  "cognitive_scenarios": [
+    {
+      "id": "S1",
+      "description": "現在は幸福でないが現在の経験を大切にしたい",
+      "tests": "WELLBEING_STATE_CONFLATION",
+      "expected": "重視度と現況満足を混同しない",
+      "empirical_evidence": "NONE"
+    },
+    {
+      "id": "S2",
+      "description": "楽しくないが意味ある経験を積んでいる",
+      "tests": "HEDONIC_CONFLATION",
+      "expected": "楽しさの欠如を価値選好の低さとみなさない",
+      "empirical_evidence": "NONE"
+    },
+    {
+      "id": "S3",
+      "description": "注意が散りやすいが今の経験を重視する",
+      "tests": "ATTENTION_SKILL_CONFLATION",
+      "expected": "注意能力を採点しない",
+      "empirical_evidence": "NONE"
+    },
+    {
+      "id": "S4",
+      "description": "将来成果と現在経験のどちらも大切にする",
+      "tests": "IMPLICIT_FUTURE_CONTRAST",
+      "expected": "二者択一を課さない",
+      "empirical_evidence": "NONE"
+    },
+    {
+      "id": "S5",
+      "description": "自由時間が少ないが日常の体験の価値を重視する",
+      "tests": "CURRENT_RESOURCE_DEPENDENCE",
+      "expected": "E軸の時間的自由と混同しない",
+      "empirical_evidence": "NONE"
+    }
+  ],
+  "decision": {
+    "existing_three_items_ready_for_mean": false,
+    "existing_three_items_editorial_go": false,
+    "needs_third_distinct_domain_before_three_item_design": true,
+    "next_editorial_option": "O2",
+    "option_approved_by_owner": false,
+    "new_items_formally_approved": false,
+    "two_item_mean_allowed": false,
+    "three_item_mean_allowed": false,
+    "do_not_create_v03": true,
+    "do_not_modify_d90_bank": true,
+    "no_rescoring_legacy": true,
+    "no_type_id": true,
+    "no_participant_collection": true,
+    "production_release_allowed": false,
+    "next_step": "D95 concept/domain blueprint and pre-approved cognitive-study protocol; no automated bank rewrite"
+  }
+}

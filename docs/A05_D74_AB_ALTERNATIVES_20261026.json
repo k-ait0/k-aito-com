@@ -1,0 +1,331 @@
+{
+  "schema": "A05-D74-AB-ALTERNATIVES-1",
+  "version": "D74-001",
+  "date": "2026-10-26",
+  "purpose": "Construct-continuity-oriented L candidates alongside unchanged D57/D59 M candidates. Editorial hypotheses, not measurements.",
+  "refs": [
+    "docs/A05_D73_ITEM_CONSTRUCT_CROSSWALK_20261026.json",
+    "docs/A05_D73_EDITORIAL_DECISION_PACKET_20261026.md"
+  ],
+  "options": {
+    "L": "現行環境・人間関係の構成概念を維持することを目指す編集案（同一尺度と認定しない）",
+    "M": "活動方法・意思決定への新しい構成概念案（D57/D59）"
+  },
+  "gate": {
+    "humanSelection": "PENDING",
+    "adoptionAuthorized": false,
+    "studyAuthorized": false,
+    "mergeAuthorized": false,
+    "productionReleaseAuthorized": false,
+    "oldQuestionAndScoreVersionsUnchanged": true
+  },
+  "items": [
+    {
+      "id": "A01",
+      "axis": "A",
+      "current": {
+        "negative": "一つの地域で暮らしを育てる",
+        "positive": "複数の地域で暮らしを経験する"
+      },
+      "alternateM": {
+        "negative": "既存の方法を改善して使う",
+        "positive": "未経験の方法を試す",
+        "source": "D59"
+      },
+      "candidateL": {
+        "negative": "住み慣れた地域で暮らしを深めたい",
+        "positive": "異なる地域で暮らす可能性を探りたい",
+        "domain": "地域・居住選好"
+      },
+      "comparativeRisk": "転居可能性・地域への愛着・経済的条件に回答が左右されないか",
+      "explicitComparators": [
+        "A06"
+      ],
+      "conceptTarget": "INCUMBENT_L_TEST_CANDIDATE",
+      "decision": "NOT_APPROVED",
+      "observedPsychometrics": false
+    },
+    {
+      "id": "A02",
+      "axis": "A",
+      "current": {
+        "negative": "慣れた環境を長く活かす",
+        "positive": "新しい環境へ定期的に移る"
+      },
+      "alternateM": {
+        "negative": "現在の活動環境を整える",
+        "positive": "新しい活動環境を試す",
+        "source": "D57"
+      },
+      "candidateL": {
+        "negative": "日常で過ごす場所をなるべく一定にしたい",
+        "positive": "日常で過ごす場所を変える機会を持ちたい",
+        "domain": "日常的な活動空間"
+      },
+      "comparativeRisk": "通勤・働き方・外出機会の制約が選好と混じらないか",
+      "explicitComparators": [
+        "A04"
+      ],
+      "conceptTarget": "INCUMBENT_L_TEST_CANDIDATE",
+      "decision": "NOT_APPROVED",
+      "observedPsychometrics": false
+    },
+    {
+      "id": "A03",
+      "axis": "A",
+      "current": {
+        "negative": "心地よい日常の形を維持する",
+        "positive": "日常の形を更新し続ける"
+      },
+      "alternateM": {
+        "negative": "既存の習慣を磨く",
+        "positive": "新しい習慣を取り入れる",
+        "source": "D57"
+      },
+      "candidateL": {
+        "negative": "慣れた生活習慣を維持したい",
+        "positive": "生活習慣に新しい変化を取り入れたい",
+        "domain": "生活習慣"
+      },
+      "comparativeRisk": "望んで変えることと外部事情で変わることを区別できるか",
+      "explicitComparators": [
+        "A05"
+      ],
+      "conceptTarget": "INCUMBENT_L_TEST_CANDIDATE",
+      "decision": "NOT_APPROVED",
+      "observedPsychometrics": false
+    },
+    {
+      "id": "A04",
+      "axis": "A",
+      "current": {
+        "negative": "今ある生活基盤を活かす",
+        "positive": "生活基盤を作り直す"
+      },
+      "alternateM": {
+        "negative": "一度決めた活動計画を続ける",
+        "positive": "途中でも活動計画を見直す",
+        "source": "D59"
+      },
+      "candidateL": {
+        "negative": "今の住まい方を基準に整えたい",
+        "positive": "異なる住まい方を試してみたい",
+        "domain": "住まいの使い方"
+      },
+      "comparativeRisk": "持ち家・賃貸・同居条件の差とA01の重複を確認",
+      "explicitComparators": [
+        "A01"
+      ],
+      "conceptTarget": "INCUMBENT_L_TEST_CANDIDATE",
+      "decision": "NOT_APPROVED",
+      "observedPsychometrics": false
+    },
+    {
+      "id": "A05",
+      "axis": "A",
+      "current": {
+        "negative": "一つの環境をより良く育てる",
+        "positive": "異なる環境を経験していく"
+      },
+      "alternateM": {
+        "negative": "予想できる変化には従来の進め方を調整する",
+        "positive": "予想できる変化を機に進め方を組み替える",
+        "source": "D59"
+      },
+      "candidateL": {
+        "negative": "日々使う生活空間を調整して使い続けたい",
+        "positive": "日々使う生活空間に新しい選択肢を取り入れたい",
+        "domain": "生活空間の更新"
+      },
+      "comparativeRisk": "住まい方A04との重複と改修費用による回答偏りを確認",
+      "explicitComparators": [
+        "A04"
+      ],
+      "conceptTarget": "INCUMBENT_L_TEST_CANDIDATE",
+      "decision": "NOT_APPROVED",
+      "observedPsychometrics": false
+    },
+    {
+      "id": "A06",
+      "axis": "A",
+      "current": {
+        "negative": "現在の拠点を保って挑戦する",
+        "positive": "拠点そのものを変えて挑戦する"
+      },
+      "alternateM": {
+        "negative": "予想外の変化には既存の手順を応用する",
+        "positive": "予想外の変化には別の手順を探す",
+        "source": "D59"
+      },
+      "candidateL": {
+        "negative": "暮らしの拠点を長く保ちたい",
+        "positive": "暮らしの拠点を時期に応じて変えてみたい",
+        "domain": "生活拠点の継続期間"
+      },
+      "comparativeRisk": "A01との差が明確でない場合は候補を棄却する。住居・家族の制約を確認",
+      "explicitComparators": [
+        "A01"
+      ],
+      "conceptTarget": "INCUMBENT_L_TEST_CANDIDATE",
+      "decision": "NOT_APPROVED",
+      "observedPsychometrics": false
+    },
+    {
+      "id": "B01",
+      "axis": "B",
+      "current": {
+        "negative": "自分の希望を中心に決める",
+        "positive": "大切な人との希望の一致を重視する"
+      },
+      "alternateM": {
+        "negative": "最終的な判断を自分で担う",
+        "positive": "最終的な判断を関係者と共同で担う",
+        "source": "D57"
+      },
+      "candidateL": {
+        "negative": "生活の優先順位は自分の希望を中心に決めたい",
+        "positive": "生活の優先順位は関わる人の希望との調整を重視したい",
+        "domain": "生活の優先順位"
+      },
+      "comparativeRisk": "現実に調整相手がいることを前提にしていないか。合意形成能力の測定ではない",
+      "explicitComparators": [
+        "B06"
+      ],
+      "conceptTarget": "INCUMBENT_L_TEST_CANDIDATE",
+      "decision": "NOT_APPROVED",
+      "observedPsychometrics": false
+    },
+    {
+      "id": "B02",
+      "axis": "B",
+      "current": {
+        "negative": "自分で生活を組み立てる余地",
+        "positive": "身近な人と生活を共有する機会"
+      },
+      "alternateM": {
+        "negative": "活動の進め方を自分で決める余地を重視",
+        "positive": "関係者と決める機会を重視",
+        "source": "D59"
+      },
+      "candidateL": {
+        "negative": "自分の自由時間の予定は自分の希望を中心に組みたい",
+        "positive": "自分の自由時間の予定は誰かとの相談を重視して組みたい",
+        "domain": "自由時間の過ごし方"
+      },
+      "comparativeRisk": "相談相手がいない場合の回答不能、B04の調整場面との違いを確認",
+      "explicitComparators": [
+        "B04"
+      ],
+      "conceptTarget": "INCUMBENT_L_TEST_CANDIDATE",
+      "decision": "NOT_APPROVED",
+      "observedPsychometrics": false
+    },
+    {
+      "id": "B03",
+      "axis": "B",
+      "current": {
+        "negative": "自分が望む達成を大切にする",
+        "positive": "誰かと共有できる達成を大切にする"
+      },
+      "alternateM": {
+        "negative": "達成後まず自分で振り返る",
+        "positive": "達成後まず関係者と振り返る",
+        "source": "D57"
+      },
+      "candidateL": {
+        "negative": "自分にとって意義のある達成を優先したい",
+        "positive": "関わる人と意義を共有できる達成を優先したい",
+        "domain": "達成の共有"
+      },
+      "comparativeRisk": "誰かとの共有機会の有無と他者への配慮を混同しないか",
+      "explicitComparators": [
+        "B05"
+      ],
+      "conceptTarget": "INCUMBENT_L_TEST_CANDIDATE",
+      "decision": "NOT_APPROVED",
+      "observedPsychometrics": false
+    },
+    {
+      "id": "B04",
+      "axis": "B",
+      "current": {
+        "negative": "自分の希望する場所を選ぶ",
+        "positive": "大切な人との距離を重視して選ぶ"
+      },
+      "alternateM": {
+        "negative": "調整可能なら自分の予定を優先して組む",
+        "positive": "調整可能なら関係者と予定を合わせて組む",
+        "source": "D57"
+      },
+      "candidateL": {
+        "negative": "暮らす場所は自分が望む条件を優先して選びたい",
+        "positive": "暮らす場所は大切な人と関わりやすい条件を優先して選びたい",
+        "domain": "居住地の選好"
+      },
+      "comparativeRisk": "同居・扶養・介護などの状況とA軸の居住安定志向を切り分ける",
+      "explicitComparators": [
+        "B02"
+      ],
+      "conceptTarget": "INCUMBENT_L_TEST_CANDIDATE",
+      "decision": "NOT_APPROVED",
+      "observedPsychometrics": false
+    },
+    {
+      "id": "B05",
+      "axis": "B",
+      "current": {
+        "negative": "自分だけでも実現したい目標",
+        "positive": "大切な人と実現したい目標"
+      },
+      "alternateM": {
+        "negative": "同じ目標の実行を自分で組み立てる",
+        "positive": "同じ目標の実行を関係者と分担する",
+        "source": "D59"
+      },
+      "candidateL": {
+        "negative": "自分にとっての意義を基準に目標を選びたい",
+        "positive": "関わる人と共有する意義を基準に目標を選びたい",
+        "domain": "目標の共有"
+      },
+      "comparativeRisk": "B03と単なる言い換えなら採用不可。実行能力やチームワークを推測しない",
+      "explicitComparators": [
+        "B03"
+      ],
+      "conceptTarget": "INCUMBENT_L_TEST_CANDIDATE",
+      "decision": "NOT_APPROVED",
+      "observedPsychometrics": false
+    },
+    {
+      "id": "B06",
+      "axis": "B",
+      "current": {
+        "negative": "自分の希望に合わせて方向を決める",
+        "positive": "関係者と方向をすり合わせる"
+      },
+      "alternateM": {
+        "negative": "意見が分かれた際に自分の判断を重視する",
+        "positive": "意見が分かれた際に合意形成を重視する",
+        "source": "D57"
+      },
+      "candidateL": {
+        "negative": "希望が食い違うとき自分の希望を尊重することを重視したい",
+        "positive": "希望が食い違うとき双方が納得できる点を探すことを重視したい",
+        "domain": "希望が対立する場面"
+      },
+      "comparativeRisk": "社会的望ましさの偏りや交渉権限の差を確認する",
+      "explicitComparators": [
+        "B01"
+      ],
+      "conceptTarget": "INCUMBENT_L_TEST_CANDIDATE",
+      "decision": "NOT_APPROVED",
+      "observedPsychometrics": false
+    }
+  ],
+  "changeHistory": [
+    {
+      "date": "2026-10-26",
+      "version": "D74-001",
+      "change": "Add separate A/B L-copy candidates, side-by-side M proposals and explicit falsification prompts; preserve all runtime versions."
+    }
+  ]
+}

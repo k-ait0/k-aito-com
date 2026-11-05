@@ -1,0 +1,172 @@
+{
+  "schema": "A05-D86-TYPE-STRUCTURE-DECISION-1",
+  "version": "D86-001",
+  "date": "2026-10-26",
+  "status": "RECOMMENDATION_ONLY_HUMAN_DECISION_PENDING",
+  "purpose": "Compare B response models' structural impact on four-axis 16-type proposal without validating or issuing any type classification.",
+  "provisionalProductGoal": "User-facing life-values self-reflection, with 16-type presentation retained as a long-term hypothesis rather than validated personality types.",
+  "assumptions": {
+    "remainingAxes": [
+      "A",
+      "C",
+      "D"
+    ],
+    "remainingAxesIndependence": "NOT_VALIDATED",
+    "remainingAxesBinary": "NOT_APPROVED",
+    "BConstruct": "D79_R_RECOMMENDATION_NOT_OWNER_SELECTED",
+    "EHandling": "E_C_TECHNICAL_BASELINE_NOT_APPROVED",
+    "RGBY": "VISUAL_LANGUAGE_ONLY",
+    "existingTypeVersion": "A05-T-1.0.0-draft",
+    "previousBlockers": 7
+  },
+  "candidates": [
+    {
+      "id": "B1",
+      "title": "B軸を単一の二極尺度で継続",
+      "bFormat": "bipolar",
+      "BInBinaryType": true,
+      "theoreticalBinaryAxes": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "independentBFields": [],
+      "theoreticalCombinations": 16,
+      "proposedPublicClassification": "WITHHELD_UNVALIDATED",
+      "resultSchema": "UNASSIGNED",
+      "typeIdAllowed": false,
+      "benefits": [
+        "旧16タイプ世界観との表示上の連続性",
+        "単一質問形式なので回答負担が相対的に小さい"
+      ],
+      "defects": [
+        "自分の希望と他者への配慮を両立する回答を区別しにくい",
+        "回答4の解釈が一意でない",
+        "対人関係・裁量権の制約を反映し得る"
+      ],
+      "unresolved": [
+        "B二極性",
+        "4軸の独立性と境界",
+        "タイプ名・キャラクター・グループの測定根拠",
+        "研究承認"
+      ]
+    },
+    {
+      "id": "B2",
+      "title": "B軸を2つの独立評価にする",
+      "bFormat": "independent",
+      "BInBinaryType": false,
+      "theoreticalBinaryAxes": [
+        "A",
+        "C",
+        "D"
+      ],
+      "independentBFields": [
+        "self",
+        "others"
+      ],
+      "theoreticalCombinations": 8,
+      "proposedPublicClassification": "WITHHELD_UNVALIDATED",
+      "resultSchema": "UNASSIGNED",
+      "typeIdAllowed": false,
+      "benefits": [
+        "双方を強く/弱く重視する回答が分離できる",
+        "一方だけ判断不能の状態を保持できる"
+      ],
+      "defects": [
+        "質問数と回答負担の増加",
+        "単一のBビットは存在しない",
+        "独立尺度も心理測定上未検証"
+      ],
+      "unresolved": [
+        "B2問の尺度定義と場面適用性",
+        "独立評定の反応スタイル",
+        "A/C/Dの解釈と欠測",
+        "新しい保存契約と内容版"
+      ]
+    },
+    {
+      "id": "B3",
+      "title": "B軸をタイプ分類に使用しない",
+      "bFormat": "unclassified",
+      "BInBinaryType": false,
+      "theoreticalBinaryAxes": [
+        "A",
+        "C",
+        "D"
+      ],
+      "independentBFields": [],
+      "theoreticalCombinations": 8,
+      "proposedPublicClassification": "WITHHELD_UNVALIDATED",
+      "resultSchema": "UNASSIGNED",
+      "typeIdAllowed": false,
+      "benefits": [
+        "未検証のBの二極性をタイプ判定から排除",
+        "価値観を分類せず文章として表示する方向へ移行可能"
+      ],
+      "defects": [
+        "元の16タイプ世界観との構造が変わる",
+        "個別B情報の可視化価値は別途判断が必要",
+        "残り3軸も妥当性未確認"
+      ],
+      "unresolved": [
+        "B関連の任意振り返りを掲載するか",
+        "分類しない結果UIの価値",
+        "A/C/Dの妥当性",
+        "RGBYキャラクターの表現方法"
+      ]
+    }
+  ],
+  "decision": {
+    "recommendedResearchContrast": "B1_vs_B2",
+    "recommendedInitialNonClassification": "B3",
+    "recommendationNature": "SAFETY_ORIENTED_EDITORIAL_NOT_EMPIRICAL",
+    "formalWinner": "PENDING",
+    "humanOwnerSignoff": "PENDING",
+    "riskPriority": [
+      "BIPOLARITY",
+      "MEASUREMENT_VALIDITY",
+      "MEANINGFUL_RESULT_COPY",
+      "HISTORICAL_COMPATIBILITY",
+      "USER_CONSENT"
+    ]
+  },
+  "typeOutputPolicy": {
+    "allModes": {
+      "typeId": null,
+      "legacyCompatible": false,
+      "psychometricStatus": "NOT_VALIDATED",
+      "publicLabel": "NO_TYPE_ASSIGNMENT_YET"
+    },
+    "noAutomaticBScoreFromB2": true,
+    "no8TypeAutoRelease": true,
+    "no16TypeAutoRelease": true,
+    "groupColorsRemainProvisional": true,
+    "missingOrBorderlineResponse": "WITHHOLD_CLASSIFICATION_NOT_FORCE_MIDPOINT",
+    "oldResultSnapshot": "READ_ONLY_FROZEN_OLD_VERSION",
+    "A01Integration": "DISABLED_PENDING_APPROVAL",
+    "myLifeNoteIntegration": "DISABLED_PENDING_APPROVAL"
+  },
+  "releaseGates": {
+    "humanProductApproval": false,
+    "ownerSelectABDefinition": false,
+    "newQuestionItemsApproved": false,
+    "ABlock": 3,
+    "overallBlocks": 7,
+    "psychometricValidated": false,
+    "g1ApprovalsPending": 12,
+    "d42AcceptancePending": 16,
+    "realParticipantResearchAuthorized": false,
+    "persistNewAssessmentsAuthorized": false,
+    "mergeAuthorized": false,
+    "productionReleaseAuthorized": false
+  },
+  "changeHistory": [
+    {
+      "date": "2026-10-26",
+      "version": "D86-001",
+      "change": "Prepare B1/B2/B3 structure options and combinatorial envelopes (16 or 8) without assigning real types, migrating legacy scores, or asserting validity."
+    }
+  ]
+}

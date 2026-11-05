@@ -1,0 +1,258 @@
+{
+  "schema": "A05-D77-CD-ITEM-REVIEW-1",
+  "version": "D77-001",
+  "date": "2026-10-26",
+  "state": "EDITORIAL_TRIAGE_NOT_ADOPTION",
+  "source": "docs/A05_D73_ITEM_CONSTRUCT_CROSSWALK_20261026.json",
+  "bounds": {
+    "items": 12,
+    "blockCount": 2,
+    "rewriteCount": 5,
+    "trialCount": 5,
+    "studyAuthorized": false,
+    "mergeAuthorized": false,
+    "productionReleaseAuthorized": false,
+    "legacyRescoringAllowed": false
+  },
+  "items": [
+    {
+      "id": "C01",
+      "axis": "C",
+      "editorialStatus": "TRIAL",
+      "triage": "TRIAL_CANDIDATE_NOT_ADOPTED",
+      "facet": "活動全体の選択",
+      "candidate": {
+        "negative": "将来の選択肢が増える活動を先に選ぶ",
+        "positive": "今日の充実が増える活動を先に選ぶ",
+        "source": "D57"
+      },
+      "crossCheck": [
+        "C02",
+        "C05"
+      ],
+      "risk": "C02/C05と将来・現在便益の比較が同じ回答理由にならないか",
+      "failureAction": "NO_DISTINCT_REASON_REWRITE",
+      "validation": "NO_EMPIRICAL_EVIDENCE",
+      "adoption": "NOT_APPROVED"
+    },
+    {
+      "id": "C02",
+      "axis": "C",
+      "editorialStatus": "REVISE",
+      "triage": "NEEDS_REWRITE",
+      "facet": "同負担下の時間配分",
+      "candidate": {
+        "negative": "同じ負担なら将来便益の大きい時間を選ぶ",
+        "positive": "同じ負担なら今日便益の大きい時間を選ぶ",
+        "source": "D57"
+      },
+      "crossCheck": [
+        "C01",
+        "C05"
+      ],
+      "risk": "将来便益と今日便益の大きさ・確実性が一致するか",
+      "failureAction": "REWRITE_IF_BENEFITS_NOT_COMPARABLE",
+      "validation": "NO_EMPIRICAL_EVIDENCE",
+      "adoption": "NOT_APPROVED"
+    },
+    {
+      "id": "C03",
+      "axis": "C",
+      "editorialStatus": "TRIAL",
+      "triage": "TRIAL_CANDIDATE_NOT_ADOPTED",
+      "facet": "知識を学ぶ動機",
+      "candidate": {
+        "negative": "後に役立つ知識を学ぶ",
+        "positive": "今日の関心を満たす知識を学ぶ",
+        "source": "D57"
+      },
+      "crossCheck": [
+        "C04"
+      ],
+      "risk": "学習機会、現在の興味と将来効用を同時に満たす場合はどう答えるか",
+      "failureAction": "REWRITE_IF_BOTH_APPLY",
+      "validation": "NO_EMPIRICAL_EVIDENCE",
+      "adoption": "NOT_APPROVED"
+    },
+    {
+      "id": "C04",
+      "axis": "C",
+      "editorialStatus": "BLOCK",
+      "triage": "BLOCK_STAYS",
+      "facet": "同じ活動の便益を感じる時点",
+      "candidate": {
+        "negative": "同じ活動で将来得られる充実を重視する",
+        "positive": "同じ活動で今日得られる充実を重視する",
+        "source": "D57"
+      },
+      "crossCheck": [
+        "C03"
+      ],
+      "risk": "C01/C02/C05と異なる選択理由がなく、単に今日か将来かの言い換えなら棄却",
+      "failureAction": "DROP_IF_SAME_REASON_AS_C02",
+      "validation": "NO_EMPIRICAL_EVIDENCE",
+      "adoption": "NOT_APPROVED"
+    },
+    {
+      "id": "C05",
+      "axis": "C",
+      "editorialStatus": "REVISE",
+      "triage": "NEEDS_REWRITE",
+      "facet": "余暇の一部を使う配分",
+      "candidate": {
+        "negative": "余暇の一部を将来の便益に振り向ける",
+        "positive": "余暇の一部を今日の便益に振り向ける",
+        "source": "D57"
+      },
+      "crossCheck": [
+        "C01",
+        "C02"
+      ],
+      "risk": "C02と時間配分が同じ場面か、負担・活動内容が条件で変わるか",
+      "failureAction": "DROP_OR_REWRITE_IF_DUPLICATE",
+      "validation": "NO_EMPIRICAL_EVIDENCE",
+      "adoption": "NOT_APPROVED"
+    },
+    {
+      "id": "C06",
+      "axis": "C",
+      "editorialStatus": "REVISE",
+      "triage": "NEEDS_REWRITE",
+      "facet": "生活改善による快適さ",
+      "candidate": {
+        "negative": "生活改善で将来の快適さを優先する",
+        "positive": "生活改善で今日の快適さを優先する",
+        "source": "D57"
+      },
+      "crossCheck": [
+        "C04"
+      ],
+      "risk": "将来と現在の快適さが質・量・必要度で異なるなら測定が混ざる",
+      "failureAction": "REWRITE_FOR_EQUIVALENT_BENEFITS",
+      "validation": "NO_EMPIRICAL_EVIDENCE",
+      "adoption": "NOT_APPROVED"
+    },
+    {
+      "id": "D01",
+      "axis": "D",
+      "editorialStatus": "TRIAL",
+      "triage": "TRIAL_CANDIDATE_NOT_ADOPTED",
+      "facet": "関心を持つ活動の種類",
+      "candidate": {
+        "negative": "関心活動の種類を広げる",
+        "positive": "一つの関心活動を深める",
+        "source": "D57"
+      },
+      "crossCheck": [
+        "D06"
+      ],
+      "risk": "D06と活動の数／深さが同じものを測っていないか",
+      "failureAction": "REWRITE_IF_DUPLICATE_D06",
+      "validation": "NO_EMPIRICAL_EVIDENCE",
+      "adoption": "NOT_APPROVED"
+    },
+    {
+      "id": "D02",
+      "axis": "D",
+      "editorialStatus": "TRIAL",
+      "triage": "TRIAL_CANDIDATE_NOT_ADOPTED",
+      "facet": "複数分野の知識の学習",
+      "candidate": {
+        "negative": "複数分野の知識を広く学ぶ",
+        "positive": "一分野の知識を深く学ぶ",
+        "source": "D59"
+      },
+      "crossCheck": [
+        "D03",
+        "D05"
+      ],
+      "risk": "D03の実体験、D05の表現と分離できるか。学習機会差を確認",
+      "failureAction": "REWRITE_IF_CONFOUNDED_WITH_D03",
+      "validation": "NO_EMPIRICAL_EVIDENCE",
+      "adoption": "NOT_APPROVED"
+    },
+    {
+      "id": "D03",
+      "axis": "D",
+      "editorialStatus": "BLOCK",
+      "triage": "BLOCK_STAYS",
+      "facet": "現実の体験の幅と深さ",
+      "candidate": {
+        "negative": "複数分野の体験を試す",
+        "positive": "一分野の体験を掘り下げる",
+        "source": "D59"
+      },
+      "crossCheck": [
+        "D02"
+      ],
+      "risk": "D59を優先比較候補として扱うが、D02の知識学習との弁別は未確認",
+      "failureAction": "REWRITE_OR_DROP_IF_SAME_AS_D02",
+      "validation": "NO_EMPIRICAL_EVIDENCE",
+      "adoption": "NOT_APPROVED"
+    },
+    {
+      "id": "D04",
+      "axis": "D",
+      "editorialStatus": "REVISE",
+      "triage": "NEEDS_REWRITE",
+      "facet": "一つの課題でのテーマ探索",
+      "candidate": {
+        "negative": "一つの課題で異なるテーマに触れる",
+        "positive": "一つの課題で特定テーマを掘り下げる",
+        "source": "D57"
+      },
+      "crossCheck": [
+        "D01"
+      ],
+      "risk": "A軸の活動方法の更新と混同しないか。A/Bの定義が変われば再審査",
+      "failureAction": "REWRITE_IF_A_AXIS_DRIFT",
+      "validation": "NO_EMPIRICAL_EVIDENCE",
+      "adoption": "NOT_APPROVED"
+    },
+    {
+      "id": "D05",
+      "axis": "D",
+      "editorialStatus": "TRIAL",
+      "triage": "TRIAL_CANDIDATE_NOT_ADOPTED",
+      "facet": "鑑賞・制作における表現の幅",
+      "candidate": {
+        "negative": "鑑賞・制作で複数の表現に触れる",
+        "positive": "鑑賞・制作で一つの表現を深める",
+        "source": "D57"
+      },
+      "crossCheck": [
+        "D02"
+      ],
+      "risk": "創作経験の有無で回答不能を誘発しないか。学習と表現を区別できるか",
+      "failureAction": "REWRITE_IF_INACCESSIBLE",
+      "validation": "NO_EMPIRICAL_EVIDENCE",
+      "adoption": "NOT_APPROVED"
+    },
+    {
+      "id": "D06",
+      "axis": "D",
+      "editorialStatus": "REVISE",
+      "triage": "NEEDS_REWRITE",
+      "facet": "対象を広げるか詳しく知るか",
+      "candidate": {
+        "negative": "旅行・外出で訪れる対象を広げる",
+        "positive": "旅行・外出で一つの対象を詳しく知る",
+        "source": "D57"
+      },
+      "crossCheck": [
+        "D01"
+      ],
+      "risk": "旅行や外出の移動制約を測っていないか。D01との重複確認",
+      "failureAction": "REWRITE_TO_REMOVE_TRAVEL_REQUIREMENT",
+      "validation": "NO_EMPIRICAL_EVIDENCE",
+      "adoption": "NOT_APPROVED"
+    }
+  ],
+  "changeHistory": [
+    {
+      "date": "2026-10-26",
+      "version": "D77-001",
+      "change": "Assign non-adoption review dispositions and falsification criteria to all 12 C/D axis candidates with no answer data or scoring changes."
+    }
+  ]
+}

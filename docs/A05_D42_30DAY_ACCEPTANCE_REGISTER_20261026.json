@@ -1,0 +1,208 @@
+{
+  "schema": "A05-D42-30DAY-ACCEPTANCE-1",
+  "version": "A05-D42-0.1",
+  "created": "2026-10-26",
+  "status": "DRAFT_PENDING_NO_AUTHORIZATION",
+  "purpose": "Acceptance prerequisites for the D-41 A_30DAY_ALIGNMENT research proposal. NOT an actual deployment or study record.",
+  "policySource": "docs/A05_D41_WITHDRAWAL_POLICY_OPTIONS_20261026.json",
+  "g1Source": "docs/A05_D38_G1_APPROVAL_REGISTER_20261026.json",
+  "proposedPolicyId": "A_30DAY_ALIGNMENT",
+  "periods": {
+    "contactDays": 14,
+    "pseudonymLinkDays": 30,
+    "rawNotesDays": 30,
+    "calendarDayAnchor": "each-hypothetical-interview-date",
+    "approved": false
+  },
+  "safeBaseline": {
+    "recruitmentAuthorized": false,
+    "dataCollectionAuthorized": false,
+    "realTokenImplemented": false,
+    "physicalDeletionValidated": false,
+    "productionReleaseAuthorized": false,
+    "finalHumanSignoff": "PENDING",
+    "participantRecordsExist": false
+  },
+  "evidencePolicy": {
+    "content": "Only non-identifying human-review evidence references are allowed in public repository docs; no real case identifiers, tokens, raw notes, actual personal records, cloud links, secrets or individual data.",
+    "rehearsalMayUse": "SYNTHETIC_FIXTURES_ONLY",
+    "machinePassMeaning": "STRUCTURAL_CHECK_ONLY_NOT_SECURITY_OR_COMPLIANCE"
+  },
+  "acceptanceChecks": [
+    {
+      "id": "AC-01",
+      "g1": "G1-01",
+      "criterion": "責任者・中止決裁者",
+      "requiredEvidence": "実施責任者、データ管理者、代理・停止責任を正式承認し、撤回対応の当番を指定",
+      "status": "PENDING",
+      "humanEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "id": "AC-02",
+      "g1": "G1-02",
+      "criterion": "募集と成人適格性",
+      "requiredEvidence": "対象条件・説明媒体・謝礼・任意参加・辞退時の不利益なしを確定",
+      "status": "PENDING",
+      "humanEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "id": "AC-03",
+      "g1": "G1-03",
+      "criterion": "参加者向け文書と記録同意",
+      "requiredEvidence": "同意版を確定し、メモ・連絡先・録音の利用目的を区分。撤回可能範囲を明示",
+      "status": "PENDING",
+      "humanEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "id": "AC-04",
+      "g1": "G1-04",
+      "criterion": "録音等の実施禁止",
+      "requiredEvidence": "初回録音・録画・画面収集なしを運用・端末設定で確認（変更するなら追加同意）",
+      "status": "PENDING",
+      "humanEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "id": "AC-05",
+      "g1": "G1-05",
+      "criterion": "ID対応表・申出者照合",
+      "requiredEvidence": "撤回申出者が対象個票に関与する権限を安全に確認できる手順を策定・擬似資料で検証",
+      "status": "PENDING",
+      "humanEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "id": "AC-06",
+      "g1": "G1-06",
+      "criterion": "保存先・端末暗号化",
+      "requiredEvidence": "承認された具体的な非公開保存先、暗号化、紛失対策、権限、同期・複製設定を実機確認",
+      "status": "PENDING",
+      "humanEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "id": "AC-07",
+      "g1": "G1-07",
+      "criterion": "アクセスと外部転送禁止",
+      "requiredEvidence": "必要最小権限と監査対象を確認し、GitHub/PR/Actions/外部AI/本番A05を保管先から除外",
+      "status": "PENDING",
+      "humanEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "id": "AC-08",
+      "g1": "G1-08",
+      "criterion": "30日統一保持・削除期限",
+      "requiredEvidence": "各面接日から連絡先14日、対応表30日、個票30日を上限候補として責任者が採否判断",
+      "status": "PENDING",
+      "humanEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "id": "AC-09",
+      "g1": "G1-09",
+      "criterion": "撤回受付・紛失時対応",
+      "requiredEvidence": "受付窓口・本人/権限照合・誤消去防止・審査/返答期限・30日以降の制限を決定",
+      "status": "PENDING",
+      "humanEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "id": "AC-10",
+      "g1": "G1-10",
+      "criterion": "情報事故・漏えい・誤削除時の手順",
+      "requiredEvidence": "記録停止、アクセス遮断、影響範囲、必要な連絡・報告と再開条件を審査",
+      "status": "PENDING",
+      "humanEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "id": "AC-11",
+      "g1": "G1-11",
+      "criterion": "版・Git SHA・台本凍結",
+      "requiredEvidence": "D-35/D-36設問、D-37割付、D-41方針、同意説明版・記録様式のSHAを固定",
+      "status": "PENDING",
+      "humanEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "id": "AC-12",
+      "g1": "G1-12",
+      "criterion": "法令・内部倫理等の確認",
+      "requiredEvidence": "実施主体、保管地域、年齢と法令/組織規程、必要な審査等の判断証拠を記録",
+      "status": "PENDING",
+      "humanEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "id": "AC-13",
+      "g1": "G1-06",
+      "criterion": "本体・同期・コピー・バックアップ消去試験",
+      "requiredEvidence": "架空のテストデータで実際の端末・複製・バックアップの削除手順、確認方法を運用試験",
+      "status": "PENDING",
+      "humanEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "id": "AC-14",
+      "g1": "G1-05",
+      "criterion": "認証トークン紛失/漏えい/再使用への耐性",
+      "requiredEvidence": "実装検討時のみテスト鍵で照合権限、無効化、誤対象削除、試行制限、漏えい経路を試験",
+      "status": "PENDING",
+      "humanEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "id": "AC-15",
+      "g1": "G1-08",
+      "criterion": "期限時刻・失敗時再試行と監査",
+      "requiredEvidence": "休日・停止・電源断・期限超過・個票別の削除漏れを確認する担当者と監査手続きを定義",
+      "status": "PENDING",
+      "humanEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    },
+    {
+      "id": "AC-16",
+      "g1": "G1-09",
+      "criterion": "期限30日で終了する個別削除の告知",
+      "requiredEvidence": "個人照合可能期限、本人の撤回手段、期限後個別削除が難しいことの説明を確定",
+      "status": "PENDING",
+      "humanEvidenceRef": null,
+      "reviewerRole": null,
+      "reviewedAt": null
+    }
+  ],
+  "approval": {
+    "state": "PENDING",
+    "humanAuthorizerRole": null,
+    "authorizationEvidenceRef": null,
+    "date": null
+  },
+  "changeHistory": [
+    {
+      "date": "2026-10-26",
+      "version": "D42-001",
+      "before": "D-41 selected A only as a candidate for human review without a concrete technical/operator evidence checklist",
+      "after": "16-item pending acceptance register with responsibilities and required evidence, preserving the manual G1 gate and no-real-data boundary",
+      "reason": "Prevent simulated expiry and fictional match from being mistaken for verified secure storage, withdrawal and deletion"
+    }
+  ]
+}

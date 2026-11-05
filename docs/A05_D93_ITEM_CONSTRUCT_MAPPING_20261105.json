@@ -1,0 +1,423 @@
+{
+  "schema": "A05-D93-ITEM-TO-CONSTRUCT-MAP-1",
+  "created_at": "2026-11-05",
+  "status": "INTERNAL_EDITORIAL_MAPPING_ONLY",
+  "sources": [
+    {
+      "path": "docs/A05_D92_CONSTRUCT_CHOICE_MATRIX_20261105.json",
+      "git_blob_sha": "1e867e0506c5d1fde3fb78a67e37c4987dce47d7"
+    },
+    {
+      "path": "docs/A05_D90_BC_PILOT_0_2_20261105.json",
+      "git_blob_sha": "69fd5e3d31cc40a54f6e9e63dade60c65ffcbf38"
+    },
+    {
+      "path": "docs/A05_D91_CONSTRUCT_BOUNDARY_AUDIT_20261105.json",
+      "git_blob_sha": "7faadc14113110a8443c0f81a2b5fc36590d1791"
+    }
+  ],
+  "preferred_concepts": [
+    {
+      "option_id": "BR1",
+      "facet": "related",
+      "label": "相互的なつながりを重視する価値",
+      "approval": "PENDING"
+    },
+    {
+      "option_id": "CP1",
+      "facet": "present",
+      "label": "現在の経験そのものを重視する価値",
+      "approval": "PENDING"
+    }
+  ],
+  "acceptance_criteria_ids": [
+    "value_not_state",
+    "concept_boundary",
+    "independent_high_low",
+    "context_robustness",
+    "three_nonredundant_items",
+    "interpretation_limits"
+  ],
+  "dispositions": {
+    "CONDITIONAL_TRIAL": 2,
+    "REWRITE_BEFORE_TRIAL": 4
+  },
+  "items": [
+    {
+      "id": "B-R01",
+      "facet": "related",
+      "axis": "B",
+      "source_text": "大切なことを安心して話せる人間関係を持つことを重視したい。",
+      "preferred_option": "BR1",
+      "editorial_disposition": "CONDITIONAL_TRIAL",
+      "intent": "価値ある対人関係の重視",
+      "alignment": "安心して話せる関係を大切にしたいという志向はBR1と合致する",
+      "primary_issue": "『安心』が現在の信頼・関係満足を表す可能性",
+      "acceptance_criteria": [
+        {
+          "id": "value_not_state",
+          "editorial_judgment": "CONDITIONAL"
+        },
+        {
+          "id": "concept_boundary",
+          "editorial_judgment": "CONDITIONAL"
+        },
+        {
+          "id": "independent_high_low",
+          "editorial_judgment": "MEETS"
+        },
+        {
+          "id": "context_robustness",
+          "editorial_judgment": "CONDITIONAL"
+        },
+        {
+          "id": "three_nonredundant_items",
+          "editorial_judgment": "CONDITIONAL"
+        },
+        {
+          "id": "interpretation_limits",
+          "editorial_judgment": "MEETS"
+        }
+      ],
+      "overlap_items": [
+        "B-R02"
+      ],
+      "contamination": [
+        "current_relationship_quality",
+        "trust_satisfaction"
+      ],
+      "rewrite_brief_unapproved": "関係の現状を測らず、対話を可能にする関係自体の重視を問う",
+      "cognitive_interview_probes_draft": [
+        "いま話せる人がいなくても同じ回答になるか？",
+        "『安心』は現在の感情か、求める関係の特徴か？"
+      ],
+      "negative_guardrail": "現在の交友人数を重視度へ換算しない",
+      "psychometric_verified": false
+    },
+    {
+      "id": "B-R02",
+      "facet": "related",
+      "axis": "B",
+      "source_text": "日々の出来事や喜びを、身近な人と分かち合えることを大切にしたい。",
+      "preferred_option": "BR1",
+      "editorial_disposition": "CONDITIONAL_TRIAL",
+      "intent": "経験を他者と分かち合う価値の重視",
+      "alignment": "共有経験を重視する志向はBR1と合致する",
+      "primary_issue": "身近な人の有無・感情表現の習慣に回答が左右される",
+      "acceptance_criteria": [
+        {
+          "id": "value_not_state",
+          "editorial_judgment": "MEETS"
+        },
+        {
+          "id": "concept_boundary",
+          "editorial_judgment": "CONDITIONAL"
+        },
+        {
+          "id": "independent_high_low",
+          "editorial_judgment": "MEETS"
+        },
+        {
+          "id": "context_robustness",
+          "editorial_judgment": "CONDITIONAL"
+        },
+        {
+          "id": "three_nonredundant_items",
+          "editorial_judgment": "CONDITIONAL"
+        },
+        {
+          "id": "interpretation_limits",
+          "editorial_judgment": "MEETS"
+        }
+      ],
+      "overlap_items": [
+        "B-R01"
+      ],
+      "contamination": [
+        "social_opportunity",
+        "cultural_emotion_expression"
+      ],
+      "rewrite_brief_unapproved": "関係の有無とは別に共有を大切にしたい価値を試す",
+      "cognitive_interview_probes_draft": [
+        "どの関係者を思い浮かべたか？",
+        "相手がいない期間でも重視度は同じか？"
+      ],
+      "negative_guardrail": "現実の共有頻度を尋ねない",
+      "psychometric_verified": false
+    },
+    {
+      "id": "B-R03",
+      "facet": "related",
+      "axis": "B",
+      "source_text": "困ったときに互いに頼れる関係を育てることを大切にしたい。",
+      "preferred_option": "BR1",
+      "editorial_disposition": "REWRITE_BEFORE_TRIAL",
+      "intent": "相互的に関わり合うことへの価値付け",
+      "alignment": "『互いに』という相互性はBR1に沿う",
+      "primary_issue": "援助の必要性・社会的資源・E軸との混同",
+      "acceptance_criteria": [
+        {
+          "id": "value_not_state",
+          "editorial_judgment": "CONDITIONAL"
+        },
+        {
+          "id": "concept_boundary",
+          "editorial_judgment": "FAILS"
+        },
+        {
+          "id": "independent_high_low",
+          "editorial_judgment": "MEETS"
+        },
+        {
+          "id": "context_robustness",
+          "editorial_judgment": "FAILS"
+        },
+        {
+          "id": "three_nonredundant_items",
+          "editorial_judgment": "CONDITIONAL"
+        },
+        {
+          "id": "interpretation_limits",
+          "editorial_judgment": "CONDITIONAL"
+        }
+      ],
+      "overlap_items": [
+        "B-R02"
+      ],
+      "contamination": [
+        "support_availability",
+        "resource_constraints_E",
+        "help_needs"
+      ],
+      "rewrite_brief_unapproved": "困り事・支援可否を除き、相互に関わる関係そのものを対象とする。R01/R02と別の内容にする",
+      "cognitive_interview_probes_draft": [
+        "他者に頼る必要がなくても大切か？",
+        "実際に頼れる人の有無で回答が変わるか？"
+      ],
+      "negative_guardrail": "支援が得られる現況をスコアにしない",
+      "psychometric_verified": false
+    },
+    {
+      "id": "C-P01",
+      "facet": "present",
+      "axis": "C",
+      "source_text": "将来の成果に直接つながらなくても、日々の時間を楽しめる活動を大切にしたい。",
+      "preferred_option": "CP1",
+      "editorial_disposition": "REWRITE_BEFORE_TRIAL",
+      "intent": "現在の活動過程自体の価値付け",
+      "alignment": "将来の成果だけでなく活動そのものに価値を認める点はCP1に沿う",
+      "primary_issue": "『楽しめる』が享楽・即時報酬を意味し、『将来の成果』との比較が二極化を招く",
+      "acceptance_criteria": [
+        {
+          "id": "value_not_state",
+          "editorial_judgment": "CONDITIONAL"
+        },
+        {
+          "id": "concept_boundary",
+          "editorial_judgment": "CONDITIONAL"
+        },
+        {
+          "id": "independent_high_low",
+          "editorial_judgment": "CONDITIONAL"
+        },
+        {
+          "id": "context_robustness",
+          "editorial_judgment": "CONDITIONAL"
+        },
+        {
+          "id": "three_nonredundant_items",
+          "editorial_judgment": "CONDITIONAL"
+        },
+        {
+          "id": "interpretation_limits",
+          "editorial_judgment": "CONDITIONAL"
+        }
+      ],
+      "overlap_items": [
+        "C-P02",
+        "C-P03"
+      ],
+      "contamination": [
+        "hedonic_pleasure",
+        "exploration_D",
+        "implicit_future_tradeoff"
+      ],
+      "rewrite_brief_unapproved": "楽しさと独立に現在の過程へ価値を置く意思を単一の問いで扱う",
+      "cognitive_interview_probes_draft": [
+        "楽しくないが意味ある活動でも高評価か？",
+        "将来達成も重視する人でも高評価か？"
+      ],
+      "negative_guardrail": "娯楽・衝動的消費を現在価値とみなさない",
+      "psychometric_verified": false
+    },
+    {
+      "id": "C-P02",
+      "facet": "present",
+      "axis": "C",
+      "source_text": "日常生活の中で、今の充実を実感する機会を大切にしたい。",
+      "preferred_option": "CP1",
+      "editorial_disposition": "REWRITE_BEFORE_TRIAL",
+      "intent": "日常生活の経験そのものの価値付け",
+      "alignment": "現在の日常に価値を置くという時間対象は明確",
+      "primary_issue": "『充実を実感』が現在の生活満足度を測りやすくP01/P03とも重複",
+      "acceptance_criteria": [
+        {
+          "id": "value_not_state",
+          "editorial_judgment": "FAILS"
+        },
+        {
+          "id": "concept_boundary",
+          "editorial_judgment": "CONDITIONAL"
+        },
+        {
+          "id": "independent_high_low",
+          "editorial_judgment": "MEETS"
+        },
+        {
+          "id": "context_robustness",
+          "editorial_judgment": "FAILS"
+        },
+        {
+          "id": "three_nonredundant_items",
+          "editorial_judgment": "CONDITIONAL"
+        },
+        {
+          "id": "interpretation_limits",
+          "editorial_judgment": "CONDITIONAL"
+        }
+      ],
+      "overlap_items": [
+        "C-P01",
+        "C-P03"
+      ],
+      "contamination": [
+        "wellbeing_state",
+        "current_life_satisfaction",
+        "leisure_time_E"
+      ],
+      "rewrite_brief_unapproved": "現状の充実度を外し、日常経験への価値付けとP01/P03の違いを説明できるようにする",
+      "cognitive_interview_probes_draft": [
+        "現在の生活に不満でも高く回答できるか？",
+        "時間的余裕がなくても回答できるか？"
+      ],
+      "negative_guardrail": "現状の満足度を価値の採点に用いない",
+      "psychometric_verified": false
+    },
+    {
+      "id": "C-P03",
+      "facet": "present",
+      "axis": "C",
+      "source_text": "その日に経験している出来事そのものに価値を見いだすことを大切にしたい。",
+      "preferred_option": "CP1",
+      "editorial_disposition": "REWRITE_BEFORE_TRIAL",
+      "intent": "現在経験を価値あるものとする意思",
+      "alignment": "現在の経験への価値付けというCP1の方向には一致",
+      "primary_issue": "『見いだす』が注意・マインドフルネスの能力を含意しP02とも近似",
+      "acceptance_criteria": [
+        {
+          "id": "value_not_state",
+          "editorial_judgment": "CONDITIONAL"
+        },
+        {
+          "id": "concept_boundary",
+          "editorial_judgment": "CONDITIONAL"
+        },
+        {
+          "id": "independent_high_low",
+          "editorial_judgment": "MEETS"
+        },
+        {
+          "id": "context_robustness",
+          "editorial_judgment": "CONDITIONAL"
+        },
+        {
+          "id": "three_nonredundant_items",
+          "editorial_judgment": "FAILS"
+        },
+        {
+          "id": "interpretation_limits",
+          "editorial_judgment": "CONDITIONAL"
+        }
+      ],
+      "overlap_items": [
+        "C-P01",
+        "C-P02"
+      ],
+      "contamination": [
+        "mindfulness_attention",
+        "current_wellbeing",
+        "wording_overlap"
+      ],
+      "rewrite_brief_unapproved": "気づく能力を問わず、経験に価値を置く意思へ限定。P01/P02と冗長なら3問設計を再考する",
+      "cognitive_interview_probes_draft": [
+        "集中が難しい人でも同じように大切か？",
+        "他の2問と意味が違うか？"
+      ],
+      "negative_guardrail": "集中・注意の能力を価値観とみなさない",
+      "psychometric_verified": false
+    }
+  ],
+  "synthetic_interpretation_checks": [
+    {
+      "id": "S01",
+      "item_ids": [
+        "B-R01",
+        "B-R02",
+        "B-R03"
+      ],
+      "condition": "身近な相手がいないが関係自体を大切にしたい",
+      "expected": "現実の対人資源を重視度の低さとみなさない",
+      "evidence": "UNTESTED"
+    },
+    {
+      "id": "S02",
+      "item_ids": [
+        "B-R03"
+      ],
+      "condition": "他者の支援を現状必要としていない",
+      "expected": "援助の必要性だけで価値を推測しない",
+      "evidence": "UNTESTED"
+    },
+    {
+      "id": "S03",
+      "item_ids": [
+        "C-P01"
+      ],
+      "condition": "将来の成果と今の活動過程を両方重視",
+      "expected": "将来と現在を強制二者択一としない",
+      "evidence": "UNTESTED"
+    },
+    {
+      "id": "S04",
+      "item_ids": [
+        "C-P02"
+      ],
+      "condition": "いまの暮らしには不満だが日常経験は大切",
+      "expected": "生活満足度の低さを価値の低さとみなさない",
+      "evidence": "UNTESTED"
+    },
+    {
+      "id": "S05",
+      "item_ids": [
+        "C-P03"
+      ],
+      "condition": "注意が散りやすいが現在経験は大切",
+      "expected": "注意能力の低さを価値の低さとみなさない",
+      "evidence": "UNTESTED"
+    }
+  ],
+  "decisions": {
+    "editorial_map_completed": true,
+    "construct_selection_formally_approved": false,
+    "revised_wording_approved": false,
+    "issue_bank_v03": false,
+    "rewrite_proposals_are_not_a_bank": true,
+    "old_q30_and_v02_frozen": true,
+    "participant_data_collection": false,
+    "empirical_validity": "NOT_ESTABLISHED",
+    "type_id": null,
+    "classification_status": "WITHHELD",
+    "production_approved": false,
+    "next": "D94 criterion coverage and wording redundancy evaluation before owner concept decision"
+  }
+}

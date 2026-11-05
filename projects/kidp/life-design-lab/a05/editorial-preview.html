@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta name="description" content="A05研究設計の未採用A/B軸L/M/R文言の編集比較">
+<title>A05 A/B軸・研究設計レビュー（未承認）</title>
+<style>
+:root{font-family:system-ui,-apple-system,sans-serif;color-scheme:light dark}
+*{box-sizing:border-box}
+body{max-width:1180px;margin:24px auto;padding:0 16px;line-height:1.65}
+h1{line-height:1.4}h2{font-size:1.15rem}h3{font-size:1rem;margin:0 0 12px}
+.notice{border:2px solid currentColor;border-radius:12px;padding:12px 16px;font-weight:650}
+.controls{display:flex;gap:12px;align-items:end;flex-wrap:wrap;margin:18px 0}
+.field{display:grid;gap:4px;min-width:180px;flex:1}
+label{font-weight:600}
+select,button{font:inherit;min-height:44px;max-width:100%;padding:8px 10px;border-radius:9px}
+button{cursor:pointer}button:disabled{cursor:default;opacity:.6}
+button:focus-visible,select:focus-visible,input:focus-visible{outline:3px solid #347ac3;outline-offset:3px}
+.checkbox{display:flex;gap:8px;align-items:center;min-height:44px}
+.checkbox input{width:20px;height:20px}
+.actions{display:flex;flex-wrap:wrap;gap:12px}
+.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:18px 0}
+.variant{min-width:0;border:1px solid #888;border-radius:12px;padding:16px;overflow-wrap:anywhere}
+.variant h3{border-bottom:1px solid #aaa;padding-bottom:8px}
+.variant strong{display:block}
+.detail{border:1px solid #888;border-radius:12px;padding:12px 16px;margin:12px 0;overflow-wrap:anywhere}
+.meta{font-weight:650}.small{font-size:.9rem}
+@media(max-width:760px){.cards{grid-template-columns:1fr}.field{min-width:100%}body{margin-top:12px}.variant{padding:14px}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<main>
+<h1>A05｜A・B軸の質問文比較</h1>
+<p class="notice">編集者向けの未承認プレビューです。診断結果・調査実施・正式な設問採用ではありません。</p>
+<p class="small">このページは選択状態・実回答・メモを収集、送信、保存しません。既存A05の診断エンジンやデータベースとは独立しています。表示には同じサイト内の静的モジュールのみ使用します。</p>
+<div class="controls">
+ <div class="field"><label for="axis">比較する軸</label><select id="axis"><option value="A">A：安定と変化</option><option value="B">B：自己希望と関係性</option></select></div>
+ <div class="field"><label for="item">質問IDと場面</label><select id="item"></select></div>
+ <label for="block-only" class="checkbox"><input id="block-only" type="checkbox">BLOCKのみ表示</label>
+</div>
+<p id="count" class="small" aria-live="polite"></p>
+<p id="status" class="meta" role="status" aria-live="polite"></p>
+<p id="facet" class="small"></p>
+<div class="actions"><button type="button" id="previous">前の候補</button><button type="button" id="next">次の候補</button></div>
+<h2>改稿文面の比較（負方向／正方向）</h2>
+<div id="cards" class="cards" aria-label="L・M・R各案の文面"></div>
+<section class="detail">
+<h2>現行版との照合</h2>
+<p id="original"></p>
+</section>
+<section class="detail">
+<h2>D-84 編集上の処置案（正式採用なし）</h2>
+<p id="editorial-advice" aria-live="polite"></p>
+<p class="small">「残す候補」「改稿候補」「削除候補」は机上の比較上の優先順位です。採否・元のBLOCK判定は変更していません。実回答者の調査は行っていません。</p>
+</section>
+<section class="detail">
+<h2>重複と回答可能性の確認</h2>
+<p id="risk"></p>
+<div class="controls">
+ <div class="field"><label for="overlap">関連する質問</label><select id="overlap"></select></div>
+ <button type="button" id="jump-overlap">関連質問を表示</button>
+</div>
+<p class="small">関連質問は編集上の重複仮説であり統計的相関ではありません。A04・A05・B02はBLOCKを維持します。</p>
+</section>
+<p class="small">案L＝従来の概念に近い候補／案M＝活動方法や意思決定の候補／案R＝人生の選択基準を優先する再設計案。いずれも未検証であり、16タイプや採点への反映は行いません。</p>
+</main>
+<script type="module" src="./editorial-preview.mjs"></script>
+</body>
+</html>

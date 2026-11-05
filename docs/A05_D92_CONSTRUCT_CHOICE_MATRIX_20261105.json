@@ -1,0 +1,545 @@
+{
+  "schema": "A05-D92-CONSTRUCT-CHOICE-MATRIX-1",
+  "date": "2026-11-05",
+  "status": "EDITORIAL_COMPARISON_ONLY_HUMAN_DECISION_PENDING",
+  "sources": [
+    {
+      "path": "docs/A05_D91_CONSTRUCT_BOUNDARY_AUDIT_20261105.json",
+      "git_blob_sha": "7faadc14113110a8443c0f81a2b5fc36590d1791"
+    },
+    {
+      "path": "docs/A05_D90_BC_PILOT_0_2_20261105.json",
+      "git_blob_sha": "69fd5e3d31cc40a54f6e9e63dade60c65ffcbf38"
+    }
+  ],
+  "scientific_boundary": "Literature offers adjacent theoretical constructs only; none directly validates A05 factors, 12 items, or types.",
+  "criteria": [
+    {
+      "id": "value_not_state",
+      "label": "重視する価値と現況・行動・能力を区別",
+      "accept": "質問を『望ましい人生上の価値』として回答でき、現にその状態を得ているか否かと切り離せる"
+    },
+    {
+      "id": "concept_boundary",
+      "label": "他尺度・他軸との弁別可能性",
+      "accept": "B自己裁量・A/E、C将来・D/Eなどの隣接概念と異なる測定対象を明示できる"
+    },
+    {
+      "id": "independent_high_low",
+      "label": "両高・両低を表せる",
+      "accept": "B自己裁量とBつながり、C将来とC現在の双方が同時に高い/低い場合も論理矛盾が生じない"
+    },
+    {
+      "id": "context_robustness",
+      "label": "生活環境・関係の有無に過剰依存しない",
+      "accept": "同居や就労、交友、現在の満足・資源の有無を直接問わず価値の重視を表せる"
+    },
+    {
+      "id": "three_nonredundant_items",
+      "label": "独立した3項目に操作化できる",
+      "accept": "同一概念の異なる側面を3問で表せる見込みがあり、語句だけの言い換えや二重質問を避けられる"
+    },
+    {
+      "id": "interpretation_limits",
+      "label": "結果の意味と限界を説明可能",
+      "accept": "『その価値を重視したとの回答傾向』以上に性格・適職・関係の良否を断定しない"
+    }
+  ],
+  "scales": [
+    {
+      "id": "B_related",
+      "coexists_with": "B_self",
+      "candidate_ids": [
+        "BR1",
+        "BR2",
+        "BR3",
+        "BR4"
+      ],
+      "editorial_preference": "BR1",
+      "formal_decision": "PENDING",
+      "item_ids": [
+        "B-R01",
+        "B-R02",
+        "B-R03"
+      ]
+    },
+    {
+      "id": "C_present",
+      "coexists_with": "C_future",
+      "candidate_ids": [
+        "CP1",
+        "CP2",
+        "CP3",
+        "CP4"
+      ],
+      "editorial_preference": "CP1",
+      "formal_decision": "PENDING",
+      "item_ids": [
+        "C-P01",
+        "C-P02",
+        "C-P03"
+      ]
+    }
+  ],
+  "options": [
+    {
+      "id": "BR1",
+      "scale": "B_related",
+      "title": "相互的なつながりを重視する価値",
+      "definition": "他者と関係を持ち、気持ち・経験を分かち合い、相互に関わること自体を人生上大切にする傾向",
+      "position": "EDITORIAL_PREFERRED_CONDITIONAL",
+      "reason": "『状態や技能』ではなく『関係を持つことの重視』へ比較的絞れる。実測の妥当性は未証明。",
+      "excludes": [
+        "現時点の人間関係の質や人数",
+        "誰かに頼らざるを得ない生活条件",
+        "合意形成能力",
+        "孤独か社交的か"
+      ],
+      "item_ids": [
+        "B-R01",
+        "B-R02",
+        "B-R03"
+      ],
+      "checks": [
+        {
+          "criterion_id": "value_not_state",
+          "status": "CONDITIONAL",
+          "rationale": "関係を望む価値と現実の関係の質が混ざりやすい"
+        },
+        {
+          "criterion_id": "concept_boundary",
+          "status": "CONDITIONAL",
+          "rationale": "B自己裁量とは独立に設計できるがA安定とE資源の混入には注意"
+        },
+        {
+          "criterion_id": "independent_high_low",
+          "status": "MEETS",
+          "rationale": "自律性との同時高・同時低を禁止しない"
+        },
+        {
+          "criterion_id": "context_robustness",
+          "status": "CONDITIONAL",
+          "rationale": "身近な他者を想定できない場合でも回答できる設問が必要"
+        },
+        {
+          "criterion_id": "three_nonredundant_items",
+          "status": "CONDITIONAL",
+          "rationale": "安心・感情共有・互助の3問が単一概念かは未確認"
+        },
+        {
+          "criterion_id": "interpretation_limits",
+          "status": "MEETS",
+          "rationale": "つながりを重視する回答傾向として限定表現できる"
+        }
+      ]
+    },
+    {
+      "id": "BR2",
+      "scale": "B_related",
+      "title": "現在の関係に対する安心感・信頼",
+      "definition": "現在の対人関係に安心・信頼を感じられる程度",
+      "position": "NOT_SELECTED",
+      "reason": "価値観ではなく関係の現状や満足を測りやすい。",
+      "excludes": [
+        "価値としての関係重視"
+      ],
+      "item_ids": [
+        "B-R01"
+      ],
+      "checks": [
+        {
+          "criterion_id": "value_not_state",
+          "status": "FAILS",
+          "rationale": "安心感の有無は現在の環境で変わるアウトカム"
+        },
+        {
+          "criterion_id": "concept_boundary",
+          "status": "CONDITIONAL",
+          "rationale": "関係性の満足度やA安定と重複しやすい"
+        },
+        {
+          "criterion_id": "independent_high_low",
+          "status": "MEETS",
+          "rationale": "自律との両高・両低はあり得る"
+        },
+        {
+          "criterion_id": "context_robustness",
+          "status": "FAILS",
+          "rationale": "現に話せる相手がいるかどうかで回答不能になり得る"
+        },
+        {
+          "criterion_id": "three_nonredundant_items",
+          "status": "CONDITIONAL",
+          "rationale": "概念の独立3項目は作れるがA05の重視度とは別尺度"
+        },
+        {
+          "criterion_id": "interpretation_limits",
+          "status": "MEETS",
+          "rationale": "現況尺度としてなら限定説明可能"
+        }
+      ]
+    },
+    {
+      "id": "BR3",
+      "scale": "B_related",
+      "title": "交流・感情共有の行動頻度",
+      "definition": "日常で他人と体験や気持ちを共有した実際の頻度",
+      "position": "NOT_SELECTED",
+      "reason": "行動量は機会・社交性・文化的表出に影響され、価値の重視と一致しない。",
+      "excludes": [
+        "機会がなくてもつながりを重視している状態"
+      ],
+      "item_ids": [
+        "B-R02"
+      ],
+      "checks": [
+        {
+          "criterion_id": "value_not_state",
+          "status": "FAILS",
+          "rationale": "頻度は行動の測定"
+        },
+        {
+          "criterion_id": "concept_boundary",
+          "status": "FAILS",
+          "rationale": "社交性と身近な人の有無との区別が難しい"
+        },
+        {
+          "criterion_id": "independent_high_low",
+          "status": "MEETS",
+          "rationale": "自律と両立し得る"
+        },
+        {
+          "criterion_id": "context_robustness",
+          "status": "FAILS",
+          "rationale": "外出・家庭・交流機会に強く依存"
+        },
+        {
+          "criterion_id": "three_nonredundant_items",
+          "status": "CONDITIONAL",
+          "rationale": "行動頻度には作れても価値項目ではない"
+        },
+        {
+          "criterion_id": "interpretation_limits",
+          "status": "MEETS",
+          "rationale": "行動頻度に限れば説明可能"
+        }
+      ]
+    },
+    {
+      "id": "BR4",
+      "scale": "B_related",
+      "title": "困難時に利用できる援助・支援",
+      "definition": "困ったとき頼れる人や支援を得られる程度",
+      "position": "NOT_SELECTED",
+      "reason": "社会的資源の保有状況と本人の価値観を混同する。",
+      "excludes": [
+        "支援を得ていないが相互関係を大切にする人"
+      ],
+      "item_ids": [
+        "B-R03"
+      ],
+      "checks": [
+        {
+          "criterion_id": "value_not_state",
+          "status": "FAILS",
+          "rationale": "支援の可用性は現況"
+        },
+        {
+          "criterion_id": "concept_boundary",
+          "status": "FAILS",
+          "rationale": "E資源の有無などと混同"
+        },
+        {
+          "criterion_id": "independent_high_low",
+          "status": "MEETS",
+          "rationale": "自己裁量と理論上両立する"
+        },
+        {
+          "criterion_id": "context_robustness",
+          "status": "FAILS",
+          "rationale": "経済・介護・健康・地域の条件に依存"
+        },
+        {
+          "criterion_id": "three_nonredundant_items",
+          "status": "CONDITIONAL",
+          "rationale": "支援可用性の尺度であり目的が違う"
+        },
+        {
+          "criterion_id": "interpretation_limits",
+          "status": "MEETS",
+          "rationale": "支援の現況としてなら説明可能"
+        }
+      ]
+    },
+    {
+      "id": "CP1",
+      "scale": "C_present",
+      "title": "現在の経験そのものを重視する価値",
+      "definition": "将来の成果に直接結びつかなくても、いま経験する活動・出来事自体に価値を置く傾向",
+      "position": "EDITORIAL_PREFERRED_CONDITIONAL",
+      "reason": "現在の価値を『いま幸せか』という状態や衝動性から切り離しやすい。独立した3問の適合は未確認。",
+      "excludes": [
+        "今日の幸福感の高さ",
+        "目先の快楽だけの追求",
+        "現在に注意を向ける能力",
+        "自由時間の保有量"
+      ],
+      "item_ids": [
+        "C-P01",
+        "C-P02",
+        "C-P03"
+      ],
+      "checks": [
+        {
+          "criterion_id": "value_not_state",
+          "status": "MEETS",
+          "rationale": "価値の対象を現在の経験と定義し、実際の幸福度を意味しない"
+        },
+        {
+          "criterion_id": "concept_boundary",
+          "status": "CONDITIONAL",
+          "rationale": "C将来志向・D探索・E自由時間との差は回答上未検証"
+        },
+        {
+          "criterion_id": "independent_high_low",
+          "status": "MEETS",
+          "rationale": "将来成果も現在経験も同時に重視可能"
+        },
+        {
+          "criterion_id": "context_robustness",
+          "status": "CONDITIONAL",
+          "rationale": "生活余裕の少ない人も答えられる表現の検討が必要"
+        },
+        {
+          "criterion_id": "three_nonredundant_items",
+          "status": "CONDITIONAL",
+          "rationale": "C-P01/P02/P03は快楽・満足・気づきが混在しており再設計が必要"
+        },
+        {
+          "criterion_id": "interpretation_limits",
+          "status": "MEETS",
+          "rationale": "現在経験を重視する回答傾向に限定できる"
+        }
+      ]
+    },
+    {
+      "id": "CP2",
+      "scale": "C_present",
+      "title": "現在の主観的幸福・充実感",
+      "definition": "日々の生活を現在どの程度幸せ・充実していると感じるか",
+      "position": "NOT_SELECTED",
+      "reason": "人生の価値の優先ではなくウェルビーイングの状態を測る。",
+      "excludes": [
+        "いま満足していなくても現在の経験を重視すること"
+      ],
+      "item_ids": [
+        "C-P02"
+      ],
+      "checks": [
+        {
+          "criterion_id": "value_not_state",
+          "status": "FAILS",
+          "rationale": "実際に感じる充実度は現況・アウトカム"
+        },
+        {
+          "criterion_id": "concept_boundary",
+          "status": "FAILS",
+          "rationale": "幸福尺度との概念混同が大きい"
+        },
+        {
+          "criterion_id": "independent_high_low",
+          "status": "MEETS",
+          "rationale": "将来志向との両立は可能"
+        },
+        {
+          "criterion_id": "context_robustness",
+          "status": "FAILS",
+          "rationale": "健康・環境・仕事などの状態に強く左右される"
+        },
+        {
+          "criterion_id": "three_nonredundant_items",
+          "status": "MEETS",
+          "rationale": "幸福を測る設問は構成可能だがA05の目的とは異なる"
+        },
+        {
+          "criterion_id": "interpretation_limits",
+          "status": "MEETS",
+          "rationale": "幸福の状態と明示すれば説明可能"
+        }
+      ]
+    },
+    {
+      "id": "CP3",
+      "scale": "C_present",
+      "title": "目先の楽しさ・即時報酬を優先",
+      "definition": "いま得られる楽しさや報酬を優先する傾向",
+      "position": "NOT_SELECTED",
+      "reason": "享楽性・衝動性・リスク許容と混同し、現在経験の価値を測る目的を逸脱する。",
+      "excludes": [
+        "現在の経験を大切にしながら長期準備も行う人"
+      ],
+      "item_ids": [
+        "C-P01"
+      ],
+      "checks": [
+        {
+          "criterion_id": "value_not_state",
+          "status": "CONDITIONAL",
+          "rationale": "楽しさを価値とする場合もあるが即時報酬行動に混同しやすい"
+        },
+        {
+          "criterion_id": "concept_boundary",
+          "status": "FAILS",
+          "rationale": "D探索や衝動性の行動特性と重複"
+        },
+        {
+          "criterion_id": "independent_high_low",
+          "status": "CONDITIONAL",
+          "rationale": "将来志向と併存可能でも即時報酬を先に選ぶ設問は暗黙に二者択一"
+        },
+        {
+          "criterion_id": "context_robustness",
+          "status": "CONDITIONAL",
+          "rationale": "余暇機会や資源が回答に影響し得る"
+        },
+        {
+          "criterion_id": "three_nonredundant_items",
+          "status": "MEETS",
+          "rationale": "別目的の享楽性項目なら操作化可能"
+        },
+        {
+          "criterion_id": "interpretation_limits",
+          "status": "CONDITIONAL",
+          "rationale": "『今を大切にする人＝衝動的』という誤読を誘発"
+        }
+      ]
+    },
+    {
+      "id": "CP4",
+      "scale": "C_present",
+      "title": "いまへの注意・気づきの能力",
+      "definition": "その瞬間の出来事に注意を向け、気づきを持続できる程度",
+      "position": "NOT_SELECTED",
+      "reason": "マインドフルネス的な特性・能力であり人生の時間的価値選好ではない。",
+      "excludes": [
+        "集中できなくても現在の経験を大切にすること"
+      ],
+      "item_ids": [
+        "C-P03"
+      ],
+      "checks": [
+        {
+          "criterion_id": "value_not_state",
+          "status": "FAILS",
+          "rationale": "注意制御の能力・行動"
+        },
+        {
+          "criterion_id": "concept_boundary",
+          "status": "FAILS",
+          "rationale": "C時間的価値以外の心理特性との混同"
+        },
+        {
+          "criterion_id": "independent_high_low",
+          "status": "MEETS",
+          "rationale": "将来志向と併存可能"
+        },
+        {
+          "criterion_id": "context_robustness",
+          "status": "CONDITIONAL",
+          "rationale": "ストレスや体調に影響される"
+        },
+        {
+          "criterion_id": "three_nonredundant_items",
+          "status": "MEETS",
+          "rationale": "別の能力尺度として作成可能"
+        },
+        {
+          "criterion_id": "interpretation_limits",
+          "status": "MEETS",
+          "rationale": "能力として限定すれば解説可能"
+        }
+      ]
+    }
+  ],
+  "risk_scenarios": [
+    {
+      "id": "BC_both_high",
+      "scenario": "自分で選びたい、かつ他者とのつながりも強く重視",
+      "expected": "矛盾なく両方高い評価が可能で、単一二極値に圧縮しない",
+      "requires_empirical_check": true
+    },
+    {
+      "id": "BC_both_low",
+      "scenario": "裁量も対人関係も現状は優先しない",
+      "expected": "両方低い評価を許容し、孤立や病理と判断しない",
+      "requires_empirical_check": true
+    },
+    {
+      "id": "C_both_high",
+      "scenario": "将来成果と今日の経験の両方を重視",
+      "expected": "二者択一・衝動性とみなさず別々に表示",
+      "requires_empirical_check": true
+    },
+    {
+      "id": "C_both_low",
+      "scenario": "将来の成果も現在経験も今は大きく重視しない",
+      "expected": "両方低い評価を許容し、無気力や疾病と判断しない",
+      "requires_empirical_check": true
+    },
+    {
+      "id": "low_resources",
+      "scenario": "自由時間や対人交流の機会が不足",
+      "expected": "価値の重視と生活条件を混同しない",
+      "requires_empirical_check": true
+    },
+    {
+      "id": "satisfaction_contrast",
+      "scenario": "現在に不満があるが今日の経験を大切にしたい",
+      "expected": "現況満足度の質問になっていないことを認知的に検証",
+      "requires_empirical_check": true
+    }
+  ],
+  "gates": [
+    {
+      "id": "G1",
+      "decision": "概念定義と非測定対象の製品責任者による明示的承認",
+      "state": "PENDING",
+      "automatable": false
+    },
+    {
+      "id": "G2",
+      "decision": "各尺度の設問3問が同一概念かつ冗長でなく、状況・能力・状態に依存し過ぎないという編集審査",
+      "state": "PENDING",
+      "automatable": false
+    },
+    {
+      "id": "G3",
+      "decision": "認知面接等の研究に先立ちG1研究運用・同意・保存・撤回の承認",
+      "state": "PENDING",
+      "automatable": false
+    },
+    {
+      "id": "G4",
+      "decision": "調査実施が承認された場合に限り、回答分布、天井効果、因子・弁別・再検査、境界安定性を評価",
+      "state": "PENDING",
+      "automatable": false
+    },
+    {
+      "id": "G5",
+      "decision": "別版の質問・採点・タイプ・文章の互換性とQAを確認してから製品公開を決裁",
+      "state": "PENDING",
+      "automatable": false
+    }
+  ],
+  "policy": {
+    "v02_question_bank_frozen": true,
+    "issue_v03_now": false,
+    "overwrite_legacy_questions": false,
+    "migrate_old_answers": false,
+    "emit_type_id": false,
+    "emit_pair_compatibility_score": false,
+    "release_public_diagnosis": false,
+    "collect_real_participant_data": false,
+    "treat_editorial_criteria_as_scientific_evidence": false
+  }
+}

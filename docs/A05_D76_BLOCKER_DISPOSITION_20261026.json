@@ -1,0 +1,339 @@
+{
+  "schema": "A05-D76-BLOCKER-DISPOSITION-1",
+  "version": "D76-001",
+  "date": "2026-10-26",
+  "state": "TRIAGE_COMPLETE_ADOPTION_PENDING",
+  "source": [
+    "docs/A05_D34_BLOCKER_REWRITE_COMPARISON_20261026.md",
+    "docs/A05_D73_ITEM_CONSTRUCT_CROSSWALK_20261026.json",
+    "docs/A05_D74_AB_ALTERNATIVES_20261026.json",
+    "docs/A05_D60_E_AXIS_VERSIONING_DECISION_20261026.md"
+  ],
+  "globalGuards": {
+    "blockCount": 7,
+    "blockRemovedCount": 0,
+    "humanApproval": false,
+    "studyAuthorized": false,
+    "mergeAuthorized": false,
+    "productionReleaseAuthorized": false,
+    "runtimeModified": false,
+    "legacyRescoringAllowed": false
+  },
+  "items": [
+    {
+      "id": "A04",
+      "axis": "A",
+      "originalVerdict": "BLOCK",
+      "approvalStatus": "NOT_APPROVED",
+      "current": {
+        "negative": "今ある生活基盤を活かす",
+        "positive": "生活基盤を作り直す"
+      },
+      "sourceCandidate": {
+        "negative": "一度決めた活動計画を続ける",
+        "positive": "途中でも活動計画を見直す",
+        "source": "D59"
+      },
+      "alternativeL": {
+        "negative": "今の住まい方を基準に整えたい",
+        "positive": "異なる住まい方を試してみたい",
+        "domain": "住まいの使い方"
+      },
+      "triage": {
+        "issue": "CONSTRUCT_SHIFT_AND_REDUNDANCY",
+        "action": "KEEP_BLOCKED_PENDING_A_CONSTRUCT",
+        "comparison": [
+          "L",
+          "M",
+          "DROP"
+        ],
+        "priority": "P0",
+        "reason": "案Lは居住・住まい方、案Mは計画継続を尋ねるため同一尺度ではない。A01との重複は双方に残る。",
+        "reviewQuestion": "回答者が『住まい方』と『活動計画』を区別できるか。A01とは異なる回答理由が説明できるか。",
+        "fallback": "REWRITE_OR_DROP_IF_REDUNDANT",
+        "decisionOwner": "CONSTRUCT_EDITOR_AND_RESEARCH_OWNER"
+      },
+      "experimentGate": {
+        "studyAuthorized": false,
+        "realResponsesCollected": false,
+        "scoringVersionChangeAuthorized": false,
+        "resultsAvailable": false
+      },
+      "nextEvidence": [
+        "HUMAN_CONSTRUCT_DECISION",
+        "ITEM_DISTINCTNESS_REVIEW",
+        "APPROVED_COGNITIVE_INTERVIEW",
+        "SEPARATE_VERSION_REVIEW"
+      ]
+    },
+    {
+      "id": "A05",
+      "axis": "A",
+      "originalVerdict": "BLOCK",
+      "approvalStatus": "NOT_APPROVED",
+      "current": {
+        "negative": "一つの環境をより良く育てる",
+        "positive": "異なる環境を経験していく"
+      },
+      "sourceCandidate": {
+        "negative": "予想できる変化には従来の進め方を調整する",
+        "positive": "予想できる変化を機に進め方を組み替える",
+        "source": "D59"
+      },
+      "alternativeL": {
+        "negative": "日々使う生活空間を調整して使い続けたい",
+        "positive": "日々使う生活空間に新しい選択肢を取り入れたい",
+        "domain": "生活空間の更新"
+      },
+      "triage": {
+        "issue": "CONSTRUCT_SHIFT_AND_REDUNDANCY",
+        "action": "KEEP_BLOCKED_PENDING_A_CONSTRUCT",
+        "comparison": [
+          "L",
+          "M",
+          "DROP"
+        ],
+        "priority": "P0",
+        "reason": "案Lは生活空間の変更、案Mは予見可能な変化への対処で、現行の住環境軸と意味が異なる。A04/A06とも重複し得る。",
+        "reviewQuestion": "生活空間の変化か変化対応の手順かを区別できるか。費用・居住制約を選好と誤認していないか。",
+        "fallback": "REWRITE_OR_DROP_IF_REDUNDANT",
+        "decisionOwner": "CONSTRUCT_EDITOR_AND_RESEARCH_OWNER"
+      },
+      "experimentGate": {
+        "studyAuthorized": false,
+        "realResponsesCollected": false,
+        "scoringVersionChangeAuthorized": false,
+        "resultsAvailable": false
+      },
+      "nextEvidence": [
+        "HUMAN_CONSTRUCT_DECISION",
+        "ITEM_DISTINCTNESS_REVIEW",
+        "APPROVED_COGNITIVE_INTERVIEW",
+        "SEPARATE_VERSION_REVIEW"
+      ]
+    },
+    {
+      "id": "B02",
+      "axis": "B",
+      "originalVerdict": "BLOCK",
+      "approvalStatus": "NOT_APPROVED",
+      "current": {
+        "negative": "自分で生活を組み立てる余地",
+        "positive": "身近な人と生活を共有する機会"
+      },
+      "sourceCandidate": {
+        "negative": "活動の進め方を自分で決める余地を重視",
+        "positive": "関係者と決める機会を重視",
+        "source": "D59"
+      },
+      "alternativeL": {
+        "negative": "自分の自由時間の予定は自分の希望を中心に組みたい",
+        "positive": "自分の自由時間の予定は誰かとの相談を重視して組みたい",
+        "domain": "自由時間の過ごし方"
+      },
+      "triage": {
+        "issue": "CONSTRUCT_SHIFT_AND_BIPOLARITY",
+        "action": "KEEP_BLOCKED_PENDING_B_CONSTRUCT",
+        "comparison": [
+          "L",
+          "M",
+          "DROP"
+        ],
+        "priority": "P0",
+        "reason": "案Lは自由時間と他者との予定調整、案Mは活動の決定権。自己裁量と相談は両立し、対人能力や社交性とは独立とは限らない。",
+        "reviewQuestion": "『自分で決めつつ誰かに相談する』との違いを説明できるか。調整相手がいない人にも回答可能か。",
+        "fallback": "REDESIGN_AS_NON_BIPOLAR_IF_BOTH_IMPORTANT",
+        "decisionOwner": "CONSTRUCT_EDITOR_AND_RESEARCH_OWNER"
+      },
+      "experimentGate": {
+        "studyAuthorized": false,
+        "realResponsesCollected": false,
+        "scoringVersionChangeAuthorized": false,
+        "resultsAvailable": false
+      },
+      "nextEvidence": [
+        "HUMAN_CONSTRUCT_DECISION",
+        "ITEM_DISTINCTNESS_REVIEW",
+        "APPROVED_COGNITIVE_INTERVIEW",
+        "SEPARATE_VERSION_REVIEW"
+      ]
+    },
+    {
+      "id": "C04",
+      "axis": "C",
+      "originalVerdict": "BLOCK",
+      "approvalStatus": "NOT_APPROVED",
+      "current": {
+        "negative": "長期的な成果につながる挑戦",
+        "positive": "取り組む過程を楽しめる挑戦"
+      },
+      "sourceCandidate": {
+        "negative": "同じ活動で将来得られる充実を重視する",
+        "positive": "同じ活動で今日得られる充実を重視する",
+        "source": "D57"
+      },
+      "alternativeL": null,
+      "triage": {
+        "issue": "TEMPORAL_BENEFIT_REDUNDANCY",
+        "action": "REWRITE_OR_DROP_BEFORE_TRIAL",
+        "comparison": [
+          "D34_A",
+          "D34_B",
+          "D57",
+          "DROP"
+        ],
+        "priority": "P0",
+        "reason": "将来／今日の充実の反復となりC01/C02/C05との差が薄い。時点・種類・大きさの便益が揃わず読み取りが不安定。",
+        "reviewQuestion": "C04はC01/C02/C05と異なる回答理由が得られるか。将来便益と現在便益は同質・同量と理解されるか。",
+        "fallback": "DROP_IF_NO_DISTINCT_FACET",
+        "decisionOwner": "ITEM_EDITOR"
+      },
+      "experimentGate": {
+        "studyAuthorized": false,
+        "realResponsesCollected": false,
+        "scoringVersionChangeAuthorized": false,
+        "resultsAvailable": false
+      },
+      "nextEvidence": [
+        "HUMAN_CONSTRUCT_DECISION",
+        "ITEM_DISTINCTNESS_REVIEW",
+        "APPROVED_COGNITIVE_INTERVIEW",
+        "SEPARATE_VERSION_REVIEW"
+      ]
+    },
+    {
+      "id": "D03",
+      "axis": "D",
+      "originalVerdict": "BLOCK",
+      "approvalStatus": "NOT_APPROVED",
+      "current": {
+        "negative": "未経験のことを数多く経験する",
+        "positive": "気に入った経験を繰り返し深める"
+      },
+      "sourceCandidate": {
+        "negative": "複数分野の体験を試す",
+        "positive": "一分野の体験を掘り下げる",
+        "source": "D59"
+      },
+      "alternativeL": null,
+      "triage": {
+        "issue": "D02_LEARNING_VS_EXPERIENCE_OVERLAP",
+        "action": "TRIAL_CANDIDATE_BUT_STILL_BLOCKED",
+        "comparison": [
+          "D59",
+          "D34_A",
+          "D34_B",
+          "DROP"
+        ],
+        "priority": "P0",
+        "reason": "知識の幅／深さ(D02)と実体験の幅／深さ(D03)に分離した候補があるが、経験機会・費用・疲労による偏りを排除していない。",
+        "reviewQuestion": "知識習得と体験選択を混同せずに回答できるか。費用・機会が同じという想定を理解するか。",
+        "fallback": "REWRITE_OR_DROP_IF_REDUNDANT",
+        "decisionOwner": "ITEM_EDITOR"
+      },
+      "experimentGate": {
+        "studyAuthorized": false,
+        "realResponsesCollected": false,
+        "scoringVersionChangeAuthorized": false,
+        "resultsAvailable": false
+      },
+      "nextEvidence": [
+        "HUMAN_CONSTRUCT_DECISION",
+        "ITEM_DISTINCTNESS_REVIEW",
+        "APPROVED_COGNITIVE_INTERVIEW",
+        "SEPARATE_VERSION_REVIEW"
+      ]
+    },
+    {
+      "id": "E04",
+      "axis": "E",
+      "originalVerdict": "BLOCK",
+      "approvalStatus": "NOT_APPROVED",
+      "current": {
+        "negative": "使えるお金の余裕を広げる",
+        "positive": "使える時間の余裕を広げる"
+      },
+      "sourceCandidate": {
+        "negative": "将来の支出先を選ぶ余地を増やす",
+        "positive": "将来の予定を選ぶ余地を増やす",
+        "source": "D57"
+      },
+      "alternativeL": null,
+      "triage": {
+        "issue": "E_AXIS_FORMAT_UNRESOLVED",
+        "action": "HOLD_E_DESIGN",
+        "comparison": [
+          "E_A",
+          "E_B",
+          "E_C"
+        ],
+        "priority": "P0",
+        "reason": "E01/E02/E05/E06と近い。金銭・時間を相反選好として扱う根拠がなく、2つの希望は同時に強くなり得る。",
+        "reviewQuestion": "相対比較と独立評価で、両方を強く希望する回答者の解釈が変わるか。金額・時間の想定がバラつかないか。",
+        "fallback": "NO_E_CLASSIFICATION_UNTIL_APPROVAL",
+        "decisionOwner": "CONSTRUCT_EDITOR_AND_RESEARCH_OWNER"
+      },
+      "experimentGate": {
+        "studyAuthorized": false,
+        "realResponsesCollected": false,
+        "scoringVersionChangeAuthorized": false,
+        "resultsAvailable": false
+      },
+      "nextEvidence": [
+        "HUMAN_CONSTRUCT_DECISION",
+        "ITEM_DISTINCTNESS_REVIEW",
+        "APPROVED_COGNITIVE_INTERVIEW",
+        "SEPARATE_VERSION_REVIEW"
+      ]
+    },
+    {
+      "id": "E05",
+      "axis": "E",
+      "originalVerdict": "BLOCK",
+      "approvalStatus": "NOT_APPROVED",
+      "current": {
+        "negative": "可処分所得を月3万円増やす",
+        "positive": "自由時間を週3時間増やす"
+      },
+      "sourceCandidate": {
+        "negative": "家計の追加的な余裕を先に確保する",
+        "positive": "自由に使える追加的な時間を先に確保する",
+        "source": "D57"
+      },
+      "alternativeL": null,
+      "triage": {
+        "issue": "INCOMPARABLE_MONEY_TIME_INCREMENT",
+        "action": "HOLD_E_DESIGN",
+        "comparison": [
+          "E_A",
+          "E_B",
+          "E_C"
+        ],
+        "priority": "P0",
+        "reason": "旧文言の『月3万円／週3時間』は量の比率を恣意的に固定する。改稿後も増分の想像量が揃わず二極スコアの比較妥当性は未確認。",
+        "reviewQuestion": "何円と何時間を想像したか、片方または両方の不足を補う目的で選んでいないか。",
+        "fallback": "NO_E_CLASSIFICATION_UNTIL_APPROVAL",
+        "decisionOwner": "CONSTRUCT_EDITOR_AND_RESEARCH_OWNER"
+      },
+      "experimentGate": {
+        "studyAuthorized": false,
+        "realResponsesCollected": false,
+        "scoringVersionChangeAuthorized": false,
+        "resultsAvailable": false
+      },
+      "nextEvidence": [
+        "HUMAN_CONSTRUCT_DECISION",
+        "ITEM_DISTINCTNESS_REVIEW",
+        "APPROVED_COGNITIVE_INTERVIEW",
+        "SEPARATE_VERSION_REVIEW"
+      ]
+    }
+  ],
+  "changeHistory": [
+    {
+      "date": "2026-10-26",
+      "version": "D76-001",
+      "change": "Resolve editorial triage and evidence paths for all 7 blocked items; BLOCK remains in force, with no experiment or production decisions."
+    }
+  ]
+}
