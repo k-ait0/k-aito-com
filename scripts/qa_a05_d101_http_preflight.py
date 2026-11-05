@@ -32,6 +32,24 @@ def git_blob_sha(payload):
     return hashlib.sha1(b"blob " + str(len(payload)).encode() + b"\0" + payload).hexdigest()
 
 
+def parse_csp_directives(policy):
+    """Parse CSP directive boundaries and reject duplicate/malformed keys.
+
+    This intentionally accepts only a strict subset for the unapproved A05
+    prototype; it does not purport to be a complete browser CSP parser.
+    """
+    directives = {}
+    for raw in policy.split(";"):
+        tokens = raw.strip().split()
+        if not tokens:
+            continue
+        name = tokens[0].lower()
+        if not re.fullmatch(r"[a-z][a-z0-9-]*", name) or name in directives:
+            raise ValueError("Malformed or duplicate CSP directive")
+        directives[name] = tokens[1:]
+    return directives
+
+
 def check(url, mode, approved_host=None, require_headers=False):
     parsed = urlsplit(url)
     hostname = (parsed.hostname or "").lower()
@@ -47,7 +65,8 @@ def check(url, mode, approved_host=None, require_headers=False):
         if parsed.scheme != "http" or not local:
             raise ValueError("Local mode requires localhost / loopback HTTP URL")
     elif mode == "staging":
-        if parsed.scheme != "https" or local or not approved_host or hostname != approved_host.lower():
+        if (parsed.scheme != "https" or local or not approved_host or
+                hostname != approved_host.lower() or parsed.port not in (None, 443)):
             raise ValueError("Staging needs HTTPS and an explicitly approved exact host")
         require_headers = True
     else:
@@ -69,7 +88,7 @@ def check(url, mode, approved_host=None, require_headers=False):
             errors.append("GET_HTTP_STATUS")
         if facts["actual_blob_sha"] != EXPECTED_GIT_SHA:
             errors.append("GIT_BLOB_SHA_MISMATCH")
-        if not facts["content_type"].lower().startswith("text/html"):
+        if facts["content_type"].split(";", 1)[0].strip().lower() != "text/html":
             errors.append("CONTENT_TYPE_NOT_HTML")
         if b'content="noindex,nofollow"' not in body:
             errors.append("NOINDEX_META_MISSING")
@@ -86,13 +105,26 @@ def check(url, mode, approved_host=None, require_headers=False):
             errors.append("GET_HEAD_CONTENT_TYPE_DIFFER")
         if require_headers:
             csp = headers.get("content-security-policy", "")
-            if not csp or "default-src 'none'" not in csp:
+            try:
+                policy = parse_csp_directives(csp)
+            except ValueError:
+                errors.append("HTTP_CSP_MALFORMED")
+                policy = {}
+            required = {"default-src": ["'none'"], "base-uri": ["'none'"],
+                        "object-src": ["'none'"], "form-action": ["'none'"],
+                        "frame-ancestors": ["'none'"], "connect-src": ["'none'"]}
+            if policy.get("default-src") != required["default-src"]:
                 errors.append("HTTP_CSP_MISSING_OR_WEAK")
-            if "'sha256-" + INLINE_SCRIPT_SHA256 + "'" not in csp or "'sha256-" + INLINE_STYLE_SHA256 + "'" not in csp:
+            if (policy.get("script-src") != ["'sha256-" + INLINE_SCRIPT_SHA256 + "'"]
+                    or policy.get("style-src") != ["'sha256-" + INLINE_STYLE_SHA256 + "'"]):
                 errors.append("HTTP_CSP_HASHES_MISSING")
-            if "frame-ancestors 'none'" not in csp:
+            if policy.get("frame-ancestors") != ["'none'"]:
                 errors.append("HTTP_FRAME_ANCESTORS_MISSING")
-            if "'unsafe-inline'" in csp or "'unsafe-eval'" in csp:
+            if any(policy.get(k) != v for k, v in required.items()
+                   if k not in ("default-src", "frame-ancestors")):
+                errors.append("HTTP_CSP_REQUIRED_DIRECTIVE_MISSING")
+            if any(value.lower() in ("'unsafe-inline'", "'unsafe-eval'")
+                   for tokens in policy.values() for value in tokens):
                 errors.append("HTTP_CSP_UNSAFE_DIRECTIVE")
             if headers.get("x-content-type-options", "").lower() != "nosniff":
                 errors.append("NO_SNIFF_HEADER_MISSING")
