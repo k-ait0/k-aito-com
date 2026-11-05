@@ -23,14 +23,19 @@ class Handler(BaseHTTPRequestHandler):
             return
         body = BODY + b" " if path == "/tampered" else BODY
         self.send_response(200)
-        self.send_header("Content-Type", "text/html; charset=utf-8")
+        self.send_header("Content-Type", "text/html-evil" if path == "/bad-mime" else "text/html; charset=utf-8")
         self.send_header("Content-Length", str(len(body)))
-        if path == "/secure":
+        if path in ("/secure", "/weak-csp", "/duplicate-csp"):
             csp = (
-                "default-src 'none'; frame-ancestors 'none'; "
+                "default-src 'none'; base-uri 'none'; object-src 'none'; "
+                "form-action 'none'; connect-src 'none'; frame-ancestors 'none'; "
                 "script-src 'sha256-" + qa.INLINE_SCRIPT_SHA256 + "'; "
                 "style-src 'sha256-" + qa.INLINE_STYLE_SHA256 + "'"
             )
+            if path == "/weak-csp":
+                csp = csp.replace("default-src 'none'", "report-uri /default-src 'none'")
+            if path == "/duplicate-csp":
+                csp += "; script-src 'unsafe-inline'"
             self.send_header("Content-Security-Policy", csp)
             self.send_header("X-Content-Type-Options", "nosniff")
             self.send_header("Referrer-Policy", "no-referrer")
@@ -90,6 +95,25 @@ class HttpContractTests(unittest.TestCase):
         res = qa.check(self.base + "/redirect", "local")
         self.assertFalse(res["passed"])
         self.assertTrue(any(x.startswith("HTTP_REQUEST_FAILED") for x in res["errors"]))
+
+    def test_mime_prefix_spoof_is_rejected(self):
+        res = qa.check(self.base + "/bad-mime", "local")
+        self.assertFalse(res["passed"])
+        self.assertIn("CONTENT_TYPE_NOT_HTML", res["errors"])
+
+    def test_csp_directive_spoof_is_rejected(self):
+        res = qa.check(self.base + "/weak-csp", "local", require_headers=True)
+        self.assertFalse(res["passed"])
+        self.assertIn("HTTP_CSP_MISSING_OR_WEAK", res["errors"])
+
+    def test_duplicate_csp_directive_is_rejected(self):
+        res = qa.check(self.base + "/duplicate-csp", "local", require_headers=True)
+        self.assertFalse(res["passed"])
+        self.assertIn("HTTP_CSP_MALFORMED", res["errors"])
+
+    def test_staging_port_not_authorized(self):
+        with self.assertRaises(ValueError):
+            qa.check("https://approved.example:444/reflection-d101.html", "staging", approved_host="approved.example")
 
     def test_staging_requires_approved_https_host(self):
         with self.assertRaises(ValueError):
