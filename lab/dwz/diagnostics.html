@@ -2,7 +2,7 @@
 <html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; frame-src 'self'; connect-src 'none'; img-src 'self' data:; base-uri 'none'; object-src 'none'; form-action 'none'">
-<title>DWZ R4 v16.5 — ブラウザ動作診断</title>
+<title>DWZ R4 v16.7 — ブラウザ動作診断</title>
 <style>
 *{box-sizing:border-box}body{margin:0;background:#f5f8fc;color:#172b48;font:15px/1.6 system-ui,-apple-system,sans-serif}
 main{max-width:800px;margin:auto;padding:22px 16px 60px}h1{font-size:clamp(22px,4vw,30px);margin:5px 0}h2{font-size:18px;margin:0 0 8px}
@@ -16,7 +16,7 @@ textarea{width:100%;min-height:120px;padding:10px;border-radius:8px;border:1px s
 .frame{width:100%;max-width:100%;overflow:auto;border:1px solid #d5e1ef}
 iframe{display:block;border:0;width:390px;height:440px;background:white}
 </style></head><body><main>
-<p class="muted">DWZ / RESEARCH_ONLY_HOLD / v16.5 / iPad &amp; desktop diagnostics</p>
+<p class="muted">DWZ / RESEARCH_ONLY_HOLD / v16.7 / iPad &amp; desktop diagnostics</p>
 <h1>ブラウザ動作診断</h1>
 <p>同じ配信元のシミュレーターを内部で読み込み、JavaScript起動、計算、入力切替、画面幅、端末保存の可否を確認します。</p>
 <p class="warning"><strong>ダミー条件専用。</strong> 個人の資産情報を入力しないでください。診断結果は送信されません。通常診断では既存の保存済み条件を変更しません。追加の保存操作テストも、既存データがない場合にだけダミー値で実施します。</p>
@@ -111,6 +111,16 @@ iframe{display:block;border:0;width:390px;height:440px;background:white}
       check('追加支出の開始年齢違反を日本語で通知',
         !doc.getElementById('dwz-input-feedback').hidden &&
         doc.getElementById('dwz-input-feedback').textContent.includes('追加支出の開始年齢'));
+      for(const [buttonId,resultId] of [
+        ['r4-compare-run','r4-compare-results'],
+        ['r4-risk-run','r4-risk-results'],
+        ['r4-events-run','r4-events-results']
+      ]) {
+        doc.getElementById(buttonId).click(); await sleep(60);
+        const resultText=doc.getElementById(resultId)?.textContent||'';
+        check('比較機能の共通入力検証 '+buttonId,
+          resultText.includes('追加支出の開始年齢') && !resultText.includes('R2_LEGACY_HOLD'));
+      }
       update(doc,'extraStartAgeYears',60);
       doc.getElementById('dwz-mode-quick').click();
       check('かんたんモードへ戻る',doc.body.dataset.dwzMode==='quick');
@@ -177,7 +187,7 @@ iframe{display:block;border:0;width:390px;height:440px;background:white}
       check('診断処理',false,String(e.message||e).slice(0,170));
       status.textContent='診断が途中で停止しました。配信元のiframe制限も確認してください。';
     } finally {
-      summary.value=['DWZ R4 v16.5 ブラウザ診断', '実施日時: '+new Date().toLocaleString('ja-JP'),'配信方式: '+location.protocol,'実行結果:'].concat(results.map(r=>'- '+r.state+' '+r.name+(r.detail?' ('+r.detail+')':''))).join('\n');
+      summary.value=['DWZ R4 v16.7 ブラウザ診断', '実施日時: '+new Date().toLocaleString('ja-JP'),'配信方式: '+location.protocol,'実行結果:'].concat(results.map(r=>'- '+r.state+' '+r.name+(r.detail?' ('+r.detail+')':''))).join('\n');
       busy=false;runButton.disabled=false;
     }
   }
