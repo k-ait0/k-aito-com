@@ -10,6 +10,7 @@ const http=require('node:http');
 const fs=require('node:fs');
 const path=require('node:path');
 const {chromium}=require('playwright');
+const {validateDiagnosticRows}=require('./dwz-origin-result-guard.cjs');
 const root=path.resolve(__dirname,'..');
 const appPath=path.join(root,'lab/dwz/index.html');
 const diagnosticPath=path.join(root,'lab/dwz/diagnostics.html');
@@ -122,15 +123,31 @@ async function main(){
   const diagnostic=await context.newPage();
   const diagnosticResponse=await diagnostic.goto(base+'/lab/dwz/diagnostics.html',{waitUntil:'domcontentloaded',timeout:20000});
   await verify('diagnostic HTTP 200',()=>diagnosticResponse.status()===200);
+  async function readFinishedDiagnostics(){
+    await diagnostic.waitForFunction(()=>{
+      const label=document.querySelector('#status')?.textContent||'';
+      return label.startsWith('診断完了') || label.startsWith('診断が途中で停止');
+    },null,{timeout:30000});
+    const statusText=await diagnostic.locator('#status').innerText();
+    assert.ok(statusText.startsWith('診断完了'),'Diagnostic did not complete: '+statusText);
+    return diagnostic.locator('#results tr').evaluateAll(trs=>trs.map(tr=>{
+      const cells=tr.querySelectorAll('td');
+      return {label:(cells[0]?.textContent||'').trim(),status:(cells[1]?.textContent||'').trim().split(/\s/)[0]};
+    }).filter(row=>row.label));
+  }
   await diagnostic.locator('#run').click();
-  await diagnostic.locator('#status').getByText(/診断完了|診断が途中で停止/).waitFor({timeout:30000});
-  const failed=await diagnostic.locator('#results .fail').count();
-  await verify('standard diagnostic has zero FAIL',()=>failed===0);
+  const standardRows=await readFinishedDiagnostics();
+  await verify('standard diagnostic required checks PASS, not SKIP',()=>validateDiagnosticRows(standardRows,[
+    '診断ページのJavaScript','アプリJavaScriptの起動','初期条件の逆算結果',
+    '資金不足の判定','一時キーの保存・読込・削除','既存の条件保存キーを変更していない'
+  ]));
   await diagnostic.locator('#deep-save').check();
   await diagnostic.locator('#run').click();
-  await diagnostic.locator('#status').getByText(/診断完了|診断が途中で停止/).waitFor({timeout:30000});
-  const deepFailed=await diagnostic.locator('#results .fail').count();
-  await verify('opt-in reload diagnostic has zero FAIL',()=>deepFailed===0);
+  const deepRows=await readFinishedDiagnostics();
+  await verify('opt-in reload diagnostic all persistent steps PASS, not SKIP',()=>validateDiagnosticRows(deepRows,[
+    'アプリの明示保存','アプリ再読込後の保存値一致','再読込後のアプリ復元',
+    '復元後は自動計算せず手動待ち','再読込後のアプリ保存削除'
+  ]));
   await verify('diagnostic leaves both saved keys empty',async()=>{
     const child=diagnostic.frameLocator('iframe#app');
     return child.locator('body').evaluate(()=>window.localStorage.getItem('dwz-r4-compare-v11-capture/0.1.0')===null && window.localStorage.getItem('dwz-r4-comparison-portfolio/0.1.0')===null);
