@@ -10,7 +10,7 @@ ROOT = Path(__file__).parent
 SPEC = importlib.util.spec_from_file_location("d101_http", ROOT / "qa_a05_d101_http_preflight.py")
 qa = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(qa)
-BODY = (ROOT / "reflection-d101.html").read_bytes()
+BODY = (ROOT.parent / "projects/kidp/life-design-lab/a05/reflection-d101.html").read_bytes()
 
 
 class Handler(BaseHTTPRequestHandler):
