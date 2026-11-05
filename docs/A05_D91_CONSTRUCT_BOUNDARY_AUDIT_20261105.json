@@ -1,0 +1,345 @@
+{
+  "schema": "A05-D91-EDITORIAL-CONSTRUCT-AUDIT-0.1",
+  "status": "INTERNAL_REVIEW_NOT_PSYCHOMETRIC_EVIDENCE",
+  "review_date": "2026-11-05",
+  "source": {
+    "bank_path": "docs/A05_D90_BC_PILOT_0_2_20261105.json",
+    "bank_schema": "A05-BC-PILOT-0.2-draft",
+    "bank_blob_sha": "69fd5e3d31cc40a54f6e9e63dade60c65ffcbf38",
+    "old_bank_untouched": true
+  },
+  "methods": {
+    "type": "qualitative editorial content review",
+    "actual_participant_data_collected": false,
+    "psychometric_validation": false,
+    "risk_categories": [
+      "normative_ceiling",
+      "similar_items",
+      "context_dependence",
+      "construct_blend",
+      "double_barrelled",
+      "cross_axis_overlap"
+    ],
+    "is_statistical_effect_size": false,
+    "literature": [
+      {
+        "id": "SDT2000",
+        "doi": "10.1037/0003-066X.55.1.68",
+        "relevance": "autonomy and relatedness are distinct needs; DOES NOT validate A05 item constructs"
+      },
+      {
+        "id": "SCHWARTZ2012",
+        "doi": "10.1037/a0029393",
+        "relevance": "values structure reference only; DOES NOT establish A05's dimensions"
+      },
+      {
+        "id": "ZTPI1999",
+        "url": "https://longevity.stanford.edu/putting-time-in-perspective-a-valid-reliable-individual-differences-metric/",
+        "relevance": "time perspective contains multiple dimensions; DOES NOT validate A05 present/future preferences"
+      }
+    ]
+  },
+  "axis_boundaries": [
+    {
+      "axis_id": "A",
+      "name": "環境の安定／変化",
+      "measure": "生活・活動環境における継続と新規性の重視",
+      "exclude": "自己決定権、人間関係の親密さ、個人の興味領域の数"
+    },
+    {
+      "axis_id": "B",
+      "name": "人との関係：独立2尺度",
+      "measure": "本人の意思決定裁量の重視と、相互的なつながりの重視（2つの別々の候補概念）",
+      "exclude": "孤独・内向性／外向性、支援の実際の有無、社会的技能・協調能力"
+    },
+    {
+      "axis_id": "C",
+      "name": "時間的価値：独立2尺度",
+      "measure": "将来の成果・選択肢の重視と、現在の経験自体の価値の重視（2つの別々の候補概念）",
+      "exclude": "計画能力・忍耐力、幸福感、単なる快楽追求、現在への注意力、可処分時間の多さ"
+    },
+    {
+      "axis_id": "D",
+      "name": "経験の探索／深耕",
+      "measure": "経験・関心領域の幅と深さに置く価値",
+      "exclude": "時間的先送りや社交的な関係の多さ"
+    },
+    {
+      "axis_id": "E",
+      "name": "豊かさ：お金／時間",
+      "measure": "使えるお金と自由に使える時間という資源の優先（別の補助軸・暫定）",
+      "exclude": "日々の充実の評価、現在・将来志向、意思決定の自己裁量"
+    }
+  ],
+  "constructs": [
+    {
+      "id": "B_self",
+      "label": "自己裁量",
+      "definition": "重要な選択について自ら意思決定に関与できることへの価値付け",
+      "not_equal": "独りで生活したい／内向的／時間を自由に使いたい",
+      "status": "PENDING"
+    },
+    {
+      "id": "B_related",
+      "label": "つながり",
+      "definition": "関係における親密さ・相互性を重視する価値付け",
+      "not_equal": "他者に頼る必要性／人間関係の質・量／合意形成能力",
+      "status": "PENDING"
+    },
+    {
+      "id": "C_future",
+      "label": "将来達成",
+      "definition": "将来の成果や可能性を自分の人生にとって大切だと感じること",
+      "not_equal": "計画性・忍耐・実行能力／今の時間の余裕",
+      "status": "PENDING"
+    },
+    {
+      "id": "C_present",
+      "label": "現在充実",
+      "definition": "現在の経験自体を人生の価値として大切にすること",
+      "not_equal": "いま幸福であること／享楽性／注意集中能力",
+      "status": "PENDING"
+    }
+  ],
+  "items": [
+    {
+      "id": "B-S01",
+      "axis": "B",
+      "facet": "self",
+      "source_text": "重要な選択では、周囲の意見を聞いた後でも、最終的に自分で決められることを大切にしたい。",
+      "construct": "B_self",
+      "editorial_status": "TRIAL",
+      "risk_flags": [
+        "normative_ceiling",
+        "similar_items"
+      ],
+      "neighbor_axes": [],
+      "overlap_item_id": "B-S03",
+      "rationale": "最終決定権の重視。B-S03と自己決定という表現が重なる。",
+      "next_action": "保持して認知面接では『他者の意思を含めて自分が決める』場面を確認する",
+      "empirical_validated": false,
+      "no_auto_question_revision": true
+    },
+    {
+      "id": "B-S02",
+      "axis": "B",
+      "facet": "self",
+      "source_text": "人と共同で取り組むときも、自分の判断で進められる範囲を確保したい。",
+      "construct": "B_self",
+      "editorial_status": "TRIAL",
+      "risk_flags": [
+        "context_dependence"
+      ],
+      "neighbor_axes": [],
+      "overlap_item_id": null,
+      "rationale": "共同作業中の裁量は特定の仕事・生活場面に依存する。",
+      "next_action": "共同活動に馴染みがない場合の適用可能性を確認する",
+      "empirical_validated": false,
+      "no_auto_question_revision": true
+    },
+    {
+      "id": "B-S03",
+      "axis": "B",
+      "facet": "self",
+      "source_text": "日々の選択に、自分の考えを反映できることを大切にしたい。",
+      "construct": "B_self",
+      "editorial_status": "REVISE",
+      "risk_flags": [
+        "similar_items",
+        "normative_ceiling"
+      ],
+      "neighbor_axes": [],
+      "overlap_item_id": "B-S01",
+      "rationale": "B-S01との意味重複が大きい。『自分の考えを反映』は肯定されやすい。",
+      "next_action": "具体的場面を限定しない自己選択の優先度に焦点化し、他設問との差を検討する",
+      "empirical_validated": false,
+      "no_auto_question_revision": true
+    },
+    {
+      "id": "B-R01",
+      "axis": "B",
+      "facet": "related",
+      "source_text": "大切なことを安心して話せる人間関係を持つことを重視したい。",
+      "construct": "B_related",
+      "editorial_status": "TRIAL",
+      "risk_flags": [
+        "construct_blend",
+        "context_dependence"
+      ],
+      "neighbor_axes": [
+        "A"
+      ],
+      "overlap_item_id": null,
+      "rationale": "信頼・安心を測る可能性があり、『関係を重視する』価値と実際の関係の質を混同し得る。",
+      "next_action": "生活背景と関係の質への依存を認知面接で確認する",
+      "empirical_validated": false,
+      "no_auto_question_revision": true
+    },
+    {
+      "id": "B-R02",
+      "axis": "B",
+      "facet": "related",
+      "source_text": "日々の出来事や喜びを、身近な人と分かち合えることを大切にしたい。",
+      "construct": "B_related",
+      "editorial_status": "TRIAL",
+      "risk_flags": [
+        "context_dependence",
+        "normative_ceiling"
+      ],
+      "neighbor_axes": [
+        "A"
+      ],
+      "overlap_item_id": null,
+      "rationale": "共有経験・感情表現という下位側面。文化差や関係の種類で意味が変わり得る。",
+      "next_action": "家族・友人・職場の想起対象を明示せずに答える影響を確認する",
+      "empirical_validated": false,
+      "no_auto_question_revision": true
+    },
+    {
+      "id": "B-R03",
+      "axis": "B",
+      "facet": "related",
+      "source_text": "困ったときに互いに頼れる関係を育てることを大切にしたい。",
+      "construct": "B_related",
+      "editorial_status": "REVISE",
+      "risk_flags": [
+        "construct_blend",
+        "context_dependence"
+      ],
+      "neighbor_axes": [
+        "E"
+      ],
+      "overlap_item_id": null,
+      "rationale": "相互扶助の必要性・利用可能性と、人とつながりたい価値を区別しにくい。",
+      "next_action": "支援資源が少ない環境でも同じ意味に解釈されるか確認する",
+      "empirical_validated": false,
+      "no_auto_question_revision": true
+    },
+    {
+      "id": "C-F01",
+      "axis": "C",
+      "facet": "future",
+      "source_text": "将来の選択肢を広げるために、今の時間の一部を準備に使うことを大切にしたい。",
+      "construct": "C_future",
+      "editorial_status": "REVISE",
+      "risk_flags": [
+        "double_barrelled",
+        "cross_axis_overlap",
+        "similar_items"
+      ],
+      "neighbor_axes": [
+        "E"
+      ],
+      "overlap_item_id": "C-F02",
+      "rationale": "将来の選択肢・準備に使う現在の時間が混ざり、E軸の時間資源選好と交絡し得る。",
+      "next_action": "将来の結果の価値を問う文と時間配分を問う文を分離して検討する",
+      "empirical_validated": false,
+      "no_auto_question_revision": true
+    },
+    {
+      "id": "C-F02",
+      "axis": "C",
+      "facet": "future",
+      "source_text": "数年後に実現したいことを意識して、日々の優先順位を決めることを大切にしたい。",
+      "construct": "C_future",
+      "editorial_status": "REVISE",
+      "risk_flags": [
+        "construct_blend",
+        "similar_items",
+        "normative_ceiling"
+      ],
+      "neighbor_axes": [],
+      "overlap_item_id": "C-F03",
+      "rationale": "長期成果の重視と『日々の優先順位を決める』計画能力・習慣が混ざる。",
+      "next_action": "できるかではなく価値を重視するかを区別する設問へ改善する",
+      "empirical_validated": false,
+      "no_auto_question_revision": true
+    },
+    {
+      "id": "C-F03",
+      "axis": "C",
+      "facet": "future",
+      "source_text": "遠い将来の暮らしや可能性を思い描き、現在の選択に反映することを大切にしたい。",
+      "construct": "C_future",
+      "editorial_status": "REVISE",
+      "risk_flags": [
+        "double_barrelled",
+        "similar_items"
+      ],
+      "neighbor_axes": [],
+      "overlap_item_id": "C-F02",
+      "rationale": "将来を想像することと現在の行動に反映することの二重条件。",
+      "next_action": "将来の実現イメージ重視と行動実践を別概念として整理する",
+      "empirical_validated": false,
+      "no_auto_question_revision": true
+    },
+    {
+      "id": "C-P01",
+      "axis": "C",
+      "facet": "present",
+      "source_text": "将来の成果に直接つながらなくても、日々の時間を楽しめる活動を大切にしたい。",
+      "construct": "C_present",
+      "editorial_status": "REVISE",
+      "risk_flags": [
+        "construct_blend",
+        "similar_items"
+      ],
+      "neighbor_axes": [
+        "D"
+      ],
+      "overlap_item_id": "C-P02",
+      "rationale": "目先の楽しさ・享楽性と、現在経験の価値を区別しにくい。",
+      "next_action": "『現在経験自体の価値』という目的へ再定義してから設問を検討する",
+      "empirical_validated": false,
+      "no_auto_question_revision": true
+    },
+    {
+      "id": "C-P02",
+      "axis": "C",
+      "facet": "present",
+      "source_text": "日常生活の中で、今の充実を実感する機会を大切にしたい。",
+      "construct": "C_present",
+      "editorial_status": "REVISE",
+      "risk_flags": [
+        "construct_blend",
+        "similar_items",
+        "normative_ceiling"
+      ],
+      "neighbor_axes": [],
+      "overlap_item_id": "C-P01",
+      "rationale": "生活の充実感・主観的幸福度を測りかねず、C-P01との弁別も弱い。",
+      "next_action": "幸福感の有無ではなく、現在を重視する価値判断の優先を問う",
+      "empirical_validated": false,
+      "no_auto_question_revision": true
+    },
+    {
+      "id": "C-P03",
+      "axis": "C",
+      "facet": "present",
+      "source_text": "その日に経験している出来事そのものに価値を見いだすことを大切にしたい。",
+      "construct": "C_present",
+      "editorial_status": "REVISE",
+      "risk_flags": [
+        "construct_blend",
+        "similar_items",
+        "normative_ceiling"
+      ],
+      "neighbor_axes": [],
+      "overlap_item_id": "C-P02",
+      "rationale": "その日の経験への気づき・マインドフルネスとの混同。",
+      "next_action": "気づく能力ではなく現在の経験を重視する意図を区別する",
+      "empirical_validated": false,
+      "no_auto_question_revision": true
+    }
+  ],
+  "decision": {
+    "freeze_current_bank_v02": true,
+    "create_v03_now": false,
+    "forbid_unapproved_automatic_revision": true,
+    "official_measurement_version_approved": false,
+    "release_classification": "WITHHELD",
+    "allow_legacy_result_conversion": false,
+    "allow_participant_data_collection": false,
+    "next_gate": "D92 conceptual-choice record and testable acceptance criteria, not additional wording churn"
+  }
+}
