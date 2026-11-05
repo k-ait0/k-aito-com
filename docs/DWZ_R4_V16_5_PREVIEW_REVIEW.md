@@ -1,4 +1,4 @@
-# DWZ R4 v16.6 — 既存HTTPSサイト用・公開前検証
+# DWZ R4 v16.7 — 既存HTTPSサイト用・公開前検証
 
 - **状態:** REVIEW ONLY / RESEARCH_ONLY_HOLD / productionApproved=false
 - **対象ブランチ:** `dwz-r4-v16-5-xserver-preview`
@@ -67,3 +67,20 @@
 **引き続き未完了:** リポジトリ全体の `node scripts/local-preflight.cjs`、HTTPS配信経由でのネイティブ`localStorage`永続性、iPad Safari実機、Xserver配備。リポジトリ取得は`github.com`のDNS解決に失敗したため、全体QA未実行。
 
 **マージ禁止:** 公開許可が出るまでPRはDraftのまま維持。金融計算Coreの正式承認とは分離。
+
+## v16.7 追補（2026-11-06）— 研究版の共通入力検証
+
+**再現:** 開始60歳・追加支出開始30歳など研究版Coreが拒否する値では、基本計算では日本語入力エラーだが、年齢比較／市場ストレス／臨時支出比較では英語の内部 `R2_LEGACY_HOLD` が表示されていた。
+
+**修正:** `app.mjs`相当の `capture()` に `validateSharedResearchFields()` を追加。期末目標（0〜3000万円／100万円刻み）、開始・終了年齢、追加支出開始・終了年齢の前提を、基本計算・3比較・明示保存で共通検査。計算Core自体は無変更。比較結果が入力変更時に無効化されることは既存処理により確認できたので、変更しない。
+
+**回帰実績（新しいHTMLに対する試験）**
+- 共通入力検証：26/26 PASS（390px/810px）
+- 既存Chromium画面操作：60/60 PASS（320/390/810/1280px）
+- 境界値：11/11 PASS（HOLDを含む既定どおりの検出）
+- 従来の入力制約：22/22 PASS
+- 合計119/119 PASS（上記四つの異なるテスト群の合計）
+- **追加80件ランダム試験は時間制限で中断。合格件数に加算していない。**
+- Git blob SHA：`aa58e2a2ebbc37cb405209e3c3e7613e01d355c6`。ローカルファイルとGitHub上のソースが一致。
+
+**未完了:** リポジトリ全体の `node scripts/local-preflight.cjs`、実際のHTTPS経由の保存・リロード、iPad実機Safari、Xserverデプロイ。GitHub全体のcheckoutはDNS解決に失敗。PRはDraft・未マージのまま維持する。
