@@ -1,0 +1,362 @@
+{
+  "schema": "A05-D95-CP1-DOMAIN-PROTOCOL-1",
+  "created_at": "2026-11-06",
+  "status": "PRE_RESEARCH_PLANNING_UNAPPROVED",
+  "sources": [
+    {
+      "path": "docs/A05_D94_CP1_CONTENT_COVERAGE_20261105.json",
+      "git_blob_sha": "b9728ed847ec9c509df7c696413ed5204b2094ef"
+    },
+    {
+      "path": "docs/A05_D93_ITEM_CONSTRUCT_MAPPING_20261105.json",
+      "git_blob_sha": "7bd5d652217cdd58c64c5dd99a9f266b3db40e88"
+    },
+    {
+      "path": "docs/A05_D90_BC_PILOT_0_2_20261105.json",
+      "git_blob_sha": "69fd5e3d31cc40a54f6e9e63dade60c65ffcbf38"
+    }
+  ],
+  "purpose": "Evaluate whether two proposed non-scoring CP1 value prompts represent separable content domains without inventing a third domain or creating a psychometric scale.",
+  "limitations": {
+    "content_validity_evidence": "NONE",
+    "actual_interviews_conducted": false,
+    "consent_obtained": false,
+    "personal_data_collected": false,
+    "quantitative_scale_validated": false,
+    "score_inferred": false,
+    "estimated_population_prevalence": false,
+    "case_scores_generated": false
+  },
+  "domains": [
+    {
+      "id": "process_value",
+      "prompt_id": "DRAFT-PROCESS",
+      "draft_prompt": "何かに取り組んでいる間の経験そのものを大切にしたい。",
+      "status": "NOT_A_BANK_ITEM",
+      "label": "活動の最中の過程を大切にする",
+      "intended_object": "取り組んでいる間の活動の過程自体に価値を置く意思",
+      "exclude": [
+        "楽しさや快感の多さ",
+        "長期目標への貢献",
+        "活動の巧拙",
+        "集中力"
+      ],
+      "ambiguity": "日常の小さな行為も活動の過程として解釈され、もう一方と実質同義になりうる",
+      "distinctness_status": "NOT_ESTABLISHED"
+    },
+    {
+      "id": "ordinary_experience",
+      "prompt_id": "DRAFT-ORDINARY",
+      "draft_prompt": "特別な出来事に限らず、日々の小さな経験も人生の大切な一部として考えたい。",
+      "status": "NOT_A_BANK_ITEM",
+      "label": "平凡な日常経験自体を価値づける",
+      "intended_object": "平凡な日常の小さな経験を人生の一部として大切にする意思",
+      "exclude": [
+        "今の満足・幸福感",
+        "時間的余裕",
+        "小さな出来事への注意力",
+        "特別な成果の獲得"
+      ],
+      "ambiguity": "活動の過程で起こる小さな体験と区別できない可能性がある",
+      "distinctness_status": "NOT_ESTABLISHED"
+    }
+  ],
+  "contrast_cases": [
+    {
+      "id": "CX1",
+      "case": "長期の仕事の作業過程は大切だが、毎日の小さな出来事は重視しない",
+      "target_domain": "process_value",
+      "contrast_domain": "ordinary_experience",
+      "intended_probe": "2問へ異なる根拠で答えられるか、具体的な理由を聞く",
+      "evidence": "SYNTHETIC_ONLY"
+    },
+    {
+      "id": "CX2",
+      "case": "小さな日常の出来事は大切だが、課題の作業過程自体には関心が薄い",
+      "target_domain": "ordinary_experience",
+      "contrast_domain": "process_value",
+      "intended_probe": "CX1と逆の価値選好を言葉で区別できるか聞く",
+      "evidence": "SYNTHETIC_ONLY"
+    },
+    {
+      "id": "CX3",
+      "case": "活動の過程も日々の小さな体験も両方大切",
+      "target_domain": "both",
+      "contrast_domain": "neither",
+      "intended_probe": "回答が両方高くても矛盾しないか聞く",
+      "evidence": "SYNTHETIC_ONLY"
+    },
+    {
+      "id": "CX4",
+      "case": "活動過程も日常の出来事も現時点で優先しない",
+      "target_domain": "neither",
+      "contrast_domain": "both",
+      "intended_probe": "両方低いことを病理・無気力として扱わない",
+      "evidence": "SYNTHETIC_ONLY"
+    },
+    {
+      "id": "CX5",
+      "case": "いまの暮らしに不満があるが、小さな経験を大切にしたい",
+      "target_domain": "ordinary_experience",
+      "contrast_domain": "life_satisfaction",
+      "intended_probe": "『満足しているか』と混同しないか聞く",
+      "evidence": "SYNTHETIC_ONLY"
+    },
+    {
+      "id": "CX6",
+      "case": "楽しくない活動の過程に意味を感じ、日々の経験を大切にする",
+      "target_domain": "process_value",
+      "contrast_domain": "pleasure",
+      "intended_probe": "『楽しいか』が重視度の根拠になっていないか聞く",
+      "evidence": "SYNTHETIC_ONLY"
+    },
+    {
+      "id": "CX7",
+      "case": "自由時間が不足していても日々の経験を重視する",
+      "target_domain": "ordinary_experience",
+      "contrast_domain": "time_resource_E",
+      "intended_probe": "価値と時間資源を分けて回答できるか聞く",
+      "evidence": "SYNTHETIC_ONLY"
+    },
+    {
+      "id": "CX8",
+      "case": "注意が散りやすくても、今ある体験を大切にしたい",
+      "target_domain": "ordinary_experience",
+      "contrast_domain": "attention_capacity",
+      "intended_probe": "気づきの能力を評価していないか聞く",
+      "evidence": "SYNTHETIC_ONLY"
+    }
+  ],
+  "interview_protocol": {
+    "status": "TEMPLATE_ONLY_NO_RECRUITMENT",
+    "target_population": "A05が想定する一般成人の自己理解利用者。対象範囲は研究責任者が別途決裁する。",
+    "sample_strategy": "承認後に生活状況、就労状況、同居・交流機会、現在/将来の両立といった解釈差が現れ得る条件を考慮して目的抽出する。サンプル数・報酬・募集媒体は未決定。",
+    "recruitment_state": "NOT_STARTED",
+    "participant_count": 0,
+    "duration_plan": "目安20〜30分の事前設計案。実施前に担当者が妥当性・負担を承認する。",
+    "recording_plan": "録音・録画・逐語記録の可否、保存期間、保管先、アクセス権、削除と撤回は未決定。決裁前は収集しない。",
+    "session_steps": [
+      {
+        "id": "I01",
+        "phase": "intro",
+        "instruction": "研究の目的・任意参加・撤回・個人データの扱いを、承認済み説明文で案内する（現在は説明文未承認）。"
+      },
+      {
+        "id": "I02",
+        "phase": "unprompted",
+        "instruction": "候補2問を個別に提示し、言葉をどのように理解したか自由に言い換えてもらう。先に定義や望ましい解釈を教えない。"
+      },
+      {
+        "id": "I03",
+        "phase": "comprehension",
+        "instruction": "『取り組む過程』『小さな経験』『人生の一部』が何を意味するか確認する。"
+      },
+      {
+        "id": "I04",
+        "phase": "retrieval",
+        "instruction": "回答時にどの生活場面を思い浮かべたか聞く。最近の実際の出来事の詳細記録は必要最小限にする。"
+      },
+      {
+        "id": "I05",
+        "phase": "judgment",
+        "instruction": "どの要素を大切だと思ったか、将来の成果や楽しさとの違いを確認する。"
+      },
+      {
+        "id": "I06",
+        "phase": "response",
+        "instruction": "仮に1〜7段階を選ぶ場合、どこで選択に迷うかと『判断不能』の解釈を聞く。実際の得点記録は本段階ではしない。"
+      },
+      {
+        "id": "I07",
+        "phase": "contrast",
+        "instruction": "2問の違いと重なりを本人の言葉で説明できるか聞く。誘導的な正解提示は避ける。"
+      },
+      {
+        "id": "I08",
+        "phase": "debrief",
+        "instruction": "不足した内容領域、回答しにくい表現、誤解されやすい語を尋ねて終了する。"
+      }
+    ],
+    "probes": [
+      {
+        "id": "P01",
+        "focus": "meaning",
+        "text": "『取り組んでいる間の経験』にはどんな出来事を含むと思いますか。",
+        "expected_observation": "過程と成果の区別"
+      },
+      {
+        "id": "P02",
+        "focus": "meaning",
+        "text": "『日々の小さな経験』とは、どのようなことを想定しましたか。",
+        "expected_observation": "日常と作業の区別"
+      },
+      {
+        "id": "P03",
+        "focus": "overlap",
+        "text": "この2問はあなたにとってどこが違いますか。同じ意味に思えますか。",
+        "expected_observation": "2領域が実質的に同義か"
+      },
+      {
+        "id": "P04",
+        "focus": "state_vs_value",
+        "text": "今の暮らしへの満足度が低くても、この質問への答えは変わらないと思いますか。",
+        "expected_observation": "状態と価値の混同"
+      },
+      {
+        "id": "P05",
+        "focus": "hedonic",
+        "text": "楽しくない活動でも、過程自体を大切にする場合がありますか。",
+        "expected_observation": "快楽と価値の混同"
+      },
+      {
+        "id": "P06",
+        "focus": "resources",
+        "text": "自由に使える時間が少ないことと、日々を大切にしたい気持ちは別だと思いますか。",
+        "expected_observation": "E時間資源との混同"
+      },
+      {
+        "id": "P07",
+        "focus": "time_perspective",
+        "text": "将来の目標を大切にすることと、この2つを重視することは両立しますか。",
+        "expected_observation": "暗黙の将来・現在二者択一"
+      },
+      {
+        "id": "P08",
+        "focus": "response",
+        "text": "1〜7と『判断できない』があるとしたら、どのように選ぶと思いますか。",
+        "expected_observation": "回答形式の理解"
+      },
+      {
+        "id": "P09",
+        "focus": "comprehensiveness",
+        "text": "『今の経験を大切にする』という考え方で、2問に入っていない大切な側面はありますか。",
+        "expected_observation": "領域網羅性"
+      }
+    ]
+  },
+  "coding_template": {
+    "status": "BLANK_NOT_REAL_PARTICIPANT_DATA",
+    "unit": "question × interview session",
+    "fields": [
+      "study_session_id",
+      "approved_consent_reference",
+      "question_id",
+      "paraphrase_notes",
+      "evoked_context",
+      "intended_domain",
+      "interpreted_domain",
+      "overlap_flag",
+      "contamination_flag",
+      "comprehensibility_issue",
+      "researcher_memo",
+      "reviewer_signoff"
+    ],
+    "permitted_interpreted_domain_codes": [
+      "process_value",
+      "ordinary_experience",
+      "both",
+      "other",
+      "unclear"
+    ],
+    "permitted_issue_codes": [
+      "PLEASURE",
+      "SATISFACTION",
+      "TIME_RESOURCE",
+      "ATTENTION",
+      "FUTURE_CONTRAST",
+      "CONCEPT_OVERLAP",
+      "NONE"
+    ],
+    "fields_not_to_collect_by_default": [
+      "氏名",
+      "生年月日",
+      "住所",
+      "連絡先",
+      "自由記述の固有名詞",
+      "音声・動画原本"
+    ],
+    "field_schema_approved": false,
+    "actual_records": [],
+    "analysis_notes": "Qualitative coding only after approvals; counts or mock judgments are not evidence of scale distinctness."
+  },
+  "interpretation_decision_tree": [
+    {
+      "id": "R1",
+      "trigger": "２領域が、異なる具体例と回答根拠により区別できる",
+      "next": "KEEP_TWO_EDITORIAL_DOMAINS_PENDING_CONTENT_REVIEW",
+      "numeric_scoring": false,
+      "approval": "PENDING"
+    },
+    {
+      "id": "R2",
+      "trigger": "2領域を実質同じ意味だと理解し、別の根拠が説明できない",
+      "next": "COLLAPSE_OR_REDEFINE_BEFORE_ITEM_BANK",
+      "numeric_scoring": false,
+      "approval": "PENDING"
+    },
+    {
+      "id": "R3",
+      "trigger": "一方が幸福・快楽・資源・注意能力を主に想起させる",
+      "next": "REWRITE_ONLY_CONTAMINATED_PROMPT_AND_RETEST",
+      "numeric_scoring": false,
+      "approval": "PENDING"
+    },
+    {
+      "id": "R4",
+      "trigger": "両方が状態・能力・二者択一など別概念を主に表す",
+      "next": "REASSESS_CP1_CONSTRUCT_AND_PAUSE_ITEM_DESIGN",
+      "numeric_scoring": false,
+      "approval": "PENDING"
+    }
+  ],
+  "gate_checklist": [
+    {
+      "id": "G1",
+      "required": "BR1/CP1の正式な測定概念と対象者を製品責任者が承認",
+      "status": "PENDING"
+    },
+    {
+      "id": "G2",
+      "required": "研究責任者、募集・同意、撤回・削除・データ保管場所・期間を決裁",
+      "status": "PENDING"
+    },
+    {
+      "id": "G3",
+      "required": "質問文・順序・面接手順・記録項目・実施者の訓練を承認",
+      "status": "PENDING"
+    },
+    {
+      "id": "G4",
+      "required": "実施後の評価基準と不一致時のレビュー方法を承認",
+      "status": "PENDING"
+    },
+    {
+      "id": "G5",
+      "required": "研究結果を踏まえた質問版・採点方針・公開の独立決裁",
+      "status": "PENDING"
+    }
+  ],
+  "guardrails": {
+    "no_study_execution": true,
+    "no_recruitment": true,
+    "no_personal_data_persistence": true,
+    "old_bank_immutable": true,
+    "no_v03_issue": true,
+    "no_type_id": true,
+    "no_two_item_mean": true,
+    "no_three_item_mean": true,
+    "no_compatibility_scores": true,
+    "no_production_publication": true,
+    "no_owner_approval_inferred": true
+  },
+  "references": [
+    {
+      "url": "https://www.cdc.gov/nchs/ccqder/question-evaluation/cognitive-interviewing.html",
+      "role": "CDC's cognitive probes for comprehension, recall, judgment and response"
+    },
+    {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/40562250/",
+      "role": "COSMIN perspective: relevance, comprehensiveness, comprehensibility"
+    }
+  ]
+}
