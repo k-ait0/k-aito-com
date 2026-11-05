@@ -3008,4 +3008,20 @@ load('app.mjs');
   document.dispatchEvent(new Event('dwz-mode-ready'));
 })();
 
+</script><script>
+(function(){
+  if(!/^(raw|rawcdn)\.githack\.com$/i.test(location.hostname)) return;
+  const notice=document.createElement('p');
+  notice.setAttribute('role','status');
+  notice.style.cssText='background:#fff2c5;color:#493716;border:2px solid #aa7a18;padding:14px;border-radius:10px;margin:16px 0';
+  notice.textContent='外部共有ホスト上の検証用プレビューです。実際の個人資産額は入力しないでください。このプレビューでは安全のため端末への条件保存・復元を無効化しています。';
+  const main=document.querySelector('main.layout');
+  if(main) main.insertBefore(notice,main.firstChild);
+  const blocked=new Set(['r4-save-local','r4-restore-local','r4-purge-local','r4-portfolio-save','r4-portfolio-restore','r4-portfolio-purge']);
+  for(const id of blocked){ const element=document.getElementById(id);if(element){element.disabled=true;element.title='共有ホスト上のプレビューでは無効';}}
+  document.addEventListener('click',function(event){
+    const id=event.target.closest?.('button')?.id;
+    if(id&&blocked.has(id)){event.preventDefault();event.stopImmediatePropagation();}
+  },true);
+})();
 </script></body></html>
