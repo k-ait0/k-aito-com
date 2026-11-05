@@ -17,7 +17,7 @@ const noindex=s=>/<meta\s+name="robots"\s+content="[^"]*\bnoindex\b/i.test(head(
 const scriptSyntax=s=>{const m=[...s.matchAll(/<script(?:\s[^>]*)?>([\s\S]*?)<\/script>/g)];if(!m.length)return false;for(const [i,x] of m.entries())new vm.Script(x[1],{filename:'inline-'+i+'.js'});return true;};
 const core=s=>{const a=s.indexOf('const registry={'),b=s.indexOf('"app.mjs":function',a);if(a<0||b<0)return {sha:'',count:0};const span=s.slice(a,b);return {sha:crypto.createHash('sha256').update(span).digest('hex'),count:[...span.matchAll(/"[^"\n]+":function\(module,exports,require\)/g)].length};};
 const check=(name,fn)=>{try{if(!fn())throw Error('condition not met');results.push({name,ok:true});}catch(e){results.push({name,ok:false,detail:String(e.message||e)});}};
-check('app title + description + viewport',()=><title>[^<]+<\/title>/.test(head(app))&&head(app).includes('name="description"')&&head(app).includes('name="viewport"'));
+check('app title + description + viewport',()=>/<title>[^<]+<\/title>/.test(head(app))&&head(app).includes('name="description"')&&head(app).includes('name="viewport"'));
 check('app excluded from search',()=>noindex(app)&&!head(app).includes('rel="canonical"'));
 check('app unique IDs',()=>ids(app).length===new Set(ids(app)).size);
 check('app fragment links',()=>[...app.matchAll(/href="#([^"]+)"/g)].every(m=>ids(app).includes(m[1])));
