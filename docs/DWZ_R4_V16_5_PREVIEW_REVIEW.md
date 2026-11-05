@@ -1,4 +1,4 @@
-# DWZ R4 v16.7 — 既存HTTPSサイト用・公開前検証
+# DWZ R4 v16.9 — 既存HTTPSサイト用・公開前検証
 
 - **状態:** REVIEW ONLY / RESEARCH_ONLY_HOLD / productionApproved=false
 - **対象ブランチ:** `dwz-r4-v16-5-xserver-preview`
@@ -99,3 +99,27 @@
 - **注意:** 以上はGitHub上のファイル取得に基づく限定検証。完全なチェックアウトでの `node scripts/local-preflight.cjs` を実行できたわけではない。サイト内の他14工程を一括PASSとみなさず、本番公開/実機Safari/HTTPS E2Eは引き続き保留。
 
 メタデータのみの修正で、金融計算Core・保存ロジック・公開設定は変更していない。PRは引き続きDraft・未マージ。
+
+## 第16.9版｜判定保留後に古い理由が残る問題の修正（2026-11-06）
+
+**再現事実：** 有効な入力（開始40歳／終了120歳／初期資産1億円／利回り0％等）で `FLOAT_THRESHOLD_AMBIGUOUS` の安全HOLDが発生後、正常入力に変更・再計算しても、`#output.dataset.reason` が前のHOLD理由を保持した。結果表示と機械可読なDOM状態が不整合。
+
+**UIのみの修正：** `invalidateStaleResult()`、復元時の `fillCapture()`、基本計算の `submit` 開始時に`delete output.dataset.reason`を追加し、`data-status`と一緒に古い理由をクリアする。計算Core・市場ストレス・保存内部の処理は変更なし。
+
+**本セッションで再実行した実測（Chromium set_content＋localStorageモック）：**
+
+| テスト群 | 成功件数 |
+| --- | ---: |
+| 既存ブラウザ操作（320／390／810／1280px） | 60/60 |
+| 共通入力チェック | 26/26 |
+| 入力・数値境界 | 11/11（安全HOLD含む） |
+| 既存入力制約 | 22/22 |
+| 新しいHOLD→編集→正常再計算→保存→HOLD→復元 | 30/30 |
+| 追加ランダム80条件 | 80/80 正常終了、JS例外0 |
+| **合計** | **229/229 PASS** |
+
+選定した別の20条件も実行し、19条件正常終了、1条件は設計どおりの数値境界HOLD。
+
+**GitHub上の最新アプリGit blob SHA：** `f15d2ca56b65450e9a590f34bdcbe0d8959d1e59`（テスト済みローカルHTMLと一致）。診断ページにも「HOLD理由クリア」2チェックを追加。
+
+**未完了ゲートは不変：** 全リポジトリ `node scripts/local-preflight.cjs`、HTTPSオリジンの実E2E／localStorage永続性、iPad Safari、Xserver配備。PR Draft・未マージ。正式な金融計算Coreの妥当性承認は別工程。
