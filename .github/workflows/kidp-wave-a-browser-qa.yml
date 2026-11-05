@@ -28,6 +28,7 @@ jobs:
           node --test scripts/test-a05-type-structure.mjs
           node --test scripts/test-a05-bc-pilot.mjs
           node --test scripts/test-a05-bc-pilot-d90.mjs
+          node --test scripts/test-a05-d91-construct-boundary.mjs
       - name: A05 native Node domain and storage tests
         run: |
           node --test scripts/test-a05-engine.mjs
