@@ -1,0 +1,176 @@
+{
+  "schema": "A05-D100-RELEASE-PREFLIGHT-1",
+  "reviewed_date": "2026-11-06",
+  "publication_decision": "NO_GO_PRODUCTION",
+  "production_release_authorized": false,
+  "candidate": {
+    "path": "projects/kidp/life-design-lab/a05/reflection-d100.html",
+    "blob_sha": "0ed6a91d5a0dc57a74cc45569b1b5c1969b22ccb",
+    "source_d99_path": "projects/kidp/life-design-lab/a05/reflection-d99.html",
+    "source_d99_blob_sha": "2e5dbd2de9fed346516892a5cad78310eab8f868",
+    "status": "DRAFT_NON_DIAGNOSTIC_UNAPPROVED",
+    "noindex": true,
+    "does_not_collect_user_responses": true,
+    "automated_score": false,
+    "type_classification": false,
+    "historical_result_migration": false
+  },
+  "security": {
+    "csp_policy_level": "VALIDATED_IN_BROWSER_META_ONLY_NOT_DEPLOYED_AS_HTTP_HEADER",
+    "csp_meta_policy": "default-src 'none'; base-uri 'none'; object-src 'none'; form-action 'none'; frame-src 'none'; connect-src 'none'; img-src 'none'; style-src 'sha256-WNRNkkb6vFk9eJ18XDaBNe4v8J4k645kHLF0rXfqRAY='; script-src 'sha256-POmtdK4VtMg0QPjZCyiUG8M3tybjpo99g3R+a7RH5yU='",
+    "tested_script_sha256": "POmtdK4VtMg0QPjZCyiUG8M3tybjpo99g3R+a7RH5yU=",
+    "tested_style_sha256": "WNRNkkb6vFk9eJ18XDaBNe4v8J4k645kHLF0rXfqRAY=",
+    "required_header_review": [
+      "Check actual response Content-Security-Policy header on staging; conflicts or stricter policies can block inline code",
+      "If desired, implement frame-ancestors 'none' through HTTP response headers, not through CSP meta",
+      "Confirm X-Content-Type-Options, Referrer-Policy and Cache-Control against host capabilities",
+      "Recompute exact inline SHA-256 hashes after every subsequent JS/CSS edit"
+    ],
+    "hosting_provider_header_capability_verified": false,
+    "production_csp_header_verified": false
+  },
+  "qa_executed": [
+    {
+      "id": "NODE_NATIVE",
+      "result": "PASS",
+      "count": 5,
+      "source": "scripts/test-a05-d100-preflight.mjs",
+      "source_sha_verified": true,
+      "tool": "Node.js 22.16.0",
+      "notes": "Exact local and GitHub registered script blob matched; ran locally"
+    },
+    {
+      "id": "CHROME_INJECTED_CSP",
+      "result": "PASS",
+      "count": 5,
+      "viewports": [
+        280,
+        320,
+        390,
+        820,
+        1280
+      ],
+      "tool": "Python Playwright + /usr/bin/chromium",
+      "notes": "Same GitHub HTML blob; page.set_content, 8 synthetic cases, 4 guide steps, print media, no CSP violation"
+    },
+    {
+      "id": "CHROME_CSP_TAMPER",
+      "result": "PASS",
+      "count": 1,
+      "tool": "Python Playwright + /usr/bin/chromium",
+      "notes": "Changed inline script; old hash refused script execution"
+    }
+  ],
+  "qa_registered_not_executed": [
+    {
+      "path": "scripts/qa_a05_d100_csp_browser.cjs",
+      "status": "NOT_EXECUTED_AS_FILE",
+      "notes": "Node Playwright script registered in manual CI; Python Playwright evaluated equivalent scenarios"
+    },
+    {
+      "path": ".github/workflows/kidp-wave-a-browser-qa.yml",
+      "status": "NOT_DISPATCHED",
+      "notes": "No workflow_dispatch run performed"
+    }
+  ],
+  "release_gates": [
+    {
+      "id": "G01",
+      "area": "security",
+      "label": "Candidate source identity and no-user-data checks",
+      "status": "PASS",
+      "blocking": true,
+      "automated": true,
+      "evidence": "Node 5/5, HTML blob SHA verified"
+    },
+    {
+      "id": "G02",
+      "area": "security",
+      "label": "Inline CSP strict-hash compatibility and tamper refusal",
+      "status": "PASS_LIMITED",
+      "blocking": true,
+      "automated": true,
+      "evidence": "Chromium injection 5 viewports + one tamper case; not actual HTTP response header"
+    },
+    {
+      "id": "G03",
+      "area": "product",
+      "label": "Form, 16 types and storage are absent",
+      "status": "PASS",
+      "blocking": true,
+      "automated": true,
+      "evidence": "Node source scanning and browser DOM checks"
+    },
+    {
+      "id": "G04",
+      "area": "interaction",
+      "label": "Case switcher, reflection and print media behave",
+      "status": "PASS",
+      "blocking": true,
+      "automated": true,
+      "evidence": "Chromium injection five viewports"
+    },
+    {
+      "id": "G05",
+      "area": "deployment",
+      "label": "Normal URL end-to-end navigation and cache behavior",
+      "status": "BLOCKED_BY_ENVIRONMENT",
+      "blocking": true,
+      "automated": false,
+      "evidence": "Local Chrome navigation blocked by administrator; no staging endpoint approved"
+    },
+    {
+      "id": "G06",
+      "area": "deployment",
+      "label": "Actual HTTP headers and CSP against deployed host",
+      "status": "NOT_TESTED",
+      "blocking": true,
+      "automated": false,
+      "evidence": "No staging/production deployment or HTTP header inspection"
+    },
+    {
+      "id": "G07",
+      "area": "accessibility",
+      "label": "iOS Safari, VoiceOver and zoom manual QA",
+      "status": "NOT_TESTED",
+      "blocking": true,
+      "automated": false,
+      "evidence": "Chromium-only tests do not cover assistive technology speech"
+    },
+    {
+      "id": "G08",
+      "area": "editorial",
+      "label": "Owner approval for public copy, two prompts and terminology",
+      "status": "PENDING_HUMAN_APPROVAL",
+      "blocking": true,
+      "automated": false,
+      "evidence": "D99/D100 is still an editorial candidate"
+    },
+    {
+      "id": "G09",
+      "area": "release",
+      "label": "Owner authorization to merge, add public navigation and deploy",
+      "status": "PENDING_HUMAN_APPROVAL",
+      "blocking": true,
+      "automated": false,
+      "evidence": "PR #61 Draft, no publish authorization"
+    }
+  ],
+  "guardrails": {
+    "must_remain_draft": true,
+    "must_not_merge_pr": true,
+    "must_not_deploy": true,
+    "must_not_add_public_navigation": true,
+    "must_not_remove_noindex": true,
+    "do_not_issue_type_or_score": true,
+    "do_not_collect_participant_data": true,
+    "do_not_recalculate_old_results": true,
+    "research_gates_independent": true,
+    "release_only_if_all_blocking_gates_pass_and_owner_approves": true
+  },
+  "next_actions": [
+    "Verify native Node Playwright D100 Chromium test in compatible environment and document actual results",
+    "After staging access is explicitly authorized, verify real URL, caching, CSP and other HTTP headers; do not deploy unilaterally",
+    "Obtain human editorial/accessibility/publication approval; keep 16-type diagnostic research separate"
+  ]
+}
