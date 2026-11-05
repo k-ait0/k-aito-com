@@ -2703,7 +2703,28 @@ for (const field of fields) {
 }
 // Comparison edition does not consume the standard Core v1 one-time handoff.
 const yen = x => x === null ? '判定不可' : Math.round(x).toLocaleString('ja-JP') + '円';
+/** Same research adapter constraints for main computation, comparisons, and local save.
+ *  Cross-feature consistency; financial Core remains unchanged. */
+function validateSharedResearchFields() {
+    const read = name => Number(form.elements[name].value);
+    const target = read('target');
+    if (form.elements.target.value !== '' &&
+        (!Number.isSafeInteger(target) || target < 0 || target > 3000 || target % 100 !== 0))
+        return '研究版の期末目標は、0〜3,000万円を100万円刻みで指定してください。';
+    const start = read('start'), end = read('end');
+    if (form.elements.start.value !== '' && form.elements.end.value !== '' && start >= end)
+        return '終了年齢は試算開始年齢より大きく設定してください。';
+    const extraStart = read('extraStartAgeYears'), extraEnd = read('extraEndAgeYears');
+    if (form.elements.extraStartAgeYears.value !== '' && form.elements.extraEndAgeYears.value !== '' &&
+        form.elements.start.value !== '' && (extraStart < start || extraStart >= extraEnd))
+        return '追加支出の開始年齢は、試算開始年齢以上かつ追加支出終了年齢より小さくしてください。';
+    if (form.elements.extraEndAgeYears.value !== '' && form.elements.end.value !== '' && extraEnd !== end)
+        return '研究版の制約：追加支出終了年齢を試算の終了年齢と同じにしてください。';
+    return null;
+}
 function capture() {
+    const validationError = validateSharedResearchFields();
+    if (validationError) throw Error(validationError);
     if (!form.reportValidity())
         throw Error('入力範囲を確認してください');
     const c = (0, compute_mjs_1.r4DefaultCapture)();
