@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="ja"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta name="description" content="A05 D95 CP1 2領域の区別と認知面接手順を示す未承認・回答収集なしの編集用プレビュー">
+<title>A05 D-95｜現在経験の2領域・認知面接準備</title>
+<style>
+:root{font-family:system-ui,-apple-system,"Hiragino Kaku Gothic ProN",sans-serif;color-scheme:light dark}
+*{box-sizing:border-box}
+body{max-width:1100px;margin:20px auto;padding:0 18px;line-height:1.65}
+h1{font-size:clamp(1.5rem,3.5vw,2.15rem);line-height:1.3}
+h2{font-size:1.23rem;margin:8px 0 10px}
+h3{font-size:1.02rem}
+.notice{border:2px solid currentColor;padding:12px 16px;border-radius:12px;font-weight:600}
+.panel{border:1px solid #999;border-radius:12px;padding:14px 16px;margin:18px 0}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.card{border:1px solid #999;border-radius:12px;padding:12px;min-width:0;overflow-wrap:anywhere}
+.card h3{margin:0 0 8px}
+.card p{margin:6px 0}
+.small{font-size:.91rem}
+.controls{display:flex;flex-wrap:wrap;gap:10px;align-items:end;margin:14px 0}
+label{font-weight:600}
+select{font:inherit;padding:8px;min-height:44px;max-width:100%;min-width:230px;border-radius:8px}
+select:focus-visible{outline:3px solid #4087c2;outline-offset:2px}
+ul{padding-inline-start:22px}
+@media(max-width:720px){.grid{grid-template-columns:1fr}.controls{flex-direction:column;align-items:stretch}select{width:100%}}
+</style>
+</head><body><main>
+<h1>A05｜「現在の経験」を表す2領域の検証設計</h1>
+<p class="notice">未承認・研究未実施の編集用資料です。実際の回答者データ、心理尺度の得点、16タイプ判定は存在しません。この画面で参加者募集・入力・保存は行いません。</p>
+<p id="status" class="panel" role="status" aria-live="polite">検証プロトコルを読み込んでいます。</p>
+<section class="panel"><h2>検証対象となる2つの問い</h2>
+<div class="grid" id="domains"></div></section>
+<section class="panel"><h2>架空の反例から検証方法を確認</h2>
+<div class="controls"><label for="case-select">反例を選択</label>
+<select id="case-select" disabled><option value="">読み込み中</option></select></div>
+<div id="case-detail" aria-live="polite"></div>
+<p class="small">架空の反例は検証課題を示すための例であり、利用者の回答結果ではありません。</p></section>
+<section class="panel"><h2>認知面接の質問案</h2>
+<div id="probes" class="grid"></div></section>
+<section class="panel"><h2>結果による4つの分岐案</h2>
+<div class="grid" id="outcomes"></div>
+<p>4つの分岐は、研究結果が得られた場合の対応候補です。数値化も自動判定も行いません。</p></section>
+<section class="panel"><h2>開始前に必要な人間の決裁</h2>
+<ul id="gates"></ul>
+<p class="small">録音・保管期間・撤回・削除・参加者の範囲などは未決定です。承認されるまでは募集も記録も開始しません。</p></section>
+</main><script type="module" src="./cp1-domain-protocol-d95-preview.mjs"></script></body></html>
