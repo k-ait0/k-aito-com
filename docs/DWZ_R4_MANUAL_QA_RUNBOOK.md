@@ -46,3 +46,12 @@ GitHub上のlocalhostでE2EがPASSしても、**実公開HTTPSオリジン（Xse
 - 判定ガードの重要6項目（通常）・5項目（永続保存）は **1項目でもSKIP、欠落、重複、FAILなら拒否**。負例含む11/11件のNode単体テストで確認。
 - `node scripts/browser-smoke.cjs` は既存サイト全体の多画面ブラウザ試験であり、DWZ専用の`dwz-origin-e2e.cjs`とは別に必ず通す。結果のスクリーンショットはGitHubのアーティファクトで確認。
 - **この手順書の更新はまだQA実行を意味しない。** 公開HTTPS／iPad Safari／金融計算Coreの正式承認は別途必須。
+
+## WebKitと保存領域の独立性（2026-11-06 追加）
+
+- `node scripts/dwz-origin-e2e.cjs` はデフォルトChromiumで実行。環境変数 `DWZ_BROWSER_ENGINE=webkit` を指定するとLinux WebKitで同じシナリオを実行する。
+- QA workflowは既存サイトの6画面幅Chromium試験の後、Playwright WebKitをインストールし、DWZ専用のlocalhost E2Eを**もう一度WebKitで実行する**。最大25分の手動ジョブに収め、不要な反復起動は避ける。
+- E2Eのアプリ本体と診断画面は **異なるBrowserContext** を使用。診断起動時に保存キー2件が空であることを確認し、先行試験に起因する保存スキップを防ぐ。外部ネットワーク要求0件も確認する。
+- Node.js構文検査と診断結果ガード単体試験（11/11 PASS）、Chromium／WebKitの起動分岐・接続遮断時のfail-closed模擬試験（2/2 PASS）をローカルで実施。
+- **重要：Linux WebKitはiPad Safari実機そのものではない。** WebKit E2EがPASSしてもiPad Safari実機受入・実Xserver HTTPSでの永続保存確認は別途必要。
+- **まだGitHub Actionsは起動していない**。実際のWebKit/Chromiumでのlocalhost E2E結果は未確定。
