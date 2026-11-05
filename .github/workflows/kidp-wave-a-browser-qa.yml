@@ -36,6 +36,7 @@ jobs:
           node --test scripts/test-a05-d96-reflection.mjs
           node --test scripts/test-a05-d98-accessibility.mjs
           node --test scripts/test-a05-d99-reflection.mjs
+          node --test scripts/test-a05-d100-preflight.mjs
       - name: A05 native Node domain and storage tests
         run: |
           node --test scripts/test-a05-engine.mjs
@@ -75,5 +76,6 @@ jobs:
           node scripts/qa_a05_d97_reflection_injected_browser.cjs
           node scripts/qa_a05_d98_accessibility_browser.cjs
           node scripts/qa_a05_d99_reflection_browser.cjs
+          node scripts/qa_a05_d100_csp_browser.cjs
       - name: A05 Chromium acceptance
         run: node scripts/qa_a05_browser.cjs
