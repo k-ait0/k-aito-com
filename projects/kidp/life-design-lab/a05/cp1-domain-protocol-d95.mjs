@@ -76,7 +76,8 @@ export function validateD95Protocol(d95,d94,d93,d90,shaSources){
     new Set(protocol.probes.map(x=>x.id)).size!==9||
     !seq(protocol.probes.map(x=>x.id),
      ["P01","P02","P03","P04","P05","P06","P07","P08","P09"])||
-    protocol.probes.some(x=>!substantial(x.text)||!substantial(x.expected_observation)))
+    protocol.probes.some(x=>!substantial(x.text)||
+      typeof x.expected_observation!=="string"||x.expected_observation.trim().length<4))
    reject("interview probes");
  const coding=d95.coding_template;
  if(!coding||coding.status!=="BLANK_NOT_REAL_PARTICIPANT_DATA"||
