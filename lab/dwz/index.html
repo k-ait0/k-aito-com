@@ -87,7 +87,7 @@ body[data-dwz-mode="detail"] #dwz-quick-result-note{display:none!important}
 <label>年金受給開始年齢（歳）<input name="pensionAge" type="number" min="60" max="75" step="1" required/></label>
 <label>運用利回り（年率％）<input name="rate" type="number" min="-10" max="20" step="0.01" inputmode="decimal" required/></label>
 <label>物価上昇率（年率％）<input name="inflation" type="number" min="-5" max="20" step="0.01" inputmode="decimal" required/></label>
-<label>期末目標（万円・名目）<input name="target" type="number" min="0" max="100000" step="0.01" inputmode="decimal" required/></label>
+<label>期末目標（万円・名目／100万円刻み）<input name="target" type="number" min="0" max="3000" step="100" inputmode="numeric" required/></label>
 <label>追加支出開始年齢（歳）<input name="extraStartAgeYears" type="number" min="0" max="120" step="1" required/></label>
 <label>追加支出終了年齢（歳・含まない）<input name="extraEndAgeYears" type="number" min="0" max="120" step="1" required/></label>
 <label>追加支出の方式<select name="extraEscalation"><option value="NOMINAL_FIXED">名目額固定</option><option value="CPI_LINKED">物価連動</option></select></label>
@@ -2981,10 +2981,25 @@ load('app.mjs');
     }
     // The current research adapter requires the extra-spending period's exclusive
     // end age to match the overall simulation end age. Give an actionable message.
-    if (active==='detail' && form.elements.extraEndAgeYears.value!==form.elements.end.value){
-      feedback.textContent='研究版の制約：追加支出終了年齢を試算の終了年齢と同じにしてください。';
-      feedback.hidden=false;
-      return false;
+    if (active==='detail') {
+      const target=Number(form.elements.target.value);
+      if (!Number.isSafeInteger(target) || target<0 || target>3000 || target%100!==0) {
+        feedback.textContent='研究版の期末目標は、0〜3,000万円を100万円刻みで指定してください。';
+        feedback.hidden=false;
+        return false;
+      }
+      const extraStart=Number(form.elements.extraStartAgeYears.value);
+      const extraEnd=Number(form.elements.extraEndAgeYears.value);
+      if (extraStart < beginning || extraStart>=extraEnd) {
+        feedback.textContent='追加支出の開始年齢は、試算開始年齢以上かつ追加支出終了年齢より小さくしてください。';
+        feedback.hidden=false;
+        return false;
+      }
+      if (form.elements.extraEndAgeYears.value!==form.elements.end.value) {
+        feedback.textContent='研究版の制約：追加支出終了年齢を試算の終了年齢と同じにしてください。';
+        feedback.hidden=false;
+        return false;
+      }
     }
     const invalid = Array.from(form.querySelectorAll('input,select')).filter(el=>!el.checkValidity());
     if (!invalid.length){feedback.hidden=true; feedback.textContent=''; return true;}
