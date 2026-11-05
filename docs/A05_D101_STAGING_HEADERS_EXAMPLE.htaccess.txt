@@ -1,0 +1,14 @@
+# A05 D101 STAGING-ONLY PROPOSAL -- not an active .htaccess.
+# Do not copy or deploy without explicit approval and a dedicated staging path.
+# XServer Static supports .htaccess in general; mod_headers behavior is NOT yet verified here.
+# Copy these rules into a directory-scoped .htaccess only after review.
+# Test the actual HTTPS response using scripts/qa_a05_d101_http_preflight.py.
+<IfModule mod_headers.c>
+  <Files "reflection-d101.html">
+    Header always set Content-Security-Policy "default-src 'none'; base-uri 'none'; object-src 'none'; form-action 'none'; frame-src 'none'; connect-src 'none'; img-src 'none'; frame-ancestors 'none'; style-src 'sha256-WNRNkkb6vFk9eJ18XDaBNe4v8J4k645kHLF0rXfqRAY='; script-src 'sha256-oaY3svV/5NN/njmQI7BkRnHRrMUakI/S5RjUfK/eDo4='"
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set Referrer-Policy "no-referrer"
+    Header always set Cache-Control "no-store"
+    Header always set X-Robots-Tag "noindex, nofollow"
+  </Files>
+</IfModule>
