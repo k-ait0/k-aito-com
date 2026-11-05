@@ -1,5 +1,0 @@
-# XServer Static configuration
-RewriteEngine On
-
-# Backward compatibility for previously shared social thumbnail URLs.
-RewriteRule ^og-image\.svg$ /og-image.png [R=302,L,NE]
