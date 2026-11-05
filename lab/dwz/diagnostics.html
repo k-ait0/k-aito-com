@@ -22,7 +22,7 @@ iframe{display:block;border:0;width:390px;height:440px;background:white}
 <p class="warning"><strong>ダミー条件専用。</strong> 個人の資産情報を入力しないでください。診断結果は送信されません。通常診断では既存の保存済み条件を変更しません。追加の保存操作テストも、既存データがない場合にだけダミー値で実施します。</p>
 <section>
 <h2>診断を実行</h2>
-<p class="muted">診断中は内部の画面が自動操作されます。保存機能については独自の一時キーを作成し、読み書き後に削除します。アプリ本体の保存キーには書き込みません。</p>
+<p class="muted">診断中は内部の画面が自動操作されます。標準診断は一時キーのみ読み書きします。「アプリ本体の保存試験」を選ぶと、既存保存データがない場合に限りダミー条件を明示保存し、内部ページを再読み込みして復元・削除まで確認します。</p>
 <button id="run" type="button">診断を開始・再実行</button>
 <label style="display:block;margin:8px 0"><input type="checkbox" id="deep-save"> アプリ本体の保存・復元・削除も検証する（既存データがない場合のみ）</label>
 <a href="index.html">シミュレーターを直接開く</a>
@@ -152,38 +152,62 @@ iframe{display:block;border:0;width:390px;height:440px;background:white}
       
       if(document.getElementById('deep-save').checked){
         const keyName='dwz-r4-compare-v11-capture/0.1.0';
+        let storage=null, storedValue=null;
         try {
-          const storage=win.localStorage;
+          storage=win.localStorage;
+          // Respect previously saved user conditions on this origin, even when not used by this app.
           if(storage.getItem(keyName)!==null) {
-            check('アプリ保存・復元・削除',null,'既存保存データがあるため安全にスキップ');
+            check('アプリ保存・再読込・復元・削除',null,'既存保存データがあるため安全にスキップ');
           } else {
             doc.getElementById('dwz-mode-detail').click();
-            let storedValue=null;
-            try {
-              doc.getElementById('r4-save-local').click();
-              storedValue=storage.getItem(keyName);
-              check('アプリの明示保存',!!storedValue && storedValue.length>100);
-              if(storedValue) {
-                update(doc,'assets',1000);
-                doc.getElementById('r4-restore-local').click();
-                const restored=form.elements.assets.value==='750';
-                check('アプリの復元',restored);
-                check('復元後の手動再計算待ち',(doc.getElementById('output').textContent||'').includes('復元した入力条件'));
-                const oldConfirm=win.confirm;
-                try {win.confirm=()=>true;doc.getElementById('r4-purge-local').click();}
-                finally {win.confirm=oldConfirm;}
-                check('アプリの保存削除',storage.getItem(keyName)===null);
+            doc.getElementById('r4-save-local').click();
+            storedValue=storage.getItem(keyName);
+            check('アプリの明示保存',!!storedValue && storedValue.length>100);
+            if(storedValue) {
+              // Recreate the entire document, not merely the form. This tests persisted storage.
+              await loadFresh();
+              const reopened=getApp(), reopeningWindow=frame.contentWindow;
+              storage=reopeningWindow.localStorage;
+              const persisted=storage.getItem(keyName);
+              check('アプリ再読込後の保存値一致',persisted===storedValue);
+              if(persisted===storedValue) {
+                reopened.getElementById('dwz-mode-detail').click();
+                update(reopened,'assets',1000);
+                reopened.getElementById('r4-restore-local').click();
+                const restored=reopened.getElementById('scenario').elements.assets.value==='750';
+                check('再読込後のアプリ復元',restored);
+                check('復元後は自動計算せず手動待ち',
+                  (reopened.getElementById('output').textContent||'').includes('復元した入力条件') &&
+                  reopened.getElementById('output').dataset.status===undefined);
+                if(storage.getItem(keyName)===storedValue) {
+                  const oldConfirm=reopeningWindow.confirm;
+                  try {
+                    reopeningWindow.confirm=()=>true;
+                    reopened.getElementById('r4-purge-local').click();
+                  } finally {
+                    reopeningWindow.confirm=oldConfirm;
+                  }
+                  check('再読込後のアプリ保存削除',storage.getItem(keyName)===null);
+                } else {
+                  check('保存削除',null,'別タブ等から保存条件が更新されたため削除をスキップ');
+                }
               }
-            } finally {
-              // This test runs only when the original key was absent. No user data is removed.
-              if(storedValue && storage.getItem(keyName)===storedValue) storage.removeItem(keyName);
             }
           }
-        } catch(e){
-          check('アプリ保存・復元・削除',false,String(e.message||e).slice(0,120));
+        } catch(e) {
+          check('アプリ保存・再読込・復元・削除',false,String(e.message||e).slice(0,130));
+        } finally {
+          // Remove only the exact dummy value created by this run. Never delete changed user data.
+          if(storedValue && storage) {
+            try {
+              if(storage.getItem(keyName)===storedValue) storage.removeItem(keyName);
+            } catch(e) {
+              check('診断用保存データの後片付け',false,String(e.message||e).slice(0,100));
+            }
+          }
         }
       } else {
-        check('既存の条件保存キーを変更していない',true,'通常診断は保存ボタンを操作しません');
+        check('既存の条件保存キーを変更していない',true,'標準診断はアプリの保存ボタンを操作しません');
       }
       const failures=results.filter(r=>r.state==='FAIL').length;
       status.textContent='診断完了：'+(results.length-failures)+'項目PASS/SKIP、'+failures+'項目FAIL。';
