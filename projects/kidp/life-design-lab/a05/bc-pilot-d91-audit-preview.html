@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>A05 D-91｜B/C軸12問 概念境界監査</title>
+<style>
+:root{font-family:system-ui,-apple-system,"Hiragino Kaku Gothic ProN",sans-serif;color-scheme:light dark}
+*{box-sizing:border-box}
+body{max-width:1000px;margin:24px auto;padding:0 18px;line-height:1.7}
+h1{font-size:clamp(1.5rem,3.7vw,2.1rem);line-height:1.35}
+h2{font-size:1.2rem}
+.notice{border:2px solid currentColor;padding:12px 16px;border-radius:12px;font-weight:600}
+.controls{display:flex;flex-wrap:wrap;gap:12px;align-items:end;margin:20px 0}
+.controls label{display:block;font-weight:600}
+.controls select{font:inherit;min-width:160px;max-width:100%;min-height:44px;padding:8px;border:1px solid #888;border-radius:8px}
+.controls select:focus-visible{outline:3px solid #4087cf;outline-offset:2px}
+.summary{border:1px solid #888;border-radius:10px;padding:12px;margin:18px 0}
+.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.card{border:1px solid #888;border-radius:12px;min-width:0;padding:14px;overflow-wrap:anywhere}
+.card h3{font-size:1.05rem;margin:0 0 8px}.card p{margin:8px 0}
+.flag{display:inline-block;border:1px solid #888;border-radius:30px;font-size:.82rem;padding:2px 8px;margin:4px 4px 0 0}
+.card-status{font-weight:700;letter-spacing:.02em}
+.muted{font-size:.9rem}
+@media(max-width:720px){.cards{grid-template-columns:1fr}.controls{align-items:stretch;flex-direction:column}.controls select{width:100%}}
+</style>
+</head>
+<body>
+<main>
+<h1>A05｜B・C軸の質問品質監査</h1>
+<p class="notice">編集・開発用の未承認プレビューです。これは質問文の概念監査であり、心理測定の有効性を証明するものではありません。16タイプ判定・回答保存・利用者研究は実施しません。</p>
+<p>現行v0.2の12問について、何を測ろうとしているか、他の軸や設問と混同しないかを確認できます。TRIALは試用候補であり、検証済みという意味ではありません。</p>
+<p class="summary" id="load-state" role="status" aria-live="polite">監査データを読み込んでいます。</p>
+<div class="controls">
+ <div><label for="filter">編集判定</label><select id="filter" disabled><option value="ALL">全件</option><option value="TRIAL">TRIAL（試用候補）</option><option value="REVISE">REVISE（再検討）</option></select></div>
+ <div><label for="axis">対象軸</label><select id="axis" disabled><option value="ALL">B/Cすべて</option><option value="B">B｜人との関係</option><option value="C">C｜時間的価値</option></select></div>
+</div>
+<section id="items" class="cards" aria-label="質問ごとの監査結果"></section>
+<section class="summary">
+ <h2>設計上の留保</h2>
+ <p>4尺度の一貫性、回答時の天井効果、質問文の理解差、年齢・状況などによる適用性は未検証です。現在の価値観を幸福度・能力・性格の本質として断定しません。</p>
+ <p>質問セットv0.2は変更せず固定します。概念定義と採点・表示の製品判断が終わるまで、タイプIDの発行と本番統合は保留します。</p>
+</section>
+<p class="muted">監査台帳と質問データを同一サイトからGETで取得し、画面内に表示するだけです。ユーザー回答の収集・永続保存・外部解析はありません。</p>
+</main>
+<script type="module" src="./bc-pilot-d91-audit-preview.mjs"></script>
+</body>
+</html>
