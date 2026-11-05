@@ -1,0 +1,3011 @@
+<!doctype html><html lang="ja"><head><meta name="robots" content="noindex,nofollow"/><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>DWZ｜かんたん試算・詳細シミュレーション（研究版）</title><style>
+:root{color-scheme:light;--ink:#14243a;--bg:#f5f8fc;--muted:#556478;--line:#d6e0ec;--blue:#205ed6}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.65 system-ui,-apple-system,'Hiragino Kaku Gothic ProN',sans-serif}
+.layout{max-width:1080px;margin:0 auto;padding:28px 18px 60px}h1{font-size:clamp(23px,3vw,33px);margin:2px 0 8px}h2{font-size:20px;margin:0 0 16px}p{margin:6px 0 13px}
+.eyebrow{font-size:11px;font-weight:800;letter-spacing:.17em;color:var(--blue)}.notice{background:#eef4fd;border-left:4px solid var(--blue);padding:14px;border-radius:5px;font-size:13px}
+.panel{background:white;border:1px solid var(--line);border-radius:14px;padding:22px;margin:22px 0;box-shadow:0 5px 17px rgba(28,60,105,.04)}
+.fields{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}label{display:block;font-size:12px;font-weight:650;color:#43536c}input,select{display:block;width:100%;margin-top:5px;border:1px solid #bccadb;border-radius:7px;font:inherit;font-size:15px;background:white;color:var(--ink);padding:10px 11px;min-height:43px}input:focus,select:focus{outline:2px solid var(--blue);outline-offset:1px}
+button{margin-top:19px;cursor:pointer;border:0;background:var(--blue);color:#fff;padding:12px 23px;border-radius:8px;font:inherit;font-weight:750}button:hover{background:#1747a8}
+.cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.stat{background:#f3f7ff;padding:15px;border:1px solid #d9e6ff;border-radius:10px}.stat-label{display:block;color:var(--muted);font-size:12px}.stat-value{display:block;font-size:18px;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}.result-status{font-weight:700}.results svg{width:100%;height:auto;border:1px solid var(--line);border-radius:8px;margin:6px 0 16px;background:#fff}.year-table{width:100%;border-collapse:collapse;font-size:13px;font-variant-numeric:tabular-nums}.year-table th,.year-table td{text-align:right;padding:7px 9px;border-bottom:1px solid var(--line)}.year-table th:first-child,.year-table td:first-child{text-align:left}.year-table thead{background:#f3f7ff}
+.muted,.caption,footer{color:var(--muted);font-size:13px}.caption{margin-top:14px}.error{color:#a72828;font-weight:650}
+@media(max-width:720px){.fields{grid-template-columns:repeat(2,minmax(0,1fr))}.cards{grid-template-columns:repeat(2,minmax(0,1fr))}.panel{padding:16px}}
+@media(max-width:450px){.fields{grid-template-columns:1fr}.stat-value{font-size:16px}.layout{padding:16px 10px 36px}}
+
+.legacy-frame{display:block;width:100%;height:620px;border:1px solid var(--line);border-radius:9px;background:white}
+#r4-optin-status{margin-top:12px;color:var(--muted)}
+#handoff-status{margin-bottom:12px}
+@media(max-width:450px){.legacy-frame{height:540px}}
+
+.vault-controls{display:flex;flex-wrap:wrap;gap:.6rem;margin:1rem 0}.vault-controls button{flex:1 1 9rem;min-height:44px}
+/* R4.13 compare-only mobile table scroll. Core v1 stylesheet is unchanged. */
+#r4-compare-results{max-width:100%;overflow-x:auto;margin-top:12px}
+#r4-compare-results .year-table{min-width:640px;white-space:nowrap}
+
+/* R4.14 named portfolio; horizontal scroll retained on mobile. */
+textarea{display:block;width:100%;border:1px solid var(--line);border-radius:8px;padding:11px;font:12px/1.5 ui-monospace,monospace;resize:vertical}
+#r4-portfolio-results{overflow-x:auto;max-width:100%}
+#r4-portfolio-results .year-table{min-width:750px;white-space:nowrap}
+#r4-portfolio-list{padding-left:22px;font-size:13px}
+[hidden]{display:none!important}
+
+/* R4.15 strictly contained mobile comparisons. */
+#r4-risk-results,#r4-events-results{max-width:100%;overflow-x:auto;margin-top:12px}
+#r4-risk-results .year-table{min-width:720px;white-space:nowrap}
+#r4-events-results .year-table{min-width:560px;white-space:nowrap}
+
+#r4-portfolio-results .year-table{min-width:1180px}
+
+/* R4.16 input-level progressive disclosure. The underlying financial Core is unchanged. */
+.mode-switch-panel{margin:22px 0 12px}
+.mode-switch{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;padding:6px;background:#e8eff9;border-radius:13px}
+.mode-choice{margin:0;background:transparent;color:#2a4667;min-height:48px;padding:10px 12px;border:2px solid transparent;border-radius:10px;font-size:15px}
+.mode-choice:hover{background:#d9e5f7;color:#153657}
+.mode-choice[aria-pressed="true"]{color:#174b9c;background:white;border-color:#6795db;box-shadow:0 2px 6px rgba(21,55,102,.09)}
+.mode-choice:focus-visible{outline:3px solid #205ed6;outline-offset:2px}
+.mode-intro{font-size:13px;color:var(--muted);margin:9px 5px 0}
+.quick-assumptions{background:#f0f5fd;border:1px solid #cad9eb;border-radius:9px;padding:11px 13px;color:#324a68;font-size:12px;line-height:1.7;margin:16px 0 0}
+body[data-dwz-mode="quick"] #scenario label[data-mode-advanced="true"],
+body[data-dwz-mode="quick"] #r4-comparison,
+body[data-dwz-mode="quick"] #r4-portfolio,
+body[data-dwz-mode="quick"] #r4-risk,
+body[data-dwz-mode="quick"] #r4-events,
+body[data-dwz-mode="quick"] #r4-vault,
+body[data-dwz-mode="quick"] #dwz-core-link{display:none!important}
+body[data-dwz-mode="detail"] .quick-assumptions{display:none}
+@media(max-width:450px){.mode-choice{font-size:13px;padding:10px 4px}.mode-switch{gap:5px}}
+
+/* The quick result focuses on monthly extra spending and chart; full annual tables remain available in detail mode. */
+body[data-dwz-mode="quick"] #output .year-table{display:none!important}
+body[data-dwz-mode="detail"] #dwz-quick-result-note{display:none!important}
+
+.input-feedback{padding:12px 14px;margin:14px 0;background:#fff4f2;color:#92321f;border:1px solid #dfac9e;border-radius:8px}.input-feedback[hidden]{display:none!important}
+
+.runtime-status{font-size:12px;padding:8px 12px;border-radius:8px;background:#fff2e6;color:#875224}.runtime-status[data-ready='true']{background:#e9f5ee;color:#236442}button:disabled{opacity:.56;cursor:not-allowed}
+
+</style></head><body>
+<main class="layout"><noscript><p class="notice" style="border-color:#ad271c;background:#ffedea">JavaScriptを実行できないため、この閲覧方法では計算できません。iPadのファイルプレビュー等ではなく、JavaScriptが有効なブラウザでHTTPS配信されたページを開いてください。</p></noscript><header><p class="eyebrow">DWZ / CORE v1.1 / R4</p><h1>資産取り崩しシミュレーター</h1>
+<p>Nodeサーバーを使わず、既存の固定利回り計算エンジンをブラウザ内で実行します。</p>
+<p class="notice"><strong>研究版・公開未承認。</strong> 市場は指定した固定利回りの仮想条件です。税・社会保険・在職老齢年金の法定計算、複数口座・住宅ローン・NISAは対象外。ストレスは仮想経路・臨時イベントは単発の名目資金移動としてのみ扱います。確定した手取り額や資産額を示すものではありません。</p></header>
+
+<p id="dwz-runtime-status" class="runtime-status" role="status">計算エンジンの起動を確認しています。表示が変わらない場合、このファイル表示ではJavaScriptが実行できません（特にiPadのファイルプレビュー）。</p>
+<section class="mode-switch-panel" aria-label="シミュレーションの入力モード">
+ <div class="mode-switch" role="group" aria-label="入力モードの選択">
+  <button type="button" id="dwz-mode-quick" class="mode-choice" aria-pressed="true" disabled>かんたん試算</button>
+  <button type="button" id="dwz-mode-detail" class="mode-choice" aria-pressed="false" disabled>詳細シミュレーション</button>
+ </div>
+ <p class="mode-intro" id="dwz-mode-intro" role="status" aria-live="polite">まずは6項目で試算。年金開始・物価・目標残高などには仮の既定値を使用します。</p>
+</section>
+<section class="panel"><h2 id="dwz-conditions-title">計算条件</h2><form id="scenario"><div class="fields">
+<label>試算開始年月<input name="simulationStartMonth" type="month" min="2022-04" max="2099-12" required/></label>
+<label>試算開始年齢（歳）<input name="start" type="number" min="0" max="75" step="1" required/></label>
+<label>終了年齢（歳）<input name="end" type="number" min="51" max="120" step="1" required/></label>
+<label>初期資産（万円）<input name="assets" type="number" min="0" max="100000" step="0.01" inputmode="decimal" required/></label>
+<label>月額生活費（万円）<input name="expense" type="number" min="0" max="1000" step="0.01" inputmode="decimal" required/></label>
+<label>年間年金収入（万円・税引前の仮定値）<input name="pension" type="number" min="0" max="5000" step="0.01" inputmode="decimal" required/></label>
+<label>年金受給開始年齢（歳）<input name="pensionAge" type="number" min="60" max="75" step="1" required/></label>
+<label>運用利回り（年率％）<input name="rate" type="number" min="-10" max="20" step="0.01" inputmode="decimal" required/></label>
+<label>物価上昇率（年率％）<input name="inflation" type="number" min="-5" max="20" step="0.01" inputmode="decimal" required/></label>
+<label>期末目標（万円・名目）<input name="target" type="number" min="0" max="100000" step="0.01" inputmode="decimal" required/></label>
+<label>追加支出開始年齢（歳）<input name="extraStartAgeYears" type="number" min="0" max="120" step="1" required/></label>
+<label>追加支出終了年齢（歳・含まない）<input name="extraEndAgeYears" type="number" min="0" max="120" step="1" required/></label>
+<label>追加支出の方式<select name="extraEscalation"><option value="NOMINAL_FIXED">名目額固定</option><option value="CPI_LINKED">物価連動</option></select></label>
+<label>探索上限（月額・円）<input name="searchCeilingMonthlyYen" type="number" min="1" max="1000000000000" step="1" required/></label></div>
+<p id="dwz-input-feedback" class="input-feedback" role="alert" hidden></p>
+<p id="dwz-quick-assumptions" class="quick-assumptions" role="note"></p>
+<button type="submit" id="dwz-run" disabled>毎月いくら追加で使えるか計算</button></form></section>
+<section class="panel" id="r4-comparison"><h2>研究機能｜開始年齢・長寿シナリオ比較</h2>
+<p class="caption">上の「計算条件」を使い、既存の逆算エンジンで2〜5条件を独立に再計算します。元の入力条件と資産計算Coreは変更しません。</p>
+<div class="fields"><label>比較する内容<select id="r4-compare-axis"><option value="EXTRA_START_AGE">追加支出の開始年齢</option><option value="LONGEVITY_END_AGE">終了年齢・長寿比較</option></select></label>
+<label>比較する年齢（2〜5件、カンマ区切り）<input id="r4-compare-ages" type="text" value="60,65,70,75" autocomplete="off"/></label></div>
+<p class="caption" id="r4-comparison-policy">試算開始年齢・終了年齢・運用条件を固定し、追加支出の開始年齢だけを変えます。</p>
+<button id="r4-compare-run" type="button">比較する</button><div id="r4-compare-results" role="status" aria-live="polite"><p class="muted">比較条件を選んで実行してください。</p></div></section>
+<section class="panel" id="r4-portfolio"><h2>研究機能｜名前付き5シナリオ・就業比較</h2>
+<p class="caption">最大5件の年金額・年金開始年齢・就業条件を比較できます。その他の計算条件は一致が必須。入力は「追加」でメモリに保持し、「保存」で初めてブラウザ内に記録します。条件のみ保存し、計算結果は保存しません。</p>
+<div class="fields"><label>シナリオ名（35文字以内）<input id="r4-portfolio-name" maxlength="35" value="基準・就業なし" autocomplete="off"/></label>
+<label>就業条件<select id="r4-portfolio-employment"><option value="NONE">就業なし</option><option value="WORK">就業あり（概算）</option></select></label></div>
+<div class="fields" id="r4-work-fields" hidden>
+<label>就業開始年齢<input id="r4-work-workStartAgeYears" type="number" value="60" min="0" max="119" step="1"/></label>
+<label>就業期間（月）<input id="r4-work-bridgeMonths" type="number" value="24" min="1" max="60" step="1"/></label>
+<label>月額額面給与（円・1万円刻み）<input id="r4-work-monthlyGrossWageYen" type="number" value="250000" min="0" max="2000000" step="10000"/></label>
+<label>概算給与控除（％）<input id="r4-work-wageDeductionPercent" type="number" value="15" min="0" max="60" step="1"/></label>
+<label>月額就業費（円・1万円刻み）<input id="r4-work-monthlyWorkCostYen" type="number" value="20000" min="0" max="300000" step="10000"/></label>
+<label>給与変更月（0＝変更なし）<input id="r4-work-wageStepAfterMonths" type="number" value="0" min="0" max="59" step="1"/></label>
+<label>変更後給与割合（％）<input id="r4-work-wageStepPercent" type="number" value="100" min="0" max="200" step="1"/></label>
+</div>
+<div class="vault-controls"><button id="r4-portfolio-add" type="button">現在の条件を追加</button><button id="r4-portfolio-run" type="button">シナリオ比較を実行</button></div>
+<p class="caption">登録済み <strong id="r4-portfolio-count">0</strong>/5 件（メモリ内）</p><ol id="r4-portfolio-list"></ol>
+<div class="vault-controls"><select id="r4-portfolio-selected" aria-label="削除するシナリオ"></select><button id="r4-portfolio-remove" type="button">選択シナリオを除外</button></div>
+<div class="vault-controls"><button id="r4-portfolio-save" type="button">5件を端末に保存</button><button id="r4-portfolio-restore" type="button">端末から復元</button><button id="r4-portfolio-purge" type="button">端末保存を削除</button></div>
+<p class="caption">JSONの入出力は明示操作のみ。24KB以内。別の保存領域を使用し、通常Coreの保存条件は変更しません。</p>
+<textarea id="r4-portfolio-json" aria-label="5シナリオJSON" rows="5" spellcheck="false" placeholder="JSON出力または貼り付けて読み込み"></textarea>
+<div class="vault-controls"><button id="r4-portfolio-export" type="button">JSON出力欄へ表示</button><button id="r4-portfolio-download" type="button">JSONファイルを保存</button><button id="r4-portfolio-import" type="button">JSONを読み込む</button></div>
+<label>JSONファイルから読み込み（24KB以内）<input type="file" id="r4-portfolio-file" accept=".json,application/json"/></label>
+<p id="r4-portfolio-status" role="status" aria-live="polite">未登録です。条件を入力してシナリオを追加してください。</p>
+<div id="r4-portfolio-results" role="status" aria-live="polite"><p>2件以上追加して「比較する」を実行してください。</p></div>
+</section>
+<section class="panel" id="r4-risk"><h2>研究機能｜市場ストレス・運用順序比較</h2>
+<p class="caption">既存のストレス経路モデルを使用して、固定利回り、初期・後期ショック、高インフレ、低迷・回復の5経路を比較します。確率予測ではありません。ショックの順序比較は未取り崩し時の累積倍率を揃える教育用の補正経路です。</p>
+<button id="r4-risk-run" type="button">5市場経路を比較する</button><div id="r4-risk-results" role="status" aria-live="polite"><p>基本条件を入力して実行してください。</p></div></section>
+<section class="panel" id="r4-events"><h2>研究機能｜臨時支出・ライフイベント</h2>
+<p class="caption">月初に一度だけ発生する名目円の入出金。最大20件、1件1〜5億円。入力形式は「支出,名称,YYYY-MM,金額円」。住宅修繕・旅行・贈与等の金額は利用者の仮定値であり、税・法令は計算しません。入力は端末に保存されません。</p>
+<label>臨時入出金（1行1件）<textarea id="r4-events-text" rows="4" spellcheck="false" placeholder="支出,住宅修繕,2031-11,1000000
+収入,臨時収入,2035-05,500000">支出,住宅修繕,2031-11,1000000</textarea></label>
+<button id="r4-events-run" type="button">臨時イベントの影響を比較する</button><div id="r4-events-results" role="status" aria-live="polite"><p>基本条件と臨時イベントを入力して実行してください。</p></div></section>
+<section class="panel" id="r4-vault"><h2>入力条件の端末内保存（任意）</h2>
+<p class="caption">「保存」を押した場合のみ基本条件をブラウザのlocalStorageへ平文で保存します。暗号化・クラウド同期は行いません。共有端末では保存しないでください。保存した条件は、復元前に既存Coreで再検査します。復元しても自動計算しません。</p>
+<div class="vault-controls"><button id="r4-save-local" type="button">条件を保存</button><button id="r4-restore-local" type="button">保存条件を復元</button><button id="r4-purge-local" type="button">保存条件を削除</button></div>
+<p id="r4-vault-status" role="status" aria-live="polite">未操作：端末への保存は行っていません。</p></section>
+<section class="panel"><h2>試算結果</h2><div id="output" aria-live="polite"><p class="muted">条件を入力して計算してください。</p></div><p id="dwz-quick-result-note" class="caption">簡易モードでは年次の詳細表を省略しています。年次推移・比較機能は「詳細シミュレーション」で確認できます。</p>
+<p class="caption">金額表示は円単位へ丸めています。目標達成判定は丸め前のFloat64計算で行い、M1確定取引の整数円台帳との一致は保証していません。探索上限の到達は大域的な最大額を意味しません。</p></section>
+<footer>R4 静的Web PoC — RESEARCH_ONLY_HOLD / productionApproved=false</footer></main>
+<script>
+/* Research-only comparison from EXACT ORIGINAL calculation modules. */
+(function(){
+'use strict';
+const registry={
+"modules/core.js":function(module,exports,require){
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ENGINE_VERSION = void 0;
+exports.simulateOne = simulateOne;
+const validation_js_1 = require("./validation.js");
+exports.ENGINE_VERSION = '0.2.1-phase1-beta';
+const clone = (h) => Object.fromEntries(Object.entries(h).map(([k, v]) => [k, { ...v }]));
+function simulateOne(s, m) {
+    (0, validation_js_1.validateInputs)(s, m);
+    if (s.lifeEvents.some(e => e.effects.some(x => x.domain === 'finance')))
+        throw Error('Financial events not yet implemented');
+    const holdings = clone(s.portfolio.holdings), assets = Object.keys(holdings);
+    if (assets.length !== 1)
+        throw Error('Phase 1 alpha requires one asset');
+    const asset = assets[0];
+    if (!m.returns[asset])
+        throw Error('Missing asset path');
+    let deficit = 0, ever = false, peak = holdings[asset].marketValue, peakAge = s.person.simulationStartAgeMonths, firstWithdrawal = null, firstShortfall = null;
+    let totalContributions = 0, totalWithdrawals = 0, totalInvestmentReturn = 0, totalExpenses = 0, totalIncome = 0, totalPension = 0;
+    const timeline = [];
+    for (let i = 0; i < m.months.length; i++) {
+        const age = s.person.simulationStartAgeMonths + i, cpi = m.cpiIndex[i];
+        let cf = 0, short = 0, contrib = 0, withdraw = 0, expense = 0, income = 0, pension = 0;
+        const value = (x) => {
+            if (age < x.startAgeMonths || (x.endAgeMonths !== undefined && age >= x.endAgeMonths))
+                return 0;
+            if (x.escalationModel.type === 'CUSTOM_PATH')
+                throw Error('CUSTOM_PATH unsupported');
+            return x.monthlyAmount * (x.escalationModel.type === 'CPI_LINKED' ? cpi : 1);
+        };
+        const phase = (timing) => {
+            let amount = 0;
+            for (const x of s.expenseStreams)
+                if (x.timing === timing) {
+                    const v = value(x);
+                    expense += v;
+                    amount -= v;
+                }
+            for (const x of s.incomeStreams)
+                if (x.timing === timing) {
+                    const v = value(x);
+                    income += v;
+                    amount += v;
+                }
+            for (const x of s.pensionStreams)
+                if (x.timing === timing) {
+                    const v = value(x);
+                    pension += v;
+                    amount += v;
+                }
+            cf += amount;
+            const h = holdings[asset];
+            if (amount >= 0) {
+                h.marketValue += amount;
+                h.costBasis += amount;
+                contrib += amount;
+            }
+            else {
+                const before = h.marketValue, sold = Math.min(before, -amount);
+                if (sold >= before) {
+                    h.marketValue = 0;
+                    h.costBasis = 0;
+                }
+                else {
+                    h.marketValue -= sold;
+                    h.costBasis *= 1 - sold / before;
+                }
+                withdraw += sold;
+                if (sold > 0 && firstWithdrawal === null)
+                    firstWithdrawal = age;
+                const missing = -amount - sold;
+                if (missing > 1e-8) {
+                    short += missing;
+                    deficit += missing;
+                    ever = true;
+                    if (firstShortfall === null)
+                        firstShortfall = age;
+                }
+            }
+        };
+        phase('BEGINNING_OF_MONTH');
+        const h = holdings[asset], investmentReturn = h.marketValue * m.returns[asset][i];
+        h.marketValue += investmentReturn;
+        phase('END_OF_MONTH');
+        if (h.marketValue > peak) {
+            peak = h.marketValue;
+            peakAge = age;
+        }
+        totalContributions += contrib;
+        totalWithdrawals += withdraw;
+        totalInvestmentReturn += investmentReturn;
+        totalExpenses += expense;
+        totalIncome += income;
+        totalPension += pension;
+        timeline.push({ yearMonth: m.months[i], ageMonths: age, holdings: clone(holdings), totalAssets: h.marketValue, currentCashFlow: cf, cashShortfallThisMonth: short, cumulativeCashShortfall: deficit, currentlyInDeficit: short > 1e-8 && h.marketValue <= 1e-8, everDepleted: ever, investmentReturn, contributionsThisMonth: contrib, withdrawalsThisMonth: withdraw, expensesThisMonth: expense, incomeThisMonth: income, pensionThisMonth: pension, appliedEvents: [] });
+    }
+    const finalAssets = timeline.at(-1).totalAssets;
+    return { timeline, summary: { finalAssets, peakAssets: peak, peakAgeMonths: peakAge, actualFirstWithdrawalAgeMonths: firstWithdrawal, firstShortfallAgeMonths: firstShortfall, cumulativeCashShortfall: deficit, targetAchieved: (s.target.valueBasis === 'REAL' ? finalAssets / m.cpiIndex.at(-1) : finalAssets) >= s.target.targetAssets, totalContributions, totalWithdrawals, totalInvestmentReturn, totalExpenses, totalIncome, totalPension }, provenance: { scenarioId: s.id, schemaVersion: s.schemaVersion, engineVersion: exports.ENGINE_VERSION, datasetVersion: m.datasetVersion, calculatedAt: '1970-01-01T00:00:00.000Z' } };
+}
+
+},
+"modules/fixed-path.js":function(module,exports,require){
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.fixedPath = fixedPath;
+function fixedPath(start, months, annualReturn, annualInflation, asset = 'default') {
+    if (annualReturn <= -1 || annualInflation <= -1 || months < 1 || !Number.isInteger(months))
+        throw Error('Invalid fixed path parameters');
+    const rm = Math.pow(1 + annualReturn, 1 / 12) - 1, im = Math.pow(1 + annualInflation, 1 / 12);
+    const [y, m] = start.split('-').map(Number);
+    return { months: Array.from({ length: months }, (_, i) => new Date(Date.UTC(y, m - 1 + i, 1)).toISOString().slice(0, 7)), returns: { [asset]: Array(months).fill(rm) }, cpiIndex: Array.from({ length: months }, (_, i) => Math.pow(im, i)), datasetVersion: 'fixed-v0.2.1' };
+}
+
+},
+"modules/r2-core-display-contract.js":function(module,exports,require){
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.R2_RESULT_SCHEMA = exports.R2_SCENARIO_SCHEMA = void 0;
+exports.validateR2CoreDisplay = validateR2CoreDisplay;
+exports.toR2DisplaySummary = toR2DisplaySummary;
+exports.mapR2ResearchError = mapR2ResearchError;
+exports.R2_SCENARIO_SCHEMA = 'dwz-r2-core-scenario/0.1.0';
+exports.R2_RESULT_SCHEMA = 'dwz-r2-core-result/0.1.0';
+const fail = (reason) => { throw new Error(`R2_DISPLAY_HOLD: ${reason}`); };
+const isObj = (v) => !!v && typeof v === 'object' && !Array.isArray(v);
+const close = (a, b) => Math.abs(a - b) <= Math.max(1e-7, 1e-10 * Math.max(Math.abs(a), Math.abs(b)));
+/** Pure serializable boundary validator for a future browser/UI. No trust/authentication claim. */
+function validateR2CoreDisplay(raw) {
+    if (!isObj(raw))
+        fail('result is not an object');
+    const x = raw;
+    if (x.schemaVersion !== exports.R2_RESULT_SCHEMA || x.scenarioSchemaVersion !== exports.R2_SCENARIO_SCHEMA ||
+        x.productionApproved !== false || x.actualFreezeApproved !== false || x.housingEnabled !== false || x.taxNisaModel !== 'UNSUPPORTED' ||
+        x.unit !== 'MODELED_FLOAT64_YEN' || x.roundingParityWithM1 !== 'NOT_VERIFIED' || x.globalMaximumCertified !== false ||
+        x.comparisonScope !== 'UNLEVERED_SINGLE_ASSET_RESEARCH' || x.marketSource !== 'DECLARED_UNVERIFIED' ||
+        !['BOUNDARY_CONFIRMED_IN_CAP', 'CEILING_REFERENCE_NOT_GLOBAL_MAX', 'BASELINE_INFEASIBLE'].includes(x.status))
+        fail('research-only status contract mismatch');
+    if (!/^[a-f0-9]{64}$/.test(x.inputSha256) || !/^[a-f0-9]{64}$/.test(x.resultSha256))
+        fail('invalid hash');
+    if (!Number.isSafeInteger(x.searchCeilingYen) || x.searchCeilingYen < 1 ||
+        (x.status === 'BASELINE_INFEASIBLE') !== (x.selected === null) ||
+        (x.status === 'BASELINE_INFEASIBLE') !== (x.selectedMonthlyExtraYen === null))
+        fail('infeasible/selected contradiction');
+    if (x.selectedMonthlyExtraYen !== null && (!Number.isSafeInteger(x.selectedMonthlyExtraYen) || x.selectedMonthlyExtraYen < 0 || x.selectedMonthlyExtraYen > x.searchCeilingYen))
+        fail('selected amount invalid');
+    if (x.status === 'CEILING_REFERENCE_NOT_GLOBAL_MAX' && x.selectedMonthlyExtraYen !== x.searchCeilingYen)
+        fail('ceiling mismatch');
+    if (!Array.isArray(x.marketDatasetVersions) || x.marketDatasetVersions.length < 1 || x.marketDatasetVersions.length > 5 ||
+        new Set(x.marketDatasetVersions).size !== x.marketDatasetVersions.length)
+        fail('market identity invalid');
+    if (!Array.isArray(x.budgetCpiAudit) || x.budgetCpiAudit.length !== x.marketDatasetVersions.length ||
+        x.budgetCpiAudit.some((v, i) => v.marketDatasetVersion !== x.marketDatasetVersions[i] || !Number.isFinite(v.phaseBudgetBaseYen) ||
+            !Number.isFinite(v.phaseBudgetNominalYen) || v.phaseBudgetBaseYen < 0 || v.phaseBudgetNominalYen < 0 ||
+            (x.selected === null) !== (v.selectedExtraNominalYen === null) ||
+            (x.selected === null) !== (v.selectedExtraBaseYen === null) ||
+            (v.selectedExtraNominalYen !== null && (!Number.isFinite(v.selectedExtraNominalYen) || v.selectedExtraNominalYen < 0)) ||
+            (v.selectedExtraBaseYen !== null && (!Number.isFinite(v.selectedExtraBaseYen) || v.selectedExtraBaseYen < 0)) ||
+            v.nominalCpiPathApplied !== true))
+        fail('invalid CPI budget audit');
+    if (!Array.isArray(x.issues) || !x.issues.some(v => v.code === 'ROUNDING_UNAPPROVED' && v.severity === 'HOLD'))
+        fail('missing rounding warning');
+    if (x.status === 'CEILING_REFERENCE_NOT_GLOBAL_MAX' && !x.issues.some(v => v.code === 'CEILING_REACHED'))
+        fail('missing cap warning');
+    if (x.status === 'BASELINE_INFEASIBLE' && !x.issues.some(v => v.code === 'UNFUNDED'))
+        fail('missing unfunded warning');
+    const yearFrom = (months) => {
+        const a = [];
+        for (const m of months) {
+            const yr = m.month.slice(0, 4);
+            let y = a.at(-1);
+            if (!y || y.year !== yr) {
+                y = { year: yr, months: 0, nominalClosingYen: 0, realClosingYen: 0, totalIncomeYen: 0, totalExpenseYen: 0, totalInvestmentReturnYen: 0, totalUnfundedExpenseYen: 0 };
+                a.push(y);
+            }
+            y.months++;
+            y.nominalClosingYen = m.nominalClosingYen;
+            y.realClosingYen = m.realClosingYen;
+            y.totalIncomeYen += m.incomeYen;
+            y.totalExpenseYen += m.expenseYen;
+            y.totalInvestmentReturnYen += m.investmentReturnYen;
+            y.totalUnfundedExpenseYen += m.unfundedExpenseYen;
+        }
+        return a;
+    };
+    const validatePaths = (paths, label) => {
+        if (!Array.isArray(paths) || paths.length !== x.marketDatasetVersions.length)
+            fail(label + ': path count mismatch');
+        for (const [idx, p] of paths.entries()) {
+            if (p.marketDatasetVersion !== x.marketDatasetVersions[idx] || !Array.isArray(p.monthly) || p.monthly.length < 1 || p.monthly.length > 1440 || !Array.isArray(p.annual))
+                fail(label + ': path invalid');
+            if (p.feasible !== null && typeof p.feasible !== 'boolean')
+                fail(label + ': feasible flag invalid');
+            if (p.firstConstraintFailureMonth !== null && typeof p.firstConstraintFailureMonth !== 'string')
+                fail(label + ': failure month invalid');
+            const observedMonths = new Set();
+            let prev = null;
+            for (const row of p.monthly) {
+                if (!/^\d{4}-(0[1-9]|1[0-2])$/.test(row.month) || observedMonths.has(row.month))
+                    fail(label + ': invalid month');
+                observedMonths.add(row.month);
+                if (prev !== null) {
+                    const [y, m] = prev.split('-').map(Number), serial = y * 12 + m;
+                    const [ny, nm] = row.month.split('-').map(Number);
+                    if (ny * 12 + nm !== serial + 1)
+                        fail(label + ': noncontiguous months');
+                }
+                prev = row.month;
+                if (!Number.isSafeInteger(row.ageMonths) || ![row.nominalClosingYen, row.realClosingYen, row.incomeYen, row.expenseYen, row.investmentReturnYen, row.unfundedExpenseYen, row.cpiIndex].every(v => typeof v === 'number' && Number.isFinite(v)) ||
+                    row.cpiIndex <= 0 || row.nominalClosingYen < 0 || row.unfundedExpenseYen < 0 || !close(row.realClosingYen * row.cpiIndex, row.nominalClosingYen))
+                    fail(label + ': bad monthly numeric data');
+            }
+            if (p.firstConstraintFailureMonth !== null && !observedMonths.has(p.firstConstraintFailureMonth))
+                fail(label + ': unknown failure month');
+            if (p.feasible === true && p.firstConstraintFailureMonth !== null || p.feasible === false && p.firstConstraintFailureMonth === null)
+                fail(label + ': inconsistent feasible flag');
+            const expected = yearFrom(p.monthly);
+            if (p.annual.length !== expected.length)
+                fail(label + ': annual count mismatch');
+            for (let j = 0; j < expected.length; j++)
+                for (const key of Object.keys(expected[j])) {
+                    if (typeof expected[j][key] === 'number') {
+                        if (!close(p.annual[j][key], expected[j][key]))
+                            fail(label + ': annual reconcile failure ' + key);
+                    }
+                    else if (p.annual[j][key] !== expected[j][key])
+                        fail(label + ': annual year mismatch');
+                }
+        }
+    };
+    validatePaths(x.originalInput, 'original');
+    validatePaths(x.policyBaseline, 'policy');
+    if (x.selected !== null)
+        validatePaths(x.selected, 'selected');
+    for (const [i, ver] of x.marketDatasetVersions.entries()) {
+        const months = x.policyBaseline[i].monthly.map(y => y.month);
+        if (x.originalInput[i].monthly.map(y => y.month).join() !== months.join() || (x.selected !== null && x.selected[i].monthly.map(y => y.month).join() !== months.join()))
+            fail('cross-stage month mismatch for ' + ver);
+        const phaseTotal = x.policyBaseline[i].monthly.reduce((sum, m, j) => sum + m.expenseYen - x.originalInput[i].monthly[j].expenseYen, 0);
+        if (!close(phaseTotal, x.budgetCpiAudit[i].phaseBudgetNominalYen))
+            fail('phase CPI audit mismatch');
+        if (x.selected !== null) {
+            const extraTotal = x.selected[i].monthly.reduce((sum, m, j) => sum + m.expenseYen - x.policyBaseline[i].monthly[j].expenseYen, 0);
+            if (!close(extraTotal, x.budgetCpiAudit[i].selectedExtraNominalYen))
+                fail('extra CPI audit mismatch');
+        }
+    }
+    return x;
+}
+/** UI can consume only the checked serializable result. No Node functions/objects cross this boundary. */
+function toR2DisplaySummary(raw) {
+    const x = validateR2CoreDisplay(raw);
+    return { status: x.status, amountYen: x.selectedMonthlyExtraYen, canClaimGlobalMaximum: false,
+        marketCount: x.marketDatasetVersions.length, baseline: x.policyBaseline.map(p => ({ market: p.marketDatasetVersion, closingYen: p.monthly.at(-1).nominalClosingYen })),
+        selected: x.selected?.map(p => ({ market: p.marketDatasetVersion, closingYen: p.monthly.at(-1).nominalClosingYen })) ?? null,
+        approval: 'RESEARCH_ONLY_HOLD', warnings: x.issues };
+}
+/** Normalizes rejected research requests without erasing the original error category. */
+function mapR2ResearchError(error) {
+    const x = isObj(error) ? error : {};
+    const name = typeof x.code === 'string' ? x.code : 'UNEXPECTED_ERROR';
+    const code = name === 'INVALID_INPUT' || name === 'INVALID_MONTH' || name === 'OVERFLOW' ? 'INVALID_INPUT' :
+        name === 'UNSUPPORTED_SCOPE' ? 'UNSUPPORTED_SCOPE' : 'RECONCILIATION_HOLD';
+    return { code, severity: 'HOLD', message: code === 'INVALID_INPUT' ? 'The scenario input was rejected.' :
+            code === 'UNSUPPORTED_SCOPE' ? 'This scenario is outside the approved research scope.' : 'Calculation reconciliation failed or could not be verified.' };
+}
+
+},
+"modules/r2-legacy-domain-bridge.js":function(module,exports,require){
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.R2LegacyBridgeHold = void 0;
+exports.prepareR2LegacyDomainInput = prepareR2LegacyDomainInput;
+const r2_core_display_contract_js_1 = require("./r2-core-display-contract.js");
+class R2LegacyBridgeHold extends Error {
+    code;
+    field;
+    constructor(code, field) {
+        super(`R2_LEGACY_HOLD: ${code} at ${field}`);
+        this.code = code;
+        this.field = field;
+        this.name = 'R2LegacyBridgeHold';
+    }
+}
+exports.R2LegacyBridgeHold = R2LegacyBridgeHold;
+const isRecord = (x) => x !== null && typeof x === 'object' && !Array.isArray(x);
+function supportedFields(obj, allowed, name) {
+    for (const key of Object.keys(obj))
+        if (!allowed.includes(key))
+            unsupported(name + '.' + key);
+}
+function insist(x, field) {
+    if (x === undefined || x === null)
+        throw new R2LegacyBridgeHold('MISSING_FIELD', field);
+}
+function unsupported(field) { throw new R2LegacyBridgeHold('UNSUPPORTED_LEGACY_FEATURE', field); }
+function invalid(field) { throw new R2LegacyBridgeHold('INVALID_LEGACY_FIELD', field); }
+function checkStreams(streams, name, start, end) {
+    if (!Array.isArray(streams))
+        invalid(name);
+    const ids = new Set();
+    for (const [i, s] of streams.entries()) {
+        const at = `${name}[${i}]`;
+        if (!s || typeof s.id !== 'string' || !s.id || ids.has(s.id))
+            invalid(at + '.id');
+        ids.add(s.id);
+        if (!['NOMINAL_FIXED', 'CPI_LINKED'].includes(s.escalationModel?.type))
+            unsupported(at + '.escalationModel');
+        if (!Number.isSafeInteger(s.monthlyAmount) || s.monthlyAmount < 0)
+            unsupported(at + '.monthlyAmount');
+        if (!Number.isSafeInteger(s.startAgeMonths) || s.startAgeMonths < start ||
+            !Number.isSafeInteger(s.endAgeMonths) || s.endAgeMonths > end || s.endAgeMonths <= s.startAgeMonths)
+            unsupported(at + '.ageRange');
+        if (s.timing !== 'BEGINNING_OF_MONTH' && s.timing !== 'END_OF_MONTH')
+            invalid(at + '.timing');
+    }
+}
+/** Strict conversion from existing domain configuration, NOT from arbitrary web UI state.
+ * Values are copied without normalization; unsupported historic account, loan and tax modes STOP.
+ */
+function prepareR2LegacyDomainInput(src) {
+    if (!isRecord(src))
+        invalid('input');
+    for (const key of ['scenario', 'market', 'stress', 'options'])
+        insist(src[key], key);
+    const { scenario: s, market: m, stress, options: o } = src;
+    supportedFields(src, ['scenario', 'market', 'stress', 'options'], 'input');
+    if (!isRecord(s) || !isRecord(s.person) || !isRecord(s.portfolio) || !isRecord(s.target) || !isRecord(s.policies) || !isRecord(m) || !isRecord(o))
+        invalid('scenario/market/options');
+    supportedFields(s, ['schemaVersion', 'id', 'person', 'portfolio', 'incomeStreams', 'expenseStreams', 'pensionStreams', 'lifeEvents', 'target', 'policies'], 'scenario');
+    supportedFields(s.person, ['simulationStartAgeMonths', 'simulationStartYearMonth', 'targetAgeMonths'], 'person');
+    supportedFields(s.portfolio, ['holdings'], 'portfolio');
+    supportedFields(s.target, ['targetAgeMonths', 'targetAssets', 'valueBasis'], 'target');
+    supportedFields(s.policies, ['contribution', 'withdrawal', 'rebalance', 'shortfall'], 'policies');
+    supportedFields(m, ['months', 'returns', 'cpiIndex', 'datasetVersion'], 'market');
+    supportedFields(o, ['housingEnabled', 'phaseBudgets', 'extraId', 'phaseEscalation', 'extraEscalation', 'extraStartAgeMonths',
+        'extraEndAgeMonthsExclusive', 'extraTiming', 'minimumFinalRealYen', 'minimumMonthlyClosingRealYen', 'searchCeilingMonthlyYen'], 'options');
+    const start = s.person.simulationStartAgeMonths, end = s.person.targetAgeMonths;
+    if (!Number.isSafeInteger(start) || !Number.isSafeInteger(end) || end <= start || end - start > 1440)
+        invalid('person.ageRange');
+    if (typeof s.person.simulationStartYearMonth !== 'string' || !/^\d{4}-(0[1-9]|1[0-2])$/.test(s.person.simulationStartYearMonth))
+        invalid('person.simulationStartYearMonth');
+    if (s.target.valueBasis !== 'REAL' || s.target.targetAgeMonths !== end)
+        unsupported('target');
+    if (!isRecord(s.portfolio.holdings) || Object.keys(s.portfolio.holdings).length !== 1)
+        unsupported('portfolio.holdings');
+    const h = Object.values(s.portfolio.holdings)[0];
+    if (!h || !Number.isSafeInteger(h.marketValue) || h.marketValue < 0 || !Number.isSafeInteger(h.costBasis) || h.costBasis < 0)
+        unsupported('portfolio.holding values');
+    if (!Array.isArray(s.lifeEvents) || s.lifeEvents.length !== 0)
+        unsupported('lifeEvents');
+    if (s.policies.shortfall !== 'UNFUNDED' || s.policies.withdrawal !== 'SINGLE_ASSET' || s.policies.contribution !== 'SINGLE_ASSET' ||
+        (s.policies.rebalance !== undefined && s.policies.rebalance !== 'NONE'))
+        unsupported('policies');
+    checkStreams(s.incomeStreams, 'incomeStreams', start, end);
+    checkStreams(s.expenseStreams, 'expenseStreams', start, end);
+    checkStreams(s.pensionStreams, 'pensionStreams', start, end);
+    if (!Array.isArray(stress) || stress.length > 4)
+        unsupported('stress');
+    if (!Array.isArray(m.months) || m.months.length !== end - start || m.months[0] !== s.person.simulationStartYearMonth)
+        invalid('market.months');
+    if (o.housingEnabled !== false)
+        unsupported('options.housingEnabled');
+    if (!Array.isArray(o.phaseBudgets) || o.extraEndAgeMonthsExclusive !== end)
+        unsupported('options.ageRanges');
+    // Core solver performs the detailed month and market data validation. Do not mutate the source.
+    return { schemaVersion: r2_core_display_contract_js_1.R2_SCENARIO_SCHEMA, currency: 'JPY', assetModel: 'SINGLE_LIQUID_ASSET', housingEnabled: false,
+        taxNisaModel: 'UNSUPPORTED', valueBasis: 'REAL_TARGET_NOMINAL_LEDGER', marketSource: 'DECLARED_UNVERIFIED',
+        scenario: structuredClone(s), market: structuredClone(m), stress: structuredClone(stress), options: structuredClone(o) };
+}
+
+},
+"modules/r2-nominal-terminal-research.js":function(module,exports,require){
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.R2_NOMINAL_TERMINAL_SCHEMA = void 0;
+exports.solveR2V033ANominalTarget = solveR2V033ANominalTarget;
+/** R2 research-only nominal-terminal-threshold solver. The v0.33A user target
+ * is nominal JPY at the final month, NOT an integer real-yen M3 threshold.
+ * Preserve the old engine unchanged. This intentionally does NOT certify M1
+ * integer ledger parity, a global optimum, taxes, market veracity or production.
+ */
+const core_js_1 = require("./core.js");
+const r2_web_fixed_bridge_js_1 = require("./r2-web-fixed-bridge.js");
+const r2_legacy_domain_bridge_js_1 = require("./r2-legacy-domain-bridge.js");
+exports.R2_NOMINAL_TERMINAL_SCHEMA = 'dwz-r2-nominal-terminal/0.1.0';
+const hold = (field) => { throw new r2_legacy_domain_bridge_js_1.R2LegacyBridgeHold('UNSUPPORTED_LEGACY_FEATURE', field); };
+/** Only nominal-target slider range is handled here; all other fields are
+ * checked by the existing strict v0.33A capture bridge on an unchanged clone. */
+function solveR2V033ANominalTarget(raw) {
+    if (!raw || typeof raw !== 'object' || Array.isArray(raw))
+        hold('nominalCapture.input');
+    const c = raw;
+    const t = c.sliders?.target;
+    if (typeof t !== 'number' || !Number.isSafeInteger(t) || t < 0 || t > 3000 || t % 100 !== 0)
+        hold('sliders.target.invalidNominalSlider');
+    const target = t * 10000;
+    // Zero the real floor in the *research only* bridge. Nominal floor is checked
+    // separately below on the exact final month, never rounded to a real integer.
+    const zero = structuredClone(c);
+    zero.sliders.target = 0;
+    const input = (0, r2_web_fixed_bridge_js_1.prepareR2FixedWebCapture)(zero);
+    const { scenario: s, market: m, options: o } = input;
+    if (input.stress.length !== 0 || m.months.length !== s.person.targetAgeMonths - s.person.simulationStartAgeMonths)
+        hold('market.outsideFixedSinglePath');
+    if (!Number.isSafeInteger(o.searchCeilingMonthlyYen * (o.extraEndAgeMonthsExclusive - o.extraStartAgeMonths)))
+        hold('research.searchCeilingTotalOverflow');
+    const finalCpi = m.cpiIndex.at(-1);
+    let checks = 0;
+    const evaluate = (n) => {
+        checks++;
+        const stream = { id: 'r2-nominal-extra', kind: 'expense', monthlyAmount: n,
+            startAgeMonths: o.extraStartAgeMonths, endAgeMonths: o.extraEndAgeMonthsExclusive,
+            timing: o.extraTiming, escalationModel: { type: o.extraEscalation } };
+        const scenario = { ...s, target: { ...s.target, targetAssets: target, valueBasis: 'NOMINAL' },
+            expenseStreams: n > 0 ? [...s.expenseStreams, stream] : s.expenseStreams };
+        const sim = (0, core_js_1.simulateOne)(scenario, m);
+        const timeline = sim.timeline;
+        if (!timeline || timeline.length !== m.months.length)
+            hold('nominalAudit.timeline');
+        let failed = null, kind = null;
+        for (const row of timeline) {
+            if (!Number.isFinite(row.totalAssets) || !Number.isFinite(row.cashShortfallThisMonth) || row.totalAssets < 0)
+                hold('nominalAudit.nonFinite');
+            if (failed === null && row.cashShortfallThisMonth > 1e-8) {
+                failed = row.yearMonth;
+                kind = 'CASH_SHORTFALL';
+            }
+        }
+        const final = sim.summary.finalAssets;
+        if (!Number.isFinite(final))
+            hold('nominalAudit.finalNonFinite');
+        // Floating point near an exact nonzero threshold is an audit HOLD, not a
+        // silently rounded success. Avoid false certainty at sub-ULP distances.
+        if (target > 0 && Math.abs(final - target) <= 8 * Number.EPSILON * Math.max(Math.abs(final), target))
+            hold('nominalAudit.floatThresholdAmbiguous');
+        if (failed === null && final < target) {
+            failed = m.months.at(-1);
+            kind = 'NOMINAL_FINAL_TARGET';
+        }
+        return { candidateMonthlyExtraYen: n, feasible: failed === null, finalNominalAssetsYen: final,
+            finalRealAssetsYen: final / finalCpi, firstFailureMonth: failed, failureKind: kind,
+            cashShortfallTotalYen: sim.summary.cumulativeCashShortfall };
+    };
+    const baseline = evaluate(0);
+    const base = { schemaVersion: exports.R2_NOMINAL_TERMINAL_SCHEMA, scenarioSchemaVersion: r2_web_fixed_bridge_js_1.R2_WEB_CAPTURE_SCHEMA,
+        targetBasis: 'NOMINAL_AT_FINAL_MONTH', finalNominalTargetYen: target, finalCpiIndex: finalCpi,
+        impliedRealTargetYenDisplayOnly: target / finalCpi, searchCeilingMonthlyYen: o.searchCeilingMonthlyYen,
+        precision: 'FLOAT64_MODEL_NOT_INTEGER_LEDGER', approval: 'RESEARCH_ONLY_HOLD',
+        globalMaximumCertified: false, m1LedgerParity: 'NOT_VERIFIED', productionApproved: false };
+    if (!baseline.feasible)
+        return { ...base, status: 'BASELINE_INFEASIBLE', baseline, selected: null, nextYen: null,
+            selectedMonthlyExtraYen: null, checkCount: checks };
+    const ceiling = evaluate(o.searchCeilingMonthlyYen);
+    if (ceiling.feasible)
+        return { ...base, status: 'CEILING_REFERENCE_NOT_GLOBAL_MAX', baseline,
+            selected: ceiling, nextYen: null, selectedMonthlyExtraYen: o.searchCeilingMonthlyYen, checkCount: checks };
+    let lower = 0, upper = o.searchCeilingMonthlyYen;
+    let selected = baseline, next = ceiling;
+    while (upper - lower > 1) {
+        const mid = lower + Math.floor((upper - lower) / 2), tested = evaluate(mid);
+        if (tested.feasible) {
+            lower = mid;
+            selected = tested;
+        }
+        else {
+            upper = mid;
+            next = tested;
+        }
+    }
+    if (upper !== lower + 1 || next.feasible || !selected.feasible)
+        hold('nominalAudit.boundary');
+    // A deterministic boundary under this input market, horizon and search cap.
+    return { ...base, status: 'BOUNDARY_CONFIRMED_IN_CAP', baseline, selected, nextYen: next,
+        selectedMonthlyExtraYen: lower, checkCount: checks };
+}
+
+},
+"modules/r2-web-fixed-bridge.js":function(module,exports,require){
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.R2_WEB_CAPTURE_SCHEMA = void 0;
+exports.prepareR2FixedWebCapture = prepareR2FixedWebCapture;
+/** Explicitly bounded bridge for the nine base sliders of v0.33A 'fixed' mode.
+ * NOT a DOM reader and NOT a migration of other panels/4 accounts/stress/tax/loan.
+ * Missing feature attestations or inexact nominal->real target conversion are HOLD.
+ */
+const fixed_path_js_1 = require("./fixed-path.js");
+const r2_legacy_domain_bridge_js_1 = require("./r2-legacy-domain-bridge.js");
+exports.R2_WEB_CAPTURE_SCHEMA = 'dwz-r2-fixed-web-capture/0.1.0';
+const fail = (field) => { throw new r2_legacy_domain_bridge_js_1.R2LegacyBridgeHold('UNSUPPORTED_LEGACY_FEATURE', 'v033a.' + field); };
+const invalid = (field) => { throw new r2_legacy_domain_bridge_js_1.R2LegacyBridgeHold('INVALID_LEGACY_FIELD', 'v033a.' + field); };
+const rec = (o) => !!o && typeof o === 'object' && !Array.isArray(o);
+function keys(o, expected, name) {
+    if (!rec(o))
+        invalid(name);
+    const object = o;
+    for (const k of Object.keys(object))
+        if (!expected.includes(k))
+            fail(name + '.' + k);
+    for (const k of expected)
+        if (!Object.hasOwn(object, k))
+            invalid(name + '.' + k);
+}
+// Research comparison input domain. The original v0.33A nine-slider guard is intentionally
+// preserved in source/src/r2-web-fixed-bridge.ts and the standard Core v1 interface.
+// Only this isolated research comparison copy permits practical custom values.
+const specifications = { start: [0, 75, 1], end: [51, 120, 1], assets: [0, 100000, 0.01], expense: [0, 1000, 0.01],
+    pension: [0, 5000, 0.01], pensionAge: [60, 75, 1], rate: [-10, 20, 0.01], inflation: [-5, 20, 0.01], target: [0, 100000, 0.01] };
+const featureNames = ['customCsv', 'multiAsset', 'accountTaxNisa', 'loan', 'customEvents', 'extraCashflows',
+    'practicalEmployment', 'pensionEarlyOrWorkTest', 'paymentTiming', 'customCpi'];
+/** Returns research-only R2 input. No change to the old web app or legacy engine. */
+function prepareR2FixedWebCapture(raw) {
+    keys(raw, ['schemaVersion', 'mode', 'simulationStartMonth', 'sliders', 'excludedFeatureActive', 'targetBasis', 'research'], 'input');
+    const c = raw;
+    if (c.schemaVersion !== exports.R2_WEB_CAPTURE_SCHEMA || c.mode !== 'fixed' || c.targetBasis !== 'NOMINAL_AT_FINAL_MONTH')
+        fail('scope');
+    if (!/^20\d{2}-(0[1-9]|1[0-2])$/.test(c.simulationStartMonth) ||
+        c.simulationStartMonth < '2022-04' || c.simulationStartMonth > '2099-12')
+        invalid('simulationStartMonth');
+    keys(c.sliders, Object.keys(specifications), 'sliders');
+    for (const [name, [min, max, step]] of Object.entries(specifications)) {
+        const n = c.sliders[name];
+        if (typeof n !== 'number' || !Number.isFinite(n) || n < min || n > max ||
+            Math.abs((n - min) / step - Math.round((n - min) / step)) > 1e-8)
+            invalid('sliders.' + name);
+    }
+    if (c.sliders.end <= c.sliders.start)
+        invalid('sliders.ageRange');
+    keys(c.excludedFeatureActive, featureNames, 'excludedFeatureActive');
+    for (const name of featureNames)
+        if (c.excludedFeatureActive[name] !== false)
+            fail('excludedFeatureActive.' + name);
+    keys(c.research, ['extraStartAgeYears', 'extraEndAgeYears', 'extraEscalation', 'minimumMonthlyClosingRealYen', 'searchCeilingMonthlyYen'], 'research');
+    const r = c.research, s = c.sliders;
+    if (!Number.isSafeInteger(r.extraStartAgeYears) || !Number.isSafeInteger(r.extraEndAgeYears) ||
+        r.extraStartAgeYears < s.start || r.extraEndAgeYears > s.end || r.extraStartAgeYears >= r.extraEndAgeYears ||
+        !['NOMINAL_FIXED', 'CPI_LINKED'].includes(r.extraEscalation) || r.minimumMonthlyClosingRealYen !== 0 ||
+        !Number.isSafeInteger(r.searchCeilingMonthlyYen) || r.searchCeilingMonthlyYen < 1 || r.searchCeilingMonthlyYen > 1e12)
+        invalid('research');
+    const age = s.start * 12, end = s.end * 12, months = end - age;
+    const market = (0, fixed_path_js_1.fixedPath)(c.simulationStartMonth, months, s.rate / 100, s.inflation / 100, 'default');
+    const finalCpi = market.cpiIndex.at(-1);
+    const exactRealTarget = (s.target * 10000) / finalCpi;
+    const rounded = Math.round(exactRealTarget);
+    // M3 requires integer-real-yen floor. NEVER silently round a nominal target to another real target.
+    if (!Number.isSafeInteger(rounded) || Math.abs(exactRealTarget - rounded) > 1e-8)
+        fail('sliders.target.nominalToRealExactness');
+    const pensionStart = Math.max(age, s.pensionAge * 12);
+    // Annual pension is entered in 0.01-man-yen steps. This fixed monthly model rounds
+    // annual/12 to whole yen; the annual sum may differ from the input by up to 6 yen.
+    const pensionStreams = pensionStart < end ? [{ id: 'pension', kind: 'pension', monthlyAmount: Math.round(s.pension * 10000 / 12),
+            startAgeMonths: pensionStart, endAgeMonths: end, timing: 'END_OF_MONTH', escalationModel: { type: 'NOMINAL_FIXED' } }] : [];
+    const scenario = { schemaVersion: '0.2.1', id: 'v033a-fixed-research',
+        person: { simulationStartAgeMonths: age, simulationStartYearMonth: c.simulationStartMonth, targetAgeMonths: end },
+        portfolio: { holdings: { default: { marketValue: s.assets * 10000, costBasis: s.assets * 10000 } } },
+        incomeStreams: [], expenseStreams: [{ id: 'living', kind: 'expense', monthlyAmount: s.expense * 10000,
+                startAgeMonths: age, endAgeMonths: end, timing: 'BEGINNING_OF_MONTH', escalationModel: { type: 'CPI_LINKED' } }],
+        pensionStreams, lifeEvents: [], target: { targetAgeMonths: end, targetAssets: rounded, valueBasis: 'REAL' },
+        policies: { contribution: 'SINGLE_ASSET', withdrawal: 'SINGLE_ASSET', shortfall: 'UNFUNDED' } };
+    return (0, r2_legacy_domain_bridge_js_1.prepareR2LegacyDomainInput)({ scenario, market, stress: [], options: { housingEnabled: false, phaseBudgets: [],
+            extraId: 'r2-web-extra', phaseEscalation: 'NOMINAL_FIXED', extraEscalation: r.extraEscalation,
+            extraStartAgeMonths: r.extraStartAgeYears * 12, extraEndAgeMonthsExclusive: r.extraEndAgeYears * 12,
+            extraTiming: 'BEGINNING_OF_MONTH', minimumFinalRealYen: rounded,
+            minimumMonthlyClosingRealYen: 0, searchCeilingMonthlyYen: r.searchCeilingMonthlyYen } });
+}
+
+},
+"modules/validation.js":function(module,exports,require){
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.validateInputs = validateInputs;
+function validateInputs(s, m, options = {}) {
+    if (!/^\d{4}-(0[1-9]|1[0-2])$/.test(s.person.simulationStartYearMonth))
+        throw Error('Invalid YYYY-MM');
+    const n = s.person.targetAgeMonths - s.person.simulationStartAgeMonths;
+    if (n <= 0 || m.months.length !== n)
+        throw Error('Horizon mismatch');
+    if (m.months[0] !== s.person.simulationStartYearMonth)
+        throw Error('Start month mismatch');
+    if (m.cpiIndex.length !== n || Math.abs(m.cpiIndex[0] - 1) > 1e-12)
+        throw Error('CPI contract violation');
+    for (let i = 0; i < n; i++) {
+        const expected = new Date(Date.UTC(Number(m.months[0].slice(0, 4)), Number(m.months[0].slice(5)) - 1 + i, 1)).toISOString().slice(0, 7);
+        if (m.months[i] !== expected || !Number.isFinite(m.cpiIndex[i]) || m.cpiIndex[i] <= 0)
+            throw Error('Invalid month or CPI');
+    }
+    for (const [asset, values] of Object.entries(m.returns)) {
+        if (values.length !== n || values.some(x => !Number.isFinite(x) || x < -1))
+            throw Error('Invalid returns: ' + asset);
+    }
+    if (s.target.targetAgeMonths !== s.person.targetAgeMonths)
+        throw Error('Target age mismatch');
+    if (!Number.isFinite(s.target.targetAssets) || s.target.targetAssets < 0)
+        throw Error('Invalid target assets');
+    const holdings = Object.entries(s.portfolio.holdings);
+    if (holdings.length < 1 || (!options.allowMultipleHoldings && holdings.length !== 1))
+        throw Error('Phase 1 beta supports one holding');
+    for (const [id, h] of holdings) {
+        if (!Number.isFinite(h.marketValue) || !Number.isFinite(h.costBasis) || h.marketValue < 0 || h.costBasis < 0)
+            throw Error('Invalid holding: ' + id);
+        if (!m.returns[id])
+            throw Error('Missing asset returns');
+    }
+    for (const [kind, streams] of [['expense', s.expenseStreams], ['income', s.incomeStreams], ['pension', s.pensionStreams]]) {
+        for (const stream of streams) {
+            if (stream.kind !== kind || !Number.isFinite(stream.monthlyAmount) || stream.monthlyAmount < 0 || !Number.isInteger(stream.startAgeMonths) || !['BEGINNING_OF_MONTH', 'END_OF_MONTH'].includes(stream.timing))
+                throw Error('Invalid cashflow stream');
+            if (stream.escalationModel.type === 'CUSTOM_PATH')
+                throw Error('CUSTOM_PATH not yet implemented');
+            if (stream.endAgeMonths !== undefined && (!Number.isInteger(stream.endAgeMonths) || stream.endAgeMonths < stream.startAgeMonths))
+                throw Error('Invalid stream end age');
+        }
+    }
+    if (s.policies.shortfall !== 'UNFUNDED')
+        throw Error('BORROW is not implemented in MVP');
+}
+
+},
+"modules/extra-cashflows.js":function(module,exports,require){
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.parseExtraCashflows = parseExtraCashflows;
+exports.buildExtraCashflows = buildExtraCashflows;
+const LIMIT = 10;
+/** One row: 収入 or 支出, label, first age, exclusive end age, monthly yen, CPI or FIXED. */
+function parseExtraCashflows(text) {
+    if (typeof text !== 'string' || text.length > 3000)
+        throw Error('追加収支の入力は3000文字以内にしてください。');
+    const lines = text.split(/\r?\n/).map(s => s.trim()).filter(Boolean);
+    if (lines.length > LIMIT)
+        throw Error('追加収支は最大10件です。');
+    return lines.map((line, i) => {
+        const parts = line.split(',').map(s => s.trim());
+        if (parts.length !== 6)
+            throw Error(`追加収支 ${i + 1} 行目は6項目（区分,名称,開始歳,終了歳,月額円,物価方式）で入力してください。`);
+        const [rawKind, label, s, e, amount, rawEsc] = parts;
+        const kind = rawKind === '収入' ? 'income' : rawKind === '支出' ? 'expense' : rawKind;
+        const esc = rawEsc.toUpperCase();
+        if (!['income', 'expense'].includes(kind) || !label || label.length > 30 || /^[=+@-]/.test(label) || /[\x00-\x1f<>]/.test(label) || !/^\d{1,3}$/.test(s) || !/^\d{1,3}$/.test(e) || !/^\d{1,8}$/.test(amount) || !['CPI', 'FIXED'].includes(esc))
+            throw Error(`追加収支 ${i + 1} 行目の値を確認してください。`);
+        const row = { kind: kind, label, startAgeYears: Number(s), endAgeYears: Number(e), monthlyYen: Number(amount), escalation: esc };
+        if (row.startAgeYears >= row.endAgeYears || row.endAgeYears > 120 || row.monthlyYen > 2000000)
+            throw Error(`追加収支 ${i + 1} 行目：年齢は0〜120歳、月額は0〜200万円、終了年齢は開始より後にしてください。`);
+        return row;
+    });
+}
+function buildExtraCashflows(entries, startAgeMonths, path) {
+    const n = path.months.length;
+    if (!Array.isArray(entries) || entries.length > LIMIT || !Number.isInteger(startAgeMonths) || startAgeMonths < 0 || !Number.isInteger(n) || n < 1 || n > 1440 || path.cpiIndex.length !== n)
+        throw Error('Invalid extra cashflow horizon');
+    const ends = startAgeMonths + n;
+    const streams = entries.map((entry, i) => {
+        if (!entry || !['income', 'expense'].includes(entry.kind) || typeof entry.label !== 'string' || !entry.label.trim() || entry.label.length > 30 || /^[=+@-]/.test(entry.label) ||
+            !Number.isInteger(entry.startAgeYears) || !Number.isInteger(entry.endAgeYears) || entry.startAgeYears < 0 || entry.startAgeYears >= entry.endAgeYears || entry.endAgeYears > 120 ||
+            !Number.isSafeInteger(entry.monthlyYen) || entry.monthlyYen < 0 || entry.monthlyYen > 2000000 || !['CPI', 'FIXED'].includes(entry.escalation) ||
+            entry.startAgeYears * 12 < startAgeMonths || entry.endAgeYears * 12 > ends)
+            throw Error(`Invalid extra cashflow row ${i + 1}: age range must fit simulation horizon`);
+        return { id: `v030b-extra-${i}`, kind: entry.kind, monthlyAmount: entry.monthlyYen, startAgeMonths: entry.startAgeYears * 12, endAgeMonths: entry.endAgeYears * 12,
+            timing: 'BEGINNING_OF_MONTH', escalationModel: { type: entry.escalation === 'CPI' ? 'CPI_LINKED' : 'NOMINAL_FIXED' } };
+    });
+    const monthly = path.months.map((month, i) => {
+        if (!/^\d{4}-(0[1-9]|1[0-2])$/.test(month) || !Number.isFinite(path.cpiIndex[i]) || path.cpiIndex[i] <= 0)
+            throw Error('Invalid extra cashflow month/CPI');
+        let incomeYen = 0, expenseYen = 0;
+        const age = startAgeMonths + i;
+        for (const stream of streams)
+            if (age >= stream.startAgeMonths && age < stream.endAgeMonths) {
+                const v = stream.monthlyAmount * (stream.escalationModel.type === 'CPI_LINKED' ? path.cpiIndex[i] : 1);
+                if (stream.kind === 'income')
+                    incomeYen += v;
+                else
+                    expenseYen += v;
+            }
+        return { month, ageMonths: age, incomeYen, expenseYen };
+    });
+    return { streams, monthly, totalIncomeYen: monthly.reduce((a, b) => a + b.incomeYen, 0), totalExpenseYen: monthly.reduce((a, b) => a + b.expenseYen, 0) };
+}
+
+},
+"modules/lifetime-cashflow.js":function(module,exports,require){
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.aggregateLifetimeCashflow = aggregateLifetimeCashflow;
+const tol = (a, b) => Math.abs(a - b) <= Math.max(0.02, Math.abs(a) * 1e-9, Math.abs(b) * 1e-9);
+const validMoney = (...v) => v.every(Number.isFinite);
+/** Work window is [start,end); if work is disabled, both are null. */
+function aggregateLifetimeCashflow(timeline, initialAssetsYen, employment, workWindow, extras = []) {
+    if (!Array.isArray(timeline) || timeline.length < 1 || timeline.length > 1440 || !Number.isFinite(initialAssetsYen) || initialAssetsYen < 0 ||
+        !Array.isArray(employment) || employment.length > 60 ||
+        (workWindow !== null && (!Number.isInteger(workWindow.startAgeMonths) || !Number.isInteger(workWindow.endAgeMonths) || workWindow.endAgeMonths <= workWindow.startAgeMonths)) ||
+        (workWindow === null && employment.length !== 0) || !Array.isArray(extras) || !(extras.length === 0 || extras.length === timeline.length))
+        throw Error('Invalid lifetime cashflow input');
+    const workMap = new Map();
+    for (const item of employment) {
+        if (!item || !Number.isInteger(item.ageMonths) || workMap.has(item.ageMonths) || !/^\d{4}-(0[1-9]|1[0-2])$/.test(item.month))
+            throw Error('Invalid lifetime employment month');
+        workMap.set(item.ageMonths, item);
+    }
+    const extraMap = new Map();
+    for (const e of extras) {
+        if (!e || !Number.isInteger(e.ageMonths) || extraMap.has(e.ageMonths) || !/^(\d{4})-(0[1-9]|1[0-2])$/.test(e.month) ||
+            !validMoney(e.incomeYen, e.expenseYen) || e.incomeYen < 0 || e.expenseYen < 0)
+            throw Error('Invalid extra cashflow month');
+        extraMap.set(e.ageMonths, e);
+    }
+    const annual = [];
+    let previousMonth = -1, previousAge = -1, previousAssets = initialAssetsYen, previousDeficit = 0, workCount = 0;
+    for (const m of timeline) {
+        if (!m || typeof m.yearMonth !== 'string' || !/^\d{4}-(0[1-9]|1[0-2])$/.test(m.yearMonth) || !Number.isInteger(m.ageMonths) || m.ageMonths < 0 ||
+            !validMoney(m.totalAssets, m.incomeThisMonth, m.pensionThisMonth, m.expensesThisMonth, m.investmentReturn, m.contributionsThisMonth, m.withdrawalsThisMonth, m.cashShortfallThisMonth, m.cumulativeCashShortfall, m.currentCashFlow) ||
+            [m.totalAssets, m.incomeThisMonth, m.pensionThisMonth, m.expensesThisMonth, m.contributionsThisMonth, m.withdrawalsThisMonth, m.cashShortfallThisMonth, m.cumulativeCashShortfall].some(x => x < 0))
+            throw Error('Invalid lifetime monthly record');
+        const year = Number(m.yearMonth.slice(0, 4)), month = Number(m.yearMonth.slice(5, 7));
+        const serial = year * 12 + month - 1;
+        if (previousMonth >= 0 && (serial !== previousMonth + 1 || m.ageMonths !== previousAge + 1))
+            throw Error('Nonconsecutive lifetime timeline');
+        previousMonth = serial;
+        previousAge = m.ageMonths;
+        const work = workWindow !== null && m.ageMonths >= workWindow.startAgeMonths && m.ageMonths < workWindow.endAgeMonths;
+        const detail = workMap.get(m.ageMonths);
+        const extra = extraMap.get(m.ageMonths);
+        if (extras.length > 0 && (!extra || extra.month !== m.yearMonth))
+            throw Error('Extra cashflow coverage mismatch');
+        const extraIncome = extra?.incomeYen ?? 0, extraExpense = extra?.expenseYen ?? 0;
+        if (work !== Boolean(detail) || (detail && detail.month !== m.yearMonth))
+            throw Error('Lifetime employment coverage mismatch');
+        if (!tol(m.currentCashFlow, m.incomeThisMonth + m.pensionThisMonth - m.expensesThisMonth) ||
+            !tol(m.contributionsThisMonth - m.withdrawalsThisMonth - m.cashShortfallThisMonth, m.currentCashFlow) ||
+            !tol(m.totalAssets, previousAssets + m.contributionsThisMonth - m.withdrawalsThisMonth + m.investmentReturn) ||
+            !tol(m.cumulativeCashShortfall, previousDeficit + m.cashShortfallThisMonth))
+            throw Error('Lifetime monthly engine ledger mismatch');
+        if (detail && (!validMoney(detail.grossSalaryYen, detail.grossCashBonusYen, detail.estimatedSalaryDeductionsYen, detail.estimatedBonusDeductionsYen, detail.workExpenseYen, detail.netWorkContributionYen, detail.pensionAfterYen, detail.livingExpenseYen) || !tol(m.incomeThisMonth, detail.netWorkContributionYen + detail.workExpenseYen + extraIncome) ||
+            !tol(m.pensionThisMonth, detail.pensionAfterYen) ||
+            !tol(m.expensesThisMonth, detail.livingExpenseYen + detail.workExpenseYen + extraExpense)))
+            throw Error('Lifetime payroll/pension and engine mismatch');
+        if (!detail && !tol(m.incomeThisMonth, extraIncome))
+            throw Error('Lifetime other income mismatch');
+        if (m.expensesThisMonth + 0.02 < (detail?.workExpenseYen ?? 0) + extraExpense)
+            throw Error('Lifetime other expense mismatch');
+        const previous = annual.at(-1);
+        const r = previous?.calendarYear === year ? previous : (() => {
+            const row = { calendarYear: year, firstMonth: m.yearMonth, lastMonth: m.yearMonth, months: 0,
+                preWorkMonths: 0, workMonths: 0, postWorkMonths: 0, openingAssetsYen: previousAssets, closingAssetsYen: previousAssets,
+                netEmploymentReceiptsYen: 0, otherIncomeYen: 0, otherExpenseYen: 0, grossSalaryYen: 0, grossCashBonusYen: 0, estimatedPayrollDeductionsYen: 0, workExpenseYen: 0,
+                pensionReceiptsYen: 0, livingExpenseYen: 0, totalExpenseYen: 0, householdNetCashflowYen: 0, investmentReturnYen: 0,
+                contributionsYen: 0, withdrawalsYen: 0, unfundedExpenseYen: 0, cumulativeUnfundedEndYen: previousDeficit };
+            annual.push(row);
+            return row;
+        })();
+        r.months++;
+        r.lastMonth = m.yearMonth;
+        if (work) {
+            r.workMonths++;
+            workCount++;
+        }
+        else if (workWindow !== null && m.ageMonths >= workWindow.endAgeMonths)
+            r.postWorkMonths++;
+        else
+            r.preWorkMonths++;
+        r.netEmploymentReceiptsYen += m.incomeThisMonth - extraIncome;
+        r.otherIncomeYen += extraIncome;
+        r.otherExpenseYen += extraExpense;
+        r.pensionReceiptsYen += m.pensionThisMonth;
+        r.totalExpenseYen += m.expensesThisMonth;
+        r.livingExpenseYen += m.expensesThisMonth - (detail?.workExpenseYen ?? 0) - extraExpense;
+        r.householdNetCashflowYen += m.currentCashFlow;
+        r.investmentReturnYen += m.investmentReturn;
+        r.contributionsYen += m.contributionsThisMonth;
+        r.withdrawalsYen += m.withdrawalsThisMonth;
+        r.unfundedExpenseYen += m.cashShortfallThisMonth;
+        r.cumulativeUnfundedEndYen = m.cumulativeCashShortfall;
+        r.closingAssetsYen = m.totalAssets;
+        if (detail) {
+            r.grossSalaryYen += detail.grossSalaryYen;
+            r.grossCashBonusYen += detail.grossCashBonusYen;
+            r.estimatedPayrollDeductionsYen += detail.estimatedSalaryDeductionsYen + detail.estimatedBonusDeductionsYen;
+            r.workExpenseYen += detail.workExpenseYen;
+        }
+        if (r.months > 12 || !tol(r.netEmploymentReceiptsYen, r.grossSalaryYen + r.grossCashBonusYen - r.estimatedPayrollDeductionsYen) ||
+            !tol(r.totalExpenseYen, r.livingExpenseYen + r.workExpenseYen + r.otherExpenseYen) ||
+            !tol(r.householdNetCashflowYen, r.netEmploymentReceiptsYen + r.otherIncomeYen + r.pensionReceiptsYen - r.totalExpenseYen) ||
+            !tol(r.closingAssetsYen, r.openingAssetsYen + r.householdNetCashflowYen + r.unfundedExpenseYen + r.investmentReturnYen))
+            throw Error('Lifetime annual reconciliation failed');
+        previousAssets = m.totalAssets;
+        previousDeficit = m.cumulativeCashShortfall;
+    }
+    if (workMap.size !== workCount)
+        throw Error('Lifetime employment months incomplete');
+    return { annual, months: timeline.length, initialAssetsYen, finalAssetsYen: previousAssets, totalUnfundedYen: previousDeficit };
+}
+
+},
+"modules/monthly-cashflow.js":function(module,exports,require){
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.parseGrossBonusHistory = parseGrossBonusHistory;
+exports.calculateMonthlyCashflow = calculateMonthlyCashflow;
+function parseGrossBonusHistory(text) {
+    if (typeof text !== 'string' || text.length > 10000)
+        throw Error('Invalid gross bonus history: too long');
+    const rows = text.split(/\r?\n/).map(x => x.trim()).filter(Boolean);
+    if (rows.length > 60)
+        throw Error('Invalid gross bonus history: too many months');
+    const seen = new Set();
+    const items = [];
+    for (const line of rows) {
+        const m = /^((?:19|20|21)\d{2}-(?:0[1-9]|1[0-2]))\s*[,，:]\s*([0-9]+)$/.exec(line);
+        if (!m)
+            throw Error('Invalid gross bonus history: expected YYYY-MM,integer yen');
+        const val = Number(m[2]);
+        if (seen.has(m[1]) || !Number.isSafeInteger(val) || val < 0 || val > 5000000)
+            throw Error('Invalid gross bonus history: duplicate month, unsafe value or >5000000');
+        seen.add(m[1]);
+        items.push({ month: m[1], grossBonusYen: val });
+    }
+    return items.sort((a, b) => a.month.localeCompare(b.month));
+}
+function calculateMonthlyCashflow(input) {
+    const { path, simulationStartAgeMonths: start, workStartAgeMonths: ws, workEndAgeMonths: we, firstPhaseMonths: first, firstGrossMonthly: salary1, secondGrossMonthly: salary2, deductionPercent: deduct, monthlyWorkExpense: workCost, monthlyLivingExpense: living, pensionMonths, grossBonusHistory: history = null } = input;
+    if (!Number.isInteger(start) || !Number.isInteger(ws) || !Number.isInteger(we) || ws < start || we > start + path.months.length || we <= ws ||
+        !Number.isInteger(first) || first < 1 || first > we - ws ||
+        ![salary1, salary2, deduct, workCost, living].every(Number.isFinite) || salary1 < 0 || salary2 < 0 || deduct < 0 || deduct > 60 || workCost < 0 || living < 0 ||
+        !Array.isArray(pensionMonths) || pensionMonths.length !== we - ws ||
+        !Array.isArray(path.cpiIndex) || path.cpiIndex.length !== path.months.length || path.cpiIndex.some(x => !Number.isFinite(x) || x <= 0))
+        throw Error('Invalid monthly cashflow input');
+    const bonus = new Map();
+    if (history !== null) {
+        if (!Array.isArray(history) || history.length > 60)
+            throw Error('Invalid gross bonus history');
+        for (const b of history) {
+            if (!b || typeof b.month !== 'string' || !/^(19|20|21)\d{2}-(0[1-9]|1[0-2])$/.test(b.month) ||
+                !Number.isSafeInteger(b.grossBonusYen) || b.grossBonusYen < 0 || b.grossBonusYen > 5000000 || bonus.has(b.month) ||
+                !path.months.slice(ws - start, we - start).includes(b.month))
+                throw Error('Invalid gross bonus history work month');
+            bonus.set(b.month, b.grossBonusYen);
+        }
+    }
+    const details = [];
+    for (let age = ws; age < we; age++) {
+        const i = age - start, k = age - ws, m = pensionMonths[k], month = path.months[i];
+        if (!m || m.month !== month || m.ageMonths !== age || ![m.pensionBeforeYen, m.pensionAfterYen, m.suspensionYen, m.standardBonusPaidYen].every(Number.isFinite))
+            throw Error('Pension month and cashflow month mismatch');
+        const cpi = path.cpiIndex[i], grossSalary = (k < first ? salary1 : salary2) * cpi;
+        const cashBonus = bonus.get(month) ?? 0; // nominal yen, never CPI linked
+        const salaryDeductions = grossSalary * deduct / 100, bonusDeductions = cashBonus * deduct / 100;
+        const workExpense = workCost * cpi;
+        const netWork = grossSalary + cashBonus - salaryDeductions - bonusDeductions - workExpense;
+        const pension = m.pensionAfterYen;
+        const livingExpense = living * cpi;
+        details.push({ month, ageMonths: age, grossSalaryYen: grossSalary, grossCashBonusYen: cashBonus,
+            estimatedSalaryDeductionsYen: salaryDeductions, estimatedBonusDeductionsYen: bonusDeductions,
+            workExpenseYen: workExpense, netWorkContributionYen: netWork,
+            pensionBeforeYen: m.pensionBeforeYen, pensionSuspensionYen: m.suspensionYen, pensionAfterYen: pension,
+            netCombinedIncomeYen: netWork + pension, livingExpenseYen: livingExpense, netHouseholdCashflowYen: netWork + pension - livingExpense, incrementVersusNoWorkYen: netWork - m.suspensionYen,
+            standardBonusReferenceYen: m.standardBonusPaidYen });
+    }
+    return details;
+}
+
+},
+"modules/one-time-events.js":function(module,exports,require){
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.parseOneTimeEvents = parseOneTimeEvents;
+exports.buildOneTimeEvents = buildOneTimeEvents;
+const MAX_EVENTS = 20;
+const isMonth = (m) => /^\d{4}-(0[1-9]|1[0-2])$/.test(m);
+function verifyEvent(event, index) {
+    if (!event || !['income', 'expense'].includes(event.kind) || typeof event.label !== 'string' || !event.label.trim() || event.label.length > 30 || /^[=+@-]/.test(event.label) || /[\x00-\x1f<>]/.test(event.label) || typeof event.month !== 'string' || !isMonth(event.month) || !Number.isSafeInteger(event.amountYen) || event.amountYen < 1 || event.amountYen > 500000000)
+        throw Error(`臨時イベント ${index + 1} 行目：区分・名称・年月・金額を確認してください（1〜5億円）。`);
+}
+/** Format: 収入|支出,名称,YYYY-MM,名目円. CSV escaping/quoted commas are not supported. */
+function parseOneTimeEvents(text) {
+    if (typeof text !== 'string' || text.length > 3500)
+        throw Error('臨時イベントの入力は3500文字以内です。');
+    const lines = text.split(/\r?\n/).map(s => s.trim()).filter(Boolean);
+    if (lines.length > MAX_EVENTS)
+        throw Error('臨時イベントは最大20件です。');
+    const seen = new Set();
+    return lines.map((line, i) => {
+        const parts = line.split(',').map(s => s.trim());
+        if (parts.length !== 4 || !/^[0-9]{1,9}$/.test(parts[3]))
+            throw Error(`臨時イベント ${i + 1} 行目は区分,名称,YYYY-MM,金額円の4項目です。`);
+        const kind = parts[0] === '収入' ? 'income' : parts[0] === '支出' ? 'expense' : parts[0];
+        const event = { kind: kind, label: parts[1], month: parts[2], amountYen: Number(parts[3]) };
+        verifyEvent(event, i);
+        const key = `${kind}|${event.month}|${event.label}`;
+        if (seen.has(key))
+            throw Error(`臨時イベント ${i + 1} 行目：同一月・区分・名称が重複しています。`);
+        seen.add(key);
+        return event;
+    });
+}
+function buildOneTimeEvents(events, startAgeMonths, path) {
+    const n = path.months.length;
+    if (!Array.isArray(events) || events.length > MAX_EVENTS || !Number.isInteger(startAgeMonths) || startAgeMonths < 0 || !Number.isInteger(n) || n < 1 || n > 1440)
+        throw Error('Invalid one-time event horizon');
+    const monthMap = new Map();
+    path.months.forEach((month, i) => {
+        if (!isMonth(month) || monthMap.has(month))
+            throw Error('Invalid one-time event market calendar');
+        if (i > 0) {
+            const prev = path.months[i - 1];
+            const [y, m] = prev.split('-').map(Number);
+            const expected = `${y + (m === 12 ? 1 : 0)}-${String(m === 12 ? 1 : m + 1).padStart(2, '0')}`;
+            if (month !== expected)
+                throw Error('Nonconsecutive event market calendar');
+        }
+        monthMap.set(month, i);
+    });
+    const monthly = path.months.map((month, i) => ({ month, ageMonths: startAgeMonths + i, incomeYen: 0, expenseYen: 0 }));
+    const seen = new Set();
+    const streams = events.map((event, i) => {
+        verifyEvent(event, i);
+        const index = monthMap.get(event.month);
+        if (index === undefined)
+            throw Error(`臨時イベント ${i + 1} 行目：発生月が試算期間外です。`);
+        const key = `${event.kind}|${event.month}|${event.label}`;
+        if (seen.has(key))
+            throw Error('臨時イベントの同一月・区分・名称が重複しています。');
+        seen.add(key);
+        if (event.kind === 'income')
+            monthly[index].incomeYen += event.amountYen;
+        else
+            monthly[index].expenseYen += event.amountYen;
+        return { id: `v031-one-time-${i}`, kind: event.kind, monthlyAmount: event.amountYen, startAgeMonths: startAgeMonths + index, endAgeMonths: startAgeMonths + index + 1, timing: 'BEGINNING_OF_MONTH', escalationModel: { type: 'NOMINAL_FIXED' } };
+    });
+    return { streams, monthly, totalIncomeYen: monthly.reduce((s, m) => s + m.incomeYen, 0), totalExpenseYen: monthly.reduce((s, m) => s + m.expenseYen, 0) };
+}
+
+},
+"modules/stress-path.js":function(module,exports,require){
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.DEFAULT_STRESS_SETTINGS = void 0;
+exports.createFixedStressPath = createFixedStressPath;
+exports.createConfiguredStressPath = createConfiguredStressPath;
+const SHOCK_FACTOR = 0.65; // -35% relative to the otherwise fixed monthly gross factor.
+const HIGH_INFLATION = 0.08;
+const FIVE_YEARS = 60;
+function createFixedStressPath(base, kind, annualInflation) {
+    const months = base.months.length;
+    if (!Number.isInteger(months) || months < 2 || base.cpiIndex.length !== months ||
+        !Number.isFinite(annualInflation) || annualInflation <= -1 || annualInflation > 1 ||
+        Object.keys(base.returns).length !== 1 || !Object.hasOwn(base.returns, 'default') ||
+        base.returns.default.length !== months || base.returns.default.some(r => !Number.isFinite(r) || r <= -1) ||
+        base.cpiIndex.some(c => !Number.isFinite(c) || c <= 0) ||
+        !['EARLY_CRASH', 'LATE_CRASH', 'HIGH_INFLATION'].includes(kind))
+        throw Error('Unsupported fixed stress input');
+    // v0.22A applies only to paths constructed by fixedPath, not to historical paths.
+    if (base.datasetVersion !== 'fixed-v0.2.1')
+        throw Error('Stress requires fixed-return mode');
+    const result = { months: [...base.months], returns: { default: [...base.returns.default] }, cpiIndex: [...base.cpiIndex], datasetVersion: `${base.datasetVersion}-stress-v0.22A-${kind}` };
+    if (kind === 'HIGH_INFLATION') {
+        const high = Math.pow(1 + HIGH_INFLATION, 1 / 12);
+        const regular = Math.pow(1 + annualInflation, 1 / 12);
+        result.cpiIndex = Array.from({ length: months }, (_, i) => Math.pow(high, Math.min(i, FIVE_YEARS)) * Math.pow(regular, Math.max(0, i - FIVE_YEARS)));
+        return { path: result, shockMonthIndex: null, annualInflationOverride: HIGH_INFLATION };
+    }
+    const early = Math.min(11, months - 2), late = Math.max(early + 1, months - 12);
+    const shock = kind === 'EARLY_CRASH' ? early : late;
+    const otherFactor = Math.pow(1 / SHOCK_FACTOR, 1 / (months - 1));
+    result.returns.default = base.returns.default.map((r, i) => (1 + r) * (i === shock ? SHOCK_FACTOR : otherFactor) - 1);
+    return { path: result, shockMonthIndex: shock, annualInflationOverride: null };
+}
+exports.DEFAULT_STRESS_SETTINGS = Object.freeze({ declinePercent: 35, firstShockYear: 1, lateShockYearsBeforeEnd: 1, slumpYears: 3, recoveryYears: 5 });
+function createConfiguredStressPath(base, kind, annualInflation, settings) {
+    const { declinePercent, firstShockYear, lateShockYearsBeforeEnd, slumpYears, recoveryYears } = settings;
+    if (![declinePercent, firstShockYear, lateShockYearsBeforeEnd, slumpYears, recoveryYears].every(Number.isInteger) ||
+        declinePercent < 10 || declinePercent > 70 || firstShockYear < 1 || firstShockYear > 10 || lateShockYearsBeforeEnd < 1 || lateShockYearsBeforeEnd > 10 ||
+        slumpYears < 1 || slumpYears > 5 || recoveryYears < 1 || recoveryYears > 10)
+        throw Error('Invalid stress settings');
+    // Validate dataset, path, CPI and baseline with the same v0.22A contract.
+    const checked = createFixedStressPath(base, 'HIGH_INFLATION', annualInflation);
+    if (kind === 'HIGH_INFLATION')
+        return { ...checked, normalized: false, slumpMonths: 0, recoveryMonths: 0, recoveryStartMonthIndex: null };
+    if (!['EARLY_CRASH', 'LATE_CRASH', 'SLUMP_RECOVERY'].includes(kind))
+        throw Error('Unknown configured stress case');
+    const length = base.months.length;
+    const early = Math.min(length - 2, firstShockYear * 12 - 1);
+    if (kind === 'SLUMP_RECOVERY') {
+        const start = Math.min(length - 1, firstShockYear * 12 - 1);
+        const nSlump = Math.min(length - start, slumpYears * 12);
+        const recoveryStart = start + nSlump;
+        const nRecovery = Math.min(length - recoveryStart, recoveryYears * 12);
+        const slumpMonthly = Math.pow(.96, 1 / 12) - 1, recoveryMonthly = Math.pow(1.08, 1 / 12) - 1;
+        const path = { months: [...base.months], returns: { default: [...base.returns.default] },
+            cpiIndex: [...base.cpiIndex], datasetVersion: 'fixed-v0.2.1-stress-v0.22B-SLUMP_RECOVERY' };
+        for (let i = start; i < recoveryStart; i++)
+            path.returns.default[i] = slumpMonthly;
+        for (let i = recoveryStart; i < recoveryStart + nRecovery; i++)
+            path.returns.default[i] = recoveryMonthly;
+        return { path, shockMonthIndex: start, annualInflationOverride: null, normalized: false,
+            slumpMonths: nSlump, recoveryMonths: nRecovery, recoveryStartMonthIndex: nRecovery ? recoveryStart : null };
+    }
+    const shock = kind === 'EARLY_CRASH' ? early : Math.max(early + 1, length - lateShockYearsBeforeEnd * 12);
+    const factor = 1 - declinePercent / 100;
+    const correction = Math.pow(1 / factor, 1 / (length - 1));
+    const path = { months: [...base.months], returns: { default: base.returns.default.map((r, i) => (1 + r) * (i === shock ? factor : correction) - 1) },
+        cpiIndex: [...base.cpiIndex], datasetVersion: `fixed-v0.2.1-stress-v0.22B-${kind}-D${declinePercent}-Y${firstShockYear}-L${lateShockYearsBeforeEnd}` };
+    return { path, shockMonthIndex: shock, annualInflationOverride: null, normalized: true,
+        slumpMonths: 0, recoveryMonths: 0, recoveryStartMonthIndex: null };
+}
+
+},
+"modules/pension-fiscal.js":function(module,exports,require){
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.PENSION_FISCAL_THRESHOLDS_YEN = void 0;
+exports.selectPensionThreshold = selectPensionThreshold;
+exports.PENSION_FISCAL_THRESHOLDS_YEN = Object.freeze({ 2022: 470000, 2023: 480000, 2024: 500000, 2025: 510000, 2026: 650000 });
+function selectPensionThreshold(month, mode = 'FIXED_2026') {
+    if (!/^(19|20|21)\d{2}-(0[1-9]|1[0-2])$/.test(month) || !['FIXED_2026', 'FISCAL_CONFIRMED'].includes(mode))
+        throw Error('Invalid pension calendar month or threshold mode');
+    const [year, mm] = month.split('-').map(Number), fy = year - (mm <= 3 ? 1 : 0);
+    if (mode === 'FIXED_2026')
+        return { fiscalYear: fy, thresholdYen: 650000, provenance: 'ASSUMED_FIXED', sourceFiscalYear: 2026 };
+    if (fy < 2022)
+        throw Error('No verified pension threshold for fiscal year ' + fy + '; switch to fixed illustrative mode');
+    if (fy <= 2026)
+        return { fiscalYear: fy, thresholdYen: exports.PENSION_FISCAL_THRESHOLDS_YEN[fy], provenance: 'CONFIRMED', sourceFiscalYear: fy };
+    return { fiscalYear: fy, thresholdYen: 650000, provenance: 'ASSUMED_FUTURE', sourceFiscalYear: 2026 };
+}
+
+},
+"modules/pension-work-overlap.js":function(module,exports,require){
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.PENSION_2026_MONTHLY_THRESHOLD_YEN = void 0;
+exports.parseStandardBonusHistory = parseStandardBonusHistory;
+exports.calculatePensionWorkOverlap = calculatePensionWorkOverlap;
+const pension_fiscal_js_1 = require("./pension-fiscal.js");
+exports.PENSION_2026_MONTHLY_THRESHOLD_YEN = 650000;
+function parseStandardBonusHistory(text) {
+    if (typeof text !== 'string' || text.length > 10000)
+        throw Error('Invalid bonus history: too long');
+    const rows = text.split(/\r?\n/).map(v => v.trim()).filter(Boolean);
+    if (rows.length > 150)
+        throw Error('Invalid bonus history: too many months');
+    const seen = new Set(), result = [];
+    for (const line of rows) {
+        const m = /^((?:19|20|21)\d{2}-(?:0[1-9]|1[0-2]))\s*[,，:]\s*([0-9]+)$/.exec(line);
+        if (!m)
+            throw Error('Invalid bonus history: use YYYY-MM,integer yen per line');
+        const amount = Number(m[2]);
+        if (seen.has(m[1]) || !Number.isSafeInteger(amount) || amount < 0 || amount > 1500000 || amount % 1000 !== 0)
+            throw Error('Invalid bonus history: duplicate month, amount >1500000 yen, or not a 1000-yen increment');
+        seen.add(m[1]);
+        result.push({ month: m[1], standardBonusYen: amount });
+    }
+    return result.sort((a, b) => a.month.localeCompare(b.month));
+}
+/** Calendar YYYY-MM ordinal; used only with the validated month syntax. */
+function monthIndex(s) { const [y, m] = s.split('-').map(Number); return y * 12 + m - 1; }
+function calculatePensionWorkOverlap(input) {
+    const { enabled, path, simulationStartAgeMonths: start, workStartAgeMonths: ws, workEndAgeMonths: we, firstPhaseMonths: phase, firstGrossMonthly: first, secondGrossMonthly: second, pensionStartAgeMonths: ps, pensionMonthlyTotal: total, employeesPensionSharePercent: share, annualStandardBonusYen: bonus, standardMonthlyRemunerationYen: standardFirst, standardMonthlyRemunerationAfterStepYen: standardSecond, includeAge70PlusEligibleEmployment: include70 = false, thresholdMode = 'FIXED_2026', standardBonusHistory: history = null, standardRemunerationStepDelayMonths: stepDelay = 0 } = input;
+    if (typeof enabled !== 'boolean' || !Number.isInteger(start) || !Number.isInteger(ws) || !Number.isInteger(we) ||
+        !Number.isInteger(phase) || ws < start || we > start + path.months.length || we <= ws || phase < 1 || phase > we - ws ||
+        !Number.isInteger(ps) || ![first, second, total, share, bonus].every(Number.isFinite) ||
+        first < 0 || second < 0 || total < 0 || share < 0 || share > 100 || bonus < 0 || bonus > 2400000 ||
+        (standardFirst != null && (!Number.isInteger(standardFirst) || standardFirst < 0 || standardFirst > 2000000)) ||
+        (standardSecond != null && (!Number.isInteger(standardSecond) || standardSecond < 0 || standardSecond > 2000000)) ||
+        (standardFirst == null && standardSecond != null) || ![0, 3].includes(stepDelay) ||
+        (stepDelay !== 0 && standardFirst == null) || typeof include70 !== 'boolean' || !['FIXED_2026', 'FISCAL_CONFIRMED'].includes(thresholdMode) ||
+        path.cpiIndex.length !== path.months.length || path.cpiIndex.some(x => !Number.isFinite(x) || x <= 0))
+        throw Error('Invalid pension-work overlap input');
+    const result = { suspensionByIndex: Array(path.months.length).fill(0), overlapMonths: 0,
+        suspendedMonths: 0, suspensionTotalNominal: 0, maxSuspensionMonthly: 0,
+        annualBonusMonthlyEquivalent: bonus / 12, thresholdMonthly: exports.PENSION_2026_MONTHLY_THRESHOLD_YEN,
+        modelledMonthsOutsideCoverage: 0, age70PlusOverlapMonths: 0, age70PlusSuspensionNominal: 0, monthlyDetails: [], confirmedThresholdMonths: 0, assumedThresholdMonths: 0 };
+    // Validate the entire history before any pension amount is calculated. Month entries
+    // before scenario start are allowed only for the trailing 11 months; otherwise
+    // ambiguous out-of-period data is rejected rather than silently ignored.
+    const months = path.months;
+    if (!months.every((m, i) => /^(19|20|21)\d{2}-(0[1-9]|1[0-2])$/.test(m) &&
+        (i === 0 || monthIndex(m) === monthIndex(months[i - 1]) + 1)))
+        throw Error('Invalid pension calendar sequence');
+    const minMonth = monthIndex(months[0]) - 11, maxMonth = monthIndex(months.at(-1));
+    const bonuses = new Map();
+    if (history !== null) {
+        if (!Array.isArray(history) || history.length > 150)
+            throw Error('Invalid standard bonus history');
+        for (const b of history) {
+            if (!b || typeof b.month !== 'string' || !/^(19|20|21)\d{2}-(0[1-9]|1[0-2])$/.test(b.month) ||
+                !Number.isSafeInteger(b.standardBonusYen) || b.standardBonusYen < 0 || b.standardBonusYen > 1500000 ||
+                b.standardBonusYen % 1000 !== 0 || bonuses.has(b.month) || monthIndex(b.month) < minMonth || monthIndex(b.month) > maxMonth)
+                throw Error('Invalid standard bonus history entry or date range');
+            bonuses.set(b.month, b.standardBonusYen);
+        }
+    }
+    const eligiblePension = total * share / 100;
+    for (let age = ws; age < we; age++) {
+        const i = age - start, phaseOne = age - ws < phase, cpi = path.cpiIndex[i];
+        const grossWage = (phaseOne ? first : second) * cpi;
+        const remunerationStepEffective = age - ws >= phase + stepDelay;
+        const standardRemuneration = standardFirst == null ? grossWage : (!remunerationStepEffective ? standardFirst : standardSecond ?? standardFirst);
+        const currentMonth = months[i], endOrdinal = monthIndex(currentMonth);
+        let rolling12 = 0;
+        if (history !== null)
+            for (let delta = 0; delta < 12; delta++) {
+                const ordinal = endOrdinal - delta, y = Math.floor(ordinal / 12), mm = ordinal % 12 + 1;
+                rolling12 += bonuses.get(`${y}-${String(mm).padStart(2, '0')}`) ?? 0;
+            }
+        const monthlyBonus = history === null ? bonus / 12 : rolling12 / 12;
+        const bonusPaid = history === null ? 0 : (bonuses.get(currentMonth) ?? 0);
+        // Calendar months are from the user scenario, NOT an historical replay source calendar.
+        const fiscal = (0, pension_fiscal_js_1.selectPensionThreshold)(path.months[i], thresholdMode);
+        const pensionBefore = age >= ps ? total : 0;
+        const employeePart = age >= ps ? eligiblePension : 0;
+        const eligibilityReason = !enabled ? 'MODE_OFF' : age < ps ? 'BEFORE_PENSION' : age < 60 * 12 ? 'BELOW_60' : age >= 70 * 12 && !include70 ? 'AGE70_NOT_ASSERTED' : 'ELIGIBLE';
+        const eligible = eligibilityReason === 'ELIGIBLE';
+        const stopped = eligible ? Math.min(employeePart, Math.max(0, (employeePart + standardRemuneration + monthlyBonus - fiscal.thresholdYen) / 2)) : 0;
+        if (enabled && age >= ps) {
+            if (!eligible)
+                result.modelledMonthsOutsideCoverage++;
+            else {
+                result.overlapMonths++;
+                if (age >= 70 * 12)
+                    result.age70PlusOverlapMonths++;
+            }
+        }
+        if (eligible) {
+            if (fiscal.provenance === 'CONFIRMED')
+                result.confirmedThresholdMonths++;
+            else
+                result.assumedThresholdMonths++;
+        }
+        if (stopped > 1e-8) {
+            result.suspendedMonths++;
+            result.suspensionByIndex[i] = stopped;
+            result.suspensionTotalNominal += stopped;
+            result.maxSuspensionMonthly = Math.max(result.maxSuspensionMonthly, stopped);
+            if (age >= 70 * 12)
+                result.age70PlusSuspensionNominal += stopped;
+        }
+        result.monthlyDetails.push({ month: path.months[i], ageMonths: age, fiscalYear: fiscal.fiscalYear, thresholdYen: fiscal.thresholdYen, provenance: fiscal.provenance,
+            eligible, eligibilityReason, grossWageYen: grossWage, standardRemunerationYen: standardRemuneration, bonusMonthlyEquivalentYen: monthlyBonus,
+            standardBonusPaidYen: bonusPaid, standardBonusRolling12Yen: history === null ? bonus : rolling12,
+            bonusHistoryMode: history === null ? 'FLAT_ASSUMPTION' : 'MONTHLY_HISTORY', remunerationStepEffective,
+            pensionBeforeYen: pensionBefore, employeesPensionBeforeYen: employeePart, suspensionYen: stopped, pensionAfterYen: pensionBefore - stopped });
+    }
+    return result;
+}
+
+},
+"modules/r3-employment-preview-research.js":function(module,exports,require){
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.R3_EMPLOYMENT_SCHEMA = void 0;
+exports.runR3EmploymentPreviewResearch = runR3EmploymentPreviewResearch;
+/** R3 Batch4: strictly bounded employment/no-employment comparison.
+ * Reuses the existing practical work/benefits analysis; it does not alter
+ * retirement claims, implement actual tax rules or feed the DWZ spending solver.
+ * Browser form inputs are self-declared research assumptions only.
+ */
+const r2_web_fixed_bridge_js_1 = require("./r2-web-fixed-bridge.js");
+const core_js_1 = require("./core.js");
+const stress_combinations_practical_js_1 = require("./stress-combinations-practical.js");
+exports.R3_EMPLOYMENT_SCHEMA = 'dwz-r3-employment-preview/0.1.0';
+const hold = (why) => { throw Error('R3_WORK_HOLD: ' + why); };
+const exactly = (x, keys, name) => {
+    if (!x || typeof x !== 'object' || Array.isArray(x) ||
+        Object.keys(x).length !== keys.length || Object.keys(x).some(k => !keys.includes(k)))
+        hold(name + ' structure');
+};
+const integer = (v, min, max, name) => {
+    if (!Number.isSafeInteger(v) || Number(v) < min || Number(v) > max)
+        hold(name + ' range');
+    return v;
+};
+function runR3EmploymentPreviewResearch(raw) {
+    exactly(raw, ['schemaVersion', 'baseCapture', 'employment'], 'input');
+    const input = raw;
+    if (input.schemaVersion !== exports.R3_EMPLOYMENT_SCHEMA)
+        hold('schemaVersion');
+    exactly(input.employment, ['workStartAgeYears', 'bridgeMonths', 'monthlyGrossWageYen',
+        'wageDeductionPercent', 'monthlyWorkCostYen', 'wageStepAfterMonths', 'wageStepPercent'], 'employment');
+    const e = input.employment, c = input.baseCapture;
+    if (!c || typeof c !== 'object' || Array.isArray(c))
+        hold('baseCapture');
+    // Do not erase the original nominal target's schema validity before zeroing it.
+    if (!Number.isSafeInteger(c.sliders?.target) || c.sliders.target < 0 ||
+        c.sliders.target > 3000 || c.sliders.target % 100 !== 0)
+        hold('nominal terminal target');
+    const zero = structuredClone(c);
+    zero.sliders.target = 0;
+    const prepared = (0, r2_web_fixed_bridge_js_1.prepareR2FixedWebCapture)(zero); // strict market and advanced gate
+    const { scenario: s, market } = prepared;
+    const ageStart = integer(e.workStartAgeYears, 0, 119, 'workStartAgeYears');
+    const bridgeMonths = integer(e.bridgeMonths, 1, 60, 'bridgeMonths');
+    const gross = integer(e.monthlyGrossWageYen, 0, 2000000, 'monthlyGrossWageYen');
+    const deduct = integer(e.wageDeductionPercent, 0, 60, 'wageDeductionPercent');
+    const cost = integer(e.monthlyWorkCostYen, 0, 300000, 'monthlyWorkCostYen');
+    const step = integer(e.wageStepAfterMonths, 0, 59, 'wageStepAfterMonths');
+    const stepPct = integer(e.wageStepPercent, 0, 200, 'wageStepPercent');
+    if (step >= bridgeMonths || ageStart * 12 < s.person.simulationStartAgeMonths ||
+        ageStart * 12 + bridgeMonths > s.person.targetAgeMonths)
+        hold('employment window outside simulation');
+    if (s.pensionStreams.length !== 1 || s.expenseStreams.length !== 1 || s.incomeStreams.length !== 0 ||
+        !s.portfolio.holdings.default || Object.keys(s.portfolio.holdings).length !== 1)
+        hold('unsupported baseline');
+    // Existing practical module's legacy contract leaves stream end undefined.
+    // Removing only endAgeMonths==simulation horizon cannot alter any simulated month.
+    const baseline = (0, core_js_1.simulateOne)(s, market);
+    const compatible = structuredClone(s);
+    for (const stream of [...compatible.expenseStreams, ...compatible.pensionStreams]) {
+        if (stream.endAgeMonths !== s.person.targetAgeMonths)
+            hold('unsupported stream horizon');
+        delete stream.endAgeMonths;
+    }
+    const replay = (0, core_js_1.simulateOne)(compatible, market);
+    if (replay.timeline.length !== baseline.timeline.length || replay.timeline.some((m, i) => Math.abs(m.totalAssets - baseline.timeline[i].totalAssets) > 1e-7 ||
+        Math.abs(m.cashShortfallThisMonth - baseline.timeline[i].cashShortfallThisMonth) > 1e-7))
+        hold('baseline conversion changed calculation');
+    const report = (0, stress_combinations_practical_js_1.analyzePracticalCombinations)(compatible, market, replay, {
+        ...stress_combinations_practical_js_1.practicalDefaults, pensionAdvanceMonths: 12, bridgeMonths, workStartAgeYears: ageStart,
+        monthlyGrossWage: gross, wageStepAfterMonths: step, wageStepPercent: stepPct,
+        wageDeductionPercent: deduct, monthlyWorkCost: cost, apply2026PensionWorkTest: false,
+        extraCashflows: [], oneTimeEvents: [], grossBonusHistory: null, standardBonusHistory: null
+    });
+    const base = report.rows.find(r => !r.bridge && !r.expenseCut && !r.pensionEarly);
+    const employed = report.rows.find(r => r.bridge && !r.expenseCut && !r.pensionEarly);
+    if (!base || !employed || employed.pensionSuspendedMonths !== 0 ||
+        Math.abs(base.finalAssets - baseline.summary.finalAssets) > 1e-7)
+        throw new Error('R3_WORK_HOLD: work model mismatch');
+    const basePension = base.lifetimeAnnualDetails.reduce((a, r) => a + r.pensionReceiptsYen, 0);
+    const employedPension = employed.lifetimeAnnualDetails.reduce((a, r) => a + r.pensionReceiptsYen, 0);
+    if (Math.abs(basePension - employedPension) > 1e-7)
+        hold('pension altered');
+    const details = employed.monthlyCashflowDetails;
+    if (details.length !== bridgeMonths)
+        hold('incomplete monthly work ledger');
+    const total = details.reduce((acc, m) => acc + m.netWorkContributionYen, 0);
+    if (Math.abs(total - employed.bridgeNetContributionNominal) > 0.01)
+        hold('income ledger mismatch');
+    return { schemaVersion: exports.R3_EMPLOYMENT_SCHEMA, approval: 'RESEARCH_ONLY_HOLD',
+        productionApproved: false, actualTaxCalculated: false,
+        pensionWorkTestApplied: false, additionalSpendingInverseIncluded: false,
+        baseScenario: 'UNCHANGED_PENSION_AND_LIVING',
+        simulationStartMonth: c.simulationStartMonth,
+        workStartAgeYears: ageStart, workEndAgeMonthsExclusive: ageStart * 12 + bridgeMonths, workMonths: bridgeMonths,
+        grossSalaryNominalYen: employed.bridgeGrossNominal,
+        estimatedDeductionsNominalYen: employed.bridgeDeductionsNominal,
+        workExpenseNominalYen: employed.bridgeWorkCostNominal,
+        netEmploymentContributionNominalYen: employed.bridgeNetContributionNominal,
+        pensionReceiptsUnchangedNominalYen: basePension,
+        withoutWork: { finalAssetsYen: base.finalAssets, cumulativeShortfallYen: base.cumulativeShortfall, firstShortfallAgeMonths: base.firstShortfallAgeMonths },
+        withWork: { finalAssetsYen: employed.finalAssets, cumulativeShortfallYen: employed.cumulativeShortfall, firstShortfallAgeMonths: employed.firstShortfallAgeMonths },
+        deltaFinalAssetsYen: employed.finalAssets - base.finalAssets,
+        monthly: details.map(m => ({ month: m.month, grossSalaryYen: m.grossSalaryYen,
+            estimatedSalaryDeductionsYen: m.estimatedSalaryDeductionsYen, workExpenseYen: m.workExpenseYen,
+            netWorkContributionYen: m.netWorkContributionYen, pensionBeforeYen: m.pensionBeforeYen,
+            pensionAfterYen: m.pensionAfterYen })) };
+}
+
+},
+"modules/r3-employment-spending-inverse.js":function(module,exports,require){
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.R3_EMPLOYMENT_INVERSE_SCHEMA = void 0;
+exports.runR3EmploymentSpendingInverseResearch = runR3EmploymentSpendingInverseResearch;
+/** R3 Batch5: research-only salary-aware additional-spending inverse.
+ * The modeled employment receipts are the SAME two CPI-linked wage phases and
+ * CPI-linked work cost as the existing practical model. A zero-extra parity
+ * check prevents silent salary/pension/expense double counting.
+ * NO actual tax, social insurance, working pension suspension, investment
+ * forecasting certification, global optimum, or M1 integer-ledger equivalence.
+ */
+const core_js_1 = require("./core.js");
+const r2_web_fixed_bridge_js_1 = require("./r2-web-fixed-bridge.js");
+const r3_employment_preview_research_js_1 = require("./r3-employment-preview-research.js");
+exports.R3_EMPLOYMENT_INVERSE_SCHEMA = 'dwz-r3-employment-spending-inverse/0.1.0';
+const hold = (why) => { throw new Error('R3_WORK_INVERSE_HOLD: ' + why); };
+const close = (a, b) => Math.abs(a - b) <= Math.max(0.00001, Math.abs(b) * 1e-10);
+function runR3EmploymentSpendingInverseResearch(raw) {
+    // The existing independently tested employment preview performs STRICT schema,
+    // slider, scope, pension and wage validations and reconciles its payroll ledger.
+    const employment = (0, r3_employment_preview_research_js_1.runR3EmploymentPreviewResearch)(raw);
+    const input = raw;
+    if (input.schemaVersion !== r3_employment_preview_research_js_1.R3_EMPLOYMENT_SCHEMA)
+        hold('employment contract');
+    const zero = structuredClone(input.baseCapture);
+    zero.sliders.target = 0;
+    const { scenario: original, market, options } = (0, r2_web_fixed_bridge_js_1.prepareR2FixedWebCapture)(zero);
+    if (market.months.length !== original.person.targetAgeMonths - original.person.simulationStartAgeMonths ||
+        options.extraEndAgeMonthsExclusive > original.person.targetAgeMonths)
+        hold('unsupported duration');
+    const target = input.baseCapture.sliders.target * 10000;
+    const { workStartAgeYears, bridgeMonths, monthlyGrossWageYen, wageDeductionPercent, monthlyWorkCostYen, wageStepAfterMonths, wageStepPercent } = input.employment;
+    const ageStart = workStartAgeYears * 12;
+    const phase1 = wageStepAfterMonths === 0 ? bridgeMonths : wageStepAfterMonths;
+    const factor = 1 - wageDeductionPercent / 100;
+    const scenario = structuredClone(original);
+    scenario.target = { ...scenario.target, targetAssets: target, valueBasis: 'NOMINAL' };
+    // Match stress-combinations-practical.ts's trial streams exactly, including
+    // BEGINNING_OF_MONTH timing and CPI base (simulation's first month).
+    const wage = (id, amount, start, end) => ({
+        id, kind: 'income', monthlyAmount: amount, startAgeMonths: start, endAgeMonths: end,
+        timing: 'BEGINNING_OF_MONTH', escalationModel: { type: 'CPI_LINKED' }
+    });
+    scenario.incomeStreams.push(wage('practical-wage-phase-1', monthlyGrossWageYen * factor, ageStart, ageStart + phase1));
+    if (phase1 < bridgeMonths)
+        scenario.incomeStreams.push(wage('practical-wage-phase-2', monthlyGrossWageYen * wageStepPercent / 100 * factor, ageStart + phase1, ageStart + bridgeMonths));
+    if (monthlyWorkCostYen > 0)
+        scenario.expenseStreams.push({
+            id: 'practical-work-cost', kind: 'expense', monthlyAmount: monthlyWorkCostYen,
+            startAgeMonths: ageStart, endAgeMonths: ageStart + bridgeMonths,
+            timing: 'BEGINNING_OF_MONTH', escalationModel: { type: 'CPI_LINKED' }
+        });
+    const targetMonth = market.months.at(-1);
+    let checkCount = 0;
+    const evaluate = (amount, needTimeline = false) => {
+        if (!Number.isSafeInteger(amount) || amount < 0 || amount > options.searchCeilingMonthlyYen)
+            hold('additional spending outside cap');
+        checkCount++;
+        const extra = { id: 'r3-work-extra-spending', kind: 'expense', monthlyAmount: amount,
+            startAgeMonths: options.extraStartAgeMonths, endAgeMonths: options.extraEndAgeMonthsExclusive,
+            timing: options.extraTiming, escalationModel: { type: options.extraEscalation } };
+        const s = amount === 0 ? scenario : { ...scenario, expenseStreams: [...scenario.expenseStreams, extra] };
+        const result = (0, core_js_1.simulateOne)(s, market);
+        const timeline = result.timeline;
+        if (!timeline || timeline.length !== market.months.length)
+            hold('incomplete monthly ledger');
+        const rows = timeline;
+        let failure = null, reason = null;
+        for (const row of rows) {
+            if (!Number.isFinite(row.totalAssets) || !Number.isFinite(row.cashShortfallThisMonth) ||
+                row.totalAssets < 0 || row.cashShortfallThisMonth < 0)
+                hold('nonfinite monthly ledger');
+            if (failure === null && row.cashShortfallThisMonth > 1e-8) {
+                failure = row.yearMonth;
+                reason = 'CASH_SHORTFALL';
+            }
+        }
+        const final = result.summary.finalAssets;
+        if (!Number.isFinite(final))
+            hold('nonfinite final value');
+        if (target > 0 && Math.abs(final - target) <= 8 * Number.EPSILON * Math.max(target, Math.abs(final)))
+            hold('floating-point nominal threshold ambiguous');
+        if (failure === null && final < target) {
+            failure = targetMonth;
+            reason = 'NOMINAL_FINAL_TARGET';
+        }
+        const outcome = { monthlyExtraYen: amount, feasible: failure === null,
+            finalNominalAssetsYen: final, cumulativeCashShortfallYen: result.summary.cumulativeCashShortfall,
+            firstFailureMonth: failure, failureReason: reason };
+        return { outcome, series: needTimeline ? rows.map(t => ({ month: t.yearMonth, finalAssetsYen: t.totalAssets })) : undefined };
+    };
+    const base = evaluate(0, true);
+    // Cross-engine parity at zero extra: no duplicate wages or pension changes.
+    if (!close(base.outcome.finalNominalAssetsYen, employment.withWork.finalAssetsYen) ||
+        !close(base.outcome.cumulativeCashShortfallYen, employment.withWork.cumulativeShortfallYen) ||
+        !close(employment.pensionReceiptsUnchangedNominalYen, (0, core_js_1.simulateOne)(scenario, market).summary.totalPension))
+        hold('practical wage parity failure');
+    const shared = { schemaVersion: exports.R3_EMPLOYMENT_INVERSE_SCHEMA,
+        approval: 'RESEARCH_ONLY_HOLD', productionApproved: false,
+        precision: 'FLOAT64_LEGACY_NO_M1_INTEGER_PARITY',
+        taxCalculated: false, pensionWorkTestApplied: false,
+        marketAuthenticity: 'DECLARED_UNVERIFIED', globalMaximumCertified: false,
+        comparisonAxis: 'ADDITIONAL_SPENDING_WITH_FIXED_EMPLOYMENT',
+        wageSource: 'PRACTICAL_ENGINE_STREAMS_PARITY_CHECKED',
+        targetBasis: 'NOMINAL_AT_FINAL_MONTH', nominalTargetYen: target,
+        searchCeilingMonthlyYen: options.searchCeilingMonthlyYen,
+        withoutWorkFinalAssetsYen: employment.withoutWork.finalAssetsYen,
+        withWorkWithoutExtraFinalAssetsYen: employment.withWork.finalAssetsYen,
+        netEmploymentContributionNominalYen: employment.netEmploymentContributionNominalYen,
+        workMonths: bridgeMonths, baseline: base.outcome, baselineSeries: base.series,
+        originalUnmodified: true };
+    if (!base.outcome.feasible)
+        return { ...shared, status: 'BASELINE_INFEASIBLE',
+            selectedMonthlyExtraYen: null, selected: null, nextYen: null, selectedSeries: null,
+            checkCount };
+    const ceiling = evaluate(options.searchCeilingMonthlyYen);
+    if (ceiling.outcome.feasible) {
+        const chosen = evaluate(options.searchCeilingMonthlyYen, true);
+        return { ...shared, status: 'CEILING_REFERENCE_NOT_GLOBAL_MAX',
+            selectedMonthlyExtraYen: options.searchCeilingMonthlyYen, selected: chosen.outcome, nextYen: null,
+            selectedSeries: chosen.series, checkCount };
+    }
+    let lower = 0, upper = options.searchCeilingMonthlyYen;
+    let selected = base.outcome, next = ceiling.outcome;
+    while (upper - lower > 1) {
+        const middle = lower + Math.floor((upper - lower) / 2);
+        const current = evaluate(middle).outcome;
+        if (current.feasible) {
+            lower = middle;
+            selected = current;
+        }
+        else {
+            upper = middle;
+            next = current;
+        }
+    }
+    if (upper !== lower + 1 || !selected.feasible || next.feasible ||
+        selected.monthlyExtraYen !== lower || next.monthlyExtraYen !== upper)
+        hold('invalid plus-one boundary');
+    const chosen = lower === 0 ? base : evaluate(lower, true);
+    if (!chosen.outcome.feasible || !close(chosen.outcome.finalNominalAssetsYen, selected.finalNominalAssetsYen))
+        hold('selected replay mismatched');
+    return { ...shared, status: 'BOUNDARY_CONFIRMED_IN_CAP',
+        selectedMonthlyExtraYen: lower, selected: chosen.outcome, nextYen: next,
+        selectedSeries: chosen.series, checkCount };
+}
+
+},
+"modules/stress-combinations-practical.js":function(module,exports,require){
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.practicalDefaults = void 0;
+exports.analyzePracticalCombinations = analyzePracticalCombinations;
+/** v0.25B: illustrative Japanese pension-claim adjustment and net wage bridge.
+ * Only the FIXED baseline. Does NOT determine eligibility, tax, benefit entitlements,
+ * individual contribution histories, working-hour constraints or actuarial value.
+ */
+const core_js_1 = require("./core.js");
+const monthly_cashflow_js_1 = require("./monthly-cashflow.js");
+const lifetime_cashflow_js_1 = require("./lifetime-cashflow.js");
+const pension_work_overlap_js_1 = require("./pension-work-overlap.js");
+const extra_cashflows_js_1 = require("./extra-cashflows.js");
+const one_time_events_js_1 = require("./one-time-events.js");
+exports.practicalDefaults = { pensionBirthCohort: '1962_LATER', expenseReductionPercent: 10, pensionAdvanceMonths: 12, bridgeMonths: 12, apply2026PensionWorkTest: false, pensionThresholdMode: 'FIXED_2026', employeesPensionSharePercent: 50, annualStandardBonusYen: 0, standardMonthlyRemunerationYen: null, standardMonthlyRemunerationAfterStepYen: null, includeAge70PlusEligibleEmployment: false, workStartAgeYears: null, wageStepAfterMonths: 0, wageStepPercent: 60, wageDeductionPercent: 15, monthlyWorkCost: 20000 };
+function analyzePracticalCombinations(scenario, path, baseline, options = exports.practicalDefaults) {
+    const n = path.months.length, start = scenario.person.simulationStartAgeMonths;
+    const expense = scenario.expenseStreams[0], pension = scenario.pensionStreams[0];
+    if (!Number.isInteger(n) || n < 12 || path.cpiIndex.length !== n || !path.returns.default || path.returns.default.length !== n ||
+        scenario.policies.shortfall !== 'UNFUNDED' || Object.keys(scenario.portfolio.holdings).length !== 1 || !scenario.portfolio.holdings.default ||
+        scenario.incomeStreams.length !== 0 || scenario.expenseStreams.length !== 1 || scenario.pensionStreams.length !== 1 ||
+        expense.kind !== 'expense' || expense.timing !== 'BEGINNING_OF_MONTH' || expense.escalationModel.type !== 'CPI_LINKED' || expense.startAgeMonths !== start || expense.endAgeMonths !== undefined ||
+        pension.kind !== 'pension' || pension.timing !== 'END_OF_MONTH' || pension.escalationModel.type !== 'NOMINAL_FIXED' || pension.endAgeMonths !== undefined ||
+        !Number.isInteger(start) || !Number.isInteger(pension.startAgeMonths) || !Number.isFinite(expense.monthlyAmount) || expense.monthlyAmount < 0 ||
+        !Number.isFinite(pension.monthlyAmount) || pension.monthlyAmount < 0 ||
+        !Number.isInteger(options.expenseReductionPercent) || options.expenseReductionPercent < 1 || options.expenseReductionPercent > 50 ||
+        !(options.monthlyGrossWage === undefined || options.monthlyGrossWage === null || (Number.isInteger(options.monthlyGrossWage) && options.monthlyGrossWage >= 0 && options.monthlyGrossWage <= 2000000)) ||
+        !Number.isInteger(options.pensionAdvanceMonths) || options.pensionAdvanceMonths < 1 || options.pensionAdvanceMonths > 60 ||
+        !Number.isInteger(options.bridgeMonths) || options.bridgeMonths < 1 || options.bridgeMonths > 60 ||
+        !(options.workStartAgeYears === undefined || options.workStartAgeYears === null || (Number.isInteger(options.workStartAgeYears) && options.workStartAgeYears >= 0 && options.workStartAgeYears <= 119)) ||
+        !Number.isInteger(options.wageStepAfterMonths ?? 0) || (options.wageStepAfterMonths ?? 0) < 0 || (options.wageStepAfterMonths ?? 0) >= options.bridgeMonths ||
+        !Number.isInteger(options.wageStepPercent ?? 60) || (options.wageStepPercent ?? 60) < 0 || (options.wageStepPercent ?? 60) > 200 ||
+        !Number.isInteger(options.wageDeductionPercent) || options.wageDeductionPercent < 0 || options.wageDeductionPercent > 60 ||
+        !Number.isFinite(options.monthlyWorkCost) || options.monthlyWorkCost < 0 || options.monthlyWorkCost > 300000 ||
+        !(options.apply2026PensionWorkTest === undefined || typeof options.apply2026PensionWorkTest === 'boolean') ||
+        !(options.pensionThresholdMode === undefined || ['FIXED_2026', 'FISCAL_CONFIRMED'].includes(options.pensionThresholdMode)) ||
+        !(options.employeesPensionSharePercent === undefined || (Number.isInteger(options.employeesPensionSharePercent) && options.employeesPensionSharePercent >= 0 && options.employeesPensionSharePercent <= 100)) ||
+        !(options.annualStandardBonusYen === undefined || (Number.isInteger(options.annualStandardBonusYen) && options.annualStandardBonusYen >= 0 && options.annualStandardBonusYen <= 2400000)) ||
+        !(options.standardBonusHistory == null || (Array.isArray(options.standardBonusHistory) && options.standardBonusHistory.length <= 150)) ||
+        !(options.grossBonusHistory == null || (Array.isArray(options.grossBonusHistory) && options.grossBonusHistory.length <= 60)) ||
+        ![0, 3].includes(options.standardRemunerationStepDelayMonths ?? 0) ||
+        ((options.standardRemunerationStepDelayMonths ?? 0) !== 0 && options.standardMonthlyRemunerationYen == null) ||
+        !(options.standardMonthlyRemunerationYen == null || (Number.isInteger(options.standardMonthlyRemunerationYen) && options.standardMonthlyRemunerationYen >= 0 && options.standardMonthlyRemunerationYen <= 2000000)) ||
+        !(options.standardMonthlyRemunerationAfterStepYen == null || (Number.isInteger(options.standardMonthlyRemunerationAfterStepYen) && options.standardMonthlyRemunerationAfterStepYen >= 0 && options.standardMonthlyRemunerationAfterStepYen <= 2000000)) ||
+        (options.standardMonthlyRemunerationYen == null && options.standardMonthlyRemunerationAfterStepYen != null) ||
+        !(options.includeAge70PlusEligibleEmployment === undefined || typeof options.includeAge70PlusEligibleEmployment === 'boolean') ||
+        !['1962_LATER', '1962_EARLIER'].includes(options.pensionBirthCohort) ||
+        !Number.isFinite(baseline.summary.finalAssets) || !Number.isFinite(baseline.summary.cumulativeCashShortfall) ||
+        !Array.isArray(baseline.timeline) || baseline.timeline.length !== n ||
+        baseline.timeline[0].ageMonths !== start || baseline.timeline.at(-1).ageMonths !== start + n - 1 ||
+        path.cpiIndex.some(v => !Number.isFinite(v) || v <= 0))
+        throw Error('Invalid practical comparison input');
+    // JPS general early claim rule is defined relative to NORMAL retirement age 65.
+    // Never misinterpret an arbitrary 66–75 start (possibly deferred with premium)
+    // as a simple early claim, nor edit historical benefit payments before simulation.
+    const workStart = options.workStartAgeYears === undefined || options.workStartAgeYears === null ? start : options.workStartAgeYears * 12;
+    const workEnd = workStart + options.bridgeMonths;
+    // Time range is [workStart,workEnd); no implicit clipping or backdated wages.
+    if (workStart < start || workEnd > start + n)
+        throw Error('Invalid practical work window: outside simulation horizon');
+    const step = options.wageStepAfterMonths ?? 0, stepPercent = options.wageStepPercent ?? 60;
+    const phaseOneMonths = step === 0 ? options.bridgeMonths : step;
+    const phaseTwoMonths = options.bridgeMonths - phaseOneMonths;
+    const firstCpi = path.cpiIndex.slice(workStart - start, workStart - start + phaseOneMonths).reduce((a, b) => a + b, 0);
+    const secondCpi = path.cpiIndex.slice(workStart - start + phaseOneMonths, workEnd - start).reduce((a, b) => a + b, 0);
+    const earlyAge = pension.startAgeMonths - options.pensionAdvanceMonths;
+    const pensionOptionAvailable = pension.startAgeMonths === 65 * 12 && earlyAge >= 60 * 12 && start <= earlyAge;
+    const excludedReason = pensionOptionAvailable ? '' : pension.startAgeMonths !== 65 * 12 ? '通常の65歳受給を基準にした比較だけに対応' : start > earlyAge ? '試算開始時点ですでに繰上げ時期を経過' : '60歳未満への前倒しは対象外';
+    const monthlyPenaltyRate = options.pensionBirthCohort === '1962_LATER' ? 0.004 : 0.005;
+    const pensionReductionPercent = Number((100 * monthlyPenaltyRate * options.pensionAdvanceMonths).toFixed(2));
+    const extraPlan = (0, extra_cashflows_js_1.buildExtraCashflows)(options.extraCashflows ?? [], start, path);
+    const eventPlan = (0, one_time_events_js_1.buildOneTimeEvents)(options.oneTimeEvents ?? [], start, path);
+    // Lump sums are a labeled subset of 'other' amounts in the lifetime ledger.
+    // Do not add their annual amounts a second time to the reconciliation.
+    const otherMonthly = (extraPlan.streams.length || eventPlan.streams.length) ? extraPlan.monthly.map((r, i) => ({ month: r.month, ageMonths: r.ageMonths, incomeYen: r.incomeYen + eventPlan.monthly[i].incomeYen, expenseYen: r.expenseYen + eventPlan.monthly[i].expenseYen })) : [];
+    const baselineAssets = baseline.summary.finalAssets, baselineShortfall = baseline.summary.cumulativeCashShortfall;
+    const rows = [];
+    for (let mask = 0; mask < 8; mask++) {
+        const expenseCut = !!(mask & 1), pensionEarly = !!(mask & 2), bridge = !!(mask & 4);
+        if (pensionEarly && !pensionOptionAvailable)
+            continue;
+        const trial = structuredClone(scenario);
+        for (const event of eventPlan.streams) {
+            if (event.kind === 'income')
+                trial.incomeStreams.push(event);
+            else
+                trial.expenseStreams.push(event);
+        }
+        for (const extra of extraPlan.streams) {
+            if (extra.kind === 'income')
+                trial.incomeStreams.push(extra);
+            else
+                trial.expenseStreams.push(extra);
+        }
+        const expenseAfter = expense.monthlyAmount * (expenseCut ? (1 - options.expenseReductionPercent / 100) : 1);
+        trial.expenseStreams[0].monthlyAmount = expenseAfter;
+        let pensionAfterMonthly = pension.monthlyAmount;
+        if (pensionEarly) {
+            trial.pensionStreams[0].startAgeMonths = earlyAge;
+            pensionAfterMonthly = pension.monthlyAmount * (1 - monthlyPenaltyRate * options.pensionAdvanceMonths);
+            trial.pensionStreams[0].monthlyAmount = pensionAfterMonthly;
+        }
+        const bridgeGrossMonthly = bridge ? (options.monthlyGrossWage ?? expenseAfter) : 0;
+        const secondStageGrossMonthly = step > 0 ? bridgeGrossMonthly * stepPercent / 100 : bridgeGrossMonthly;
+        let bridgeFirstGrossNominal = 0, bridgeSecondGrossNominal = 0;
+        let bridgeGrossNominal = 0, bridgeDeductionsNominal = 0, bridgeWorkCostNominal = 0, bridgeNetContributionNominal = 0;
+        if (bridge) {
+            // Explicit GROSS wage is independent of expense reduction. The null fallback
+            // preserves v0.25B compatibility for callers without the new wage setting.
+            // Gross, deductions and work costs all share the CPI-linked start-month basis.
+            const gross = bridgeGrossMonthly, workCost = options.monthlyWorkCost, deductionFactor = 1 - options.wageDeductionPercent / 100;
+            trial.incomeStreams.push({ id: 'practical-wage-phase-1', kind: 'income', monthlyAmount: gross * deductionFactor,
+                startAgeMonths: workStart, endAgeMonths: workStart + phaseOneMonths, timing: 'BEGINNING_OF_MONTH', escalationModel: { type: 'CPI_LINKED' } });
+            if (phaseTwoMonths > 0)
+                trial.incomeStreams.push({ id: 'practical-wage-phase-2', kind: 'income', monthlyAmount: secondStageGrossMonthly * deductionFactor,
+                    startAgeMonths: workStart + phaseOneMonths, endAgeMonths: workEnd, timing: 'BEGINNING_OF_MONTH', escalationModel: { type: 'CPI_LINKED' } });
+            if (workCost > 0)
+                trial.expenseStreams.push({ id: 'practical-work-cost', kind: 'expense', monthlyAmount: workCost,
+                    startAgeMonths: workStart, endAgeMonths: workEnd, timing: 'BEGINNING_OF_MONTH', escalationModel: { type: 'CPI_LINKED' } });
+            bridgeFirstGrossNominal = gross * firstCpi;
+            bridgeSecondGrossNominal = secondStageGrossMonthly * secondCpi;
+            bridgeGrossNominal = bridgeFirstGrossNominal + bridgeSecondGrossNominal;
+            bridgeDeductionsNominal = bridgeGrossNominal * options.wageDeductionPercent / 100;
+            bridgeWorkCostNominal = workCost * (firstCpi + secondCpi);
+            bridgeNetContributionNominal = bridgeGrossNominal - bridgeDeductionsNominal - bridgeWorkCostNominal;
+        }
+        // Actual gross CASH bonuses are a distinct cashflow (never standard bonus inputs).
+        // They count as income only for employment cases and their nominal dates.
+        if (bridge && options.grossBonusHistory?.length) {
+            // A single nominal-fixed payment in each specified month.
+            const visited = new Set();
+            for (const b of options.grossBonusHistory) {
+                const monthIdx = path.months.indexOf(b.month);
+                if (!b || typeof b.month !== 'string' || !Number.isSafeInteger(b.grossBonusYen) || b.grossBonusYen < 0 || b.grossBonusYen > 5000000 || visited.has(b.month) ||
+                    monthIdx < workStart - start || monthIdx >= workEnd - start)
+                    throw Error('Invalid practical gross bonus history');
+                visited.add(b.month);
+                trial.incomeStreams.push({ id: `practical-gross-bonus-${monthIdx}`, kind: 'income', monthlyAmount: b.grossBonusYen * (1 - options.wageDeductionPercent / 100),
+                    startAgeMonths: start + monthIdx, endAgeMonths: start + monthIdx + 1, timing: 'BEGINNING_OF_MONTH', escalationModel: { type: 'NOMINAL_FIXED' } });
+            }
+        }
+        // Adjust ONLY the modeled employees' pension portion during assumed eligible employment.
+        // Keep the existing entire pension stream when OFF, preserving v0.26B results.
+        let pensionWorkOverlapMonths = 0, pensionSuspendedMonths = 0, pensionSuspensionNominal = 0, maxMonthlyPensionSuspension = 0, outsideCoverageMonths = 0, age70PlusOverlapMonths = 0, age70PlusSuspensionNominal = 0, pensionMonthlyDetails = [], pensionConfirmedMonths = 0, pensionAssumedMonths = 0;
+        const pensionAfterStartAge = trial.pensionStreams[0].startAgeMonths;
+        if (bridge) {
+            const adjusted = (0, pension_work_overlap_js_1.calculatePensionWorkOverlap)({ enabled: options.apply2026PensionWorkTest === true, simulationStartAgeMonths: start, path, workStartAgeMonths: workStart,
+                workEndAgeMonths: workEnd, firstPhaseMonths: phaseOneMonths, firstGrossMonthly: bridgeGrossMonthly,
+                secondGrossMonthly: secondStageGrossMonthly, pensionStartAgeMonths: pensionAfterStartAge, pensionMonthlyTotal: pensionAfterMonthly,
+                employeesPensionSharePercent: options.employeesPensionSharePercent ?? 50, annualStandardBonusYen: options.annualStandardBonusYen ?? 0,
+                standardMonthlyRemunerationYen: options.standardMonthlyRemunerationYen ?? null, standardMonthlyRemunerationAfterStepYen: options.standardMonthlyRemunerationAfterStepYen ?? null,
+                includeAge70PlusEligibleEmployment: options.includeAge70PlusEligibleEmployment ?? false, thresholdMode: options.pensionThresholdMode ?? 'FIXED_2026',
+                standardBonusHistory: options.standardBonusHistory ?? null, standardRemunerationStepDelayMonths: options.standardRemunerationStepDelayMonths ?? 0 });
+            pensionMonthlyDetails = adjusted.monthlyDetails;
+            pensionConfirmedMonths = adjusted.confirmedThresholdMonths;
+            pensionAssumedMonths = adjusted.assumedThresholdMonths;
+            pensionWorkOverlapMonths = adjusted.overlapMonths;
+            pensionSuspendedMonths = adjusted.suspendedMonths;
+            pensionSuspensionNominal = adjusted.suspensionTotalNominal;
+            maxMonthlyPensionSuspension = adjusted.maxSuspensionMonthly;
+            outsideCoverageMonths = adjusted.modelledMonthsOutsideCoverage;
+            age70PlusOverlapMonths = adjusted.age70PlusOverlapMonths;
+            age70PlusSuspensionNominal = adjusted.age70PlusSuspensionNominal;
+            if (pensionSuspendedMonths > 0) {
+                // Represent reduced actual pension as bounded, nonnegative, nominal-fixed
+                // segments; never treat suspended benefits as household expenses.
+                const original = trial.pensionStreams[0];
+                const pensionEnd = start + n;
+                const fragments = [];
+                let activeStart = Math.max(start, pensionAfterStartAge), lastValue = null;
+                for (let age = activeStart; age <= pensionEnd; age++) {
+                    const value = age === pensionEnd ? null : Math.max(0, pensionAfterMonthly - adjusted.suspensionByIndex[age - start]);
+                    if (age === activeStart) {
+                        lastValue = value;
+                        continue;
+                    }
+                    if (value === lastValue)
+                        continue;
+                    fragments.push({ ...original, id: `practical-pension-${fragments.length}`, monthlyAmount: lastValue, startAgeMonths: activeStart, endAgeMonths: age });
+                    activeStart = age;
+                    lastValue = value;
+                }
+                trial.pensionStreams = fragments;
+            }
+        }
+        let monthlyCashflowDetails = [], grossCashBonusNominal = 0, netCashBonusNominal = 0, netCombinedDuringWorkNominal = 0, incrementVersusNoWorkNominal = 0;
+        if (bridge) {
+            monthlyCashflowDetails = (0, monthly_cashflow_js_1.calculateMonthlyCashflow)({ path, simulationStartAgeMonths: start, workStartAgeMonths: workStart, workEndAgeMonths: workEnd,
+                firstPhaseMonths: phaseOneMonths, firstGrossMonthly: bridgeGrossMonthly, secondGrossMonthly: secondStageGrossMonthly,
+                deductionPercent: options.wageDeductionPercent, monthlyWorkExpense: options.monthlyWorkCost, monthlyLivingExpense: expenseAfter,
+                pensionMonths: pensionMonthlyDetails, grossBonusHistory: options.grossBonusHistory ?? null });
+            grossCashBonusNominal = monthlyCashflowDetails.reduce((a, m) => a + m.grossCashBonusYen, 0);
+            netCashBonusNominal = monthlyCashflowDetails.reduce((a, m) => a + m.grossCashBonusYen - m.estimatedBonusDeductionsYen, 0);
+            netCombinedDuringWorkNominal = monthlyCashflowDetails.reduce((a, m) => a + m.netCombinedIncomeYen, 0);
+            incrementVersusNoWorkNominal = monthlyCashflowDetails.reduce((a, m) => a + m.incrementVersusNoWorkYen, 0);
+            // Include actual net bonus receipts in the preexisting added-income total.
+            bridgeGrossNominal += grossCashBonusNominal;
+            bridgeDeductionsNominal += grossCashBonusNominal - netCashBonusNominal;
+            bridgeNetContributionNominal += netCashBonusNominal;
+            const expected = monthlyCashflowDetails.reduce((a, m) => a + m.netWorkContributionYen, 0);
+            if (Math.abs(expected - bridgeNetContributionNominal) > 0.01)
+                throw Error('Monthly income reconciliation failed');
+        }
+        const result = mask === 0 && extraPlan.streams.length === 0 && eventPlan.streams.length === 0 ? baseline : (0, core_js_1.simulateOne)(trial, path);
+        const lifetimeAnnualDetails = (0, lifetime_cashflow_js_1.aggregateLifetimeCashflow)(result.timeline, trial.portfolio.holdings.default.marketValue, monthlyCashflowDetails, bridge ? { startAgeMonths: workStart, endAgeMonths: workEnd } : null, otherMonthly).annual;
+        const key = mask === 0 ? 'BASE' : `${expenseCut ? 'E' : '-'}${pensionEarly ? 'P' : '-'}${bridge ? 'B' : '-'}`;
+        const changes = [expenseCut ? `生活費${options.expenseReductionPercent}%減` : null,
+            pensionEarly ? `64歳開始・年金${pensionReductionPercent.toFixed(1)}%生涯減額` : null,
+            bridge ? `${workStart / 12}歳〜${workEnd / 12}歳に月額額面${Math.round(bridgeGrossMonthly / 10000)}万円の就業収入${step > 0 ? `（${step}か月後から${stepPercent}%に変更）` : ''}（控除・就業費用あり）` : null].filter(Boolean);
+        rows.push({ key, label: changes.length ? changes.join(' ＋ ') : '基準（変更なし）', expenseCut, pensionEarly, bridge,
+            expenseBefore: expense.monthlyAmount, expenseAfter, pensionStartBefore: pension.startAgeMonths,
+            pensionStartAfter: pensionAfterStartAge, pensionBeforeMonthly: pension.monthlyAmount, pensionAfterMonthly,
+            pensionReductionPercent: pensionEarly ? pensionReductionPercent : 0,
+            bridgeMonths: bridge ? options.bridgeMonths : 0, workStartAgeMonths: bridge ? workStart : 0, workEndAgeMonths: bridge ? workEnd : 0,
+            wageStepAfterMonths: bridge ? step : 0, wageStepPercent: bridge ? stepPercent : 0, secondStageGrossMonthly: bridge ? secondStageGrossMonthly : 0,
+            bridgeFirstGrossNominal, bridgeSecondGrossNominal, bridgeGrossMonthly, bridgeGrossNominal, bridgeDeductionsNominal, bridgeWorkCostNominal, bridgeNetContributionNominal,
+            finalAssets: result.summary.finalAssets, finalAssetsDelta: result.summary.finalAssets - baselineAssets,
+            cumulativeShortfall: result.summary.cumulativeCashShortfall, shortfallDelta: result.summary.cumulativeCashShortfall - baselineShortfall,
+            firstShortfallAgeMonths: result.summary.firstShortfallAgeMonths,
+            pensionWorkOverlapMonths, pensionSuspendedMonths, pensionSuspensionNominal, maxMonthlyPensionSuspension, outsideCoverageMonths, age70PlusOverlapMonths, age70PlusSuspensionNominal, pensionMonthlyDetails, pensionConfirmedMonths, pensionAssumedMonths, monthlyCashflowDetails, lifetimeAnnualDetails, extraIncomeNominal: extraPlan.totalIncomeYen, extraExpenseNominal: extraPlan.totalExpenseYen, eventIncomeNominal: eventPlan.totalIncomeYen, eventExpenseNominal: eventPlan.totalExpenseYen, grossCashBonusNominal, netCashBonusNominal, netCombinedDuringWorkNominal, incrementVersusNoWorkNominal });
+    }
+    // Compare each intervention to the same additional-household-stream baseline.
+    // The unmodified main fixed-return simulation remains independent of these inputs.
+    if (extraPlan.streams.length || eventPlan.streams.length) {
+        const reference = rows[0];
+        for (const row of rows) {
+            row.finalAssetsDelta = row.finalAssets - reference.finalAssets;
+            row.shortfallDelta = row.cumulativeShortfall - reference.cumulativeShortfall;
+        }
+    }
+    return { rows, options: { ...options }, pensionOptionAvailable, excludedReason };
+}
+
+},
+"compute.mjs":function(module,exports,require){
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.R4_POC_SCHEMA = void 0;
+exports.r4DefaultCapture = r4DefaultCapture;
+exports.calculateR4BrowserCore = calculateR4BrowserCore;
+/** R4 standalone browser research PoC: the production financial calculator is reused,
+ * not copied. The page has NO advanced fields, so the explicit unsupported-feature
+ * attestations are all false. Inputs from old v0.33A must use the old opt-in guard.
+ */
+const r2_nominal_terminal_research_js_1 = require("./modules/r2-nominal-terminal-research.js");
+const r2_web_fixed_bridge_js_1 = require("./modules/r2-web-fixed-bridge.js");
+const core_js_1 = require("./modules/core.js");
+exports.R4_POC_SCHEMA = 'dwz-r4-browser-core-poc/0.1.0';
+const features = ['customCsv', 'multiAsset', 'accountTaxNisa', 'loan', 'customEvents', 'extraCashflows',
+    'practicalEmployment', 'pensionEarlyOrWorkTest', 'paymentTiming', 'customCpi'];
+function r4DefaultCapture() {
+    return { schemaVersion: r2_web_fixed_bridge_js_1.R2_WEB_CAPTURE_SCHEMA, mode: 'fixed', simulationStartMonth: '2026-11',
+        sliders: { start: 60, end: 90, assets: 5000, expense: 20, pension: 180, pensionAge: 65, rate: 3, inflation: 2, target: 1000 },
+        excludedFeatureActive: Object.fromEntries(features.map(x => [x, false])), targetBasis: 'NOMINAL_AT_FINAL_MONTH',
+        research: { extraStartAgeYears: 60, extraEndAgeYears: 90, extraEscalation: 'NOMINAL_FIXED',
+            minimumMonthlyClosingRealYen: 0, searchCeilingMonthlyYen: 1000000 } };
+}
+function close(a, b) { return Math.abs(a - b) <= Math.max(1e-5, 1e-10 * Math.max(Math.abs(a), Math.abs(b))); }
+function calculateR4BrowserCore(capture) {
+    const r = (0, r2_nominal_terminal_research_js_1.solveR2V033ANominalTarget)(capture);
+    const zero = structuredClone(capture);
+    zero.sliders.target = 0;
+    const prepared = (0, r2_web_fixed_bridge_js_1.prepareR2FixedWebCapture)(zero);
+    const { scenario, market, options } = prepared;
+    const simulate = extra => {
+        const stream = { id: 'r2-nominal-extra', kind: 'expense', monthlyAmount: extra,
+            startAgeMonths: options.extraStartAgeMonths, endAgeMonths: options.extraEndAgeMonthsExclusive,
+            timing: options.extraTiming, escalationModel: { type: options.extraEscalation } };
+        const s = { ...scenario, target: { ...scenario.target, targetAssets: r.finalNominalTargetYen, valueBasis: 'NOMINAL' },
+            expenseStreams: extra > 0 ? [...scenario.expenseStreams, stream] : scenario.expenseStreams };
+        return (0, core_js_1.simulateOne)(s, market);
+    };
+    const baseline = simulate(0);
+    const selected = r.selectedMonthlyExtraYen === null ? null : simulate(r.selectedMonthlyExtraYen);
+    if (!close(baseline.summary.finalAssets, r.baseline.finalNominalAssetsYen) ||
+        (selected !== null && !close(selected.summary.finalAssets, r.selected.finalNominalAssetsYen)))
+        throw Error('R4_POC_HOLD: solver and monthly ledger mismatch');
+    if (!baseline.timeline || baseline.timeline.length !== market.months.length ||
+        (selected && !selected.timeline))
+        throw Error('R4_POC_HOLD: timeline missing');
+    const monthly = market.months.map((month, i) => ({ month,
+        baselineYen: baseline.timeline[i].totalAssets,
+        selectedYen: selected?.timeline[i].totalAssets ?? null }));
+    return { schemaVersion: exports.R4_POC_SCHEMA, approval: 'RESEARCH_ONLY_HOLD', productionApproved: false,
+        calculationOrigin: 'EXISTING_R2_NOMINAL_SOLVER_AND_CORE',
+        marketAuthenticity: 'SYNTHETIC_FIXED_PATH_UNVERIFIED',
+        precision: 'FLOAT64_LEGACY_NOT_INTEGER_LEDGER', targetBasis: 'NOMINAL_AT_FINAL_MONTH',
+        taxesAndPensionLawCalculated: false, selectedMonthlyExtraYen: r.selectedMonthlyExtraYen,
+        status: r.status, finalNominalTargetYen: r.finalNominalTargetYen,
+        baselineFinalYen: r.baseline.finalNominalAssetsYen,
+        selectedFinalYen: r.selected?.finalNominalAssetsYen ?? null,
+        nextYenFailureMonth: r.nextYen?.firstFailureMonth ?? null,
+        monthly };
+}
+
+},
+"storage.mjs":function(module,exports,require){
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.R4_MAX_BYTES = exports.R4_VAULT_SCHEMA = exports.R4_VAULT_KEY = void 0;
+exports.encodeR4Capture = encodeR4Capture;
+exports.decodeR4Capture = decodeR4Capture;
+exports.readR4Capture = readR4Capture;
+exports.commitR4Capture = commitR4Capture;
+exports.purgeR4Capture = purgeR4Capture;
+/** R4 static Core research only: explicit browser-local capture vault.
+ * FNV1a32 detects accidental corruption, NOT malicious modification or encryption.
+ * Do not accept stored inputs unless the existing Core validates them independently.
+ */
+exports.R4_VAULT_KEY = 'dwz-r4-compare-v11-capture/0.1.0';
+exports.R4_VAULT_SCHEMA = 'dwz-r4-local-capture-vault/0.1.0';
+exports.R4_MAX_BYTES = 8192;
+const hold = why => { throw Error('R4_STORAGE_HOLD: ' + why); };
+const object = v => v !== null && typeof v === 'object' && !Array.isArray(v);
+const exact = (v, keys) => object(v) && Object.keys(v).length === keys.length && keys.every(k => Object.hasOwn(v, k));
+const size = s => new TextEncoder().encode(s).length;
+function fnv(s) { let x = 2166136261; for (const b of new TextEncoder().encode(s)) {
+    x ^= b;
+    x = Math.imul(x, 16777619) >>> 0;
+} return x.toString(16).padStart(8, '0'); }
+function encodeR4Capture(capture) {
+    if (!object(capture) || capture.productionApproved === true || capture.releaseAuthorized === true)
+        hold('untrusted capture');
+    const data = JSON.stringify(capture);
+    if (size(data) > exports.R4_MAX_BYTES)
+        hold('capture too large');
+    return JSON.stringify({ schemaVersion: exports.R4_VAULT_SCHEMA, kind: 'RESEARCH_INPUT_ONLY', checksumMethod: 'FNV1A32_NON_CRYPTO', bytes: size(data), checksum: fnv(data), capture });
+}
+function decodeR4Capture(raw) {
+    if (typeof raw !== 'string' || size(raw) > exports.R4_MAX_BYTES + 512)
+        hold('invalid or oversized record');
+    let envelope;
+    try {
+        envelope = JSON.parse(raw);
+    }
+    catch {
+        hold('damaged JSON');
+    }
+    if (!exact(envelope, ['schemaVersion', 'kind', 'checksumMethod', 'bytes', 'checksum', 'capture']) ||
+        envelope.schemaVersion !== exports.R4_VAULT_SCHEMA || envelope.kind !== 'RESEARCH_INPUT_ONLY' ||
+        envelope.checksumMethod !== 'FNV1A32_NON_CRYPTO' || !Number.isSafeInteger(envelope.bytes) ||
+        !/^[0-9a-f]{8}$/.test(envelope.checksum))
+        hold('envelope mismatch');
+    const data = JSON.stringify(envelope.capture);
+    if (size(data) !== envelope.bytes || size(data) > exports.R4_MAX_BYTES || fnv(data) !== envelope.checksum)
+        hold('checksum mismatch');
+    if (!object(envelope.capture) || envelope.capture.productionApproved === true || envelope.capture.releaseAuthorized === true)
+        hold('untrusted capture');
+    return envelope.capture;
+}
+function readR4Capture(storage) {
+    if (!storage || typeof storage.getItem !== 'function')
+        hold('storage unavailable');
+    const raw = storage.getItem(exports.R4_VAULT_KEY);
+    return { raw, capture: raw === null ? null : decodeR4Capture(raw) };
+}
+/** Caller must validate financial capture using calculateR4BrowserCore before commit. */
+function commitR4Capture(storage, capture, expectedRaw) {
+    if (storage.getItem(exports.R4_VAULT_KEY) !== expectedRaw)
+        hold('saved value changed in another tab');
+    if (expectedRaw !== null)
+        decodeR4Capture(expectedRaw);
+    const encoded = encodeR4Capture(capture);
+    if (expectedRaw === encoded)
+        return encoded;
+    storage.setItem(exports.R4_VAULT_KEY, encoded);
+    try {
+        if (storage.getItem(exports.R4_VAULT_KEY) !== encoded)
+            hold('read-after-write mismatch');
+        decodeR4Capture(encoded);
+    }
+    catch (e) {
+        try {
+            if (expectedRaw === null)
+                storage.removeItem(exports.R4_VAULT_KEY);
+            else
+                storage.setItem(exports.R4_VAULT_KEY, expectedRaw);
+        }
+        catch { }
+        throw e;
+    }
+    return encoded;
+}
+function purgeR4Capture(storage, expectedRaw) {
+    if (storage.getItem(exports.R4_VAULT_KEY) !== expectedRaw)
+        hold('saved value changed in another tab');
+    storage.removeItem(exports.R4_VAULT_KEY);
+    if (storage.getItem(exports.R4_VAULT_KEY) !== null)
+        hold('delete not confirmed');
+}
+
+},
+"comparison-core.mjs":function(module,exports,require){
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.R4_COMPARISON_SCHEMA = void 0;
+exports.runR4ResearchComparison = runR4ResearchComparison;
+/** R4.13 research-only comparison adapter: exclusively calls the original R4/R2 solver.
+ * No new financial algorithms, taxes, portfolio assets, or employment assumptions.
+ */
+const compute_mjs_1 = require("./compute.mjs");
+exports.R4_COMPARISON_SCHEMA = 'dwz-r4-comparison/0.1.0';
+const hold = message => { throw Error('R4_COMPARE_HOLD: ' + message); };
+const isObject = x => x !== null && typeof x === 'object' && !Array.isArray(x);
+function exact(obj, keys, label) {
+    if (!isObject(obj) || Object.keys(obj).length !== keys.length || Object.keys(obj).some(k => !keys.includes(k)))
+        hold(label + ' schema');
+}
+/** Compare only ONE documented axis. Life-expectancy horizon also extends the
+ * optional extra-spending interval through that horizon (explicit model rule). */
+function runR4ResearchComparison(input) {
+    exact(input, ['baseCapture', 'axis', 'candidateAges'], 'request');
+    const { baseCapture, axis, candidateAges } = input;
+    if (!['EXTRA_START_AGE', 'LONGEVITY_END_AGE'].includes(axis))
+        hold('unsupported axis');
+    if (!Array.isArray(candidateAges) || candidateAges.length < 2 || candidateAges.length > 5 ||
+        candidateAges.some(a => !Number.isSafeInteger(a)) || new Set(candidateAges).size !== candidateAges.length)
+        hold('2–5 distinct integer ages required');
+    // Strictly validate the real starting capture even when comparison candidates are valid.
+    const baseline = (0, compute_mjs_1.calculateR4BrowserCore)(baseCapture);
+    if (baseline.approval !== 'RESEARCH_ONLY_HOLD' || baseline.productionApproved !== false)
+        hold('base not research-only');
+    const start = baseCapture.sliders.start;
+    const extraEnd = baseCapture.research.extraEndAgeYears;
+    const extraStart = baseCapture.research.extraStartAgeYears;
+    const end = baseCapture.sliders.end;
+    const rows = candidateAges.map(age => {
+        if (axis === 'EXTRA_START_AGE' && (age < start || age >= extraEnd || age > 120))
+            hold('start-age outside spending interval');
+        if (axis === 'LONGEVITY_END_AGE' && (age <= start || age <= extraStart || age < 51 || age > 120))
+            hold('longevity horizon outside supported ages');
+        const c = structuredClone(baseCapture);
+        if (axis === 'EXTRA_START_AGE')
+            c.research.extraStartAgeYears = age;
+        else {
+            c.sliders.end = age;
+            c.research.extraEndAgeYears = age;
+        }
+        const r = (0, compute_mjs_1.calculateR4BrowserCore)(c);
+        if (r.productionApproved !== false || r.calculationOrigin !== 'EXISTING_R2_NOMINAL_SOLVER_AND_CORE')
+            hold('unexpected solver contract');
+        return { age, status: r.status, selectedMonthlyExtraYen: r.selectedMonthlyExtraYen,
+            finalNominalAssetsYen: r.selectedFinalYen, baselineFinalNominalYen: r.baselineFinalYen,
+            nextYenFailureMonth: r.nextYenFailureMonth };
+    });
+    const reference = rows[0];
+    const confirmed = r => r.status === 'BOUNDARY_CONFIRMED_IN_CAP' && r.selectedMonthlyExtraYen !== null;
+    return { schemaVersion: exports.R4_COMPARISON_SCHEMA, approval: 'RESEARCH_ONLY_HOLD', productionApproved: false,
+        axis, marketAuthenticity: 'SYNTHETIC_FIXED_PATH_UNVERIFIED',
+        fiscalAndPensionLawCalculated: false, m1LedgerParity: 'NOT_VERIFIED', globalMaximumCertified: false,
+        initialSimulationStartAgeYears: start, initialSimulationEndAgeYears: end,
+        nominalTargetYen: baseCapture.sliders.target * 10000, referenceAge: reference.age,
+        policy: axis === 'EXTRA_START_AGE' ? 'FIX_END_AND_CHANGE_EXTRA_START_ONLY' : 'SET_END_AND_EXTRA_END_TO_CANDIDATE_AGE',
+        rows: rows.map(r => ({ ...r, deltaVsReferenceMonthlyYen: confirmed(reference) && confirmed(r) ?
+                r.selectedMonthlyExtraYen - reference.selectedMonthlyExtraYen : null })) };
+}
+
+},
+"comparison-ui.mjs":function(module,exports,require){
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.attachR4ComparisonUI = attachR4ComparisonUI;
+const comparison_core_mjs_1 = require("./comparison-core.mjs");
+const row = (tag, value) => { const e = document.createElement(tag); e.textContent = value; return e; };
+const displayYen = x => x === null ? '比較不可' : Math.round(x).toLocaleString('ja-JP') + '円';
+function attachR4ComparisonUI(form, capture) {
+    const section = document.getElementById('r4-comparison');
+    if (!section)
+        return;
+    const axis = section.querySelector('#r4-compare-axis');
+    const ages = section.querySelector('#r4-compare-ages');
+    const output = section.querySelector('#r4-compare-results');
+    let current = false;
+    function clear() {
+        if (!current)
+            return;
+        current = false;
+        output.replaceChildren(row('p', '比較条件が変更されました。再度「比較する」を押してください。'));
+    }
+    form.addEventListener('input', clear);
+    form.addEventListener('change', clear);
+    axis.addEventListener('change', () => {
+        ages.value = axis.value === 'EXTRA_START_AGE' ? '60,65,70,75' : '85,90,95,100';
+        clear();
+        section.querySelector('#r4-comparison-policy').textContent = axis.value === 'EXTRA_START_AGE' ?
+            '試算開始年齢・終了年齢・運用条件を固定し、追加支出の開始年齢だけを変えます。' :
+            '試算開始年齢を固定し、終了年齢と追加支出終了年齢をそれぞれの候補年齢へ変更します。';
+    });
+    ages.addEventListener('input', clear);
+    section.querySelector('#r4-compare-run').addEventListener('click', () => {
+        try {
+            const raw = ages.value.trim();
+            if (!/^\s*\d{1,3}(?:\s*,\s*\d{1,3}){1,4}\s*$/.test(raw))
+                throw Error('候補年齢はカンマ区切りで2〜5個入力してください。');
+            const candidateAges = raw.split(',').map(v => Number(v.trim()));
+            const result = (0, comparison_core_mjs_1.runR4ResearchComparison)({ baseCapture: capture(), axis: axis.value, candidateAges });
+            const container = row('div', '');
+            const table = document.createElement('table');
+            table.className = 'year-table';
+            const head = document.createElement('thead'), tr = document.createElement('tr');
+            for (const label of ['年齢', '月額追加支出', '先頭候補との差', '追加後の期末資産', '判定'])
+                tr.append(row('th', label));
+            head.append(tr);
+            table.append(head);
+            const body = document.createElement('tbody');
+            for (const r of result.rows) {
+                const t = document.createElement('tr');
+                const status = r.status === 'BOUNDARY_CONFIRMED_IN_CAP' ? '境界確認' : r.status === 'BASELINE_INFEASIBLE' ? '基準条件で未達' : '上限到達／未確定';
+                for (const value of [String(r.age) + '歳', displayYen(r.selectedMonthlyExtraYen),
+                    displayYen(r.deltaVsReferenceMonthlyYen), displayYen(r.finalNominalAssetsYen), status])
+                    t.append(row('td', value));
+                body.append(t);
+            }
+            table.append(body);
+            container.append(row('p', `研究版：${result.rows.length}条件の比較。基準は先頭の${result.referenceAge}歳。差額は両条件で探索境界を確認できた場合のみ表示。`));
+            container.append(table);
+            container.append(row('p', 'すべて指定固定利回りによる仮想条件です。税・社会保険・在職老齢年金の法定計算はしていません。一般公開は未承認。'));
+            output.replaceChildren(container);
+            current = true;
+        }
+        catch (e) {
+            output.replaceChildren(row('p', '比較停止：' + String(e?.message ?? e)));
+            current = true;
+        }
+    });
+}
+
+},
+"portfolio-core.mjs":function(module,exports,require){
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.R4_PORTFOLIO_MAX_BYTES = exports.R4_PORTFOLIO_SCHEMA = void 0;
+exports.fixedConditionsKey = fixedConditionsKey;
+exports.validateR4Portfolio = validateR4Portfolio;
+exports.compareR4Portfolio = compareR4Portfolio;
+exports.exportR4PortfolioJson = exportR4PortfolioJson;
+exports.importR4PortfolioJson = importR4PortfolioJson;
+/** R4.14: Research-only browser adapter for ORIGINAL R3 employment inverse.
+ * Same financial core; portfolio fixed-scope validation and DOM integration only.
+ * No statutory tax/social insurance/pension eligibility, market forecasts or signoff.
+ */
+const compute_mjs_1 = require("./compute.mjs");
+const r3_employment_spending_inverse_js_1 = require("./modules/r3-employment-spending-inverse.js");
+exports.R4_PORTFOLIO_SCHEMA = 'dwz-r4-browser-scenario-portfolio/0.1.0';
+exports.R4_PORTFOLIO_MAX_BYTES = 24576;
+const hold = why => { throw Error('R4_PORTFOLIO_HOLD: ' + why); };
+const object = v => v !== null && typeof v === 'object' && !Array.isArray(v);
+function exact(value, keys, subject) {
+    if (!object(value) || Object.keys(value).length !== keys.length ||
+        Object.keys(value).some(k => !keys.includes(k)))
+        hold(subject + ' unexpected or missing property');
+}
+const canon = x => Array.isArray(x) ? x.map(canon) : object(x) ? Object.fromEntries(Object.keys(x).sort().map(k => [k, canon(x[k])])) : x;
+const byteLength = str => new TextEncoder().encode(str).length;
+function fixedConditionsKey(c) {
+    // R3 contract: ONLY pension and pension start age may change between scenarios.
+    const sliders = Object.fromEntries(Object.entries(c.sliders).filter(([k]) => !['pension', 'pensionAge'].includes(k)));
+    return JSON.stringify(canon({ schemaVersion: c.schemaVersion, mode: c.mode, simulationStartMonth: c.simulationStartMonth,
+        sliders, research: c.research, targetBasis: c.targetBasis, excludedFeatureActive: c.excludedFeatureActive }));
+}
+const employmentKeys = ['workStartAgeYears', 'bridgeMonths', 'monthlyGrossWageYen', 'wageDeductionPercent',
+    'monthlyWorkCostYen', 'wageStepAfterMonths', 'wageStepPercent'];
+function validateR4Portfolio(raw) {
+    exact(raw, ['schemaVersion', 'scenarios'], 'portfolio');
+    if (raw.schemaVersion !== exports.R4_PORTFOLIO_SCHEMA || !Array.isArray(raw.scenarios) || raw.scenarios.length > 5)
+        hold('schema or five-scenario limit');
+    if (byteLength(JSON.stringify(raw)) > exports.R4_PORTFOLIO_MAX_BYTES)
+        hold('size above 24KB');
+    let base = null;
+    const names = new Set();
+    for (const e of raw.scenarios) {
+        exact(e, ['name', 'baseCapture', 'employment'], 'scenario');
+        if (typeof e.name !== 'string' || e.name !== e.name.trim() || e.name.length < 1 ||
+            [...e.name].length > 35 || /[\u0000-\u001f\u007f]/.test(e.name))
+            hold('invalid name');
+        if (names.has(e.name))
+            hold('duplicate name');
+        names.add(e.name);
+        // Validates all exact base keys and unsupported feature flags via existing R2 solver.
+        const r = (0, compute_mjs_1.calculateR4BrowserCore)(e.baseCapture);
+        if (r.productionApproved !== false || r.approval !== 'RESEARCH_ONLY_HOLD')
+            hold('unexpected approval');
+        const key = fixedConditionsKey(e.baseCapture);
+        if (base !== null && base !== key)
+            hold('non-pension base conditions differ');
+        base = key;
+        if (e.employment !== null) {
+            exact(e.employment, employmentKeys, 'employment');
+            const w = e.employment;
+            if (employmentKeys.some(k => !Number.isSafeInteger(w[k])) ||
+                w.monthlyGrossWageYen % 10000 !== 0 || w.monthlyWorkCostYen % 10000 !== 0)
+                hold('employment integer and UI 10k grid');
+            // Full original R3 validation is performed by its solver in compare step;
+            // invalid work can never become an accepted stored or compared scenario.
+            if (w.workStartAgeYears < 0 || w.workStartAgeYears > 119 || w.bridgeMonths < 1 || w.bridgeMonths > 60 ||
+                w.monthlyGrossWageYen < 0 || w.monthlyGrossWageYen > 2000000 ||
+                w.wageDeductionPercent < 0 || w.wageDeductionPercent > 60 ||
+                w.monthlyWorkCostYen < 0 || w.monthlyWorkCostYen > 300000 ||
+                w.wageStepAfterMonths < 0 || w.wageStepAfterMonths >= w.bridgeMonths ||
+                w.wageStepPercent < 0 || w.wageStepPercent > 200 ||
+                w.workStartAgeYears < e.baseCapture.sliders.start ||
+                w.workStartAgeYears * 12 + w.bridgeMonths > e.baseCapture.sliders.end * 12)
+                hold('employment range or window');
+        }
+    }
+    return structuredClone(raw);
+}
+function compareR4Portfolio(raw) {
+    const p = validateR4Portfolio(raw);
+    if (p.scenarios.length < 2)
+        hold('at least two scenarios required');
+    const monthAt = (startMonth, offset) => {
+        const [year, month] = startMonth.split('-').map(Number);
+        const absolute = year * 12 + month - 1 + offset;
+        return `${Math.floor(absolute / 12)}-${String(absolute % 12 + 1).padStart(2, '0')}`;
+    };
+    const rows = p.scenarios.map(s => {
+        let r;
+        if (s.employment === null) {
+            const x = (0, compute_mjs_1.calculateR4BrowserCore)(s.baseCapture);
+            r = { status: x.status, selectedMonthlyExtraYen: x.selectedMonthlyExtraYen,
+                finalNominalAssetsYen: x.selectedFinalYen, workMonths: 0, netEmploymentContributionNominalYen: 0 };
+        }
+        else {
+            const x = (0, r3_employment_spending_inverse_js_1.runR3EmploymentSpendingInverseResearch)({ schemaVersion: 'dwz-r3-employment-preview/0.1.0',
+                baseCapture: s.baseCapture, employment: s.employment });
+            if (x.productionApproved !== false || x.taxCalculated !== false || x.pensionWorkTestApplied !== false)
+                hold('R3 research flags');
+            r = { status: x.status, selectedMonthlyExtraYen: x.selectedMonthlyExtraYen,
+                finalNominalAssetsYen: x.selected?.finalNominalAssetsYen ?? null,
+                workMonths: x.workMonths, netEmploymentContributionNominalYen: x.netEmploymentContributionNominalYen };
+        }
+        const w = s.employment, workStart = w ? w.workStartAgeYears * 12 : 0;
+        const overlap = w && s.baseCapture.sliders.pension > 0 ?
+            Math.max(0, workStart + w.bridgeMonths - Math.max(workStart, s.baseCapture.sliders.pensionAge * 12)) : 0;
+        const startAge = s.baseCapture.sliders.start * 12;
+        const workEnd = workStart + (w?.bridgeMonths ?? 0);
+        const effectivePensionStart = Math.max(startAge, s.baseCapture.sliders.pensionAge * 12);
+        const pensionEnd = s.baseCapture.sliders.end * 12;
+        const overlapStart = Math.max(workStart, effectivePensionStart), overlapEnd = Math.min(workEnd, pensionEnd);
+        const period = (from, to) => from < to ? `${monthAt(s.baseCapture.simulationStartMonth, from - startAge)}〜${monthAt(s.baseCapture.simulationStartMonth, to - startAge - 1)}` : '—';
+        const workPeriod = w ? period(workStart, workEnd) : '—';
+        const pensionPeriod = s.baseCapture.sliders.pension > 0 ? period(effectivePensionStart, pensionEnd) : '—';
+        const overlapPeriod = overlap > 0 ? period(overlapStart, overlapEnd) : '—';
+        if (overlap !== Math.max(0, overlapEnd - overlapStart))
+            hold('overlap calculation mismatch');
+        return { name: s.name, pensionAnnualManYen: s.baseCapture.sliders.pension,
+            pensionStartAgeYears: s.baseCapture.sliders.pensionAge, employmentIncluded: w !== null,
+            ...r, pensionEmploymentOverlapMonths: overlap, workPeriod, pensionPeriod, overlapPeriod,
+            warnings: [...(w ? ['給与控除・社会保険は概算であり法定実額ではありません'] : []),
+                ...(overlap ? ['年金受給と就業が重複。在職老齢年金の支給調整は未計算'] : []),
+                ...(r.status !== 'BOUNDARY_CONFIRMED_IN_CAP' ? ['最大追加支出は確定していません'] : [])] };
+    });
+    const reference = rows[0];
+    const ok = r => r.status === 'BOUNDARY_CONFIRMED_IN_CAP' && r.selectedMonthlyExtraYen !== null;
+    return { schemaVersion: 'dwz-r4-browser-portfolio-comparison/0.1.0', approval: 'RESEARCH_ONLY_HOLD',
+        productionApproved: false, taxCalculated: false, pensionWorkTestApplied: false,
+        m1LedgerParity: 'NOT_VERIFIED', marketAuthenticity: 'SYNTHETIC_FIXED_PATH_UNVERIFIED',
+        globalMaximumCertified: false, scenarioCount: rows.length,
+        rows: rows.map(r => ({ ...r, deltaVsFirstMonthlyYen: ok(r) && ok(reference) ?
+                r.selectedMonthlyExtraYen - reference.selectedMonthlyExtraYen : null })) };
+}
+function exportR4PortfolioJson(raw) { return JSON.stringify(validateR4Portfolio(raw), null, 2) + '\n'; }
+function importR4PortfolioJson(raw) {
+    if (typeof raw !== 'string' || byteLength(raw) > exports.R4_PORTFOLIO_MAX_BYTES)
+        hold('JSON exceeds 24KB');
+    let p;
+    try {
+        p = JSON.parse(raw);
+    }
+    catch {
+        hold('invalid JSON');
+    }
+    return validateR4Portfolio(p);
+}
+
+},
+"portfolio-storage.mjs":function(module,exports,require){
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.R4_PORTFOLIO_STORAGE_KEY = void 0;
+exports.readR4Portfolio = readR4Portfolio;
+exports.commitR4Portfolio = commitR4Portfolio;
+exports.purgeR4Portfolio = purgeR4Portfolio;
+/** Separate research portfolio key. Never mutates single-capture vault. */
+const portfolio_core_mjs_1 = require("./portfolio-core.mjs");
+exports.R4_PORTFOLIO_STORAGE_KEY = 'dwz-r4-comparison-portfolio/0.1.0';
+const hold = s => { throw Error('R4_PORTFOLIO_STORAGE_HOLD: ' + s); };
+function readR4Portfolio(storage) {
+    if (!storage || typeof storage.getItem !== 'function')
+        hold('storage unavailable');
+    const raw = storage.getItem(exports.R4_PORTFOLIO_STORAGE_KEY);
+    return { raw, portfolio: raw === null ? null : (0, portfolio_core_mjs_1.importR4PortfolioJson)(raw) };
+}
+function commitR4Portfolio(storage, p, expectedRaw) {
+    if (storage.getItem(exports.R4_PORTFOLIO_STORAGE_KEY) !== expectedRaw)
+        hold('another tab changed this portfolio');
+    if (expectedRaw !== null)
+        (0, portfolio_core_mjs_1.importR4PortfolioJson)(expectedRaw);
+    const encoded = (0, portfolio_core_mjs_1.exportR4PortfolioJson)((0, portfolio_core_mjs_1.validateR4Portfolio)(p));
+    storage.setItem(exports.R4_PORTFOLIO_STORAGE_KEY, encoded);
+    try {
+        if (storage.getItem(exports.R4_PORTFOLIO_STORAGE_KEY) !== encoded)
+            hold('read after write mismatch');
+        (0, portfolio_core_mjs_1.importR4PortfolioJson)(encoded);
+    }
+    catch (e) {
+        try {
+            if (expectedRaw === null)
+                storage.removeItem(exports.R4_PORTFOLIO_STORAGE_KEY);
+            else
+                storage.setItem(exports.R4_PORTFOLIO_STORAGE_KEY, expectedRaw);
+        }
+        catch { }
+        throw e;
+    }
+    return encoded;
+}
+function purgeR4Portfolio(storage, expectedRaw) {
+    if (storage.getItem(exports.R4_PORTFOLIO_STORAGE_KEY) !== expectedRaw)
+        hold('another tab changed this portfolio');
+    storage.removeItem(exports.R4_PORTFOLIO_STORAGE_KEY);
+    if (storage.getItem(exports.R4_PORTFOLIO_STORAGE_KEY) !== null)
+        hold('delete not confirmed');
+}
+
+},
+"portfolio-ui.mjs":function(module,exports,require){
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.attachR4PortfolioUI = attachR4PortfolioUI;
+/** Research-only named portfolio UI. No automatic localStorage writes or imports. */
+const portfolio_core_mjs_1 = require("./portfolio-core.mjs");
+const portfolio_storage_mjs_1 = require("./portfolio-storage.mjs");
+const e = (tag, value) => { const el = document.createElement(tag); el.textContent = value; return el; };
+const yen = n => n === null ? '比較不可' : Math.round(n).toLocaleString('ja-JP') + '円';
+function attachR4PortfolioUI(form, capture) {
+    const section = document.getElementById('r4-portfolio');
+    if (!section)
+        return;
+    const $ = id => section.querySelector('#' + id);
+    let portfolio = { schemaVersion: portfolio_core_mjs_1.R4_PORTFOLIO_SCHEMA, scenarios: [] };
+    let storedVersion = null;
+    try {
+        storedVersion = window.localStorage.getItem(portfolio_storage_mjs_1.R4_PORTFOLIO_STORAGE_KEY);
+    }
+    catch { }
+    const status = $('r4-portfolio-status'), results = $('r4-portfolio-results'), list = $('r4-portfolio-list');
+    const select = $('r4-portfolio-selected'), mode = $('r4-portfolio-employment');
+    const workFields = ['workStartAgeYears', 'bridgeMonths', 'monthlyGrossWageYen', 'wageDeductionPercent',
+        'monthlyWorkCostYen', 'wageStepAfterMonths', 'wageStepPercent'];
+    const workPanel = $('r4-work-fields');
+    function clearResult(msg = 'シナリオが変更されました。再度「比較する」を押してください。') {
+        results.replaceChildren(e('p', msg));
+    }
+    function refresh() {
+        list.replaceChildren();
+        select.replaceChildren();
+        for (const s of portfolio.scenarios) {
+            const li = e('li', `${s.name}｜年金${s.baseCapture.sliders.pension}万円／${s.baseCapture.sliders.pensionAge}歳開始｜${s.employment ? '就業あり' : '就業なし'}`);
+            list.append(li);
+            const o = e('option', s.name);
+            o.value = s.name;
+            select.append(o);
+        }
+        $('r4-portfolio-count').textContent = String(portfolio.scenarios.length);
+    }
+    const action = (fn) => { try {
+        fn();
+    }
+    catch (ex) {
+        status.textContent = 'HOLD：' + String(ex?.message ?? ex).slice(0, 240);
+        clearResult('入力または保存データが不正です。比較を中断しました。');
+    } };
+    mode.addEventListener('change', () => { workPanel.hidden = mode.value !== 'WORK'; });
+    function takeEmployment() {
+        if (mode.value === 'NONE')
+            return null;
+        if (mode.value !== 'WORK')
+            throw Error('unknown employment selection');
+        const w = {};
+        for (const field of workFields) {
+            const input = $('r4-work-' + field);
+            if (!input.reportValidity() || input.value.trim() === '')
+                throw Error(field + ' is required');
+            w[field] = Number(input.value);
+        }
+        return w;
+    }
+    $('r4-portfolio-add').addEventListener('click', () => action(() => {
+        const name = $('r4-portfolio-name').value.trim();
+        const next = { schemaVersion: portfolio_core_mjs_1.R4_PORTFOLIO_SCHEMA, scenarios: [...portfolio.scenarios,
+                { name, baseCapture: capture(), employment: takeEmployment() }] };
+        portfolio = (0, portfolio_core_mjs_1.validateR4Portfolio)(next);
+        refresh();
+        clearResult();
+        status.textContent = 'メモリ内に追加しました。保存ボタンを押すまで端末には記録されません。';
+    }));
+    $('r4-portfolio-remove').addEventListener('click', () => action(() => {
+        const name = select.value;
+        if (!portfolio.scenarios.some(s => s.name === name))
+            throw Error('scenario not found');
+        portfolio = (0, portfolio_core_mjs_1.validateR4Portfolio)({ ...portfolio, scenarios: portfolio.scenarios.filter(s => s.name !== name) });
+        refresh();
+        clearResult();
+        status.textContent = 'メモリ内から削除しました。端末の保存内容は変更していません。';
+    }));
+    $('r4-portfolio-run').addEventListener('click', () => action(() => {
+        const result = (0, portfolio_core_mjs_1.compareR4Portfolio)(portfolio), table = e('table', '');
+        table.className = 'year-table';
+        const head = e('thead', ''), tr = e('tr', '');
+        for (const text of ['シナリオ', '年金年額／開始', '就業', '追加支出（月額）', '先頭との差額', '年金・就業重複', '就業期間', '年金期間', '重複期間', '判定'])
+            tr.append(e('th', text));
+        head.append(tr);
+        table.append(head);
+        const tbody = e('tbody', '');
+        for (const r of result.rows) {
+            const tr = e('tr', '');
+            for (const t of [r.name,
+                `${r.pensionAnnualManYen}万円／${r.pensionStartAgeYears}歳`, r.employmentIncluded ? `${r.workMonths}か月` : 'なし',
+                yen(r.selectedMonthlyExtraYen), yen(r.deltaVsFirstMonthlyYen), r.pensionEmploymentOverlapMonths + 'か月', r.workPeriod, r.pensionPeriod, r.overlapPeriod,
+                r.status === 'BOUNDARY_CONFIRMED_IN_CAP' ? '境界確認' : r.status === 'BASELINE_INFEASIBLE' ? '基準条件で未達' : '探索上限・未確定'])
+                tr.append(e('td', t));
+            tbody.append(tr);
+        }
+        table.append(tbody);
+        const holder = e('div', '');
+        holder.append(e('p', '研究版：条件は年金額・受給開始年齢・就業条件のみ変更可。先頭のシナリオを比較基準とします。'));
+        holder.append(table);
+        const warnings = [...new Set(result.rows.flatMap(r => r.warnings))];
+        holder.append(e('p', '税・社会保険・在職老齢年金の法定実額計算は行っていません。市場条件は固定利回りの仮想値。正式公開未承認。'));
+        for (const w of warnings)
+            holder.append(e('p', '注意：' + w));
+        results.replaceChildren(holder);
+        status.textContent = `${result.scenarioCount}件を既存R3就業逆算／R2逆算で比較しました。保存はしていません。`;
+    }));
+    $('r4-portfolio-save').addEventListener('click', () => action(() => {
+        portfolio = (0, portfolio_core_mjs_1.validateR4Portfolio)(portfolio);
+        storedVersion = (0, portfolio_storage_mjs_1.commitR4Portfolio)(window.localStorage, portfolio, storedVersion);
+        status.textContent = '明示操作によりシナリオ条件のみ端末内に保存しました（暗号化なし）。';
+    }));
+    $('r4-portfolio-restore').addEventListener('click', () => action(() => {
+        const { raw, portfolio: p } = (0, portfolio_storage_mjs_1.readR4Portfolio)(window.localStorage);
+        if (p === null)
+            throw Error('no saved portfolio');
+        portfolio = (0, portfolio_core_mjs_1.validateR4Portfolio)(p);
+        storedVersion = raw;
+        refresh();
+        clearResult('端末内から復元しました。比較は再度手動で実行してください。');
+        status.textContent = '端末内のシナリオを復元しました。計算結果は復元していません。';
+    }));
+    $('r4-portfolio-purge').addEventListener('click', () => action(() => {
+        if (!window.confirm('このブラウザに保存した5シナリオ用の条件だけを削除しますか？'))
+            return;
+        (0, portfolio_storage_mjs_1.purgeR4Portfolio)(window.localStorage, storedVersion);
+        storedVersion = null;
+        status.textContent = '端末内のシナリオ保存データを削除しました。通常Coreの保存データは維持します。';
+    }));
+    $('r4-portfolio-export').addEventListener('click', () => action(() => {
+        const json = (0, portfolio_core_mjs_1.exportR4PortfolioJson)(portfolio);
+        $('r4-portfolio-json').value = json;
+        status.textContent = 'JSONを生成しました。下欄からコピーできます。出力操作のみでは保存されません。';
+    }));
+    $('r4-portfolio-import').addEventListener('click', () => action(() => {
+        const p = (0, portfolio_core_mjs_1.importR4PortfolioJson)($('r4-portfolio-json').value);
+        portfolio = p;
+        refresh();
+        clearResult('JSONを読み込みました。実行・端末保存は別操作です。');
+        status.textContent = 'JSONを検証してメモリ内へ読み込みました。端末には自動保存していません。';
+    }));
+    $('r4-portfolio-download').addEventListener('click', () => action(() => {
+        const raw = (0, portfolio_core_mjs_1.exportR4PortfolioJson)(portfolio), file = new Blob([raw], { type: 'application/json;charset=utf-8' });
+        const url = URL.createObjectURL(file), a = document.createElement('a');
+        a.href = url;
+        a.download = 'dwz-r4-research-scenarios.json';
+        document.body.append(a);
+        try {
+            a.click();
+        }
+        finally {
+            a.remove();
+            setTimeout(() => URL.revokeObjectURL(url), 1000);
+        }
+        status.textContent = '研究用JSONファイルを出力しました。端末の保存領域は変更していません。';
+    }));
+    $('r4-portfolio-file').addEventListener('change', async () => {
+        const file = $('r4-portfolio-file').files?.[0];
+        if (!file)
+            return;
+        try {
+            if (file.size > 24576)
+                throw Error('JSON file exceeds 24KB');
+            const candidate = (0, portfolio_core_mjs_1.importR4PortfolioJson)(await file.text());
+            portfolio = candidate;
+            refresh();
+            clearResult('ファイルから入力条件を読み込みました。比較は手動で実行してください。');
+            status.textContent = 'ファイルのJSONを検証してメモリに読み込みました。端末には自動保存していません。';
+        }
+        catch (ex) {
+            status.textContent = 'HOLD：' + String(ex?.message ?? ex).slice(0, 240);
+        }
+        finally {
+            $('r4-portfolio-file').value = '';
+        }
+    });
+    refresh();
+    workPanel.hidden = true;
+}
+
+},
+"risk-event-core.mjs":function(module,exports,require){
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.R4_EVENTS_SCHEMA = exports.R4_STRESS_SCHEMA = void 0;
+exports.solveResearchPath = solveResearchPath;
+exports.compareR4SyntheticStress = compareR4SyntheticStress;
+exports.compareR4OneTimeEvents = compareR4OneTimeEvents;
+/** R4.15 standalone RESEARCH-only market sequence and one-time event comparison.
+ * No production approval, tax calculation, historical calibration or M1 parity.
+ * Unmodified existing DWZ engines and R2/R3 adapters are reused.
+ */
+const compute_mjs_1 = require("./compute.mjs");
+const r2_web_fixed_bridge_js_1 = require("./modules/r2-web-fixed-bridge.js");
+const core_js_1 = require("./modules/core.js");
+const stress_path_js_1 = require("./modules/stress-path.js");
+const one_time_events_js_1 = require("./modules/one-time-events.js");
+exports.R4_STRESS_SCHEMA = 'dwz-r4-browser-synthetic-stress/0.1.0';
+exports.R4_EVENTS_SCHEMA = 'dwz-r4-browser-one-time-events/0.1.0';
+const hold = (msg) => { throw Error('R4_RISK_EVENT_HOLD: ' + msg); };
+const statusOk = r => r.status === 'BOUNDARY_CONFIRMED_IN_CAP' && r.selectedMonthlyExtraYen !== null;
+const close = (a, b) => Math.abs(a - b) <= Math.max(1e-5, 1e-10 * Math.max(Math.abs(a), Math.abs(b)));
+function getBase(capture) {
+    const audited = (0, compute_mjs_1.calculateR4BrowserCore)(capture);
+    if (audited.productionApproved !== false || audited.approval !== 'RESEARCH_ONLY_HOLD' || audited.marketAuthenticity !== 'SYNTHETIC_FIXED_PATH_UNVERIFIED')
+        hold('base approval/source');
+    const zero = structuredClone(capture);
+    zero.sliders.target = 0;
+    const { scenario, market, options } = (0, r2_web_fixed_bridge_js_1.prepareR2FixedWebCapture)(zero);
+    if (options.extraTiming !== 'BEGINNING_OF_MONTH' || options.minimumMonthlyClosingRealYen !== 0)
+        hold('unsupported spending policy');
+    const target = capture.sliders.target * 10000;
+    return { audited, scenario, market, options, target };
+}
+/** Independent path-aware inverse using original monthly simulateOne; always trial exactly +1 yen. */
+function solveResearchPath({ scenario, market, options, target }, events = []) {
+    if (!Number.isSafeInteger(target) || target < 0 || !Array.isArray(events) || events.length > 20)
+        hold('target/events invalid');
+    const eventPlan = (0, one_time_events_js_1.buildOneTimeEvents)(events, scenario.person.simulationStartAgeMonths, market);
+    const run = (n) => {
+        const extra = { id: 'r4-research-extra', kind: 'expense', monthlyAmount: n,
+            startAgeMonths: options.extraStartAgeMonths, endAgeMonths: options.extraEndAgeMonthsExclusive,
+            timing: options.extraTiming, escalationModel: { type: options.extraEscalation } };
+        const s = { ...scenario, target: { ...scenario.target, targetAssets: target, valueBasis: 'NOMINAL' },
+            incomeStreams: [...scenario.incomeStreams, ...eventPlan.streams.filter(x => x.kind === 'income')],
+            expenseStreams: [...scenario.expenseStreams, ...eventPlan.streams.filter(x => x.kind === 'expense'), ...(n > 0 ? [extra] : [])] };
+        const sim = (0, core_js_1.simulateOne)(s, market);
+        if (!Array.isArray(sim.timeline) || sim.timeline.length !== market.months.length)
+            hold('monthly timeline');
+        let firstFailureMonth = null, failureKind = null;
+        for (const row of sim.timeline) {
+            if (!Number.isFinite(row.totalAssets) || !Number.isFinite(row.cashShortfallThisMonth) || row.totalAssets < 0)
+                hold('nonfinite month');
+            if (firstFailureMonth === null && row.cashShortfallThisMonth > 1e-8) {
+                firstFailureMonth = row.yearMonth;
+                failureKind = 'CASH_SHORTFALL';
+            }
+        }
+        const final = sim.summary.finalAssets;
+        if (!Number.isFinite(final))
+            hold('nonfinite final');
+        if (target > 0 && Math.abs(final - target) <= 8 * Number.EPSILON * Math.max(Math.abs(final), target))
+            hold('ambiguous floating threshold');
+        if (firstFailureMonth === null && final < target) {
+            firstFailureMonth = market.months.at(-1);
+            failureKind = 'NOMINAL_FINAL_TARGET';
+        }
+        return { feasible: firstFailureMonth === null, finalNominalAssetsYen: final, firstFailureMonth, failureKind,
+            cashShortfallTotalYen: sim.summary.cumulativeCashShortfall };
+    };
+    const base = run(0), ceiling = options.searchCeilingMonthlyYen;
+    if (!base.feasible)
+        return { status: 'BASELINE_INFEASIBLE', selectedMonthlyExtraYen: null, baselineFinalYen: base.finalNominalAssetsYen,
+            finalNominalAssetsYen: null, nextYenFailureMonth: base.firstFailureMonth, reason: base.failureKind };
+    const cap = run(ceiling);
+    if (cap.feasible)
+        return { status: 'CEILING_REFERENCE_NOT_GLOBAL_MAX', selectedMonthlyExtraYen: ceiling,
+            baselineFinalYen: base.finalNominalAssetsYen, finalNominalAssetsYen: cap.finalNominalAssetsYen, nextYenFailureMonth: null, reason: null };
+    let low = 0, high = ceiling, selected = base, next = cap;
+    while (high - low > 1) {
+        const mid = low + Math.floor((high - low) / 2);
+        const t = run(mid);
+        if (t.feasible) {
+            low = mid;
+            selected = t;
+        }
+        else {
+            high = mid;
+            next = t;
+        }
+    }
+    if (high !== low + 1 || !selected.feasible || next.feasible || !next.firstFailureMonth)
+        hold('binary search boundary');
+    return { status: 'BOUNDARY_CONFIRMED_IN_CAP', selectedMonthlyExtraYen: low, baselineFinalYen: base.finalNominalAssetsYen,
+        finalNominalAssetsYen: selected.finalNominalAssetsYen, nextYenFailureMonth: next.firstFailureMonth, reason: next.failureKind };
+}
+function ensureParity(reference, actual) {
+    if (reference.status !== actual.status || reference.selectedMonthlyExtraYen !== actual.selectedMonthlyExtraYen ||
+        !close(reference.baselineFinalYen, actual.baselineFinalYen) ||
+        (reference.selectedFinalYen === null) !== (actual.finalNominalAssetsYen === null) ||
+        (reference.selectedFinalYen !== null && !close(reference.selectedFinalYen, actual.finalNominalAssetsYen)))
+        hold('original R2 parity mismatch');
+}
+const cases = [
+    ['BASELINE', '基本条件'], ['EARLY_CRASH', '初期ショック（順序）'],
+    ['LATE_CRASH', '後期ショック（順序）'], ['HIGH_INFLATION', '高インフレ5年'],
+    ['SLUMP_RECOVERY', '低迷3年・回復5年']
+];
+function compareR4SyntheticStress(capture) {
+    const b = getBase(capture);
+    const results = cases.map(([id, label]) => {
+        const metadata = id === 'BASELINE' ? null : (0, stress_path_js_1.createConfiguredStressPath)(b.market, id, capture.sliders.inflation / 100, stress_path_js_1.DEFAULT_STRESS_SETTINGS);
+        const p = { scenario: b.scenario, market: metadata?.path ?? b.market, options: b.options, target: b.target };
+        const result = solveResearchPath(p);
+        if (id === 'BASELINE')
+            ensureParity(b.audited, result);
+        return { id, label, ...result, normalizedSequence: metadata?.normalized ?? false,
+            shockMonth: metadata?.shockMonthIndex === null || metadata?.shockMonthIndex === undefined ? null : p.market.months[metadata.shockMonthIndex] };
+    });
+    const reference = results[0];
+    return { schemaVersion: exports.R4_STRESS_SCHEMA, approval: 'RESEARCH_ONLY_HOLD', productionApproved: false,
+        historicalMarketVerified: false, probabilisticForecast: false, m1LedgerParity: 'NOT_VERIFIED',
+        assumptions: { shockPercent: 35, earlyShockYear: 1, highInflationFirst5YearsPercent: 8,
+            slumpAnnualPercent: -4, recoveryAnnualPercent: 8,
+            sequenceCasesNormalizedToSameUnwithdrawnGrossReturn: true },
+        rows: results.map(r => ({ ...r, deltaVsBaseMonthlyYen: statusOk(r) && statusOk(reference) ? r.selectedMonthlyExtraYen - reference.selectedMonthlyExtraYen : null })) };
+}
+function compareR4OneTimeEvents(capture, text) {
+    const b = getBase(capture), events = (0, one_time_events_js_1.parseOneTimeEvents)(text);
+    if (events.length === 0)
+        hold('add at least one event');
+    const reference = solveResearchPath(b);
+    ensureParity(b.audited, reference);
+    const selected = solveResearchPath(b, events);
+    const totals = { incomeYen: events.filter(x => x.kind === 'income').reduce((a, x) => a + x.amountYen, 0),
+        expenseYen: events.filter(x => x.kind === 'expense').reduce((a, x) => a + x.amountYen, 0) };
+    return { schemaVersion: exports.R4_EVENTS_SCHEMA, approval: 'RESEARCH_ONLY_HOLD', productionApproved: false,
+        taxCalculated: false, inheritanceCalculated: false, propertyLoanCalculated: false,
+        eventTiming: 'BEGINNING_OF_CALENDAR_MONTH_NOMINAL', m1LedgerParity: 'NOT_VERIFIED',
+        events: events.map(x => ({ ...x })), totals, reference, selected,
+        deltaMonthlyYen: statusOk(reference) && statusOk(selected) ? selected.selectedMonthlyExtraYen - reference.selectedMonthlyExtraYen : null };
+}
+
+},
+"risk-event-ui.mjs":function(module,exports,require){
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.attachR4RiskEventUI = attachR4RiskEventUI;
+/** R4.15 Research-only interactive stress and one-time household events. */
+const risk_event_core_mjs_1 = require("./risk-event-core.mjs");
+const el = (tag, value) => { const x = document.createElement(tag); if (value !== undefined)
+    x.textContent = value; return x; };
+const yen = value => value === null || value === undefined ? '比較不可' : Math.round(value).toLocaleString('ja-JP') + '円';
+function makeTable(headings, rows) {
+    const table = el('table');
+    table.className = 'year-table';
+    const thead = el('thead'), heading = el('tr');
+    for (const h of headings)
+        heading.append(el('th', h));
+    thead.append(heading);
+    table.append(thead);
+    const tbody = el('tbody');
+    for (const cells of rows) {
+        const tr = el('tr');
+        for (const value of cells)
+            tr.append(el('td', String(value)));
+        tbody.append(tr);
+    }
+    table.append(tbody);
+    return table;
+}
+function attachR4RiskEventUI(form, capture) {
+    const risk = document.getElementById('r4-risk'), events = document.getElementById('r4-events');
+    if (!risk || !events)
+        return;
+    const riskOut = document.getElementById('r4-risk-results'), eventOut = document.getElementById('r4-events-results');
+    const clear = (out, msg) => out.replaceChildren(el('p', msg));
+    for (const type of ['input', 'change'])
+        form.addEventListener(type, () => {
+            clear(riskOut, '基本条件が変更されました。ストレス比較を再実行してください。');
+            clear(eventOut, '基本条件が変更されました。イベント比較を再実行してください。');
+        });
+    document.getElementById('r4-risk-run').addEventListener('click', () => {
+        clear(riskOut, '条件を計算中…');
+        try {
+            const result = (0, risk_event_core_mjs_1.compareR4SyntheticStress)(capture());
+            const holder = el('div');
+            holder.append(el('p', '教育用の仮想5市場経路。同じ金融資産と生活費条件で逆算します。初期・後期ショックは未取り崩し時の累積倍率が等しくなるよう補正した順序実験です。市場確率や将来予測ではありません。'));
+            holder.append(makeTable(['市場条件', '月額追加支出', '基本との差額', '翌1円の不成立月', '結果'], result.rows.map(r => [
+                r.label, yen(r.selectedMonthlyExtraYen), yen(r.deltaVsBaseMonthlyYen), r.nextYenFailureMonth ?? '—',
+                r.status === 'BOUNDARY_CONFIRMED_IN_CAP' ? '探索範囲で確定' : r.status === 'BASELINE_INFEASIBLE' ? '基本条件で目標未達' : '探索上限・未確定'
+            ])));
+            holder.append(el('p', '前提：ショック35%、高インフレ最初の5年間は年8%、低迷年−4%×3年・回復年+8%×5年。税・保険料・確率の推定は行いません。'));
+            riskOut.replaceChildren(holder);
+        }
+        catch (ex) {
+            clear(riskOut, 'HOLD：' + String(ex?.message ?? ex).slice(0, 300));
+        }
+    });
+    const source = document.getElementById('r4-events-text');
+    for (const type of ['input', 'change'])
+        source.addEventListener(type, () => clear(eventOut, 'イベント内容を変更しました。再度比較してください。'));
+    document.getElementById('r4-events-run').addEventListener('click', () => {
+        clear(eventOut, 'イベントを検証中…');
+        try {
+            const result = (0, risk_event_core_mjs_1.compareR4OneTimeEvents)(capture(), source.value);
+            const holder = el('div');
+            holder.append(el('p', `入力した臨時収入：${yen(result.totals.incomeYen)}、臨時支出：${yen(result.totals.expenseYen)}。いずれも指定月の月初に名目円で計上。`));
+            holder.append(makeTable(['条件', '追加支出（月額）', '差額', '判定'], [
+                ['イベントなし', yen(result.reference.selectedMonthlyExtraYen), '—', result.reference.status],
+                ['イベントあり', yen(result.selected.selectedMonthlyExtraYen), yen(result.deltaMonthlyYen), result.selected.status]
+            ]));
+            holder.append(el('p', 'ライフイベントは単発の名目資金移動です。相続税・贈与税・売却費・借入金返済・就業との組合せは計算していません。保存機能はありません。'));
+            eventOut.replaceChildren(holder);
+        }
+        catch (ex) {
+            clear(eventOut, 'HOLD：' + String(ex?.message ?? ex).slice(0, 300));
+        }
+    });
+}
+
+},
+"app.mjs":function(module,exports,require){
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const portfolio_ui_mjs_1 = require("./portfolio-ui.mjs");
+const risk_event_ui_mjs_1 = require("./risk-event-ui.mjs");
+const comparison_ui_mjs_1 = require("./comparison-ui.mjs");
+const storage_mjs_1 = require("./storage.mjs");
+const compute_mjs_1 = require("./compute.mjs");
+const form = document.getElementById('scenario');
+const output = document.getElementById('output');
+const fields = ['simulationStartMonth', 'start', 'end', 'assets', 'expense', 'pension', 'pensionAge', 'rate', 'inflation', 'target', 'extraStartAgeYears', 'extraEndAgeYears', 'extraEscalation', 'searchCeilingMonthlyYen'];
+const defaultData = (0, compute_mjs_1.r4DefaultCapture)();
+for (const field of fields) {
+    const value = field === 'simulationStartMonth' ? defaultData.simulationStartMonth :
+        field in defaultData.sliders ? defaultData.sliders[field] : defaultData.research[field];
+    form.elements[field].value = String(value);
+}
+// Comparison edition does not consume the standard Core v1 one-time handoff.
+const yen = x => x === null ? '判定不可' : Math.round(x).toLocaleString('ja-JP') + '円';
+function capture() {
+    if (!form.reportValidity())
+        throw Error('入力範囲を確認してください');
+    const c = (0, compute_mjs_1.r4DefaultCapture)();
+    c.simulationStartMonth = form.elements.simulationStartMonth.value;
+    for (const k of Object.keys(c.sliders))
+        c.sliders[k] = Number(form.elements[k].value);
+    for (const k of Object.keys(c.research)) {
+        if (k === 'minimumMonthlyClosingRealYen')
+            continue;
+        c.research[k] = k === 'extraEscalation' ? form.elements[k].value : Number(form.elements[k].value);
+    }
+    return c;
+}
+function el(name, cls, text) { const d = document.createElement(name); if (cls)
+    d.className = cls; if (text !== undefined)
+    d.textContent = text; return d; }
+function spark(rows) {
+    const w = 740, h = 205, pad = 25;
+    const list = rows.flatMap(r => [r.baselineYen, ...(r.selectedYen === null ? [] : [r.selectedYen])]);
+    const max = Math.max(1, ...list);
+    const n = Math.max(1, rows.length - 1);
+    const point = (k, key) => `${pad + (k / n) * (w - pad * 2)},${h - pad - (rows[k][key] / max) * (h - pad * 2)}`;
+    const path = key => rows.filter(r => r[key] !== null).map((_, i) => point(i, key)).join(' ');
+    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.setAttribute('viewBox', `0 0 ${w} ${h}`);
+    svg.setAttribute('role', 'img');
+    svg.setAttribute('aria-label', '月次資産推移：グレーが基準、青が追加支出後');
+    for (const [key, color] of [['baselineYen', '#8795ad'], ['selectedYen', '#2563eb']]) {
+        if (key === 'selectedYen' && rows[0][key] === null)
+            continue;
+        const p = document.createElementNS(svg.namespaceURI, 'polyline');
+        p.setAttribute('fill', 'none');
+        p.setAttribute('stroke', color);
+        p.setAttribute('stroke-width', '3');
+        p.setAttribute('points', path(key));
+        svg.append(p);
+    }
+    return svg;
+}
+// R4: local settings are never loaded, saved, or deleted without explicit user action.
+// Any restored input must pass the same financial validation as manually entered input.
+const vaultMessage = document.getElementById('r4-vault-status');
+let vaultVersion = null;
+try {
+    vaultVersion = window.localStorage.getItem(storage_mjs_1.R4_VAULT_KEY);
+}
+catch {
+    vaultMessage.textContent = 'HOLD：端末内保存が使えません。計算機能は引き続き利用できます。';
+}
+// Financial results are tied to the exact inputs used for the calculation.
+// Never leave a previous result visible after any form edit, including keyboard edits.
+function invalidateStaleResult() {
+    if (output.dataset.status === undefined)
+        return;
+    output.replaceChildren(el('p', 'muted', '条件が変更されました。結果を更新するには再計算してください。'));
+    delete output.dataset.status;
+}
+form.addEventListener('input', invalidateStaleResult);
+form.addEventListener('change', invalidateStaleResult);
+function fillCapture(saved) {
+    form.elements.simulationStartMonth.value = saved.simulationStartMonth;
+    for (const [k, v] of Object.entries(saved.sliders))
+        form.elements[k].value = String(v);
+    for (const [k, v] of Object.entries(saved.research))
+        if (k !== 'minimumMonthlyClosingRealYen')
+            form.elements[k].value = String(v);
+    output.replaceChildren(el('p', 'muted', '復元した入力条件を確認し、手動で計算してください。'));
+    delete output.dataset.status;
+}
+function vaultAction(action) {
+    try {
+        action();
+    }
+    catch (e) {
+        vaultMessage.textContent = 'HOLD：' + String(e?.message ?? e).slice(0, 220);
+    }
+}
+document.getElementById('r4-save-local').addEventListener('click', () => vaultAction(() => {
+    const candidate = capture();
+    (0, compute_mjs_1.calculateR4BrowserCore)(candidate); // fail closed for unsupported settings
+    vaultVersion = (0, storage_mjs_1.commitR4Capture)(window.localStorage, candidate, vaultVersion);
+    vaultMessage.textContent = '研究用の入力条件のみ端末内へ保存しました（暗号化なし）。';
+}));
+document.getElementById('r4-restore-local').addEventListener('click', () => vaultAction(() => {
+    const { raw, capture: stored } = (0, storage_mjs_1.readR4Capture)(window.localStorage);
+    if (stored === null)
+        throw Error('保存した入力はありません');
+    const result = (0, compute_mjs_1.calculateR4BrowserCore)(stored);
+    if (result.productionApproved !== false || result.approval !== 'RESEARCH_ONLY_HOLD')
+        throw Error('承認状態が不正');
+    vaultVersion = raw;
+    fillCapture(stored);
+    vaultMessage.textContent = '復元しました。条件確認後に手動で計算してください。';
+}));
+document.getElementById('r4-purge-local').addEventListener('click', () => vaultAction(() => {
+    if (!window.confirm('このブラウザに保存したR4基本条件を削除しますか？'))
+        return;
+    (0, storage_mjs_1.purgeR4Capture)(window.localStorage, vaultVersion);
+    vaultVersion = null;
+    vaultMessage.textContent = '保存条件の削除を確認しました。';
+}));
+form.addEventListener('submit', ev => {
+    ev.preventDefault();
+    delete output.dataset.status;
+    output.replaceChildren(el('p', 'muted', '計算中…'));
+    try {
+        const r = (0, compute_mjs_1.calculateR4BrowserCore)(capture());
+        const info = el('div', 'results');
+        const cards = el('div', 'cards');
+        for (const [title, value] of [['追加支出の月額', yen(r.selectedMonthlyExtraYen)], ['追加前の最終資産', yen(r.baselineFinalYen)],
+            ['追加後の最終資産', yen(r.selectedFinalYen)], ['名目期末目標', yen(r.finalNominalTargetYen)]]) {
+            const card = el('div', 'stat');
+            card.append(el('span', 'stat-label', title), el('strong', 'stat-value', value));
+            cards.append(card);
+        }
+        info.append(cards);
+        const statuses = { BOUNDARY_CONFIRMED_IN_CAP: '探索範囲内で翌1円の不成立を検証',
+            CEILING_REFERENCE_NOT_GLOBAL_MAX: '探索上限に到達（最大額ではありません）',
+            BASELINE_INFEASIBLE: '基本条件のままでは目標未達' };
+        info.append(el('p', 'result-status', statuses[r.status] ?? '保留'));
+        if (r.nextYenFailureMonth)
+            info.append(el('p', 'muted', '翌1円の不成立確認月：' + r.nextYenFailureMonth));
+        info.append(spark(r.monthly));
+        const table = el('table', 'year-table');
+        table.innerHTML = '<thead><tr><th>年月</th><th>追加前</th><th>追加後</th></tr></thead>';
+        const tbody = el('tbody');
+        for (const [i, row] of r.monthly.entries())
+            if (i % 12 === 0 || i === r.monthly.length - 1) {
+                const tr = el('tr');
+                for (const v of [row.month, yen(row.baselineYen), yen(row.selectedYen)])
+                    tr.append(el('td', '', v));
+                tbody.append(tr);
+            }
+        table.append(tbody);
+        info.append(table);
+        output.replaceChildren(info);
+        output.dataset.status = r.status;
+    }
+    catch (e) {
+        output.replaceChildren(el('p', 'error', '計算を停止しました：' + String(e?.message ?? e)));
+        output.dataset.status = 'HOLD';
+    }
+});
+(0, comparison_ui_mjs_1.attachR4ComparisonUI)(form, capture);
+(0, portfolio_ui_mjs_1.attachR4PortfolioUI)(form, capture);
+(0, risk_event_ui_mjs_1.attachR4RiskEventUI)(form, capture);
+
+}
+};
+const cache=Object.create(null);
+function resolve(parent,rel){
+ if(!rel.startsWith('./')&&!rel.startsWith('../'))throw Error('Unsupported import '+rel);
+ const p=parent.split('/');p.pop();for(const x of rel.split('/')){if(!x||x==='.')continue;if(x==='..'){if(!p.length)throw Error('Outside module root');p.pop()}else p.push(x)}return p.join('/');
+}
+function load(id){if(cache[id])return cache[id].exports;const factory=registry[id];if(!factory)throw Error('Missing module '+id);const m={exports:{}};cache[id]=m;factory(m,m.exports,d=>load(resolve(id,d)));return m.exports}
+load('app.mjs');
+})();
+
+</script><script>
+/** DWZ R4.16 progressive disclosure. UI-only; never modifies the financial Core.
+ * Quick mode makes hidden assumptions explicit and always neutralizes advanced edits.
+ * Advanced edits are held in memory for return to detailed mode, never auto-saved.
+ */
+(function(){
+  'use strict';
+  const form = document.getElementById('scenario');
+  const quick = document.getElementById('dwz-mode-quick');
+  const detail = document.getElementById('dwz-mode-detail');
+  const note = document.getElementById('dwz-quick-assumptions');
+  const intro = document.getElementById('dwz-mode-intro');
+  if(!form || !quick || !detail || !note) return;
+
+  // Keep precisely the six user-visible financial inputs in quick mode.
+  const essential = new Set(['start','end','assets','expense','pension','rate']);
+  const inputs = Array.from(form.querySelectorAll('[name]'));
+  const advanced = inputs.filter(el=>!essential.has(el.name));
+  const original = Object.fromEntries(advanced.map(el=>[el.name,el.value]));
+  for(const el of advanced){
+    const wrapper = el.closest('label');
+    if(wrapper) wrapper.dataset.modeAdvanced='true';
+  }
+  let detailedDraft = null;
+  let detailedAgeSnapshot = null;
+  let active = null;
+  const value = name=>form.elements[name].value;
+  const lastVisibleAges = {start:value('start'), end:value('end')};
+  const linkedField = {start:'extraStartAgeYears', end:'extraEndAgeYears'};
+  // When a detailed assumption followed the visible horizon, keep it following it.
+  // An explicitly customized assumption is never overwritten.
+  const synchronizeLinkedAge = name => {
+    const linked = form.elements[linkedField[name]];
+    if (linked.value === lastVisibleAges[name]) linked.value=value(name);
+    lastVisibleAges[name]=value(name);
+  };
+
+  const sendChange = ()=>form.dispatchEvent(new Event('input',{bubbles:true}));
+  const resetQuickAssumptions = ()=>{
+    for(const el of advanced) el.value=original[el.name];
+    // Hidden additional-spending dates follow the visible simulation dates.
+    form.elements.extraStartAgeYears.value=value('start');
+    form.elements.extraEndAgeYears.value=value('end');
+  };
+  const showAssumptions = ()=>{
+    note.textContent = `仮の前提：試算開始${value('simulationStartMonth')}、年金開始${value('pensionAge')}歳、物価上昇年${value('inflation')}%、期末目標${value('target')}万円、追加支出${value('extraStartAgeYears')}〜${value('extraEndAgeYears')}歳（終了年齢を含まない）、方式：名目固定。年金は年額÷12を円単位に四捨五入（年合計に最大6円の差）。税・社会保険は法定計算していません。詳しく設定する場合は「詳細シミュレーション」へ。`;
+  };
+  const clearResearchOutputs = ()=>{
+    for(const id of ['r4-compare-results','r4-portfolio-results','r4-risk-results','r4-events-results']){
+      const el=document.getElementById(id);
+      if(el) el.textContent='入力モードが変更されました。条件を確認し、再度計算してください。';
+    }
+  };
+  function selectMode(next){
+    if(next===active)return;
+    if(next==='quick'){
+      if(active==='detail') {
+        detailedDraft=Object.fromEntries(advanced.map(el=>[el.name,el.value]));
+        detailedAgeSnapshot={start:value('start'), end:value('end')};
+      }
+      resetQuickAssumptions();
+    } else if(active==='quick' && detailedDraft){
+      for(const el of advanced) el.value=detailedDraft[el.name];
+      // Returning after changing the main horizon in quick mode must not restore
+      // a stale linked end-age that would put the research adapter on HOLD.
+      for(const name of ['start','end']) {
+        const linked=linkedField[name];
+        if (detailedAgeSnapshot && detailedDraft[linked]===detailedAgeSnapshot[name]) {
+          form.elements[linked].value=value(name);
+        }
+      }
+    }
+    active=next;
+    document.body.dataset.dwzMode=next;
+    quick.setAttribute('aria-pressed',String(next==='quick'));
+    detail.setAttribute('aria-pressed',String(next==='detail'));
+    document.getElementById('dwz-conditions-title').textContent=next==='quick'?'6項目でかんたん試算':'計算条件（詳細設定）';
+    intro.textContent=next==='quick'?'主要6項目だけで試算。表示していない条件は明示した仮の前提に固定します。':'すべての計算条件と、比較・就業・市場・イベント・保存機能を利用できます。';
+    if(next==='quick')showAssumptions();
+    if(next==='detail') note.textContent='';
+    if(active && (detailedDraft || next==='detail')){
+      sendChange();
+      clearResearchOutputs();
+    }
+  }
+  quick.addEventListener('click',()=>selectMode('quick'));
+  detail.addEventListener('click',()=>selectMode('detail'));
+  for(const name of ['start','end']){
+    form.elements[name].addEventListener('input',()=>{
+      if(active==='detail') {
+        synchronizeLinkedAge(name);
+        return;
+      }
+      lastVisibleAges[name]=value(name);
+      if(active!=='quick')return;
+      resetQuickAssumptions();
+      showAssumptions();
+      sendChange();
+    });
+  }
+  // A blocked native form submit is otherwise silent on some mobile previews.
+  // Always tell the user which input could not be accepted; do not mislabel it as a calculation failure.
+  const feedback = document.getElementById('dwz-input-feedback');
+  const displayValidation = () => {
+    const beginning=Number(form.elements.start.value), ending=Number(form.elements.end.value);
+    if (Number.isFinite(beginning) && Number.isFinite(ending) && beginning>=ending){
+      feedback.textContent='終了年齢は試算開始年齢より大きく設定してください。';
+      feedback.hidden=false;
+      return false;
+    }
+    // The current research adapter requires the extra-spending period's exclusive
+    // end age to match the overall simulation end age. Give an actionable message.
+    if (active==='detail' && form.elements.extraEndAgeYears.value!==form.elements.end.value){
+      feedback.textContent='研究版の制約：追加支出終了年齢を試算の終了年齢と同じにしてください。';
+      feedback.hidden=false;
+      return false;
+    }
+    const invalid = Array.from(form.querySelectorAll('input,select')).filter(el=>!el.checkValidity());
+    if (!invalid.length){feedback.hidden=true; feedback.textContent=''; return true;}
+    const el=invalid[0], label=el.closest('label')?.textContent?.trim() || el.name;
+    feedback.textContent='入力値を確認してください：「'+label+'」 '+(el.validationMessage || '指定可能な範囲外です。');
+    feedback.hidden=false;
+    if(active==='quick' && el.closest('label')?.dataset.modeAdvanced === 'true') {
+      feedback.textContent += '（詳細条件の制約です。詳細モードでも確認できます）';
+    }
+    return false;
+  };
+  document.getElementById('dwz-run').addEventListener('click',ev=>{ if(!displayValidation())ev.preventDefault(); });
+  form.addEventListener('input',()=>{if(feedback && !feedback.hidden)displayValidation()});
+  // Capturing precedes calculation; fail closed if unseen advanced settings were changed.
+  form.addEventListener('submit',()=>{
+    if(active!=='quick')return;
+    const before=advanced.map(el=>el.value);
+    resetQuickAssumptions();
+    if(advanced.some((el,i)=>el.value!==before[i])){
+      showAssumptions();
+      sendChange();
+    }
+  },true);
+  const result = document.getElementById('output')?.closest('section.panel');
+  if(result)form.closest('section.panel').after(result);
+  selectMode('quick');
+  for (const control of [quick,detail,document.getElementById('dwz-run')]) control.disabled=false;
+  const runtime=document.getElementById('dwz-runtime-status');
+  if(runtime){runtime.textContent='計算機能を読み込みました。入力して試算できます。';runtime.dataset.ready='true';}
+  document.dispatchEvent(new Event('dwz-mode-ready'));
+})();
+
+</script></body></html>
