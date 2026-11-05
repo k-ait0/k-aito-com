@@ -1,0 +1,132 @@
+'use strict';
+/**
+ * DWZ R4 manual-only origin E2E. Browser & storage are real (no localStorage mock).
+ * Usage: NODE_PATH=/path/to/playwright/node_modules node scripts/dwz-origin-e2e.cjs
+ * Checks a temporary 127.0.0.1 site, not the public Xserver deployment.
+ * Never touches production, GitHub Actions or existing browser profiles.
+ */
+const assert=require('node:assert/strict');
+const http=require('node:http');
+const fs=require('node:fs');
+const path=require('node:path');
+const {chromium}=require('playwright');
+const root=path.resolve(__dirname,'..');
+const appPath=path.join(root,'lab/dwz/index.html');
+const diagnosticPath=path.join(root,'lab/dwz/diagnostics.html');
+const captureKey='dwz-r4-compare-v11-capture/0.1.0';
+const portfolioKey='dwz-r4-comparison-portfolio/0.1.0';
+for(const p of [appPath,diagnosticPath])assert.ok(fs.existsSync(p),'Required file missing: '+p);
+const allowed=new Map([
+  ['/lab/dwz/',appPath],
+  ['/lab/dwz/index.html',appPath],
+  ['/lab/dwz/diagnostics.html',diagnosticPath]
+]);
+const server=http.createServer((req,res)=>{
+  let url;try{url=new URL(req.url,'http://127.0.0.1');}catch{res.writeHead(400).end();return;}
+  const file=allowed.get(url.pathname);
+  if(!file){res.writeHead(404).end();return;}
+  res.writeHead(200,{
+    'Content-Type':'text/html; charset=utf-8',
+    'Cache-Control':'no-store',
+    'X-Content-Type-Options':'nosniff'
+  });
+  fs.createReadStream(file).pipe(res);
+});
+let browser=null,context=null,checks=0;
+function pass(message){checks++;console.log('PASS '+message);}
+async function verify(label,condition){assert.ok(await condition,label);pass(label);}
+async function getStorage(page,key){return page.evaluate(k=>window.localStorage.getItem(k),key);}
+async function fillForm(page,name,value){
+  const input=page.locator('#scenario [name="'+name+'"]');
+  await input.fill(String(value));
+  await input.dispatchEvent('input');
+}
+async function waitForReady(page){
+  await page.locator('#dwz-runtime-status[data-ready="true"]').waitFor({timeout:20000});
+}
+async function main(){
+  await new Promise((resolve,reject)=>server.once('error',reject).listen(0,'127.0.0.1',resolve));
+  const base='http://127.0.0.1:'+server.address().port;
+  console.log('DWZ origin E2E target '+base+'/lab/dwz/');
+  const launchOptions={headless:true,args:['--no-sandbox']};
+  if(process.env.DWZ_CHROMIUM_PATH)launchOptions.executablePath=process.env.DWZ_CHROMIUM_PATH;
+  browser=await chromium.launch(launchOptions);
+  context=await browser.newContext({viewport:{width:390,height:844},isMobile:true,hasTouch:true});
+  const page=await context.newPage(),errors=[],escaped=[];
+  page.on('pageerror',e=>errors.push(e.message));
+  page.on('request',r=>{if(!r.url().startsWith(base+'/'))escaped.push(r.url());});
+  let response;
+  try {response=await page.goto(base+'/lab/dwz/',{waitUntil:'domcontentloaded',timeout:20000});}
+  catch(e){if(String(e).includes('ERR_BLOCKED_BY_ADMINISTRATOR')){
+    console.error('BLOCKED_BY_ENVIRONMENT: Chromium could not navigate to 127.0.0.1; no E2E results are claimed.');
+    process.exitCode=3;return;
+  }throw e;}
+  await verify('HTTP 200',()=>response&&response.status()===200);
+  await waitForReady(page);pass('financial UI startup');
+  await verify('quick mode default',()=>page.evaluate(()=>document.body.dataset.dwzMode==='quick'));
+  await verify('localStorage initially empty',async()=>(await getStorage(page,captureKey))===null && (await getStorage(page,portfolioKey))===null);
+  await page.locator('#dwz-run').click();
+  await verify('initial reverse calculation 45,360 yen',async()=>await page.locator('#output').innerText().then(t=>t.includes('45,360')));
+  await page.locator('#dwz-mode-detail').click();
+  await verify('detail mode',()=>page.evaluate(()=>document.body.dataset.dwzMode==='detail'));
+  await fillForm(page,'assets',6200);
+  await page.locator('#r4-save-local').click();
+  await verify('explicit localStorage save',async()=>(await getStorage(page,captureKey))?.length>100);
+  const saved=await getStorage(page,captureKey);
+  await page.reload({waitUntil:'domcontentloaded',timeout:20000});
+  await waitForReady(page);
+  await verify('persistent value survives full reload',async()=>(await getStorage(page,captureKey))===saved);
+  await verify('not automatically restored',async()=>(await page.locator('#scenario [name="assets"]').inputValue())==='5000');
+  await page.locator('#dwz-mode-detail').click();
+  await page.locator('#r4-restore-local').click();
+  await verify('restore reads previously saved value',async()=>(await page.locator('#scenario [name="assets"]').inputValue())==='6200');
+  await verify('restore does not automatically recalculate',()=>page.evaluate(()=>document.querySelector('#output').dataset.status===undefined && document.querySelector('#output').textContent.includes('手動で計算')));
+  page.once('dialog',d=>d.accept());
+  await page.locator('#r4-purge-local').click();
+  await verify('user-approved purge removes the key',async()=>(await getStorage(page,captureKey))===null);
+  await page.reload({waitUntil:'domcontentloaded',timeout:20000});
+  await waitForReady(page);
+  await verify('purge remains after reload',async()=>(await getStorage(page,captureKey))===null);
+  await page.locator('#dwz-mode-detail').click();
+  await page.locator('#r4-portfolio-name').fill('QA_BASELINE_ONLY');
+  await page.locator('#r4-portfolio-add').click();
+  await page.locator('#r4-portfolio-name').fill('QA_PENSION_CHANGE');
+  await fillForm(page,'pension',240);
+  await page.locator('#r4-portfolio-add').click();
+  await verify('two portfolio scenarios registered',async()=>(await page.locator('#r4-portfolio-count').innerText()).trim()==='2');
+  await page.locator('#r4-portfolio-save').click();
+  await verify('portfolio saved explicitly',async()=>(await getStorage(page,portfolioKey))?.length>100);
+  const portfolioStored=await getStorage(page,portfolioKey);
+  await page.reload({waitUntil:'domcontentloaded',timeout:20000});
+  await waitForReady(page);
+  await verify('portfolio survives full reload',async()=>(await getStorage(page,portfolioKey))===portfolioStored);
+  await page.locator('#dwz-mode-detail').click();
+  await verify('portfolio not automatically restored',async()=>(await page.locator('#r4-portfolio-count').innerText()).trim()==='0');
+  await page.locator('#r4-portfolio-restore').click();
+  await verify('portfolio explicitly restored',async()=>(await page.locator('#r4-portfolio-count').innerText()).trim()==='2');
+  page.once('dialog',d=>d.accept());
+  await page.locator('#r4-portfolio-purge').click();
+  await verify('portfolio purge clears storage',async()=>(await getStorage(page,portfolioKey))===null);
+  await verify('no browser JS errors',()=>errors.length===0);
+  await verify('no external network requests',()=>escaped.length===0);
+  // Browser diagnostics has its own fully separate isolated context; never use personal data.
+  const diagnostic=await context.newPage();
+  const diagnosticResponse=await diagnostic.goto(base+'/lab/dwz/diagnostics.html',{waitUntil:'domcontentloaded',timeout:20000});
+  await verify('diagnostic HTTP 200',()=>diagnosticResponse.status()===200);
+  await diagnostic.locator('#run').click();
+  await diagnostic.locator('#status').getByText(/診断完了|診断が途中で停止/).waitFor({timeout:30000});
+  const failed=await diagnostic.locator('#results .fail').count();
+  await verify('standard diagnostic has zero FAIL',()=>failed===0);
+  await diagnostic.locator('#deep-save').check();
+  await diagnostic.locator('#run').click();
+  await diagnostic.locator('#status').getByText(/診断完了|診断が途中で停止/).waitFor({timeout:30000});
+  const deepFailed=await diagnostic.locator('#results .fail').count();
+  await verify('opt-in reload diagnostic has zero FAIL',()=>deepFailed===0);
+  await verify('diagnostic leaves both saved keys empty',async()=>{
+    const child=diagnostic.frameLocator('iframe#app');
+    return child.locator('body').evaluate(()=>window.localStorage.getItem('dwz-r4-compare-v11-capture/0.1.0')===null && window.localStorage.getItem('dwz-r4-comparison-portfolio/0.1.0')===null);
+  });
+  console.log('DWZ REAL-ORIGIN E2E: '+checks+'/'+checks+' PASS (Chromium, localhost origin, no storage mocks)');
+}
+main().catch(e=>{console.error('DWZ REAL-ORIGIN E2E FAIL after '+checks+' PASS: '+(e?.stack||e));process.exitCode=1})
+.finally(async()=>{try{await context?.close();await browser?.close();}finally{await new Promise(r=>server.close(r));}});
