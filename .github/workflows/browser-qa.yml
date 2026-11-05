@@ -1,8 +1,8 @@
+# Temporary QA-only branch. Manual trigger remains the only trigger.
+# This file is NOT part of Draft PR #70 or main.
 name: Browser and metadata QA
 
 on:
-  # Browser QA is expensive (Playwright/Chromium installation and six viewport checks).
-  # Run manually for release candidates or major UI changes after local static checks.
   workflow_dispatch:
 
 permissions:
@@ -13,42 +13,26 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
-      - name: Checkout static site
+      - name: Checkout selected branch
         uses: actions/checkout@v4
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Verify sitemap and static references
-        run: |
-          node --check scripts/site-static-check.cjs
-          node scripts/site-static-check.cjs
-          node --check scripts/sync-published-content.cjs
-          node --check scripts/test-published-content.cjs
-          node scripts/test-published-content.cjs
-          node --check scripts/test-article-navigation.cjs
-          node scripts/test-article-navigation.cjs
-          node scripts/test-site-search-ui.cjs
-          node scripts/test-site-search-core.cjs
-          node --check scripts/sync-site-shell.cjs
-          node scripts/test-site-shell.cjs
-          node scripts/test-site-breadcrumbs.cjs
-      - name: Install test runtime
+      - name: Enforce manual-only Actions policy
+        run: node scripts/check-actions-manual-only.cjs
+      - name: Run all 14 Kaito local-preflight checks
+        run: node scripts/local-preflight.cjs
+      - name: Run DWZ offline preflight
+        run: node scripts/dwz-preflight.cjs
+      - name: Install Playwright Chromium
         run: |
           npm install --prefix /tmp/kaito-qa --no-audit --no-fund --no-save playwright@1.56.1
           PLAYWRIGHT_BROWSERS_PATH=/tmp/kaito-browsers /tmp/kaito-qa/node_modules/.bin/playwright install --with-deps chromium
-      - name: Run browser checks
+      - name: DWZ real localhost origin E2E
         env:
           NODE_PATH: /tmp/kaito-qa/node_modules
           PLAYWRIGHT_BROWSERS_PATH: /tmp/kaito-browsers
         run: |
-          node --check scripts/browser-smoke.cjs
-          node scripts/browser-smoke.cjs
-      - name: Upload screenshots
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: kaito-desktop-mobile-screenshots
-          path: qa-screenshots/*.png
-          if-no-files-found: ignore
-          retention-days: 30
+          node --check scripts/dwz-origin-e2e.cjs
+          node scripts/dwz-origin-e2e.cjs
