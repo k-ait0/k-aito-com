@@ -1,0 +1,24 @@
+'use strict';
+const assert = require('node:assert/strict');
+const {validateDiagnosticRows} = require('./dwz-origin-result-guard.cjs');
+const required = ['保存値一致', '再読込後に復元', '保存削除'];
+const success = required.map(label => ({label,status:'PASS'}));
+let checks = 0;
+const okay = (name,fn) => { assert.equal(fn(),true,name); checks++; console.log('PASS '+name); };
+const rejected = (name,rows,requiredLabels=required) => {
+  assert.throws(()=>validateDiagnosticRows(rows,requiredLabels),Error,name);
+  checks++;console.log('PASS '+name+' was rejected');
+};
+okay('all required PASS',()=>validateDiagnosticRows(success,required));
+okay('unrelated SKIP allowed',()=>validateDiagnosticRows([...success,{label:'optional',status:'SKIP'}],required));
+rejected('required SKIP',success.map(x=>x.label==='保存値一致'?{...x,status:'SKIP'}:x));
+rejected('required FAIL',success.map(x=>x.label==='再読込後に復元'?{...x,status:'FAIL'}:x));
+rejected('unrelated FAIL',[...success,{label:'startup',status:'FAIL'}]);
+rejected('missing required',success.slice(1));
+rejected('duplicate result',[...success,success[0]]);
+rejected('malformed row',[...success,null]);
+rejected('empty evidence',[]);
+rejected('empty required',success,[]);
+rejected('unknown state',success.map(x=>x.label==='保存削除'?{...x,status:'UNTESTED'}:x));
+assert.equal(checks,11);
+console.log('DWZ origin result guard: '+checks+'/'+checks+' PASS');
