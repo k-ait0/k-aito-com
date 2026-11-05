@@ -32,6 +32,7 @@ jobs:
           node --test scripts/test-a05-d92-construct-choice.mjs
           node --test scripts/test-a05-d93-item-construct.mjs
           node --test scripts/test-a05-d94-cp1-content.mjs
+          node --test scripts/test-a05-d95-cp1-protocol.mjs
       - name: A05 native Node domain and storage tests
         run: |
           node --test scripts/test-a05-engine.mjs
@@ -66,5 +67,6 @@ jobs:
           node scripts/qa_a05_d92_construct_choice_browser.cjs
           node scripts/qa_a05_d93_item_construct_browser.cjs
           node scripts/qa_a05_d94_cp1_content_browser.cjs
+          node scripts/qa_a05_d95_cp1_protocol_browser.cjs
       - name: A05 Chromium acceptance
         run: node scripts/qa_a05_browser.cjs
