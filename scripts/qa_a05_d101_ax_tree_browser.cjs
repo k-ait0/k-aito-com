@@ -39,14 +39,15 @@ assert.equal(createHash("sha1").update("blob "+bytes.length+"\0").update(bytes).
     return texts[0];
    };
    assert.ok((await inspect()).includes("例1"));
-   for(let i=0;i<8;i++){
-    await page.locator("#case-picker").selectOption(String(i));
-    assert.ok((await inspect()).includes("例"+(i+1)));
-   }
+   // Check the initial keyboard tab order *before* touching the select element.
    await page.keyboard.press("Tab");
    assert.equal(await page.evaluate(()=>document.activeElement?.classList.contains("skip-link")),true);
    await page.keyboard.press("Enter");
    assert.equal(await page.evaluate(()=>document.activeElement?.id),"main-content");
+   for(let i=0;i<8;i++){
+    await page.locator("#case-picker").selectOption(String(i));
+    assert.ok((await inspect()).includes("例"+(i+1)));
+   }
    for(let i=2;i<=4;i++){
     await page.locator("#next").click();
     assert.ok((await page.locator("#reflection-progress").innerText()).includes(i+" / 4"));
