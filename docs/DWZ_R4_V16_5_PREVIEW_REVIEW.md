@@ -149,3 +149,12 @@
 - 計算Core改変、CSP通信許可、期末目標制限の緩和、HOLD理由消去の削除、説明メタデータの削除をそれぞれ注入して、**5/5件で期待どおり非ゼロ終了**。チェックの不具合検出能力を確認。
 - GitHub経由でアプリHTMLと診断HTMLを取得し、ファイル読み込み・SHA256を模擬したV8実行では **28/28項目 PASS**。これは実Node.jsのfull checkout試験ではない。固定ハッシュはローカルのNode.jsで別途検証済み。
 - **公開ゲートの状態は不変：** 14工程のサイト全体`local-preflight`、完全リポジトリ上の追加チェック、実HTTPS永続保存、iPad Safari、本番デプロイのいずれも未完了。PRはDraft・未マージ。
+
+## 2026-11-06 | WebKit／隔離コンテキスト対応（E2E未実行）
+
+- E2Eコードで、アプリ本体と診断ページのBrowserContextが同一だった問題を修正。完全に独立した新規BrowserContextを診断用に作成し、開始時に保存キー2件が空であることを検証。診断ページの外部通信要求0件も明示検証。
+- `DWZ_BROWSER_ENGINE=webkit` を追加し、Chromiumと同じlocalhost-originシナリオをWebKitでも実行可能にした。Chromium専用フラグはWebKitに渡さない。
+- 手動QA専用ブランチのworkflowにWebKitのインストール・テスト工程を追加。既存6画面ブラウザ試験、全14工程、DWZ28項目、診断ガード単体11件を維持。workflowは`workflow_dispatch`のみ、ジョブ上限25分。
+- **実行済み（ローカル）:** 修正版E2EのNode.js構文PASS、診断ガード11/11 PASS、接続遮断を模したChromium/WebKitのエンジン選択・終了コード3の負例2/2 PASS。モックを用いた遮断試験は**本物のブラウザE2E合格ではない**。
+- E2E Git blob SHA: `45f8c8358a6fe6a88d26a801e6ad20df00aa4c48`。PRブランチと手動QAブランチで同一。
+- **未完了:** GitHub Actionsの手動起動、localhost経由の実WebKit/Chromium、サイト全体preflight、Xserver HTTPS、iPad Safari実機QA。Linux WebKitはiPad Safari実機の代替合格ではない。
