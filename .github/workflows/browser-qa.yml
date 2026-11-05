@@ -25,6 +25,11 @@ jobs:
         run: node scripts/local-preflight.cjs
       - name: Run DWZ offline preflight
         run: node scripts/dwz-preflight.cjs
+      - name: Check diagnostic result guard rejects skipped and missing evidence
+        run: |
+          node --check scripts/dwz-origin-result-guard.cjs
+          node --check scripts/test-dwz-origin-result-guard.cjs
+          node scripts/test-dwz-origin-result-guard.cjs
       - name: Install Playwright Chromium
         run: |
           npm install --prefix /tmp/kaito-qa --no-audit --no-fund --no-save playwright@1.56.1
