@@ -70,5 +70,6 @@ jobs:
           node scripts/qa_a05_d94_cp1_content_browser.cjs
           node scripts/qa_a05_d95_cp1_protocol_browser.cjs
           node scripts/qa_a05_d96_reflection_browser.cjs
+          node scripts/qa_a05_d97_reflection_injected_browser.cjs
       - name: A05 Chromium acceptance
         run: node scripts/qa_a05_browser.cjs
