@@ -140,3 +140,12 @@
 4. 結果をコピーし、PRのレビュー記録に残す。iframeが制限されるホストでは診断不可。アプリを直接開く動作確認に切り替える。
 
 サイト全体の `node scripts/local-preflight.cjs` は、この環境ではcloneのDNS制限があるため依然未実行。GitHub Actionsは手動起動のみの運用であり、ユーザーの明示承認なしに起動しない。PR Draft・未マージを維持。
+
+## 2026-11-06 | 独立したオフライン退行防止チェック（PR #70）
+
+- `scripts/dwz-preflight.cjs` を追加（Node.js 22、標準モジュールのみ、読み取り専用）。金融Coreの固定SHA256、非UI 26モジュール数、HTML/CSP/SEO、簡易・詳細/保存/JSON UI、HOLD理由リセット、診断ページの明示保存・再読み込み・競合対策を判定。
+- 完全なリポジトリ上では `node scripts/dwz-preflight.cjs` で28項目を実行する。既存の `node scripts/local-preflight.cjs` は変更せず、引き続き別途実行が必要。
+- **GitHub登録済みスクリプトのblob SHA `3f3954c741fb147801a8715e348a77c5c83cbe32` とローカル実行物が一致**。ローカルv16.9 HTMLを用いた `--app-only` 実Node.js試験は **17/17 PASS**。
+- 計算Core改変、CSP通信許可、期末目標制限の緩和、HOLD理由消去の削除、説明メタデータの削除をそれぞれ注入して、**5/5件で期待どおり非ゼロ終了**。チェックの不具合検出能力を確認。
+- GitHub経由でアプリHTMLと診断HTMLを取得し、ファイル読み込み・SHA256を模擬したV8実行では **28/28項目 PASS**。これは実Node.jsのfull checkout試験ではない。固定ハッシュはローカルのNode.jsで別途検証済み。
+- **公開ゲートの状態は不変：** 14工程のサイト全体`local-preflight`、完全リポジトリ上の追加チェック、実HTTPS永続保存、iPad Safari、本番デプロイのいずれも未完了。PRはDraft・未マージ。
