@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta name="description" content="A05 D88 B・C軸の12問について独立した価値観尺度を確認する非公開・未承認プレビュー">
+<title>A05 D88｜B・C軸 12問の独立尺度プレビュー</title>
+<style>
+:root{font-family:system-ui,-apple-system,"Hiragino Kaku Gothic ProN",sans-serif;color-scheme:light dark}
+*{box-sizing:border-box}body{max-width:1020px;margin:24px auto;padding:0 18px;line-height:1.65}
+h1{font-size:clamp(1.4rem,3.8vw,2rem);line-height:1.35}h2{font-size:1.2rem}
+p,fieldset,legend{overflow-wrap:anywhere}.notice{border:2px solid currentColor;padding:14px;border-radius:12px;font-weight:600}
+.controls{border:1px solid #888;border-radius:12px;padding:14px;margin:20px 0}
+.controls select,.controls button{min-height:44px;font:inherit;border-radius:8px;padding:7px 12px}
+.controls select{width:min(100%,360px)}button{cursor:pointer}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #4389dd;outline-offset:2px}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0}
+.item{border:1px solid #888;border-radius:12px;padding:14px;margin:16px 0;min-width:0}
+.item legend{font-weight:600;max-width:100%;padding:0 6px}
+.options{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.option{position:relative;display:inline-flex;align-items:center;gap:7px;border:1px solid #999;border-radius:8px;padding:8px 10px;min-height:44px;min-width:48px;cursor:pointer}
+.option:has(input:checked){border:2px solid currentColor;font-weight:750}
+.option input{width:18px;height:18px;margin:0}
+.scale-note{color:inherit;font-size:.9rem}
+.results{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:18px 0}
+.result{border:1px solid #888;border-radius:12px;padding:14px;min-width:0}
+.result h3{font-size:1rem;margin:0 0 6px}
+.result .number{font-size:1.3rem;font-weight:700;margin:4px 0}
+meter{width:100%;height:17px}
+.status{padding:12px;border:1px solid #888;border-radius:12px}
+.small{font-size:.9rem}
+@media(max-width:660px){body{margin-top:12px}.results{grid-template-columns:1fr}.options{gap:6px}.option{padding:7px 8px}}
+</style>
+</head>
+<body>
+<main>
+<h1>A05｜B・C軸 12問の独立尺度プレビュー</h1>
+<p class="notice">未承認の開発・編集用画面です。科学的に妥当性が確立した診断ではありません。16タイプ判定・人格分類・相性判定は行いません。</p>
+<p>自己裁量、つながり、将来達成、現在充実を別々に評価します。両方を強く重視する回答も、どちらも重視しない回答も、そのまま残します。</p>
+<section class="controls" aria-labelledby="preset-title">
+<h2 id="preset-title">動作確認用の架空ケース</h2>
+<label for="preset">ケースを選択</label>
+<select id="preset" disabled><option value="">読み込み中</option></select>
+<div class="actions"><button id="load-preset" type="button" disabled>架空ケースを読み込む</button><button id="reset" type="button" disabled>回答をすべてクリア</button></div>
+<p class="small">架空ケースは画面内だけに反映されます。自分で選び直すこともできます。</p>
+</section>
+<section aria-labelledby="question-title">
+<h2 id="question-title">質問と回答</h2>
+<p>次のことを、あなたはどの程度大切にしたいと思いますか。1＝まったく重視しない、4＝どちらともいえない、7＝非常に重視する。「判断できない」は欠測として扱います。</p>
+<p id="load-state" role="status">質問データを読み込んでいます。</p>
+<div id="questions"></div>
+</section>
+<section aria-labelledby="results-title">
+<h2 id="results-title">4つの重視度（試験集計）</h2>
+<p id="progress" class="status" aria-live="polite">未集計</p>
+<div id="results" class="results" aria-live="polite"></div>
+<p id="classification" class="status">タイプIDは発行しません。</p>
+</section>
+<p class="small">数値は各尺度3問すべてが1〜7で回答された場合の単純平均です。未選択または「判断できない」が1問でもある尺度は数値を出しません。中央値の補完、過去の診断結果との比較、タイプへの変換はありません。</p>
+<p class="small">回答はこの画面のメモリ内だけで処理し、保存・外部送信・解析ツールへの送信は行いません。質問データだけを同じサイト内のJSONから取得します。ページを再読み込みすると回答は消えます。</p>
+</main>
+<script type="module" src="./bc-pilot-preview.mjs"></script>
+</body>
+</html>
