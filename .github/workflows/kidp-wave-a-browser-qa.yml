@@ -37,6 +37,7 @@ jobs:
           node --test scripts/test-a05-d98-accessibility.mjs
           node --test scripts/test-a05-d99-reflection.mjs
           node --test scripts/test-a05-d100-preflight.mjs
+          node --test scripts/test-a05-d100-gates.mjs
       - name: A05 native Node domain and storage tests
         run: |
           node --test scripts/test-a05-engine.mjs
