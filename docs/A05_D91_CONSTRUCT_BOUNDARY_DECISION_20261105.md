@@ -74,3 +74,12 @@
 
 ## 版履歴
 - D91-001：D90 v0.2の12問を概念別・隣接軸別に編集監査し、内容の自動改稿を停止する暫定ゲートを明文化。
+
+## 追加QA記録（D91-002）
+
+- 12問・TRIAL 4／REVISE 8と主要なリスクを、D-90のv0.2質問原本から独立した**オフライン単一HTML確認版**に収録。リポジトリに追加したESMプレビューの配布・公開ではない。
+- Python Playwright + ChromiumでHTMLの`page.set_content`による注入QAを実行：**320／390／820／1280pxの4/4画面幅でPASS**。各画面幅で全12問表示、判定／軸の二重絞り込み、表示件数、横スクロールなし、JavaScriptページ例外なしを確認。
+- **未実施／証拠なし**：GitHub版ESMの実URLからのGET、CSP・ホスティング、`scripts/test-a05-d91-construct-boundary.mjs`のnative Node実行、GitHub Actionsの手動ジョブ、iOS Safari/VoiceOver、心理測定の妥当性。
+- GitHub原本JSONと同一の項目ID・文章・編集分類であることをコード上で確認し、V8環境で監査データ／版固定の構造検査10/10をPASS。これは正式Node/ブラウザE2Eの代替結果ではない。
+- **PR #61 Draft・未マージ・本番未公開を維持**。質問v0.3やデータ収集は開始しない。
+
