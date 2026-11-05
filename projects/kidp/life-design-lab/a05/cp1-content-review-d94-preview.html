@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="ja"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta name="description" content="A05 D94 C現在充実の3問と構成概念・重複・設計代替案を比較する未承認の編集用プレビュー">
+<title>A05 D-94｜C現在充実 3問の内容・重複監査</title>
+<style>
+:root{font-family:system-ui,-apple-system,"Hiragino Kaku Gothic ProN",sans-serif;color-scheme:light dark}
+*{box-sizing:border-box}
+body{max-width:1050px;margin:20px auto;padding:0 18px;line-height:1.6}
+h1{font-size:clamp(1.4rem,4vw,2rem);line-height:1.35}
+h2{font-size:1.22rem}h3{font-size:1.05rem}
+.notice{border:2px solid currentColor;border-radius:12px;padding:12px 16px;font-weight:600}
+.panel{border:1px solid #999;border-radius:12px;padding:12px 16px;margin:18px 0}
+.controls{display:flex;align-items:center;flex-wrap:wrap;gap:12px;margin:18px 0}
+select{font:inherit;min-height:44px;padding:8px 12px;max-width:100%;border:1px solid #888;border-radius:8px}
+select:focus-visible{outline:3px solid #357bbe;outline-offset:2px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.card{min-width:0;border:1px solid #888;padding:14px;border-radius:12px;overflow-wrap:anywhere}
+.card h3{margin:0 0 8px}
+.card p{margin:8px 0}
+.tag{font-weight:650;font-size:.84rem;border:1px solid #888;padding:3px 8px;border-radius:15px}
+.small{font-size:.9rem}
+@media(max-width:720px){.grid{grid-template-columns:1fr}}
+</style>
+</head><body><main>
+<h1>A05｜C「現在充実」3問の重複・構成監査</h1>
+<p class="notice">開発・編集用／未承認です。設問の内容評価であり、回答者データを用いた相関・因子分析ではありません。16タイプの判定や個人の回答収集は行いません。</p>
+<p>旧v0.2の3問を変えずに、測定概念の混入と3通りの設問間重複、今後の設計案を比較します。</p>
+<p class="panel" role="status" aria-live="polite" id="status">資料を読み込み中です。</p>
+<div class="controls"><label for="view"><strong>表示する内容</strong></label>
+<select id="view" disabled>
+<option value="all">全項目</option>
+<option value="items">既存の3問</option>
+<option value="pairs">3組の重複評価</option>
+<option value="options">3つの設計案</option>
+</select></div>
+<section id="items" class="panel"><h2>既存3問の問題点</h2><div class="grid" id="item-cards"></div></section>
+<section id="pairs" class="panel"><h2>3組の意味の重なり</h2><div class="grid" id="pair-cards"></div></section>
+<section id="options" class="panel"><h2>3つの設計案</h2><div class="grid" id="option-cards"></div>
+<h3>未承認の編集用問い（得点化・回答収集しない）</h3>
+<div class="grid" id="prompt-cards"></div></section>
+<section class="panel">
+<h2>決定していない事項</h2>
+<p>第三の独立した内容領域はまだ定義できていません。2問案は自己理解のための文章案であり、心理尺度として集計する案ではありません。正式な概念の承認、認知面接、測定上の検証、旧結果との互換はすべて未完了です。</p>
+<p class="small">質問と監査結果は同一オリジンのJSONから読み込むだけです。画面には回答欄や個人データの保存・送信機能はありません。</p></section>
+</main><script type="module" src="./cp1-content-review-d94-preview.mjs"></script></body></html>
