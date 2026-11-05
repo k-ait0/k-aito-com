@@ -6,10 +6,22 @@ const create=(tag,text,cls)=>{
  if(cls)x.className=cls;
  return x;
 };
+// Verify the actual UTF-8 Git blob bytes, not only the hashes declared in D95.
+async function gitBlobSha(text){
+ if(!globalThis.crypto?.subtle)throw new Error("Web Crypto SHA-1 unavailable");
+ const encoder=new TextEncoder();
+ const content=encoder.encode(text);
+ const header=encoder.encode("blob "+content.length+"\0");
+ const combined=new Uint8Array(header.length+content.length);
+ combined.set(header,0);combined.set(content,header.length);
+ const sha=await crypto.subtle.digest("SHA-1",combined);
+ return [...new Uint8Array(sha)].map(b=>b.toString(16).padStart(2,"0")).join("");
+}
 const load=async path=>{
  const r=await fetch(new URL(path,import.meta.url),{credentials:"omit",cache:"no-store"});
  if(!r.ok)throw new Error("HTTP "+r.status);
- return r.json();
+ const text=await r.text();
+ return {data:JSON.parse(text),sha:await gitBlobSha(text)};
 };
 function card(title,body,small){
  const x=create("article",undefined,"card");
@@ -25,15 +37,19 @@ function showCase(p){
   "扱い：架空の検討課題。実測・得点化・被験者の回答ではありません。"));
 }
 async function main(){
- const [p,d94,d93,d90]=await Promise.all([
+ const [document,source94,source93,source90]=await Promise.all([
   load("../../../../docs/A05_D95_CP1_DOMAIN_PROTOCOL_20261106.json"),
   load("../../../../docs/A05_D94_CP1_CONTENT_COVERAGE_20261105.json"),
   load("../../../../docs/A05_D93_ITEM_CONSTRUCT_MAPPING_20261105.json"),
   load("../../../../docs/A05_D90_BC_PILOT_0_2_20261105.json")
  ]);
- // The exact blob lineage is independently pinned and verified in Node tests.
- const summary=validateD95Protocol(p,d94,d93,d90,
-  p.sources.map(x=>({path:x.path,sha:x.git_blob_sha})));
+ const p=document.data,d94=source94.data,d93=source93.data,d90=source90.data;
+ const verifiedRefs=[
+  {path:"docs/A05_D94_CP1_CONTENT_COVERAGE_20261105.json",sha:source94.sha},
+  {path:"docs/A05_D93_ITEM_CONSTRUCT_MAPPING_20261105.json",sha:source93.sha},
+  {path:"docs/A05_D90_BC_PILOT_0_2_20261105.json",sha:source90.sha}
+ ];
+ const summary=validateD95Protocol(p,d94,d93,d90,verifiedRefs);
  el("status").textContent="領域 "+summary.proposedDomains+"／架空の反例 "+
   summary.hypotheticalCases+"／面接確認質問 "+summary.cognitiveProbes+
   "／人間決裁 "+summary.humanGatesPending+"件（すべて保留）。";
