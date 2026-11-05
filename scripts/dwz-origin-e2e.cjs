@@ -48,6 +48,15 @@ async function main(){
   await new Promise((resolve,reject)=>server.once('error',reject).listen(0,'127.0.0.1',resolve));
   const base='http://127.0.0.1:'+server.address().port;
   console.log('DWZ origin E2E target '+base+'/lab/dwz/');
+  const probe=route=>new Promise((resolve,reject)=>{
+    http.get(base+route,res=>{
+      let text='';res.setEncoding('utf8');res.on('data',c=>text+=c);
+      res.on('end',()=>resolve({status:res.statusCode,text}));
+    }).on('error',reject);
+  });
+  const home=await probe('/lab/dwz/'), diagnosticHtml=await probe('/lab/dwz/diagnostics.html');
+  await verify('local HTTP serves actual app HTML',()=>home.status===200 && home.text.includes('資産取り崩しシミュレーター'));
+  await verify('local HTTP serves diagnostic HTML',()=>diagnosticHtml.status===200 && diagnosticHtml.text.includes('ブラウザ動作診断'));
   const launchOptions={headless:true,args:['--no-sandbox']};
   if(process.env.DWZ_CHROMIUM_PATH)launchOptions.executablePath=process.env.DWZ_CHROMIUM_PATH;
   browser=await chromium.launch(launchOptions);
