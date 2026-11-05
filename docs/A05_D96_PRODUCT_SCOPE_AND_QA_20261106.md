@@ -4,7 +4,7 @@
 
 ## 今回の実装
 
-\`projects/kidp/life-design-lab/a05/reflection-d96.html\` を追加。A05の過去30問の採点・16タイプエンジンから独立した、**得点なし・入力なし・保存なし**の編集用ミニ体験とした。
+`projects/kidp/life-design-lab/a05/reflection-d96.html` を追加。A05の過去30問の採点・16タイプエンジンから独立した、**得点なし・入力なし・保存なし**の編集用ミニ体験とした。
 
 - D-95の未承認2文面を読んで考える。
 - 架空8ケースを切り替え、状態・快楽・注意能力・時間資源の混同を認識する。
@@ -26,8 +26,8 @@
 
 - **実行済み**：GitHubから取得したD-96原本HTML中のJavaScriptをV8のDOMスタブで直接実行し、架空8ケース切替、4段階の進行・復帰・再開始を確認。
 - **静的検査実行済み**：2文面のD-95との一致、選択肢8件、入力フォームの不在、ネットワーク・永続保存APIの不使用、未承認警告、旧30問とD-90原本SHA不変など**8/8項目合格**。
-- **GitHub追加**：\`scripts/test-a05-d96-reflection.mjs\`（Node内のDOMスタブによる4テスト）、\`scripts/qa_a05_d96_reflection_browser.cjs\`（Chrome 4画面幅、回答入力・外部通信・永続保存がないことのE2E）。
-- 2検査を\`.github/workflows/kidp-wave-a-browser-qa.yml\`の**手動起動のみのQA手順**に登録。自動実行やマージ・デプロイはしていない。
+- **GitHub追加**：`scripts/test-a05-d96-reflection.mjs`（Node内のDOMスタブによる4テスト）、`scripts/qa_a05_d96_reflection_browser.cjs`（Chrome 4画面幅、回答入力・外部通信・永続保存がないことのE2E）。
+- 2検査を`.github/workflows/kidp-wave-a-browser-qa.yml`の**手動起動のみのQA手順**に登録。自動実行やマージ・デプロイはしていない。
 - **未実行**：上記Nodeテストファイルのnative実行、実URL経由のChromium E2E、GitHub Actions、Safari/VoiceOver、編集上の正式承認。前述のV8検査を実Chromeテストの合格とは表現しない。
 - **現時点で得られていないこと**：心理測定上の信頼性・妥当性。D-96画面は定性的な振り返りの体験であり、実証心理尺度ではない。
 
@@ -40,4 +40,4 @@
 
 ## 守るべき制約
 
-旧30問 \(A05-Q-1.0.0-draft\)、D-87/D-90の質問JSON、既存履歴、16タイプ/32派生、P0本体を変更しない。D-95の研究G1は未承認のまま。参加者の募集・個人データ収集・得点化・旧データ再採点を開始しない。
+旧30問 (A05-Q-1.0.0-draft)、D-87/D-90の質問JSON、既存履歴、16タイプ/32派生、P0本体を変更しない。D-95の研究G1は未承認のまま。参加者の募集・個人データ収集・得点化・旧データ再採点を開始しない。
