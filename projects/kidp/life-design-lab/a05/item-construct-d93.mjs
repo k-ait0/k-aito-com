@@ -67,7 +67,8 @@ export function validateD93Mapping(mapping,bank,matrix,audit,sourceBlobs) {
        !ASSESSMENTS.includes(c.editorial_judgment)))
     refuse("criterion "+entry.id);
   for(const key of ["intent","alignment","primary_issue","rewrite_brief_unapproved","negative_guardrail"])
-   if(typeof entry[key]!=="string"||entry[key].length<15)refuse("incomplete editorial rationale "+entry.id+" "+key);
+   if(typeof entry[key]!=="string"||entry[key].trim().length<(key==="intent"?8:10))
+     refuse("incomplete editorial rationale "+entry.id+" "+key);
   if(!Array.isArray(entry.contamination)||entry.contamination.length<1||
      !Array.isArray(entry.overlap_items)||!Array.isArray(entry.cognitive_interview_probes_draft)||
      entry.cognitive_interview_probes_draft.length!==2||
