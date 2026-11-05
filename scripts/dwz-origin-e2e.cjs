@@ -9,7 +9,7 @@ const assert=require('node:assert/strict');
 const http=require('node:http');
 const fs=require('node:fs');
 const path=require('node:path');
-const {chromium}=require('playwright');
+const {chromium,webkit}=require('playwright');
 const {validateDiagnosticRows}=require('./dwz-origin-result-guard.cjs');
 const root=path.resolve(__dirname,'..');
 const appPath=path.join(root,'lab/dwz/index.html');
@@ -33,7 +33,9 @@ const server=http.createServer((req,res)=>{
   });
   fs.createReadStream(file).pipe(res);
 });
-let browser=null,context=null,checks=0;
+let browser=null,context=null,diagnosticContext=null,checks=0;
+const engine=(process.env.DWZ_BROWSER_ENGINE||'chromium').toLowerCase();
+assert.ok(['chromium','webkit'].includes(engine),'DWZ_BROWSER_ENGINE must be chromium or webkit');
 function pass(message){checks++;console.log('PASS '+message);}
 async function verify(label,condition){assert.ok(await condition(),label);pass(label);}
 async function getStorage(page,key){return page.evaluate(k=>window.localStorage.getItem(k),key);}
@@ -58,9 +60,13 @@ async function main(){
   const home=await probe('/lab/dwz/'), diagnosticHtml=await probe('/lab/dwz/diagnostics.html');
   await verify('local HTTP serves actual app HTML',()=>home.status===200 && home.text.includes('資産取り崩しシミュレーター'));
   await verify('local HTTP serves diagnostic HTML',()=>diagnosticHtml.status===200 && diagnosticHtml.text.includes('ブラウザ動作診断'));
-  const launchOptions={headless:true,args:['--no-sandbox']};
-  if(process.env.DWZ_CHROMIUM_PATH)launchOptions.executablePath=process.env.DWZ_CHROMIUM_PATH;
-  browser=await chromium.launch(launchOptions);
+  const launchOptions={headless:true};
+  if(engine==='chromium'){
+    launchOptions.args=['--no-sandbox'];
+    if(process.env.DWZ_CHROMIUM_PATH)launchOptions.executablePath=process.env.DWZ_CHROMIUM_PATH;
+  }
+  console.log('DWZ browser engine:',engine);
+  browser=await (engine==='webkit'?webkit:chromium).launch(launchOptions);
   context=await browser.newContext({viewport:{width:390,height:844},isMobile:true,hasTouch:true});
   const page=await context.newPage(),errors=[],escaped=[];
   page.on('pageerror',e=>errors.push(e.message));
@@ -68,7 +74,7 @@ async function main(){
   let response;
   try {response=await page.goto(base+'/lab/dwz/',{waitUntil:'domcontentloaded',timeout:20000});}
   catch(e){if(String(e).includes('ERR_BLOCKED_BY_ADMINISTRATOR')){
-    console.error('BLOCKED_BY_ENVIRONMENT: Chromium could not navigate to 127.0.0.1; no E2E results are claimed.');
+    console.error('BLOCKED_BY_ENVIRONMENT: '+engine+' could not navigate to 127.0.0.1; no E2E results are claimed.');
     process.exitCode=3;return;
   }throw e;}
   await verify('HTTP 200',()=>response&&response.status()===200);
@@ -119,10 +125,14 @@ async function main(){
   await verify('portfolio purge clears storage',async()=>(await getStorage(page,portfolioKey))===null);
   await verify('no browser JS errors',()=>errors.length===0);
   await verify('no external network requests',()=>escaped.length===0);
-  // Browser diagnostics has its own fully separate isolated context; never use personal data.
-  const diagnostic=await context.newPage();
+  // Separate browser context prevents app test storage from affecting the opt-in diagnostic.
+  diagnosticContext=await browser.newContext({viewport:{width:390,height:844},isMobile:true,hasTouch:true});
+  const diagnostic=await diagnosticContext.newPage();
+  diagnostic.on('request',r=>{if(!r.url().startsWith(base+'/'))escaped.push(r.url());});
   const diagnosticResponse=await diagnostic.goto(base+'/lab/dwz/diagnostics.html',{waitUntil:'domcontentloaded',timeout:20000});
   await verify('diagnostic HTTP 200',()=>diagnosticResponse.status()===200);
+  await verify('diagnostic has independent empty localStorage',async()=>
+    (await getStorage(diagnostic,captureKey))===null && (await getStorage(diagnostic,portfolioKey))===null);
   async function readFinishedDiagnostics(){
     await diagnostic.waitForFunction(()=>{
       const label=document.querySelector('#status')?.textContent||'';
@@ -148,11 +158,12 @@ async function main(){
     'アプリの明示保存','アプリ再読込後の保存値一致','再読込後のアプリ復元',
     '復元後は自動計算せず手動待ち','再読込後のアプリ保存削除'
   ]));
+  await verify('diagnostic generated no external network requests',()=>escaped.length===0);
   await verify('diagnostic leaves both saved keys empty',async()=>{
     const child=diagnostic.frameLocator('iframe#app');
     return child.locator('body').evaluate(()=>window.localStorage.getItem('dwz-r4-compare-v11-capture/0.1.0')===null && window.localStorage.getItem('dwz-r4-comparison-portfolio/0.1.0')===null);
   });
-  console.log('DWZ REAL-ORIGIN E2E: '+checks+'/'+checks+' PASS (Chromium, localhost origin, no storage mocks)');
+  console.log('DWZ REAL-ORIGIN E2E: '+checks+'/'+checks+' PASS ('+engine+', localhost origin, no storage mocks)');
 }
 main().catch(e=>{console.error('DWZ REAL-ORIGIN E2E FAIL after '+checks+' PASS: '+(e?.stack||e));process.exitCode=1})
-.finally(async()=>{try{await context?.close();await browser?.close();}finally{await new Promise(r=>server.close(r));}});
+.finally(async()=>{try{await diagnosticContext?.close();await context?.close();await browser?.close();}finally{await new Promise(r=>server.close(r));}});

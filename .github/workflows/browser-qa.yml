@@ -48,6 +48,15 @@ jobs:
         run: |
           node --check scripts/browser-smoke.cjs
           node scripts/browser-smoke.cjs
+      - name: Install Playwright WebKit (Safari engine approximation)
+        run: |
+          PLAYWRIGHT_BROWSERS_PATH=/tmp/kaito-browsers /tmp/kaito-qa/node_modules/.bin/playwright install --with-deps webkit
+      - name: DWZ WebKit localhost-origin E2E (not physical iPad)
+        env:
+          NODE_PATH: /tmp/kaito-qa/node_modules
+          PLAYWRIGHT_BROWSERS_PATH: /tmp/kaito-browsers
+          DWZ_BROWSER_ENGINE: webkit
+        run: node scripts/dwz-origin-e2e.cjs
       - name: Upload Kaito browser screenshots
         if: always()
         uses: actions/upload-artifact@v4
