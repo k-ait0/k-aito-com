@@ -84,3 +84,18 @@
 - Git blob SHA：`aa58e2a2ebbc37cb405209e3c3e7613e01d355c6`。ローカルファイルとGitHub上のソースが一致。
 
 **未完了:** リポジトリ全体の `node scripts/local-preflight.cjs`、実際のHTTPS経由の保存・リロード、iPad実機Safari、Xserverデプロイ。GitHub全体のcheckoutはDNS解決に失敗。PRはDraft・未マージのまま維持する。
+
+## v16.7 metadata hotfix — PR #70 公開前監査（2026-11-06）
+
+**実際のサイトQAとの不一致を発見・解消。** `scripts/site-static-check.cjs` はnoindexの試験ページでも `<meta name="description">` を必須とするが、新規追加した `lab/dwz/index.html` と `lab/dwz/diagnostics.html` に不足していた。両方に正確な説明文を追加した。
+
+- 対象：既存サイト全HTML **47ページ**の静的参照先 **420件**をGitHubのツリー内で照合し、欠落 **0件**。対象のGitHub `main` ツリーは338項目、うち280ファイル。
+- 同47ページの `site-static-check.cjs` 相当の **460メタデータ／リンク／SEOアサーション**を実行し、**460/460 PASS**。
+- 新規2ページは、同スクリプトのタイトル・説明・viewport・ID重複・内部アンカー・`noindex` / sitemap非掲載・相対参照の条件に **2/2ページ PASS**。検証時の対象GitHub HEADに対するblob:
+  - `lab/dwz/index.html`: `a4b4eac1d69b94f71dc270c38d55f72609b9e4eb`
+  - `lab/dwz/diagnostics.html`: `6dbeb9080d1b000b4df2a9f98021eb5793ecad7b`
+- HTML修正後のChromium画面試験は **60/60 PASS**（320/390/810/1280px、localStorageモック、各計算・比較・保存）。
+- `scripts/sync-published-content.cjs` は記事・sitemap・掲載済みページを更新し、全HTML横断更新は`/content-index.js?v=...`のキャッシュ識別子だけである。新規2ページには該当トークンがないため、今回の追加ファイルは生成スクリプトの書換対象にならないと判定。
+- **注意:** 以上はGitHub上のファイル取得に基づく限定検証。完全なチェックアウトでの `node scripts/local-preflight.cjs` を実行できたわけではない。サイト内の他14工程を一括PASSとみなさず、本番公開/実機Safari/HTTPS E2Eは引き続き保留。
+
+メタデータのみの修正で、金融計算Core・保存ロジック・公開設定は変更していない。PRは引き続きDraft・未マージ。
