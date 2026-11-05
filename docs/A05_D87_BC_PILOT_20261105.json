@@ -1,0 +1,259 @@
+{
+  "schema": "A05-BC-PILOT-0.1-draft",
+  "status": "UNAPPROVED_RESEARCH_ONLY",
+  "created_at": "2026-11-05",
+  "source_question_version": "A05-Q-1.0.0-draft",
+  "purpose": "B/C independent value-importance item pilot (not a replacement for the original diagnostic).",
+  "response": {
+    "prompt": "次のことを、あなたはどの程度大切にしたいと思いますか。",
+    "values": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "low_label": "まったく重視しない",
+    "middle_label": "どちらともいえない",
+    "high_label": "非常に重視する",
+    "cannot_judge": null
+  },
+  "facets": [
+    {
+      "axis": "B",
+      "id": "self",
+      "label": "自己裁量の重視"
+    },
+    {
+      "axis": "B",
+      "id": "related",
+      "label": "つながりの重視"
+    },
+    {
+      "axis": "C",
+      "id": "future",
+      "label": "将来達成の重視"
+    },
+    {
+      "axis": "C",
+      "id": "present",
+      "label": "現在充実の重視"
+    }
+  ],
+  "items": [
+    {
+      "id": "B-S01",
+      "axis": "B",
+      "facet": "self",
+      "text": "重要な選択では、周囲の意見を聞いた後でも、最終的に自分で決められることを大切にしたい。"
+    },
+    {
+      "id": "B-S02",
+      "axis": "B",
+      "facet": "self",
+      "text": "人と共同で取り組むときも、自分の判断で進められる範囲を確保したい。"
+    },
+    {
+      "id": "B-S03",
+      "axis": "B",
+      "facet": "self",
+      "text": "日々の予定を決めるとき、自分で調整できる余地を残したい。"
+    },
+    {
+      "id": "B-R01",
+      "axis": "B",
+      "facet": "related",
+      "text": "大切な選択では、関係する人と十分に話し合えることを大切にしたい。"
+    },
+    {
+      "id": "B-R02",
+      "axis": "B",
+      "facet": "related",
+      "text": "日々の出来事や喜びを、身近な人と分かち合えることを大切にしたい。"
+    },
+    {
+      "id": "B-R03",
+      "axis": "B",
+      "facet": "related",
+      "text": "自分の目標に取り組むとき、人と協力して進める機会を大切にしたい。"
+    },
+    {
+      "id": "C-F01",
+      "axis": "C",
+      "facet": "future",
+      "text": "将来の選択肢を広げるために、今の時間の一部を準備に使うことを大切にしたい。"
+    },
+    {
+      "id": "C-F02",
+      "axis": "C",
+      "facet": "future",
+      "text": "数年後に実現したいことを意識して、日々の優先順位を決めることを大切にしたい。"
+    },
+    {
+      "id": "C-F03",
+      "axis": "C",
+      "facet": "future",
+      "text": "すぐに成果が見えなくても、長期目標に役立つ活動を続けることを大切にしたい。"
+    },
+    {
+      "id": "C-P01",
+      "axis": "C",
+      "facet": "present",
+      "text": "将来の成果に直接つながらなくても、日々の時間を楽しめる活動を大切にしたい。"
+    },
+    {
+      "id": "C-P02",
+      "axis": "C",
+      "facet": "present",
+      "text": "将来の準備とは別に、今の暮らしを充実させる時間を確保したい。"
+    },
+    {
+      "id": "C-P03",
+      "axis": "C",
+      "facet": "present",
+      "text": "一日の過ごし方を選ぶとき、その日の満足感を大切にしたい。"
+    }
+  ],
+  "scoring": {
+    "aggregation": "complete_case_arithmetic_mean",
+    "required_answers_per_facet": 3,
+    "missing": "null; do not impute 4",
+    "range": [
+      1,
+      7
+    ],
+    "classify": false,
+    "type_id": null,
+    "group_id": null,
+    "classification_status": "WITHHELD",
+    "allow_old_record_rescoring": false
+  },
+  "fixtures": [
+    {
+      "id": "both_high",
+      "by_facet": {
+        "self": [
+          7,
+          7,
+          7
+        ],
+        "related": [
+          7,
+          7,
+          7
+        ],
+        "future": [
+          7,
+          7,
+          7
+        ],
+        "present": [
+          7,
+          7,
+          7
+        ]
+      },
+      "expected": {
+        "self": 7,
+        "related": 7,
+        "future": 7,
+        "present": 7
+      }
+    },
+    {
+      "id": "both_low",
+      "by_facet": {
+        "self": [
+          1,
+          1,
+          1
+        ],
+        "related": [
+          1,
+          1,
+          1
+        ],
+        "future": [
+          1,
+          1,
+          1
+        ],
+        "present": [
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": {
+        "self": 1,
+        "related": 1,
+        "future": 1,
+        "present": 1
+      }
+    },
+    {
+      "id": "opposed",
+      "by_facet": {
+        "self": [
+          7,
+          7,
+          7
+        ],
+        "related": [
+          1,
+          1,
+          1
+        ],
+        "future": [
+          1,
+          1,
+          1
+        ],
+        "present": [
+          7,
+          7,
+          7
+        ]
+      },
+      "expected": {
+        "self": 7,
+        "related": 1,
+        "future": 1,
+        "present": 7
+      }
+    },
+    {
+      "id": "incomplete",
+      "by_facet": {
+        "self": [
+          7,
+          7,
+          null
+        ],
+        "related": [
+          4,
+          4,
+          4
+        ],
+        "future": [
+          4,
+          4,
+          4
+        ],
+        "present": [
+          4,
+          4,
+          4
+        ]
+      },
+      "expected": {
+        "self": null,
+        "related": 4,
+        "future": 4,
+        "present": 4
+      }
+    }
+  ]
+}
