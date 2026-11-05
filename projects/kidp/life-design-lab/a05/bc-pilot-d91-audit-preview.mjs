@@ -24,8 +24,10 @@ function updateVisibility(){
   (filter.value!=="ALL"&&card.dataset.status!==filter.value)||
   (axis.value!=="ALL"&&card.dataset.axis!==axis.value);
  const visible=[...cards].filter(card=>!card.hidden).length;
- el("load-state").textContent="全12問：TRIAL 4／REVISE 8。表示中："+visible+
-  "問。正式な尺度としての採用・分類判定は保留。";
+ const trial=[...cards].filter(card=>card.dataset.status==="TRIAL").length;
+ const revise=[...cards].filter(card=>card.dataset.status==="REVISE").length;
+ el("load-state").textContent="全"+cards.length+"問：TRIAL "+trial+"／REVISE "+revise+
+  "。表示中："+visible+"問。正式な尺度としての採用・分類判定は保留。";
 }
 function render(bank,audit){
  if(audit.schema!=="A05-D91-EDITORIAL-CONSTRUCT-AUDIT-0.1" ||
