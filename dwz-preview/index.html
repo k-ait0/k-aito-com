@@ -140,6 +140,26 @@ body[data-dwz-mode="detail"] #dwz-quick-result-note{display:none!important}
 <p class="caption">金額表示は円単位へ丸めています。目標達成判定は丸め前のFloat64計算で行い、M1確定取引の整数円台帳との一致は保証していません。探索上限の到達は大域的な最大額を意味しません。</p></section>
 <footer>R4 静的Web PoC — RESEARCH_ONLY_HOLD / productionApproved=false</footer></main>
 <script>
+/* Research preview privacy isolation: no real browser storage access. */
+(()=>{
+  'use strict';
+  const reject=()=>{throw new Error('共有プレビューでは端末保存を利用できません');};
+  const ephemeral=Object.freeze({getItem:()=>null,setItem:reject,removeItem:reject,clear:reject,key:()=>null,length:0});
+  Object.defineProperty(window,'__dwzPreviewStorage',{value:ephemeral,configurable:false,writable:false});
+  const notice=document.createElement('p');
+  notice.id='dwz-preview-privacy';
+  notice.setAttribute('role','status');
+  notice.style.cssText='background:#fff2c5;color:#493716;border:2px solid #aa7a18;padding:14px;border-radius:10px;margin:16px 0';
+  notice.textContent='共有HTTPSホスト上の検証用です。実際の資産額などの個人情報を入力しないでください。端末への条件保存・復元・削除は無効です。ダミー条件で計算してください。';
+  const main=document.querySelector('main.layout');
+  if(main) main.insertBefore(notice,main.firstChild);
+  for(const id of ['r4-save-local','r4-restore-local','r4-purge-local','r4-portfolio-save','r4-portfolio-restore','r4-portfolio-purge']){
+    const button=document.getElementById(id);
+    if(button){button.disabled=true;button.title='検証プレビューでは無効';}
+  }
+})();
+</script>
+<script>
 /* Research-only comparison from EXACT ORIGINAL calculation modules. */
 (function(){
 'use strict';
@@ -2295,7 +2315,7 @@ function attachR4PortfolioUI(form, capture) {
     let portfolio = { schemaVersion: portfolio_core_mjs_1.R4_PORTFOLIO_SCHEMA, scenarios: [] };
     let storedVersion = null;
     try {
-        storedVersion = window.localStorage.getItem(portfolio_storage_mjs_1.R4_PORTFOLIO_STORAGE_KEY);
+        storedVersion = window.__dwzPreviewStorage.getItem(portfolio_storage_mjs_1.R4_PORTFOLIO_STORAGE_KEY);
     }
     catch { }
     const status = $('r4-portfolio-status'), results = $('r4-portfolio-results'), list = $('r4-portfolio-list');
@@ -2389,11 +2409,11 @@ function attachR4PortfolioUI(form, capture) {
     }));
     $('r4-portfolio-save').addEventListener('click', () => action(() => {
         portfolio = (0, portfolio_core_mjs_1.validateR4Portfolio)(portfolio);
-        storedVersion = (0, portfolio_storage_mjs_1.commitR4Portfolio)(window.localStorage, portfolio, storedVersion);
+        storedVersion = (0, portfolio_storage_mjs_1.commitR4Portfolio)(window.__dwzPreviewStorage, portfolio, storedVersion);
         status.textContent = '明示操作によりシナリオ条件のみ端末内に保存しました（暗号化なし）。';
     }));
     $('r4-portfolio-restore').addEventListener('click', () => action(() => {
-        const { raw, portfolio: p } = (0, portfolio_storage_mjs_1.readR4Portfolio)(window.localStorage);
+        const { raw, portfolio: p } = (0, portfolio_storage_mjs_1.readR4Portfolio)(window.__dwzPreviewStorage);
         if (p === null)
             throw Error('no saved portfolio');
         portfolio = (0, portfolio_core_mjs_1.validateR4Portfolio)(p);
@@ -2405,7 +2425,7 @@ function attachR4PortfolioUI(form, capture) {
     $('r4-portfolio-purge').addEventListener('click', () => action(() => {
         if (!window.confirm('このブラウザに保存した5シナリオ用の条件だけを削除しますか？'))
             return;
-        (0, portfolio_storage_mjs_1.purgeR4Portfolio)(window.localStorage, storedVersion);
+        (0, portfolio_storage_mjs_1.purgeR4Portfolio)(window.__dwzPreviewStorage, storedVersion);
         storedVersion = null;
         status.textContent = '端末内のシナリオ保存データを削除しました。通常Coreの保存データは維持します。';
     }));
@@ -2746,7 +2766,7 @@ function spark(rows) {
 const vaultMessage = document.getElementById('r4-vault-status');
 let vaultVersion = null;
 try {
-    vaultVersion = window.localStorage.getItem(storage_mjs_1.R4_VAULT_KEY);
+    vaultVersion = window.__dwzPreviewStorage.getItem(storage_mjs_1.R4_VAULT_KEY);
 }
 catch {
     vaultMessage.textContent = 'HOLD：端末内保存が使えません。計算機能は引き続き利用できます。';
@@ -2782,11 +2802,11 @@ function vaultAction(action) {
 document.getElementById('r4-save-local').addEventListener('click', () => vaultAction(() => {
     const candidate = capture();
     (0, compute_mjs_1.calculateR4BrowserCore)(candidate); // fail closed for unsupported settings
-    vaultVersion = (0, storage_mjs_1.commitR4Capture)(window.localStorage, candidate, vaultVersion);
+    vaultVersion = (0, storage_mjs_1.commitR4Capture)(window.__dwzPreviewStorage, candidate, vaultVersion);
     vaultMessage.textContent = '研究用の入力条件のみ端末内へ保存しました（暗号化なし）。';
 }));
 document.getElementById('r4-restore-local').addEventListener('click', () => vaultAction(() => {
-    const { raw, capture: stored } = (0, storage_mjs_1.readR4Capture)(window.localStorage);
+    const { raw, capture: stored } = (0, storage_mjs_1.readR4Capture)(window.__dwzPreviewStorage);
     if (stored === null)
         throw Error('保存した入力はありません');
     const result = (0, compute_mjs_1.calculateR4BrowserCore)(stored);
@@ -2799,7 +2819,7 @@ document.getElementById('r4-restore-local').addEventListener('click', () => vaul
 document.getElementById('r4-purge-local').addEventListener('click', () => vaultAction(() => {
     if (!window.confirm('このブラウザに保存したR4基本条件を削除しますか？'))
         return;
-    (0, storage_mjs_1.purgeR4Capture)(window.localStorage, vaultVersion);
+    (0, storage_mjs_1.purgeR4Capture)(window.__dwzPreviewStorage, vaultVersion);
     vaultVersion = null;
     vaultMessage.textContent = '保存条件の削除を確認しました。';
 }));
@@ -3008,20 +3028,4 @@ load('app.mjs');
   document.dispatchEvent(new Event('dwz-mode-ready'));
 })();
 
-</script><script>
-(function(){
-  if(!/^(raw|rawcdn)\.githack\.com$/i.test(location.hostname)) return;
-  const notice=document.createElement('p');
-  notice.setAttribute('role','status');
-  notice.style.cssText='background:#fff2c5;color:#493716;border:2px solid #aa7a18;padding:14px;border-radius:10px;margin:16px 0';
-  notice.textContent='外部共有ホスト上の検証用プレビューです。実際の個人資産額は入力しないでください。このプレビューでは安全のため端末への条件保存・復元を無効化しています。';
-  const main=document.querySelector('main.layout');
-  if(main) main.insertBefore(notice,main.firstChild);
-  const blocked=new Set(['r4-save-local','r4-restore-local','r4-purge-local','r4-portfolio-save','r4-portfolio-restore','r4-portfolio-purge']);
-  for(const id of blocked){ const element=document.getElementById(id);if(element){element.disabled=true;element.title='共有ホスト上のプレビューでは無効';}}
-  document.addEventListener('click',function(event){
-    const id=event.target.closest?.('button')?.id;
-    if(id&&blocked.has(id)){event.preventDefault();event.stopImmediatePropagation();}
-  },true);
-})();
 </script></body></html>
