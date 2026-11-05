@@ -2,7 +2,7 @@
 <html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex,nofollow"><meta name="description" content="資産取り崩しシミュレーター研究版のブラウザ起動、計算、画面表示、保存動作をダミー条件で確認する診断ページ。">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; frame-src 'self'; connect-src 'none'; img-src 'self' data:; base-uri 'none'; object-src 'none'; form-action 'none'">
-<title>DWZ R4 v16.7 — ブラウザ動作診断</title>
+<title>DWZ R4 v16.9 — ブラウザ動作診断</title>
 <style>
 *{box-sizing:border-box}body{margin:0;background:#f5f8fc;color:#172b48;font:15px/1.6 system-ui,-apple-system,sans-serif}
 main{max-width:800px;margin:auto;padding:22px 16px 60px}h1{font-size:clamp(22px,4vw,30px);margin:5px 0}h2{font-size:18px;margin:0 0 8px}
@@ -16,7 +16,7 @@ textarea{width:100%;min-height:120px;padding:10px;border-radius:8px;border:1px s
 .frame{width:100%;max-width:100%;overflow:auto;border:1px solid #d5e1ef}
 iframe{display:block;border:0;width:390px;height:440px;background:white}
 </style></head><body><main>
-<p class="muted">DWZ / RESEARCH_ONLY_HOLD / v16.7 / iPad &amp; desktop diagnostics</p>
+<p class="muted">DWZ / RESEARCH_ONLY_HOLD / v16.9 / iPad &amp; desktop diagnostics</p>
 <h1>ブラウザ動作診断</h1>
 <p>同じ配信元のシミュレーターを内部で読み込み、JavaScript起動、計算、入力切替、画面幅、端末保存の可否を確認します。</p>
 <p class="warning"><strong>ダミー条件専用。</strong> 個人の資産情報を入力しないでください。診断結果は送信されません。通常診断では既存の保存済み条件を変更しません。追加の保存操作テストも、既存データがない場合にだけダミー値で実施します。</p>
@@ -98,6 +98,10 @@ iframe{display:block;border:0;width:390px;height:440px;background:white}
       const auditHold=doc.getElementById('output');
       check('数値境界の安全な判定保留',auditHold.dataset.status==='HOLD' && auditHold.dataset.reason==='FLOAT_THRESHOLD_AMBIGUOUS' && auditHold.textContent.includes('判定保留'));
       update(doc,'start',60);update(doc,'end',90);update(doc,'assets',750);update(doc,'expense',18);update(doc,'pension',0);update(doc,'rate',3.7);
+      check('入力変更時に古いHOLD理由を破棄',auditHold.dataset.status===undefined && auditHold.dataset.reason===undefined);
+      calc.click();await sleep(80);
+      check('HOLD後の正常再計算で理由が残らない',
+        auditHold.dataset.status==='BASELINE_INFEASIBLE' && auditHold.dataset.reason===undefined);
       doc.getElementById('dwz-mode-detail').click();
       check('詳細モードへ切り替え',doc.body.dataset.dwzMode==='detail');
       update(doc,'target',150);
@@ -187,7 +191,7 @@ iframe{display:block;border:0;width:390px;height:440px;background:white}
       check('診断処理',false,String(e.message||e).slice(0,170));
       status.textContent='診断が途中で停止しました。配信元のiframe制限も確認してください。';
     } finally {
-      summary.value=['DWZ R4 v16.7 ブラウザ診断', '実施日時: '+new Date().toLocaleString('ja-JP'),'配信方式: '+location.protocol,'実行結果:'].concat(results.map(r=>'- '+r.state+' '+r.name+(r.detail?' ('+r.detail+')':''))).join('\n');
+      summary.value=['DWZ R4 v16.9 ブラウザ診断', '実施日時: '+new Date().toLocaleString('ja-JP'),'配信方式: '+location.protocol,'実行結果:'].concat(results.map(r=>'- '+r.state+' '+r.name+(r.detail?' ('+r.detail+')':''))).join('\n');
       busy=false;runButton.disabled=false;
     }
   }
