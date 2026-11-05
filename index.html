@@ -2842,7 +2842,14 @@ form.addEventListener('submit', ev => {
         output.dataset.status = r.status;
     }
     catch (e) {
-        output.replaceChildren(el('p', 'error', '計算を停止しました：' + String(e?.message ?? e)));
+        const reason = String(e?.message ?? e);
+        if (reason.includes('nominalAudit.floatThresholdAmbiguous')) {
+            output.replaceChildren(el('p', 'error', '判定保留：入力条件は有効ですが、研究版の金額境界が浮動小数点の誤差範囲に入ったため、追加支出額を確定できません。誤った金額を表示しないため、この条件は保留します。条件を変更して再試算するか、別方式での計算確認が必要です。'));
+            output.dataset.reason = 'FLOAT_THRESHOLD_AMBIGUOUS';
+        } else {
+            output.replaceChildren(el('p', 'error', '計算を停止しました：' + reason));
+            output.dataset.reason = 'OTHER_CALCULATION_HOLD';
+        }
         output.dataset.status = 'HOLD';
     }
 });
