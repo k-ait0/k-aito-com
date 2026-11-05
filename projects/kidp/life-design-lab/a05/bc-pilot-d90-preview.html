@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta name="description" content="A05 D90：独立尺度B/C 12問のv0.1とv0.2を比較する未承認の編集用プレビュー">
+<title>A05 D90｜B/C 12問の改訂比較（編集プレビュー）</title>
+<style>
+:root{font-family:system-ui,-apple-system,"Hiragino Kaku Gothic ProN",sans-serif;color-scheme:light dark}
+*{box-sizing:border-box}body{max-width:1050px;margin:24px auto;padding:0 18px;line-height:1.65}
+h1{font-size:clamp(1.35rem,3vw,2rem);line-height:1.35}h2{font-size:1.25rem}
+.notice{border:2px solid currentColor;border-radius:12px;padding:12px 16px;font-weight:650}
+.summary{border:1px solid #888;border-radius:12px;padding:12px 16px;margin:18px 0}
+.controls{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin:22px 0}
+select{font:inherit;min-height:44px;max-width:100%;padding:8px;border-radius:8px}
+select:focus-visible{outline:3px solid #367cbf;outline-offset:3px}
+.group{margin-top:28px}.group h2{margin-bottom:10px}
+.items{display:grid;gap:12px}.item{min-width:0;border:1px solid #999;padding:14px;border-radius:12px;overflow-wrap:anywhere}
+.item header{display:flex;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:10px}
+.item header strong{font-size:1.03rem}
+.tag{border:1px solid currentColor;border-radius:999px;padding:3px 9px;font-size:.85rem}
+.columns{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.columns>div{min-width:0;border:1px solid #aaa;border-radius:10px;padding:10px}
+.columns h3{font-size:.93rem;margin:0 0 6px}
+.columns p{margin:0}
+.reason{margin:10px 0 0;font-size:.94rem}
+.small{font-size:.92rem}
+[hidden]{display:none!important}
+@media(max-width:620px){body{margin:12px auto}.columns{grid-template-columns:1fr}.controls{align-items:stretch;flex-direction:column}select{width:100%}}
+</style>
+</head>
+<body>
+<main>
+<h1>A05｜B/C軸 12問の改訂比較</h1>
+<p class="notice">未承認の編集用画面です。人格診断、適職・相性判定、調査参加者からの回答収集は行いません。科学的に妥当性が検証された心理尺度ではありません。</p>
+<p>旧版v0.1（D-87）と改訂候補v0.2（D-90）の質問文を並べて確認します。質問IDと4尺度・採点方式は変えず、6問の表現のみを修正しました。数値の同等性は確認できていません。</p>
+<p id="load-state" class="summary" role="status" aria-live="polite">質問セットを読み込み中です。</p>
+<div class="controls">
+<label for="filter"><strong>表示する設問</strong></label>
+<select id="filter" disabled>
+ <option value="ALL">全12問</option>
+ <option value="REVISED">修正した6問</option>
+ <option value="UNCHANGED">変更なしの6問</option>
+</select>
+</div>
+<div id="matrix" aria-label="12問の新旧比較"></div>
+<section class="summary" aria-labelledby="boundary-title">
+<h2 id="boundary-title">この比較で確かめられること・確かめられないこと</h2>
+<p>構造的に確認できるのは質問ID、尺度所属、変更箇所、採点規則の不変性だけです。質問文を修正したことで回答傾向がどう変わるか、構成概念の妥当性や旧版との比較可能性は未検証です。</p>
+<p>旧版の回答・履歴を再採点したり、タイプIDを生成したり、A01やMY LIFE NOTEへ自動連携する機能はありません。</p>
+</section>
+<p class="small">このページに回答入力はありません。2つのJSONファイルを同一サイト内からGETで読み込み、データ保存や外部への送信をしません。</p>
+</main>
+<script type="module" src="./bc-pilot-d90-preview.mjs"></script>
+</body>
+</html>
