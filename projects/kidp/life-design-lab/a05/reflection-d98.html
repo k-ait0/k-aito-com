@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta name="color-scheme" content="light">
+<title>A05 D-98｜価値観を整理するミニ体験（アクセシビリティ検証版）</title>
+<meta name="description" content="現在の経験に置く価値を、得点やタイプ判定なしで整理する開発用の案内画面。回答・個人データは収集しません。">
+<style>
+:root{font-family:system-ui,-apple-system,"Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;color:#1d3448;background:#f6f9fb}
+*{box-sizing:border-box}body{margin:0;line-height:1.7}main{max-width:1000px;margin:0 auto;padding:28px 22px 72px}.skip-link{position:absolute;left:12px;top:8px;transform:translateY(-180%);padding:10px 14px;border-radius:8px;background:#1c6d9c;color:#fff;font-weight:700;z-index:10}.skip-link:focus{transform:none;outline:3px solid #e8a244;outline-offset:2px}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+h1{font-size:clamp(1.65rem,4vw,2.65rem);line-height:1.35;margin:10px 0 18px;letter-spacing:-.03em}
+h2{font-size:clamp(1.2rem,2.6vw,1.55rem);line-height:1.45;margin:0 0 12px}
+h3{font-size:1.08rem;margin:0 0 7px}
+p{margin:8px 0}.eyebrow{font-size:.77rem;letter-spacing:.14em;font-weight:800;color:#29668b}
+.head{padding:10px 0 20px;border-bottom:1px solid #d8e4eb}.head .sub{max-width:720px;font-size:1.08rem;color:#4a6475}
+.warning{margin:22px 0;padding:12px 16px;background:#e7f1f8;border-left:4px solid #417da5;border-radius:8px}
+.section{margin:30px 0}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.card{background:white;border:1px solid #d9e5ec;padding:20px 22px;border-radius:14px;min-width:0}
+.card strong{color:#275d80}.card .code{font-size:.76rem;letter-spacing:.1em;font-weight:800;color:#397c9e}
+.banded{border-left:4px solid #7cacca}.muted{color:#496173}.minor{font-size:.88rem}
+.options{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:14px 0}
+select{padding:10px;border:1px solid #7997a8;border-radius:9px;background:white;color:inherit;min-height:46px;max-width:100%;font:inherit}
+button{min-height:46px;padding:10px 18px;border-radius:10px;font:inherit;font-weight:700;cursor:pointer;border:1px solid #1c6d9c;background:#fff;color:#17577d}
+button.primary{background:#1c6d9c;color:#fff}
+button:disabled{opacity:.45;cursor:default}
+button:focus-visible,select:focus-visible{outline:3px solid #e8a244;outline-offset:3px}
+.case{background:#fff;border:1px solid #d9e5ec;border-radius:12px;padding:17px 20px;min-height:140px}
+#case-name{font-weight:800;color:#1b6089}
+#reflection-title{font-size:1.3rem;font-weight:800;line-height:1.5}#reflection-title:focus{outline:3px solid #1c6d9c;outline-offset:4px;border-radius:4px}
+.progress{font-size:.88rem;letter-spacing:.05em;color:#3b6379;font-weight:700}
+.step-guide{min-height:160px}
+#step-list{padding-left:22px}#step-list li{margin:6px 0}
+.foot{margin-top:38px;border-top:1px solid #d8e4eb;padding-top:18px;font-size:.88rem;color:#536a77}
+@media(max-width:690px){main{padding:18px 16px 44px}.grid{grid-template-columns:1fr}.card{padding:16px 18px}.section{margin:24px 0}.options{align-items:stretch;flex-direction:column}.options select,.options button{width:100%}}
+@media(forced-colors:active){.skip-link:focus,button:focus-visible,select:focus-visible,#reflection-title:focus{outline:3px solid Highlight}.warning,.banded{border-left:4px solid Highlight}}
+</style></head>
+<body><a href="#main-content" class="skip-link">本文へ移動</a><main id="main-content" tabindex="-1">
+<header class="head">
+<p class="eyebrow">K. AITO / LIFE DESIGN LAB / A05 D-98</p>
+<h1>大切にしたい「今」を、<br>言葉にしてみる。</h1>
+<p class="sub">将来の成果を大切にすることと、いま経験する時間を大切にすることは、どちらか一方を選ぶ必要はありません。</p>
+</header>
+<p class="warning" role="note"><strong>開発用・非診断のミニ体験です。</strong> 構成概念も質問文も未承認です。性格・16タイプ・適職・相性を判定せず、得点を計算しません。回答欄、保存、送信、分析タグはありません。</p>
+<section class="section" aria-labelledby="domains-title">
+<h2 id="domains-title">ふたつの見方</h2>
+<div class="grid">
+<article class="card banded"><p class="code">01 / 活動の過程</p>
+<h3>取り組んでいる時間そのもの</h3>
+<p>何かに取り組んでいる間の経験そのものを大切にしたい。</p>
+<p class="muted minor">成果が出たか、楽しかったか、能力が高いかとは分けて考えます。</p></article>
+<article class="card banded"><p class="code">02 / 日々の経験</p>
+<h3>特別ではない日常の時間</h3>
+<p>特別な出来事に限らず、日々の小さな経験も人生の大切な一部として考えたい。</p>
+<p class="muted minor">現在の幸福度、自由時間の量、気づきの上手さとは分けて考えます。</p></article>
+</div>
+<p class="minor muted">この2つが本当に異なる領域なのかは、まだ検証していません。どちらも「現在の経験の価値」の言い換えである可能性があります。</p>
+</section>
+<section class="section" aria-labelledby="cases-title">
+<h2 id="cases-title">架空の例で違いを考える</h2>
+<label for="case-picker"><strong>例を切り替える</strong></label>
+<div class="options"><select id="case-picker" aria-describedby="case-caution">
+<option value="0">1｜作業の過程を大切にする</option>
+<option value="1">2｜日常の小さな出来事を大切にする</option>
+<option value="2">3｜両方とも大切にする</option>
+<option value="3">4｜どちらも今は優先しない</option>
+<option value="4">5｜今の生活に不満がある</option>
+<option value="5">6｜楽しくない活動にも価値がある</option>
+<option value="6">7｜自由時間が足りない</option>
+<option value="7">8｜注意が散りやすい</option>
+</select></div>
+<article class="case" aria-labelledby="case-name" aria-describedby="case-text case-question">
+<h3 id="case-name">例1</h3>
+<p id="case-text"></p>
+<p class="muted"><strong>考える点：</strong><span id="case-question"></span></p>
+</article>
+<p id="case-announcement" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></p>
+<p id="case-caution" class="minor muted">すべて架空の状況です。実際の回答者の調査結果でも、診断の模範解答でもありません。</p>
+</section>
+<section class="section" aria-labelledby="reflection-heading">
+<h2 id="reflection-heading">3分間のセルフリフレクション</h2>
+<div class="card step-guide">
+<p id="reflection-progress" class="progress">ステップ 1 / 4</p>
+<h3 id="reflection-title" tabindex="-1" aria-describedby="reflection-progress"></h3>
+<p id="reflection-tip" class="muted"></p>
+<div class="options">
+<button id="prev" type="button" disabled>前へ</button>
+<button id="next" type="button" class="primary">次へ</button>
+<button id="restart" type="button">最初から</button>
+</div>
+</div>
+<p class="minor muted">自分の回答を入力する必要はありません。必要なら手元の紙に書き留めてください。この画面は内容を記録しません。</p>
+</section>
+<section class="section" aria-labelledby="readiness-heading">
+<h2 id="readiness-heading">現段階でできること・できないこと</h2>
+<div class="grid">
+<div class="card"><h3>できること</h3><ul id="step-list">
+<li>2つの文章を読み、自分に当てはまる場面を考える</li>
+<li>将来の目標と現在の経験の両立を考える</li>
+<li>どの表現が分かりにくいか自分で気づく</li>
+</ul></div>
+<div class="card"><h3>まだできないこと</h3><ul>
+<li>科学的根拠に基づく性格・価値観スコアの算出</li>
+<li>16タイプや32派生への自動分類</li>
+<li>実回答を収集した心理測定の検証</li>
+</ul></div>
+</div></section>
+<footer class="foot">A05 D-98 / 非診断・内部プレビュー。D-95で整理した暫定的な2つの問いと架空反例を素材としています。新版質問セット、実験参加者の募集、研究実施、公開承認を意味しません。</footer>
+</main>
+<noscript><p role="note">JavaScriptが無効なため、架空の事例の切替と振り返りガイドの操作はできません。上部の2つの問いはそのまま読めます。</p></noscript>
+<script>
+"use strict";
+/** D96 synthetic demonstration: strictly no user response storage. */
+const cases=[
+["例1｜作業の過程を大切にする","長期の仕事の作業過程は大切だが、毎日の小さな出来事は重視しない。","取り組む過程と小さな日常の経験は、別の意味だと説明できるでしょうか。"],
+["例2｜日常の小さな出来事を大切にする","小さな日常の出来事は大切だが、課題の作業過程自体には関心が薄い。","逆の関心を持つ場合にも、2つの文章を区別できるでしょうか。"],
+["例3｜両方とも大切","活動の過程も日々の小さな体験も両方大切。","どちらか一方を選ばず、両立を考えてよいでしょうか。"],
+["例4｜どちらも今は優先しない","活動過程も日常の出来事も現時点で優先しない。","『優先しない』という選択を、性格の欠点だと誤解していないでしょうか。"],
+["例5｜今の生活への不満","いまの暮らしに不満があるが、小さな経験を大切にしたい。","現在の満足度と、何を価値あるものと考えるかは別でしょうか。"],
+["例6｜楽しくない活動","楽しくない活動の過程に意味を感じ、日々の経験を大切にする。","楽しさが少ないことは、経験を重視しないことと同じでしょうか。"],
+["例7｜自由時間が足りない","自由時間が不足していても日々の経験を重視する。","時間の量と、その時間に置く価値を分けて考えられるでしょうか。"],
+["例8｜注意が散りやすい","注意が散りやすくても、今ある体験を大切にしたい。","注意を向ける能力と経験の価値を混同していないでしょうか。"]
+];
+const steps=[
+["最近、何かに取り組んだ時間を思い浮かべる","その活動の成果ではなく、取り組んでいる最中の経験に目を向けます。"],
+["日常の小さな出来事を思い浮かべる","特別なイベントや成功でなくても、人生の一部として大切にしたい出来事を考えます。"],
+["ふたつはどこが違う？","作業の過程と、小さな日々の体験を、それぞれ異なる理由で大切にすることはありますか。違わなくても問題ありません。"],
+["将来の大切さと両立させる","明日の目標を大切にしつつ、今日の時間も大切にできるとしたら、どんな過ごし方がありそうですか。"]
+];
+const el=id=>document.getElementById(id);
+let index=0;
+function showCase(){
+ const c=cases[Number(el("case-picker").value)]??cases[0];
+ el("case-name").textContent=c[0];
+ el("case-text").textContent=c[1];
+ el("case-question").textContent=c[2];
+ el("case-announcement").textContent=c[0]+"。"+c[1]+"。考える点："+c[2];
+}
+function showStep(focus=false){
+ const s=steps[index];
+ el("reflection-progress").textContent="ステップ "+(index+1)+" / "+steps.length;
+ el("reflection-title").textContent=s[0];
+ el("reflection-tip").textContent=s[1];
+ el("prev").disabled=index===0;
+ el("next").disabled=index===steps.length-1;
+ if(focus)el("reflection-title").focus();
+}
+el("case-picker").addEventListener("change",showCase);
+el("prev").addEventListener("click",()=>{if(index>0){index--;showStep(true)}});
+el("next").addEventListener("click",()=>{if(index<steps.length-1){index++;showStep(true)}});
+el("restart").addEventListener("click",()=>{index=0;showStep(true)});
+showCase();showStep();
+</script></body></html>
