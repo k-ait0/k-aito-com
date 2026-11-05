@@ -43,6 +43,17 @@ const {chromium}=require("playwright");
    assert.deepEqual(errors,[]);
    await page.close();
   }
-  console.log("A05 D95 two-domain research protocol QA PASS (4 viewports)");
+  // Changing harmless whitespace preserves valid JSON but breaks the Git blob SHA.
+  // The UI must reject this tampered source instead of displaying stale research guidance.
+  const mutated=await browser.newPage({viewport:{width:1280,height:800}});
+  await mutated.route("**/docs/A05_D90_BC_PILOT_0_2_20261105.json",async route=>{
+   const original=await route.fetch();
+   await route.fulfill({response:original,body:(await original.text())+" "});
+  });
+  await mutated.goto("http://127.0.0.1:8765/projects/kidp/life-design-lab/a05/cp1-domain-protocol-d95-preview.html");
+  await mutated.waitForFunction(()=>document.querySelector("#status").textContent.includes("資料を読み込めませんでした"));
+  assert.equal(await mutated.locator("#domains .card").count(),0);
+  await mutated.close();
+  console.log("A05 D95 research protocol Chrome QA: 4 viewports + blob tamper rejection");
  }finally{await browser.close()}
 })().catch(error=>{console.error(error);process.exitCode=1;});
