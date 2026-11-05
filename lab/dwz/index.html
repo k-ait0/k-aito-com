@@ -67,7 +67,7 @@ body[data-dwz-mode="detail"] #dwz-quick-result-note{display:none!important}
 <main class="layout"><noscript><p class="notice" style="border-color:#ad271c;background:#ffedea">JavaScriptを実行できないため、この閲覧方法では計算できません。iPadのファイルプレビュー等ではなく、JavaScriptが有効なブラウザでHTTPS配信されたページを開いてください。</p></noscript><header><p class="eyebrow">DWZ / CORE v1.1 / R4</p><h1>資産取り崩しシミュレーター</h1>
 <p>Nodeサーバーを使わず、既存の固定利回り計算エンジンをブラウザ内で実行します。</p>
 <p class="notice"><strong>研究版・公開未承認。</strong> 市場は指定した固定利回りの仮想条件です。税・社会保険・在職老齢年金の法定計算、複数口座・住宅ローン・NISAは対象外。ストレスは仮想経路・臨時イベントは単発の名目資金移動としてのみ扱います。確定した手取り額や資産額を示すものではありません。</p></header>
-<p id="dwz-preview-warning" class="notice" role="note"><strong>v16.5 公開前検証用：ダミー条件のみ入力してください。</strong> 実際の資産額・年金額などの個人情報は入力しないでください。保存内容は暗号化されず、同じサイト内の他のページから読み取られる可能性があります。端末保存はダミー値でのみ試してください。 <a href="./diagnostics.html">ブラウザ診断ページ</a></p>
+<p id="dwz-preview-warning" class="notice" role="note"><strong>v16.9 公開前検証用：ダミー条件のみ入力してください。</strong> 実際の資産額・年金額などの個人情報は入力しないでください。保存内容は暗号化されず、同じサイト内の他のページから読み取られる可能性があります。端末保存はダミー値でのみ試してください。 <a href="./diagnostics.html">ブラウザ診断ページ</a></p>
 
 <p id="dwz-runtime-status" class="runtime-status" role="status">計算エンジンの起動を確認しています。表示が変わらない場合、このファイル表示ではJavaScriptが実行できません（特にiPadのファイルプレビュー）。</p>
 <section class="mode-switch-panel" aria-label="シミュレーションの入力モード">
@@ -2781,6 +2781,7 @@ function invalidateStaleResult() {
         return;
     output.replaceChildren(el('p', 'muted', '条件が変更されました。結果を更新するには再計算してください。'));
     delete output.dataset.status;
+    delete output.dataset.reason;
 }
 form.addEventListener('input', invalidateStaleResult);
 form.addEventListener('change', invalidateStaleResult);
@@ -2793,6 +2794,7 @@ function fillCapture(saved) {
             form.elements[k].value = String(v);
     output.replaceChildren(el('p', 'muted', '復元した入力条件を確認し、手動で計算してください。'));
     delete output.dataset.status;
+    delete output.dataset.reason;
 }
 function vaultAction(action) {
     try {
@@ -2829,6 +2831,7 @@ document.getElementById('r4-purge-local').addEventListener('click', () => vaultA
 form.addEventListener('submit', ev => {
     ev.preventDefault();
     delete output.dataset.status;
+    delete output.dataset.reason;
     output.replaceChildren(el('p', 'muted', '計算中…'));
     try {
         const r = (0, compute_mjs_1.calculateR4BrowserCore)(capture());
