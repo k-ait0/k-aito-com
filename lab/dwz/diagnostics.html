@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; frame-src 'self'; connect-src 'none'; img-src 'self' data:; base-uri 'none'; object-src 'none'; form-action 'none'">
+<title>DWZ R4 v16.5 — ブラウザ動作診断</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f5f8fc;color:#172b48;font:15px/1.6 system-ui,-apple-system,sans-serif}
+main{max-width:800px;margin:auto;padding:22px 16px 60px}h1{font-size:clamp(22px,4vw,30px);margin:5px 0}h2{font-size:18px;margin:0 0 8px}
+section{padding:18px;background:white;border:1px solid #d5e1ef;border-radius:12px;margin:16px 0}
+button,a.action{display:inline-block;background:#205ed6;border:0;border-radius:9px;padding:11px 15px;color:white;font:inherit;margin:6px 8px 6px 0;cursor:pointer}
+button:disabled{opacity:.5}a{color:#1950b7}.muted{color:#50657d;font-size:13px}
+.warning{background:#fff3d7;border-left:4px solid #b77a04;padding:11px}
+table{width:100%;border-collapse:collapse}td,th{padding:9px 4px;text-align:left;border-bottom:1px solid #e2eaf4;vertical-align:top}
+td:first-child{width:52%}.pass{color:#116c47;font-weight:bold}.fail{color:#ac2424;font-weight:bold}.skip{color:#926700;font-weight:bold}
+textarea{width:100%;min-height:120px;padding:10px;border-radius:8px;border:1px solid #c6d5e5;font:12px/1.5 ui-monospace,monospace}
+.frame{width:100%;max-width:100%;overflow:auto;border:1px solid #d5e1ef}
+iframe{display:block;border:0;width:390px;height:440px;background:white}
+</style></head><body><main>
+<p class="muted">DWZ / RESEARCH_ONLY_HOLD / v16.5 / iPad &amp; desktop diagnostics</p>
+<h1>ブラウザ動作診断</h1>
+<p>同じ配信元のシミュレーターを内部で読み込み、JavaScript起動、計算、入力切替、画面幅、端末保存の可否を確認します。</p>
+<p class="warning"><strong>ダミー条件専用。</strong> 個人の資産情報を入力しないでください。診断結果は送信されません。通常診断では既存の保存済み条件を変更しません。追加の保存操作テストも、既存データがない場合にだけダミー値で実施します。</p>
+<section>
+<h2>診断を実行</h2>
+<p class="muted">診断中は内部の画面が自動操作されます。保存機能については独自の一時キーを作成し、読み書き後に削除します。アプリ本体の保存キーには書き込みません。</p>
+<button id="run" type="button">診断を開始・再実行</button>
+<label style="display:block;margin:8px 0"><input type="checkbox" id="deep-save"> アプリ本体の保存・復元・削除も検証する（既存データがない場合のみ）</label>
+<a href="index.html">シミュレーターを直接開く</a>
+<p id="status" aria-live="polite">未実行です。実行すると結果が表示されます。</p>
+<div class="frame"><iframe id="app" src="index.html" title="検証対象のシミュレーター"></iframe></div>
+</section>
+<section>
+<h2>診断結果</h2>
+<table><thead><tr><th>項目</th><th>結果</th></tr></thead><tbody id="results"><tr><td>診断待機中</td><td>—</td></tr></tbody></table>
+<p class="muted">iframeがブラウザやCDNのポリシーで遮断されると、この診断は実行できません。その場合は「シミュレーターを直接開く」で画面を確認してください。</p>
+<textarea id="summary" readonly aria-label="診断結果のコピー用テキスト"></textarea>
+<button id="copy" type="button">診断結果をコピー</button>
+</section>
+</main><script>
+(() => {
+  'use strict';
+  const frame = document.getElementById('app'), output = document.getElementById('results');
+  const status = document.getElementById('status'), runButton = document.getElementById('run');
+  const summary = document.getElementById('summary');
+  const results = [];
+  let busy = false;
+  const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+  function check(name, ok, detail) {
+    const state=ok===null?'SKIP':ok?'PASS':'FAIL';
+    results.push({name,state,detail:detail||''});
+    const tr=document.createElement('tr'), nameCell=document.createElement('td'), resultCell=document.createElement('td');
+    nameCell.textContent=name; resultCell.textContent=state+(detail?' — '+detail:'');
+    resultCell.className=state.toLowerCase();tr.append(nameCell,resultCell);output.append(tr);
+  }
+  async function loadFresh() {
+    const token='qa-'+Date.now()+'-'+Math.floor(Math.random()*10000);
+    return new Promise((resolve,reject)=>{
+      const timeout=setTimeout(()=>reject(new Error('内部アプリの読み込みが15秒以内に完了しません')),15000);
+      frame.onload=()=>{clearTimeout(timeout);frame.onload=null;resolve();};
+      frame.src='index.html?qa='+encodeURIComponent(token);
+    });
+  }
+  function getApp(){
+    const doc=frame.contentDocument;
+    if(!doc || !doc.getElementById('scenario')) throw new Error('同一オリジンでiframeを操作できません');
+    return doc;
+  }
+  function update(doc,name,value){
+    const el=doc.getElementById('scenario').elements[name];
+    if(!el) throw new Error('入力項目が見つかりません: '+name);
+    el.value=String(value);
+    el.dispatchEvent(new frame.contentWindow.Event('input',{bubbles:true}));
+  }
+  async function run() {
+    if(busy)return;
+    busy=true;runButton.disabled=true;results.length=0;output.replaceChildren();
+    status.textContent='診断中…';
+    try {
+      check('診断ページのJavaScript',true,'実行中');
+      check('HTTPS / ローカル配信',location.protocol==='https:'||location.hostname==='localhost'||location.hostname==='127.0.0.1',location.protocol);
+      await loadFresh();
+      const doc=getApp(), win=frame.contentWindow;
+      check('アプリJavaScriptの起動',doc.getElementById('dwz-runtime-status')?.dataset.ready==='true');
+      check('かんたんモードの初期表示',doc.body.dataset.dwzMode==='quick' && !doc.getElementById('dwz-run').disabled);
+      const advanced=doc.querySelector('input[name="pensionAge"]')?.closest('label');
+      check('詳細条件の非表示',advanced&&win.getComputedStyle(advanced).display==='none');
+      const form=doc.getElementById('scenario'), calc=doc.getElementById('dwz-run');
+      calc.click();await sleep(80);
+      const original=doc.getElementById('output').textContent||'';
+      check('初期条件の逆算結果',original.includes('45,360') && doc.getElementById('output').dataset.status!=='HOLD',
+        original.includes('45,360')?'45,360円／月':'想定値を検出できません');
+      update(doc,'assets',750);update(doc,'expense',18);update(doc,'pension',0);update(doc,'rate',3.7);
+      calc.click();await sleep(80);
+      const insuff=doc.getElementById('output').textContent||'';
+      check('資金不足の判定',insuff.includes('基本条件のままでは目標未達'));
+      update(doc,'start',40);update(doc,'end',120);update(doc,'assets',10000);update(doc,'expense',0);update(doc,'rate',0);
+      calc.click();await sleep(80);
+      const auditHold=doc.getElementById('output');
+      check('数値境界の安全な判定保留',auditHold.dataset.status==='HOLD' && auditHold.dataset.reason==='FLOAT_THRESHOLD_AMBIGUOUS' && auditHold.textContent.includes('判定保留'));
+      update(doc,'start',60);update(doc,'end',90);update(doc,'assets',750);update(doc,'expense',18);update(doc,'pension',0);update(doc,'rate',3.7);
+      doc.getElementById('dwz-mode-detail').click();
+      check('詳細モードへ切り替え',doc.body.dataset.dwzMode==='detail');
+      doc.getElementById('dwz-mode-quick').click();
+      check('かんたんモードへ戻る',doc.body.dataset.dwzMode==='quick');
+      for (const width of [320,390,810,1280]) {
+        frame.style.width=width+'px';
+        await sleep(75);
+        const overflow=Math.max(doc.documentElement.scrollWidth,doc.body.scrollWidth)-doc.documentElement.clientWidth;
+        check('横幅 '+width+'px のレイアウト',overflow<=2,'はみ出し '+Math.max(0,overflow)+'px');
+      }
+      frame.style.width='390px';
+      const key='dwz-qa-ephemeral-'+Date.now()+'-'+Math.floor(Math.random()*100000);
+      let storageOk=false,storageDetail='';
+      try {
+        const store=win.localStorage;
+        try {
+          const marker='test-'+Date.now();
+          store.setItem(key,marker);
+          storageOk=store.getItem(key)===marker;
+          storageDetail=storageOk?'書込・読込成功':'読み込み値が不一致';
+        } finally {
+          store.removeItem(key);
+        }
+      } catch(e) {storageDetail=String(e.message||e).slice(0,110);}
+      check('一時キーの保存・読込・削除',storageOk,storageDetail);
+      
+      if(document.getElementById('deep-save').checked){
+        const keyName='dwz-r4-compare-v11-capture/0.1.0';
+        try {
+          const storage=win.localStorage;
+          if(storage.getItem(keyName)!==null) {
+            check('アプリ保存・復元・削除',null,'既存保存データがあるため安全にスキップ');
+          } else {
+            doc.getElementById('dwz-mode-detail').click();
+            let storedValue=null;
+            try {
+              doc.getElementById('r4-save-local').click();
+              storedValue=storage.getItem(keyName);
+              check('アプリの明示保存',!!storedValue && storedValue.length>100);
+              if(storedValue) {
+                update(doc,'assets',1000);
+                doc.getElementById('r4-restore-local').click();
+                const restored=form.elements.assets.value==='750';
+                check('アプリの復元',restored);
+                check('復元後の手動再計算待ち',(doc.getElementById('output').textContent||'').includes('復元した入力条件'));
+                const oldConfirm=win.confirm;
+                try {win.confirm=()=>true;doc.getElementById('r4-purge-local').click();}
+                finally {win.confirm=oldConfirm;}
+                check('アプリの保存削除',storage.getItem(keyName)===null);
+              }
+            } finally {
+              // This test runs only when the original key was absent. No user data is removed.
+              if(storedValue && storage.getItem(keyName)===storedValue) storage.removeItem(keyName);
+            }
+          }
+        } catch(e){
+          check('アプリ保存・復元・削除',false,String(e.message||e).slice(0,120));
+        }
+      } else {
+        check('既存の条件保存キーを変更していない',true,'通常診断は保存ボタンを操作しません');
+      }
+      const failures=results.filter(r=>r.state==='FAIL').length;
+      status.textContent='診断完了：'+(results.length-failures)+'項目PASS/SKIP、'+failures+'項目FAIL。';
+    } catch(e) {
+      check('診断処理',false,String(e.message||e).slice(0,170));
+      status.textContent='診断が途中で停止しました。配信元のiframe制限も確認してください。';
+    } finally {
+      summary.value=['DWZ R4 v16.5 ブラウザ診断', '実施日時: '+new Date().toLocaleString('ja-JP'),'配信方式: '+location.protocol,'実行結果:'].concat(results.map(r=>'- '+r.state+' '+r.name+(r.detail?' ('+r.detail+')':''))).join('\n');
+      busy=false;runButton.disabled=false;
+    }
+  }
+  runButton.addEventListener('click',run);
+  document.getElementById('copy').addEventListener('click',async()=>{
+    try { await navigator.clipboard.writeText(summary.value); status.textContent='結果をコピーしました。'; }
+    catch { summary.focus();summary.select();status.textContent='結果欄を選択しました。手動でコピーしてください。';}
+  });
+})();
+</script></body></html>
