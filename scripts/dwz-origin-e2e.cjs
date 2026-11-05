@@ -34,7 +34,7 @@ const server=http.createServer((req,res)=>{
 });
 let browser=null,context=null,checks=0;
 function pass(message){checks++;console.log('PASS '+message);}
-async function verify(label,condition){assert.ok(await condition,label);pass(label);}
+async function verify(label,condition){assert.ok(await condition(),label);pass(label);}
 async function getStorage(page,key){return page.evaluate(k=>window.localStorage.getItem(k),key);}
 async function fillForm(page,name,value){
   const input=page.locator('#scenario [name="'+name+'"]');
