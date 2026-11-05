@@ -19,11 +19,12 @@ iframe{display:block;border:0;width:390px;height:440px;background:white}
 <p class="muted">DWZ / RESEARCH_ONLY_HOLD / v16.3 / iPad &amp; desktop diagnostics</p>
 <h1>ブラウザ動作診断</h1>
 <p>同じ配信元のシミュレーターを内部で読み込み、JavaScript起動、計算、入力切替、画面幅、端末保存の可否を確認します。</p>
-<p class="warning"><strong>ダミー条件専用。</strong> 個人の資産情報を入力しないでください。診断結果は送信されません。診断では既存の保存済み基本条件・シナリオを変更しません。</p>
+<p class="warning"><strong>ダミー条件専用。</strong> 個人の資産情報を入力しないでください。診断結果は送信されません。通常診断では既存の保存済み条件を変更しません。追加の保存操作テストも、既存データがない場合にだけダミー値で実施します。</p>
 <section>
 <h2>診断を実行</h2>
 <p class="muted">診断中は内部の画面が自動操作されます。保存機能については独自の一時キーを作成し、読み書き後に削除します。アプリ本体の保存キーには書き込みません。</p>
 <button id="run" type="button">診断を開始・再実行</button>
+<label style="display:block;margin:8px 0"><input type="checkbox" id="deep-save"> アプリ本体の保存・復元・削除も検証する（既存データがない場合のみ）</label>
 <a href="index.html">シミュレーターを直接開く</a>
 <p id="status" aria-live="polite">未実行です。実行すると結果が表示されます。</p>
 <div class="frame"><iframe id="app" src="index.html" title="検証対象のシミュレーター"></iframe></div>
@@ -56,7 +57,7 @@ iframe{display:block;border:0;width:390px;height:440px;background:white}
     return new Promise((resolve,reject)=>{
       const timeout=setTimeout(()=>reject(new Error('内部アプリの読み込みが15秒以内に完了しません')),15000);
       frame.onload=()=>{clearTimeout(timeout);frame.onload=null;resolve();};
-      frame.src='index.html#'+token;
+      frame.src='index.html?qa='+encodeURIComponent(token);
     });
   }
   function getApp(){
@@ -117,7 +118,42 @@ iframe{display:block;border:0;width:390px;height:440px;background:white}
         }
       } catch(e) {storageDetail=String(e.message||e).slice(0,110);}
       check('一時キーの保存・読込・削除',storageOk,storageDetail);
-      check('既存の条件保存キーを変更していない',true,'この診断はアプリの保存ボタンを操作しません');
+      
+      if(document.getElementById('deep-save').checked){
+        const keyName='dwz-r4-compare-v11-capture/0.1.0';
+        try {
+          const storage=win.localStorage;
+          if(storage.getItem(keyName)!==null) {
+            check('アプリ保存・復元・削除',null,'既存保存データがあるため安全にスキップ');
+          } else {
+            doc.getElementById('dwz-mode-detail').click();
+            let storedValue=null;
+            try {
+              doc.getElementById('r4-save-local').click();
+              storedValue=storage.getItem(keyName);
+              check('アプリの明示保存',!!storedValue && storedValue.length>100);
+              if(storedValue) {
+                update(doc,'assets',1000);
+                doc.getElementById('r4-restore-local').click();
+                const restored=form.elements.assets.value==='750';
+                check('アプリの復元',restored);
+                check('復元後の手動再計算待ち',(doc.getElementById('output').textContent||'').includes('復元した入力条件'));
+                const oldConfirm=win.confirm;
+                try {win.confirm=()=>true;doc.getElementById('r4-purge-local').click();}
+                finally {win.confirm=oldConfirm;}
+                check('アプリの保存削除',storage.getItem(keyName)===null);
+              }
+            } finally {
+              // This test runs only when the original key was absent. No user data is removed.
+              if(storedValue && storage.getItem(keyName)===storedValue) storage.removeItem(keyName);
+            }
+          }
+        } catch(e){
+          check('アプリ保存・復元・削除',false,String(e.message||e).slice(0,120));
+        }
+      } else {
+        check('既存の条件保存キーを変更していない',true,'通常診断は保存ボタンを操作しません');
+      }
       const failures=results.filter(r=>r.state==='FAIL').length;
       status.textContent='診断完了：'+(results.length-failures)+'項目PASS/SKIP、'+failures+'項目FAIL。';
     } catch(e) {
