@@ -100,6 +100,18 @@ iframe{display:block;border:0;width:390px;height:440px;background:white}
       update(doc,'start',60);update(doc,'end',90);update(doc,'assets',750);update(doc,'expense',18);update(doc,'pension',0);update(doc,'rate',3.7);
       doc.getElementById('dwz-mode-detail').click();
       check('詳細モードへ切り替え',doc.body.dataset.dwzMode==='detail');
+      update(doc,'target',150);
+      calc.click();await sleep(60);
+      check('期末目標の刻み不一致を日本語で通知',
+        !doc.getElementById('dwz-input-feedback').hidden &&
+        doc.getElementById('dwz-input-feedback').textContent.includes('100万円刻み'));
+      update(doc,'target',1000);
+      update(doc,'extraStartAgeYears',30);
+      calc.click();await sleep(60);
+      check('追加支出の開始年齢違反を日本語で通知',
+        !doc.getElementById('dwz-input-feedback').hidden &&
+        doc.getElementById('dwz-input-feedback').textContent.includes('追加支出の開始年齢'));
+      update(doc,'extraStartAgeYears',60);
       doc.getElementById('dwz-mode-quick').click();
       check('かんたんモードへ戻る',doc.body.dataset.dwzMode==='quick');
       for (const width of [320,390,810,1280]) {
