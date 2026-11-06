@@ -70,3 +70,37 @@ test('beta entrypoint remains unindexed, warns that the scale is unvalidated and
   assert.match(css, /@page\{size:A4;margin:0\}/);
   assert.doesNotMatch(report, /\bfetch\s*\(|sendBeacon|XMLHttpRequest|localStorage|indexedDB/);
 });
+
+
+test('1500 seeded mixed answers never invent a type or leak answers into report HTML',()=>{
+ let seed=0x120526;
+ const rand=()=>((seed=Math.imul(seed,1664525)+1013904223>>>0)/4294967296);
+ const counts={classified:0,provisional:0,withheld:0};
+ for(let k=0;k<1500;k++){
+  const draft=newDraft('QA-SYNTH-'+k,hash);
+  draft.answers=Object.fromEntries(QUESTIONS.map(q=>{
+   const r=rand();
+   return [q.id,r<0.13?null:1+Math.floor(rand()*7)];
+  }));
+  const before=JSON.stringify(draft);
+  const snapshot=makeSnapshot(draft,hash,false);
+  const report=buildReport(snapshot),html=renderReport(snapshot);
+  assert.equal(report.pages.length,10);
+  assert.equal((html.match(/class="report-sheet"/g)||[]).length,10);
+  assert.equal((html.match(/href="#a05-report-p\d+"/g)||[]).length,10);
+  assert.doesNotMatch(html,/QA-SYNTH-|rawAnswers|assessmentId|questionHash/);
+  assert.match(html,/非標準化/);
+  assert.equal(JSON.stringify(draft),before);
+  assert.equal(report.axes.length,5);
+  for(const axis of report.axes){
+   assert.ok(axis.value===null||(Number.isFinite(axis.value)&&Math.abs(axis.value)<=100));
+  }
+  const type=snapshot.result.typeId;
+  if(snapshot.result.classification==='withheld')assert.equal(type,null);
+  else assert.ok(TYPES.some(t=>t.id===type));
+  counts[snapshot.result.classification]++;
+ }
+ assert.ok(counts.classified>0);
+ assert.ok(counts.provisional>0);
+ assert.ok(counts.withheld>0);
+});
