@@ -8,7 +8,7 @@ const {chromium} = require('playwright');
 const html = readFileSync(join(__dirname, '../projects/kidp/life-design-lab/a05/reflection-d101.html'), 'utf8');
 const bytes = Buffer.from(html, 'utf8');
 const gitBlob = createHash('sha1').update('blob ' + bytes.length + '\0').update(bytes).digest('hex');
-assert.equal(gitBlob, '9b1671873cf1c7aee6b48cfb37c4202e06f7874b', 'Reviewed HTML changed');
+assert.equal(gitBlob, 'd07e33c4a8c2218b2604771046c41853006963d0', 'Reviewed HTML changed');
 
 (async () => {
   const options = {headless: true};
@@ -29,6 +29,8 @@ assert.equal(gitBlob, '9b1671873cf1c7aee6b48cfb37c4202e06f7874b', 'Reviewed HTML
       assert.equal(await page.locator('main').count(), 1);
       assert.equal(await page.locator('input,textarea,form').count(), 0);
       assert.equal(await page.locator('#case-picker option').count(), 8);
+      assert.equal(await page.locator('.js-unavailable').isVisible(), false);
+      assert.equal(await page.evaluate(() => document.documentElement.classList.contains('js-ready')), true);
       await page.keyboard.press('Tab');
       assert.equal(await page.evaluate(() => document.activeElement?.classList.contains('skip-link')), true);
       await page.keyboard.press('Enter');
@@ -73,8 +75,14 @@ assert.equal(gitBlob, '9b1671873cf1c7aee6b48cfb37c4202e06f7874b', 'Reviewed HTML
     const noJs = await browser.newContext({javaScriptEnabled: false});
     const noJsPage = await noJs.newPage();
     await noJsPage.setContent(html);
-    assert.equal(await noJsPage.locator('noscript').isVisible(), true);
+    assert.equal(await noJsPage.locator('.js-unavailable').isVisible(), true);
     assert.equal(await noJsPage.locator('.banded').count(), 2);
+    for (const id of ['#case-picker', '#next', '#restart', '#print-worksheet']) {
+      assert.equal(await noJsPage.locator(id).isVisible(), false, 'inert control '+id);
+    }
+    await noJsPage.emulateMedia({media: 'print'});
+    assert.equal(await noJsPage.locator('#print-worksheet-page').isVisible(), true);
+    assert.equal(await noJsPage.locator('#print-worksheet-page h2').count(), 4);
     await noJs.close();
     const tampered = html.replace('</script>', '/* tampered */</script>');
     const page = await browser.newPage();
@@ -84,6 +92,9 @@ assert.equal(gitBlob, '9b1671873cf1c7aee6b48cfb37c4202e06f7874b', 'Reviewed HTML
     });
     await page.setContent(tampered);
     assert.equal(await page.locator('#case-text').innerText(), '', 'tampered script must not execute');
+    assert.equal(await page.locator('.js-unavailable').isVisible(), true);
+    assert.equal(await page.locator('#case-picker').isVisible(), false);
+    assert.equal(await page.locator('#print-worksheet').isVisible(), false);
     assert.ok(violations.length >= 1, 'CSP violation should be reported');
     await page.close();
     console.log('D107 PASS: 5 viewports, no-JS fallback, CSP tamper refusal');
