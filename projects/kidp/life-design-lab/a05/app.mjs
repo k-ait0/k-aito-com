@@ -12,6 +12,7 @@ import {
 } from "./storage.mjs";
 import { exportA05Data } from "./export.mjs";
 import { formatLocalCompletionDay } from "./format.mjs";
+import { renderReport } from "./report.mjs";
 import { inspectA05Backup, A05_BACKUP_MAX_BYTES } from "./backup-inspect.mjs";
 import { inspectA05RestorePlan } from "./restore-review.mjs";
 
@@ -78,7 +79,7 @@ function render() {
   }
   const pages = {
     home: renderHome, quiz: renderQuiz, review: renderReview,
-    result: renderResult, catalog: renderCatalog, history: renderHistory
+    result: renderResult, report: renderReportView, catalog: renderCatalog, history: renderHistory
   };
   root.innerHTML = pages[state.view]();
   updateNotice();
@@ -269,7 +270,8 @@ function renderResult() {
     escapeHTML(display?.action ?? "大切にしたい価値観を一つ書き出す") +
     '</p><span class="muted">A01 → MY LIFE NOTE → 目標設定への連携は今後実装予定です。</span></div>' +
     '<p class="muted">スコアは暫定的な質問への回答から計算したもので、学術的に検証された診断ではありません。</p>' +
-    '<div class="actions"><button type="button" class="btn" data-view="catalog">タイプ図鑑</button>' +
+    '<div class="actions"><button type="button" class="btn primary" data-view="report">10ページレポートを読む</button>' +
+    '<button type="button" class="btn" data-view="catalog">タイプ図鑑</button>' +
     '<button type="button" class="btn" data-view="history">履歴</button>' +
     '<button type="button" class="btn" data-action="share" aria-expanded="' +
     state.share + '" aria-controls="a05-share-panel">' +
@@ -280,6 +282,12 @@ function renderResult() {
         (result.typeId ?? "判定保留") + " " + (display?.name ?? "") +
         "\nお金・時間：" + wealthLabel(result.wealth) + "\n※ 個別回答は含みません。") +
       '</textarea></div>' : "");
+}
+
+function renderReportView() {
+  const snapshot = selectedResult();
+  return snapshot ? renderReport(snapshot, { sample: !!state.sample }) :
+    '<h2>レポートに表示する結果がありません</h2>';
 }
 
 function renderHistory() {
@@ -423,7 +431,7 @@ async function moveIndex(index) {
 }
 
 function show(page) {
-  if (page === "result" && !selectedResult()) return;
+  if ((page === "result" || page === "report") && !selectedResult()) return;
   state.view = page;
   state.share = false;
   render();
@@ -443,6 +451,11 @@ root.addEventListener("click", async event => {
   if (!button || !root.contains(button) || state.busy || button.disabled) return;
   const page = button.dataset.view;
   if (page) { show(page); return; }
+  // The print dialog must be triggered synchronously by the user gesture.
+  if (button.dataset.action === "print-report") {
+    if (state.view === "report" && selectedResult()) window.print();
+    return;
+  }
   const action = button.dataset.action;
   if (!action) return;
   let focusAfterRender = null;
