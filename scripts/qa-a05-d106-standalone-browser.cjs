@@ -8,7 +8,7 @@ const {chromium} = require('playwright');
 const html = readFileSync(join(__dirname, '../projects/kidp/life-design-lab/a05/reflection-d101.html'), 'utf8');
 const bytes = Buffer.from(html, 'utf8');
 const gitBlob = createHash('sha1').update('blob ' + bytes.length + '\0').update(bytes).digest('hex');
-assert.equal(gitBlob, 'a20c5676e3e22a547f03141b0907e852ac2edebf', 'Reviewed HTML changed');
+assert.equal(gitBlob, '9b1671873cf1c7aee6b48cfb37c4202e06f7874b', 'Reviewed HTML changed');
 
 (async () => {
   const options = {headless: true};
@@ -67,7 +67,7 @@ assert.equal(gitBlob, 'a20c5676e3e22a547f03141b0907e852ac2edebf', 'Reviewed HTML
       assert.deepEqual(errors, []);
       assert.deepEqual(requests, []);
       assert.deepEqual(csp, []);
-      console.log('D106 Chromium: PASS ' + width + 'px, cases 8, steps 4, print and text scaling');
+      console.log('D107 Chromium: PASS ' + width + 'px, cases 8, steps 4, print and text scaling');
       await context.close();
     }
     const noJs = await browser.newContext({javaScriptEnabled: false});
@@ -86,7 +86,7 @@ assert.equal(gitBlob, 'a20c5676e3e22a547f03141b0907e852ac2edebf', 'Reviewed HTML
     assert.equal(await page.locator('#case-text').innerText(), '', 'tampered script must not execute');
     assert.ok(violations.length >= 1, 'CSP violation should be reported');
     await page.close();
-    console.log('D106 PASS: 5 viewports, no-JS fallback, CSP tamper refusal');
+    console.log('D107 PASS: 5 viewports, no-JS fallback, CSP tamper refusal');
   } finally {
     await browser.close();
   }
