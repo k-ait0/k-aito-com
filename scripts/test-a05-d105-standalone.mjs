@@ -17,7 +17,7 @@ const inline=tag=>{
 const sha256=x=>createHash('sha256').update(x,'utf8').digest('base64');
 
 test('release candidate is exactly the reviewed and previously QA-tested HTML',()=>{
- assert.equal(blob(page),'a20c5676e3e22a547f03141b0907e852ac2edebf');
+ assert.equal(blob(page),'9b1671873cf1c7aee6b48cfb37c4202e06f7874b');
  assert.match(page,/<html lang="ja">/);
  assert.match(page,/name="robots" content="noindex,nofollow"/);
  assert.match(page,/非診断/);
@@ -60,4 +60,28 @@ test('the isolated PR does not need any A05 scoring modules',()=>{
  assert.match(script,/el\("case-announcement"\)/);
  assert.match(script,/(?:window\.print\(\))/);
  assert.match(script,/replace\(\/。\$\/,\s*""\)/);
+});
+
+
+test('D107: research draft wording is unchanged and no independent validated dimensions claimed',()=>{
+ assert.match(page,/何かに取り組んでいる間の経験そのものを大切にしたい。/);
+ assert.match(page,/特別な出来事に限らず、日々の小さな経験も人生の大切な一部として考えたい。/);
+ assert.match(page,/別々の性格特性を測るものとしては検証していません/);
+ assert.match(page,/科学的な妥当性は未検証/);
+});
+
+test('D107: print prompts exactly match screen guidance without wording drift',()=>{
+ const script=inline('script');
+ const raw=script.match(/const steps=(\[[\s\S]*?\n\]);/)?.[1];
+ assert.ok(raw,'screen steps array');
+ const steps=JSON.parse(raw);
+ const sheet=[...page.matchAll(/<h2>([1-4])．([^<]+)<\/h2><p>([^<]+)<\/p><div class="writing-lines"><\/div>/g)];
+ assert.equal(steps.length,4);
+ assert.equal(sheet.length,4);
+ for(let i=0;i<4;i++){
+  assert.equal(Number(sheet[i][1]),i+1);
+  assert.equal(sheet[i][2],steps[i][0]);
+  assert.equal(sheet[i][3],steps[i][1]);
+ }
+ assert.match(page,/\.writing-lines\{height:92pt;/);
 });
