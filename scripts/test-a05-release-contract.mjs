@@ -63,7 +63,7 @@ test('beta entrypoint remains unindexed, warns that the scale is unvalidated and
   const css = readFileSync(new URL('report.css', ROOT), 'utf8');
   assert.match(html, /name="robots" content="noindex,nofollow"/);
   assert.match(html, /report\.css/);
-  assert.match(app, /data-view=\\"report\\"/);
+  assert.match(app, /data-view="report"/);
   assert.match(app, /renderReport\(snapshot/);
   assert.match(app, /button\.dataset\.action === "print-report"/);
   assert.match(report, /非標準化/);
