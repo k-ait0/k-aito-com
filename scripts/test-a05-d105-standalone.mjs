@@ -17,7 +17,7 @@ const inline=tag=>{
 const sha256=x=>createHash('sha256').update(x,'utf8').digest('base64');
 
 test('release candidate is exactly the reviewed and previously QA-tested HTML',()=>{
- assert.equal(blob(page),'9b1671873cf1c7aee6b48cfb37c4202e06f7874b');
+ assert.equal(blob(page),'d07e33c4a8c2218b2604771046c41853006963d0');
  assert.match(page,/<html lang="ja">/);
  assert.match(page,/name="robots" content="noindex,nofollow"/);
  assert.match(page,/非診断/);
@@ -51,7 +51,7 @@ test('standalone preview retains accessible controls and four static print promp
  assert.match(page,/<h3 id="reflection-title" tabindex="-1"/);
  assert.match(page,/id="case-announcement" class="sr-only" role="status"/);
  assert.match(page,/@media print\{/);
- assert.match(page,/id="print-worksheet" type="button"/);
+ assert.match(page,/id="print-worksheet" class="js-required" type="button"/);
 });
 
 test('the isolated PR does not need any A05 scoring modules',()=>{
@@ -84,4 +84,16 @@ test('D107: print prompts exactly match screen guidance without wording drift',(
   assert.equal(sheet[i][3],steps[i][1]);
  }
  assert.match(page,/\.writing-lines\{height:92pt;/);
+});
+
+
+test('D108: interactive controls remain unavailable until initialization succeeds',()=>{
+ assert.match(page,/html:not\(\.js-ready\) \.js-required\{display:none!important\}/);
+ assert.match(page,/html\.js-ready \.js-unavailable\{display:none!important\}/);
+ assert.match(page,/<section class="section js-required" aria-labelledby="cases-title">/);
+ assert.match(page,/<section class="section js-required" aria-labelledby="reflection-heading">/);
+ assert.match(page,/<button id="print-worksheet" class="js-required" type="button">/);
+ assert.match(page,/<p class="warning js-unavailable" role="note">/);
+ assert.match(page,/ブラウザの印刷機能を使えば、空欄付きの4問シートも印刷できます/);
+ assert.match(inline('script'),/showCase\(\);showStep\(\);\s*document\.documentElement\.classList\.add\("js-ready"\)/);
 });
