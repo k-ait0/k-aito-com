@@ -65,7 +65,7 @@ test('beta entrypoint remains unindexed, warns that the scale is unvalidated and
   assert.match(html, /report\.css/);
   assert.match(app, /data-view=\\"report\\"/);
   assert.match(app, /renderReport\(snapshot/);
-  assert.match(app, /data-action === "print-report"/);
+  assert.match(app, /button\.dataset\.action === "print-report"/);
   assert.match(report, /非標準化/);
   assert.match(css, /@page\{size:A4;margin:0\}/);
   assert.doesNotMatch(report, /\bfetch\s*\(|sendBeacon|XMLHttpRequest|localStorage|indexedDB/);
