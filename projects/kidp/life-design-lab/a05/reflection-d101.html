@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="ja">
 <head>
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; base-uri 'none'; object-src 'none'; form-action 'none'; frame-src 'none'; connect-src 'none'; img-src 'none'; style-src 'sha256-ehlquy+5xOTGRgbGiKXXZWBMA87aMz6ebmTtLTtv9yk='; script-src 'sha256-SkL5NxCxQjpNFUzB3ckzNuhhDxjWE5zv3qVF2+59Voc='">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; base-uri 'none'; object-src 'none'; form-action 'none'; frame-src 'none'; connect-src 'none'; img-src 'none'; style-src 'sha256-3UfSM+L60t+3YWuv++Z/t+YimQxiWUN2R5gVmxLNXuo='; script-src 'sha256-hqLVz43rBPKiKxInCcBu5BiSUMyOi1OqCMOVThYnTeQ='">
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
 <meta name="color-scheme" content="light">
@@ -36,6 +36,8 @@ button:focus-visible,select:focus-visible{outline:3px solid #e8a244;outline-offs
 @media(max-width:690px){main{padding:18px 16px 44px}.grid{grid-template-columns:1fr}.card{padding:16px 18px}.section{margin:24px 0}.options{align-items:stretch;flex-direction:column}.options select,.options button{width:100%}}
 
 .print-tools{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin:14px 0}
+html:not(.js-ready) .js-required{display:none!important}
+html.js-ready .js-unavailable{display:none!important}
 .print-sheet{display:none}
 @media print{
 :root{color:#111;background:white}body{background:white;color:#111}main{max-width:none;margin:0;padding:0}
@@ -54,6 +56,7 @@ button:focus-visible,select:focus-visible{outline:3px solid #e8a244;outline-offs
 <p class="sub">将来の目標と今日の経験について、自分が何を大切にしたいか考えるための、短い読み物と4つの問いです。</p>
 </header>
 <p class="warning" role="note"><strong>これは診断ではなく、考えを整理するための練習です。</strong> 点数やタイプ判定は出ません。回答を入力・送信・保存する機能もありません。使っている問いは開発途中で、科学的な妥当性は未検証です。</p>
+<p class="warning js-unavailable" role="note">事例の切替と4段階のガイドは現在利用できません。2つの問いはそのまま読めます。ブラウザの印刷機能を使えば、空欄付きの4問シートも印刷できます。</p>
 <section class="section" aria-labelledby="domains-title">
 <h2 id="domains-title">まず、2つの問いを読んでみる</h2>
 <div class="grid">
@@ -68,7 +71,7 @@ button:focus-visible,select:focus-visible{outline:3px solid #e8a244;outline-offs
 </div>
 <p class="minor muted">この2つの文章は、似た意味かもしれません。別々の性格特性を測るものとしては検証していません。どちらも同じように感じても問題ありません。</p>
 </section>
-<section class="section" aria-labelledby="cases-title">
+<section class="section js-required" aria-labelledby="cases-title">
 <h2 id="cases-title">8つの例から考えてみる</h2>
 <label for="case-picker"><strong>例を切り替える</strong></label>
 <div class="options"><select id="case-picker" aria-describedby="case-caution">
@@ -89,7 +92,7 @@ button:focus-visible,select:focus-visible{outline:3px solid #e8a244;outline-offs
 <p id="case-announcement" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></p>
 <p id="case-caution" class="minor muted">すべて架空の状況です。実際の回答者の調査結果でも、診断の模範解答でもありません。</p>
 </section>
-<section class="section" aria-labelledby="reflection-heading">
+<section class="section js-required" aria-labelledby="reflection-heading">
 <h2 id="reflection-heading">4つの問いで振り返る</h2>
 <div class="card step-guide">
 <p id="reflection-progress" class="progress">ステップ 1 / 4</p>
@@ -120,7 +123,7 @@ button:focus-visible,select:focus-visible{outline:3px solid #e8a244;outline-offs
 <section class="section" aria-labelledby="print-heading">
 <h2 id="print-heading">考えを紙に残す</h2>
 <p>4つの問いを印刷できます。記入欄は空白です。内容はこのページへ入力せず、送信・保存もしません。</p>
-<div class="print-tools"><button id="print-worksheet" type="button">4つの問いを印刷</button><span class="minor muted">ブラウザの印刷画面が開きます。</span></div>
+<div class="print-tools"><button id="print-worksheet" class="js-required" type="button">4つの問いを印刷</button><span class="minor muted">ブラウザの印刷画面が開きます。ブラウザ標準の印刷機能からも印刷できます。</span></div>
 </section>
 <section id="print-worksheet-page" class="print-sheet" aria-label="印刷用の振り返りシート">
 <h1>今日の時間を考える 4つの問い</h1>
@@ -133,7 +136,6 @@ button:focus-visible,select:focus-visible{outline:3px solid #e8a244;outline-offs
 </section>
 <footer class="foot">A05 D-101 / 非診断・公開前検証版。質問文は暫定案で、心理尺度としての検証は行っていません。研究参加者の募集・公開承認を意味しません。</footer>
 </main>
-<noscript><p role="note">JavaScriptが無効なため、架空の事例の切替と振り返りガイドの操作はできません。上部の2つの問いはそのまま読めます。</p></noscript>
 <script>
 "use strict";
 /** D96 synthetic demonstration: strictly no user response storage. */
@@ -177,4 +179,5 @@ el("prev").addEventListener("click",()=>{if(index>0){index--;showStep(true)}});
 el("next").addEventListener("click",()=>{if(index<steps.length-1){index++;showStep(true)}});
 el("restart").addEventListener("click",()=>{index=0;showStep(true)});
 showCase();showStep();
+document.documentElement.classList.add("js-ready");
 </script></body></html>
