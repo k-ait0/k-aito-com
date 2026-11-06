@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="ja">
 <head>
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; base-uri 'none'; object-src 'none'; form-action 'none'; frame-src 'none'; connect-src 'none'; img-src 'none'; style-src 'sha256-WNRNkkb6vFk9eJ18XDaBNe4v8J4k645kHLF0rXfqRAY='; script-src 'sha256-oaY3svV/5NN/njmQI7BkRnHRrMUakI/S5RjUfK/eDo4='">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; base-uri 'none'; object-src 'none'; form-action 'none'; frame-src 'none'; connect-src 'none'; img-src 'none'; style-src 'sha256-ehlquy+5xOTGRgbGiKXXZWBMA87aMz6ebmTtLTtv9yk='; script-src 'sha256-SkL5NxCxQjpNFUzB3ckzNuhhDxjWE5zv3qVF2+59Voc='">
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
 <meta name="color-scheme" content="light">
@@ -42,7 +42,7 @@ button:focus-visible,select:focus-visible{outline:3px solid #e8a244;outline-offs
 .skip-link,.head,.warning,.section,.foot,.print-tools{display:none!important}
 .print-sheet{display:block!important;font-family:system-ui,sans-serif;font-size:11pt;line-height:1.65}
 .print-sheet h1{font-size:18pt;margin:0 0 8pt}.print-sheet h2{font-size:12pt;margin:14pt 0 4pt}
-.writing-lines{height:52pt;border-bottom:1px solid #888;break-inside:avoid} .print-small{font-size:9pt}
+.writing-lines{height:92pt;border-bottom:1px solid #888;break-inside:avoid} .print-small{font-size:9pt}
 @page{size:A4;margin:16mm}
 }
 @media(forced-colors:active){.skip-link:focus,button:focus-visible,select:focus-visible,#reflection-title:focus{outline:3px solid Highlight}.warning,.banded{border-left:4px solid Highlight}}
@@ -51,7 +51,7 @@ button:focus-visible,select:focus-visible{outline:3px solid #e8a244;outline-offs
 <header class="head">
 <p class="eyebrow">K. AITO / LIFE DESIGN LAB / A05 D-101</p>
 <h1>今日の時間を、<br>どう大切にしたいですか？</h1>
-<p class="sub">将来の目標も、いまの経験も大切にできます。あなた自身の考えを整理するための、短い読み物と4つの問いです。</p>
+<p class="sub">将来の目標と今日の経験について、自分が何を大切にしたいか考えるための、短い読み物と4つの問いです。</p>
 </header>
 <p class="warning" role="note"><strong>これは診断ではなく、考えを整理するための練習です。</strong> 点数やタイプ判定は出ません。回答を入力・送信・保存する機能もありません。使っている問いは開発途中で、科学的な妥当性は未検証です。</p>
 <section class="section" aria-labelledby="domains-title">
@@ -66,7 +66,7 @@ button:focus-visible,select:focus-visible{outline:3px solid #e8a244;outline-offs
 <p>特別な出来事に限らず、日々の小さな経験も人生の大切な一部として考えたい。</p>
 <p class="muted minor">食事・移動・会話など、特別ではない日々の出来事を思い浮かべてください。今の満足度や自由時間の量とは別の問いです。</p></article>
 </div>
-<p class="minor muted">この2つの問いは、実は似た意味かもしれません。どちらも同じように感じても問題ありません。</p>
+<p class="minor muted">この2つの文章は、似た意味かもしれません。別々の性格特性を測るものとしては検証していません。どちらも同じように感じても問題ありません。</p>
 </section>
 <section class="section" aria-labelledby="cases-title">
 <h2 id="cases-title">8つの例から考えてみる</h2>
@@ -148,10 +148,10 @@ const cases=[
 ["例8｜注意が散りやすい","注意が散りやすくても、今ある体験を大切にしたい。","注意を向ける能力と経験の価値を混同していないでしょうか。"]
 ];
 const steps=[
-["最近、何かに取り組んだ時間を思い浮かべる","その活動の成果ではなく、取り組んでいる最中の経験に目を向けます。"],
-["日常の小さな出来事を思い浮かべる","特別なイベントや成功でなくても、人生の一部として大切にしたい出来事を考えます。"],
-["2つの問いは違いますか？","取り組む途中の時間と、日常の小さな出来事を、異なる理由で大切にすることはありますか。同じように感じても構いません。"],
-["明日の目標と今日の時間を両立する","将来の目標も今日の経験も大切にするとしたら、どんな過ごし方ができそうですか。"]
+["最近、何かに取り組んだ時間を思い浮かべる","その途中の時間に、どんな意味がありましたか。"],
+["日常の小さな出来事を思い浮かべる","特別な成果がなくても大切にしたい経験はありますか。"],
+["2つの問いは違いますか？","同じように感じても構いません。違うとしたらどこでしょう。"],
+["明日の目標と今日の時間を両立する","将来と今をどちらも大切にするとしたら、どんな行動ができそうですか。"]
 ];
 const el=id=>document.getElementById(id);
 let index=0;
