@@ -388,6 +388,32 @@ async function main() {
       assert.match(content, /時間的自由寄り/);
     });
 
+    await check("A05 beta: 30 answers -> ten-page report -> browser PDF, without data upload", async () => {
+      assert.equal(await page.locator('[data-view="report"]').count(), 1);
+      await page.locator('[data-view="report"]').click();
+      await page.locator('.a05-report .report-sheet').first().waitFor();
+      assert.equal(await page.locator('.a05-report .report-sheet').count(), 10);
+      assert.equal(await page.locator('.report-toc a').count(), 10);
+      assert.match(await page.locator('.a05-report').innerText(), /T16/);
+      assert.match(await page.locator('.a05-report').innerText(), /非標準化/);
+      assert.equal(await page.locator('[data-action="print-report"]').count(), 1);
+      const before = await page.locator('.a05-report').innerText();
+      assert.doesNotMatch(before, /rawAnswers|assessmentId|questionHash/);
+      await page.evaluate(() => {
+        window.__a05PrintCalls = 0;
+        window.print = () => { window.__a05PrintCalls++; };
+      });
+      await page.locator('[data-action="print-report"]').click();
+      assert.equal(await page.evaluate(() => window.__a05PrintCalls), 1,
+        "Printing must require a user click");
+      const pdf = await page.pdf({format: 'A4', printBackground: true});
+      assert.equal(pdf.subarray(0, 4).toString('utf8'), '%PDF');
+      assert.ok(pdf.length > 20000, "Generated PDF unexpectedly short");
+      await page.locator('[data-view="result"]').last().click();
+      await waitForUICommit(page, 'result');
+      assert.match(await page.locator('#a05-content').innerText(), /T16/);
+    });
+
     await check("history restores after reload and retains opted-in raw answers", async () => {
       await page.reload();
       await page.locator('[data-view="history"]').first().click();
