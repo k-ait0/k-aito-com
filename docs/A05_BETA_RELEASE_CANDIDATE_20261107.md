@@ -73,3 +73,15 @@
 - **対象範囲の注意**：この成功はリポジトリの静的サーバー／Chrome／Node22での動作確認。**実際の配信先HTTPS・CSP・キャッシュ・iOS Safari/VoiceOver・心理尺度の妥当性・本番公開の成功を証明しない**。
 - 対応するアプリ/テストの原本は検証時のコミットから変更していない。検証後のブランチ更新は一時トリガーの復帰、マーカーファイル削除および検証結果の記録のみ。
 - 初回限定ベータの残ゲートは**承認済みステージング実URLのHTTPS応答・HTTPヘッダー・スクリプト/MIME・外部通信の実測、公開対象・文言の責任者承認**。Draft/未マージ・未公開を維持する。
+
+
+## D-113 限定ベータ公開準備と公開前QA（2026-11-07）
+
+- **ユーザーから限定ベータ公開を進める旨の承認**が得られたため、PR #73 を公開対象とする。一般公開導線・検索インデックス登録・検証済みの心理診断という主張は含まない。
+- **GitHub Actions [#42382361854](https://github.com/k-ait0/k-aito-com/actions/runs/42382361854) SUCCESS**：Node 104/104 PASS、Chrome A05 28/28 PASS、既存KIDP QA PASS。CSP meta・対象ディレクトリ限定の .htaccess を含む候補を検証。
+- XServer StaticへGitHub runnerからHTTPSでGETし、`https://k-aito.com/`はHTTP 200、公開前の`/projects/kidp/life-design-lab/a05/`はHTTP 404であることを確認。
+- A05専用`.htaccess`：`.mjs`を`text/javascript`として配信し、noindex/CSP/nosniff/iframe禁止等を指定。HTML側にもCSP metaのフォールバックを用意。**実配信でこれらが反映されることは公開後に別途確認する。**
+- `scripts/qa-a05-public-origin-readiness.mjs`：実URLで13ファイルのSHA-256・ES module MIME・主要HTTPヘッダーを検証する**読み取り専用**の公開後ゲート。
+- `scripts/qa_a05_browser.cjs`：`A05_LIVE_ORIGIN=https://k-aito.com`で実配信先のChromium 30問→PDFまでのE2Eを実行可能。実ブラウザの回答は一時的な独立ブラウザ環境の中だけで扱い、サーバーへ送信しない。
+- 追加の一時`push`トリガーは**単一実行後に削除**し、マーカーファイルも削除。`workflow_dispatch`専用へ復帰済み。
+- **公開後の必須ゲート**：XServerの更新を待ち、上記readinessと実URLのブラウザE2Eを実行。404・MIME・CSPヘッダー不一致などがあれば公開成功とは報告せず、必要に応じて配信側を修正する。Safari/VoiceOverと心理尺度妥当性は正式公開前の別課題。
