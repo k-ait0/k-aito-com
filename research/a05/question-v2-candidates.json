@@ -1,0 +1,282 @@
+{
+  "schema": "a05-question-v2-candidates-0.2",
+  "status": "editorial_approved_for_prototyping_not_empirically_validated",
+  "source_version": "A05-Q-1.0.0-draft",
+  "is_active_question_set": false,
+  "scoring_proposal": "provisional boundary |sum| <= n; empirical calibration pending; v1 unchanged",
+  "answer_format_hypothesis": "7-point left-negative/right-positive; direction 1 consistently; midpoint neutral meaning still ambiguous",
+  "warning": "30 editorially selected pairs; not psychometrically validated. Do not change public v1, storage, consent, or infer conflict/stress/non-negotiable preferences from mean.",
+  "count": 30,
+  "items": [
+    {
+      "id": "A01",
+      "axis": "A",
+      "negative": "住み慣れた街や住環境を整えて暮らす",
+      "positive": "新しい街や異なる住環境を試して暮らす",
+      "review_priority": "normal",
+      "editorial_note": "条件による回答不能・左右の魅力度・重複・回答文脈を確認",
+      "source": "user-approved D-115 Rev.2 text"
+    },
+    {
+      "id": "A02",
+      "axis": "A",
+      "negative": "行きつけの場所や馴染みの空間を持つ",
+      "positive": "毎回違う場所や新しい空間に出かける",
+      "review_priority": "normal",
+      "editorial_note": "条件による回答不能・左右の魅力度・重複・回答文脈を確認",
+      "source": "user-approved D-115 Rev.2 text"
+    },
+    {
+      "id": "A03",
+      "axis": "A",
+      "negative": "気心の知れたメンバーやコミュニティで活動する",
+      "positive": "新しい顔ぶれや未知のコミュニティに飛び込む",
+      "review_priority": "high",
+      "editorial_note": "人的環境とB軸の社会的関係の混入を認知面接で確認",
+      "source": "user-approved D-115 Rev.2 text"
+    },
+    {
+      "id": "A04",
+      "axis": "A",
+      "negative": "日々の生活リズムやルーティンを一定に保つ",
+      "positive": "時期や気分によって生活スタイルを大きく変える",
+      "review_priority": "high",
+      "editorial_note": "生活リズムはC軸の現在/将来とは区別。職業や介護等の制約を確認",
+      "source": "user-approved D-115 Rev.2 text"
+    },
+    {
+      "id": "A05",
+      "axis": "A",
+      "negative": "今の仕事・活動環境を育てる",
+      "positive": "別の仕事・活動環境を経験する",
+      "review_priority": "normal",
+      "editorial_note": "条件による回答不能・左右の魅力度・重複・回答文脈を確認",
+      "source": "user-approved D-115 Rev.2 text"
+    },
+    {
+      "id": "A06",
+      "axis": "A",
+      "negative": "勝手がわかる環境で確実に力を発揮する",
+      "positive": "アウェーな環境（未知の場）に身を置いて刺激を受ける",
+      "review_priority": "high",
+      "editorial_note": "右側の刺激の魅力度差・アウェーという語の通用度を確認",
+      "source": "user-approved D-115 Rev.2 text"
+    },
+    {
+      "id": "B01",
+      "axis": "B",
+      "negative": "自分で判断する余地を重視する",
+      "positive": "周囲と相談する機会を重視する",
+      "review_priority": "normal",
+      "editorial_note": "条件による回答不能・左右の魅力度・重複・回答文脈を確認",
+      "source": "user-approved D-115 Rev.2 text"
+    },
+    {
+      "id": "B02",
+      "axis": "B",
+      "negative": "自由時間は誰にも気を使わず一人で過ごしたい",
+      "positive": "予定を合わせてでも親しい人たちと過ごしたい",
+      "review_priority": "high",
+      "editorial_note": "一人の自由時間と他者との時間の好みの対比。余暇の量がE軸に混入しないか確認",
+      "source": "user-approved D-115 Rev.2 text"
+    },
+    {
+      "id": "B03",
+      "axis": "B",
+      "negative": "自分自身が納得できる基準で成果を出す",
+      "positive": "周囲と喜びや手応えを共有できる成果を出す",
+      "review_priority": "normal",
+      "editorial_note": "条件による回答不能・左右の魅力度・重複・回答文脈を確認",
+      "source": "user-approved D-115 Rev.2 text"
+    },
+    {
+      "id": "B04",
+      "axis": "B",
+      "negative": "自分のペースで予定を決める",
+      "positive": "周囲と予定を合わせる",
+      "review_priority": "normal",
+      "editorial_note": "条件による回答不能・左右の魅力度・重複・回答文脈を確認",
+      "source": "user-approved D-115 Rev.2 text"
+    },
+    {
+      "id": "B05",
+      "axis": "B",
+      "negative": "最初から最後まで自分の裁量で完結できる取り組み",
+      "positive": "役割を分担し、チームで助け合いながら進める取り組み",
+      "review_priority": "normal",
+      "editorial_note": "条件による回答不能・左右の魅力度・重複・回答文脈を確認",
+      "source": "user-approved D-115 Rev.2 text"
+    },
+    {
+      "id": "B06",
+      "axis": "B",
+      "negative": "住む場所や働き方は自分の希望条件を最優先する",
+      "positive": "大切な人との物理的な近さや関わりやすさを最優先する",
+      "review_priority": "high",
+      "editorial_note": "住居・仕事の制約とB軸の関係性を区別できるか確認",
+      "source": "user-approved D-115 Rev.2 text"
+    },
+    {
+      "id": "C01",
+      "axis": "C",
+      "negative": "将来の選択肢を増やす活動",
+      "positive": "今日の充実を高める活動",
+      "review_priority": "normal",
+      "editorial_note": "条件による回答不能・左右の魅力度・重複・回答文脈を確認",
+      "source": "user-approved D-115 Rev.2 text"
+    },
+    {
+      "id": "C02",
+      "axis": "C",
+      "negative": "今は少し我慢してでも数年後の大きな安心を作る",
+      "positive": "先のことは気にしすぎず今日一日の心地よさを優先する",
+      "review_priority": "high",
+      "editorial_note": "現状の安心感・資源制約に依存しないか確認",
+      "source": "user-approved D-115 Rev.2 text"
+    },
+    {
+      "id": "C03",
+      "axis": "C",
+      "negative": "後で役立つ知識を学ぶ",
+      "positive": "今の関心を満たす知識を学ぶ",
+      "review_priority": "normal",
+      "editorial_note": "条件による回答不能・左右の魅力度・重複・回答文脈を確認",
+      "source": "user-approved D-115 Rev.2 text"
+    },
+    {
+      "id": "C04",
+      "axis": "C",
+      "negative": "過程が地道でも将来大きな成果につながる挑戦",
+      "positive": "将来の役立ち度は未知数でも今この瞬間が夢中になれる挑戦",
+      "review_priority": "high",
+      "editorial_note": "将来利益/現在満足の比較条件は仮定であり実際の成果を保証しない",
+      "source": "user-approved D-115 Rev.2 text"
+    },
+    {
+      "id": "C05",
+      "axis": "C",
+      "negative": "長期の目標に向けた小さな前進",
+      "positive": "日々の満足を増やす小さな工夫",
+      "review_priority": "normal",
+      "editorial_note": "条件による回答不能・左右の魅力度・重複・回答文脈を確認",
+      "source": "user-approved D-115 Rev.2 text"
+    },
+    {
+      "id": "C06",
+      "axis": "C",
+      "negative": "数年後の理想から逆算して今の計画を立てる",
+      "positive": "その時々の直感や目の前の状況に応じて柔軟に動く",
+      "review_priority": "high",
+      "editorial_note": "計画スタイルと時間選好が異なる可能性を要検証",
+      "source": "user-approved D-115 Rev.2 text"
+    },
+    {
+      "id": "D01",
+      "axis": "D",
+      "negative": "未経験の趣味を試す",
+      "positive": "好きな趣味を深める",
+      "review_priority": "normal",
+      "editorial_note": "条件による回答不能・左右の魅力度・重複・回答文脈を確認",
+      "source": "user-approved D-115 Rev.2 text"
+    },
+    {
+      "id": "D02",
+      "axis": "D",
+      "negative": "幅広い分野を学ぶ",
+      "positive": "一つの分野を掘り下げる",
+      "review_priority": "normal",
+      "editorial_note": "条件による回答不能・左右の魅力度・重複・回答文脈を確認",
+      "source": "user-approved D-115 Rev.2 text"
+    },
+    {
+      "id": "D03",
+      "axis": "D",
+      "negative": "食事や外出では、まだ行ったことのない店や場所を開拓する",
+      "positive": "気に入った店や場所へ繰り返し通い、味わいを深める",
+      "review_priority": "high",
+      "editorial_note": "食事や外出の頻度や支出がE軸と混同されないか確認",
+      "source": "user-approved D-115 Rev.2 text"
+    },
+    {
+      "id": "D04",
+      "axis": "D",
+      "negative": "新しい仕事の進め方を試す",
+      "positive": "得意な進め方を磨く",
+      "review_priority": "normal",
+      "editorial_note": "条件による回答不能・左右の魅力度・重複・回答文脈を確認",
+      "source": "user-approved D-115 Rev.2 text"
+    },
+    {
+      "id": "D05",
+      "axis": "D",
+      "negative": "いろいろな役割やスキルを掛け合わせる（多能工）",
+      "positive": "一つの専門領域やスキルを極める（専門職）",
+      "review_priority": "high",
+      "editorial_note": "多能工/専門職の用語と働いていない人への適用可能性を確認",
+      "source": "user-approved D-115 Rev.2 text"
+    },
+    {
+      "id": "D06",
+      "axis": "D",
+      "negative": "ある程度わかったら次の新しいテーマへ移る",
+      "positive": "一度始めたテーマを納得いくまで長く続ける",
+      "review_priority": "high",
+      "editorial_note": "飽きやすさと探索志向を混同しないか確認",
+      "source": "user-approved D-115 Rev.2 text"
+    },
+    {
+      "id": "E01",
+      "axis": "E",
+      "negative": "収入を増やせる働き方",
+      "positive": "自由な時間を確保できる働き方",
+      "review_priority": "normal",
+      "editorial_note": "条件による回答不能・左右の魅力度・重複・回答文脈を確認",
+      "source": "user-approved D-115 Rev.2 text"
+    },
+    {
+      "id": "E02",
+      "axis": "E",
+      "negative": "臨時で空いた時間があれば、追加収入になる活動を入れる",
+      "positive": "収入は増えなくても、休養や自分のための時間に充てる",
+      "review_priority": "high",
+      "editorial_note": "休養の必要性や健康状態を選好と混同しないか確認",
+      "source": "user-approved D-115 Rev.2 text"
+    },
+    {
+      "id": "E03",
+      "axis": "E",
+      "negative": "時間はかかっても出費を抑えて手元のお金を残す",
+      "positive": "お金を払ってでも手間や移動を減らし自由な時間を買う",
+      "review_priority": "high",
+      "editorial_note": "金銭的制約・時短サービスの利用可能性による差を確認",
+      "source": "user-approved D-115 Rev.2 text"
+    },
+    {
+      "id": "E04",
+      "axis": "E",
+      "negative": "拘束時間や責任が増えても、高い報酬が得られる選択",
+      "positive": "報酬はそこそこでも、負荷が少なくゆとりを持てる選択",
+      "review_priority": "high",
+      "editorial_note": "責任負担/労働時間/報酬の複数要因による解釈の曖昧さを確認",
+      "source": "user-approved D-115 Rev.2 text"
+    },
+    {
+      "id": "E05",
+      "axis": "E",
+      "negative": "質の高いモノや特別な体験にお金をかけられる暮らし",
+      "positive": "お金はあまり使わなくても、時間に追われず過ごせる暮らし",
+      "review_priority": "critical",
+      "editorial_note": "消費志向と時間の自由を同列視できるか確認",
+      "source": "user-approved D-115 Rev.2 text"
+    },
+    {
+      "id": "E06",
+      "axis": "E",
+      "negative": "口座残高や経済的な備えが増えていくことに安心を感じる",
+      "positive": "スケジュールに空白や余白があることに安心を感じる",
+      "review_priority": "high",
+      "editorial_note": "不安傾向・経済状況を豊かさ軸と混同しないか確認",
+      "source": "user-approved D-115 Rev.2 text"
+    }
+  ]
+}
