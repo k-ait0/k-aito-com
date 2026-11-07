@@ -19,3 +19,11 @@ jobs:
           python3 -m http.server 8765 --bind 127.0.0.1 > /tmp/kidp-server.log 2>&1 &
           sleep 2
           node projects/kidp/qa_wave_a_browser.cjs
+      - name: A05 beta scoring, storage and report contracts (Node 22)
+        run: |
+          node --test scripts/test-a05-engine.mjs scripts/test-a05-storage.mjs scripts/test-a05-report.mjs scripts/test-a05-release-contract.mjs scripts/test-a05-ui-report-contract.mjs
+      - name: A05 beta browser acceptance (30Q to 10-page PDF)
+        run: |
+          node scripts/qa_a05_browser.cjs
+      - name: A05 public HTTPS pre-release reachability (read only)
+        run: node scripts/qa-a05-public-origin-readiness.mjs
