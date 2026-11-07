@@ -1,0 +1,252 @@
+{
+  "schema": "a05-question-v2-candidates-0.1",
+  "status": "unapproved_research_only",
+  "source_version": "A05-Q-1.0.0-draft",
+  "is_active_question_set": false,
+  "scoring_proposal": "unchanged pending research",
+  "answer_format_hypothesis": "seven_point_relative_preference_with_middle; both/neither option under separate UX study",
+  "warning": "This is an editorial proposal, not a validated instrument. Do not replace questions.mjs, re-score prior answers or use for user-facing classification.",
+  "count": 30,
+  "items": [
+    {
+      "id": "A01",
+      "axis": "A",
+      "negative": "慣れた生活環境を整える",
+      "positive": "新しい生活環境を試す",
+      "review_priority": "normal",
+      "editorial_note": "表現の理解度と両側の釣り合いを確認"
+    },
+    {
+      "id": "A02",
+      "axis": "A",
+      "negative": "今の学習環境を工夫して続ける",
+      "positive": "新しい学習環境を試す",
+      "review_priority": "normal",
+      "editorial_note": "表現の理解度と両側の釣り合いを確認"
+    },
+    {
+      "id": "A03",
+      "axis": "A",
+      "negative": "使い慣れた方法で日常を改善する",
+      "positive": "新しい方法を日常に取り入れる",
+      "review_priority": "high",
+      "editorial_note": "習慣の変化と環境の変化を混同していないか確認"
+    },
+    {
+      "id": "A04",
+      "axis": "A",
+      "negative": "現在の活動拠点を活用する",
+      "positive": "別の活動拠点を試す",
+      "review_priority": "normal",
+      "editorial_note": "表現の理解度と両側の釣り合いを確認"
+    },
+    {
+      "id": "A05",
+      "axis": "A",
+      "negative": "今の仕事・活動環境を育てる",
+      "positive": "別の仕事・活動環境を経験する",
+      "review_priority": "normal",
+      "editorial_note": "表現の理解度と両側の釣り合いを確認"
+    },
+    {
+      "id": "A06",
+      "axis": "A",
+      "negative": "慣れた役割の中で挑戦する",
+      "positive": "新しい役割に移って挑戦する",
+      "review_priority": "high",
+      "editorial_note": "役割変更は環境の選好とは限らないため認知面接で要確認"
+    },
+    {
+      "id": "B01",
+      "axis": "B",
+      "negative": "自分で判断する余地を重視する",
+      "positive": "周囲と相談する機会を重視する",
+      "review_priority": "normal",
+      "editorial_note": "表現の理解度と両側の釣り合いを確認"
+    },
+    {
+      "id": "B02",
+      "axis": "B",
+      "negative": "一人で集中する時間を重視する",
+      "positive": "誰かと取り組む時間を重視する",
+      "review_priority": "high",
+      "editorial_note": "一人で集中と協働は両方高評価になりうる"
+    },
+    {
+      "id": "B03",
+      "axis": "B",
+      "negative": "自分で達成を振り返る",
+      "positive": "他者と達成を共有する",
+      "review_priority": "normal",
+      "editorial_note": "表現の理解度と両側の釣り合いを確認"
+    },
+    {
+      "id": "B04",
+      "axis": "B",
+      "negative": "自分のペースで予定を決める",
+      "positive": "周囲と予定を合わせる",
+      "review_priority": "normal",
+      "editorial_note": "表現の理解度と両側の釣り合いを確認"
+    },
+    {
+      "id": "B05",
+      "axis": "B",
+      "negative": "個人で進める目標を持つ",
+      "positive": "協力して進める目標を持つ",
+      "review_priority": "high",
+      "editorial_note": "個人目標と協力目標は両立可能"
+    },
+    {
+      "id": "B06",
+      "axis": "B",
+      "negative": "自分で方針を組み立てる",
+      "positive": "関係者と方針をすり合わせる",
+      "review_priority": "normal",
+      "editorial_note": "表現の理解度と両側の釣り合いを確認"
+    },
+    {
+      "id": "C01",
+      "axis": "C",
+      "negative": "将来の選択肢を増やす活動",
+      "positive": "今日の充実を高める活動",
+      "review_priority": "high",
+      "editorial_note": "将来と現在の両立を回答形式が制限"
+    },
+    {
+      "id": "C02",
+      "axis": "C",
+      "negative": "将来に備える時間",
+      "positive": "今日を楽しむ時間",
+      "review_priority": "normal",
+      "editorial_note": "表現の理解度と両側の釣り合いを確認"
+    },
+    {
+      "id": "C03",
+      "axis": "C",
+      "negative": "後で役立つ知識を学ぶ",
+      "positive": "今の関心を満たす知識を学ぶ",
+      "review_priority": "normal",
+      "editorial_note": "表現の理解度と両側の釣り合いを確認"
+    },
+    {
+      "id": "C04",
+      "axis": "C",
+      "negative": "将来の成果を見据えた挑戦",
+      "positive": "取り組む過程を楽しむ挑戦",
+      "review_priority": "high",
+      "editorial_note": "成果と過程は両立可能"
+    },
+    {
+      "id": "C05",
+      "axis": "C",
+      "negative": "長期の目標に向けた小さな前進",
+      "positive": "日々の満足を増やす小さな工夫",
+      "review_priority": "normal",
+      "editorial_note": "表現の理解度と両側の釣り合いを確認"
+    },
+    {
+      "id": "C06",
+      "axis": "C",
+      "negative": "将来の暮らしを整える",
+      "positive": "現在の暮らしを充実させる",
+      "review_priority": "normal",
+      "editorial_note": "表現の理解度と両側の釣り合いを確認"
+    },
+    {
+      "id": "D01",
+      "axis": "D",
+      "negative": "未経験の趣味を試す",
+      "positive": "好きな趣味を深める",
+      "review_priority": "normal",
+      "editorial_note": "表現の理解度と両側の釣り合いを確認"
+    },
+    {
+      "id": "D02",
+      "axis": "D",
+      "negative": "幅広い分野を学ぶ",
+      "positive": "一つの分野を掘り下げる",
+      "review_priority": "normal",
+      "editorial_note": "表現の理解度と両側の釣り合いを確認"
+    },
+    {
+      "id": "D03",
+      "axis": "D",
+      "negative": "まだ試していない活動を選ぶ",
+      "positive": "経験済みの活動を掘り下げる",
+      "review_priority": "high",
+      "editorial_note": "先行改訂案の人間関係の幅/深さによる軸汚染を回避。ただし新奇性との混同を確認"
+    },
+    {
+      "id": "D04",
+      "axis": "D",
+      "negative": "新しい仕事の進め方を試す",
+      "positive": "得意な進め方を磨く",
+      "review_priority": "normal",
+      "editorial_note": "表現の理解度と両側の釣り合いを確認"
+    },
+    {
+      "id": "D05",
+      "axis": "D",
+      "negative": "複数の技法に取り組む",
+      "positive": "一つの技法を磨く",
+      "review_priority": "normal",
+      "editorial_note": "表現の理解度と両側の釣り合いを確認"
+    },
+    {
+      "id": "D06",
+      "axis": "D",
+      "negative": "経験の種類を増やす",
+      "positive": "経験の深さを増やす",
+      "review_priority": "normal",
+      "editorial_note": "表現の理解度と両側の釣り合いを確認"
+    },
+    {
+      "id": "E01",
+      "axis": "E",
+      "negative": "収入を増やせる働き方",
+      "positive": "自由な時間を確保できる働き方",
+      "review_priority": "normal",
+      "editorial_note": "表現の理解度と両側の釣り合いを確認"
+    },
+    {
+      "id": "E02",
+      "axis": "E",
+      "negative": "追加の収入機会を選ぶ",
+      "positive": "追加の自由時間を選ぶ",
+      "review_priority": "normal",
+      "editorial_note": "表現の理解度と両側の釣り合いを確認"
+    },
+    {
+      "id": "E03",
+      "axis": "E",
+      "negative": "経済的な選択肢を増やす",
+      "positive": "時間の使い方の選択肢を増やす",
+      "review_priority": "high",
+      "editorial_note": "E04・E06と意味が近いため冗長性の検証"
+    },
+    {
+      "id": "E04",
+      "axis": "E",
+      "negative": "使えるお金の余裕を増やす",
+      "positive": "使える時間の余裕を増やす",
+      "review_priority": "high",
+      "editorial_note": "E03・E06と意味が近いため冗長性の検証"
+    },
+    {
+      "id": "E05",
+      "axis": "E",
+      "negative": "生活費を確保したうえで追加の報酬を選ぶ",
+      "positive": "生活費を確保したうえで自由時間を選ぶ",
+      "review_priority": "critical",
+      "editorial_note": "旧版の『月3万円と週3時間』を削除。生活費を満たせない人に仮定を強制する問題は残る"
+    },
+    {
+      "id": "E06",
+      "axis": "E",
+      "negative": "支出を選べる余裕を持つ",
+      "positive": "予定を選べる余裕を持つ",
+      "review_priority": "high",
+      "editorial_note": "E03・E04と意味が近いため冗長性の検証"
+    }
+  ]
+}
