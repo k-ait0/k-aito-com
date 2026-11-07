@@ -1,6 +1,0 @@
-A05 beta QA single-use trigger
-Branch: release/a05-beta-report-20261107
-Purpose: execute Node and Chromium QA for PR #73 only.
-Authorized in conversation by user 2026-11-07: "なんとかして" in response to proposed temporary auto trigger.
-No production deploy, no merge, no publication.
-After completion remove temporary push trigger from workflow.
