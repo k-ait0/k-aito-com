@@ -1,1 +1,0 @@
-One-use post-merge A05 limited beta verification. Read-only HTTPS requests and isolated browser E2E only. No production writes.
