@@ -5,7 +5,7 @@
 import { AXES, QUESTIONS, QUESTION_SET_VERSION } from "./questions.mjs";
 import { TYPES, GROUPS, TYPE_VERSION, CONTENT_VERSION } from "./types.mjs";
 
-export const SCORING_VERSION = "A05-S-1.0.0-draft";
+export const SCORING_VERSION = "A05-S-2.0.0-draft";
 export class AssessmentValidationError extends Error {
   constructor(message) {
     super(message);
@@ -65,7 +65,7 @@ export function resolveAxis(validCount, weightedSum) {
   }
   const raw = validCount ? 100 * weightedSum / (3 * validCount) : null;
   const direction = validCount < 4 || weightedSum === 0 ? null : weightedSum > 0 ? 1 : -1;
-  const boundary = 5 * Math.abs(weightedSum) <= 3 * validCount;
+  const boundary = Math.abs(weightedSum) <= validCount; // provisional at <=33.3% of directional range
   const status = direction === null ? "withheld" :
     validCount < 6 || boundary ? "provisional" : "classified";
   return {
@@ -88,7 +88,7 @@ function derive(axes) {
   const classification = typeId === null ? "withheld" :
     [a, b, c, d].some(x => x.status !== "classified") ? "provisional" : "classified";
   const wealth = e.n < 4 ? "withheld" :
-    5 * Math.abs(e.sum) <= 3 * e.n ? "neutral" : e.sum > 0 ? "time" : "money";
+    Math.abs(e.sum) <= e.n ? "neutral" : e.sum > 0 ? "time" : "money";
   return { typeId, classification, wealth };
 }
 
