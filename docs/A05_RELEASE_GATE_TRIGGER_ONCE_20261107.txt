@@ -1,4 +1,0 @@
-One-time A05 beta release gate.
-Scope: release/a05-beta-report-20261107 only.
-No production deployment or merge.
-Remove marker and temporary trigger immediately after observing run.
