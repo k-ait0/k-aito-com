@@ -1,0 +1,174 @@
+{
+  "schema": "A05-D117-INDEPENDENT-EDITORIAL-CANDIDATES-1.0.0",
+  "date": "2026-11-08",
+  "status": "RESEARCH_ONLY_NOT_APPROVED",
+  "baseQuestionVersion": "A05-Q-2.0.0-draft",
+  "basePR": 76,
+  "constraints": {
+    "mainRuntimeChangeAllowed": false,
+    "questionBankReplacementAllowed": false,
+    "typeMappingAllowed": false,
+    "personalDataCollectionAllowed": false,
+    "priorScoresComparable": false,
+    "oldResultRescoringAllowed": false
+  },
+  "candidateSets": [
+    {
+      "id": "A05",
+      "current": [
+        "今の仕事・活動環境を育てる",
+        "別の仕事・活動環境を経験する"
+      ],
+      "risk": [
+        "OLD_BLOCK_P0",
+        "SITUATION_CONSTRAINT",
+        "INTRA_A_OVERLAP",
+        "A_D_CONTEXT_LEAKAGE"
+      ],
+      "alternatives": [
+        {
+          "id": "A05-R1",
+          "format": "paired_7point_hypothetical",
+          "negative": "同じ活動を続けるなら、今の活動環境を整えて利用し続けたい",
+          "positive": "同じ活動を続けるなら、別の活動環境を試してみたい",
+          "assumptions": "活動内容・費用・利用機会が同等",
+          "residualRisks": [
+            "A01/A02との反復",
+            "活動環境の解釈幅",
+            "新しい環境の魅力度差"
+          ],
+          "validationQuestion": "現在の場を改善することと新たな場を試すことを両方望む場合、回答可能か"
+        },
+        {
+          "id": "A05-R2",
+          "format": "paired_7point_hypothetical",
+          "negative": "慣れた環境を使い続けて活動したい",
+          "positive": "新しい環境で同じ活動をしてみたい",
+          "assumptions": "同じ活動で移動負担・費用・利用条件が等しい",
+          "residualRisks": [
+            "A02・A06との重複",
+            "慣れ/新規の好悪が強すぎる",
+            "生活環境と趣味の文脈差"
+          ],
+          "validationQuestion": "回答理由は環境の継続/変更か、冒険心・社交性・移動の可否か"
+        }
+      ],
+      "recommendedDisposition": "HOLD_P0_UNTIL_COGNITIVE_REVIEW_AND_CONSTRUCT_APPROVAL"
+    },
+    {
+      "id": "E05",
+      "current": [
+        "質の高いモノや特別な体験にお金をかけられる暮らし",
+        "お金はあまり使わなくても、時間に追われず過ごせる暮らし"
+      ],
+      "risk": [
+        "CRITICAL_CONSTRUCT_MISMATCH",
+        "E01_E06_REDUNDANCY",
+        "WEALTH_VS_CONSUMPTION",
+        "RESOURCE_CONSTRAINT"
+      ],
+      "alternatives": [
+        {
+          "id": "E05-R1",
+          "format": "paired_7point_hypothetical",
+          "negative": "必要な生活費と休息を確保した上で、使い道を自由に選べる追加予算を持ちたい",
+          "positive": "必要な生活費と休息を確保した上で、自分で使い方を選べる追加時間を持ちたい",
+          "assumptions": "追加予算と追加時間の価値量は比較可能とみなさない",
+          "residualRisks": [
+            "交換量が不定",
+            "E01/E06と重複",
+            "家計・労働条件の影響"
+          ],
+          "validationQuestion": "回答者はどの程度の金額・時間を想定し、他方の利益と比較できたか"
+        },
+        {
+          "id": "E05-R2",
+          "format": "independent_two_item_7point_research_only",
+          "items": [
+            {
+              "construct": "money_choice_freedom",
+              "prompt": "使い道を自由に決められるお金の余裕を確保することを重視したい"
+            },
+            {
+              "construct": "time_choice_freedom",
+              "prompt": "使い方を自由に決められる時間の余裕を確保することを重視したい"
+            }
+          ],
+          "residualRisks": [
+            "他のE項目との重複",
+            "両方を高く評価しやすい",
+            "30問制約と保存スキーマの変更"
+          ],
+          "validationQuestion": "両方高い／両方低い回答が測定できるか。別尺度として成立するか"
+        },
+        {
+          "id": "E05-R3",
+          "format": "omit_from_polarity_trial",
+          "action": "E05の一問を方向スコアへ加算せず、E軸自体の補助表示を保留する代替研究案",
+          "residualRisks": [
+            "6問スコアとの互換性喪失",
+            "E軸全体の再設計が必要"
+          ],
+          "validationQuestion": "比較負荷と概念混入を避けるためE軸非採点の自己理解ガイドで十分か"
+        }
+      ],
+      "recommendedDisposition": "CRITICAL_HOLD_NO_AUTOMATIC_E_SCORE"
+    }
+  ],
+  "independentStructureComparisons": [
+    {
+      "id": "B1",
+      "format": "relative_bipolar",
+      "measurement": "自分の希望と他者の希望の相対的優先",
+      "strength": "旧16タイプ構造に合う",
+      "criticalFailure": "両方高い/低いを区別不可",
+      "typeMapping": "existing_v2_provisional_only"
+    },
+    {
+      "id": "B2",
+      "format": "two_independent_importance_scales",
+      "measurement": "自己決定の重視度と関係の重視度を別々に測る",
+      "strength": "両方高い/低いを別表現可能",
+      "criticalFailure": "同一概念でない／回答数・迎合・文化差を検証",
+      "typeMapping": "forbidden_to_old_B_bit"
+    },
+    {
+      "id": "B3",
+      "format": "withhold_B_type_assignment",
+      "measurement": "軸の回答傾向は非タイプ表示",
+      "strength": "未妥当な類型化を抑制",
+      "criticalFailure": "旧16タイプとの一貫性なし",
+      "typeMapping": "withheld"
+    }
+  ],
+  "cStructureComparisons": [
+    {
+      "id": "C1",
+      "format": "relative_tradeoff",
+      "measurement": "同等の条件下で将来便益と現在便益のどちらへ時間を配分するか",
+      "criticalFailure": "将来の確実性/便益量の非等価"
+    },
+    {
+      "id": "C2",
+      "format": "independent_scales",
+      "measurement": "将来準備の重視度と現在経験の重視度",
+      "criticalFailure": "現在の享楽/幸福度/注意傾向との混入"
+    },
+    {
+      "id": "C3",
+      "format": "no_binary_classification",
+      "measurement": "今/将来の選好と背景事情のみ示す",
+      "criticalFailure": "16タイプの旧Cビットとの互換性なし"
+    }
+  ],
+  "decisionGates": [
+    "EDITORIAL_READABILITY",
+    "A_VS_D_CROSS_LOADING",
+    "B1_B2_B3_CONSTRUCT_DECISION",
+    "C1_C2_C3_CONSTRUCT_DECISION",
+    "E_SINGLE_DIMENSION_REVIEW",
+    "BOUNDARY_SENSITIVITY_DISCLOSURE",
+    "COGNITIVE_INTERVIEW_AUTHORIZATION",
+    "HUMAN_FINAL_SIGNOFF"
+  ]
+}
