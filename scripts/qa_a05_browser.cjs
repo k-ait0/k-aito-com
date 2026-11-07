@@ -409,6 +409,8 @@ async function main() {
       const pdf = await page.pdf({format: 'A4', printBackground: true});
       assert.equal(pdf.subarray(0, 4).toString('utf8'), '%PDF');
       assert.ok(pdf.length > 20000, "Generated PDF unexpectedly short");
+      const pageObjects = (pdf.toString('latin1').match(/\/Type\s*\/Page\b/g) ?? []).length;
+      assert.equal(pageObjects, 10, 'A4 PDF must contain exactly ten pages');
       await page.locator('[data-view="result"]').last().click();
       await waitForUICommit(page, 'result');
       assert.match(await page.locator('#a05-content').innerText(), /T16/);
