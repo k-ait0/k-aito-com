@@ -104,3 +104,21 @@ test('1500 seeded mixed answers never invent a type or leak answers into report 
  assert.ok(counts.provisional>0);
  assert.ok(counts.withheld>0);
 });
+
+
+test('beta-only .htaccess restricts browser resources and serves ES modules correctly',()=>{
+ const html=readFileSync(new URL('index.html',ROOT),'utf8');
+ const headers=readFileSync(new URL('.htaccess',ROOT),'utf8');
+ assert.match(html,/http-equiv="Content-Security-Policy"/);
+ for(const directive of ["default-src 'none'","script-src 'self'","connect-src 'none'","object-src 'none'","form-action 'none'"]){
+  assert.ok(html.includes(directive), 'meta CSP missing '+directive);
+  assert.ok(headers.includes(directive), 'header CSP missing '+directive);
+ }
+ assert.match(headers,/AddType text\/javascript \.mjs/);
+ assert.match(headers,/Header always set X-Content-Type-Options "nosniff"/);
+ assert.match(headers,/Header always set X-Robots-Tag "noindex, nofollow"/);
+ assert.match(headers,/Header always set X-Frame-Options "DENY"/);
+ assert.match(headers,/Header always set Referrer-Policy "no-referrer"/);
+ assert.match(headers,/Header always set Cache-Control "no-store"/);
+ assert.doesNotMatch(headers,/RewriteRule|Redirect|Options\s+-Indexes/);
+});
