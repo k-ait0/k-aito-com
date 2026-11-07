@@ -61,9 +61,15 @@ async function main() {
     "projects/kidp/life-design-lab/a05/questions.mjs")).href);
   assert.equal(QUESTIONS.length, 30);
 
-  const server = await startServer();
+  // Optional release QA on the actual HTTPS origin. Local is still the default.
+  const live = process.env.A05_LIVE_ORIGIN || "";
+  if (live && live !== "https://k-aito.com") {
+    throw new Error("A05_LIVE_ORIGIN must be the explicitly approved HTTPS origin");
+  }
+  const server = live ? null : await startServer();
   let browser;
-  const address = "http://127.0.0.1:" + server.address().port;
+  const address = live || ("http://127.0.0.1:" + server.address().port);
+  console.log("A05 target: " + (live ? "live HTTPS" : "local static server"));
   try {
     browser = await chromium.launch({ headless: true, channel: "chrome" });
     const context = await browser.newContext({
@@ -857,7 +863,7 @@ async function main() {
     await context.close();
   } finally {
     if (browser) await browser.close();
-    await new Promise(resolve => server.close(resolve));
+    if (server) await new Promise(resolve => server.close(resolve));
   }
 }
 
