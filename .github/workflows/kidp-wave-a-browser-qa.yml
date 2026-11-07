@@ -27,3 +27,20 @@ jobs:
           node scripts/qa_a05_browser.cjs
       - name: A05 public HTTPS pre-release reachability (read only)
         run: node scripts/qa-a05-public-origin-readiness.mjs
+      - name: Wait for XServer and verify exact A05 live assets and headers
+        run: |
+          for attempt in 1 2 3 4 5 6 7 8; do
+            if A05_EXPECT_LIVE=1 node scripts/qa-a05-public-origin-readiness.mjs; then
+              echo "A05 live assets and security headers match release."
+              exit 0
+            fi
+            if [ "$attempt" -eq 8 ]; then
+              echo "A05 live deployment did not pass after eight checks." >&2
+              exit 1
+            fi
+            sleep 15
+          done
+      - name: A05 live HTTPS Chromium 30Q to PDF E2E
+        env:
+          A05_LIVE_ORIGIN: https://k-aito.com
+        run: node scripts/qa_a05_browser.cjs
