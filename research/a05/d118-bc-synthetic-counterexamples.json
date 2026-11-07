@@ -1,0 +1,716 @@
+{
+  "schema": "A05-D118-BC-SYNTHETIC-COUNTEREXAMPLES-1.0.0",
+  "date": "2026-11-08",
+  "status": "RESEARCH_ONLY_SYNTHETIC_NOT_APPROVED",
+  "purpose": "Compare what B/C relative bipolar versus independent importance formats can represent without equating their separately stipulated responses.",
+  "linkedPriorSources": [
+    {
+      "path": "docs/A05_D85_B_MODE_COMPARISON_20261026.json",
+      "branch": "feature/a05-d23-modular-diagnostic-20261025",
+      "coverage": "8 established synthetic B examples; D118 only adds explicit scenario and context shift cases"
+    },
+    {
+      "path": "docs/A05_S1_B2_ITEM_PROTOTYPES_V01_20261030.json",
+      "branch": "feature/a05-p2-construct-audit-20261104",
+      "coverage": "6 B situations x 2 independent items; editorial prototypes, no validation"
+    },
+    {
+      "resource": "A05_D91_12問_概念監査_オフライン.html",
+      "coverage": "B six independent item candidates TRIAL4/REVISE2 and C six independent item candidates REVISE6"
+    },
+    {
+      "path": "docs/A05_V2_D117_P0_REDESIGN_AND_TYPE_POLICY_20261108.md",
+      "branch": "feature/a05-v2-modules-20261108",
+      "coverage": "Prior critique and proposed P0 actions"
+    }
+  ],
+  "interpretationRules": [
+    "Relative answers (B1/C1) and independent answers (B2/C2) in the same fixture are separately stipulated synthetic examples, not a valid conversion.",
+    "No fixtures are real participant data, normative evidence or psychometric reliability test.",
+    "B2/C2 ratings may allow double-high/low but remain susceptible to response styles and conceptual overlap.",
+    "B3/C3 withhold type assignment; no 8-type or 16-type remapping.",
+    "C independent pilot 6 questions (D-91) all require revision before any candidate implementation.",
+    "Missing answers are explicit null; never impute neutral/zero.",
+    "The value scales are not SDT autonomy/relatedness or established temporal focus measures."
+  ],
+  "acceptanceGates": {
+    "technical": "Unique scenario IDs, domain/format invariants, explicit null, independent vs relative non-equivalence and no classification; all can be mechanically tested.",
+    "editorial": "Counterexamples must be comprehensible without presupposing psychological outcomes.",
+    "human": "Optional future cognitive interview needs owner G1/D42 authorization; no real responses are gathered here.",
+    "release": "NO_GO"
+  },
+  "cases": [
+    {
+      "id": "B-HH",
+      "title": "本人も他者も強く重視",
+      "context": "人生の重要な選択",
+      "bipolar": 4,
+      "independent": {
+        "self": 7,
+        "others": 7
+      },
+      "risk": "二極の中点が双方とも高いことを隠す",
+      "axis": "B",
+      "fictional": true,
+      "formats": {
+        "relative": {
+          "value": 4,
+          "unvalidated": true
+        },
+        "independent": {
+          "self": 7,
+          "others": 7,
+          "unvalidated": true
+        },
+        "withheld": {
+          "classificationStatus": "WITHHELD",
+          "typeId": null,
+          "legacy16Compatible": false,
+          "answeredByRealPerson": false,
+          "notATraitPrediction": true
+        }
+      },
+      "doNotConvertRelativeFromIndependent": true,
+      "doNotScoreAsExistingType": true
+    },
+    {
+      "id": "B-LL",
+      "title": "双方ともあまり重視しない",
+      "context": "人生の重要な選択",
+      "bipolar": 4,
+      "independent": {
+        "self": 1,
+        "others": 1
+      },
+      "risk": "B-HHと同じ二極値となり全く異なる回答傾向を区別できない",
+      "axis": "B",
+      "fictional": true,
+      "formats": {
+        "relative": {
+          "value": 4,
+          "unvalidated": true
+        },
+        "independent": {
+          "self": 1,
+          "others": 1,
+          "unvalidated": true
+        },
+        "withheld": {
+          "classificationStatus": "WITHHELD",
+          "typeId": null,
+          "legacy16Compatible": false,
+          "answeredByRealPerson": false,
+          "notATraitPrediction": true
+        }
+      },
+      "doNotConvertRelativeFromIndependent": true,
+      "doNotScoreAsExistingType": true
+    },
+    {
+      "id": "B-MM",
+      "title": "双方とも中程度",
+      "context": "人生の重要な選択",
+      "bipolar": 4,
+      "independent": {
+        "self": 4,
+        "others": 4
+      },
+      "risk": "双方の重視度と相対優先度は別の情報",
+      "axis": "B",
+      "fictional": true,
+      "formats": {
+        "relative": {
+          "value": 4,
+          "unvalidated": true
+        },
+        "independent": {
+          "self": 4,
+          "others": 4,
+          "unvalidated": true
+        },
+        "withheld": {
+          "classificationStatus": "WITHHELD",
+          "typeId": null,
+          "legacy16Compatible": false,
+          "answeredByRealPerson": false,
+          "notATraitPrediction": true
+        }
+      },
+      "doNotConvertRelativeFromIndependent": true,
+      "doNotScoreAsExistingType": true
+    },
+    {
+      "id": "B-HH-TILT",
+      "title": "双方高いが本人が少し優先",
+      "context": "二者の意思決定",
+      "bipolar": 3,
+      "independent": {
+        "self": 7,
+        "others": 6
+      },
+      "risk": "相対的わずかな傾きと重視度を区別",
+      "axis": "B",
+      "fictional": true,
+      "formats": {
+        "relative": {
+          "value": 3,
+          "unvalidated": true
+        },
+        "independent": {
+          "self": 7,
+          "others": 6,
+          "unvalidated": true
+        },
+        "withheld": {
+          "classificationStatus": "WITHHELD",
+          "typeId": null,
+          "legacy16Compatible": false,
+          "answeredByRealPerson": false,
+          "notATraitPrediction": true
+        }
+      },
+      "doNotConvertRelativeFromIndependent": true,
+      "doNotScoreAsExistingType": true
+    },
+    {
+      "id": "B-ONE-NA",
+      "title": "関係者がいない場面",
+      "context": "ひとりで行う趣味",
+      "bipolar": null,
+      "independent": {
+        "self": 7,
+        "others": null,
+        "missingReason": "not_applicable"
+      },
+      "risk": "『他者を重視しない』と『関係者がいない』は異なる",
+      "axis": "B",
+      "fictional": true,
+      "formats": {
+        "relative": {
+          "value": null,
+          "unvalidated": true
+        },
+        "independent": {
+          "self": 7,
+          "others": null,
+          "missingReason": "not_applicable",
+          "unvalidated": true
+        },
+        "withheld": {
+          "classificationStatus": "WITHHELD",
+          "typeId": null,
+          "legacy16Compatible": false,
+          "answeredByRealPerson": false,
+          "notATraitPrediction": true
+        }
+      },
+      "doNotConvertRelativeFromIndependent": true,
+      "doNotScoreAsExistingType": true
+    },
+    {
+      "id": "B-CONTEXT-1",
+      "title": "架空の同一人物・個人趣味",
+      "context": "個人で選ぶ趣味",
+      "hypotheticalContextPair": "B-CONTEXT-2",
+      "bipolar": 2,
+      "independent": {
+        "self": 7,
+        "others": 3
+      },
+      "risk": "特定場面の回答を固定的性格へ外挿しない",
+      "axis": "B",
+      "fictional": true,
+      "formats": {
+        "relative": {
+          "value": 2,
+          "unvalidated": true
+        },
+        "independent": {
+          "self": 7,
+          "others": 3,
+          "unvalidated": true
+        },
+        "withheld": {
+          "classificationStatus": "WITHHELD",
+          "typeId": null,
+          "legacy16Compatible": false,
+          "answeredByRealPerson": false,
+          "notATraitPrediction": true
+        }
+      },
+      "doNotConvertRelativeFromIndependent": true,
+      "doNotScoreAsExistingType": true
+    },
+    {
+      "id": "B-CONTEXT-2",
+      "title": "架空の同一人物・共有家計",
+      "context": "同居者と決める家計",
+      "hypotheticalContextPair": "B-CONTEXT-1",
+      "bipolar": 6,
+      "independent": {
+        "self": 5,
+        "others": 7
+      },
+      "risk": "同じ架空人物でも場面・役割次第で相対回答が逆方向",
+      "axis": "B",
+      "fictional": true,
+      "formats": {
+        "relative": {
+          "value": 6,
+          "unvalidated": true
+        },
+        "independent": {
+          "self": 5,
+          "others": 7,
+          "unvalidated": true
+        },
+        "withheld": {
+          "classificationStatus": "WITHHELD",
+          "typeId": null,
+          "legacy16Compatible": false,
+          "answeredByRealPerson": false,
+          "notATraitPrediction": true
+        }
+      },
+      "doNotConvertRelativeFromIndependent": true,
+      "doNotScoreAsExistingType": true
+    },
+    {
+      "id": "B-PARTIAL",
+      "title": "本人は判断不能",
+      "context": "重大な利害調整",
+      "bipolar": null,
+      "independent": {
+        "self": null,
+        "others": 5,
+        "missingReason": "cannot_judge"
+      },
+      "risk": "中点4への自動補完・タイプ発行禁止",
+      "axis": "B",
+      "fictional": true,
+      "formats": {
+        "relative": {
+          "value": null,
+          "unvalidated": true
+        },
+        "independent": {
+          "self": null,
+          "others": 5,
+          "missingReason": "cannot_judge",
+          "unvalidated": true
+        },
+        "withheld": {
+          "classificationStatus": "WITHHELD",
+          "typeId": null,
+          "legacy16Compatible": false,
+          "answeredByRealPerson": false,
+          "notATraitPrediction": true
+        }
+      },
+      "doNotConvertRelativeFromIndependent": true,
+      "doNotScoreAsExistingType": true
+    },
+    {
+      "id": "C-HH",
+      "title": "将来と現在をどちらも強く重視",
+      "context": "生活全体",
+      "bipolar": 4,
+      "independent": {
+        "future": 7,
+        "present": 7
+      },
+      "risk": "両高を単純中点へ圧縮してしまう",
+      "axis": "C",
+      "fictional": true,
+      "formats": {
+        "relative": {
+          "value": 4,
+          "unvalidated": true
+        },
+        "independent": {
+          "future": 7,
+          "present": 7,
+          "unvalidated": true
+        },
+        "withheld": {
+          "classificationStatus": "WITHHELD",
+          "typeId": null,
+          "legacy16Compatible": false,
+          "answeredByRealPerson": false,
+          "notATraitPrediction": true
+        }
+      },
+      "doNotConvertRelativeFromIndependent": true,
+      "doNotScoreAsExistingType": true
+    },
+    {
+      "id": "C-LL",
+      "title": "将来と現在をどちらもあまり重視しない",
+      "context": "生活全体",
+      "bipolar": 4,
+      "independent": {
+        "future": 1,
+        "present": 1
+      },
+      "risk": "両低がC-HHと同じ4になる",
+      "axis": "C",
+      "fictional": true,
+      "formats": {
+        "relative": {
+          "value": 4,
+          "unvalidated": true
+        },
+        "independent": {
+          "future": 1,
+          "present": 1,
+          "unvalidated": true
+        },
+        "withheld": {
+          "classificationStatus": "WITHHELD",
+          "typeId": null,
+          "legacy16Compatible": false,
+          "answeredByRealPerson": false,
+          "notATraitPrediction": true
+        }
+      },
+      "doNotConvertRelativeFromIndependent": true,
+      "doNotScoreAsExistingType": true
+    },
+    {
+      "id": "C-MM",
+      "title": "双方とも中程度",
+      "context": "生活全体",
+      "bipolar": 4,
+      "independent": {
+        "future": 4,
+        "present": 4
+      },
+      "risk": "中間回答は態度の強さ・迷い・文脈不明を区別しない",
+      "axis": "C",
+      "fictional": true,
+      "formats": {
+        "relative": {
+          "value": 4,
+          "unvalidated": true
+        },
+        "independent": {
+          "future": 4,
+          "present": 4,
+          "unvalidated": true
+        },
+        "withheld": {
+          "classificationStatus": "WITHHELD",
+          "typeId": null,
+          "legacy16Compatible": false,
+          "answeredByRealPerson": false,
+          "notATraitPrediction": true
+        }
+      },
+      "doNotConvertRelativeFromIndependent": true,
+      "doNotScoreAsExistingType": true
+    },
+    {
+      "id": "C-ONLY-FUTURE",
+      "title": "将来便益を優先する架空回答",
+      "context": "同じ労力の活動選択",
+      "bipolar": 1,
+      "independent": {
+        "future": 7,
+        "present": 2
+      },
+      "risk": "将来便益の大きさ・確実性・現在の犠牲が不明",
+      "axis": "C",
+      "fictional": true,
+      "formats": {
+        "relative": {
+          "value": 1,
+          "unvalidated": true
+        },
+        "independent": {
+          "future": 7,
+          "present": 2,
+          "unvalidated": true
+        },
+        "withheld": {
+          "classificationStatus": "WITHHELD",
+          "typeId": null,
+          "legacy16Compatible": false,
+          "answeredByRealPerson": false,
+          "notATraitPrediction": true
+        }
+      },
+      "doNotConvertRelativeFromIndependent": true,
+      "doNotScoreAsExistingType": true
+    },
+    {
+      "id": "C-ONLY-PRESENT",
+      "title": "現在便益を優先する架空回答",
+      "context": "同じ労力の活動選択",
+      "bipolar": 7,
+      "independent": {
+        "future": 2,
+        "present": 7
+      },
+      "risk": "今を楽しむ価値と短期志向・衝動性は別",
+      "axis": "C",
+      "fictional": true,
+      "formats": {
+        "relative": {
+          "value": 7,
+          "unvalidated": true
+        },
+        "independent": {
+          "future": 2,
+          "present": 7,
+          "unvalidated": true
+        },
+        "withheld": {
+          "classificationStatus": "WITHHELD",
+          "typeId": null,
+          "legacy16Compatible": false,
+          "answeredByRealPerson": false,
+          "notATraitPrediction": true
+        }
+      },
+      "doNotConvertRelativeFromIndependent": true,
+      "doNotScoreAsExistingType": true
+    },
+    {
+      "id": "C-HH-TILT",
+      "title": "両高かつ将来側に少し傾く",
+      "context": "活動への時間配分",
+      "bipolar": 3,
+      "independent": {
+        "future": 7,
+        "present": 6
+      },
+      "risk": "両高でも資源配分時には相対優先が存在し得る",
+      "axis": "C",
+      "fictional": true,
+      "formats": {
+        "relative": {
+          "value": 3,
+          "unvalidated": true
+        },
+        "independent": {
+          "future": 7,
+          "present": 6,
+          "unvalidated": true
+        },
+        "withheld": {
+          "classificationStatus": "WITHHELD",
+          "typeId": null,
+          "legacy16Compatible": false,
+          "answeredByRealPerson": false,
+          "notATraitPrediction": true
+        }
+      },
+      "doNotConvertRelativeFromIndependent": true,
+      "doNotScoreAsExistingType": true
+    },
+    {
+      "id": "C-HORIZON-1",
+      "title": "架空の同一人物・長期資金準備",
+      "context": "数年先の目標資金を備える",
+      "hypotheticalContextPair": "C-HORIZON-2",
+      "bipolar": 2,
+      "independent": {
+        "future": 7,
+        "present": 4
+      },
+      "risk": "将来を優先するのは財務上の必要性による可能性",
+      "axis": "C",
+      "fictional": true,
+      "formats": {
+        "relative": {
+          "value": 2,
+          "unvalidated": true
+        },
+        "independent": {
+          "future": 7,
+          "present": 4,
+          "unvalidated": true
+        },
+        "withheld": {
+          "classificationStatus": "WITHHELD",
+          "typeId": null,
+          "legacy16Compatible": false,
+          "answeredByRealPerson": false,
+          "notATraitPrediction": true
+        }
+      },
+      "doNotConvertRelativeFromIndependent": true,
+      "doNotScoreAsExistingType": true
+    },
+    {
+      "id": "C-HORIZON-2",
+      "title": "架空の同一人物・休暇の使い方",
+      "context": "当日の休暇に何をするか",
+      "hypotheticalContextPair": "C-HORIZON-1",
+      "bipolar": 6,
+      "independent": {
+        "future": 4,
+        "present": 7
+      },
+      "risk": "同じ架空人物の場面差を安定したCタイプの違いと呼ばない",
+      "axis": "C",
+      "fictional": true,
+      "formats": {
+        "relative": {
+          "value": 6,
+          "unvalidated": true
+        },
+        "independent": {
+          "future": 4,
+          "present": 7,
+          "unvalidated": true
+        },
+        "withheld": {
+          "classificationStatus": "WITHHELD",
+          "typeId": null,
+          "legacy16Compatible": false,
+          "answeredByRealPerson": false,
+          "notATraitPrediction": true
+        }
+      },
+      "doNotConvertRelativeFromIndependent": true,
+      "doNotScoreAsExistingType": true
+    },
+    {
+      "id": "C-UNCERTAINTY",
+      "title": "将来の便益が不確かな場面",
+      "context": "成果が保証されない学習と現在の趣味",
+      "bipolar": 5,
+      "independent": {
+        "future": 7,
+        "present": 7
+      },
+      "risk": "将来効用の確率・大きさを統制できず時間選好でなく不確実性への反応となる",
+      "axis": "C",
+      "fictional": true,
+      "formats": {
+        "relative": {
+          "value": 5,
+          "unvalidated": true
+        },
+        "independent": {
+          "future": 7,
+          "present": 7,
+          "unvalidated": true
+        },
+        "withheld": {
+          "classificationStatus": "WITHHELD",
+          "typeId": null,
+          "legacy16Compatible": false,
+          "answeredByRealPerson": false,
+          "notATraitPrediction": true
+        }
+      },
+      "doNotConvertRelativeFromIndependent": true,
+      "doNotScoreAsExistingType": true
+    },
+    {
+      "id": "C-COST",
+      "title": "現在の自由時間が著しく少ない",
+      "context": "介護・就業による時間制約",
+      "bipolar": 6,
+      "independent": {
+        "future": 7,
+        "present": 7
+      },
+      "risk": "Eの時間的自由や生活制約が比較を動かす",
+      "axis": "C",
+      "fictional": true,
+      "formats": {
+        "relative": {
+          "value": 6,
+          "unvalidated": true
+        },
+        "independent": {
+          "future": 7,
+          "present": 7,
+          "unvalidated": true
+        },
+        "withheld": {
+          "classificationStatus": "WITHHELD",
+          "typeId": null,
+          "legacy16Compatible": false,
+          "answeredByRealPerson": false,
+          "notATraitPrediction": true
+        }
+      },
+      "doNotConvertRelativeFromIndependent": true,
+      "doNotScoreAsExistingType": true
+    },
+    {
+      "id": "C-PARTIAL",
+      "title": "現在側の設問は回答不能",
+      "context": "長期計画中だが現在の状況が未確定",
+      "bipolar": null,
+      "independent": {
+        "future": 6,
+        "present": null,
+        "missingReason": "cannot_judge"
+      },
+      "risk": "未回答を4に変換しない",
+      "axis": "C",
+      "fictional": true,
+      "formats": {
+        "relative": {
+          "value": null,
+          "unvalidated": true
+        },
+        "independent": {
+          "future": 6,
+          "present": null,
+          "missingReason": "cannot_judge",
+          "unvalidated": true
+        },
+        "withheld": {
+          "classificationStatus": "WITHHELD",
+          "typeId": null,
+          "legacy16Compatible": false,
+          "answeredByRealPerson": false,
+          "notATraitPrediction": true
+        }
+      },
+      "doNotConvertRelativeFromIndependent": true,
+      "doNotScoreAsExistingType": true
+    },
+    {
+      "id": "C-NA",
+      "title": "どちらの判断も保留",
+      "context": "前提不足で選べない",
+      "bipolar": null,
+      "independent": {
+        "future": null,
+        "present": null,
+        "missingReason": "not_applicable"
+      },
+      "risk": "判断不能は両方低いことでも中立でもない",
+      "axis": "C",
+      "fictional": true,
+      "formats": {
+        "relative": {
+          "value": null,
+          "unvalidated": true
+        },
+        "independent": {
+          "future": null,
+          "present": null,
+          "missingReason": "not_applicable",
+          "unvalidated": true
+        },
+        "withheld": {
+          "classificationStatus": "WITHHELD",
+          "typeId": null,
+          "legacy16Compatible": false,
+          "answeredByRealPerson": false,
+          "notATraitPrediction": true
+        }
+      },
+      "doNotConvertRelativeFromIndependent": true,
+      "doNotScoreAsExistingType": true
+    }
+  ]
+}
