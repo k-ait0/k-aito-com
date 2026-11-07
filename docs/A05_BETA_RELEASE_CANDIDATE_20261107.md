@@ -62,3 +62,14 @@
 - Chromiumブラウザ受入テストは、30問→結果→レポート→PDF生成に加えて**PDF実ページ数が10であること**を要求するよう強化した。未実行。
 - 連携先GitHub APIでは、このPR #73ブランチのActions runは0件。接続ツールに`workflow_dispatch`起動操作がなく、GitHub Actionsを直接実行できない。
 - 実URLのHTTPS/CSP/配信QAおよびマージ・本番公開は未実施。マージ承認前の状態を維持する。
+
+
+## D-112 実GitHub Actions QAの完了（2026-11-07）
+
+- **Run [#42342954555](https://github.com/k-ait0/k-aito-com/actions/runs/42342954555) / Success**、イベント`push`、検証ブランチ`release/a05-beta-report-20261107`、対象コミット`4e8b13e75f1eb603d56377b74f9bcb15c6858a05`。
+- GitHubホスト上の**Node.js 22 全103テスト：103 PASS / 0 FAIL**。
+- 既存KIDP Chromium QA 成功、A05の**Chromium 28チェック全通過**。30問回答→T16結果→10ページレポート→A4 PDF生成/10ページ検査、戻り操作、保存同意・履歴・削除・エラー処理・画面幅・外部通信なし等の各チェックを含む。
+- **自動起動は一度だけ**：ユーザーの早期リリース希望と承認に基づき、この隔離ブランチに限り`docs/A05_QA_TRIGGER_ONCE_20261107.txt`の変更だけを対象とした一時`push`を設置し、単一run開始を確認後、`workflow_dispatch`のみへ復帰。仮設markerも削除。workflow YAMLのGit Blob SHAはもとの`0fca58fbf1c12ce9d782fbd3d58dbc23d7f2d0c8`へ復帰。リリースブランチの手動専用ポリシーは回復。
+- **対象範囲の注意**：この成功はリポジトリの静的サーバー／Chrome／Node22での動作確認。**実際の配信先HTTPS・CSP・キャッシュ・iOS Safari/VoiceOver・心理尺度の妥当性・本番公開の成功を証明しない**。
+- 対応するアプリ/テストの原本は検証時のコミットから変更していない。検証後のブランチ更新は一時トリガーの復帰、マーカーファイル削除および検証結果の記録のみ。
+- 初回限定ベータの残ゲートは**承認済みステージング実URLのHTTPS応答・HTTPヘッダー・スクリプト/MIME・外部通信の実測、公開対象・文言の責任者承認**。Draft/未マージ・未公開を維持する。
