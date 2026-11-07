@@ -191,7 +191,7 @@ function renderReview() {
     (count() < 30 ? '<button type="button" class="btn primary" data-action="next-unanswered">最初の未回答へ</button>' : '') +
     '<button type="button" class="btn primary" data-action="finish" ' +
     (count() !== 30 || state.consent && state.readOnly ? "disabled" : "") +
-    '>診断結果を確定する</button></div>';
+    '>回答を完了して結果を見る</button></div>';
 }
 
 function renderCatalog() {
@@ -256,7 +256,7 @@ function renderResult() {
   const header = '<div class="result-head" style="background:' + (group?.tint ?? "#f2f5f8") +
     ';border-color:' + (group?.color ?? "#d7e1e8") + '">' +
     '<p class="muted">' + (state.sample ? "サンプル表示：本人の回答・履歴を変更しません" :
-      "確定した診断結果") + '</p>' +
+      "回答完了・暫定的な結果") + '</p>' +
     '<strong>' + classificationLabel(result.classification) + '</strong>' +
     '<div class="emoji" aria-hidden="true">' + escapeHTML(display?.emoji ?? "🧭") + '</div>' +
     '<h2>' + escapeHTML(result.typeId ?? "判定保留") + '｜' +
