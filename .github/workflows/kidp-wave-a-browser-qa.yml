@@ -2,13 +2,6 @@ name: KIDP Wave A Browser QA
 on:
   # Manual-only. See docs/GITHUB_ACTIONS_POLICY.md.
   workflow_dispatch:
-  # TEMPORARY A05 QA EXCEPTION — only one marker file on the isolated beta branch.
-  # Restore manual-only immediately after inspecting the resulting run.
-  push:
-    branches:
-      - release/a05-beta-report-20261107
-    paths:
-      - docs/A05_QA_TRIGGER_ONCE_20261107.txt
 
 jobs:
   chromium:
