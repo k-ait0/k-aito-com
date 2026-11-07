@@ -2,12 +2,6 @@ name: KIDP Wave A Browser QA
 on:
   # Manual-only. See docs/GITHUB_ACTIONS_POLICY.md.
   workflow_dispatch:
-  # One-shot post-merge A05 live read-only QA; revert after execution.
-  push:
-    branches:
-      - release/a05-beta-report-20261107
-    paths:
-      - docs/A05_LIVE_QA_TRIGGER_ONCE_20261107.txt
 
 jobs:
   chromium:
