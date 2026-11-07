@@ -1,1 +1,0 @@
-Single-use v2 Draft QA. Run Native Node 22 and Chromium (30 questions to 10-page PDF). No production deployment, no merge. Restore workflow to manual-only after run starts.
