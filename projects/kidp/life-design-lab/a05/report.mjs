@@ -6,7 +6,7 @@
 import { AXES } from './questions.mjs';
 import { TYPES, GROUPS } from './types.mjs';
 
-export const REPORT_VERSION = 'A05-REPORT-0.1.0-draft';
+export const REPORT_VERSION = 'A05-REPORT-0.2.0-draft';
 const esc = text => String(text ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const pageTitles = ['表紙・タイプ紹介','総合サマリー','環境と関係','時間と経験','豊かさの希望','価値観の組み合わせ','葛藤とトレードオフ','意思決定の整理','30日間のアクション','分析方法と注意事項'];
 const statusNames = {classified:'方向明確（試験基準）',provisional:'暫定判定',withheld:'判定保留'};
@@ -29,11 +29,14 @@ function axisFromSnapshot(snapshot, id) {
  }
  return Object.freeze({ ...item });
 }
-function explanation(a) {
- if (a.direction === null || a.status === 'withheld')
-   return '回答不足または方向の拮抗により、この軸の方向は保留です。無理に結論を出しません。';
- return (a.direction < 0 ? themes[a.id].minus : themes[a.id].plus) +
-   (a.status === 'provisional' ? ' ただし試験基準では境界付近、または一部未回答です。' : '');
+function explanation(a){
+ if(a.direction===null||a.status==='withheld') return '回答不足または左右の回答が相殺されたため方向を保留します。中立・葛藤などの理由は数値だけでは判断できません。';
+ const base=a.direction<0?themes[a.id].minus:themes[a.id].plus;
+ if(a.n<6)return base+' 一部未回答があるため暫定的な読み取りです。';
+ const magnitude=Math.abs(a.value??0);
+ if(a.status==='provisional'||magnitude<=100/3)return `今回の回答では「${side(a)}」寄りですが、左右の合計差は小さめです。中立回答と正負の相殺は区別できません。`;
+ if(magnitude>=200/3)return base+' この質問群では方向の偏りが比較的大きく見られました。ただし生活全体で譲れない条件とは限りません。';
+ return base;
 }
 function side(a) {
  const axis = AXES.find(x => x.id === a.id);
@@ -63,6 +66,52 @@ function paired(a,b,heading) {
    `今回の回答では「${side(a)}」と「${side(b)}」の方向が見られました。これは選択傾向の組み合わせであり、能力や人格の説明ではありません。`;
  return `<div class="report-pair">${subhead(heading)}${paragraph(labels)}<div class="report-pair-tags"><span>${esc(a.id)} ${esc(side(a))}</span><span>${esc(b.id)} ${esc(side(b))}</span></div></div>`;
 }
+function rankAxes(axes,ascending=true,directionRequired=false){
+ return axes.filter(a=>a.n>=4&&Number.isFinite(a.value)&&(!directionRequired||a.direction!==null))
+ .slice().sort((a,b)=>(ascending?1:-1)*(Math.abs(a.value)-Math.abs(b.value))||a.id.localeCompare(b.id));
+}
+
+function axisName(a){
+ return `${a.id} · ${AXES.find(x=>x.id===a.id)?.name??a.id}`;
+}
+
+function renderP7(x){
+ const low=rankAxes(x.axes).slice(0,2);
+ const note=low.length===2?`合計スコアの絶対値が比較的小さかった軸は「${axisName(low[0])}」「${axisName(low[1])}」です。数値だけでは迷い・葛藤・無関心・両方を重視することを区別できません。`:'回答数が足りない軸もあるため、特定の解釈は保留します。';
+ const qs=[
+ low[0]?`「${axisName(low[0])}」は、場面が変わるとどちらを選びたくなりますか？`:'状況によって答えが変わることは何ですか？',
+ low[1]?`「${axisName(low[1])}」で、左右とも大切な場面、どちらも不要な場面はありますか？`:'今は結論を決めなくてよいことはありますか？',
+ '最近の選択で、選ばなかった側の利点を挙げると？'
+ ];
+ return `<div class="report-lead">葛藤や柔軟性を判定せず、選択条件を整理する問いです。</div>${paragraph(note)}
+ ${qs.map((q,i)=>`${subhead('問い 0'+(i+1))}${question(q)}`).join('')}
+ <div class="report-note"><strong>中立点の限界</strong>${paragraph('小さな合計値は中間回答・正負の相殺など複数の理由で生じます。回答数が少ない軸では結論を出しません。')}</div>`;
+}
+
+function renderP8(x){
+ const high=rankAxes(x.axes,false,true).slice(0,2),low=rankAxes(x.axes)[0];
+ const lead=high.length?`今回の回答で相対的に方向が表れた軸：${high.map(a=>`「${axisName(a)}（${side(a)}寄り）」`).join('、')}。優先順位や妥協不可条件そのものが分かったわけではありません。`:'方向が明瞭な軸が少ないため、具体的な場面から考えます。';
+ return `<div class="report-lead">結果を判断の正解や譲歩の指示として使わず、自分の基準を探す問いとして使います。</div>
+ <div class="report-note"><strong>今回の比較材料</strong>${paragraph(lead)}${paragraph(low?`「${axisName(low)}」は方向の差が小さい軸です。異なる場面で選び直したいか、自分で確かめましょう。`:'無理に優先順位を決める必要はありません。')}</div>
+ ${subhead('仕事・学びを決めるとき')}${question(high[0]?`「${axisName(high[0])}」の希望は、仕事や学びの選択で実際に重要ですか？`:'今の仕事や学びで維持・変更したい条件は何ですか？')}
+ ${subhead('暮らしを決めるとき')}${question(high[1]?`「${axisName(high[1])}」の希望を、費用や人間関係などの現実条件とどう両立しますか？`:'暮らしを選ぶ際の条件を挙げると？')}
+ ${subhead('条件を比べるとき')}${question(low?`「${axisName(low)}」の好みが場面によって変化するか確かめると？`:'選択の前に確認したいことは何ですか？')}
+ <div class="report-note"><strong>最終判断は本人</strong>${paragraph('費用、期限、リスク、健康や家族の条件は別途確認し、譲れない条件は自分で決めてください。')}</div>`;
+}
+
+function renderP9(x){
+ const high=rankAxes(x.axes,false,true)[0],low=rankAxes(x.axes)[0];
+ const action=x.type?.action??'大切にしたい価値観を一つ書き出す';
+ const tasks=[
+ ['WEEK 01','気づく',high?`「${axisName(high)}」について今の生活での満足度を自分で10点満点で評価し、理由を書く。`:'最近大切にしたいと感じた条件を一つ書く。'],
+ ['WEEK 02','比べる',low?`「${axisName(low)}」について、選ばなかった側の良さを安全で無理のない範囲で考えるか、小さく試す。`:'最近の選択で別の選択肢を一つ考える。'],
+ ['WEEK 03','試す',`小さな行動を一つ試す。参考候補：${action}。`],
+ ['WEEK 04','振り返る','続けたいことと変えたいことを一つずつ決める。']
+ ];
+ return `<div class="report-lead">提案は任意です。健康、費用、人間関係への負担がある場合は試さず考えるだけでも構いません。</div>
+ <div class="report-timeline">${tasks.map(([w,t,b])=>`<div class="report-week"><span>${esc(w)}</span><div>${subhead(t)}${paragraph(b)}</div></div>`).join('')}</div>
+ ${question('30日後、どのような変化があれば「試してよかった」と感じますか？')}`;
+}
 function buildPages(x) {
  const [a,b,c,d,e] = x.axes;
  const full = x.type ? `${x.type.id}｜${x.type.name}` : '基本タイプの判定保留';
@@ -86,40 +135,19 @@ function buildPages(x) {
  pages.push(`<div class="report-lead">第5軸は基本16タイプに含めず、現在のお金と時間に関する希望を補足します。</div>
  ${axisPanel(e)}${paragraph(explanation(e))}
  <div class="report-note"><strong>注意：この軸は特に暫定的です</strong>
- ${paragraph('現在の設問には、可処分所得と自由時間を同一尺度で比較する項目が含まれます。金額と時間の比較条件は校正されていません。')}
+ ${paragraph('この軸には働き方・節約・自由時間・安心感の異なる場面が含まれます。生活上の制約に左右され、単一尺度としての妥当性は未検証です。')}
  ${paragraph('「経済的余裕寄り／時間的自由寄り」は今回の比較回答の表示であり、生活状況、経済力、健康状態などを意味しません。')}</div>
  ${question(themes.E.ask)}`);
  pages.push(`<div class="report-lead">タイプ名よりも重要なのは、複数の軸がどう組み合わさったかを自分の言葉で理解することです。</div>
  ${paired(a,b,'生活の選び方：環境 × 関係')}
  ${paired(c,d,'日々の使い方：時間 × 経験')}
  <div class="report-note"><strong>このページの読み方</strong>${paragraph('結果は回答の相対的な方向を要約したものです。4軸の回答が僅差・未回答の場合は、安易な解釈を避けます。')}</div>`);
- const tension1 = a.direction===null || b.direction===null ? '生活環境や大切な人との関係で、まだ答えが定まっていないことは何ですか？' :
- `「${side(a)}」と「${side(b)}」を両方大切にするとき、どんな選択が必要になりそうですか？`;
- const tension2 = c.direction===null || d.direction===null ? '将来・現在・探索・深耕の中で、今は答えを決めなくてもよいことは何ですか？' :
- `「${side(c)}」と「${side(d)}」を両立するために、時間の使い方をどう調整できますか？`;
- pages.push(`<div class="report-lead">ここで示すのは「葛藤がある」という判定ではありません。選択肢が競合した場合に使える問いです。</div>
- ${subhead('問い 01 · 生活と人間関係')}${question(tension1)}
- ${subhead('問い 02 · 時間と経験')}${question(tension2)}
- ${subhead('問い 03 · お金と時間')}${question(themes.E.ask)}
- <div class="report-note"><strong>優先順位は状況で変わる</strong>${paragraph('仕事、家族、健康、資金などの条件によって、望ましい選択は変わります。今回のスコアだけで決める必要はありません。')}</div>`);
- pages.push(`<div class="report-lead">結果を「正解」ではなく、意思決定で使う自分への質問集として扱います。</div>
- ${subhead('仕事・学びを決めるとき')}${question('今の仕事や学びで維持したい条件と、変えてみたい条件は何ですか？')}
- ${subhead('暮らしを決めるとき')}${question('自分で決めたいことと、誰かと共有したいことを分けるとどうなりますか？')}
- ${subhead('時間を配分するとき')}${question('今月の予定に、将来への投資と今日の充実をそれぞれどう入れますか？')}
- <div class="report-note"><strong>意思決定メモ</strong>${paragraph('大きな判断に使う場合は、費用・期限・リスクなどの事実も別に確認しましょう。ここに示す設問はその代わりになりません。')}</div>`);
- const action = x.type ? x.type.action : '大切にしたい価値観を一つ書き出す';
- const tasks = [
- ['WEEK 01','気づく','今回の結果で納得した点と違和感のある点を、一つずつ書く。'],
- ['WEEK 02','比べる','最近の選択を一つ取り上げ、別の選択肢も考えてみる。'],
- ['WEEK 03','試す',`小さな行動を一つ試す。参考候補：${action}。`],
- ['WEEK 04','振り返る','続けたいことと、変えたいことを一つずつ決める。']
- ];
- pages.push(`<div class="report-lead">行動計画は提案であり、実施する義務はありません。自分の状況に合わせて選び直せます。</div>
- <div class="report-timeline">${tasks.map(([week,title,body])=>`<div class="report-week"><span>${esc(week)}</span><div>${subhead(title)}${paragraph(body)}</div></div>`).join('')}</div>
- ${question('30日後、どのような変化があれば「試してよかった」と感じますか？')}`);
+ pages.push(renderP7(x));
+ pages.push(renderP8(x));
+ pages.push(renderP9(x));
  pages.push(`<div class="report-lead">このレポートは研究・開発中の表現と計算規則を使った試作物です。</div>
  ${subhead('採点・分類の扱い')}${paragraph('30問・5軸の暫定回答をもとに表示しています。各軸の数値は−100〜+100の試験的な相対値で、確率や百分率ではありません。')}
- ${paragraph('回答が不足または拮抗する軸は方向を保留します。基本タイプは4軸の方向が揃った場合のみ表示し、第5軸は別枠で示します。')}
+ ${paragraph('有効回答不足や、左右の回答が相殺された軸は方向を保留します。基本タイプは4軸の方向が揃った場合のみ表示し、第5軸は別枠で示します。')}
  <div class="report-method"><div>基本タイプ<strong>${esc(full)}</strong></div><div>分類状態<strong>${esc(statusNames[x.classification])}</strong></div><div>第5軸<strong>${esc(wealthNames[x.wealth])}</strong></div><div>有効回答<strong>${x.axes.reduce((sum,v)=>sum+v.n,0)} / 30問</strong></div></div>
  ${subhead('データと利用上の注意')}${paragraph('このレポートの表示・印刷処理は、既存の結果スナップショットを読み取るだけです。生回答を印刷・送信せず、レポートのための追加保存も行いません。')}
  ${paragraph('特性・適職・将来の成功を診断するものではありません。名称や分類が科学的に標準化された心理尺度であるとの主張はしていません。')}
