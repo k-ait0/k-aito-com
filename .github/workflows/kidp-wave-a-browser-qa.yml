@@ -2,12 +2,6 @@ name: KIDP Wave A Browser QA
 on:
   # Manual-only. See docs/GITHUB_ACTIONS_POLICY.md.
   workflow_dispatch:
-  # TEMPORARY A05 v2 single-run QA exception. Restore workflow_dispatch-only after use.
-  push:
-    branches:
-      - feature/a05-v2-modules-20261108
-    paths:
-      - docs/A05_V2_QA_TRIGGER_ONCE_20261108.txt
 
 jobs:
   chromium:
