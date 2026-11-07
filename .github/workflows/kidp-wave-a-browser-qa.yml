@@ -2,6 +2,12 @@ name: KIDP Wave A Browser QA
 on:
   # Manual-only. See docs/GITHUB_ACTIONS_POLICY.md.
   workflow_dispatch:
+  # Single-use A05 limited-beta pre-release QA exception; remove after this run.
+  push:
+    branches:
+      - release/a05-beta-report-20261107
+    paths:
+      - docs/A05_RELEASE_GATE_TRIGGER_ONCE_20261107.txt
 
 jobs:
   chromium:
