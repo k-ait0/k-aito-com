@@ -1,0 +1,1124 @@
+{
+  "schema": "A05-D126-HISTORICAL-RECOVERY-0.1.0",
+  "date": "2026-11-09",
+  "purpose": "Recover pre-30 editorial candidate variants before inventing new adaptive follow-ups",
+  "sources": {
+    "D35": {
+      "path": "docs/A05_D35_INTERVIEW_CANDIDATES_20261026.json",
+      "branch": "feature/a05-d23-modular-diagnostic-20261025",
+      "sha": "d81d563e28abbc0e6ef09e6f71532a9cdd14012e"
+    },
+    "D36": {
+      "path": "docs/A05_D36_REVISE_CANDIDATES_20261026.json",
+      "branch": "feature/a05-d23-modular-diagnostic-20261025",
+      "sha": "24403f682763d48ede472c9af10621dc446434dd"
+    },
+    "D90": {
+      "path": "docs/A05_D90_BC_PILOT_0_2_20261105.json",
+      "branch": "feature/a05-d23-modular-diagnostic-20261025",
+      "sha": "69fd5e3d31cc40a54f6e9e63dade60c65ffcbf38"
+    },
+    "D94": {
+      "path": "docs/A05_D94_CP1_CONTENT_COVERAGE_20261105.json",
+      "branch": "feature/a05-d23-modular-diagnostic-20261025",
+      "sha": "b9728ed847ec9c509df7c696413ed5204b2094ef"
+    },
+    "currentBase": {
+      "path": "projects/kidp/life-design-lab/a05/questions.mjs",
+      "sha": "6ffa1291e36385354b016da1e9e68de0d5b983ea"
+    },
+    "D125": {
+      "path": "research/a05/d125-five-per-axis-followup-candidates.json",
+      "sha": "c53b680a7c95b94b06ec338f25535cb9e7c380f4"
+    }
+  },
+  "counts": {
+    "D35": 37,
+    "D36": 26,
+    "totalOldBipolarVariants": 63,
+    "sourceSlots": 30,
+    "byAxis": {
+      "A": 12,
+      "B": 13,
+      "C": 13,
+      "D": 11,
+      "E": 14
+    },
+    "independentBCItems": 12,
+    "independentEItems": 2,
+    "uniqueDistinctSpareItemsConfirmed": 0
+  },
+  "interpretation": [
+    "63 variants are 37+26 editorial revisions for 30 original question slots, not 63 separate unused questions.",
+    "Old 30 IDs cannot be assumed to denote identical wording as current v2. Always compare actual stems.",
+    "Independent 12 B/C statements measure two values independently, which differs from the current forced bipolar A05 model.",
+    "D94 flags C-P01/P02/P03 BLOCK_FOR_CP1_AGGREGATE; they cannot be adopted as a validated new C subscale.",
+    "Historical BLOCK/REVISE is preserved as source status, not silently approved.",
+    "Recovery recommendations are editorial hypotheses. No new scoring or production changes."
+  ],
+  "storedVariants": [
+    {
+      "historicalID": "A01@D35-D31",
+      "questionID": "A01",
+      "axis": "A",
+      "origin": "D35",
+      "variantCode": "D31",
+      "negative": "慣れた方法を改善する",
+      "positive": "新しい方法を試す",
+      "oldEditorialStatus": "REVISE",
+      "oldResearchOnly": true
+    },
+    {
+      "historicalID": "B01@D35-D31",
+      "questionID": "B01",
+      "axis": "B",
+      "origin": "D35",
+      "variantCode": "D31",
+      "negative": "自分で判断する余地を重視する",
+      "positive": "周囲と相談する機会を重視する",
+      "oldEditorialStatus": "TRIAL",
+      "oldResearchOnly": true
+    },
+    {
+      "historicalID": "C01@D35-D31",
+      "questionID": "C01",
+      "axis": "C",
+      "origin": "D35",
+      "variantCode": "D31",
+      "negative": "将来の選択肢を増やす活動",
+      "positive": "今日の充実を高める活動",
+      "oldEditorialStatus": "TRIAL",
+      "oldResearchOnly": true
+    },
+    {
+      "historicalID": "D01@D35-D31",
+      "questionID": "D01",
+      "axis": "D",
+      "origin": "D35",
+      "variantCode": "D31",
+      "negative": "未経験の趣味を試す",
+      "positive": "好きな趣味を深める",
+      "oldEditorialStatus": "TRIAL",
+      "oldResearchOnly": true
+    },
+    {
+      "historicalID": "E01@D35-D31",
+      "questionID": "E01",
+      "axis": "E",
+      "origin": "D35",
+      "variantCode": "D31",
+      "negative": "使えるお金に余裕を持つ",
+      "positive": "自由に使える時間に余裕を持つ",
+      "oldEditorialStatus": "TRIAL",
+      "oldResearchOnly": true
+    },
+    {
+      "historicalID": "A02@D35-D31",
+      "questionID": "A02",
+      "axis": "A",
+      "origin": "D35",
+      "variantCode": "D31",
+      "negative": "今の活動環境を整える",
+      "positive": "新しい活動環境に挑戦する",
+      "oldEditorialStatus": "TRIAL",
+      "oldResearchOnly": true
+    },
+    {
+      "historicalID": "B02@D35-A",
+      "questionID": "B02",
+      "axis": "B",
+      "origin": "D35",
+      "variantCode": "A",
+      "negative": "同じ活動なら、自分で進め方を決められる余地を先に確保する",
+      "positive": "同じ活動なら、関係者と進め方を相談する機会を先に確保する",
+      "oldEditorialStatus": "BLOCK",
+      "oldResearchOnly": true
+    },
+    {
+      "historicalID": "B02@D35-B",
+      "questionID": "B02",
+      "axis": "B",
+      "origin": "D35",
+      "variantCode": "B",
+      "negative": "物事を進めるとき、自分の判断で調整できる状態を優先する",
+      "positive": "物事を進めるとき、互いの考えをすり合わせられる状態を優先する",
+      "oldEditorialStatus": "BLOCK",
+      "oldResearchOnly": true
+    },
+    {
+      "historicalID": "C02@D35-D31",
+      "questionID": "C02",
+      "axis": "C",
+      "origin": "D35",
+      "variantCode": "D31",
+      "negative": "将来に備える時間",
+      "positive": "今日を楽しむ時間",
+      "oldEditorialStatus": "REVISE",
+      "oldResearchOnly": true
+    },
+    {
+      "historicalID": "D02@D35-D31",
+      "questionID": "D02",
+      "axis": "D",
+      "origin": "D35",
+      "variantCode": "D31",
+      "negative": "幅広い分野を学ぶ",
+      "positive": "一つの分野を掘り下げる",
+      "oldEditorialStatus": "TRIAL",
+      "oldResearchOnly": true
+    },
+    {
+      "historicalID": "E02@D35-D31",
+      "questionID": "E02",
+      "axis": "E",
+      "origin": "D35",
+      "variantCode": "D31",
+      "negative": "追加の収入機会を確保する",
+      "positive": "追加の自由時間を確保する",
+      "oldEditorialStatus": "REVISE",
+      "oldResearchOnly": true
+    },
+    {
+      "historicalID": "A03@D35-D31",
+      "questionID": "A03",
+      "axis": "A",
+      "origin": "D35",
+      "variantCode": "D31",
+      "negative": "今ある習慣を磨く",
+      "positive": "新しい習慣を取り入れる",
+      "oldEditorialStatus": "TRIAL",
+      "oldResearchOnly": true
+    },
+    {
+      "historicalID": "B03@D35-D31",
+      "questionID": "B03",
+      "axis": "B",
+      "origin": "D35",
+      "variantCode": "D31",
+      "negative": "自分で達成を振り返る",
+      "positive": "他者と達成を共有する",
+      "oldEditorialStatus": "REVISE",
+      "oldResearchOnly": true
+    },
+    {
+      "historicalID": "C03@D35-D31",
+      "questionID": "C03",
+      "axis": "C",
+      "origin": "D35",
+      "variantCode": "D31",
+      "negative": "後で役立つ知識を学ぶ",
+      "positive": "今の関心を満たす知識を学ぶ",
+      "oldEditorialStatus": "TRIAL",
+      "oldResearchOnly": true
+    },
+    {
+      "historicalID": "D03@D35-A",
+      "questionID": "D03",
+      "axis": "D",
+      "origin": "D35",
+      "variantCode": "A",
+      "negative": "使える時間が同じなら、未経験の活動をいくつか試す",
+      "positive": "使える時間が同じなら、気に入った活動をさらに掘り下げる",
+      "oldEditorialStatus": "BLOCK",
+      "oldResearchOnly": true
+    },
+    {
+      "historicalID": "D03@D35-B",
+      "questionID": "D03",
+      "axis": "D",
+      "origin": "D35",
+      "variantCode": "B",
+      "negative": "活動の機会が同じなら、複数の異なるテーマを少しずつ体験する",
+      "positive": "活動の機会が同じなら、一つのテーマを繰り返して詳しく知る",
+      "oldEditorialStatus": "BLOCK",
+      "oldResearchOnly": true
+    },
+    {
+      "historicalID": "E03@D35-D31",
+      "questionID": "E03",
+      "axis": "E",
+      "origin": "D35",
+      "variantCode": "D31",
+      "negative": "経済的な選択肢を増やす",
+      "positive": "時間の使い方の選択肢を増やす",
+      "oldEditorialStatus": "REVISE",
+      "oldResearchOnly": true
+    },
+    {
+      "historicalID": "A04@D35-A",
+      "questionID": "A04",
+      "axis": "A",
+      "origin": "D35",
+      "variantCode": "A",
+      "negative": "今の役割の範囲を保ちながら工夫する",
+      "positive": "役割の範囲を組み替えながら工夫する",
+      "oldEditorialStatus": "BLOCK",
+      "oldResearchOnly": true
+    },
+    {
+      "historicalID": "A04@D35-B",
+      "questionID": "A04",
+      "axis": "A",
+      "origin": "D35",
+      "variantCode": "B",
+      "negative": "慣れている活動の構成を続ける",
+      "positive": "活動の構成を見直して新しく組み直す",
+      "oldEditorialStatus": "BLOCK",
+      "oldResearchOnly": true
+    },
+    {
+      "historicalID": "B04@D35-D31",
+      "questionID": "B04",
+      "axis": "B",
+      "origin": "D35",
+      "variantCode": "D31",
+      "negative": "自分のペースで予定を決める",
+      "positive": "周囲と予定を合わせる",
+      "oldEditorialStatus": "TRIAL",
+      "oldResearchOnly": true
+    },
+    {
+      "historicalID": "C04@D35-A",
+      "questionID": "C04",
+      "axis": "C",
+      "origin": "D35",
+      "variantCode": "A",
+      "negative": "同じ活動なら、後から得られる充実を先に重視する",
+      "positive": "同じ活動なら、取り組む今日の充実を先に重視する",
+      "oldEditorialStatus": "BLOCK",
+      "oldResearchOnly": true
+    },
+    {
+      "historicalID": "C04@D35-B",
+      "questionID": "C04",
+      "axis": "C",
+      "origin": "D35",
+      "variantCode": "B",
+      "negative": "時間を使う活動を選ぶとき、将来の自分の満足につながる方を先に選ぶ",
+      "positive": "時間を使う活動を選ぶとき、今日の自分の満足につながる方を先に選ぶ",
+      "oldEditorialStatus": "BLOCK",
+      "oldResearchOnly": true
+    },
+    {
+      "historicalID": "D04@D35-D31",
+      "questionID": "D04",
+      "axis": "D",
+      "origin": "D35",
+      "variantCode": "D31",
+      "negative": "新しい仕事の進め方を試す",
+      "positive": "得意な進め方を磨く",
+      "oldEditorialStatus": "REVISE",
+      "oldResearchOnly": true
+    },
+    {
+      "historicalID": "E04@D35-A",
+      "questionID": "E04",
+      "axis": "E",
+      "origin": "D35",
+      "variantCode": "A",
+      "negative": "暮らしに必要な条件が満たされているなら、まず支出を選べる幅を広げたい",
+      "positive": "暮らしに必要な条件が満たされているなら、まず自分で使える時間の幅を広げたい",
+      "oldEditorialStatus": "BLOCK",
+      "oldResearchOnly": true
+    },
+    {
+      "historicalID": "E04@D35-B",
+      "questionID": "E04",
+      "axis": "E",
+      "origin": "D35",
+      "variantCode": "B",
+      "negative": "次に増やせる余裕が一つなら、使い道を選べるお金の余裕を増やす",
+      "positive": "次に増やせる余裕が一つなら、予定を選べる時間の余裕を増やす",
+      "oldEditorialStatus": "BLOCK",
+      "oldResearchOnly": true
+    },
+    {
+      "historicalID": "A05@D35-A",
+      "questionID": "A05",
+      "axis": "A",
+      "origin": "D35",
+      "variantCode": "A",
+      "negative": "予定外の変化があっても、今の進め方を土台に調整する",
+      "positive": "予定外の変化を機に、進め方を大きく組み替える",
+      "oldEditorialStatus": "BLOCK",
+      "oldResearchOnly": true
+    },
+    {
+      "historicalID": "A05@D35-B",
+      "questionID": "A05",
+      "axis": "A",
+      "origin": "D35",
+      "variantCode": "B",
+      "negative": "周囲の状況が変わったとき、慣れた仕組みを活かす",
+      "positive": "周囲の状況が変わったとき、新しい仕組みを試す",
+      "oldEditorialStatus": "BLOCK",
+      "oldResearchOnly": true
+    },
+    {
+      "historicalID": "B05@D35-D31",
+      "questionID": "B05",
+      "axis": "B",
+      "origin": "D35",
+      "variantCode": "D31",
+      "negative": "個人で進める目標を持つ",
+      "positive": "協力して進める目標を持つ",
+      "oldEditorialStatus": "REVISE",
+      "oldResearchOnly": true
+    },
+    {
+      "historicalID": "C05@D35-D31",
+      "questionID": "C05",
+      "axis": "C",
+      "origin": "D35",
+      "variantCode": "D31",
+      "negative": "長期の目標に向けた小さな前進",
+      "positive": "日々の満足を増やす小さな工夫",
+      "oldEditorialStatus": "REVISE",
+      "oldResearchOnly": true
+    },
+    {
+      "historicalID": "D05@D35-D31",
+      "questionID": "D05",
+      "axis": "D",
+      "origin": "D35",
+      "variantCode": "D31",
+      "negative": "複数の創作表現に挑戦する",
+      "positive": "一つの表現を磨き続ける",
+      "oldEditorialStatus": "TRIAL",
+      "oldResearchOnly": true
+    },
+    {
+      "historicalID": "E05@D35-A",
+      "questionID": "E05",
+      "axis": "E",
+      "origin": "D35",
+      "variantCode": "A",
+      "negative": "両方実現できるとして、まず家計の追加的な余裕を確保したい",
+      "positive": "両方実現できるとして、まず自分で使える追加的な時間を確保したい",
+      "oldEditorialStatus": "BLOCK",
+      "oldResearchOnly": true
+    },
+    {
+      "historicalID": "E05@D35-B",
+      "questionID": "E05",
+      "axis": "E",
+      "origin": "D35",
+      "variantCode": "B",
+      "negative": "同程度の負担で一つ改善するなら、支出の選択肢を増やしたい",
+      "positive": "同程度の負担で一つ改善するなら、予定の選択肢を増やしたい",
+      "oldEditorialStatus": "BLOCK",
+      "oldResearchOnly": true
+    },
+    {
+      "historicalID": "A06@D35-D31",
+      "questionID": "A06",
+      "axis": "A",
+      "origin": "D35",
+      "variantCode": "D31",
+      "negative": "慣れた進め方で挑戦する",
+      "positive": "異なる進め方で挑戦する",
+      "oldEditorialStatus": "REVISE",
+      "oldResearchOnly": true
+    },
+    {
+      "historicalID": "B06@D35-D31",
+      "questionID": "B06",
+      "axis": "B",
+      "origin": "D35",
+      "variantCode": "D31",
+      "negative": "自分で方針を組み立てる",
+      "positive": "関係者と方針をすり合わせる",
+      "oldEditorialStatus": "REVISE",
+      "oldResearchOnly": true
+    },
+    {
+      "historicalID": "C06@D35-D31",
+      "questionID": "C06",
+      "axis": "C",
+      "origin": "D35",
+      "variantCode": "D31",
+      "negative": "将来の暮らしを整える",
+      "positive": "現在の暮らしを充実させる",
+      "oldEditorialStatus": "REVISE",
+      "oldResearchOnly": true
+    },
+    {
+      "historicalID": "D06@D35-D31",
+      "questionID": "D06",
+      "axis": "D",
+      "origin": "D35",
+      "variantCode": "D31",
+      "negative": "経験の種類を増やす",
+      "positive": "経験の深さを増やす",
+      "oldEditorialStatus": "REVISE",
+      "oldResearchOnly": true
+    },
+    {
+      "historicalID": "E06@D35-D31",
+      "questionID": "E06",
+      "axis": "E",
+      "origin": "D35",
+      "variantCode": "D31",
+      "negative": "支出を選べる柔軟性",
+      "positive": "予定を選べる柔軟性",
+      "oldEditorialStatus": "REVISE",
+      "oldResearchOnly": true
+    },
+    {
+      "historicalID": "A01@D36-A",
+      "questionID": "A01",
+      "axis": "A",
+      "origin": "D36",
+      "variantCode": "A",
+      "negative": "普段の活動では、慣れた進め方を少しずつ調整する",
+      "positive": "普段の活動では、これまでと違う進め方へ切り替える",
+      "oldEditorialStatus": "REVISE",
+      "oldResearchOnly": true
+    },
+    {
+      "historicalID": "A01@D36-B",
+      "questionID": "A01",
+      "axis": "A",
+      "origin": "D36",
+      "variantCode": "B",
+      "negative": "今の活動を良くするとき、既存の方法を活かして改善する",
+      "positive": "今の活動を良くするとき、別の方法から組み直してみる",
+      "oldEditorialStatus": "REVISE",
+      "oldResearchOnly": true
+    },
+    {
+      "historicalID": "A06@D36-A",
+      "questionID": "A06",
+      "axis": "A",
+      "origin": "D36",
+      "variantCode": "A",
+      "negative": "初めての課題では、今までの経験を応用して進める",
+      "positive": "初めての課題では、使ったことのない進め方を試す",
+      "oldEditorialStatus": "REVISE",
+      "oldResearchOnly": true
+    },
+    {
+      "historicalID": "A06@D36-B",
+      "questionID": "A06",
+      "axis": "A",
+      "origin": "D36",
+      "variantCode": "B",
+      "negative": "未知の課題に向かうとき、慣れた方法を土台に考える",
+      "positive": "未知の課題に向かうとき、従来と異なる方法から考える",
+      "oldEditorialStatus": "REVISE",
+      "oldResearchOnly": true
+    },
+    {
+      "historicalID": "B03@D36-A",
+      "questionID": "B03",
+      "axis": "B",
+      "origin": "D36",
+      "variantCode": "A",
+      "negative": "何かを達成した後、まず自分の中で振り返る",
+      "positive": "何かを達成した後、まず誰かと振り返りを共有する",
+      "oldEditorialStatus": "REVISE",
+      "oldResearchOnly": true
+    },
+    {
+      "historicalID": "B03@D36-B",
+      "questionID": "B03",
+      "axis": "B",
+      "origin": "D36",
+      "variantCode": "B",
+      "negative": "成果を得たとき、自分なりの評価を先に整理する",
+      "positive": "成果を得たとき、誰かとその意味を先に話し合う",
+      "oldEditorialStatus": "REVISE",
+      "oldResearchOnly": true
+    },
+    {
+      "historicalID": "B05@D36-A",
+      "questionID": "B05",
+      "axis": "B",
+      "origin": "D36",
+      "variantCode": "A",
+      "negative": "同じ目標へ向かうなら、進める道筋を自分で決めたい",
+      "positive": "同じ目標へ向かうなら、進める道筋を仲間と決めたい",
+      "oldEditorialStatus": "REVISE",
+      "oldResearchOnly": true
+    },
+    {
+      "historicalID": "B05@D36-B",
+      "questionID": "B05",
+      "axis": "B",
+      "origin": "D36",
+      "variantCode": "B",
+      "negative": "目標の達成方法を選ぶとき、自分の判断の余地を優先する",
+      "positive": "目標の達成方法を選ぶとき、関係者との話し合いの余地を優先する",
+      "oldEditorialStatus": "REVISE",
+      "oldResearchOnly": true
+    },
+    {
+      "historicalID": "B06@D36-A",
+      "questionID": "B06",
+      "axis": "B",
+      "origin": "D36",
+      "variantCode": "A",
+      "negative": "意見が分かれたとき、自分の方針を保って解決を探す",
+      "positive": "意見が分かれたとき、皆が納得できる方針を探す",
+      "oldEditorialStatus": "REVISE",
+      "oldResearchOnly": true
+    },
+    {
+      "historicalID": "B06@D36-B",
+      "questionID": "B06",
+      "axis": "B",
+      "origin": "D36",
+      "variantCode": "B",
+      "negative": "複数の方法が成り立つ場合、自分の判断に沿った方法を選ぶ",
+      "positive": "複数の方法が成り立つ場合、関係者との合意に沿った方法を選ぶ",
+      "oldEditorialStatus": "REVISE",
+      "oldResearchOnly": true
+    },
+    {
+      "historicalID": "C02@D36-A",
+      "questionID": "C02",
+      "axis": "C",
+      "origin": "D36",
+      "variantCode": "A",
+      "negative": "同じ時間を使うなら、後で実感できる充実を重視する",
+      "positive": "同じ時間を使うなら、今日実感できる充実を重視する",
+      "oldEditorialStatus": "REVISE",
+      "oldResearchOnly": true
+    },
+    {
+      "historicalID": "C02@D36-B",
+      "questionID": "C02",
+      "axis": "C",
+      "origin": "D36",
+      "variantCode": "B",
+      "negative": "活動を選ぶとき、先の生活で感じる満足を優先する",
+      "positive": "活動を選ぶとき、いまの生活で感じる満足を優先する",
+      "oldEditorialStatus": "REVISE",
+      "oldResearchOnly": true
+    },
+    {
+      "historicalID": "C05@D36-A",
+      "questionID": "C05",
+      "axis": "C",
+      "origin": "D36",
+      "variantCode": "A",
+      "negative": "短い自由時間なら、後の楽しみにつながることを選ぶ",
+      "positive": "短い自由時間なら、その場で楽しめることを選ぶ",
+      "oldEditorialStatus": "REVISE",
+      "oldResearchOnly": true
+    },
+    {
+      "historicalID": "C05@D36-B",
+      "questionID": "C05",
+      "axis": "C",
+      "origin": "D36",
+      "variantCode": "B",
+      "negative": "少し時間が空いたら、先の満足を高める活動を優先する",
+      "positive": "少し時間が空いたら、今の満足を高める活動を優先する",
+      "oldEditorialStatus": "REVISE",
+      "oldResearchOnly": true
+    },
+    {
+      "historicalID": "C06@D36-A",
+      "questionID": "C06",
+      "axis": "C",
+      "origin": "D36",
+      "variantCode": "A",
+      "negative": "同じように暮らしの満足を高めるなら、数年先の充実につなげたい",
+      "positive": "同じように暮らしの満足を高めるなら、近い時期の充実を優先したい",
+      "oldEditorialStatus": "REVISE",
+      "oldResearchOnly": true
+    },
+    {
+      "historicalID": "C06@D36-B",
+      "questionID": "C06",
+      "axis": "C",
+      "origin": "D36",
+      "variantCode": "B",
+      "negative": "暮らしを良くする選択では、後から実感する満足を重視する",
+      "positive": "暮らしを良くする選択では、今実感できる満足を重視する",
+      "oldEditorialStatus": "REVISE",
+      "oldResearchOnly": true
+    },
+    {
+      "historicalID": "D04@D36-A",
+      "questionID": "D04",
+      "axis": "D",
+      "origin": "D36",
+      "variantCode": "A",
+      "negative": "一つの活動に取り組むなら、複数のやり方を幅広く体験する",
+      "positive": "一つの活動に取り組むなら、一つのやり方を繰り返し掘り下げる",
+      "oldEditorialStatus": "REVISE",
+      "oldResearchOnly": true
+    },
+    {
+      "historicalID": "D04@D36-B",
+      "questionID": "D04",
+      "axis": "D",
+      "origin": "D36",
+      "variantCode": "B",
+      "negative": "同じ時間があるなら、異なる作業方法を少しずつ知る",
+      "positive": "同じ時間があるなら、選んだ一つの作業方法を詳しく知る",
+      "oldEditorialStatus": "REVISE",
+      "oldResearchOnly": true
+    },
+    {
+      "historicalID": "D06@D36-A",
+      "questionID": "D06",
+      "axis": "D",
+      "origin": "D36",
+      "variantCode": "A",
+      "negative": "気に入った体験から、関連する別の体験へ広げたい",
+      "positive": "気に入った体験から、その内容をより詳しく知りたい",
+      "oldEditorialStatus": "REVISE",
+      "oldResearchOnly": true
+    },
+    {
+      "historicalID": "D06@D36-B",
+      "questionID": "D06",
+      "axis": "D",
+      "origin": "D36",
+      "variantCode": "B",
+      "negative": "関心が生まれた分野では、周辺のテーマも広く触れたい",
+      "positive": "関心が生まれた分野では、一つのテーマをさらに深く追いたい",
+      "oldEditorialStatus": "REVISE",
+      "oldResearchOnly": true
+    },
+    {
+      "historicalID": "E02@D36-A",
+      "questionID": "E02",
+      "axis": "E",
+      "origin": "D36",
+      "variantCode": "A",
+      "negative": "負担を選べる場合、収入に結びつく活動の時間を先に増やす",
+      "positive": "負担を選べる場合、自分のために使う活動の時間を先に増やす",
+      "oldEditorialStatus": "REVISE",
+      "oldResearchOnly": true
+    },
+    {
+      "historicalID": "E02@D36-B",
+      "questionID": "E02",
+      "axis": "E",
+      "origin": "D36",
+      "variantCode": "B",
+      "negative": "余裕のある時間の使い方を決めるなら、使えるお金を増やす機会を選ぶ",
+      "positive": "余裕のある時間の使い方を決めるなら、自由時間を広げる機会を選ぶ",
+      "oldEditorialStatus": "REVISE",
+      "oldResearchOnly": true
+    },
+    {
+      "historicalID": "E03@D36-A",
+      "questionID": "E03",
+      "axis": "E",
+      "origin": "D36",
+      "variantCode": "A",
+      "negative": "予定が変わりやすい時期には、使える予算の余裕を先に増やしたい",
+      "positive": "予定が変わりやすい時期には、自由に動かせる時間の余裕を先に増やしたい",
+      "oldEditorialStatus": "REVISE",
+      "oldResearchOnly": true
+    },
+    {
+      "historicalID": "E03@D36-B",
+      "questionID": "E03",
+      "axis": "E",
+      "origin": "D36",
+      "variantCode": "B",
+      "negative": "先の予定に備えるなら、支出の選択肢を確保したい",
+      "positive": "先の予定に備えるなら、自分の時間の選択肢を確保したい",
+      "oldEditorialStatus": "REVISE",
+      "oldResearchOnly": true
+    },
+    {
+      "historicalID": "E06@D36-A",
+      "questionID": "E06",
+      "axis": "E",
+      "origin": "D36",
+      "variantCode": "A",
+      "negative": "急に希望が変わったとき、支出先を変更できる余地を重視する",
+      "positive": "急に希望が変わったとき、予定を変更できる余地を重視する",
+      "oldEditorialStatus": "REVISE",
+      "oldResearchOnly": true
+    },
+    {
+      "historicalID": "E06@D36-B",
+      "questionID": "E06",
+      "axis": "E",
+      "origin": "D36",
+      "variantCode": "B",
+      "negative": "先の選択肢を確保するとき、使うお金の行き先を柔軟に決めたい",
+      "positive": "先の選択肢を確保するとき、使う時間の割り当てを柔軟に決めたい",
+      "oldEditorialStatus": "REVISE",
+      "oldResearchOnly": true
+    }
+  ],
+  "independentBC": [
+    {
+      "id": "B-S01",
+      "axis": "B",
+      "facet": "self",
+      "text": "重要な選択では、周囲の意見を聞いた後でも、最終的に自分で決められることを大切にしたい。",
+      "source": "D90",
+      "status": "RESEARCH_ONLY_NO_TYPE_SCORING"
+    },
+    {
+      "id": "B-S02",
+      "axis": "B",
+      "facet": "self",
+      "text": "人と共同で取り組むときも、自分の判断で進められる範囲を確保したい。",
+      "source": "D90",
+      "status": "RESEARCH_ONLY_NO_TYPE_SCORING"
+    },
+    {
+      "id": "B-S03",
+      "axis": "B",
+      "facet": "self",
+      "text": "日々の選択に、自分の考えを反映できることを大切にしたい。",
+      "source": "D90",
+      "status": "RESEARCH_ONLY_NO_TYPE_SCORING"
+    },
+    {
+      "id": "B-R01",
+      "axis": "B",
+      "facet": "related",
+      "text": "大切なことを安心して話せる人間関係を持つことを重視したい。",
+      "source": "D90",
+      "status": "RESEARCH_ONLY_NO_TYPE_SCORING"
+    },
+    {
+      "id": "B-R02",
+      "axis": "B",
+      "facet": "related",
+      "text": "日々の出来事や喜びを、身近な人と分かち合えることを大切にしたい。",
+      "source": "D90",
+      "status": "RESEARCH_ONLY_NO_TYPE_SCORING"
+    },
+    {
+      "id": "B-R03",
+      "axis": "B",
+      "facet": "related",
+      "text": "困ったときに互いに頼れる関係を育てることを大切にしたい。",
+      "source": "D90",
+      "status": "RESEARCH_ONLY_NO_TYPE_SCORING"
+    },
+    {
+      "id": "C-F01",
+      "axis": "C",
+      "facet": "future",
+      "text": "将来の選択肢を広げるために、今の時間の一部を準備に使うことを大切にしたい。",
+      "source": "D90",
+      "status": "RESEARCH_ONLY_NO_TYPE_SCORING"
+    },
+    {
+      "id": "C-F02",
+      "axis": "C",
+      "facet": "future",
+      "text": "数年後に実現したいことを意識して、日々の優先順位を決めることを大切にしたい。",
+      "source": "D90",
+      "status": "RESEARCH_ONLY_NO_TYPE_SCORING"
+    },
+    {
+      "id": "C-F03",
+      "axis": "C",
+      "facet": "future",
+      "text": "遠い将来の暮らしや可能性を思い描き、現在の選択に反映することを大切にしたい。",
+      "source": "D90",
+      "status": "RESEARCH_ONLY_NO_TYPE_SCORING"
+    },
+    {
+      "id": "C-P01",
+      "axis": "C",
+      "facet": "present",
+      "text": "将来の成果に直接つながらなくても、日々の時間を楽しめる活動を大切にしたい。",
+      "source": "D90",
+      "status": "RESEARCH_ONLY_NO_TYPE_SCORING"
+    },
+    {
+      "id": "C-P02",
+      "axis": "C",
+      "facet": "present",
+      "text": "日常生活の中で、今の充実を実感する機会を大切にしたい。",
+      "source": "D90",
+      "status": "RESEARCH_ONLY_NO_TYPE_SCORING"
+    },
+    {
+      "id": "C-P03",
+      "axis": "C",
+      "facet": "present",
+      "text": "その日に経験している出来事そのものに価値を見いだすことを大切にしたい。",
+      "source": "D90",
+      "status": "RESEARCH_ONLY_NO_TYPE_SCORING"
+    }
+  ],
+  "independentMoneyTime": [
+    {
+      "id": "E05-M",
+      "domain": "money",
+      "prompt": "生活に必要な条件が満たされているとしたら、追加的に使えるお金を増やすことを、どの程度重視しますか",
+      "source": "D35",
+      "status": "RESEARCH_ONLY_NO_TYPE_SCORING"
+    },
+    {
+      "id": "E05-T",
+      "domain": "time",
+      "prompt": "生活に必要な条件が満たされているとしたら、追加的に自分で使える時間を増やすことを、どの程度重視しますか",
+      "source": "D35",
+      "status": "RESEARCH_ONLY_NO_TYPE_SCORING"
+    }
+  ],
+  "CpresentHistoricQuality": [
+    {
+      "id": "C-P01",
+      "status": "BLOCK_FOR_CP1_AGGREGATE",
+      "risk": [
+        "HEDONIC_CONFLATION",
+        "IMPLICIT_FUTURE_CONTRAST"
+      ],
+      "why": "楽しめる活動は快感・娯楽に近く、現在の経験一般に内在的価値を置く志向とは同義ではない。将来成果との暗黙の対比も含む。"
+    },
+    {
+      "id": "C-P02",
+      "status": "BLOCK_FOR_CP1_AGGREGATE",
+      "risk": [
+        "WELLBEING_STATE_CONFLATION",
+        "CURRENT_RESOURCE_DEPENDENCE"
+      ],
+      "why": "『充実を実感』は人生で何を価値あるものと考えるかではなく、現在その状態にあるかを想起させる。"
+    },
+    {
+      "id": "C-P03",
+      "status": "BLOCK_FOR_CP1_AGGREGATE",
+      "risk": [
+        "ATTENTION_SKILL_CONFLATION",
+        "NON_DISTINCT_DOMAIN"
+      ],
+      "why": "『見いだす』には注意・気づき能力が混在する。P02の『実感』やP01の『過程』と区別できる第三の内容領域が示されていない。"
+    }
+  ],
+  "selectedComparativeReviews": [
+    {
+      "historicalID": "C04@D35-A",
+      "axis": "C",
+      "kind": "POTENTIAL_REWRITE_FOR_FOLLOWUP",
+      "legacyText": {
+        "historicalID": "C04@D35-A",
+        "questionID": "C04",
+        "axis": "C",
+        "origin": "D35",
+        "variantCode": "A",
+        "negative": "同じ活動なら、後から得られる充実を先に重視する",
+        "positive": "同じ活動なら、取り組む今日の充実を先に重視する",
+        "oldEditorialStatus": "BLOCK",
+        "oldResearchOnly": true
+      },
+      "comparesToBase": [
+        "C04",
+        "C01"
+      ],
+      "comparesToD125": [
+        "C-FU11"
+      ],
+      "increment": "同じ活動の現在の過程と後の満足の比較。別の活動間の好み・リスクを減らせる可能性",
+      "limitation": "同一活動で後と今の満足を二択にすること自体が不自然で、比較対象の価値量は不明。旧BLOCKのまま",
+      "recommendation": "既存C-FU11の代替文言として比較し、無条件追加はしない"
+    },
+    {
+      "historicalID": "C05@D36-A",
+      "axis": "C",
+      "kind": "ALTERNATE_WORDING_NEAR_DUPLICATE",
+      "legacyText": {
+        "historicalID": "C05@D36-A",
+        "questionID": "C05",
+        "axis": "C",
+        "origin": "D36",
+        "variantCode": "A",
+        "negative": "短い自由時間なら、後の楽しみにつながることを選ぶ",
+        "positive": "短い自由時間なら、その場で楽しめることを選ぶ",
+        "oldEditorialStatus": "REVISE",
+        "oldResearchOnly": true
+      },
+      "comparesToBase": [
+        "C05"
+      ],
+      "comparesToD125": [
+        "C-FU12",
+        "C-FU13"
+      ],
+      "increment": "『短い自由時間』という使用時間の限定",
+      "limitation": "将来対現在を言い換えたのみで、C-FU12/13と区別しにくい",
+      "recommendation": "C-FU12/13の言葉づかい参考に留め、新設問としてカウントしない"
+    },
+    {
+      "historicalID": "D06@D36-A",
+      "axis": "D",
+      "kind": "POTENTIAL_REWRITE_FOR_FOLLOWUP",
+      "legacyText": {
+        "historicalID": "D06@D36-A",
+        "questionID": "D06",
+        "axis": "D",
+        "origin": "D36",
+        "variantCode": "A",
+        "negative": "気に入った体験から、関連する別の体験へ広げたい",
+        "positive": "気に入った体験から、その内容をより詳しく知りたい",
+        "oldEditorialStatus": "REVISE",
+        "oldResearchOnly": true
+      },
+      "comparesToBase": [
+        "D06",
+        "D02"
+      ],
+      "comparesToD125": [
+        "D-FU09",
+        "D-FU10"
+      ],
+      "increment": "完全に別分野へ移るのではなく、気に入ったテーマから隣接テーマへ横展開するかを問う",
+      "limitation": "D06の幅深さに近く、元問より高い識別力は未確認。質問内容を『関連テーマ』に限定して利用",
+      "recommendation": "D-FU09の候補比較用に再利用できるかレビュー"
+    },
+    {
+      "historicalID": "D04@D36-A",
+      "axis": "D",
+      "kind": "CONSTRUCT_BOUNDARY_REVIEW",
+      "legacyText": {
+        "historicalID": "D04@D36-A",
+        "questionID": "D04",
+        "axis": "D",
+        "origin": "D36",
+        "variantCode": "A",
+        "negative": "一つの活動に取り組むなら、複数のやり方を幅広く体験する",
+        "positive": "一つの活動に取り組むなら、一つのやり方を繰り返し掘り下げる",
+        "oldEditorialStatus": "REVISE",
+        "oldResearchOnly": true
+      },
+      "comparesToBase": [
+        "D04"
+      ],
+      "comparesToD125": [
+        "D-FU12"
+      ],
+      "increment": "新分野の幅と、同一分野で使う手法の幅を区別するテスト材料",
+      "limitation": "方法の多様化は本来のD『対象分野の探索/深耕』とは別尺度になり得る",
+      "recommendation": "詳細診断の得点問へ自動採用せず、Dの構成概念境界の比較材料に使用"
+    },
+    {
+      "historicalID": "E06@D36-A",
+      "axis": "E",
+      "kind": "POTENTIAL_ALTERNATIVE_WITH_CONSTRUCT_CHANGE",
+      "legacyText": {
+        "historicalID": "E06@D36-A",
+        "questionID": "E06",
+        "axis": "E",
+        "origin": "D36",
+        "variantCode": "A",
+        "negative": "急に希望が変わったとき、支出先を変更できる余地を重視する",
+        "positive": "急に希望が変わったとき、予定を変更できる余地を重視する",
+        "oldEditorialStatus": "REVISE",
+        "oldResearchOnly": true
+      },
+      "comparesToBase": [
+        "E06",
+        "E03"
+      ],
+      "comparesToD125": [
+        "E-FU09"
+      ],
+      "increment": "金銭額と時間量の不等価な交換をせず、急な変更への予算裁量とスケジュール裁量を比べる",
+      "limitation": "経済的余裕と時間的自由の数量比較ではなく裁量の比較となり、E軸の意味を変える恐れ",
+      "recommendation": "E-FU09の比較代替案として有力だが、E構成概念の合意までは分類得点化しない"
+    },
+    {
+      "historicalID": "E05-M+E05-T@D35",
+      "axis": "E",
+      "kind": "MEASUREMENT_ARCHITECTURE_ALTERNATIVE",
+      "legacyText": [
+        {
+          "id": "E05-M",
+          "domain": "money",
+          "prompt": "生活に必要な条件が満たされているとしたら、追加的に使えるお金を増やすことを、どの程度重視しますか",
+          "source": "D35",
+          "status": "RESEARCH_ONLY_NO_TYPE_SCORING"
+        },
+        {
+          "id": "E05-T",
+          "domain": "time",
+          "prompt": "生活に必要な条件が満たされているとしたら、追加的に自分で使える時間を増やすことを、どの程度重視しますか",
+          "source": "D35",
+          "status": "RESEARCH_ONLY_NO_TYPE_SCORING"
+        }
+      ],
+      "comparesToBase": [
+        "E01",
+        "E05"
+      ],
+      "comparesToD125": [
+        "E-FU05",
+        "E-FU06",
+        "E-FU07",
+        "E-FU08",
+        "E-FU09"
+      ],
+      "increment": "お金と時間の価値を個別に尋ね、両方重視/どちらも重視しないを区別できる可能性",
+      "limitation": "二極1本のEスコアとは別構造。2つの独立質問だけでは採点の妥当性はない",
+      "recommendation": "旧E独立評価方式を代替研究案として復元し比較。Eの5問枠に無校正で混ぜない"
+    },
+    {
+      "historicalID": "B06@D36-B",
+      "axis": "B",
+      "kind": "NEAR_DUPLICATE_WORDING_ONLY",
+      "legacyText": {
+        "historicalID": "B06@D36-B",
+        "questionID": "B06",
+        "axis": "B",
+        "origin": "D36",
+        "variantCode": "B",
+        "negative": "複数の方法が成り立つ場合、自分の判断に沿った方法を選ぶ",
+        "positive": "複数の方法が成り立つ場合、関係者との合意に沿った方法を選ぶ",
+        "oldEditorialStatus": "REVISE",
+        "oldResearchOnly": true
+      },
+      "comparesToBase": [
+        "B01",
+        "B04"
+      ],
+      "comparesToD125": [
+        "B-FU01",
+        "B-FU04"
+      ],
+      "increment": "最終判断で自身の方針と合意のどちらを選ぶか",
+      "limitation": "既存B-FU01/04とほぼ同じ判断条件",
+      "recommendation": "再質問として追加しない。B-FU04の選択肢の書き方だけ参考にする"
+    },
+    {
+      "historicalID": "A05@D35-A",
+      "axis": "A",
+      "kind": "CONSTRUCT_MISMATCH",
+      "legacyText": {
+        "historicalID": "A05@D35-A",
+        "questionID": "A05",
+        "axis": "A",
+        "origin": "D35",
+        "variantCode": "A",
+        "negative": "予定外の変化があっても、今の進め方を土台に調整する",
+        "positive": "予定外の変化を機に、進め方を大きく組み替える",
+        "oldEditorialStatus": "BLOCK",
+        "oldResearchOnly": true
+      },
+      "comparesToBase": [
+        "A01",
+        "A04"
+      ],
+      "comparesToD125": [
+        "A-FU11"
+      ],
+      "increment": "予定外の変更が生じたときの対応を問う",
+      "limitation": "環境の好みではなく予定外の事態への対処行動や柔軟性を問う。D125のA-FU11とも交絡",
+      "recommendation": "A詳細診断の分類点には採用しない。必要なら行動特性の別診断へ移す"
+    }
+  ],
+  "developmentState": {
+    "D125BankUnmodified": true,
+    "existing30Unmodified": true,
+    "historicalQuestionsNotAutomaticallyAdded": true,
+    "liveChanges": false,
+    "pr76DraftOnly": true
+  }
+}
