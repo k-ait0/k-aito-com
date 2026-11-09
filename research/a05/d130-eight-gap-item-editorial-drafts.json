@@ -1,0 +1,216 @@
+{
+  "schema": "A05-D130-EIGHT-MISSING-ITEM-DRAFT-0.1",
+  "date": "2026-11-10",
+  "stage": "EDITORIAL_CANDIDATE_SCREENING_ONLY",
+  "status": "EIGHT_DRAFTS_NOT_APPROVED_NOT_VALIDATED",
+  "sources": {
+    "d129Bank": "research/a05/d129-50bank-simulation-fixture.json",
+    "d129Sha": "fe300263ca04a12eee640916e48d0b5494b01793",
+    "d125": "research/a05/d125-five-per-axis-followup-candidates.json",
+    "d126": "research/a05/d126-historical-candidate-recovery.json"
+  },
+  "counts": {
+    "A": 3,
+    "B": 1,
+    "C": 3,
+    "D": 1,
+    "E": 0,
+    "total": 8
+  },
+  "notAssurances": [
+    "Eight drafted questions does not mean eight accepted independent questions.",
+    "Some are high-overlap or construct-confounded and must stay blocked.",
+    "B/C bipolar vs independent construct remains unresolved.",
+    "No score calibration, 16-type claims or main-v2 modification."
+  ],
+  "items": [
+    {
+      "slot": "A-GAP01",
+      "id": "A-BK13",
+      "axis": "A",
+      "facet": "年次生活制度の継続性",
+      "stem": "生活環境の費用や便利さが変わらないとして、今後数年間の暮らしの仕組みとしてより好むのはどちらですか？",
+      "negative": "毎年ほぼ同じ生活の仕組みを使い続け、必要な部分を少しずつ整える",
+      "positive": "便利さが同じでも、一定期間ごとに生活の仕組みを大きく組み替える",
+      "increment": "便益差を固定し、自発的な制度更新を問う",
+      "crosswalk": [
+        "A04",
+        "A-FU05"
+      ],
+      "overlapRisk": "A-FU05と運用ルールの維持/刷新で高い重複。定期更新の好みと新奇性混入",
+      "editorial": "REVISE_REQUIRED",
+      "overlapGroup": "A_SYSTEM_REFRESH",
+      "source": "D130_NEW_RESEARCH_DRAFT",
+      "answerFormat": "BIPOLAR_7_DRAFT",
+      "status": "NOT_APPROVED",
+      "needsCognitiveInterview": true,
+      "needsConstructReview": true
+    },
+    {
+      "slot": "A-GAP02",
+      "id": "A-BK14",
+      "axis": "A",
+      "facet": "組織運営環境の持続性",
+      "stem": "活動内容と得られる成果が同じで、参加する団体の運営方針を選べるなら、どちらを好みますか？",
+      "negative": "長く続く運営方針を基盤として、その枠内で活動を積み重ねる",
+      "positive": "数年単位で運営方針や仕組みを刷新する団体の中で活動する",
+      "increment": "生活拠点の変化ではなく組織制度の持続/刷新への環境選好",
+      "crosswalk": [
+        "A03",
+        "A05",
+        "D04",
+        "A-FU05"
+      ],
+      "overlapRisk": "本人の役割・団体の成果や運営能力への認知、Bの関係性が混入し得る",
+      "editorial": "CONDITIONAL_TRIAL",
+      "overlapGroup": "A_ORGANIZATION_GOVERNANCE",
+      "source": "D130_NEW_RESEARCH_DRAFT",
+      "answerFormat": "BIPOLAR_7_DRAFT",
+      "status": "NOT_APPROVED",
+      "needsCognitiveInterview": true,
+      "needsConstructReview": true
+    },
+    {
+      "slot": "A-GAP03",
+      "id": "A-BK15",
+      "axis": "A",
+      "facet": "住環境の継続と刷新",
+      "stem": "住居費・交通の便利さ・周囲との関係が同じ条件で、これから数年間の住まい方としてどちらが魅力的ですか？",
+      "negative": "同じ住まいを生活の基盤として使い続け、少しずつ整える",
+      "positive": "不満がなくても数年ごとに別の住まいを生活の基盤に選び直す",
+      "increment": "不満・費用ではなく自発的に住まいの継続性を選ぶ条件",
+      "crosswalk": [
+        "A01",
+        "A05",
+        "A-FU02",
+        "A-FU10"
+      ],
+      "overlapRisk": "A01とA-FU02の言い換えに近く、意味の情報増分が小さい",
+      "editorial": "HOLD_DUPLICATE_RISK",
+      "overlapGroup": "A_RESIDENCE_CONTINUITY",
+      "source": "D130_NEW_RESEARCH_DRAFT",
+      "answerFormat": "BIPOLAR_7_DRAFT",
+      "status": "NOT_APPROVED",
+      "needsCognitiveInterview": true,
+      "needsConstructReview": true
+    },
+    {
+      "slot": "B-GAP01",
+      "id": "B-BK13",
+      "axis": "B",
+      "facet": "意思決定権限と責任の非対称",
+      "stem": "あなたが最終的な責任を負う共同活動で、関係者の意見は一致していません。どの案も成果と負担が同じなら、何を優先しますか？",
+      "negative": "意見を聞いた上で、自分が納得した判断を最終基準にする",
+      "positive": "時間をかけて関係者が受け入れられる判断を最終基準にする",
+      "increment": "最終責任の所在を明示し意見調整方針との関係を観察",
+      "crosswalk": [
+        "B01",
+        "B04",
+        "B-FU01",
+        "B-FU04"
+      ],
+      "overlapRisk": "B-FU04と類似、時間をかける選択肢の負荷が非対称。責任倫理と自己決定の混合",
+      "editorial": "REVISE_REQUIRED",
+      "overlapGroup": "B_DECISION_DISAGREEMENT",
+      "source": "D130_NEW_RESEARCH_DRAFT",
+      "answerFormat": "BIPOLAR_7_DRAFT",
+      "status": "NOT_APPROVED",
+      "needsCognitiveInterview": true,
+      "needsConstructReview": true
+    },
+    {
+      "slot": "C-GAP01",
+      "id": "C-BK13",
+      "axis": "C",
+      "facet": "受益時点と経験機会",
+      "stem": "休息が十分で両方に同じ2時間を使う場合、今週の余剰時間をどちらに充てたいですか？",
+      "negative": "半年後に選べる活動を増やすための準備に使う",
+      "positive": "今週しかできない体験を味わうために使う",
+      "increment": "将来の機会集合と現在の一回限りの経験の対比",
+      "crosswalk": [
+        "C01",
+        "C-FU11",
+        "C-FU14"
+      ],
+      "overlapRisk": "C-FU14と機会希少性が重複。左右の機会の再現可能性を揃えていない",
+      "editorial": "REVISE_REQUIRED",
+      "overlapGroup": "C_ONE_TIME_OPPORTUNITY",
+      "source": "D130_NEW_RESEARCH_DRAFT",
+      "answerFormat": "BIPOLAR_7_DRAFT",
+      "status": "NOT_APPROVED",
+      "needsCognitiveInterview": true,
+      "needsConstructReview": true
+    },
+    {
+      "slot": "C-GAP02",
+      "id": "C-BK14",
+      "axis": "C",
+      "facet": "予想される成果と実感時点",
+      "stem": "どちらの活動も同じ時間が必要で、実現する見込みも同程度とすると、どちらを選びたいですか？",
+      "negative": "今は手応えが小さくても、数年後に実感できる成果のために取り組む",
+      "positive": "数年後の成果は小さくても、取り組む今の充実を感じられる活動をする",
+      "increment": "成果の確実性の差を減らし現在の経験対将来の成果を対照",
+      "crosswalk": [
+        "C04",
+        "C05",
+        "C-FU11"
+      ],
+      "overlapRisk": "成果の大小を一緒に変えるため依然として時間選好と価値量の交絡が残る",
+      "editorial": "HOLD_CONSTRUCT_CONFOUND",
+      "overlapGroup": "C_PRESENT_FUTURE_REWARD",
+      "source": "D130_NEW_RESEARCH_DRAFT",
+      "answerFormat": "BIPOLAR_7_DRAFT",
+      "status": "NOT_APPROVED",
+      "needsCognitiveInterview": true,
+      "needsConstructReview": true
+    },
+    {
+      "slot": "C-GAP03",
+      "id": "C-BK15",
+      "axis": "C",
+      "facet": "将来準備と現在体験の時点条件",
+      "stem": "毎週同じ2時間を自由に使えて、必要な休息は確保できているとします。数か月続けるならどちらを選びますか？",
+      "negative": "数か月後に役立つ準備を毎週少しずつ進める",
+      "positive": "毎週その時間にしかできない経験を積み重ねる",
+      "increment": "単発選択だけでなく反復的な資源配分の好みを測る試み",
+      "crosswalk": [
+        "C01",
+        "C05",
+        "C-FU12",
+        "C-FU15"
+      ],
+      "overlapRisk": "継続学習と反復経験の習慣性、現在経験の代替可能性の非対称",
+      "editorial": "CONDITIONAL_TRIAL",
+      "overlapGroup": "C_REPEATED_TIME_ALLOCATION",
+      "source": "D130_NEW_RESEARCH_DRAFT",
+      "answerFormat": "BIPOLAR_7_DRAFT",
+      "status": "NOT_APPROVED",
+      "needsCognitiveInterview": true,
+      "needsConstructReview": true
+    },
+    {
+      "slot": "D-GAP01",
+      "id": "D-BK13",
+      "axis": "D",
+      "facet": "共通課題に対する分野横断",
+      "stem": "一つの未解決課題について、どちらの進め方でも解決に近づける見込みが同程度なら、次の時間をどう使いますか？",
+      "negative": "別分野の基礎を学び、課題を異なる専門領域から捉えてみる",
+      "positive": "今の専門領域をさらに掘り下げ、その知識で課題を理解する",
+      "increment": "新規趣味や活動の頻度でなく、共通課題への知識の広がりを問う",
+      "crosswalk": [
+        "D02",
+        "D-FU07",
+        "D-FU09",
+        "D-FU11"
+      ],
+      "overlapRisk": "D-FU07に近い。方法の多様性と分野の多様性の違いが未整理",
+      "editorial": "REVISE_REQUIRED",
+      "overlapGroup": "D_UNRESOLVED_PROBLEM",
+      "source": "D130_NEW_RESEARCH_DRAFT",
+      "answerFormat": "BIPOLAR_7_DRAFT",
+      "status": "NOT_APPROVED",
+      "needsCognitiveInterview": true,
+      "needsConstructReview": true
+    }
+  ]
+}
