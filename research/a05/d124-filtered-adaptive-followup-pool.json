@@ -1,0 +1,1410 @@
+{
+  "schema": "A05-D124-FILTERED-ADAPTIVE-POOL-0.1.0",
+  "date": "2026-11-09",
+  "status": "EDITORIAL_ONLY_OWNER_DECIDES_ADDITIONAL_QUESTION_NEED",
+  "rule": "Exclude semantically direct repeats. Only conditionally prioritize items with specific extra decision context. Do not score or deploy without validation.",
+  "sources": {
+    "base30": "projects/kidp/life-design-lab/a05/questions.mjs",
+    "original40": "research/a05/d121-adaptive-followup-question-bank.json",
+    "crosswalk": "research/a05/d123-followup-vs-base30-crosswalk.json"
+  },
+  "counts": {
+    "excluded": 12,
+    "remaining": 28,
+    "byDecision": {
+      "CONDITIONAL_PILOT": 6,
+      "HOLD": 8,
+      "REWRITE_REQUIRED": 6,
+      "PROBE_ONLY": 8
+    }
+  },
+  "excluded": [
+    {
+      "id": "A-FU01",
+      "axis": "A",
+      "source": [
+        "A01"
+      ],
+      "reason": "生活拠点の既存対新規がA01と同一。安全条件は回答文脈の微修正に過ぎない。"
+    },
+    {
+      "id": "A-FU03",
+      "axis": "A",
+      "source": [
+        "A04"
+      ],
+      "reason": "ルーティン維持対刷新はA04の言い換え。仕事内容固定条件だけでは増分が小さい。"
+    },
+    {
+      "id": "A-FU06",
+      "axis": "A",
+      "source": [
+        "A01",
+        "A03"
+      ],
+      "reason": "一地域対複数地域はA01の近似。関係者が変わらない設定は不自然。"
+    },
+    {
+      "id": "C-FU01",
+      "axis": "C",
+      "source": [
+        "C01",
+        "C05"
+      ],
+      "reason": "将来準備対今日の経験というC01の直接的な再提示。時間量の明記だけでは新しい判断条件が乏しい。"
+    },
+    {
+      "id": "C-FU02",
+      "axis": "C",
+      "source": [
+        "C02"
+      ],
+      "reason": "今日の楽しみを減らして将来に備えるC02の単独Y/N化。"
+    },
+    {
+      "id": "C-FU05",
+      "axis": "C",
+      "source": [
+        "C05",
+        "C01"
+      ],
+      "reason": "将来への小さな前進対今の満足はC05の同義言い換え。"
+    },
+    {
+      "id": "D-FU01",
+      "axis": "D",
+      "source": [
+        "D02",
+        "D01"
+      ],
+      "reason": "複数分野を試す対一分野を深めるのはD02の言い換え。"
+    },
+    {
+      "id": "D-FU02",
+      "axis": "D",
+      "source": [
+        "D06"
+      ],
+      "reason": "今の分野に余地がある状態で別分野へ移るのはD06の反復。"
+    },
+    {
+      "id": "D-FU03",
+      "axis": "D",
+      "source": [
+        "D06"
+      ],
+      "reason": "D-FU02と同じ題材の逆方向Y/N。反対文言としての確認は可能だが情報量は小さい。"
+    },
+    {
+      "id": "D-FU05",
+      "axis": "D",
+      "source": [
+        "D02",
+        "D05"
+      ],
+      "reason": "幅広い学習対専門深耕の直接反復。"
+    },
+    {
+      "id": "D-FU06",
+      "axis": "D",
+      "source": [
+        "D02"
+      ],
+      "reason": "知る楽しさ対深い理解は同一の学習幅/深度を魅力表現しただけ。"
+    },
+    {
+      "id": "E-FU01",
+      "axis": "E",
+      "source": [
+        "E01",
+        "E05"
+      ],
+      "reason": "経済的余裕vs時間的余裕はE01の一般化にほぼ一致。増分の非等価が残る。"
+    }
+  ],
+  "remaining": [
+    {
+      "id": "A-FU02",
+      "axis": "A",
+      "sourceStatus": "TRIAL_CANDIDATE",
+      "format": "YN",
+      "stem": "今の生活環境に大きな不満がなくても、数年ごとに生活の拠点を変える暮らしを選びたいですか？",
+      "options": [
+        {
+          "key": "yes",
+          "text": "はい",
+          "polarity": "positive"
+        },
+        {
+          "key": "no",
+          "text": "いいえ",
+          "polarity": null
+        },
+        {
+          "key": "unsure",
+          "text": "判断できない",
+          "polarity": null
+        },
+        {
+          "key": "not_applicable",
+          "text": "自分には当てはまらない",
+          "polarity": null
+        }
+      ],
+      "relation": "CONDITIONAL",
+      "base30": [
+        "A01",
+        "A05"
+      ],
+      "crossAxis": [],
+      "withinBank": [
+        "A-FU01",
+        "A-FU06",
+        "A-FU07"
+      ],
+      "decision": "CONDITIONAL_PILOT",
+      "incrementalHypothesis": "現状不満を固定し居住基盤の変化志向を分離",
+      "editorialReason": "現状不満がない条件を付け、転居希望と不満による移動を分ける可能性。",
+      "notValidated": true,
+      "scoringAllowed": false,
+      "productionApproved": false
+    },
+    {
+      "id": "A-FU04",
+      "axis": "A",
+      "sourceStatus": "TRIAL_CANDIDATE",
+      "format": "YN",
+      "stem": "暮らしに不満がない場合、住む場所や生活の仕組みは長く維持できる方が魅力的ですか？",
+      "options": [
+        {
+          "key": "yes",
+          "text": "はい",
+          "polarity": "negative"
+        },
+        {
+          "key": "no",
+          "text": "いいえ",
+          "polarity": null
+        },
+        {
+          "key": "unsure",
+          "text": "判断できない",
+          "polarity": null
+        },
+        {
+          "key": "not_applicable",
+          "text": "自分には当てはまらない",
+          "polarity": null
+        }
+      ],
+      "relation": "CONDITIONAL",
+      "base30": [
+        "A01",
+        "A04"
+      ],
+      "crossAxis": [],
+      "withinBank": [
+        "A-FU03",
+        "A-FU05"
+      ],
+      "decision": "HOLD",
+      "incrementalHypothesis": null,
+      "editorialReason": "不満なしを加えるが場所・生活の仕組みの二題混在。条件ごとに分割要。",
+      "notValidated": true,
+      "scoringAllowed": false,
+      "productionApproved": false
+    },
+    {
+      "id": "A-FU05",
+      "axis": "A",
+      "sourceStatus": "TRIAL_CANDIDATE",
+      "format": "AB",
+      "stem": "新しい環境にも現在の環境にも同じくらい便利な設備がある場合、生活の仕組みとしてより好むのはどちらですか？",
+      "options": [
+        {
+          "key": "A",
+          "text": "慣れた仕組みを使い続け必要なところを直す",
+          "polarity": "negative"
+        },
+        {
+          "key": "B",
+          "text": "数年単位で異なる仕組みへ移行する",
+          "polarity": "positive"
+        },
+        {
+          "key": "unsure",
+          "text": "選べない・判断できない",
+          "polarity": null
+        },
+        {
+          "key": "not_applicable",
+          "text": "自分には当てはまらない",
+          "polarity": null
+        }
+      ],
+      "relation": "CONDITIONAL",
+      "base30": [
+        "A04",
+        "A06"
+      ],
+      "crossAxis": [
+        "D04"
+      ],
+      "withinBank": [
+        "A-FU03",
+        "A-FU04"
+      ],
+      "decision": "CONDITIONAL_PILOT",
+      "incrementalHypothesis": "新旧の生活システムの便利さを固定し維持/刷新を比較",
+      "editorialReason": "設備の便利さを統一。生活システム継続/刷新はA04より限定された文脈。",
+      "notValidated": true,
+      "scoringAllowed": false,
+      "productionApproved": false
+    },
+    {
+      "id": "A-FU07",
+      "axis": "A",
+      "sourceStatus": "REVISE",
+      "format": "YN",
+      "stem": "同じ活動内容であっても、慣れた拠点に留まるより新しい拠点へ移る方を選ぶことが多いと思いますか？",
+      "options": [
+        {
+          "key": "yes",
+          "text": "はい",
+          "polarity": "positive"
+        },
+        {
+          "key": "no",
+          "text": "いいえ",
+          "polarity": null
+        },
+        {
+          "key": "unsure",
+          "text": "判断できない",
+          "polarity": null
+        },
+        {
+          "key": "not_applicable",
+          "text": "自分には当てはまらない",
+          "polarity": null
+        }
+      ],
+      "relation": "CONDITIONAL",
+      "base30": [
+        "A05"
+      ],
+      "crossAxis": [
+        "D04"
+      ],
+      "withinBank": [
+        "A-FU01",
+        "A-FU02"
+      ],
+      "decision": "REWRITE_REQUIRED",
+      "incrementalHypothesis": null,
+      "editorialReason": "活動内容を固定することでA/Dの混入を検査。ただし拠点好みに縮小。",
+      "notValidated": true,
+      "scoringAllowed": false,
+      "productionApproved": false
+    },
+    {
+      "id": "A-FU08",
+      "axis": "A",
+      "sourceStatus": "PROBE_ONLY",
+      "format": "PROBE",
+      "stem": "環境を変えたいと思う理由は、新しいことを学びたいという気持ちとは別にありますか？",
+      "options": [
+        {
+          "key": "yes",
+          "text": "はい",
+          "polarity": null
+        },
+        {
+          "key": "no",
+          "text": "いいえ",
+          "polarity": null
+        },
+        {
+          "key": "unsure",
+          "text": "判断できない",
+          "polarity": null
+        },
+        {
+          "key": "not_applicable",
+          "text": "自分には当てはまらない",
+          "polarity": null
+        }
+      ],
+      "relation": "PROBE",
+      "base30": [
+        "A05"
+      ],
+      "crossAxis": [
+        "D04"
+      ],
+      "withinBank": [
+        "D-FU08"
+      ],
+      "decision": "PROBE_ONLY",
+      "incrementalHypothesis": null,
+      "editorialReason": "環境変更の理由と学習変更を区別する認知的確認。元30問の同義反復ではないが採点不可。",
+      "notValidated": true,
+      "scoringAllowed": false,
+      "productionApproved": false
+    },
+    {
+      "id": "B-FU01",
+      "axis": "B",
+      "sourceStatus": "TRIAL_CANDIDATE",
+      "format": "AB",
+      "stem": "親しい人と共同で決める予定について、話し合っても双方の希望が一致しないとき、重大な不利益がなければ何を優先しますか？",
+      "options": [
+        {
+          "key": "A",
+          "text": "自分が納得できる案を選ぶ",
+          "polarity": "negative"
+        },
+        {
+          "key": "B",
+          "text": "相手の希望との一致を優先する",
+          "polarity": "positive"
+        },
+        {
+          "key": "unsure",
+          "text": "選べない・判断できない",
+          "polarity": null
+        },
+        {
+          "key": "not_applicable",
+          "text": "自分には当てはまらない",
+          "polarity": null
+        }
+      ],
+      "relation": "CONDITIONAL",
+      "base30": [
+        "B01",
+        "B04"
+      ],
+      "crossAxis": [],
+      "withinBank": [
+        "B-FU03",
+        "B-FU05",
+        "B-FU07"
+      ],
+      "decision": "CONDITIONAL_PILOT",
+      "incrementalHypothesis": "相談機会と意見衝突後の最終決定を区別",
+      "editorialReason": "同じ自分/他者優先でも、希望衝突と重大不利益なしの条件を導入。",
+      "notValidated": true,
+      "scoringAllowed": false,
+      "productionApproved": false
+    },
+    {
+      "id": "B-FU02",
+      "axis": "B",
+      "sourceStatus": "TRIAL_CANDIDATE",
+      "format": "YN",
+      "stem": "関係者の意見を十分に聞いた後でも、決定の責任を自分で持つ場合は、自分の希望を最優先したいですか？",
+      "options": [
+        {
+          "key": "yes",
+          "text": "はい",
+          "polarity": "negative"
+        },
+        {
+          "key": "no",
+          "text": "いいえ",
+          "polarity": null
+        },
+        {
+          "key": "unsure",
+          "text": "判断できない",
+          "polarity": null
+        },
+        {
+          "key": "not_applicable",
+          "text": "自分には当てはまらない",
+          "polarity": null
+        }
+      ],
+      "relation": "CONDITIONAL",
+      "base30": [
+        "B01",
+        "B06"
+      ],
+      "crossAxis": [],
+      "withinBank": [
+        "B-FU07"
+      ],
+      "decision": "HOLD",
+      "incrementalHypothesis": null,
+      "editorialReason": "決定責任を負う場合という制約。自己責任という規範が混入する。",
+      "notValidated": true,
+      "scoringAllowed": false,
+      "productionApproved": false
+    },
+    {
+      "id": "B-FU03",
+      "axis": "B",
+      "sourceStatus": "TRIAL_CANDIDATE",
+      "format": "YN",
+      "stem": "対等な立場の人と意見が一致しないとき、自分の希望を一部変えてでも、その人との合意を優先しますか？",
+      "options": [
+        {
+          "key": "yes",
+          "text": "はい",
+          "polarity": "positive"
+        },
+        {
+          "key": "no",
+          "text": "いいえ",
+          "polarity": null
+        },
+        {
+          "key": "unsure",
+          "text": "判断できない",
+          "polarity": null
+        },
+        {
+          "key": "not_applicable",
+          "text": "自分には当てはまらない",
+          "polarity": null
+        }
+      ],
+      "relation": "CONDITIONAL",
+      "base30": [
+        "B01",
+        "B04"
+      ],
+      "crossAxis": [],
+      "withinBank": [
+        "B-FU01",
+        "B-FU05",
+        "B-FU06"
+      ],
+      "decision": "REWRITE_REQUIRED",
+      "incrementalHypothesis": null,
+      "editorialReason": "実際に自分が譲歩する条件を付けた派生。合意と他者優先は同義でない。",
+      "notValidated": true,
+      "scoringAllowed": false,
+      "productionApproved": false
+    },
+    {
+      "id": "B-FU04",
+      "axis": "B",
+      "sourceStatus": "TRIAL_CANDIDATE",
+      "format": "AB",
+      "stem": "共同活動の進め方で、成果と負担が同程度の案が二つあり意見が割れた場合、どちらを選びますか？",
+      "options": [
+        {
+          "key": "A",
+          "text": "全員が受け入れられる案を優先する",
+          "polarity": "positive"
+        },
+        {
+          "key": "B",
+          "text": "自分の納得できる案を優先する",
+          "polarity": "negative"
+        },
+        {
+          "key": "unsure",
+          "text": "選べない・判断できない",
+          "polarity": null
+        },
+        {
+          "key": "not_applicable",
+          "text": "自分には当てはまらない",
+          "polarity": null
+        }
+      ],
+      "relation": "NEW_CONTEXT",
+      "base30": [
+        "B05",
+        "B01"
+      ],
+      "crossAxis": [],
+      "withinBank": [
+        "B-FU01",
+        "B-FU08"
+      ],
+      "decision": "CONDITIONAL_PILOT",
+      "incrementalHypothesis": "単独/協業の好みと共同作業中の対立処理を区別",
+      "editorialReason": "協働の成果・負担を同等に固定した紛争場面。B05の単独/協働選好とは異なる。",
+      "notValidated": true,
+      "scoringAllowed": false,
+      "productionApproved": false
+    },
+    {
+      "id": "B-FU05",
+      "axis": "B",
+      "sourceStatus": "TRIAL_CANDIDATE",
+      "format": "AB",
+      "stem": "身近な人と余暇の過ごし方が食い違い、どちらの案も安全で費用が同じなら、より納得できるのはどちらですか？",
+      "options": [
+        {
+          "key": "A",
+          "text": "自分が望んだ過ごし方にする",
+          "polarity": "negative"
+        },
+        {
+          "key": "B",
+          "text": "相手が望んだ過ごし方にする",
+          "polarity": "positive"
+        },
+        {
+          "key": "unsure",
+          "text": "選べない・判断できない",
+          "polarity": null
+        },
+        {
+          "key": "not_applicable",
+          "text": "自分には当てはまらない",
+          "polarity": null
+        }
+      ],
+      "relation": "CONDITIONAL",
+      "base30": [
+        "B04",
+        "B02"
+      ],
+      "crossAxis": [],
+      "withinBank": [
+        "B-FU01",
+        "B-FU03"
+      ],
+      "decision": "CONDITIONAL_PILOT",
+      "incrementalHypothesis": "日常の余暇における希望対立と一般的な相談志向を区別",
+      "editorialReason": "費用・安全を固定した余暇の希望衝突。B02の一人/集団好みとは区別可能。",
+      "notValidated": true,
+      "scoringAllowed": false,
+      "productionApproved": false
+    },
+    {
+      "id": "B-FU06",
+      "axis": "B",
+      "sourceStatus": "REVISE",
+      "format": "YN",
+      "stem": "自分の価値観と違う案でも、相手にとって大切なことであれば、関係の維持を優先して選びたいですか？",
+      "options": [
+        {
+          "key": "yes",
+          "text": "はい",
+          "polarity": "positive"
+        },
+        {
+          "key": "no",
+          "text": "いいえ",
+          "polarity": null
+        },
+        {
+          "key": "unsure",
+          "text": "判断できない",
+          "polarity": null
+        },
+        {
+          "key": "not_applicable",
+          "text": "自分には当てはまらない",
+          "polarity": null
+        }
+      ],
+      "relation": "CONDITIONAL",
+      "base30": [
+        "B03",
+        "B06"
+      ],
+      "crossAxis": [],
+      "withinBank": [
+        "B-FU03",
+        "B-FU10"
+      ],
+      "decision": "HOLD",
+      "incrementalHypothesis": null,
+      "editorialReason": "相手の重要度と関係維持の倫理を加えた派生。社会的望ましさが強い。",
+      "notValidated": true,
+      "scoringAllowed": false,
+      "productionApproved": false
+    },
+    {
+      "id": "B-FU07",
+      "axis": "B",
+      "sourceStatus": "REVISE",
+      "format": "AB",
+      "stem": "自分が一人で責任を負う選択に周囲から異なる希望が出された場合、どちらをより重視しますか？",
+      "options": [
+        {
+          "key": "A",
+          "text": "周囲の希望を優先する",
+          "polarity": "positive"
+        },
+        {
+          "key": "B",
+          "text": "責任を負う自分の判断を優先する",
+          "polarity": "negative"
+        },
+        {
+          "key": "unsure",
+          "text": "選べない・判断できない",
+          "polarity": null
+        },
+        {
+          "key": "not_applicable",
+          "text": "自分には当てはまらない",
+          "polarity": null
+        }
+      ],
+      "relation": "CONDITIONAL",
+      "base30": [
+        "B01",
+        "B06"
+      ],
+      "crossAxis": [],
+      "withinBank": [
+        "B-FU02"
+      ],
+      "decision": "HOLD",
+      "incrementalHypothesis": null,
+      "editorialReason": "一人で責任を負う点を追加。B-FU02と正反対極性の同一題材に近い。",
+      "notValidated": true,
+      "scoringAllowed": false,
+      "productionApproved": false
+    },
+    {
+      "id": "B-FU08",
+      "axis": "B",
+      "sourceStatus": "REVISE",
+      "format": "AB",
+      "stem": "家計や生活の共同ルールを対等に決めるとき、お互いに不利益の少ない二案ならどちらを選びますか？",
+      "options": [
+        {
+          "key": "A",
+          "text": "各自の希望を尊重するため、まず自分の希望をはっきり通す",
+          "polarity": "negative"
+        },
+        {
+          "key": "B",
+          "text": "共同の一体感を守るため、相手の希望に合わせる",
+          "polarity": "positive"
+        },
+        {
+          "key": "unsure",
+          "text": "選べない・判断できない",
+          "polarity": null
+        },
+        {
+          "key": "not_applicable",
+          "text": "自分には当てはまらない",
+          "polarity": null
+        }
+      ],
+      "relation": "NEW_CONTEXT",
+      "base30": [
+        "B06",
+        "B04"
+      ],
+      "crossAxis": [],
+      "withinBank": [
+        "B-FU04"
+      ],
+      "decision": "REWRITE_REQUIRED",
+      "incrementalHypothesis": null,
+      "editorialReason": "共同生活ルールという追加場面。ただし自己主張/一体感が不均衡な文言。",
+      "notValidated": true,
+      "scoringAllowed": false,
+      "productionApproved": false
+    },
+    {
+      "id": "B-FU09",
+      "axis": "B",
+      "sourceStatus": "PROBE_ONLY",
+      "format": "PROBE",
+      "stem": "自分の希望も相手の希望も両方大事なので、どちらか片方だけを選ぶ質問は答えにくいですか？",
+      "options": [
+        {
+          "key": "yes",
+          "text": "はい",
+          "polarity": null
+        },
+        {
+          "key": "no",
+          "text": "いいえ",
+          "polarity": null
+        },
+        {
+          "key": "unsure",
+          "text": "判断できない",
+          "polarity": null
+        },
+        {
+          "key": "not_applicable",
+          "text": "自分には当てはまらない",
+          "polarity": null
+        }
+      ],
+      "relation": "PROBE",
+      "base30": [
+        "B01",
+        "B04"
+      ],
+      "crossAxis": [],
+      "withinBank": [
+        "B-FU01",
+        "B-FU03"
+      ],
+      "decision": "PROBE_ONLY",
+      "incrementalHypothesis": null,
+      "editorialReason": "両方大切による二極形式の不適用を質問自体として検査。重視度を推定しない。",
+      "notValidated": true,
+      "scoringAllowed": false,
+      "productionApproved": false
+    },
+    {
+      "id": "B-FU10",
+      "axis": "B",
+      "sourceStatus": "PROBE_ONLY",
+      "format": "PROBE",
+      "stem": "判断する相手が家族・友人・仕事仲間のどれかによって、優先する基準が大きく変わりますか？",
+      "options": [
+        {
+          "key": "yes",
+          "text": "はい",
+          "polarity": null
+        },
+        {
+          "key": "no",
+          "text": "いいえ",
+          "polarity": null
+        },
+        {
+          "key": "unsure",
+          "text": "判断できない",
+          "polarity": null
+        },
+        {
+          "key": "not_applicable",
+          "text": "自分には当てはまらない",
+          "polarity": null
+        }
+      ],
+      "relation": "PROBE",
+      "base30": [
+        "B06",
+        "B04"
+      ],
+      "crossAxis": [],
+      "withinBank": [
+        "B-FU06"
+      ],
+      "decision": "PROBE_ONLY",
+      "incrementalHypothesis": null,
+      "editorialReason": "家族・友人・仕事の対人文脈依存を調べる。元30問にないメタ質問。",
+      "notValidated": true,
+      "scoringAllowed": false,
+      "productionApproved": false
+    },
+    {
+      "id": "C-FU03",
+      "axis": "C",
+      "sourceStatus": "REVISE",
+      "format": "YN",
+      "stem": "将来の役立ち方がはっきりしている活動があっても、その日にしかできない経験を選ぶことがありますか？",
+      "options": [
+        {
+          "key": "yes",
+          "text": "はい",
+          "polarity": "positive"
+        },
+        {
+          "key": "no",
+          "text": "いいえ",
+          "polarity": null
+        },
+        {
+          "key": "unsure",
+          "text": "判断できない",
+          "polarity": null
+        },
+        {
+          "key": "not_applicable",
+          "text": "自分には当てはまらない",
+          "polarity": null
+        }
+      ],
+      "relation": "CONDITIONAL",
+      "base30": [
+        "C04",
+        "C02"
+      ],
+      "crossAxis": [],
+      "withinBank": [
+        "C-FU04",
+        "C-FU06"
+      ],
+      "decision": "HOLD",
+      "incrementalHypothesis": null,
+      "editorialReason": "当日にしかない機会の希少性を導入。将来価値と希少性を混同する。",
+      "notValidated": true,
+      "scoringAllowed": false,
+      "productionApproved": false
+    },
+    {
+      "id": "C-FU04",
+      "axis": "C",
+      "sourceStatus": "REVISE",
+      "format": "AB",
+      "stem": "余裕のある週末に、どちらか一つの活動しか選べず負担は同程度なら、どちらに魅力を感じますか？",
+      "options": [
+        {
+          "key": "A",
+          "text": "今週末だけの体験に参加する",
+          "polarity": "positive"
+        },
+        {
+          "key": "B",
+          "text": "将来役立つ可能性がある練習を続ける",
+          "polarity": "negative"
+        },
+        {
+          "key": "unsure",
+          "text": "選べない・判断できない",
+          "polarity": null
+        },
+        {
+          "key": "not_applicable",
+          "text": "自分には当てはまらない",
+          "polarity": null
+        }
+      ],
+      "relation": "CONDITIONAL",
+      "base30": [
+        "C01",
+        "C04"
+      ],
+      "crossAxis": [],
+      "withinBank": [
+        "C-FU03",
+        "C-FU08"
+      ],
+      "decision": "REWRITE_REQUIRED",
+      "incrementalHypothesis": null,
+      "editorialReason": "週末の限られた選択と将来便益の不確実性。C04と近いが条件操作の余地。",
+      "notValidated": true,
+      "scoringAllowed": false,
+      "productionApproved": false
+    },
+    {
+      "id": "C-FU06",
+      "axis": "C",
+      "sourceStatus": "REVISE",
+      "format": "YN",
+      "stem": "今の楽しみを後日に回せる場合でも、目先の経験を選んで満足したいと思いますか？",
+      "options": [
+        {
+          "key": "yes",
+          "text": "はい",
+          "polarity": "positive"
+        },
+        {
+          "key": "no",
+          "text": "いいえ",
+          "polarity": null
+        },
+        {
+          "key": "unsure",
+          "text": "判断できない",
+          "polarity": null
+        },
+        {
+          "key": "not_applicable",
+          "text": "自分には当てはまらない",
+          "polarity": null
+        }
+      ],
+      "relation": "CONDITIONAL",
+      "base30": [
+        "C02",
+        "C03"
+      ],
+      "crossAxis": [],
+      "withinBank": [
+        "C-FU02",
+        "C-FU03"
+      ],
+      "decision": "HOLD",
+      "incrementalHypothesis": null,
+      "editorialReason": "今の楽しみを後回しできる条件を操作。ただし後日にできる前提が曖昧。",
+      "notValidated": true,
+      "scoringAllowed": false,
+      "productionApproved": false
+    },
+    {
+      "id": "C-FU07",
+      "axis": "C",
+      "sourceStatus": "TRIAL_CANDIDATE",
+      "format": "AB",
+      "stem": "今年自由に使える余力を分けるなら、どちらの計画を先に満たしたいですか？",
+      "options": [
+        {
+          "key": "A",
+          "text": "今日を充実させる体験の予定を確保する",
+          "polarity": "positive"
+        },
+        {
+          "key": "B",
+          "text": "来年以降に役立つ学習や準備を確保する",
+          "polarity": "negative"
+        },
+        {
+          "key": "unsure",
+          "text": "選べない・判断できない",
+          "polarity": null
+        },
+        {
+          "key": "not_applicable",
+          "text": "自分には当てはまらない",
+          "polarity": null
+        }
+      ],
+      "relation": "CONDITIONAL",
+      "base30": [
+        "C01",
+        "C05",
+        "C06"
+      ],
+      "crossAxis": [
+        "E02"
+      ],
+      "withinBank": [
+        "C-FU01",
+        "C-FU05"
+      ],
+      "decision": "REWRITE_REQUIRED",
+      "incrementalHypothesis": null,
+      "editorialReason": "有限の年間余力で計画の優先順位を問う。学習vs体験の個人嗜好を統制要。",
+      "notValidated": true,
+      "scoringAllowed": false,
+      "productionApproved": false
+    },
+    {
+      "id": "C-FU08",
+      "axis": "C",
+      "sourceStatus": "PROBE_ONLY",
+      "format": "AB",
+      "stem": "同じ時間の使い道を決めるとき、成果がまだ確実でない将来準備と確実に楽しめる今の経験ではどちらを選びますか？",
+      "options": [
+        {
+          "key": "A",
+          "text": "将来の準備を選ぶ",
+          "polarity": "negative"
+        },
+        {
+          "key": "B",
+          "text": "今の経験を選ぶ",
+          "polarity": "positive"
+        },
+        {
+          "key": "unsure",
+          "text": "選べない・判断できない",
+          "polarity": null
+        },
+        {
+          "key": "not_applicable",
+          "text": "自分には当てはまらない",
+          "polarity": null
+        }
+      ],
+      "relation": "PROBE",
+      "base30": [
+        "C04"
+      ],
+      "crossAxis": [],
+      "withinBank": [
+        "C-FU04",
+        "C-FU09"
+      ],
+      "decision": "PROBE_ONLY",
+      "incrementalHypothesis": null,
+      "editorialReason": "確実性の非対称を意図的に入れた交絡検査。A/B形式でも分類得点に入れない。",
+      "notValidated": true,
+      "scoringAllowed": false,
+      "productionApproved": false
+    },
+    {
+      "id": "C-FU09",
+      "axis": "C",
+      "sourceStatus": "PROBE_ONLY",
+      "format": "PROBE",
+      "stem": "将来得られる利益が確実かどうかによって、今と将来のどちらを選ぶかが変わりますか？",
+      "options": [
+        {
+          "key": "yes",
+          "text": "はい",
+          "polarity": null
+        },
+        {
+          "key": "no",
+          "text": "いいえ",
+          "polarity": null
+        },
+        {
+          "key": "unsure",
+          "text": "判断できない",
+          "polarity": null
+        },
+        {
+          "key": "not_applicable",
+          "text": "自分には当てはまらない",
+          "polarity": null
+        }
+      ],
+      "relation": "PROBE",
+      "base30": [
+        "C04"
+      ],
+      "crossAxis": [],
+      "withinBank": [
+        "C-FU08"
+      ],
+      "decision": "PROBE_ONLY",
+      "incrementalHypothesis": null,
+      "editorialReason": "将来利益の確率の変化を聞くメタ質問。時間選好とは異なる。",
+      "notValidated": true,
+      "scoringAllowed": false,
+      "productionApproved": false
+    },
+    {
+      "id": "C-FU10",
+      "axis": "C",
+      "sourceStatus": "PROBE_ONLY",
+      "format": "PROBE",
+      "stem": "日常の時間的余裕や健康上の条件が変わると、今と将来のどちらを優先するかも変わりますか？",
+      "options": [
+        {
+          "key": "yes",
+          "text": "はい",
+          "polarity": null
+        },
+        {
+          "key": "no",
+          "text": "いいえ",
+          "polarity": null
+        },
+        {
+          "key": "unsure",
+          "text": "判断できない",
+          "polarity": null
+        },
+        {
+          "key": "not_applicable",
+          "text": "自分には当てはまらない",
+          "polarity": null
+        }
+      ],
+      "relation": "PROBE",
+      "base30": [
+        "C02",
+        "C05"
+      ],
+      "crossAxis": [
+        "E02",
+        "E04"
+      ],
+      "withinBank": [
+        "E-FU04"
+      ],
+      "decision": "PROBE_ONLY",
+      "incrementalHypothesis": null,
+      "editorialReason": "余暇や健康条件が時間選好を動かすかの確認。個別の健康情報は不要。",
+      "notValidated": true,
+      "scoringAllowed": false,
+      "productionApproved": false
+    },
+    {
+      "id": "D-FU04",
+      "axis": "D",
+      "sourceStatus": "TRIAL_CANDIDATE",
+      "format": "AB",
+      "stem": "新しい制作テーマと進行中の制作テーマがどちらも魅力的で、同じ時間しか使えない場合、どちらを選びますか？",
+      "options": [
+        {
+          "key": "A",
+          "text": "進行中のテーマを一段深く仕上げる",
+          "polarity": "positive"
+        },
+        {
+          "key": "B",
+          "text": "新しいテーマの試作を始める",
+          "polarity": "negative"
+        },
+        {
+          "key": "unsure",
+          "text": "選べない・判断できない",
+          "polarity": null
+        },
+        {
+          "key": "not_applicable",
+          "text": "自分には当てはまらない",
+          "polarity": null
+        }
+      ],
+      "relation": "CONDITIONAL",
+      "base30": [
+        "D06",
+        "D01"
+      ],
+      "crossAxis": [
+        "A05"
+      ],
+      "withinBank": [
+        "D-FU07"
+      ],
+      "decision": "REWRITE_REQUIRED",
+      "incrementalHypothesis": null,
+      "editorialReason": "制作中のテーマを深めるか新規試作かという具体場面。制作しない人には不適用。",
+      "notValidated": true,
+      "scoringAllowed": false,
+      "productionApproved": false
+    },
+    {
+      "id": "D-FU07",
+      "axis": "D",
+      "sourceStatus": "TRIAL_CANDIDATE",
+      "format": "AB",
+      "stem": "すでに学んでいる内容に未解決の問いが残っており、別の興味深い分野もあるとき、次の時間をどちらに割きますか？",
+      "options": [
+        {
+          "key": "A",
+          "text": "別分野の基本を知る",
+          "polarity": "negative"
+        },
+        {
+          "key": "B",
+          "text": "現在の問いをさらに解く",
+          "polarity": "positive"
+        },
+        {
+          "key": "unsure",
+          "text": "選べない・判断できない",
+          "polarity": null
+        },
+        {
+          "key": "not_applicable",
+          "text": "自分には当てはまらない",
+          "polarity": null
+        }
+      ],
+      "relation": "CONDITIONAL",
+      "base30": [
+        "D06"
+      ],
+      "crossAxis": [
+        "C03",
+        "C04"
+      ],
+      "withinBank": [
+        "D-FU02",
+        "D-FU03",
+        "D-FU04"
+      ],
+      "decision": "CONDITIONAL_PILOT",
+      "incrementalHypothesis": "現在の学習課題が未解決の条件で新規探索か継続深耕か確認",
+      "editorialReason": "未解決の問いに戻るか新規学習か。進捗と将来便益の混入を統制できれば派生価値。",
+      "notValidated": true,
+      "scoringAllowed": false,
+      "productionApproved": false
+    },
+    {
+      "id": "D-FU08",
+      "axis": "D",
+      "sourceStatus": "PROBE_ONLY",
+      "format": "PROBE",
+      "stem": "生活する場所や働く環境を変えたい気持ちと、学びたい分野を変えたい気持ちは別のものだと感じますか？",
+      "options": [
+        {
+          "key": "yes",
+          "text": "はい",
+          "polarity": null
+        },
+        {
+          "key": "no",
+          "text": "いいえ",
+          "polarity": null
+        },
+        {
+          "key": "unsure",
+          "text": "判断できない",
+          "polarity": null
+        },
+        {
+          "key": "not_applicable",
+          "text": "自分には当てはまらない",
+          "polarity": null
+        }
+      ],
+      "relation": "PROBE",
+      "base30": [
+        "D04"
+      ],
+      "crossAxis": [
+        "A05"
+      ],
+      "withinBank": [
+        "A-FU08"
+      ],
+      "decision": "PROBE_ONLY",
+      "incrementalHypothesis": null,
+      "editorialReason": "環境更新の関心と学習内容更新の関心を区別する認知的確認。採点しない。",
+      "notValidated": true,
+      "scoringAllowed": false,
+      "productionApproved": false
+    },
+    {
+      "id": "E-FU02",
+      "axis": "E",
+      "sourceStatus": "REVISE",
+      "format": "YN",
+      "stem": "十分な休息はあるとして、自由時間を少し増やすよりも、使い道を選べる追加収入の方を優先したいですか？",
+      "options": [
+        {
+          "key": "yes",
+          "text": "はい",
+          "polarity": "negative"
+        },
+        {
+          "key": "no",
+          "text": "いいえ",
+          "polarity": null
+        },
+        {
+          "key": "unsure",
+          "text": "判断できない",
+          "polarity": null
+        },
+        {
+          "key": "not_applicable",
+          "text": "自分には当てはまらない",
+          "polarity": null
+        }
+      ],
+      "relation": "CONDITIONAL",
+      "base30": [
+        "E01",
+        "E02"
+      ],
+      "crossAxis": [],
+      "withinBank": [
+        "E-FU01",
+        "E-FU03"
+      ],
+      "decision": "HOLD",
+      "incrementalHypothesis": null,
+      "editorialReason": "休養を確保する条件を追加。『少しの時間』と不明な収入増分は比較不能。",
+      "notValidated": true,
+      "scoringAllowed": false,
+      "productionApproved": false
+    },
+    {
+      "id": "E-FU03",
+      "axis": "E",
+      "sourceStatus": "REVISE",
+      "format": "YN",
+      "stem": "生活費に不安がないとして、追加収入よりも予定を自由に使える時間を増やしたいですか？",
+      "options": [
+        {
+          "key": "yes",
+          "text": "はい",
+          "polarity": "positive"
+        },
+        {
+          "key": "no",
+          "text": "いいえ",
+          "polarity": null
+        },
+        {
+          "key": "unsure",
+          "text": "判断できない",
+          "polarity": null
+        },
+        {
+          "key": "not_applicable",
+          "text": "自分には当てはまらない",
+          "polarity": null
+        }
+      ],
+      "relation": "CONDITIONAL",
+      "base30": [
+        "E01",
+        "E05"
+      ],
+      "crossAxis": [],
+      "withinBank": [
+        "E-FU01",
+        "E-FU02"
+      ],
+      "decision": "HOLD",
+      "incrementalHypothesis": null,
+      "editorialReason": "生活費の不安を取り除いた条件で時間を優先するか。ただし増分不明。",
+      "notValidated": true,
+      "scoringAllowed": false,
+      "productionApproved": false
+    },
+    {
+      "id": "E-FU04",
+      "axis": "E",
+      "sourceStatus": "PROBE_ONLY",
+      "format": "PROBE",
+      "stem": "収入・家計・休養の状況が変われば、お金と自由時間のどちらを重視するかも大きく変わりますか？",
+      "options": [
+        {
+          "key": "yes",
+          "text": "はい",
+          "polarity": null
+        },
+        {
+          "key": "no",
+          "text": "いいえ",
+          "polarity": null
+        },
+        {
+          "key": "unsure",
+          "text": "判断できない",
+          "polarity": null
+        },
+        {
+          "key": "not_applicable",
+          "text": "自分には当てはまらない",
+          "polarity": null
+        }
+      ],
+      "relation": "PROBE",
+      "base30": [
+        "E05",
+        "E06"
+      ],
+      "crossAxis": [
+        "C02"
+      ],
+      "withinBank": [
+        "C-FU10"
+      ],
+      "decision": "PROBE_ONLY",
+      "incrementalHypothesis": null,
+      "editorialReason": "現在の不足状況への依存を問うメタ質問であり補助専用。",
+      "notValidated": true,
+      "scoringAllowed": false,
+      "productionApproved": false
+    }
+  ],
+  "gaps": {
+    "A": "Two candidates with specific context controls; original A/D overlap remains.",
+    "B": "Three distinct conflict settings may help but may instead expose context dependence.",
+    "C": "No candidate currently adds convincing distinct information; future/present repeats and confounds persist.",
+    "D": "Only one candidate adds unfinished-task context; broad-vs-deep repetitions dominate.",
+    "E": "No pilotable new question: money/time comparison lacks equivalently specified increments and is auxiliary."
+  },
+  "gates": {
+    "ownerDecidesWhetherToAddNewQuestions": true,
+    "noProductionChanges": true,
+    "noScoreConversion": true,
+    "detailedRouteStillUnimplemented": true,
+    "privacyAndResearchReviewRequired": true
+  }
+}
