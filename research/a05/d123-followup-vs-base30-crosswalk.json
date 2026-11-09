@@ -1,0 +1,835 @@
+{
+  "schema": "A05-D123-30X40-EDITORIAL-CROSSWALK-1.0.0",
+  "date": "2026-11-09",
+  "status": "RESEARCH_ONLY_NOT_PSYCHOMETRIC_PROOF",
+  "sources": {
+    "base30": {
+      "path": "projects/kidp/life-design-lab/a05/questions.mjs",
+      "blobSha": "6ffa1291e36385354b016da1e9e68de0d5b983ea",
+      "version": "A05-Q-2.0.0-draft"
+    },
+    "followup40": {
+      "path": "research/a05/d121-adaptive-followup-question-bank.json",
+      "blobSha": "403535ec70df6c4626812ca839491d77d5c20021",
+      "version": "A05-D121-ADAPTIVE-QUESTION-BANK-0.1.0"
+    }
+  },
+  "method": "Manual content-meaning audit of each of 40 followups against all 30 v2 stems (5 axes), plus within-followup overlaps. Classification is a documented editorial judgment, not a measured semantic similarity or item-information estimate.",
+  "relationDefinition": {
+    "DIRECT": "Substantially repeats the same decision or contrast, even with mild assumptions or Y/N recoding.",
+    "CONDITIONAL": "Shares the base construct but manipulates a constraint, situational setting or decision stage; incremental validity unproven.",
+    "NEW_CONTEXT": "Adds a new decision setting not directly present in original 30; usefulness and wording unproven.",
+    "PROBE": "Diagnoses interpretation, context dependence or confounds rather than increasing a classification score."
+  },
+  "dispositionDefinition": {
+    "DROP": "Remove from adaptive follow-up candidate set; possible future replacement of a base item is a separate editorial decision.",
+    "REWRITE": "Rewrite to isolate the additional condition, balance both options and test incremental information.",
+    "HOLD": "Insufficient distinct information or high confound risk; keep only as unresolved research idea.",
+    "REVISE_NEW": "New context might add information, but the currently unbalanced wording requires revision.",
+    "PROBE_ONLY": "May be asked as optional comprehension or context check, never numerically scored for the type."
+  },
+  "counts": {
+    "relation": {
+      "DIRECT": 12,
+      "CONDITIONAL": 18,
+      "PROBE": 8,
+      "NEW_CONTEXT": 2
+    },
+    "disposition": {
+      "DROP": 12,
+      "REWRITE": 10,
+      "HOLD": 8,
+      "PROBE_ONLY": 8,
+      "REVISE_NEW": 2
+    }
+  },
+  "criticalFindings": [
+    "A01 ↔ A-FU01 and D02 ↔ D-FU01 are near-identical decision structures; rewording is not additional information by itself.",
+    "D-FU02 and D-FU03 are opposite-worded versions of the same D06 scenario, not independent item-information.",
+    "C-FU01/C-FU05 repeat C01/C05; B-FU01/B-FU03/B-FU05 share a conflict template but may add meaning when different social contexts truly matter.",
+    "Follow-up item bank itself has redundancy clusters (e.g. A-FU01/02/06/07, B-FU01/03/05, C-FU01/05/07, D-FU01/02/03/05/06, E-FU01/02/03).",
+    "A02 and D03 already have strong cross-axis overlap (new vs familiar places); adding more similar items could amplify, not fix, non-independence.",
+    "Original B02 asks sociability/lone leisure but B-FU09 tests inability to choose between values, so its former old-item overlap metadata was conceptually misleading.",
+    "No extra questionnaire format yet has calibrated discrimination or a psychometric score conversion; NO auto-classification from Y/N."
+  ],
+  "rows": [
+    {
+      "id": "A-FU01",
+      "axis": "A",
+      "sourceEditorialStatus": "TRIAL_CANDIDATE",
+      "sourceFormat": "AB",
+      "relation": "DIRECT",
+      "original30Primary": [
+        "A01"
+      ],
+      "original30CrossAxis": [],
+      "followupBankOverlap": [
+        "A-FU02",
+        "A-FU06"
+      ],
+      "reason": "生活拠点の既存対新規がA01と同一。安全条件は回答文脈の微修正に過ぎない。",
+      "proposedDisposition": "DROP",
+      "measurementConclusion": "EDITORIAL_HYPOTHESIS_NO_EMPIRICAL_VALIDATION"
+    },
+    {
+      "id": "A-FU02",
+      "axis": "A",
+      "sourceEditorialStatus": "TRIAL_CANDIDATE",
+      "sourceFormat": "YN",
+      "relation": "CONDITIONAL",
+      "original30Primary": [
+        "A01",
+        "A05"
+      ],
+      "original30CrossAxis": [],
+      "followupBankOverlap": [
+        "A-FU01",
+        "A-FU06",
+        "A-FU07"
+      ],
+      "reason": "現状不満がない条件を付け、転居希望と不満による移動を分ける可能性。",
+      "proposedDisposition": "REWRITE",
+      "measurementConclusion": "EDITORIAL_HYPOTHESIS_NO_EMPIRICAL_VALIDATION"
+    },
+    {
+      "id": "A-FU03",
+      "axis": "A",
+      "sourceEditorialStatus": "TRIAL_CANDIDATE",
+      "sourceFormat": "AB",
+      "relation": "DIRECT",
+      "original30Primary": [
+        "A04"
+      ],
+      "original30CrossAxis": [
+        "C06"
+      ],
+      "followupBankOverlap": [
+        "A-FU04",
+        "A-FU05"
+      ],
+      "reason": "ルーティン維持対刷新はA04の言い換え。仕事内容固定条件だけでは増分が小さい。",
+      "proposedDisposition": "DROP",
+      "measurementConclusion": "EDITORIAL_HYPOTHESIS_NO_EMPIRICAL_VALIDATION"
+    },
+    {
+      "id": "A-FU04",
+      "axis": "A",
+      "sourceEditorialStatus": "TRIAL_CANDIDATE",
+      "sourceFormat": "YN",
+      "relation": "CONDITIONAL",
+      "original30Primary": [
+        "A01",
+        "A04"
+      ],
+      "original30CrossAxis": [],
+      "followupBankOverlap": [
+        "A-FU03",
+        "A-FU05"
+      ],
+      "reason": "不満なしを加えるが場所・生活の仕組みの二題混在。条件ごとに分割要。",
+      "proposedDisposition": "HOLD",
+      "measurementConclusion": "EDITORIAL_HYPOTHESIS_NO_EMPIRICAL_VALIDATION"
+    },
+    {
+      "id": "A-FU05",
+      "axis": "A",
+      "sourceEditorialStatus": "TRIAL_CANDIDATE",
+      "sourceFormat": "AB",
+      "relation": "CONDITIONAL",
+      "original30Primary": [
+        "A04",
+        "A06"
+      ],
+      "original30CrossAxis": [
+        "D04"
+      ],
+      "followupBankOverlap": [
+        "A-FU03",
+        "A-FU04"
+      ],
+      "reason": "設備の便利さを統一。生活システム継続/刷新はA04より限定された文脈。",
+      "proposedDisposition": "REWRITE",
+      "measurementConclusion": "EDITORIAL_HYPOTHESIS_NO_EMPIRICAL_VALIDATION"
+    },
+    {
+      "id": "A-FU06",
+      "axis": "A",
+      "sourceEditorialStatus": "REVISE",
+      "sourceFormat": "AB",
+      "relation": "DIRECT",
+      "original30Primary": [
+        "A01",
+        "A03"
+      ],
+      "original30CrossAxis": [
+        "B06"
+      ],
+      "followupBankOverlap": [
+        "A-FU01",
+        "A-FU02"
+      ],
+      "reason": "一地域対複数地域はA01の近似。関係者が変わらない設定は不自然。",
+      "proposedDisposition": "DROP",
+      "measurementConclusion": "EDITORIAL_HYPOTHESIS_NO_EMPIRICAL_VALIDATION"
+    },
+    {
+      "id": "A-FU07",
+      "axis": "A",
+      "sourceEditorialStatus": "REVISE",
+      "sourceFormat": "YN",
+      "relation": "CONDITIONAL",
+      "original30Primary": [
+        "A05"
+      ],
+      "original30CrossAxis": [
+        "D04"
+      ],
+      "followupBankOverlap": [
+        "A-FU01",
+        "A-FU02"
+      ],
+      "reason": "活動内容を固定することでA/Dの混入を検査。ただし拠点好みに縮小。",
+      "proposedDisposition": "REWRITE",
+      "measurementConclusion": "EDITORIAL_HYPOTHESIS_NO_EMPIRICAL_VALIDATION"
+    },
+    {
+      "id": "A-FU08",
+      "axis": "A",
+      "sourceEditorialStatus": "PROBE_ONLY",
+      "sourceFormat": "PROBE",
+      "relation": "PROBE",
+      "original30Primary": [
+        "A05"
+      ],
+      "original30CrossAxis": [
+        "D04"
+      ],
+      "followupBankOverlap": [
+        "D-FU08"
+      ],
+      "reason": "環境変更の理由と学習変更を区別する認知的確認。元30問の同義反復ではないが採点不可。",
+      "proposedDisposition": "PROBE_ONLY",
+      "measurementConclusion": "EDITORIAL_HYPOTHESIS_NO_EMPIRICAL_VALIDATION"
+    },
+    {
+      "id": "B-FU01",
+      "axis": "B",
+      "sourceEditorialStatus": "TRIAL_CANDIDATE",
+      "sourceFormat": "AB",
+      "relation": "CONDITIONAL",
+      "original30Primary": [
+        "B01",
+        "B04"
+      ],
+      "original30CrossAxis": [],
+      "followupBankOverlap": [
+        "B-FU03",
+        "B-FU05",
+        "B-FU07"
+      ],
+      "reason": "同じ自分/他者優先でも、希望衝突と重大不利益なしの条件を導入。",
+      "proposedDisposition": "REWRITE",
+      "measurementConclusion": "EDITORIAL_HYPOTHESIS_NO_EMPIRICAL_VALIDATION"
+    },
+    {
+      "id": "B-FU02",
+      "axis": "B",
+      "sourceEditorialStatus": "TRIAL_CANDIDATE",
+      "sourceFormat": "YN",
+      "relation": "CONDITIONAL",
+      "original30Primary": [
+        "B01",
+        "B06"
+      ],
+      "original30CrossAxis": [],
+      "followupBankOverlap": [
+        "B-FU07"
+      ],
+      "reason": "決定責任を負う場合という制約。自己責任という規範が混入する。",
+      "proposedDisposition": "HOLD",
+      "measurementConclusion": "EDITORIAL_HYPOTHESIS_NO_EMPIRICAL_VALIDATION"
+    },
+    {
+      "id": "B-FU03",
+      "axis": "B",
+      "sourceEditorialStatus": "TRIAL_CANDIDATE",
+      "sourceFormat": "YN",
+      "relation": "CONDITIONAL",
+      "original30Primary": [
+        "B01",
+        "B04"
+      ],
+      "original30CrossAxis": [],
+      "followupBankOverlap": [
+        "B-FU01",
+        "B-FU05",
+        "B-FU06"
+      ],
+      "reason": "実際に自分が譲歩する条件を付けた派生。合意と他者優先は同義でない。",
+      "proposedDisposition": "REWRITE",
+      "measurementConclusion": "EDITORIAL_HYPOTHESIS_NO_EMPIRICAL_VALIDATION"
+    },
+    {
+      "id": "B-FU04",
+      "axis": "B",
+      "sourceEditorialStatus": "TRIAL_CANDIDATE",
+      "sourceFormat": "AB",
+      "relation": "NEW_CONTEXT",
+      "original30Primary": [
+        "B05",
+        "B01"
+      ],
+      "original30CrossAxis": [],
+      "followupBankOverlap": [
+        "B-FU01",
+        "B-FU08"
+      ],
+      "reason": "協働の成果・負担を同等に固定した紛争場面。B05の単独/協働選好とは異なる。",
+      "proposedDisposition": "REVISE_NEW",
+      "measurementConclusion": "EDITORIAL_HYPOTHESIS_NO_EMPIRICAL_VALIDATION"
+    },
+    {
+      "id": "B-FU05",
+      "axis": "B",
+      "sourceEditorialStatus": "TRIAL_CANDIDATE",
+      "sourceFormat": "AB",
+      "relation": "CONDITIONAL",
+      "original30Primary": [
+        "B04",
+        "B02"
+      ],
+      "original30CrossAxis": [],
+      "followupBankOverlap": [
+        "B-FU01",
+        "B-FU03"
+      ],
+      "reason": "費用・安全を固定した余暇の希望衝突。B02の一人/集団好みとは区別可能。",
+      "proposedDisposition": "REWRITE",
+      "measurementConclusion": "EDITORIAL_HYPOTHESIS_NO_EMPIRICAL_VALIDATION"
+    },
+    {
+      "id": "B-FU06",
+      "axis": "B",
+      "sourceEditorialStatus": "REVISE",
+      "sourceFormat": "YN",
+      "relation": "CONDITIONAL",
+      "original30Primary": [
+        "B03",
+        "B06"
+      ],
+      "original30CrossAxis": [],
+      "followupBankOverlap": [
+        "B-FU03",
+        "B-FU10"
+      ],
+      "reason": "相手の重要度と関係維持の倫理を加えた派生。社会的望ましさが強い。",
+      "proposedDisposition": "HOLD",
+      "measurementConclusion": "EDITORIAL_HYPOTHESIS_NO_EMPIRICAL_VALIDATION"
+    },
+    {
+      "id": "B-FU07",
+      "axis": "B",
+      "sourceEditorialStatus": "REVISE",
+      "sourceFormat": "AB",
+      "relation": "CONDITIONAL",
+      "original30Primary": [
+        "B01",
+        "B06"
+      ],
+      "original30CrossAxis": [],
+      "followupBankOverlap": [
+        "B-FU02"
+      ],
+      "reason": "一人で責任を負う点を追加。B-FU02と正反対極性の同一題材に近い。",
+      "proposedDisposition": "HOLD",
+      "measurementConclusion": "EDITORIAL_HYPOTHESIS_NO_EMPIRICAL_VALIDATION"
+    },
+    {
+      "id": "B-FU08",
+      "axis": "B",
+      "sourceEditorialStatus": "REVISE",
+      "sourceFormat": "AB",
+      "relation": "NEW_CONTEXT",
+      "original30Primary": [
+        "B06",
+        "B04"
+      ],
+      "original30CrossAxis": [],
+      "followupBankOverlap": [
+        "B-FU04"
+      ],
+      "reason": "共同生活ルールという追加場面。ただし自己主張/一体感が不均衡な文言。",
+      "proposedDisposition": "REVISE_NEW",
+      "measurementConclusion": "EDITORIAL_HYPOTHESIS_NO_EMPIRICAL_VALIDATION"
+    },
+    {
+      "id": "B-FU09",
+      "axis": "B",
+      "sourceEditorialStatus": "PROBE_ONLY",
+      "sourceFormat": "PROBE",
+      "relation": "PROBE",
+      "original30Primary": [
+        "B01",
+        "B04"
+      ],
+      "original30CrossAxis": [],
+      "followupBankOverlap": [
+        "B-FU01",
+        "B-FU03"
+      ],
+      "reason": "両方大切による二極形式の不適用を質問自体として検査。重視度を推定しない。",
+      "proposedDisposition": "PROBE_ONLY",
+      "measurementConclusion": "EDITORIAL_HYPOTHESIS_NO_EMPIRICAL_VALIDATION"
+    },
+    {
+      "id": "B-FU10",
+      "axis": "B",
+      "sourceEditorialStatus": "PROBE_ONLY",
+      "sourceFormat": "PROBE",
+      "relation": "PROBE",
+      "original30Primary": [
+        "B06",
+        "B04"
+      ],
+      "original30CrossAxis": [],
+      "followupBankOverlap": [
+        "B-FU06"
+      ],
+      "reason": "家族・友人・仕事の対人文脈依存を調べる。元30問にないメタ質問。",
+      "proposedDisposition": "PROBE_ONLY",
+      "measurementConclusion": "EDITORIAL_HYPOTHESIS_NO_EMPIRICAL_VALIDATION"
+    },
+    {
+      "id": "C-FU01",
+      "axis": "C",
+      "sourceEditorialStatus": "TRIAL_CANDIDATE",
+      "sourceFormat": "AB",
+      "relation": "DIRECT",
+      "original30Primary": [
+        "C01",
+        "C05"
+      ],
+      "original30CrossAxis": [
+        "E02"
+      ],
+      "followupBankOverlap": [
+        "C-FU05",
+        "C-FU07"
+      ],
+      "reason": "将来準備対今日の経験というC01の直接的な再提示。時間量の明記だけでは新しい判断条件が乏しい。",
+      "proposedDisposition": "DROP",
+      "measurementConclusion": "EDITORIAL_HYPOTHESIS_NO_EMPIRICAL_VALIDATION"
+    },
+    {
+      "id": "C-FU02",
+      "axis": "C",
+      "sourceEditorialStatus": "TRIAL_CANDIDATE",
+      "sourceFormat": "YN",
+      "relation": "DIRECT",
+      "original30Primary": [
+        "C02"
+      ],
+      "original30CrossAxis": [],
+      "followupBankOverlap": [
+        "C-FU03",
+        "C-FU06"
+      ],
+      "reason": "今日の楽しみを減らして将来に備えるC02の単独Y/N化。",
+      "proposedDisposition": "DROP",
+      "measurementConclusion": "EDITORIAL_HYPOTHESIS_NO_EMPIRICAL_VALIDATION"
+    },
+    {
+      "id": "C-FU03",
+      "axis": "C",
+      "sourceEditorialStatus": "REVISE",
+      "sourceFormat": "YN",
+      "relation": "CONDITIONAL",
+      "original30Primary": [
+        "C04",
+        "C02"
+      ],
+      "original30CrossAxis": [],
+      "followupBankOverlap": [
+        "C-FU04",
+        "C-FU06"
+      ],
+      "reason": "当日にしかない機会の希少性を導入。将来価値と希少性を混同する。",
+      "proposedDisposition": "HOLD",
+      "measurementConclusion": "EDITORIAL_HYPOTHESIS_NO_EMPIRICAL_VALIDATION"
+    },
+    {
+      "id": "C-FU04",
+      "axis": "C",
+      "sourceEditorialStatus": "REVISE",
+      "sourceFormat": "AB",
+      "relation": "CONDITIONAL",
+      "original30Primary": [
+        "C01",
+        "C04"
+      ],
+      "original30CrossAxis": [],
+      "followupBankOverlap": [
+        "C-FU03",
+        "C-FU08"
+      ],
+      "reason": "週末の限られた選択と将来便益の不確実性。C04と近いが条件操作の余地。",
+      "proposedDisposition": "REWRITE",
+      "measurementConclusion": "EDITORIAL_HYPOTHESIS_NO_EMPIRICAL_VALIDATION"
+    },
+    {
+      "id": "C-FU05",
+      "axis": "C",
+      "sourceEditorialStatus": "REVISE",
+      "sourceFormat": "AB",
+      "relation": "DIRECT",
+      "original30Primary": [
+        "C05",
+        "C01"
+      ],
+      "original30CrossAxis": [],
+      "followupBankOverlap": [
+        "C-FU01",
+        "C-FU07"
+      ],
+      "reason": "将来への小さな前進対今の満足はC05の同義言い換え。",
+      "proposedDisposition": "DROP",
+      "measurementConclusion": "EDITORIAL_HYPOTHESIS_NO_EMPIRICAL_VALIDATION"
+    },
+    {
+      "id": "C-FU06",
+      "axis": "C",
+      "sourceEditorialStatus": "REVISE",
+      "sourceFormat": "YN",
+      "relation": "CONDITIONAL",
+      "original30Primary": [
+        "C02",
+        "C03"
+      ],
+      "original30CrossAxis": [],
+      "followupBankOverlap": [
+        "C-FU02",
+        "C-FU03"
+      ],
+      "reason": "今の楽しみを後回しできる条件を操作。ただし後日にできる前提が曖昧。",
+      "proposedDisposition": "HOLD",
+      "measurementConclusion": "EDITORIAL_HYPOTHESIS_NO_EMPIRICAL_VALIDATION"
+    },
+    {
+      "id": "C-FU07",
+      "axis": "C",
+      "sourceEditorialStatus": "TRIAL_CANDIDATE",
+      "sourceFormat": "AB",
+      "relation": "CONDITIONAL",
+      "original30Primary": [
+        "C01",
+        "C05",
+        "C06"
+      ],
+      "original30CrossAxis": [
+        "E02"
+      ],
+      "followupBankOverlap": [
+        "C-FU01",
+        "C-FU05"
+      ],
+      "reason": "有限の年間余力で計画の優先順位を問う。学習vs体験の個人嗜好を統制要。",
+      "proposedDisposition": "REWRITE",
+      "measurementConclusion": "EDITORIAL_HYPOTHESIS_NO_EMPIRICAL_VALIDATION"
+    },
+    {
+      "id": "C-FU08",
+      "axis": "C",
+      "sourceEditorialStatus": "PROBE_ONLY",
+      "sourceFormat": "AB",
+      "relation": "PROBE",
+      "original30Primary": [
+        "C04"
+      ],
+      "original30CrossAxis": [],
+      "followupBankOverlap": [
+        "C-FU04",
+        "C-FU09"
+      ],
+      "reason": "確実性の非対称を意図的に入れた交絡検査。A/B形式でも分類得点に入れない。",
+      "proposedDisposition": "PROBE_ONLY",
+      "measurementConclusion": "EDITORIAL_HYPOTHESIS_NO_EMPIRICAL_VALIDATION"
+    },
+    {
+      "id": "C-FU09",
+      "axis": "C",
+      "sourceEditorialStatus": "PROBE_ONLY",
+      "sourceFormat": "PROBE",
+      "relation": "PROBE",
+      "original30Primary": [
+        "C04"
+      ],
+      "original30CrossAxis": [],
+      "followupBankOverlap": [
+        "C-FU08"
+      ],
+      "reason": "将来利益の確率の変化を聞くメタ質問。時間選好とは異なる。",
+      "proposedDisposition": "PROBE_ONLY",
+      "measurementConclusion": "EDITORIAL_HYPOTHESIS_NO_EMPIRICAL_VALIDATION"
+    },
+    {
+      "id": "C-FU10",
+      "axis": "C",
+      "sourceEditorialStatus": "PROBE_ONLY",
+      "sourceFormat": "PROBE",
+      "relation": "PROBE",
+      "original30Primary": [
+        "C02",
+        "C05"
+      ],
+      "original30CrossAxis": [
+        "E02",
+        "E04"
+      ],
+      "followupBankOverlap": [
+        "E-FU04"
+      ],
+      "reason": "余暇や健康条件が時間選好を動かすかの確認。個別の健康情報は不要。",
+      "proposedDisposition": "PROBE_ONLY",
+      "measurementConclusion": "EDITORIAL_HYPOTHESIS_NO_EMPIRICAL_VALIDATION"
+    },
+    {
+      "id": "D-FU01",
+      "axis": "D",
+      "sourceEditorialStatus": "TRIAL_CANDIDATE",
+      "sourceFormat": "AB",
+      "relation": "DIRECT",
+      "original30Primary": [
+        "D02",
+        "D01"
+      ],
+      "original30CrossAxis": [],
+      "followupBankOverlap": [
+        "D-FU05",
+        "D-FU06"
+      ],
+      "reason": "複数分野を試す対一分野を深めるのはD02の言い換え。",
+      "proposedDisposition": "DROP",
+      "measurementConclusion": "EDITORIAL_HYPOTHESIS_NO_EMPIRICAL_VALIDATION"
+    },
+    {
+      "id": "D-FU02",
+      "axis": "D",
+      "sourceEditorialStatus": "TRIAL_CANDIDATE",
+      "sourceFormat": "YN",
+      "relation": "DIRECT",
+      "original30Primary": [
+        "D06"
+      ],
+      "original30CrossAxis": [],
+      "followupBankOverlap": [
+        "D-FU03",
+        "D-FU07"
+      ],
+      "reason": "今の分野に余地がある状態で別分野へ移るのはD06の反復。",
+      "proposedDisposition": "DROP",
+      "measurementConclusion": "EDITORIAL_HYPOTHESIS_NO_EMPIRICAL_VALIDATION"
+    },
+    {
+      "id": "D-FU03",
+      "axis": "D",
+      "sourceEditorialStatus": "TRIAL_CANDIDATE",
+      "sourceFormat": "YN",
+      "relation": "DIRECT",
+      "original30Primary": [
+        "D06"
+      ],
+      "original30CrossAxis": [],
+      "followupBankOverlap": [
+        "D-FU02",
+        "D-FU07"
+      ],
+      "reason": "D-FU02と同じ題材の逆方向Y/N。反対文言としての確認は可能だが情報量は小さい。",
+      "proposedDisposition": "DROP",
+      "measurementConclusion": "EDITORIAL_HYPOTHESIS_NO_EMPIRICAL_VALIDATION"
+    },
+    {
+      "id": "D-FU04",
+      "axis": "D",
+      "sourceEditorialStatus": "TRIAL_CANDIDATE",
+      "sourceFormat": "AB",
+      "relation": "CONDITIONAL",
+      "original30Primary": [
+        "D06",
+        "D01"
+      ],
+      "original30CrossAxis": [
+        "A05"
+      ],
+      "followupBankOverlap": [
+        "D-FU07"
+      ],
+      "reason": "制作中のテーマを深めるか新規試作かという具体場面。制作しない人には不適用。",
+      "proposedDisposition": "REWRITE",
+      "measurementConclusion": "EDITORIAL_HYPOTHESIS_NO_EMPIRICAL_VALIDATION"
+    },
+    {
+      "id": "D-FU05",
+      "axis": "D",
+      "sourceEditorialStatus": "REVISE",
+      "sourceFormat": "AB",
+      "relation": "DIRECT",
+      "original30Primary": [
+        "D02",
+        "D05"
+      ],
+      "original30CrossAxis": [],
+      "followupBankOverlap": [
+        "D-FU01",
+        "D-FU06"
+      ],
+      "reason": "幅広い学習対専門深耕の直接反復。",
+      "proposedDisposition": "DROP",
+      "measurementConclusion": "EDITORIAL_HYPOTHESIS_NO_EMPIRICAL_VALIDATION"
+    },
+    {
+      "id": "D-FU06",
+      "axis": "D",
+      "sourceEditorialStatus": "REVISE",
+      "sourceFormat": "YN",
+      "relation": "DIRECT",
+      "original30Primary": [
+        "D02"
+      ],
+      "original30CrossAxis": [],
+      "followupBankOverlap": [
+        "D-FU01",
+        "D-FU05"
+      ],
+      "reason": "知る楽しさ対深い理解は同一の学習幅/深度を魅力表現しただけ。",
+      "proposedDisposition": "DROP",
+      "measurementConclusion": "EDITORIAL_HYPOTHESIS_NO_EMPIRICAL_VALIDATION"
+    },
+    {
+      "id": "D-FU07",
+      "axis": "D",
+      "sourceEditorialStatus": "TRIAL_CANDIDATE",
+      "sourceFormat": "AB",
+      "relation": "CONDITIONAL",
+      "original30Primary": [
+        "D06"
+      ],
+      "original30CrossAxis": [
+        "C03",
+        "C04"
+      ],
+      "followupBankOverlap": [
+        "D-FU02",
+        "D-FU03",
+        "D-FU04"
+      ],
+      "reason": "未解決の問いに戻るか新規学習か。進捗と将来便益の混入を統制できれば派生価値。",
+      "proposedDisposition": "REWRITE",
+      "measurementConclusion": "EDITORIAL_HYPOTHESIS_NO_EMPIRICAL_VALIDATION"
+    },
+    {
+      "id": "D-FU08",
+      "axis": "D",
+      "sourceEditorialStatus": "PROBE_ONLY",
+      "sourceFormat": "PROBE",
+      "relation": "PROBE",
+      "original30Primary": [
+        "D04"
+      ],
+      "original30CrossAxis": [
+        "A05"
+      ],
+      "followupBankOverlap": [
+        "A-FU08"
+      ],
+      "reason": "環境更新の関心と学習内容更新の関心を区別する認知的確認。採点しない。",
+      "proposedDisposition": "PROBE_ONLY",
+      "measurementConclusion": "EDITORIAL_HYPOTHESIS_NO_EMPIRICAL_VALIDATION"
+    },
+    {
+      "id": "E-FU01",
+      "axis": "E",
+      "sourceEditorialStatus": "REVISE",
+      "sourceFormat": "AB",
+      "relation": "DIRECT",
+      "original30Primary": [
+        "E01",
+        "E05"
+      ],
+      "original30CrossAxis": [],
+      "followupBankOverlap": [
+        "E-FU02",
+        "E-FU03"
+      ],
+      "reason": "経済的余裕vs時間的余裕はE01の一般化にほぼ一致。増分の非等価が残る。",
+      "proposedDisposition": "DROP",
+      "measurementConclusion": "EDITORIAL_HYPOTHESIS_NO_EMPIRICAL_VALIDATION"
+    },
+    {
+      "id": "E-FU02",
+      "axis": "E",
+      "sourceEditorialStatus": "REVISE",
+      "sourceFormat": "YN",
+      "relation": "CONDITIONAL",
+      "original30Primary": [
+        "E01",
+        "E02"
+      ],
+      "original30CrossAxis": [],
+      "followupBankOverlap": [
+        "E-FU01",
+        "E-FU03"
+      ],
+      "reason": "休養を確保する条件を追加。『少しの時間』と不明な収入増分は比較不能。",
+      "proposedDisposition": "HOLD",
+      "measurementConclusion": "EDITORIAL_HYPOTHESIS_NO_EMPIRICAL_VALIDATION"
+    },
+    {
+      "id": "E-FU03",
+      "axis": "E",
+      "sourceEditorialStatus": "REVISE",
+      "sourceFormat": "YN",
+      "relation": "CONDITIONAL",
+      "original30Primary": [
+        "E01",
+        "E05"
+      ],
+      "original30CrossAxis": [],
+      "followupBankOverlap": [
+        "E-FU01",
+        "E-FU02"
+      ],
+      "reason": "生活費の不安を取り除いた条件で時間を優先するか。ただし増分不明。",
+      "proposedDisposition": "HOLD",
+      "measurementConclusion": "EDITORIAL_HYPOTHESIS_NO_EMPIRICAL_VALIDATION"
+    },
+    {
+      "id": "E-FU04",
+      "axis": "E",
+      "sourceEditorialStatus": "PROBE_ONLY",
+      "sourceFormat": "PROBE",
+      "relation": "PROBE",
+      "original30Primary": [
+        "E05",
+        "E06"
+      ],
+      "original30CrossAxis": [
+        "C02"
+      ],
+      "followupBankOverlap": [
+        "C-FU10"
+      ],
+      "reason": "現在の不足状況への依存を問うメタ質問であり補助専用。",
+      "proposedDisposition": "PROBE_ONLY",
+      "measurementConclusion": "EDITORIAL_HYPOTHESIS_NO_EMPIRICAL_VALIDATION"
+    }
+  ],
+  "developmentRules": {
+    "base30Unmodified": true,
+    "followup40Unmodified": true,
+    "noVersionMigration": true,
+    "noAutomaticScoring": true,
+    "reviewBeforeProduction": true,
+    "routeOnlyUncertainAxes": true,
+    "triggerDocument": "docs/A05_V2_D122_FOLLOWUP_45_55_TRIGGER_POLICY_20261109.md"
+  }
+}
