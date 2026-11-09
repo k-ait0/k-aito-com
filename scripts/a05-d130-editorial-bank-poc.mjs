@@ -65,7 +65,7 @@ export function drawSimulationManifest(bank, seed, opts = {}) {
   const random = seededRng(bank.bankVersion + "|" + seed);
   const chosen = {};
   const usedOverlapGroups = new Set();
-  for (const axis of AXIS_ORDER) {
+  for (const axis of [...shuffle(["A","B","C","D"], random), "E"]) {
     const pool = shuffle(bank.items.filter(x => x.axis === axis).sort((a,b) => a.id.localeCompare(b.id)), random);
     const result = [];
     for (const item of pool) {
