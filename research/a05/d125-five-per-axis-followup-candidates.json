@@ -147,7 +147,9 @@
       "conditionAdded": "相談機会と意見衝突後の最終決定を区別",
       "distinctness": "条件付派生（レビュー前）",
       "risk": "同じ自分/他者優先でも、希望衝突と重大不利益なしの条件を導入。",
-      "pairedWith": [],
+      "pairedWith": [
+        "B-FU12"
+      ],
       "status": "CANDIDATE_NEEDS_EDITORIAL_REVIEW"
     },
     {
@@ -260,7 +262,9 @@
       "conditionAdded": "現在の学習課題が未解決の条件で新規探索か継続深耕か確認",
       "distinctness": "条件付派生（レビュー前）",
       "risk": "未解決の問いに戻るか新規学習か。進捗と将来便益の混入を統制できれば派生価値。",
-      "pairedWith": [],
+      "pairedWith": [
+        "D-FU10"
+      ],
       "status": "CANDIDATE_NEEDS_EDITORIAL_REVIEW"
     },
     {
@@ -854,7 +858,9 @@
       "conditionAdded": "労働時間と手取り収入の変更量を両方示す。条件付き追加収入を選ぶ下限を試す。",
       "distinctness": "労働時間と増収の数量アンカー",
       "risk": "月1万円と週2時間の交換条件は個人の賃金・家庭状況に依存。Noは時間重視の証明ではない",
-      "pairedWith": [],
+      "pairedWith": [
+        "E-FU08"
+      ],
       "status": "CANDIDATE_NEEDS_EDITORIAL_REVIEW",
       "conditionalOnly": true
     },
