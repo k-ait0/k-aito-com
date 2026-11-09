@@ -1,0 +1,3191 @@
+{
+  "schema": "A05-D132-HISTORICAL-CANDIDATE-RECONCILIATION-0.1",
+  "date": "2026-11-10",
+  "stage": "ARCHIVE_RECONCILIATION_NOT_QUESTION_APPROVAL",
+  "sources": {
+    "research/a05/d121-adaptive-followup-question-bank.json": "403535ec70df6c4626812ca839491d77d5c20021",
+    "research/a05/d124-filtered-adaptive-followup-pool.json": "72bfa43738d611737e8b01908f864cf2147075d9",
+    "research/a05/d125-five-per-axis-followup-candidates.json": "c53b680a7c95b94b06ec338f25535cb9e7c380f4",
+    "research/a05/d126-historical-candidate-recovery.json": "a7af33ad7ee260ca9d1602b273a512575d4d21cd",
+    "research/a05/d130-50item-editorial-candidate-bank.json": "e33ae55f662d55a113e259425b6fd32f0a99e849",
+    "research/a05/d131-full-50-editorial-screen.json": "177a3b8b0d1bc0c17b013708eefb8a3a52829523"
+  },
+  "counts": {
+    "D121_ORIGINAL_ADAPTIVE": 40,
+    "D125_FIVE_PER_AXIS": 25,
+    "D126_OLD_WORDING_VARIANTS": 63,
+    "D90_INDEPENDENT_BC": 12,
+    "D35_INDEPENDENT_E": 2,
+    "totalSourceRecords": 142,
+    "uniqueSourcesNotIndependentQuestions": true,
+    "sourceD121Excluded": 12,
+    "sourceD121Remaining": 28,
+    "sourceD125InBank": 16,
+    "sourceD125OutsideBank": 9,
+    "d126OldPairs": 63,
+    "d126IndependentBC": 12,
+    "d126IndependentE": 2
+  },
+  "classification": "NO_AUTOMATIC_PSYCHOMETRIC_ADMISSION",
+  "summary": {
+    "filtered": {
+      "d124Unused": 23,
+      "d124UnusedAB": [
+        {
+          "id": "B-FU07",
+          "axis": "B",
+          "decision": "HOLD"
+        },
+        {
+          "id": "B-FU08",
+          "axis": "B",
+          "decision": "REWRITE_REQUIRED"
+        },
+        {
+          "id": "C-FU04",
+          "axis": "C",
+          "decision": "REWRITE_REQUIRED"
+        },
+        {
+          "id": "C-FU07",
+          "axis": "C",
+          "decision": "REWRITE_REQUIRED"
+        },
+        {
+          "id": "C-FU08",
+          "axis": "C",
+          "decision": "PROBE_ONLY"
+        },
+        {
+          "id": "D-FU04",
+          "axis": "D",
+          "decision": "REWRITE_REQUIRED"
+        }
+      ],
+      "d125NotInD130": [
+        {
+          "id": "A-FU02",
+          "axis": "A",
+          "format": "YN"
+        },
+        {
+          "id": "A-FU11",
+          "axis": "A",
+          "format": "YN"
+        },
+        {
+          "id": "C-FU12",
+          "axis": "C",
+          "format": "YN"
+        },
+        {
+          "id": "C-FU13",
+          "axis": "C",
+          "format": "YN"
+        },
+        {
+          "id": "E-FU05",
+          "axis": "E",
+          "format": "YN"
+        },
+        {
+          "id": "E-FU06",
+          "axis": "E",
+          "format": "AB"
+        },
+        {
+          "id": "E-FU07",
+          "axis": "E",
+          "format": "AB"
+        },
+        {
+          "id": "E-FU08",
+          "axis": "E",
+          "format": "YN"
+        },
+        {
+          "id": "E-FU09",
+          "axis": "E",
+          "format": "AB"
+        }
+      ],
+      "independentBC": 12,
+      "independentE": 2
+    },
+    "conditionalMissingAsOfD131": {
+      "A": 4,
+      "B": 4,
+      "C": 3,
+      "D": 2,
+      "E": 2,
+      "total": 15
+    },
+    "newDirectlyApproved7PointBaseItems": 0,
+    "keyFinding": "Old records preserve valuable wording and alternate constructs but do not supply fifteen qualified extra bipolar items. A counted rewrite is not a new item; Y/N and independent scales require separate scoring."
+  },
+  "priorityComparisons": [
+    {
+      "source": "D121_ORIGINAL_ADAPTIVE",
+      "id": "A-FU07",
+      "axis": "A",
+      "format": "YN",
+      "path": "D124_REMAINING",
+      "decision": "REWRITE_REQUIRED",
+      "context": "活動内容を固定することでA/Dの混入を検査。ただし拠点好みに縮小。",
+      "notReady": true
+    },
+    {
+      "source": "D121_ORIGINAL_ADAPTIVE",
+      "id": "B-FU03",
+      "axis": "B",
+      "format": "YN",
+      "path": "D124_REMAINING",
+      "decision": "REWRITE_REQUIRED",
+      "context": "実際に自分が譲歩する条件を付けた派生。合意と他者優先は同義でない。",
+      "notReady": true
+    },
+    {
+      "source": "D121_ORIGINAL_ADAPTIVE",
+      "id": "B-FU08",
+      "axis": "B",
+      "format": "AB",
+      "path": "D124_REMAINING",
+      "decision": "REWRITE_REQUIRED",
+      "context": "共同生活ルールという追加場面。ただし自己主張/一体感が不均衡な文言。",
+      "notReady": true
+    },
+    {
+      "source": "D121_ORIGINAL_ADAPTIVE",
+      "id": "C-FU04",
+      "axis": "C",
+      "format": "AB",
+      "path": "D124_REMAINING",
+      "decision": "REWRITE_REQUIRED",
+      "context": "週末の限られた選択と将来便益の不確実性。C04と近いが条件操作の余地。",
+      "notReady": true
+    },
+    {
+      "source": "D121_ORIGINAL_ADAPTIVE",
+      "id": "C-FU07",
+      "axis": "C",
+      "format": "AB",
+      "path": "D124_REMAINING",
+      "decision": "REWRITE_REQUIRED",
+      "context": "有限の年間余力で計画の優先順位を問う。学習vs体験の個人嗜好を統制要。",
+      "notReady": true
+    },
+    {
+      "source": "D121_ORIGINAL_ADAPTIVE",
+      "id": "D-FU04",
+      "axis": "D",
+      "format": "AB",
+      "path": "D124_REMAINING",
+      "decision": "REWRITE_REQUIRED",
+      "context": "制作中のテーマを深めるか新規試作かという具体場面。制作しない人には不適用。",
+      "notReady": true
+    },
+    {
+      "source": "D125_FIVE_PER_AXIS",
+      "id": "A-FU02",
+      "axis": "A",
+      "format": "YN",
+      "path": "NOT_IN_D130",
+      "decision": "CONDITIONAL_PILOT",
+      "context": "現状不満がない条件を付け、転居希望と不満による移動を分ける可能性。",
+      "notReady": true
+    },
+    {
+      "source": "D125_FIVE_PER_AXIS",
+      "id": "A-FU11",
+      "axis": "A",
+      "format": "YN",
+      "path": "NOT_IN_D130",
+      "decision": "D125_NEW_DRAFT_UNREVIEWED",
+      "context": "不確実性への耐性やリスク回避と交絡。Noは変化志向の証拠にならない",
+      "notReady": true
+    },
+    {
+      "source": "D125_FIVE_PER_AXIS",
+      "id": "C-FU12",
+      "axis": "C",
+      "format": "YN",
+      "path": "NOT_IN_D130",
+      "decision": "D125_NEW_DRAFT_UNREVIEWED",
+      "context": "C02の直接派生のため単独で出すと重複。C-FU13と対照で使う",
+      "notReady": true
+    },
+    {
+      "source": "D125_FIVE_PER_AXIS",
+      "id": "C-FU13",
+      "axis": "C",
+      "format": "YN",
+      "path": "NOT_IN_D130",
+      "decision": "D125_NEW_DRAFT_UNREVIEWED",
+      "context": "単独ではC02の言い換え。利益量・確実性を揃えられていない",
+      "notReady": true
+    },
+    {
+      "source": "D125_FIVE_PER_AXIS",
+      "id": "E-FU05",
+      "axis": "E",
+      "format": "YN",
+      "path": "NOT_IN_D130",
+      "decision": "D125_NEW_DRAFT_UNREVIEWED",
+      "context": "月1万円と週2時間の交換条件は個人の賃金・家庭状況に依存。Noは時間重視の証明ではない",
+      "notReady": true
+    },
+    {
+      "source": "D125_FIVE_PER_AXIS",
+      "id": "E-FU06",
+      "axis": "E",
+      "format": "AB",
+      "path": "NOT_IN_D130",
+      "decision": "D125_NEW_DRAFT_UNREVIEWED",
+      "context": "E03に意味が非常に近い。固定レート1万円/4時間への価格感応度の試行以外には使わない",
+      "notReady": true
+    },
+    {
+      "source": "D125_FIVE_PER_AXIS",
+      "id": "E-FU07",
+      "axis": "E",
+      "format": "AB",
+      "path": "NOT_IN_D130",
+      "decision": "D125_NEW_DRAFT_UNREVIEWED",
+      "context": "金額と休暇の個人的価値は等しくない。雇用形態・休暇取得の現実性に左右される。金額・時間アンカーが結論を誘導する可能性。",
+      "notReady": true
+    },
+    {
+      "source": "D125_FIVE_PER_AXIS",
+      "id": "E-FU08",
+      "axis": "E",
+      "format": "YN",
+      "path": "NOT_IN_D130",
+      "decision": "D125_NEW_DRAFT_UNREVIEWED",
+      "context": "E-FU05との価格条件が異なる。Yesの強さは所得状況・賃金に左右される",
+      "notReady": true
+    },
+    {
+      "source": "D125_FIVE_PER_AXIS",
+      "id": "E-FU09",
+      "axis": "E",
+      "format": "AB",
+      "path": "NOT_IN_D130",
+      "decision": "D125_NEW_DRAFT_UNREVIEWED",
+      "context": "時間帯変更を選べる仕事に限定。E軸の『時間的自由』の定義見直しが必要",
+      "notReady": true
+    },
+    {
+      "source": "D90_INDEPENDENT_BC",
+      "id": "B-S01",
+      "axis": "B",
+      "format": "INDEPENDENT_IMPORTANCE",
+      "path": "ALTERNATIVE_MODEL_ONLY",
+      "decision": "REQUIRES_NEW_SCORING_ARCHITECTURE",
+      "context": "D90: independent high/low measures differ from bipolar forced-tradeoff constructs",
+      "notReady": true
+    },
+    {
+      "source": "D90_INDEPENDENT_BC",
+      "id": "B-S02",
+      "axis": "B",
+      "format": "INDEPENDENT_IMPORTANCE",
+      "path": "ALTERNATIVE_MODEL_ONLY",
+      "decision": "REQUIRES_NEW_SCORING_ARCHITECTURE",
+      "context": "D90: independent high/low measures differ from bipolar forced-tradeoff constructs",
+      "notReady": true
+    },
+    {
+      "source": "D90_INDEPENDENT_BC",
+      "id": "B-S03",
+      "axis": "B",
+      "format": "INDEPENDENT_IMPORTANCE",
+      "path": "ALTERNATIVE_MODEL_ONLY",
+      "decision": "REQUIRES_NEW_SCORING_ARCHITECTURE",
+      "context": "D90: independent high/low measures differ from bipolar forced-tradeoff constructs",
+      "notReady": true
+    },
+    {
+      "source": "D90_INDEPENDENT_BC",
+      "id": "B-R01",
+      "axis": "B",
+      "format": "INDEPENDENT_IMPORTANCE",
+      "path": "ALTERNATIVE_MODEL_ONLY",
+      "decision": "REQUIRES_NEW_SCORING_ARCHITECTURE",
+      "context": "D90: independent high/low measures differ from bipolar forced-tradeoff constructs",
+      "notReady": true
+    },
+    {
+      "source": "D90_INDEPENDENT_BC",
+      "id": "B-R02",
+      "axis": "B",
+      "format": "INDEPENDENT_IMPORTANCE",
+      "path": "ALTERNATIVE_MODEL_ONLY",
+      "decision": "REQUIRES_NEW_SCORING_ARCHITECTURE",
+      "context": "D90: independent high/low measures differ from bipolar forced-tradeoff constructs",
+      "notReady": true
+    },
+    {
+      "source": "D90_INDEPENDENT_BC",
+      "id": "B-R03",
+      "axis": "B",
+      "format": "INDEPENDENT_IMPORTANCE",
+      "path": "ALTERNATIVE_MODEL_ONLY",
+      "decision": "REQUIRES_NEW_SCORING_ARCHITECTURE",
+      "context": "D90: independent high/low measures differ from bipolar forced-tradeoff constructs",
+      "notReady": true
+    },
+    {
+      "source": "D90_INDEPENDENT_BC",
+      "id": "C-F01",
+      "axis": "C",
+      "format": "INDEPENDENT_IMPORTANCE",
+      "path": "ALTERNATIVE_MODEL_ONLY",
+      "decision": "REQUIRES_NEW_SCORING_ARCHITECTURE",
+      "context": "D90: independent high/low measures differ from bipolar forced-tradeoff constructs",
+      "notReady": true
+    },
+    {
+      "source": "D90_INDEPENDENT_BC",
+      "id": "C-F02",
+      "axis": "C",
+      "format": "INDEPENDENT_IMPORTANCE",
+      "path": "ALTERNATIVE_MODEL_ONLY",
+      "decision": "REQUIRES_NEW_SCORING_ARCHITECTURE",
+      "context": "D90: independent high/low measures differ from bipolar forced-tradeoff constructs",
+      "notReady": true
+    },
+    {
+      "source": "D90_INDEPENDENT_BC",
+      "id": "C-F03",
+      "axis": "C",
+      "format": "INDEPENDENT_IMPORTANCE",
+      "path": "ALTERNATIVE_MODEL_ONLY",
+      "decision": "REQUIRES_NEW_SCORING_ARCHITECTURE",
+      "context": "D90: independent high/low measures differ from bipolar forced-tradeoff constructs",
+      "notReady": true
+    },
+    {
+      "source": "D90_INDEPENDENT_BC",
+      "id": "C-P01",
+      "axis": "C",
+      "format": "INDEPENDENT_IMPORTANCE",
+      "path": "ALTERNATIVE_MODEL_ONLY",
+      "decision": "HISTORICAL_C_PRESENT_3_BLOCK",
+      "context": "D94: C-P01/P02/P03 blocked for C-P1 aggregation",
+      "notReady": true
+    },
+    {
+      "source": "D90_INDEPENDENT_BC",
+      "id": "C-P02",
+      "axis": "C",
+      "format": "INDEPENDENT_IMPORTANCE",
+      "path": "ALTERNATIVE_MODEL_ONLY",
+      "decision": "HISTORICAL_C_PRESENT_3_BLOCK",
+      "context": "D94: C-P01/P02/P03 blocked for C-P1 aggregation",
+      "notReady": true
+    },
+    {
+      "source": "D90_INDEPENDENT_BC",
+      "id": "C-P03",
+      "axis": "C",
+      "format": "INDEPENDENT_IMPORTANCE",
+      "path": "ALTERNATIVE_MODEL_ONLY",
+      "decision": "HISTORICAL_C_PRESENT_3_BLOCK",
+      "context": "D94: C-P01/P02/P03 blocked for C-P1 aggregation",
+      "notReady": true
+    },
+    {
+      "source": "D35_INDEPENDENT_E",
+      "id": "E05-M",
+      "axis": "E",
+      "format": "INDEPENDENT_IMPORTANCE",
+      "path": "ALTERNATIVE_MODEL_ONLY",
+      "decision": "REQUIRES_NEW_SCORING_ARCHITECTURE",
+      "context": "Can distinguish both-high/both-low hypothetically; not a 2-item bipolar E score",
+      "notReady": true
+    },
+    {
+      "source": "D35_INDEPENDENT_E",
+      "id": "E05-T",
+      "axis": "E",
+      "format": "INDEPENDENT_IMPORTANCE",
+      "path": "ALTERNATIVE_MODEL_ONLY",
+      "decision": "REQUIRES_NEW_SCORING_ARCHITECTURE",
+      "context": "Can distinguish both-high/both-low hypothetically; not a 2-item bipolar E score",
+      "notReady": true
+    }
+  ],
+  "records": [
+    {
+      "source": "D121_ORIGINAL_ADAPTIVE",
+      "sourceId": "A-FU01",
+      "axis": "A",
+      "originalFormat": "AB",
+      "wording": "数年間の生活拠点を選べ、どちらも安全で暮らしやすい場合、どちらを選びますか？",
+      "decision": "DIRECT_DUPLICATE_EXCLUDED",
+      "previousReason": "生活拠点の既存対新規がA01と同一。安全条件は回答文脈の微修正に過ぎない。",
+      "comparisonToBase": [
+        "A01"
+      ],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "D124_EXCLUDED",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "D121 AB/YN/PROBE formats are not automatically equivalent to 7-step bipolar scoring"
+    },
+    {
+      "source": "D121_ORIGINAL_ADAPTIVE",
+      "sourceId": "A-FU02",
+      "axis": "A",
+      "originalFormat": "YN",
+      "wording": "今の生活環境に大きな不満がなくても、数年ごとに生活の拠点を変える暮らしを選びたいですか？",
+      "decision": "CONDITIONAL_PILOT",
+      "previousReason": "現状不満がない条件を付け、転居希望と不満による移動を分ける可能性。",
+      "comparisonToBase": [
+        "A01",
+        "A05"
+      ],
+      "currentlyInD130": false,
+      "reusedByD125": true,
+      "candidatePath": "D124_REMAINING",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "D121 AB/YN/PROBE formats are not automatically equivalent to 7-step bipolar scoring"
+    },
+    {
+      "source": "D121_ORIGINAL_ADAPTIVE",
+      "sourceId": "A-FU03",
+      "axis": "A",
+      "originalFormat": "AB",
+      "wording": "同じ仕事と趣味を続けられ、生活の負担も同程度なら、今後の生活ルールはどうしたいですか？",
+      "decision": "DIRECT_DUPLICATE_EXCLUDED",
+      "previousReason": "ルーティン維持対刷新はA04の言い換え。仕事内容固定条件だけでは増分が小さい。",
+      "comparisonToBase": [
+        "A04"
+      ],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "D124_EXCLUDED",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "D121 AB/YN/PROBE formats are not automatically equivalent to 7-step bipolar scoring"
+    },
+    {
+      "source": "D121_ORIGINAL_ADAPTIVE",
+      "sourceId": "A-FU04",
+      "axis": "A",
+      "originalFormat": "YN",
+      "wording": "暮らしに不満がない場合、住む場所や生活の仕組みは長く維持できる方が魅力的ですか？",
+      "decision": "HOLD",
+      "previousReason": "不満なしを加えるが場所・生活の仕組みの二題混在。条件ごとに分割要。",
+      "comparisonToBase": [
+        "A01",
+        "A04"
+      ],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "D124_REMAINING",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "D121 AB/YN/PROBE formats are not automatically equivalent to 7-step bipolar scoring"
+    },
+    {
+      "source": "D121_ORIGINAL_ADAPTIVE",
+      "sourceId": "A-FU05",
+      "axis": "A",
+      "originalFormat": "AB",
+      "wording": "新しい環境にも現在の環境にも同じくらい便利な設備がある場合、生活の仕組みとしてより好むのはどちらですか？",
+      "decision": "CONDITIONAL_PILOT",
+      "previousReason": "設備の便利さを統一。生活システム継続/刷新はA04より限定された文脈。",
+      "comparisonToBase": [
+        "A04",
+        "A06"
+      ],
+      "currentlyInD130": true,
+      "reusedByD125": true,
+      "candidatePath": "D124_REMAINING",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "D121 AB/YN/PROBE formats are not automatically equivalent to 7-step bipolar scoring"
+    },
+    {
+      "source": "D121_ORIGINAL_ADAPTIVE",
+      "sourceId": "A-FU06",
+      "axis": "A",
+      "originalFormat": "AB",
+      "wording": "もし仕事や関係する人が変わらないとしたら、拠点のあり方はどちらに魅力を感じますか？",
+      "decision": "DIRECT_DUPLICATE_EXCLUDED",
+      "previousReason": "一地域対複数地域はA01の近似。関係者が変わらない設定は不自然。",
+      "comparisonToBase": [
+        "A01",
+        "A03"
+      ],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "D124_EXCLUDED",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "D121 AB/YN/PROBE formats are not automatically equivalent to 7-step bipolar scoring"
+    },
+    {
+      "source": "D121_ORIGINAL_ADAPTIVE",
+      "sourceId": "A-FU07",
+      "axis": "A",
+      "originalFormat": "YN",
+      "wording": "同じ活動内容であっても、慣れた拠点に留まるより新しい拠点へ移る方を選ぶことが多いと思いますか？",
+      "decision": "REWRITE_REQUIRED",
+      "previousReason": "活動内容を固定することでA/Dの混入を検査。ただし拠点好みに縮小。",
+      "comparisonToBase": [
+        "A05"
+      ],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "D124_REMAINING",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "D121 AB/YN/PROBE formats are not automatically equivalent to 7-step bipolar scoring"
+    },
+    {
+      "source": "D121_ORIGINAL_ADAPTIVE",
+      "sourceId": "A-FU08",
+      "axis": "A",
+      "originalFormat": "PROBE",
+      "wording": "環境を変えたいと思う理由は、新しいことを学びたいという気持ちとは別にありますか？",
+      "decision": "PROBE_ONLY",
+      "previousReason": "環境変更の理由と学習変更を区別する認知的確認。元30問の同義反復ではないが採点不可。",
+      "comparisonToBase": [
+        "A05"
+      ],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "D124_REMAINING",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "D121 AB/YN/PROBE formats are not automatically equivalent to 7-step bipolar scoring"
+    },
+    {
+      "source": "D121_ORIGINAL_ADAPTIVE",
+      "sourceId": "B-FU01",
+      "axis": "B",
+      "originalFormat": "AB",
+      "wording": "親しい人と共同で決める予定について、話し合っても双方の希望が一致しないとき、重大な不利益がなければ何を優先しますか？",
+      "decision": "CONDITIONAL_PILOT",
+      "previousReason": "同じ自分/他者優先でも、希望衝突と重大不利益なしの条件を導入。",
+      "comparisonToBase": [
+        "B01",
+        "B04"
+      ],
+      "currentlyInD130": true,
+      "reusedByD125": true,
+      "candidatePath": "D124_REMAINING",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "D121 AB/YN/PROBE formats are not automatically equivalent to 7-step bipolar scoring"
+    },
+    {
+      "source": "D121_ORIGINAL_ADAPTIVE",
+      "sourceId": "B-FU02",
+      "axis": "B",
+      "originalFormat": "YN",
+      "wording": "関係者の意見を十分に聞いた後でも、決定の責任を自分で持つ場合は、自分の希望を最優先したいですか？",
+      "decision": "HOLD",
+      "previousReason": "決定責任を負う場合という制約。自己責任という規範が混入する。",
+      "comparisonToBase": [
+        "B01",
+        "B06"
+      ],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "D124_REMAINING",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "D121 AB/YN/PROBE formats are not automatically equivalent to 7-step bipolar scoring"
+    },
+    {
+      "source": "D121_ORIGINAL_ADAPTIVE",
+      "sourceId": "B-FU03",
+      "axis": "B",
+      "originalFormat": "YN",
+      "wording": "対等な立場の人と意見が一致しないとき、自分の希望を一部変えてでも、その人との合意を優先しますか？",
+      "decision": "REWRITE_REQUIRED",
+      "previousReason": "実際に自分が譲歩する条件を付けた派生。合意と他者優先は同義でない。",
+      "comparisonToBase": [
+        "B01",
+        "B04"
+      ],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "D124_REMAINING",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "D121 AB/YN/PROBE formats are not automatically equivalent to 7-step bipolar scoring"
+    },
+    {
+      "source": "D121_ORIGINAL_ADAPTIVE",
+      "sourceId": "B-FU04",
+      "axis": "B",
+      "originalFormat": "AB",
+      "wording": "共同活動の進め方で、成果と負担が同程度の案が二つあり意見が割れた場合、どちらを選びますか？",
+      "decision": "CONDITIONAL_PILOT",
+      "previousReason": "協働の成果・負担を同等に固定した紛争場面。B05の単独/協働選好とは異なる。",
+      "comparisonToBase": [
+        "B05",
+        "B01"
+      ],
+      "currentlyInD130": true,
+      "reusedByD125": true,
+      "candidatePath": "D124_REMAINING",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "D121 AB/YN/PROBE formats are not automatically equivalent to 7-step bipolar scoring"
+    },
+    {
+      "source": "D121_ORIGINAL_ADAPTIVE",
+      "sourceId": "B-FU05",
+      "axis": "B",
+      "originalFormat": "AB",
+      "wording": "身近な人と余暇の過ごし方が食い違い、どちらの案も安全で費用が同じなら、より納得できるのはどちらですか？",
+      "decision": "CONDITIONAL_PILOT",
+      "previousReason": "費用・安全を固定した余暇の希望衝突。B02の一人/集団好みとは区別可能。",
+      "comparisonToBase": [
+        "B04",
+        "B02"
+      ],
+      "currentlyInD130": true,
+      "reusedByD125": true,
+      "candidatePath": "D124_REMAINING",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "D121 AB/YN/PROBE formats are not automatically equivalent to 7-step bipolar scoring"
+    },
+    {
+      "source": "D121_ORIGINAL_ADAPTIVE",
+      "sourceId": "B-FU06",
+      "axis": "B",
+      "originalFormat": "YN",
+      "wording": "自分の価値観と違う案でも、相手にとって大切なことであれば、関係の維持を優先して選びたいですか？",
+      "decision": "HOLD",
+      "previousReason": "相手の重要度と関係維持の倫理を加えた派生。社会的望ましさが強い。",
+      "comparisonToBase": [
+        "B03",
+        "B06"
+      ],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "D124_REMAINING",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "D121 AB/YN/PROBE formats are not automatically equivalent to 7-step bipolar scoring"
+    },
+    {
+      "source": "D121_ORIGINAL_ADAPTIVE",
+      "sourceId": "B-FU07",
+      "axis": "B",
+      "originalFormat": "AB",
+      "wording": "自分が一人で責任を負う選択に周囲から異なる希望が出された場合、どちらをより重視しますか？",
+      "decision": "HOLD",
+      "previousReason": "一人で責任を負う点を追加。B-FU02と正反対極性の同一題材に近い。",
+      "comparisonToBase": [
+        "B01",
+        "B06"
+      ],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "D124_REMAINING",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "D121 AB/YN/PROBE formats are not automatically equivalent to 7-step bipolar scoring"
+    },
+    {
+      "source": "D121_ORIGINAL_ADAPTIVE",
+      "sourceId": "B-FU08",
+      "axis": "B",
+      "originalFormat": "AB",
+      "wording": "家計や生活の共同ルールを対等に決めるとき、お互いに不利益の少ない二案ならどちらを選びますか？",
+      "decision": "REWRITE_REQUIRED",
+      "previousReason": "共同生活ルールという追加場面。ただし自己主張/一体感が不均衡な文言。",
+      "comparisonToBase": [
+        "B06",
+        "B04"
+      ],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "D124_REMAINING",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "D121 AB/YN/PROBE formats are not automatically equivalent to 7-step bipolar scoring"
+    },
+    {
+      "source": "D121_ORIGINAL_ADAPTIVE",
+      "sourceId": "B-FU09",
+      "axis": "B",
+      "originalFormat": "PROBE",
+      "wording": "自分の希望も相手の希望も両方大事なので、どちらか片方だけを選ぶ質問は答えにくいですか？",
+      "decision": "PROBE_ONLY",
+      "previousReason": "両方大切による二極形式の不適用を質問自体として検査。重視度を推定しない。",
+      "comparisonToBase": [
+        "B01",
+        "B04"
+      ],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "D124_REMAINING",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "D121 AB/YN/PROBE formats are not automatically equivalent to 7-step bipolar scoring"
+    },
+    {
+      "source": "D121_ORIGINAL_ADAPTIVE",
+      "sourceId": "B-FU10",
+      "axis": "B",
+      "originalFormat": "PROBE",
+      "wording": "判断する相手が家族・友人・仕事仲間のどれかによって、優先する基準が大きく変わりますか？",
+      "decision": "PROBE_ONLY",
+      "previousReason": "家族・友人・仕事の対人文脈依存を調べる。元30問にないメタ質問。",
+      "comparisonToBase": [
+        "B06",
+        "B04"
+      ],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "D124_REMAINING",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "D121 AB/YN/PROBE formats are not automatically equivalent to 7-step bipolar scoring"
+    },
+    {
+      "source": "D121_ORIGINAL_ADAPTIVE",
+      "sourceId": "C-FU01",
+      "axis": "C",
+      "originalFormat": "AB",
+      "wording": "自由に使える時間が週に同じだけあり、基本的な休息や義務を満たせる場合、その時間はどちらに使いたいですか？",
+      "decision": "DIRECT_DUPLICATE_EXCLUDED",
+      "previousReason": "将来準備対今日の経験というC01の直接的な再提示。時間量の明記だけでは新しい判断条件が乏しい。",
+      "comparisonToBase": [
+        "C01",
+        "C05"
+      ],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "D124_EXCLUDED",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "D121 AB/YN/PROBE formats are not automatically equivalent to 7-step bipolar scoring"
+    },
+    {
+      "source": "D121_ORIGINAL_ADAPTIVE",
+      "sourceId": "C-FU02",
+      "axis": "C",
+      "originalFormat": "YN",
+      "wording": "今日の楽しみを少し減らす必要があっても、数年後の選択肢を増やす準備を優先したいですか？",
+      "decision": "DIRECT_DUPLICATE_EXCLUDED",
+      "previousReason": "今日の楽しみを減らして将来に備えるC02の単独Y/N化。",
+      "comparisonToBase": [
+        "C02"
+      ],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "D124_EXCLUDED",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "D121 AB/YN/PROBE formats are not automatically equivalent to 7-step bipolar scoring"
+    },
+    {
+      "source": "D121_ORIGINAL_ADAPTIVE",
+      "sourceId": "C-FU03",
+      "axis": "C",
+      "originalFormat": "YN",
+      "wording": "将来の役立ち方がはっきりしている活動があっても、その日にしかできない経験を選ぶことがありますか？",
+      "decision": "HOLD",
+      "previousReason": "当日にしかない機会の希少性を導入。将来価値と希少性を混同する。",
+      "comparisonToBase": [
+        "C04",
+        "C02"
+      ],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "D124_REMAINING",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "D121 AB/YN/PROBE formats are not automatically equivalent to 7-step bipolar scoring"
+    },
+    {
+      "source": "D121_ORIGINAL_ADAPTIVE",
+      "sourceId": "C-FU04",
+      "axis": "C",
+      "originalFormat": "AB",
+      "wording": "余裕のある週末に、どちらか一つの活動しか選べず負担は同程度なら、どちらに魅力を感じますか？",
+      "decision": "REWRITE_REQUIRED",
+      "previousReason": "週末の限られた選択と将来便益の不確実性。C04と近いが条件操作の余地。",
+      "comparisonToBase": [
+        "C01",
+        "C04"
+      ],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "D124_REMAINING",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "D121 AB/YN/PROBE formats are not automatically equivalent to 7-step bipolar scoring"
+    },
+    {
+      "source": "D121_ORIGINAL_ADAPTIVE",
+      "sourceId": "C-FU05",
+      "axis": "C",
+      "originalFormat": "AB",
+      "wording": "準備に使える時間が限られる中、どちらも将来と現在にそれぞれ同程度の価値があると感じる場合、何を優先しますか？",
+      "decision": "DIRECT_DUPLICATE_EXCLUDED",
+      "previousReason": "将来への小さな前進対今の満足はC05の同義言い換え。",
+      "comparisonToBase": [
+        "C05",
+        "C01"
+      ],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "D124_EXCLUDED",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "D121 AB/YN/PROBE formats are not automatically equivalent to 7-step bipolar scoring"
+    },
+    {
+      "source": "D121_ORIGINAL_ADAPTIVE",
+      "sourceId": "C-FU06",
+      "axis": "C",
+      "originalFormat": "YN",
+      "wording": "今の楽しみを後日に回せる場合でも、目先の経験を選んで満足したいと思いますか？",
+      "decision": "HOLD",
+      "previousReason": "今の楽しみを後回しできる条件を操作。ただし後日にできる前提が曖昧。",
+      "comparisonToBase": [
+        "C02",
+        "C03"
+      ],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "D124_REMAINING",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "D121 AB/YN/PROBE formats are not automatically equivalent to 7-step bipolar scoring"
+    },
+    {
+      "source": "D121_ORIGINAL_ADAPTIVE",
+      "sourceId": "C-FU07",
+      "axis": "C",
+      "originalFormat": "AB",
+      "wording": "今年自由に使える余力を分けるなら、どちらの計画を先に満たしたいですか？",
+      "decision": "REWRITE_REQUIRED",
+      "previousReason": "有限の年間余力で計画の優先順位を問う。学習vs体験の個人嗜好を統制要。",
+      "comparisonToBase": [
+        "C01",
+        "C05",
+        "C06"
+      ],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "D124_REMAINING",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "D121 AB/YN/PROBE formats are not automatically equivalent to 7-step bipolar scoring"
+    },
+    {
+      "source": "D121_ORIGINAL_ADAPTIVE",
+      "sourceId": "C-FU08",
+      "axis": "C",
+      "originalFormat": "AB",
+      "wording": "同じ時間の使い道を決めるとき、成果がまだ確実でない将来準備と確実に楽しめる今の経験ではどちらを選びますか？",
+      "decision": "PROBE_ONLY",
+      "previousReason": "確実性の非対称を意図的に入れた交絡検査。A/B形式でも分類得点に入れない。",
+      "comparisonToBase": [
+        "C04"
+      ],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "D124_REMAINING",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "D121 AB/YN/PROBE formats are not automatically equivalent to 7-step bipolar scoring"
+    },
+    {
+      "source": "D121_ORIGINAL_ADAPTIVE",
+      "sourceId": "C-FU09",
+      "axis": "C",
+      "originalFormat": "PROBE",
+      "wording": "将来得られる利益が確実かどうかによって、今と将来のどちらを選ぶかが変わりますか？",
+      "decision": "PROBE_ONLY",
+      "previousReason": "将来利益の確率の変化を聞くメタ質問。時間選好とは異なる。",
+      "comparisonToBase": [
+        "C04"
+      ],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "D124_REMAINING",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "D121 AB/YN/PROBE formats are not automatically equivalent to 7-step bipolar scoring"
+    },
+    {
+      "source": "D121_ORIGINAL_ADAPTIVE",
+      "sourceId": "C-FU10",
+      "axis": "C",
+      "originalFormat": "PROBE",
+      "wording": "日常の時間的余裕や健康上の条件が変わると、今と将来のどちらを優先するかも変わりますか？",
+      "decision": "PROBE_ONLY",
+      "previousReason": "余暇や健康条件が時間選好を動かすかの確認。個別の健康情報は不要。",
+      "comparisonToBase": [
+        "C02",
+        "C05"
+      ],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "D124_REMAINING",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "D121 AB/YN/PROBE formats are not automatically equivalent to 7-step bipolar scoring"
+    },
+    {
+      "source": "D121_ORIGINAL_ADAPTIVE",
+      "sourceId": "D-FU01",
+      "axis": "D",
+      "originalFormat": "AB",
+      "wording": "暮らしの場所や仕事はそのままで、同じ学習時間を使うなら、どちらを優先しますか？",
+      "decision": "DIRECT_DUPLICATE_EXCLUDED",
+      "previousReason": "複数分野を試す対一分野を深めるのはD02の言い換え。",
+      "comparisonToBase": [
+        "D02",
+        "D01"
+      ],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "D124_EXCLUDED",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "D121 AB/YN/PROBE formats are not automatically equivalent to 7-step bipolar scoring"
+    },
+    {
+      "source": "D121_ORIGINAL_ADAPTIVE",
+      "sourceId": "D-FU02",
+      "axis": "D",
+      "originalFormat": "YN",
+      "wording": "今取り組んでいる分野に学ぶ余地が十分残っていても、別の分野に取り組む時間を優先したいですか？",
+      "decision": "DIRECT_DUPLICATE_EXCLUDED",
+      "previousReason": "今の分野に余地がある状態で別分野へ移るのはD06の反復。",
+      "comparisonToBase": [
+        "D06"
+      ],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "D124_EXCLUDED",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "D121 AB/YN/PROBE formats are not automatically equivalent to 7-step bipolar scoring"
+    },
+    {
+      "source": "D121_ORIGINAL_ADAPTIVE",
+      "sourceId": "D-FU03",
+      "axis": "D",
+      "originalFormat": "YN",
+      "wording": "興味のある新分野が見つかっても、しばらくは今の専門テーマを掘り下げる方を優先したいですか？",
+      "decision": "DIRECT_DUPLICATE_EXCLUDED",
+      "previousReason": "D-FU02と同じ題材の逆方向Y/N。反対文言としての確認は可能だが情報量は小さい。",
+      "comparisonToBase": [
+        "D06"
+      ],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "D124_EXCLUDED",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "D121 AB/YN/PROBE formats are not automatically equivalent to 7-step bipolar scoring"
+    },
+    {
+      "source": "D121_ORIGINAL_ADAPTIVE",
+      "sourceId": "D-FU04",
+      "axis": "D",
+      "originalFormat": "AB",
+      "wording": "新しい制作テーマと進行中の制作テーマがどちらも魅力的で、同じ時間しか使えない場合、どちらを選びますか？",
+      "decision": "REWRITE_REQUIRED",
+      "previousReason": "制作中のテーマを深めるか新規試作かという具体場面。制作しない人には不適用。",
+      "comparisonToBase": [
+        "D06",
+        "D01"
+      ],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "D124_REMAINING",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "D121 AB/YN/PROBE formats are not automatically equivalent to 7-step bipolar scoring"
+    },
+    {
+      "source": "D121_ORIGINAL_ADAPTIVE",
+      "sourceId": "D-FU05",
+      "axis": "D",
+      "originalFormat": "AB",
+      "wording": "数か月の自己学習計画を自由に組め、成果や費用の条件が同程度なら、どう進めたいですか？",
+      "decision": "DIRECT_DUPLICATE_EXCLUDED",
+      "previousReason": "幅広い学習対専門深耕の直接反復。",
+      "comparisonToBase": [
+        "D02",
+        "D05"
+      ],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "D124_EXCLUDED",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "D121 AB/YN/PROBE formats are not automatically equivalent to 7-step bipolar scoring"
+    },
+    {
+      "source": "D121_ORIGINAL_ADAPTIVE",
+      "sourceId": "D-FU06",
+      "axis": "D",
+      "originalFormat": "YN",
+      "wording": "専門テーマを深く理解している実感が、複数の新しいテーマを知る楽しさより重要ですか？",
+      "decision": "DIRECT_DUPLICATE_EXCLUDED",
+      "previousReason": "知る楽しさ対深い理解は同一の学習幅/深度を魅力表現しただけ。",
+      "comparisonToBase": [
+        "D02"
+      ],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "D124_EXCLUDED",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "D121 AB/YN/PROBE formats are not automatically equivalent to 7-step bipolar scoring"
+    },
+    {
+      "source": "D121_ORIGINAL_ADAPTIVE",
+      "sourceId": "D-FU07",
+      "axis": "D",
+      "originalFormat": "AB",
+      "wording": "すでに学んでいる内容に未解決の問いが残っており、別の興味深い分野もあるとき、次の時間をどちらに割きますか？",
+      "decision": "CONDITIONAL_PILOT",
+      "previousReason": "未解決の問いに戻るか新規学習か。進捗と将来便益の混入を統制できれば派生価値。",
+      "comparisonToBase": [
+        "D06"
+      ],
+      "currentlyInD130": true,
+      "reusedByD125": true,
+      "candidatePath": "D124_REMAINING",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "D121 AB/YN/PROBE formats are not automatically equivalent to 7-step bipolar scoring"
+    },
+    {
+      "source": "D121_ORIGINAL_ADAPTIVE",
+      "sourceId": "D-FU08",
+      "axis": "D",
+      "originalFormat": "PROBE",
+      "wording": "生活する場所や働く環境を変えたい気持ちと、学びたい分野を変えたい気持ちは別のものだと感じますか？",
+      "decision": "PROBE_ONLY",
+      "previousReason": "環境更新の関心と学習内容更新の関心を区別する認知的確認。採点しない。",
+      "comparisonToBase": [
+        "D04"
+      ],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "D124_REMAINING",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "D121 AB/YN/PROBE formats are not automatically equivalent to 7-step bipolar scoring"
+    },
+    {
+      "source": "D121_ORIGINAL_ADAPTIVE",
+      "sourceId": "E-FU01",
+      "axis": "E",
+      "originalFormat": "AB",
+      "wording": "基本的な生活費と休息が確保され、追加の余裕をどちらか一つ得られるなら、今のあなたは何を優先しますか？",
+      "decision": "DIRECT_DUPLICATE_EXCLUDED",
+      "previousReason": "経済的余裕vs時間的余裕はE01の一般化にほぼ一致。増分の非等価が残る。",
+      "comparisonToBase": [
+        "E01",
+        "E05"
+      ],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "D124_EXCLUDED",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "D121 AB/YN/PROBE formats are not automatically equivalent to 7-step bipolar scoring"
+    },
+    {
+      "source": "D121_ORIGINAL_ADAPTIVE",
+      "sourceId": "E-FU02",
+      "axis": "E",
+      "originalFormat": "YN",
+      "wording": "十分な休息はあるとして、自由時間を少し増やすよりも、使い道を選べる追加収入の方を優先したいですか？",
+      "decision": "HOLD",
+      "previousReason": "休養を確保する条件を追加。『少しの時間』と不明な収入増分は比較不能。",
+      "comparisonToBase": [
+        "E01",
+        "E02"
+      ],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "D124_REMAINING",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "D121 AB/YN/PROBE formats are not automatically equivalent to 7-step bipolar scoring"
+    },
+    {
+      "source": "D121_ORIGINAL_ADAPTIVE",
+      "sourceId": "E-FU03",
+      "axis": "E",
+      "originalFormat": "YN",
+      "wording": "生活費に不安がないとして、追加収入よりも予定を自由に使える時間を増やしたいですか？",
+      "decision": "HOLD",
+      "previousReason": "生活費の不安を取り除いた条件で時間を優先するか。ただし増分不明。",
+      "comparisonToBase": [
+        "E01",
+        "E05"
+      ],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "D124_REMAINING",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "D121 AB/YN/PROBE formats are not automatically equivalent to 7-step bipolar scoring"
+    },
+    {
+      "source": "D121_ORIGINAL_ADAPTIVE",
+      "sourceId": "E-FU04",
+      "axis": "E",
+      "originalFormat": "PROBE",
+      "wording": "収入・家計・休養の状況が変われば、お金と自由時間のどちらを重視するかも大きく変わりますか？",
+      "decision": "PROBE_ONLY",
+      "previousReason": "現在の不足状況への依存を問うメタ質問であり補助専用。",
+      "comparisonToBase": [
+        "E05",
+        "E06"
+      ],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "D124_REMAINING",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "D121 AB/YN/PROBE formats are not automatically equivalent to 7-step bipolar scoring"
+    },
+    {
+      "source": "D125_FIVE_PER_AXIS",
+      "sourceId": "A-FU02",
+      "axis": "A",
+      "originalFormat": "YN",
+      "wording": "今の生活環境に大きな不満がなくても、数年ごとに生活の拠点を変える暮らしを選びたいですか？",
+      "decision": "CONDITIONAL_PILOT",
+      "previousReason": "現状不満がない条件を付け、転居希望と不満による移動を分ける可能性。",
+      "comparisonToBase": [
+        "A01",
+        "A05"
+      ],
+      "currentlyInD130": false,
+      "reusedByD125": true,
+      "candidatePath": "NOT_IN_D130",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "AB options only mocked as 7-point endpoints, Y/N needs separate scoring and cannot be counted as a base question"
+    },
+    {
+      "source": "D125_FIVE_PER_AXIS",
+      "sourceId": "A-FU05",
+      "axis": "A",
+      "originalFormat": "AB",
+      "wording": "新しい環境にも現在の環境にも同じくらい便利な設備がある場合、生活の仕組みとしてより好むのはどちらですか？",
+      "decision": "USED_AS_UNCALIBRATED_AB_MOCK",
+      "previousReason": "設備の便利さを統一。生活システム継続/刷新はA04より限定された文脈。",
+      "comparisonToBase": [
+        "A04",
+        "A06"
+      ],
+      "currentlyInD130": true,
+      "reusedByD125": true,
+      "candidatePath": "D130_SIMULATION_BANK",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "AB options only mocked as 7-point endpoints, Y/N needs separate scoring and cannot be counted as a base question"
+    },
+    {
+      "source": "D125_FIVE_PER_AXIS",
+      "sourceId": "B-FU01",
+      "axis": "B",
+      "originalFormat": "AB",
+      "wording": "親しい人と共同で決める予定について、話し合っても双方の希望が一致しないとき、重大な不利益がなければ何を優先しますか？",
+      "decision": "USED_AS_UNCALIBRATED_AB_MOCK",
+      "previousReason": "同じ自分/他者優先でも、希望衝突と重大不利益なしの条件を導入。",
+      "comparisonToBase": [
+        "B01",
+        "B04"
+      ],
+      "currentlyInD130": true,
+      "reusedByD125": true,
+      "candidatePath": "D130_SIMULATION_BANK",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "AB options only mocked as 7-point endpoints, Y/N needs separate scoring and cannot be counted as a base question"
+    },
+    {
+      "source": "D125_FIVE_PER_AXIS",
+      "sourceId": "B-FU04",
+      "axis": "B",
+      "originalFormat": "AB",
+      "wording": "共同活動の進め方で、成果と負担が同程度の案が二つあり意見が割れた場合、どちらを選びますか？",
+      "decision": "USED_AS_UNCALIBRATED_AB_MOCK",
+      "previousReason": "協働の成果・負担を同等に固定した紛争場面。B05の単独/協働選好とは異なる。",
+      "comparisonToBase": [
+        "B05",
+        "B01"
+      ],
+      "currentlyInD130": true,
+      "reusedByD125": true,
+      "candidatePath": "D130_SIMULATION_BANK",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "AB options only mocked as 7-point endpoints, Y/N needs separate scoring and cannot be counted as a base question"
+    },
+    {
+      "source": "D125_FIVE_PER_AXIS",
+      "sourceId": "B-FU05",
+      "axis": "B",
+      "originalFormat": "AB",
+      "wording": "身近な人と余暇の過ごし方が食い違い、どちらの案も安全で費用が同じなら、より納得できるのはどちらですか？",
+      "decision": "USED_AS_UNCALIBRATED_AB_MOCK",
+      "previousReason": "費用・安全を固定した余暇の希望衝突。B02の一人/集団好みとは区別可能。",
+      "comparisonToBase": [
+        "B04",
+        "B02"
+      ],
+      "currentlyInD130": true,
+      "reusedByD125": true,
+      "candidatePath": "D130_SIMULATION_BANK",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "AB options only mocked as 7-point endpoints, Y/N needs separate scoring and cannot be counted as a base question"
+    },
+    {
+      "source": "D125_FIVE_PER_AXIS",
+      "sourceId": "D-FU07",
+      "axis": "D",
+      "originalFormat": "AB",
+      "wording": "すでに学んでいる内容に未解決の問いが残っており、別の興味深い分野もあるとき、次の時間をどちらに割きますか？",
+      "decision": "USED_AS_UNCALIBRATED_AB_MOCK",
+      "previousReason": "未解決の問いに戻るか新規学習か。進捗と将来便益の混入を統制できれば派生価値。",
+      "comparisonToBase": [
+        "D06"
+      ],
+      "currentlyInD130": true,
+      "reusedByD125": true,
+      "candidatePath": "D130_SIMULATION_BANK",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "AB options only mocked as 7-point endpoints, Y/N needs separate scoring and cannot be counted as a base question"
+    },
+    {
+      "source": "D125_FIVE_PER_AXIS",
+      "sourceId": "A-FU09",
+      "axis": "A",
+      "originalFormat": "AB",
+      "wording": "生活拠点を移さなければならなくなった場合、新しい拠点でどのような暮らし方を選びますか？",
+      "decision": "USED_AS_UNCALIBRATED_AB_MOCK",
+      "previousReason": "旧生活環境への満足度、移転の機会費用の影響",
+      "comparisonToBase": [
+        "A01",
+        "A04"
+      ],
+      "currentlyInD130": true,
+      "reusedByD125": true,
+      "candidatePath": "D130_SIMULATION_BANK",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "AB options only mocked as 7-point endpoints, Y/N needs separate scoring and cannot be counted as a base question"
+    },
+    {
+      "source": "D125_FIVE_PER_AXIS",
+      "sourceId": "A-FU10",
+      "axis": "A",
+      "originalFormat": "AB",
+      "wording": "費用・移動負担・活動内容が同程度なら、今後数年間の生活拠点の持ち方としてどちらを選びますか？",
+      "decision": "USED_AS_UNCALIBRATED_AB_MOCK",
+      "previousReason": "二拠点生活に金銭・家族・社会関係の非現実的条件",
+      "comparisonToBase": [
+        "A01",
+        "A05"
+      ],
+      "currentlyInD130": true,
+      "reusedByD125": true,
+      "candidatePath": "D130_SIMULATION_BANK",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "AB options only mocked as 7-point endpoints, Y/N needs separate scoring and cannot be counted as a base question"
+    },
+    {
+      "source": "D125_FIVE_PER_AXIS",
+      "sourceId": "A-FU11",
+      "axis": "A",
+      "originalFormat": "YN",
+      "wording": "この先の暮らし方がまだ定まらず、数年後に変更できる選択肢が残るなら、当面は生活の仕組みを固定しておきたいですか？",
+      "decision": "D125_NEW_DRAFT_UNREVIEWED",
+      "previousReason": "不確実性への耐性やリスク回避と交絡。Noは変化志向の証拠にならない",
+      "comparisonToBase": [
+        "A04",
+        "A05"
+      ],
+      "currentlyInD130": false,
+      "reusedByD125": true,
+      "candidatePath": "NOT_IN_D130",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "AB options only mocked as 7-point endpoints, Y/N needs separate scoring and cannot be counted as a base question"
+    },
+    {
+      "source": "D125_FIVE_PER_AXIS",
+      "sourceId": "B-FU11",
+      "axis": "B",
+      "originalFormat": "AB",
+      "wording": "その結果が主に自分だけに影響する活動を選ぶ際、身近な人が別の活動を勧めているとします。どちらも同じくらい魅力的なら、どう決めますか？",
+      "decision": "USED_AS_UNCALIBRATED_AB_MOCK",
+      "previousReason": "他者の意見の専門性や圧力、同じくらい魅力的という前提で選択が不明瞭",
+      "comparisonToBase": [
+        "B01",
+        "B06"
+      ],
+      "currentlyInD130": true,
+      "reusedByD125": true,
+      "candidatePath": "D130_SIMULATION_BANK",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "AB options only mocked as 7-point endpoints, Y/N needs separate scoring and cannot be counted as a base question"
+    },
+    {
+      "source": "D125_FIVE_PER_AXIS",
+      "sourceId": "B-FU12",
+      "axis": "B",
+      "originalFormat": "AB",
+      "wording": "二人で一つの予定を決めるとき、あなたは強く希望しており、相手には特に強い希望がないと分かっています。安全性や負担が変わらなければどうしますか？",
+      "decision": "USED_AS_UNCALIBRATED_AB_MOCK",
+      "previousReason": "一方を選ぶのが合理的に見える誘導。B-FU01とのペアで条件差を評価",
+      "comparisonToBase": [
+        "B04",
+        "B06"
+      ],
+      "currentlyInD130": true,
+      "reusedByD125": true,
+      "candidatePath": "D130_SIMULATION_BANK",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "AB options only mocked as 7-point endpoints, Y/N needs separate scoring and cannot be counted as a base question"
+    },
+    {
+      "source": "D125_FIVE_PER_AXIS",
+      "sourceId": "C-FU11",
+      "axis": "C",
+      "originalFormat": "AB",
+      "wording": "必要な休息を確保でき、将来の準備による便益が確実に得られるとして、同じ時間を使うならどちらを選びますか？",
+      "decision": "USED_AS_UNCALIBRATED_AB_MOCK",
+      "previousReason": "『将来の便益が確実』という条件は非現実的な場合がある。便益の規模は統一されず、本人の想像に依存。",
+      "comparisonToBase": [
+        "C01",
+        "C04"
+      ],
+      "currentlyInD130": true,
+      "reusedByD125": true,
+      "candidatePath": "D130_SIMULATION_BANK",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "AB options only mocked as 7-point endpoints, Y/N needs separate scoring and cannot be counted as a base question"
+    },
+    {
+      "source": "D125_FIVE_PER_AXIS",
+      "sourceId": "C-FU12",
+      "axis": "C",
+      "originalFormat": "YN",
+      "wording": "必要な休息を確保できるとき、今週の自由時間を2時間使って、3か月後に役立つ準備をしたいですか？",
+      "decision": "D125_NEW_DRAFT_UNREVIEWED",
+      "previousReason": "C02の直接派生のため単独で出すと重複。C-FU13と対照で使う",
+      "comparisonToBase": [
+        "C02",
+        "C05"
+      ],
+      "currentlyInD130": false,
+      "reusedByD125": true,
+      "candidatePath": "NOT_IN_D130",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "AB options only mocked as 7-point endpoints, Y/N needs separate scoring and cannot be counted as a base question"
+    },
+    {
+      "source": "D125_FIVE_PER_AXIS",
+      "sourceId": "C-FU13",
+      "axis": "C",
+      "originalFormat": "YN",
+      "wording": "必要な休息を確保できるとき、今週の自由時間を2時間使って、3年後に役立つ準備をしたいですか？",
+      "decision": "D125_NEW_DRAFT_UNREVIEWED",
+      "previousReason": "単独ではC02の言い換え。利益量・確実性を揃えられていない",
+      "comparisonToBase": [
+        "C02",
+        "C05"
+      ],
+      "currentlyInD130": false,
+      "reusedByD125": true,
+      "candidatePath": "NOT_IN_D130",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "AB options only mocked as 7-point endpoints, Y/N needs separate scoring and cannot be counted as a base question"
+    },
+    {
+      "source": "D125_FIVE_PER_AXIS",
+      "sourceId": "C-FU14",
+      "axis": "C",
+      "originalFormat": "AB",
+      "wording": "将来に役立つ準備も、現在を楽しむ体験も、どちらも今週しか選べない機会だとします。同じ時間ならどちらを選びますか？",
+      "decision": "USED_AS_UNCALIBRATED_AB_MOCK",
+      "previousReason": "どちらも一度きりでも将来便益と現在便益の大小は本人に依存。C-FU15と対で確認する必要がある。",
+      "comparisonToBase": [
+        "C01",
+        "C04"
+      ],
+      "currentlyInD130": true,
+      "reusedByD125": true,
+      "candidatePath": "D130_SIMULATION_BANK",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "AB options only mocked as 7-point endpoints, Y/N needs separate scoring and cannot be counted as a base question"
+    },
+    {
+      "source": "D125_FIVE_PER_AXIS",
+      "sourceId": "C-FU15",
+      "axis": "C",
+      "originalFormat": "AB",
+      "wording": "将来の準備も、現在を楽しむ体験も、今週選ばなくても来週同じように実行できるとします。同じ時間なら今週はどちらを選びますか？",
+      "decision": "USED_AS_UNCALIBRATED_AB_MOCK",
+      "previousReason": "来週同じ条件とする仮定は非現実的な場合がある。両項の価値量や確実性は固定されていない。",
+      "comparisonToBase": [
+        "C01",
+        "C04"
+      ],
+      "currentlyInD130": true,
+      "reusedByD125": true,
+      "candidatePath": "D130_SIMULATION_BANK",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "AB options only mocked as 7-point endpoints, Y/N needs separate scoring and cannot be counted as a base question"
+    },
+    {
+      "source": "D125_FIVE_PER_AXIS",
+      "sourceId": "D-FU09",
+      "axis": "D",
+      "originalFormat": "AB",
+      "wording": "今学んでいる分野にまだ理解したい課題がある状態で、同じ時間を使う場合、次のどちらを選びますか？",
+      "decision": "USED_AS_UNCALIBRATED_AB_MOCK",
+      "previousReason": "D-FU07に近く、戻れるという安心感と探索の混入",
+      "comparisonToBase": [
+        "D06"
+      ],
+      "currentlyInD130": true,
+      "reusedByD125": true,
+      "candidatePath": "D130_SIMULATION_BANK",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "AB options only mocked as 7-point endpoints, Y/N needs separate scoring and cannot be counted as a base question"
+    },
+    {
+      "source": "D125_FIVE_PER_AXIS",
+      "sourceId": "D-FU10",
+      "axis": "D",
+      "originalFormat": "AB",
+      "wording": "今の学習テーマで当初の目標は達成したとします。同程度の時間があれば、その後はどちらを選びますか？",
+      "decision": "USED_AS_UNCALIBRATED_AB_MOCK",
+      "previousReason": "達成の満足や疲労感で新分野に魅力が増える",
+      "comparisonToBase": [
+        "D06",
+        "D02"
+      ],
+      "currentlyInD130": true,
+      "reusedByD125": true,
+      "candidatePath": "D130_SIMULATION_BANK",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "AB options only mocked as 7-point endpoints, Y/N needs separate scoring and cannot be counted as a base question"
+    },
+    {
+      "source": "D125_FIVE_PER_AXIS",
+      "sourceId": "D-FU11",
+      "axis": "D",
+      "originalFormat": "AB",
+      "wording": "現在の分野を深めるほど新しい発見が少なくなってきたとき、同程度の学習時間をどう使いたいですか？",
+      "decision": "USED_AS_UNCALIBRATED_AB_MOCK",
+      "previousReason": "成果見込み・困難回避・刺激追求と交絡",
+      "comparisonToBase": [
+        "D06"
+      ],
+      "currentlyInD130": true,
+      "reusedByD125": true,
+      "candidatePath": "D130_SIMULATION_BANK",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "AB options only mocked as 7-point endpoints, Y/N needs separate scoring and cannot be counted as a base question"
+    },
+    {
+      "source": "D125_FIVE_PER_AXIS",
+      "sourceId": "D-FU12",
+      "axis": "D",
+      "originalFormat": "AB",
+      "wording": "週4時間の自由な学習時間が毎週確保でき、生活環境や仕事を変えなくてよい場合、どちらに配分しますか？",
+      "decision": "USED_AS_UNCALIBRATED_AB_MOCK",
+      "previousReason": "D02の幅と深さに近いが具体的な時間配分を追加。分野の難度・必要時間・進捗が同じとは限らない。",
+      "comparisonToBase": [
+        "D02",
+        "D04"
+      ],
+      "currentlyInD130": true,
+      "reusedByD125": true,
+      "candidatePath": "D130_SIMULATION_BANK",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "AB options only mocked as 7-point endpoints, Y/N needs separate scoring and cannot be counted as a base question"
+    },
+    {
+      "source": "D125_FIVE_PER_AXIS",
+      "sourceId": "E-FU05",
+      "axis": "E",
+      "originalFormat": "YN",
+      "wording": "今の仕事内容は変わらないとして、毎週2時間ほど自由時間が減る代わりに、毎月の手取り収入が1万円増えるなら選びますか？",
+      "decision": "D125_NEW_DRAFT_UNREVIEWED",
+      "previousReason": "月1万円と週2時間の交換条件は個人の賃金・家庭状況に依存。Noは時間重視の証明ではない",
+      "comparisonToBase": [
+        "E01",
+        "E04"
+      ],
+      "currentlyInD130": false,
+      "reusedByD125": true,
+      "candidatePath": "NOT_IN_D130",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "AB options only mocked as 7-point endpoints, Y/N needs separate scoring and cannot be counted as a base question"
+    },
+    {
+      "source": "D125_FIVE_PER_AXIS",
+      "sourceId": "E-FU06",
+      "axis": "E",
+      "originalFormat": "AB",
+      "wording": "毎月1万円の出費を増やすと、日常の用事に使う時間が月4時間減らせる場合、どちらを選びますか？",
+      "decision": "D125_NEW_DRAFT_UNREVIEWED",
+      "previousReason": "E03に意味が非常に近い。固定レート1万円/4時間への価格感応度の試行以外には使わない",
+      "comparisonToBase": [
+        "E03"
+      ],
+      "currentlyInD130": false,
+      "reusedByD125": true,
+      "candidatePath": "NOT_IN_D130",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "AB options only mocked as 7-point endpoints, Y/N needs separate scoring and cannot be counted as a base question"
+    },
+    {
+      "source": "D125_FIVE_PER_AXIS",
+      "sourceId": "E-FU07",
+      "axis": "E",
+      "originalFormat": "AB",
+      "wording": "同じ年度の福利厚生として、次のどちらか一方を受け取れる場合、より魅力的なのはどちらですか？",
+      "decision": "D125_NEW_DRAFT_UNREVIEWED",
+      "previousReason": "金額と休暇の個人的価値は等しくない。雇用形態・休暇取得の現実性に左右される。金額・時間アンカーが結論を誘導する可能性。",
+      "comparisonToBase": [
+        "E01",
+        "E04"
+      ],
+      "currentlyInD130": false,
+      "reusedByD125": true,
+      "candidatePath": "NOT_IN_D130",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "AB options only mocked as 7-point endpoints, Y/N needs separate scoring and cannot be counted as a base question"
+    },
+    {
+      "source": "D125_FIVE_PER_AXIS",
+      "sourceId": "E-FU08",
+      "axis": "E",
+      "originalFormat": "YN",
+      "wording": "現在の生活費と休息を十分確保できているとして、毎月の手取りが5千円減っても、毎月4時間の自由時間が増える働き方を選びますか？",
+      "decision": "D125_NEW_DRAFT_UNREVIEWED",
+      "previousReason": "E-FU05との価格条件が異なる。Yesの強さは所得状況・賃金に左右される",
+      "comparisonToBase": [
+        "E01",
+        "E04"
+      ],
+      "currentlyInD130": false,
+      "reusedByD125": true,
+      "candidatePath": "NOT_IN_D130",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "AB options only mocked as 7-point endpoints, Y/N needs separate scoring and cannot be counted as a base question"
+    },
+    {
+      "source": "D125_FIVE_PER_AXIS",
+      "sourceId": "E-FU09",
+      "axis": "E",
+      "originalFormat": "AB",
+      "wording": "1週間の総労働時間を変えず、次のどちらか一つの勤務条件が選べるとしたら、どちらを選びますか？",
+      "decision": "D125_NEW_DRAFT_UNREVIEWED",
+      "previousReason": "時間帯変更を選べる仕事に限定。E軸の『時間的自由』の定義見直しが必要",
+      "comparisonToBase": [
+        "E01",
+        "E06"
+      ],
+      "currentlyInD130": false,
+      "reusedByD125": true,
+      "candidatePath": "NOT_IN_D130",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "AB options only mocked as 7-point endpoints, Y/N needs separate scoring and cannot be counted as a base question"
+    },
+    {
+      "source": "D126_OLD_WORDING_VARIANTS",
+      "sourceId": "A01@D35-D31",
+      "axis": "A",
+      "originalFormat": "LEGACY_NEGATIVE_POSITIVE_REWRITE",
+      "wording": [
+        "慣れた方法を改善する",
+        "新しい方法を試す"
+      ],
+      "decision": "WORDING_VARIANT_NOT_NEW_INDEPENDENT_ITEM",
+      "previousReason": "REVISE",
+      "comparisonToBase": [
+        "A01"
+      ],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "REWRITE_COMPARISON_ONLY",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "63 variants map back to 30 source slots; an alternate wording is not an extra independent questionnaire item"
+    },
+    {
+      "source": "D126_OLD_WORDING_VARIANTS",
+      "sourceId": "B01@D35-D31",
+      "axis": "B",
+      "originalFormat": "LEGACY_NEGATIVE_POSITIVE_REWRITE",
+      "wording": [
+        "自分で判断する余地を重視する",
+        "周囲と相談する機会を重視する"
+      ],
+      "decision": "WORDING_VARIANT_NOT_NEW_INDEPENDENT_ITEM",
+      "previousReason": "TRIAL",
+      "comparisonToBase": [
+        "B01"
+      ],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "REWRITE_COMPARISON_ONLY",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "63 variants map back to 30 source slots; an alternate wording is not an extra independent questionnaire item"
+    },
+    {
+      "source": "D126_OLD_WORDING_VARIANTS",
+      "sourceId": "C01@D35-D31",
+      "axis": "C",
+      "originalFormat": "LEGACY_NEGATIVE_POSITIVE_REWRITE",
+      "wording": [
+        "将来の選択肢を増やす活動",
+        "今日の充実を高める活動"
+      ],
+      "decision": "WORDING_VARIANT_NOT_NEW_INDEPENDENT_ITEM",
+      "previousReason": "TRIAL",
+      "comparisonToBase": [
+        "C01"
+      ],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "REWRITE_COMPARISON_ONLY",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "63 variants map back to 30 source slots; an alternate wording is not an extra independent questionnaire item"
+    },
+    {
+      "source": "D126_OLD_WORDING_VARIANTS",
+      "sourceId": "D01@D35-D31",
+      "axis": "D",
+      "originalFormat": "LEGACY_NEGATIVE_POSITIVE_REWRITE",
+      "wording": [
+        "未経験の趣味を試す",
+        "好きな趣味を深める"
+      ],
+      "decision": "WORDING_VARIANT_NOT_NEW_INDEPENDENT_ITEM",
+      "previousReason": "TRIAL",
+      "comparisonToBase": [
+        "D01"
+      ],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "REWRITE_COMPARISON_ONLY",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "63 variants map back to 30 source slots; an alternate wording is not an extra independent questionnaire item"
+    },
+    {
+      "source": "D126_OLD_WORDING_VARIANTS",
+      "sourceId": "E01@D35-D31",
+      "axis": "E",
+      "originalFormat": "LEGACY_NEGATIVE_POSITIVE_REWRITE",
+      "wording": [
+        "使えるお金に余裕を持つ",
+        "自由に使える時間に余裕を持つ"
+      ],
+      "decision": "WORDING_VARIANT_NOT_NEW_INDEPENDENT_ITEM",
+      "previousReason": "TRIAL",
+      "comparisonToBase": [
+        "E01"
+      ],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "REWRITE_COMPARISON_ONLY",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "63 variants map back to 30 source slots; an alternate wording is not an extra independent questionnaire item"
+    },
+    {
+      "source": "D126_OLD_WORDING_VARIANTS",
+      "sourceId": "A02@D35-D31",
+      "axis": "A",
+      "originalFormat": "LEGACY_NEGATIVE_POSITIVE_REWRITE",
+      "wording": [
+        "今の活動環境を整える",
+        "新しい活動環境に挑戦する"
+      ],
+      "decision": "WORDING_VARIANT_NOT_NEW_INDEPENDENT_ITEM",
+      "previousReason": "TRIAL",
+      "comparisonToBase": [
+        "A02"
+      ],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "REWRITE_COMPARISON_ONLY",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "63 variants map back to 30 source slots; an alternate wording is not an extra independent questionnaire item"
+    },
+    {
+      "source": "D126_OLD_WORDING_VARIANTS",
+      "sourceId": "B02@D35-A",
+      "axis": "B",
+      "originalFormat": "LEGACY_NEGATIVE_POSITIVE_REWRITE",
+      "wording": [
+        "同じ活動なら、自分で進め方を決められる余地を先に確保する",
+        "同じ活動なら、関係者と進め方を相談する機会を先に確保する"
+      ],
+      "decision": "WORDING_VARIANT_NOT_NEW_INDEPENDENT_ITEM",
+      "previousReason": "BLOCK",
+      "comparisonToBase": [
+        "B02"
+      ],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "REWRITE_COMPARISON_ONLY",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "63 variants map back to 30 source slots; an alternate wording is not an extra independent questionnaire item"
+    },
+    {
+      "source": "D126_OLD_WORDING_VARIANTS",
+      "sourceId": "B02@D35-B",
+      "axis": "B",
+      "originalFormat": "LEGACY_NEGATIVE_POSITIVE_REWRITE",
+      "wording": [
+        "物事を進めるとき、自分の判断で調整できる状態を優先する",
+        "物事を進めるとき、互いの考えをすり合わせられる状態を優先する"
+      ],
+      "decision": "WORDING_VARIANT_NOT_NEW_INDEPENDENT_ITEM",
+      "previousReason": "BLOCK",
+      "comparisonToBase": [
+        "B02"
+      ],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "REWRITE_COMPARISON_ONLY",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "63 variants map back to 30 source slots; an alternate wording is not an extra independent questionnaire item"
+    },
+    {
+      "source": "D126_OLD_WORDING_VARIANTS",
+      "sourceId": "C02@D35-D31",
+      "axis": "C",
+      "originalFormat": "LEGACY_NEGATIVE_POSITIVE_REWRITE",
+      "wording": [
+        "将来に備える時間",
+        "今日を楽しむ時間"
+      ],
+      "decision": "WORDING_VARIANT_NOT_NEW_INDEPENDENT_ITEM",
+      "previousReason": "REVISE",
+      "comparisonToBase": [
+        "C02"
+      ],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "REWRITE_COMPARISON_ONLY",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "63 variants map back to 30 source slots; an alternate wording is not an extra independent questionnaire item"
+    },
+    {
+      "source": "D126_OLD_WORDING_VARIANTS",
+      "sourceId": "D02@D35-D31",
+      "axis": "D",
+      "originalFormat": "LEGACY_NEGATIVE_POSITIVE_REWRITE",
+      "wording": [
+        "幅広い分野を学ぶ",
+        "一つの分野を掘り下げる"
+      ],
+      "decision": "WORDING_VARIANT_NOT_NEW_INDEPENDENT_ITEM",
+      "previousReason": "TRIAL",
+      "comparisonToBase": [
+        "D02"
+      ],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "REWRITE_COMPARISON_ONLY",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "63 variants map back to 30 source slots; an alternate wording is not an extra independent questionnaire item"
+    },
+    {
+      "source": "D126_OLD_WORDING_VARIANTS",
+      "sourceId": "E02@D35-D31",
+      "axis": "E",
+      "originalFormat": "LEGACY_NEGATIVE_POSITIVE_REWRITE",
+      "wording": [
+        "追加の収入機会を確保する",
+        "追加の自由時間を確保する"
+      ],
+      "decision": "WORDING_VARIANT_NOT_NEW_INDEPENDENT_ITEM",
+      "previousReason": "REVISE",
+      "comparisonToBase": [
+        "E02"
+      ],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "REWRITE_COMPARISON_ONLY",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "63 variants map back to 30 source slots; an alternate wording is not an extra independent questionnaire item"
+    },
+    {
+      "source": "D126_OLD_WORDING_VARIANTS",
+      "sourceId": "A03@D35-D31",
+      "axis": "A",
+      "originalFormat": "LEGACY_NEGATIVE_POSITIVE_REWRITE",
+      "wording": [
+        "今ある習慣を磨く",
+        "新しい習慣を取り入れる"
+      ],
+      "decision": "WORDING_VARIANT_NOT_NEW_INDEPENDENT_ITEM",
+      "previousReason": "TRIAL",
+      "comparisonToBase": [
+        "A03"
+      ],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "REWRITE_COMPARISON_ONLY",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "63 variants map back to 30 source slots; an alternate wording is not an extra independent questionnaire item"
+    },
+    {
+      "source": "D126_OLD_WORDING_VARIANTS",
+      "sourceId": "B03@D35-D31",
+      "axis": "B",
+      "originalFormat": "LEGACY_NEGATIVE_POSITIVE_REWRITE",
+      "wording": [
+        "自分で達成を振り返る",
+        "他者と達成を共有する"
+      ],
+      "decision": "WORDING_VARIANT_NOT_NEW_INDEPENDENT_ITEM",
+      "previousReason": "REVISE",
+      "comparisonToBase": [
+        "B03"
+      ],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "REWRITE_COMPARISON_ONLY",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "63 variants map back to 30 source slots; an alternate wording is not an extra independent questionnaire item"
+    },
+    {
+      "source": "D126_OLD_WORDING_VARIANTS",
+      "sourceId": "C03@D35-D31",
+      "axis": "C",
+      "originalFormat": "LEGACY_NEGATIVE_POSITIVE_REWRITE",
+      "wording": [
+        "後で役立つ知識を学ぶ",
+        "今の関心を満たす知識を学ぶ"
+      ],
+      "decision": "WORDING_VARIANT_NOT_NEW_INDEPENDENT_ITEM",
+      "previousReason": "TRIAL",
+      "comparisonToBase": [
+        "C03"
+      ],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "REWRITE_COMPARISON_ONLY",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "63 variants map back to 30 source slots; an alternate wording is not an extra independent questionnaire item"
+    },
+    {
+      "source": "D126_OLD_WORDING_VARIANTS",
+      "sourceId": "D03@D35-A",
+      "axis": "D",
+      "originalFormat": "LEGACY_NEGATIVE_POSITIVE_REWRITE",
+      "wording": [
+        "使える時間が同じなら、未経験の活動をいくつか試す",
+        "使える時間が同じなら、気に入った活動をさらに掘り下げる"
+      ],
+      "decision": "WORDING_VARIANT_NOT_NEW_INDEPENDENT_ITEM",
+      "previousReason": "BLOCK",
+      "comparisonToBase": [
+        "D03"
+      ],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "REWRITE_COMPARISON_ONLY",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "63 variants map back to 30 source slots; an alternate wording is not an extra independent questionnaire item"
+    },
+    {
+      "source": "D126_OLD_WORDING_VARIANTS",
+      "sourceId": "D03@D35-B",
+      "axis": "D",
+      "originalFormat": "LEGACY_NEGATIVE_POSITIVE_REWRITE",
+      "wording": [
+        "活動の機会が同じなら、複数の異なるテーマを少しずつ体験する",
+        "活動の機会が同じなら、一つのテーマを繰り返して詳しく知る"
+      ],
+      "decision": "WORDING_VARIANT_NOT_NEW_INDEPENDENT_ITEM",
+      "previousReason": "BLOCK",
+      "comparisonToBase": [
+        "D03"
+      ],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "REWRITE_COMPARISON_ONLY",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "63 variants map back to 30 source slots; an alternate wording is not an extra independent questionnaire item"
+    },
+    {
+      "source": "D126_OLD_WORDING_VARIANTS",
+      "sourceId": "E03@D35-D31",
+      "axis": "E",
+      "originalFormat": "LEGACY_NEGATIVE_POSITIVE_REWRITE",
+      "wording": [
+        "経済的な選択肢を増やす",
+        "時間の使い方の選択肢を増やす"
+      ],
+      "decision": "WORDING_VARIANT_NOT_NEW_INDEPENDENT_ITEM",
+      "previousReason": "REVISE",
+      "comparisonToBase": [
+        "E03"
+      ],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "REWRITE_COMPARISON_ONLY",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "63 variants map back to 30 source slots; an alternate wording is not an extra independent questionnaire item"
+    },
+    {
+      "source": "D126_OLD_WORDING_VARIANTS",
+      "sourceId": "A04@D35-A",
+      "axis": "A",
+      "originalFormat": "LEGACY_NEGATIVE_POSITIVE_REWRITE",
+      "wording": [
+        "今の役割の範囲を保ちながら工夫する",
+        "役割の範囲を組み替えながら工夫する"
+      ],
+      "decision": "WORDING_VARIANT_NOT_NEW_INDEPENDENT_ITEM",
+      "previousReason": "BLOCK",
+      "comparisonToBase": [
+        "A04"
+      ],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "REWRITE_COMPARISON_ONLY",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "63 variants map back to 30 source slots; an alternate wording is not an extra independent questionnaire item"
+    },
+    {
+      "source": "D126_OLD_WORDING_VARIANTS",
+      "sourceId": "A04@D35-B",
+      "axis": "A",
+      "originalFormat": "LEGACY_NEGATIVE_POSITIVE_REWRITE",
+      "wording": [
+        "慣れている活動の構成を続ける",
+        "活動の構成を見直して新しく組み直す"
+      ],
+      "decision": "WORDING_VARIANT_NOT_NEW_INDEPENDENT_ITEM",
+      "previousReason": "BLOCK",
+      "comparisonToBase": [
+        "A04"
+      ],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "REWRITE_COMPARISON_ONLY",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "63 variants map back to 30 source slots; an alternate wording is not an extra independent questionnaire item"
+    },
+    {
+      "source": "D126_OLD_WORDING_VARIANTS",
+      "sourceId": "B04@D35-D31",
+      "axis": "B",
+      "originalFormat": "LEGACY_NEGATIVE_POSITIVE_REWRITE",
+      "wording": [
+        "自分のペースで予定を決める",
+        "周囲と予定を合わせる"
+      ],
+      "decision": "WORDING_VARIANT_NOT_NEW_INDEPENDENT_ITEM",
+      "previousReason": "TRIAL",
+      "comparisonToBase": [
+        "B04"
+      ],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "REWRITE_COMPARISON_ONLY",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "63 variants map back to 30 source slots; an alternate wording is not an extra independent questionnaire item"
+    },
+    {
+      "source": "D126_OLD_WORDING_VARIANTS",
+      "sourceId": "C04@D35-A",
+      "axis": "C",
+      "originalFormat": "LEGACY_NEGATIVE_POSITIVE_REWRITE",
+      "wording": [
+        "同じ活動なら、後から得られる充実を先に重視する",
+        "同じ活動なら、取り組む今日の充実を先に重視する"
+      ],
+      "decision": "WORDING_VARIANT_NOT_NEW_INDEPENDENT_ITEM",
+      "previousReason": "BLOCK",
+      "comparisonToBase": [
+        "C04"
+      ],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "REWRITE_COMPARISON_ONLY",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "63 variants map back to 30 source slots; an alternate wording is not an extra independent questionnaire item"
+    },
+    {
+      "source": "D126_OLD_WORDING_VARIANTS",
+      "sourceId": "C04@D35-B",
+      "axis": "C",
+      "originalFormat": "LEGACY_NEGATIVE_POSITIVE_REWRITE",
+      "wording": [
+        "時間を使う活動を選ぶとき、将来の自分の満足につながる方を先に選ぶ",
+        "時間を使う活動を選ぶとき、今日の自分の満足につながる方を先に選ぶ"
+      ],
+      "decision": "WORDING_VARIANT_NOT_NEW_INDEPENDENT_ITEM",
+      "previousReason": "BLOCK",
+      "comparisonToBase": [
+        "C04"
+      ],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "REWRITE_COMPARISON_ONLY",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "63 variants map back to 30 source slots; an alternate wording is not an extra independent questionnaire item"
+    },
+    {
+      "source": "D126_OLD_WORDING_VARIANTS",
+      "sourceId": "D04@D35-D31",
+      "axis": "D",
+      "originalFormat": "LEGACY_NEGATIVE_POSITIVE_REWRITE",
+      "wording": [
+        "新しい仕事の進め方を試す",
+        "得意な進め方を磨く"
+      ],
+      "decision": "WORDING_VARIANT_NOT_NEW_INDEPENDENT_ITEM",
+      "previousReason": "REVISE",
+      "comparisonToBase": [
+        "D04"
+      ],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "REWRITE_COMPARISON_ONLY",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "63 variants map back to 30 source slots; an alternate wording is not an extra independent questionnaire item"
+    },
+    {
+      "source": "D126_OLD_WORDING_VARIANTS",
+      "sourceId": "E04@D35-A",
+      "axis": "E",
+      "originalFormat": "LEGACY_NEGATIVE_POSITIVE_REWRITE",
+      "wording": [
+        "暮らしに必要な条件が満たされているなら、まず支出を選べる幅を広げたい",
+        "暮らしに必要な条件が満たされているなら、まず自分で使える時間の幅を広げたい"
+      ],
+      "decision": "WORDING_VARIANT_NOT_NEW_INDEPENDENT_ITEM",
+      "previousReason": "BLOCK",
+      "comparisonToBase": [
+        "E04"
+      ],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "REWRITE_COMPARISON_ONLY",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "63 variants map back to 30 source slots; an alternate wording is not an extra independent questionnaire item"
+    },
+    {
+      "source": "D126_OLD_WORDING_VARIANTS",
+      "sourceId": "E04@D35-B",
+      "axis": "E",
+      "originalFormat": "LEGACY_NEGATIVE_POSITIVE_REWRITE",
+      "wording": [
+        "次に増やせる余裕が一つなら、使い道を選べるお金の余裕を増やす",
+        "次に増やせる余裕が一つなら、予定を選べる時間の余裕を増やす"
+      ],
+      "decision": "WORDING_VARIANT_NOT_NEW_INDEPENDENT_ITEM",
+      "previousReason": "BLOCK",
+      "comparisonToBase": [
+        "E04"
+      ],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "REWRITE_COMPARISON_ONLY",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "63 variants map back to 30 source slots; an alternate wording is not an extra independent questionnaire item"
+    },
+    {
+      "source": "D126_OLD_WORDING_VARIANTS",
+      "sourceId": "A05@D35-A",
+      "axis": "A",
+      "originalFormat": "LEGACY_NEGATIVE_POSITIVE_REWRITE",
+      "wording": [
+        "予定外の変化があっても、今の進め方を土台に調整する",
+        "予定外の変化を機に、進め方を大きく組み替える"
+      ],
+      "decision": "WORDING_VARIANT_NOT_NEW_INDEPENDENT_ITEM",
+      "previousReason": "BLOCK",
+      "comparisonToBase": [
+        "A05"
+      ],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "REWRITE_COMPARISON_ONLY",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "63 variants map back to 30 source slots; an alternate wording is not an extra independent questionnaire item"
+    },
+    {
+      "source": "D126_OLD_WORDING_VARIANTS",
+      "sourceId": "A05@D35-B",
+      "axis": "A",
+      "originalFormat": "LEGACY_NEGATIVE_POSITIVE_REWRITE",
+      "wording": [
+        "周囲の状況が変わったとき、慣れた仕組みを活かす",
+        "周囲の状況が変わったとき、新しい仕組みを試す"
+      ],
+      "decision": "WORDING_VARIANT_NOT_NEW_INDEPENDENT_ITEM",
+      "previousReason": "BLOCK",
+      "comparisonToBase": [
+        "A05"
+      ],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "REWRITE_COMPARISON_ONLY",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "63 variants map back to 30 source slots; an alternate wording is not an extra independent questionnaire item"
+    },
+    {
+      "source": "D126_OLD_WORDING_VARIANTS",
+      "sourceId": "B05@D35-D31",
+      "axis": "B",
+      "originalFormat": "LEGACY_NEGATIVE_POSITIVE_REWRITE",
+      "wording": [
+        "個人で進める目標を持つ",
+        "協力して進める目標を持つ"
+      ],
+      "decision": "WORDING_VARIANT_NOT_NEW_INDEPENDENT_ITEM",
+      "previousReason": "REVISE",
+      "comparisonToBase": [
+        "B05"
+      ],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "REWRITE_COMPARISON_ONLY",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "63 variants map back to 30 source slots; an alternate wording is not an extra independent questionnaire item"
+    },
+    {
+      "source": "D126_OLD_WORDING_VARIANTS",
+      "sourceId": "C05@D35-D31",
+      "axis": "C",
+      "originalFormat": "LEGACY_NEGATIVE_POSITIVE_REWRITE",
+      "wording": [
+        "長期の目標に向けた小さな前進",
+        "日々の満足を増やす小さな工夫"
+      ],
+      "decision": "WORDING_VARIANT_NOT_NEW_INDEPENDENT_ITEM",
+      "previousReason": "REVISE",
+      "comparisonToBase": [
+        "C05"
+      ],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "REWRITE_COMPARISON_ONLY",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "63 variants map back to 30 source slots; an alternate wording is not an extra independent questionnaire item"
+    },
+    {
+      "source": "D126_OLD_WORDING_VARIANTS",
+      "sourceId": "D05@D35-D31",
+      "axis": "D",
+      "originalFormat": "LEGACY_NEGATIVE_POSITIVE_REWRITE",
+      "wording": [
+        "複数の創作表現に挑戦する",
+        "一つの表現を磨き続ける"
+      ],
+      "decision": "WORDING_VARIANT_NOT_NEW_INDEPENDENT_ITEM",
+      "previousReason": "TRIAL",
+      "comparisonToBase": [
+        "D05"
+      ],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "REWRITE_COMPARISON_ONLY",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "63 variants map back to 30 source slots; an alternate wording is not an extra independent questionnaire item"
+    },
+    {
+      "source": "D126_OLD_WORDING_VARIANTS",
+      "sourceId": "E05@D35-A",
+      "axis": "E",
+      "originalFormat": "LEGACY_NEGATIVE_POSITIVE_REWRITE",
+      "wording": [
+        "両方実現できるとして、まず家計の追加的な余裕を確保したい",
+        "両方実現できるとして、まず自分で使える追加的な時間を確保したい"
+      ],
+      "decision": "WORDING_VARIANT_NOT_NEW_INDEPENDENT_ITEM",
+      "previousReason": "BLOCK",
+      "comparisonToBase": [
+        "E05"
+      ],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "REWRITE_COMPARISON_ONLY",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "63 variants map back to 30 source slots; an alternate wording is not an extra independent questionnaire item"
+    },
+    {
+      "source": "D126_OLD_WORDING_VARIANTS",
+      "sourceId": "E05@D35-B",
+      "axis": "E",
+      "originalFormat": "LEGACY_NEGATIVE_POSITIVE_REWRITE",
+      "wording": [
+        "同程度の負担で一つ改善するなら、支出の選択肢を増やしたい",
+        "同程度の負担で一つ改善するなら、予定の選択肢を増やしたい"
+      ],
+      "decision": "WORDING_VARIANT_NOT_NEW_INDEPENDENT_ITEM",
+      "previousReason": "BLOCK",
+      "comparisonToBase": [
+        "E05"
+      ],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "REWRITE_COMPARISON_ONLY",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "63 variants map back to 30 source slots; an alternate wording is not an extra independent questionnaire item"
+    },
+    {
+      "source": "D126_OLD_WORDING_VARIANTS",
+      "sourceId": "A06@D35-D31",
+      "axis": "A",
+      "originalFormat": "LEGACY_NEGATIVE_POSITIVE_REWRITE",
+      "wording": [
+        "慣れた進め方で挑戦する",
+        "異なる進め方で挑戦する"
+      ],
+      "decision": "WORDING_VARIANT_NOT_NEW_INDEPENDENT_ITEM",
+      "previousReason": "REVISE",
+      "comparisonToBase": [
+        "A06"
+      ],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "REWRITE_COMPARISON_ONLY",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "63 variants map back to 30 source slots; an alternate wording is not an extra independent questionnaire item"
+    },
+    {
+      "source": "D126_OLD_WORDING_VARIANTS",
+      "sourceId": "B06@D35-D31",
+      "axis": "B",
+      "originalFormat": "LEGACY_NEGATIVE_POSITIVE_REWRITE",
+      "wording": [
+        "自分で方針を組み立てる",
+        "関係者と方針をすり合わせる"
+      ],
+      "decision": "WORDING_VARIANT_NOT_NEW_INDEPENDENT_ITEM",
+      "previousReason": "REVISE",
+      "comparisonToBase": [
+        "B06"
+      ],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "REWRITE_COMPARISON_ONLY",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "63 variants map back to 30 source slots; an alternate wording is not an extra independent questionnaire item"
+    },
+    {
+      "source": "D126_OLD_WORDING_VARIANTS",
+      "sourceId": "C06@D35-D31",
+      "axis": "C",
+      "originalFormat": "LEGACY_NEGATIVE_POSITIVE_REWRITE",
+      "wording": [
+        "将来の暮らしを整える",
+        "現在の暮らしを充実させる"
+      ],
+      "decision": "WORDING_VARIANT_NOT_NEW_INDEPENDENT_ITEM",
+      "previousReason": "REVISE",
+      "comparisonToBase": [
+        "C06"
+      ],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "REWRITE_COMPARISON_ONLY",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "63 variants map back to 30 source slots; an alternate wording is not an extra independent questionnaire item"
+    },
+    {
+      "source": "D126_OLD_WORDING_VARIANTS",
+      "sourceId": "D06@D35-D31",
+      "axis": "D",
+      "originalFormat": "LEGACY_NEGATIVE_POSITIVE_REWRITE",
+      "wording": [
+        "経験の種類を増やす",
+        "経験の深さを増やす"
+      ],
+      "decision": "WORDING_VARIANT_NOT_NEW_INDEPENDENT_ITEM",
+      "previousReason": "REVISE",
+      "comparisonToBase": [
+        "D06"
+      ],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "REWRITE_COMPARISON_ONLY",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "63 variants map back to 30 source slots; an alternate wording is not an extra independent questionnaire item"
+    },
+    {
+      "source": "D126_OLD_WORDING_VARIANTS",
+      "sourceId": "E06@D35-D31",
+      "axis": "E",
+      "originalFormat": "LEGACY_NEGATIVE_POSITIVE_REWRITE",
+      "wording": [
+        "支出を選べる柔軟性",
+        "予定を選べる柔軟性"
+      ],
+      "decision": "WORDING_VARIANT_NOT_NEW_INDEPENDENT_ITEM",
+      "previousReason": "REVISE",
+      "comparisonToBase": [
+        "E06"
+      ],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "REWRITE_COMPARISON_ONLY",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "63 variants map back to 30 source slots; an alternate wording is not an extra independent questionnaire item"
+    },
+    {
+      "source": "D126_OLD_WORDING_VARIANTS",
+      "sourceId": "A01@D36-A",
+      "axis": "A",
+      "originalFormat": "LEGACY_NEGATIVE_POSITIVE_REWRITE",
+      "wording": [
+        "普段の活動では、慣れた進め方を少しずつ調整する",
+        "普段の活動では、これまでと違う進め方へ切り替える"
+      ],
+      "decision": "WORDING_VARIANT_NOT_NEW_INDEPENDENT_ITEM",
+      "previousReason": "REVISE",
+      "comparisonToBase": [
+        "A01"
+      ],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "REWRITE_COMPARISON_ONLY",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "63 variants map back to 30 source slots; an alternate wording is not an extra independent questionnaire item"
+    },
+    {
+      "source": "D126_OLD_WORDING_VARIANTS",
+      "sourceId": "A01@D36-B",
+      "axis": "A",
+      "originalFormat": "LEGACY_NEGATIVE_POSITIVE_REWRITE",
+      "wording": [
+        "今の活動を良くするとき、既存の方法を活かして改善する",
+        "今の活動を良くするとき、別の方法から組み直してみる"
+      ],
+      "decision": "WORDING_VARIANT_NOT_NEW_INDEPENDENT_ITEM",
+      "previousReason": "REVISE",
+      "comparisonToBase": [
+        "A01"
+      ],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "REWRITE_COMPARISON_ONLY",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "63 variants map back to 30 source slots; an alternate wording is not an extra independent questionnaire item"
+    },
+    {
+      "source": "D126_OLD_WORDING_VARIANTS",
+      "sourceId": "A06@D36-A",
+      "axis": "A",
+      "originalFormat": "LEGACY_NEGATIVE_POSITIVE_REWRITE",
+      "wording": [
+        "初めての課題では、今までの経験を応用して進める",
+        "初めての課題では、使ったことのない進め方を試す"
+      ],
+      "decision": "WORDING_VARIANT_NOT_NEW_INDEPENDENT_ITEM",
+      "previousReason": "REVISE",
+      "comparisonToBase": [
+        "A06"
+      ],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "REWRITE_COMPARISON_ONLY",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "63 variants map back to 30 source slots; an alternate wording is not an extra independent questionnaire item"
+    },
+    {
+      "source": "D126_OLD_WORDING_VARIANTS",
+      "sourceId": "A06@D36-B",
+      "axis": "A",
+      "originalFormat": "LEGACY_NEGATIVE_POSITIVE_REWRITE",
+      "wording": [
+        "未知の課題に向かうとき、慣れた方法を土台に考える",
+        "未知の課題に向かうとき、従来と異なる方法から考える"
+      ],
+      "decision": "WORDING_VARIANT_NOT_NEW_INDEPENDENT_ITEM",
+      "previousReason": "REVISE",
+      "comparisonToBase": [
+        "A06"
+      ],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "REWRITE_COMPARISON_ONLY",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "63 variants map back to 30 source slots; an alternate wording is not an extra independent questionnaire item"
+    },
+    {
+      "source": "D126_OLD_WORDING_VARIANTS",
+      "sourceId": "B03@D36-A",
+      "axis": "B",
+      "originalFormat": "LEGACY_NEGATIVE_POSITIVE_REWRITE",
+      "wording": [
+        "何かを達成した後、まず自分の中で振り返る",
+        "何かを達成した後、まず誰かと振り返りを共有する"
+      ],
+      "decision": "WORDING_VARIANT_NOT_NEW_INDEPENDENT_ITEM",
+      "previousReason": "REVISE",
+      "comparisonToBase": [
+        "B03"
+      ],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "REWRITE_COMPARISON_ONLY",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "63 variants map back to 30 source slots; an alternate wording is not an extra independent questionnaire item"
+    },
+    {
+      "source": "D126_OLD_WORDING_VARIANTS",
+      "sourceId": "B03@D36-B",
+      "axis": "B",
+      "originalFormat": "LEGACY_NEGATIVE_POSITIVE_REWRITE",
+      "wording": [
+        "成果を得たとき、自分なりの評価を先に整理する",
+        "成果を得たとき、誰かとその意味を先に話し合う"
+      ],
+      "decision": "WORDING_VARIANT_NOT_NEW_INDEPENDENT_ITEM",
+      "previousReason": "REVISE",
+      "comparisonToBase": [
+        "B03"
+      ],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "REWRITE_COMPARISON_ONLY",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "63 variants map back to 30 source slots; an alternate wording is not an extra independent questionnaire item"
+    },
+    {
+      "source": "D126_OLD_WORDING_VARIANTS",
+      "sourceId": "B05@D36-A",
+      "axis": "B",
+      "originalFormat": "LEGACY_NEGATIVE_POSITIVE_REWRITE",
+      "wording": [
+        "同じ目標へ向かうなら、進める道筋を自分で決めたい",
+        "同じ目標へ向かうなら、進める道筋を仲間と決めたい"
+      ],
+      "decision": "WORDING_VARIANT_NOT_NEW_INDEPENDENT_ITEM",
+      "previousReason": "REVISE",
+      "comparisonToBase": [
+        "B05"
+      ],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "REWRITE_COMPARISON_ONLY",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "63 variants map back to 30 source slots; an alternate wording is not an extra independent questionnaire item"
+    },
+    {
+      "source": "D126_OLD_WORDING_VARIANTS",
+      "sourceId": "B05@D36-B",
+      "axis": "B",
+      "originalFormat": "LEGACY_NEGATIVE_POSITIVE_REWRITE",
+      "wording": [
+        "目標の達成方法を選ぶとき、自分の判断の余地を優先する",
+        "目標の達成方法を選ぶとき、関係者との話し合いの余地を優先する"
+      ],
+      "decision": "WORDING_VARIANT_NOT_NEW_INDEPENDENT_ITEM",
+      "previousReason": "REVISE",
+      "comparisonToBase": [
+        "B05"
+      ],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "REWRITE_COMPARISON_ONLY",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "63 variants map back to 30 source slots; an alternate wording is not an extra independent questionnaire item"
+    },
+    {
+      "source": "D126_OLD_WORDING_VARIANTS",
+      "sourceId": "B06@D36-A",
+      "axis": "B",
+      "originalFormat": "LEGACY_NEGATIVE_POSITIVE_REWRITE",
+      "wording": [
+        "意見が分かれたとき、自分の方針を保って解決を探す",
+        "意見が分かれたとき、皆が納得できる方針を探す"
+      ],
+      "decision": "WORDING_VARIANT_NOT_NEW_INDEPENDENT_ITEM",
+      "previousReason": "REVISE",
+      "comparisonToBase": [
+        "B06"
+      ],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "REWRITE_COMPARISON_ONLY",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "63 variants map back to 30 source slots; an alternate wording is not an extra independent questionnaire item"
+    },
+    {
+      "source": "D126_OLD_WORDING_VARIANTS",
+      "sourceId": "B06@D36-B",
+      "axis": "B",
+      "originalFormat": "LEGACY_NEGATIVE_POSITIVE_REWRITE",
+      "wording": [
+        "複数の方法が成り立つ場合、自分の判断に沿った方法を選ぶ",
+        "複数の方法が成り立つ場合、関係者との合意に沿った方法を選ぶ"
+      ],
+      "decision": "WORDING_VARIANT_NOT_NEW_INDEPENDENT_ITEM",
+      "previousReason": "REVISE",
+      "comparisonToBase": [
+        "B06"
+      ],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "REWRITE_COMPARISON_ONLY",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "63 variants map back to 30 source slots; an alternate wording is not an extra independent questionnaire item"
+    },
+    {
+      "source": "D126_OLD_WORDING_VARIANTS",
+      "sourceId": "C02@D36-A",
+      "axis": "C",
+      "originalFormat": "LEGACY_NEGATIVE_POSITIVE_REWRITE",
+      "wording": [
+        "同じ時間を使うなら、後で実感できる充実を重視する",
+        "同じ時間を使うなら、今日実感できる充実を重視する"
+      ],
+      "decision": "WORDING_VARIANT_NOT_NEW_INDEPENDENT_ITEM",
+      "previousReason": "REVISE",
+      "comparisonToBase": [
+        "C02"
+      ],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "REWRITE_COMPARISON_ONLY",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "63 variants map back to 30 source slots; an alternate wording is not an extra independent questionnaire item"
+    },
+    {
+      "source": "D126_OLD_WORDING_VARIANTS",
+      "sourceId": "C02@D36-B",
+      "axis": "C",
+      "originalFormat": "LEGACY_NEGATIVE_POSITIVE_REWRITE",
+      "wording": [
+        "活動を選ぶとき、先の生活で感じる満足を優先する",
+        "活動を選ぶとき、いまの生活で感じる満足を優先する"
+      ],
+      "decision": "WORDING_VARIANT_NOT_NEW_INDEPENDENT_ITEM",
+      "previousReason": "REVISE",
+      "comparisonToBase": [
+        "C02"
+      ],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "REWRITE_COMPARISON_ONLY",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "63 variants map back to 30 source slots; an alternate wording is not an extra independent questionnaire item"
+    },
+    {
+      "source": "D126_OLD_WORDING_VARIANTS",
+      "sourceId": "C05@D36-A",
+      "axis": "C",
+      "originalFormat": "LEGACY_NEGATIVE_POSITIVE_REWRITE",
+      "wording": [
+        "短い自由時間なら、後の楽しみにつながることを選ぶ",
+        "短い自由時間なら、その場で楽しめることを選ぶ"
+      ],
+      "decision": "WORDING_VARIANT_NOT_NEW_INDEPENDENT_ITEM",
+      "previousReason": "REVISE",
+      "comparisonToBase": [
+        "C05"
+      ],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "REWRITE_COMPARISON_ONLY",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "63 variants map back to 30 source slots; an alternate wording is not an extra independent questionnaire item"
+    },
+    {
+      "source": "D126_OLD_WORDING_VARIANTS",
+      "sourceId": "C05@D36-B",
+      "axis": "C",
+      "originalFormat": "LEGACY_NEGATIVE_POSITIVE_REWRITE",
+      "wording": [
+        "少し時間が空いたら、先の満足を高める活動を優先する",
+        "少し時間が空いたら、今の満足を高める活動を優先する"
+      ],
+      "decision": "WORDING_VARIANT_NOT_NEW_INDEPENDENT_ITEM",
+      "previousReason": "REVISE",
+      "comparisonToBase": [
+        "C05"
+      ],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "REWRITE_COMPARISON_ONLY",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "63 variants map back to 30 source slots; an alternate wording is not an extra independent questionnaire item"
+    },
+    {
+      "source": "D126_OLD_WORDING_VARIANTS",
+      "sourceId": "C06@D36-A",
+      "axis": "C",
+      "originalFormat": "LEGACY_NEGATIVE_POSITIVE_REWRITE",
+      "wording": [
+        "同じように暮らしの満足を高めるなら、数年先の充実につなげたい",
+        "同じように暮らしの満足を高めるなら、近い時期の充実を優先したい"
+      ],
+      "decision": "WORDING_VARIANT_NOT_NEW_INDEPENDENT_ITEM",
+      "previousReason": "REVISE",
+      "comparisonToBase": [
+        "C06"
+      ],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "REWRITE_COMPARISON_ONLY",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "63 variants map back to 30 source slots; an alternate wording is not an extra independent questionnaire item"
+    },
+    {
+      "source": "D126_OLD_WORDING_VARIANTS",
+      "sourceId": "C06@D36-B",
+      "axis": "C",
+      "originalFormat": "LEGACY_NEGATIVE_POSITIVE_REWRITE",
+      "wording": [
+        "暮らしを良くする選択では、後から実感する満足を重視する",
+        "暮らしを良くする選択では、今実感できる満足を重視する"
+      ],
+      "decision": "WORDING_VARIANT_NOT_NEW_INDEPENDENT_ITEM",
+      "previousReason": "REVISE",
+      "comparisonToBase": [
+        "C06"
+      ],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "REWRITE_COMPARISON_ONLY",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "63 variants map back to 30 source slots; an alternate wording is not an extra independent questionnaire item"
+    },
+    {
+      "source": "D126_OLD_WORDING_VARIANTS",
+      "sourceId": "D04@D36-A",
+      "axis": "D",
+      "originalFormat": "LEGACY_NEGATIVE_POSITIVE_REWRITE",
+      "wording": [
+        "一つの活動に取り組むなら、複数のやり方を幅広く体験する",
+        "一つの活動に取り組むなら、一つのやり方を繰り返し掘り下げる"
+      ],
+      "decision": "WORDING_VARIANT_NOT_NEW_INDEPENDENT_ITEM",
+      "previousReason": "REVISE",
+      "comparisonToBase": [
+        "D04"
+      ],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "REWRITE_COMPARISON_ONLY",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "63 variants map back to 30 source slots; an alternate wording is not an extra independent questionnaire item"
+    },
+    {
+      "source": "D126_OLD_WORDING_VARIANTS",
+      "sourceId": "D04@D36-B",
+      "axis": "D",
+      "originalFormat": "LEGACY_NEGATIVE_POSITIVE_REWRITE",
+      "wording": [
+        "同じ時間があるなら、異なる作業方法を少しずつ知る",
+        "同じ時間があるなら、選んだ一つの作業方法を詳しく知る"
+      ],
+      "decision": "WORDING_VARIANT_NOT_NEW_INDEPENDENT_ITEM",
+      "previousReason": "REVISE",
+      "comparisonToBase": [
+        "D04"
+      ],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "REWRITE_COMPARISON_ONLY",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "63 variants map back to 30 source slots; an alternate wording is not an extra independent questionnaire item"
+    },
+    {
+      "source": "D126_OLD_WORDING_VARIANTS",
+      "sourceId": "D06@D36-A",
+      "axis": "D",
+      "originalFormat": "LEGACY_NEGATIVE_POSITIVE_REWRITE",
+      "wording": [
+        "気に入った体験から、関連する別の体験へ広げたい",
+        "気に入った体験から、その内容をより詳しく知りたい"
+      ],
+      "decision": "WORDING_VARIANT_NOT_NEW_INDEPENDENT_ITEM",
+      "previousReason": "REVISE",
+      "comparisonToBase": [
+        "D06"
+      ],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "REWRITE_COMPARISON_ONLY",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "63 variants map back to 30 source slots; an alternate wording is not an extra independent questionnaire item"
+    },
+    {
+      "source": "D126_OLD_WORDING_VARIANTS",
+      "sourceId": "D06@D36-B",
+      "axis": "D",
+      "originalFormat": "LEGACY_NEGATIVE_POSITIVE_REWRITE",
+      "wording": [
+        "関心が生まれた分野では、周辺のテーマも広く触れたい",
+        "関心が生まれた分野では、一つのテーマをさらに深く追いたい"
+      ],
+      "decision": "WORDING_VARIANT_NOT_NEW_INDEPENDENT_ITEM",
+      "previousReason": "REVISE",
+      "comparisonToBase": [
+        "D06"
+      ],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "REWRITE_COMPARISON_ONLY",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "63 variants map back to 30 source slots; an alternate wording is not an extra independent questionnaire item"
+    },
+    {
+      "source": "D126_OLD_WORDING_VARIANTS",
+      "sourceId": "E02@D36-A",
+      "axis": "E",
+      "originalFormat": "LEGACY_NEGATIVE_POSITIVE_REWRITE",
+      "wording": [
+        "負担を選べる場合、収入に結びつく活動の時間を先に増やす",
+        "負担を選べる場合、自分のために使う活動の時間を先に増やす"
+      ],
+      "decision": "WORDING_VARIANT_NOT_NEW_INDEPENDENT_ITEM",
+      "previousReason": "REVISE",
+      "comparisonToBase": [
+        "E02"
+      ],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "REWRITE_COMPARISON_ONLY",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "63 variants map back to 30 source slots; an alternate wording is not an extra independent questionnaire item"
+    },
+    {
+      "source": "D126_OLD_WORDING_VARIANTS",
+      "sourceId": "E02@D36-B",
+      "axis": "E",
+      "originalFormat": "LEGACY_NEGATIVE_POSITIVE_REWRITE",
+      "wording": [
+        "余裕のある時間の使い方を決めるなら、使えるお金を増やす機会を選ぶ",
+        "余裕のある時間の使い方を決めるなら、自由時間を広げる機会を選ぶ"
+      ],
+      "decision": "WORDING_VARIANT_NOT_NEW_INDEPENDENT_ITEM",
+      "previousReason": "REVISE",
+      "comparisonToBase": [
+        "E02"
+      ],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "REWRITE_COMPARISON_ONLY",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "63 variants map back to 30 source slots; an alternate wording is not an extra independent questionnaire item"
+    },
+    {
+      "source": "D126_OLD_WORDING_VARIANTS",
+      "sourceId": "E03@D36-A",
+      "axis": "E",
+      "originalFormat": "LEGACY_NEGATIVE_POSITIVE_REWRITE",
+      "wording": [
+        "予定が変わりやすい時期には、使える予算の余裕を先に増やしたい",
+        "予定が変わりやすい時期には、自由に動かせる時間の余裕を先に増やしたい"
+      ],
+      "decision": "WORDING_VARIANT_NOT_NEW_INDEPENDENT_ITEM",
+      "previousReason": "REVISE",
+      "comparisonToBase": [
+        "E03"
+      ],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "REWRITE_COMPARISON_ONLY",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "63 variants map back to 30 source slots; an alternate wording is not an extra independent questionnaire item"
+    },
+    {
+      "source": "D126_OLD_WORDING_VARIANTS",
+      "sourceId": "E03@D36-B",
+      "axis": "E",
+      "originalFormat": "LEGACY_NEGATIVE_POSITIVE_REWRITE",
+      "wording": [
+        "先の予定に備えるなら、支出の選択肢を確保したい",
+        "先の予定に備えるなら、自分の時間の選択肢を確保したい"
+      ],
+      "decision": "WORDING_VARIANT_NOT_NEW_INDEPENDENT_ITEM",
+      "previousReason": "REVISE",
+      "comparisonToBase": [
+        "E03"
+      ],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "REWRITE_COMPARISON_ONLY",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "63 variants map back to 30 source slots; an alternate wording is not an extra independent questionnaire item"
+    },
+    {
+      "source": "D126_OLD_WORDING_VARIANTS",
+      "sourceId": "E06@D36-A",
+      "axis": "E",
+      "originalFormat": "LEGACY_NEGATIVE_POSITIVE_REWRITE",
+      "wording": [
+        "急に希望が変わったとき、支出先を変更できる余地を重視する",
+        "急に希望が変わったとき、予定を変更できる余地を重視する"
+      ],
+      "decision": "WORDING_VARIANT_NOT_NEW_INDEPENDENT_ITEM",
+      "previousReason": "REVISE",
+      "comparisonToBase": [
+        "E06"
+      ],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "REWRITE_COMPARISON_ONLY",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "63 variants map back to 30 source slots; an alternate wording is not an extra independent questionnaire item"
+    },
+    {
+      "source": "D126_OLD_WORDING_VARIANTS",
+      "sourceId": "E06@D36-B",
+      "axis": "E",
+      "originalFormat": "LEGACY_NEGATIVE_POSITIVE_REWRITE",
+      "wording": [
+        "先の選択肢を確保するとき、使うお金の行き先を柔軟に決めたい",
+        "先の選択肢を確保するとき、使う時間の割り当てを柔軟に決めたい"
+      ],
+      "decision": "WORDING_VARIANT_NOT_NEW_INDEPENDENT_ITEM",
+      "previousReason": "REVISE",
+      "comparisonToBase": [
+        "E06"
+      ],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "REWRITE_COMPARISON_ONLY",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "63 variants map back to 30 source slots; an alternate wording is not an extra independent questionnaire item"
+    },
+    {
+      "source": "D90_INDEPENDENT_BC",
+      "sourceId": "B-S01",
+      "axis": "B",
+      "originalFormat": "INDEPENDENT_IMPORTANCE",
+      "wording": "重要な選択では、周囲の意見を聞いた後でも、最終的に自分で決められることを大切にしたい。",
+      "decision": "REQUIRES_NEW_SCORING_ARCHITECTURE",
+      "previousReason": "D90: independent high/low measures differ from bipolar forced-tradeoff constructs",
+      "comparisonToBase": [],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "ALTERNATIVE_MODEL_ONLY",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "B and C would have two three-item dimensions, not a direct substitute for an A-D 7-question bipolar axis"
+    },
+    {
+      "source": "D90_INDEPENDENT_BC",
+      "sourceId": "B-S02",
+      "axis": "B",
+      "originalFormat": "INDEPENDENT_IMPORTANCE",
+      "wording": "人と共同で取り組むときも、自分の判断で進められる範囲を確保したい。",
+      "decision": "REQUIRES_NEW_SCORING_ARCHITECTURE",
+      "previousReason": "D90: independent high/low measures differ from bipolar forced-tradeoff constructs",
+      "comparisonToBase": [],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "ALTERNATIVE_MODEL_ONLY",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "B and C would have two three-item dimensions, not a direct substitute for an A-D 7-question bipolar axis"
+    },
+    {
+      "source": "D90_INDEPENDENT_BC",
+      "sourceId": "B-S03",
+      "axis": "B",
+      "originalFormat": "INDEPENDENT_IMPORTANCE",
+      "wording": "日々の選択に、自分の考えを反映できることを大切にしたい。",
+      "decision": "REQUIRES_NEW_SCORING_ARCHITECTURE",
+      "previousReason": "D90: independent high/low measures differ from bipolar forced-tradeoff constructs",
+      "comparisonToBase": [],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "ALTERNATIVE_MODEL_ONLY",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "B and C would have two three-item dimensions, not a direct substitute for an A-D 7-question bipolar axis"
+    },
+    {
+      "source": "D90_INDEPENDENT_BC",
+      "sourceId": "B-R01",
+      "axis": "B",
+      "originalFormat": "INDEPENDENT_IMPORTANCE",
+      "wording": "大切なことを安心して話せる人間関係を持つことを重視したい。",
+      "decision": "REQUIRES_NEW_SCORING_ARCHITECTURE",
+      "previousReason": "D90: independent high/low measures differ from bipolar forced-tradeoff constructs",
+      "comparisonToBase": [],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "ALTERNATIVE_MODEL_ONLY",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "B and C would have two three-item dimensions, not a direct substitute for an A-D 7-question bipolar axis"
+    },
+    {
+      "source": "D90_INDEPENDENT_BC",
+      "sourceId": "B-R02",
+      "axis": "B",
+      "originalFormat": "INDEPENDENT_IMPORTANCE",
+      "wording": "日々の出来事や喜びを、身近な人と分かち合えることを大切にしたい。",
+      "decision": "REQUIRES_NEW_SCORING_ARCHITECTURE",
+      "previousReason": "D90: independent high/low measures differ from bipolar forced-tradeoff constructs",
+      "comparisonToBase": [],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "ALTERNATIVE_MODEL_ONLY",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "B and C would have two three-item dimensions, not a direct substitute for an A-D 7-question bipolar axis"
+    },
+    {
+      "source": "D90_INDEPENDENT_BC",
+      "sourceId": "B-R03",
+      "axis": "B",
+      "originalFormat": "INDEPENDENT_IMPORTANCE",
+      "wording": "困ったときに互いに頼れる関係を育てることを大切にしたい。",
+      "decision": "REQUIRES_NEW_SCORING_ARCHITECTURE",
+      "previousReason": "D90: independent high/low measures differ from bipolar forced-tradeoff constructs",
+      "comparisonToBase": [],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "ALTERNATIVE_MODEL_ONLY",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "B and C would have two three-item dimensions, not a direct substitute for an A-D 7-question bipolar axis"
+    },
+    {
+      "source": "D90_INDEPENDENT_BC",
+      "sourceId": "C-F01",
+      "axis": "C",
+      "originalFormat": "INDEPENDENT_IMPORTANCE",
+      "wording": "将来の選択肢を広げるために、今の時間の一部を準備に使うことを大切にしたい。",
+      "decision": "REQUIRES_NEW_SCORING_ARCHITECTURE",
+      "previousReason": "D90: independent high/low measures differ from bipolar forced-tradeoff constructs",
+      "comparisonToBase": [],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "ALTERNATIVE_MODEL_ONLY",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "B and C would have two three-item dimensions, not a direct substitute for an A-D 7-question bipolar axis"
+    },
+    {
+      "source": "D90_INDEPENDENT_BC",
+      "sourceId": "C-F02",
+      "axis": "C",
+      "originalFormat": "INDEPENDENT_IMPORTANCE",
+      "wording": "数年後に実現したいことを意識して、日々の優先順位を決めることを大切にしたい。",
+      "decision": "REQUIRES_NEW_SCORING_ARCHITECTURE",
+      "previousReason": "D90: independent high/low measures differ from bipolar forced-tradeoff constructs",
+      "comparisonToBase": [],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "ALTERNATIVE_MODEL_ONLY",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "B and C would have two three-item dimensions, not a direct substitute for an A-D 7-question bipolar axis"
+    },
+    {
+      "source": "D90_INDEPENDENT_BC",
+      "sourceId": "C-F03",
+      "axis": "C",
+      "originalFormat": "INDEPENDENT_IMPORTANCE",
+      "wording": "遠い将来の暮らしや可能性を思い描き、現在の選択に反映することを大切にしたい。",
+      "decision": "REQUIRES_NEW_SCORING_ARCHITECTURE",
+      "previousReason": "D90: independent high/low measures differ from bipolar forced-tradeoff constructs",
+      "comparisonToBase": [],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "ALTERNATIVE_MODEL_ONLY",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "B and C would have two three-item dimensions, not a direct substitute for an A-D 7-question bipolar axis"
+    },
+    {
+      "source": "D90_INDEPENDENT_BC",
+      "sourceId": "C-P01",
+      "axis": "C",
+      "originalFormat": "INDEPENDENT_IMPORTANCE",
+      "wording": "将来の成果に直接つながらなくても、日々の時間を楽しめる活動を大切にしたい。",
+      "decision": "HISTORICAL_C_PRESENT_3_BLOCK",
+      "previousReason": "D94: C-P01/P02/P03 blocked for C-P1 aggregation",
+      "comparisonToBase": [],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "ALTERNATIVE_MODEL_ONLY",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "B and C would have two three-item dimensions, not a direct substitute for an A-D 7-question bipolar axis"
+    },
+    {
+      "source": "D90_INDEPENDENT_BC",
+      "sourceId": "C-P02",
+      "axis": "C",
+      "originalFormat": "INDEPENDENT_IMPORTANCE",
+      "wording": "日常生活の中で、今の充実を実感する機会を大切にしたい。",
+      "decision": "HISTORICAL_C_PRESENT_3_BLOCK",
+      "previousReason": "D94: C-P01/P02/P03 blocked for C-P1 aggregation",
+      "comparisonToBase": [],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "ALTERNATIVE_MODEL_ONLY",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "B and C would have two three-item dimensions, not a direct substitute for an A-D 7-question bipolar axis"
+    },
+    {
+      "source": "D90_INDEPENDENT_BC",
+      "sourceId": "C-P03",
+      "axis": "C",
+      "originalFormat": "INDEPENDENT_IMPORTANCE",
+      "wording": "その日に経験している出来事そのものに価値を見いだすことを大切にしたい。",
+      "decision": "HISTORICAL_C_PRESENT_3_BLOCK",
+      "previousReason": "D94: C-P01/P02/P03 blocked for C-P1 aggregation",
+      "comparisonToBase": [],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "ALTERNATIVE_MODEL_ONLY",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "B and C would have two three-item dimensions, not a direct substitute for an A-D 7-question bipolar axis"
+    },
+    {
+      "source": "D35_INDEPENDENT_E",
+      "sourceId": "E05-M",
+      "axis": "E",
+      "originalFormat": "INDEPENDENT_IMPORTANCE",
+      "wording": "生活に必要な条件が満たされているとしたら、追加的に使えるお金を増やすことを、どの程度重視しますか",
+      "decision": "REQUIRES_NEW_SCORING_ARCHITECTURE",
+      "previousReason": "Can distinguish both-high/both-low hypothetically; not a 2-item bipolar E score",
+      "comparisonToBase": [
+        "E05"
+      ],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "ALTERNATIVE_MODEL_ONLY",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "E remains auxiliary; no classification claims"
+    },
+    {
+      "source": "D35_INDEPENDENT_E",
+      "sourceId": "E05-T",
+      "axis": "E",
+      "originalFormat": "INDEPENDENT_IMPORTANCE",
+      "wording": "生活に必要な条件が満たされているとしたら、追加的に自分で使える時間を増やすことを、どの程度重視しますか",
+      "decision": "REQUIRES_NEW_SCORING_ARCHITECTURE",
+      "previousReason": "Can distinguish both-high/both-low hypothetically; not a 2-item bipolar E score",
+      "comparisonToBase": [
+        "E05"
+      ],
+      "currentlyInD130": false,
+      "reusedByD125": false,
+      "candidatePath": "ALTERNATIVE_MODEL_ONLY",
+      "researchOnly": true,
+      "baseBank7PointCompatible": false,
+      "notes": "E remains auxiliary; no classification claims"
+    }
+  ]
+}
