@@ -298,7 +298,8 @@
       "website_rights_state": "PUBLIC_METADATA_GATE",
       "source_lock": "LOCKED_PROVISIONAL_20261110",
       "site_use_approved": false,
-      "acquisition_status": "OFFICIAL_SAMPLE_SNAPSHOT_28_ROWS"
+      "acquisition_status": "OFFICIAL_SAMPLE_SNAPSHOT_28_ROWS",
+      "month_aggregation": "Last available H10 observation in month, with latest month provisional"
     },
     {
       "aux_id": "CPI_JP",
@@ -316,7 +317,16 @@
       "series_kind": "CPI_LEVEL",
       "website_rights_state": "PUBLIC_METADATA_GATE",
       "source_lock": "LOCKED_PROVISIONAL_20261110",
-      "site_use_approved": false
+      "site_use_approved": false,
+      "acquisition_spec": {
+        "protocol": "BLS API v1 POST",
+        "url": "https://api.bls.gov/publicAPI/v1/timeseries/data/",
+        "series_id": "CUUR0000SA0",
+        "maximum_years_per_request": 10,
+        "cpi_type": "NSA All items CPI-U",
+        "source_lock": "BLS_DIRECT",
+        "license_status": "publication QA pending"
+      }
     },
     {
       "aux_id": "RATES_US",
@@ -409,6 +419,19 @@
         "download_method": "manual_official_page_excerpt",
         "rights": "General Federal Reserve Board public domain policy reviewed; product approval still false"
       }
-    ]
+    ],
+    "pipeline_version": "0.3.0",
+    "new_long_history_download_verified": false,
+    "latest_run_20261110": {
+      "status": "DNS_BLOCKED",
+      "full_data_downloads": 0,
+      "parser_regression_tests_local": "12/12 PASS",
+      "available_integrations": [
+        "FED_H10_USDJPY",
+        "BLS_CPI_US",
+        "WORLD_BANK_PINK_MONTHLY"
+      ],
+      "website_data_enabled": false
+    }
   }
 }
