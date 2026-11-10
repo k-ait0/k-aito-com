@@ -1,0 +1,606 @@
+{
+  "schema": "A05-D150-CONTEXT-COMPARISON-RUBRIC-0.1",
+  "date": "2026-11-10",
+  "status": "EDITORIAL_ANALYSIS_NOT_EMPIRICAL_VALIDATION",
+  "scope": "Compare 21 D147 contexts and 16 D149 contexts under the same five editorial criteria; categorical judgments are hypotheses, not measurement scores",
+  "source_blob_shas": {
+    "research/a05/d147-main4-situation-facet-taxonomy.json": "f9fedddceb947b3f96a828f34dac90a19cb706ce",
+    "research/a05/d148-external-ai-21-facet-review-adjudication.json": "1a0f5beea1eeec3b18afb856eaf943c6b7399b92",
+    "research/a05/d149-four-contexts-per-axis-alternative.json": "c5724d7c60e89be490131cbe375c66f244a42cbf",
+    "research/a05/d142-full-50-item-content-disposition.json": "85286173eeb6350d7a1d5b17a617702afd9675ff"
+  },
+  "criteria": {
+    "fit": {
+      "OK": "The scenario directly addresses the intended axis",
+      "RISK": "Axis-adjacent traits or circumstances plausibly dominate",
+      "STOP": "Scenario mainly measures a different trait"
+    },
+    "increment": {
+      "OK": "Plausible distinctive response context",
+      "RISK": "Possible near-duplicate; contrasting examples needed",
+      "STOP": "Content duplicative or not enough distinct information"
+    },
+    "access": {
+      "OK": "Can generally be answered without special circumstances",
+      "RISK": "Depends on experience/resources or hypothetical costs",
+      "STOP": "Requires narrow experiences"
+    },
+    "balance": {
+      "OK": "Both poles treated symmetrically at wording level, not validated",
+      "RISK": "Unequal appeal/cost or untested equivalence",
+      "STOP": "Unbalanced or different attributes on each side"
+    },
+    "draw": {
+      "OK": "Plausibly exchangeable pending empirical calibration",
+      "RISK": "No confirmed equivalence within random bank",
+      "STOP": "Non-scoring probe or coupled pair, do not independently random-draw as scored"
+    }
+  },
+  "decisions": {
+    "PROVISIONAL": "Possible editorial source for eventual scored question, not approved",
+    "MERGE": "Integrate with another context and prevent duplicate scoring",
+    "REFRAME": "Reconstruct scenario before using as a scored candidate",
+    "PROBE_ONLY": "Useful contextual contrast, not standalone scored random draw"
+  },
+  "facets": [
+    {
+      "id": "A1",
+      "recommendation": "PROVISIONAL",
+      "axes": {
+        "fit": "OK",
+        "increment": "RISK",
+        "access": "RISK",
+        "balance": "RISK",
+        "draw": "RISK"
+      },
+      "rationale": "物理的生活基盤の更新。費用や既存環境評価を統制",
+      "version": "D147",
+      "axis": "A"
+    },
+    {
+      "id": "A2",
+      "recommendation": "PROVISIONAL",
+      "axes": {
+        "fit": "OK",
+        "increment": "RISK",
+        "access": "OK",
+        "balance": "RISK",
+        "draw": "RISK"
+      },
+      "rationale": "日常の運用方式。A5の情報管理を吸収",
+      "version": "D147",
+      "axis": "A"
+    },
+    {
+      "id": "A3",
+      "recommendation": "REFRAME",
+      "axes": {
+        "fit": "RISK",
+        "increment": "RISK",
+        "access": "RISK",
+        "balance": "RISK",
+        "draw": "STOP"
+      },
+      "rationale": "移動・活動場所の好みや通勤制約を測りやすい",
+      "version": "D147",
+      "axis": "A"
+    },
+    {
+      "id": "A4",
+      "recommendation": "REFRAME",
+      "axes": {
+        "fit": "RISK",
+        "increment": "STOP",
+        "access": "RISK",
+        "balance": "RISK",
+        "draw": "STOP"
+      },
+      "rationale": "用具や提供先の更新は購買選好・廃棄規範を測りやすい",
+      "version": "D147",
+      "axis": "A"
+    },
+    {
+      "id": "A5",
+      "recommendation": "MERGE",
+      "axes": {
+        "fit": "RISK",
+        "increment": "STOP",
+        "access": "RISK",
+        "balance": "RISK",
+        "draw": "STOP"
+      },
+      "rationale": "日常予定・情報の管理はA2の具体場面",
+      "version": "D147",
+      "axis": "A"
+    },
+    {
+      "id": "B1",
+      "recommendation": "PROVISIONAL",
+      "axes": {
+        "fit": "OK",
+        "increment": "RISK",
+        "access": "RISK",
+        "balance": "RISK",
+        "draw": "RISK"
+      },
+      "rationale": "共同判断の中核。責任・決定権を制御",
+      "version": "D147",
+      "axis": "B"
+    },
+    {
+      "id": "B2",
+      "recommendation": "PROVISIONAL",
+      "axes": {
+        "fit": "OK",
+        "increment": "RISK",
+        "access": "RISK",
+        "balance": "RISK",
+        "draw": "RISK"
+      },
+      "rationale": "共有財の権利・負担が回答を左右する",
+      "version": "D147",
+      "axis": "B"
+    },
+    {
+      "id": "B3",
+      "recommendation": "MERGE",
+      "axes": {
+        "fit": "OK",
+        "increment": "STOP",
+        "access": "RISK",
+        "balance": "RISK",
+        "draw": "STOP"
+      },
+      "rationale": "共同決定の文脈違いでB1と同じ判断",
+      "version": "D147",
+      "axis": "B"
+    },
+    {
+      "id": "B4",
+      "recommendation": "REFRAME",
+      "axes": {
+        "fit": "OK",
+        "increment": "RISK",
+        "access": "RISK",
+        "balance": "RISK",
+        "draw": "RISK"
+      },
+      "rationale": "親密度と譲歩の望ましさが交絡",
+      "version": "D147",
+      "axis": "B"
+    },
+    {
+      "id": "B5",
+      "recommendation": "MERGE",
+      "axes": {
+        "fit": "RISK",
+        "increment": "STOP",
+        "access": "RISK",
+        "balance": "STOP",
+        "draw": "STOP"
+      },
+      "rationale": "多数決vs全会一致は合意手続であり自律の対極ではない",
+      "version": "D147",
+      "axis": "B"
+    },
+    {
+      "id": "C1",
+      "recommendation": "PROVISIONAL",
+      "axes": {
+        "fit": "OK",
+        "increment": "RISK",
+        "access": "OK",
+        "balance": "RISK",
+        "draw": "RISK"
+      },
+      "rationale": "単発の資源配分は希少性とは別の要因",
+      "version": "D147",
+      "axis": "C"
+    },
+    {
+      "id": "C2",
+      "recommendation": "PROVISIONAL",
+      "axes": {
+        "fit": "OK",
+        "increment": "RISK",
+        "access": "OK",
+        "balance": "RISK",
+        "draw": "RISK"
+      },
+      "rationale": "反復的な時間配分。C1との違いは状況依存",
+      "version": "D147",
+      "axis": "C"
+    },
+    {
+      "id": "C3",
+      "recommendation": "REFRAME",
+      "axes": {
+        "fit": "OK",
+        "increment": "STOP",
+        "access": "RISK",
+        "balance": "RISK",
+        "draw": "STOP"
+      },
+      "rationale": "抽象的な価値基準はCの定義の繰返し",
+      "version": "D147",
+      "axis": "C"
+    },
+    {
+      "id": "C4",
+      "recommendation": "PROBE_ONLY",
+      "axes": {
+        "fit": "RISK",
+        "increment": "STOP",
+        "access": "RISK",
+        "balance": "RISK",
+        "draw": "STOP"
+      },
+      "rationale": "お金の保有余力とEの交絡。C軸の採点から独立",
+      "version": "D147",
+      "axis": "C"
+    },
+    {
+      "id": "C5",
+      "recommendation": "PROBE_ONLY",
+      "axes": {
+        "fit": "OK",
+        "increment": "RISK",
+        "access": "RISK",
+        "balance": "OK",
+        "draw": "STOP"
+      },
+      "rationale": "C-FU14/C-FU15はペア条件比較であり通常の単独抽出と同等でない",
+      "version": "D147",
+      "axis": "C"
+    },
+    {
+      "id": "D1",
+      "recommendation": "PROVISIONAL",
+      "axes": {
+        "fit": "OK",
+        "increment": "RISK",
+        "access": "OK",
+        "balance": "RISK",
+        "draw": "RISK"
+      },
+      "rationale": "幅/深さの直接比較。D-FU12と近似",
+      "version": "D147",
+      "axis": "D"
+    },
+    {
+      "id": "D2",
+      "recommendation": "MERGE",
+      "axes": {
+        "fit": "OK",
+        "increment": "RISK",
+        "access": "RISK",
+        "balance": "RISK",
+        "draw": "STOP"
+      },
+      "rationale": "趣味と学習の領域差だけでは独立系統ではない",
+      "version": "D147",
+      "axis": "D"
+    },
+    {
+      "id": "D3",
+      "recommendation": "REFRAME",
+      "axes": {
+        "fit": "RISK",
+        "increment": "STOP",
+        "access": "STOP",
+        "balance": "RISK",
+        "draw": "STOP"
+      },
+      "rationale": "創作経験が前提。旧D04の方法変更型へ戻さない",
+      "version": "D147",
+      "axis": "D"
+    },
+    {
+      "id": "D4",
+      "recommendation": "PROBE_ONLY",
+      "axes": {
+        "fit": "RISK",
+        "increment": "STOP",
+        "access": "RISK",
+        "balance": "RISK",
+        "draw": "STOP"
+      },
+      "rationale": "知識分野と問題解決法・能力の区別が難しい",
+      "version": "D147",
+      "axis": "D"
+    },
+    {
+      "id": "D5",
+      "recommendation": "PROBE_ONLY",
+      "axes": {
+        "fit": "OK",
+        "increment": "RISK",
+        "access": "RISK",
+        "balance": "RISK",
+        "draw": "STOP"
+      },
+      "rationale": "途中では未完了義務が影響。D6との差を研究する",
+      "version": "D147",
+      "axis": "D"
+    },
+    {
+      "id": "D6",
+      "recommendation": "PROBE_ONLY",
+      "axes": {
+        "fit": "OK",
+        "increment": "RISK",
+        "access": "OK",
+        "balance": "RISK",
+        "draw": "STOP"
+      },
+      "rationale": "達成後の反応はD5と合理的に違い得る。単独得点化しない",
+      "version": "D147",
+      "axis": "D"
+    },
+    {
+      "id": "A-P1",
+      "recommendation": "PROVISIONAL",
+      "axes": {
+        "fit": "OK",
+        "increment": "RISK",
+        "access": "RISK",
+        "balance": "RISK",
+        "draw": "RISK"
+      },
+      "rationale": "A1の核心を残すが住居費等の想像条件が必要",
+      "version": "D149",
+      "axis": "A"
+    },
+    {
+      "id": "A-P2",
+      "recommendation": "PROVISIONAL",
+      "axes": {
+        "fit": "OK",
+        "increment": "RISK",
+        "access": "OK",
+        "balance": "RISK",
+        "draw": "RISK"
+      },
+      "rationale": "A2/A5統合。運用と計画性の切り分けが課題",
+      "version": "D149",
+      "axis": "A"
+    },
+    {
+      "id": "A-P3",
+      "recommendation": "REFRAME",
+      "axes": {
+        "fit": "RISK",
+        "increment": "RISK",
+        "access": "RISK",
+        "balance": "RISK",
+        "draw": "STOP"
+      },
+      "rationale": "移動や場所の新奇性より生活基盤の継続／更新に寄せる",
+      "version": "D149",
+      "axis": "A"
+    },
+    {
+      "id": "A-P4",
+      "recommendation": "REFRAME",
+      "axes": {
+        "fit": "RISK",
+        "increment": "STOP",
+        "access": "RISK",
+        "balance": "RISK",
+        "draw": "STOP"
+      },
+      "rationale": "購買・環境倫理を避けた運用環境更新の場面を再設計",
+      "version": "D149",
+      "axis": "A"
+    },
+    {
+      "id": "B-P1",
+      "recommendation": "PROVISIONAL",
+      "axes": {
+        "fit": "OK",
+        "increment": "RISK",
+        "access": "RISK",
+        "balance": "RISK",
+        "draw": "RISK"
+      },
+      "rationale": "旧B06の個人人生選択を明示し直す。未経験者も答えられる場面に",
+      "version": "D149",
+      "axis": "B"
+    },
+    {
+      "id": "B-P2",
+      "recommendation": "PROVISIONAL",
+      "axes": {
+        "fit": "OK",
+        "increment": "RISK",
+        "access": "RISK",
+        "balance": "RISK",
+        "draw": "RISK"
+      },
+      "rationale": "B1/B3/B5を統合し共同意思決定を代表させる",
+      "version": "D149",
+      "axis": "B"
+    },
+    {
+      "id": "B-P3",
+      "recommendation": "REFRAME",
+      "axes": {
+        "fit": "OK",
+        "increment": "RISK",
+        "access": "RISK",
+        "balance": "RISK",
+        "draw": "RISK"
+      },
+      "rationale": "共同資源の権利・負担を統制。B-P2との差は未確認",
+      "version": "D149",
+      "axis": "B"
+    },
+    {
+      "id": "B-P4",
+      "recommendation": "PROVISIONAL",
+      "axes": {
+        "fit": "OK",
+        "increment": "RISK",
+        "access": "RISK",
+        "balance": "RISK",
+        "draw": "RISK"
+      },
+      "rationale": "余暇の譲歩規範や相手の希望強度を揃える",
+      "version": "D149",
+      "axis": "B"
+    },
+    {
+      "id": "C-P1",
+      "recommendation": "PROVISIONAL",
+      "axes": {
+        "fit": "OK",
+        "increment": "RISK",
+        "access": "OK",
+        "balance": "RISK",
+        "draw": "RISK"
+      },
+      "rationale": "一回限りの自由時間の使途、C-P2と対比",
+      "version": "D149",
+      "axis": "C"
+    },
+    {
+      "id": "C-P2",
+      "recommendation": "PROVISIONAL",
+      "axes": {
+        "fit": "OK",
+        "increment": "RISK",
+        "access": "OK",
+        "balance": "RISK",
+        "draw": "RISK"
+      },
+      "rationale": "毎週の反復配分、C-P1と対比",
+      "version": "D149",
+      "axis": "C"
+    },
+    {
+      "id": "C-P3",
+      "recommendation": "PROVISIONAL",
+      "axes": {
+        "fit": "OK",
+        "increment": "RISK",
+        "access": "RISK",
+        "balance": "RISK",
+        "draw": "RISK"
+      },
+      "rationale": "活動選択の基準。ただしC-P1と同義になり得る",
+      "version": "D149",
+      "axis": "C"
+    },
+    {
+      "id": "C-P4",
+      "recommendation": "PROBE_ONLY",
+      "axes": {
+        "fit": "OK",
+        "increment": "RISK",
+        "access": "RISK",
+        "balance": "OK",
+        "draw": "STOP"
+      },
+      "rationale": "両側同条件の希少性ペア。2問を別々に採点しない",
+      "version": "D149",
+      "axis": "C"
+    },
+    {
+      "id": "D-P1",
+      "recommendation": "PROVISIONAL",
+      "axes": {
+        "fit": "OK",
+        "increment": "RISK",
+        "access": "OK",
+        "balance": "RISK",
+        "draw": "RISK"
+      },
+      "rationale": "分野の幅/深さの直接比較",
+      "version": "D149",
+      "axis": "D"
+    },
+    {
+      "id": "D-P2",
+      "recommendation": "PROVISIONAL",
+      "axes": {
+        "fit": "OK",
+        "increment": "RISK",
+        "access": "RISK",
+        "balance": "RISK",
+        "draw": "RISK"
+      },
+      "rationale": "学習以外の活動文脈。ただしD-P1の領域差に過ぎない可能性",
+      "version": "D149",
+      "axis": "D"
+    },
+    {
+      "id": "D-P3",
+      "recommendation": "PROBE_ONLY",
+      "axes": {
+        "fit": "OK",
+        "increment": "RISK",
+        "access": "RISK",
+        "balance": "RISK",
+        "draw": "STOP"
+      },
+      "rationale": "未完了場面の探究方向。D-P4とペアで比較",
+      "version": "D149",
+      "axis": "D"
+    },
+    {
+      "id": "D-P4",
+      "recommendation": "PROBE_ONLY",
+      "axes": {
+        "fit": "OK",
+        "increment": "RISK",
+        "access": "OK",
+        "balance": "RISK",
+        "draw": "STOP"
+      },
+      "rationale": "目標達成後の探究方向。D-P3とペアで比較",
+      "version": "D149",
+      "axis": "D"
+    }
+  ],
+  "summary": {
+    "D147": {
+      "total": 21,
+      "byDecision": {
+        "PROVISIONAL": 7,
+        "MERGE": 4,
+        "REFRAME": 5,
+        "PROBE_ONLY": 5
+      }
+    },
+    "D149": {
+      "total": 16,
+      "byDecision": {
+        "PROVISIONAL": 10,
+        "MERGE": 0,
+        "REFRAME": 3,
+        "PROBE_ONLY": 3
+      }
+    }
+  },
+  "hard_invariants": {
+    "bank_total": 50,
+    "draw_total": 30,
+    "main_axes": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "E_fixed_question_count": 2,
+    "no_existing_form_changes": true,
+    "no_current_scoring_changes": true,
+    "neither_alternative_approved": true
+  },
+  "priority": [
+    "A-P4 methodological contamination; revise or remove",
+    "B-P1 restores old B06; compare B-P2/P3 for uniqueness",
+    "C-P4 is a paired rarity experiment; do not count as standalone scored dimension",
+    "D-P3 and D-P4 stage contrast; no immediate scoring as separate factors"
+  ],
+  "reviewedCount": 37
+}
