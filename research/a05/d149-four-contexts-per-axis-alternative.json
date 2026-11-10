@@ -1,0 +1,444 @@
+{
+  "schema": "A05-D149-FOUR-CONTEXTS-PER-AXIS-RESEARCH-0.1",
+  "date": "2026-11-10",
+  "status": "COMPARISON_ONLY_NOT_FINAL",
+  "basis": "User-pasted external review reconciled with D142/D146/D147; not a final adoption of external proposal",
+  "architecture_fixed": {
+    "bank": 50,
+    "draw": 30,
+    "axis_bank": {
+      "A": 12,
+      "B": 12,
+      "C": 12,
+      "D": 12,
+      "E": 2
+    },
+    "axis_draw": {
+      "A": 7,
+      "B": 7,
+      "C": 7,
+      "D": 7,
+      "E": 2
+    }
+  },
+  "prior_facets": 21,
+  "alternative_facets": 16,
+  "description": "Four observational contexts per axis for editorial comparison, not four independent subscales, and not fixed 3 questions per context.",
+  "old_d147_blob": "f9fedddceb947b3f96a828f34dac90a19cb706ce",
+  "coverage": {
+    "A": {
+      "families": 4,
+      "sourceIds12": 12,
+      "counts": [
+        2,
+        5,
+        3,
+        2
+      ]
+    },
+    "B": {
+      "families": 4,
+      "sourceIds12": 12,
+      "counts": [
+        2,
+        5,
+        3,
+        2
+      ]
+    },
+    "C": {
+      "families": 4,
+      "sourceIds12": 12,
+      "counts": [
+        3,
+        3,
+        4,
+        2
+      ]
+    },
+    "D": {
+      "families": 4,
+      "sourceIds12": 12,
+      "counts": [
+        5,
+        3,
+        2,
+        2
+      ]
+    }
+  },
+  "items": [
+    {
+      "axis": "A",
+      "id": "A-P1",
+      "name": "住まい・物理的生活基盤の継続と更新",
+      "source_ids": [
+        "A01",
+        "A-BK14"
+      ],
+      "old_facets": [
+        "A1"
+      ],
+      "question": "今後の生活の基盤として、費用・便利さ・周囲との関係が同程度ならどちらを好みますか？",
+      "left": "慣れた生活空間を整えながら使い続ける",
+      "right": "別の生活空間を選び、暮らしの基盤を組み直す",
+      "risk": "転居の可否、現在の住まいへの愛着、住空間の広さ",
+      "studyStatus": "CORE_CONTEXT",
+      "approved": false,
+      "scored": false,
+      "distinct_subfactor_established": false
+    },
+    {
+      "axis": "A",
+      "id": "A-P2",
+      "name": "日常生活の手順と情報管理",
+      "source_ids": [
+        "A04",
+        "A-FU05",
+        "A-FU09",
+        "A-BK13",
+        "A-BK15"
+      ],
+      "old_facets": [
+        "A2",
+        "A5"
+      ],
+      "question": "必要な日常用事を同じ負担で行える場合、進め方の基本をどうしたいですか？",
+      "left": "使い慣れた進め方を基本に必要な部分だけ整える",
+      "right": "日常の進め方の基本を別の仕組みに組み直す",
+      "risk": "計画性・几帳面さ、日常の方法の好み。A-BK13とA04の重複",
+      "studyStatus": "CORE_CONTEXT",
+      "approved": false,
+      "scored": false,
+      "distinct_subfactor_established": false
+    },
+    {
+      "axis": "A",
+      "id": "A-P3",
+      "name": "活動の拠点と環境の継続・変更",
+      "source_ids": [
+        "A02",
+        "A05",
+        "A-FU10"
+      ],
+      "old_facets": [
+        "A3"
+      ],
+      "question": "同じ活動を同程度の負担で続けられるなら、その活動の拠点はどちらを好みますか？",
+      "left": "慣れた活動場所を引き続き拠点にして整える",
+      "right": "別の活動場所へ拠点を移して環境を作り直す",
+      "risk": "場所に対する好奇心、移動の負担。複数拠点保有の好みと取り違えない",
+      "studyStatus": "AT_RISK",
+      "approved": false,
+      "scored": false,
+      "distinct_subfactor_established": false
+    },
+    {
+      "axis": "A",
+      "id": "A-P4",
+      "name": "生活サービス・用具の運用基盤",
+      "source_ids": [
+        "A03",
+        "A06"
+      ],
+      "old_facets": [
+        "A4"
+      ],
+      "question": "費用・安全性・使い勝手が同じで、追加購入も必要ない場合、生活の仕組みをどうしたいですか？",
+      "left": "今使っているサービスや道具の組み合わせを調整して使う",
+      "right": "同等のサービスや道具の組み合わせを別方式に組み直す",
+      "risk": "道具への愛着・手間・変更経験。環境配慮や消費行動が入り込むか確認",
+      "studyStatus": "AT_RISK",
+      "approved": false,
+      "scored": false,
+      "distinct_subfactor_established": false
+    },
+    {
+      "axis": "B",
+      "id": "B-P1",
+      "name": "自分の重要な選択での他者考慮",
+      "source_ids": [
+        "B06",
+        "B-FU01"
+      ],
+      "old_facets": [
+        "B1"
+      ],
+      "question": "自分の人生に関する選択で、身近な人にも影響があり希望が異なる場合、どちらをより重視しますか？",
+      "left": "相手の考えも聞いたうえで、自分が希望する選択を優先する",
+      "right": "自分の希望も伝えたうえで、相手と合意できる選択を優先する",
+      "risk": "他人に与える実害、関係性、決定権。既存B06からの継承で新価値軸ではない",
+      "studyStatus": "REINTRODUCED_CONTEXT",
+      "approved": false,
+      "scored": false,
+      "distinct_subfactor_established": false
+    },
+    {
+      "axis": "B",
+      "id": "B-P2",
+      "name": "共同方針・共通ルールの最終決定",
+      "source_ids": [
+        "B01",
+        "B03",
+        "B-FU04",
+        "B-FU12",
+        "B-BK13"
+      ],
+      "old_facets": [
+        "B1",
+        "B3",
+        "B5"
+      ],
+      "question": "参加者に同じ影響がある共同活動の方針に複数の妥当な案がある場合、どちらを最終基準としたいですか？",
+      "left": "自分が適切だと判断する案を最終基準にする",
+      "right": "参加者が納得できる合意を最終基準にする",
+      "risk": "役割責任と権限、合意の社会的望ましさ、多数決vs全員一致を同軸としない",
+      "studyStatus": "CORE_CONTEXT",
+      "approved": false,
+      "scored": false,
+      "distinct_subfactor_established": false
+    },
+    {
+      "axis": "B",
+      "id": "B-P3",
+      "name": "共同資源の使途や利用方針",
+      "source_ids": [
+        "B02",
+        "B05",
+        "B-FU11"
+      ],
+      "old_facets": [
+        "B2",
+        "B3"
+      ],
+      "question": "双方が同じ権利と負担で共同利用する設備の使い方について希望が違うとき、どちらをより重視しますか？",
+      "left": "自分が適切だと考える使い方を優先する",
+      "right": "共同利用者との合意を優先する",
+      "risk": "所有権、効率、共同作業の経験。B-P2との増分が弱い可能性",
+      "studyStatus": "AT_RISK",
+      "approved": false,
+      "scored": false,
+      "distinct_subfactor_established": false
+    },
+    {
+      "axis": "B",
+      "id": "B-P4",
+      "name": "共有時間・余暇の予定調整",
+      "source_ids": [
+        "B04",
+        "B-FU05"
+      ],
+      "old_facets": [
+        "B4"
+      ],
+      "question": "一緒に使う時間の予定が異なり、どちらも同程度に楽しめるとき、どちらをより重視しますか？",
+      "left": "自分が望む予定を優先する",
+      "right": "相手と合意できる予定を優先する",
+      "risk": "譲歩規範、社交性、相手の希望の強さ",
+      "studyStatus": "AT_RISK",
+      "approved": false,
+      "scored": false,
+      "distinct_subfactor_established": false
+    },
+    {
+      "axis": "C",
+      "id": "C-P1",
+      "name": "単発の余力の使途",
+      "source_ids": [
+        "C01",
+        "C02",
+        "C-FU11"
+      ],
+      "old_facets": [
+        "C1"
+      ],
+      "question": "必要な用事と休息を済ませた後、自由に使える同じ時間を一度だけ選ぶなら、どちらに使いたいですか？",
+      "left": "数か月後の選択肢を増やすための準備に使う",
+      "right": "今行う体験そのものを充実させるために使う",
+      "risk": "将来の目標の有無・今の余暇不足、C-P2との重複",
+      "studyStatus": "CORE_CONTEXT",
+      "approved": false,
+      "scored": false,
+      "distinct_subfactor_established": false
+    },
+    {
+      "axis": "C",
+      "id": "C-P2",
+      "name": "継続的な時間配分",
+      "source_ids": [
+        "C05",
+        "C-BK14",
+        "C-BK15"
+      ],
+      "old_facets": [
+        "C2",
+        "C3"
+      ],
+      "question": "今後数週間、毎週確保できる同じ自由時間を使うなら、どちらに多く配分したいですか？",
+      "left": "数か月後の目標に向けて少しずつ準備を積み重ねる",
+      "right": "各週の体験や活動をその都度充実させる",
+      "risk": "どちらも現在の充実と将来の成果を持ち得る。継続の難しさ",
+      "studyStatus": "CORE_CONTEXT",
+      "approved": false,
+      "scored": false,
+      "distinct_subfactor_established": false
+    },
+    {
+      "axis": "C",
+      "id": "C-P3",
+      "name": "活動選択と資源の種類",
+      "source_ids": [
+        "C03",
+        "C04",
+        "C06",
+        "C-BK13"
+      ],
+      "old_facets": [
+        "C3",
+        "C4"
+      ],
+      "question": "同じ時間・負担で参加でき、どちらにも同程度の関心がある活動なら、どちらを優先しますか？",
+      "left": "後々の選択肢を広げる活動を選ぶ",
+      "right": "参加中の充実を感じられる活動を選ぶ",
+      "risk": "成果の確実性、興味。予算配分はEとの交絡を調べる非採点文脈",
+      "studyStatus": "AT_RISK",
+      "approved": false,
+      "scored": false,
+      "distinct_subfactor_established": false
+    },
+    {
+      "axis": "C",
+      "id": "C-P4",
+      "name": "双方に対称な機会の希少性",
+      "source_ids": [
+        "C-FU14",
+        "C-FU15"
+      ],
+      "old_facets": [
+        "C5"
+      ],
+      "question": "将来の準備機会と現在の体験機会がどちらも今週しかなく、必要な時間も同じなら、どちらを優先しますか？",
+      "left": "今週限りの将来の準備機会を選ぶ",
+      "right": "今週限りの現在の体験機会を選ぶ",
+      "risk": "C-FU15『双方来週にも可能』と対比する研究用ペア。単独無作為抽出・独立得点には直結させない",
+      "studyStatus": "PAIRED_RESEARCH_ONLY",
+      "approved": false,
+      "scored": false,
+      "distinct_subfactor_established": false
+    },
+    {
+      "axis": "D",
+      "id": "D-P1",
+      "name": "知識・学習分野の幅と深さ",
+      "source_ids": [
+        "D02",
+        "D05",
+        "D-FU09",
+        "D-FU12",
+        "D-BK13"
+      ],
+      "old_facets": [
+        "D1",
+        "D3",
+        "D4"
+      ],
+      "question": "同じ学習時間を使い、どちらにも関心を持てるなら、何をより好みますか？",
+      "left": "複数の異なる分野の基礎を幅広く知る",
+      "right": "一つの分野の内容をより詳しく掘り下げる",
+      "risk": "理解度・能力、D-P2との領域違い、D02とD-FU12の重複",
+      "studyStatus": "CORE_CONTEXT",
+      "approved": false,
+      "scored": false,
+      "distinct_subfactor_established": false
+    },
+    {
+      "axis": "D",
+      "id": "D-P2",
+      "name": "趣味・活動領域の幅と深さ",
+      "source_ids": [
+        "D01",
+        "D04",
+        "D-FU11"
+      ],
+      "old_facets": [
+        "D2",
+        "D3"
+      ],
+      "question": "自由な活動時間で、次のどちらの使い方をより好みますか？",
+      "left": "今まで触れていない別の活動分野を追加で試す",
+      "right": "以前から関心のある活動分野をさらに掘り下げる",
+      "risk": "特定の創作経験は必須にしない。D-P1と単なる領域差かもしれない",
+      "studyStatus": "AT_RISK",
+      "approved": false,
+      "scored": false,
+      "distinct_subfactor_established": false
+    },
+    {
+      "axis": "D",
+      "id": "D-P3",
+      "name": "探究途中での新分野の選択",
+      "source_ids": [
+        "D03",
+        "D-FU07"
+      ],
+      "old_facets": [
+        "D5"
+      ],
+      "question": "今学んでいるテーマにまだ知りたいことがあり、同程度に興味を持つ別分野もある場合、次の時間をどちらに使いたいですか？",
+      "left": "別分野の基礎を新しく学ぶ",
+      "right": "今のテーマについて未解決の内容をさらに深める",
+      "risk": "未完了の義務・注意散漫・期限のプレッシャーを混同しない",
+      "studyStatus": "CONTEXT_CONTRAST_ONLY",
+      "approved": false,
+      "scored": false,
+      "distinct_subfactor_established": false
+    },
+    {
+      "axis": "D",
+      "id": "D-P4",
+      "name": "一区切り・目標達成後の次の選択",
+      "source_ids": [
+        "D06",
+        "D-FU10"
+      ],
+      "old_facets": [
+        "D6"
+      ],
+      "question": "今学んでいるテーマで当初の目標に到達し、自由に使う時間があればどちらに進みたいですか？",
+      "left": "まだ触れていない別の分野を新しく学び始める",
+      "right": "同じテーマの応用的な内容をさらに深める",
+      "risk": "D-P3との段階差を比較する。独立の下位尺度や得点問として即認定しない",
+      "studyStatus": "CONTEXT_CONTRAST_ONLY",
+      "approved": false,
+      "scored": false,
+      "distinct_subfactor_established": false
+    }
+  ],
+  "excluded_from_scoring": [
+    {
+      "id": "B-VOTE",
+      "reason": "Majority vs consensus procedural preference not self/relationship pole"
+    },
+    {
+      "id": "C-GOAL",
+      "reason": "Presence of future goals should be collected as contextual covariate, not C axis score"
+    },
+    {
+      "id": "D-METHOD",
+      "reason": "New working method vs polishing existing method is off-construct D04 recurrence"
+    },
+    {
+      "id": "A-MULTI-BASE",
+      "reason": "Number of living bases is not equivalent to stability/change preference"
+    }
+  ],
+  "caveats": [
+    "C-P4 is a paired within-subject experimental context and cannot be isolated as a scored random draw item",
+    "D-P3/D-P4 are kept as stage-contrast prototypes until real-response evidence indicates merge/independence",
+    "B personal selection is already represented by B06 origin, so novelty of content not established",
+    "All 48 source candidate slots are mapped for traceability, not approved as 48 scored items",
+    "No modification to D147 taxonomy, original D130 bank, diagnostic form, draw engine, score pipeline or public site"
+  ],
+  "approved": false,
+  "productionChange": false
+}
