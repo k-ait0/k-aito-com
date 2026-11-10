@@ -979,10 +979,10 @@
       "new_proposal": {
         "stem": "必要な休息を確保でき、自由に使える休日が一日あるなら、どちらへ優先的に使いたいですか？",
         "left": "将来の目標に向けて進める",
-        "right": "その日だから味わえる活動を充実させる"
+        "right": "その日の体験を充実させる活動に使う"
       },
       "focus": "休暇の使い方",
-      "residual_risk": "現在側だけ希少性がある・余暇志向",
+      "residual_risk": "休息の要否・将来/現在の便益価値が揃っているか",
       "source_type": "REPLACE_FOR_EXCLUDED_OR_DUPLICATE_SLOT",
       "status": "IDEATION_ONLY",
       "accepted": false,
