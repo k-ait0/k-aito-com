@@ -16,7 +16,7 @@ function loadResearchRows(text){
   if(parts.length!==4)throw Error('CSV width at '+(i+1));
   const [month,...cells]=parts;
   const [price,dividend,cpi]=cells.map(Number);
-  if(cells.some(s=>!/\d+(?:\.\d+)?/.test(s))||!Number.isFinite(price)||price<=0||!Number.isFinite(dividend)||dividend<0||!Number.isFinite(cpi)||cpi<=0)throw Error('Invalid price/dividend/CPI at '+month);
+  if(cells.some(s=>!/^\d+(?:\.\d+)?$/.test(s))||!Number.isFinite(price)||price<=0||!Number.isFinite(dividend)||dividend<0||!Number.isFinite(cpi)||cpi<=0)throw Error('Invalid price/dividend/CPI at '+month);
   const serial=monthNumber(month);
   if(data.length&&serial!==data[data.length-1].serial+1)throw Error('Missing or duplicate source month near '+month);
   data.push({month,serial,price,dividend,cpi});
