@@ -12,6 +12,8 @@ const cp = require("node:child_process");
 const CHECKS = [
   ["GitHub Actions manual-only audit", "scripts/check-actions-manual-only.cjs"],
   ["GitHub Actions policy regression", "scripts/test-actions-manual-only-policy.cjs"],
+  ["Manual main-write approval guard", "scripts/check-main-write-workflows.cjs"],
+  ["Manual main-write guard regression", "scripts/test-main-write-workflows.cjs"],
   ["Local preflight regression", "scripts/test-local-preflight.cjs"],
   ["Manual-sync workflow policy", "scripts/test-manual-sync-policy.cjs"],
   ["Generation guard regression", "scripts/test-check-generated-content.cjs"],

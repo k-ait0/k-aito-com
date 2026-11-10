@@ -5,6 +5,15 @@ on:
   # Automated post-merge generated commits previously diverged from XServer.
   # Invoke only as a recovery/migration operation after reviewing source and output.
   workflow_dispatch:
+    inputs:
+      confirm:
+        description: "Type SYNC_PUBLISHED_TO_MAIN to permit reviewed main write"
+        required: true
+        type: string
+      expected_main_sha:
+        description: "Full 40-character HEAD SHA of the reviewed main branch"
+        required: true
+        type: string
 
 permissions:
   contents: write
@@ -15,6 +24,7 @@ concurrency:
 
 jobs:
   update-index:
+    if: ${{ github.ref == 'refs/heads/main' && inputs.confirm == 'SYNC_PUBLISHED_TO_MAIN' }}
     runs-on: ubuntu-latest
     steps:
       - name: Check out latest main
@@ -22,6 +32,16 @@ jobs:
         with:
           ref: main
           persist-credentials: true
+
+      - name: Verify reviewed main SHA before any write-capable step
+        env:
+          EXPECTED_MAIN_SHA: ${{ inputs.expected_main_sha }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          [[ "$EXPECTED_MAIN_SHA" =~ ^[a-f0-9]{40}$ ]] || { echo "FAIL: expected_main_sha must be a full lowercase commit SHA" >&2; exit 1; }
+          actual="$(git rev-parse HEAD)"
+          [[ "$actual" == "$EXPECTED_MAIN_SHA" ]] || { echo "FAIL: main changed; review the new SHA before trying again" >&2; exit 1; }
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
@@ -74,13 +94,9 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -u
           git commit -m "Sync sitemap and article index from published catalogue"
-          for attempt in 1 2 3; do
-            git fetch origin main
-            git rebase origin/main
-            if git push origin HEAD:main; then
-              exit 0
-            fi
-            echo "Main advanced during the generated commit; retrying after fetch (attempt ${attempt})."
-          done
-          echo "Could not push generated site after 3 attempts." >&2
-          exit 1
+          # Never rebase/retry onto an unreviewed newer main commit.
+          # A non-fast-forward push is a hard stop requiring renewed approval.
+          if ! git push origin HEAD:main; then
+            echo "FAIL: main advanced or push rejected; re-review and rerun manually with the new SHA." >&2
+            exit 1
+          fi
