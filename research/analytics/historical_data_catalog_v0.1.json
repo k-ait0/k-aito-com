@@ -116,7 +116,7 @@
       "id": "FX",
       "name": "為替",
       "use": "USDJPY/local FX",
-      "source_url_candidate": "https://fred.stlouisfed.org/data/DEXJPUS",
+      "source_url_candidate": "https://www.federalreserve.gov/releases/h10/current/",
       "status": "CANDIDATE_ONLY"
     },
     {
@@ -130,7 +130,7 @@
       "id": "RATES",
       "name": "金利",
       "use": "JPY/USD short and long yields, not bond TR",
-      "source_url_candidate": "https://fred.stlouisfed.org/series/DGS10",
+      "source_url_candidate": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates",
       "status": "CANDIDATE_ONLY"
     },
     {
@@ -151,7 +151,7 @@
       "id": "CREDIT_SPREAD",
       "name": "信用スプレッド",
       "use": "Credit risk series",
-      "source_url_candidate": "https://fred.stlouisfed.org/",
+      "source_url_candidate": null,
       "status": "CANDIDATE_ONLY"
     }
   ],
@@ -180,5 +180,8 @@
     "G2_QUALITY",
     "G3_LICENSE",
     "G4_ENGINE"
-  ]
+  ],
+  "superseded_for_source_selection_by": "research/analytics/source_registry.v0.2.json",
+  "source_contract_policy": "docs/ANALYTICS_SOURCE_POLICY_V0_2.md",
+  "source_contract_note": "This v0.1 file preserves acquisition status only; v0.2 is authoritative for provider locks and rights."
 }
