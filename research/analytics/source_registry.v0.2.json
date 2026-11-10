@@ -432,6 +432,24 @@
         "WORLD_BANK_PINK_MONTHLY"
       ],
       "website_data_enabled": false
+    },
+    "private_research_normalization_v04": {
+      "status": "LOCAL_NODE_22_VERIFIED",
+      "source": "legacy_1980_01_to_2023_06_shiller_extracted_research_only",
+      "source_sha256": "0cdb8a04bd14d104e53acbb982cf205eb4733371bb9140191b8c4b6e433bc55d",
+      "original_months": 522,
+      "approx_usd_monthly_returns": 521,
+      "rolling_complete_start_months": {
+        "10_year": 402,
+        "20_year": 282,
+        "30_year": 162
+      },
+      "research_test_assertions": "16/16",
+      "jpy_alignment_test_assertions": "13/13",
+      "site_distribution_rights": "NOT_APPROVED",
+      "jpy_full_backtest_status": "BLOCKED_MISSING_HISTORICAL_USDJPY_AND_JP_CPI",
+      "source_code": "scripts/prepare-analytics-shiller-research.cjs",
+      "status_doc": "docs/ANALYTICS_HISTORICAL_V0_4_QA.md"
     }
   }
 }
