@@ -67,7 +67,7 @@ async function main(){
   const months=normalizeFedMonthly(days);
   files['source_RAW.html']=raw;
   files['usdjpy_daily.csv']=Buffer.from(['date,usd_jpy,status',...days.map(x=>[x.date,x.value,x.status].join(','))].join('\n')+'\n');
-  files['usdjpy_monthly.csv']=Buffer.from(['month,observation_date,usd_jpy',...months.map(x=>[x.month,x.date,x.value].join(','))].join('\n')+'\n');
+  files['usdjpy_monthly.csv']=Buffer.from(['month,observation_date,usd_jpy,month_status',...months.map(x=>[x.month,x.date,x.value,x.month_status].join(','))].join('\n')+'\n');
   Object.assign(details,{observations:days.length,ND:days.filter(x=>x.status==='ND').length,monthly_observations:months.length,month_rule:'last valid observation',last_date:days.at(-1).date});
  }else if(id==='BLS_CPI_US'){
   const months=parseBlsCpi(JSON.parse(raw.toString('utf8')),range.start_year,range.end_year);
