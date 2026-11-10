@@ -70,7 +70,7 @@
   "qualification": "Gap is an optimistic text-slot lower bound, NOT an empirical estimate. D143 provides 20 revised variants; all unapproved. Similar family variants should not automatically count as independent scored items.",
   "issues": [],
   "passed": true,
-  "check_count": 12,
+  "check_count": 14,
   "currently_approved": 0,
   "required_next_work": [
     "A: develop additional nonduplicate contexts or reduce eligibility assumptions; residence and daily routines alone insufficient for 7 distinct items",
