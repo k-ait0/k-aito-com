@@ -117,7 +117,8 @@
       "name": "為替",
       "use": "USDJPY/local FX",
       "source_url_candidate": "https://www.federalreserve.gov/releases/h10/current/",
-      "status": "CANDIDATE_ONLY"
+      "status": "OFFICIAL_SAMPLE_SNAPSHOT_28_ROWS",
+      "sample_snapshot_file": "research/analytics/snapshots/fed_h10_usdjpy_20261109.csv"
     },
     {
       "id": "CPI",
@@ -183,5 +184,6 @@
   ],
   "superseded_for_source_selection_by": "research/analytics/source_registry.v0.2.json",
   "source_contract_policy": "docs/ANALYTICS_SOURCE_POLICY_V0_2.md",
-  "source_contract_note": "This v0.1 file preserves acquisition status only; v0.2 is authoritative for provider locks and rights."
+  "source_contract_note": "This v0.1 file preserves acquisition status only; v0.2 is authoritative for provider locks and rights.",
+  "acquisition_notes_20261110": "Fed Board H.10 historical JPY page manual snippet: 28 daily lines, 2026-09-30..2026-11-06, 1 ND; full history not downloaded; source_registry v0.2 authoritative"
 }
