@@ -22,6 +22,7 @@ function normalizeFedMonthly(rows){
   const month=r.date.slice(0,7),prev=m.get(month);if(!prev||prev.date<r.date)m.set(month,{month,date:r.date,value:r.value});
  }
  const arr=[...m.values()].sort((a,b)=>a.month.localeCompare(b.month));
+ for(let i=0;i<arr.length;i++)arr[i].month_status=i===arr.length-1?'LATEST_MONTH_PROVISIONAL':'COMPLETE_OBSERVED';
  let cursor=Number(arr[0].month.slice(0,4))*12+Number(arr[0].month.slice(5))-1;
  for(const a of arr){const x=Number(a.month.slice(0,4))*12+Number(a.month.slice(5))-1;if(x!==cursor)throw Error('Missing entire FX month: '+Math.floor(cursor/12)+'-'+String(cursor%12+1).padStart(2,'0'));cursor++}
  return arr;
