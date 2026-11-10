@@ -1,0 +1,394 @@
+{
+  "version": "0.2.0",
+  "review_date": "2026-11-10",
+  "scope": "FINOWA_C + KAITO_ANALYTICS_B",
+  "status": "SOURCE_FREEZE_POLICY_ADOPTED; NOT DATA_OR_SITE_LICENSE_APPROVAL",
+  "policy": {
+    "asset_class_count": 12,
+    "auxiliary_category_count": 6,
+    "approved_publication_requires": [
+      "direct_original_data_origin",
+      "terms_and_series_rights_verified",
+      "commercial_use_verified",
+      "redistribution_and_display_verified",
+      "data_qa_passed",
+      "owner_public_release_approval"
+    ],
+    "public_display_default": false,
+    "no_auto_fallback": true,
+    "no_scraping": true,
+    "no_repackage_without_rights": true,
+    "no_AI_training_without_separate_rights": true,
+    "source_change": "SOURCE_CHANGE_ADR required (old/new URL and owner, terms evidence and snapshot, schema/coverage differences, risks, migration QA, explicit approval). Never silently substitute providers.",
+    "provenance_fields": [
+      "source_id",
+      "source_url",
+      "publisher",
+      "retrieved_at",
+      "content_sha256",
+      "license_review_at",
+      "license_url",
+      "series_rights",
+      "unit",
+      "currency",
+      "return_type",
+      "start_month",
+      "end_month",
+      "missing_months",
+      "revision_date"
+    ],
+    "public_output_notice": "Source and processing method shown per series; restricted raw values/exports not transmitted"
+  },
+  "sources": {
+    "ESTAT": {
+      "name": "e-Stat（政府統計）",
+      "owner": "総務省統計局等",
+      "homepage": "https://www.e-stat.go.jp/",
+      "terms": "https://www.e-stat.go.jp/terms-of-use",
+      "rights": "OPEN_GENERAL_TERMS_SERIES_CHECK",
+      "restriction": "第三者権利・クレジット・加工明示を系列ごとに確認"
+    },
+    "ESTAT_DASH": {
+      "name": "統計ダッシュボード",
+      "owner": "総務省統計局",
+      "homepage": "https://dashboard.e-stat.go.jp/static/api",
+      "terms": "https://dashboard.e-stat.go.jp/static/terms",
+      "rights": "OPEN_GENERAL_TERMS_SERIES_CHECK",
+      "restriction": "API利用時の指定クレジット・対象系列の第三者権利・出典記載"
+    },
+    "BLS": {
+      "name": "US Bureau of Labor Statistics",
+      "owner": "US BLS",
+      "homepage": "https://www.bls.gov/developers/",
+      "terms": "https://www.bls.gov/opub/copyright-information.htm",
+      "api_terms": "https://www.bls.gov/developers/termsOfService.htm",
+      "rights": "PUBLIC_DOMAIN_GENERAL",
+      "restriction": "API取得日・出典・BLSによる二次分析非保証の表示"
+    },
+    "FED_BOARD": {
+      "name": "Federal Reserve Board",
+      "owner": "Board of Governors of the Federal Reserve System",
+      "homepage": "https://www.federalreserve.gov/releases/h10/current/",
+      "terms": "https://www.federalreserve.gov/disclaimer.htm",
+      "rights": "PUBLIC_DOMAIN_UNLESS_MARKED",
+      "restriction": "Board作成コンテンツか・個別の第三者権利表記を確認"
+    },
+    "US_TREASURY": {
+      "name": "US Department of Treasury",
+      "owner": "US Treasury",
+      "homepage": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates",
+      "terms": "https://catalog.data.gov/dataset/interest-rate-statistics-daily-treasury-yield-curve-rates",
+      "rights": "PUBLIC_DOMAIN_CURVE_DATA",
+      "restriction": "利回りを債券トータルリターンと誤表示しない"
+    },
+    "WORLD_BANK_PINK": {
+      "name": "World Bank Pink Sheet",
+      "owner": "World Bank Prospects Group",
+      "homepage": "https://www.worldbank.org/en/research/commodity-markets",
+      "terms": "https://data.worldbank.org/summary-terms-of-use",
+      "rights": "CC_BY_4_DEFAULT_METADATA_CHECK",
+      "restriction": "月次現物価格。収録系列の第三者権利例外を原簿で確認。先物TRとは別"
+    },
+    "BOJ": {
+      "name": "日本銀行 時系列統計",
+      "owner": "日本銀行",
+      "homepage": "https://www.stat-search.boj.or.jp/",
+      "terms": "https://www.stat-search.boj.or.jp/info/notice.html",
+      "api_terms": "https://www.stat-search.boj.or.jp/info/api_notice.pdf",
+      "rights": "COMMERCIAL_REUSE_PRIOR_CONSULTATION",
+      "restriction": "商用転載・複製は事前相談。API利用サービス公開時に通知・所定表示"
+    },
+    "JPX": {
+      "name": "JPX総研指数",
+      "owner": "JPX総研",
+      "homepage": "https://www.jpx.co.jp/markets/indices/",
+      "terms": "https://www.jpx.co.jp/markets/indices/licence/",
+      "rights": "LICENSE_REQUIRED",
+      "restriction": "商用データ収集・指数数値第三者配信・サイト掲載に契約要否確認"
+    },
+    "SPDJI": {
+      "name": "S&P Dow Jones Indices",
+      "owner": "S&P DJI",
+      "homepage": "https://www.spglobal.com/spdji/en/",
+      "terms": "https://www.spglobal.com/spdji/en/about-us/data-index-licensing/",
+      "rights": "LICENSE_REQUIRED",
+      "restriction": "指数値・派生データ・ウェブ表示に契約・書面許諾要"
+    },
+    "MSCI": {
+      "name": "MSCI",
+      "owner": "MSCI Inc.",
+      "homepage": "https://www.msci.com/data-and-analytics/index-data",
+      "terms": "https://www.msci.com/legal/index-terms",
+      "rights": "LICENSE_REQUIRED",
+      "restriction": "商用サイト・データベース・派生・指数再配布には事前書面許諾"
+    },
+    "NOMURA_BPI": {
+      "name": "NOMURA-BPI",
+      "owner": "野村フィデューシャリー・リサーチ＆コンサルティング",
+      "homepage": "",
+      "terms": "",
+      "rights": "LICENSE_REQUIRED_UNCONFIRMED_TERMS",
+      "restriction": "権利者による公開サイト用許諾条件の一次確認が未完了"
+    },
+    "BLOOMBERG_INDEX": {
+      "name": "Bloomberg Bond Indices",
+      "owner": "Bloomberg Index Services Limited",
+      "homepage": "https://www.bloombergindices.com/",
+      "terms": "",
+      "rights": "LICENSE_REQUIRED_UNCONFIRMED_TERMS",
+      "restriction": "債券TR指数のサイト表示・再配布条件と料金を契約で確認"
+    },
+    "FTSE_RUSSELL": {
+      "name": "FTSE Russell",
+      "owner": "LSEG/FTSE Russell",
+      "homepage": "https://www.lseg.com/en/ftse-russell",
+      "terms": "",
+      "rights": "LICENSE_REQUIRED_UNCONFIRMED_TERMS",
+      "restriction": "指数TRの商用表示・再配布権を個別確認"
+    },
+    "SHILLER_LEGACY": {
+      "name": "旧版Shiller近似系列",
+      "owner": "Robert Shiller / redistributor, source rights not established",
+      "homepage": "https://github.com/datasets/s-and-p-500/blob/main/data/data.csv",
+      "terms": "",
+      "rights": "RESEARCH_ONLY",
+      "restriction": "522か月研究用復元。著作権と商用再配布権未確認。公開不可"
+    }
+  },
+  "assets": [
+    {
+      "asset_id": "JP_EQUITY",
+      "provider_id": "JPX",
+      "series_contract": "TOPIX（配当込み）",
+      "series_kind": "INDEX_TOTAL_RETURN",
+      "website_rights_state": "LICENSE_PENDING",
+      "research_fallback": null,
+      "source_lock": "LOCKED_PROVISIONAL_20261110",
+      "downloaded_in_this_turn": false,
+      "site_use_approved": false
+    },
+    {
+      "asset_id": "US_EQUITY",
+      "provider_id": "SPDJI",
+      "series_contract": "S&P 500 Total Return",
+      "series_kind": "INDEX_TOTAL_RETURN",
+      "website_rights_state": "LICENSE_PENDING",
+      "research_fallback": "SHILLER_LEGACY",
+      "source_lock": "LOCKED_PROVISIONAL_20261110",
+      "downloaded_in_this_turn": false,
+      "site_use_approved": false
+    },
+    {
+      "asset_id": "GLOBAL_EQUITY",
+      "provider_id": "MSCI",
+      "series_contract": "MSCI ACWI Net Total Return",
+      "series_kind": "INDEX_TOTAL_RETURN",
+      "website_rights_state": "LICENSE_PENDING",
+      "research_fallback": null,
+      "source_lock": "LOCKED_PROVISIONAL_20261110",
+      "downloaded_in_this_turn": false,
+      "site_use_approved": false
+    },
+    {
+      "asset_id": "JP_BONDS",
+      "provider_id": "NOMURA_BPI",
+      "series_contract": "NOMURA-BPI 総合（配当・利息込み指数）",
+      "series_kind": "BOND_TOTAL_RETURN",
+      "website_rights_state": "LICENSE_PENDING",
+      "research_fallback": null,
+      "source_lock": "LOCKED_PROVISIONAL_20261110",
+      "downloaded_in_this_turn": false,
+      "site_use_approved": false
+    },
+    {
+      "asset_id": "US_BONDS",
+      "provider_id": "BLOOMBERG_INDEX",
+      "series_contract": "Bloomberg US Aggregate Bond Index",
+      "series_kind": "BOND_TOTAL_RETURN",
+      "website_rights_state": "LICENSE_PENDING",
+      "research_fallback": null,
+      "source_lock": "LOCKED_PROVISIONAL_20261110",
+      "downloaded_in_this_turn": false,
+      "site_use_approved": false
+    },
+    {
+      "asset_id": "CASH_SHORT",
+      "provider_id": "BOJ",
+      "series_contract": "円短期金融市場金利を用いたキャッシュ仮定",
+      "series_kind": "RATE_MODEL_NOT_TR",
+      "website_rights_state": "PRIOR_CONSULTATION",
+      "research_fallback": null,
+      "source_lock": "LOCKED_PROVISIONAL_20261110",
+      "downloaded_in_this_turn": false,
+      "site_use_approved": false
+    },
+    {
+      "asset_id": "GOLD",
+      "provider_id": "WORLD_BANK_PINK",
+      "series_contract": "Gold (US dollars per troy ounce)",
+      "series_kind": "COMMODITY_SPOT",
+      "website_rights_state": "OPEN_METADATA_GATE",
+      "research_fallback": null,
+      "source_lock": "LOCKED_PROVISIONAL_20261110",
+      "downloaded_in_this_turn": false,
+      "site_use_approved": false
+    },
+    {
+      "asset_id": "REIT",
+      "provider_id": "JPX",
+      "series_contract": "東証REIT指数（配当込み）、海外REITは別契約",
+      "series_kind": "INDEX_TOTAL_RETURN",
+      "website_rights_state": "LICENSE_PENDING",
+      "research_fallback": null,
+      "source_lock": "LOCKED_PROVISIONAL_20261110",
+      "downloaded_in_this_turn": false,
+      "site_use_approved": false
+    },
+    {
+      "asset_id": "EM_EQUITY",
+      "provider_id": "MSCI",
+      "series_contract": "MSCI Emerging Markets Net Total Return",
+      "series_kind": "INDEX_TOTAL_RETURN",
+      "website_rights_state": "LICENSE_PENDING",
+      "research_fallback": null,
+      "source_lock": "LOCKED_PROVISIONAL_20261110",
+      "downloaded_in_this_turn": false,
+      "site_use_approved": false
+    },
+    {
+      "asset_id": "DEV_EXUS_BONDS",
+      "provider_id": "FTSE_RUSSELL",
+      "series_contract": "FTSE World Government Bond Index（対象通貨範囲は別途確定）",
+      "series_kind": "BOND_TOTAL_RETURN",
+      "website_rights_state": "LICENSE_PENDING",
+      "research_fallback": null,
+      "source_lock": "LOCKED_PROVISIONAL_20261110",
+      "downloaded_in_this_turn": false,
+      "site_use_approved": false
+    },
+    {
+      "asset_id": "EXGOLD_COMMODITY",
+      "provider_id": "WORLD_BANK_PINK",
+      "series_contract": "Pink Sheet エネルギー/金属/農産物の月次現物価格",
+      "series_kind": "COMMODITY_SPOT",
+      "website_rights_state": "OPEN_METADATA_GATE",
+      "research_fallback": null,
+      "source_lock": "LOCKED_PROVISIONAL_20261110",
+      "downloaded_in_this_turn": false,
+      "site_use_approved": false
+    },
+    {
+      "asset_id": "INFLATION_LINKED",
+      "provider_id": "US_TREASURY",
+      "series_contract": "US Treasury TIPS実質イールドカーブによるモデル用入力",
+      "series_kind": "REAL_YIELD_MODEL_NOT_TR",
+      "website_rights_state": "PUBLIC_MODEL_INPUT_QA_PENDING",
+      "research_fallback": null,
+      "source_lock": "LOCKED_PROVISIONAL_20261110",
+      "downloaded_in_this_turn": false,
+      "site_use_approved": false
+    }
+  ],
+  "auxiliary": [
+    {
+      "aux_id": "FX",
+      "provider_id": "FED_BOARD",
+      "series_contract": "H.10 USD/JPY（円/米ドル）",
+      "series_kind": "FX_RATE",
+      "website_rights_state": "PUBLIC_METADATA_GATE",
+      "source_lock": "LOCKED_PROVISIONAL_20261110",
+      "site_use_approved": false
+    },
+    {
+      "aux_id": "CPI_JP",
+      "provider_id": "ESTAT",
+      "series_contract": "日本CPI全国総合（月次、原系列）",
+      "series_kind": "CPI_LEVEL",
+      "website_rights_state": "OPEN_METADATA_GATE",
+      "source_lock": "LOCKED_PROVISIONAL_20261110",
+      "site_use_approved": false
+    },
+    {
+      "aux_id": "CPI_US",
+      "provider_id": "BLS",
+      "series_contract": "CUUR0000SA0 米国CPI-U 非季節調整総合",
+      "series_kind": "CPI_LEVEL",
+      "website_rights_state": "PUBLIC_METADATA_GATE",
+      "source_lock": "LOCKED_PROVISIONAL_20261110",
+      "site_use_approved": false
+    },
+    {
+      "aux_id": "RATES_US",
+      "provider_id": "US_TREASURY",
+      "series_contract": "国債3M/2Y/10Y/30Yパーイールド（満期差を区別）",
+      "series_kind": "GOVERNMENT_YIELD",
+      "website_rights_state": "PUBLIC_METADATA_GATE",
+      "source_lock": "LOCKED_PROVISIONAL_20261110",
+      "site_use_approved": false
+    },
+    {
+      "aux_id": "RATES_JP",
+      "provider_id": "BOJ",
+      "series_contract": "円短期・長期金利",
+      "series_kind": "GOVERNMENT_YIELD",
+      "website_rights_state": "PRIOR_CONSULTATION",
+      "source_lock": "LOCKED_PROVISIONAL_20261110",
+      "site_use_approved": false
+    },
+    {
+      "aux_id": "DIVIDENDS",
+      "provider_id": "SPDJI",
+      "series_contract": "指数TR専用の配当定義／権利者契約でのみ利用",
+      "series_kind": "DIVIDEND_INDEX",
+      "website_rights_state": "LICENSE_PENDING",
+      "source_lock": "LOCKED_PROVISIONAL_20261110",
+      "site_use_approved": false
+    },
+    {
+      "aux_id": "HEDGE_COST",
+      "provider_id": "BOJ",
+      "series_contract": "日米金利差＋実取引コスト。概算値であることを明示",
+      "series_kind": "DERIVED_ESTIMATE",
+      "website_rights_state": "PRIOR_CONSULTATION",
+      "source_lock": "LOCKED_PROVISIONAL_20261110",
+      "site_use_approved": false
+    },
+    {
+      "aux_id": "CREDIT_SPREAD",
+      "provider_id": "US_TREASURY",
+      "series_contract": "米国国債金利のみ基準値。民間信用スプレッドの元系列未選定",
+      "series_kind": "BENCHMARK_ONLY",
+      "website_rights_state": "SOURCE_NOT_SELECTED",
+      "source_lock": "LOCKED_PROVISIONAL_20261110",
+      "site_use_approved": false
+    }
+  ],
+  "site_attribution": {
+    "ESTAT": "出典：政府統計の総合窓口(e-Stat)。加工した場合は加工主体・内容を併記",
+    "ESTAT_DASH": "このサービスは、統計ダッシュボードのAPI機能を使用していますが、サービスの内容は国によって保証されたものではありません。",
+    "BLS": "Source: U.S. Bureau of Labor Statistics. Include API retrieval date and required analysis disclaimer (see API terms).",
+    "BOJ": "このサービスは、日本銀行時系列統計データ検索サイトのAPI機能を使用しています。サービスの内容は日本銀行によって保証されたものではありません。",
+    "WORLD_BANK_PINK": "Source: World Bank, Commodity Markets (Pink Sheet), indicate modifications and CC BY 4.0 where applicable."
+  },
+  "acquisition": {
+    "verified_existing_research": {
+      "provider_id": "SHILLER_LEGACY",
+      "rows": 522,
+      "period": "1980-01/2023-06",
+      "fields": [
+        "S&P 500 price",
+        "annual dividend index points",
+        "US CPI"
+      ],
+      "stored_location": "private-only",
+      "public_license": "NOT_VERIFIED"
+    },
+    "new_external_download_count": 0,
+    "world_bank_monthly_xlsx_attempt": {
+      "url": "https://thedocs.worldbank.org/en/doc/74e8be41ceb20fa0da750cda2f6b9e4e-0050012026/related/CMO-Historical-Data-Monthly.xlsx",
+      "result": "FAILED_DNS",
+      "verified_official_page": "https://www.worldbank.org/en/research/commodity-markets"
+    },
+    "next_step": "Private retrieve, verify XLSX Description rights, validate monthly values, then public approval"
+  }
+}
