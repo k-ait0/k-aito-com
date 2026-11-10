@@ -72,3 +72,14 @@
 - BOJ APIを使用して公開する場合は、日本銀行へ公開連絡し、指定クレジットを掲示。**商用転載許可をこの通知だけで代替しない。**
 - 第三者権利に基づくRawデータのCSVダウンロードは権利条項に従い個別ON/OFFする。
 - 過去のバックテスト成功率は将来の成功確率ではない。
+
+## 正規取得スクリプト（手動・非公開保存）
+
+- `node scripts/check-analytics-source-registry.cjs` — 固定先と公開判定の整合性をチェック
+- `node scripts/acquire-analytics-approved-source.cjs --selftest` — 形式パーサのローカル診断
+- `node scripts/acquire-analytics-approved-source.cjs FED_H10_USDJPY` — Fedの公式国別履歴から全期間を1回取得、欠損はNDのまま
+- `node scripts/acquire-analytics-approved-source.cjs WORLD_BANK_PINK_MONTHLY` — 世界銀行の固定公式XLSXを1回取得、権利未審査のまま非公開保存
+
+正常取得時の出力はリポジトリ外の `../analytics-private-data` （または `ANALYTICS_PRIVATE_DATA_DIR`）に限定。既存サービスへ自動反映しない。上流仕様変更やエラーで別URLへ勝手に切り替えず失敗させる。2026-11-10の外部実行ではDNS `EAI_AGAIN` が発生し、全履歴の実取得はできていない。
+
+**Fed Board Data Download Programの移行注意：** 2026年11月9日週からDDPの一部機能が廃止予定と公表されているため、現時点の正規ソースはH.10公式国別履歴HTMLに固定。変更が必要になった場合は新しい`SOURCE_CHANGE_ADR`で審査する。FREDへの自動切替は禁止。
