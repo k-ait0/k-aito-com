@@ -1,0 +1,184 @@
+{
+  "schema_version": "0.1.0",
+  "as_of": "2026-11-10",
+  "assets": [
+    {
+      "id": "JP_EQUITY",
+      "name": "日本株",
+      "priority": "S",
+      "target": "TOPIX TR / Nikkei TR",
+      "status": "CANDIDATE_ONLY",
+      "raw_download_verified": false,
+      "license_verified": false
+    },
+    {
+      "id": "US_EQUITY",
+      "name": "米国株",
+      "priority": "S",
+      "target": "S&P 500; legacy Shiller price/dividend research sample",
+      "status": "RESEARCH_EXTRACTED",
+      "raw_download_verified": false,
+      "license_verified": false
+    },
+    {
+      "id": "GLOBAL_EQUITY",
+      "name": "世界株",
+      "priority": "S",
+      "target": "All Country World TR; overlap with US/JP/EM",
+      "status": "CANDIDATE_ONLY",
+      "raw_download_verified": false,
+      "license_verified": false
+    },
+    {
+      "id": "JP_BONDS",
+      "name": "日本債券",
+      "priority": "S",
+      "target": "bond total return; yield is not return",
+      "status": "CANDIDATE_ONLY",
+      "raw_download_verified": false,
+      "license_verified": false
+    },
+    {
+      "id": "US_BONDS",
+      "name": "米国債券",
+      "priority": "S",
+      "target": "bond total return; USDJPY conversion",
+      "status": "CANDIDATE_ONLY",
+      "raw_download_verified": false,
+      "license_verified": false
+    },
+    {
+      "id": "CASH_SHORT",
+      "name": "現金・短期資産",
+      "priority": "S",
+      "target": "short-rate compounding method documented",
+      "status": "CANDIDATE_ONLY",
+      "raw_download_verified": false,
+      "license_verified": false
+    },
+    {
+      "id": "GOLD",
+      "name": "金",
+      "priority": "S",
+      "target": "spot vs investment vehicle price/fees",
+      "status": "CANDIDATE_ONLY",
+      "raw_download_verified": false,
+      "license_verified": false
+    },
+    {
+      "id": "REIT",
+      "name": "REIT",
+      "priority": "A",
+      "target": "separate J-REIT and overseas REIT TR",
+      "status": "CANDIDATE_ONLY",
+      "raw_download_verified": false,
+      "license_verified": false
+    },
+    {
+      "id": "EM_EQUITY",
+      "name": "新興国株",
+      "priority": "A",
+      "target": "emerging markets TR",
+      "status": "CANDIDATE_ONLY",
+      "raw_download_verified": false,
+      "license_verified": false
+    },
+    {
+      "id": "DEV_EXUS_BONDS",
+      "name": "先進国債券",
+      "priority": "A",
+      "target": "developed foreign bonds, hedged/unhedged",
+      "status": "CANDIDATE_ONLY",
+      "raw_download_verified": false,
+      "license_verified": false
+    },
+    {
+      "id": "EXGOLD_COMMODITY",
+      "name": "金以外のコモディティ",
+      "priority": "A",
+      "target": "futures total return rather than spot",
+      "status": "CANDIDATE_ONLY",
+      "raw_download_verified": false,
+      "license_verified": false
+    },
+    {
+      "id": "INFLATION_LINKED",
+      "name": "物価連動債",
+      "priority": "A",
+      "target": "investable TIPS TR, not real yield",
+      "status": "CANDIDATE_ONLY",
+      "raw_download_verified": false,
+      "license_verified": false
+    }
+  ],
+  "auxiliary": [
+    {
+      "id": "FX",
+      "name": "為替",
+      "use": "USDJPY/local FX",
+      "source_url_candidate": "https://fred.stlouisfed.org/data/DEXJPUS",
+      "status": "CANDIDATE_ONLY"
+    },
+    {
+      "id": "CPI",
+      "name": "物価",
+      "use": "Japan and US CPI",
+      "source_url_candidate": "https://www.stat.go.jp/data/cpi/index.html",
+      "status": "LEGACY_RESEARCH_PARTIAL"
+    },
+    {
+      "id": "RATES",
+      "name": "金利",
+      "use": "JPY/USD short and long yields, not bond TR",
+      "source_url_candidate": "https://fred.stlouisfed.org/series/DGS10",
+      "status": "CANDIDATE_ONLY"
+    },
+    {
+      "id": "DIVIDENDS",
+      "name": "配当・利息",
+      "use": "Total return reconstruction; Shiller annual dividend in research only",
+      "source_url_candidate": "https://github.com/datasets/s-and-p-500/blob/main/data/data.csv",
+      "status": "LEGACY_RESEARCH_PARTIAL"
+    },
+    {
+      "id": "HEDGE_COST",
+      "name": "為替ヘッジコスト",
+      "use": "Actual/estimated costs and hedged vs unhedged",
+      "source_url_candidate": "https://www.stat-search.boj.or.jp/",
+      "status": "CANDIDATE_ONLY"
+    },
+    {
+      "id": "CREDIT_SPREAD",
+      "name": "信用スプレッド",
+      "use": "Credit risk series",
+      "source_url_candidate": "https://fred.stlouisfed.org/",
+      "status": "CANDIDATE_ONLY"
+    }
+  ],
+  "verified_private_recovery": {
+    "legacy_source": "DWZ_v0.30B_offline_preview.html",
+    "rows": 522,
+    "start": "1980-01",
+    "end": "2023-06",
+    "fields": [
+      "sp500_price_index",
+      "annualized_dividend_index_points",
+      "us_cpi_index"
+    ],
+    "sha256": "0cdb8a04bd14d104e53acbb982cf205eb4733371bb9140191b8c4b6e433bc55d",
+    "redistribution_permission": "UNVERIFIED",
+    "not_total_return": true,
+    "not_jpy_fx_adjusted": true
+  },
+  "external_acquisitions": {
+    "count": 0,
+    "blocker": "DNS resolution of FRED failed"
+  },
+  "status_criteria": [
+    "G0_SOURCE",
+    "G1_PRIVATE_FETCH",
+    "G2_QUALITY",
+    "G3_LICENSE",
+    "G4_ENGINE"
+  ]
+}
