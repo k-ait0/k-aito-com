@@ -297,7 +297,8 @@
       "series_kind": "FX_RATE",
       "website_rights_state": "PUBLIC_METADATA_GATE",
       "source_lock": "LOCKED_PROVISIONAL_20261110",
-      "site_use_approved": false
+      "site_use_approved": false,
+      "acquisition_status": "OFFICIAL_SAMPLE_SNAPSHOT_28_ROWS"
     },
     {
       "aux_id": "CPI_JP",
@@ -389,6 +390,25 @@
       "result": "FAILED_DNS",
       "verified_official_page": "https://www.worldbank.org/en/research/commodity-markets"
     },
-    "next_step": "Private retrieve, verify XLSX Description rights, validate monthly values, then public approval"
+    "next_step": "Private retrieve, verify XLSX Description rights, validate monthly values, then public approval",
+    "official_page_snapshot_count": 1,
+    "official_page_snapshot_rows": 28,
+    "snapshot_details": [
+      {
+        "id": "FED_H10_USDJPY_NOV2026",
+        "type": "PUBLIC_WEB_TRANSCRIPTION",
+        "source_id": "FED_BOARD",
+        "source_url": "https://www.federalreserve.gov/releases/h10/hist/dat00_ja.htm",
+        "coverage": "2026-09-30..2026-11-06",
+        "rows": 28,
+        "valid_rates": 27,
+        "explicit_ND": 1,
+        "cross_checked_latest_week": 5,
+        "file": "research/analytics/snapshots/fed_h10_usdjpy_20261109.csv",
+        "status": "EVIDENCE_SNAPSHOT_ONLY",
+        "download_method": "manual_official_page_excerpt",
+        "rights": "General Federal Reserve Board public domain policy reviewed; product approval still false"
+      }
+    ]
   }
 }
