@@ -17,7 +17,7 @@ label{display:block;font-size:.78rem;font-weight:650;margin:0 0 4px;color:#475b6
 .items{display:grid;gap:14px;margin-top:18px}.item{border:1px solid #d5dfe6;background:#fff;border-radius:12px;padding:18px 19px;min-width:0}
 .item-title{display:flex;align-items:center;flex-wrap:wrap;gap:9px;margin-bottom:10px}.id{font-size:1rem;font-weight:760;letter-spacing:.02em}.chip{background:#eaf0f4;color:#426079;border-radius:6px;padding:2px 9px;font-size:.75rem;font-weight:700}
 .small{font-size:.79rem;color:#5e6e7d}.detail{font-size:.87rem}
-section.cols{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin:12px 0}.panel{background:#f7f9fa;border:1px solid #e1e7ec;border-radius:9px;padding:12px 13px;min-width:0}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin:12px 0}.panel{background:#f7f9fa;border:1px solid #e1e7ec;border-radius:9px;padding:12px 13px;min-width:0}
 .panel.new{background:#f0f5f7;border-color:#cbdbe4}.panel .heading{font-size:.77rem;font-weight:730;color:#536a7b;margin-bottom:8px}
 .choice{margin:7px 0;padding:8px 10px;border:1px solid #d7e1e7;border-radius:7px;background:white;font-size:.9rem}
 .choice b{font-size:.71rem;color:#5b7489;margin-right:8px}.line{margin-top:7px;font-size:.84rem}
@@ -75,7 +75,7 @@ function itemCard(q){
  const cols=div('cols');cols.appendChild(panel('既存の質問文（D-130）',q.original_stem,q.original_negative,q.original_positive,false));
  if(q.draft)cols.appendChild(panel('改稿案（D-143、未採用）',q.draft.stem,q.draft.negative,q.draft.positive,true));
  else cols.appendChild(div('panel','改稿案なし。この原文を新BANKに採用したという意味ではありません。'));
- cols.className='cols';cols.tagName;root.appendChild(cols);
+ root.appendChild(cols);
  const f=div('cause');const p=div('line');const b=document.createElement('strong');b.textContent='問題点：';p.appendChild(b);p.appendChild(document.createTextNode(q.diagnosis));f.appendChild(p);
  const a=div('line');const ab=document.createElement('strong');ab.textContent='次の対応：';a.appendChild(ab);a.appendChild(document.createTextNode(q.next_action));f.appendChild(a);
  if(q.draft){const rr=div('line');rr.textContent='改稿後の残存リスク：'+q.draft.remaining_risks+'／関係：'+q.draft.relation_to_other_candidates;f.appendChild(rr);}
