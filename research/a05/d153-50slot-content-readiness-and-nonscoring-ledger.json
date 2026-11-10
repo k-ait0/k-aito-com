@@ -1,0 +1,1070 @@
+{
+  "schema": "A05-D153-50SLOT-CONTENT-GATE-0.1",
+  "date": "2026-11-10",
+  "status": "RESEARCH_READINESS_LEDGER_NOT_PUBLIC",
+  "description": "Track original bank ID, D142 editorial risks and D149 context restrictions without editing original question bank or scoring. Context labels do not supersede older editing problems.",
+  "source_sha": {
+    "research/a05/d142-full-50-item-content-disposition.json": "85286173eeb6350d7a1d5b17a617702afd9675ff",
+    "research/a05/d149-four-contexts-per-axis-alternative.json": "c5724d7c60e89be490131cbe375c66f244a42cbf",
+    "research/a05/d150-21v16-common-rubric-audit.json": "02541af696980c340f72b0f0f5720b7094199d7c",
+    "research/a05/d152-three-risky-families-six-redraft-variants.json": "eb40de1a2d0c1ebadc1e83513f50b431ca1a4a70",
+    "research/a05/d146-50slot-before-after-quality-proposals.json": "53b3e137ff3597bdf7072c880c622baf8fee6814"
+  },
+  "invariants": {
+    "bank_total": 50,
+    "draw_total": 30,
+    "pool_axis": {
+      "A": 12,
+      "B": 12,
+      "C": 12,
+      "D": 12,
+      "E": 2
+    },
+    "draw_axis": {
+      "A": 7,
+      "B": 7,
+      "C": 7,
+      "D": 7,
+      "E": 2
+    },
+    "existing_form_unchanged": true,
+    "existing_scoring_unchanged": true,
+    "existing_randomizer_unchanged": true,
+    "no_promotion_from_rewritten_six": true
+  },
+  "axes": {
+    "A": {
+      "total": 12,
+      "paired_research": 0,
+      "context_rewrite": 5,
+      "approved": 0
+    },
+    "B": {
+      "total": 12,
+      "paired_research": 0,
+      "context_rewrite": 3,
+      "approved": 0
+    },
+    "C": {
+      "total": 12,
+      "paired_research": 2,
+      "context_rewrite": 0,
+      "approved": 0
+    },
+    "D": {
+      "total": 12,
+      "paired_research": 4,
+      "context_rewrite": 0,
+      "approved": 0
+    },
+    "E": {
+      "total": 2,
+      "paired_research": 0,
+      "context_rewrite": 0,
+      "approved": 0
+    }
+  },
+  "distribution": {
+    "NEEDS_REVIEW_NOT_APPROVED": 14,
+    "CONTEXT_REWRITE_REQUIRED": 8,
+    "PROBE_DO_NOT_SCORE": 5,
+    "DUPLICATE_DO_NOT_COUNT": 9,
+    "REMOVE_OR_REPLACE": 6,
+    "PAIRED_RESEARCH_ONLY": 6,
+    "E_2_FIXED_CONTENT_REVIEW": 2
+  },
+  "approved_for_scoring": 0,
+  "qa_assertions": [
+    "50 IDs unique",
+    "50 / 30 architecture",
+    "12 12 12 12 2",
+    "E two in pool/draw",
+    "zero approved",
+    "C pair intact",
+    "D pairs intact",
+    "A 5 for reframe",
+    "B 3 for reframe",
+    "E has no D152 edits",
+    "Six variant mappings",
+    "All contexts cover exactly 48",
+    "original editorial flags retained",
+    "All C/D research rows blocked"
+  ],
+  "note": "All slots blocked for scored promotion; there may be working v1 production questions, which are not re-evaluated here. C/D pair counts are for research context and cannot be uncritically filled to meet 7 scored questions. Old editorial dispositions remain authoritative for review.",
+  "items": [
+    {
+      "id": "A01",
+      "axis": "A",
+      "original_disposition": "REWRITE",
+      "linked_context_id": "A-P1",
+      "linked_context_label": "住まい・物理的生活基盤の継続と更新",
+      "context_recommendation": "PROVISIONAL",
+      "readiness_category": "NEEDS_REVIEW_NOT_APPROVED",
+      "fully_approved": false,
+      "may_use_in_scored_random_bank": false,
+      "may_replace_original": false,
+      "promotions_required": [
+        "content quality audit",
+        "real respondent interpretation testing",
+        "item response analysis",
+        "equivalence of randomized 30-question versions"
+      ],
+      "replacement_draft_ids": []
+    },
+    {
+      "id": "A02",
+      "axis": "A",
+      "original_disposition": "OUT_OF_CONSTRUCT",
+      "linked_context_id": "A-P3",
+      "linked_context_label": "活動の拠点と環境の継続・変更",
+      "context_recommendation": "REFRAME",
+      "readiness_category": "CONTEXT_REWRITE_REQUIRED",
+      "fully_approved": false,
+      "may_use_in_scored_random_bank": false,
+      "may_replace_original": false,
+      "promotions_required": [
+        "content quality audit",
+        "real respondent interpretation testing",
+        "item response analysis",
+        "equivalence of randomized 30-question versions"
+      ],
+      "replacement_draft_ids": [
+        "A-P3-R1",
+        "A-P3-R2"
+      ]
+    },
+    {
+      "id": "A03",
+      "axis": "A",
+      "original_disposition": "OUT_OF_CONSTRUCT",
+      "linked_context_id": "A-P4",
+      "linked_context_label": "生活サービス・用具の運用基盤",
+      "context_recommendation": "REFRAME",
+      "readiness_category": "CONTEXT_REWRITE_REQUIRED",
+      "fully_approved": false,
+      "may_use_in_scored_random_bank": false,
+      "may_replace_original": false,
+      "promotions_required": [
+        "content quality audit",
+        "real respondent interpretation testing",
+        "item response analysis",
+        "equivalence of randomized 30-question versions"
+      ],
+      "replacement_draft_ids": [
+        "A-P4-R1",
+        "A-P4-R2"
+      ]
+    },
+    {
+      "id": "A04",
+      "axis": "A",
+      "original_disposition": "REWRITE",
+      "linked_context_id": "A-P2",
+      "linked_context_label": "日常生活の手順と情報管理",
+      "context_recommendation": "PROVISIONAL",
+      "readiness_category": "NEEDS_REVIEW_NOT_APPROVED",
+      "fully_approved": false,
+      "may_use_in_scored_random_bank": false,
+      "may_replace_original": false,
+      "promotions_required": [
+        "content quality audit",
+        "real respondent interpretation testing",
+        "item response analysis",
+        "equivalence of randomized 30-question versions"
+      ],
+      "replacement_draft_ids": []
+    },
+    {
+      "id": "A05",
+      "axis": "A",
+      "original_disposition": "PROBE_ONLY",
+      "linked_context_id": "A-P3",
+      "linked_context_label": "活動の拠点と環境の継続・変更",
+      "context_recommendation": "REFRAME",
+      "readiness_category": "CONTEXT_REWRITE_REQUIRED",
+      "fully_approved": false,
+      "may_use_in_scored_random_bank": false,
+      "may_replace_original": false,
+      "promotions_required": [
+        "content quality audit",
+        "real respondent interpretation testing",
+        "item response analysis",
+        "equivalence of randomized 30-question versions"
+      ],
+      "replacement_draft_ids": [
+        "A-P3-R1",
+        "A-P3-R2"
+      ]
+    },
+    {
+      "id": "A06",
+      "axis": "A",
+      "original_disposition": "DUPLICATE_MERGE",
+      "linked_context_id": "A-P4",
+      "linked_context_label": "生活サービス・用具の運用基盤",
+      "context_recommendation": "REFRAME",
+      "readiness_category": "CONTEXT_REWRITE_REQUIRED",
+      "fully_approved": false,
+      "may_use_in_scored_random_bank": false,
+      "may_replace_original": false,
+      "promotions_required": [
+        "content quality audit",
+        "real respondent interpretation testing",
+        "item response analysis",
+        "equivalence of randomized 30-question versions"
+      ],
+      "replacement_draft_ids": [
+        "A-P4-R1",
+        "A-P4-R2"
+      ]
+    },
+    {
+      "id": "A-FU05",
+      "axis": "A",
+      "original_disposition": "PROVISIONAL_KEEP",
+      "linked_context_id": "A-P2",
+      "linked_context_label": "日常生活の手順と情報管理",
+      "context_recommendation": "PROVISIONAL",
+      "readiness_category": "NEEDS_REVIEW_NOT_APPROVED",
+      "fully_approved": false,
+      "may_use_in_scored_random_bank": false,
+      "may_replace_original": false,
+      "promotions_required": [
+        "content quality audit",
+        "real respondent interpretation testing",
+        "item response analysis",
+        "equivalence of randomized 30-question versions"
+      ],
+      "replacement_draft_ids": []
+    },
+    {
+      "id": "A-FU09",
+      "axis": "A",
+      "original_disposition": "PROBE_ONLY",
+      "linked_context_id": "A-P2",
+      "linked_context_label": "日常生活の手順と情報管理",
+      "context_recommendation": "PROVISIONAL",
+      "readiness_category": "PROBE_DO_NOT_SCORE",
+      "fully_approved": false,
+      "may_use_in_scored_random_bank": false,
+      "may_replace_original": false,
+      "promotions_required": [
+        "content quality audit",
+        "real respondent interpretation testing",
+        "item response analysis",
+        "equivalence of randomized 30-question versions"
+      ],
+      "replacement_draft_ids": []
+    },
+    {
+      "id": "A-FU10",
+      "axis": "A",
+      "original_disposition": "DUPLICATE_MERGE",
+      "linked_context_id": "A-P3",
+      "linked_context_label": "活動の拠点と環境の継続・変更",
+      "context_recommendation": "REFRAME",
+      "readiness_category": "CONTEXT_REWRITE_REQUIRED",
+      "fully_approved": false,
+      "may_use_in_scored_random_bank": false,
+      "may_replace_original": false,
+      "promotions_required": [
+        "content quality audit",
+        "real respondent interpretation testing",
+        "item response analysis",
+        "equivalence of randomized 30-question versions"
+      ],
+      "replacement_draft_ids": [
+        "A-P3-R1",
+        "A-P3-R2"
+      ]
+    },
+    {
+      "id": "A-BK13",
+      "axis": "A",
+      "original_disposition": "DUPLICATE_MERGE",
+      "linked_context_id": "A-P2",
+      "linked_context_label": "日常生活の手順と情報管理",
+      "context_recommendation": "PROVISIONAL",
+      "readiness_category": "DUPLICATE_DO_NOT_COUNT",
+      "fully_approved": false,
+      "may_use_in_scored_random_bank": false,
+      "may_replace_original": false,
+      "promotions_required": [
+        "content quality audit",
+        "real respondent interpretation testing",
+        "item response analysis",
+        "equivalence of randomized 30-question versions"
+      ],
+      "replacement_draft_ids": []
+    },
+    {
+      "id": "A-BK14",
+      "axis": "A",
+      "original_disposition": "PROBE_ONLY",
+      "linked_context_id": "A-P1",
+      "linked_context_label": "住まい・物理的生活基盤の継続と更新",
+      "context_recommendation": "PROVISIONAL",
+      "readiness_category": "PROBE_DO_NOT_SCORE",
+      "fully_approved": false,
+      "may_use_in_scored_random_bank": false,
+      "may_replace_original": false,
+      "promotions_required": [
+        "content quality audit",
+        "real respondent interpretation testing",
+        "item response analysis",
+        "equivalence of randomized 30-question versions"
+      ],
+      "replacement_draft_ids": []
+    },
+    {
+      "id": "A-BK15",
+      "axis": "A",
+      "original_disposition": "DUPLICATE_MERGE",
+      "linked_context_id": "A-P2",
+      "linked_context_label": "日常生活の手順と情報管理",
+      "context_recommendation": "PROVISIONAL",
+      "readiness_category": "DUPLICATE_DO_NOT_COUNT",
+      "fully_approved": false,
+      "may_use_in_scored_random_bank": false,
+      "may_replace_original": false,
+      "promotions_required": [
+        "content quality audit",
+        "real respondent interpretation testing",
+        "item response analysis",
+        "equivalence of randomized 30-question versions"
+      ],
+      "replacement_draft_ids": []
+    },
+    {
+      "id": "B01",
+      "axis": "B",
+      "original_disposition": "REWRITE",
+      "linked_context_id": "B-P2",
+      "linked_context_label": "共同方針・共通ルールの最終決定",
+      "context_recommendation": "PROVISIONAL",
+      "readiness_category": "NEEDS_REVIEW_NOT_APPROVED",
+      "fully_approved": false,
+      "may_use_in_scored_random_bank": false,
+      "may_replace_original": false,
+      "promotions_required": [
+        "content quality audit",
+        "real respondent interpretation testing",
+        "item response analysis",
+        "equivalence of randomized 30-question versions"
+      ],
+      "replacement_draft_ids": []
+    },
+    {
+      "id": "B02",
+      "axis": "B",
+      "original_disposition": "OUT_OF_CONSTRUCT",
+      "linked_context_id": "B-P3",
+      "linked_context_label": "共同資源の使途や利用方針",
+      "context_recommendation": "REFRAME",
+      "readiness_category": "CONTEXT_REWRITE_REQUIRED",
+      "fully_approved": false,
+      "may_use_in_scored_random_bank": false,
+      "may_replace_original": false,
+      "promotions_required": [
+        "content quality audit",
+        "real respondent interpretation testing",
+        "item response analysis",
+        "equivalence of randomized 30-question versions"
+      ],
+      "replacement_draft_ids": [
+        "B-P3-R1",
+        "B-P3-R2"
+      ]
+    },
+    {
+      "id": "B03",
+      "axis": "B",
+      "original_disposition": "PROBE_ONLY",
+      "linked_context_id": "B-P2",
+      "linked_context_label": "共同方針・共通ルールの最終決定",
+      "context_recommendation": "PROVISIONAL",
+      "readiness_category": "PROBE_DO_NOT_SCORE",
+      "fully_approved": false,
+      "may_use_in_scored_random_bank": false,
+      "may_replace_original": false,
+      "promotions_required": [
+        "content quality audit",
+        "real respondent interpretation testing",
+        "item response analysis",
+        "equivalence of randomized 30-question versions"
+      ],
+      "replacement_draft_ids": []
+    },
+    {
+      "id": "B04",
+      "axis": "B",
+      "original_disposition": "DUPLICATE_MERGE",
+      "linked_context_id": "B-P4",
+      "linked_context_label": "共有時間・余暇の予定調整",
+      "context_recommendation": "PROVISIONAL",
+      "readiness_category": "DUPLICATE_DO_NOT_COUNT",
+      "fully_approved": false,
+      "may_use_in_scored_random_bank": false,
+      "may_replace_original": false,
+      "promotions_required": [
+        "content quality audit",
+        "real respondent interpretation testing",
+        "item response analysis",
+        "equivalence of randomized 30-question versions"
+      ],
+      "replacement_draft_ids": []
+    },
+    {
+      "id": "B05",
+      "axis": "B",
+      "original_disposition": "REWRITE",
+      "linked_context_id": "B-P3",
+      "linked_context_label": "共同資源の使途や利用方針",
+      "context_recommendation": "REFRAME",
+      "readiness_category": "CONTEXT_REWRITE_REQUIRED",
+      "fully_approved": false,
+      "may_use_in_scored_random_bank": false,
+      "may_replace_original": false,
+      "promotions_required": [
+        "content quality audit",
+        "real respondent interpretation testing",
+        "item response analysis",
+        "equivalence of randomized 30-question versions"
+      ],
+      "replacement_draft_ids": [
+        "B-P3-R1",
+        "B-P3-R2"
+      ]
+    },
+    {
+      "id": "B06",
+      "axis": "B",
+      "original_disposition": "REWRITE",
+      "linked_context_id": "B-P1",
+      "linked_context_label": "自分の重要な選択での他者考慮",
+      "context_recommendation": "PROVISIONAL",
+      "readiness_category": "NEEDS_REVIEW_NOT_APPROVED",
+      "fully_approved": false,
+      "may_use_in_scored_random_bank": false,
+      "may_replace_original": false,
+      "promotions_required": [
+        "content quality audit",
+        "real respondent interpretation testing",
+        "item response analysis",
+        "equivalence of randomized 30-question versions"
+      ],
+      "replacement_draft_ids": []
+    },
+    {
+      "id": "B-FU01",
+      "axis": "B",
+      "original_disposition": "PROVISIONAL_KEEP",
+      "linked_context_id": "B-P1",
+      "linked_context_label": "自分の重要な選択での他者考慮",
+      "context_recommendation": "PROVISIONAL",
+      "readiness_category": "NEEDS_REVIEW_NOT_APPROVED",
+      "fully_approved": false,
+      "may_use_in_scored_random_bank": false,
+      "may_replace_original": false,
+      "promotions_required": [
+        "content quality audit",
+        "real respondent interpretation testing",
+        "item response analysis",
+        "equivalence of randomized 30-question versions"
+      ],
+      "replacement_draft_ids": []
+    },
+    {
+      "id": "B-FU04",
+      "axis": "B",
+      "original_disposition": "PROVISIONAL_KEEP",
+      "linked_context_id": "B-P2",
+      "linked_context_label": "共同方針・共通ルールの最終決定",
+      "context_recommendation": "PROVISIONAL",
+      "readiness_category": "NEEDS_REVIEW_NOT_APPROVED",
+      "fully_approved": false,
+      "may_use_in_scored_random_bank": false,
+      "may_replace_original": false,
+      "promotions_required": [
+        "content quality audit",
+        "real respondent interpretation testing",
+        "item response analysis",
+        "equivalence of randomized 30-question versions"
+      ],
+      "replacement_draft_ids": []
+    },
+    {
+      "id": "B-FU05",
+      "axis": "B",
+      "original_disposition": "DUPLICATE_MERGE",
+      "linked_context_id": "B-P4",
+      "linked_context_label": "共有時間・余暇の予定調整",
+      "context_recommendation": "PROVISIONAL",
+      "readiness_category": "DUPLICATE_DO_NOT_COUNT",
+      "fully_approved": false,
+      "may_use_in_scored_random_bank": false,
+      "may_replace_original": false,
+      "promotions_required": [
+        "content quality audit",
+        "real respondent interpretation testing",
+        "item response analysis",
+        "equivalence of randomized 30-question versions"
+      ],
+      "replacement_draft_ids": []
+    },
+    {
+      "id": "B-FU11",
+      "axis": "B",
+      "original_disposition": "PROBE_ONLY",
+      "linked_context_id": "B-P3",
+      "linked_context_label": "共同資源の使途や利用方針",
+      "context_recommendation": "REFRAME",
+      "readiness_category": "CONTEXT_REWRITE_REQUIRED",
+      "fully_approved": false,
+      "may_use_in_scored_random_bank": false,
+      "may_replace_original": false,
+      "promotions_required": [
+        "content quality audit",
+        "real respondent interpretation testing",
+        "item response analysis",
+        "equivalence of randomized 30-question versions"
+      ],
+      "replacement_draft_ids": [
+        "B-P3-R1",
+        "B-P3-R2"
+      ]
+    },
+    {
+      "id": "B-FU12",
+      "axis": "B",
+      "original_disposition": "OUT_OF_CONSTRUCT",
+      "linked_context_id": "B-P2",
+      "linked_context_label": "共同方針・共通ルールの最終決定",
+      "context_recommendation": "PROVISIONAL",
+      "readiness_category": "REMOVE_OR_REPLACE",
+      "fully_approved": false,
+      "may_use_in_scored_random_bank": false,
+      "may_replace_original": false,
+      "promotions_required": [
+        "content quality audit",
+        "real respondent interpretation testing",
+        "item response analysis",
+        "equivalence of randomized 30-question versions"
+      ],
+      "replacement_draft_ids": []
+    },
+    {
+      "id": "B-BK13",
+      "axis": "B",
+      "original_disposition": "DUPLICATE_MERGE",
+      "linked_context_id": "B-P2",
+      "linked_context_label": "共同方針・共通ルールの最終決定",
+      "context_recommendation": "PROVISIONAL",
+      "readiness_category": "DUPLICATE_DO_NOT_COUNT",
+      "fully_approved": false,
+      "may_use_in_scored_random_bank": false,
+      "may_replace_original": false,
+      "promotions_required": [
+        "content quality audit",
+        "real respondent interpretation testing",
+        "item response analysis",
+        "equivalence of randomized 30-question versions"
+      ],
+      "replacement_draft_ids": []
+    },
+    {
+      "id": "C01",
+      "axis": "C",
+      "original_disposition": "REWRITE",
+      "linked_context_id": "C-P1",
+      "linked_context_label": "単発の余力の使途",
+      "context_recommendation": "PROVISIONAL",
+      "readiness_category": "NEEDS_REVIEW_NOT_APPROVED",
+      "fully_approved": false,
+      "may_use_in_scored_random_bank": false,
+      "may_replace_original": false,
+      "promotions_required": [
+        "content quality audit",
+        "real respondent interpretation testing",
+        "item response analysis",
+        "equivalence of randomized 30-question versions"
+      ],
+      "replacement_draft_ids": []
+    },
+    {
+      "id": "C02",
+      "axis": "C",
+      "original_disposition": "OUT_OF_CONSTRUCT",
+      "linked_context_id": "C-P1",
+      "linked_context_label": "単発の余力の使途",
+      "context_recommendation": "PROVISIONAL",
+      "readiness_category": "REMOVE_OR_REPLACE",
+      "fully_approved": false,
+      "may_use_in_scored_random_bank": false,
+      "may_replace_original": false,
+      "promotions_required": [
+        "content quality audit",
+        "real respondent interpretation testing",
+        "item response analysis",
+        "equivalence of randomized 30-question versions"
+      ],
+      "replacement_draft_ids": []
+    },
+    {
+      "id": "C03",
+      "axis": "C",
+      "original_disposition": "PROBE_ONLY",
+      "linked_context_id": "C-P3",
+      "linked_context_label": "活動選択と資源の種類",
+      "context_recommendation": "PROVISIONAL",
+      "readiness_category": "PROBE_DO_NOT_SCORE",
+      "fully_approved": false,
+      "may_use_in_scored_random_bank": false,
+      "may_replace_original": false,
+      "promotions_required": [
+        "content quality audit",
+        "real respondent interpretation testing",
+        "item response analysis",
+        "equivalence of randomized 30-question versions"
+      ],
+      "replacement_draft_ids": []
+    },
+    {
+      "id": "C04",
+      "axis": "C",
+      "original_disposition": "OUT_OF_CONSTRUCT",
+      "linked_context_id": "C-P3",
+      "linked_context_label": "活動選択と資源の種類",
+      "context_recommendation": "PROVISIONAL",
+      "readiness_category": "REMOVE_OR_REPLACE",
+      "fully_approved": false,
+      "may_use_in_scored_random_bank": false,
+      "may_replace_original": false,
+      "promotions_required": [
+        "content quality audit",
+        "real respondent interpretation testing",
+        "item response analysis",
+        "equivalence of randomized 30-question versions"
+      ],
+      "replacement_draft_ids": []
+    },
+    {
+      "id": "C05",
+      "axis": "C",
+      "original_disposition": "DUPLICATE_MERGE",
+      "linked_context_id": "C-P2",
+      "linked_context_label": "継続的な時間配分",
+      "context_recommendation": "PROVISIONAL",
+      "readiness_category": "DUPLICATE_DO_NOT_COUNT",
+      "fully_approved": false,
+      "may_use_in_scored_random_bank": false,
+      "may_replace_original": false,
+      "promotions_required": [
+        "content quality audit",
+        "real respondent interpretation testing",
+        "item response analysis",
+        "equivalence of randomized 30-question versions"
+      ],
+      "replacement_draft_ids": []
+    },
+    {
+      "id": "C06",
+      "axis": "C",
+      "original_disposition": "OUT_OF_CONSTRUCT",
+      "linked_context_id": "C-P3",
+      "linked_context_label": "活動選択と資源の種類",
+      "context_recommendation": "PROVISIONAL",
+      "readiness_category": "REMOVE_OR_REPLACE",
+      "fully_approved": false,
+      "may_use_in_scored_random_bank": false,
+      "may_replace_original": false,
+      "promotions_required": [
+        "content quality audit",
+        "real respondent interpretation testing",
+        "item response analysis",
+        "equivalence of randomized 30-question versions"
+      ],
+      "replacement_draft_ids": []
+    },
+    {
+      "id": "C-FU11",
+      "axis": "C",
+      "original_disposition": "PROVISIONAL_KEEP",
+      "linked_context_id": "C-P1",
+      "linked_context_label": "単発の余力の使途",
+      "context_recommendation": "PROVISIONAL",
+      "readiness_category": "NEEDS_REVIEW_NOT_APPROVED",
+      "fully_approved": false,
+      "may_use_in_scored_random_bank": false,
+      "may_replace_original": false,
+      "promotions_required": [
+        "content quality audit",
+        "real respondent interpretation testing",
+        "item response analysis",
+        "equivalence of randomized 30-question versions"
+      ],
+      "replacement_draft_ids": []
+    },
+    {
+      "id": "C-FU14",
+      "axis": "C",
+      "original_disposition": "PROVISIONAL_KEEP",
+      "linked_context_id": "C-P4",
+      "linked_context_label": "双方に対称な機会の希少性",
+      "context_recommendation": "PROBE_ONLY",
+      "readiness_category": "PAIRED_RESEARCH_ONLY",
+      "fully_approved": false,
+      "may_use_in_scored_random_bank": false,
+      "may_replace_original": false,
+      "promotions_required": [
+        "content quality audit",
+        "real respondent interpretation testing",
+        "item response analysis",
+        "equivalence of randomized 30-question versions"
+      ],
+      "replacement_draft_ids": []
+    },
+    {
+      "id": "C-FU15",
+      "axis": "C",
+      "original_disposition": "PROVISIONAL_KEEP",
+      "linked_context_id": "C-P4",
+      "linked_context_label": "双方に対称な機会の希少性",
+      "context_recommendation": "PROBE_ONLY",
+      "readiness_category": "PAIRED_RESEARCH_ONLY",
+      "fully_approved": false,
+      "may_use_in_scored_random_bank": false,
+      "may_replace_original": false,
+      "promotions_required": [
+        "content quality audit",
+        "real respondent interpretation testing",
+        "item response analysis",
+        "equivalence of randomized 30-question versions"
+      ],
+      "replacement_draft_ids": []
+    },
+    {
+      "id": "C-BK13",
+      "axis": "C",
+      "original_disposition": "DUPLICATE_MERGE",
+      "linked_context_id": "C-P3",
+      "linked_context_label": "活動選択と資源の種類",
+      "context_recommendation": "PROVISIONAL",
+      "readiness_category": "DUPLICATE_DO_NOT_COUNT",
+      "fully_approved": false,
+      "may_use_in_scored_random_bank": false,
+      "may_replace_original": false,
+      "promotions_required": [
+        "content quality audit",
+        "real respondent interpretation testing",
+        "item response analysis",
+        "equivalence of randomized 30-question versions"
+      ],
+      "replacement_draft_ids": []
+    },
+    {
+      "id": "C-BK14",
+      "axis": "C",
+      "original_disposition": "OUT_OF_CONSTRUCT",
+      "linked_context_id": "C-P2",
+      "linked_context_label": "継続的な時間配分",
+      "context_recommendation": "PROVISIONAL",
+      "readiness_category": "REMOVE_OR_REPLACE",
+      "fully_approved": false,
+      "may_use_in_scored_random_bank": false,
+      "may_replace_original": false,
+      "promotions_required": [
+        "content quality audit",
+        "real respondent interpretation testing",
+        "item response analysis",
+        "equivalence of randomized 30-question versions"
+      ],
+      "replacement_draft_ids": []
+    },
+    {
+      "id": "C-BK15",
+      "axis": "C",
+      "original_disposition": "REWRITE",
+      "linked_context_id": "C-P2",
+      "linked_context_label": "継続的な時間配分",
+      "context_recommendation": "PROVISIONAL",
+      "readiness_category": "NEEDS_REVIEW_NOT_APPROVED",
+      "fully_approved": false,
+      "may_use_in_scored_random_bank": false,
+      "may_replace_original": false,
+      "promotions_required": [
+        "content quality audit",
+        "real respondent interpretation testing",
+        "item response analysis",
+        "equivalence of randomized 30-question versions"
+      ],
+      "replacement_draft_ids": []
+    },
+    {
+      "id": "D01",
+      "axis": "D",
+      "original_disposition": "PROVISIONAL_KEEP",
+      "linked_context_id": "D-P2",
+      "linked_context_label": "趣味・活動領域の幅と深さ",
+      "context_recommendation": "PROVISIONAL",
+      "readiness_category": "NEEDS_REVIEW_NOT_APPROVED",
+      "fully_approved": false,
+      "may_use_in_scored_random_bank": false,
+      "may_replace_original": false,
+      "promotions_required": [
+        "content quality audit",
+        "real respondent interpretation testing",
+        "item response analysis",
+        "equivalence of randomized 30-question versions"
+      ],
+      "replacement_draft_ids": []
+    },
+    {
+      "id": "D02",
+      "axis": "D",
+      "original_disposition": "PROVISIONAL_KEEP",
+      "linked_context_id": "D-P1",
+      "linked_context_label": "知識・学習分野の幅と深さ",
+      "context_recommendation": "PROVISIONAL",
+      "readiness_category": "NEEDS_REVIEW_NOT_APPROVED",
+      "fully_approved": false,
+      "may_use_in_scored_random_bank": false,
+      "may_replace_original": false,
+      "promotions_required": [
+        "content quality audit",
+        "real respondent interpretation testing",
+        "item response analysis",
+        "equivalence of randomized 30-question versions"
+      ],
+      "replacement_draft_ids": []
+    },
+    {
+      "id": "D03",
+      "axis": "D",
+      "original_disposition": "OUT_OF_CONSTRUCT",
+      "linked_context_id": "D-P3",
+      "linked_context_label": "探究途中での新分野の選択",
+      "context_recommendation": "PROBE_ONLY",
+      "readiness_category": "PAIRED_RESEARCH_ONLY",
+      "fully_approved": false,
+      "may_use_in_scored_random_bank": false,
+      "may_replace_original": false,
+      "promotions_required": [
+        "content quality audit",
+        "real respondent interpretation testing",
+        "item response analysis",
+        "equivalence of randomized 30-question versions"
+      ],
+      "replacement_draft_ids": []
+    },
+    {
+      "id": "D04",
+      "axis": "D",
+      "original_disposition": "OUT_OF_CONSTRUCT",
+      "linked_context_id": "D-P2",
+      "linked_context_label": "趣味・活動領域の幅と深さ",
+      "context_recommendation": "PROVISIONAL",
+      "readiness_category": "REMOVE_OR_REPLACE",
+      "fully_approved": false,
+      "may_use_in_scored_random_bank": false,
+      "may_replace_original": false,
+      "promotions_required": [
+        "content quality audit",
+        "real respondent interpretation testing",
+        "item response analysis",
+        "equivalence of randomized 30-question versions"
+      ],
+      "replacement_draft_ids": []
+    },
+    {
+      "id": "D05",
+      "axis": "D",
+      "original_disposition": "REWRITE",
+      "linked_context_id": "D-P1",
+      "linked_context_label": "知識・学習分野の幅と深さ",
+      "context_recommendation": "PROVISIONAL",
+      "readiness_category": "NEEDS_REVIEW_NOT_APPROVED",
+      "fully_approved": false,
+      "may_use_in_scored_random_bank": false,
+      "may_replace_original": false,
+      "promotions_required": [
+        "content quality audit",
+        "real respondent interpretation testing",
+        "item response analysis",
+        "equivalence of randomized 30-question versions"
+      ],
+      "replacement_draft_ids": []
+    },
+    {
+      "id": "D06",
+      "axis": "D",
+      "original_disposition": "REWRITE",
+      "linked_context_id": "D-P4",
+      "linked_context_label": "一区切り・目標達成後の次の選択",
+      "context_recommendation": "PROBE_ONLY",
+      "readiness_category": "PAIRED_RESEARCH_ONLY",
+      "fully_approved": false,
+      "may_use_in_scored_random_bank": false,
+      "may_replace_original": false,
+      "promotions_required": [
+        "content quality audit",
+        "real respondent interpretation testing",
+        "item response analysis",
+        "equivalence of randomized 30-question versions"
+      ],
+      "replacement_draft_ids": []
+    },
+    {
+      "id": "D-FU07",
+      "axis": "D",
+      "original_disposition": "PROVISIONAL_KEEP",
+      "linked_context_id": "D-P3",
+      "linked_context_label": "探究途中での新分野の選択",
+      "context_recommendation": "PROBE_ONLY",
+      "readiness_category": "PAIRED_RESEARCH_ONLY",
+      "fully_approved": false,
+      "may_use_in_scored_random_bank": false,
+      "may_replace_original": false,
+      "promotions_required": [
+        "content quality audit",
+        "real respondent interpretation testing",
+        "item response analysis",
+        "equivalence of randomized 30-question versions"
+      ],
+      "replacement_draft_ids": []
+    },
+    {
+      "id": "D-FU09",
+      "axis": "D",
+      "original_disposition": "DUPLICATE_MERGE",
+      "linked_context_id": "D-P1",
+      "linked_context_label": "知識・学習分野の幅と深さ",
+      "context_recommendation": "PROVISIONAL",
+      "readiness_category": "DUPLICATE_DO_NOT_COUNT",
+      "fully_approved": false,
+      "may_use_in_scored_random_bank": false,
+      "may_replace_original": false,
+      "promotions_required": [
+        "content quality audit",
+        "real respondent interpretation testing",
+        "item response analysis",
+        "equivalence of randomized 30-question versions"
+      ],
+      "replacement_draft_ids": []
+    },
+    {
+      "id": "D-FU10",
+      "axis": "D",
+      "original_disposition": "PROVISIONAL_KEEP",
+      "linked_context_id": "D-P4",
+      "linked_context_label": "一区切り・目標達成後の次の選択",
+      "context_recommendation": "PROBE_ONLY",
+      "readiness_category": "PAIRED_RESEARCH_ONLY",
+      "fully_approved": false,
+      "may_use_in_scored_random_bank": false,
+      "may_replace_original": false,
+      "promotions_required": [
+        "content quality audit",
+        "real respondent interpretation testing",
+        "item response analysis",
+        "equivalence of randomized 30-question versions"
+      ],
+      "replacement_draft_ids": []
+    },
+    {
+      "id": "D-FU11",
+      "axis": "D",
+      "original_disposition": "PROBE_ONLY",
+      "linked_context_id": "D-P2",
+      "linked_context_label": "趣味・活動領域の幅と深さ",
+      "context_recommendation": "PROVISIONAL",
+      "readiness_category": "PROBE_DO_NOT_SCORE",
+      "fully_approved": false,
+      "may_use_in_scored_random_bank": false,
+      "may_replace_original": false,
+      "promotions_required": [
+        "content quality audit",
+        "real respondent interpretation testing",
+        "item response analysis",
+        "equivalence of randomized 30-question versions"
+      ],
+      "replacement_draft_ids": []
+    },
+    {
+      "id": "D-FU12",
+      "axis": "D",
+      "original_disposition": "PROVISIONAL_KEEP",
+      "linked_context_id": "D-P1",
+      "linked_context_label": "知識・学習分野の幅と深さ",
+      "context_recommendation": "PROVISIONAL",
+      "readiness_category": "NEEDS_REVIEW_NOT_APPROVED",
+      "fully_approved": false,
+      "may_use_in_scored_random_bank": false,
+      "may_replace_original": false,
+      "promotions_required": [
+        "content quality audit",
+        "real respondent interpretation testing",
+        "item response analysis",
+        "equivalence of randomized 30-question versions"
+      ],
+      "replacement_draft_ids": []
+    },
+    {
+      "id": "D-BK13",
+      "axis": "D",
+      "original_disposition": "DUPLICATE_MERGE",
+      "linked_context_id": "D-P1",
+      "linked_context_label": "知識・学習分野の幅と深さ",
+      "context_recommendation": "PROVISIONAL",
+      "readiness_category": "DUPLICATE_DO_NOT_COUNT",
+      "fully_approved": false,
+      "may_use_in_scored_random_bank": false,
+      "may_replace_original": false,
+      "promotions_required": [
+        "content quality audit",
+        "real respondent interpretation testing",
+        "item response analysis",
+        "equivalence of randomized 30-question versions"
+      ],
+      "replacement_draft_ids": []
+    },
+    {
+      "id": "E01",
+      "axis": "E",
+      "original_disposition": "STRUCTURE_HOLD",
+      "linked_context_id": "E_FIXED_TWO",
+      "linked_context_label": "E auxiliary",
+      "context_recommendation": "STRUCTURE_HOLD",
+      "readiness_category": "E_2_FIXED_CONTENT_REVIEW",
+      "fully_approved": false,
+      "may_use_in_scored_random_bank": false,
+      "may_replace_original": false,
+      "promotions_required": [
+        "content quality audit",
+        "real respondent interpretation testing",
+        "item response analysis",
+        "equivalence of randomized 30-question versions"
+      ],
+      "replacement_draft_ids": []
+    },
+    {
+      "id": "E02",
+      "axis": "E",
+      "original_disposition": "STRUCTURE_HOLD",
+      "linked_context_id": "E_FIXED_TWO",
+      "linked_context_label": "E auxiliary",
+      "context_recommendation": "STRUCTURE_HOLD",
+      "readiness_category": "E_2_FIXED_CONTENT_REVIEW",
+      "fully_approved": false,
+      "may_use_in_scored_random_bank": false,
+      "may_replace_original": false,
+      "promotions_required": [
+        "content quality audit",
+        "real respondent interpretation testing",
+        "item response analysis",
+        "equivalence of randomized 30-question versions"
+      ],
+      "replacement_draft_ids": []
+    }
+  ]
+}
