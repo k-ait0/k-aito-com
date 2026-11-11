@@ -231,7 +231,21 @@
       "research_fallback": null,
       "source_lock": "LOCKED_PROVISIONAL_20261110",
       "downloaded_in_this_turn": false,
-      "site_use_approved": false
+      "site_use_approved": false,
+      "acquisition_status": "OFFICIAL_GOLD_SPOT_802_MONTHS_PRIVATE_QA_PASS_LICENSE_PENDING",
+      "actual_coverage_20261111": {
+        "from": "1960-01",
+        "to": "2026-10",
+        "months": 802,
+        "missing": 0,
+        "duplicates": 0,
+        "raw_workbook_sha256": "3c8d9d8dbb48342fdbf24777c39a8ce8964cc2fd0958f72f6779e6e4ad99cde2",
+        "canonical_csv_sha256": "937644f307880a639d4b6298e46763146871db03a9650ae7cf2def21831781a1",
+        "high_monthly_changes_flagged": 3,
+        "description_methodology_break": "2025-06",
+        "third_party_source_rights": "PENDING",
+        "site_publication_approved": false
+      }
     },
     {
       "asset_id": "REIT",
@@ -275,7 +289,15 @@
       "research_fallback": null,
       "source_lock": "LOCKED_PROVISIONAL_20261110",
       "downloaded_in_this_turn": false,
-      "site_use_approved": false
+      "site_use_approved": false,
+      "acquisition_status": "RAW_WORLDBANK_XLSX_ACQUIRED_OTHER_COMMODITIES_COLUMN_QA_PENDING",
+      "actual_workbook_20261111": {
+        "raw_sha256": "3c8d9d8dbb48342fdbf24777c39a8ce8964cc2fd0958f72f6779e6e4ad99cde2",
+        "raw_acquired": true,
+        "non_gold_series_full_qa": false,
+        "series_type_may_differ": "SPOT_OR_FUTURES_BENCHMARK_VERIFY_PER_COLUMN",
+        "site_publication_approved": false
+      }
     },
     {
       "asset_id": "INFLATION_LINKED",
@@ -298,8 +320,24 @@
       "website_rights_state": "PUBLIC_METADATA_GATE",
       "source_lock": "LOCKED_PROVISIONAL_20261110",
       "site_use_approved": false,
-      "acquisition_status": "OFFICIAL_SAMPLE_SNAPSHOT_28_ROWS",
-      "month_aggregation": "Last available H10 observation in month, with latest month provisional"
+      "acquisition_status": "OFFICIAL_2000_PLUS_7005_DAILY_322_COMPLETE_MONTHLY_QA_PASS",
+      "month_aggregation": "Last available H10 observation in month, with latest month provisional",
+      "full_pinned_history_20261111": {
+        "from": "2000-01-03",
+        "to": "2026-11-06",
+        "raw_days": 7005,
+        "ND": 273,
+        "valid_daily": 6732,
+        "monthly_observed_complete": 322,
+        "monthly_first": "2000-01",
+        "monthly_last_complete": "2026-10",
+        "provisional_month": "2026-11",
+        "raw_sha256": "a21e31f9d9c9e71f28a396a9a9d447b92347653e7e22446566ecaae05391f257",
+        "normalized_csv_sha256": "da0f6244ab22c86d54a569f1288e82780d5d14d8c92f3f246b53f63126f880cd",
+        "full_1971_1999_not_acquired": true,
+        "source_channel_change_adr": "DRAFT_UNAPPROVED",
+        "site_publication_approved": false
+      }
     },
     {
       "aux_id": "CPI_JP",
@@ -434,13 +472,13 @@
       "stored_location": "private-only",
       "public_license": "NOT_VERIFIED"
     },
-    "new_external_download_count": 9,
+    "new_external_download_count": 11,
     "world_bank_monthly_xlsx_attempt": {
       "url": "https://thedocs.worldbank.org/en/doc/74e8be41ceb20fa0da750cda2f6b9e4e-0050012026/related/CMO-Historical-Data-Monthly.xlsx",
       "result": "FAILED_DNS",
       "verified_official_page": "https://www.worldbank.org/en/research/commodity-markets"
     },
-    "next_step": "BLS and JP CPI long histories acquired and QA passed privately; proceed Fed official H.10 long-series ADR, World Bank Pink Sheet, independently verify market-index licenses. Production gate remains closed.",
+    "next_step": "Private durable backup; Fed 1971 source-channel ADR and 1971-1999 data; World Bank Gold third-party rights and non-Gold per-column type QA; S&P/JPX/MSCI and other bond TR licenses. Production remains disabled.",
     "official_page_snapshot_count": 1,
     "official_page_snapshot_rows": 28,
     "snapshot_details": [
@@ -553,6 +591,22 @@
         "ex_imputed_rent": 602
       },
       "site_approved": false
+    },
+    "external_raw_acquisition_proof_fx_pink_20261111": {
+      "as_of": "2026-11-11T03:21:56Z",
+      "raw_files": 2,
+      "source_ids": [
+        "FED_BOARD",
+        "WORLD_BANK_PINK"
+      ],
+      "qa_report": "docs/ANALYTICS_FED_WORLDBANK_20261111_QA.md",
+      "run": "https://github.com/k-ait0/k-aito-com/actions/runs/42952254081",
+      "fed_raw_daily": 7005,
+      "fed_complete_monthly": 322,
+      "pink_gold_monthly": 802,
+      "world_bank_other_commodities_qa_complete": false,
+      "site_approval": false,
+      "source_change_adr_0001": "DRAFT_UNAPPROVED"
     }
   },
   "history_coverage_standard": {
