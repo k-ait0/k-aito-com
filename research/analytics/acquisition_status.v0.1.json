@@ -25,7 +25,11 @@
     "verified_fed_complete_monthly_observations": 322,
     "verified_world_bank_gold_monthly_observations": 802,
     "verified_new_fed_candidate_DDP_zip": 1,
-    "verified_fed_DDP_candidate_monthly": 670
+    "verified_fed_DDP_candidate_monthly": 670,
+    "world_bank_price_and_index_columns_coverage_audited": 71,
+    "world_bank_price_and_index_total_observed_entries": 50514,
+    "world_bank_columns_complete_30y": 65,
+    "world_bank_columns_missing_internal_data": 4
   },
   "datasets": [
     {
@@ -364,7 +368,26 @@
       "raw_acquisition": "OFFICIAL_WORKBOOK_ACQUIRED_PRIVATE",
       "non_gold_rows_qa": "NOT_DONE",
       "series_breaks_and_spot_vs_futures": "VERIFY_PER_COMMODITY",
-      "site_publication_approved": false
+      "site_publication_approved": false,
+      "coverage_audit": "PASSED_ALL_71_MONTHLY_PRICE_TAB_COLUMNS",
+      "asset_class_component_count": 70,
+      "coverage_qa_meta": {
+        "source_raw_sha256": "3c8d9d8dbb48342fdbf24777c39a8ce8964cc2fd0958f72f6779e6e4ad99cde2",
+        "monthly_date_rows": 802,
+        "total_price_and_index_columns_including_gold": 71,
+        "total_observed_entries": 50514,
+        "continuous_1960_to_2026": 46,
+        "continuous_1966_to_2026": 46,
+        "with_any_30y_windows": 65,
+        "without_30y_windows": 6,
+        "with_internal_gaps": 4,
+        "review_month_changes_gt20pct": 1123,
+        "individual_audit_json_sha256": "7ca87a3e63dcf904581685d82f136ff6c92a1c7a0daa615e6328ca54b8825cc8",
+        "rights_review": "PENDING_ALL_INDEX_COMMODITIES",
+        "source_definition_changes": "PENDING_SERIES_CHECK",
+        "publication_approved": false,
+        "report": "docs/ANALYTICS_WORLDBANK_71_SERIES_COVERAGE_20261111.md"
+      }
     },
     {
       "dataset_id": "FED_H10_1971_DDP_CANDIDATE_RESEARCH",
@@ -432,7 +455,7 @@
     "HEDGE_COST",
     "CREDIT_SPREAD",
     "FX_USDJPY_FED_1971_1999_ACQUIRED_AS_RESEARCH_CANDIDATE_ADR_NOT_APPROVED",
-    "WORLD_BANK_PINK_NON_GOLD_SERIES_QA_AND_LICENSE"
+    "WORLD_BANK_PINK_NON_GOLD_SERIES_DEFINITIONS_METHODOLOGY_AND_LICENSE_REVIEW"
   ],
   "release_controls": {
     "frozen_source_switches": 0,
@@ -443,11 +466,41 @@
     "production_unchanged": true
   },
   "next_priorities": [
-    "Fed H10 full-history candidate: source-channel ADR approval and durable official XML release plan, no active switch until approved",
-    "World Bank non-gold commodity series-by-series definitions/rights/QA",
-    "Gold methodology and third-party licensing review",
-    "S&P/JPX/MSCI and other bond TR licensing",
-    "Backup private encrypted Artifacts securely"
+    "Fed ADR-0001 approval decision for technically validated Fed Board direct DDP XML ZIP; active source unchanged",
+    "World Bank gold and non-gold per-series third-party license/definitions review",
+    "Cross-series QA on true TR assets before Analytics engine integration",
+    "Private backup and permission review before public distribution"
   ],
-  "audit_note": "Existing November 10 registry/acquisition snapshots are historical; this is an additional verified November 11 ledger. Do not convert data-acquired into site-approved."
+  "audit_note": "Existing November 10 registry/acquisition snapshots are historical; this is an additional verified November 11 ledger. Do not convert data-acquired into site-approved.",
+  "observed_joint_coverage_research_only": {
+    "inputs": [
+      "FED_H10_1971_DDP_CANDIDATE_RESEARCH",
+      "WORLD_BANK_PINK_GOLD_USD_TROY_OZ",
+      "JP_CPI_HEADLINE_2025_LINKED"
+    ],
+    "all_observed_months": 669,
+    "first": "1971-01",
+    "last": "2026-09",
+    "verified_30y_start_months": 309,
+    "with_us_cpi_extra_input": {
+      "all_observed_months": 668,
+      "blocks": [
+        {
+          "start": "1971-01",
+          "end": "2025-09",
+          "months": 657
+        },
+        {
+          "start": "2025-11",
+          "end": "2026-09",
+          "months": 11
+        }
+      ],
+      "verified_30y_start_months": 297,
+      "reason": "BLS 2025-10 official missing"
+    },
+    "rights_note": "Not a total-return or investable strategy backtest; public site release and Fed ADR unapproved",
+    "qa_report": "docs/ANALYTICS_OBSERVED_OVERLAP_QA_20261111.md",
+    "private_qa_json_sha256": "f74dd3509ba4e578c003dde886a8fc292e05bfed16a1217db523de79f449e854"
+  }
 }
