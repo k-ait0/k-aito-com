@@ -59,6 +59,14 @@ GitHub Actions 証跡：[Run #42947688134](https://github.com/k-ait0/k-aito-com/
 暗号化Artifact ZIP SHA-256：
 `eddb9243bd9a205d566cae0b99a2c7b3c2187bf5f9acc3915480ad50ccb291b4`
 
+### Analytics側への共通受渡CSV（研究専用）
+
+[共通月次観測データ契約](ANALYTICS_CANONICAL_MONTHLY_OBSERVATION_V0_1.md) に準拠して、729実測行の非公開CSVを生成・独立照合した。BLS専用列 `cpi_index` を共通列 `value` に写像し、原本の小数精度・観測月・原本バッチSHA・非季節調整を保持する。CPIは `series_kind=CPI_LEVEL`、`currency=NOT_APPLICABLE`、`origin=OBSERVED` とし、欠損の2025-10は出力しない。
+
+- 共通受渡CSV SHA-256：`6eaf4b25a8889ad8596c9c5222b61438776c33636ec45e0deb9491161d90870a`
+- 実データは非公開ファイルとして引き渡し、GitHubにはスキーマとSHAのみを登録
+- Analytics計算エンジンとの実接続・リリース判定は別工程
+
 ## 4. ライセンス審査・配布区分
 
 | 用途 | 状態 |
