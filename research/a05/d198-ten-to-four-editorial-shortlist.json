@@ -1,0 +1,560 @@
+{
+  "schema": "A05-D198-TEN-TO-FOUR-RESEARCH-SHORTLIST-0.1",
+  "date": "2026-11-12",
+  "status": "PROVISIONAL_EDITORIAL_SELECTION_NOT_SCORING",
+  "scope": "Triages ten already-revised D197 items; does not adjudicate all 96 nor replace 16 previously prioritized cognitive questions.",
+  "source_sha": {
+    "research/a05/d197-ten-priority-questions-paired-revisions.json": "60d07d6e9b5871116ee1bd8557e6b76458e9aab1",
+    "research/a05/d164-prior-28-semantic-dedup-and-gap-recalculation.json": "da800cf9c12fb11e89e53ed4f8128f511c74f736",
+    "research/a05/d192-ninetysix-multilens-risk-register.json": "5dad4bbeb9544a2d7c4a6ba7edaf13ab646e662c",
+    "research/a05/d184-collision-audit-twentyfour-new-question-drafts.json": "7090f020095d60fc78d567475d00ec12e201e7ef"
+  },
+  "rules": {
+    "research_candidates_remain_saved": true,
+    "no_exact_semantic_duplicates_in_final_bank": true,
+    "max_genuinely_different_scored_per_family": 2,
+    "final_bank_target": 50,
+    "per_run_draw_target": 30,
+    "adopted_new_scored_items": 0
+  },
+  "triage_counts": {
+    "PILOT_FIRST": 4,
+    "RESERVE": 3,
+    "HOLD_RESEARCH": 3
+  },
+  "triage": [
+    {
+      "order": 1,
+      "source_question_id": "A-X10",
+      "axis": "A",
+      "family_id": "A-QF04",
+      "editorial_decision": "PILOT_FIRST",
+      "purpose": "POTENTIAL_CONTENT_DIFFERENTIATION",
+      "research_rationale": "日常の作業手順ではなく、自分で選ぶ節目の習慣を継承する価値を尋ねる。家族の期待に依存しなければAの別側面になりうる。",
+      "main_confounds": "年中行事がない人に不適用。社会・家族の慣習を測る懸念。",
+      "original_D197_compare": "A-FU09",
+      "other_comparators": [
+        "A04",
+        "A-FU05",
+        "A-FU09"
+      ],
+      "assessment_question": "日々の作業方法が同じでも、節目の日の形式は維持したいか。『継続』以外に答えを決めた理由はあるか。",
+      "promotion_or_stop_gate": "本人が選ぶ儀式を想像でき、他者の期待ではなく自分の継続/更新志向を言語化できること。A-FU09との差を理由として説明できること。",
+      "proposed_D197_revision": {
+        "stem": "毎年、自分で自由に決められる「節目の日」の過ごし方について、今年から選び直せるとします。どちらに魅力を感じますか？",
+        "left": "自分が馴染んだ過ごし方を受け継ぐ",
+        "right": "今年は別の過ごし方を作ってみる",
+        "format": "BIPOLAR_RESEARCH_ONLY",
+        "independent_rating_statements": null,
+        "response_options": [
+          "left",
+          "right",
+          "neutral",
+          "both",
+          "neither",
+          "cannot_decide",
+          "not_applicable"
+        ]
+      },
+      "source_D197_case_id": "D197-P02",
+      "original_family_priority": 1,
+      "scoring_approved": false,
+      "independent_content_proven": false,
+      "respondent_evidence": false
+    },
+    {
+      "order": 2,
+      "source_question_id": "B-X12",
+      "axis": "B",
+      "family_id": "B-QF04",
+      "editorial_decision": "PILOT_FIRST",
+      "purpose": "STRUCTURAL_PROBE_NOT_BIPOLAR",
+      "research_rationale": "自己裁量と他者との途中共有は同時に肯定できる。B軸を単一の双極として扱えるかを判定するための優先研究課題。",
+      "main_confounds": "独立評定の二文が『誰かと話すこと』と『決める権利』を同列に比較していない。B得点の作成には使えない。",
+      "original_D197_compare": "B-G1",
+      "other_comparators": [
+        "B-FU01",
+        "B06"
+      ],
+      "assessment_question": "二つの独立評定の両方が高い場合、裁量と情報共有をどう両立させるか。B-G1の『重要な選択』と『作業途中』の違いは何か。",
+      "promotion_or_stop_gate": "二文を独立に評価し、両方高い反応を許容できること。双極への減算や強制一択を行わないこと。",
+      "proposed_D197_revision": {
+        "stem": "自分が責任を持つ作業を、同じ成果と負担で進める場面を想像してください。次の二文がどの程度自分に当てはまるか、**それぞれ独立に**回答してください。",
+        "left": null,
+        "right": null,
+        "format": "TWO_INDEPENDENT_7_POINT_RATINGS",
+        "independent_rating_statements": [
+          {
+            "id": "execution_autonomy",
+            "label": "作業の進め方は、自分の判断で決めたい"
+          },
+          {
+            "id": "process_sharing",
+            "label": "作業の途中では、誰かと考えを共有しながら進めたい"
+          }
+        ],
+        "response_options": null
+      },
+      "source_D197_case_id": "D197-P04",
+      "original_family_priority": 1,
+      "scoring_approved": false,
+      "independent_content_proven": false,
+      "respondent_evidence": false
+    },
+    {
+      "order": 3,
+      "source_question_id": "C-X07",
+      "axis": "C",
+      "family_id": "C-QF03",
+      "editorial_decision": "PILOT_FIRST",
+      "purpose": "CONSTRUCT_MEANING_PROBE",
+      "research_rationale": "自由時間の用途ではなく、一年をどう評価するかという判断基準を直接問う。既存C05と内容差の有無を確かめる価値がある。",
+      "main_confounds": "将来の成果と現在の満足は両立する。成果と満足は抽象度がずれる可能性。",
+      "original_D197_compare": "C05",
+      "other_comparators": [
+        "C05",
+        "C03"
+      ],
+      "assessment_question": "同じ一年に将来成果と日々の満足の両方があった場合、どちらを『充実の理由』と感じるか。C05と同じ答えになるか。",
+      "promotion_or_stop_gate": "どちらも重要・判断不能を許し、成果と日々の満足を不当に対立させていないことを確認。",
+      "proposed_D197_revision": {
+        "stem": "この一年を振り返って「充実していた」と感じる理由として、どちらの見方がより近いですか？",
+        "left": "これからの選択肢や目標につながるものを得た",
+        "right": "その一年の日々を納得して過ごすことができた",
+        "format": "BIPOLAR_RESEARCH_ONLY",
+        "independent_rating_statements": null,
+        "response_options": [
+          "left",
+          "right",
+          "neutral",
+          "both",
+          "neither",
+          "cannot_decide",
+          "not_applicable"
+        ]
+      },
+      "source_D197_case_id": "D197-P06",
+      "original_family_priority": 1,
+      "scoring_approved": false,
+      "independent_content_proven": false,
+      "respondent_evidence": false
+    },
+    {
+      "order": 4,
+      "source_question_id": "D-X05",
+      "axis": "D",
+      "family_id": "D-QF02",
+      "editorial_decision": "PILOT_FIRST",
+      "purpose": "POTENTIAL_CONTENT_DIFFERENTIATION",
+      "research_rationale": "学ぶ分野の広さではなく、答えを探す独立した問いの数を判断対象にする。分野の数との意味差を検査する。",
+      "main_confounds": "複数の問いの難度・進捗・必要な知識量が同等ではない可能性。",
+      "original_D197_compare": "D-BK13",
+      "other_comparators": [
+        "D02",
+        "D-BK13"
+      ],
+      "assessment_question": "同じ一つの学問分野に属する複数の疑問でも前者を選ぶか。分野数の選好と問い数の選好は異なるか。",
+      "promotion_or_stop_gate": "左右の深さ・成功見込みを同水準と感じ、D02/D-BK13との差を回答理由で説明できること。",
+      "proposed_D197_revision": {
+        "stem": "同じくらい気になる疑問がいくつかあり、自由に調べる時間を使えるなら、どちらの探究の進め方をより好みますか？",
+        "left": "異なる複数の疑問について、それぞれの背景を調べる",
+        "right": "一つの疑問を選び、その背景や根拠を詳しく調べる",
+        "format": "BIPOLAR_RESEARCH_ONLY",
+        "independent_rating_statements": null,
+        "response_options": [
+          "left",
+          "right",
+          "neutral",
+          "both",
+          "neither",
+          "cannot_decide",
+          "not_applicable"
+        ]
+      },
+      "source_D197_case_id": "D197-P08",
+      "original_family_priority": 1,
+      "scoring_approved": false,
+      "independent_content_proven": false,
+      "respondent_evidence": false
+    },
+    {
+      "order": 5,
+      "source_question_id": "A-X08",
+      "axis": "A",
+      "family_id": "A-QF03",
+      "editorial_decision": "RESERVE",
+      "purpose": "POTENTIAL_CONTENT_DIFFERENTIATION",
+      "research_rationale": "物品の使い続け方という新しい対象だが、継続志向ではなく物への愛着・環境負荷・節約意識を測りやすい。",
+      "main_confounds": "思い出・倫理・浪費回避が中心で軸の純度が低い。",
+      "original_D197_compare": "A06",
+      "other_comparators": [
+        "A-FU05",
+        "A04"
+      ],
+      "assessment_question": "物への愛着・環境保護・節約を考えない場合にも同じ選択か。",
+      "promotion_or_stop_gate": "独自の価値理由が確認できれば昇格。倫理・愛着のみの回答なら研究補助に限定。",
+      "proposed_D197_revision": {
+        "stem": "毎日使う日用品が古くなり、修理でも交換でも使い心地と費用が同じだとします。どちらを選びたいですか？",
+        "left": "今の品を手入れして使い続ける",
+        "right": "同じ役割の新しい品へ交換する",
+        "format": "BIPOLAR_RESEARCH_ONLY",
+        "independent_rating_statements": null,
+        "response_options": [
+          "left",
+          "right",
+          "neutral",
+          "both",
+          "neither",
+          "cannot_decide",
+          "not_applicable"
+        ]
+      },
+      "source_D197_case_id": "D197-P01",
+      "original_family_priority": 1,
+      "scoring_approved": false,
+      "independent_content_proven": false,
+      "respondent_evidence": false
+    },
+    {
+      "order": 6,
+      "source_question_id": "C-X10",
+      "axis": "C",
+      "family_id": "C-QF04",
+      "editorial_decision": "RESERVE",
+      "purpose": "CONTEXT_MODERATOR_PROBE",
+      "research_rationale": "目標達成後の将来準備と現在充実の選択だが、既存C05の場面条件を変えただけの可能性がある。",
+      "main_confounds": "疲労、次の目標の有無、目標達成後の休息要求が交絡。",
+      "original_D197_compare": "C05",
+      "other_comparators": [
+        "C05",
+        "C01"
+      ],
+      "assessment_question": "必要な休息を取ってもC05の通常時と答えが変わる場合、その理由は価値観の違いか状況か。",
+      "promotion_or_stop_gate": "達成条件を揃え、C05と異なる独立した価値理由を説明できれば昇格。",
+      "proposed_D197_revision": {
+        "stem": "自分の目標を達成し、必要な休息も取ったあと、使い方を自由に選べる時間があります。次により優先したいのはどちらですか？",
+        "left": "将来の別の目標に向けた準備を始める",
+        "right": "目標を達成した今の時間を味わう",
+        "format": "BIPOLAR_RESEARCH_ONLY",
+        "independent_rating_statements": null,
+        "response_options": [
+          "left",
+          "right",
+          "neutral",
+          "both",
+          "neither",
+          "cannot_decide",
+          "not_applicable"
+        ]
+      },
+      "source_D197_case_id": "D197-P07",
+      "original_family_priority": 1,
+      "scoring_approved": false,
+      "independent_content_proven": false,
+      "respondent_evidence": false
+    },
+    {
+      "order": 7,
+      "source_question_id": "D-X22",
+      "axis": "D",
+      "family_id": "D-QF08",
+      "editorial_decision": "RESERVE",
+      "purpose": "PROJECT_STRUCTURE_PROBE",
+      "research_rationale": "学習分野ではなく創作物の単位数・取り組み方へ対象を広げるが、D04や作品規模にかなり近い。",
+      "main_confounds": "作品難度・技能・品質や完了までの期間を測る可能性。",
+      "original_D197_compare": "D04",
+      "other_comparators": [
+        "D02",
+        "D04"
+      ],
+      "assessment_question": "同じ制作分野で複数作品を作る場合でも、探索志向として説明できるか。",
+      "promotion_or_stop_gate": "完成数や難度より、題材の多様性/一作品の深化が選択理由であること。",
+      "proposed_D197_revision": {
+        "stem": "趣味として作品を作る一年間を自分で計画するとします。どちらの取り組み方を好みますか？",
+        "left": "異なる題材の作品を複数作る",
+        "right": "一つの題材の作品を継続して作り込む",
+        "format": "BIPOLAR_RESEARCH_ONLY",
+        "independent_rating_statements": null,
+        "response_options": [
+          "left",
+          "right",
+          "neutral",
+          "both",
+          "neither",
+          "cannot_decide",
+          "not_applicable"
+        ]
+      },
+      "source_D197_case_id": "D197-P10",
+      "original_family_priority": 2,
+      "scoring_approved": false,
+      "independent_content_proven": false,
+      "respondent_evidence": false
+    },
+    {
+      "order": 8,
+      "source_question_id": "A-X22",
+      "axis": "A",
+      "family_id": "A-QF08",
+      "editorial_decision": "HOLD_RESEARCH",
+      "purpose": "NEAR_DUPLICATE",
+      "research_rationale": "個人記録の方式を継続/変更する点は既存A-BK13の生活情報整理手段と実質的に近い。",
+      "main_confounds": "記録習慣、情報保全、安全性、ツール習熟の影響も強い。",
+      "original_D197_compare": "A-BK13",
+      "other_comparators": [
+        "A-FU05"
+      ],
+      "assessment_question": "A-BK13の情報整理方式と異なる回答理由があるか。",
+      "promotion_or_stop_gate": "独立した価値内容の説明が得られない限り新系統として数えない。",
+      "proposed_D197_revision": {
+        "stem": "これから自分だけが使う短いメモの残し方を決めるとします。情報の安全性と使い勝手は同じです。どちらを好みますか？",
+        "left": "慣れたメモの書き方や整理方法を継続する",
+        "right": "メモの書き方や整理の仕組みを新しく選び直す",
+        "format": "BIPOLAR_RESEARCH_ONLY",
+        "independent_rating_statements": null,
+        "response_options": [
+          "left",
+          "right",
+          "neutral",
+          "both",
+          "neither",
+          "cannot_decide",
+          "not_applicable"
+        ]
+      },
+      "source_D197_case_id": "D197-P03",
+      "original_family_priority": 2,
+      "scoring_approved": false,
+      "independent_content_proven": false,
+      "respondent_evidence": false
+    },
+    {
+      "order": 9,
+      "source_question_id": "B-X21",
+      "axis": "B",
+      "family_id": "B-QF07",
+      "editorial_decision": "HOLD_RESEARCH",
+      "purpose": "NEAR_DUPLICATE_AND_HELP_SEEKING",
+      "research_rationale": "B-X12と同じ自律/協働の実行過程を問ううえ、助けを求めることへの抵抗や相談相手への信頼に左右される。",
+      "main_confounds": "援助要請への心理的障壁、問題解決能力、親密関係の有無。",
+      "original_D197_compare": "B-N03",
+      "other_comparators": [
+        "B-FU01"
+      ],
+      "assessment_question": "B-X12の裁量/共有と、B-X21の自力/共同で異なる判断を行った理由があるか。",
+      "promotion_or_stop_gate": "明確な内容差が出ない限りB-X12を優先し、B-X21は保留。",
+      "proposed_D197_revision": {
+        "stem": "難しい個人的な課題でも、相談相手がいると仮定します。成果や所要時間に差がない場合、次の二文にそれぞれどの程度当てはまりますか？",
+        "left": null,
+        "right": null,
+        "format": "TWO_INDEPENDENT_7_POINT_RATINGS",
+        "independent_rating_statements": [
+          {
+            "id": "self_solution",
+            "label": "難しい問題でも、まず自分で考えて解決したい"
+          },
+          {
+            "id": "joint_solution",
+            "label": "難しい問題では、信頼できる人と考えを出し合いたい"
+          }
+        ],
+        "response_options": null
+      },
+      "source_D197_case_id": "D197-P05",
+      "original_family_priority": 2,
+      "scoring_approved": false,
+      "independent_content_proven": false,
+      "respondent_evidence": false
+    },
+    {
+      "order": 10,
+      "source_question_id": "D-X21",
+      "axis": "D",
+      "family_id": "D-QF07",
+      "editorial_decision": "HOLD_RESEARCH",
+      "purpose": "NEAR_DUPLICATE_AND_ROLE_CONFOUND",
+      "research_rationale": "知識を広く伝えるか詳しく伝えるかはD02の学習幅/深さと類似し、発表経験や聞き手への配慮に左右される。",
+      "main_confounds": "説明能力、相手の知識、対人評価、発信意欲の交絡。",
+      "original_D197_compare": "D02",
+      "other_comparators": [
+        "D02"
+      ],
+      "assessment_question": "学習時は一分野に集中し、説明時には複数テーマを紹介したい場合の理由は何か。",
+      "promotion_or_stop_gate": "説明する役割の違いだけなら新系統ではなく、提示形式の研究に留める。",
+      "proposed_D197_revision": {
+        "stem": "自分で調べたことを人に紹介するための時間が同じだけあるとします。どんな伝え方により魅力を感じますか？",
+        "left": "異なる複数のテーマを短く紹介する",
+        "right": "一つのテーマを詳しく解説する",
+        "format": "BIPOLAR_RESEARCH_ONLY",
+        "independent_rating_statements": null,
+        "response_options": [
+          "left",
+          "right",
+          "neutral",
+          "both",
+          "neither",
+          "cannot_decide",
+          "not_applicable"
+        ]
+      },
+      "source_D197_case_id": "D197-P09",
+      "original_family_priority": 2,
+      "scoring_approved": false,
+      "independent_content_proven": false,
+      "respondent_evidence": false
+    }
+  ],
+  "pilot_design": {
+    "lead_4": [
+      "A-X10",
+      "B-X12",
+      "C-X07",
+      "D-X05"
+    ],
+    "contrast_order": "Counterbalance D197 revision vs corresponding historical anchor; do not collect identifying details. First ask each question's paraphrase and main reason, then compare.",
+    "B_measure": "B-X12 requires two independent 1–7 ratings; not a bipolar summed/difference item.",
+    "nonresponse_options": [
+      "both",
+      "neither",
+      "neutral",
+      "cannot_decide",
+      "not_applicable"
+    ],
+    "exit": "Stop treating an item as content-new if it merely restates the historical comparator or mainly elicits unrelated criteria."
+  },
+  "prior_16_status": [
+    {
+      "id": "A01",
+      "axis": "A",
+      "legacy_priority": "PRIMARY",
+      "family": "A_RESIDENCE",
+      "content_status": "PRE_EXISTING_SHORTLIST_NOT_REDECIDED",
+      "approved_scored": false
+    },
+    {
+      "id": "A02",
+      "axis": "A",
+      "legacy_priority": "PRIMARY",
+      "family": "A_ACTIVITY_BASE",
+      "content_status": "PRE_EXISTING_SHORTLIST_NOT_REDECIDED",
+      "approved_scored": false
+    },
+    {
+      "id": "A04",
+      "axis": "A",
+      "legacy_priority": "PRIMARY",
+      "family": "A_DAILY_PROCEDURE",
+      "content_status": "PRE_EXISTING_SHORTLIST_NOT_REDECIDED",
+      "approved_scored": false
+    },
+    {
+      "id": "A-FU05",
+      "axis": "A",
+      "legacy_priority": "CONDITIONAL",
+      "family": "A_LIFE_MANAGEMENT",
+      "content_status": "PRE_EXISTING_SHORTLIST_NOT_REDECIDED",
+      "approved_scored": false
+    },
+    {
+      "id": "B01",
+      "axis": "B",
+      "legacy_priority": "PRIMARY",
+      "family": "B_COLLECTIVE_FINAL",
+      "content_status": "PRE_EXISTING_SHORTLIST_NOT_REDECIDED",
+      "approved_scored": false
+    },
+    {
+      "id": "B03",
+      "axis": "B",
+      "legacy_priority": "CONDITIONAL",
+      "family": "B_COLLECTIVE_FINAL",
+      "content_status": "PRE_EXISTING_SHORTLIST_NOT_REDECIDED",
+      "approved_scored": false
+    },
+    {
+      "id": "B06",
+      "axis": "B",
+      "legacy_priority": "CONDITIONAL",
+      "family": "B_PERSONAL_DECISION",
+      "content_status": "PRE_EXISTING_SHORTLIST_NOT_REDECIDED",
+      "approved_scored": false
+    },
+    {
+      "id": "B-FU01",
+      "axis": "B",
+      "legacy_priority": "PRIMARY",
+      "family": "B_PERSONAL_DECISION",
+      "content_status": "PRE_EXISTING_SHORTLIST_NOT_REDECIDED",
+      "approved_scored": false
+    },
+    {
+      "id": "B-FU05",
+      "axis": "B",
+      "legacy_priority": "PRIMARY",
+      "family": "B_SHARED_SCHEDULE",
+      "content_status": "PRE_EXISTING_SHORTLIST_NOT_REDECIDED",
+      "approved_scored": false
+    },
+    {
+      "id": "C01",
+      "axis": "C",
+      "legacy_priority": "PRIMARY",
+      "family": "C_ONEOFF_TIME",
+      "content_status": "PRE_EXISTING_SHORTLIST_NOT_REDECIDED",
+      "approved_scored": false
+    },
+    {
+      "id": "C03",
+      "axis": "C",
+      "legacy_priority": "CONDITIONAL",
+      "family": "C_ACTIVITY_SELECTION",
+      "content_status": "PRE_EXISTING_SHORTLIST_NOT_REDECIDED",
+      "approved_scored": false
+    },
+    {
+      "id": "C05",
+      "axis": "C",
+      "legacy_priority": "PRIMARY",
+      "family": "C_REPEATED_TIME",
+      "content_status": "PRE_EXISTING_SHORTLIST_NOT_REDECIDED",
+      "approved_scored": false
+    },
+    {
+      "id": "D01",
+      "axis": "D",
+      "legacy_priority": "PRIMARY",
+      "family": "D_HOBBY_BREADTH",
+      "content_status": "PRE_EXISTING_SHORTLIST_NOT_REDECIDED",
+      "approved_scored": false
+    },
+    {
+      "id": "D02",
+      "axis": "D",
+      "legacy_priority": "PRIMARY",
+      "family": "D_STUDY_BREADTH",
+      "content_status": "PRE_EXISTING_SHORTLIST_NOT_REDECIDED",
+      "approved_scored": false
+    },
+    {
+      "id": "D-FU11",
+      "axis": "D",
+      "legacy_priority": "CONDITIONAL",
+      "family": "D_HOBBY_BREADTH",
+      "content_status": "PRE_EXISTING_SHORTLIST_NOT_REDECIDED",
+      "approved_scored": false
+    },
+    {
+      "id": "D-BK13",
+      "axis": "D",
+      "legacy_priority": "CONDITIONAL",
+      "family": "D_TOPIC_UNDERSTANDING",
+      "content_status": "PRE_EXISTING_SHORTLIST_NOT_REDECIDED",
+      "approved_scored": false
+    }
+  ],
+  "unresolved_32_slots_unchanged": true,
+  "real_interviews": 0,
+  "production_changed": false,
+  "merge_or_publish": false,
+  "overall_next_step": "Before collecting data, put the 4 pilots and comparator wording in a compact research protocol and check question wording accessibility; after interviews, revisit reserves based on actual reasons."
+}
