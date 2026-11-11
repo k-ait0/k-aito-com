@@ -17,7 +17,7 @@ export function renderVisualPreview(input) {
   '<div class="a05-vp-head"><h3 id="a05-vp-heading">16の寓意・ビジュアル試作</h3>'+
   '<p>診断判定とは未連動です。以下のモチーフ・色・E軸は表示確認用に手動指定しています。</p></div>'+
   '<div class="a05-vp-grid"><div class="a05-vp-visual'+(v.motion?' a05-vp-moving':'')+'" role="img" aria-label="'+v.name+'の未承認ビジュアルの仮表示">'+
-  '<svg class="a05-vp-crest" width="116" height="116" viewBox="0 0 128 128" aria-hidden="true" focusable="false"><use href="./crests.svg#'+v.id+'"></use></svg>'+
+  '<img class="a05-vp-crest" width="116" height="116" src="./crests/'+v.id+'.svg" alt="" aria-hidden="true">'+
   '<strong>'+v.name+'</strong><span>'+v.group+'</span>'+
   '<small>Tier1紋章：既存SVG初稿／Tier2原画：未接続・美術未承認</small>'+
   '<div class="a05-vp-footer"><b>RGBY：'+v.accent+'</b><b>'+e+'</b></div></div>'+
