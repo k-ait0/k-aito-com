@@ -110,7 +110,26 @@
         "production": "NOT_APPROVED"
       },
       "quality_report": "docs/ANALYTICS_BLS_US_CPI_QA_20261111.md",
-      "retrieval_timestamp_utc": "2026-11-11T02:41:10Z/2026-11-11T02:41:23Z"
+      "retrieval_timestamp_utc": "2026-11-11T02:41:10Z/2026-11-11T02:41:23Z",
+      "canonical_monthly_transfer": {
+        "contract": "docs/ANALYTICS_CANONICAL_MONTHLY_OBSERVATION_V0_1.md",
+        "private_only": true,
+        "rows": 729,
+        "columns": [
+          "month",
+          "series_id",
+          "value",
+          "unit",
+          "currency",
+          "series_kind",
+          "origin",
+          "source_id",
+          "seasonal_adjustment",
+          "raw_response_sha256",
+          "footnote_codes"
+        ],
+        "sha256": "6eaf4b25a8889ad8596c9c5222b61438776c33636ec45e0deb9491161d90870a"
+      }
     },
     {
       "dataset_id": "SHILLER_LEGACY_RESEARCH",
