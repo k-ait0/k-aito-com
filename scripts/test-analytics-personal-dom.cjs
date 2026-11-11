@@ -44,7 +44,7 @@ const win={addEventListener:()=>{}};
 const context=vm.createContext({document,window:win,Intl,Map,Set,Date,Math,Number,
  String,Array,devicePixelRatio:1,console,Blob,URL,setTimeout});
 new vm.Script(source,{filename:'personal-lab.js'}).runInContext(context);
-const get=()=>win.__KAI_PERSONAL_TEST__.getState(),el=id=>nodes.get(id);
+const get=()=>win.__KAI_PERSONAL_TEST__.getState(),el=id=>document.getElementById(id);
 assert.equal(get().tab,'power');assert.equal(get().months,669);
 assert.equal(get().rendered,669);assert.equal(el('dataErrors').classList.contains('hidden'),true);
 el('tabPortfolio').onclick();
