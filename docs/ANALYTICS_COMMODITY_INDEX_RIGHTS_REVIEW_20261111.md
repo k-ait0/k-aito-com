@@ -67,5 +67,5 @@ USDJPY / JP CPI / US CPIは市場価格の研究入力だが、投資TRではな
 - 商品71列：公開0、研究用原値から商用自動計算への使用0。予測・定義変更・第三者権利を解消した系列のみ個別に承認する。
 - 12資産+8補助：内部研究・商用サーバー計算・サイト表示・派生計算結果・API／CSV配信・本番公開を分ける。
 - 既存のユーザー向けAnalyticsの計算エンジン・FINOWA本番には一切反映しない。
-- Nodeテスト scripts/test-analytics-commodity-rights.cjs と研究用Actionsで全21? ではなく**20データ契約、71列、公開0**を機械的に確認する。
+- Nodeテスト scripts/test-analytics-commodity-rights.cjs と研究用Actionsで**20データ契約、71列、公開0**を機械的に確認する。
 - 次にJPX・NFRC・Bloomberg・S&P・MSCI等について、過去60年データの供給範囲・非公開サーバー計算権・ユーザー向け実績値/派生配信権・費用の見積条件を比較。契約が得られない系列は公開実データ搭載不可。
