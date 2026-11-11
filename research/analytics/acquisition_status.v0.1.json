@@ -497,10 +497,10 @@
     "production_unchanged": true
   },
   "next_priorities": [
-    "Personal-only local simplified/detail simulator and private CSV adapter, not commercial-license paperwork",
-    "Use private official CPI/FX data and synthetic TR fixtures for repeatable 10/20/30-year analytics",
-    "Expand lawful personally usable true-TR histories without unauthorized mass collection",
-    "Preserve later release checklist and source-ADR separation; no production deployment"
+    "Personal-only browser UI is available; integrate legal personally-held TR CSV inputs with clear series_kind and provenance before extending to 12 assets",
+    "Simple/detailed withdrawal engine parity and balance reconciliation tests vs DWZ",
+    "Optional local-only data import QA for alternate start dates and incomplete history; do not fill missing",
+    "No public release, no commercial license review needed until commercialization decision"
   ],
   "audit_note": "Existing November 10 registry/acquisition snapshots are historical; this is an additional verified November 11 ledger. Do not convert data-acquired into site-approved.",
   "observed_joint_coverage_research_only": {
@@ -576,5 +576,58 @@
       "private_result_sha256": "9a4b6b737e993f5020960a5c76a0c48a598f4f059c5a6d4c10fc43a9cd8ea95d",
       "investment_total_return": false
     }
+  },
+  "personal_browser_ui_20261111": {
+    "status": "IMPLEMENTED_AND_LOCALLY_BROWSER_QA_PASSED",
+    "version": "0.1",
+    "scope": "PERSONAL_SINGLE_USER_LOCAL_RESEARCH",
+    "entrypoint": "research/analytics/personal-lab/index.html",
+    "self_contained_html": true,
+    "network_api_requests": 0,
+    "hardcoded_real_market_values": false,
+    "qa": {
+      "automated_node_unit": "scripts/test-analytics-personal-ui.cjs",
+      "offline_browser": "CHROMIUM_HEADLESS_VERIFIED_2026_11_11",
+      "demo_months": 669,
+      "python_real_parity": {
+        "fx": 670,
+        "cpi": 681,
+        "common": 669,
+        "first": "1971-01",
+        "last": "2026-09",
+        "end_real_purchasing_power_index": 12.387652785974575,
+        "verified_30_year_start_months": 309
+      },
+      "browser_features": [
+        "simple_detailed_toggle",
+        "FX_CPI_gold_local_csv_import",
+        "gold_explicit_warning_gate",
+        "canvas_10_20_30yr_power_chart",
+        "12_month_withdrawal_rolling",
+        "nominal_real_CPI_withdrawal",
+        "result_csv_download",
+        "mobile_layout"
+      ],
+      "qa_cases": [
+        "offline_no_external_requests",
+        "zero_browser_js_errors",
+        "withdrawal_10year_synthetic",
+        "Gold_requires_explicit_consent",
+        "exact_669_row_derived_csv_export"
+      ]
+    },
+    "github_actions": "https://github.com/k-ait0/k-aito-com/actions/runs/42972500116",
+    "raw_value_public_github_commit": 0,
+    "site_use_approved": false,
+    "production_analytics_engine_changed": false,
+    "main_branch_changed": false,
+    "guide": "docs/ANALYTICS_PERSONAL_LAB_UI_V0_1_QA.md",
+    "known_limits": [
+      "Only USD/JPY, JP CPI and quarantined Gold published level exploratory",
+      "No true investable stock/bond TR historical input",
+      "No asset rebalance/tax/transaction costs",
+      "Unapproved Fed DDP channel remains research candidate",
+      "Local HTML, not hosted website"
+    ]
   }
 }
