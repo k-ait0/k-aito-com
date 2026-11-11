@@ -1,0 +1,347 @@
+{
+  "schema": "A05-D168-11HYPOTHESES-COGNITIVE-TEST-ARMS-0.1",
+  "date": "2026-11-11",
+  "status": "RESEARCH_ONLY_NO_EMPIRICAL_RESULTS",
+  "source_shas": {
+    "D167": "b87069c888cf6efa0714dbfe9cf6566a9fe49934",
+    "D146": "53b3e137ff3597bdf7072c880c622baf8fee6814"
+  },
+  "purpose": "Turn 11 problematic missing family hypotheses into discriminating cognitive probes and negative controls, with 9 draft prompts and 2 reused existing experimental pairs. None fill bank slots.",
+  "user_cap": {
+    "exact_duplicates": 0,
+    "maximum_real_semantic_family_items": 2
+  },
+  "test_design": {
+    "hypotheses": 11,
+    "new_research_prompt_wordings": 9,
+    "reused_existing_matched_pairs": 2,
+    "mandatory_no_scoring": true,
+    "distinct_question_families_proved": 0
+  },
+  "protocol": [
+    "Present the anchor and candidate in counterbalanced order where practical.",
+    "Ask respondent to paraphrase the decision contrast in each question.",
+    "Ask whether the options can both be true or both be preferred.",
+    "Ask why their choices differ; code costs, ownership, duties, fatigue, confidence and social desirability separately from value-relevant distinctions.",
+    "For B-G1 record both 7-point independent statements; neither yields a polarity score.",
+    "C-G2/D-G3 paired contexts require both questions shown to the same participant.",
+    "Do not infer psychometric dimensionality or inter-form equivalence from the editorial comparisons."
+  ],
+  "items": [
+    {
+      "id": "A-G1",
+      "axis": "A",
+      "adjudication": "REJECT_AS_NEW_FAMILY",
+      "study_method": "BIPOLAR_RESEARCH_NEGATIVE_CONTROL",
+      "prompt": {
+        "stem": "同じ住まいで生活する条件が変わらない場合、部屋の使い方を次の期間にどうしたいですか？",
+        "left": "これまでの部屋の役割を基本にして使い続ける",
+        "right": "部屋ごとの役割を組み直して使う",
+        "format": "BIPOLAR_7_RESEARCH_ONLY"
+      },
+      "independent_rating_statements": null,
+      "existing_pair": null,
+      "anchor": {
+        "id": "A01",
+        "stem": "費用・便利さ・周囲との関係が同じ住まいを選べるとき、今後の生活基盤としてどちらを好みますか？",
+        "left": "今の住まいを基盤に、必要な部分を整えながら暮らす",
+        "right": "別の住まいへ移り、暮らしの基盤を組み直す"
+      },
+      "information_difference_to_test": "住居内の役割変更と住居基盤の更新は異なるか。ただし片側は室内整理や同居人数の事情で有利になる",
+      "stop_condition": "一緒の居住条件でも整理整頓・利便性の理由だけで選択するならAとして除外",
+      "approved": false,
+      "scored": false,
+      "independent_semantic_family_established": false,
+      "respondents_observed": 0
+    },
+    {
+      "id": "A-G2",
+      "axis": "A",
+      "adjudication": "PAIRED_CONTEXT_MODERATOR",
+      "study_method": "BIPOLAR_PAIRED_CONTEXT",
+      "prompt": {
+        "stem": "年度の区切りがあり、生活の便利さ・負担・必要な活動は今と同じだとします。次の一年の暮らしの基本をどうしたいですか？",
+        "left": "現在の暮らしの基本を引き継ぎ、必要な部分を整える",
+        "right": "暮らしの基本を別の形に組み立て直す",
+        "format": "BIPOLAR_7_RESEARCH_ONLY"
+      },
+      "independent_rating_statements": null,
+      "existing_pair": null,
+      "anchor": {
+        "id": "A04",
+        "stem": "家事や用事を行う時間と負担が同じなら、普段の進め方はどちらを好みますか？",
+        "left": "慣れた手順を基本として必要なところを整える",
+        "right": "手順全体を別の組み立て方に変える"
+      },
+      "information_difference_to_test": "節目のある条件と普通の生活手順の選択を比べる。条件効果があるなら新しい系統ではなく変調要因",
+      "stop_condition": "回答理由が節目だからというだけなら通常採点に追加しない",
+      "approved": false,
+      "scored": false,
+      "independent_semantic_family_established": false,
+      "respondents_observed": 0
+    },
+    {
+      "id": "B-G1",
+      "axis": "B",
+      "adjudication": "INDEPENDENT_DIMENSION_PROBE",
+      "study_method": "TWO_INDEPENDENT_RATINGS",
+      "prompt": {
+        "stem": "重要な個人の選択について、次の二つの考えにそれぞれどの程度当てはまるかを独立に答えてください。",
+        "left": null,
+        "right": null,
+        "format": "TWO_7_POINT_RATINGS"
+      },
+      "independent_rating_statements": [
+        {
+          "id": "B-G1-AUTONOMY",
+          "label": "重要な選択では、他者の意見を聞いた後でも、自分の考えを最終的な判断基準にしたい"
+        },
+        {
+          "id": "B-G1-CONNECTION",
+          "label": "重要な選択では、最終的に自分で決める場合も、身近な人と考えを共有してから決めたい"
+        }
+      ],
+      "existing_pair": null,
+      "anchor": {
+        "id": "B-FU01",
+        "stem": "大切な人と二つの選択肢の希望が異なり、どちらでも負担が同じなら、何をより重視しますか？",
+        "left": "話し合いを踏まえて自分が望む方を選ぶこと",
+        "right": "話し合って双方が納得できる方を選ぶこと"
+      },
+      "information_difference_to_test": "同じ人が自分で最終判断したい一方で、他者と十分に相談もしたいかを見る",
+      "stop_condition": "二つを一つの二極尺度に変換しない",
+      "approved": false,
+      "scored": false,
+      "independent_semantic_family_established": false,
+      "respondents_observed": 0
+    },
+    {
+      "id": "B-G2",
+      "axis": "B",
+      "adjudication": "REFRAME_CONTEXT_ONLY",
+      "study_method": "BIPOLAR_CONTEXT_PROBE",
+      "prompt": {
+        "stem": "自分に最終決定権があり、身近な人にも影響する生活の選択をします。双方への負担が同じ二案なら、何を最終基準にしたいですか？",
+        "left": "相手の意見を聞いたうえで自分が納得できる案",
+        "right": "自分の意見も伝えたうえで双方が受け入れられる案",
+        "format": "BIPOLAR_7_RESEARCH_ONLY"
+      },
+      "independent_rating_statements": null,
+      "existing_pair": null,
+      "anchor": {
+        "id": "B06",
+        "stem": "一緒に暮らす相手と生活の重要な選択で希望が分かれ、双方への影響が同じなら、どちらを重視しますか？",
+        "left": "自分の希望に合う選択を優先する",
+        "right": "双方で合意できる選択を優先する"
+      },
+      "information_difference_to_test": "選択権と負担を揃えても同居関係・社会規範が動くか",
+      "stop_condition": "B06/B-FU01から違いが説明できなければ既存案の代替のみ",
+      "approved": false,
+      "scored": false,
+      "independent_semantic_family_established": false,
+      "respondents_observed": 0
+    },
+    {
+      "id": "B-G3",
+      "axis": "B",
+      "adjudication": "REJECT_OUT_OF_CONSTRUCT",
+      "study_method": "BIPOLAR_RESEARCH_NEGATIVE_CONTROL",
+      "prompt": {
+        "stem": "共同で作った成果の分け方について意見が異なるとき、何を重視しますか？",
+        "left": "自分が妥当だと判断する配分の仕方",
+        "right": "参加者が合意できる配分の仕方",
+        "format": "BIPOLAR_7_RESEARCH_ONLY"
+      },
+      "independent_rating_statements": null,
+      "existing_pair": null,
+      "anchor": {
+        "id": "B01",
+        "stem": "自分と関係者の意見が違い、どちらの案でも成果や負担が同じなら、何をより優先しますか？",
+        "left": "自分が妥当だと思う案で決める",
+        "right": "関係者が納得する合意を優先する"
+      },
+      "information_difference_to_test": "成果の所有・貢献の公平さという軸外の回答を抽出する負の対照",
+      "stop_condition": "公平規範中心ならB軸で採点しない",
+      "approved": false,
+      "scored": false,
+      "independent_semantic_family_established": false,
+      "respondents_observed": 0
+    },
+    {
+      "id": "C-G1",
+      "axis": "C",
+      "adjudication": "RESOURCE_CONTEXT_PROBE",
+      "study_method": "BIPOLAR_RESOURCE_PROBE",
+      "prompt": {
+        "stem": "生活に必要な費用を除いて自由に使える同額の予算があるとします。使い道を選ぶなら、どちらをより重視しますか？",
+        "left": "将来の目標に向けた準備や機会づくりに使う",
+        "right": "今行う体験を充実させるために使う",
+        "format": "BIPOLAR_7_RESEARCH_ONLY"
+      },
+      "independent_rating_statements": null,
+      "existing_pair": null,
+      "anchor": {
+        "id": "C01",
+        "stem": "今週自由に使える同じ時間を、将来と現在のどちらへ優先的に使いたいですか？",
+        "left": "数か月後の選択肢を増やすための活動",
+        "right": "今週の経験そのものを充実させる活動"
+      },
+      "information_difference_to_test": "C01の自由時間と、同額予算の用途選択を比べる。Eの金銭と時間の選択ではなく、資源ごとの価値配分の違い",
+      "stop_condition": "所得・使える余裕・リスク感が決め手ならC得点は認めない",
+      "approved": false,
+      "scored": false,
+      "independent_semantic_family_established": false,
+      "respondents_observed": 0
+    },
+    {
+      "id": "C-G2",
+      "axis": "C",
+      "adjudication": "PAIRED_CONTEXT_MODERATOR",
+      "study_method": "REUSE_EXISTING_MATCHED_PAIR",
+      "prompt": null,
+      "independent_rating_statements": null,
+      "existing_pair": [
+        {
+          "id": "C-FU14",
+          "stem": "将来に役立つ準備と現在を楽しむ体験がどちらも今週限りの機会で、所要時間が同じなら、どちらを選びたいですか？",
+          "left": "今週限りの将来の準備機会を選ぶ",
+          "right": "今週限りの現在の体験を選ぶ"
+        },
+        {
+          "id": "C-FU15",
+          "stem": "将来に役立つ準備と現在を楽しむ体験がどちらも来週にも同じ条件でできるなら、今週はどちらを選びたいですか？",
+          "left": "来週にもできる将来の準備を先にする",
+          "right": "来週にもできる現在の体験を先にする"
+        }
+      ],
+      "anchor": {
+        "id": "C-FU14",
+        "stem": "将来に役立つ準備と現在を楽しむ体験がどちらも今週限りの機会で、所要時間が同じなら、どちらを選びたいですか？",
+        "left": "今週限りの将来の準備機会を選ぶ",
+        "right": "今週限りの現在の体験を選ぶ"
+      },
+      "information_difference_to_test": "今週限りと来週も可能という条件の違いを見る",
+      "stop_condition": "必ず同一回答者にC-FU14とC-FU15を提示。新しい得点用の2問として増設しない",
+      "approved": false,
+      "scored": false,
+      "independent_semantic_family_established": false,
+      "respondents_observed": 0
+    },
+    {
+      "id": "C-G3",
+      "axis": "C",
+      "adjudication": "REJECT_OUT_OF_CONSTRUCT",
+      "study_method": "BIPOLAR_RESEARCH_NEGATIVE_CONTROL",
+      "prompt": {
+        "stem": "内容と価値が同程度の体験を一度得られるとします。どちらを選びたいですか？",
+        "left": "数か月後にその体験を受け取る",
+        "right": "今日その体験を受け取る",
+        "format": "BIPOLAR_7_RESEARCH_ONLY"
+      },
+      "independent_rating_statements": null,
+      "existing_pair": null,
+      "anchor": {
+        "id": "C01",
+        "stem": "今週自由に使える同じ時間を、将来と現在のどちらへ優先的に使いたいですか？",
+        "left": "数か月後の選択肢を増やすための活動",
+        "right": "今週の経験そのものを充実させる活動"
+      },
+      "information_difference_to_test": "将来へ備えることと、同一体験を後で受け取る遅延選好は別であることを調べる",
+      "stop_condition": "単に早く受け取りたい・忘れるのが不安ならCに含めない",
+      "approved": false,
+      "scored": false,
+      "independent_semantic_family_established": false,
+      "respondents_observed": 0
+    },
+    {
+      "id": "D-G1",
+      "axis": "D",
+      "adjudication": "REFRAME_CONTEXT_ONLY",
+      "study_method": "BIPOLAR_CONTEXT_PROBE",
+      "prompt": {
+        "stem": "一つの学習分野の中で同じ学習時間を使うなら、何をより好みますか？",
+        "left": "隣接する複数のテーマの基礎を広く知る",
+        "right": "その中の一つのテーマをより詳しく掘り下げる",
+        "format": "BIPOLAR_7_RESEARCH_ONLY"
+      },
+      "independent_rating_statements": null,
+      "existing_pair": null,
+      "anchor": {
+        "id": "D02",
+        "stem": "関心がある分野を同じ時間で学べる場合、どちらをより好みますか？",
+        "left": "異なる複数分野の基本を学ぶ",
+        "right": "一つの分野をさらに詳しく学ぶ"
+      },
+      "information_difference_to_test": "大きな分野をまたぐD02と、大きな分野内のテーマの幅を広げることの差を確認",
+      "stop_condition": "単なる分野の粒度の言い換えなら二問目にしない",
+      "approved": false,
+      "scored": false,
+      "independent_semantic_family_established": false,
+      "respondents_observed": 0
+    },
+    {
+      "id": "D-G2",
+      "axis": "D",
+      "adjudication": "REFRAME_CONTEXT_ONLY",
+      "study_method": "BIPOLAR_CONTEXT_PROBE",
+      "prompt": {
+        "stem": "一つの関心のある問いを調べるとき、同じ学習時間でどちらの知識を増やしたいですか？",
+        "left": "関連する複数分野の基本も知って理解を広げる",
+        "right": "現在学んでいる分野の専門内容を深く知る",
+        "format": "BIPOLAR_7_RESEARCH_ONLY"
+      },
+      "independent_rating_statements": null,
+      "existing_pair": null,
+      "anchor": {
+        "id": "D-BK13",
+        "stem": "今後半年の自由に使える学習時間の配分を考えるなら、どちらを好みますか？",
+        "left": "複数の異なる分野に少しずつ取り組む",
+        "right": "一つの分野に継続的に取り組んで深める"
+      },
+      "information_difference_to_test": "知りたい領域の幅と、問題を解く効率という説明の違いを見る",
+      "stop_condition": "学習能力や課題解決法を主に問うならD得点に加えない",
+      "approved": false,
+      "scored": false,
+      "independent_semantic_family_established": false,
+      "respondents_observed": 0
+    },
+    {
+      "id": "D-G3",
+      "axis": "D",
+      "adjudication": "PAIRED_CONTEXT_MODERATOR",
+      "study_method": "REUSE_EXISTING_STAGE_PAIR",
+      "prompt": null,
+      "independent_rating_statements": null,
+      "existing_pair": [
+        {
+          "id": "D-FU07",
+          "stem": "今のテーマと別分野に同程度の関心があり、学ぶ時間も同じ場合、次にどちらを選びたいですか？",
+          "left": "別の分野の基礎を新しく学ぶこと",
+          "right": "今のテーマの知識をさらに詳しく深めること"
+        },
+        {
+          "id": "D-FU10",
+          "stem": "現在のテーマで最初の目標に到達した後、どちらに進みたいですか？",
+          "left": "新しく別の分野の基本を学び始める",
+          "right": "同じテーマの応用的な内容をさらに掘り下げる"
+        }
+      ],
+      "anchor": {
+        "id": "D06",
+        "stem": "関心のあるテーマで当初の目標に到達し、次に同じ時間を使えるなら、どちらを選びたいですか？",
+        "left": "今まで触れなかった別分野へ進む",
+        "right": "今のテーマの応用を深める"
+      },
+      "information_difference_to_test": "探究途中と目標達成後の反応を同一回答者内で比較する",
+      "stop_condition": "D-FU07とD-FU10/D06の条件差を読む。単独採点や追加された別質問系統とは扱わない",
+      "approved": false,
+      "scored": false,
+      "independent_semantic_family_established": false,
+      "respondents_observed": 0
+    }
+  ],
+  "answered_by_real_respondents": 0,
+  "approved_scored_items": 0,
+  "existing_question_bank_changed": false,
+  "production_changed": false
+}
