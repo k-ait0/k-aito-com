@@ -50,3 +50,14 @@ UTF-8 CSV、LF改行、1行1観測値。行の昇順は `series_id,month`。実�
 - Analytics本体はこの契約をレビューしてからアダプターを実装する。研究データが到達した事実はサイト公開承認を意味しない。
 
 関連：[BLS QA報告](ANALYTICS_BLS_US_CPI_QA_20261111.md)、[取得状況台帳](../research/analytics/acquisition_status.v0.1.json)。
+
+
+---
+
+## 5. セル単位で観測起源が未確定な公表値の隔離（2026-11-11追加）
+
+公式サイトで月次の値が公表されているという事実だけでは、すべての値が確定実測とは限らない。特にWorld BankのPink SheetはDescriptionシートに * denotes forecast series の印と、参照市場や算出定義の変更注記がある。
+
+この状態の原値は、obs-only契約 v0.1の origin=OBSERVED を**付与しない**。値の原形を保った私的なQUARANTINE研究ファイルに origin=PUBLISHED_LEVEL_STATUS_UNVERIFIED を付与し、既存のOBSERVEDパーサに投入しない。欠損のない802か月、30年継続442開始月という数量QA合格は、その列の「真の実観測判定・投資可能TR・配信権利」の合格を意味しない。
+
+対象：World Bank Gold 1960-01〜2026-10。元CSVの SHA-256 937644f307880a639d4b6298e46763146871db03a9650ae7cf2def21831781a1 は証拠保全し、訂正版隔離CSVの SHA-256 は 1a7a3d97f2566a2389ad131da30600593949b606b8dddff4110641a6。正式なorigin付与ルールをv0.2で採決するまでObs-only本番へは進めない。
