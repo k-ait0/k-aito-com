@@ -1,0 +1,476 @@
+{
+  "schema": "A05-D186-BROAD-IDEATION-A-0.1",
+  "date": "2026-11-11",
+  "status": "RAW_RESEARCH_IDEAS_UNVALIDATED",
+  "goal": "High-recall ideation; allow highly overlapping research candidates before final family consolidation",
+  "count": 24,
+  "provisional_families": 8,
+  "questions": [
+    {
+      "id": "A-X01",
+      "axis": "A",
+      "family_id": "A-QF01",
+      "family_label": "居住基盤",
+      "family_hypothesis": "同じ生活条件で居住拠点の継続と更新を選ぶ",
+      "closest_prior_ids": [
+        "A01",
+        "A-N05"
+      ],
+      "overlap_risk": "HIGH",
+      "confounds": "住宅の契約・移転費用・愛着",
+      "format": "直接選択",
+      "stem": "同じ費用と利便性で来年の住む場所を自由に選べるなら、どちらを希望しますか？",
+      "left": "住み慣れた場所を生活の基盤にする",
+      "right": "別の場所で生活の基盤を作り直す",
+      "semantic_distinctness_proven": false,
+      "scored_approved": false
+    },
+    {
+      "id": "A-X02",
+      "axis": "A",
+      "family_id": "A-QF01",
+      "family_label": "居住基盤",
+      "family_hypothesis": "同じ生活条件で居住拠点の継続と更新を選ぶ",
+      "closest_prior_ids": [
+        "A01",
+        "A-N05"
+      ],
+      "overlap_risk": "HIGH",
+      "confounds": "住宅の契約・移転費用・愛着",
+      "format": "喪失想像",
+      "stem": "今の住まいを維持する選択肢か別の場所へ移る選択肢の片方だけが残る場合、どちらを失いたくありませんか？",
+      "left": "今の住まいを維持できる選択肢",
+      "right": "新しい住まいを選べる選択肢",
+      "semantic_distinctness_proven": false,
+      "scored_approved": false
+    },
+    {
+      "id": "A-X03",
+      "axis": "A",
+      "family_id": "A-QF01",
+      "family_label": "居住基盤",
+      "family_hypothesis": "同じ生活条件で居住拠点の継続と更新を選ぶ",
+      "closest_prior_ids": [
+        "A01",
+        "A-N05"
+      ],
+      "overlap_risk": "HIGH",
+      "confounds": "住宅の契約・移転費用・愛着",
+      "format": "転機場面",
+      "stem": "生活が一区切りし、次の居住地を決めます。周囲との関係・費用・通いやすさが等しい場合はどちらを選びたいですか？",
+      "left": "従来の地域を選び直す",
+      "right": "別の地域を生活拠点に選ぶ",
+      "semantic_distinctness_proven": false,
+      "scored_approved": false
+    },
+    {
+      "id": "A-X04",
+      "axis": "A",
+      "family_id": "A-QF02",
+      "family_label": "日常リズム",
+      "family_hypothesis": "具体的な用事の処理手順ではなく生活全体の時間的な型を継続するか",
+      "closest_prior_ids": [
+        "A04",
+        "A-BK15",
+        "A-N01"
+      ],
+      "overlap_risk": "HIGH",
+      "confounds": "C軸の時間配分、勤務・家庭の拘束",
+      "format": "直接選択",
+      "stem": "自由に組める週の時間割があるとします。用事と自由時間の総量が等しければ、どちらの一週間が好みですか？",
+      "left": "慣れた曜日ごとの過ごし方を引き継ぐ",
+      "right": "曜日ごとの過ごし方を新しく組み直す",
+      "semantic_distinctness_proven": false,
+      "scored_approved": false
+    },
+    {
+      "id": "A-X05",
+      "axis": "A",
+      "family_id": "A-QF02",
+      "family_label": "日常リズム",
+      "family_hypothesis": "具体的な用事の処理手順ではなく生活全体の時間的な型を継続するか",
+      "closest_prior_ids": [
+        "A04",
+        "A-BK15",
+        "A-N01"
+      ],
+      "overlap_risk": "HIGH",
+      "confounds": "C軸の時間配分、勤務・家庭の拘束",
+      "format": "変更可能性",
+      "stem": "同じ活動を続けながら生活の時間帯だけ自由に変えられるなら、どちらに魅力を感じますか？",
+      "left": "いつもの生活の時間帯を守る",
+      "right": "生活の時間帯を別の組合せに変える",
+      "semantic_distinctness_proven": false,
+      "scored_approved": false
+    },
+    {
+      "id": "A-X06",
+      "axis": "A",
+      "family_id": "A-QF02",
+      "family_label": "日常リズム",
+      "family_hypothesis": "具体的な用事の処理手順ではなく生活全体の時間的な型を継続するか",
+      "closest_prior_ids": [
+        "A04",
+        "A-BK15",
+        "A-N01"
+      ],
+      "overlap_risk": "HIGH",
+      "confounds": "C軸の時間配分、勤務・家庭の拘束",
+      "format": "節目場面",
+      "stem": "次の季節に仕事や用事の条件が変わらない場合、一週間の基本的なリズムをどうしたいですか？",
+      "left": "今のリズムを保って過ごす",
+      "right": "季節を機に異なるリズムへ移る",
+      "semantic_distinctness_proven": false,
+      "scored_approved": false
+    },
+    {
+      "id": "A-X07",
+      "axis": "A",
+      "family_id": "A-QF03",
+      "family_label": "大切な物品の継承",
+      "family_hypothesis": "所有物の機能が同じ場合の修理継続と交換",
+      "closest_prior_ids": [
+        "A06",
+        "A-N03"
+      ],
+      "overlap_risk": "MEDIUM",
+      "confounds": "物への愛着・環境負荷意識",
+      "format": "故障時選択",
+      "stem": "同じ費用と機能を保てる愛用の日用品があります。故障したとき、どちらを希望しますか？",
+      "left": "修理して今の品を使い続ける",
+      "right": "機能が同じ新しい品に取り替える",
+      "semantic_distinctness_proven": false,
+      "scored_approved": false
+    },
+    {
+      "id": "A-X08",
+      "axis": "A",
+      "family_id": "A-QF03",
+      "family_label": "大切な物品の継承",
+      "family_hypothesis": "所有物の機能が同じ場合の修理継続と交換",
+      "closest_prior_ids": [
+        "A06",
+        "A-N03"
+      ],
+      "overlap_risk": "MEDIUM",
+      "confounds": "物への愛着・環境負荷意識",
+      "format": "同等条件",
+      "stem": "古い道具を使い続けることも新品へ替えることも、手間と使いやすさが同じならどちらがよいですか？",
+      "left": "長く使っている道具を手元に残す",
+      "right": "同じ役割の別の道具へ切り替える",
+      "semantic_distinctness_proven": false,
+      "scored_approved": false
+    },
+    {
+      "id": "A-X09",
+      "axis": "A",
+      "family_id": "A-QF03",
+      "family_label": "大切な物品の継承",
+      "family_hypothesis": "所有物の機能が同じ場合の修理継続と交換",
+      "closest_prior_ids": [
+        "A06",
+        "A-N03"
+      ],
+      "overlap_risk": "MEDIUM",
+      "confounds": "物への愛着・環境負荷意識",
+      "format": "価値の言語化",
+      "stem": "日用品を定期的に見直す機会があっても、性能差がないならどちらを大切にしたいですか？",
+      "left": "慣れた道具と付き合い続けること",
+      "right": "道具を新しく選び直せること",
+      "semantic_distinctness_proven": false,
+      "scored_approved": false
+    },
+    {
+      "id": "A-X10",
+      "axis": "A",
+      "family_id": "A-QF04",
+      "family_label": "個人の行事・儀式",
+      "family_hypothesis": "自分で決めた年中行事の慣例を受け継ぐか更新するか",
+      "closest_prior_ids": [
+        "A-N02",
+        "A-FU09"
+      ],
+      "overlap_risk": "MEDIUM",
+      "confounds": "年中行事の経験差、他人の期待",
+      "format": "行事の直接選択",
+      "stem": "自分で決める年に一度の記念日の過ごし方で、費用と楽しさが等しいならどちらを選びますか？",
+      "left": "これまで大切にしてきた過ごし方を繰り返す",
+      "right": "今年は新しい過ごし方を作る",
+      "semantic_distinctness_proven": false,
+      "scored_approved": false
+    },
+    {
+      "id": "A-X11",
+      "axis": "A",
+      "family_id": "A-QF04",
+      "family_label": "個人の行事・儀式",
+      "family_hypothesis": "自分で決めた年中行事の慣例を受け継ぐか更新するか",
+      "closest_prior_ids": [
+        "A-N02",
+        "A-FU09"
+      ],
+      "overlap_risk": "MEDIUM",
+      "confounds": "年中行事の経験差、他人の期待",
+      "format": "一回限り場面",
+      "stem": "毎年続けている自分だけの小さな習慣を、一度だけ別の形で試す機会があったらどちらが好みですか？",
+      "left": "従来の習慣を今年も受け継ぐ",
+      "right": "違うやり方を今年から試す",
+      "semantic_distinctness_proven": false,
+      "scored_approved": false
+    },
+    {
+      "id": "A-X12",
+      "axis": "A",
+      "family_id": "A-QF04",
+      "family_label": "個人の行事・儀式",
+      "family_hypothesis": "自分で決めた年中行事の慣例を受け継ぐか更新するか",
+      "closest_prior_ids": [
+        "A-N02",
+        "A-FU09"
+      ],
+      "overlap_risk": "MEDIUM",
+      "confounds": "年中行事の経験差、他人の期待",
+      "format": "将来の評価",
+      "stem": "将来振り返って嬉しいと感じるのは、記念日の過ごし方がどのように続いた場合でしょうか？",
+      "left": "同じ意味を持つ行事が形を保って続いた",
+      "right": "時期に応じて行事の形を更新し続けた",
+      "semantic_distinctness_proven": false,
+      "scored_approved": false
+    },
+    {
+      "id": "A-X13",
+      "axis": "A",
+      "family_id": "A-QF05",
+      "family_label": "活動拠点",
+      "family_hypothesis": "継続活動で同じ場所に定着するか活動拠点を変えていくか",
+      "closest_prior_ids": [
+        "A02",
+        "A05"
+      ],
+      "overlap_risk": "HIGH",
+      "confounds": "場所による安全・交流・移動負担",
+      "format": "直接選択",
+      "stem": "同じ活動を同じ時間・負担で続けるなら、活動場所はどちらを選びたいですか？",
+      "left": "使い慣れた場所を拠点として続ける",
+      "right": "一定期間ごとに場所を変えて続ける",
+      "semantic_distinctness_proven": false,
+      "scored_approved": false
+    },
+    {
+      "id": "A-X14",
+      "axis": "A",
+      "family_id": "A-QF05",
+      "family_label": "活動拠点",
+      "family_hypothesis": "継続活動で同じ場所に定着するか活動拠点を変えていくか",
+      "closest_prior_ids": [
+        "A02",
+        "A05"
+      ],
+      "overlap_risk": "HIGH",
+      "confounds": "場所による安全・交流・移動負担",
+      "format": "優先基準",
+      "stem": "趣味の集まりを今後も同じ内容で行います。場所を選ぶとき、何を優先しますか？",
+      "left": "長く続けられる馴染みの拠点があること",
+      "right": "新しい会場を選び直せること",
+      "semantic_distinctness_proven": false,
+      "scored_approved": false
+    },
+    {
+      "id": "A-X15",
+      "axis": "A",
+      "family_id": "A-QF05",
+      "family_label": "活動拠点",
+      "family_hypothesis": "継続活動で同じ場所に定着するか活動拠点を変えていくか",
+      "closest_prior_ids": [
+        "A02",
+        "A05"
+      ],
+      "overlap_risk": "HIGH",
+      "confounds": "場所による安全・交流・移動負担",
+      "format": "一年の節目",
+      "stem": "活動場所を一年ごとに選び直せるとします。設備も人間関係も等しいなら、どうしたいですか？",
+      "left": "今の場所とのつながりを保つ",
+      "right": "別の場所で活動を始める",
+      "semantic_distinctness_proven": false,
+      "scored_approved": false
+    },
+    {
+      "id": "A-X16",
+      "axis": "A",
+      "family_id": "A-QF06",
+      "family_label": "情報・仕組みの更新",
+      "family_hypothesis": "生活の情報・手続に使う基盤を使い続けるか替えるか",
+      "closest_prior_ids": [
+        "A03",
+        "A-FU05",
+        "A-BK13",
+        "A-N04"
+      ],
+      "overlap_risk": "HIGH",
+      "confounds": "情報処理能力、製品への慣れ、変更費用",
+      "format": "管理方法",
+      "stem": "毎日の予定を管理する仕組みを選ぶとき、使いやすさと負担が同じならどちらが好みですか？",
+      "left": "慣れた仕組みを育てて使い続ける",
+      "right": "管理の仕組みを新しく選び直す",
+      "semantic_distinctness_proven": false,
+      "scored_approved": false
+    },
+    {
+      "id": "A-X17",
+      "axis": "A",
+      "family_id": "A-QF06",
+      "family_label": "情報・仕組みの更新",
+      "family_hypothesis": "生活の情報・手続に使う基盤を使い続けるか替えるか",
+      "closest_prior_ids": [
+        "A03",
+        "A-FU05",
+        "A-BK13",
+        "A-N04"
+      ],
+      "overlap_risk": "HIGH",
+      "confounds": "情報処理能力、製品への慣れ、変更費用",
+      "format": "サービス選択",
+      "stem": "毎月使う生活サービスが二つあり内容と価格は同じだとします。次の一年はどちらを選びますか？",
+      "left": "以前から利用しているサービスを続ける",
+      "right": "別のサービスへ乗り換える",
+      "semantic_distinctness_proven": false,
+      "scored_approved": false
+    },
+    {
+      "id": "A-X18",
+      "axis": "A",
+      "family_id": "A-QF06",
+      "family_label": "情報・仕組みの更新",
+      "family_hypothesis": "生活の情報・手続に使う基盤を使い続けるか替えるか",
+      "closest_prior_ids": [
+        "A03",
+        "A-FU05",
+        "A-BK13",
+        "A-N04"
+      ],
+      "overlap_risk": "HIGH",
+      "confounds": "情報処理能力、製品への慣れ、変更費用",
+      "format": "年度更新",
+      "stem": "生活情報を整理する方法を新年度に自由に選べるなら、どちらに安心を感じますか？",
+      "left": "これまでの整理方法を基本とする",
+      "right": "新年度に別の整理方法を導入する",
+      "semantic_distinctness_proven": false,
+      "scored_approved": false
+    },
+    {
+      "id": "A-X19",
+      "axis": "A",
+      "family_id": "A-QF07",
+      "family_label": "所属活動の継続性",
+      "family_hypothesis": "自分の参加する活動コミュニティの固定と入れ替え",
+      "closest_prior_ids": [
+        "A05",
+        "A02"
+      ],
+      "overlap_risk": "HIGH",
+      "confounds": "B軸の人間関係・対人帰属と強く交絡",
+      "format": "所属継続",
+      "stem": "趣味の内容や参加の負担が同じ活動グループを選べるなら、どちらが好みですか？",
+      "left": "馴染みのグループで活動を続ける",
+      "right": "定期的に別のグループへ参加する",
+      "semantic_distinctness_proven": false,
+      "scored_approved": false
+    },
+    {
+      "id": "A-X20",
+      "axis": "A",
+      "family_id": "A-QF07",
+      "family_label": "所属活動の継続性",
+      "family_hypothesis": "自分の参加する活動コミュニティの固定と入れ替え",
+      "closest_prior_ids": [
+        "A05",
+        "A02"
+      ],
+      "overlap_risk": "HIGH",
+      "confounds": "B軸の人間関係・対人帰属と強く交絡",
+      "format": "選択基準",
+      "stem": "同じ活動を学べる場が複数あるとします。参加先をどう決めたいですか？",
+      "left": "同じ場で経験を積み重ねていく",
+      "right": "時期ごとに参加する場を選び直す",
+      "semantic_distinctness_proven": false,
+      "scored_approved": false
+    },
+    {
+      "id": "A-X21",
+      "axis": "A",
+      "family_id": "A-QF07",
+      "family_label": "所属活動の継続性",
+      "family_hypothesis": "自分の参加する活動コミュニティの固定と入れ替え",
+      "closest_prior_ids": [
+        "A05",
+        "A02"
+      ],
+      "overlap_risk": "HIGH",
+      "confounds": "B軸の人間関係・対人帰属と強く交絡",
+      "format": "交流統制",
+      "stem": "交流の満足度が等しいと仮定した場合、継続する活動の人の集まりをどうしたいですか？",
+      "left": "続いてきたつながりのある集まりに残る",
+      "right": "新しく構成された集まりで始める",
+      "semantic_distinctness_proven": false,
+      "scored_approved": false
+    },
+    {
+      "id": "A-X22",
+      "axis": "A",
+      "family_id": "A-QF08",
+      "family_label": "自己記録の継続性",
+      "family_hypothesis": "自分の記録や思い出の保存方法を継承するか刷新するか",
+      "closest_prior_ids": [
+        "A-BK13",
+        "A-N03"
+      ],
+      "overlap_risk": "MEDIUM",
+      "confounds": "記憶への愛着とデジタル技能、環境維持とは異なる特性",
+      "format": "記録方法",
+      "stem": "自分だけが見る日記や記録を続ける場合、必要な手間が同じならどちらを選びますか？",
+      "left": "これまでの書き方や保管の形を続ける",
+      "right": "記録の形を新しく作り直す",
+      "semantic_distinctness_proven": false,
+      "scored_approved": false
+    },
+    {
+      "id": "A-X23",
+      "axis": "A",
+      "family_id": "A-QF08",
+      "family_label": "自己記録の継続性",
+      "family_hypothesis": "自分の記録や思い出の保存方法を継承するか刷新するか",
+      "closest_prior_ids": [
+        "A-BK13",
+        "A-N03"
+      ],
+      "overlap_risk": "MEDIUM",
+      "confounds": "記憶への愛着とデジタル技能、環境維持とは異なる特性",
+      "format": "分類再編",
+      "stem": "思い出の整理をし直す機会に、保存の安全性と手間が等しいならどちらが好みですか？",
+      "left": "長く使った分類や並べ方を引き継ぐ",
+      "right": "別の整理体系を作り直す",
+      "semantic_distinctness_proven": false,
+      "scored_approved": false
+    },
+    {
+      "id": "A-X24",
+      "axis": "A",
+      "family_id": "A-QF08",
+      "family_label": "自己記録の継続性",
+      "family_hypothesis": "自分の記録や思い出の保存方法を継承するか刷新するか",
+      "closest_prior_ids": [
+        "A-BK13",
+        "A-N03"
+      ],
+      "overlap_risk": "MEDIUM",
+      "confounds": "記憶への愛着とデジタル技能、環境維持とは異なる特性",
+      "format": "未来の状態",
+      "stem": "今後数年の自分の記録を残すとき、どちらの状態を望みますか？",
+      "left": "昔からの記録方式がつながっている状態",
+      "right": "節目ごとに記録方式が更新されている状態",
+      "semantic_distinctness_proven": false,
+      "scored_approved": false
+    }
+  ],
+  "production_changed": false
+}
