@@ -10,7 +10,7 @@ const end=script.indexOf('function setOptions(){');
 assert(end>0);
 const context=vm.createContext({Intl,Map,Set,Math,Number,Date,String,Array,document:{getElementById:()=>({})}});
 new vm.Script(script.slice(script.indexOf('const $='),end)+
- '\nglobalThis.fns={addMonths,simulateWithdrawal,simulateTwoAsset,rollingTwoAsset,mergeSeries,demo};').runInContext(context);
+ '\nglobalThis.fns={addMonths,simulateWithdrawal,simulateTwoAsset,rollingTwoAsset,mergeSeries,checkTRRows,dataRowAsset,powerRows,demo};').runInContext(context);
 const f=context.fns;
 const eq=(a,b,why)=>assert(Math.abs(a-b)<=Math.max(1e-5,Math.abs(b)*1e-10),why+' '+a+' vs '+b);
 function history(length=373,kind='vary'){
@@ -109,4 +109,46 @@ for(const bad of [{cashPercent:-1,sellOrder:'CASH_FIRST',rebalance:'NONE'},
  {cashPercent:20,sellOrder:'CASH_FIRST',rebalance:'EVERY_DAY'}]){
  assert.throws(()=>f.simulateTwoAsset(flat,0,1,1000,100,'usd',false,'END_OF_MONTH',bad));
 }
-console.log('PASS two-asset: 576 single-asset parity cases, 144 multi-asset audit cases; cash buffer, three sell orders, three rebalance schedules, CPI, shortage and input failures');
+
+// Explicit private TR-file contract: user-declared INDEX_TOTAL_RETURN is distinct
+// from FX spot, commodity spot and price-only indices. No licensed values committed.
+const sha='f'.repeat(64),head='month,series_id,value,unit,currency,series_kind,origin,source_id,raw_response_sha256';
+const fixtures=history(373,'vary');
+function makeTrRow(i,override={}){
+ const row={month:fixtures[i].month,series_id:'JPX_TOPIX_TR_USER_INPUT',value:String(100+i),
+  unit:'INDEX_TR',currency:'JPY',series_kind:'INDEX_TOTAL_RETURN',
+  origin:'OBSERVED',source_id:'JPX',raw_response_sha256:sha,...override};
+ return Object.values(row).join(',');
+}
+const trRows=fixtures.map((_,i)=>makeTrRow(i));
+const trCsv=head+'\n'+trRows.join('\n')+'\n';
+const tr=f.checkTRRows(trCsv);
+assert.equal(tr.map.size,373);
+assert.equal(tr.meta.currency,'JPY');
+assert.equal(tr.meta.status,'USER_DECLARED_INDEX_TOTAL_RETURN_SOURCE_NOT_INDEPENDENTLY_VERIFIED');
+const fx=new Map(fixtures.map(x=>[x.month,x.fx])),
+      cpi=new Map(fixtures.map(x=>[x.month,x.cpi]));
+const privateJoined=f.mergeSeries(fx,cpi,null,tr.map,'JPY');
+assert.equal(privateJoined.length,373);
+assert.equal(f.dataRowAsset(privateJoined[0],'tr'),100);
+assert.equal(f.dataRowAsset(privateJoined[12],'tr'),112);
+const usdRows=fixtures.map((_,i)=>makeTrRow(i,{currency:'USD'}));
+const trUSD=f.checkTRRows(head+'\n'+usdRows.join('\n')+'\n');
+const usdJoined=f.mergeSeries(fx,cpi,null,trUSD.map,'USD');
+eq(f.dataRowAsset(usdJoined[0],'tr'),100*fixtures[0].fx,'USD TR translation to JPY');
+eq(f.dataRowAsset(usdJoined[1],'tr'),101*fixtures[1].fx,'USD TR next month conversion');
+const privateResult=f.simulateTwoAsset(privateJoined,0,10,3000000,3000,'tr',true,'END_OF_MONTH',
+ {cashPercent:25,sellOrder:'CASH_FIRST',rebalance:'ANNUAL'});
+eq(privateResult.remaining,3000000+privateResult.investmentReturnTotal-privateResult.total,'private TR synthetic conservation');
+const bad=(i,override)=>head+'\n'+trRows.map((x,j)=>j===i?makeTrRow(j,override):x).join('\n')+'\n';
+assert.throws(()=>f.checkTRRows(bad(2,{series_kind:'INDEX_PRICE'})),/INDEX_TOTAL_RETURN/);
+assert.throws(()=>f.checkTRRows(bad(2,{origin:'PUBLISHED_LEVEL_STATUS_UNVERIFIED'})),/OBSERVED/);
+assert.throws(()=>f.checkTRRows(bad(2,{source_id:'SOME_VENDOR'})),/出典/);
+assert.throws(()=>f.checkTRRows(bad(2,{currency:'EUR'})),/通貨/);
+assert.throws(()=>f.checkTRRows(bad(2,{month:fixtures[1].month})),/重複/);
+assert.throws(()=>f.checkTRRows(bad(2,{month:'1981-02'})),/月次|重複|欠損/);
+assert.throws(()=>f.checkTRRows(bad(2,{raw_response_sha256:'123'})),/SHA/);
+assert.throws(()=>f.checkTRRows(bad(2,{value:'NaN'})),/有限/);
+assert.throws(()=>f.checkTRRows(bad(2,{series_id:'OTHER_TR'})),/混在/);
+assert.throws(()=>f.checkTRRows(bad(2,{currency:'USD'})),/混在/);
+console.log('PASS two-asset: 576 single-asset parity, 144 two-sleeve audit, private JPY/USD TR parse and negative contract tests; cash buffer, three sell orders, three rebalance schedules, CPI, shortage and input failures');
