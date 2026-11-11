@@ -144,6 +144,99 @@ function rollingWithdraw(rows,horizon,initial,monthly,asset,adjust,timing='END_O
  }
  return outcomes;
 }
+
+// V0.3: private-only two-asset ledger. One JPY cash sleeve (0% yield) plus ONE
+// risky/reference sleeve. No debt, fees, tax, dividends beyond a genuine TR input.
+// All trades and cash shortfalls are audited; spot/FX remain explicitly not TR.
+function simulateTwoAsset(fullRows,startIndex,horizon,initial,monthly,riskAsset,adjust,timing,config){
+ const steps=horizon*12;
+ if(!Number.isInteger(steps)||steps<=0||!Number.isFinite(initial)||initial<=0||
+    !Number.isFinite(monthly)||monthly<0)throw Error('複数資産：初期資金・月額・期間が不正です');
+ if(!Array.isArray(fullRows)||!Number.isInteger(startIndex)||startIndex<0||startIndex+steps>=fullRows.length)
+    throw Error('複数資産：月次履歴が不足しています');
+ if(!['BEGINNING_OF_MONTH','END_OF_MONTH'].includes(timing))throw Error('複数資産：引出時点不正');
+ if(!config||!Number.isFinite(config.cashPercent)||config.cashPercent<0||config.cashPercent>100)
+    throw Error('複数資産：現金比率は0～100%です');
+ if(!['CASH_FIRST','RISK_FIRST','PRO_RATA'].includes(config.sellOrder))throw Error('複数資産：売却順序不正');
+ if(!['NONE','ANNUAL','MONTHLY'].includes(config.rebalance))throw Error('複数資産：リバランス頻度不正');
+ const baseCpi=fullRows[startIndex].cpi;
+ if(!Number.isFinite(baseCpi)||baseCpi<=0)throw Error('複数資産：基準CPI不正');
+ const targetCash=config.cashPercent/100;
+ let cash=initial*targetCash,risk=initial-cash;
+ let totalWithdrawn=0,totalDue=0,totalShortfall=0,investmentReturnTotal=0,rebalanceTurnover=0;
+ let firstShortfallMonth=null,depletedMonth=null,withdrawalCount=0;
+ const EPS=1e-8;
+ const rows=[{month:fullRows[startIndex].month,value:initial,cash_yen:cash,risk_yen:risk,
+    due:0,withdrawn:0,shortfall:0,investment_return:0,rebalance_yen:0}];
+ function pay(index,entry){
+   const d=fullRows[index];
+   const due=monthly*(adjust?d.cpi/baseCpi:1);
+   if(!Number.isFinite(due)||due<0)throw Error('複数資産：CPI連動引出額が不正');
+   const total=cash+risk,amount=Math.min(total,due),missing=Math.max(0,due-amount);
+   let cashPay=0,riskPay=0;
+   if(config.sellOrder==='CASH_FIRST'){
+      cashPay=Math.min(cash,amount);riskPay=amount-cashPay;
+   }else if(config.sellOrder==='RISK_FIRST'){
+      riskPay=Math.min(risk,amount);cashPay=amount-riskPay;
+   }else if(total>0){
+      cashPay=amount*(cash/total);riskPay=amount-cashPay;
+   }
+   if(cashPay>cash+EPS||riskPay>risk+EPS)throw Error('複数資産：保有額を超える売却');
+   cash=Math.max(0,cash-cashPay);risk=Math.max(0,risk-riskPay);
+   const shortfall=missing>EPS?missing:0;
+   totalWithdrawn+=amount;totalDue+=due;totalShortfall+=shortfall;
+   if(due>0)withdrawalCount++;
+   if(firstShortfallMonth===null&&shortfall>0)firstShortfallMonth=d.month;
+   if(depletedMonth===null&&cash+risk<=EPS){cash=0;risk=0;depletedMonth=d.month;}
+   entry.cash_yen=cash;entry.risk_yen=risk;entry.value=cash+risk;
+   entry.due+=due;entry.withdrawn+=amount;entry.shortfall+=shortfall;
+ }
+ function rebalance(entry,j){
+   const doRebalance=config.rebalance==='MONTHLY'||(config.rebalance==='ANNUAL'&&j%12===0);
+   if(!doRebalance||j===steps)return;
+   const total=cash+risk;if(total<=EPS)return;
+   const wantedCash=total*targetCash,trade=wantedCash-cash;
+   cash=wantedCash;risk=total-wantedCash;
+   rebalanceTurnover+=Math.abs(trade);
+   entry.rebalance_yen=Math.abs(trade);entry.cash_yen=cash;entry.risk_yen=risk;entry.value=total;
+ }
+ if(timing==='BEGINNING_OF_MONTH')pay(startIndex,rows[0]);
+ for(let j=1;j<=steps;j++){
+   const prev=fullRows[startIndex+j-1],now=fullRows[startIndex+j];
+   if(now.month!==addMonths(prev.month,1))throw Error('複数資産：月次が連続していません');
+   if(!Number.isFinite(now.cpi)||now.cpi<=0)throw Error('複数資産：月次CPI不正');
+   const p0=dataRowAsset(prev,riskAsset),p1=dataRowAsset(now,riskAsset),q=p1/p0;
+   if(!Number.isFinite(q)||q<=0)throw Error('複数資産：価格比不正');
+   const beforeRisk=risk,afterRisk=risk*q,ret=afterRisk-beforeRisk;
+   if(!Number.isFinite(afterRisk)||afterRisk<0)throw Error('複数資産：運用残高が非有限数');
+   risk=afterRisk;investmentReturnTotal+=ret;
+   const entry={month:now.month,value:cash+risk,cash_yen:cash,risk_yen:risk,
+       due:0,withdrawn:0,shortfall:0,investment_return:ret,rebalance_yen:0};
+   if(timing==='END_OF_MONTH'||j<steps)pay(startIndex+j,entry);
+   rebalance(entry,j);
+   if(!Number.isFinite(entry.value)||entry.value<0)throw Error('複数資産：期末残高不正');
+   rows.push(entry);
+ }
+ const remaining=cash+risk,conservation=initial+investmentReturnTotal-totalWithdrawn;
+ if(Math.abs(remaining-conservation)>Math.max(1e-5,Math.abs(conservation)*1e-10))
+    throw Error('複数資産：資金恒等式が不一致');
+ if(Math.abs(totalDue-totalWithdrawn-totalShortfall)>Math.max(1e-5,totalDue*1e-10))
+    throw Error('複数資産：予定引出額と未払の差が不一致');
+ return {rows,remaining,cash,risk,total:totalWithdrawn,totalDue,totalShortfall,
+   firstShortfallMonth,ruinMonth:firstShortfallMonth,depletedMonth,
+   investmentReturnTotal,rebalanceTurnover,withdrawalCount,
+   covered:firstShortfallMonth===null,months:steps+1,ends:fullRows[startIndex+steps].month,
+   timing,sellOrder:config.sellOrder,rebalance:config.rebalance,cashPercent:config.cashPercent};
+}
+function rollingTwoAsset(fullRows,horizon,initial,monthly,riskAsset,adjust,timing,config){
+ const n=fullRows.length-horizon*12,out=[];
+ for(let i=0;i<n;i++){
+   const r=simulateTwoAsset(fullRows,i,horizon,initial,monthly,riskAsset,adjust,timing,config);
+   out.push({start:fullRows[i].month,remaining:r.remaining,firstShortfallMonth:r.firstShortfallMonth,
+     covered:r.covered,totalShortfall:r.totalShortfall,rebalanceTurnover:r.rebalanceTurnover});
+ }
+ return out;
+}
 function warn(msg){$('dataErrors').textContent=msg;$('dataErrors').classList.remove('hidden')}
 function clearWarn(){$('dataErrors').textContent='';$('dataErrors').classList.add('hidden')}
 function setOptions(){const goldAvailable=state.data?.gold.size>0;const opt=$('asset').querySelector('option[value=gold]');opt.disabled=!goldAvailable; if(!goldAvailable&&state.asset==='gold'){state.asset='usd';$('asset').value='usd'};const yrs=state.data?.months||[];
