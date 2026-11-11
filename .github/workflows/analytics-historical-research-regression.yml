@@ -12,6 +12,7 @@ on:
       - scripts/test-analytics-personal-ui.cjs
       - scripts/test-analytics-dwz-withdrawal-phase.cjs
       - scripts/test-analytics-two-asset.cjs
+      - scripts/test-analytics-personal-dom.cjs
       - research/analytics/fixtures/dwz_simulateOne_r4_v16_9_research_fixture.js
       - research/analytics/personal-lab/index.html
       - research/analytics/personal_use_scope.v0.1.json
@@ -42,6 +43,7 @@ jobs:
           node scripts/test-analytics-personal-ui.cjs
           node scripts/test-analytics-dwz-withdrawal-phase.cjs
           node scripts/test-analytics-two-asset.cjs
+          node scripts/test-analytics-personal-dom.cjs
           node scripts/test-align-analytics-historical-series.cjs
           python3 -m py_compile scripts/research-probe-fed-h10-ddp.py scripts/normalize-analytics-fed-ddp-candidate.py scripts/normalize-analytics-estat-cpi.py
           python3 - <<'PY'
