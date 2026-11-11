@@ -13,7 +13,7 @@ select,textarea,button{font:inherit}select,textarea{background:#fff;color:var(--
 button{border-radius:8px;padding:9px 14px;border:1px solid #9cb5c5;background:white;cursor:pointer;color:var(--ink)}
 button.primary{background:var(--deep);border-color:var(--deep);color:white}button:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #86bed7;outline-offset:2px}
 #cases{display:grid;gap:18px}.question-card{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:20px;box-shadow:0 2px 7px #16304d08}
-.card-head{display:flex;align-items:start;justify-content:space-between;gap:12px}.card-head small{display:block;font-weight:400;font-size:.86rem}.axis{font-weight:700;color:#0b5b7a;white-space:nowrap}
+.question-card[hidden]{display:none!important}.card-head{display:flex;align-items:start;justify-content:space-between;gap:12px}.card-head small{display:block;font-weight:400;font-size:.86rem}.axis{font-weight:700;color:#0b5b7a;white-space:nowrap}
 .two-col{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:14px 0}.question{padding:14px;border:1px solid var(--line);border-radius:9px;min-width:0}.reference{background:#f8fafc}
 .stem{font-weight:600;margin:4px 0 12px}.poles{display:grid;gap:5px;margin:0 0 12px}.poles div{display:flex;gap:10px;align-items:baseline}.poles dt{font-weight:700;min-width:1.5em;color:#335872}.poles dd{margin:0}
 label{display:block;font-size:.89rem;margin:8px 0 0}label select{display:inline-block;margin-left:6px;max-width:90%}.pair{padding:12px 0;border-top:1px dashed var(--line)}.separate{padding:6px 0}
@@ -29,7 +29,7 @@ footer{color:var(--muted);font-size:.85rem;padding:15px 0 40px}
 </div></header>
 <main class="wrap">
 <div class="toolbar"><label>軸で絞る<select id="axisFilter"><option value="ALL">すべて（11）</option><option value="A">A軸</option><option value="B">B軸</option><option value="C">C軸</option><option value="D">D軸</option></select></label>
-<span id="count" aria-live="polite">11件を表示</span><button id="export" class="primary" type="button">記録をJSON保存</button><button id="reset" type="button">入力を消去</button></div>
+<span id="count" aria-live="polite">11件を表示</span><button id="export" class="primary" type="button">記録をJSON保存</button><button id="import" type="button">保存済みJSONを読み込む</button><input id="importFile" type="file" accept=".json,application/json" hidden><button id="reset" type="button">入力を消去</button><span id="ioStatus" role="status" aria-live="polite"></span></div>
 <div id="cases"><article class="question-card" data-id="A-G1" data-axis="A">
 <div class="card-head"><h3>01 · A-G1 <small>新系統として不採用</small></h3><span class="axis">軸A</span></div>
 <div class="two-col"><div class="question"><h4>試作質問</h4><p class="stem">同じ住まいで生活する条件が変わらない場合、部屋の使い方を次の期間にどうしたいですか？</p><dl class="poles"><div><dt>左</dt><dd>これまでの部屋の役割を基本にして使い続ける</dd></div><div><dt>右</dt><dd>部屋ごとの役割を組み直して使う</dd></div></dl><label>試作側の回答 <select data-field="candidate_choice" aria-label="candidate_choice"><option value="">未記録</option><option value="left">左</option><option value="middle">中立・どちらも</option><option value="right">右</option><option value="unknown">判断不能</option><option value="not_applicable">非該当</option></select></label></div><div class="question reference"><h4>比較する既存案：A01</h4><p class="stem">費用・便利さ・周囲との関係が同じ住まいを選べるとき、今後の生活基盤としてどちらを好みますか？</p><dl class="poles"><div><dt>左</dt><dd>今の住まいを基盤に、必要な部分を整えながら暮らす</dd></div><div><dt>右</dt><dd>別の住まいへ移り、暮らしの基盤を組み直す</dd></div></dl><label>参照側の回答 <select data-field="anchor_choice" aria-label="anchor_choice"><option value="">未記録</option><option value="left">左</option><option value="middle">中立・どちらも</option><option value="right">右</option><option value="unknown">判断不能</option><option value="not_applicable">非該当</option></select></label></div></div>
@@ -114,14 +114,58 @@ footer{color:var(--muted);font-size:.85rem;padding:15px 0 40px}
   "use strict";
   const cards=[...document.querySelectorAll(".question-card")],f=document.getElementById("axisFilter"),count=document.getElementById("count");
   f.addEventListener("change",()=>{let shown=0;for(const card of cards){const yes=f.value==="ALL"||card.dataset.axis===f.value;card.hidden=!yes;if(yes)shown++;}count.textContent=shown+"件を表示";});
+  const status=document.getElementById("ioStatus");
+  const getInputs=card=>[...card.querySelectorAll("[data-field]")];
+  const makeRecord=()=>({
+    schema:"A05-D170-COGNITIVE-REVIEW-NOTES-0.1",
+    type:"non_scoring_research_notes",
+    protocol:"D168",
+    respondents_not_identified:true,
+    answers:cards.map(card=>({case_id:card.dataset.id,axis:card.dataset.axis,inputs:Object.fromEntries(getInputs(card).map(x=>[x.dataset.field,x.value]))}))
+  });
   document.getElementById("export").addEventListener("click",()=>{
-    const answers=cards.map(card=>({case_id:card.dataset.id,axis:card.dataset.axis,inputs:Object.fromEntries([...card.querySelectorAll("[data-field]")].map(x=>[x.dataset.field,x.value]))}));
-    const doc={schema:"A05-D170-COGNITIVE-REVIEW-NOTES-0.1",type:"non_scoring_research_notes",protocol:"D168",respondents_not_identified:true,answers};
-    const blob=new Blob([JSON.stringify(doc,null,2)],{type:"application/json;charset=utf-8"}),url=URL.createObjectURL(blob),a=document.createElement("a");
-    a.href=url;a.download="a05-d170-review-notes.json";document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url);
+    const doc=makeRecord(),blob=new Blob([JSON.stringify(doc,null,2)],{type:"application/json;charset=utf-8"});
+    const url=URL.createObjectURL(blob),a=document.createElement("a");
+    a.href=url;a.download="a05-d170-review-notes.json";document.body.appendChild(a);a.click();a.remove();
+    setTimeout(()=>URL.revokeObjectURL(url),1000);
+    status.textContent="記録をJSONに書き出しました。ファイルを安全な場所に保管してください。";
+  });
+  const fileInput=document.getElementById("importFile");
+  document.getElementById("import").addEventListener("click",()=>fileInput.click());
+  fileInput.addEventListener("change",async()=>{
+    const file=fileInput.files?.[0];
+    if(!file)return;
+    try{
+      if(file.size>262144)throw Error("JSONファイルが大きすぎます（256KB以下）。");
+      const data=JSON.parse(await file.text());
+      if(data?.schema!=="A05-D170-COGNITIVE-REVIEW-NOTES-0.1"||!Array.isArray(data.answers)||data.answers.length!==cards.length)
+        throw Error("D-170形式の11件の記録ではありません。");
+      const saved=new Map();
+      for(const entry of data.answers){
+        const card=cards.find(c=>c.dataset.id===entry.case_id);
+        if(!card||saved.has(entry.case_id)||entry.axis!==card.dataset.axis||!entry.inputs||typeof entry.inputs!=="object"||Array.isArray(entry.inputs))
+          throw Error("ケースID、軸、または入力形式が不正です。");
+        const fields=new Set(getInputs(card).map(x=>x.dataset.field));
+        if(Object.keys(entry.inputs).some(key=>!fields.has(key)||typeof entry.inputs[key]!=="string"||entry.inputs[key].length>8000))
+          throw Error("不明な入力欄または不正なデータが含まれています。");
+        saved.set(entry.case_id,entry.inputs);
+      }
+      if(getInputs(document).some(x=>x.value)&&!confirm("現在の入力を保存済みJSONで上書きしますか？")){
+        status.textContent="読み込みを中止しました。";return;
+      }
+      for(const card of cards)for(const input of getInputs(card)){
+        const value=saved.get(card.dataset.id)[input.dataset.field]??"";
+        if(input.tagName==="SELECT" && value && ![...input.options].some(opt=>opt.value===value))
+          throw Error("選択値がこの画面で使用できません。");
+      }
+      for(const card of cards)for(const input of getInputs(card))input.value=saved.get(card.dataset.id)[input.dataset.field]??"";
+      status.textContent="11件の記録を読み込みました。";
+    }catch(err){status.textContent="読み込み失敗："+err.message;}
+    finally{fileInput.value="";}
   });
   document.getElementById("reset").addEventListener("click",()=>{if(!confirm("入力した観察メモをすべて消去しますか？"))return;
     for(const element of document.querySelectorAll("[data-field]"))element.value="";
+    status.textContent="入力を消去しました。";
   });
 })();
 </script>
