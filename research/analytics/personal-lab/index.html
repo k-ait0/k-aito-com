@@ -337,8 +337,8 @@ function drawGraph(series){const cnv=$('chart'),wrap=$('plotWrap'),ctx=cnv.getCo
  ctx.beginPath();ctx.lineWidth=2.6;ctx.lineJoin='round';ctx.lineCap='round';ctx.strokeStyle=clr;series.forEach((p,i)=>{const [x,y]=xy(i,p.value);if(i===0)ctx.moveTo(x,y);else ctx.lineTo(x,y)});ctx.stroke();
  const grd=ctx.createLinearGradient(0,T,0,h);grd.addColorStop(0,clr+'24');grd.addColorStop(1,clr+'00');ctx.lineTo(L+X,T+Y);ctx.lineTo(L,T+Y);ctx.closePath();ctx.fillStyle=grd;ctx.fill();state.points={L,X,w,h,series,xy};
 }
-function render(){try{clearWarn();showStates();if(!state.data)throw Error('データがありません');const full=state.data.months;const asset=state.asset;const real=state.plotMode==='real';const label=asset==='usd'?'米ドル現金（利息なし）':asset==='jpy'?'円現金（利息なし）':'金公表価格（未検証）';$('legendText').textContent=label;
- const risk=asset==='gold';$('noticeText').textContent=state.kind==='demo'?'合成デモです。現実の市場や将来を表しません。':'Fed H.10とe-Statの指定CSVを利用。Fed 1971年系列は取得経路ADR未承認の研究候補です。'+(risk?' 金は予測・出典区分未検証の公表値で、投資可能なTRではありません。':' 利息・売買費用・税は含みません。');
+function render(){try{clearWarn();showStates();if(!state.data)throw Error('データがありません');const full=state.data.months;const asset=state.tab==='portfolio'?$('portfolioRisk').value:state.asset;const real=state.plotMode==='real';const label=asset==='usd'?'米ドル現金（利息なし）':asset==='jpy'?'円現金（利息なし）':asset==='tr'?'本人入力TR指数（真正性未検証）':'金公表価格（未検証）';$('legendText').textContent=label;
+ const risk=asset==='gold';$('noticeText').textContent=state.kind==='demo'?'合成デモです。現実の市場や将来を表しません。':'Fed H.10とe-Statの指定CSVを利用。Fed 1971年系列は取得経路ADR未承認の研究候補です。'+(risk?' 金は予測・出典区分未検証の公表値で、投資可能なTRではありません。':asset==='tr'?' TR指数の出典・自己利用権限は本人確認であり、アプリ側の真正性保証ではありません。':' 利息・売買費用・税は含みません。');
  let series,exportRows,summary;
  if(state.tab==='power'){
   series=powerRows(full,asset,real);const value=series.at(-1).value;
@@ -347,6 +347,55 @@ function render(){try{clearWarn();showStates();if(!state.data)throw Error('デ�
   $('detailTitle').textContent='10 / 20 / 30年 ローリング比較';$('tableHead').innerHTML='<tr><th>期間</th><th>開始月数</th><th>最小倍率</th><th>中央値</th><th>最大倍率</th><th>1倍超の割合</th></tr>';
   $('tableRows').textContent='';for(const y of [10,20,30]){const s=powerSummary(series,y),tr=document.createElement('tr');tr.innerHTML=`<td>${y}年</td><td>${s.windows}</td><td>${nf(s.min,3)}</td><td>${nf(s.median,3)}</td><td>${nf(s.max,3)}</td><td>${s.windows?nf(s.positive,1)+'%':'—'}</td>`;$('tableRows').appendChild(tr)}
   $('tableNote').textContent='開始月ごとに全期間の実測水準がある場合のみ集計します。重複する歴史的な窓の割合であり、将来の運用成績の確率ではありません。';exportRows=series.map(x=>({month:x.month,relative_index:x.value.toFixed(8),classification:asset==='gold'?'PUBLISHED_LEVEL_STATUS_UNVERIFIED':state.kind==='demo'?'SYNTHETIC':'OBSERVED_REFERENCE'}));
+
+ }else if(state.tab==='portfolio'){
+   const initial=Number($('initial').value),monthly=Number($('monthly').value),
+     inflation=$('withdrawType').value==='real',from=$('startMonth').value;
+   const idx=full.findIndex(r=>r.month===from);
+   if(idx<0||idx+state.horizon*12>=full.length)throw Error('2資産：選択した開始月には十分な履歴がありません');
+   const timing=$('withdrawTiming').value;
+   const config={cashPercent:Number($('cashPercent').value),
+     sellOrder:state.mode==='simple'?'CASH_FIRST':$('sellOrder').value,
+     rebalance:state.mode==='simple'?'NONE':$('rebalance').value};
+   const sim=simulateTwoAsset(full,idx,state.horizon,initial,monthly,asset,inflation,timing,config);
+   const roll=rollingTwoAsset(full,state.horizon,initial,monthly,asset,inflation,timing,config);
+   series=sim.rows.map(r=>({month:r.month,value:r.value}));
+   setStat('A','2資産の期末残高',yen(sim.remaining),'円現金 '+yen(sim.cash)+' / 投資資産 '+yen(sim.risk));
+   setStat('B','実際の引出総額',yen(sim.total),sim.totalShortfall>0?'累積不足額 '+yen(sim.totalShortfall):'引出額の未払なし');
+   setStat('C',state.horizon+'年の支払完遂窓',roll.filter(x=>x.covered).length+' / '+roll.length,
+     '過去の開始月比較。将来の成功確率ではありません');
+   $('chartTitle').textContent='円現金 ＋ '+label+'：取り崩し後の合計残高';
+   $('chartSubtitle').textContent=state.horizon+'年／円現金 '+config.cashPercent+'%／'+
+      (timing==='BEGINNING_OF_MONTH'?'月初':'月末')+'引出／'+
+      ({CASH_FIRST:'現金優先',RISK_FIRST:'投資資産優先',PRO_RATA:'比例売却'}[config.sellOrder])+'／'+
+      ({NONE:'リバランスなし',ANNUAL:'年次調整',MONTHLY:'月次調整'}[config.rebalance])+
+      '。税・手数料を含みません。';
+   $('detailTitle').textContent='2資産：ローリング開始月別の結果';
+   $('tableHead').innerHTML='<tr><th>開始月</th><th>期末残高</th><th>初回不足月</th><th>累積不足額</th></tr>';
+   $('tableRows').textContent='';
+   for(const o of roll.filter((x,i)=>i%Math.max(1,Math.ceil(roll.length/16))===0)){
+      const tr=document.createElement('tr');
+      tr.innerHTML='<td>'+o.start+'</td><td>'+yen(o.remaining)+'</td><td>'+
+        (o.firstShortfallMonth||'なし')+'</td><td>'+yen(o.totalShortfall)+'</td>';
+      $('tableRows').appendChild(tr);
+   }
+   $('tableNote').textContent='月初・月末の時点と現金配分によって結果が変わります。円現金は利息0%、売買費用・税・スリッページなし。重複する歴史的な窓を予測確率とは解釈しないでください。';
+   $('portfolioLedgerRows').textContent='';
+   for(const r of sim.rows.filter((x,i)=>i===0||i===sim.rows.length-1||i%Math.max(1,Math.ceil(sim.rows.length/14))===0)){
+      const tr=document.createElement('tr');
+      tr.innerHTML='<td>'+r.month+'</td><td>'+yen(r.cash_yen)+'</td><td>'+yen(r.risk_yen)+
+        '</td><td>'+yen(r.withdrawn)+'</td><td>'+yen(r.shortfall)+'</td><td>'+yen(r.rebalance_yen)+'</td>';
+      $('portfolioLedgerRows').appendChild(tr);
+   }
+   exportRows=sim.rows.map(r=>({month:r.month,remaining_yen:r.value.toFixed(2),
+     cash_yen:r.cash_yen.toFixed(2),risky_yen:r.risk_yen.toFixed(2),
+     withdrawal_due_yen:r.due.toFixed(2),withdrawal_paid_yen:r.withdrawn.toFixed(2),
+     shortfall_yen:r.shortfall.toFixed(2),investment_return_yen:r.investment_return.toFixed(2),
+     rebalance_trade_yen:r.rebalance_yen.toFixed(2),cash_target_pct:config.cashPercent,
+     sale_order:config.sellOrder,rebalance_frequency:config.rebalance,withdraw_timing:timing,
+     asset_reference:asset,
+     price_quality:asset==='gold'?'PUBLISHED_LEVEL_STATUS_UNVERIFIED':asset==='tr'?'USER_DECLARED_TR_LICENSE_NOT_VERIFIED':state.kind==='demo'?'SYNTHETIC':'FX_QUOTE_NOT_DEPOSIT_TR',
+     not_for_publication:true}));
  }else{
    const initial=Number($('initial').value),monthly=Number($('monthly').value),inflation=$('withdrawType').value==='real',from=$('startMonth').value;let idx=full.findIndex(r=>r.month===from);if(idx<0)throw Error('開始月が無効です');const available=full.length-1-idx;if(available<12*state.horizon)throw Error(`終了までの月次データが不足しています。${state.horizon}年分がある開始月を選択してください。`);
    const timing=$('withdrawTiming').value;const sim=simulateWithdrawal(full,idx,state.horizon,initial,monthly,asset,inflation,timing);
