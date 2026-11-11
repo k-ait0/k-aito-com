@@ -54,4 +54,38 @@ function parseBlsCpi(json,startYear,endYear){
 function verifyXlsxSignature(buf){
  if(!Buffer.isBuffer(buf)||buf.length<5000||!buf.subarray(0,4).equals(Buffer.from([0x50,0x4b,0x03,0x04])))throw Error('Expected sufficiently large XLSX, not HTML/partial download');
 }
-module.exports={parseFedH10,parseBlsCpi,verifyXlsxSignature,normalizeFedMonthly};
+
+function parseBlsCpiWithKnownMissing(json,startYear,endYear){
+ if(json?.status!=='REQUEST_SUCCEEDED')throw Error('BLS API did not succeed');
+ const s=json?.Results?.series?.find(s=>s.seriesID==='CUUR0000SA0')||json?.Results?.[0]?.series?.find(s=>s.seriesID==='CUUR0000SA0');
+ if(!s||!Array.isArray(s.data))throw Error('BLS series missing');
+ const observed=new Map(),missing=new Set(),seen=new Set();
+ for(const d of s.data){
+  if(!/^M(0[1-9]|1[0-2])$/.test(d.period))continue;
+  const y=Number(d.year),month=d.year+'-'+d.period.slice(1);
+  if(y<startYear||y>endYear)throw Error('BLS returned out-of-range year');
+  if(seen.has(month))throw Error('Duplicate BLS month '+month);
+  seen.add(month);
+  if(String(d.value).trim()==='-'){
+   // BLS's documented government-shutdown gap; no fabricated CPI or interpolation.
+   if(month!=='2025-10')throw Error('Undocumented missing CPI '+month);
+   missing.add(month);continue;
+  }
+  const value=Number(d.value);
+  if(!String(d.value).trim()||!Number.isFinite(value)||value<=0)throw Error('Invalid BLS CPI '+month);
+  observed.set(month,{month,value:String(d.value)});
+ }
+ const rows=[...observed.values()].sort((a,b)=>a.month.localeCompare(b.month));
+ if(!rows.length)throw Error('No BLS monthly observations');
+ if(rows[0].month!==startYear+'-01')throw Error('BLS CPI start year incomplete');
+ if(endYear<new Date().getUTCFullYear()&&rows.at(-1).month!==endYear+'-12')throw Error('BLS CPI historical end year incomplete');
+ const toSerial=m=>Number(m.slice(0,4))*12+Number(m.slice(5))-1;
+ const toMonth=n=>String(Math.floor(n/12))+'-'+String(n%12+1).padStart(2,'0');
+ for(let n=toSerial(rows[0].month);n<=toSerial(rows.at(-1).month);n++){
+  const month=toMonth(n);
+  if(!observed.has(month)&&!missing.has(month))throw Error('BLS CPI missing month '+month+' without official explicit missing marker');
+ }
+ return {observations:rows,missing_months:[...missing].sort()};
+}
+
+module.exports={parseFedH10,parseBlsCpi,parseBlsCpiWithKnownMissing,verifyXlsxSignature,normalizeFedMonthly};
