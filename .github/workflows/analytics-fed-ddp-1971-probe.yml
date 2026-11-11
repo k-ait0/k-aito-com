@@ -1,0 +1,39 @@
+name: Analytics Fed H10 1971 DDP research ZIP probe (no ADR adoption)
+on:
+  push:
+    branches:
+      - analytics-historical-v0-1-20261110
+    paths:
+      - .github/workflows/analytics-fed-ddp-1971-probe.yml
+permissions:
+  contents: read
+jobs:
+  candidate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify no source lock drift and discover Fed official DDP archive
+        env:
+          GITHUB_WORKSPACE: ${{ github.workspace }}
+          ANALYTICS_PRIVATE_DATA_DIR: ${{ runner.temp }}/kaito_analytics_fed_candidate
+        run: |
+          set -euo pipefail
+          umask 077
+          node scripts/check-analytics-source-registry.cjs
+          python3 scripts/research-probe-fed-h10-ddp.py
+      - name: Encrypt full native official archive for private research
+        env:
+          ANALYTICS_PRIVATE_DATA_DIR: ${{ runner.temp }}/kaito_analytics_fed_candidate
+        run: |
+          set -euo pipefail
+          umask 077
+          tar -czf "$RUNNER_TEMP/fed_ddp_candidate.tar.gz" -C "$ANALYTICS_PRIVATE_DATA_DIR" .
+          node scripts/seal-analytics-research-bundle.cjs "$RUNNER_TEMP/fed_ddp_candidate.tar.gz" research/analytics/bls_private_bundle_public_key_20261111.pem "$RUNNER_TEMP/fed_ddp_PRIVATE_ENCRYPTED.json"
+          rm "$RUNNER_TEMP/fed_ddp_candidate.tar.gz"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: fed-h10-ddp-all-release-1971-research-candidate-encrypted
+          path: ${{ runner.temp }}/fed_ddp_PRIVATE_ENCRYPTED.json
+          if-no-files-found: error
+          retention-days: 7
