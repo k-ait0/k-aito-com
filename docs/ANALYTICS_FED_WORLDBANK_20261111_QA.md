@@ -69,3 +69,4 @@ Gold：WORLD_BANK_PINK_GOLD_USD_TROY_OZ（802行）、currency=USD、unit=USD_PE
 3. World Bank他商品列の開始月・観測欠損・先物/スポット・出典・権利を一列ずつ分類。
 4. 旧Shiller 522月研究用拡張と株式・債券・REIT等の指数TRライセンス検討。
 5. 短期GitHub Actions暗号化Artifactを恒久の非公開領域にバックアップ。秘密鍵はGitHubに置かない。
+NaN
