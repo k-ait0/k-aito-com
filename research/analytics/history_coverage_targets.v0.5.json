@@ -1,0 +1,197 @@
+{
+  "schema_version": "0.5.0",
+  "as_of": "2026-11-11",
+  "target": {
+    "baseline_observed_start": "1966-01",
+    "horizon_years": 60,
+    "horizon_months": 720,
+    "rolling_horizons_months": [
+      120,
+      240,
+      360,
+      480
+    ],
+    "data_preference": "OBSERVED_CONTIGUOUS_ONLY",
+    "start_month_policy": "At least 30y of complete month-by-month returns for a 30y run; never forward-fill or proxy silently"
+  },
+  "labels": [
+    "OFFICIAL_COVERAGE_POTENTIAL_ONLY",
+    "PRIVATE_RAW_VERIFIED",
+    "SOURCE_RESEARCH_ONLY",
+    "LICENSE_PENDING",
+    "NOT_60Y_NATIVE"
+  ],
+  "timeline_reference": {
+    "reference_end_month": "2026-10",
+    "periods": [
+      {
+        "key": "LEGACY",
+        "first_month": "1980-01",
+        "last_month": "2023-06",
+        "kind": "LEVEL",
+        "potential_30y_starts": 162,
+        "private_data_actual": "522 price/dividend/CPI months old version"
+      },
+      {
+        "key": "60Y_TARGET",
+        "first_month": "1966-01",
+        "last_month": "2026-10",
+        "kind": "LEVEL",
+        "potential_30y_starts": 370,
+        "data_actual": "NOT_ACQUIRED"
+      },
+      {
+        "key": "USDJPY_1971",
+        "first_month": "1971-01",
+        "last_month": "2026-10",
+        "kind": "LEVEL",
+        "potential_30y_starts": 310,
+        "data_actual": "NOT_ACQUIRED_LONG_HISTORY"
+      },
+      {
+        "key": "J_REIT_2003",
+        "first_month": "2003-04",
+        "last_month": "2026-10",
+        "kind": "LEVEL",
+        "potential_30y_starts": 0,
+        "data_actual": "NOT_ACQUIRED"
+      }
+    ]
+  },
+  "assets": [
+    {
+      "id": "JP_EQUITY",
+      "source_locked": "JPX",
+      "confirmed_official_metadata": {
+        "TOPIX_base_date": "1968-01-04",
+        "TOPIX_calculation_start": "1969-07-01"
+      },
+      "sixty_year_potential": "NEAR_60_ONLY",
+      "optional_license_only_candidate": {
+        "publisher": "Nikkei Inc",
+        "index": "Nikkei 225 price return",
+        "inception": "1949-05-16",
+        "rights": "LICENSE_REQUIRED",
+        "switch_status": "NOT_AUTHORIZED"
+      },
+      "note": "TOPIX history/PR not interchangeable with TR; Nikkei source differs from locked publisher"
+    },
+    {
+      "id": "US_EQUITY",
+      "source_locked": "SPDJI",
+      "confirmed_official_metadata": {
+        "shiller_monthly_prices_dividends_cpi_starts": "1871-01",
+        "source": "Robert Shiller/Yale"
+      },
+      "sixty_year_potential": "RESEARCH_SOURCE_AVAILABLE_ONLY",
+      "source_rights": "PRIVATE_RESEARCH_ONLY",
+      "project_verified_raw": "1980-01..2023-06",
+      "note": "Shiller S&P Composite approximate, not official S&P500 TR; 1966+ extension not yet acquired"
+    },
+    {
+      "id": "GLOBAL_EQUITY",
+      "source_locked": "MSCI",
+      "sixty_year_potential": "UNKNOWN_VERIFY_INDEX_INCEPTION_AND_LICENSE"
+    },
+    {
+      "id": "JP_BONDS",
+      "source_locked": "NOMURA_BPI",
+      "sixty_year_potential": "UNKNOWN_VERIFY_INDEX_INCEPTION_AND_LICENSE"
+    },
+    {
+      "id": "US_BONDS",
+      "source_locked": "BLOOMBERG_INDEX",
+      "sixty_year_potential": "UNKNOWN_VERIFY_INDEX_INCEPTION_AND_LICENSE"
+    },
+    {
+      "id": "CASH_SHORT",
+      "source_locked": "BOJ",
+      "sixty_year_potential": "UNKNOWN_TERMS_REVIEW_REQUIRED"
+    },
+    {
+      "id": "GOLD",
+      "source_locked": "WORLD_BANK_PINK",
+      "confirmed_official_metadata": {
+        "world_bank_monthly_commodity_group_starts": "1960-01"
+      },
+      "sixty_year_potential": "CHECK_GOLD_COLUMN_AND_RIGHTS",
+      "note": "Gold spot, not investable total return"
+    },
+    {
+      "id": "REIT",
+      "source_locked": "JPX",
+      "confirmed_official_metadata": {
+        "J_REIT_index_inception": "2003-04-01"
+      },
+      "sixty_year_potential": "NOT_60Y_NATIVE",
+      "note": "Cannot use a native J-REIT 30-year backtest before 2033 without transparently labeled proxy"
+    },
+    {
+      "id": "EM_EQUITY",
+      "source_locked": "MSCI",
+      "sixty_year_potential": "UNKNOWN_VERIFY_INDEX_INCEPTION_AND_LICENSE"
+    },
+    {
+      "id": "DEV_EXUS_BONDS",
+      "source_locked": "FTSE_RUSSELL",
+      "sixty_year_potential": "UNKNOWN_VERIFY_INDEX_INCEPTION_AND_LICENSE"
+    },
+    {
+      "id": "EXGOLD_COMMODITY",
+      "source_locked": "WORLD_BANK_PINK",
+      "confirmed_official_metadata": {
+        "world_bank_monthly_commodity_group_starts": "1960-01"
+      },
+      "sixty_year_potential": "PER_SERIES_CHECK_REQUIRED",
+      "note": "Monthly spot commodity prices do not equal futures total returns"
+    },
+    {
+      "id": "INFLATION_LINKED",
+      "source_locked": "US_TREASURY",
+      "sixty_year_potential": "NOT_60Y_DIRECT_INVESTABLE_SERIES",
+      "note": "Treasury TIPS yield data model input not 60-year investable bond return"
+    }
+  ],
+  "auxiliary": [
+    {
+      "id": "CPI_JP",
+      "source_locked": "ESTAT",
+      "official_start": {
+        "excluding_imputed_homeowner_rent": "1946-08",
+        "headline_all_items": "1970-01"
+      },
+      "target_contract": "2025-base linked long-run monthly by Statistics Bureau, use appropriate series definition; do not splice unlike baskets invisibly",
+      "research_status": "OFFICIAL_METADATA_ONLY"
+    },
+    {
+      "id": "CPI_US",
+      "source_locked": "BLS",
+      "official_start": "1913-01",
+      "series_id": "CUUR0000SA0",
+      "research_status": "OFFICIAL_METADATA_ONLY"
+    },
+    {
+      "id": "FX",
+      "source_locked": "FED_BOARD",
+      "official_start": "1971-01-04",
+      "series_id": "H10/H10/RXI_N.B.JA",
+      "target_contract": "Direct Federal Reserve Board historic complete G5/H10 (DDP/official), before 2000 missing in dat00_ja page",
+      "channel_change_review": "PENDING_SOURCE_CHANGE_ADR",
+      "research_status": "OFFICIAL_METADATA_ONLY",
+      "note": "1971 onward is not 60 years as of 2026"
+    },
+    {
+      "id": "DIVIDENDS",
+      "source_locked": "SPDJI",
+      "alternative_research": "Shiller interpolated annualized dividends since 1871",
+      "research_status": "PRIVATE_RESEARCH_RIGHTS_NOT_APPROVED"
+    }
+  ],
+  "rights_state": "NO_SITE_PUBLICATION_APPROVAL",
+  "strict_modes": {
+    "OBSERVED_ONLY": "Series must contain actual, monthly continuous data within each evaluated window",
+    "PROXY_RESEARCH": "Separately labelled counterfactual; not mixed into observed-only percentages",
+    "ADVERTISED_HISTORY": "Published start dates describe potential only and do not certify acquired data"
+  },
+  "source_change_policy": "Source lock registry v0.2 remains authoritative. Nikkei and Fed DDP are candidates requiring ADR before replacing any pinned source/download endpoint."
+}
