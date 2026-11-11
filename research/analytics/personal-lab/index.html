@@ -27,7 +27,7 @@ header{padding:25px 0 18px;display:flex;gap:20px;justify-content:space-between;a
  <div class="panel"><h2>01 · データソース</h2><div class="group"><div class="choice"><button type="button" id="sourceDemo" class="selected">合成デモ</button><button type="button" id="sourceLocal">実CSVを使う</button></div><p id="sourceBadge" class="statusline">合成数値です。過去実績を表していません。</p></div>
  <div id="uploadBox" class="hidden"><div class="filepair"><label><b>USD/JPY · Fed H.10</b><input id="fileFx" type="file" accept=".csv,text/csv"></label><label><b>日本CPI · 全国総合</b><input id="fileCpi" type="file" accept=".csv,text/csv"></label><label><b>金 · 公表未検証（任意）</b><input id="fileGold" type="file" accept=".csv,text/csv"></label></div><p class="inputnote">研究用の正規化CSVを指定してください。ファイルはアップロードされません。</p><label class="checkline" style="margin:10px 0"><input type="checkbox" id="goldAck"><span>金価格は出典・予測区分未検証の参考値と理解した</span></label><div class="buttons"><button type="button" class="primary" id="loadFiles">端末内で読み込む</button><button type="button" class="secondary" id="clearFiles">消去</button></div></div><div id="loadStatus" role="status" class="statusline" aria-live="polite">入力データ：合成デモ</div></div>
  <div class="panel"><h2>02 · 分析条件</h2><div class="group"><label class="fieldlabel" for="asset">比較対象</label><select id="asset"><option value="usd">米ドル現金（利息なし）</option><option value="jpy">円現金（利息なし）</option><option value="gold">金公表価格（探索用）</option></select></div>
- <div id="withdrawInputs" class="hidden"><div class="group"><label class="fieldlabel" for="initial">初期資金（円）</label><input type="number" id="initial" min="10000" max="10000000000" step="100000" value="30000000"></div><div class="group"><label class="fieldlabel" for="monthly">毎月の取り崩し（円）</label><input type="number" id="monthly" min="0" max="100000000" step="10000" value="100000"></div><div class="group"><label class="fieldlabel" for="withdrawType">引出し額</label><select id="withdrawType"><option value="real">物価上昇に合わせて調整</option><option value="nominal">毎月同額（名目固定）</option></select></div><div class="group"><label class="fieldlabel" for="startMonth">開始月</label><select id="startMonth"></select></div></div>
+ <div id="withdrawInputs" class="hidden"><div class="group"><label class="fieldlabel" for="initial">初期資金（円）</label><input type="number" id="initial" min="10000" max="10000000000" step="100000" value="30000000"></div><div class="group"><label class="fieldlabel" for="monthly">毎月の取り崩し（円）</label><input type="number" id="monthly" min="0" max="100000000" step="10000" value="100000"></div><div class="group"><label class="fieldlabel" for="withdrawType">引出し額</label><select id="withdrawType"><option value="real">物価上昇に合わせて調整</option><option value="nominal">毎月同額（名目固定）</option></select></div><div class="group"><label class="fieldlabel" for="withdrawTiming">引出し時点</label><select id="withdrawTiming"><option value="END_OF_MONTH">月末（運用リターン反映後）</option><option value="BEGINNING_OF_MONTH">月初（運用リターン反映前）</option></select></div><div class="group"><label class="fieldlabel" for="startMonth">開始月</label><select id="startMonth"></select></div></div>
  <div class="group"><label class="fieldlabel" for="horizon">検証期間</label><select id="horizon"><option value="10">10年</option><option value="20">20年</option><option value="30" selected>30年</option></select></div>
  <div id="plotModeGroup" class="group"><label class="fieldlabel" for="plotMode">グラフ表示</label><select id="plotMode"><option value="real">日本CPIで実質化</option><option value="nominal">円建て名目水準</option></select></div>
  <div class="buttons"><button type="button" id="exportCsv" class="secondary">結果CSV保存</button></div></div>
@@ -77,11 +77,76 @@ function powerRows(monthRows,asset,real){const start=monthRows[0],ref=dataRowAss
 function rollingPower(rows,horizon){const steps=12*horizon,out=[];for(let i=steps;i<rows.length;i++){const ratio=rows[i].value/rows[i-steps].value;out.push({start:rows[i-steps].month,end:rows[i].month,ratio})}return out}
 function middle(x){if(!x.length)return NaN;const a=[...x].sort((a,b)=>a-b);return a.length%2?a[(a.length-1)/2]:(a[a.length/2-1]+a[a.length/2])/2}
 function powerSummary(rows,h){const w=rollingPower(rows,h);if(!w.length)return {years:h,windows:0};const multiples=w.map(x=>x.ratio);return {years:h,windows:w.length,min:Math.min(...multiples),median:middle(multiples),max:Math.max(...multiples),positive:100*w.filter(x=>x.ratio>1).length/w.length}}
-function simulateWithdrawal(fullRows,startIndex,horizon,initial,monthly,asset,adjust){const steps=horizon*12;if(!Number.isFinite(initial)||initial<=0||!Number.isFinite(monthly)||monthly<0)throw Error('初期資金と取り崩し額を確認してください');if(startIndex+steps>=fullRows.length)throw Error('指定期間の将来月データが不足しています');let balance=initial,total=0,ruinMonth=null,rows=[{month:fullRows[startIndex].month,value:balance,withdrawn:0}];const baseCpi=fullRows[startIndex].cpi;
- for(let j=1;j<=steps;j++){const prev=fullRows[startIndex+j-1],now=fullRows[startIndex+j];const ret=dataRowAsset(now,asset)/dataRowAsset(prev,asset);if(!Number.isFinite(ret)||ret<=0)throw Error('価格比が不正です');let due=monthly*(adjust?now.cpi/baseCpi:1);if(!Number.isFinite(due)||due<0)throw Error('引出額が不正です');const grown=balance*ret;const actual=Math.min(grown,due);balance=Math.max(0,grown-actual);total+=actual;if(balance<=0&&ruinMonth===null)ruinMonth=now.month;rows.push({month:now.month,value:balance,withdrawn:actual});}
- return {rows,remaining:balance,total,ruinMonth,covered:ruinMonth===null,months:steps+1,ends:fullRows[startIndex+steps].month};
+// DWZ timing-compatible research ledger. Month 0 is a known price-level observation.
+// BEGINNING_OF_MONTH pays months 0..N-1 before each next monthly return;
+// END_OF_MONTH pays months 1..N after each return. Both have exactly N obligations.
+// Cash shortfall (not a zero closing balance) defines failure. No debt/negative balance.
+function simulateWithdrawal(fullRows,startIndex,horizon,initial,monthly,asset,adjust,timing='END_OF_MONTH'){
+ const steps=horizon*12;
+ if(!Number.isInteger(steps)||steps<1||!Number.isFinite(initial)||initial<=0||!Number.isFinite(monthly)||monthly<0)
+  throw Error('初期資金・毎月の引出額・期間を確認してください');
+ if(!['BEGINNING_OF_MONTH','END_OF_MONTH'].includes(timing))throw Error('月初・月末の引出し時点が不正です');
+ if(!Array.isArray(fullRows)||startIndex<0||!Number.isInteger(startIndex)||startIndex+steps>=fullRows.length)
+  throw Error('指定期間の将来月データが不足しています');
+ const baseCpi=fullRows[startIndex].cpi;
+ if(!Number.isFinite(baseCpi)||baseCpi<=0)throw Error('CPIの基準値が不正です');
+ let balance=initial,total=0,totalDue=0,totalShortfall=0,investmentReturnTotal=0;
+ let firstShortfallMonth=null,depletedMonth=null,withdrawalCount=0;
+ const rows=[{month:fullRows[startIndex].month,value:balance,withdrawn:0,due:0,shortfall:0,investment_return:0}];
+ const EPS=1e-8;
+ function pay(idx,entry){
+   const obs=fullRows[idx],due=monthly*(adjust?obs.cpi/baseCpi:1);
+   if(!Number.isFinite(due)||due<0)throw Error('物価連動の引出額が不正です');
+   totalDue+=due;
+   const actual=Math.min(Math.max(0,balance),due);
+   const rawShortfall=Math.max(0,due-actual),shortfall=rawShortfall>EPS?rawShortfall:0;
+   balance=Math.max(0,balance-actual);
+   if(!Number.isFinite(balance))throw Error('残高の計算が非有限数になりました');
+   if(due>0)withdrawalCount++;
+   total+=actual;totalShortfall+=shortfall;
+   if(firstShortfallMonth===null&&shortfall>0)firstShortfallMonth=obs.month;
+   if(depletedMonth===null&&balance===0)depletedMonth=obs.month;
+   entry.value=balance;entry.withdrawn+=actual;entry.due+=due;entry.shortfall+=shortfall;
+ }
+ if(timing==='BEGINNING_OF_MONTH')pay(startIndex,rows[0]);
+ for(let j=1;j<=steps;j++){
+   const prev=fullRows[startIndex+j-1],now=fullRows[startIndex+j];
+   if(!Number.isFinite(prev.cpi)||!Number.isFinite(now.cpi)||now.cpi<=0)
+    throw Error('期間中のCPIに不正があります');
+   const previousAsset=dataRowAsset(prev,asset),nextAsset=dataRowAsset(now,asset);
+   const ratio=nextAsset/previousAsset;
+   if(!Number.isFinite(ratio)||ratio<=0)throw Error('市場価格の月次比率が不正です');
+   const before=balance,grown=balance*ratio,interest=grown-before;
+   if(!Number.isFinite(grown)||grown<0)throw Error('残高計算で桁溢れが発生しました');
+   balance=grown;investmentReturnTotal+=interest;
+   const entry={month:now.month,value:balance,withdrawn:0,due:0,shortfall:0,investment_return:interest};
+   if(timing==='END_OF_MONTH'||j<steps) {
+     if(timing==='END_OF_MONTH'||timing==='BEGINNING_OF_MONTH') {
+       if(timing==='END_OF_MONTH'||j<steps)pay(startIndex+j,entry);
+     }
+   }
+   rows.push(entry);
+ }
+ if(rows.length!==steps+1||!Number.isFinite(totalDue)||!Number.isFinite(totalShortfall))
+  throw Error('月次台帳の整合性に問題があります');
+ // Conservation: closing balance = principal + market gains - actual cash withdrawals.
+ const rhs=initial+investmentReturnTotal-total,delta=Math.abs(rhs-balance);
+ if(delta>Math.max(1e-5,Math.abs(rhs)*1e-10))throw Error('残高恒等式が一致しません');
+ return {rows,remaining:balance,total,totalDue,totalShortfall,firstShortfallMonth,
+   ruinMonth:firstShortfallMonth,depletedMonth,covered:firstShortfallMonth===null,
+   investmentReturnTotal,withdrawalCount,timing,months:steps+1,ends:fullRows[startIndex+steps].month};
 }
-function rollingWithdraw(rows,horizon,initial,monthly,asset,adjust){const n=rows.length-horizon*12;const outcomes=[];for(let i=0;i<n;i++){const v=simulateWithdrawal(rows,i,horizon,initial,monthly,asset,adjust);outcomes.push({start:rows[i].month,remaining:v.remaining,ruinMonth:v.ruinMonth,covered:v.ruinMonth===null})}return outcomes}
+function rollingWithdraw(rows,horizon,initial,monthly,asset,adjust,timing='END_OF_MONTH'){
+ const n=rows.length-horizon*12;
+ const outcomes=[];
+ for(let i=0;i<n;i++){
+   const v=simulateWithdrawal(rows,i,horizon,initial,monthly,asset,adjust,timing);
+   outcomes.push({start:rows[i].month,remaining:v.remaining,ruinMonth:v.firstShortfallMonth,
+     firstShortfallMonth:v.firstShortfallMonth,depletedMonth:v.depletedMonth,
+     totalShortfall:v.totalShortfall,covered:v.covered});
+ }
+ return outcomes;
+}
 function warn(msg){$('dataErrors').textContent=msg;$('dataErrors').classList.remove('hidden')}
 function clearWarn(){$('dataErrors').textContent='';$('dataErrors').classList.add('hidden')}
 function setOptions(){const goldAvailable=state.data?.gold.size>0;const opt=$('asset').querySelector('option[value=gold]');opt.disabled=!goldAvailable; if(!goldAvailable&&state.asset==='gold'){state.asset='usd';$('asset').value='usd'};const yrs=state.data?.months||[];
@@ -116,13 +181,13 @@ function render(){try{clearWarn();showStates();if(!state.data)throw Error('デ�
   $('tableNote').textContent='開始月ごとに全期間の実測水準がある場合のみ集計します。重複する歴史的な窓の割合であり、将来の運用成績の確率ではありません。';exportRows=series.map(x=>({month:x.month,relative_index:x.value.toFixed(8),classification:asset==='gold'?'PUBLISHED_LEVEL_STATUS_UNVERIFIED':state.kind==='demo'?'SYNTHETIC':'OBSERVED_REFERENCE'}));
  }else{
    const initial=Number($('initial').value),monthly=Number($('monthly').value),inflation=$('withdrawType').value==='real',from=$('startMonth').value;let idx=full.findIndex(r=>r.month===from);if(idx<0)throw Error('開始月が無効です');const available=full.length-1-idx;if(available<12*state.horizon)throw Error(`終了までの月次データが不足しています。${state.horizon}年分がある開始月を選択してください。`);
-   const sim=simulateWithdrawal(full,idx,state.horizon,initial,monthly,asset,inflation);
-   series=sim.rows.map(r=>({month:r.month,value:r.value}));const roll=rollingWithdraw(full,state.horizon,initial,monthly,asset,inflation);
-   setStat('A','取り崩し後の残高',yen(sim.remaining),sim.ruinMonth?'残高ゼロ到達：'+sim.ruinMonth:'指定期間は残高ゼロ未到達');setStat('B','期間内の引出総額',yen(sim.total),'月末引出しで計算');setStat('C',`${state.horizon}年完走窓`,roll.filter(r=>r.covered).length+' / '+roll.length,'残高ゼロ未到達の歴史的開始月');
-   $('chartTitle').textContent=label+'：取り崩し後の残高';$('chartSubtitle').textContent=`${state.horizon}年、${inflation?'日本CPIに連動した引出し':'名目固定引出し'}。月末に引出し。利息・税・手数料なし。`;
-   $('detailTitle').textContent='ローリング開始月別の結果';$('tableHead').innerHTML='<tr><th>開始月</th><th>期末残高</th><th>途中残高ゼロ</th></tr>';$('tableRows').textContent='';for(const it of roll.filter((x,i)=>i%Math.max(1,Math.ceil(roll.length/14))===0)){const tr=document.createElement('tr');tr.innerHTML=`<td>${it.start}</td><td>${yen(it.remaining)}</td><td>${it.ruinMonth||'なし'}</td>`;$('tableRows').appendChild(tr)}
-   $('tableNote').textContent='全ての開始月について計算していますが、表示行は間引いています。比率は将来の成功確率ではありません。途中で残高が0になったら後続の資産残高は0のままです。';
-   exportRows=sim.rows.map(r=>({month:r.month,remaining_yen:r.value.toFixed(2),withdrawal_yen:r.withdrawn.toFixed(2),mode:asset==='gold'?'GOLD_UNVERIFIED_EXPLORATORY':state.kind==='demo'?'SYNTHETIC':'PRIVATE_REFERENCE'}));
+   const timing=$('withdrawTiming').value;const sim=simulateWithdrawal(full,idx,state.horizon,initial,monthly,asset,inflation,timing);
+   series=sim.rows.map(r=>({month:r.month,value:r.value}));const roll=rollingWithdraw(full,state.horizon,initial,monthly,asset,inflation,timing);
+   setStat('A','取り崩し後の残高',yen(sim.remaining),sim.firstShortfallMonth?'初回資金不足：'+sim.firstShortfallMonth:sim.depletedMonth?'全額支払済み・残高0到達：'+sim.depletedMonth:'指定期間の支払不足なし');setStat('B','期間内の引出総額',yen(sim.total),sim.totalShortfall>0?'未払引出額：'+yen(sim.totalShortfall):'予定された引出しを全額支払');setStat('C',`${state.horizon}年支払完遂窓`,roll.filter(r=>r.covered).length+' / '+roll.length,'未払額ゼロの歴史的開始月');
+   $('chartTitle').textContent=label+'：取り崩し後の残高';$('chartSubtitle').textContent=`${state.horizon}年、${inflation?'日本CPIに連動した引出し':'名目固定引出し'}。${timing==='BEGINNING_OF_MONTH'?'月初':'月末'}に引出し。利息・税・手数料なし。`;
+   $('detailTitle').textContent='ローリング開始月別の結果';$('tableHead').innerHTML='<tr><th>開始月</th><th>期末残高</th><th>初回資金不足</th></tr>';$('tableRows').textContent='';for(const it of roll.filter((x,i)=>i%Math.max(1,Math.ceil(roll.length/14))===0)){const tr=document.createElement('tr');tr.innerHTML=`<td>${it.start}</td><td>${yen(it.remaining)}</td><td>${it.ruinMonth||'なし'}</td>`;$('tableRows').appendChild(tr)}
+   $('tableNote').textContent='全ての開始月について計算していますが、表示行は間引いています。比率は将来の成功確率ではありません。残高0でも予定引出額を全額払えた場合は資金不足とみなしません。初回資金不足を別途判定します。借入・追加入金はしません。';
+   exportRows=sim.rows.map(r=>({month:r.month,remaining_yen:r.value.toFixed(2),withdrawal_yen:r.withdrawn.toFixed(2),due_yen:r.due.toFixed(2),shortfall_yen:r.shortfall.toFixed(2),investment_return_yen:r.investment_return.toFixed(2),timing,mode:asset==='gold'?'GOLD_UNVERIFIED_EXPLORATORY':state.kind==='demo'?'SYNTHETIC':'PRIVATE_REFERENCE'}));
  }
  state.results=exportRows;state.rendered=series;$('leftMonth').textContent=series[0].month;$('rightMonth').textContent=series.at(-1).month;drawGraph(series);$('exportCsv').disabled=false;
  }catch(e){warn(e.message);$('exportCsv').disabled=true;setStat('A','結果','—','条件を確認してください');setStat('B','期間','—','');setStat('C','窓数','—','');state.rendered=[];state.results=[];drawGraph([{month:'1971-01',value:0},{month:'1971-02',value:0}]);}}
@@ -139,7 +204,7 @@ async function loadLocal(){clearWarn();try{const fxFile=$('fileFx').files[0],cpi
 function setAsset(a){state.asset=a;if(a==='gold'&&state.data?.gold.size>0){state.data.months=mergeSeries(state.data.fx,state.data.cpi,state.data.gold)}else if(state.data){state.data.months=mergeSeries(state.data.fx,state.data.cpi)}setOptions();render()}
 $('sourceDemo').onclick=useDemo;$('sourceLocal').onclick=switchLocal;$('loadFiles').onclick=loadLocal;$('clearFiles').onclick=()=>{for(const k of ['fileFx','fileCpi','fileGold'])$(k).value='';$('goldAck').checked=false;useDemo();clearWarn()};
 $('tabPower').onclick=()=>{state.tab='power';render()};$('tabWithdraw').onclick=()=>{state.tab='withdraw';render()};$('modeSimple').onclick=()=>{state.mode='simple';render()};$('modeDetail').onclick=()=>{state.mode='detail';render()};
-$('asset').onchange=e=>setAsset(e.target.value);$('horizon').onchange=e=>{state.horizon=Number(e.target.value);setOptions();render()};$('plotMode').onchange=e=>{state.plotMode=e.target.value;render()};for(const id of ['initial','monthly','withdrawType','startMonth'])$(id).onchange=render;
+$('asset').onchange=e=>setAsset(e.target.value);$('horizon').onchange=e=>{state.horizon=Number(e.target.value);setOptions();render()};$('plotMode').onchange=e=>{state.plotMode=e.target.value;render()};for(const id of ['initial','monthly','withdrawType','withdrawTiming','startMonth'])$(id).onchange=render;
 $('exportCsv').onclick=saveExport;
 $('chart').addEventListener('mousemove',e=>{const p=state.points;if(!p?.series)return;const b=$('chart').getBoundingClientRect(),x=e.clientX-b.left,idx=Math.min(p.series.length-1,Math.max(0,Math.round((x-p.L)/p.X*(p.series.length-1))));const d=p.series[idx];const tip=$('plotTip');tip.textContent=`${d.month}　${state.tab==='withdraw'?yen(d.value):nf(d.value,2)}`;tip.classList.add('on');tip.style.left=Math.min(Math.max(x+9,4),Math.max(4,b.width-180))+'px';tip.style.top='15px'});$('chart').addEventListener('mouseleave',()=>{$('plotTip').classList.remove('on')});
 window.addEventListener('resize',()=>{if(state.rendered.length)drawGraph(state.rendered)});
