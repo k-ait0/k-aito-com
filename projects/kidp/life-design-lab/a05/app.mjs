@@ -13,6 +13,8 @@ import {
 import { exportA05Data } from "./export.mjs";
 import { formatLocalCompletionDay } from "./format.mjs";
 import { renderReport } from "./report.mjs";
+import { renderVisualPreview } from "./visual-preview.mjs";
+import { resolveVisualDisplay } from "./visual-contract.mjs";
 import { inspectA05Backup, A05_BACKUP_MAX_BYTES } from "./backup-inspect.mjs";
 import { inspectA05RestorePlan } from "./restore-review.mjs";
 
@@ -27,7 +29,8 @@ const state = {
   view: "home", db: null, hash: "", draft: null, history: [],
   legacy: [], quarantined: [], consent: false, retainRaw: false,
   readOnly: false, busy: false, selected: null, sample: null,
-  filter: "all", share: false, status: "", backupInspection: null
+  filter: "all", share: false, status: "", backupInspection: null,
+  visualPreview: { motif: "world-tree", accent: "R", eAxis: null, motion: false }
 };
 const uid = () => "a05-" + (globalThis.crypto?.randomUUID?.() ??
   Date.now().toString(36) + "-" + Math.random().toString(36).slice(2));
@@ -265,6 +268,7 @@ function renderResult() {
       "基本4軸の方向が定まらなかったため、タイプを無理に割り当てていません。") + '</p>' +
     '<strong>第5軸：' + wealthLabel(result.wealth) + '</strong></div>';
   return '<h2>あなたの価値観の現在地</h2>' + header +
+    renderVisualPreview(state.visualPreview) +
     '<h3>5軸のスコア</h3>' + axisChart(result) +
     '<div class="card tinted"><strong>次の一歩</strong><p>' +
     escapeHTML(display?.action ?? "大切にしたい価値観を一つ書き出す") +
@@ -640,6 +644,22 @@ tabs.addEventListener("click", event => {
 });
 
 root.addEventListener("change", async event => {
+  // Display-only controls: never infer motifs from legacy T01..T16 or save
+  // this selection with assessment snapshots.
+  const visualControl = event.target.closest('select[data-visual-setting]');
+  if (visualControl && root.contains(visualControl) && state.view === "result" && !state.busy) {
+    const field = visualControl.dataset.visualSetting;
+    if (!["motif", "accent", "eAxis", "motion"].includes(field)) return;
+    const raw = visualControl.value;
+    const value = field === "eAxis" ? (raw === "none" ? null : raw) :
+      field === "motion" ? raw === "on" : raw;
+    const next = { ...state.visualPreview, [field]: value };
+    try { resolveVisualDisplay(next); } catch { return; }
+    state.visualPreview = next;
+    render();
+    root.querySelector('select[data-visual-setting="' + field + '"]')?.focus({ preventScroll: true });
+    return;
+  }
   if (event.target.id === "a05-inspect-file") {
     if (state.busy || state.view !== "history") return;
     const file = event.target.files?.[0];
