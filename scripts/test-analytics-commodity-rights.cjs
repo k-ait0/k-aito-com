@@ -70,6 +70,28 @@ function check(){
  assert.equal(rightsGate.evaluateResearchDataUse('NONSENSE','public_chart_and_observations').reason,'UNKNOWN_SERIES');
  assert.equal(rightsGate.evaluateResearchDataUse('GOLD','wrong-action').reason,'UNRECOGNIZED_USE_CASE');
  assert.throws(()=>rightsGate.assertApproved('GLOBAL_EQUITY','commercial_server_processing'),e=>e.code==='DATA_RIGHTS_BLOCKED');
+
+ const local={environment:'LOCAL_SINGLE_USER'};
+ const usePersonal=(id,opt)=>rightsGate.evaluatePersonalLocalUse(id,{...local,...opt});
+ for(const id of ['FX','CPI_JP','CPI_US']){
+   const opt={input_type:'OFFICIAL_PRIVATE_CSV',...(id==='FX'?{source_channel:'DDP_CANDIDATE'}:{})};
+   const res=usePersonal(id,opt);
+   assert.equal(res.allowed,true,id+' should be permitted in local personal research');
+   assert.equal(res.commercial_approved,false);
+   assert.equal(res.public_display_approved,false);
+ }
+ assert.equal(usePersonal('GOLD',{input_type:'PUBLISHED_EXPLORATORY'}).allowed,false);
+ const goldExplore=usePersonal('GOLD',{input_type:'PUBLISHED_EXPLORATORY',explicit_exploratory_opt_in:true});
+ assert.equal(goldExplore.allowed,true);
+ assert.equal(goldExplore.quality,'PUBLISHED_UNVERIFIED_QUARANTINED');
+ assert.equal(usePersonal('JP_EQUITY',{input_type:'PERSONALLY_LAWFUL_INDEX_FILE'}).allowed,true);
+ assert.equal(usePersonal('GLOBAL_EQUITY',{input_type:'OFFICIAL_PRIVATE_CSV'}).allowed,false);
+ assert.equal(usePersonal('FX',{input_type:'OFFICIAL_PRIVATE_CSV'}).allowed,false);
+ assert.equal(usePersonal('FX',{input_type:'OFFICIAL_PRIVATE_CSV',source_channel:'PINNED',environment:'PUBLIC'}).allowed,false);
+ assert.equal(usePersonal('CPI_US',{input_type:'OFFICIAL_PRIVATE_CSV',network_export:true}).allowed,false);
+ assert.equal(usePersonal('JP_EQUITY',{input_type:'PERSONALLY_LAWFUL_INDEX_FILE',automated_collection:true}).allowed,false);
+ assert.equal(usePersonal('GOLD',{input_type:'SYNTHETIC'}).allowed,true);
+ assert.equal(usePersonal('WORLD_BANK_BAD',{input_type:'SYNTHETIC'}).allowed,false);
  assert.equal(TRIAGE.series.length+RIGHTS.entries.length,91);
  const byId=Object.fromEntries(RIGHTS.entries.map(x=>[x.id,x]));
  assert.equal(byId.JP_BONDS.rights_class,'HISTORICAL_DATA_LICENSE_AND_POSSIBLE_SEPARATE_NAME_USE');
@@ -93,6 +115,6 @@ function check(){
  assert.equal(REG.acquisition.fed_ddp_source_change_research_candidate_20261111.status,
               'TECHNICALLY_VALIDATED_ADR_DRAFT_NO_SOURCE_LOCK_CHANGE');
  console.log('PASS: 71 World Bank rows cross-referenced, 47 forecast markers, 35 definition markers, 5 futures quotes, 68 other providers, 0 approvals');
- console.log('PASS: 91 distinct sources x 7 usage decisions denied without contract (637), Gold quarantined, publisher and model source locks retained');
+ console.log('PASS: 91 distinct sources x 7 commercial usage decisions denied without contract (637); personal-local use separately tested (CPI/FX/JPX, Gold provenance warning)');
 }
 check();
