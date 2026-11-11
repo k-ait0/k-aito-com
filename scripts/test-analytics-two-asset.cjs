@@ -41,14 +41,14 @@ assert.equal(beginning.rows.at(-1).withdrawn,0);
 assert.equal(beginning.firstShortfallMonth,'1980-11');
 assert.equal(beginning.totalShortfall,200);
 assert.equal(f.simulateTwoAsset(flat,0,1,1000,0,'usd',true,'BEGINNING_OF_MONTH',base).totalShortfall,0);
-const step=flat.map((x,i)=>({...x,fx:i===0?100:200}));
+const step=flat.map((x,i)=>({...x,fx:i===0?100:200+(i-1)*10}));
 const a=f.simulateTwoAsset(step,0,1,1000,100,'usd',false,'END_OF_MONTH',
  {cashPercent:50,sellOrder:'CASH_FIRST',rebalance:'NONE'});
 const b=f.simulateTwoAsset(step,0,1,1000,100,'usd',false,'END_OF_MONTH',
  {cashPercent:50,sellOrder:'RISK_FIRST',rebalance:'NONE'});
 assert.equal(a.rows[1].cash_yen,400);assert.equal(a.rows[1].risk_yen,1000);
 assert.equal(b.rows[1].cash_yen,500);assert.equal(b.rows[1].risk_yen,900);
-assert(b.remaining>a.remaining);
+assert(a.remaining>b.remaining);
 const p=f.simulateTwoAsset(flat,0,1,1000,100,'usd',false,'END_OF_MONTH',
  {cashPercent:30,sellOrder:'PRO_RATA',rebalance:'NONE'});
 eq(p.rows[1].cash_yen,270,'pro rata cash');eq(p.rows[1].risk_yen,630,'pro rata risk');
