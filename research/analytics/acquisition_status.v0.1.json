@@ -344,8 +344,8 @@
       "methodology_change_from": "2025-06",
       "raw_description_third_party_rights": "REVIEW_PENDING",
       "canonical_csv_sha256": "937644f307880a639d4b6298e46763146871db03a9650ae7cf2def21831781a1",
-      "origin": "OBSERVED",
-      "qa": "PASS_OBSERVATIONS_WITH_HIGH_CHANGE_REVIEW",
+      "origin": "PUBLISHED_LEVEL_STATUS_UNVERIFIED",
+      "qa": "PASS_NUMERIC_MONTHLY_COVERAGE_QUARANTINE_AS_UNVERIFIED_ORIGIN",
       "artifact": {
         "id": 13825636423,
         "expires": "2026-11-18T03:21:56Z"
@@ -359,7 +359,24 @@
       "private_only": true,
       "site_publication_approved": false,
       "report": "docs/ANALYTICS_FED_WORLDBANK_20261111_QA.md",
-      "run": "https://github.com/k-ait0/k-aito-com/actions/runs/42952254081"
+      "run": "https://github.com/k-ait0/k-aito-com/actions/runs/42952254081",
+      "old_origin_claim": "OBSERVED_NEEDS_REASSESSMENT",
+      "published_monthly_finite_positive_values": 802,
+      "continuous_published_30y_starts": 442,
+      "previous_legacy_observed_fields_are_strictly_numeric_not_verified_as_real_spot_samples": true,
+      "origin_trust_gate": {
+        "forecast_marked_description_row": 103,
+        "forecast_marker_legend": "* denotes forecast series",
+        "all_802_actual_observations_verified": false,
+        "no_claim_all_802_forecasts": true,
+        "new_research_quarantine_file": "Kaito_Analytics_WorldBank_Gold_PUBLISHED_UNVERIFIED_QUARANTINE_20261111.csv",
+        "new_research_quarantine_sha256": "1a7a3d97f2566a2389ad131da30600593949b606b8dddff4113a8eb4110641a6",
+        "legacy_csv_sha256": "937644f307880a639d4b6298e46763146871db03a9650ae7cf2def21831781a1",
+        "source_data_values_changed": false,
+        "allowed_in_observed_v0_1": false,
+        "allowed_in_commercial_engine": false,
+        "website_rights": false
+      }
     },
     {
       "dataset_id": "WORLD_BANK_PINK_NON_GOLD_COMMODITIES_RAW",
@@ -387,6 +404,20 @@
         "source_definition_changes": "PENDING_SERIES_CHECK",
         "publication_approved": false,
         "report": "docs/ANALYTICS_WORLDBANK_71_SERIES_COVERAGE_20261111.md"
+      },
+      "rights_metadata_triage": {
+        "source_description_rows_mapped": 71,
+        "marked_forecast_series": 47,
+        "definition_period_markers": 35,
+        "explicit_future_quotes": 5,
+        "third_party_source_listed": 68,
+        "World_Bank_only_source_listed": 3,
+        "per_series_release_approved": 0,
+        "official_raw_workbook_sha256": "3c8d9d8dbb48342fdbf24777c39a8ce8964cc2fd0958f72f6779e6e4ad99cde2",
+        "research_metadata_id": "research/analytics/worldbank_71_series_triage.v0.1.json",
+        "detailed_private_metadata_sha256": "a11fab3ab2ea68ec0e4423555cd101d848bc27f04a3c0a3837cd9fa269314d54",
+        "rights_report": "docs/ANALYTICS_COMMODITY_INDEX_RIGHTS_REVIEW_20261111.md",
+        "original_price_values_not_transmitted_to_public_repo": true
       }
     },
     {
@@ -466,10 +497,10 @@
     "production_unchanged": true
   },
   "next_priorities": [
-    "Fed ADR-0001 approval decision for technically validated Fed Board direct DDP XML ZIP; active source unchanged",
-    "World Bank gold and non-gold per-series third-party license/definitions review",
-    "Cross-series QA on true TR assets before Analytics engine integration",
-    "Private backup and permission review before public distribution"
+    "Gold/World Bank series-by-series metadata and third-party source rights review before any raw observation claim or engine integration",
+    "Index license quote requests JPX/NFRC/MSCI/S&P/Bloomberg/FTSE with derived-output and redistribution scope",
+    "Fed ADR-0001 still draft: evaluate formal source channel adoption without auto-switch",
+    "No public/site integration until individual approvals"
   ],
   "audit_note": "Existing November 10 registry/acquisition snapshots are historical; this is an additional verified November 11 ledger. Do not convert data-acquired into site-approved.",
   "observed_joint_coverage_research_only": {
@@ -501,6 +532,21 @@
     },
     "rights_note": "Not a total-return or investable strategy backtest; public site release and Fed ADR unapproved",
     "qa_report": "docs/ANALYTICS_OBSERVED_OVERLAP_QA_20261111.md",
-    "private_qa_json_sha256": "f74dd3509ba4e578c003dde886a8fc292e05bfed16a1217db523de79f449e854"
+    "private_qa_json_sha256": "f74dd3509ba4e578c003dde886a8fc292e05bfed16a1217db523de79f449e854",
+    "gold_source_numerical_level_provenance": "PUBLISHED_LEVEL_STATUS_UNVERIFIED",
+    "gold_eligible_for_engine": false,
+    "timing_windows_are_published_monthly_value_availability_not_true_spot_observation_guarantee": true,
+    "old_30y_start_months_cannot_be_used_as_investable_total_return_backtest": true,
+    "correction_report": "docs/ANALYTICS_COMMODITY_INDEX_RIGHTS_REVIEW_20261111.md"
+  },
+  "rights_gate": {
+    "asset_classes": 12,
+    "auxiliary_series": 8,
+    "public_approved": 0,
+    "commercial_engine_approved": 0,
+    "rights_matrix": "research/analytics/commercial_data_rights_triage.v0.1.json",
+    "worldbank_71_triage": "research/analytics/worldbank_71_series_triage.v0.1.json",
+    "source_registry_unchanged_providers": true,
+    "gold_802_published_not_fully_verified_actual": true
   }
 }
