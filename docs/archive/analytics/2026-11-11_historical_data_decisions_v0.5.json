@@ -1,0 +1,201 @@
+{
+  "archive_id": "ANALYTICS_HISTORICAL_DECISIONS_20261111_V0_5",
+  "archive_date_jst": "2026-11-11",
+  "record_type": "ADOPTED_DECISIONS_SNAPSHOT_NOT_DEPRECATED",
+  "repository": "k-ait0/k-aito-com",
+  "branch_at_capture": "analytics-historical-v0-1-20261110",
+  "source_commit_at_capture": "3ec7fe6fb4edfcc66247abb4698329be307ae491",
+  "scope": [
+    "K. Aito Analytics (B): detailed analysis",
+    "FINOWA (C): approachable financial education"
+  ],
+  "decisions": {
+    "assets": [
+      {
+        "id": "JP_EQUITY",
+        "source_provider": "JPX",
+        "site_publication_approved": false
+      },
+      {
+        "id": "US_EQUITY",
+        "source_provider": "SPDJI",
+        "site_publication_approved": false
+      },
+      {
+        "id": "GLOBAL_EQUITY",
+        "source_provider": "MSCI",
+        "site_publication_approved": false
+      },
+      {
+        "id": "JP_BONDS",
+        "source_provider": "NOMURA_BPI",
+        "site_publication_approved": false
+      },
+      {
+        "id": "US_BONDS",
+        "source_provider": "BLOOMBERG_INDEX",
+        "site_publication_approved": false
+      },
+      {
+        "id": "CASH_SHORT",
+        "source_provider": "BOJ",
+        "site_publication_approved": false
+      },
+      {
+        "id": "GOLD",
+        "source_provider": "WORLD_BANK_PINK",
+        "site_publication_approved": false
+      },
+      {
+        "id": "REIT",
+        "source_provider": "JPX",
+        "site_publication_approved": false
+      },
+      {
+        "id": "EM_EQUITY",
+        "source_provider": "MSCI",
+        "site_publication_approved": false
+      },
+      {
+        "id": "DEV_EXUS_BONDS",
+        "source_provider": "FTSE_RUSSELL",
+        "site_publication_approved": false
+      },
+      {
+        "id": "EXGOLD_COMMODITY",
+        "source_provider": "WORLD_BANK_PINK",
+        "site_publication_approved": false
+      },
+      {
+        "id": "INFLATION_LINKED",
+        "source_provider": "US_TREASURY",
+        "site_publication_approved": false
+      }
+    ],
+    "auxiliary_data_categories": 6,
+    "auxiliary_series": [
+      {
+        "id": "FX",
+        "source_provider": "FED_BOARD",
+        "site_publication_approved": false
+      },
+      {
+        "id": "CPI_JP",
+        "source_provider": "ESTAT",
+        "site_publication_approved": false
+      },
+      {
+        "id": "CPI_US",
+        "source_provider": "BLS",
+        "site_publication_approved": false
+      },
+      {
+        "id": "RATES_US",
+        "source_provider": "US_TREASURY",
+        "site_publication_approved": false
+      },
+      {
+        "id": "RATES_JP",
+        "source_provider": "BOJ",
+        "site_publication_approved": false
+      },
+      {
+        "id": "DIVIDENDS",
+        "source_provider": "SPDJI",
+        "site_publication_approved": false
+      },
+      {
+        "id": "HEDGE_COST",
+        "source_provider": "BOJ",
+        "site_publication_approved": false
+      },
+      {
+        "id": "CREDIT_SPREAD",
+        "source_provider": "US_TREASURY",
+        "site_publication_approved": false
+      }
+    ],
+    "monthly_history_standard": {
+      "target_years": 60,
+      "illustrative_start": "1966-01",
+      "contiguous": true,
+      "observed_only": true,
+      "do_not_fill_missing_months": true,
+      "do_not_splice_proxies_silently": true
+    },
+    "historical_analysis": {
+      "rolling_horizons_months": [
+        120,
+        240,
+        360,
+        480
+      ],
+      "primary_30year_months": 360,
+      "require_common_overlap": true,
+      "do_not_label_historical_success_as_future_probability": true
+    },
+    "data_acquisition": {
+      "freeze_provider": true,
+      "automatic_provider_fallback": false,
+      "require_source_change_ADR": true,
+      "keep_revisions_and_SHA": true,
+      "official_sources_preferred": true
+    },
+    "commercial_use": {
+      "default_publication": false,
+      "review_display_rights": true,
+      "review_redistribution_rights": true,
+      "review_commercial_rights": true,
+      "publish_only_after_quality_rights_and_release_approval": true
+    },
+    "project_boundaries": {
+      "FINOWA": "simple finance education; curated representative historical scenarios",
+      "Analytics": "asset allocations, historical rolling backtests, source and scenario audit",
+      "DWZ_PR70": "unchanged",
+      "production": "unchanged"
+    }
+  },
+  "calculation_note": "Published series start dates represent upper-bound potential only. 1980-01..2023-06 Shiller research has 522 level months -> 521 monthly returns -> 162 rolling 30y starts. 1966-01..2026-10 hypothetical 730 levels -> 729 returns -> 370 complete rolling 30y starts. Full 60y datasets have not been acquired.",
+  "research_status": {
+    "legacy_shiller": "1980-01..2023-06, 522 months; approx USD TR is research-only; no commercial redistribution right verified",
+    "fed_h10": "official 28 daily row snapshot only; long 1971+ channel change ADR-0001 DRAFT and not applied",
+    "BLS_CPI": "long-term acquisition planned, not verified",
+    "Japan_CPI": "official long-term source identified, raw series acquisition unverified",
+    "World_Bank_Pink": "official source identified, long monthly XLSX acquisition unverified",
+    "shorter_series": "J-REIT history begins in 2003, cannot do observed-only 30y backtest",
+    "general_status": "public series licenses not approved"
+  },
+  "frozen_sources": [
+    {
+      "path": "docs/ANALYTICS_HISTORY_60Y_PLAN_V0_5.md",
+      "blob_sha": "a0845a88075f893de7bff92d3182d10c13858092",
+      "chars": 3628
+    },
+    {
+      "path": "docs/ANALYTICS_SOURCE_POLICY_V0_2.md",
+      "blob_sha": "a860913a192e0202725e080c2742f63b71a25ad1",
+      "chars": 5571
+    },
+    {
+      "path": "research/analytics/source_registry.v0.2.json",
+      "blob_sha": "8dc823e0748e83d0063bd7bdf82c24e5919d7ebf",
+      "chars": 18161
+    },
+    {
+      "path": "research/analytics/history_coverage_targets.v0.5.json",
+      "blob_sha": "55b4a75c7b10d963888333b054cb1e6c8a4baf2f",
+      "chars": 6616
+    },
+    {
+      "path": "docs/decisions/ANALYTICS_SOURCE_CHANGE_ADR_0001_FED_H10_DRAFT.md",
+      "blob_sha": "d30fb3eaf18f69872a1b018f8b7507b25da5b3b5",
+      "chars": 801
+    },
+    {
+      "path": "docs/ANALYTICS_HISTORICAL_V0_4_QA.md",
+      "blob_sha": "826f9b39911ab1b0b5e9b2360b44315d289f8072",
+      "chars": 2140
+    }
+  ],
+  "change_policy": "Preserve this snapshot and create a new dated decision record / Source Change ADR on changes. Do not overwrite the archive."
+}
