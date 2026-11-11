@@ -18,12 +18,14 @@
     "verified_new_official_estat_raw_csv_files": 2,
     "verified_new_estat_distinct_series": 2,
     "verified_new_estat_monthly_observations": 1643,
-    "total_official_raw_responses_or_csv_files_verified": 11,
+    "total_official_raw_responses_or_csv_files_verified": 12,
     "verified_new_fed_raw_files": 1,
     "verified_new_world_bank_raw_workbooks": 1,
     "verified_fed_daily_observations": 7005,
     "verified_fed_complete_monthly_observations": 322,
-    "verified_world_bank_gold_monthly_observations": 802
+    "verified_world_bank_gold_monthly_observations": 802,
+    "verified_new_fed_candidate_DDP_zip": 1,
+    "verified_fed_DDP_candidate_monthly": 670
   },
   "datasets": [
     {
@@ -363,6 +365,53 @@
       "non_gold_rows_qa": "NOT_DONE",
       "series_breaks_and_spot_vs_futures": "VERIFY_PER_COMMODITY",
       "site_publication_approved": false
+    },
+    {
+      "dataset_id": "FED_H10_1971_DDP_CANDIDATE_RESEARCH",
+      "source_id": "FED_BOARD",
+      "series_id": "H10/H10/RXI_N.B.JA",
+      "endpoint": "https://www.federalreserve.gov/datadownload/Output.aspx?rel=H10&filetype=zip",
+      "active_source_lock_changed": false,
+      "source_change_adr_status": "DRAFT_NOT_APPROVED",
+      "raw_zip_sha256": "1f9fd18709b09d082b29d01621f52672426eca108a4f74224fa8f190a5f801b2",
+      "raw_zip_bytes": 2087377,
+      "native_xml": "H10_data.xml",
+      "xml_prepared": "2026-11-09T18:25:06",
+      "daily_first": "1971-01-04",
+      "daily_last": "2026-11-06",
+      "daily_observations": 14570,
+      "daily_valid": 13999,
+      "daily_nd": 571,
+      "old_pinned_overlap_daily": 7005,
+      "overlap_numeric_or_status_mismatches": 0,
+      "observed_monthly_start": "1971-01",
+      "observed_monthly_end": "2026-10",
+      "complete_monthly_rows": 670,
+      "provisional_excluded": "2026-11",
+      "missing_months": [],
+      "duplicate_months": 0,
+      "verified_complete_30y_start_months": 310,
+      "canonical_csv_sha256": "4aeae87dd69b33936b5afc17a02ed85eea579fefca278b10dae4544c4a8ae6cf",
+      "series_kind": "FX_RATE",
+      "currency": "JPY",
+      "unit": "JPY_PER_USD",
+      "observation": "OBSERVED_NO_PROXY",
+      "source_zip_qa": "PASS_CANDIDATE",
+      "site_approved": false,
+      "artifact": {
+        "id": 13826880503,
+        "expires_at": "2026-11-18T03:44:15Z"
+      },
+      "rights": {
+        "commercial_processing": "FED_GENERAL_PUBLIC_DOMAIN_REVIEWED_WITH_EXCEPTIONS",
+        "site_display": "PENDING_PROJECT_APPROVAL",
+        "derived_delivery": "PENDING_PROJECT_APPROVAL",
+        "raw_redistribution": "PENDING_PROJECT_APPROVAL",
+        "production": "NOT_APPROVED"
+      },
+      "status_report": "docs/decisions/ANALYTICS_SOURCE_CHANGE_ADR_0001_FED_H10_DRAFT.md",
+      "github_actions": "https://github.com/k-ait0/k-aito-com/actions/runs/42954684913",
+      "private_only": true
     }
   ],
   "not_yet_acquired": [
@@ -382,7 +431,7 @@
     "DIVIDENDS_SP_DJI",
     "HEDGE_COST",
     "CREDIT_SPREAD",
-    "FX_USDJPY_FED_1971_1999_DDP_UNAPPROVED_ADR",
+    "FX_USDJPY_FED_1971_1999_ACQUIRED_AS_RESEARCH_CANDIDATE_ADR_NOT_APPROVED",
     "WORLD_BANK_PINK_NON_GOLD_SERIES_QA_AND_LICENSE"
   ],
   "release_controls": {
@@ -394,11 +443,11 @@
     "production_unchanged": true
   },
   "next_priorities": [
-    "Fed H.10 1971-1999 from same publisher: approve ADR only after endpoint/schema/QA review",
-    "World Bank Gold per-series third-party terms and June 2025 methodology break review",
-    "World Bank non-Gold monthly commodities by series/rights",
-    "Portfolio TR market indices licensing and acquisition",
-    "Secure backup of encrypted short-lived Actions artifacts and private keys"
+    "Fed H10 full-history candidate: source-channel ADR approval and durable official XML release plan, no active switch until approved",
+    "World Bank non-gold commodity series-by-series definitions/rights/QA",
+    "Gold methodology and third-party licensing review",
+    "S&P/JPX/MSCI and other bond TR licensing",
+    "Backup private encrypted Artifacts securely"
   ],
   "audit_note": "Existing November 10 registry/acquisition snapshots are historical; this is an additional verified November 11 ledger. Do not convert data-acquired into site-approved."
 }
