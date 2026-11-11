@@ -1,0 +1,18 @@
+'use strict';
+const test=require('node:test'),assert=require('node:assert/strict');
+const {comparePortfolioStrategies}=require('../lib/analytics/portfolio-compare.cjs');
+const returns=[{month:'2026-01',origin:'SYNTHETIC',asset_returns:{STOCK:.2,BOND:0}},{month:'2026-02',origin:'SYNTHETIC',asset_returns:{STOCK:0,BOND:0}}];
+const s=(id,extra={})=>({id,initial_holdings_yen:{STOCK:500,BOND:500},target_weights:{STOCK:0.5,BOND:0.5},...extra});
+const compare=(other,opts={})=>comparePortfolioStrategies({scenarios:[s('base'),other],monthly_returns:returns,...opts});
+test('same policy yields zero delta',()=>{const r=compare(s('same'));assert.equal(r.summary[1].delta_vs_baseline.ending_assets_yen,0)});
+test('comparison detects different allocation returns',()=>{const r=compare(s('all_stock',{initial_holdings_yen:{STOCK:1000,BOND:0},target_weights:{STOCK:1,BOND:0}}));assert.equal(r.summary[0].ending_assets_yen,1100);assert.equal(r.summary[1].ending_assets_yen,1200);assert.equal(r.summary[1].delta_vs_baseline.ending_assets_yen,100)});
+test('different rebalancing policies change positions at month end',()=>{const r=compare(s('reb',{rebalance:{mode:'PERIODIC',interval_months:1}}));assert.equal(r.summary[1].total_rebalance_turnover_yen,50);assert.equal(r.summary[0].total_rebalance_turnover_yen,0)});
+test('can choose nonfirst baseline',()=>{const r=compare(s('reb',{rebalance:{mode:'PERIODIC',interval_months:1}}),{baseline_id:'reb'});assert.equal(r.summary[1].delta_vs_baseline.ending_assets_yen,0)});
+test('reject unknown baseline',()=>assert.throws(()=>compare(s('reb'),{baseline_id:'none'}),/Unknown baseline/));
+test('reject mismatched asset sets',()=>assert.throws(()=>compare(s('different',{initial_holdings_yen:{STOCK:1000},target_weights:{STOCK:1}})),/Different asset universes/));
+test('reject per-scenario separate market returns',()=>assert.throws(()=>compare(s('x',{monthly_returns:[]})),/Unsupported portfolio scenario input/));
+test('reject unknown fee/tax fields instead of ignoring',()=>assert.throws(()=>compare(s('x',{tax_rate:.2})),/Unsupported/));
+test('reject duplicate scenario id',()=>assert.throws(()=>compare(s('base')),/Duplicate/));
+test('research mode always unapproved',()=>{const r=compare(s('x'));assert.equal(r.publication_approved,false);assert.equal(r.provenance_verified,false)});
+test('time-series values use baseline for differences',()=>{const r=compare(s('all_stock',{initial_holdings_yen:{STOCK:1000,BOND:0},target_weights:{STOCK:1,BOND:0}}));assert.equal(r.timeline[0].scenarios[1].delta_closing_vs_baseline_yen,100);assert.equal(r.timeline[0].month,'2026-01')});
+test('observed label does not imply license approval',()=>{const r=compare(s('x'),{monthly_returns:returns.map(x=>({...x,origin:'OBSERVED'})),market_mode:'OBSERVED_RESEARCH'});assert.equal(r.market_mode,'OBSERVED_RESEARCH');assert.equal(r.publication_approved,false)});
