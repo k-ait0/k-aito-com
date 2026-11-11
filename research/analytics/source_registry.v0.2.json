@@ -451,5 +451,29 @@
       "source_code": "scripts/prepare-analytics-shiller-research.cjs",
       "status_doc": "docs/ANALYTICS_HISTORICAL_V0_4_QA.md"
     }
+  },
+  "history_coverage_standard": {
+    "version": "0.5.0",
+    "set_on": "2026-11-11",
+    "target_start": "1966-01",
+    "target_contiguous_monthly_years": 60,
+    "reference_date": "2026-10",
+    "primary_30y_window_requirement": 360,
+    "strict_observed_only": true,
+    "automatic_proxy_splicing": false,
+    "status": "SOURCE_DATE_RANGE_RESEARCH_ONLY_NOT_ACQUIRED_OR_APPROVED",
+    "canonical_scope_file": "research/analytics/history_coverage_targets.v0.5.json",
+    "canonical_policy_doc": "docs/ANALYTICS_HISTORY_60Y_PLAN_V0_5.md",
+    "validation_script": "scripts/analytics-history-coverage.cjs",
+    "regression_test": "scripts/test-analytics-history-coverage.cjs",
+    "bls_manual_batches": "1966-2026: 7 separate up-to-10-year BLS v1 requests; no automatic downloader invoked",
+    "same_publisher_fx_extension": "Fed H10 1971 data exists in Board DDP; dat00_ja only 2000 onward. ADR-0001 DRAFT; active source unchanged.",
+    "market_data_license_policy": "12 asset sources remain locked, no index public display authorization",
+    "regime_limits": [
+      "Japan REIT begins 2003; cannot do 30y observed backtest",
+      "JP total CPI and excluding imputed rent are different baskets",
+      "Nikkei 225 historical price does not replace TOPIX total return",
+      "Spot commodity price is not investable futures TR"
+    ]
   }
 }
