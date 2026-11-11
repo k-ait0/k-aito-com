@@ -7,6 +7,7 @@ const fs=require('node:fs'),path=require('node:path'),assert=require('node:asser
 const ROOT=path.resolve(__dirname,'..');
 const load=name=>JSON.parse(fs.readFileSync(path.join(ROOT,name),'utf8'));
 const REG=load('research/analytics/source_registry.v0.2.json');
+const LEDGER=load('research/analytics/acquisition_status.v0.1.json');
 const TRIAGE=load('research/analytics/worldbank_71_series_triage.v0.1.json');
 const RIGHTS=load('research/analytics/commercial_data_rights_triage.v0.1.json');
 const flags=(c)=>TRIAGE.series.filter(x=>x.flags.includes(c)).length;
@@ -60,10 +61,22 @@ function check(){
  assert.equal(byId.GLOBAL_EQUITY.rights_class,'PRIOR_WRITTEN_LICENSE_REQUIRED_FOR_COMMERCIAL_AND_AI_USES');
  assert.equal(byId.GOLD.rights_class,'CC_BY_DEFAULT_WITH_THIRD_PARTY_DATA_EXCEPTIONS');
  assert.equal(byId.CASH_SHORT.rights_class,'COMMERCIAL_REPRODUCTION_REQUIRES_BOJ_PERMISSION_REVIEW');
+
+ const gold=REG.assets.find(x=>x.asset_id==='GOLD');
+ const ledgerGold=LEDGER.datasets.find(x=>x.dataset_id==='WORLD_BANK_PINK_GOLD_USD_TROY_OZ');
+ assert.equal(gold.acquisition_status,'PUBLISHED_802_MONTHS_NUMERICAL_QA_PASS_PROVENANCE_QUARANTINED');
+ assert.equal(gold.origin_qa_20261111.canonical_v0_1_approved_for_engine,false);
+ assert.equal(gold.origin_qa_20261111.origin_reassessment,'SOURCE_DESCRIPTION_STAR_FORECAST_SERIES_MARKER__CELLS_NOT_YET_CLASSIFIED');
+ assert.equal(gold.origin_qa_20261111.new_quarantine_csv_sha256,'1a7a3d97f2566a2389ad131da30600593949b606b8dddff4113a8eb4110641a6');
+ assert.equal(ledgerGold.origin,'PUBLISHED_LEVEL_STATUS_UNVERIFIED');
+ assert.equal(ledgerGold.origin_trust_gate.all_802_actual_observations_verified,false);
+ assert.equal(ledgerGold.origin_trust_gate.allowed_in_commercial_engine,false);
+ assert.equal(LEDGER.rights_gate.public_approved,0);
+ assert.equal(LEDGER.rights_gate.commercial_engine_approved,0);
  assert.equal(REG.acquisition.new_external_download_count,12,'Metadata review did not generate more official original downloads');
  assert.equal(REG.acquisition.fed_ddp_source_change_research_candidate_20261111.status,
               'TECHNICALLY_VALIDATED_ADR_DRAFT_NO_SOURCE_LOCK_CHANGE');
  console.log('PASS: 71 World Bank rows cross-referenced, 47 forecast markers, 35 definition markers, 5 futures quotes, 68 other providers, 0 approvals');
- console.log('PASS: 20 assets+aux rights use gates, NOMURA name license and MSCI AI permission blocked, source locks unchanged');
+ console.log('PASS: 20 asset/aux rights gates, Gold provenance quarantined, NOMURA name license and MSCI AI permission blocked, no source changes');
 }
 check();
