@@ -149,7 +149,7 @@
       "triage_category": "NEAR_DUPLICATE",
       "interpretation": "継続活動の拠点選択は旧A02とかなり近い",
       "respondent_check": "場所の安全・移動負担・人間関係が等しい設定を理解できるか",
-      "rewrite_direction": "原案A02との言い換え比較のみ",
+      "rewrite_direction": "A02の活動拠点選択との同義性を、移動負担を統制した言い換え対照で確認",
       "prior_editorial_class": "LEGACY_OVERLAP",
       "source_family_candidates": [
         "A-X13",
@@ -567,7 +567,7 @@
       "triage_category": "NEAR_DUPLICATE",
       "interpretation": "複数媒体の創作か一媒体の深化はD04に既出",
       "respondent_check": "制作経験・技能・作品完成への自信",
-      "rewrite_direction": "D04との同義対照に使う",
+      "rewrite_direction": "旧D04との同義性を比較し、作品作成の技能差が主要理由なら非採点扱い",
       "prior_editorial_class": "LEGACY_OVERLAP",
       "source_family_candidates": [
         "D-X07",
@@ -586,7 +586,7 @@
       "triage_category": "NEAR_DUPLICATE",
       "interpretation": "趣味の幅と技能深化は旧D01/D-FU11と重複",
       "respondent_check": "上達したい気持ちと深く学びたい気持ちの違い",
-      "rewrite_direction": "D01の回答理由比較だけに使う",
+      "rewrite_direction": "D01の回答理由を比較し、習熟度や技能向上への欲求が主要因なら保留",
       "prior_editorial_class": "LEGACY_OVERLAP",
       "source_family_candidates": [
         "D-X10",
