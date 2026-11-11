@@ -49,7 +49,7 @@ month,series_id,value,unit,currency,series_kind,origin,source_id,raw_response_sh
 - 自動 Node 回帰テスト：
   - scripts/test-analytics-personal-ui.cjs（以前のCPI/FXと月次引出し）
   - scripts/test-analytics-dwz-withdrawal-phase.cjs（DWZ R4 v16.9の192独立シナリオ）
-  - scripts/test-analytics-two-asset.cjs（**576単一資産への退化比較、144の二資産資金恒等式試験、TR CSV/JYP・USD双方の検査**）
+  - scripts/test-analytics-two-asset.cjs（**576単一資産への退化比較、144の二資産資金恒等式試験、TR CSV/JPY・USD双方の検査**）
   - scripts/test-analytics-personal-dom.cjs（DOMイベント、簡易/詳細、TR許諾チェック、3分析タブ）
 - 成功した研究専用Actions： https://github.com/k-ait0/k-aito-com/actions/runs/43073407672
 - このActionsは検証成功時、値のない単一HTMLのみを7日間のZIP artifactとして出力。非公開市場価格の原本・秘密鍵を含まない。
@@ -58,6 +58,7 @@ month,series_id,value,unit,currency,series_kind,origin,source_id,raw_response_sh
 - Goldは隔離した研究用CSVをチェックなしで拒否、チェック後に参考値として読込できることを確認。
 - 現金比率0％・リバランスなしを指定して、同条件の単一資産取り崩しと最終残高が一致することを画面上でも確認。
 - ページJavaScript例外 0、外部 HTTP(S) リクエスト 0。スマートフォンはdocument水平全体のはみ出しなし。
+- Playwrightのダウンロード操作でも、ポートフォリオ10年の合成月次結果CSV（121行）を**実際に保存し、月次0〜120・全16列・not_for_publication=true・非負残高を検証済み**。原本の市場値は含まず、GitHubへテスト出力をアップロードしない。
 - **検証の限界：** 検査環境は `file://` のナビゲーションを管理ポリシーで禁止しているため、Playwrightの `set_content` を使って単一HTMLを実ブラウザーへ展開した。Windows・macOSユーザー環境でのHTMLファイルダブルクリック、Safari、CSVのダウンロード完遂、公開URL、Xserver配備までは確認していない。外部接続がないことは当該セッションでの観測結果。
 
 単一HTML SHA-256: `802d4112200616203f2558e1db9d6ac51caac2efce5ee86f9856740f7421eb70`。
