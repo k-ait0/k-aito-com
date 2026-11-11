@@ -1,0 +1,14 @@
+'use strict';
+const assert=require('node:assert/strict');
+const {buildBls10YearRequests,targetCoverage}=require('./plan-analytics-60y-backfill.cjs');
+const r=buildBls10YearRequests(1966,2026);
+assert.equal(r.length,7);
+assert.equal(r[0].year_from,1966);
+assert.equal(r[0].year_to,1975);
+assert.equal(r.at(-1).year_from,2026);
+assert.equal(r.at(-1).year_to,2026);
+for(let i=1;i<r.length;i++)assert.equal(r[i].year_from,r[i-1].year_to+1);
+assert.equal(r.reduce((v,x)=>v+(x.year_to-x.year_from+1),0),61);
+assert.equal(targetCoverage('1966-01','2026-10').potential_complete_windows,370);
+assert.throws(()=>buildBls10YearRequests(2026,1966),/Invalid/);
+console.log('PASS: 9/9 BLS 60y backfill planning assertions');
