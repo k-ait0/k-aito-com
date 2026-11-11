@@ -5,7 +5,7 @@
   "source_shas": {
     "research/a05/d167-review-of-eleven-missing-family-hypotheses.json": "b87069c888cf6efa0714dbfe9cf6566a9fe49934",
     "research/a05/d168-eleven-hypothesis-cognitive-probe-questions.json": "6a23fe4e9a4ee2239fec4f73c6f280f409201a4e",
-    "research/a05/d170-eleven-hypotheses-offline-cognitive-review.html": "e24fcd4db12db289a716aade626360db972ae4fb"
+    "research/a05/d170-eleven-hypotheses-offline-cognitive-review.html": "470d84dece0c539325ef266d047d7d6a3c40f7e6"
   },
   "purpose": "Avoid indiscriminate testing of all 11 low-quality family ideas; prioritize 4 high-information comparisons then 4 conditional probes. Negative controls are optional and cannot be converted into scored items.",
   "cohorts": [
@@ -195,5 +195,10 @@
     "actual_new_approved_scored": 0
   },
   "research_sessions_performed": 0,
-  "production_changed": false
+  "production_changed": false,
+  "referenced_browser_qa": {
+    "workflow": ".github/workflows/a05-research-browser-qa.yml",
+    "test": "scripts/test-a05-d170-browser.cjs",
+    "note": "Updated D170 after D171 creation; source SHA refreshed. This is browser QA, not respondent validity."
+  }
 }
