@@ -1,0 +1,54 @@
+{
+  "schema": "ANALYTICS_V011_ENCRYPTED_FILE_VERIFICATION",
+  "date_jst": "2026-11-12",
+  "source": "locally retained authenticated GitHub Actions ciphertext archives",
+  "artifact_count": 5,
+  "sha256_all_matched": true,
+  "ciphertext_integrity_checked": true,
+  "plaintext_decrypted": false,
+  "private_key_available_to_assistant": false,
+  "source_values_verified": false,
+  "market_backtest_completed": false,
+  "site_publication_approved": false,
+  "storage_in_user_owned_durable_location_verified": false,
+  "test_suite": {
+    "node_major": 22,
+    "passed": 350,
+    "failed": 0,
+    "prior_tests": 307,
+    "new_tests": 43,
+    "private_recovery_tests_use_synthetic_keys_and_plaintext": true
+  },
+  "artifacts": [
+    {
+      "id": 13824035258,
+      "archive_sha256": "eddb9243bd9a205d566cae0b99a2c7b3c2187bf5f9acc3915480ad50ccb291b4",
+      "bytes": 19509,
+      "candidate_only": false
+    },
+    {
+      "id": 13824913073,
+      "archive_sha256": "48a79cddcb5b7364af6bb35138aadbb8e8c4c27879ba3df2b1c50f15e199db28",
+      "bytes": 99210,
+      "candidate_only": false
+    },
+    {
+      "id": 13825223543,
+      "archive_sha256": "f6f059776d24587acb106cdba56a4e2046bb37e19fcbad7b9d7c156f988d78ba",
+      "bytes": 96555,
+      "candidate_only": false
+    },
+    {
+      "id": 13825636423,
+      "archive_sha256": "74d7e4a1ef002f4e8ea4fae0018540faffd3b47d19e3e0421652de14a86830d0",
+      "bytes": 558585,
+      "candidate_only": false
+    },
+    {
+      "id": 13826880503,
+      "archive_sha256": "c70de121f3f12a174ec6d6b286bf1cb0eef1b66630b112c6110c5d141417aaa2",
+      "bytes": 2074189,
+      "candidate_only": true
+    }
+  ]
+}
