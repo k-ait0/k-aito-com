@@ -1,0 +1,759 @@
+{
+  "schema_version": "0.1",
+  "audit_at": "2026-11-11",
+  "series_id_contract": "Original price column number = numeric suffix; description_row is official sheet row",
+  "source": "WORLD_BANK_PINK",
+  "published_raw_workbook_sha256": "3c8d9d8dbb48342fdbf24777c39a8ce8964cc2fd0958f72f6779e6e4ad99cde2",
+  "official_workbook": "https://thedocs.worldbank.org/en/doc/74e8be41ceb20fa0da750cda2f6b9e4e-0050012026/related/CMO-Historical-Data-Monthly.xlsx",
+  "description_sheet": "Description",
+  "description_legend": "* denotes forecast series",
+  "definition_flags": {
+    "F": "source Description asterisk (= forecast-series marker, not proof every value is a forecast)",
+    "B": "source Description contains a documented period / definition switch marker",
+    "E": "source Description mentions estimate or indicative quote",
+    "T": "source Description refers to futures or nearby-contract quotation",
+    "W": "only World Bank listed in source-provider cell; not proof no upstream third-party rights"
+  },
+  "quotation_type_codes": {
+    "D": "World Bank-derived published composite (not investable TR)",
+    "I": "Index/benchmark (not investable TR)",
+    "T": "Futures-related market quotation, not continuous futures total return",
+    "S": "Spot reference quotation",
+    "A": "Auction reference quotation",
+    "Q": "Market trade/quote reference, not necessarily spot",
+    "U": "Quotation category not established from Description"
+  },
+  "permissions_note": "All 71 blocked for commercial engine, user-facing data/chart, derived delivery and raw redistribution pending per-series rights review; general World Bank CC-BY terms have third-party exception.",
+  "permission_sources": [
+    "https://www.worldbank.org/ext/en/legal/terms-conditions/datasets",
+    "https://data.worldbank.org/summary-terms-of-use"
+  ],
+  "detailed_private_evidence": {
+    "file": "Kaito_Analytics_WorldBank_71Series_Rights_Definition_Triage_20261111.json",
+    "sha256": "a11fab3ab2ea68ec0e4423555cd101d848bc27f04a3c0a3837cd9fa269314d54",
+    "contains_price_values": false
+  },
+  "compact_audit_only": true,
+  "summary": {
+    "total": 71,
+    "forecast_marked": 47,
+    "definition_period_marker": 35,
+    "indicative_or_estimate_marker": 6,
+    "futures_reference": 5,
+    "world_bank_only_listed_source": 3,
+    "non_world_bank_source_listed": 68,
+    "approved": 0
+  },
+  "series": [
+    {
+      "id": "PINK_COLUMN_02",
+      "name": "Crude oil, average",
+      "description_row": 7,
+      "flags": "FW",
+      "reference_kind": "D",
+      "site_approved": false,
+      "commercial_engine": "NOT_LICENSED",
+      "raw_redistribution": "NOT_APPROVED"
+    },
+    {
+      "id": "PINK_COLUMN_03",
+      "name": "Crude oil, Brent",
+      "description_row": 8,
+      "flags": "",
+      "reference_kind": "U",
+      "site_approved": false,
+      "commercial_engine": "NOT_LICENSED",
+      "raw_redistribution": "NOT_APPROVED"
+    },
+    {
+      "id": "PINK_COLUMN_04",
+      "name": "Crude oil, Dubai",
+      "description_row": 9,
+      "flags": "",
+      "reference_kind": "U",
+      "site_approved": false,
+      "commercial_engine": "NOT_LICENSED",
+      "raw_redistribution": "NOT_APPROVED"
+    },
+    {
+      "id": "PINK_COLUMN_05",
+      "name": "Crude oil, WTI",
+      "description_row": 10,
+      "flags": "",
+      "reference_kind": "U",
+      "site_approved": false,
+      "commercial_engine": "NOT_LICENSED",
+      "raw_redistribution": "NOT_APPROVED"
+    },
+    {
+      "id": "PINK_COLUMN_06",
+      "name": "Coal, Australian",
+      "description_row": 4,
+      "flags": "FBT",
+      "reference_kind": "T",
+      "site_approved": false,
+      "commercial_engine": "NOT_LICENSED",
+      "raw_redistribution": "NOT_APPROVED"
+    },
+    {
+      "id": "PINK_COLUMN_07",
+      "name": "Coal, South African **",
+      "description_row": 6,
+      "flags": "B",
+      "reference_kind": "Q",
+      "site_approved": false,
+      "commercial_engine": "NOT_LICENSED",
+      "raw_redistribution": "NOT_APPROVED"
+    },
+    {
+      "id": "PINK_COLUMN_08",
+      "name": "Natural gas, US",
+      "description_row": 13,
+      "flags": "F",
+      "reference_kind": "S",
+      "site_approved": false,
+      "commercial_engine": "NOT_LICENSED",
+      "raw_redistribution": "NOT_APPROVED"
+    },
+    {
+      "id": "PINK_COLUMN_09",
+      "name": "Natural gas, Europe",
+      "description_row": 12,
+      "flags": "FB",
+      "reference_kind": "S",
+      "site_approved": false,
+      "commercial_engine": "NOT_LICENSED",
+      "raw_redistribution": "NOT_APPROVED"
+    },
+    {
+      "id": "PINK_COLUMN_10",
+      "name": "Liquefied natural gas, Japan",
+      "description_row": 14,
+      "flags": "FE",
+      "reference_kind": "Q",
+      "site_approved": false,
+      "commercial_engine": "NOT_LICENSED",
+      "raw_redistribution": "NOT_APPROVED"
+    },
+    {
+      "id": "PINK_COLUMN_11",
+      "name": "Natural gas index",
+      "description_row": 11,
+      "flags": "FW",
+      "reference_kind": "I",
+      "site_approved": false,
+      "commercial_engine": "NOT_LICENSED",
+      "raw_redistribution": "NOT_APPROVED"
+    },
+    {
+      "id": "PINK_COLUMN_12",
+      "name": "Cocoa",
+      "description_row": 18,
+      "flags": "FT",
+      "reference_kind": "T",
+      "site_approved": false,
+      "commercial_engine": "NOT_LICENSED",
+      "raw_redistribution": "NOT_APPROVED"
+    },
+    {
+      "id": "PINK_COLUMN_13",
+      "name": "Coffee, Arabica",
+      "description_row": 19,
+      "flags": "F",
+      "reference_kind": "U",
+      "site_approved": false,
+      "commercial_engine": "NOT_LICENSED",
+      "raw_redistribution": "NOT_APPROVED"
+    },
+    {
+      "id": "PINK_COLUMN_14",
+      "name": "Coffee, Robusta",
+      "description_row": 20,
+      "flags": "F",
+      "reference_kind": "U",
+      "site_approved": false,
+      "commercial_engine": "NOT_LICENSED",
+      "raw_redistribution": "NOT_APPROVED"
+    },
+    {
+      "id": "PINK_COLUMN_15",
+      "name": "Tea, avg 3 auctions",
+      "description_row": 21,
+      "flags": "FW",
+      "reference_kind": "D",
+      "site_approved": false,
+      "commercial_engine": "NOT_LICENSED",
+      "raw_redistribution": "NOT_APPROVED"
+    },
+    {
+      "id": "PINK_COLUMN_16",
+      "name": "Tea, Colombo",
+      "description_row": 22,
+      "flags": "",
+      "reference_kind": "A",
+      "site_approved": false,
+      "commercial_engine": "NOT_LICENSED",
+      "raw_redistribution": "NOT_APPROVED"
+    },
+    {
+      "id": "PINK_COLUMN_17",
+      "name": "Tea, Kolkata",
+      "description_row": 23,
+      "flags": "",
+      "reference_kind": "A",
+      "site_approved": false,
+      "commercial_engine": "NOT_LICENSED",
+      "raw_redistribution": "NOT_APPROVED"
+    },
+    {
+      "id": "PINK_COLUMN_18",
+      "name": "Tea, Mombasa",
+      "description_row": 24,
+      "flags": "",
+      "reference_kind": "A",
+      "site_approved": false,
+      "commercial_engine": "NOT_LICENSED",
+      "raw_redistribution": "NOT_APPROVED"
+    },
+    {
+      "id": "PINK_COLUMN_19",
+      "name": "Coconut oil",
+      "description_row": 27,
+      "flags": "FB",
+      "reference_kind": "Q",
+      "site_approved": false,
+      "commercial_engine": "NOT_LICENSED",
+      "raw_redistribution": "NOT_APPROVED"
+    },
+    {
+      "id": "PINK_COLUMN_20",
+      "name": "Groundnuts",
+      "description_row": 29,
+      "flags": "B",
+      "reference_kind": "Q",
+      "site_approved": false,
+      "commercial_engine": "NOT_LICENSED",
+      "raw_redistribution": "NOT_APPROVED"
+    },
+    {
+      "id": "PINK_COLUMN_21",
+      "name": "Fish meal",
+      "description_row": 28,
+      "flags": "B",
+      "reference_kind": "Q",
+      "site_approved": false,
+      "commercial_engine": "NOT_LICENSED",
+      "raw_redistribution": "NOT_APPROVED"
+    },
+    {
+      "id": "PINK_COLUMN_22",
+      "name": "Groundnut oil **",
+      "description_row": 30,
+      "flags": "FB",
+      "reference_kind": "Q",
+      "site_approved": false,
+      "commercial_engine": "NOT_LICENSED",
+      "raw_redistribution": "NOT_APPROVED"
+    },
+    {
+      "id": "PINK_COLUMN_23",
+      "name": "Palm oil",
+      "description_row": 31,
+      "flags": "FB",
+      "reference_kind": "Q",
+      "site_approved": false,
+      "commercial_engine": "NOT_LICENSED",
+      "raw_redistribution": "NOT_APPROVED"
+    },
+    {
+      "id": "PINK_COLUMN_24",
+      "name": "Palm kernel oil",
+      "description_row": 32,
+      "flags": "B",
+      "reference_kind": "Q",
+      "site_approved": false,
+      "commercial_engine": "NOT_LICENSED",
+      "raw_redistribution": "NOT_APPROVED"
+    },
+    {
+      "id": "PINK_COLUMN_25",
+      "name": "Soybeans",
+      "description_row": 36,
+      "flags": "FB",
+      "reference_kind": "Q",
+      "site_approved": false,
+      "commercial_engine": "NOT_LICENSED",
+      "raw_redistribution": "NOT_APPROVED"
+    },
+    {
+      "id": "PINK_COLUMN_26",
+      "name": "Soybean oil",
+      "description_row": 35,
+      "flags": "FB",
+      "reference_kind": "Q",
+      "site_approved": false,
+      "commercial_engine": "NOT_LICENSED",
+      "raw_redistribution": "NOT_APPROVED"
+    },
+    {
+      "id": "PINK_COLUMN_27",
+      "name": "Soybean meal",
+      "description_row": 34,
+      "flags": "FB",
+      "reference_kind": "Q",
+      "site_approved": false,
+      "commercial_engine": "NOT_LICENSED",
+      "raw_redistribution": "NOT_APPROVED"
+    },
+    {
+      "id": "PINK_COLUMN_28",
+      "name": "Rapeseed oil",
+      "description_row": 33,
+      "flags": "",
+      "reference_kind": "Q",
+      "site_approved": false,
+      "commercial_engine": "NOT_LICENSED",
+      "raw_redistribution": "NOT_APPROVED"
+    },
+    {
+      "id": "PINK_COLUMN_29",
+      "name": "Sunflower oil",
+      "description_row": 37,
+      "flags": "B",
+      "reference_kind": "Q",
+      "site_approved": false,
+      "commercial_engine": "NOT_LICENSED",
+      "raw_redistribution": "NOT_APPROVED"
+    },
+    {
+      "id": "PINK_COLUMN_30",
+      "name": "Barley",
+      "description_row": 40,
+      "flags": "FB",
+      "reference_kind": "S",
+      "site_approved": false,
+      "commercial_engine": "NOT_LICENSED",
+      "raw_redistribution": "NOT_APPROVED"
+    },
+    {
+      "id": "PINK_COLUMN_31",
+      "name": "Maize",
+      "description_row": 41,
+      "flags": "F",
+      "reference_kind": "Q",
+      "site_approved": false,
+      "commercial_engine": "NOT_LICENSED",
+      "raw_redistribution": "NOT_APPROVED"
+    },
+    {
+      "id": "PINK_COLUMN_32",
+      "name": "Sorghum",
+      "description_row": 46,
+      "flags": "",
+      "reference_kind": "Q",
+      "site_approved": false,
+      "commercial_engine": "NOT_LICENSED",
+      "raw_redistribution": "NOT_APPROVED"
+    },
+    {
+      "id": "PINK_COLUMN_33",
+      "name": "Rice, Thai 5%",
+      "description_row": 42,
+      "flags": "FE",
+      "reference_kind": "Q",
+      "site_approved": false,
+      "commercial_engine": "NOT_LICENSED",
+      "raw_redistribution": "NOT_APPROVED"
+    },
+    {
+      "id": "PINK_COLUMN_34",
+      "name": "Rice, Thai 25%",
+      "description_row": 43,
+      "flags": "E",
+      "reference_kind": "Q",
+      "site_approved": false,
+      "commercial_engine": "NOT_LICENSED",
+      "raw_redistribution": "NOT_APPROVED"
+    },
+    {
+      "id": "PINK_COLUMN_35",
+      "name": "Rice, Thai A.1",
+      "description_row": 44,
+      "flags": "B",
+      "reference_kind": "Q",
+      "site_approved": false,
+      "commercial_engine": "NOT_LICENSED",
+      "raw_redistribution": "NOT_APPROVED"
+    },
+    {
+      "id": "PINK_COLUMN_36",
+      "name": "Rice, Viet Namese 5%",
+      "description_row": 45,
+      "flags": "E",
+      "reference_kind": "Q",
+      "site_approved": false,
+      "commercial_engine": "NOT_LICENSED",
+      "raw_redistribution": "NOT_APPROVED"
+    },
+    {
+      "id": "PINK_COLUMN_37",
+      "name": "Wheat, US SRW",
+      "description_row": 49,
+      "flags": "",
+      "reference_kind": "Q",
+      "site_approved": false,
+      "commercial_engine": "NOT_LICENSED",
+      "raw_redistribution": "NOT_APPROVED"
+    },
+    {
+      "id": "PINK_COLUMN_38",
+      "name": "Wheat, US HRW",
+      "description_row": 48,
+      "flags": "F",
+      "reference_kind": "Q",
+      "site_approved": false,
+      "commercial_engine": "NOT_LICENSED",
+      "raw_redistribution": "NOT_APPROVED"
+    },
+    {
+      "id": "PINK_COLUMN_39",
+      "name": "Banana, Europe",
+      "description_row": 52,
+      "flags": "B",
+      "reference_kind": "U",
+      "site_approved": false,
+      "commercial_engine": "NOT_LICENSED",
+      "raw_redistribution": "NOT_APPROVED"
+    },
+    {
+      "id": "PINK_COLUMN_40",
+      "name": "Banana, US",
+      "description_row": 53,
+      "flags": "F",
+      "reference_kind": "Q",
+      "site_approved": false,
+      "commercial_engine": "NOT_LICENSED",
+      "raw_redistribution": "NOT_APPROVED"
+    },
+    {
+      "id": "PINK_COLUMN_41",
+      "name": "Orange",
+      "description_row": 57,
+      "flags": "FE",
+      "reference_kind": "Q",
+      "site_approved": false,
+      "commercial_engine": "NOT_LICENSED",
+      "raw_redistribution": "NOT_APPROVED"
+    },
+    {
+      "id": "PINK_COLUMN_42",
+      "name": "Beef **",
+      "description_row": 54,
+      "flags": "FB",
+      "reference_kind": "Q",
+      "site_approved": false,
+      "commercial_engine": "NOT_LICENSED",
+      "raw_redistribution": "NOT_APPROVED"
+    },
+    {
+      "id": "PINK_COLUMN_43",
+      "name": "Chicken **",
+      "description_row": 55,
+      "flags": "FBE",
+      "reference_kind": "Q",
+      "site_approved": false,
+      "commercial_engine": "NOT_LICENSED",
+      "raw_redistribution": "NOT_APPROVED"
+    },
+    {
+      "id": "PINK_COLUMN_44",
+      "name": "Lamb **",
+      "description_row": 56,
+      "flags": "FB",
+      "reference_kind": "Q",
+      "site_approved": false,
+      "commercial_engine": "NOT_LICENSED",
+      "raw_redistribution": "NOT_APPROVED"
+    },
+    {
+      "id": "PINK_COLUMN_45",
+      "name": "Shrimps, Mexican",
+      "description_row": 58,
+      "flags": "FB",
+      "reference_kind": "Q",
+      "site_approved": false,
+      "commercial_engine": "NOT_LICENSED",
+      "raw_redistribution": "NOT_APPROVED"
+    },
+    {
+      "id": "PINK_COLUMN_46",
+      "name": "Sugar, EU",
+      "description_row": 59,
+      "flags": "",
+      "reference_kind": "Q",
+      "site_approved": false,
+      "commercial_engine": "NOT_LICENSED",
+      "raw_redistribution": "NOT_APPROVED"
+    },
+    {
+      "id": "PINK_COLUMN_47",
+      "name": "Sugar, US",
+      "description_row": 60,
+      "flags": "T",
+      "reference_kind": "T",
+      "site_approved": false,
+      "commercial_engine": "NOT_LICENSED",
+      "raw_redistribution": "NOT_APPROVED"
+    },
+    {
+      "id": "PINK_COLUMN_48",
+      "name": "Sugar, world",
+      "description_row": 61,
+      "flags": "F",
+      "reference_kind": "Q",
+      "site_approved": false,
+      "commercial_engine": "NOT_LICENSED",
+      "raw_redistribution": "NOT_APPROVED"
+    },
+    {
+      "id": "PINK_COLUMN_49",
+      "name": "Tobacco, US import u.v.",
+      "description_row": 78,
+      "flags": "FB",
+      "reference_kind": "Q",
+      "site_approved": false,
+      "commercial_engine": "NOT_LICENSED",
+      "raw_redistribution": "NOT_APPROVED"
+    },
+    {
+      "id": "PINK_COLUMN_50",
+      "name": "Logs, Cameroon",
+      "description_row": 66,
+      "flags": "FB",
+      "reference_kind": "Q",
+      "site_approved": false,
+      "commercial_engine": "NOT_LICENSED",
+      "raw_redistribution": "NOT_APPROVED"
+    },
+    {
+      "id": "PINK_COLUMN_51",
+      "name": "Logs, Malaysian",
+      "description_row": 67,
+      "flags": "FB",
+      "reference_kind": "Q",
+      "site_approved": false,
+      "commercial_engine": "NOT_LICENSED",
+      "raw_redistribution": "NOT_APPROVED"
+    },
+    {
+      "id": "PINK_COLUMN_52",
+      "name": "Sawnwood, Cameroon",
+      "description_row": 69,
+      "flags": "",
+      "reference_kind": "U",
+      "site_approved": false,
+      "commercial_engine": "NOT_LICENSED",
+      "raw_redistribution": "NOT_APPROVED"
+    },
+    {
+      "id": "PINK_COLUMN_53",
+      "name": "Sawnwood, Malaysian",
+      "description_row": 70,
+      "flags": "FB",
+      "reference_kind": "U",
+      "site_approved": false,
+      "commercial_engine": "NOT_LICENSED",
+      "raw_redistribution": "NOT_APPROVED"
+    },
+    {
+      "id": "PINK_COLUMN_54",
+      "name": "Plywood",
+      "description_row": 68,
+      "flags": "",
+      "reference_kind": "S",
+      "site_approved": false,
+      "commercial_engine": "NOT_LICENSED",
+      "raw_redistribution": "NOT_APPROVED"
+    },
+    {
+      "id": "PINK_COLUMN_55",
+      "name": "Cotton, A Index",
+      "description_row": 74,
+      "flags": "FB",
+      "reference_kind": "I",
+      "site_approved": false,
+      "commercial_engine": "NOT_LICENSED",
+      "raw_redistribution": "NOT_APPROVED"
+    },
+    {
+      "id": "PINK_COLUMN_56",
+      "name": "Rubber, TSR20 **",
+      "description_row": 77,
+      "flags": "FT",
+      "reference_kind": "T",
+      "site_approved": false,
+      "commercial_engine": "NOT_LICENSED",
+      "raw_redistribution": "NOT_APPROVED"
+    },
+    {
+      "id": "PINK_COLUMN_57",
+      "name": "Rubber, RSS3",
+      "description_row": 76,
+      "flags": "BT",
+      "reference_kind": "T",
+      "site_approved": false,
+      "commercial_engine": "NOT_LICENSED",
+      "raw_redistribution": "NOT_APPROVED"
+    },
+    {
+      "id": "PINK_COLUMN_58",
+      "name": "Phosphate rock",
+      "description_row": 82,
+      "flags": "F",
+      "reference_kind": "Q",
+      "site_approved": false,
+      "commercial_engine": "NOT_LICENSED",
+      "raw_redistribution": "NOT_APPROVED"
+    },
+    {
+      "id": "PINK_COLUMN_59",
+      "name": "DAP",
+      "description_row": 81,
+      "flags": "F",
+      "reference_kind": "S",
+      "site_approved": false,
+      "commercial_engine": "NOT_LICENSED",
+      "raw_redistribution": "NOT_APPROVED"
+    },
+    {
+      "id": "PINK_COLUMN_60",
+      "name": "TSP",
+      "description_row": 84,
+      "flags": "F",
+      "reference_kind": "S",
+      "site_approved": false,
+      "commercial_engine": "NOT_LICENSED",
+      "raw_redistribution": "NOT_APPROVED"
+    },
+    {
+      "id": "PINK_COLUMN_61",
+      "name": "Urea",
+      "description_row": 85,
+      "flags": "FB",
+      "reference_kind": "S",
+      "site_approved": false,
+      "commercial_engine": "NOT_LICENSED",
+      "raw_redistribution": "NOT_APPROVED"
+    },
+    {
+      "id": "PINK_COLUMN_62",
+      "name": "Potassium chloride **",
+      "description_row": 83,
+      "flags": "FB",
+      "reference_kind": "S",
+      "site_approved": false,
+      "commercial_engine": "NOT_LICENSED",
+      "raw_redistribution": "NOT_APPROVED"
+    },
+    {
+      "id": "PINK_COLUMN_63",
+      "name": "Aluminum",
+      "description_row": 88,
+      "flags": "FB",
+      "reference_kind": "Q",
+      "site_approved": false,
+      "commercial_engine": "NOT_LICENSED",
+      "raw_redistribution": "NOT_APPROVED"
+    },
+    {
+      "id": "PINK_COLUMN_64",
+      "name": "Iron ore, cfr spot",
+      "description_row": 91,
+      "flags": "FB",
+      "reference_kind": "S",
+      "site_approved": false,
+      "commercial_engine": "NOT_LICENSED",
+      "raw_redistribution": "NOT_APPROVED"
+    },
+    {
+      "id": "PINK_COLUMN_65",
+      "name": "Copper",
+      "description_row": 89,
+      "flags": "F",
+      "reference_kind": "Q",
+      "site_approved": false,
+      "commercial_engine": "NOT_LICENSED",
+      "raw_redistribution": "NOT_APPROVED"
+    },
+    {
+      "id": "PINK_COLUMN_66",
+      "name": "Lead",
+      "description_row": 92,
+      "flags": "F",
+      "reference_kind": "Q",
+      "site_approved": false,
+      "commercial_engine": "NOT_LICENSED",
+      "raw_redistribution": "NOT_APPROVED"
+    },
+    {
+      "id": "PINK_COLUMN_67",
+      "name": "Tin",
+      "description_row": 99,
+      "flags": "F",
+      "reference_kind": "Q",
+      "site_approved": false,
+      "commercial_engine": "NOT_LICENSED",
+      "raw_redistribution": "NOT_APPROVED"
+    },
+    {
+      "id": "PINK_COLUMN_68",
+      "name": "Nickel",
+      "description_row": 93,
+      "flags": "FB",
+      "reference_kind": "Q",
+      "site_approved": false,
+      "commercial_engine": "NOT_LICENSED",
+      "raw_redistribution": "NOT_APPROVED"
+    },
+    {
+      "id": "PINK_COLUMN_69",
+      "name": "Zinc",
+      "description_row": 100,
+      "flags": "FB",
+      "reference_kind": "Q",
+      "site_approved": false,
+      "commercial_engine": "NOT_LICENSED",
+      "raw_redistribution": "NOT_APPROVED"
+    },
+    {
+      "id": "PINK_COLUMN_70",
+      "name": "Gold",
+      "description_row": 103,
+      "flags": "FB",
+      "reference_kind": "S",
+      "site_approved": false,
+      "commercial_engine": "NOT_LICENSED",
+      "raw_redistribution": "NOT_APPROVED"
+    },
+    {
+      "id": "PINK_COLUMN_71",
+      "name": "Platinum",
+      "description_row": 104,
+      "flags": "B",
+      "reference_kind": "S",
+      "site_approved": false,
+      "commercial_engine": "NOT_LICENSED",
+      "raw_redistribution": "NOT_APPROVED"
+    },
+    {
+      "id": "PINK_COLUMN_72",
+      "name": "Silver",
+      "description_row": 105,
+      "flags": "FB",
+      "reference_kind": "U",
+      "site_approved": false,
+      "commercial_engine": "NOT_LICENSED",
+      "raw_redistribution": "NOT_APPROVED"
+    }
+  ]
+}
