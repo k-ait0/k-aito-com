@@ -49,9 +49,7 @@ const assertVisible = async (page, visible, label) => {
       await caseB.locator("select[data-field='independent_1']").selectOption("7");
       await caseB.locator("select[data-field='independent_2']").selectOption("6");
       await caseB.locator("textarea[data-field='observation']").fill(noteText);
-      await caseB.locator("select[data-field='verdict']").selectOption("not_bipolar").catch(async ()=>{
-        await caseB.locator("select[data-field='verdict']").selectOption("context_only");
-      });
+      await caseB.locator("select[data-field='verdict']").selectOption("context_only");
       const downloadPromise = page.waitForEvent("download");
       await page.locator("#export").click();
       const download = await downloadPromise;
