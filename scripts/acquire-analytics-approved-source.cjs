@@ -2,7 +2,7 @@
 'use strict';
 // Curated, single-shot data acquisition. No fallbacks, retries, or publishing.
 const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto'),https=require('node:https'),os=require('node:os');
-const {parseFedH10,normalizeFedMonthly,parseBlsCpi,verifyXlsxSignature}=require('./analytics-data-parsers.cjs');
+const {parseFedH10,normalizeFedMonthly,parseBlsCpiWithKnownMissing,verifyXlsxSignature}=require('./analytics-data-parsers.cjs');
 const REPO=path.resolve(__dirname,'..');
 const SOURCES={
  FED_H10_USDJPY:{url:'https://www.federalreserve.gov/releases/h10/hist/dat00_ja.htm',type:'html',host:'www.federalreserve.gov'},
@@ -70,10 +70,10 @@ async function main(){
   files['usdjpy_monthly.csv']=Buffer.from(['month,observation_date,usd_jpy,month_status',...months.map(x=>[x.month,x.date,x.value,x.month_status].join(','))].join('\n')+'\n');
   Object.assign(details,{observations:days.length,ND:days.filter(x=>x.status==='ND').length,monthly_observations:months.length,month_rule:'last valid observation',last_date:days.at(-1).date});
  }else if(id==='BLS_CPI_US'){
-  const months=parseBlsCpi(JSON.parse(raw.toString('utf8')),range.start_year,range.end_year);
+  const {observations:months,missing_months:missing}=parseBlsCpiWithKnownMissing(JSON.parse(raw.toString('utf8')),range.start_year,range.end_year);
   files['source_RAW.json']=raw;
   files['us_cpi_monthly.csv']=Buffer.from(['month,cpi_u_nsa',...months.map(x=>[x.month,x.value].join(','))].join('\n')+'\n');
-  Object.assign(details,{observations:months.length,first_month:months[0].month,last_month:months.at(-1).month});
+  Object.assign(details,{observations:months.length,first_month:months[0].month,last_month:months.at(-1).month,missing_months:missing,missing_policy:'EXPLICIT_BLS_SHUTDOWN_2025_10_NO_IMPUTATION'});
  }else{
   verifyXlsxSignature(raw);
   files['source_RAW_UNREVIEWED.xlsx']=raw;
