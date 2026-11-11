@@ -1,0 +1,604 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src 'self' data:; connect-src 'none'; form-action 'none'; object-src 'none'; base-uri 'none'; frame-ancestors 'none'">
+<title>K. Aito Analytics｜仮想ローリング比較（研究版）</title>
+<style>
+*{box-sizing:border-box}html{color-scheme:light}body{margin:0;background:#f5f7fa;color:#1b2d43;font:15px/1.56 system-ui,-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN",Meiryo,sans-serif}main{max-width:1190px;margin:auto;padding:25px 20px 64px}header{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;padding:6px 0 10px}h1{margin:6px 0 2px;font-size:clamp(24px,3.2vw,35px);letter-spacing:-.025em}h2{font-size:19px;margin:0 0 15px;line-height:1.3}h3{font-size:15px;margin:0 0 8px}.eyebrow{font-size:11px;letter-spacing:.12em;font-weight:800;color:#2766af}.muted{font-size:13px;color:#657489}.pill{font-size:11px;border:1px solid #c5d8ee;background:#e9f2fd;border-radius:20px;padding:5px 10px;font-weight:700;color:#225b98;display:inline-flex}.notice{border-left:4px solid #c18a30;background:#fffaec;padding:13px 16px;border-radius:0 8px 8px 0;font-size:13px;margin:15px 0 22px}.layout{display:grid;grid-template-columns:330px minmax(0,1fr);align-items:start;gap:18px}.panel{background:white;border:1px solid #e0e7ef;border-radius:14px;padding:20px;margin:0 0 17px;box-shadow:0 8px 24px #16344f06;min-width:0}.field-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}.field{display:block;font-size:12px;color:#344963;font-weight:700}.field.full{grid-column:1/-1}.field input,.field select{display:block;width:100%;min-width:0;margin-top:5px;border:1px solid #beccdb;border-radius:8px;background:white;color:#1c344e;font:inherit;padding:9px 9px;height:41px}.field input:focus,.field select:focus,button:focus-visible{outline:2px solid #438ddd;outline-offset:2px}.field input:invalid{border-color:#b14949}.form-section{padding:15px 0;border-top:1px solid #edf0f6}.form-section:first-of-type{padding-top:0;border-top:0}.form-section p{font-size:12px;color:#657489;margin:0 0 8px}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}button{font:inherit;border-radius:9px;padding:10px 13px;font-weight:700;cursor:pointer}button.primary{background:#155fba;border:1px solid #155fba;color:white}button.outline{background:white;color:#245789;border:1px solid #c2d0e0}button:disabled{opacity:.55;cursor:not-allowed}.warning{background:#fff0ef;border:1px solid #f0d4d0;border-radius:8px;padding:10px 12px;color:#9d2522;font-size:13px;margin-top:12px}.status{margin-top:9px;color:#47657c;font-size:12px;min-height:20px}.results{min-width:0}.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.stat{background:#f3f7fc;border:1px solid #e0e8f2;border-radius:10px;padding:14px 13px;min-width:0}.stat .label{font-size:12px;color:#60748a;margin-bottom:6px}.stat strong{font-size:23px;line-height:1.15;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}.stat small{display:block;margin-top:7px;font-size:11px;color:#748398}.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:12px;color:#485f76;margin:8px 0 13px}.dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px}.chart-viewport{max-width:100%;overflow-x:auto;border:1px solid #edf0f5;border-radius:8px}.plot{display:block;width:100%;min-width:630px;height:auto;background:#fff}.callout{border-top:1px solid #e9edf4;margin-top:12px;padding-top:12px;font-size:12px;color:#63748a}.scroll{max-width:100%;overflow-x:auto}.pager{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-top:12px}.pager .pager-actions{display:flex;gap:8px}.pager button{font-size:12px;padding:6px 11px}.pager .page-caption{font-size:12px;color:#657489}.result-table{width:100%;min-width:640px;border-collapse:collapse;font-variant-numeric:tabular-nums}.result-table th,.result-table td{padding:9px 10px;border-bottom:1px solid #e8eef5;text-align:right;white-space:nowrap}.result-table th:first-child,.result-table td:first-child{text-align:left}.result-table th{background:#f7faff;color:#596f87;font-size:11px;position:sticky;top:0}.result-table td{font-size:12px}.result-table tbody tr{cursor:pointer}.result-table tbody tr:hover{background:#eff6ff}.result-table tbody tr.selected{background:#e4f0ff}.result-table tbody tr:focus-visible{outline:2px solid #326eab;outline-offset:-2px}.good{color:#126c50}.bad{color:#a33c37}.detail-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:13px}.detail-card{border:1px solid #e2eaf2;padding:12px;border-radius:9px;background:#fcfdff}.detail-card strong{font-size:16px}.detail-card p{margin:5px 0 0;color:#62758c;font-size:12px}.caps{font-size:11px;font-weight:700;letter-spacing:.08em;color:#50708d}.stale .panel.output{opacity:.65}.stale-label{color:#aa5f14;font-weight:700}footer{font-size:12px;color:#6a7b8d;padding:12px 0 0}.help{color:#5b7590;font-size:12px;margin-top:8px}.empty{color:#78889b;font-size:13px}a{color:#1c62a8}
+@media(max-width:970px){.layout{grid-template-columns:1fr}.form-section{display:inline-block;vertical-align:top;width:49%;padding:9px 12px;border-top:0}.form-section:first-of-type{padding:9px 12px}.controls .panel{padding:12px}.stats{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:600px){main{padding:14px 11px 42px}.panel{padding:15px;margin-bottom:12px}.form-section{display:block;width:100%;padding:12px 3px;border-top:1px solid #edf0f6}.stats{gap:8px}.stat{padding:12px 9px}.stat strong{font-size:18px}.detail-grid{grid-template-columns:1fr}.eyebrow{font-size:10px}}
+</style>
+</head>
+<body>
+<main>
+<header><div><div class="eyebrow">K. AITO ANALYTICS / RESEARCH v0.5</div><h1>ローリング・生活設計比較</h1><div class="muted">運用開始時点をずらして、取り崩し結果の差を調べる</div></div><span class="pill">仮想データ専用・未公開研究版</span></header>
+<div class="notice" role="note"><strong>これは実市場データではありません。</strong> 生成した仮想の月次変動を用いる操作検証です。「全開始月の達成割合」は仮想例の集計であり、過去の実績・将来の成功確率ではありません。実際の資産額は入力しないでください。税・社会保険・NISA・実際の年金改定は未対応。外部通信・保存は行いません。</div>
+<div class="layout">
+<aside class="controls"><section class="panel"><h2>仮想の分析条件</h2><form id="analysis-form">
+<div class="form-section"><h3>運用・期間</h3><div class="field-grid">
+<label class="field">初期資産（万円）<input id="assets" type="number" value="3500" min="0" max="100000" step="10" required></label>
+<label class="field">毎月の生活費（万円）<input id="expense" type="number" value="22" min="0" max="1000" step="1" required></label>
+<label class="field">試算期間（年）<select id="years"><option value="10">10年</option><option value="15" selected>15年</option><option value="20">20年</option></select></label>
+<label class="field">仮想の市場経路<select id="market"><option value="normal" selected>変動を含む</option><option value="calm">比較的穏やか</option><option value="shock">大幅下落あり</option></select></label>
+<label class="field full"><input id="gap" type="checkbox" style="display:inline;width:auto;height:auto;vertical-align:middle;margin:0 6px 0 0">途中の仮想データ1か月を欠損させる</label>
+</div></div>
+<div class="form-section"><h3>比較プランの変更条件</h3><p>基本プランは生活費固定・年金なし。比較プランだけに下記を反映します。</p><div class="field-grid">
+<label class="field">毎月の生活費（万円）<input id="alt-expense" type="number" value="19" min="0" max="1000" step="1" required></label>
+<label class="field">生活費上昇率（年%）<input id="inflation" type="number" value="2" min="-5" max="15" step="0.1" required></label>
+<label class="field">年金開始（運用後・年）<input id="pension-years" type="number" value="8" min="0" max="19" step="1" required></label>
+<label class="field">年金月額（万円）<input id="pension" type="number" value="10" min="0" max="1000" step="1" required></label>
+<label class="field">臨時支出（万円）<input id="event" type="number" value="300" min="0" max="100000" step="10" required></label>
+<label class="field">発生（運用後・年）<input id="event-years" type="number" value="6" min="0" max="19" step="1" required></label>
+</div></div>
+<div class="actions"><button type="submit" id="run" class="primary">ローリング分析を実行</button><button type="button" id="reset" class="outline">初期条件へ</button></div>
+<div id="status" class="status" aria-live="polite">計算開始前</div><div id="error" role="alert" class="warning" hidden></div>
+</form></section></aside>
+<div class="results" id="results">
+<section class="panel output"><h2>全開始月の集計（仮想例）</h2>
+<div class="stats"><div class="stat"><div class="label">検証した開始月</div><strong id="stat-windows">—</strong><small id="stat-period">対象期間：—</small></div>
+<div class="stat"><div class="label">欠損により除外</div><strong id="stat-excluded">—</strong><small>失敗として集計しない</small></div>
+<div class="stat"><div class="label">基本：全額を賄えた開始月</div><strong id="stat-basic">—</strong><small id="stat-basic-ratio">—</small></div>
+<div class="stat"><div class="label">比較：全額を賄えた開始月</div><strong id="stat-alt">—</strong><small id="stat-alt-ratio">—</small></div></div>
+<div id="overview" class="help">分析実行後に結果を表示します。</div></section>
+<section class="panel output"><h2>仮想開始月ごとの最終資産</h2>
+<div class="legend"><span><i class="dot" style="background:#1f68b5"></i>基本プラン</span><span><i class="dot" style="background:#d17a3c"></i>比較プラン</span></div>
+<div class="chart-viewport"><svg id="plot" class="plot" role="img" aria-label="仮想開始月ごとに計算した最終資産の比較折れ線グラフ" viewBox="0 0 850 315"><text x="35" y="40" fill="#718398">分析待機中</text></svg></div>
+<div class="callout">横軸は生成した仮想月次経路の開始位置です。各点は独立の試行ではなく、同じ仮想経路をずらした重複ウィンドウです。欠損をまたぐ期間は除外して折れ線を分断します。</div></section>
+<section class="panel output"><h2>選択した開始月の内訳</h2><div class="muted" id="selected-month">下表から開始月を選択してください。</div><div class="detail-grid">
+<div class="detail-card"><div class="caps">基本プラン</div><strong id="selected-basic">—</strong><p id="selected-basic-detail">—</p></div>
+<div class="detail-card"><div class="caps">比較プラン</div><strong id="selected-alt">—</strong><p id="selected-alt-detail">—</p></div></div></section>
+<section class="panel output"><h2>開始月別の比較表</h2><div class="scroll"><table class="result-table"><thead><tr><th>仮想開始月</th><th>基本・期末資産</th><th>比較・期末資産</th><th>差額（比較−基本）</th><th>基本・達成</th><th>比較・達成</th></tr></thead><tbody id="window-rows"><tr><td colspan="6" class="empty">未計算</td></tr></tbody></table></div><div class="pager"><div class="page-caption" id="page-count" aria-live="polite">—</div><div class="pager-actions"><button type="button" class="outline" id="prev-page">前の25件</button><button type="button" class="outline" id="next-page">次の25件</button></div></div></section>
+</div></div>
+<footer>研究用シミュレーション。実データ認定・指数ライセンス審査・金融計算Coreの本番承認・iPad Safari実機QAは未完了。画面はローカルで完結し、データ取得ブランチやDWZ PR #70には接続しません。</footer>
+</main>
+<script>
+const __modules=Object.create(null);
+function __require(name){if(!Object.hasOwn(__modules,name))throw Error("Module not bundled: "+name);return __modules[name].exports;}
+__modules["./cashflow-core.cjs"]={exports:{}};
+(function(module,exports,require){
+'use strict';
+/**
+ * K. Aito Analytics / FINOWA shared research cashflow core v0.1.
+ * No network, browser, filesystem, tax or implicit market-data loading.
+ * Monetary inputs and outputs are integer JPY. Research only; not production-approved.
+ */
+const MONTH_RE=/^(\d{4})-(0[1-9]|1[0-2])$/;
+const MAX_MONTHS=1200;
+function monthSerial(value){
+  const match=typeof value==='string' && MONTH_RE.exec(value);
+  if(!match)throw Error('Invalid month: expected YYYY-MM');
+  return Number(match[1])*12+Number(match[2])-1;
+}
+function formatMonth(serial){
+  if(!Number.isSafeInteger(serial)||serial<0||serial>9999*12+11)throw Error('Invalid month index');
+  return String(Math.floor(serial/12)).padStart(4,'0')+'-'+String(serial%12+1).padStart(2,'0');
+}
+function yen(value,name){
+  if(!Number.isSafeInteger(value)||value<0)throw Error(name+' must be a nonnegative safe integer (JPY)');
+  return value;
+}
+function validateMonthlyReturns(monthlyReturns,origin,{allowGaps=false}={}){
+  if(!['OBSERVED','SYNTHETIC'].includes(origin))throw Error('provenance must be OBSERVED or SYNTHETIC');
+  if(!Array.isArray(monthlyReturns)||monthlyReturns.length<1||monthlyReturns.length>MAX_MONTHS)
+    throw Error('monthly_returns must contain 1..'+MAX_MONTHS+' records');
+  let previous=null;
+  return monthlyReturns.map((r,i)=>{
+    if(!r||typeof r!=='object'||Array.isArray(r))throw Error('Malformed return record at '+i);
+    const serial=monthSerial(r.month);
+    if(previous!==null&&(serial<=previous||(!allowGaps&&serial!==previous+1)))
+      throw Error(serial<=previous?'Duplicate or out-of-order month: '+r.month:'Missing month before '+r.month);
+    previous=serial;
+    if(r.origin!==origin||r.proxy===true||r.estimated===true)
+      throw Error('Mixed, proxy or estimated return series is forbidden: '+r.month);
+    if(typeof r.monthly_return!=='number'||!Number.isFinite(r.monthly_return)||r.monthly_return< -1||r.monthly_return>10)
+      throw Error('Invalid monthly return: '+r.month);
+    return {month:r.month,serial,rate:r.monthly_return};
+  });
+}
+function safeRound(value,context){
+  if(!Number.isFinite(value)||value<0||value>Number.MAX_SAFE_INTEGER-0.5)
+    throw Error('Unsafe monetary result: '+context);
+  return Math.round(value);
+}
+function simulateMonthlyCashflow({
+  initial_assets_yen,monthly_withdrawal_yen,monthly_contribution_yen=0,
+  monthly_returns,provenance='SYNTHETIC'
+}){
+  const opening=yen(initial_assets_yen,'initial_assets_yen');
+  const withdrawal=yen(monthly_withdrawal_yen,'monthly_withdrawal_yen');
+  const contribution=yen(monthly_contribution_yen,'monthly_contribution_yen');
+  const returns=validateMonthlyReturns(monthly_returns,provenance);
+  let assets=opening,totalUnfunded=0,firstShortfall=null,shortfallMonths=0;
+  const rows=[];
+  for(const r of returns){
+    const available=safeRound(assets+contribution,'available '+r.month);
+    const paid=Math.min(available,withdrawal);
+    const unfunded=withdrawal-paid;
+    const invested=available-paid;
+    const closing=safeRound(invested*(1+r.rate),'closing '+r.month);
+    if(unfunded>0){shortfallMonths++;if(firstShortfall===null)firstShortfall=r.month;}
+    totalUnfunded=safeRound(totalUnfunded+unfunded,'unfunded total');
+    rows.push({month:r.month,opening_yen:assets,contribution_yen:contribution,
+      requested_withdrawal_yen:withdrawal,paid_withdrawal_yen:paid,unfunded_yen:unfunded,
+      invested_before_return_yen:invested,monthly_return:r.rate,investment_gain_yen:closing-invested,
+      closing_yen:closing});
+    assets=closing;
+  }
+  return {status:shortfallMonths?'SHORTFALL':'FUNDED',provenance,publication_approved:false,
+    timing:'MONTH_START_CONTRIBUTION_THEN_WITHDRAWAL_THEN_RETURN',
+    horizon_months:rows.length,first_shortfall_month:firstShortfall,
+    shortfall_months:shortfallMonths,total_unfunded_yen:totalUnfunded,
+    ending_assets_yen:assets,rows};
+}
+/** Rolling history accepts only observed (non-proxy) private research paths.
+ * Gaps split the series; windows crossing a gap are excluded, not failed.
+ */
+function runRollingCashflow({
+  initial_assets_yen,monthly_withdrawal_yen,monthly_contribution_yen=0,
+  monthly_returns,horizon_months
+}){
+  yen(initial_assets_yen,'initial_assets_yen');
+  yen(monthly_withdrawal_yen,'monthly_withdrawal_yen');
+  yen(monthly_contribution_yen,'monthly_contribution_yen');
+  if(!Number.isInteger(horizon_months)||horizon_months<1||horizon_months>MAX_MONTHS)
+    throw Error('horizon_months must be 1..'+MAX_MONTHS);
+  const rows=validateMonthlyReturns(monthly_returns,'OBSERVED',{allowGaps:true});
+  const windows=[];
+  let blockStart=0,gaps=0;
+  function evaluateBlock(start,end){
+    for(let i=start;i+horizon_months<=end;i++){
+      const segment=monthly_returns.slice(i,i+horizon_months);
+      const outcome=simulateMonthlyCashflow({initial_assets_yen,monthly_withdrawal_yen,
+        monthly_contribution_yen,monthly_returns:segment,provenance:'OBSERVED'});
+      windows.push({start_month:segment[0].month,end_month:segment.at(-1).month,
+        status:outcome.status,first_shortfall_month:outcome.first_shortfall_month,
+        total_unfunded_yen:outcome.total_unfunded_yen,ending_assets_yen:outcome.ending_assets_yen});
+    }
+  }
+  for(let i=1;i<=rows.length;i++){
+    if(i<rows.length&&rows[i].serial===rows[i-1].serial+1)continue;
+    evaluateBlock(blockStart,i);
+    if(i<rows.length)gaps++;
+    blockStart=i;
+  }
+  const theoretical=Math.max(0,rows.at(-1).serial-rows[0].serial+1-horizon_months+1);
+  const funded=windows.filter(x=>x.status==='FUNDED').length;
+  return {
+    status:windows.length?'EVALUATED':'INSUFFICIENT_CONTIGUOUS_HISTORY',
+    provenance:'OBSERVED',publication_approved:false,
+    research_disclaimer:'Observed historical windows are not independent trials or future probabilities.',
+    first_observed_month:rows[0].month,last_observed_month:rows.at(-1).month,
+    observed_return_months:rows.length,gap_boundaries:gaps,
+    theoretical_windows_if_no_gaps:theoretical,complete_windows:windows.length,
+    excluded_windows_due_to_missing_months:theoretical-windows.length,
+    funded_windows:funded,shortfall_windows:windows.length-funded,
+    observed_funded_fraction:windows.length?funded/windows.length:null,
+    windows
+  };
+}
+function makeSyntheticFlatPath({start_month,months,monthly_return}){
+  const first=monthSerial(start_month);
+  if(!Number.isInteger(months)||months<1||months>MAX_MONTHS)throw Error('Invalid synthetic months');
+  if(typeof monthly_return!=='number'||!Number.isFinite(monthly_return)||monthly_return< -1||monthly_return>10)
+    throw Error('Invalid synthetic return');
+  return Array.from({length:months},(_,i)=>({month:formatMonth(first+i),monthly_return,origin:'SYNTHETIC'}));
+}
+module.exports={monthSerial,formatMonth,validateMonthlyReturns,simulateMonthlyCashflow,runRollingCashflow,makeSyntheticFlatPath};
+
+})(__modules["./cashflow-core.cjs"],__modules["./cashflow-core.cjs"].exports,__require);
+__modules["./lifecycle-core.cjs"]={exports:{}};
+(function(module,exports,require){
+'use strict';
+/** Cashflow life events v0.3. Research only; gross-of-tax nominal JPY cashflows. */
+const {monthSerial,validateMonthlyReturns}=require('./cashflow-core.cjs');
+const MAX_EVENTS=500,MAX_SCHEDULES=20;
+function yen(n,label){if(!Number.isSafeInteger(n)||n<0)throw Error(label+' must be a nonnegative safe integer (JPY)');return n;}
+function safeRound(n,label){if(!Number.isFinite(n)||n<0||n>Number.MAX_SAFE_INTEGER-0.5)throw Error('Unsafe monetary result: '+label);return Math.round(n);}
+function safeAdd(a,b,label){return safeRound(a+b,label);}
+function list(input,label,max){if(!Array.isArray(input)||input.length>max)throw Error(label+' must be an array with at most '+max+' records');return input;}
+function id(value,label){if(typeof value!=='string'||!(/^[A-Za-z][A-Za-z0-9_-]{0,39}$/).test(value)||['constructor','prototype','__proto__'].includes(value))throw Error('Invalid '+label);return value;}
+function parsePensions(entries,first,last){
+ const seen=new Set();return list(entries,'pension_schedule',MAX_SCHEDULES).map((x,i)=>{
+  if(!x||typeof x!=='object'||Array.isArray(x))throw Error('Malformed pension schedule '+i);
+  id(x.id,'pension id');if(seen.has(x.id))throw Error('Duplicate pension id '+x.id);seen.add(x.id);
+  const from=monthSerial(x.start_month),to=x.end_month===undefined?Number.MAX_SAFE_INTEGER:monthSerial(x.end_month);
+  if(to<from)throw Error('Pension end before start');
+  if(from>last||to<first)throw Error('Pension schedule does not overlap simulation horizon');
+  return {id:x.id,from,to,amount:yen(x.monthly_yen,'pension monthly_yen')};
+ });
+}
+function parseEvents(entries,returnMonths){
+ const seen=new Set(),byMonth=new Map();
+ for(const [i,x] of list(entries,'one_time_events',MAX_EVENTS).entries()){
+  if(!x||typeof x!=='object'||Array.isArray(x))throw Error('Malformed event '+i);
+  id(x.id,'event id');if(seen.has(x.id))throw Error('Duplicate event id '+x.id);seen.add(x.id);
+  monthSerial(x.month);if(!returnMonths.has(x.month))throw Error('One-time event is outside simulation calendar: '+x.month);
+  if(!['INCOME','EXPENSE'].includes(x.kind))throw Error('Invalid event kind');
+  const amount=yen(x.amount_yen,'event amount_yen');
+  const totals=byMonth.get(x.month)||{income:0,expense:0};
+  totals[x.kind==='INCOME'?'income':'expense']=safeAdd(totals[x.kind==='INCOME'?'income':'expense'],amount,'events '+x.month);
+  byMonth.set(x.month,totals);
+ }
+ return byMonth;
+}
+const ALLOWED_INPUTS=new Set(['initial_assets_yen','monthly_withdrawal_yen','monthly_contribution_yen','monthly_returns','provenance','annual_expense_inflation','pension_schedule','one_time_events']);
+function simulateLifecycleCashflow(input={}){
+ if(!input||typeof input!=='object'||Array.isArray(input))throw Error('Invalid lifecycle input');
+ for(const key of Object.keys(input))if(!ALLOWED_INPUTS.has(key))throw Error('Unsupported lifecycle input: '+key);
+ const {initial_assets_yen,monthly_withdrawal_yen,monthly_contribution_yen=0,monthly_returns,
+   provenance='SYNTHETIC',annual_expense_inflation=0,pension_schedule=[],one_time_events=[]}=input;
+ const initial=yen(initial_assets_yen,'initial_assets_yen');
+ const spending=yen(monthly_withdrawal_yen,'monthly_withdrawal_yen');
+ const contribution=yen(monthly_contribution_yen,'monthly_contribution_yen');
+ if(typeof annual_expense_inflation!=='number'||!Number.isFinite(annual_expense_inflation)||
+    annual_expense_inflation< -0.5||annual_expense_inflation>1)
+    throw Error('annual_expense_inflation must be a decimal between -0.5 and 1');
+ const returns=validateMonthlyReturns(monthly_returns,provenance);
+ const first=returns[0].serial,last=returns.at(-1).serial;
+ const pensions=parsePensions(pension_schedule,first,last);
+ const events=parseEvents(one_time_events,new Set(returns.map(x=>x.month)));
+ let assets=initial,totalUnfunded=0,firstShortfall=null,shortfallMonths=0;
+ const rows=[];
+ for(let i=0;i<returns.length;i++){
+  const r=returns[i],yearFraction=i/12;
+  const living=safeRound(spending*Math.pow(1+annual_expense_inflation,yearFraction),'inflated living expense '+r.month);
+  let pension=0;
+  for(const p of pensions)if(r.serial>=p.from&&r.serial<=p.to)pension=safeAdd(pension,p.amount,'pensions '+r.month);
+  const event=events.get(r.month)||{income:0,expense:0};
+  const available=safeAdd(safeAdd(safeAdd(assets,contribution,'assets plus contribution '+r.month),pension,'pension '+r.month),event.income,'event income '+r.month);
+  const due=safeAdd(living,event.expense,'total expense '+r.month);
+  const paid=Math.min(available,due),unfunded=due-paid,invested=available-paid;
+  const closing=safeRound(invested*(1+r.rate),'closing '+r.month);
+  if(unfunded>0){shortfallMonths++;if(firstShortfall===null)firstShortfall=r.month;}
+  totalUnfunded=safeAdd(totalUnfunded,unfunded,'total unfunded');
+  rows.push({month:r.month,opening_yen:assets,contribution_yen:contribution,
+    pension_income_yen:pension,one_time_income_yen:event.income,one_time_expense_yen:event.expense,
+    living_expense_yen:living,requested_withdrawal_yen:due,paid_withdrawal_yen:paid,
+    unfunded_yen:unfunded,invested_before_return_yen:invested,monthly_return:r.rate,
+    investment_gain_yen:closing-invested,closing_yen:closing});
+  assets=closing;
+ }
+ return {status:shortfallMonths?'SHORTFALL':'FUNDED',provenance,publication_approved:false,
+   timing:'MONTH_START_CONTRIBUTION_PENSION_EVENTS_THEN_EXPENSE_THEN_RETURN',
+   inflation_model:'ASSUMED_COMPOUND_ANNUAL_RATE_APPLIED_TO_LIVING_EXPENSE_ONLY',
+   horizon_months:rows.length,first_shortfall_month:firstShortfall,shortfall_months:shortfallMonths,
+   total_unfunded_yen:totalUnfunded,ending_assets_yen:assets,rows};
+}
+module.exports={simulateLifecycleCashflow};
+
+})(__modules["./lifecycle-core.cjs"],__modules["./lifecycle-core.cjs"].exports,__require);
+__modules["./rolling-lifecycle.cjs"]={exports:{}};
+(function(module,exports,require){
+'use strict';
+/** Historical observed-return rolling windows with synthetic relative-month life plans.
+ * Research only. No fetching, browser, rights approval or hidden backfill.
+ */
+const {validateMonthlyReturns,formatMonth}=require('./cashflow-core.cjs');
+const {simulateLifecycleCashflow}=require('./lifecycle-core.cjs');
+const MAX_MONTHS=1200,MAX_PENSIONS=20,MAX_EVENTS=500;
+const INPUT_KEYS=new Set(['monthly_returns','horizon_months','initial_assets_yen',
+  'monthly_withdrawal_yen','monthly_contribution_yen','annual_expense_inflation',
+  'relative_pension_schedule','relative_one_time_events','market_mode']);
+const PENSION_KEYS=new Set(['id','start_offset_months','end_offset_months','monthly_yen']);
+const EVENT_KEYS=new Set(['id','offset_months','kind','amount_yen']);
+function nonnegativeInt(n,label){
+  if(!Number.isSafeInteger(n)||n<0)throw Error(label+' must be a nonnegative safe integer');
+  return n;
+}
+function assertRecord(value,label,allowedKeys){
+  if(!value||typeof value!=='object'||Array.isArray(value))throw Error('Invalid '+label);
+  for(const k of Object.keys(value))if(!allowedKeys.has(k))throw Error('Unsupported '+label+' field: '+k);
+}
+function validId(value,label){
+  if(typeof value!=='string'||!(/^[A-Za-z][A-Za-z0-9_-]{0,39}$/).test(value)||
+    ['constructor','prototype','__proto__'].includes(value))throw Error('Invalid '+label);
+  return value;
+}
+function planSchedules(input,horizon){
+  const pensions=input.relative_pension_schedule??[];
+  const events=input.relative_one_time_events??[];
+  if(!Array.isArray(pensions)||pensions.length>MAX_PENSIONS)throw Error('Invalid relative_pension_schedule');
+  if(!Array.isArray(events)||events.length>MAX_EVENTS)throw Error('Invalid relative_one_time_events');
+  const pensionIds=new Set(),eventIds=new Set();
+  const pp=pensions.map((p,i)=>{
+    assertRecord(p,'pension '+i,PENSION_KEYS);
+    validId(p.id,'pension id');
+    if(pensionIds.has(p.id))throw Error('Duplicate pension id '+p.id);
+    pensionIds.add(p.id);
+    const start=nonnegativeInt(p.start_offset_months,'start_offset_months');
+    if(start>=horizon)throw Error('Pension starts outside rolling horizon');
+    const end=p.end_offset_months===undefined?undefined:nonnegativeInt(p.end_offset_months,'end_offset_months');
+    if(end!==undefined&&(end<start||end>=horizon))throw Error('Pension end outside rolling horizon or before start');
+    return {id:p.id,start,end,monthly_yen:nonnegativeInt(p.monthly_yen,'monthly_yen')};
+  });
+  const ee=events.map((e,i)=>{
+    assertRecord(e,'event '+i,EVENT_KEYS);
+    validId(e.id,'event id');if(eventIds.has(e.id))throw Error('Duplicate event id '+e.id);
+    eventIds.add(e.id);
+    const at=nonnegativeInt(e.offset_months,'offset_months');
+    if(at>=horizon)throw Error('Event outside rolling horizon');
+    if(!['INCOME','EXPENSE'].includes(e.kind))throw Error('Invalid event kind');
+    return {id:e.id,at,kind:e.kind,amount_yen:nonnegativeInt(e.amount_yen,'amount_yen')};
+  });
+  return {pensions:pp,events:ee};
+}
+function shiftedPlan(plan,firstSerial){
+  return {
+    pension_schedule:plan.pensions.map(p=>({id:p.id,start_month:formatMonth(firstSerial+p.start),
+      ...(p.end===undefined?{}:{end_month:formatMonth(firstSerial+p.end)}),monthly_yen:p.monthly_yen})),
+    one_time_events:plan.events.map(e=>({id:e.id,month:formatMonth(firstSerial+e.at),
+      kind:e.kind,amount_yen:e.amount_yen}))
+  };
+}
+function runRollingLifecycleCashflow(input){
+  assertRecord(input,'rolling lifecycle input',INPUT_KEYS);
+  const horizon=nonnegativeInt(input.horizon_months,'horizon_months');
+  if(horizon<1||horizon>MAX_MONTHS)throw Error('horizon_months must be 1..1200');
+  const marketMode=input.market_mode??'OBSERVED';
+  if(!['OBSERVED','SYNTHETIC_DEMO'].includes(marketMode))throw Error('Unsupported market_mode');
+  const provenance=marketMode==='OBSERVED'?'OBSERVED':'SYNTHETIC';
+  const records=validateMonthlyReturns(input.monthly_returns,provenance,{allowGaps:true});
+  const plan=planSchedules(input,horizon);
+  // Validate financial fields and inflation even when no complete window exists.
+  nonnegativeInt(input.initial_assets_yen,'initial_assets_yen');
+  nonnegativeInt(input.monthly_withdrawal_yen,'monthly_withdrawal_yen');
+  nonnegativeInt(input.monthly_contribution_yen??0,'monthly_contribution_yen');
+  const inflation=input.annual_expense_inflation??0;
+  if(typeof inflation!=='number'||!Number.isFinite(inflation)||inflation< -0.5||inflation>1)
+    throw Error('Invalid annual_expense_inflation');
+  const cases=[];let gaps=0,blockStart=0;
+  function evaluateBlock(from,to){
+    for(let i=from;i+horizon<=to;i++){
+      const selected=input.monthly_returns.slice(i,i+horizon);
+      const mapped=shiftedPlan(plan,records[i].serial);
+      const result=simulateLifecycleCashflow({initial_assets_yen:input.initial_assets_yen,
+        monthly_withdrawal_yen:input.monthly_withdrawal_yen,
+        monthly_contribution_yen:input.monthly_contribution_yen??0,
+        annual_expense_inflation:inflation,provenance,monthly_returns:selected,...mapped});
+      const firstShortfallOffset=result.rows.findIndex(r=>r.unfunded_yen>0);
+      cases.push({market_start_month:selected[0].month,market_end_month:selected.at(-1).month,
+        status:result.status,ending_assets_yen:result.ending_assets_yen,
+        total_unfunded_yen:result.total_unfunded_yen,
+        first_shortfall_offset_months:firstShortfallOffset<0?null:firstShortfallOffset,
+        shortfall_months:result.shortfall_months});
+    }
+  }
+  for(let i=1;i<=records.length;i++){
+    if(i<records.length&&records[i].serial===records[i-1].serial+1)continue;
+    evaluateBlock(blockStart,i);
+    if(i<records.length)gaps++;
+    blockStart=i;
+  }
+  const theoretical=Math.max(0,records.at(-1).serial-records[0].serial-horizon+2);
+  const complete=cases.length;
+  const funded=cases.filter(x=>x.status==='FUNDED').length;
+  return {status:complete?'EVALUATED':'INSUFFICIENT_CONTIGUOUS_HISTORY',
+    publication_approved:false, market_mode:marketMode,market_provenance:provenance,
+    life_plan_provenance:'SYNTHETIC_ASSUMPTIONS',
+    methodology:marketMode==='OBSERVED'?'HISTORICAL_MONTHLY_RETURNS_WITH_RELATIVE_SYNTHETIC_LIFECYCLE':'DETERMINISTIC_SYNTHETIC_DEMO_NO_OBSERVED_MARKET_DATA',
+    future_probability_claim:false,
+    notice:marketMode==='OBSERVED'?'Observed historical paths combined with hypothetical life plans; overlapping starts are not independent trials or future probabilities.':'Entire market path and life plans are synthetic illustrations. These counts are not observed histories or forecasts.',
+    horizon_months:horizon,first_observed_month:records[0].month,last_observed_month:records.at(-1).month,
+    observed_return_months:records.length, gap_boundaries:gaps,
+    theoretical_windows_if_no_gaps:theoretical,complete_windows:complete,
+    excluded_windows_due_to_missing_months:theoretical-complete,
+    funded_windows:funded,shortfall_windows:complete-funded,
+    historical_funded_fraction:marketMode==='OBSERVED'&&complete?funded/complete:null,
+    demo_funded_fraction:marketMode==='SYNTHETIC_DEMO'&&complete?funded/complete:null,
+    relative_event_semantics:'OFFSET_ZERO_IS_THE_FIRST_MONTH_OF_EACH_WINDOW',windows:cases};
+}
+module.exports={runRollingLifecycleCashflow};
+
+})(__modules["./rolling-lifecycle.cjs"],__modules["./rolling-lifecycle.cjs"].exports,__require);
+__modules["./rolling-plan-compare.cjs"]={exports:{}};
+(function(module,exports,require){
+'use strict';
+/** Comparison of life plans under identical observed historical return windows. */
+const {runRollingLifecycleCashflow}=require('./rolling-lifecycle.cjs');
+const MAX_PLANS=8;
+const ALLOWED_PLAN=new Set(['id','label','initial_assets_yen','monthly_withdrawal_yen',
+  'monthly_contribution_yen','annual_expense_inflation','relative_pension_schedule','relative_one_time_events']);
+function safeDelta(a,b,label){
+  const diff=a-b;if(!Number.isSafeInteger(diff))throw Error('Unsafe comparison delta '+label);return diff;
+}
+function compareRollingLifecyclePlans({monthly_returns,horizon_months,plans,baseline_id,market_mode='OBSERVED'}={}){
+  if(!Array.isArray(plans)||plans.length<2||plans.length>MAX_PLANS)
+    throw Error('plans must contain 2..8 distinct plans');
+  const unique=new Set();
+  const runs=plans.map((plan,i)=>{
+    if(!plan||typeof plan!=='object'||Array.isArray(plan))throw Error('Invalid plan '+i);
+    if(typeof plan.id!=='string'||!(/^[A-Za-z][A-Za-z0-9_-]{0,39}$/).test(plan.id)||
+      ['constructor','prototype','__proto__'].includes(plan.id))throw Error('Invalid plan id');
+    if(unique.has(plan.id))throw Error('Duplicate plan id '+plan.id);unique.add(plan.id);
+    if(plan.label!==undefined&&(typeof plan.label!=='string'||plan.label.length>80))throw Error('Invalid plan label');
+    for(const k of Object.keys(plan))if(!ALLOWED_PLAN.has(k))throw Error('Unsupported plan field '+k);
+    const {id,label,...terms}=plan;
+    return {id,label:label??id,result:runRollingLifecycleCashflow({monthly_returns,horizon_months,market_mode,...terms})};
+  });
+  const baseline=baseline_id===undefined?runs[0]:runs.find(x=>x.id===baseline_id);
+  if(!baseline)throw Error('Unknown baseline_id');
+  const first=baseline.result;
+  for(const r of runs){
+    if(r.result.complete_windows!==first.complete_windows||r.result.windows.some((w,i)=>
+      w.market_start_month!==first.windows[i].market_start_month||w.market_end_month!==first.windows[i].market_end_month))
+      throw Error('Rolling windows were not aligned');
+  }
+  return {
+    status:first.status,publication_approved:false,future_probability_claim:false,
+    market_mode,market_provenance:market_mode==='OBSERVED'?'OBSERVED':'SYNTHETIC',life_plan_provenance:'SYNTHETIC_ASSUMPTIONS',
+    notice:market_mode==='OBSERVED'?'Overlapping observed historical comparisons are not independent forecasts or estimates of future probabilities.':'Synthetic market paths and life plans are illustrations only. The fraction is NOT historical or predictive.',
+    baseline_id:baseline.id,horizon_months:first.horizon_months,
+    complete_windows:first.complete_windows,excluded_windows_due_to_missing_months:first.excluded_windows_due_to_missing_months,
+    summary:runs.map(x=>({id:x.id,label:x.label,funded_windows:x.result.funded_windows,
+      shortfall_windows:x.result.shortfall_windows,historical_funded_fraction:x.result.historical_funded_fraction,
+      demo_funded_fraction:x.result.demo_funded_fraction,
+      delta_funded_windows_vs_baseline:x.result.funded_windows-first.funded_windows})),
+    windows:first.windows.map((w,i)=>({market_start_month:w.market_start_month,market_end_month:w.market_end_month,
+      scenarios:runs.map(x=>({id:x.id,status:x.result.windows[i].status,
+        ending_assets_yen:x.result.windows[i].ending_assets_yen,
+        total_unfunded_yen:x.result.windows[i].total_unfunded_yen,
+        first_shortfall_offset_months:x.result.windows[i].first_shortfall_offset_months,
+        delta_ending_assets_vs_baseline_yen:safeDelta(x.result.windows[i].ending_assets_yen,
+          baseline.result.windows[i].ending_assets_yen,x.id)}))}))
+  };
+}
+module.exports={compareRollingLifecyclePlans};
+
+})(__modules["./rolling-plan-compare.cjs"],__modules["./rolling-plan-compare.cjs"].exports,__require);
+
+(() => {
+'use strict';
+const {makeSyntheticFlatPath,monthSerial}=__require('./cashflow-core.cjs');
+const {compareRollingLifecyclePlans}=__require('./rolling-plan-compare.cjs');
+const $=id=>document.getElementById(id);
+const ids=['assets','expense','years','market','gap','alt-expense','inflation','pension-years','pension','event','event-years'];
+const numberFmt=new Intl.NumberFormat('ja-JP',{maximumFractionDigits:1});
+let current=null,selected=0,pageIndex=0;
+const PAGE_SIZE=25;
+function money(v){return numberFmt.format(v/10000)+'万円';}
+function val(id,min,max,{integer=false}={}){
+  const el=$(id),raw=el.value.trim(),n=Number(raw);
+  if(raw===''||!Number.isFinite(n)||n<min||n>max||(integer&&!Number.isInteger(n)))
+    throw Error('入力値を確認してください：'+el.closest('label').textContent.trim());
+  return n;
+}
+function yenFromWan(n){
+  const v=n*10000;
+  if(!Number.isSafeInteger(v))throw Error('金額を整数円として扱えません');
+  return v;
+}
+function hypotheticalPath(preset,addGap){
+  const path=makeSyntheticFlatPath({start_month:'2027-01',months:420,monthly_return:0});
+  for(let i=0;i<path.length;i++){
+    let r=0;
+    if(preset==='calm')r=0.002+0.006*Math.sin(i/8)+0.003*Math.cos(i/23);
+    else if(preset==='normal')r=0.004+0.024*Math.sin(i/7)+0.013*Math.cos(i/19)-(i===83||i===255?0.12:0);
+    else if(preset==='shock')r=0.004+0.017*Math.sin(i/6)+0.009*Math.cos(i/17)-(i===83?0.34:i===190?0.23:i===294?0.19:0);
+    else throw Error('未対応の仮想経路です');
+    path[i].monthly_return=Number(r.toFixed(9));
+  }
+  // A simulated missing observation. Do not forward-fill or replace it with zero.
+  return addGap?path.filter(x=>x.month!=='2041-01'):path;
+}
+function readParameters(){
+  const assets=yenFromWan(val('assets',0,100000)),expense=yenFromWan(val('expense',0,1000)),
+    altExpense=yenFromWan(val('alt-expense',0,1000)),inflation=val('inflation',-5,15)/100,
+    years=val('years',10,20,{integer:true}),pensionYears=val('pension-years',0,19,{integer:true}),
+    pension=yenFromWan(val('pension',0,1000)),eventYears=val('event-years',0,19,{integer:true}),
+    event=yenFromWan(val('event',0,100000));
+  if(pension>0&&pensionYears>=years)throw Error('年金開始は対象期間内に設定してください');
+  if(event>0&&eventYears>=years)throw Error('臨時支出の発生年は対象期間内に設定してください');
+  const basic={id:'basic',label:'基本（生活費固定）',initial_assets_yen:assets,monthly_withdrawal_yen:expense};
+  const alternate={id:'alternate',label:'比較（年金・物価・臨時支出）',initial_assets_yen:assets,
+    monthly_withdrawal_yen:altExpense,annual_expense_inflation:inflation,
+    relative_pension_schedule:pension?[{id:'pension',start_offset_months:pensionYears*12,monthly_yen:pension}]:[],
+    relative_one_time_events:event?[{id:'event',offset_months:eventYears*12,kind:'EXPENSE',amount_yen:event}]:[]};
+  return {monthly_returns:hypotheticalPath($('market').value,$('gap').checked),
+    horizon_months:years*12,plans:[basic,alternate],baseline_id:'basic',market_mode:'SYNTHETIC_DEMO'};
+}
+function plotColor(id){return id==='basic'?'#1f68b5':'#d17a3c';}
+function svgElement(tag,attrs){const e=document.createElementNS('http://www.w3.org/2000/svg',tag);for(const [k,v] of Object.entries(attrs))e.setAttribute(k,String(v));return e;}
+function svgText(svg,x,y,value,anchor='start'){
+  const t=svgElement('text',{x,y,fill:'#6a7c91','font-size':12,'text-anchor':anchor});t.textContent=value;svg.append(t);
+}
+function renderGraph(data){
+  const svg=$('plot');svg.replaceChildren();
+  const W=850,H=315,L=81,R=23,T=17,B=43,innerW=W-L-R,innerH=H-T-B;
+  if(data.length===0){svgText(svg,40,50,'計算に十分な連続データがありません');return;}
+  const max=Math.max(1,...data.flatMap(w=>w.scenarios.map(s=>s.ending_assets_yen)))*1.06;
+  const X=i=>L+(data.length===1?0:i/(data.length-1)*innerW),Y=v=>T+innerH-v/max*innerH;
+  for(let tick=0;tick<=4;tick++){
+    const py=Y(max*tick/4);
+    svg.append(svgElement('line',{x1:L,y1:py,x2:W-R,y2:py,stroke:'#e2e9f2','stroke-width':1}));
+    svgText(svg,L-9,py+4,numberFmt.format(max*tick/4/10000)+'万','end');
+  }
+  for(let tick=0;tick<=4;tick++){
+    const j=Math.min(data.length-1,Math.round((data.length-1)*tick/4));
+    svgText(svg,X(j),H-14,data[j].market_start_month,'middle');
+  }
+  for(let scenario=0;scenario<2;scenario++){
+    let d='';
+    for(let i=0;i<data.length;i++){
+      const previous=i>0?monthSerial(data[i-1].market_start_month):null;
+      const contiguous=previous!==null&&monthSerial(data[i].market_start_month)===previous+1;
+      d+=(contiguous?' L ':' M ')+X(i).toFixed(2)+' '+Y(data[i].scenarios[scenario].ending_assets_yen).toFixed(2);
+    }
+    svg.append(svgElement('path',{d,fill:'none',stroke:plotColor(scenario===0?'basic':'alternate'),'stroke-width':2.5,'stroke-linejoin':'round'}));
+  }
+  for(let k=0;k<2;k++){
+    const v=data[selected].scenarios[k].ending_assets_yen;
+    svg.append(svgElement('circle',{cx:X(selected),cy:Y(v),r:5,fill:plotColor(k===0?'basic':'alternate'),stroke:'#fff','stroke-width':2}));
+  }
+}
+function completionText(s){return s.status==='FUNDED'?'充足':'不足あり';}
+function drawSelected(){
+  if(!current||!current.windows.length)return;
+  const w=current.windows[selected],a=w.scenarios[0],b=w.scenarios[1];
+  $('selected-month').textContent='仮想開始：'+w.market_start_month+'／仮想最終：'+w.market_end_month;
+  $('selected-basic').textContent=money(a.ending_assets_yen);
+  $('selected-alt').textContent=money(b.ending_assets_yen);
+  $('selected-basic-detail').textContent=completionText(a)+'／不足額：'+money(a.total_unfunded_yen)+'／初回不足：'+(a.first_shortfall_offset_months===null?'期間内なし':a.first_shortfall_offset_months+'か月後');
+  $('selected-alt-detail').textContent=completionText(b)+'／不足額：'+money(b.total_unfunded_yen)+'／初回不足：'+(b.first_shortfall_offset_months===null?'期間内なし':b.first_shortfall_offset_months+'か月後');
+  $('window-rows').querySelectorAll('tr').forEach((tr,i)=>{
+    const active=(pageIndex*PAGE_SIZE+i)===selected;
+    tr.classList.toggle('selected',active);
+    tr.setAttribute('aria-selected',active?'true':'false');
+  });
+  renderGraph(current.windows);
+}
+function render(result){
+  if(result.market_mode!=='SYNTHETIC_DEMO'||result.market_provenance!=='SYNTHETIC'||result.summary.some(s=>s.historical_funded_fraction!==null))
+    throw Error('仮想デモ専用のデータ分離チェックに失敗しました');
+  current=result;selected=0;pageIndex=0;
+  $('stat-windows').textContent=numberFmt.format(result.complete_windows)+'件';
+  $('stat-excluded').textContent=numberFmt.format(result.excluded_windows_due_to_missing_months)+'件';
+  $('stat-period').textContent='各'+result.horizon_months/12+'年／仮想経路420か月';
+  for(const [label,s] of [['basic',result.summary[0]],['alt',result.summary[1]]]){
+    $('stat-'+label).textContent=s.funded_windows+' / '+result.complete_windows;
+    $('stat-'+label+'-ratio').textContent=s.demo_funded_fraction===null?'算出不可':'仮想例内の割合：'+(100*s.demo_funded_fraction).toFixed(1)+'%';
+  }
+  $('overview').textContent='基本と比較は同じ仮想市場経路を使用。除外された'+result.excluded_windows_due_to_missing_months+'件は不足の分母に含めません。実測成功率・予測確率ではありません。';
+  drawTable();
+  if(result.windows.length)drawSelected();else renderGraph([]);
+  $('results').classList.remove('stale');
+  $('error').hidden=true;
+  $('status').textContent='再計算済み（全系列は仮想データ、保存・外部通信なし）';
+}
+function drawTable(){
+ const tbody=$('window-rows');tbody.replaceChildren();if(!current)return;
+ const result=current;
+ const total=result.windows.length,pages=Math.max(1,Math.ceil(total/PAGE_SIZE));
+ pageIndex=Math.min(pageIndex,pages-1);
+ const start=pageIndex*PAGE_SIZE,end=Math.min(total,start+PAGE_SIZE);
+ $('page-count').textContent=total?`${start+1}–${end}件 / 全${total}件（${pageIndex+1}/${pages}ページ）`:'対象の開始月がありません';
+ $('prev-page').disabled=pageIndex===0;
+ $('next-page').disabled=pageIndex>=pages-1;
+ if(!total){const tr=document.createElement('tr'),td=document.createElement('td');td.colSpan=6;td.textContent='連続した検証期間が足りません';tr.append(td);tbody.append(tr);return;}
+ result.windows.slice(start,end).forEach((w,offset)=>{
+   const i=start+offset,tr=document.createElement('tr');tr.tabIndex=0;
+   const a=w.scenarios[0],b=w.scenarios[1];
+   const cells=[w.market_start_month,money(a.ending_assets_yen),money(b.ending_assets_yen),money(b.delta_ending_assets_vs_baseline_yen),completionText(a),completionText(b)];
+   cells.forEach((value,j)=>{const td=document.createElement('td');td.textContent=value;if(j===4||j===5)td.className=value==='充足'?'good':'bad';tr.append(td);});
+   tr.addEventListener('click',()=>{selected=i;drawSelected();});
+   tr.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();selected=i;drawSelected();}});
+   tbody.append(tr);
+ });
+}
+$('prev-page').addEventListener('click',()=>{if(pageIndex>0){pageIndex--;selected=pageIndex*PAGE_SIZE;drawTable();drawSelected();}});
+$('next-page').addEventListener('click',()=>{if(current&&pageIndex<Math.ceil(current.windows.length/PAGE_SIZE)-1){pageIndex++;selected=pageIndex*PAGE_SIZE;drawTable();drawSelected();}});
+function compute(e){if(e)e.preventDefault();try{render(compareRollingLifecyclePlans(readParameters()));}
+  catch(err){$('error').hidden=false;$('error').textContent='計算保留：'+err.message;
+    $('status').textContent='入力条件を修正して再計算してください';$('results').classList.add('stale');}}
+$('analysis-form').addEventListener('submit',compute);
+$('analysis-form').addEventListener('input',()=>{if(current){$('results').classList.add('stale');$('status').textContent='条件を変更しました。再計算してください';}});
+$('analysis-form').addEventListener('change',()=>{if(current){$('results').classList.add('stale');$('status').textContent='条件を変更しました。再計算してください';}});
+$('reset').addEventListener('click',()=>{for(const id of ids){const e=$(id);if(e.type==='checkbox')e.checked=e.defaultChecked;
+  else if(e.tagName==='SELECT'){const defaultOption=[...e.options].find(o=>o.defaultSelected);e.value=(defaultOption??e.options[0]).value;}
+  else e.value=e.defaultValue;}compute();});
+compute();
+})();
+
+</script>
+</body></html>
