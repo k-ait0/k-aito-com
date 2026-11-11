@@ -1,0 +1,265 @@
+{
+  "schema": "A05-D165-SEMANTIC-COVERAGE-RESIDUAL-CAPACITY-0.1",
+  "date": "2026-11-11",
+  "status": "RESEARCH_CAPACITY_MODEL_NOT_APPROVED",
+  "source_sha": {
+    "research/a05/d164-prior-28-semantic-dedup-and-gap-recalculation.json": "da800cf9c12fb11e89e53ed4f8128f511c74f736"
+  },
+  "user_rule": {
+    "max_similar_per_semantic_family": 2,
+    "exact_duplicate_allowed": 0
+  },
+  "purpose": "Distinguish the 32 unresolved wording slots from the at-least 11 genuinely missing semantic families under an optimistic 16-question shortlist. These are necessary numerical capacities, not proof the new 11 family ideas are valid.",
+  "axes": {
+    "A": {
+      "current_shortlist": 4,
+      "current_semantic_family_hypotheses": 4,
+      "min_distinct_real_families_required_for_12": 6,
+      "minimum_additional_families_if_current_are_real": 2,
+      "additional_second_wordings_within_current_families_if_every_current_is_real": 4,
+      "capacity_from_min_new_families": 4,
+      "minimum_unresolved_bank_slots_assuming_all_current_pass": 8,
+      "consistency": true
+    },
+    "B": {
+      "current_shortlist": 5,
+      "current_semantic_family_hypotheses": 3,
+      "min_distinct_real_families_required_for_12": 6,
+      "minimum_additional_families_if_current_are_real": 3,
+      "additional_second_wordings_within_current_families_if_every_current_is_real": 1,
+      "capacity_from_min_new_families": 6,
+      "minimum_unresolved_bank_slots_assuming_all_current_pass": 7,
+      "consistency": true
+    },
+    "C": {
+      "current_shortlist": 3,
+      "current_semantic_family_hypotheses": 3,
+      "min_distinct_real_families_required_for_12": 6,
+      "minimum_additional_families_if_current_are_real": 3,
+      "additional_second_wordings_within_current_families_if_every_current_is_real": 3,
+      "capacity_from_min_new_families": 6,
+      "minimum_unresolved_bank_slots_assuming_all_current_pass": 9,
+      "consistency": true
+    },
+    "D": {
+      "current_shortlist": 4,
+      "current_semantic_family_hypotheses": 3,
+      "min_distinct_real_families_required_for_12": 6,
+      "minimum_additional_families_if_current_are_real": 3,
+      "additional_second_wordings_within_current_families_if_every_current_is_real": 2,
+      "capacity_from_min_new_families": 6,
+      "minimum_unresolved_bank_slots_assuming_all_current_pass": 8,
+      "consistency": true
+    }
+  },
+  "totals": {
+    "minimum_additional_families_if_current_are_real": 11,
+    "additional_second_wordings_within_current_families_if_every_current_is_real": 10,
+    "capacity_from_min_new_families": 22,
+    "minimum_unresolved_bank_slots_assuming_all_current_pass": 32
+  },
+  "eleven_exploration_hypotheses": [
+    {
+      "axis": "A",
+      "id": "A-G1",
+      "title": "住空間内部の役割の継続・再編",
+      "comparison_family": "A_RESIDENCE",
+      "proposed_observation": "同じ住居の中で、日常生活の空間の役割を保つか組み直すか",
+      "near_ids": [
+        "A01",
+        "A04"
+      ],
+      "risk": "住居の広さ・整理整頓・生活の用事の違い",
+      "verdict": "HIGH_OVERLAP",
+      "independent_semantic_family_established": false,
+      "scored_candidate_approved": false,
+      "source": "editorial hypothesis only; no new bank slot",
+      "on_rejection": "Do not rebrand or count a paraphrase as a new semantic family"
+    },
+    {
+      "axis": "A",
+      "id": "A-G2",
+      "title": "生活の節目での基盤再構築",
+      "comparison_family": "A_DAILY_PROCEDURE",
+      "proposed_observation": "生活が一区切りした際に従来の生活の基盤を引き継ぐか更新するか",
+      "near_ids": [
+        "A04",
+        "A-FU05",
+        "A-BK13"
+      ],
+      "risk": "時間経過条件だけの違い、変更の正当化",
+      "verdict": "HIGH_OVERLAP",
+      "independent_semantic_family_established": false,
+      "scored_candidate_approved": false,
+      "source": "editorial hypothesis only; no new bank slot",
+      "on_rejection": "Do not rebrand or count a paraphrase as a new semantic family"
+    },
+    {
+      "axis": "B",
+      "id": "B-G1",
+      "title": "意思決定への他者参加と自己決定",
+      "comparison_family": "B_PERSONAL_DECISION",
+      "proposed_observation": "相談する希望と最終判断の優先を分けてみる",
+      "near_ids": [
+        "B-FU01",
+        "B-FU11"
+      ],
+      "risk": "相談と自律は両立する。現行Bの二極得点には不適",
+      "verdict": "RESEARCH_NONSCORING",
+      "independent_semantic_family_established": false,
+      "scored_candidate_approved": false,
+      "source": "editorial hypothesis only; no new bank slot",
+      "on_rejection": "Do not rebrand or count a paraphrase as a new semantic family"
+    },
+    {
+      "axis": "B",
+      "id": "B-G2",
+      "title": "関係者への影響を考慮した個人選択",
+      "comparison_family": "B_PERSONAL_DECISION",
+      "proposed_observation": "本人が選択権を持つが関係者にも影響がある場面",
+      "near_ids": [
+        "B06",
+        "B-FU01"
+      ],
+      "risk": "責任・実害・関係義務が価値より回答を決める",
+      "verdict": "HIGH_OVERLAP",
+      "independent_semantic_family_established": false,
+      "scored_candidate_approved": false,
+      "source": "editorial hypothesis only; no new bank slot",
+      "on_rejection": "Do not rebrand or count a paraphrase as a new semantic family"
+    },
+    {
+      "axis": "B",
+      "id": "B-G3",
+      "title": "共同の成果配分と意思決定",
+      "comparison_family": "B_COLLECTIVE_FINAL",
+      "proposed_observation": "共同行動の成果をどう分けるか決定する際の優先を聞く",
+      "near_ids": [
+        "B01",
+        "B03",
+        "B05"
+      ],
+      "risk": "分配の公平性は別の道徳価値。合意の好みと混同",
+      "verdict": "OUT_OF_CONSTRUCT_RISK",
+      "independent_semantic_family_established": false,
+      "scored_candidate_approved": false,
+      "source": "editorial hypothesis only; no new bank slot",
+      "on_rejection": "Do not rebrand or count a paraphrase as a new semantic family"
+    },
+    {
+      "axis": "C",
+      "id": "C-G1",
+      "title": "自由裁量予算の現在と将来への配分",
+      "comparison_family": "C_ACTIVITY_SELECTION",
+      "proposed_observation": "必需費を除いた同額の予算を将来目標か現在体験に配分する",
+      "near_ids": [
+        "C01",
+        "C03",
+        "C-BK13"
+      ],
+      "risk": "所得水準・E軸・将来目標の有無の交絡",
+      "verdict": "HIGH_CONFOUND",
+      "independent_semantic_family_established": false,
+      "scored_candidate_approved": false,
+      "source": "editorial hypothesis only; no new bank slot",
+      "on_rejection": "Do not rebrand or count a paraphrase as a new semantic family"
+    },
+    {
+      "axis": "C",
+      "id": "C-G2",
+      "title": "両極の機会希少性が同じ場合の価値選択",
+      "comparison_family": "C_ACTIVITY_SELECTION",
+      "proposed_observation": "どちらの選択肢も今週限り／翌週も可能という条件を比較する",
+      "near_ids": [
+        "C-FU14",
+        "C-FU15"
+      ],
+      "risk": "同一人対照研究であり単独採点問に転用不可",
+      "verdict": "RESEARCH_NONSCORING",
+      "independent_semantic_family_established": false,
+      "scored_candidate_approved": false,
+      "source": "editorial hypothesis only; no new bank slot",
+      "on_rejection": "Do not rebrand or count a paraphrase as a new semantic family"
+    },
+    {
+      "axis": "C",
+      "id": "C-G3",
+      "title": "現在・将来の成果タイミングの感度",
+      "comparison_family": "C_REPEATED_TIME",
+      "proposed_observation": "活動内容や利益額を統制して、受け取る時点を変えた場合の選択を見る",
+      "near_ids": [
+        "C01",
+        "C05",
+        "C04"
+      ],
+      "risk": "遅延割引・確実性・金融選好を測りC軸と一致しない場合",
+      "verdict": "HIGH_CONFOUND",
+      "independent_semantic_family_established": false,
+      "scored_candidate_approved": false,
+      "source": "editorial hypothesis only; no new bank slot",
+      "on_rejection": "Do not rebrand or count a paraphrase as a new semantic family"
+    },
+    {
+      "axis": "D",
+      "id": "D-G1",
+      "title": "一分野の内側にある隣接テーマの幅と深さ",
+      "comparison_family": "D_STUDY_BREADTH",
+      "proposed_observation": "同じ大分類の中で複数のサブテーマを広げるか一サブテーマを深めるか",
+      "near_ids": [
+        "D02",
+        "D05",
+        "D-FU12"
+      ],
+      "risk": "学問分野の粒度を変えただけでD02と同義になる",
+      "verdict": "HIGH_OVERLAP",
+      "independent_semantic_family_established": false,
+      "scored_candidate_approved": false,
+      "source": "editorial hypothesis only; no new bank slot",
+      "on_rejection": "Do not rebrand or count a paraphrase as a new semantic family"
+    },
+    {
+      "axis": "D",
+      "id": "D-G2",
+      "title": "問題理解のための関連領域の横断",
+      "comparison_family": "D_TOPIC_UNDERSTANDING",
+      "proposed_observation": "同じ問いの理解を深めるために複数の分野を学ぶか一つを深めるか",
+      "near_ids": [
+        "D-BK13",
+        "D05"
+      ],
+      "risk": "解法効率・知識や経験量の影響が強く、独立系統と未認定",
+      "verdict": "HIGH_OVERLAP",
+      "independent_semantic_family_established": false,
+      "scored_candidate_approved": false,
+      "source": "editorial hypothesis only; no new bank slot",
+      "on_rejection": "Do not rebrand or count a paraphrase as a new semantic family"
+    },
+    {
+      "axis": "D",
+      "id": "D-G3",
+      "title": "達成後に別分野へ進むか応用を深めるか",
+      "comparison_family": "D_HOBBY_BREADTH",
+      "proposed_observation": "学習目標の一区切りの後、別の分野を知るか同じ分野をさらに深めるか",
+      "near_ids": [
+        "D06",
+        "D-FU10",
+        "D-FU07"
+      ],
+      "risk": "探究途中との段階対照研究であり現時点で独立の得点問とはしない",
+      "verdict": "RESEARCH_NONSCORING",
+      "independent_semantic_family_established": false,
+      "scored_candidate_approved": false,
+      "source": "editorial hypothesis only; no new bank slot",
+      "on_rejection": "Do not rebrand or count a paraphrase as a new semantic family"
+    }
+  ],
+  "possible_outcomes": [
+    "Maintain fewer than 12 validated score-bank items and NO-GO on the revised launch until content quality passes",
+    "Develop and retest truly distinct contexts with balanced choices, without assuming ideas above are novel factors",
+    "If 12-item-bank with max-two proves untenable, escalate formal requirement conflict for owner decision; do not relax the user's cap autonomously"
+  ],
+  "caveat": "Some current 13 family hypotheses may themselves be near-duplicates or not valid. Eleven is a theoretical lower bound assuming all current group distinctions survive, not a claim that eleven valid new factors have been identified.",
+  "approved_families": 0,
+  "approved_scored_items": 0,
+  "production_changed": false
+}
