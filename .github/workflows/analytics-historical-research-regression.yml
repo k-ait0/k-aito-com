@@ -5,6 +5,11 @@ on:
       - analytics-historical-v0-1-20261110
     paths:
       - .github/workflows/analytics-historical-research-regression.yml
+      - scripts/test-analytics-commodity-rights.cjs
+      - research/analytics/source_registry.v0.2.json
+      - research/analytics/acquisition_status.v0.1.json
+      - research/analytics/worldbank_71_series_triage.v0.1.json
+      - research/analytics/commercial_data_rights_triage.v0.1.json
 permissions:
   contents: read
 jobs:
