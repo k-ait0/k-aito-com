@@ -33,8 +33,42 @@ assert.throws(()=>f.checkRows(csv.replaceAll('OBSERVED','PUBLISHED_LEVEL_STATUS_
 assert.equal(f.csvRows('x,y\n"a,b","c""d"\n')[1][0],'a,b');
 const sample=Array.from({length:14},(_,i)=>({month:f.addMonths('2000-01',i),fx:100,cpi:100,gold:100}));
 const ruin=f.simulateWithdrawal(sample,0,1,1000,100,'jpy',false);
-assert.equal(ruin.ruinMonth,'2000-11');assert.equal(ruin.remaining,0);assert.equal(ruin.total,1000);
+assert.equal(ruin.ruinMonth,'2000-12');assert.equal(ruin.depletedMonth,'2000-11');assert.equal(ruin.remaining,0);assert.equal(ruin.total,1000);assert.equal(ruin.totalShortfall,200);
 const survive=f.simulateWithdrawal(sample,0,1,3000,100,'jpy',false);
 assert.equal(survive.remaining,1800);assert.equal(survive.ruinMonth,null);assert(survive.covered);
 assert.equal(f.rollingWithdraw(sample,1,3000,100,'jpy',false).length,2);
-console.log('PASS personal-ui: CSP/network isolation, no remote assets, canonical parser, 669-month demo, 10/20/30y windows, withdrawal ledger, fail-on-gap/origin');
+
+const exact=f.simulateWithdrawal(sample,0,1,1200,100,'jpy',false);
+assert.equal(exact.covered,true);assert.equal(exact.totalShortfall,0);assert.equal(exact.depletedMonth,'2001-01');
+assert.equal(exact.ruinMonth,null);assert.equal(exact.remaining,0);
+const noDue=f.simulateWithdrawal(sample,0,1,1000,0,'jpy',false);
+assert.equal(noDue.covered,true);assert.equal(noDue.ruinMonth,null);assert.equal(noDue.totalShortfall,0);
+const begin=f.simulateWithdrawal(sample,0,1,1000,100,'jpy',false,'BEGINNING_OF_MONTH');
+assert.equal(begin.rows.length,13);assert.equal(begin.rows[0].withdrawn,100);
+assert.equal(begin.rows.at(-1).withdrawn,0);assert.equal(begin.total,1000);
+assert.equal(begin.depletedMonth,'2000-10');assert.equal(begin.firstShortfallMonth,'2000-11');
+assert.equal(begin.totalShortfall,200);
+assert.equal(f.rollingWithdraw(sample,1,1200,100,'jpy',false).every(x=>x.covered),true);
+assert.equal(f.rollingWithdraw(sample,1,1000,100,'jpy',false,'BEGINNING_OF_MONTH').every(x=>!x.covered),true);
+const infl=sample.map((r,i)=>({...r,cpi:100+i*10}));
+const ci=f.simulateWithdrawal(infl,0,1,100000,100,'jpy',true,'END_OF_MONTH');
+assert(Math.abs(ci.rows[1].due-110)<1e-9);
+const ciBegin=f.simulateWithdrawal(infl,0,1,100000,100,'jpy',true,'BEGINNING_OF_MONTH');
+assert.equal(ciBegin.rows[0].due,100);assert.equal(ciBegin.rows.at(-1).due,0);
+assert(ci.totalDue>ciBegin.totalDue);
+const growth=sample.map((r,i)=>({...r,fx:i===0?100:200}));
+const endG=f.simulateWithdrawal(growth,0,1,1000,100,'usd',false,'END_OF_MONTH');
+const beginG=f.simulateWithdrawal(growth,0,1,1000,100,'usd',false,'BEGINNING_OF_MONTH');
+assert.equal(endG.total,1200);assert.equal(endG.remaining,800);
+assert.equal(beginG.total,1200);assert.equal(beginG.remaining,600);
+for(const q of [endG,beginG,ci,ciBegin,exact,ruin]){
+  const delta=q.rows.reduce((n,x)=>n+x.investment_return,0);
+  assert(Math.abs(q.remaining-(q.rows[0].value+q.rows[0].withdrawn+delta-q.total))<1e-5);
+  assert(q.rows.every(x=>x.value>=0&&x.shortfall>=0&&x.withdrawn>=0));
+}
+const broken=sample.map(x=>({...x}));broken[2].month='2000-05';
+assert.throws(()=>f.simulateWithdrawal(broken,0,1,1000,100,'jpy',false),/連続/);
+assert.throws(()=>f.simulateWithdrawal(sample,0,1,1000,100,'jpy',false,'WEEKLY'),/時点/);
+assert.equal(f.rollingWithdraw(joined,30,30000000,100000,'jpy',false).length,309);
+
+console.log('PASS personal-ui: CSP/network isolation, no remote assets, canonical parser, 669-month demo, 10/20/30y windows, monthly BEGIN/END timing, exact zero/full pay, shortfalls, ledger identity, fail-on-gap/origin');
