@@ -18,7 +18,12 @@
     "verified_new_official_estat_raw_csv_files": 2,
     "verified_new_estat_distinct_series": 2,
     "verified_new_estat_monthly_observations": 1643,
-    "total_official_raw_responses_or_csv_files_verified": 9
+    "total_official_raw_responses_or_csv_files_verified": 11,
+    "verified_new_fed_raw_files": 1,
+    "verified_new_world_bank_raw_workbooks": 1,
+    "verified_fed_daily_observations": 7005,
+    "verified_fed_complete_monthly_observations": 322,
+    "verified_world_bank_gold_monthly_observations": 802
   },
   "datasets": [
     {
@@ -253,11 +258,114 @@
       },
       "private_only": true,
       "qa_report": "docs/ANALYTICS_JP_CPI_ESTAT_20261111_QA.md"
+    },
+    {
+      "dataset_id": "FED_H10_USDJPY_MONTH_END",
+      "source_id": "FED_BOARD",
+      "source_url": "https://www.federalreserve.gov/releases/h10/hist/dat00_ja.htm",
+      "source_lock_unchanged": true,
+      "raw_sha256": "a21e31f9d9c9e71f28a396a9a9d447b92347653e7e22446566ecaae05391f257",
+      "raw_bytes": 1133797,
+      "date_first": "2000-01-03",
+      "date_last": "2026-11-06",
+      "daily_rows": 7005,
+      "daily_ND": 273,
+      "daily_valid": 6732,
+      "complete_monthly_first": "2000-01",
+      "complete_monthly_last": "2026-10",
+      "complete_monthly_rows": 322,
+      "provisional_month_excluded": "2026-11",
+      "duplicate_months": 0,
+      "missing_months": [],
+      "observed_complete_30y_start_months": 0,
+      "series_kind": "FX_RATE",
+      "currency": "JPY",
+      "unit": "JPY_PER_USD",
+      "month_rule": "Last official valid daily observation in the month",
+      "canonical_csv_sha256": "da0f6244ab22c86d54a569f1288e82780d5d14d8c92f3f246b53f63126f880cd",
+      "origin": "OBSERVED",
+      "qa": "PASS_PINNED_2000_PLUS",
+      "full_1971_series_acquired": false,
+      "source_change_adr": "DRAFT_UNAPPROVED",
+      "artifact": {
+        "id": 13825223543,
+        "expires": "2026-11-18T03:21:56Z"
+      },
+      "license": {
+        "commercial_processing": "FED_BOARD_PUBLIC_DOMAIN_GENERAL_WITH_MARKED_EXCEPTIONS",
+        "public_site_display": "PENDING_PROJECT_APPROVAL",
+        "derived_delivery": "PENDING_PROJECT_APPROVAL",
+        "raw_csv_redistribution": "PENDING_PROJECT_APPROVAL"
+      },
+      "private_only": true,
+      "site_publication_approved": false,
+      "report": "docs/ANALYTICS_FED_WORLDBANK_20261111_QA.md",
+      "run": "https://github.com/k-ait0/k-aito-com/actions/runs/42952254081"
+    },
+    {
+      "dataset_id": "WORLD_BANK_PINK_GOLD_USD_TROY_OZ",
+      "source_id": "WORLD_BANK_PINK",
+      "source_url": "https://thedocs.worldbank.org/en/doc/74e8be41ceb20fa0da750cda2f6b9e4e-0050012026/related/CMO-Historical-Data-Monthly.xlsx",
+      "source_lock_unchanged": true,
+      "raw_sha256": "3c8d9d8dbb48342fdbf24777c39a8ce8964cc2fd0958f72f6779e6e4ad99cde2",
+      "raw_bytes": 587760,
+      "workbook_sheet": "Monthly Prices",
+      "column_name": "Gold",
+      "first_month": "1960-01",
+      "last_month": "2026-10",
+      "observed_monthly_rows": 802,
+      "missing_months": [],
+      "duplicate_months": 0,
+      "observed_complete_30y_start_months": 442,
+      "review_outliers": [
+        {
+          "month": "1974-01",
+          "change_pct": 20.5607
+        },
+        {
+          "month": "1980-01",
+          "change_pct": 48.3516
+        },
+        {
+          "month": "1982-09",
+          "change_pct": 20.0549
+        }
+      ],
+      "series_kind": "COMMODITY_SPOT",
+      "return_type": "NOT_INVESTABLE_TOTAL_RETURN",
+      "currency": "USD",
+      "unit": "USD_PER_TROY_OZ",
+      "methodology_change_from": "2025-06",
+      "raw_description_third_party_rights": "REVIEW_PENDING",
+      "canonical_csv_sha256": "937644f307880a639d4b6298e46763146871db03a9650ae7cf2def21831781a1",
+      "origin": "OBSERVED",
+      "qa": "PASS_OBSERVATIONS_WITH_HIGH_CHANGE_REVIEW",
+      "artifact": {
+        "id": 13825636423,
+        "expires": "2026-11-18T03:21:56Z"
+      },
+      "license": {
+        "commercial_processing": "PENDING_THIRD_PARTY_SERIES_RIGHTS_CHECK",
+        "public_site_display": "NOT_APPROVED",
+        "derived_delivery": "NOT_APPROVED",
+        "raw_csv_redistribution": "NOT_APPROVED"
+      },
+      "private_only": true,
+      "site_publication_approved": false,
+      "report": "docs/ANALYTICS_FED_WORLDBANK_20261111_QA.md",
+      "run": "https://github.com/k-ait0/k-aito-com/actions/runs/42952254081"
+    },
+    {
+      "dataset_id": "WORLD_BANK_PINK_NON_GOLD_COMMODITIES_RAW",
+      "source_id": "WORLD_BANK_PINK",
+      "parent_raw_sha256": "3c8d9d8dbb48342fdbf24777c39a8ce8964cc2fd0958f72f6779e6e4ad99cde2",
+      "raw_acquisition": "OFFICIAL_WORKBOOK_ACQUIRED_PRIVATE",
+      "non_gold_rows_qa": "NOT_DONE",
+      "series_breaks_and_spot_vs_futures": "VERIFY_PER_COMMODITY",
+      "site_publication_approved": false
     }
   ],
   "not_yet_acquired": [
-    "FX_USDJPY_FED_FULL_1971_PLUS",
-    "WORLD_BANK_PINK_MONTHLY_1960_PLUS",
     "SHILLER_RESEARCH_PRE1980_AND_POST2023",
     "JPX_TOPIX_TR",
     "SPDJI_SP500_TR",
@@ -273,7 +381,9 @@
     "RATES_JP",
     "DIVIDENDS_SP_DJI",
     "HEDGE_COST",
-    "CREDIT_SPREAD"
+    "CREDIT_SPREAD",
+    "FX_USDJPY_FED_1971_1999_DDP_UNAPPROVED_ADR",
+    "WORLD_BANK_PINK_NON_GOLD_SERIES_QA_AND_LICENSE"
   ],
   "release_controls": {
     "frozen_source_switches": 0,
@@ -284,11 +394,11 @@
     "production_unchanged": true
   },
   "next_priorities": [
-    "Save durable private plaintext backup outside ephemeral runner; 7-day Actions artifact is temporary",
-    "Acquire JP CPI via locked e-Stat official source with independent QA",
-    "Review Fed H.10 1971 download-channel ADR and source license before attempting full history",
-    "World Bank Pink Sheet XLSX Description and third-party rights audit",
-    "Complete series-specific commercial publication/license rights review"
+    "Fed H.10 1971-1999 from same publisher: approve ADR only after endpoint/schema/QA review",
+    "World Bank Gold per-series third-party terms and June 2025 methodology break review",
+    "World Bank non-Gold monthly commodities by series/rights",
+    "Portfolio TR market indices licensing and acquisition",
+    "Secure backup of encrypted short-lived Actions artifacts and private keys"
   ],
   "audit_note": "Existing November 10 registry/acquisition snapshots are historical; this is an additional verified November 11 ledger. Do not convert data-acquired into site-approved."
 }
