@@ -1,12 +1,6 @@
 /** A05 v16: manual-only visual preview, independent of scoring/snapshots. */
 import { MOTIFS, RGBY, resolveVisualDisplay } from './visual-contract.mjs';
 
-const SYMBOLS = Object.freeze({
- 'polaris':'✦','sacred-peak':'▲','harbor':'⚓','moon':'☾',
- 'world-tree':'♣','ocean':'≈','rainbow':'◡','constellation':'✧',
- 'pegasus':'♞','phoenix':'✺','nine-tailed-fox':'❀','cat-sith':'✦',
- 'twin-dragons':'∞','crow-tengu':'◆','whale-pod':'〰','carbuncle':'◇'
-});
 const E_LABELS = {money:'経済的余裕',time:'時間的自由'};
 
 /** All four controls are manual; never map a T-type or an axis score here. */
@@ -23,9 +17,9 @@ export function renderVisualPreview(input) {
   '<div class="a05-vp-head"><h3 id="a05-vp-heading">16の寓意・ビジュアル試作</h3>'+
   '<p>診断判定とは未連動です。以下のモチーフ・色・E軸は表示確認用に手動指定しています。</p></div>'+
   '<div class="a05-vp-grid"><div class="a05-vp-visual'+(v.motion?' a05-vp-moving':'')+'" role="img" aria-label="'+v.name+'の未承認ビジュアルの仮表示">'+
-  '<div class="a05-vp-symbol" aria-hidden="true">'+SYMBOLS[v.id]+'</div>'+
+  '<svg class="a05-vp-crest" width="116" height="116" viewBox="0 0 128 128" aria-hidden="true" focusable="false"><use href="./crests.svg#'+v.id+'"></use></svg>'+
   '<strong>'+v.name+'</strong><span>'+v.group+'</span>'+
-  '<small>Tier2原画は未接続・美術未承認</small>'+
+  '<small>Tier1紋章：既存SVG初稿／Tier2原画：未接続・美術未承認</small>'+
   '<div class="a05-vp-footer"><b>RGBY：'+v.accent+'</b><b>'+e+'</b></div></div>'+
   '<div class="a05-vp-controls">'+
   '<label>モチーフ<select data-visual-setting="motif">'+motifOptions+'</select></label>'+
