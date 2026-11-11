@@ -4,7 +4,11 @@ on:
   pull_request:
     paths:
       - 'research/a05/d170-eleven-hypotheses-offline-cognitive-review.html'
+      - 'research/a05/d175-tier1-participant-pilot-offline.html'
       - 'scripts/test-a05-d170-browser.cjs'
+      - 'scripts/test-a05-d175-participant-browser.cjs'
+      - 'scripts/a05-d175-participant-aggregate.cjs'
+      - 'scripts/test-a05-d175-participant-aggregate.cjs'
       - 'scripts/a05-d170-research-aggregate.cjs'
       - 'scripts/test-a05-d170-research-aggregate.cjs'
       - 'scripts/test-a05-research-contracts.mjs'
@@ -28,9 +32,12 @@ jobs:
         with:
           node-version: '22'
       - name: Check browser test syntax
-        run: node --check scripts/test-a05-d170-browser.cjs
-      - name: Verify archival provenance and editorial gates (42 tests)
-        run: node --test scripts/test-a05-d152-d153-content-gates.mjs scripts/test-a05-research-contracts.mjs scripts/test-a05-d170-research-aggregate.cjs
+        run: |
+          node --check scripts/test-a05-d170-browser.cjs
+          node --check scripts/test-a05-d175-participant-browser.cjs
+          node --check scripts/a05-d175-participant-aggregate.cjs
+      - name: Verify archival provenance and editorial gates (51 tests)
+        run: node --test scripts/test-a05-d152-d153-content-gates.mjs scripts/test-a05-research-contracts.mjs scripts/test-a05-d170-research-aggregate.cjs scripts/test-a05-d175-participant-aggregate.cjs
       - name: Install Chromium test runtime
         run: |
           npm install --prefix /tmp/a05-review --no-audit --no-fund --no-save playwright@1.56.1
@@ -40,11 +47,18 @@ jobs:
           NODE_PATH: /tmp/a05-review/node_modules
           PLAYWRIGHT_BROWSERS_PATH: /tmp/a05-chromium
         run: node scripts/test-a05-d170-browser.cjs
+      - name: Test D-175 participant pilot (desktop and mobile)
+        env:
+          NODE_PATH: /tmp/a05-review/node_modules
+          PLAYWRIGHT_BROWSERS_PATH: /tmp/a05-chromium
+        run: node scripts/test-a05-d175-participant-browser.cjs
       - name: Upload QA screenshots
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: a05-d170-qa-screenshots
-          path: qa-screenshots/a05-d170-*.png
+          path: |
+            qa-screenshots/a05-d170-*.png
+            qa-screenshots/a05-d175-*.png
           if-no-files-found: ignore
           retention-days: 7
