@@ -1,0 +1,41 @@
+name: Analytics e-Stat CPI official file-link probe (research only)
+on:
+  push:
+    branches:
+      - analytics-historical-v0-1-20261110
+    paths:
+      - .github/workflows/analytics-estat-cpi-source-probe.yml
+permissions:
+  contents: read
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate frozen registry
+        run: node scripts/check-analytics-source-registry.cjs
+      - name: Identify official e-Stat CSV catalogue entries (metadata only, no values)
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import urllib.request,urllib.parse,re,html
+          from pathlib import Path
+          url='https://www.e-stat.go.jp/stat-search/files?cycle=0&layout=datalist&page=1&tclass1=000001243880&tclass2=000001243881&tclass3=000001243883&tclass4=000001243886&toukei=00200573&tstat=000001243876'
+          req=urllib.request.Request(url,headers={'User-Agent':'KaitoAnalyticsResearchMetadataAudit/0.1 (one official catalogue request)','Accept':'text/html'})
+          with urllib.request.urlopen(req,timeout=20) as response:
+              final=response.geturl()
+              if urllib.parse.urlparse(final).hostname!='www.e-stat.go.jp': raise RuntimeError('Unexpected provider redirect '+final)
+              raw=response.read(5_000_000)
+              print('SOURCE_HTTP',response.status,'CONTENT_TYPE',response.headers.get('Content-Type'),'RESPONSE_BYTES',len(raw),'URL',final)
+          rawtext=raw.decode('utf-8','replace')
+          for needle in ['持家の帰属家賃を除く総合指数','中分類指数（1970年1月','stat_infid','statInfId','file-download']:
+              print('COUNT',needle,rawtext.count(needle))
+              for match in list(re.finditer(re.escape(needle),rawtext))[:4]:
+                  around=rawtext[max(0,match.start()-900):min(len(rawtext),match.end()+1300)]
+                  # Print only metadata excerpts, not observations.
+                  around=re.sub(r'\s+',' ',around)
+                  print('CATALOGUE_EXCERPT',needle,around[:2000])
+          print('STAT_INF_IDS',list(dict.fromkeys(re.findall(r'(?:stat_infid|statInfId|statinfid)[\"=:/?&\\s]+(\d{9,15})',rawtext)))[:60])
+          PY
