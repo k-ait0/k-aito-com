@@ -1,0 +1,5287 @@
+{
+  "schema": "A05-D190-96-IDEAS-CROSSOVER-MATRIX-0.1",
+  "date": "2026-11-11",
+  "status": "PROVISIONAL_RESEARCH_POOL_NOT_SCORING",
+  "source_sha": {
+    "research/a05/d186-broad-patterns-axis-A.json": "13b4f6fe12597effa8c1d1c721b08aca6319ab9a",
+    "research/a05/d187-broad-patterns-axis-B.json": "56a1897802227eecaef5c51e53eb3dc93db33a2b",
+    "research/a05/d188-broad-patterns-axis-C.json": "4339d3df264a97f8557718735b2d70dcf7bf9369",
+    "research/a05/d189-broad-patterns-axis-D.json": "bb1e315fd31336a80d3107f79b9ba0c19af2bfe4",
+    "research/a05/d146-50slot-before-after-quality-proposals.json": "53b3e137ff3597bdf7072c880c622baf8fee6814",
+    "research/a05/d183-twentyfour-new-content-question-drafts.json": "2a80c3c724458b96a5eee4d66c45aed6737d28c5"
+  },
+  "summary": {
+    "axes": "ABCD",
+    "total_new_question_variants": 96,
+    "number_of_provisional_semantic_clusters": 32,
+    "clusters_per_axis": 8,
+    "variants_per_cluster": 3,
+    "collision_status_by_cluster": {
+      "LEGACY_OVERLAP": 17,
+      "CONTENT_HYPOTHESIS": 10,
+      "CROSS_AXIS_RISK": 2,
+      "BIPOLARITY_RISK": 1,
+      "FORMAT_ONLY": 2
+    },
+    "exact_text_duplicates_within_96": 0,
+    "exact_text_duplicates_to_historical_74": 0,
+    "possible_additional_content_topics_not_yet_established": 10,
+    "formal_scoring_items_added": 0,
+    "independent_semantic_families_confirmed": 0,
+    "old_16_candidate_slots_still_unproven": 16,
+    "previous_32_unresolved_slots_unchanged": 32
+  },
+  "fixed_rules": {
+    "research_variants_per_family_uncapped": true,
+    "scored_semantic_family_cap": 2,
+    "exact_semantic_duplicates_allowed_in_scored_bank": 0,
+    "bank_50": true,
+    "run_30": true,
+    "E_2": true
+  },
+  "reading_guidance": [
+    "Three near-duplicate variants intentionally retained inside each provisional family; they are parallel research wordings, not three final 12-bank slots.",
+    "The classifications and cross-family edges are editorial judgments without respondent data.",
+    "Character trigram lexical similarity is presented only as a triage signal. Low lexical overlap does not establish substantive uniqueness and vice versa.",
+    "Cross-axis overlap and false bipolar dichotomies should be checked before scoring.",
+    "No model or human semantic reviewer has validated the underlying psychometrics. "
+  ],
+  "families": [
+    {
+      "family_id": "A-QF01",
+      "axis": "A",
+      "label": "居住基盤",
+      "member_ids": [
+        "A-X01",
+        "A-X02",
+        "A-X03"
+      ],
+      "sibling_candidates": 3,
+      "classification": "LEGACY_OVERLAP",
+      "overlap_with_families": [
+        "A-QF05"
+      ],
+      "overlap_with_old_ids": [
+        "A01",
+        "A-N05"
+      ],
+      "rationale": "居住地を保つ／移すというA01と同じ意味の選択",
+      "research_group_size_above_scoring_cap": 1,
+      "scoring_cap": 2,
+      "keep_all_three_for_research": true,
+      "established_as_distinct_family": false,
+      "measured_validity": false
+    },
+    {
+      "family_id": "A-QF02",
+      "axis": "A",
+      "label": "日常リズム",
+      "member_ids": [
+        "A-X04",
+        "A-X05",
+        "A-X06"
+      ],
+      "sibling_candidates": 3,
+      "classification": "LEGACY_OVERLAP",
+      "overlap_with_families": [
+        "A-QF04",
+        "A-QF06"
+      ],
+      "overlap_with_old_ids": [
+        "A04",
+        "A-BK15",
+        "A-N01"
+      ],
+      "rationale": "A-BK15の週間時間配置とA04の手順の差が不明",
+      "research_group_size_above_scoring_cap": 1,
+      "scoring_cap": 2,
+      "keep_all_three_for_research": true,
+      "established_as_distinct_family": false,
+      "measured_validity": false
+    },
+    {
+      "family_id": "A-QF03",
+      "axis": "A",
+      "label": "大切な物品の継承",
+      "member_ids": [
+        "A-X07",
+        "A-X08",
+        "A-X09"
+      ],
+      "sibling_candidates": 3,
+      "classification": "CONTENT_HYPOTHESIS",
+      "overlap_with_families": [
+        "A-QF08"
+      ],
+      "overlap_with_old_ids": [
+        "A06",
+        "A-N03"
+      ],
+      "rationale": "物品の修理・継続／交換という選好はA06の用具構成と違う可能性",
+      "research_group_size_above_scoring_cap": 1,
+      "scoring_cap": 2,
+      "keep_all_three_for_research": true,
+      "established_as_distinct_family": false,
+      "measured_validity": false
+    },
+    {
+      "family_id": "A-QF04",
+      "axis": "A",
+      "label": "個人の行事・儀式",
+      "member_ids": [
+        "A-X10",
+        "A-X11",
+        "A-X12"
+      ],
+      "sibling_candidates": 3,
+      "classification": "CONTENT_HYPOTHESIS",
+      "overlap_with_families": [
+        "A-QF02"
+      ],
+      "overlap_with_old_ids": [
+        "A-N02",
+        "A-FU09"
+      ],
+      "rationale": "個人の儀式の連続性は生活リズムと別の判断として成立する可能性",
+      "research_group_size_above_scoring_cap": 1,
+      "scoring_cap": 2,
+      "keep_all_three_for_research": true,
+      "established_as_distinct_family": false,
+      "measured_validity": false
+    },
+    {
+      "family_id": "A-QF05",
+      "axis": "A",
+      "label": "活動拠点",
+      "member_ids": [
+        "A-X13",
+        "A-X14",
+        "A-X15"
+      ],
+      "sibling_candidates": 3,
+      "classification": "LEGACY_OVERLAP",
+      "overlap_with_families": [
+        "A-QF01",
+        "A-QF07"
+      ],
+      "overlap_with_old_ids": [
+        "A02",
+        "A05"
+      ],
+      "rationale": "A02の活動場所を維持するか変えるかにかなり近い",
+      "research_group_size_above_scoring_cap": 1,
+      "scoring_cap": 2,
+      "keep_all_three_for_research": true,
+      "established_as_distinct_family": false,
+      "measured_validity": false
+    },
+    {
+      "family_id": "A-QF06",
+      "axis": "A",
+      "label": "情報・仕組みの更新",
+      "member_ids": [
+        "A-X16",
+        "A-X17",
+        "A-X18"
+      ],
+      "sibling_candidates": 3,
+      "classification": "LEGACY_OVERLAP",
+      "overlap_with_families": [
+        "A-QF02",
+        "A-QF08"
+      ],
+      "overlap_with_old_ids": [
+        "A03",
+        "A-FU05",
+        "A-BK13",
+        "A-N04"
+      ],
+      "rationale": "生活情報管理A-FU05/A-BK13を言い直す側面が強い",
+      "research_group_size_above_scoring_cap": 1,
+      "scoring_cap": 2,
+      "keep_all_three_for_research": true,
+      "established_as_distinct_family": false,
+      "measured_validity": false
+    },
+    {
+      "family_id": "A-QF07",
+      "axis": "A",
+      "label": "所属活動の継続性",
+      "member_ids": [
+        "A-X19",
+        "A-X20",
+        "A-X21"
+      ],
+      "sibling_candidates": 3,
+      "classification": "CROSS_AXIS_RISK",
+      "overlap_with_families": [
+        "A-QF05"
+      ],
+      "overlap_with_old_ids": [
+        "A05",
+        "A02"
+      ],
+      "rationale": "所属する人間関係の継続はB軸と交絡",
+      "research_group_size_above_scoring_cap": 1,
+      "scoring_cap": 2,
+      "keep_all_three_for_research": true,
+      "established_as_distinct_family": false,
+      "measured_validity": false
+    },
+    {
+      "family_id": "A-QF08",
+      "axis": "A",
+      "label": "自己記録の継続性",
+      "member_ids": [
+        "A-X22",
+        "A-X23",
+        "A-X24"
+      ],
+      "sibling_candidates": 3,
+      "classification": "CONTENT_HYPOTHESIS",
+      "overlap_with_families": [
+        "A-QF06",
+        "A-QF03"
+      ],
+      "overlap_with_old_ids": [
+        "A-BK13",
+        "A-N03"
+      ],
+      "rationale": "個人記録の方法を継続・刷新する判断はAの継続性の別対象かもしれないが既存管理と近い",
+      "research_group_size_above_scoring_cap": 1,
+      "scoring_cap": 2,
+      "keep_all_three_for_research": true,
+      "established_as_distinct_family": false,
+      "measured_validity": false
+    },
+    {
+      "family_id": "B-QF01",
+      "axis": "B",
+      "label": "個人の重要選択",
+      "member_ids": [
+        "B-X01",
+        "B-X02",
+        "B-X03"
+      ],
+      "sibling_candidates": 3,
+      "classification": "LEGACY_OVERLAP",
+      "overlap_with_families": [
+        "B-QF06"
+      ],
+      "overlap_with_old_ids": [
+        "B-FU01",
+        "B06"
+      ],
+      "rationale": "B-FU01の個人の納得か合意かに近い",
+      "research_group_size_above_scoring_cap": 1,
+      "scoring_cap": 2,
+      "keep_all_three_for_research": true,
+      "established_as_distinct_family": false,
+      "measured_validity": false
+    },
+    {
+      "family_id": "B-QF02",
+      "axis": "B",
+      "label": "共同目標の決定",
+      "member_ids": [
+        "B-X04",
+        "B-X05",
+        "B-X06"
+      ],
+      "sibling_candidates": 3,
+      "classification": "LEGACY_OVERLAP",
+      "overlap_with_families": [
+        "B-QF05",
+        "B-QF08"
+      ],
+      "overlap_with_old_ids": [
+        "B01",
+        "B03"
+      ],
+      "rationale": "B01/B03の共同での目標決定",
+      "research_group_size_above_scoring_cap": 1,
+      "scoring_cap": 2,
+      "keep_all_three_for_research": true,
+      "established_as_distinct_family": false,
+      "measured_validity": false
+    },
+    {
+      "family_id": "B-QF03",
+      "axis": "B",
+      "label": "共同で使う時間",
+      "member_ids": [
+        "B-X07",
+        "B-X08",
+        "B-X09"
+      ],
+      "sibling_candidates": 3,
+      "classification": "LEGACY_OVERLAP",
+      "overlap_with_families": [
+        "B-QF01"
+      ],
+      "overlap_with_old_ids": [
+        "B-FU05",
+        "B04"
+      ],
+      "rationale": "B-FU05の休日計画と同じ意味",
+      "research_group_size_above_scoring_cap": 1,
+      "scoring_cap": 2,
+      "keep_all_three_for_research": true,
+      "established_as_distinct_family": false,
+      "measured_validity": false
+    },
+    {
+      "family_id": "B-QF04",
+      "axis": "B",
+      "label": "作業実行の裁量・協働",
+      "member_ids": [
+        "B-X10",
+        "B-X11",
+        "B-X12"
+      ],
+      "sibling_candidates": 3,
+      "classification": "CONTENT_HYPOTHESIS",
+      "overlap_with_families": [
+        "B-QF07",
+        "B-QF06"
+      ],
+      "overlap_with_old_ids": [
+        "B-N03",
+        "B-G1"
+      ],
+      "rationale": "意思決定の主体ではなく実行過程の独力／共同を扱う新しい対象。自律と相談が両立し得る",
+      "research_group_size_above_scoring_cap": 1,
+      "scoring_cap": 2,
+      "keep_all_three_for_research": true,
+      "established_as_distinct_family": false,
+      "measured_validity": false
+    },
+    {
+      "family_id": "B-QF05",
+      "axis": "B",
+      "label": "表現・共同制作",
+      "member_ids": [
+        "B-X13",
+        "B-X14",
+        "B-X15"
+      ],
+      "sibling_candidates": 3,
+      "classification": "LEGACY_OVERLAP",
+      "overlap_with_families": [
+        "B-QF02"
+      ],
+      "overlap_with_old_ids": [
+        "B-FU12",
+        "B-N02"
+      ],
+      "rationale": "B-FU12の共同表現に関する同義判断",
+      "research_group_size_above_scoring_cap": 1,
+      "scoring_cap": 2,
+      "keep_all_three_for_research": true,
+      "established_as_distinct_family": false,
+      "measured_validity": false
+    },
+    {
+      "family_id": "B-QF06",
+      "axis": "B",
+      "label": "私的な境界と参加",
+      "member_ids": [
+        "B-X16",
+        "B-X17",
+        "B-X18"
+      ],
+      "sibling_candidates": 3,
+      "classification": "BIPOLARITY_RISK",
+      "overlap_with_families": [
+        "B-QF01",
+        "B-QF04"
+      ],
+      "overlap_with_old_ids": [
+        "B-N04",
+        "B-G1"
+      ],
+      "rationale": "相談開始の時点と最終決定主体は分離可能で、Bの左右に置くと偽対立になる恐れ",
+      "research_group_size_above_scoring_cap": 1,
+      "scoring_cap": 2,
+      "keep_all_three_for_research": true,
+      "established_as_distinct_family": false,
+      "measured_validity": false
+    },
+    {
+      "family_id": "B-QF07",
+      "axis": "B",
+      "label": "頼り方と共同負担",
+      "member_ids": [
+        "B-X19",
+        "B-X20",
+        "B-X21"
+      ],
+      "sibling_candidates": 3,
+      "classification": "CONTENT_HYPOTHESIS",
+      "overlap_with_families": [
+        "B-QF04"
+      ],
+      "overlap_with_old_ids": [
+        "B-N03",
+        "B-G1"
+      ],
+      "rationale": "困りごとへの自力／協力の価値。能力や援助相手の存在が混入",
+      "research_group_size_above_scoring_cap": 1,
+      "scoring_cap": 2,
+      "keep_all_three_for_research": true,
+      "established_as_distinct_family": false,
+      "measured_validity": false
+    },
+    {
+      "family_id": "B-QF08",
+      "axis": "B",
+      "label": "共通ルールと裁量",
+      "member_ids": [
+        "B-X22",
+        "B-X23",
+        "B-X24"
+      ],
+      "sibling_candidates": 3,
+      "classification": "LEGACY_OVERLAP",
+      "overlap_with_families": [
+        "B-QF02"
+      ],
+      "overlap_with_old_ids": [
+        "B-BK13",
+        "B-N05"
+      ],
+      "rationale": "B-BK13にある共同ルールの合意の聞き直し",
+      "research_group_size_above_scoring_cap": 1,
+      "scoring_cap": 2,
+      "keep_all_three_for_research": true,
+      "established_as_distinct_family": false,
+      "measured_validity": false
+    },
+    {
+      "family_id": "C-QF01",
+      "axis": "C",
+      "label": "単発の自由時間",
+      "member_ids": [
+        "C-X01",
+        "C-X02",
+        "C-X03"
+      ],
+      "sibling_candidates": 3,
+      "classification": "LEGACY_OVERLAP",
+      "overlap_with_families": [
+        "C-QF02",
+        "C-QF08"
+      ],
+      "overlap_with_old_ids": [
+        "C01",
+        "C02"
+      ],
+      "rationale": "C01/C02の単発の自由時間の用途",
+      "research_group_size_above_scoring_cap": 1,
+      "scoring_cap": 2,
+      "keep_all_three_for_research": true,
+      "established_as_distinct_family": false,
+      "measured_validity": false
+    },
+    {
+      "family_id": "C-QF02",
+      "axis": "C",
+      "label": "反復する生活時間",
+      "member_ids": [
+        "C-X04",
+        "C-X05",
+        "C-X06"
+      ],
+      "sibling_candidates": 3,
+      "classification": "LEGACY_OVERLAP",
+      "overlap_with_families": [
+        "C-QF01",
+        "C-QF05"
+      ],
+      "overlap_with_old_ids": [
+        "C05",
+        "C-BK15"
+      ],
+      "rationale": "C05/C-BK15の毎週の時間の配分",
+      "research_group_size_above_scoring_cap": 1,
+      "scoring_cap": 2,
+      "keep_all_three_for_research": true,
+      "established_as_distinct_family": false,
+      "measured_validity": false
+    },
+    {
+      "family_id": "C-QF03",
+      "axis": "C",
+      "label": "充実の評価基準",
+      "member_ids": [
+        "C-X07",
+        "C-X08",
+        "C-X09"
+      ],
+      "sibling_candidates": 3,
+      "classification": "CONTENT_HYPOTHESIS",
+      "overlap_with_families": [
+        "C-QF05",
+        "C-QF04"
+      ],
+      "overlap_with_old_ids": [
+        "C-N01",
+        "C05"
+      ],
+      "rationale": "満足の評価基準を問う。C-N01と重複するが旧C05の時間配分とは問いが違う",
+      "research_group_size_above_scoring_cap": 1,
+      "scoring_cap": 2,
+      "keep_all_three_for_research": true,
+      "established_as_distinct_family": false,
+      "measured_validity": false
+    },
+    {
+      "family_id": "C-QF04",
+      "axis": "C",
+      "label": "達成直後の次の価値",
+      "member_ids": [
+        "C-X10",
+        "C-X11",
+        "C-X12"
+      ],
+      "sibling_candidates": 3,
+      "classification": "CONTENT_HYPOTHESIS",
+      "overlap_with_families": [
+        "C-QF03",
+        "C-QF07"
+      ],
+      "overlap_with_old_ids": [
+        "C-N03",
+        "C05"
+      ],
+      "rationale": "達成した直後の今を味わうか次の目標へ向かうかを問う。C-N03との重複",
+      "research_group_size_above_scoring_cap": 1,
+      "scoring_cap": 2,
+      "keep_all_three_for_research": true,
+      "established_as_distinct_family": false,
+      "measured_validity": false
+    },
+    {
+      "family_id": "C-QF05",
+      "axis": "C",
+      "label": "活動過程と将来成果",
+      "member_ids": [
+        "C-X13",
+        "C-X14",
+        "C-X15"
+      ],
+      "sibling_candidates": 3,
+      "classification": "LEGACY_OVERLAP",
+      "overlap_with_families": [
+        "C-QF03"
+      ],
+      "overlap_with_old_ids": [
+        "C03",
+        "C04",
+        "C-N02"
+      ],
+      "rationale": "C03/C04の活動の成果と過程を比較する従来形式",
+      "research_group_size_above_scoring_cap": 1,
+      "scoring_cap": 2,
+      "keep_all_three_for_research": true,
+      "established_as_distinct_family": false,
+      "measured_validity": false
+    },
+    {
+      "family_id": "C-QF06",
+      "axis": "C",
+      "label": "自由裁量のお金・機会",
+      "member_ids": [
+        "C-X16",
+        "C-X17",
+        "C-X18"
+      ],
+      "sibling_candidates": 3,
+      "classification": "CROSS_AXIS_RISK",
+      "overlap_with_families": [
+        "C-QF01"
+      ],
+      "overlap_with_old_ids": [
+        "C-BK13",
+        "C-G1"
+      ],
+      "rationale": "資金余力やE軸との交絡が強い。C-BK13の別表現",
+      "research_group_size_above_scoring_cap": 1,
+      "scoring_cap": 2,
+      "keep_all_three_for_research": true,
+      "established_as_distinct_family": false,
+      "measured_validity": false
+    },
+    {
+      "family_id": "C-QF07",
+      "axis": "C",
+      "label": "予想後悔・振返り",
+      "member_ids": [
+        "C-X19",
+        "C-X20",
+        "C-X21"
+      ],
+      "sibling_candidates": 3,
+      "classification": "FORMAT_ONLY",
+      "overlap_with_families": [
+        "C-QF01",
+        "C-QF04"
+      ],
+      "overlap_with_old_ids": [
+        "D181-8C",
+        "C-N05"
+      ],
+      "rationale": "後悔想像による別提示。D181-8CやC-N05に既出",
+      "research_group_size_above_scoring_cap": 1,
+      "scoring_cap": 2,
+      "keep_all_three_for_research": true,
+      "established_as_distinct_family": false,
+      "measured_validity": false
+    },
+    {
+      "family_id": "C-QF08",
+      "axis": "C",
+      "label": "機会・資源条件への感度",
+      "member_ids": [
+        "C-X22",
+        "C-X23",
+        "C-X24"
+      ],
+      "sibling_candidates": 3,
+      "classification": "FORMAT_ONLY",
+      "overlap_with_families": [
+        "C-QF01",
+        "C-QF02"
+      ],
+      "overlap_with_old_ids": [
+        "C-FU14",
+        "C-FU15",
+        "D181-10C"
+      ],
+      "rationale": "自由時間や希少性の条件効果でありC-FU14/C-FU15などのペア研究",
+      "research_group_size_above_scoring_cap": 1,
+      "scoring_cap": 2,
+      "keep_all_three_for_research": true,
+      "established_as_distinct_family": false,
+      "measured_validity": false
+    },
+    {
+      "family_id": "D-QF01",
+      "axis": "D",
+      "label": "学習する分野の幅",
+      "member_ids": [
+        "D-X01",
+        "D-X02",
+        "D-X03"
+      ],
+      "sibling_candidates": 3,
+      "classification": "LEGACY_OVERLAP",
+      "overlap_with_families": [
+        "D-QF04",
+        "D-QF07"
+      ],
+      "overlap_with_old_ids": [
+        "D02",
+        "D-FU12"
+      ],
+      "rationale": "D02/D-FU12の学習分野の広さと深さ",
+      "research_group_size_above_scoring_cap": 1,
+      "scoring_cap": 2,
+      "keep_all_three_for_research": true,
+      "established_as_distinct_family": false,
+      "measured_validity": false
+    },
+    {
+      "family_id": "D-QF02",
+      "axis": "D",
+      "label": "探究する問いの数",
+      "member_ids": [
+        "D-X04",
+        "D-X05",
+        "D-X06"
+      ],
+      "sibling_candidates": 3,
+      "classification": "CONTENT_HYPOTHESIS",
+      "overlap_with_families": [
+        "D-QF05",
+        "D-QF06"
+      ],
+      "overlap_with_old_ids": [
+        "D-N02",
+        "D-BK13"
+      ],
+      "rationale": "分野ではなく探究する問いの数の選択。D-N02と重なる",
+      "research_group_size_above_scoring_cap": 1,
+      "scoring_cap": 2,
+      "keep_all_three_for_research": true,
+      "established_as_distinct_family": false,
+      "measured_validity": false
+    },
+    {
+      "family_id": "D-QF03",
+      "axis": "D",
+      "label": "創作メディアの広さ",
+      "member_ids": [
+        "D-X07",
+        "D-X08",
+        "D-X09"
+      ],
+      "sibling_candidates": 3,
+      "classification": "LEGACY_OVERLAP",
+      "overlap_with_families": [
+        "D-QF08",
+        "D-QF04"
+      ],
+      "overlap_with_old_ids": [
+        "D04",
+        "D-N01"
+      ],
+      "rationale": "D04の創作媒体の幅と深さ",
+      "research_group_size_above_scoring_cap": 1,
+      "scoring_cap": 2,
+      "keep_all_three_for_research": true,
+      "established_as_distinct_family": false,
+      "measured_validity": false
+    },
+    {
+      "family_id": "D-QF04",
+      "axis": "D",
+      "label": "趣味スキルの深まり",
+      "member_ids": [
+        "D-X10",
+        "D-X11",
+        "D-X12"
+      ],
+      "sibling_candidates": 3,
+      "classification": "LEGACY_OVERLAP",
+      "overlap_with_families": [
+        "D-QF01",
+        "D-QF06"
+      ],
+      "overlap_with_old_ids": [
+        "D01",
+        "D-FU11"
+      ],
+      "rationale": "D01/D-FU11の趣味活動の幅と深さ",
+      "research_group_size_above_scoring_cap": 1,
+      "scoring_cap": 2,
+      "keep_all_three_for_research": true,
+      "established_as_distinct_family": false,
+      "measured_validity": false
+    },
+    {
+      "family_id": "D-QF05",
+      "axis": "D",
+      "label": "関連分野からの理解",
+      "member_ids": [
+        "D-X13",
+        "D-X14",
+        "D-X15"
+      ],
+      "sibling_candidates": 3,
+      "classification": "LEGACY_OVERLAP",
+      "overlap_with_families": [
+        "D-QF02",
+        "D-QF07"
+      ],
+      "overlap_with_old_ids": [
+        "D05",
+        "D-BK13",
+        "D-N06"
+      ],
+      "rationale": "D05/D-BK13の複数分野からの理解と単一分野深化",
+      "research_group_size_above_scoring_cap": 1,
+      "scoring_cap": 2,
+      "keep_all_three_for_research": true,
+      "established_as_distinct_family": false,
+      "measured_validity": false
+    },
+    {
+      "family_id": "D-QF06",
+      "axis": "D",
+      "label": "目標達成後の次の探究",
+      "member_ids": [
+        "D-X16",
+        "D-X17",
+        "D-X18"
+      ],
+      "sibling_candidates": 3,
+      "classification": "LEGACY_OVERLAP",
+      "overlap_with_families": [
+        "D-QF02",
+        "D-QF04"
+      ],
+      "overlap_with_old_ids": [
+        "D06",
+        "D-FU10",
+        "D-N05"
+      ],
+      "rationale": "D06/D-FU10の目標到達後の展開",
+      "research_group_size_above_scoring_cap": 1,
+      "scoring_cap": 2,
+      "keep_all_three_for_research": true,
+      "established_as_distinct_family": false,
+      "measured_validity": false
+    },
+    {
+      "family_id": "D-QF07",
+      "axis": "D",
+      "label": "人に伝える範囲と深さ",
+      "member_ids": [
+        "D-X19",
+        "D-X20",
+        "D-X21"
+      ],
+      "sibling_candidates": 3,
+      "classification": "CONTENT_HYPOTHESIS",
+      "overlap_with_families": [
+        "D-QF01",
+        "D-QF05"
+      ],
+      "overlap_with_old_ids": [
+        "D-N03",
+        "D02"
+      ],
+      "rationale": "何を学ぶかでなく、何を人に伝えるかという価値の対象。説明能力や相手の興味が交絡",
+      "research_group_size_above_scoring_cap": 1,
+      "scoring_cap": 2,
+      "keep_all_three_for_research": true,
+      "established_as_distinct_family": false,
+      "measured_validity": false
+    },
+    {
+      "family_id": "D-QF08",
+      "axis": "D",
+      "label": "複数プロジェクトと一作品",
+      "member_ids": [
+        "D-X22",
+        "D-X23",
+        "D-X24"
+      ],
+      "sibling_candidates": 3,
+      "classification": "CONTENT_HYPOTHESIS",
+      "overlap_with_families": [
+        "D-QF03",
+        "D-QF04"
+      ],
+      "overlap_with_old_ids": [
+        "D04",
+        "D-N04"
+      ],
+      "rationale": "複数作品／一作品のプロジェクト構成。D04やD-N04に近い",
+      "research_group_size_above_scoring_cap": 1,
+      "scoring_cap": 2,
+      "keep_all_three_for_research": true,
+      "established_as_distinct_family": false,
+      "measured_validity": false
+    }
+  ],
+  "questions": [
+    {
+      "id": "A-X01",
+      "axis": "A",
+      "family_id": "A-QF01",
+      "provisional_classification": "LEGACY_OVERLAP",
+      "closest_prior_ids": [
+        "A01",
+        "A-N05"
+      ],
+      "related_provisional_families": [
+        "A-QF05"
+      ],
+      "editorial_reason": "居住地を保つ／移すというA01と同じ意味の選択",
+      "same_family_variants": [
+        {
+          "id": "A-X02",
+          "score": 0.04
+        },
+        {
+          "id": "A-X03",
+          "score": 0.02
+        }
+      ],
+      "lexical_nearest_historical": [
+        {
+          "id": "A-FU05",
+          "origin": "D146",
+          "score": 0.07
+        },
+        {
+          "id": "A-BK13",
+          "origin": "D146",
+          "score": 0.06
+        },
+        {
+          "id": "A01",
+          "origin": "D146",
+          "score": 0.05
+        }
+      ],
+      "lexical_method": "Character 3-gram Jaccard; ONLY a review queue heuristic, NOT semantic equivalence",
+      "family_overlap_risk": "HIGH",
+      "confounds": "住宅の契約・移転費用・愛着",
+      "scored_approved": false
+    },
+    {
+      "id": "A-X02",
+      "axis": "A",
+      "family_id": "A-QF01",
+      "provisional_classification": "LEGACY_OVERLAP",
+      "closest_prior_ids": [
+        "A01",
+        "A-N05"
+      ],
+      "related_provisional_families": [
+        "A-QF05"
+      ],
+      "editorial_reason": "居住地を保つ／移すというA01と同じ意味の選択",
+      "same_family_variants": [
+        {
+          "id": "A-X01",
+          "score": 0.04
+        },
+        {
+          "id": "A-X03",
+          "score": 0.02
+        }
+      ],
+      "lexical_nearest_historical": [
+        {
+          "id": "A01",
+          "origin": "D146",
+          "score": 0.08
+        },
+        {
+          "id": "A-N05",
+          "origin": "D183",
+          "score": 0.07
+        },
+        {
+          "id": "A-N04",
+          "origin": "D183",
+          "score": 0.04
+        }
+      ],
+      "lexical_method": "Character 3-gram Jaccard; ONLY a review queue heuristic, NOT semantic equivalence",
+      "family_overlap_risk": "HIGH",
+      "confounds": "住宅の契約・移転費用・愛着",
+      "scored_approved": false
+    },
+    {
+      "id": "A-X03",
+      "axis": "A",
+      "family_id": "A-QF01",
+      "provisional_classification": "LEGACY_OVERLAP",
+      "closest_prior_ids": [
+        "A01",
+        "A-N05"
+      ],
+      "related_provisional_families": [
+        "A-QF05"
+      ],
+      "editorial_reason": "居住地を保つ／移すというA01と同じ意味の選択",
+      "same_family_variants": [
+        {
+          "id": "A-X01",
+          "score": 0.02
+        },
+        {
+          "id": "A-X02",
+          "score": 0.02
+        }
+      ],
+      "lexical_nearest_historical": [
+        {
+          "id": "A-N03",
+          "origin": "D183",
+          "score": 0.09
+        },
+        {
+          "id": "A-N05",
+          "origin": "D183",
+          "score": 0.07
+        },
+        {
+          "id": "A02",
+          "origin": "D146",
+          "score": 0.06
+        }
+      ],
+      "lexical_method": "Character 3-gram Jaccard; ONLY a review queue heuristic, NOT semantic equivalence",
+      "family_overlap_risk": "HIGH",
+      "confounds": "住宅の契約・移転費用・愛着",
+      "scored_approved": false
+    },
+    {
+      "id": "A-X04",
+      "axis": "A",
+      "family_id": "A-QF02",
+      "provisional_classification": "LEGACY_OVERLAP",
+      "closest_prior_ids": [
+        "A04",
+        "A-BK15",
+        "A-N01"
+      ],
+      "related_provisional_families": [
+        "A-QF04",
+        "A-QF06"
+      ],
+      "editorial_reason": "A-BK15の週間時間配置とA04の手順の差が不明",
+      "same_family_variants": [
+        {
+          "id": "A-X05",
+          "score": 0.02
+        },
+        {
+          "id": "A-X06",
+          "score": 0.02
+        }
+      ],
+      "lexical_nearest_historical": [
+        {
+          "id": "A-N01",
+          "origin": "D183",
+          "score": 0.1
+        },
+        {
+          "id": "A-BK15",
+          "origin": "D146",
+          "score": 0.07
+        },
+        {
+          "id": "A-N02",
+          "origin": "D183",
+          "score": 0.07
+        }
+      ],
+      "lexical_method": "Character 3-gram Jaccard; ONLY a review queue heuristic, NOT semantic equivalence",
+      "family_overlap_risk": "HIGH",
+      "confounds": "C軸の時間配分、勤務・家庭の拘束",
+      "scored_approved": false
+    },
+    {
+      "id": "A-X05",
+      "axis": "A",
+      "family_id": "A-QF02",
+      "provisional_classification": "LEGACY_OVERLAP",
+      "closest_prior_ids": [
+        "A04",
+        "A-BK15",
+        "A-N01"
+      ],
+      "related_provisional_families": [
+        "A-QF04",
+        "A-QF06"
+      ],
+      "editorial_reason": "A-BK15の週間時間配置とA04の手順の差が不明",
+      "same_family_variants": [
+        {
+          "id": "A-X04",
+          "score": 0.02
+        },
+        {
+          "id": "A-X06",
+          "score": 0
+        }
+      ],
+      "lexical_nearest_historical": [
+        {
+          "id": "A02",
+          "origin": "D146",
+          "score": 0.05
+        },
+        {
+          "id": "A04",
+          "origin": "D146",
+          "score": 0.05
+        },
+        {
+          "id": "A-FU05",
+          "origin": "D146",
+          "score": 0.05
+        }
+      ],
+      "lexical_method": "Character 3-gram Jaccard; ONLY a review queue heuristic, NOT semantic equivalence",
+      "family_overlap_risk": "HIGH",
+      "confounds": "C軸の時間配分、勤務・家庭の拘束",
+      "scored_approved": false
+    },
+    {
+      "id": "A-X06",
+      "axis": "A",
+      "family_id": "A-QF02",
+      "provisional_classification": "LEGACY_OVERLAP",
+      "closest_prior_ids": [
+        "A04",
+        "A-BK15",
+        "A-N01"
+      ],
+      "related_provisional_families": [
+        "A-QF04",
+        "A-QF06"
+      ],
+      "editorial_reason": "A-BK15の週間時間配置とA04の手順の差が不明",
+      "same_family_variants": [
+        {
+          "id": "A-X04",
+          "score": 0.02
+        },
+        {
+          "id": "A-X05",
+          "score": 0
+        }
+      ],
+      "lexical_nearest_historical": [
+        {
+          "id": "A-FU09",
+          "origin": "D146",
+          "score": 0.14
+        },
+        {
+          "id": "A-BK15",
+          "origin": "D146",
+          "score": 0.08
+        },
+        {
+          "id": "A-BK14",
+          "origin": "D146",
+          "score": 0.07
+        }
+      ],
+      "lexical_method": "Character 3-gram Jaccard; ONLY a review queue heuristic, NOT semantic equivalence",
+      "family_overlap_risk": "HIGH",
+      "confounds": "C軸の時間配分、勤務・家庭の拘束",
+      "scored_approved": false
+    },
+    {
+      "id": "A-X07",
+      "axis": "A",
+      "family_id": "A-QF03",
+      "provisional_classification": "CONTENT_HYPOTHESIS",
+      "closest_prior_ids": [
+        "A06",
+        "A-N03"
+      ],
+      "related_provisional_families": [
+        "A-QF08"
+      ],
+      "editorial_reason": "物品の修理・継続／交換という選好はA06の用具構成と違う可能性",
+      "same_family_variants": [
+        {
+          "id": "A-X08",
+          "score": 0.06
+        },
+        {
+          "id": "A-X09",
+          "score": 0.04
+        }
+      ],
+      "lexical_nearest_historical": [
+        {
+          "id": "A-N03",
+          "origin": "D183",
+          "score": 0.12
+        },
+        {
+          "id": "A-N04",
+          "origin": "D183",
+          "score": 0.05
+        },
+        {
+          "id": "A-FU05",
+          "origin": "D146",
+          "score": 0.04
+        }
+      ],
+      "lexical_method": "Character 3-gram Jaccard; ONLY a review queue heuristic, NOT semantic equivalence",
+      "family_overlap_risk": "MEDIUM",
+      "confounds": "物への愛着・環境負荷意識",
+      "scored_approved": false
+    },
+    {
+      "id": "A-X08",
+      "axis": "A",
+      "family_id": "A-QF03",
+      "provisional_classification": "CONTENT_HYPOTHESIS",
+      "closest_prior_ids": [
+        "A06",
+        "A-N03"
+      ],
+      "related_provisional_families": [
+        "A-QF08"
+      ],
+      "editorial_reason": "物品の修理・継続／交換という選好はA06の用具構成と違う可能性",
+      "same_family_variants": [
+        {
+          "id": "A-X09",
+          "score": 0.08
+        },
+        {
+          "id": "A-X07",
+          "score": 0.06
+        }
+      ],
+      "lexical_nearest_historical": [
+        {
+          "id": "A-N03",
+          "origin": "D183",
+          "score": 0.14
+        },
+        {
+          "id": "A03",
+          "origin": "D146",
+          "score": 0.13
+        },
+        {
+          "id": "A-N02",
+          "origin": "D183",
+          "score": 0.09
+        }
+      ],
+      "lexical_method": "Character 3-gram Jaccard; ONLY a review queue heuristic, NOT semantic equivalence",
+      "family_overlap_risk": "MEDIUM",
+      "confounds": "物への愛着・環境負荷意識",
+      "scored_approved": false
+    },
+    {
+      "id": "A-X09",
+      "axis": "A",
+      "family_id": "A-QF03",
+      "provisional_classification": "CONTENT_HYPOTHESIS",
+      "closest_prior_ids": [
+        "A06",
+        "A-N03"
+      ],
+      "related_provisional_families": [
+        "A-QF08"
+      ],
+      "editorial_reason": "物品の修理・継続／交換という選好はA06の用具構成と違う可能性",
+      "same_family_variants": [
+        {
+          "id": "A-X08",
+          "score": 0.08
+        },
+        {
+          "id": "A-X07",
+          "score": 0.04
+        }
+      ],
+      "lexical_nearest_historical": [
+        {
+          "id": "A-FU05",
+          "origin": "D146",
+          "score": 0.06
+        },
+        {
+          "id": "A-BK14",
+          "origin": "D146",
+          "score": 0.06
+        },
+        {
+          "id": "A-N03",
+          "origin": "D183",
+          "score": 0.06
+        }
+      ],
+      "lexical_method": "Character 3-gram Jaccard; ONLY a review queue heuristic, NOT semantic equivalence",
+      "family_overlap_risk": "MEDIUM",
+      "confounds": "物への愛着・環境負荷意識",
+      "scored_approved": false
+    },
+    {
+      "id": "A-X10",
+      "axis": "A",
+      "family_id": "A-QF04",
+      "provisional_classification": "CONTENT_HYPOTHESIS",
+      "closest_prior_ids": [
+        "A-N02",
+        "A-FU09"
+      ],
+      "related_provisional_families": [
+        "A-QF02"
+      ],
+      "editorial_reason": "個人の儀式の連続性は生活リズムと別の判断として成立する可能性",
+      "same_family_variants": [
+        {
+          "id": "A-X12",
+          "score": 0.05
+        },
+        {
+          "id": "A-X11",
+          "score": 0.02
+        }
+      ],
+      "lexical_nearest_historical": [
+        {
+          "id": "A-N02",
+          "origin": "D183",
+          "score": 0.18
+        },
+        {
+          "id": "A-BK13",
+          "origin": "D146",
+          "score": 0.04
+        },
+        {
+          "id": "A-N01",
+          "origin": "D183",
+          "score": 0.04
+        }
+      ],
+      "lexical_method": "Character 3-gram Jaccard; ONLY a review queue heuristic, NOT semantic equivalence",
+      "family_overlap_risk": "MEDIUM",
+      "confounds": "年中行事の経験差、他人の期待",
+      "scored_approved": false
+    },
+    {
+      "id": "A-X11",
+      "axis": "A",
+      "family_id": "A-QF04",
+      "provisional_classification": "CONTENT_HYPOTHESIS",
+      "closest_prior_ids": [
+        "A-N02",
+        "A-FU09"
+      ],
+      "related_provisional_families": [
+        "A-QF02"
+      ],
+      "editorial_reason": "個人の儀式の連続性は生活リズムと別の判断として成立する可能性",
+      "same_family_variants": [
+        {
+          "id": "A-X10",
+          "score": 0.02
+        },
+        {
+          "id": "A-X12",
+          "score": 0
+        }
+      ],
+      "lexical_nearest_historical": [
+        {
+          "id": "A-N02",
+          "origin": "D183",
+          "score": 0.08
+        },
+        {
+          "id": "A-N04",
+          "origin": "D183",
+          "score": 0.03
+        },
+        {
+          "id": "A-FU05",
+          "origin": "D146",
+          "score": 0.02
+        }
+      ],
+      "lexical_method": "Character 3-gram Jaccard; ONLY a review queue heuristic, NOT semantic equivalence",
+      "family_overlap_risk": "MEDIUM",
+      "confounds": "年中行事の経験差、他人の期待",
+      "scored_approved": false
+    },
+    {
+      "id": "A-X12",
+      "axis": "A",
+      "family_id": "A-QF04",
+      "provisional_classification": "CONTENT_HYPOTHESIS",
+      "closest_prior_ids": [
+        "A-N02",
+        "A-FU09"
+      ],
+      "related_provisional_families": [
+        "A-QF02"
+      ],
+      "editorial_reason": "個人の儀式の連続性は生活リズムと別の判断として成立する可能性",
+      "same_family_variants": [
+        {
+          "id": "A-X10",
+          "score": 0.05
+        },
+        {
+          "id": "A-X11",
+          "score": 0
+        }
+      ],
+      "lexical_nearest_historical": [
+        {
+          "id": "A-N02",
+          "origin": "D183",
+          "score": 0.04
+        },
+        {
+          "id": "A-N06",
+          "origin": "D183",
+          "score": 0.03
+        },
+        {
+          "id": "A-N01",
+          "origin": "D183",
+          "score": 0.01
+        }
+      ],
+      "lexical_method": "Character 3-gram Jaccard; ONLY a review queue heuristic, NOT semantic equivalence",
+      "family_overlap_risk": "MEDIUM",
+      "confounds": "年中行事の経験差、他人の期待",
+      "scored_approved": false
+    },
+    {
+      "id": "A-X13",
+      "axis": "A",
+      "family_id": "A-QF05",
+      "provisional_classification": "LEGACY_OVERLAP",
+      "closest_prior_ids": [
+        "A02",
+        "A05"
+      ],
+      "related_provisional_families": [
+        "A-QF01",
+        "A-QF07"
+      ],
+      "editorial_reason": "A02の活動場所を維持するか変えるかにかなり近い",
+      "same_family_variants": [
+        {
+          "id": "A-X15",
+          "score": 0.07
+        },
+        {
+          "id": "A-X14",
+          "score": 0.02
+        }
+      ],
+      "lexical_nearest_historical": [
+        {
+          "id": "A02",
+          "origin": "D146",
+          "score": 0.24
+        },
+        {
+          "id": "A-FU10",
+          "origin": "D146",
+          "score": 0.15
+        },
+        {
+          "id": "A-FU05",
+          "origin": "D146",
+          "score": 0.1
+        }
+      ],
+      "lexical_method": "Character 3-gram Jaccard; ONLY a review queue heuristic, NOT semantic equivalence",
+      "family_overlap_risk": "HIGH",
+      "confounds": "場所による安全・交流・移動負担",
+      "scored_approved": false
+    },
+    {
+      "id": "A-X14",
+      "axis": "A",
+      "family_id": "A-QF05",
+      "provisional_classification": "LEGACY_OVERLAP",
+      "closest_prior_ids": [
+        "A02",
+        "A05"
+      ],
+      "related_provisional_families": [
+        "A-QF01",
+        "A-QF07"
+      ],
+      "editorial_reason": "A02の活動場所を維持するか変えるかにかなり近い",
+      "same_family_variants": [
+        {
+          "id": "A-X15",
+          "score": 0.04
+        },
+        {
+          "id": "A-X13",
+          "score": 0.02
+        }
+      ],
+      "lexical_nearest_historical": [
+        {
+          "id": "A-N05",
+          "origin": "D183",
+          "score": 0.06
+        },
+        {
+          "id": "A02",
+          "origin": "D146",
+          "score": 0.04
+        },
+        {
+          "id": "A-N01",
+          "origin": "D183",
+          "score": 0.03
+        }
+      ],
+      "lexical_method": "Character 3-gram Jaccard; ONLY a review queue heuristic, NOT semantic equivalence",
+      "family_overlap_risk": "HIGH",
+      "confounds": "場所による安全・交流・移動負担",
+      "scored_approved": false
+    },
+    {
+      "id": "A-X15",
+      "axis": "A",
+      "family_id": "A-QF05",
+      "provisional_classification": "LEGACY_OVERLAP",
+      "closest_prior_ids": [
+        "A02",
+        "A05"
+      ],
+      "related_provisional_families": [
+        "A-QF01",
+        "A-QF07"
+      ],
+      "editorial_reason": "A02の活動場所を維持するか変えるかにかなり近い",
+      "same_family_variants": [
+        {
+          "id": "A-X13",
+          "score": 0.07
+        },
+        {
+          "id": "A-X14",
+          "score": 0.04
+        }
+      ],
+      "lexical_nearest_historical": [
+        {
+          "id": "A-N05",
+          "origin": "D183",
+          "score": 0.13
+        },
+        {
+          "id": "A02",
+          "origin": "D146",
+          "score": 0.09
+        },
+        {
+          "id": "A-FU09",
+          "origin": "D146",
+          "score": 0.07
+        }
+      ],
+      "lexical_method": "Character 3-gram Jaccard; ONLY a review queue heuristic, NOT semantic equivalence",
+      "family_overlap_risk": "HIGH",
+      "confounds": "場所による安全・交流・移動負担",
+      "scored_approved": false
+    },
+    {
+      "id": "A-X16",
+      "axis": "A",
+      "family_id": "A-QF06",
+      "provisional_classification": "LEGACY_OVERLAP",
+      "closest_prior_ids": [
+        "A03",
+        "A-FU05",
+        "A-BK13",
+        "A-N04"
+      ],
+      "related_provisional_families": [
+        "A-QF02",
+        "A-QF08"
+      ],
+      "editorial_reason": "生活情報管理A-FU05/A-BK13を言い直す側面が強い",
+      "same_family_variants": [
+        {
+          "id": "A-X18",
+          "score": 0.03
+        },
+        {
+          "id": "A-X17",
+          "score": 0.02
+        }
+      ],
+      "lexical_nearest_historical": [
+        {
+          "id": "A-FU05",
+          "origin": "D146",
+          "score": 0.1
+        },
+        {
+          "id": "A-N02",
+          "origin": "D183",
+          "score": 0.09
+        },
+        {
+          "id": "A-N04",
+          "origin": "D183",
+          "score": 0.09
+        }
+      ],
+      "lexical_method": "Character 3-gram Jaccard; ONLY a review queue heuristic, NOT semantic equivalence",
+      "family_overlap_risk": "HIGH",
+      "confounds": "情報処理能力、製品への慣れ、変更費用",
+      "scored_approved": false
+    },
+    {
+      "id": "A-X17",
+      "axis": "A",
+      "family_id": "A-QF06",
+      "provisional_classification": "LEGACY_OVERLAP",
+      "closest_prior_ids": [
+        "A03",
+        "A-FU05",
+        "A-BK13",
+        "A-N04"
+      ],
+      "related_provisional_families": [
+        "A-QF02",
+        "A-QF08"
+      ],
+      "editorial_reason": "生活情報管理A-FU05/A-BK13を言い直す側面が強い",
+      "same_family_variants": [
+        {
+          "id": "A-X16",
+          "score": 0.02
+        },
+        {
+          "id": "A-X18",
+          "score": 0.02
+        }
+      ],
+      "lexical_nearest_historical": [
+        {
+          "id": "A-N04",
+          "origin": "D183",
+          "score": 0.11
+        },
+        {
+          "id": "A-N03",
+          "origin": "D183",
+          "score": 0.1
+        },
+        {
+          "id": "A-N01",
+          "origin": "D183",
+          "score": 0.05
+        }
+      ],
+      "lexical_method": "Character 3-gram Jaccard; ONLY a review queue heuristic, NOT semantic equivalence",
+      "family_overlap_risk": "HIGH",
+      "confounds": "情報処理能力、製品への慣れ、変更費用",
+      "scored_approved": false
+    },
+    {
+      "id": "A-X18",
+      "axis": "A",
+      "family_id": "A-QF06",
+      "provisional_classification": "LEGACY_OVERLAP",
+      "closest_prior_ids": [
+        "A03",
+        "A-FU05",
+        "A-BK13",
+        "A-N04"
+      ],
+      "related_provisional_families": [
+        "A-QF02",
+        "A-QF08"
+      ],
+      "editorial_reason": "生活情報管理A-FU05/A-BK13を言い直す側面が強い",
+      "same_family_variants": [
+        {
+          "id": "A-X16",
+          "score": 0.03
+        },
+        {
+          "id": "A-X17",
+          "score": 0.02
+        }
+      ],
+      "lexical_nearest_historical": [
+        {
+          "id": "A-FU05",
+          "origin": "D146",
+          "score": 0.07
+        },
+        {
+          "id": "A-BK13",
+          "origin": "D146",
+          "score": 0.05
+        },
+        {
+          "id": "A-N01",
+          "origin": "D183",
+          "score": 0.04
+        }
+      ],
+      "lexical_method": "Character 3-gram Jaccard; ONLY a review queue heuristic, NOT semantic equivalence",
+      "family_overlap_risk": "HIGH",
+      "confounds": "情報処理能力、製品への慣れ、変更費用",
+      "scored_approved": false
+    },
+    {
+      "id": "A-X19",
+      "axis": "A",
+      "family_id": "A-QF07",
+      "provisional_classification": "CROSS_AXIS_RISK",
+      "closest_prior_ids": [
+        "A05",
+        "A02"
+      ],
+      "related_provisional_families": [
+        "A-QF05"
+      ],
+      "editorial_reason": "所属する人間関係の継続はB軸と交絡",
+      "same_family_variants": [
+        {
+          "id": "A-X20",
+          "score": 0.06
+        },
+        {
+          "id": "A-X21",
+          "score": 0.01
+        }
+      ],
+      "lexical_nearest_historical": [
+        {
+          "id": "A-N02",
+          "origin": "D183",
+          "score": 0.08
+        },
+        {
+          "id": "A02",
+          "origin": "D146",
+          "score": 0.07
+        },
+        {
+          "id": "A-FU05",
+          "origin": "D146",
+          "score": 0.07
+        }
+      ],
+      "lexical_method": "Character 3-gram Jaccard; ONLY a review queue heuristic, NOT semantic equivalence",
+      "family_overlap_risk": "HIGH",
+      "confounds": "B軸の人間関係・対人帰属と強く交絡",
+      "scored_approved": false
+    },
+    {
+      "id": "A-X20",
+      "axis": "A",
+      "family_id": "A-QF07",
+      "provisional_classification": "CROSS_AXIS_RISK",
+      "closest_prior_ids": [
+        "A05",
+        "A02"
+      ],
+      "related_provisional_families": [
+        "A-QF05"
+      ],
+      "editorial_reason": "所属する人間関係の継続はB軸と交絡",
+      "same_family_variants": [
+        {
+          "id": "A-X19",
+          "score": 0.06
+        },
+        {
+          "id": "A-X21",
+          "score": 0.03
+        }
+      ],
+      "lexical_nearest_historical": [
+        {
+          "id": "A02",
+          "origin": "D146",
+          "score": 0.08
+        },
+        {
+          "id": "A-N03",
+          "origin": "D183",
+          "score": 0.05
+        },
+        {
+          "id": "A03",
+          "origin": "D146",
+          "score": 0.04
+        }
+      ],
+      "lexical_method": "Character 3-gram Jaccard; ONLY a review queue heuristic, NOT semantic equivalence",
+      "family_overlap_risk": "HIGH",
+      "confounds": "B軸の人間関係・対人帰属と強く交絡",
+      "scored_approved": false
+    },
+    {
+      "id": "A-X21",
+      "axis": "A",
+      "family_id": "A-QF07",
+      "provisional_classification": "CROSS_AXIS_RISK",
+      "closest_prior_ids": [
+        "A05",
+        "A02"
+      ],
+      "related_provisional_families": [
+        "A-QF05"
+      ],
+      "editorial_reason": "所属する人間関係の継続はB軸と交絡",
+      "same_family_variants": [
+        {
+          "id": "A-X20",
+          "score": 0.03
+        },
+        {
+          "id": "A-X19",
+          "score": 0.01
+        }
+      ],
+      "lexical_nearest_historical": [
+        {
+          "id": "A-FU09",
+          "origin": "D146",
+          "score": 0.06
+        },
+        {
+          "id": "A-BK14",
+          "origin": "D146",
+          "score": 0.05
+        },
+        {
+          "id": "A02",
+          "origin": "D146",
+          "score": 0.04
+        }
+      ],
+      "lexical_method": "Character 3-gram Jaccard; ONLY a review queue heuristic, NOT semantic equivalence",
+      "family_overlap_risk": "HIGH",
+      "confounds": "B軸の人間関係・対人帰属と強く交絡",
+      "scored_approved": false
+    },
+    {
+      "id": "A-X22",
+      "axis": "A",
+      "family_id": "A-QF08",
+      "provisional_classification": "CONTENT_HYPOTHESIS",
+      "closest_prior_ids": [
+        "A-BK13",
+        "A-N03"
+      ],
+      "related_provisional_families": [
+        "A-QF06",
+        "A-QF03"
+      ],
+      "editorial_reason": "個人記録の方法を継続・刷新する判断はAの継続性の別対象かもしれないが既存管理と近い",
+      "same_family_variants": [
+        {
+          "id": "A-X23",
+          "score": 0.05
+        },
+        {
+          "id": "A-X24",
+          "score": 0.03
+        }
+      ],
+      "lexical_nearest_historical": [
+        {
+          "id": "A04",
+          "origin": "D146",
+          "score": 0.06
+        },
+        {
+          "id": "A06",
+          "origin": "D146",
+          "score": 0.06
+        },
+        {
+          "id": "A-N01",
+          "origin": "D183",
+          "score": 0.06
+        }
+      ],
+      "lexical_method": "Character 3-gram Jaccard; ONLY a review queue heuristic, NOT semantic equivalence",
+      "family_overlap_risk": "MEDIUM",
+      "confounds": "記憶への愛着とデジタル技能、環境維持とは異なる特性",
+      "scored_approved": false
+    },
+    {
+      "id": "A-X23",
+      "axis": "A",
+      "family_id": "A-QF08",
+      "provisional_classification": "CONTENT_HYPOTHESIS",
+      "closest_prior_ids": [
+        "A-BK13",
+        "A-N03"
+      ],
+      "related_provisional_families": [
+        "A-QF06",
+        "A-QF03"
+      ],
+      "editorial_reason": "個人記録の方法を継続・刷新する判断はAの継続性の別対象かもしれないが既存管理と近い",
+      "same_family_variants": [
+        {
+          "id": "A-X22",
+          "score": 0.05
+        },
+        {
+          "id": "A-X24",
+          "score": 0.01
+        }
+      ],
+      "lexical_nearest_historical": [
+        {
+          "id": "A-N02",
+          "origin": "D183",
+          "score": 0.07
+        },
+        {
+          "id": "A-FU05",
+          "origin": "D146",
+          "score": 0.05
+        },
+        {
+          "id": "A03",
+          "origin": "D146",
+          "score": 0.04
+        }
+      ],
+      "lexical_method": "Character 3-gram Jaccard; ONLY a review queue heuristic, NOT semantic equivalence",
+      "family_overlap_risk": "MEDIUM",
+      "confounds": "記憶への愛着とデジタル技能、環境維持とは異なる特性",
+      "scored_approved": false
+    },
+    {
+      "id": "A-X24",
+      "axis": "A",
+      "family_id": "A-QF08",
+      "provisional_classification": "CONTENT_HYPOTHESIS",
+      "closest_prior_ids": [
+        "A-BK13",
+        "A-N03"
+      ],
+      "related_provisional_families": [
+        "A-QF06",
+        "A-QF03"
+      ],
+      "editorial_reason": "個人記録の方法を継続・刷新する判断はAの継続性の別対象かもしれないが既存管理と近い",
+      "same_family_variants": [
+        {
+          "id": "A-X22",
+          "score": 0.03
+        },
+        {
+          "id": "A-X23",
+          "score": 0.01
+        }
+      ],
+      "lexical_nearest_historical": [
+        {
+          "id": "A-N01",
+          "origin": "D183",
+          "score": 0.04
+        },
+        {
+          "id": "A06",
+          "origin": "D146",
+          "score": 0.03
+        },
+        {
+          "id": "A-BK13",
+          "origin": "D146",
+          "score": 0.03
+        }
+      ],
+      "lexical_method": "Character 3-gram Jaccard; ONLY a review queue heuristic, NOT semantic equivalence",
+      "family_overlap_risk": "MEDIUM",
+      "confounds": "記憶への愛着とデジタル技能、環境維持とは異なる特性",
+      "scored_approved": false
+    },
+    {
+      "id": "B-X01",
+      "axis": "B",
+      "family_id": "B-QF01",
+      "provisional_classification": "LEGACY_OVERLAP",
+      "closest_prior_ids": [
+        "B-FU01",
+        "B06"
+      ],
+      "related_provisional_families": [
+        "B-QF06"
+      ],
+      "editorial_reason": "B-FU01の個人の納得か合意かに近い",
+      "same_family_variants": [
+        {
+          "id": "B-X02",
+          "score": 0.03
+        },
+        {
+          "id": "B-X03",
+          "score": 0.03
+        }
+      ],
+      "lexical_nearest_historical": [
+        {
+          "id": "B-FU01",
+          "origin": "D146",
+          "score": 0.14
+        },
+        {
+          "id": "B06",
+          "origin": "D146",
+          "score": 0.1
+        },
+        {
+          "id": "B01",
+          "origin": "D146",
+          "score": 0.09
+        }
+      ],
+      "lexical_method": "Character 3-gram Jaccard; ONLY a review queue heuristic, NOT semantic equivalence",
+      "family_overlap_risk": "HIGH",
+      "confounds": "相談と自己決定は両立可能。権利・負担を統制",
+      "scored_approved": false
+    },
+    {
+      "id": "B-X02",
+      "axis": "B",
+      "family_id": "B-QF01",
+      "provisional_classification": "LEGACY_OVERLAP",
+      "closest_prior_ids": [
+        "B-FU01",
+        "B06"
+      ],
+      "related_provisional_families": [
+        "B-QF06"
+      ],
+      "editorial_reason": "B-FU01の個人の納得か合意かに近い",
+      "same_family_variants": [
+        {
+          "id": "B-X03",
+          "score": 0.06
+        },
+        {
+          "id": "B-X01",
+          "score": 0.03
+        }
+      ],
+      "lexical_nearest_historical": [
+        {
+          "id": "B-N02",
+          "origin": "D183",
+          "score": 0.09
+        },
+        {
+          "id": "B03",
+          "origin": "D146",
+          "score": 0.08
+        },
+        {
+          "id": "B-FU04",
+          "origin": "D146",
+          "score": 0.08
+        }
+      ],
+      "lexical_method": "Character 3-gram Jaccard; ONLY a review queue heuristic, NOT semantic equivalence",
+      "family_overlap_risk": "HIGH",
+      "confounds": "相談と自己決定は両立可能。権利・負担を統制",
+      "scored_approved": false
+    },
+    {
+      "id": "B-X03",
+      "axis": "B",
+      "family_id": "B-QF01",
+      "provisional_classification": "LEGACY_OVERLAP",
+      "closest_prior_ids": [
+        "B-FU01",
+        "B06"
+      ],
+      "related_provisional_families": [
+        "B-QF06"
+      ],
+      "editorial_reason": "B-FU01の個人の納得か合意かに近い",
+      "same_family_variants": [
+        {
+          "id": "B-X02",
+          "score": 0.06
+        },
+        {
+          "id": "B-X01",
+          "score": 0.03
+        }
+      ],
+      "lexical_nearest_historical": [
+        {
+          "id": "B-BK13",
+          "origin": "D146",
+          "score": 0.14
+        },
+        {
+          "id": "B04",
+          "origin": "D146",
+          "score": 0.11
+        },
+        {
+          "id": "B01",
+          "origin": "D146",
+          "score": 0.09
+        }
+      ],
+      "lexical_method": "Character 3-gram Jaccard; ONLY a review queue heuristic, NOT semantic equivalence",
+      "family_overlap_risk": "HIGH",
+      "confounds": "相談と自己決定は両立可能。権利・負担を統制",
+      "scored_approved": false
+    },
+    {
+      "id": "B-X04",
+      "axis": "B",
+      "family_id": "B-QF02",
+      "provisional_classification": "LEGACY_OVERLAP",
+      "closest_prior_ids": [
+        "B01",
+        "B03"
+      ],
+      "related_provisional_families": [
+        "B-QF05",
+        "B-QF08"
+      ],
+      "editorial_reason": "B01/B03の共同での目標決定",
+      "same_family_variants": [
+        {
+          "id": "B-X05",
+          "score": 0.08
+        },
+        {
+          "id": "B-X06",
+          "score": 0.05
+        }
+      ],
+      "lexical_nearest_historical": [
+        {
+          "id": "B05",
+          "origin": "D146",
+          "score": 0.15
+        },
+        {
+          "id": "B03",
+          "origin": "D146",
+          "score": 0.13
+        },
+        {
+          "id": "B-N02",
+          "origin": "D183",
+          "score": 0.12
+        }
+      ],
+      "lexical_method": "Character 3-gram Jaccard; ONLY a review queue heuristic, NOT semantic equivalence",
+      "family_overlap_risk": "HIGH",
+      "confounds": "作業権限・参加者数・合議手続、B01と近い",
+      "scored_approved": false
+    },
+    {
+      "id": "B-X05",
+      "axis": "B",
+      "family_id": "B-QF02",
+      "provisional_classification": "LEGACY_OVERLAP",
+      "closest_prior_ids": [
+        "B01",
+        "B03"
+      ],
+      "related_provisional_families": [
+        "B-QF05",
+        "B-QF08"
+      ],
+      "editorial_reason": "B01/B03の共同での目標決定",
+      "same_family_variants": [
+        {
+          "id": "B-X04",
+          "score": 0.08
+        },
+        {
+          "id": "B-X06",
+          "score": 0.04
+        }
+      ],
+      "lexical_nearest_historical": [
+        {
+          "id": "B-N02",
+          "origin": "D183",
+          "score": 0.13
+        },
+        {
+          "id": "B01",
+          "origin": "D146",
+          "score": 0.11
+        },
+        {
+          "id": "B-FU04",
+          "origin": "D146",
+          "score": 0.1
+        }
+      ],
+      "lexical_method": "Character 3-gram Jaccard; ONLY a review queue heuristic, NOT semantic equivalence",
+      "family_overlap_risk": "HIGH",
+      "confounds": "作業権限・参加者数・合議手続、B01と近い",
+      "scored_approved": false
+    },
+    {
+      "id": "B-X06",
+      "axis": "B",
+      "family_id": "B-QF02",
+      "provisional_classification": "LEGACY_OVERLAP",
+      "closest_prior_ids": [
+        "B01",
+        "B03"
+      ],
+      "related_provisional_families": [
+        "B-QF05",
+        "B-QF08"
+      ],
+      "editorial_reason": "B01/B03の共同での目標決定",
+      "same_family_variants": [
+        {
+          "id": "B-X04",
+          "score": 0.05
+        },
+        {
+          "id": "B-X05",
+          "score": 0.04
+        }
+      ],
+      "lexical_nearest_historical": [
+        {
+          "id": "B-BK13",
+          "origin": "D146",
+          "score": 0.12
+        },
+        {
+          "id": "B04",
+          "origin": "D146",
+          "score": 0.07
+        },
+        {
+          "id": "B-FU05",
+          "origin": "D146",
+          "score": 0.07
+        }
+      ],
+      "lexical_method": "Character 3-gram Jaccard; ONLY a review queue heuristic, NOT semantic equivalence",
+      "family_overlap_risk": "HIGH",
+      "confounds": "作業権限・参加者数・合議手続、B01と近い",
+      "scored_approved": false
+    },
+    {
+      "id": "B-X07",
+      "axis": "B",
+      "family_id": "B-QF03",
+      "provisional_classification": "LEGACY_OVERLAP",
+      "closest_prior_ids": [
+        "B-FU05",
+        "B04"
+      ],
+      "related_provisional_families": [
+        "B-QF01"
+      ],
+      "editorial_reason": "B-FU05の休日計画と同じ意味",
+      "same_family_variants": [
+        {
+          "id": "B-X09",
+          "score": 0.05
+        },
+        {
+          "id": "B-X08",
+          "score": 0.03
+        }
+      ],
+      "lexical_nearest_historical": [
+        {
+          "id": "B05",
+          "origin": "D146",
+          "score": 0.11
+        },
+        {
+          "id": "B02",
+          "origin": "D146",
+          "score": 0.1
+        },
+        {
+          "id": "B06",
+          "origin": "D146",
+          "score": 0.09
+        }
+      ],
+      "lexical_method": "Character 3-gram Jaccard; ONLY a review queue heuristic, NOT semantic equivalence",
+      "family_overlap_risk": "HIGH",
+      "confounds": "公平性・相手に譲るべきという規範",
+      "scored_approved": false
+    },
+    {
+      "id": "B-X08",
+      "axis": "B",
+      "family_id": "B-QF03",
+      "provisional_classification": "LEGACY_OVERLAP",
+      "closest_prior_ids": [
+        "B-FU05",
+        "B04"
+      ],
+      "related_provisional_families": [
+        "B-QF01"
+      ],
+      "editorial_reason": "B-FU05の休日計画と同じ意味",
+      "same_family_variants": [
+        {
+          "id": "B-X09",
+          "score": 0.05
+        },
+        {
+          "id": "B-X07",
+          "score": 0.03
+        }
+      ],
+      "lexical_nearest_historical": [
+        {
+          "id": "B03",
+          "origin": "D146",
+          "score": 0.13
+        },
+        {
+          "id": "B-FU05",
+          "origin": "D146",
+          "score": 0.12
+        },
+        {
+          "id": "B04",
+          "origin": "D146",
+          "score": 0.11
+        }
+      ],
+      "lexical_method": "Character 3-gram Jaccard; ONLY a review queue heuristic, NOT semantic equivalence",
+      "family_overlap_risk": "HIGH",
+      "confounds": "公平性・相手に譲るべきという規範",
+      "scored_approved": false
+    },
+    {
+      "id": "B-X09",
+      "axis": "B",
+      "family_id": "B-QF03",
+      "provisional_classification": "LEGACY_OVERLAP",
+      "closest_prior_ids": [
+        "B-FU05",
+        "B04"
+      ],
+      "related_provisional_families": [
+        "B-QF01"
+      ],
+      "editorial_reason": "B-FU05の休日計画と同じ意味",
+      "same_family_variants": [
+        {
+          "id": "B-X07",
+          "score": 0.05
+        },
+        {
+          "id": "B-X08",
+          "score": 0.05
+        }
+      ],
+      "lexical_nearest_historical": [
+        {
+          "id": "B03",
+          "origin": "D146",
+          "score": 0.09
+        },
+        {
+          "id": "B06",
+          "origin": "D146",
+          "score": 0.09
+        },
+        {
+          "id": "B04",
+          "origin": "D146",
+          "score": 0.08
+        }
+      ],
+      "lexical_method": "Character 3-gram Jaccard; ONLY a review queue heuristic, NOT semantic equivalence",
+      "family_overlap_risk": "HIGH",
+      "confounds": "公平性・相手に譲るべきという規範",
+      "scored_approved": false
+    },
+    {
+      "id": "B-X10",
+      "axis": "B",
+      "family_id": "B-QF04",
+      "provisional_classification": "CONTENT_HYPOTHESIS",
+      "closest_prior_ids": [
+        "B-N03",
+        "B-G1"
+      ],
+      "related_provisional_families": [
+        "B-QF07",
+        "B-QF06"
+      ],
+      "editorial_reason": "意思決定の主体ではなく実行過程の独力／共同を扱う新しい対象。自律と相談が両立し得る",
+      "same_family_variants": [
+        {
+          "id": "B-X12",
+          "score": 0.03
+        },
+        {
+          "id": "B-X11",
+          "score": 0.02
+        }
+      ],
+      "lexical_nearest_historical": [
+        {
+          "id": "B-N03",
+          "origin": "D183",
+          "score": 0.24
+        },
+        {
+          "id": "B-FU04",
+          "origin": "D146",
+          "score": 0.07
+        },
+        {
+          "id": "B05",
+          "origin": "D146",
+          "score": 0.06
+        }
+      ],
+      "lexical_method": "Character 3-gram Jaccard; ONLY a review queue heuristic, NOT semantic equivalence",
+      "family_overlap_risk": "MEDIUM",
+      "confounds": "相談と自律は両立できる。技能・援助への不安",
+      "scored_approved": false
+    },
+    {
+      "id": "B-X11",
+      "axis": "B",
+      "family_id": "B-QF04",
+      "provisional_classification": "CONTENT_HYPOTHESIS",
+      "closest_prior_ids": [
+        "B-N03",
+        "B-G1"
+      ],
+      "related_provisional_families": [
+        "B-QF07",
+        "B-QF06"
+      ],
+      "editorial_reason": "意思決定の主体ではなく実行過程の独力／共同を扱う新しい対象。自律と相談が両立し得る",
+      "same_family_variants": [
+        {
+          "id": "B-X12",
+          "score": 0.03
+        },
+        {
+          "id": "B-X10",
+          "score": 0.02
+        }
+      ],
+      "lexical_nearest_historical": [
+        {
+          "id": "B-N03",
+          "origin": "D183",
+          "score": 0.06
+        },
+        {
+          "id": "B02",
+          "origin": "D146",
+          "score": 0.04
+        },
+        {
+          "id": "B-FU05",
+          "origin": "D146",
+          "score": 0.04
+        }
+      ],
+      "lexical_method": "Character 3-gram Jaccard; ONLY a review queue heuristic, NOT semantic equivalence",
+      "family_overlap_risk": "MEDIUM",
+      "confounds": "相談と自律は両立できる。技能・援助への不安",
+      "scored_approved": false
+    },
+    {
+      "id": "B-X12",
+      "axis": "B",
+      "family_id": "B-QF04",
+      "provisional_classification": "CONTENT_HYPOTHESIS",
+      "closest_prior_ids": [
+        "B-N03",
+        "B-G1"
+      ],
+      "related_provisional_families": [
+        "B-QF07",
+        "B-QF06"
+      ],
+      "editorial_reason": "意思決定の主体ではなく実行過程の独力／共同を扱う新しい対象。自律と相談が両立し得る",
+      "same_family_variants": [
+        {
+          "id": "B-X10",
+          "score": 0.03
+        },
+        {
+          "id": "B-X11",
+          "score": 0.03
+        }
+      ],
+      "lexical_nearest_historical": [
+        {
+          "id": "B-N04",
+          "origin": "D183",
+          "score": 0.07
+        },
+        {
+          "id": "B-N05",
+          "origin": "D183",
+          "score": 0.06
+        },
+        {
+          "id": "B01",
+          "origin": "D146",
+          "score": 0.04
+        }
+      ],
+      "lexical_method": "Character 3-gram Jaccard; ONLY a review queue heuristic, NOT semantic equivalence",
+      "family_overlap_risk": "MEDIUM",
+      "confounds": "相談と自律は両立できる。技能・援助への不安",
+      "scored_approved": false
+    },
+    {
+      "id": "B-X13",
+      "axis": "B",
+      "family_id": "B-QF05",
+      "provisional_classification": "LEGACY_OVERLAP",
+      "closest_prior_ids": [
+        "B-FU12",
+        "B-N02"
+      ],
+      "related_provisional_families": [
+        "B-QF02"
+      ],
+      "editorial_reason": "B-FU12の共同表現に関する同義判断",
+      "same_family_variants": [
+        {
+          "id": "B-X15",
+          "score": 0.06
+        },
+        {
+          "id": "B-X14",
+          "score": 0.02
+        }
+      ],
+      "lexical_nearest_historical": [
+        {
+          "id": "B04",
+          "origin": "D146",
+          "score": 0.1
+        },
+        {
+          "id": "B03",
+          "origin": "D146",
+          "score": 0.08
+        },
+        {
+          "id": "B-FU04",
+          "origin": "D146",
+          "score": 0.07
+        }
+      ],
+      "lexical_method": "Character 3-gram Jaccard; ONLY a review queue heuristic, NOT semantic equivalence",
+      "family_overlap_risk": "HIGH",
+      "confounds": "共同決定B01と同内容、創作能力や役割分担",
+      "scored_approved": false
+    },
+    {
+      "id": "B-X14",
+      "axis": "B",
+      "family_id": "B-QF05",
+      "provisional_classification": "LEGACY_OVERLAP",
+      "closest_prior_ids": [
+        "B-FU12",
+        "B-N02"
+      ],
+      "related_provisional_families": [
+        "B-QF02"
+      ],
+      "editorial_reason": "B-FU12の共同表現に関する同義判断",
+      "same_family_variants": [
+        {
+          "id": "B-X15",
+          "score": 0.04
+        },
+        {
+          "id": "B-X13",
+          "score": 0.02
+        }
+      ],
+      "lexical_nearest_historical": [
+        {
+          "id": "B05",
+          "origin": "D146",
+          "score": 0.1
+        },
+        {
+          "id": "B-FU05",
+          "origin": "D146",
+          "score": 0.09
+        },
+        {
+          "id": "B-N02",
+          "origin": "D183",
+          "score": 0.08
+        }
+      ],
+      "lexical_method": "Character 3-gram Jaccard; ONLY a review queue heuristic, NOT semantic equivalence",
+      "family_overlap_risk": "HIGH",
+      "confounds": "共同決定B01と同内容、創作能力や役割分担",
+      "scored_approved": false
+    },
+    {
+      "id": "B-X15",
+      "axis": "B",
+      "family_id": "B-QF05",
+      "provisional_classification": "LEGACY_OVERLAP",
+      "closest_prior_ids": [
+        "B-FU12",
+        "B-N02"
+      ],
+      "related_provisional_families": [
+        "B-QF02"
+      ],
+      "editorial_reason": "B-FU12の共同表現に関する同義判断",
+      "same_family_variants": [
+        {
+          "id": "B-X13",
+          "score": 0.06
+        },
+        {
+          "id": "B-X14",
+          "score": 0.04
+        }
+      ],
+      "lexical_nearest_historical": [
+        {
+          "id": "B-BK13",
+          "origin": "D146",
+          "score": 0.12
+        },
+        {
+          "id": "B-N02",
+          "origin": "D183",
+          "score": 0.09
+        },
+        {
+          "id": "B04",
+          "origin": "D146",
+          "score": 0.08
+        }
+      ],
+      "lexical_method": "Character 3-gram Jaccard; ONLY a review queue heuristic, NOT semantic equivalence",
+      "family_overlap_risk": "HIGH",
+      "confounds": "共同決定B01と同内容、創作能力や役割分担",
+      "scored_approved": false
+    },
+    {
+      "id": "B-X16",
+      "axis": "B",
+      "family_id": "B-QF06",
+      "provisional_classification": "BIPOLARITY_RISK",
+      "closest_prior_ids": [
+        "B-N04",
+        "B-G1"
+      ],
+      "related_provisional_families": [
+        "B-QF01",
+        "B-QF04"
+      ],
+      "editorial_reason": "相談開始の時点と最終決定主体は分離可能で、Bの左右に置くと偽対立になる恐れ",
+      "same_family_variants": [
+        {
+          "id": "B-X17",
+          "score": 0.07
+        },
+        {
+          "id": "B-X18",
+          "score": 0.07
+        }
+      ],
+      "lexical_nearest_historical": [
+        {
+          "id": "B-N04",
+          "origin": "D183",
+          "score": 0.13
+        },
+        {
+          "id": "B04",
+          "origin": "D146",
+          "score": 0.07
+        },
+        {
+          "id": "B-N01",
+          "origin": "D183",
+          "score": 0.07
+        }
+      ],
+      "lexical_method": "Character 3-gram Jaccard; ONLY a review queue heuristic, NOT semantic equivalence",
+      "family_overlap_risk": "HIGH",
+      "confounds": "意思決定と相談の両立、共同生活の同意義務",
+      "scored_approved": false
+    },
+    {
+      "id": "B-X17",
+      "axis": "B",
+      "family_id": "B-QF06",
+      "provisional_classification": "BIPOLARITY_RISK",
+      "closest_prior_ids": [
+        "B-N04",
+        "B-G1"
+      ],
+      "related_provisional_families": [
+        "B-QF01",
+        "B-QF04"
+      ],
+      "editorial_reason": "相談開始の時点と最終決定主体は分離可能で、Bの左右に置くと偽対立になる恐れ",
+      "same_family_variants": [
+        {
+          "id": "B-X16",
+          "score": 0.07
+        },
+        {
+          "id": "B-X18",
+          "score": 0.06
+        }
+      ],
+      "lexical_nearest_historical": [
+        {
+          "id": "B-FU04",
+          "origin": "D146",
+          "score": 0.06
+        },
+        {
+          "id": "B-N01",
+          "origin": "D183",
+          "score": 0.06
+        },
+        {
+          "id": "B-N05",
+          "origin": "D183",
+          "score": 0.06
+        }
+      ],
+      "lexical_method": "Character 3-gram Jaccard; ONLY a review queue heuristic, NOT semantic equivalence",
+      "family_overlap_risk": "HIGH",
+      "confounds": "意思決定と相談の両立、共同生活の同意義務",
+      "scored_approved": false
+    },
+    {
+      "id": "B-X18",
+      "axis": "B",
+      "family_id": "B-QF06",
+      "provisional_classification": "BIPOLARITY_RISK",
+      "closest_prior_ids": [
+        "B-N04",
+        "B-G1"
+      ],
+      "related_provisional_families": [
+        "B-QF01",
+        "B-QF04"
+      ],
+      "editorial_reason": "相談開始の時点と最終決定主体は分離可能で、Bの左右に置くと偽対立になる恐れ",
+      "same_family_variants": [
+        {
+          "id": "B-X16",
+          "score": 0.07
+        },
+        {
+          "id": "B-X17",
+          "score": 0.06
+        }
+      ],
+      "lexical_nearest_historical": [
+        {
+          "id": "B-FU04",
+          "origin": "D146",
+          "score": 0.08
+        },
+        {
+          "id": "B03",
+          "origin": "D146",
+          "score": 0.07
+        },
+        {
+          "id": "B-FU11",
+          "origin": "D146",
+          "score": 0.07
+        }
+      ],
+      "lexical_method": "Character 3-gram Jaccard; ONLY a review queue heuristic, NOT semantic equivalence",
+      "family_overlap_risk": "HIGH",
+      "confounds": "意思決定と相談の両立、共同生活の同意義務",
+      "scored_approved": false
+    },
+    {
+      "id": "B-X19",
+      "axis": "B",
+      "family_id": "B-QF07",
+      "provisional_classification": "CONTENT_HYPOTHESIS",
+      "closest_prior_ids": [
+        "B-N03",
+        "B-G1"
+      ],
+      "related_provisional_families": [
+        "B-QF04"
+      ],
+      "editorial_reason": "困りごとへの自力／協力の価値。能力や援助相手の存在が混入",
+      "same_family_variants": [
+        {
+          "id": "B-X20",
+          "score": 0.05
+        },
+        {
+          "id": "B-X21",
+          "score": 0.04
+        }
+      ],
+      "lexical_nearest_historical": [
+        {
+          "id": "B06",
+          "origin": "D146",
+          "score": 0.09
+        },
+        {
+          "id": "B-FU05",
+          "origin": "D146",
+          "score": 0.08
+        },
+        {
+          "id": "B-BK13",
+          "origin": "D146",
+          "score": 0.08
+        }
+      ],
+      "lexical_method": "Character 3-gram Jaccard; ONLY a review queue heuristic, NOT semantic equivalence",
+      "family_overlap_risk": "HIGH",
+      "confounds": "技能・相談相手の有無・自立への規範",
+      "scored_approved": false
+    },
+    {
+      "id": "B-X20",
+      "axis": "B",
+      "family_id": "B-QF07",
+      "provisional_classification": "CONTENT_HYPOTHESIS",
+      "closest_prior_ids": [
+        "B-N03",
+        "B-G1"
+      ],
+      "related_provisional_families": [
+        "B-QF04"
+      ],
+      "editorial_reason": "困りごとへの自力／協力の価値。能力や援助相手の存在が混入",
+      "same_family_variants": [
+        {
+          "id": "B-X21",
+          "score": 0.06
+        },
+        {
+          "id": "B-X19",
+          "score": 0.05
+        }
+      ],
+      "lexical_nearest_historical": [
+        {
+          "id": "B-N03",
+          "origin": "D183",
+          "score": 0.19
+        },
+        {
+          "id": "B03",
+          "origin": "D146",
+          "score": 0.11
+        },
+        {
+          "id": "B-FU04",
+          "origin": "D146",
+          "score": 0.08
+        }
+      ],
+      "lexical_method": "Character 3-gram Jaccard; ONLY a review queue heuristic, NOT semantic equivalence",
+      "family_overlap_risk": "HIGH",
+      "confounds": "技能・相談相手の有無・自立への規範",
+      "scored_approved": false
+    },
+    {
+      "id": "B-X21",
+      "axis": "B",
+      "family_id": "B-QF07",
+      "provisional_classification": "CONTENT_HYPOTHESIS",
+      "closest_prior_ids": [
+        "B-N03",
+        "B-G1"
+      ],
+      "related_provisional_families": [
+        "B-QF04"
+      ],
+      "editorial_reason": "困りごとへの自力／協力の価値。能力や援助相手の存在が混入",
+      "same_family_variants": [
+        {
+          "id": "B-X20",
+          "score": 0.06
+        },
+        {
+          "id": "B-X19",
+          "score": 0.04
+        }
+      ],
+      "lexical_nearest_historical": [
+        {
+          "id": "B-N03",
+          "origin": "D183",
+          "score": 0.11
+        },
+        {
+          "id": "B-N04",
+          "origin": "D183",
+          "score": 0.07
+        },
+        {
+          "id": "B-FU04",
+          "origin": "D146",
+          "score": 0.06
+        }
+      ],
+      "lexical_method": "Character 3-gram Jaccard; ONLY a review queue heuristic, NOT semantic equivalence",
+      "family_overlap_risk": "HIGH",
+      "confounds": "技能・相談相手の有無・自立への規範",
+      "scored_approved": false
+    },
+    {
+      "id": "B-X22",
+      "axis": "B",
+      "family_id": "B-QF08",
+      "provisional_classification": "LEGACY_OVERLAP",
+      "closest_prior_ids": [
+        "B-BK13",
+        "B-N05"
+      ],
+      "related_provisional_families": [
+        "B-QF02"
+      ],
+      "editorial_reason": "B-BK13にある共同ルールの合意の聞き直し",
+      "same_family_variants": [
+        {
+          "id": "B-X23",
+          "score": 0.04
+        },
+        {
+          "id": "B-X24",
+          "score": 0.02
+        }
+      ],
+      "lexical_nearest_historical": [
+        {
+          "id": "B04",
+          "origin": "D146",
+          "score": 0.17
+        },
+        {
+          "id": "B03",
+          "origin": "D146",
+          "score": 0.16
+        },
+        {
+          "id": "B-FU04",
+          "origin": "D146",
+          "score": 0.14
+        }
+      ],
+      "lexical_method": "Character 3-gram Jaccard; ONLY a review queue heuristic, NOT semantic equivalence",
+      "family_overlap_risk": "HIGH",
+      "confounds": "正当性や手続公平感が価値観より強い",
+      "scored_approved": false
+    },
+    {
+      "id": "B-X23",
+      "axis": "B",
+      "family_id": "B-QF08",
+      "provisional_classification": "LEGACY_OVERLAP",
+      "closest_prior_ids": [
+        "B-BK13",
+        "B-N05"
+      ],
+      "related_provisional_families": [
+        "B-QF02"
+      ],
+      "editorial_reason": "B-BK13にある共同ルールの合意の聞き直し",
+      "same_family_variants": [
+        {
+          "id": "B-X22",
+          "score": 0.04
+        },
+        {
+          "id": "B-X24",
+          "score": 0.03
+        }
+      ],
+      "lexical_nearest_historical": [
+        {
+          "id": "B-FU01",
+          "origin": "D146",
+          "score": 0.09
+        },
+        {
+          "id": "B-FU12",
+          "origin": "D146",
+          "score": 0.09
+        },
+        {
+          "id": "B06",
+          "origin": "D146",
+          "score": 0.08
+        }
+      ],
+      "lexical_method": "Character 3-gram Jaccard; ONLY a review queue heuristic, NOT semantic equivalence",
+      "family_overlap_risk": "HIGH",
+      "confounds": "正当性や手続公平感が価値観より強い",
+      "scored_approved": false
+    },
+    {
+      "id": "B-X24",
+      "axis": "B",
+      "family_id": "B-QF08",
+      "provisional_classification": "LEGACY_OVERLAP",
+      "closest_prior_ids": [
+        "B-BK13",
+        "B-N05"
+      ],
+      "related_provisional_families": [
+        "B-QF02"
+      ],
+      "editorial_reason": "B-BK13にある共同ルールの合意の聞き直し",
+      "same_family_variants": [
+        {
+          "id": "B-X23",
+          "score": 0.03
+        },
+        {
+          "id": "B-X22",
+          "score": 0.02
+        }
+      ],
+      "lexical_nearest_historical": [
+        {
+          "id": "B-FU04",
+          "origin": "D146",
+          "score": 0.1
+        },
+        {
+          "id": "B-BK13",
+          "origin": "D146",
+          "score": 0.09
+        },
+        {
+          "id": "B01",
+          "origin": "D146",
+          "score": 0.06
+        }
+      ],
+      "lexical_method": "Character 3-gram Jaccard; ONLY a review queue heuristic, NOT semantic equivalence",
+      "family_overlap_risk": "HIGH",
+      "confounds": "正当性や手続公平感が価値観より強い",
+      "scored_approved": false
+    },
+    {
+      "id": "C-X01",
+      "axis": "C",
+      "family_id": "C-QF01",
+      "provisional_classification": "LEGACY_OVERLAP",
+      "closest_prior_ids": [
+        "C01",
+        "C02"
+      ],
+      "related_provisional_families": [
+        "C-QF02",
+        "C-QF08"
+      ],
+      "editorial_reason": "C01/C02の単発の自由時間の用途",
+      "same_family_variants": [
+        {
+          "id": "C-X02",
+          "score": 0.03
+        },
+        {
+          "id": "C-X03",
+          "score": 0.02
+        }
+      ],
+      "lexical_nearest_historical": [
+        {
+          "id": "C-BK15",
+          "origin": "D146",
+          "score": 0.18
+        },
+        {
+          "id": "C04",
+          "origin": "D146",
+          "score": 0.12
+        },
+        {
+          "id": "C06",
+          "origin": "D146",
+          "score": 0.12
+        }
+      ],
+      "lexical_method": "Character 3-gram Jaccard; ONLY a review queue heuristic, NOT semantic equivalence",
+      "family_overlap_risk": "HIGH",
+      "confounds": "今週の予定・疲労・必要な準備の有無",
+      "scored_approved": false
+    },
+    {
+      "id": "C-X02",
+      "axis": "C",
+      "family_id": "C-QF01",
+      "provisional_classification": "LEGACY_OVERLAP",
+      "closest_prior_ids": [
+        "C01",
+        "C02"
+      ],
+      "related_provisional_families": [
+        "C-QF02",
+        "C-QF08"
+      ],
+      "editorial_reason": "C01/C02の単発の自由時間の用途",
+      "same_family_variants": [
+        {
+          "id": "C-X01",
+          "score": 0.03
+        },
+        {
+          "id": "C-X03",
+          "score": 0.01
+        }
+      ],
+      "lexical_nearest_historical": [
+        {
+          "id": "C01",
+          "origin": "D146",
+          "score": 0.16
+        },
+        {
+          "id": "C05",
+          "origin": "D146",
+          "score": 0.1
+        },
+        {
+          "id": "C-N04",
+          "origin": "D183",
+          "score": 0.1
+        }
+      ],
+      "lexical_method": "Character 3-gram Jaccard; ONLY a review queue heuristic, NOT semantic equivalence",
+      "family_overlap_risk": "HIGH",
+      "confounds": "今週の予定・疲労・必要な準備の有無",
+      "scored_approved": false
+    },
+    {
+      "id": "C-X03",
+      "axis": "C",
+      "family_id": "C-QF01",
+      "provisional_classification": "LEGACY_OVERLAP",
+      "closest_prior_ids": [
+        "C01",
+        "C02"
+      ],
+      "related_provisional_families": [
+        "C-QF02",
+        "C-QF08"
+      ],
+      "editorial_reason": "C01/C02の単発の自由時間の用途",
+      "same_family_variants": [
+        {
+          "id": "C-X01",
+          "score": 0.02
+        },
+        {
+          "id": "C-X02",
+          "score": 0.01
+        }
+      ],
+      "lexical_nearest_historical": [
+        {
+          "id": "C-FU11",
+          "origin": "D146",
+          "score": 0.06
+        },
+        {
+          "id": "C06",
+          "origin": "D146",
+          "score": 0.05
+        },
+        {
+          "id": "C-FU14",
+          "origin": "D146",
+          "score": 0.05
+        }
+      ],
+      "lexical_method": "Character 3-gram Jaccard; ONLY a review queue heuristic, NOT semantic equivalence",
+      "family_overlap_risk": "HIGH",
+      "confounds": "今週の予定・疲労・必要な準備の有無",
+      "scored_approved": false
+    },
+    {
+      "id": "C-X04",
+      "axis": "C",
+      "family_id": "C-QF02",
+      "provisional_classification": "LEGACY_OVERLAP",
+      "closest_prior_ids": [
+        "C05",
+        "C-BK15"
+      ],
+      "related_provisional_families": [
+        "C-QF01",
+        "C-QF05"
+      ],
+      "editorial_reason": "C05/C-BK15の毎週の時間の配分",
+      "same_family_variants": [
+        {
+          "id": "C-X06",
+          "score": 0.05
+        },
+        {
+          "id": "C-X05",
+          "score": 0.02
+        }
+      ],
+      "lexical_nearest_historical": [
+        {
+          "id": "C05",
+          "origin": "D146",
+          "score": 0.2
+        },
+        {
+          "id": "C01",
+          "origin": "D146",
+          "score": 0.18
+        },
+        {
+          "id": "C-N04",
+          "origin": "D183",
+          "score": 0.18
+        }
+      ],
+      "lexical_method": "Character 3-gram Jaccard; ONLY a review queue heuristic, NOT semantic equivalence",
+      "family_overlap_risk": "HIGH",
+      "confounds": "将来目標の強さ・休息必要性",
+      "scored_approved": false
+    },
+    {
+      "id": "C-X05",
+      "axis": "C",
+      "family_id": "C-QF02",
+      "provisional_classification": "LEGACY_OVERLAP",
+      "closest_prior_ids": [
+        "C05",
+        "C-BK15"
+      ],
+      "related_provisional_families": [
+        "C-QF01",
+        "C-QF05"
+      ],
+      "editorial_reason": "C05/C-BK15の毎週の時間の配分",
+      "same_family_variants": [
+        {
+          "id": "C-X04",
+          "score": 0.02
+        },
+        {
+          "id": "C-X06",
+          "score": 0.01
+        }
+      ],
+      "lexical_nearest_historical": [
+        {
+          "id": "C-N01",
+          "origin": "D183",
+          "score": 0.07
+        },
+        {
+          "id": "C04",
+          "origin": "D146",
+          "score": 0.06
+        },
+        {
+          "id": "C-BK14",
+          "origin": "D146",
+          "score": 0.06
+        }
+      ],
+      "lexical_method": "Character 3-gram Jaccard; ONLY a review queue heuristic, NOT semantic equivalence",
+      "family_overlap_risk": "HIGH",
+      "confounds": "将来目標の強さ・休息必要性",
+      "scored_approved": false
+    },
+    {
+      "id": "C-X06",
+      "axis": "C",
+      "family_id": "C-QF02",
+      "provisional_classification": "LEGACY_OVERLAP",
+      "closest_prior_ids": [
+        "C05",
+        "C-BK15"
+      ],
+      "related_provisional_families": [
+        "C-QF01",
+        "C-QF05"
+      ],
+      "editorial_reason": "C05/C-BK15の毎週の時間の配分",
+      "same_family_variants": [
+        {
+          "id": "C-X04",
+          "score": 0.05
+        },
+        {
+          "id": "C-X05",
+          "score": 0.01
+        }
+      ],
+      "lexical_nearest_historical": [
+        {
+          "id": "C-N04",
+          "origin": "D183",
+          "score": 0.08
+        },
+        {
+          "id": "C02",
+          "origin": "D146",
+          "score": 0.07
+        },
+        {
+          "id": "C-FU14",
+          "origin": "D146",
+          "score": 0.06
+        }
+      ],
+      "lexical_method": "Character 3-gram Jaccard; ONLY a review queue heuristic, NOT semantic equivalence",
+      "family_overlap_risk": "HIGH",
+      "confounds": "将来目標の強さ・休息必要性",
+      "scored_approved": false
+    },
+    {
+      "id": "C-X07",
+      "axis": "C",
+      "family_id": "C-QF03",
+      "provisional_classification": "CONTENT_HYPOTHESIS",
+      "closest_prior_ids": [
+        "C-N01",
+        "C05"
+      ],
+      "related_provisional_families": [
+        "C-QF05",
+        "C-QF04"
+      ],
+      "editorial_reason": "満足の評価基準を問う。C-N01と重複するが旧C05の時間配分とは問いが違う",
+      "same_family_variants": [
+        {
+          "id": "C-X08",
+          "score": 0.05
+        },
+        {
+          "id": "C-X09",
+          "score": 0.01
+        }
+      ],
+      "lexical_nearest_historical": [
+        {
+          "id": "C-N01",
+          "origin": "D183",
+          "score": 0.27
+        },
+        {
+          "id": "C-N05",
+          "origin": "D183",
+          "score": 0.13
+        },
+        {
+          "id": "C-N04",
+          "origin": "D183",
+          "score": 0.06
+        }
+      ],
+      "lexical_method": "Character 3-gram Jaccard; ONLY a review queue heuristic, NOT semantic equivalence",
+      "family_overlap_risk": "MEDIUM",
+      "confounds": "充実感、達成感、社会的に褒められることへの価値判断",
+      "scored_approved": false
+    },
+    {
+      "id": "C-X08",
+      "axis": "C",
+      "family_id": "C-QF03",
+      "provisional_classification": "CONTENT_HYPOTHESIS",
+      "closest_prior_ids": [
+        "C-N01",
+        "C05"
+      ],
+      "related_provisional_families": [
+        "C-QF05",
+        "C-QF04"
+      ],
+      "editorial_reason": "満足の評価基準を問う。C-N01と重複するが旧C05の時間配分とは問いが違う",
+      "same_family_variants": [
+        {
+          "id": "C-X07",
+          "score": 0.05
+        },
+        {
+          "id": "C-X09",
+          "score": 0
+        }
+      ],
+      "lexical_nearest_historical": [
+        {
+          "id": "C02",
+          "origin": "D146",
+          "score": 0.06
+        },
+        {
+          "id": "C01",
+          "origin": "D146",
+          "score": 0.04
+        },
+        {
+          "id": "C03",
+          "origin": "D146",
+          "score": 0.04
+        }
+      ],
+      "lexical_method": "Character 3-gram Jaccard; ONLY a review queue heuristic, NOT semantic equivalence",
+      "family_overlap_risk": "MEDIUM",
+      "confounds": "充実感、達成感、社会的に褒められることへの価値判断",
+      "scored_approved": false
+    },
+    {
+      "id": "C-X09",
+      "axis": "C",
+      "family_id": "C-QF03",
+      "provisional_classification": "CONTENT_HYPOTHESIS",
+      "closest_prior_ids": [
+        "C-N01",
+        "C05"
+      ],
+      "related_provisional_families": [
+        "C-QF05",
+        "C-QF04"
+      ],
+      "editorial_reason": "満足の評価基準を問う。C-N01と重複するが旧C05の時間配分とは問いが違う",
+      "same_family_variants": [
+        {
+          "id": "C-X07",
+          "score": 0.01
+        },
+        {
+          "id": "C-X08",
+          "score": 0
+        }
+      ],
+      "lexical_nearest_historical": [
+        {
+          "id": "C02",
+          "origin": "D146",
+          "score": 0.05
+        },
+        {
+          "id": "C-N05",
+          "origin": "D183",
+          "score": 0.04
+        },
+        {
+          "id": "C-BK13",
+          "origin": "D146",
+          "score": 0.03
+        }
+      ],
+      "lexical_method": "Character 3-gram Jaccard; ONLY a review queue heuristic, NOT semantic equivalence",
+      "family_overlap_risk": "MEDIUM",
+      "confounds": "充実感、達成感、社会的に褒められることへの価値判断",
+      "scored_approved": false
+    },
+    {
+      "id": "C-X10",
+      "axis": "C",
+      "family_id": "C-QF04",
+      "provisional_classification": "CONTENT_HYPOTHESIS",
+      "closest_prior_ids": [
+        "C-N03",
+        "C05"
+      ],
+      "related_provisional_families": [
+        "C-QF03",
+        "C-QF07"
+      ],
+      "editorial_reason": "達成した直後の今を味わうか次の目標へ向かうかを問う。C-N03との重複",
+      "same_family_variants": [
+        {
+          "id": "C-X11",
+          "score": 0.04
+        },
+        {
+          "id": "C-X12",
+          "score": 0.01
+        }
+      ],
+      "lexical_nearest_historical": [
+        {
+          "id": "C-N03",
+          "origin": "D183",
+          "score": 0.19
+        },
+        {
+          "id": "C02",
+          "origin": "D146",
+          "score": 0.13
+        },
+        {
+          "id": "C-BK15",
+          "origin": "D146",
+          "score": 0.09
+        }
+      ],
+      "lexical_method": "Character 3-gram Jaccard; ONLY a review queue heuristic, NOT semantic equivalence",
+      "family_overlap_risk": "MEDIUM",
+      "confounds": "疲労・休息、達成感、D軸のテーマ探索",
+      "scored_approved": false
+    },
+    {
+      "id": "C-X11",
+      "axis": "C",
+      "family_id": "C-QF04",
+      "provisional_classification": "CONTENT_HYPOTHESIS",
+      "closest_prior_ids": [
+        "C-N03",
+        "C05"
+      ],
+      "related_provisional_families": [
+        "C-QF03",
+        "C-QF07"
+      ],
+      "editorial_reason": "達成した直後の今を味わうか次の目標へ向かうかを問う。C-N03との重複",
+      "same_family_variants": [
+        {
+          "id": "C-X10",
+          "score": 0.04
+        },
+        {
+          "id": "C-X12",
+          "score": 0.02
+        }
+      ],
+      "lexical_nearest_historical": [
+        {
+          "id": "C-N03",
+          "origin": "D183",
+          "score": 0.07
+        },
+        {
+          "id": "C-FU11",
+          "origin": "D146",
+          "score": 0.05
+        },
+        {
+          "id": "C-BK13",
+          "origin": "D146",
+          "score": 0.04
+        }
+      ],
+      "lexical_method": "Character 3-gram Jaccard; ONLY a review queue heuristic, NOT semantic equivalence",
+      "family_overlap_risk": "MEDIUM",
+      "confounds": "疲労・休息、達成感、D軸のテーマ探索",
+      "scored_approved": false
+    },
+    {
+      "id": "C-X12",
+      "axis": "C",
+      "family_id": "C-QF04",
+      "provisional_classification": "CONTENT_HYPOTHESIS",
+      "closest_prior_ids": [
+        "C-N03",
+        "C05"
+      ],
+      "related_provisional_families": [
+        "C-QF03",
+        "C-QF07"
+      ],
+      "editorial_reason": "達成した直後の今を味わうか次の目標へ向かうかを問う。C-N03との重複",
+      "same_family_variants": [
+        {
+          "id": "C-X11",
+          "score": 0.02
+        },
+        {
+          "id": "C-X10",
+          "score": 0.01
+        }
+      ],
+      "lexical_nearest_historical": [
+        {
+          "id": "C06",
+          "origin": "D146",
+          "score": 0.05
+        },
+        {
+          "id": "C-BK13",
+          "origin": "D146",
+          "score": 0.05
+        },
+        {
+          "id": "C01",
+          "origin": "D146",
+          "score": 0.04
+        }
+      ],
+      "lexical_method": "Character 3-gram Jaccard; ONLY a review queue heuristic, NOT semantic equivalence",
+      "family_overlap_risk": "MEDIUM",
+      "confounds": "疲労・休息、達成感、D軸のテーマ探索",
+      "scored_approved": false
+    },
+    {
+      "id": "C-X13",
+      "axis": "C",
+      "family_id": "C-QF05",
+      "provisional_classification": "LEGACY_OVERLAP",
+      "closest_prior_ids": [
+        "C03",
+        "C04",
+        "C-N02"
+      ],
+      "related_provisional_families": [
+        "C-QF03"
+      ],
+      "editorial_reason": "C03/C04の活動の成果と過程を比較する従来形式",
+      "same_family_variants": [
+        {
+          "id": "C-X14",
+          "score": 0.03
+        },
+        {
+          "id": "C-X15",
+          "score": 0.03
+        }
+      ],
+      "lexical_nearest_historical": [
+        {
+          "id": "C-N02",
+          "origin": "D183",
+          "score": 0.17
+        },
+        {
+          "id": "C01",
+          "origin": "D146",
+          "score": 0.1
+        },
+        {
+          "id": "C03",
+          "origin": "D146",
+          "score": 0.1
+        }
+      ],
+      "lexical_method": "Character 3-gram Jaccard; ONLY a review queue heuristic, NOT semantic equivalence",
+      "family_overlap_risk": "HIGH",
+      "confounds": "楽しさと成果の同時成立、活動の魅力度・確実性",
+      "scored_approved": false
+    },
+    {
+      "id": "C-X14",
+      "axis": "C",
+      "family_id": "C-QF05",
+      "provisional_classification": "LEGACY_OVERLAP",
+      "closest_prior_ids": [
+        "C03",
+        "C04",
+        "C-N02"
+      ],
+      "related_provisional_families": [
+        "C-QF03"
+      ],
+      "editorial_reason": "C03/C04の活動の成果と過程を比較する従来形式",
+      "same_family_variants": [
+        {
+          "id": "C-X15",
+          "score": 0.04
+        },
+        {
+          "id": "C-X13",
+          "score": 0.03
+        }
+      ],
+      "lexical_nearest_historical": [
+        {
+          "id": "C03",
+          "origin": "D146",
+          "score": 0.12
+        },
+        {
+          "id": "C-FU14",
+          "origin": "D146",
+          "score": 0.07
+        },
+        {
+          "id": "C-N06",
+          "origin": "D183",
+          "score": 0.07
+        }
+      ],
+      "lexical_method": "Character 3-gram Jaccard; ONLY a review queue heuristic, NOT semantic equivalence",
+      "family_overlap_risk": "HIGH",
+      "confounds": "楽しさと成果の同時成立、活動の魅力度・確実性",
+      "scored_approved": false
+    },
+    {
+      "id": "C-X15",
+      "axis": "C",
+      "family_id": "C-QF05",
+      "provisional_classification": "LEGACY_OVERLAP",
+      "closest_prior_ids": [
+        "C03",
+        "C04",
+        "C-N02"
+      ],
+      "related_provisional_families": [
+        "C-QF03"
+      ],
+      "editorial_reason": "C03/C04の活動の成果と過程を比較する従来形式",
+      "same_family_variants": [
+        {
+          "id": "C-X14",
+          "score": 0.04
+        },
+        {
+          "id": "C-X13",
+          "score": 0.03
+        }
+      ],
+      "lexical_nearest_historical": [
+        {
+          "id": "C-N01",
+          "origin": "D183",
+          "score": 0.09
+        },
+        {
+          "id": "C-N02",
+          "origin": "D183",
+          "score": 0.07
+        },
+        {
+          "id": "C04",
+          "origin": "D146",
+          "score": 0.06
+        }
+      ],
+      "lexical_method": "Character 3-gram Jaccard; ONLY a review queue heuristic, NOT semantic equivalence",
+      "family_overlap_risk": "HIGH",
+      "confounds": "楽しさと成果の同時成立、活動の魅力度・確実性",
+      "scored_approved": false
+    },
+    {
+      "id": "C-X16",
+      "axis": "C",
+      "family_id": "C-QF06",
+      "provisional_classification": "CROSS_AXIS_RISK",
+      "closest_prior_ids": [
+        "C-BK13",
+        "C-G1"
+      ],
+      "related_provisional_families": [
+        "C-QF01"
+      ],
+      "editorial_reason": "資金余力やE軸との交絡が強い。C-BK13の別表現",
+      "same_family_variants": [
+        {
+          "id": "C-X17",
+          "score": 0.02
+        },
+        {
+          "id": "C-X18",
+          "score": 0.02
+        }
+      ],
+      "lexical_nearest_historical": [
+        {
+          "id": "C-BK13",
+          "origin": "D146",
+          "score": 0.14
+        },
+        {
+          "id": "C03",
+          "origin": "D146",
+          "score": 0.08
+        },
+        {
+          "id": "C-FU11",
+          "origin": "D146",
+          "score": 0.07
+        }
+      ],
+      "lexical_method": "Character 3-gram Jaccard; ONLY a review queue heuristic, NOT semantic equivalence",
+      "family_overlap_risk": "HIGH",
+      "confounds": "E軸との交絡、金銭余力、リスク回避",
+      "scored_approved": false
+    },
+    {
+      "id": "C-X17",
+      "axis": "C",
+      "family_id": "C-QF06",
+      "provisional_classification": "CROSS_AXIS_RISK",
+      "closest_prior_ids": [
+        "C-BK13",
+        "C-G1"
+      ],
+      "related_provisional_families": [
+        "C-QF01"
+      ],
+      "editorial_reason": "資金余力やE軸との交絡が強い。C-BK13の別表現",
+      "same_family_variants": [
+        {
+          "id": "C-X16",
+          "score": 0.02
+        },
+        {
+          "id": "C-X18",
+          "score": 0.02
+        }
+      ],
+      "lexical_nearest_historical": [
+        {
+          "id": "C02",
+          "origin": "D146",
+          "score": 0.15
+        },
+        {
+          "id": "C06",
+          "origin": "D146",
+          "score": 0.1
+        },
+        {
+          "id": "C-FU15",
+          "origin": "D146",
+          "score": 0.1
+        }
+      ],
+      "lexical_method": "Character 3-gram Jaccard; ONLY a review queue heuristic, NOT semantic equivalence",
+      "family_overlap_risk": "HIGH",
+      "confounds": "E軸との交絡、金銭余力、リスク回避",
+      "scored_approved": false
+    },
+    {
+      "id": "C-X18",
+      "axis": "C",
+      "family_id": "C-QF06",
+      "provisional_classification": "CROSS_AXIS_RISK",
+      "closest_prior_ids": [
+        "C-BK13",
+        "C-G1"
+      ],
+      "related_provisional_families": [
+        "C-QF01"
+      ],
+      "editorial_reason": "資金余力やE軸との交絡が強い。C-BK13の別表現",
+      "same_family_variants": [
+        {
+          "id": "C-X16",
+          "score": 0.02
+        },
+        {
+          "id": "C-X17",
+          "score": 0.02
+        }
+      ],
+      "lexical_nearest_historical": [
+        {
+          "id": "C-N04",
+          "origin": "D183",
+          "score": 0.07
+        },
+        {
+          "id": "C03",
+          "origin": "D146",
+          "score": 0.06
+        },
+        {
+          "id": "C-N05",
+          "origin": "D183",
+          "score": 0.06
+        }
+      ],
+      "lexical_method": "Character 3-gram Jaccard; ONLY a review queue heuristic, NOT semantic equivalence",
+      "family_overlap_risk": "HIGH",
+      "confounds": "E軸との交絡、金銭余力、リスク回避",
+      "scored_approved": false
+    },
+    {
+      "id": "C-X19",
+      "axis": "C",
+      "family_id": "C-QF07",
+      "provisional_classification": "FORMAT_ONLY",
+      "closest_prior_ids": [
+        "D181-8C",
+        "C-N05"
+      ],
+      "related_provisional_families": [
+        "C-QF01",
+        "C-QF04"
+      ],
+      "editorial_reason": "後悔想像による別提示。D181-8CやC-N05に既出",
+      "same_family_variants": [
+        {
+          "id": "C-X20",
+          "score": 0.13
+        },
+        {
+          "id": "C-X21",
+          "score": 0.12
+        }
+      ],
+      "lexical_nearest_historical": [
+        {
+          "id": "C-N05",
+          "origin": "D183",
+          "score": 0.23
+        },
+        {
+          "id": "C-FU15",
+          "origin": "D146",
+          "score": 0.09
+        },
+        {
+          "id": "C05",
+          "origin": "D146",
+          "score": 0.07
+        }
+      ],
+      "lexical_method": "Character 3-gram Jaccard; ONLY a review queue heuristic, NOT semantic equivalence",
+      "family_overlap_risk": "HIGH",
+      "confounds": "反事実想像、気分・後悔しやすさ、表現形式効果",
+      "scored_approved": false
+    },
+    {
+      "id": "C-X20",
+      "axis": "C",
+      "family_id": "C-QF07",
+      "provisional_classification": "FORMAT_ONLY",
+      "closest_prior_ids": [
+        "D181-8C",
+        "C-N05"
+      ],
+      "related_provisional_families": [
+        "C-QF01",
+        "C-QF04"
+      ],
+      "editorial_reason": "後悔想像による別提示。D181-8CやC-N05に既出",
+      "same_family_variants": [
+        {
+          "id": "C-X19",
+          "score": 0.13
+        },
+        {
+          "id": "C-X21",
+          "score": 0.02
+        }
+      ],
+      "lexical_nearest_historical": [
+        {
+          "id": "C-N05",
+          "origin": "D183",
+          "score": 0.1
+        },
+        {
+          "id": "C05",
+          "origin": "D146",
+          "score": 0.06
+        },
+        {
+          "id": "C-N03",
+          "origin": "D183",
+          "score": 0.06
+        }
+      ],
+      "lexical_method": "Character 3-gram Jaccard; ONLY a review queue heuristic, NOT semantic equivalence",
+      "family_overlap_risk": "HIGH",
+      "confounds": "反事実想像、気分・後悔しやすさ、表現形式効果",
+      "scored_approved": false
+    },
+    {
+      "id": "C-X21",
+      "axis": "C",
+      "family_id": "C-QF07",
+      "provisional_classification": "FORMAT_ONLY",
+      "closest_prior_ids": [
+        "D181-8C",
+        "C-N05"
+      ],
+      "related_provisional_families": [
+        "C-QF01",
+        "C-QF04"
+      ],
+      "editorial_reason": "後悔想像による別提示。D181-8CやC-N05に既出",
+      "same_family_variants": [
+        {
+          "id": "C-X19",
+          "score": 0.12
+        },
+        {
+          "id": "C-X20",
+          "score": 0.02
+        }
+      ],
+      "lexical_nearest_historical": [
+        {
+          "id": "C-N04",
+          "origin": "D183",
+          "score": 0.11
+        },
+        {
+          "id": "C-N05",
+          "origin": "D183",
+          "score": 0.1
+        },
+        {
+          "id": "C06",
+          "origin": "D146",
+          "score": 0.09
+        }
+      ],
+      "lexical_method": "Character 3-gram Jaccard; ONLY a review queue heuristic, NOT semantic equivalence",
+      "family_overlap_risk": "HIGH",
+      "confounds": "反事実想像、気分・後悔しやすさ、表現形式効果",
+      "scored_approved": false
+    },
+    {
+      "id": "C-X22",
+      "axis": "C",
+      "family_id": "C-QF08",
+      "provisional_classification": "FORMAT_ONLY",
+      "closest_prior_ids": [
+        "C-FU14",
+        "C-FU15",
+        "D181-10C"
+      ],
+      "related_provisional_families": [
+        "C-QF01",
+        "C-QF02"
+      ],
+      "editorial_reason": "自由時間や希少性の条件効果でありC-FU14/C-FU15などのペア研究",
+      "same_family_variants": [
+        {
+          "id": "C-X24",
+          "score": 0.11
+        },
+        {
+          "id": "C-X23",
+          "score": 0.07
+        }
+      ],
+      "lexical_nearest_historical": [
+        {
+          "id": "C-N03",
+          "origin": "D183",
+          "score": 0.12
+        },
+        {
+          "id": "C-N04",
+          "origin": "D183",
+          "score": 0.12
+        },
+        {
+          "id": "C02",
+          "origin": "D146",
+          "score": 0.09
+        }
+      ],
+      "lexical_method": "Character 3-gram Jaccard; ONLY a review queue heuristic, NOT semantic equivalence",
+      "family_overlap_risk": "HIGH",
+      "confounds": "価値の強度ではなく希少性・資源条件、ペアを独立した質問系統と数えない",
+      "scored_approved": false
+    },
+    {
+      "id": "C-X23",
+      "axis": "C",
+      "family_id": "C-QF08",
+      "provisional_classification": "FORMAT_ONLY",
+      "closest_prior_ids": [
+        "C-FU14",
+        "C-FU15",
+        "D181-10C"
+      ],
+      "related_provisional_families": [
+        "C-QF01",
+        "C-QF02"
+      ],
+      "editorial_reason": "自由時間や希少性の条件効果でありC-FU14/C-FU15などのペア研究",
+      "same_family_variants": [
+        {
+          "id": "C-X22",
+          "score": 0.07
+        },
+        {
+          "id": "C-X24",
+          "score": 0.06
+        }
+      ],
+      "lexical_nearest_historical": [
+        {
+          "id": "C-FU14",
+          "origin": "D146",
+          "score": 0.17
+        },
+        {
+          "id": "C-FU15",
+          "origin": "D146",
+          "score": 0.16
+        },
+        {
+          "id": "C05",
+          "origin": "D146",
+          "score": 0.08
+        }
+      ],
+      "lexical_method": "Character 3-gram Jaccard; ONLY a review queue heuristic, NOT semantic equivalence",
+      "family_overlap_risk": "HIGH",
+      "confounds": "価値の強度ではなく希少性・資源条件、ペアを独立した質問系統と数えない",
+      "scored_approved": false
+    },
+    {
+      "id": "C-X24",
+      "axis": "C",
+      "family_id": "C-QF08",
+      "provisional_classification": "FORMAT_ONLY",
+      "closest_prior_ids": [
+        "C-FU14",
+        "C-FU15",
+        "D181-10C"
+      ],
+      "related_provisional_families": [
+        "C-QF01",
+        "C-QF02"
+      ],
+      "editorial_reason": "自由時間や希少性の条件効果でありC-FU14/C-FU15などのペア研究",
+      "same_family_variants": [
+        {
+          "id": "C-X22",
+          "score": 0.11
+        },
+        {
+          "id": "C-X23",
+          "score": 0.06
+        }
+      ],
+      "lexical_nearest_historical": [
+        {
+          "id": "C-FU15",
+          "origin": "D146",
+          "score": 0.24
+        },
+        {
+          "id": "C-FU14",
+          "origin": "D146",
+          "score": 0.11
+        },
+        {
+          "id": "C-N03",
+          "origin": "D183",
+          "score": 0.09
+        }
+      ],
+      "lexical_method": "Character 3-gram Jaccard; ONLY a review queue heuristic, NOT semantic equivalence",
+      "family_overlap_risk": "HIGH",
+      "confounds": "価値の強度ではなく希少性・資源条件、ペアを独立した質問系統と数えない",
+      "scored_approved": false
+    },
+    {
+      "id": "D-X01",
+      "axis": "D",
+      "family_id": "D-QF01",
+      "provisional_classification": "LEGACY_OVERLAP",
+      "closest_prior_ids": [
+        "D02",
+        "D-FU12"
+      ],
+      "related_provisional_families": [
+        "D-QF04",
+        "D-QF07"
+      ],
+      "editorial_reason": "D02/D-FU12の学習分野の広さと深さ",
+      "same_family_variants": [
+        {
+          "id": "D-X02",
+          "score": 0.04
+        },
+        {
+          "id": "D-X03",
+          "score": 0.02
+        }
+      ],
+      "lexical_nearest_historical": [
+        {
+          "id": "D02",
+          "origin": "D146",
+          "score": 0.21
+        },
+        {
+          "id": "D05",
+          "origin": "D146",
+          "score": 0.1
+        },
+        {
+          "id": "D-N03",
+          "origin": "D183",
+          "score": 0.09
+        }
+      ],
+      "lexical_method": "Character 3-gram Jaccard; ONLY a review queue heuristic, NOT semantic equivalence",
+      "family_overlap_risk": "HIGH",
+      "confounds": "科目粒度・専門能力・学習への苦手意識",
+      "scored_approved": false
+    },
+    {
+      "id": "D-X02",
+      "axis": "D",
+      "family_id": "D-QF01",
+      "provisional_classification": "LEGACY_OVERLAP",
+      "closest_prior_ids": [
+        "D02",
+        "D-FU12"
+      ],
+      "related_provisional_families": [
+        "D-QF04",
+        "D-QF07"
+      ],
+      "editorial_reason": "D02/D-FU12の学習分野の広さと深さ",
+      "same_family_variants": [
+        {
+          "id": "D-X01",
+          "score": 0.04
+        },
+        {
+          "id": "D-X03",
+          "score": 0.02
+        }
+      ],
+      "lexical_nearest_historical": [
+        {
+          "id": "D05",
+          "origin": "D146",
+          "score": 0.1
+        },
+        {
+          "id": "D-BK13",
+          "origin": "D146",
+          "score": 0.08
+        },
+        {
+          "id": "D02",
+          "origin": "D146",
+          "score": 0.05
+        }
+      ],
+      "lexical_method": "Character 3-gram Jaccard; ONLY a review queue heuristic, NOT semantic equivalence",
+      "family_overlap_risk": "HIGH",
+      "confounds": "科目粒度・専門能力・学習への苦手意識",
+      "scored_approved": false
+    },
+    {
+      "id": "D-X03",
+      "axis": "D",
+      "family_id": "D-QF01",
+      "provisional_classification": "LEGACY_OVERLAP",
+      "closest_prior_ids": [
+        "D02",
+        "D-FU12"
+      ],
+      "related_provisional_families": [
+        "D-QF04",
+        "D-QF07"
+      ],
+      "editorial_reason": "D02/D-FU12の学習分野の広さと深さ",
+      "same_family_variants": [
+        {
+          "id": "D-X01",
+          "score": 0.02
+        },
+        {
+          "id": "D-X02",
+          "score": 0.02
+        }
+      ],
+      "lexical_nearest_historical": [
+        {
+          "id": "D05",
+          "origin": "D146",
+          "score": 0.09
+        },
+        {
+          "id": "D-FU09",
+          "origin": "D146",
+          "score": 0.07
+        },
+        {
+          "id": "D-N05",
+          "origin": "D183",
+          "score": 0.07
+        }
+      ],
+      "lexical_method": "Character 3-gram Jaccard; ONLY a review queue heuristic, NOT semantic equivalence",
+      "family_overlap_risk": "HIGH",
+      "confounds": "科目粒度・専門能力・学習への苦手意識",
+      "scored_approved": false
+    },
+    {
+      "id": "D-X04",
+      "axis": "D",
+      "family_id": "D-QF02",
+      "provisional_classification": "CONTENT_HYPOTHESIS",
+      "closest_prior_ids": [
+        "D-N02",
+        "D-BK13"
+      ],
+      "related_provisional_families": [
+        "D-QF05",
+        "D-QF06"
+      ],
+      "editorial_reason": "分野ではなく探究する問いの数の選択。D-N02と重なる",
+      "same_family_variants": [
+        {
+          "id": "D-X06",
+          "score": 0.06
+        },
+        {
+          "id": "D-X05",
+          "score": 0.03
+        }
+      ],
+      "lexical_nearest_historical": [
+        {
+          "id": "D-N02",
+          "origin": "D183",
+          "score": 0.17
+        },
+        {
+          "id": "D-N06",
+          "origin": "D183",
+          "score": 0.15
+        },
+        {
+          "id": "D02",
+          "origin": "D146",
+          "score": 0.12
+        }
+      ],
+      "lexical_method": "Character 3-gram Jaccard; ONLY a review queue heuristic, NOT semantic equivalence",
+      "family_overlap_risk": "MEDIUM",
+      "confounds": "問いの難易度・調査能力・未完了への抵抗",
+      "scored_approved": false
+    },
+    {
+      "id": "D-X05",
+      "axis": "D",
+      "family_id": "D-QF02",
+      "provisional_classification": "CONTENT_HYPOTHESIS",
+      "closest_prior_ids": [
+        "D-N02",
+        "D-BK13"
+      ],
+      "related_provisional_families": [
+        "D-QF05",
+        "D-QF06"
+      ],
+      "editorial_reason": "分野ではなく探究する問いの数の選択。D-N02と重なる",
+      "same_family_variants": [
+        {
+          "id": "D-X04",
+          "score": 0.03
+        },
+        {
+          "id": "D-X06",
+          "score": 0.03
+        }
+      ],
+      "lexical_nearest_historical": [
+        {
+          "id": "D03",
+          "origin": "D146",
+          "score": 0.06
+        },
+        {
+          "id": "D05",
+          "origin": "D146",
+          "score": 0.05
+        },
+        {
+          "id": "D-N03",
+          "origin": "D183",
+          "score": 0.05
+        }
+      ],
+      "lexical_method": "Character 3-gram Jaccard; ONLY a review queue heuristic, NOT semantic equivalence",
+      "family_overlap_risk": "MEDIUM",
+      "confounds": "問いの難易度・調査能力・未完了への抵抗",
+      "scored_approved": false
+    },
+    {
+      "id": "D-X06",
+      "axis": "D",
+      "family_id": "D-QF02",
+      "provisional_classification": "CONTENT_HYPOTHESIS",
+      "closest_prior_ids": [
+        "D-N02",
+        "D-BK13"
+      ],
+      "related_provisional_families": [
+        "D-QF05",
+        "D-QF06"
+      ],
+      "editorial_reason": "分野ではなく探究する問いの数の選択。D-N02と重なる",
+      "same_family_variants": [
+        {
+          "id": "D-X04",
+          "score": 0.06
+        },
+        {
+          "id": "D-X05",
+          "score": 0.03
+        }
+      ],
+      "lexical_nearest_historical": [
+        {
+          "id": "D-N02",
+          "origin": "D183",
+          "score": 0.07
+        },
+        {
+          "id": "D04",
+          "origin": "D146",
+          "score": 0.05
+        },
+        {
+          "id": "D05",
+          "origin": "D146",
+          "score": 0.05
+        }
+      ],
+      "lexical_method": "Character 3-gram Jaccard; ONLY a review queue heuristic, NOT semantic equivalence",
+      "family_overlap_risk": "MEDIUM",
+      "confounds": "問いの難易度・調査能力・未完了への抵抗",
+      "scored_approved": false
+    },
+    {
+      "id": "D-X07",
+      "axis": "D",
+      "family_id": "D-QF03",
+      "provisional_classification": "LEGACY_OVERLAP",
+      "closest_prior_ids": [
+        "D04",
+        "D-N01"
+      ],
+      "related_provisional_families": [
+        "D-QF08",
+        "D-QF04"
+      ],
+      "editorial_reason": "D04の創作媒体の幅と深さ",
+      "same_family_variants": [
+        {
+          "id": "D-X08",
+          "score": 0.06
+        },
+        {
+          "id": "D-X09",
+          "score": 0.04
+        }
+      ],
+      "lexical_nearest_historical": [
+        {
+          "id": "D-N01",
+          "origin": "D183",
+          "score": 0.13
+        },
+        {
+          "id": "D-FU09",
+          "origin": "D146",
+          "score": 0.08
+        },
+        {
+          "id": "D-N06",
+          "origin": "D183",
+          "score": 0.07
+        }
+      ],
+      "lexical_method": "Character 3-gram Jaccard; ONLY a review queue heuristic, NOT semantic equivalence",
+      "family_overlap_risk": "HIGH",
+      "confounds": "創作の経験や技能・作品成果の違い",
+      "scored_approved": false
+    },
+    {
+      "id": "D-X08",
+      "axis": "D",
+      "family_id": "D-QF03",
+      "provisional_classification": "LEGACY_OVERLAP",
+      "closest_prior_ids": [
+        "D04",
+        "D-N01"
+      ],
+      "related_provisional_families": [
+        "D-QF08",
+        "D-QF04"
+      ],
+      "editorial_reason": "D04の創作媒体の幅と深さ",
+      "same_family_variants": [
+        {
+          "id": "D-X07",
+          "score": 0.06
+        },
+        {
+          "id": "D-X09",
+          "score": 0.04
+        }
+      ],
+      "lexical_nearest_historical": [
+        {
+          "id": "D-N03",
+          "origin": "D183",
+          "score": 0.13
+        },
+        {
+          "id": "D-N04",
+          "origin": "D183",
+          "score": 0.09
+        },
+        {
+          "id": "D05",
+          "origin": "D146",
+          "score": 0.08
+        }
+      ],
+      "lexical_method": "Character 3-gram Jaccard; ONLY a review queue heuristic, NOT semantic equivalence",
+      "family_overlap_risk": "HIGH",
+      "confounds": "創作の経験や技能・作品成果の違い",
+      "scored_approved": false
+    },
+    {
+      "id": "D-X09",
+      "axis": "D",
+      "family_id": "D-QF03",
+      "provisional_classification": "LEGACY_OVERLAP",
+      "closest_prior_ids": [
+        "D04",
+        "D-N01"
+      ],
+      "related_provisional_families": [
+        "D-QF08",
+        "D-QF04"
+      ],
+      "editorial_reason": "D04の創作媒体の幅と深さ",
+      "same_family_variants": [
+        {
+          "id": "D-X07",
+          "score": 0.04
+        },
+        {
+          "id": "D-X08",
+          "score": 0.04
+        }
+      ],
+      "lexical_nearest_historical": [
+        {
+          "id": "D05",
+          "origin": "D146",
+          "score": 0.09
+        },
+        {
+          "id": "D-N01",
+          "origin": "D183",
+          "score": 0.09
+        },
+        {
+          "id": "D-N03",
+          "origin": "D183",
+          "score": 0.08
+        }
+      ],
+      "lexical_method": "Character 3-gram Jaccard; ONLY a review queue heuristic, NOT semantic equivalence",
+      "family_overlap_risk": "HIGH",
+      "confounds": "創作の経験や技能・作品成果の違い",
+      "scored_approved": false
+    },
+    {
+      "id": "D-X10",
+      "axis": "D",
+      "family_id": "D-QF04",
+      "provisional_classification": "LEGACY_OVERLAP",
+      "closest_prior_ids": [
+        "D01",
+        "D-FU11"
+      ],
+      "related_provisional_families": [
+        "D-QF01",
+        "D-QF06"
+      ],
+      "editorial_reason": "D01/D-FU11の趣味活動の幅と深さ",
+      "same_family_variants": [
+        {
+          "id": "D-X11",
+          "score": 0.03
+        },
+        {
+          "id": "D-X12",
+          "score": 0.03
+        }
+      ],
+      "lexical_nearest_historical": [
+        {
+          "id": "D-N01",
+          "origin": "D183",
+          "score": 0.11
+        },
+        {
+          "id": "D04",
+          "origin": "D146",
+          "score": 0.08
+        },
+        {
+          "id": "D02",
+          "origin": "D146",
+          "score": 0.07
+        }
+      ],
+      "lexical_method": "Character 3-gram Jaccard; ONLY a review queue heuristic, NOT semantic equivalence",
+      "family_overlap_risk": "HIGH",
+      "confounds": "能力・習熟度と探索価値を混同する",
+      "scored_approved": false
+    },
+    {
+      "id": "D-X11",
+      "axis": "D",
+      "family_id": "D-QF04",
+      "provisional_classification": "LEGACY_OVERLAP",
+      "closest_prior_ids": [
+        "D01",
+        "D-FU11"
+      ],
+      "related_provisional_families": [
+        "D-QF01",
+        "D-QF06"
+      ],
+      "editorial_reason": "D01/D-FU11の趣味活動の幅と深さ",
+      "same_family_variants": [
+        {
+          "id": "D-X10",
+          "score": 0.03
+        },
+        {
+          "id": "D-X12",
+          "score": 0.02
+        }
+      ],
+      "lexical_nearest_historical": [
+        {
+          "id": "D01",
+          "origin": "D146",
+          "score": 0.03
+        },
+        {
+          "id": "D02",
+          "origin": "D146",
+          "score": 0.03
+        },
+        {
+          "id": "D04",
+          "origin": "D146",
+          "score": 0.03
+        }
+      ],
+      "lexical_method": "Character 3-gram Jaccard; ONLY a review queue heuristic, NOT semantic equivalence",
+      "family_overlap_risk": "HIGH",
+      "confounds": "能力・習熟度と探索価値を混同する",
+      "scored_approved": false
+    },
+    {
+      "id": "D-X12",
+      "axis": "D",
+      "family_id": "D-QF04",
+      "provisional_classification": "LEGACY_OVERLAP",
+      "closest_prior_ids": [
+        "D01",
+        "D-FU11"
+      ],
+      "related_provisional_families": [
+        "D-QF01",
+        "D-QF06"
+      ],
+      "editorial_reason": "D01/D-FU11の趣味活動の幅と深さ",
+      "same_family_variants": [
+        {
+          "id": "D-X10",
+          "score": 0.03
+        },
+        {
+          "id": "D-X11",
+          "score": 0.02
+        }
+      ],
+      "lexical_nearest_historical": [
+        {
+          "id": "D02",
+          "origin": "D146",
+          "score": 0.04
+        },
+        {
+          "id": "D05",
+          "origin": "D146",
+          "score": 0.04
+        },
+        {
+          "id": "D-N03",
+          "origin": "D183",
+          "score": 0.04
+        }
+      ],
+      "lexical_method": "Character 3-gram Jaccard; ONLY a review queue heuristic, NOT semantic equivalence",
+      "family_overlap_risk": "HIGH",
+      "confounds": "能力・習熟度と探索価値を混同する",
+      "scored_approved": false
+    },
+    {
+      "id": "D-X13",
+      "axis": "D",
+      "family_id": "D-QF05",
+      "provisional_classification": "LEGACY_OVERLAP",
+      "closest_prior_ids": [
+        "D05",
+        "D-BK13",
+        "D-N06"
+      ],
+      "related_provisional_families": [
+        "D-QF02",
+        "D-QF07"
+      ],
+      "editorial_reason": "D05/D-BK13の複数分野からの理解と単一分野深化",
+      "same_family_variants": [
+        {
+          "id": "D-X14",
+          "score": 0.09
+        },
+        {
+          "id": "D-X15",
+          "score": 0.06
+        }
+      ],
+      "lexical_nearest_historical": [
+        {
+          "id": "D05",
+          "origin": "D146",
+          "score": 0.18
+        },
+        {
+          "id": "D-N03",
+          "origin": "D183",
+          "score": 0.13
+        },
+        {
+          "id": "D-FU09",
+          "origin": "D146",
+          "score": 0.12
+        }
+      ],
+      "lexical_method": "Character 3-gram Jaccard; ONLY a review queue heuristic, NOT semantic equivalence",
+      "family_overlap_risk": "HIGH",
+      "confounds": "問題解決効率・知識量・説明力",
+      "scored_approved": false
+    },
+    {
+      "id": "D-X14",
+      "axis": "D",
+      "family_id": "D-QF05",
+      "provisional_classification": "LEGACY_OVERLAP",
+      "closest_prior_ids": [
+        "D05",
+        "D-BK13",
+        "D-N06"
+      ],
+      "related_provisional_families": [
+        "D-QF02",
+        "D-QF07"
+      ],
+      "editorial_reason": "D05/D-BK13の複数分野からの理解と単一分野深化",
+      "same_family_variants": [
+        {
+          "id": "D-X13",
+          "score": 0.09
+        },
+        {
+          "id": "D-X15",
+          "score": 0.01
+        }
+      ],
+      "lexical_nearest_historical": [
+        {
+          "id": "D-N02",
+          "origin": "D183",
+          "score": 0.11
+        },
+        {
+          "id": "D05",
+          "origin": "D146",
+          "score": 0.1
+        },
+        {
+          "id": "D02",
+          "origin": "D146",
+          "score": 0.08
+        }
+      ],
+      "lexical_method": "Character 3-gram Jaccard; ONLY a review queue heuristic, NOT semantic equivalence",
+      "family_overlap_risk": "HIGH",
+      "confounds": "問題解決効率・知識量・説明力",
+      "scored_approved": false
+    },
+    {
+      "id": "D-X15",
+      "axis": "D",
+      "family_id": "D-QF05",
+      "provisional_classification": "LEGACY_OVERLAP",
+      "closest_prior_ids": [
+        "D05",
+        "D-BK13",
+        "D-N06"
+      ],
+      "related_provisional_families": [
+        "D-QF02",
+        "D-QF07"
+      ],
+      "editorial_reason": "D05/D-BK13の複数分野からの理解と単一分野深化",
+      "same_family_variants": [
+        {
+          "id": "D-X13",
+          "score": 0.06
+        },
+        {
+          "id": "D-X14",
+          "score": 0.01
+        }
+      ],
+      "lexical_nearest_historical": [
+        {
+          "id": "D-N03",
+          "origin": "D183",
+          "score": 0.07
+        },
+        {
+          "id": "D04",
+          "origin": "D146",
+          "score": 0.06
+        },
+        {
+          "id": "D-FU09",
+          "origin": "D146",
+          "score": 0.06
+        }
+      ],
+      "lexical_method": "Character 3-gram Jaccard; ONLY a review queue heuristic, NOT semantic equivalence",
+      "family_overlap_risk": "HIGH",
+      "confounds": "問題解決効率・知識量・説明力",
+      "scored_approved": false
+    },
+    {
+      "id": "D-X16",
+      "axis": "D",
+      "family_id": "D-QF06",
+      "provisional_classification": "LEGACY_OVERLAP",
+      "closest_prior_ids": [
+        "D06",
+        "D-FU10",
+        "D-N05"
+      ],
+      "related_provisional_families": [
+        "D-QF02",
+        "D-QF04"
+      ],
+      "editorial_reason": "D06/D-FU10の目標到達後の展開",
+      "same_family_variants": [
+        {
+          "id": "D-X18",
+          "score": 0.05
+        },
+        {
+          "id": "D-X17",
+          "score": 0.03
+        }
+      ],
+      "lexical_nearest_historical": [
+        {
+          "id": "D-N05",
+          "origin": "D183",
+          "score": 0.17
+        },
+        {
+          "id": "D-FU10",
+          "origin": "D146",
+          "score": 0.16
+        },
+        {
+          "id": "D-FU07",
+          "origin": "D146",
+          "score": 0.1
+        }
+      ],
+      "lexical_method": "Character 3-gram Jaccard; ONLY a review queue heuristic, NOT semantic equivalence",
+      "family_overlap_risk": "HIGH",
+      "confounds": "燃え尽き・当初目標の難度・将来達成C軸",
+      "scored_approved": false
+    },
+    {
+      "id": "D-X17",
+      "axis": "D",
+      "family_id": "D-QF06",
+      "provisional_classification": "LEGACY_OVERLAP",
+      "closest_prior_ids": [
+        "D06",
+        "D-FU10",
+        "D-N05"
+      ],
+      "related_provisional_families": [
+        "D-QF02",
+        "D-QF04"
+      ],
+      "editorial_reason": "D06/D-FU10の目標到達後の展開",
+      "same_family_variants": [
+        {
+          "id": "D-X16",
+          "score": 0.03
+        },
+        {
+          "id": "D-X18",
+          "score": 0.02
+        }
+      ],
+      "lexical_nearest_historical": [
+        {
+          "id": "D06",
+          "origin": "D146",
+          "score": 0.08
+        },
+        {
+          "id": "D01",
+          "origin": "D146",
+          "score": 0.07
+        },
+        {
+          "id": "D05",
+          "origin": "D146",
+          "score": 0.07
+        }
+      ],
+      "lexical_method": "Character 3-gram Jaccard; ONLY a review queue heuristic, NOT semantic equivalence",
+      "family_overlap_risk": "HIGH",
+      "confounds": "燃え尽き・当初目標の難度・将来達成C軸",
+      "scored_approved": false
+    },
+    {
+      "id": "D-X18",
+      "axis": "D",
+      "family_id": "D-QF06",
+      "provisional_classification": "LEGACY_OVERLAP",
+      "closest_prior_ids": [
+        "D06",
+        "D-FU10",
+        "D-N05"
+      ],
+      "related_provisional_families": [
+        "D-QF02",
+        "D-QF04"
+      ],
+      "editorial_reason": "D06/D-FU10の目標到達後の展開",
+      "same_family_variants": [
+        {
+          "id": "D-X16",
+          "score": 0.05
+        },
+        {
+          "id": "D-X17",
+          "score": 0.02
+        }
+      ],
+      "lexical_nearest_historical": [
+        {
+          "id": "D-FU10",
+          "origin": "D146",
+          "score": 0.1
+        },
+        {
+          "id": "D-N05",
+          "origin": "D183",
+          "score": 0.06
+        },
+        {
+          "id": "D06",
+          "origin": "D146",
+          "score": 0.04
+        }
+      ],
+      "lexical_method": "Character 3-gram Jaccard; ONLY a review queue heuristic, NOT semantic equivalence",
+      "family_overlap_risk": "HIGH",
+      "confounds": "燃え尽き・当初目標の難度・将来達成C軸",
+      "scored_approved": false
+    },
+    {
+      "id": "D-X19",
+      "axis": "D",
+      "family_id": "D-QF07",
+      "provisional_classification": "CONTENT_HYPOTHESIS",
+      "closest_prior_ids": [
+        "D-N03",
+        "D02"
+      ],
+      "related_provisional_families": [
+        "D-QF01",
+        "D-QF05"
+      ],
+      "editorial_reason": "何を学ぶかでなく、何を人に伝えるかという価値の対象。説明能力や相手の興味が交絡",
+      "same_family_variants": [
+        {
+          "id": "D-X20",
+          "score": 0.05
+        },
+        {
+          "id": "D-X21",
+          "score": 0.04
+        }
+      ],
+      "lexical_nearest_historical": [
+        {
+          "id": "D-N03",
+          "origin": "D183",
+          "score": 0.2
+        },
+        {
+          "id": "D05",
+          "origin": "D146",
+          "score": 0.12
+        },
+        {
+          "id": "D06",
+          "origin": "D146",
+          "score": 0.08
+        }
+      ],
+      "lexical_method": "Character 3-gram Jaccard; ONLY a review queue heuristic, NOT semantic equivalence",
+      "family_overlap_risk": "MEDIUM",
+      "confounds": "相手の理解・教える能力・B軸の対人欲求",
+      "scored_approved": false
+    },
+    {
+      "id": "D-X20",
+      "axis": "D",
+      "family_id": "D-QF07",
+      "provisional_classification": "CONTENT_HYPOTHESIS",
+      "closest_prior_ids": [
+        "D-N03",
+        "D02"
+      ],
+      "related_provisional_families": [
+        "D-QF01",
+        "D-QF05"
+      ],
+      "editorial_reason": "何を学ぶかでなく、何を人に伝えるかという価値の対象。説明能力や相手の興味が交絡",
+      "same_family_variants": [
+        {
+          "id": "D-X19",
+          "score": 0.05
+        },
+        {
+          "id": "D-X21",
+          "score": 0
+        }
+      ],
+      "lexical_nearest_historical": [
+        {
+          "id": "D05",
+          "origin": "D146",
+          "score": 0.1
+        },
+        {
+          "id": "D-N06",
+          "origin": "D183",
+          "score": 0.06
+        },
+        {
+          "id": "D02",
+          "origin": "D146",
+          "score": 0.05
+        }
+      ],
+      "lexical_method": "Character 3-gram Jaccard; ONLY a review queue heuristic, NOT semantic equivalence",
+      "family_overlap_risk": "MEDIUM",
+      "confounds": "相手の理解・教える能力・B軸の対人欲求",
+      "scored_approved": false
+    },
+    {
+      "id": "D-X21",
+      "axis": "D",
+      "family_id": "D-QF07",
+      "provisional_classification": "CONTENT_HYPOTHESIS",
+      "closest_prior_ids": [
+        "D-N03",
+        "D02"
+      ],
+      "related_provisional_families": [
+        "D-QF01",
+        "D-QF05"
+      ],
+      "editorial_reason": "何を学ぶかでなく、何を人に伝えるかという価値の対象。説明能力や相手の興味が交絡",
+      "same_family_variants": [
+        {
+          "id": "D-X19",
+          "score": 0.04
+        },
+        {
+          "id": "D-X20",
+          "score": 0
+        }
+      ],
+      "lexical_nearest_historical": [
+        {
+          "id": "D04",
+          "origin": "D146",
+          "score": 0.04
+        },
+        {
+          "id": "D-BK13",
+          "origin": "D146",
+          "score": 0.04
+        },
+        {
+          "id": "D-N04",
+          "origin": "D183",
+          "score": 0.04
+        }
+      ],
+      "lexical_method": "Character 3-gram Jaccard; ONLY a review queue heuristic, NOT semantic equivalence",
+      "family_overlap_risk": "MEDIUM",
+      "confounds": "相手の理解・教える能力・B軸の対人欲求",
+      "scored_approved": false
+    },
+    {
+      "id": "D-X22",
+      "axis": "D",
+      "family_id": "D-QF08",
+      "provisional_classification": "CONTENT_HYPOTHESIS",
+      "closest_prior_ids": [
+        "D04",
+        "D-N04"
+      ],
+      "related_provisional_families": [
+        "D-QF03",
+        "D-QF04"
+      ],
+      "editorial_reason": "複数作品／一作品のプロジェクト構成。D04やD-N04に近い",
+      "same_family_variants": [
+        {
+          "id": "D-X24",
+          "score": 0.08
+        },
+        {
+          "id": "D-X23",
+          "score": 0.04
+        }
+      ],
+      "lexical_nearest_historical": [
+        {
+          "id": "D-N04",
+          "origin": "D183",
+          "score": 0.28
+        },
+        {
+          "id": "D-N03",
+          "origin": "D183",
+          "score": 0.13
+        },
+        {
+          "id": "D05",
+          "origin": "D146",
+          "score": 0.08
+        }
+      ],
+      "lexical_method": "Character 3-gram Jaccard; ONLY a review queue heuristic, NOT semantic equivalence",
+      "family_overlap_risk": "MEDIUM",
+      "confounds": "達成速度・完成の質、作業効率と計画能力",
+      "scored_approved": false
+    },
+    {
+      "id": "D-X23",
+      "axis": "D",
+      "family_id": "D-QF08",
+      "provisional_classification": "CONTENT_HYPOTHESIS",
+      "closest_prior_ids": [
+        "D04",
+        "D-N04"
+      ],
+      "related_provisional_families": [
+        "D-QF03",
+        "D-QF04"
+      ],
+      "editorial_reason": "複数作品／一作品のプロジェクト構成。D04やD-N04に近い",
+      "same_family_variants": [
+        {
+          "id": "D-X24",
+          "score": 0.11
+        },
+        {
+          "id": "D-X22",
+          "score": 0.04
+        }
+      ],
+      "lexical_nearest_historical": [
+        {
+          "id": "D-BK13",
+          "origin": "D146",
+          "score": 0.12
+        },
+        {
+          "id": "D-N01",
+          "origin": "D183",
+          "score": 0.09
+        },
+        {
+          "id": "D-N04",
+          "origin": "D183",
+          "score": 0.08
+        }
+      ],
+      "lexical_method": "Character 3-gram Jaccard; ONLY a review queue heuristic, NOT semantic equivalence",
+      "family_overlap_risk": "MEDIUM",
+      "confounds": "達成速度・完成の質、作業効率と計画能力",
+      "scored_approved": false
+    },
+    {
+      "id": "D-X24",
+      "axis": "D",
+      "family_id": "D-QF08",
+      "provisional_classification": "CONTENT_HYPOTHESIS",
+      "closest_prior_ids": [
+        "D04",
+        "D-N04"
+      ],
+      "related_provisional_families": [
+        "D-QF03",
+        "D-QF04"
+      ],
+      "editorial_reason": "複数作品／一作品のプロジェクト構成。D04やD-N04に近い",
+      "same_family_variants": [
+        {
+          "id": "D-X23",
+          "score": 0.11
+        },
+        {
+          "id": "D-X22",
+          "score": 0.08
+        }
+      ],
+      "lexical_nearest_historical": [
+        {
+          "id": "D-N04",
+          "origin": "D183",
+          "score": 0.14
+        },
+        {
+          "id": "D-N01",
+          "origin": "D183",
+          "score": 0.09
+        },
+        {
+          "id": "D05",
+          "origin": "D146",
+          "score": 0.08
+        }
+      ],
+      "lexical_method": "Character 3-gram Jaccard; ONLY a review queue heuristic, NOT semantic equivalence",
+      "family_overlap_risk": "MEDIUM",
+      "confounds": "達成速度・完成の質、作業効率と計画能力",
+      "scored_approved": false
+    }
+  ],
+  "respondent_sessions": 0,
+  "production_changed": false
+}
