@@ -1,0 +1,271 @@
+{
+  "schema": "A05-D179-ALTERNATIVE-ELICITATION-ANGLE-REVIEW-0.1",
+  "date": "2026-11-11",
+  "origin": "User-provided 6 alternative angles and 11 question sketches",
+  "status": "EDITORIAL_RESEARCH_HYPOTHESES_NOT_APPROVED",
+  "user_constraints": {
+    "no_exact_duplicate": true,
+    "max_genuinely_different_items_per_semantic_family_in_pool": 2,
+    "main_axes": 4,
+    "candidate_pool": 50,
+    "per_run": 30,
+    "E_fixed": 2
+  },
+  "important_distinction": "A different elicitation METHOD is not itself a new content family. A third-person vignette and direct self-report of the same underlying contrast normally occupy the same content family until the incremental value-related information is demonstrated.",
+  "methodology_sources": [
+    {
+      "name": "U.S. Census Bureau: questionnaire testing and cognitive interviews",
+      "url": "https://www.census.gov/about/policies/quality/standards/appendixa2.html"
+    },
+    {
+      "name": "CDC NCHS: cognitive interviewing and comprehension/recall/judgment/response",
+      "url": "https://www.cdc.gov/nchs/ccqder/question-evaluation/cognitive-interviewing.html"
+    },
+    {
+      "name": "Forced-choice and Likert items including socially desirable information",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/38756462/"
+    }
+  ],
+  "review_counts": {
+    "original_ideas": 11,
+    "methods": 6,
+    "by_method": {
+      "LOSS": 2,
+      "THIRD_PERSON": 2,
+      "TRANSITION": 2,
+      "METAPHOR": 2,
+      "BEHAVIOUR_RECALL": 2,
+      "PERSON_VIGNETTE": 1
+    },
+    "by_axis": {
+      "A": 3,
+      "B": 2,
+      "C": 3,
+      "D": 3
+    },
+    "new_independent_semantic_families_confirmed": 0,
+    "new_scored_items_approved": 0
+  },
+  "items": [
+    {
+      "id": "D179-LA",
+      "angle": "LOSS",
+      "axis": "A",
+      "anchor": "A01",
+      "original": "引っ越しで、今の住まいの便利さを失うか、今の地域の人間関係を失うか、どちらかを選ばなければならないとしたら、どちらを避けたいですか",
+      "judgment": "CROSS_AXIS_NEGATIVE_CONTROL",
+      "issue": "住まいの便利さと地域の人間関係の二つを比べており、安定↔変化という同一軸の左右ではない。実際の転居可能性や対人関係の有無も交絡。",
+      "trial": {
+        "stem": "今の住まいを続ける場合も移り住む場合も、費用・便利さ・周囲との関係が同じだとします。そのうえで生活の基盤として失いたくないのは、どちらの選び方ですか？",
+        "left": "慣れた住まいの基本を守って生活を続ける",
+        "right": "住まいの基本を切り替える機会を守る"
+      },
+      "research_question": "喪失という言い方にしただけでA01との回答が変わるか。元案の関係優先を安定指標と誤認しない。",
+      "test_only": true
+    },
+    {
+      "id": "D179-LC",
+      "angle": "LOSS",
+      "axis": "C",
+      "anchor": "C01",
+      "original": "今の生活から、将来のための貯蓄を失うか、今の楽しみを失うか、どちらかを諦めるとしたらどちらですか",
+      "judgment": "FRAMING_PAIRED_TEST",
+      "issue": "貯蓄と楽しみでは資産制約・将来不安・E軸が混入。『失う』回答が社会的望ましさを減らす根拠はない。",
+      "trial": {
+        "stem": "将来のための準備に使う自由時間と、現在の体験を充実させる自由時間が同じだけあります。予定の変更でどちらか一方の時間を減らす必要があるとき、どちらを残したいですか？",
+        "left": "将来の準備に充てる時間",
+        "right": "今の体験を充実させる時間"
+      },
+      "research_question": "C01と同じ時間資源に統一したまま獲得表現から喪失表現へ変えたときの回答差を観察する。",
+      "test_only": true
+    },
+    {
+      "id": "D179-PB",
+      "angle": "THIRD_PERSON",
+      "axis": "B",
+      "anchor": "B-FU01",
+      "original": "友人が、家族の反対を押し切って一人で仕事を選んだとします。あなたはその選択を、尊重すべきだと思うか、もっと話し合うべきだったと思うか",
+      "judgment": "NORM_PROJECTION_PROBE",
+      "issue": "尊重と話し合いは同時に支持できる。家族の利害や成人の自己決定権の規範を測る危険がある。",
+      "trial": {
+        "stem": "二つの働き方が同程度に本人に合い、家族への負担も同じだとします。友人がどちらを最終的な判断基準にして選ぶ姿に、自分の考え方はより近いと感じますか？",
+        "left": "周囲の意見を聞きつつ、本人の納得を最終基準にする",
+        "right": "本人の希望も伝えつつ、関係者が納得することを最終基準にする"
+      },
+      "research_question": "第三者評価の回答が、自己評価B-FU01と異なる時、その違いが自分の価値観か他人に求める規範かを言語化してもらう。",
+      "test_only": true
+    },
+    {
+      "id": "D179-PD",
+      "angle": "THIRD_PERSON",
+      "axis": "D",
+      "anchor": "D01",
+      "original": "友人が、一つの趣味を10年続けているとします。あなたはそれを、もっと色々試した方がいいと思うか、その深さをうらやましいと思うか",
+      "judgment": "EVALUATION_ASYMMETRY_PROBE",
+      "issue": "友人への助言と羨望は同じ方向の選択肢ではない。10年の継続は努力・技能・尊敬も誘発。",
+      "trial": {
+        "stem": "興味の強さ・使える時間・成果が同じ二人がいます。どちらの趣味の楽しみ方に自分の考え方が近いですか？",
+        "left": "複数の異なる趣味に少しずつ触れる",
+        "right": "一つの趣味を継続して深く掘り下げる"
+      },
+      "research_question": "人物化してもD01と同じ幅↔深さの回答理由なら、別の得点問として数えない。",
+      "test_only": true
+    },
+    {
+      "id": "D179-TA",
+      "angle": "TRANSITION",
+      "axis": "A",
+      "anchor": "A-G2",
+      "original": "仕事を辞めて自由な時間ができたとき、まず住み慣れた街で生活を整えるか、思い切って新しい街に住んでみるか",
+      "judgment": "CONTEXT_MODERATOR_PROBE",
+      "issue": "退職前提は誰にも当てはまらない。現在の年齢・仕事・所得・住居契約や家族事情の影響が大きい。",
+      "trial": {
+        "stem": "今までの活動が一区切りとなり、次の生活の始め方を自由に選べるとします。移動・費用・人間関係・便利さが同等なら、どちらを選びますか？",
+        "left": "慣れた生活拠点を引き継ぐ",
+        "right": "違う生活拠点を選び直す"
+      },
+      "research_question": "A01およびA-G2の『節目あり』と『通常時』で回答理由が違う場合、段階条件の効果として扱う。",
+      "test_only": true
+    },
+    {
+      "id": "D179-TC",
+      "angle": "TRANSITION",
+      "axis": "C",
+      "anchor": "C05",
+      "original": "定年退職後の10年を想像したとき、若い頃から準備してきた目標を追うか、そのときやりたいことを見つけるか",
+      "judgment": "TEMPORAL_FRAME_PROBE",
+      "issue": "退職後という遠い未来内で両方の行動を比較しても、『将来達成↔現在充実』の時間的極性を直接測れない。年齢層で解釈が異なる。",
+      "trial": {
+        "stem": "生活が一区切りし、その先の期間を自由に使えるとします。その期間の時間配分では、どちらの価値をより重視しますか？",
+        "left": "さらに先の目標の選択肢を増やす準備",
+        "right": "その期間に経験できることを充実させる"
+      },
+      "research_question": "C05の週次配分と同じ対立を遠い将来に移動しただけなら、独立系統とは数えない。",
+      "test_only": true
+    },
+    {
+      "id": "D179-MD",
+      "angle": "METAPHOR",
+      "axis": "D",
+      "anchor": "D02",
+      "original": "自分の興味を例えるなら、多様な料理を少しずつ味わう食べ歩きか、一つの店の通いつめる常連か、どちらに近いですか",
+      "judgment": "COMPREHENSION_AID_ONLY",
+      "issue": "料理の関心度・店への忠誠・外食の費用・地域性が混ざる。比喩が解釈の一致を上げる証拠なし。",
+      "trial": {
+        "stem": "知識の集め方を比喩で説明するとき、どちらのたとえがわかりやすいですか？",
+        "left": "複数の本棚から一冊ずつ読んでみる",
+        "right": "一つの本棚の本を順に深く読む"
+      },
+      "research_question": "この比喩をD02の意味を説明する補助として使い、好ましい行動への回答を採点しない。",
+      "test_only": true
+    },
+    {
+      "id": "D179-MB",
+      "angle": "METAPHOR",
+      "axis": "B",
+      "anchor": "B-FU01",
+      "original": "人生の選択を例えるなら、自分で地図を描く旅か、誰かと相談しながら進む旅か、どちらに近いですか",
+      "judgment": "INVALID_BIPOLAR_AS_SCORING",
+      "issue": "自分で地図を描くことと、相談することは両立する。旅行経験・人付き合いの好みも混入する。",
+      "trial": {
+        "stem": "『自分で最終判断する』と『周囲と相談する』は、あなたにとって同時にできることですか？",
+        "left": "同時にできる",
+        "right": "両立は難しいと思う"
+      },
+      "research_question": "B-G1の二つの独立評定と比較する理解確認のみ。ここでの左右はB軸の極ではなく、Bの得点に使用しない。",
+      "test_only": true
+    },
+    {
+      "id": "D179-BA",
+      "angle": "BEHAVIOUR_RECALL",
+      "axis": "A",
+      "anchor": "A04",
+      "original": "この1か月で、いつもと違う生活のやり方を試したことはありましたか。あった／なかった",
+      "judgment": "NON_SCORING_BEHAVIOUR_CHECK",
+      "issue": "変化の機会の有無・業務・家族・体調・生活変動を混同。1か月の行動頻度は価値観と同一ではない。",
+      "trial": {
+        "stem": "過去1か月に、続けるか変えるかを自分の裁量で選べた生活のやり方はありましたか？",
+        "left": "あった（変えた／続けた別回答を記録）",
+        "right": "機会がなかった・覚えていない"
+      },
+      "research_question": "機会の有無を先に確認し、選べたときの理由をA04と比較する。2択をA得点にしない。",
+      "test_only": true
+    },
+    {
+      "id": "D179-BD",
+      "angle": "BEHAVIOUR_RECALL",
+      "axis": "D",
+      "anchor": "D02",
+      "original": "この1か月で、新しい分野の情報に触れたことと、いつもの分野を深く掘ったこと、どちらが多かったですか",
+      "judgment": "NON_SCORING_BEHAVIOUR_CHECK",
+      "issue": "学業・仕事の要請や自由時間・情報機会が行動を決める。記憶バイアス・過去月の例外性。",
+      "trial": {
+        "stem": "過去1か月で、自由に選べた学習・趣味の時間がありましたか？ あれば、複数分野の探索と一分野の深化をどのように使い分けましたか？",
+        "left": "自分で選べる機会があった（行動と理由を自由記述）",
+        "right": "その機会がなかった・記憶が曖昧"
+      },
+      "research_question": "機会条件と本人の価値判断を区別し、D02/D01の理想と行動理由の一致・不一致を補助確認する。",
+      "test_only": true
+    },
+    {
+      "id": "D179-VC",
+      "angle": "PERSON_VIGNETTE",
+      "axis": "C",
+      "anchor": "C05",
+      "original": "Aさんは、毎月の給料から将来のための準備を先に確保してから残りで暮らす人。Bさんは、今の生活を充実させるためにお金と時間を使い、余ったら将来に回す人。あなたに近いのはどちらですか",
+      "judgment": "BALANCED_VIGNETTE_ONLY",
+      "issue": "堅実な貯蓄者と使い切る人の非対称な人物像。財務規律や家計の制約が主に測られる。",
+      "trial": {
+        "stem": "どちらも生活に必要な支出と安全の備えを確保し、残りの自由時間を同じだけ使える二人がいます。どちらの優先順位に自分の考え方が近いですか？",
+        "left": "将来の選択肢を広げる活動を優先する人",
+        "right": "現在の体験を充実させる活動を優先する人"
+      },
+      "research_question": "人物記述を中立化し、C05と同じ判断なら新しい質問系統ではなく提示形式の比較にする。",
+      "test_only": true
+    }
+  ],
+  "comparisons": {
+    "LOSS": [
+      "A01",
+      "C01"
+    ],
+    "THIRD_PERSON": [
+      "B-FU01",
+      "D01"
+    ],
+    "TRANSITION": [
+      "A-G2",
+      "C05"
+    ],
+    "METAPHOR": [
+      "D02",
+      "B-FU01"
+    ],
+    "BEHAVIOUR_RECALL": [
+      "A04",
+      "D02"
+    ],
+    "PERSON_VIGNETTE": [
+      "C05"
+    ]
+  },
+  "study_requirements": [
+    "Counterbalance original/rewrite within participant or use randomized split panel; do not interpret a format-driven shift as new axis content.",
+    "Ask respondent to paraphrase what each item measures and state the reason for divergent answers.",
+    "Record both sides compatible, neither applies, nonapplicability, life opportunity constraints, fairness/norms and cross-axis cues separately.",
+    "Loss framing must preserve equivalence of what could be lost; avoid comparing different resource types.",
+    "Third-person evaluation measures norms toward others until independent evidence justifies an inference about personal values.",
+    "Metaphor and behavioural frequency do not automatically become scored value questions; use only auxiliary/comprehension checks.",
+    "Do not force all item types into same bipolar 7-point score without evidence of response-process equivalence."
+  ],
+  "scoring_policy": "None of 11 originals or 11 rewritten research prototypes is approved for 50-item scored bank; 16 editorial cognitive candidates and 32 unresolved slots remain unchanged.",
+  "respondent_tests_performed": 0,
+  "production_code_changed": false,
+  "original_bank_changed": false,
+  "source_blobs": {
+    "research/a05/d164-prior-28-semantic-dedup-and-gap-recalculation.json": "da800cf9c12fb11e89e53ed4f8128f511c74f736",
+    "research/a05/d168-eleven-hypothesis-cognitive-probe-questions.json": "6a23fe4e9a4ee2239fec4f73c6f280f409201a4e",
+    "research/a05/d171-cognitive-pilot-8-prioritized-and-3-controls.json": "44ef6edd93e13832c29b4c40f7d3cd787602c526",
+    "research/a05/d175-tier1-participant-pilot-offline.html": "27cd42dea7c61194599c2e40b9417062c870383b"
+  }
+}
