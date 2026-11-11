@@ -27,6 +27,7 @@ jobs:
           umask 077
           node scripts/check-analytics-source-registry.cjs
           node scripts/acquire-analytics-estat-cpi-raw.cjs
+          python3 scripts/normalize-analytics-estat-cpi.py "$ANALYTICS_PRIVATE_DATA_DIR"
       - name: Encrypt all original evidence, keep raw data off public GitHub
         env:
           ANALYTICS_PRIVATE_DATA_DIR: ${{ runner.temp }}/kaito_jpcpi_private
