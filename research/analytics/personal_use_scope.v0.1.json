@@ -1,0 +1,75 @@
+{
+  "version": "0.1",
+  "decided_at": "2026-11-11",
+  "decision": "PERSONAL_SINGLE_USER_LOCAL_RESEARCH_FIRST",
+  "owner_intent": "当面は本人のみが使用し、第三者配信・商用サービス化は予定しない。ライセンス注意事項は残し、研究開発は継続する。",
+  "scope": {
+    "local_only": true,
+    "offline_analysis": true,
+    "one_human_user": true,
+    "noncommercial": true,
+    "no_login_or_third_party_access": true,
+    "allow_personal_browser_localhost": true,
+    "allow_personal_local_files": true,
+    "cloud_personal_deployment": "REVIEW_ACCESS_CONTROLS_BEFORE_USE",
+    "public_deployment": false,
+    "distributed_compute_outside_local_devices": false,
+    "public_github_data_commit": false,
+    "redistribution": false,
+    "training_or_fine_tuning_on_index_data": false
+  },
+  "research_data_policy": {
+    "official_public_source_ids": [
+      "FX",
+      "CPI_JP",
+      "CPI_US"
+    ],
+    "officially_published_exploratory_ids": [
+      "GOLD"
+    ],
+    "manual_lawful_self_use_index_ids": [
+      "JP_EQUITY",
+      "REIT"
+    ],
+    "no_automatic_bulk_download_of_licensed_benchmarks": [
+      "SPDJI",
+      "MSCI",
+      "JPX",
+      "NOMURA_BPI",
+      "BLOOMBERG_INDEX",
+      "FTSE_RUSSELL"
+    ],
+    "rules": [
+      "For known official FX/CPI data, allow local personal validation and analytics on already-acquired nonpublic files with provenance QA.",
+      "Fed 1971 DDP candidate can be used as research-only input without changing active SOURCE_CHANGE_ADR status or official site source lock.",
+      "For World Bank gold, original month values may be used only in an explicitly labeled exploratory scenario. Preserve origin PUBLISHED_LEVEL_STATUS_UNVERIFIED, price-definition switch and third-party rights warnings. Not eligible for canonical observed or asset total return claims.",
+      "JPX explicitly permits self-use as market indicator, but webpage terms may still restrict automated bulk collection, reuse or AI training. No scraping or unlicensed third-party distribution.",
+      "Other licensed indices remain usable with synthetic fixtures, or with lawfully obtained personal data after source-specific review; do not imply blanket licenses from the user's self-use intent.",
+      "A personal research-mode pass must never set commercial rights 'APPROVED', site_use_approved=true, or change the registered provider or channel.",
+      "All local outputs are private and stamped NOT_FOR_PUBLICATION; any future commercialization requires a new rights review."
+    ]
+  },
+  "data_release": {
+    "personal_local_research": "GO_WITH_CONSTRAINTS",
+    "personal_local_validated_official_cpi_fx": "GO",
+    "personal_local_gold_exploratory": "GO_WITH_UNVERIFIED_LEVEL_WARNING",
+    "licensed_index_real_data_auto_ingest": "SOURCE_TERMS_DEPENDENT_NOT_AUTO",
+    "synthetic_data_and_programming": "GO",
+    "commercial_processing": "FUTURE_REVIEW",
+    "public_site_display": "FUTURE_REVIEW",
+    "derivatives_api_export": "FUTURE_REVIEW",
+    "production_activation": "NOT_APPROVED"
+  },
+  "next_development": [
+    "private_local_csv_adapter_and_jpy_purchasing_power_analysis",
+    "local personal simulator with simple/detailed modes and no raw data shipped to site",
+    "rolling 10/20/30-year window QA",
+    "future provider license review only at commercialization trigger"
+  ],
+  "sources": {
+    "jpx_self_use": "https://www.jpx.co.jp/markets/indices/licence/",
+    "jpx_website_terms": "https://www.jpx.co.jp/term-of-use/index.html",
+    "msci_index_terms": "https://www.msci.com/legal/index-terms",
+    "world_bank_third_party_exception": "https://www.worldbank.org/ext/en/legal/terms-conditions/datasets"
+  }
+}
