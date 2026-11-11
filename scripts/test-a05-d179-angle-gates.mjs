@@ -58,10 +58,12 @@ test("Every original question and revised probe is reported without omission",()
    assert.ok(md.includes("### "+x.id+"｜"),x.id);
    assert.ok(md.includes(x.original),x.id+" original");
    assert.ok(md.includes(x.trial.stem),x.id+" revised");
+   assert.ok(md.includes(x.trial.research_question),x.id+" study objective");
  }
 });
 test("The report retains scientific pretest limitations and no claim of validation",()=>{
  assert.ok(md.includes("新系統承認0"));
+ assert.doesNotMatch(md,/：undefined/);
  assert.ok(md.includes("認知面接実施0"));
  assert.ok(md.includes("未充足32枠"));
  assert.ok(md.includes("www.census.gov"));
