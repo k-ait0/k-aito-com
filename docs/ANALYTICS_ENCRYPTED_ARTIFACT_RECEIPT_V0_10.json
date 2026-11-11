@@ -1,0 +1,55 @@
+{
+  "schema": "ANALYTICS_ENCRYPTED_ARTIFACT_RECEIPT_V0_10",
+  "recorded_date_jst": "2026-11-12",
+  "source": "GitHub Actions authenticated artifact download",
+  "receipt_kind": "METADATA_ONLY_NO_RAW_OR_CIPHERTEXT",
+  "public_key_sha256": "bfe78c5a3684d8272a94d778d4d1c49b0ea56c4a9a03fdc5de42bcb437281e28",
+  "downloaded_archives": 5,
+  "archive_zip_structure_passed": true,
+  "envelope_integrity_passed": true,
+  "plaintext_decrypted": false,
+  "private_market_calculation_executed": false,
+  "permanent_user_controlled_backup_verified": false,
+  "source_license_approved": false,
+  "publication_approved": false,
+  "github_artifact_retention_extended": false,
+  "warning": "The local conversation-hosted ZIP copy is NOT a verified durable user backup; owner must download and retain ciphertext and corresponding RSA private key separately before expiry.",
+  "artifacts": [
+    {
+      "id": 13824035258,
+      "name": "bls-cpi-1966-2026-encrypted-research-20261111",
+      "archive_sha256": "eddb9243bd9a205d566cae0b99a2c7b3c2187bf5f9acc3915480ad50ccb291b4",
+      "bytes": 19509,
+      "expires_at": "2026-11-18T02:41:26Z"
+    },
+    {
+      "id": 13824913073,
+      "name": "jp-cpi-2025base-estat-original-encrypted",
+      "archive_sha256": "48a79cddcb5b7364af6bb35138aadbb8e8c4c27879ba3df2b1c50f15e199db28",
+      "bytes": 99210,
+      "expires_at": "2026-11-18T03:18:08Z"
+    },
+    {
+      "id": 13825223543,
+      "name": "fed-h10-pinned-2000-now-encrypted",
+      "archive_sha256": "f6f059776d24587acb106cdba56a4e2046bb37e19fcbad7b9d7c156f988d78ba",
+      "bytes": 96555,
+      "expires_at": "2026-11-18T03:21:56Z"
+    },
+    {
+      "id": 13825636423,
+      "name": "worldbank-pink-pinned-raw-only-encrypted",
+      "archive_sha256": "74d7e4a1ef002f4e8ea4fae0018540faffd3b47d19e3e0421652de14a86830d0",
+      "bytes": 558585,
+      "expires_at": "2026-11-18T03:21:56Z"
+    },
+    {
+      "id": 13826880503,
+      "name": "fed-h10-ddp-all-release-1971-research-candidate-encrypted",
+      "archive_sha256": "c70de121f3f12a174ec6d6b286bf1cb0eef1b66630b112c6110c5d141417aaa2",
+      "bytes": 2074189,
+      "expires_at": "2026-11-18T03:44:15Z",
+      "source_adr_approved": false
+    }
+  ]
+}
