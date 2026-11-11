@@ -115,6 +115,13 @@ test("D170 has explicit hidden filtering, export, import and reset controls",()=
   assert.ok(html.includes("JSON.stringify(doc,null,2)"));
   assert.ok(html.includes("schema:\"A05-D170-COGNITIVE-REVIEW-NOTES-0.1\""));
 });
+test("D170 structured interview fields occur in every one of 11 cases",()=>{
+  for(const field of ["anchor_paraphrase","candidate_paraphrase","choice_reason","reason_code"])
+    assert.equal([...html.matchAll(new RegExp('data-field="'+field+'"',"g"))].length,11,field);
+  for(const field of ['value="neutral"','value="both"','value="neither"'])
+    assert.ok(html.includes(field),field);
+  assert.ok(html.includes('value="middle" disabled'),"Old merged category must be disabled for new answers");
+});
 test("D170 is offline-only without telemetry or auto-storage",()=>{
   assert.doesNotMatch(html,/<script[^>]+src=|<link[^>]+href=|fetch\(|XMLHttpRequest|localStorage|sendBeacon/i);
 });
