@@ -14,8 +14,6 @@ jobs:
   acquire:
     runs-on: ubuntu-latest
     timeout-minutes: 20
-    env:
-      ANALYTICS_PRIVATE_DATA_DIR: ${{ runner.temp }}/kaito_analytics_bls_private
     steps:
       - name: Check out research branch only
         uses: actions/checkout@v4
@@ -29,6 +27,8 @@ jobs:
           node scripts/acquire-analytics-approved-source.cjs --selftest
           node scripts/test-analytics-history-coverage.cjs
       - name: Acquire seven BLS official API v1 batches and run private QA
+        env:
+          ANALYTICS_PRIVATE_DATA_DIR: ${{ runner.temp }}/kaito_analytics_bls_private
         shell: bash
         run: |
           set -euo pipefail
@@ -42,6 +42,8 @@ jobs:
           done
           node scripts/merge-analytics-bls-batches.cjs "$ANALYTICS_PRIVATE_DATA_DIR"
       - name: Encrypt entire source evidence without exposing raw contents
+        env:
+          ANALYTICS_PRIVATE_DATA_DIR: ${{ runner.temp }}/kaito_analytics_bls_private
         shell: bash
         run: |
           set -euo pipefail
