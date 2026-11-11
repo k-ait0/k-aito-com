@@ -69,10 +69,48 @@ function checkRows(text,role){const spec=SPEC[role],rows=csvRows(text);if(rows.l
  }if(!m.size)throw Error(role+': 指定系列の実測値がありません');const dates=[...m.keys()].sort();for(let i=1;i<dates.length;i++)if(monNum(dates[i])!==monNum(dates[i-1])+1)throw Error(role+': 月次欠損 '+dates[i-1]+' / '+dates[i]);
  return {map:m,meta:{id:spec.id,first:dates[0],last:dates.at(-1),months:dates.length,others:ignored}}
 }
-function mergeSeries(fx,cpi,gold=null){const months=[...fx.keys()].filter(m=>cpi.has(m)&&(!gold||gold.has(m))).sort();if(months.length<13)throw Error('共通データが13か月以上必要です');for(let i=1;i<months.length;i++)if(monNum(months[i])!==monNum(months[i-1])+1)throw Error('共通期間に欠損があります: '+months[i-1]+' / '+months[i]);
- return months.map(month=>({month,fx:fx.get(month),cpi:cpi.get(month),gold:gold?.get(month)??null}));
+
+// Self-described personally acquired total-return index. Metadata is validated,
+// but source authenticity and the individual's license are NOT auto-certified.
+// No automatic download, source substitution, external API or raw-data upload.
+function checkTRRows(text){
+ const rows=csvRows(text),head=rows.shift();
+ const req=['month','series_id','value','unit','currency','series_kind','origin','source_id','raw_response_sha256'];
+ if(!head||!req.every(x=>head.includes(x)))throw Error('TR CSV: 正規化月次列が不足しています');
+ const at=Object.fromEntries(head.map((x,i)=>[x,i]));
+ const knownProviders=new Set(['JPX','SPDJI','MSCI','NOMURA_BPI','BLOOMBERG_INDEX','FTSE_RUSSELL']);
+ let desc=null,map=new Map();
+ for(let i=0;i<rows.length;i++){
+   const r=rows[i];if(r.length!==head.length)throw Error('TR CSV: 列数が異なります');
+   const get=k=>r[at[k]];
+   if(get('series_kind')!=='INDEX_TOTAL_RETURN'||get('origin')!=='OBSERVED')
+      throw Error('TR CSV: INDEX_TOTAL_RETURN・OBSERVED以外を拒否します');
+   if(!knownProviders.has(get('source_id')))throw Error('TR CSV: 出典が登録済み指数提供元ではありません');
+   if(!['JPY','USD'].includes(get('currency')))throw Error('TR CSV: 通貨はJPY/USDに限定します');
+   const common={id:get('series_id'),source:get('source_id'),currency:get('currency'),unit:get('unit')};
+   if(!/^[A-Za-z0-9._:-]{3,90}$/.test(common.id)||!/^[A-Za-z0-9._/-]{1,70}$/.test(common.unit))
+      throw Error('TR CSV: 系列IDまたは単位が不正です');
+   if(!desc)desc=common;
+   else if(Object.keys(common).some(k=>common[k]!==desc[k]))throw Error('TR CSV: 系列・通貨・出典・単位が混在しています');
+   const month=get('month');if(!/^\d{4}-(0[1-9]|1[0-2])$/.test(month))throw Error('TR CSV: 月次年月不正');
+   if(map.has(month))throw Error('TR CSV: '+month+' が重複しています');
+   const raw=get('value');const value=Number(raw);
+   if(!/^(?:\d+(?:\.\d+)?|\.\d+)$/.test(raw)||!Number.isFinite(value)||value<=0)
+      throw Error('TR CSV: 正の有限な指数水準だけを受け付けます');
+   if(!/^[a-f0-9]{64}$/.test(get('raw_response_sha256')))throw Error('TR CSV: 原本SHA-256不正');
+   map.set(month,value);
+ }
+ const dates=[...map.keys()].sort();
+ if(dates.length<13)throw Error('TR CSV: 連続した13か月以上が必要です');
+ for(let i=1;i<dates.length;i++)if(monNum(dates[i])!==monNum(dates[i-1])+1)throw Error('TR CSV: 未公表・欠損月の自動補完はしません');
+ return {map,meta:{...desc,first:dates[0],last:dates.at(-1),months:dates.length,
+   status:'USER_DECLARED_INDEX_TOTAL_RETURN_SOURCE_NOT_INDEPENDENTLY_VERIFIED'}};
 }
-function dataRowAsset(row,asset){if(asset==='usd')return row.fx;if(asset==='jpy')return 1;if(asset==='gold'){if(row.gold===null)throw Error('金の隔離CSVを読み込んでください');return row.gold*row.fx;}throw Error('未対応資産')}
+
+function mergeSeries(fx,cpi,gold=null,tr=null,trCurrency='JPY'){const months=[...fx.keys()].filter(m=>cpi.has(m)&&(!gold||gold.has(m))&&(!tr||tr.has(m))).sort();if(months.length<13)throw Error('共通データが13か月以上必要です');for(let i=1;i<months.length;i++)if(monNum(months[i])!==monNum(months[i-1])+1)throw Error('共通期間に欠損があります: '+months[i-1]+' / '+months[i]);
+ return months.map(month=>({month,fx:fx.get(month),cpi:cpi.get(month),gold:gold?.get(month)??null,tr:tr?.get(month)??null,trCurrency}));
+}
+function dataRowAsset(row,asset){if(asset==='usd')return row.fx;if(asset==='jpy')return 1;if(asset==='gold'){if(row.gold===null)throw Error('金の隔離CSVを読み込んでください');return row.gold*row.fx;}if(asset==='tr'){if(row.tr===null||row.tr===undefined||!Number.isFinite(row.tr)||row.tr<=0)throw Error('適法取得した配当込み指数CSVを指定してください');if(!['JPY','USD'].includes(row.trCurrency))throw Error('TR通貨が不正です');return row.tr*(row.trCurrency==='USD'?row.fx:1);}throw Error('未対応資産')}
 function powerRows(monthRows,asset,real){const start=monthRows[0],ref=dataRowAsset(start,asset);return monthRows.map(r=>({month:r.month,value:100*(dataRowAsset(r,asset)/ref)*(real?start.cpi/r.cpi:1)}));}
 function rollingPower(rows,horizon){const steps=12*horizon,out=[];for(let i=steps;i<rows.length;i++){const ratio=rows[i].value/rows[i-steps].value;out.push({start:rows[i-steps].month,end:rows[i].month,ratio})}return out}
 function middle(x){if(!x.length)return NaN;const a=[...x].sort((a,b)=>a-b);return a.length%2?a[(a.length-1)/2]:(a[a.length/2-1]+a[a.length/2])/2}
