@@ -1,0 +1,30 @@
+'use strict';
+const assert=require('node:assert/strict');
+const {monthSerial,potentialRollingWindows,potentialJointWindows,verifiedRollingWindows}=require('./analytics-history-coverage.cjs');
+function runTests(){
+ let n=0;const t=(name,fn)=>{fn();n++;};
+ const levels=(f,l)=>potentialRollingWindows({first_month:f,last_month:l,kind:'LEVEL'});
+ t('1980 legacy 30y starting months 162',()=>assert.equal(levels('1980-01','2023-06').potential_complete_windows,162));
+ t('1966 target 30y starting months 370',()=>assert.equal(levels('1966-01','2026-10').potential_complete_windows,370));
+ t('1971 FX 30y starting months 310',()=>assert.equal(levels('1971-01','2026-10').potential_complete_windows,310));
+ t('2003 REIT insufficient for 30y',()=>assert.equal(levels('2003-04','2026-10').potential_complete_windows,0));
+ t('monthly returns equivalent 162',()=>assert.equal(potentialRollingWindows({first_month:'1980-02',last_month:'2023-06',kind:'MONTHLY_RETURN'}).potential_complete_windows,162));
+ t('joint FX defines historical overlap',()=>assert.equal(potentialJointWindows([{first_month:'1966-01',last_month:'2026-10',kind:'LEVEL'},{first_month:'1971-01',last_month:'2026-10',kind:'LEVEL'}]).potential_complete_windows,310));
+ t('joint with REIT cannot do 30y',()=>assert.equal(potentialJointWindows([{first_month:'1966-01',last_month:'2026-10',kind:'LEVEL'},{first_month:'2003-04',last_month:'2026-10',kind:'LEVEL'}]).potential_complete_windows,0));
+ t('too short data one period',()=>assert.equal(levels('2020-01','2020-01').potential_complete_windows,0));
+ t('reject invalid date',()=>assert.throws(()=>monthSerial('1966-13'),/Expected/));
+ t('reject reverse range',()=>assert.throws(()=>levels('2026-10','1966-01'),/Reversed/));
+ t('reject invalid kind',()=>assert.throws(()=>potentialRollingWindows({first_month:'2000-01',last_month:'2002-01',kind:'SPOT'}),/representation/));
+ const mk=month=>( {month,monthly_return:0.01,origin:'OBSERVED'} );
+ t('verified complete window',()=>assert.equal(verifiedRollingWindows(['2020-01','2020-02','2020-03'].map(mk),2).complete_windows,2));
+ t('verified missing month splits windows',()=>assert.equal(verifiedRollingWindows(['2020-01','2020-02','2020-04','2020-05','2020-06'].map(mk),2).complete_windows,3));
+ t('duplicate rejected',()=>assert.throws(()=>verifiedRollingWindows([mk('2020-01'),mk('2020-01')],1),/Duplicate/));
+ t('proxy rejected',()=>assert.throws(()=>verifiedRollingWindows([{...mk('2020-01'),proxy:true}],1),/Proxy/));
+ t('synthetic rejected',()=>assert.throws(()=>verifiedRollingWindows([{...mk('2020-01'),origin:'SYNTHETIC'}],1),/Proxy/));
+ t('invalid return rejected',()=>assert.throws(()=>verifiedRollingWindows([{...mk('2020-01'),monthly_return:-1}],1),/Invalid/));
+ t('bound explicitly theoretical',()=>assert.equal(levels('1966-01','2026-10').status,'THEORETICAL_UPPER_BOUND_ONLY'));
+ console.log('PASS '+n+'/'+n+' historical coverage contract tests');
+ return n;
+}
+if(require.main===module)runTests();
+module.exports={runTests};
