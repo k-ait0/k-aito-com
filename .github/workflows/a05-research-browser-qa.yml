@@ -5,6 +5,8 @@ on:
     paths:
       - 'research/a05/d170-eleven-hypotheses-offline-cognitive-review.html'
       - 'scripts/test-a05-d170-browser.cjs'
+      - 'scripts/a05-d170-research-aggregate.cjs'
+      - 'scripts/test-a05-d170-research-aggregate.cjs'
       - 'scripts/test-a05-research-contracts.mjs'
       - 'scripts/test-a05-d152-d153-content-gates.mjs'
       - 'research/a05/d1*.json'
@@ -27,8 +29,8 @@ jobs:
           node-version: '22'
       - name: Check browser test syntax
         run: node --check scripts/test-a05-d170-browser.cjs
-      - name: Verify archival provenance and editorial gates (33 tests)
-        run: node --test scripts/test-a05-d152-d153-content-gates.mjs scripts/test-a05-research-contracts.mjs
+      - name: Verify archival provenance and editorial gates (41 tests)
+        run: node --test scripts/test-a05-d152-d153-content-gates.mjs scripts/test-a05-research-contracts.mjs scripts/test-a05-d170-research-aggregate.cjs
       - name: Install Chromium test runtime
         run: |
           npm install --prefix /tmp/a05-review --no-audit --no-fund --no-save playwright@1.56.1
