@@ -13,6 +13,8 @@ on:
       - 'scripts/test-a05-d170-research-aggregate.cjs'
       - 'scripts/test-a05-research-contracts.mjs'
       - 'scripts/test-a05-d152-d153-content-gates.mjs'
+      - 'scripts/test-a05-d179-angle-gates.mjs'
+      - 'docs/A05_V2_D180_SIX_ALTERNATIVE_ANGLES_EDITORIAL_REVIEW_20261111.md'
       - 'research/a05/d1*.json'
       - '.github/workflows/a05-research-browser-qa.yml'
   workflow_dispatch:
@@ -36,8 +38,8 @@ jobs:
           node --check scripts/test-a05-d170-browser.cjs
           node --check scripts/test-a05-d175-participant-browser.cjs
           node --check scripts/a05-d175-participant-aggregate.cjs
-      - name: Verify archival provenance and editorial gates (51 tests)
-        run: node --test scripts/test-a05-d152-d153-content-gates.mjs scripts/test-a05-research-contracts.mjs scripts/test-a05-d170-research-aggregate.cjs scripts/test-a05-d175-participant-aggregate.cjs
+      - name: Verify archival provenance and editorial gates (61 tests)
+        run: node --test scripts/test-a05-d152-d153-content-gates.mjs scripts/test-a05-research-contracts.mjs scripts/test-a05-d170-research-aggregate.cjs scripts/test-a05-d175-participant-aggregate.cjs scripts/test-a05-d179-angle-gates.mjs
       - name: Install Chromium test runtime
         run: |
           npm install --prefix /tmp/a05-review --no-audit --no-fund --no-save playwright@1.56.1
