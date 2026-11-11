@@ -14,7 +14,11 @@
     "site_approved_series": 0,
     "verified_new_official_bls_api_responses": 7,
     "verified_new_official_bls_observations": 729,
-    "other_new_official_full_history_datasets": 0
+    "other_new_official_full_history_datasets": 0,
+    "verified_new_official_estat_raw_csv_files": 2,
+    "verified_new_estat_distinct_series": 2,
+    "verified_new_estat_monthly_observations": 1643,
+    "total_official_raw_responses_or_csv_files_verified": 9
   },
   "datasets": [
     {
@@ -154,10 +158,104 @@
       "full_1971_history_acquired": false,
       "source_change_adr": "DRAFT_UNAPPROVED",
       "site_approved": false
+    },
+    {
+      "dataset_id": "JP_CPI_HEADLINE_2025_LINKED",
+      "source_id": "ESTAT",
+      "stat_infid": "000040482943",
+      "source_url": "https://www.e-stat.go.jp/stat-search/file-download?statInfId=000040482943&fileKind=1",
+      "series_contract": "National headline all-items CPI, 2025-base linked monthly",
+      "raw_sha256": "29b63b7aa5cba598b6ab9d7fff839094a5068004bcd571afd20344e14e847c41",
+      "raw_bytes": 279236,
+      "start_month": "1970-01",
+      "end_month": "2026-09",
+      "observations": 681,
+      "missing_months": [],
+      "duplicates": 0,
+      "verified_complete_30y_start_months": 321,
+      "frequency": "MONTHLY",
+      "seasonal_adjustment": "NSA",
+      "base_year": "2025=100",
+      "value_kind": "OFFICIAL_PUBLISHED_BASE_LINKED_CPI_INDEX",
+      "currency": "NOT_APPLICABLE",
+      "unit": "INDEX_2025_100",
+      "origin": "OBSERVED",
+      "qa": "PASS",
+      "crosscheck_1970_onward": {
+        "months": 681,
+        "differences": 0
+      },
+      "normalization_csv_sha256": "18da76e236057e1f59b2e7b224bfb7b0f2186d5586139d14b26c701ba74c36cc",
+      "retrieval_run": "https://github.com/k-ait0/k-aito-com/actions/runs/42951821449",
+      "encrypted_artifact": {
+        "id": 13824913073,
+        "expires_at": "2026-11-18T03:18:08Z",
+        "ciphertext_sha256": "3ad235e7b0f5db79d1519935734691c61f21a0ce1ef1e64d1358bc9e5aa60efe"
+      },
+      "rights": {
+        "commercial_processing": "e-Stat general terms permit with attribution and changes noted",
+        "public_display": "PROJECT_RELEASE_NOT_APPROVED",
+        "results_delivery": "PROJECT_RELEASE_NOT_APPROVED",
+        "raw_csv_redistribution": "PROJECT_RELEASE_NOT_APPROVED",
+        "production_approved": false
+      },
+      "private_only": true,
+      "qa_report": "docs/ANALYTICS_JP_CPI_ESTAT_20261111_QA.md"
+    },
+    {
+      "dataset_id": "JP_CPI_EX_RENT_2025_LINKED",
+      "source_id": "ESTAT",
+      "stat_infid": "000040482944",
+      "source_url": "https://www.e-stat.go.jp/stat-search/file-download?statInfId=000040482944&fileKind=1",
+      "series_contract": "National all-items-less-imputed-rent CPI, 2025-base linked monthly",
+      "raw_sha256": "42b396d0e71fa2105de064de167bd09f3a878bda542648cca816f03402a1e57f",
+      "raw_bytes": 12772,
+      "start_month": "1946-08",
+      "end_month": "2026-09",
+      "observations": 962,
+      "missing_months": [],
+      "unpublished_prestart_months": [
+        "1946-01",
+        "1946-02",
+        "1946-03",
+        "1946-04",
+        "1946-05",
+        "1946-06",
+        "1946-07"
+      ],
+      "duplicates": 0,
+      "verified_complete_30y_start_months": 602,
+      "frequency": "MONTHLY",
+      "seasonal_adjustment": "NSA",
+      "base_year": "2025=100",
+      "value_kind": "OFFICIAL_PUBLISHED_BASE_LINKED_CPI_INDEX",
+      "currency": "NOT_APPLICABLE",
+      "unit": "INDEX_2025_100",
+      "origin": "OBSERVED",
+      "qa": "PASS",
+      "crosscheck_1970_onward": {
+        "months": 681,
+        "differences": 0
+      },
+      "normalization_csv_sha256": "18da76e236057e1f59b2e7b224bfb7b0f2186d5586139d14b26c701ba74c36cc",
+      "retrieval_run": "https://github.com/k-ait0/k-aito-com/actions/runs/42951821449",
+      "encrypted_artifact": {
+        "id": 13824913073,
+        "expires_at": "2026-11-18T03:18:08Z",
+        "ciphertext_sha256": "3ad235e7b0f5db79d1519935734691c61f21a0ce1ef1e64d1358bc9e5aa60efe"
+      },
+      "rights": {
+        "commercial_processing": "e-Stat general terms permit with attribution and changes noted",
+        "public_display": "PROJECT_RELEASE_NOT_APPROVED",
+        "results_delivery": "PROJECT_RELEASE_NOT_APPROVED",
+        "raw_csv_redistribution": "PROJECT_RELEASE_NOT_APPROVED",
+        "production_approved": false
+      },
+      "private_only": true,
+      "qa_report": "docs/ANALYTICS_JP_CPI_ESTAT_20261111_QA.md"
     }
   ],
   "not_yet_acquired": [
-    "CPI_JP_ESTAT_LONG",
     "FX_USDJPY_FED_FULL_1971_PLUS",
     "WORLD_BANK_PINK_MONTHLY_1960_PLUS",
     "SHILLER_RESEARCH_PRE1980_AND_POST2023",
