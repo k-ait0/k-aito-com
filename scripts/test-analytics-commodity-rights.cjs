@@ -55,6 +55,22 @@ function check(){
    assert.equal(x.permissions_by_use.commercial_server_processing,'BLOCKED_UNTIL_FORMAL_RIGHTS_AND_LICENSE_GATE');
    assert.equal(x.permissions_by_use.production_activation,'NOT_APPROVED');
  }
+
+ const rightsGate=require('./analytics-rights-gate.cjs');
+ for(const x of RIGHTS.entries){
+   for(const use of RIGHTS.separate_use_cases)
+     assert.equal(rightsGate.evaluateResearchDataUse(x.id,use).allowed,false,
+       'Rights gate improperly allows '+x.id+' / '+use);
+ }
+ for(const x of TRIAGE.series){
+   for(const use of RIGHTS.separate_use_cases)
+     assert.equal(rightsGate.evaluateResearchDataUse(x.id,use).allowed,false,
+       'Commodity leaked via '+x.id+' / '+use);
+ }
+ assert.equal(rightsGate.evaluateResearchDataUse('NONSENSE','public_chart_and_observations').reason,'UNKNOWN_SERIES');
+ assert.equal(rightsGate.evaluateResearchDataUse('GOLD','wrong-action').reason,'UNRECOGNIZED_USE_CASE');
+ assert.throws(()=>rightsGate.assertApproved('GLOBAL_EQUITY','commercial_server_processing'),e=>e.code==='DATA_RIGHTS_BLOCKED');
+ assert.equal(TRIAGE.series.length+RIGHTS.entries.length,91);
  const byId=Object.fromEntries(RIGHTS.entries.map(x=>[x.id,x]));
  assert.equal(byId.JP_BONDS.rights_class,'HISTORICAL_DATA_LICENSE_AND_POSSIBLE_SEPARATE_NAME_USE');
  assert.equal(byId.JP_EQUITY.rights_class,'PAID_INDEX_DATA_AND_REDISTRIBUTION_LICENSE');
@@ -77,6 +93,6 @@ function check(){
  assert.equal(REG.acquisition.fed_ddp_source_change_research_candidate_20261111.status,
               'TECHNICALLY_VALIDATED_ADR_DRAFT_NO_SOURCE_LOCK_CHANGE');
  console.log('PASS: 71 World Bank rows cross-referenced, 47 forecast markers, 35 definition markers, 5 futures quotes, 68 other providers, 0 approvals');
- console.log('PASS: 20 asset/aux rights gates, Gold provenance quarantined, NOMURA name license and MSCI AI permission blocked, no source changes');
+ console.log('PASS: 91 distinct sources x 7 usage decisions denied without contract (637), Gold quarantined, publisher and model source locks retained');
 }
 check();
