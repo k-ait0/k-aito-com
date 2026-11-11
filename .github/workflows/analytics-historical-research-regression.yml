@@ -6,6 +6,10 @@ on:
     paths:
       - .github/workflows/analytics-historical-research-regression.yml
       - scripts/test-analytics-commodity-rights.cjs
+      - scripts/analytics-rights-gate.cjs
+      - scripts/analytics-personal-cash-fx-cpi.py
+      - scripts/test-analytics-personal-cash-fx-cpi.py
+      - research/analytics/personal_use_scope.v0.1.json
       - research/analytics/source_registry.v0.2.json
       - research/analytics/acquisition_status.v0.1.json
       - research/analytics/worldbank_71_series_triage.v0.1.json
@@ -29,6 +33,7 @@ jobs:
           node scripts/test-analytics-bls-missing-gap.cjs
           node scripts/test-analytics-history-coverage.cjs
           node scripts/test-analytics-commodity-rights.cjs
+          python3 scripts/test-analytics-personal-cash-fx-cpi.py
           node scripts/test-align-analytics-historical-series.cjs
           python3 -m py_compile scripts/research-probe-fed-h10-ddp.py scripts/normalize-analytics-fed-ddp-candidate.py scripts/normalize-analytics-estat-cpi.py
           python3 - <<'PY'
