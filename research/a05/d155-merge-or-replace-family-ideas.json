@@ -1,0 +1,285 @@
+{
+  "schema": "A05-D155-MERGE-VS-REPLACE-CONSTRUCT-REVIEW-0.1",
+  "date": "2026-11-11",
+  "status": "EDITORIAL_PROPOSAL_NOT_APPROVED",
+  "source_blobs": {
+    "research/a05/d142-full-50-item-content-disposition.json": "85286173eeb6350d7a1d5b17a617702afd9675ff",
+    "research/a05/d146-50slot-before-after-quality-proposals.json": "53b3e137ff3597bdf7072c880c622baf8fee6814",
+    "research/a05/d149-four-contexts-per-axis-alternative.json": "c5724d7c60e89be490131cbe375c66f244a42cbf",
+    "research/a05/d152-three-risky-families-six-redraft-variants.json": "eb40de1a2d0c1ebadc1e83513f50b431ca1a4a70",
+    "research/a05/d153-50slot-content-readiness-and-nonscoring-ledger.json": "9ada6674ed6c2a9c685aab20a8bc2df958060085"
+  },
+  "fixed_contract": {
+    "bank": 50,
+    "presentation": 30,
+    "per_axis_pool": {
+      "A": 12,
+      "B": 12,
+      "C": 12,
+      "D": 12,
+      "E": 2
+    },
+    "per_axis_draw": {
+      "A": 7,
+      "B": 7,
+      "C": 7,
+      "D": 7,
+      "E": 2
+    },
+    "preserve_prior_form": true,
+    "preserve_scorer": true,
+    "preserve_bank": true
+  },
+  "recommendation": {
+    "A": "Use A-P1/A-P2/A-P3 as 3 active editorial contexts. Fold A-P4 into A-P2 unless field evidence shows distinct information. Do not rush to create a fourth facet.",
+    "B": "Use B-P1/B-P2/B-P4 as 3 active editorial contexts. Fold B-P3 into B-P2 unless field evidence shows distinct information. B's social engagement vs final autonomy is potentially multi-dimensional and deserves independent study.",
+    "C": "Keep C-P4 as contextual paired experiment, not a fourth independent scored domain",
+    "D": "Keep D-P3 and D-P4 as stage-contrast research, not automatic scored domains"
+  },
+  "merges": [
+    {
+      "axis": "A",
+      "source": "A-P4",
+      "target": "A-P2",
+      "verdict": "EDITORIAL_MERGE_RECOMMENDED",
+      "evidenceIds": [
+        "A04",
+        "A-FU05",
+        "A03",
+        "A06",
+        "A-BK13"
+      ],
+      "why": "生活用具・サービスの基盤を維持／再構築する判断は、日常生活の手順・情報管理の継続／刷新と内容が近い。新品・購買・廃棄を外すと差分がさらに小さくなる。",
+      "notProved": "This is a content-based recommendation, not an empirically demonstrated factor equivalence",
+      "sourcePreservation": "Do not delete old A03/A06; keep original IDs as provenance with non-scored status until separately reviewed"
+    },
+    {
+      "axis": "B",
+      "source": "B-P3",
+      "target": "B-P2",
+      "verdict": "EDITORIAL_MERGE_RECOMMENDED",
+      "evidenceIds": [
+        "B02",
+        "B05",
+        "B-FU11",
+        "B01",
+        "B-FU04"
+      ],
+      "why": "共有設備の利用方針を自分の判断か合意で決める基準は、共同活動の方針決定と同じ二極判断。権利・責任を変えると別の価値観より正当な意思決定権限の差が出る。",
+      "notProved": "Respondents may still interpret shared resources differently; preserve one context as a possible sampling variant, not a scored separate subscale",
+      "sourcePreservation": "Do not delete B02/B05/B-FU11; preserve provenance"
+    },
+    {
+      "axis": "A",
+      "source": "A-P3",
+      "target": "A-P3",
+      "verdict": "CONTINUE_REWRITE_COMPARISON",
+      "evidenceIds": [
+        "A02",
+        "A05",
+        "A-FU10"
+      ],
+      "why": "活動拠点の更新は住居変更と条件が異なる可能性があるが、場所の新規性・移動の可否が混入。D152 A-P3-R1を認知面接候補とする。",
+      "notProved": "Distinct scored context is not established",
+      "sourcePreservation": "Retain research source IDs without promotion"
+    },
+    {
+      "axis": "B",
+      "source": "B-P4",
+      "target": "B-P4",
+      "verdict": "CONTINUE_WITH_CONFOUND_AUDIT",
+      "evidenceIds": [
+        "B04",
+        "B-FU05"
+      ],
+      "why": "余暇での希望不一致は、共同の重要方針とは違う負担の小さな場面。親しさや譲歩規範の影響が大きい。",
+      "notProved": "Distinct information value and equivalence not established",
+      "sourcePreservation": "Do not score by default"
+    }
+  ],
+  "new_idea_trials": [
+    {
+      "candidate_id": "A155-01",
+      "axis": "A",
+      "purpose": "生活段階の切替",
+      "kind": "CONTEXT_MODERATOR_NOT_NEW_FACET",
+      "stem": "生活に必要な条件が同じまま、これまでの暮らし方を見直す節目が来たとします。次の期間について、どちらをより好みますか？",
+      "left": "現在の生活の基盤を引き継ぎ、必要な部分だけ整える",
+      "right": "次の期間の生活の基盤を一から組み立て直す",
+      "possible_value": "区切りがあるときに安定／変化の選択が変わるかを観察",
+      "overlap": [
+        "A-P1",
+        "A-P2",
+        "A-FU09"
+      ],
+      "confounds": [
+        "節目の意味の個人差",
+        "将来の生活状況への期待",
+        "A-P2と実質同義"
+      ],
+      "disposition": "TEST_AS_CONTEXT_PAIR_ONLY",
+      "promote_to_scored": false
+    },
+    {
+      "candidate_id": "A155-02",
+      "axis": "A",
+      "purpose": "活動所属組織の基盤",
+      "kind": "BORDERLINE_NEW_OBSERVATION",
+      "stem": "同じ活動内容・成果・参加者・負担で活動を続けられる場合、活動を支える組織の環境はどちらを好みますか？",
+      "left": "慣れた組織の運営環境を継続して使う",
+      "right": "異なる組織の運営環境へ切り替えて活動する",
+      "possible_value": "住居以外の持続的な制度的環境を選び直したいか",
+      "overlap": [
+        "A-P3",
+        "A-BK14",
+        "B-P2"
+      ],
+      "confounds": [
+        "組織文化や帰属意識",
+        "知り合いの存在",
+        "A-P3の活動拠点の言い換え"
+      ],
+      "disposition": "KEEP_AS_IDEATION_ONLY",
+      "promote_to_scored": false
+    },
+    {
+      "candidate_id": "A155-03",
+      "axis": "A",
+      "purpose": "生活用具の選択",
+      "kind": "NEGATIVE_CONTROL",
+      "stem": "費用・機能・使い勝手が同じ生活用品を使えるとき、どちらを好みますか？",
+      "left": "使い慣れた製品を使い続ける",
+      "right": "新しい製品に買い替える",
+      "possible_value": "購買に伴う新奇性や環境規範の交絡を測る統制",
+      "overlap": [
+        "A-P4",
+        "A-P2",
+        "A06"
+      ],
+      "confounds": [
+        "廃棄への抵抗",
+        "買い替えの環境負荷",
+        "新製品の好奇心"
+      ],
+      "disposition": "REJECT_AS_SCORED",
+      "promote_to_scored": false
+    },
+    {
+      "candidate_id": "A155-04",
+      "axis": "A",
+      "purpose": "居住拠点数の選択",
+      "kind": "NEGATIVE_CONTROL",
+      "stem": "生活に必要な移動・費用・利便性が同じなら、拠点の持ち方としてどちらが好みですか？",
+      "left": "一つの生活拠点を長く利用する",
+      "right": "複数の生活拠点を使い分ける",
+      "possible_value": "拠点の数と安定／変化が同じ特性かの否定的対照",
+      "overlap": [
+        "A-FU10",
+        "A-P1",
+        "A-P3"
+      ],
+      "confounds": [
+        "拠点を使い分ける必要性",
+        "暮らしの多様性への好み",
+        "拠点が複数でも環境を変えないことは可能"
+      ],
+      "disposition": "REJECT_AS_SCORED",
+      "promote_to_scored": false
+    },
+    {
+      "candidate_id": "B155-01",
+      "axis": "B",
+      "purpose": "意見が対立しない場面の意思決定参加",
+      "kind": "RESEARCH_INDEPENDENT_DIMENSION",
+      "stem": "結果が自分だけに影響し、周囲の人にも相談できるとき、決め方としてどちらを好みますか？",
+      "left": "自分で考えた判断を基準にして決める",
+      "right": "他の人と考えを共有してから決める",
+      "possible_value": "最終判断の基準と他者の意思決定参加への希望を別々に観察",
+      "overlap": [
+        "B01",
+        "B-P1",
+        "B-FU11"
+      ],
+      "confounds": [
+        "相談と自己決定は両立",
+        "知識や確信の程度",
+        "二極得点でなく独立評価に適する可能性"
+      ],
+      "disposition": "TEST_AS_INDEPENDENT_RESEARCH_ONLY",
+      "promote_to_scored": false
+    },
+    {
+      "candidate_id": "B155-02",
+      "axis": "B",
+      "purpose": "困難時の協力を選ぶか",
+      "kind": "NEGATIVE_CONTROL",
+      "stem": "自分だけで作業できる活動があるとき、どちらの進め方が好みですか？",
+      "left": "自分の裁量で一人で進める",
+      "right": "他者と役割分担して進める",
+      "possible_value": "協業志向と自己決定の違いを測る否定的対照",
+      "overlap": [
+        "B05",
+        "B-P2"
+      ],
+      "confounds": [
+        "作業効率や技能",
+        "社交性",
+        "チーム経験の有無"
+      ],
+      "disposition": "REJECT_AS_SCORED",
+      "promote_to_scored": false
+    },
+    {
+      "candidate_id": "B155-03",
+      "axis": "B",
+      "purpose": "重要な個人選択で他者に及ぼす影響",
+      "kind": "CONTEXT_MODERATOR_NOT_NEW_FACET",
+      "stem": "自分の今後の生活に関わる選択が、身近な人にも同じ程度の負担を与えるとします。希望が分かれたとき、より重視するのはどちらですか？",
+      "left": "相手の意見を聞いたうえで自分が納得する案を選ぶこと",
+      "right": "自分の意見も伝えたうえで互いが納得する案を選ぶこと",
+      "possible_value": "個人選択と共同意思決定との境界",
+      "overlap": [
+        "B-P1",
+        "B06",
+        "B-FU01"
+      ],
+      "confounds": [
+        "他者の権利と倫理",
+        "合意形成の社会的望ましさ",
+        "一方への実害"
+      ],
+      "disposition": "MERGE_INTO_B_P1",
+      "promote_to_scored": false
+    },
+    {
+      "candidate_id": "B155-04",
+      "axis": "B",
+      "purpose": "共同ルールの決定手続",
+      "kind": "NEGATIVE_CONTROL",
+      "stem": "共同生活や活動のルールの決め方として、どちらをより重視しますか？",
+      "left": "多数決で決める",
+      "right": "参加者全員の合意を目指す",
+      "possible_value": "手続好みが自律／つながりと異なることを検査する統制",
+      "overlap": [
+        "B-P2",
+        "B-BK13"
+      ],
+      "confounds": [
+        "公平の規範",
+        "決定時間",
+        "多数派と少数派の権利"
+      ],
+      "disposition": "REJECT_AS_SCORED",
+      "promote_to_scored": false
+    }
+  ],
+  "assessments": {
+    "axis_A_prototypes": 4,
+    "axis_B_prototypes": 4,
+    "for_immediate_scored_bank": 0,
+    "automatic_fourth_facet_replacements": 0
+  },
+  "open_governance": "Do not promote experimental question text to the production bank without human review and empirical evidence. The bank count of 50 remains a target, not 50 approved items.",
+  "approved": false,
+  "respondents_observed": 0
+}
