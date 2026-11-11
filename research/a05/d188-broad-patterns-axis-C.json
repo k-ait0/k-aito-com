@@ -1,0 +1,473 @@
+{
+  "schema": "A05-D188-BROAD-IDEATION-C-0.1",
+  "date": "2026-11-11",
+  "status": "RAW_RESEARCH_IDEAS_UNVALIDATED",
+  "goal": "Preserve broad C-axis candidate variants, distinguishing content from framing or resource-condition methods",
+  "count": 24,
+  "provisional_families": 8,
+  "questions": [
+    {
+      "id": "C-X01",
+      "axis": "C",
+      "family_id": "C-QF01",
+      "family_label": "単発の自由時間",
+      "family_hypothesis": "一回の自由な機会を将来準備と現在の充実のどちらへ使うか",
+      "closest_prior_ids": [
+        "C01",
+        "C02"
+      ],
+      "overlap_risk": "HIGH",
+      "confounds": "今週の予定・疲労・必要な準備の有無",
+      "format": "単発配分",
+      "stem": "今週一度だけ使える自由時間があるとき、どちらにより使いたいですか？",
+      "left": "数か月後の目標に向けて準備する",
+      "right": "今日できる体験を楽しむ",
+      "semantic_distinctness_proven": false,
+      "scored_approved": false
+    },
+    {
+      "id": "C-X02",
+      "axis": "C",
+      "family_id": "C-QF01",
+      "family_label": "単発の自由時間",
+      "family_hypothesis": "一回の自由な機会を将来準備と現在の充実のどちらへ使うか",
+      "closest_prior_ids": [
+        "C01",
+        "C02"
+      ],
+      "overlap_risk": "HIGH",
+      "confounds": "今週の予定・疲労・必要な準備の有無",
+      "format": "選択の保護",
+      "stem": "休息や義務を済ませ、同じ長さの余暇の使い道を一つ選ぶとします。何を残したいですか？",
+      "left": "先の選択肢を増やす活動",
+      "right": "今の時間を充実させる活動",
+      "semantic_distinctness_proven": false,
+      "scored_approved": false
+    },
+    {
+      "id": "C-X03",
+      "axis": "C",
+      "family_id": "C-QF01",
+      "family_label": "単発の自由時間",
+      "family_hypothesis": "一回の自由な機会を将来準備と現在の充実のどちらへ使うか",
+      "closest_prior_ids": [
+        "C01",
+        "C02"
+      ],
+      "overlap_risk": "HIGH",
+      "confounds": "今週の予定・疲労・必要な準備の有無",
+      "format": "臨時の機会",
+      "stem": "急に一日空いた場合、将来のための活動とその日に楽しむ活動が同程度に魅力的なら、どちらを希望しますか？",
+      "left": "将来への準備を進められる一日",
+      "right": "今しか感じられない体験の一日",
+      "semantic_distinctness_proven": false,
+      "scored_approved": false
+    },
+    {
+      "id": "C-X04",
+      "axis": "C",
+      "family_id": "C-QF02",
+      "family_label": "反復する生活時間",
+      "family_hypothesis": "数週間・数か月の自由時間の継続配分",
+      "closest_prior_ids": [
+        "C05",
+        "C-BK15"
+      ],
+      "overlap_risk": "HIGH",
+      "confounds": "将来目標の強さ・休息必要性",
+      "format": "反復配分",
+      "stem": "来月から毎週同じ自由時間が取れるなら、どちらにより多く使いたいですか？",
+      "left": "先の選択肢を増やす準備を積み重ねる",
+      "right": "毎週の経験を充実させる活動を重ねる",
+      "semantic_distinctness_proven": false,
+      "scored_approved": false
+    },
+    {
+      "id": "C-X05",
+      "axis": "C",
+      "family_id": "C-QF02",
+      "family_label": "反復する生活時間",
+      "family_hypothesis": "数週間・数か月の自由時間の継続配分",
+      "closest_prior_ids": [
+        "C05",
+        "C-BK15"
+      ],
+      "overlap_risk": "HIGH",
+      "confounds": "将来目標の強さ・休息必要性",
+      "format": "半年の累積",
+      "stem": "半年にわたって週の余暇の一部を使うとします。どちらの時間の積み重ねを望みますか？",
+      "left": "半年後の達成につながる時間",
+      "right": "毎週を満足して過ごせる時間",
+      "semantic_distinctness_proven": false,
+      "scored_approved": false
+    },
+    {
+      "id": "C-X06",
+      "axis": "C",
+      "family_id": "C-QF02",
+      "family_label": "反復する生活時間",
+      "family_hypothesis": "数週間・数か月の自由時間の継続配分",
+      "closest_prior_ids": [
+        "C05",
+        "C-BK15"
+      ],
+      "overlap_risk": "HIGH",
+      "confounds": "将来目標の強さ・休息必要性",
+      "format": "習慣化",
+      "stem": "いまの負担が変わらず毎週の活動を選び直せるとしたら、優先するのはどちらですか？",
+      "left": "将来の機会を増やす習慣",
+      "right": "今の生活を楽しめる習慣",
+      "semantic_distinctness_proven": false,
+      "scored_approved": false
+    },
+    {
+      "id": "C-X07",
+      "axis": "C",
+      "family_id": "C-QF03",
+      "family_label": "充実の評価基準",
+      "family_hypothesis": "何に時間を使ったかではなく一期間の満足を判断する基準",
+      "closest_prior_ids": [
+        "C-N01",
+        "C05"
+      ],
+      "overlap_risk": "MEDIUM",
+      "confounds": "充実感、達成感、社会的に褒められることへの価値判断",
+      "format": "年の評価",
+      "stem": "一年を振り返るとき、将来の準備も日々の経験も同じ程度できたとします。充実を最も感じる理由はどちらですか？",
+      "left": "後の人生の選択肢が増えたこと",
+      "right": "その一年の日々に満足できたこと",
+      "semantic_distinctness_proven": false,
+      "scored_approved": false
+    },
+    {
+      "id": "C-X08",
+      "axis": "C",
+      "family_id": "C-QF03",
+      "family_label": "充実の評価基準",
+      "family_hypothesis": "何に時間を使ったかではなく一期間の満足を判断する基準",
+      "closest_prior_ids": [
+        "C-N01",
+        "C05"
+      ],
+      "overlap_risk": "MEDIUM",
+      "confounds": "充実感、達成感、社会的に褒められることへの価値判断",
+      "format": "活動の評価",
+      "stem": "一つの活動を終えたとき、将来への有益さと参加中の楽しさが同じ程度なら、何を大切に振り返りたいですか？",
+      "left": "この先に使える成果が残ったこと",
+      "right": "取り組む時間自体が満たされたこと",
+      "semantic_distinctness_proven": false,
+      "scored_approved": false
+    },
+    {
+      "id": "C-X09",
+      "axis": "C",
+      "family_id": "C-QF03",
+      "family_label": "充実の評価基準",
+      "family_hypothesis": "何に時間を使ったかではなく一期間の満足を判断する基準",
+      "closest_prior_ids": [
+        "C-N01",
+        "C05"
+      ],
+      "overlap_risk": "MEDIUM",
+      "confounds": "充実感、達成感、社会的に褒められることへの価値判断",
+      "format": "将来からの振返り",
+      "stem": "数年後に今の生活を思い返すとき、どのような記憶により満足すると思いますか？",
+      "left": "将来の選択を広げる準備を進めていた記憶",
+      "right": "当時の一日一日を味わっていた記憶",
+      "semantic_distinctness_proven": false,
+      "scored_approved": false
+    },
+    {
+      "id": "C-X10",
+      "axis": "C",
+      "family_id": "C-QF04",
+      "family_label": "達成直後の次の価値",
+      "family_hypothesis": "目標達成後に次の準備を始めるか達成時点を味わうか",
+      "closest_prior_ids": [
+        "C-N03",
+        "C05"
+      ],
+      "overlap_risk": "MEDIUM",
+      "confounds": "疲労・休息、達成感、D軸のテーマ探索",
+      "format": "達成直後",
+      "stem": "自分が目指した目標を達成し、必要な休息も取れたとします。次に自由時間をどうしたいですか？",
+      "left": "次の目標に向けた準備を始める",
+      "right": "達成した今の生活をじっくり楽しむ",
+      "semantic_distinctness_proven": false,
+      "scored_approved": false
+    },
+    {
+      "id": "C-X11",
+      "axis": "C",
+      "family_id": "C-QF04",
+      "family_label": "達成直後の次の価値",
+      "family_hypothesis": "目標達成後に次の準備を始めるか達成時点を味わうか",
+      "closest_prior_ids": [
+        "C-N03",
+        "C05"
+      ],
+      "overlap_risk": "MEDIUM",
+      "confounds": "疲労・休息、達成感、D軸のテーマ探索",
+      "format": "次の一歩",
+      "stem": "一区切りついた活動の後、新しい義務がなく同じ自由時間がある場合、何を優先しますか？",
+      "left": "さらに先の目標を見つけて備えること",
+      "right": "今できていることを十分に味わうこと",
+      "semantic_distinctness_proven": false,
+      "scored_approved": false
+    },
+    {
+      "id": "C-X12",
+      "axis": "C",
+      "family_id": "C-QF04",
+      "family_label": "達成直後の次の価値",
+      "family_hypothesis": "目標達成後に次の準備を始めるか達成時点を味わうか",
+      "closest_prior_ids": [
+        "C-N03",
+        "C05"
+      ],
+      "overlap_risk": "MEDIUM",
+      "confounds": "疲労・休息、達成感、D軸のテーマ探索",
+      "format": "達成後の継続",
+      "stem": "長く準備してきたことが終わり、その後の期間を自由に使える場合、どちらの過ごし方を望みますか？",
+      "left": "新しい将来の機会を作り始める",
+      "right": "今の成果や経験の充実を感じ続ける",
+      "semantic_distinctness_proven": false,
+      "scored_approved": false
+    },
+    {
+      "id": "C-X13",
+      "axis": "C",
+      "family_id": "C-QF05",
+      "family_label": "活動過程と将来成果",
+      "family_hypothesis": "一つの活動における未来の達成と過程の充足",
+      "closest_prior_ids": [
+        "C03",
+        "C04",
+        "C-N02"
+      ],
+      "overlap_risk": "HIGH",
+      "confounds": "楽しさと成果の同時成立、活動の魅力度・確実性",
+      "format": "活動の価値",
+      "stem": "半年続ける二つの活動が同じ負担だとすると、どんな価値を求めて選びたいですか？",
+      "left": "半年後の選択肢を増やす成果",
+      "right": "参加する毎回の時間の満足",
+      "semantic_distinctness_proven": false,
+      "scored_approved": false
+    },
+    {
+      "id": "C-X14",
+      "axis": "C",
+      "family_id": "C-QF05",
+      "family_label": "活動過程と将来成果",
+      "family_hypothesis": "一つの活動における未来の達成と過程の充足",
+      "closest_prior_ids": [
+        "C03",
+        "C04",
+        "C-N02"
+      ],
+      "overlap_risk": "HIGH",
+      "confounds": "楽しさと成果の同時成立、活動の魅力度・確実性",
+      "format": "基準の比較",
+      "stem": "同じ期間の活動で将来の役立ち方と当日の楽しさに違いがある場合、どちらを選ぶ基準にしたいですか？",
+      "left": "後から役立つ機会の大きさ",
+      "right": "活動しているときの充実感",
+      "semantic_distinctness_proven": false,
+      "scored_approved": false
+    },
+    {
+      "id": "C-X15",
+      "axis": "C",
+      "family_id": "C-QF05",
+      "family_label": "活動過程と将来成果",
+      "family_hypothesis": "一つの活動における未来の達成と過程の充足",
+      "closest_prior_ids": [
+        "C03",
+        "C04",
+        "C-N02"
+      ],
+      "overlap_risk": "HIGH",
+      "confounds": "楽しさと成果の同時成立、活動の魅力度・確実性",
+      "format": "活動後の評価",
+      "stem": "自由参加の活動を終えたとき、よかったと思う条件はどちらに近いですか？",
+      "left": "後の目標へ進む材料が手に入った",
+      "right": "参加した時間そのものが充実した",
+      "semantic_distinctness_proven": false,
+      "scored_approved": false
+    },
+    {
+      "id": "C-X16",
+      "axis": "C",
+      "family_id": "C-QF06",
+      "family_label": "自由裁量のお金・機会",
+      "family_hypothesis": "必要費用以外に使える資源を将来準備か現在体験へ使う",
+      "closest_prior_ids": [
+        "C-BK13",
+        "C-G1"
+      ],
+      "overlap_risk": "HIGH",
+      "confounds": "E軸との交絡、金銭余力、リスク回避",
+      "format": "自由予算",
+      "stem": "必要な支出と備えを確保した後の自由なお金を使う場合、どちらの価値を重視しますか？",
+      "left": "後々の選択肢を増やすこと",
+      "right": "今しかできない経験を豊かにすること",
+      "semantic_distinctness_proven": false,
+      "scored_approved": false
+    },
+    {
+      "id": "C-X17",
+      "axis": "C",
+      "family_id": "C-QF06",
+      "family_label": "自由裁量のお金・機会",
+      "family_hypothesis": "必要費用以外に使える資源を将来準備か現在体験へ使う",
+      "closest_prior_ids": [
+        "C-BK13",
+        "C-G1"
+      ],
+      "overlap_risk": "HIGH",
+      "confounds": "E軸との交絡、金銭余力、リスク回避",
+      "format": "予算の目的",
+      "stem": "同じ額を今日自由に使えるとしたら、支出の目的としてどちらを優先したいですか？",
+      "left": "将来の挑戦を可能にする準備",
+      "right": "現在の暮らしを楽しむ体験",
+      "semantic_distinctness_proven": false,
+      "scored_approved": false
+    },
+    {
+      "id": "C-X18",
+      "axis": "C",
+      "family_id": "C-QF06",
+      "family_label": "自由裁量のお金・機会",
+      "family_hypothesis": "必要費用以外に使える資源を将来準備か現在体験へ使う",
+      "closest_prior_ids": [
+        "C-BK13",
+        "C-G1"
+      ],
+      "overlap_risk": "HIGH",
+      "confounds": "E軸との交絡、金銭余力、リスク回避",
+      "format": "資金の意思決定",
+      "stem": "使わなくても生活に影響がない余裕のある資金がある場合、使い道を決める基準はどちらですか？",
+      "left": "数年後の選択肢への寄与",
+      "right": "今過ごす時間への満足",
+      "semantic_distinctness_proven": false,
+      "scored_approved": false
+    },
+    {
+      "id": "C-X19",
+      "axis": "C",
+      "family_id": "C-QF07",
+      "family_label": "予想後悔・振返り",
+      "family_hypothesis": "今の選択を後でどう評価するかという後悔フレーミング",
+      "closest_prior_ids": [
+        "D181-8C",
+        "C-N05"
+      ],
+      "overlap_risk": "HIGH",
+      "confounds": "反事実想像、気分・後悔しやすさ、表現形式効果",
+      "format": "予想後悔",
+      "stem": "数年後の自分が今週を振り返るなら、自由時間を使わなかったことについてどちらをより残念に思いそうですか？",
+      "left": "将来の準備を進めなかったこと",
+      "right": "今の体験を楽しめなかったこと",
+      "semantic_distinctness_proven": false,
+      "scored_approved": false
+    },
+    {
+      "id": "C-X20",
+      "axis": "C",
+      "family_id": "C-QF07",
+      "family_label": "予想後悔・振返り",
+      "family_hypothesis": "今の選択を後でどう評価するかという後悔フレーミング",
+      "closest_prior_ids": [
+        "D181-8C",
+        "C-N05"
+      ],
+      "overlap_risk": "HIGH",
+      "confounds": "反事実想像、気分・後悔しやすさ、表現形式効果",
+      "format": "心残り",
+      "stem": "今日の選択を後で振り返り、時間を一つのことに使わなかったとしたら、どちらに心残りを感じそうですか？",
+      "left": "先の可能性に向けて備えなかったこと",
+      "right": "今の時間を味わわなかったこと",
+      "semantic_distinctness_proven": false,
+      "scored_approved": false
+    },
+    {
+      "id": "C-X21",
+      "axis": "C",
+      "family_id": "C-QF07",
+      "family_label": "予想後悔・振返り",
+      "family_hypothesis": "今の選択を後でどう評価するかという後悔フレーミング",
+      "closest_prior_ids": [
+        "D181-8C",
+        "C-N05"
+      ],
+      "overlap_risk": "HIGH",
+      "confounds": "反事実想像、気分・後悔しやすさ、表現形式効果",
+      "format": "将来への説明",
+      "stem": "将来の自分に、今回の自由時間の使い方について質問されたら、より説明したいのはどちらですか？",
+      "left": "将来の準備につながることをした理由",
+      "right": "現在の体験を充実させた理由",
+      "semantic_distinctness_proven": false,
+      "scored_approved": false
+    },
+    {
+      "id": "C-X22",
+      "axis": "C",
+      "family_id": "C-QF08",
+      "family_label": "機会・資源条件への感度",
+      "family_hypothesis": "自由時間の減少・活動の希少性で選択が変わるか",
+      "closest_prior_ids": [
+        "C-FU14",
+        "C-FU15",
+        "D181-10C"
+      ],
+      "overlap_risk": "HIGH",
+      "confounds": "価値の強度ではなく希少性・資源条件、ペアを独立した質問系統と数えない",
+      "format": "時間制約",
+      "stem": "休息と必要な用事を終えた後の自由時間が週4時間から週2時間に減るとしたら、優先したいのはどちらですか？",
+      "left": "将来に備える時間を守る",
+      "right": "今の体験を楽しむ時間を守る",
+      "semantic_distinctness_proven": false,
+      "scored_approved": false
+    },
+    {
+      "id": "C-X23",
+      "axis": "C",
+      "family_id": "C-QF08",
+      "family_label": "機会・資源条件への感度",
+      "family_hypothesis": "自由時間の減少・活動の希少性で選択が変わるか",
+      "closest_prior_ids": [
+        "C-FU14",
+        "C-FU15",
+        "D181-10C"
+      ],
+      "overlap_risk": "HIGH",
+      "confounds": "価値の強度ではなく希少性・資源条件、ペアを独立した質問系統と数えない",
+      "format": "希少性対称",
+      "stem": "将来に役立つ活動と今の体験がどちらも今日だけ参加できるとしたら、どちらを選びますか？",
+      "left": "今日だけできる将来への準備",
+      "right": "今日だけできる今の体験",
+      "semantic_distinctness_proven": false,
+      "scored_approved": false
+    },
+    {
+      "id": "C-X24",
+      "axis": "C",
+      "family_id": "C-QF08",
+      "family_label": "機会・資源条件への感度",
+      "family_hypothesis": "自由時間の減少・活動の希少性で選択が変わるか",
+      "closest_prior_ids": [
+        "C-FU14",
+        "C-FU15",
+        "D181-10C"
+      ],
+      "overlap_risk": "HIGH",
+      "confounds": "価値の強度ではなく希少性・資源条件、ペアを独立した質問系統と数えない",
+      "format": "機会対称",
+      "stem": "同じ時間で将来の準備か現在の体験を選べるとします。どちらも次の週に同じ条件でできる場合、先に選びたいのはどちらですか？",
+      "left": "将来の準備を先にする",
+      "right": "現在の体験を先にする",
+      "semantic_distinctness_proven": false,
+      "scored_approved": false
+    }
+  ],
+  "production_changed": false
+}
