@@ -290,13 +290,27 @@
       "source_lock": "LOCKED_PROVISIONAL_20261110",
       "downloaded_in_this_turn": false,
       "site_use_approved": false,
-      "acquisition_status": "RAW_WORLDBANK_XLSX_ACQUIRED_OTHER_COMMODITIES_COLUMN_QA_PENDING",
+      "acquisition_status": "WORLD_BANK_71_COLUMN_OBSERVED_COVERAGE_AUDITED_DEFINITION_AND_RIGHTS_PENDING",
       "actual_workbook_20261111": {
         "raw_sha256": "3c8d9d8dbb48342fdbf24777c39a8ce8964cc2fd0958f72f6779e6e4ad99cde2",
         "raw_acquired": true,
         "non_gold_series_full_qa": false,
         "series_type_may_differ": "SPOT_OR_FUTURES_BENCHMARK_VERIFY_PER_COLUMN",
-        "site_publication_approved": false
+        "site_publication_approved": false,
+        "all_price_and_index_columns": 71,
+        "non_gold_columns": 70,
+        "monthly_rows": 802,
+        "all_columns_positive_observation_total": 50514,
+        "full_1960_to_2026_columns": 46,
+        "full_1966_to_2026_columns": 46,
+        "columns_with_complete_30y_windows": 65,
+        "columns_with_internal_missing": 4,
+        "columns_without_30y_windows": 6,
+        "monthly_change_over_20pct_review_flags": 1123,
+        "coverage_qa_report": "docs/ANALYTICS_WORLDBANK_71_SERIES_COVERAGE_20261111.md",
+        "private_71_column_metadata_json_sha256": "7ca87a3e63dcf904581685d82f136ff6c92a1c7a0daa615e6328ca54b8825cc8",
+        "per_commodity_definitions": "REVIEW_REQUIRED",
+        "third_party_commercial_licenses": "REVIEW_REQUIRED"
       }
     },
     {
@@ -478,7 +492,7 @@
       "result": "FAILED_DNS",
       "verified_official_page": "https://www.worldbank.org/en/research/commodity-markets"
     },
-    "next_step": "Private durable backup; Fed 1971 source-channel ADR and 1971-1999 data; World Bank Gold third-party rights and non-Gold per-column type QA; S&P/JPX/MSCI and other bond TR licenses. Production remains disabled.",
+    "next_step": "Approve Fed DDP direct same-publisher channel via ADR before active switch, clarify source sunset; review World Bank commodity per-series third-party licenses and definition changes; obtain equity/bond TR licenses, preserve private evidence, no production.",
     "official_page_snapshot_count": 1,
     "official_page_snapshot_rows": 28,
     "snapshot_details": [
@@ -626,6 +640,15 @@
       "still_active_source": "https://www.federalreserve.gov/releases/h10/hist/dat00_ja.htm",
       "site_approved": false,
       "run_url": "https://github.com/k-ait0/k-aito-com/actions/runs/42954684913"
+    },
+    "world_bank_71_column_coverage_review_20261111": {
+      "raw_workbook_sha256": "3c8d9d8dbb48342fdbf24777c39a8ce8964cc2fd0958f72f6779e6e4ad99cde2",
+      "raw_workbook_files_acquired_now": 0,
+      "coverage_observations": 50514,
+      "columns_audited": 71,
+      "rights_and_methodology_still_pending": true,
+      "individual_metadata_sha256": "7ca87a3e63dcf904581685d82f136ff6c92a1c7a0daa615e6328ca54b8825cc8",
+      "report": "docs/ANALYTICS_WORLDBANK_71_SERIES_COVERAGE_20261111.md"
     }
   },
   "history_coverage_standard": {
