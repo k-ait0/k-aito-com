@@ -497,10 +497,10 @@
     "production_unchanged": true
   },
   "next_priorities": [
-    "Integrate lawful personal true-TR index CSV adapter for future multi-asset engine; do not equate FX/commodity spot with total returns",
-    "Add one-vs-two asset cash buckets and explicit periodic rebalance after documenting DWZ sell-order policies",
-    "Continue offline Chromium real-CSV regression and save/export provenance test",
-    "Retain commercial license warning; do not deploy analytics research UI publicly or alter DWZ draft"
+    "Personal v0.3 is available offline: source-only audit for first real personally lawful TR index input, no external downloads",
+    "Add optional trade-fee/slippage and taxes in separate, explicitly non-validated accounting research model",
+    "Review one cash+one index strategy output with independently sourced observed total-return history before multi-asset generalization",
+    "Keep one-off self-use research mode and public/commercial license gates separate; no production release"
   ],
   "audit_note": "Existing November 10 registry/acquisition snapshots are historical; this is an additional verified November 11 ledger. Do not convert data-acquired into site-approved.",
   "observed_joint_coverage_research_only": {
@@ -685,5 +685,88 @@
     "commercial_use_approvals_added": 0,
     "main_and_live_site_modified": false,
     "doc": "docs/ANALYTICS_PERSONAL_DWZ_PHASE_PARITY_V0_2.md"
+  },
+  "personal_browser_ui_v0_3_20261112": {
+    "version": "0.3",
+    "research_branch": "analytics-historical-v0-1-20261110",
+    "mode": "PERSONAL_SINGLE_USER_LOCAL_RESEARCH",
+    "file": "research/analytics/personal-lab/index.html",
+    "html_sha256": "802d4112200616203f2558e1db9d6ac51caac2efce5ee86f9856740f7421eb70",
+    "status": "PERSONAL_TWO_ASSET_IMPLEMENTED_PASS_AND_CHROMIUM_QA_PASS",
+    "input_classification": "JPY_CASH_ZERO_YIELD_PLUS_ONE_REFERENCE",
+    "options": {
+      "initial_cash_percent": "0-100",
+      "sell_order": [
+        "CASH_FIRST",
+        "RISK_FIRST",
+        "PRO_RATA"
+      ],
+      "rebalance": [
+        "NONE",
+        "ANNUAL",
+        "MONTHLY"
+      ],
+      "timing": [
+        "BEGINNING_OF_MONTH",
+        "END_OF_MONTH"
+      ],
+      "payout": [
+        "NOMINAL_FIXED",
+        "JP_CPI_LINKED"
+      ],
+      "years": [
+        10,
+        20,
+        30
+      ]
+    },
+    "private_tr_index": {
+      "input_source": "USER_PROVIDED_LEGALLY_OBTAINED_FILE",
+      "series_kind": "INDEX_TOTAL_RETURN",
+      "currency": [
+        "JPY",
+        "USD"
+      ],
+      "source_id": "REGISTERED_INDEX_PROVIDER_ONLY",
+      "original_source_provenance_cryptographically_verified": false,
+      "individual_license_independently_verified": false,
+      "private_upload_external": false
+    },
+    "commodity_gold": "PUBLISHED_LEVEL_STATUS_UNVERIFIED_EXPLORATORY_ONLY",
+    "usd_cash": "FX_ONLY_NO_DEPOSIT_INTEREST_NOT_TR",
+    "tests": {
+      "dwz_legacy_single_asset": 192,
+      "two_asset_to_single_asset_parity": 576,
+      "two_asset_ledger_audit": 144,
+      "private_tr_parser": "JPY_USD_VALID_AND_NEGATIVE_CASES_PASS",
+      "synthetic_dom": "PASS_THREE_TABS_CONSENT_REBALANCE_LOCAL_IMPORT",
+      "real_browser": {
+        "engine": "SYSTEM_CHROMIUM_HEADLESS_SET_CONTENT",
+        "html_file_origin_navigation": "BLOCKED_BY_ADMINISTRATOR_USE_SET_CONTENT",
+        "desktop_width": 1440,
+        "mobile_width": 390,
+        "original_fx_cpi_real_common_months": 669,
+        "purchasing_power_index_base_1971_01": 100,
+        "purchasing_power_index_end_2026_09": 12.39,
+        "fx_cpi_research_csv_read_success": true,
+        "user_declared_tr_synthetic_csv_local_import_success": true,
+        "gold_unverified_explicit_ack_required": true,
+        "zero_cash_portfolio_equals_single_usd_cash": true,
+        "external_http_requests": 0,
+        "js_uncaught_errors": 0,
+        "browser_csv_10_year_monthly_rows_including_initial": 121,
+        "browser_csv_columns": 16,
+        "screenshot_private_only": true
+      }
+    },
+    "github_actions": "https://github.com/k-ait0/k-aito-com/actions/runs/43073407672",
+    "qa_doc": "docs/ANALYTICS_PERSONAL_TWO_ASSET_V0_3_QA.md",
+    "original_market_values_committed_to_public_repository": 0,
+    "source_registry_changed": false,
+    "source_adrs_approved": 0,
+    "commercial_processing_approval": false,
+    "site_approved": false,
+    "main_branch_modified": false,
+    "live_site_deployed": false
   }
 }
