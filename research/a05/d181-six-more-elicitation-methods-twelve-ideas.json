@@ -1,0 +1,387 @@
+{
+  "schema": "A05-D181-ADDITIONAL-SIX-ELICITATION-METHODS-REVIEW-0.1",
+  "date": "2026-11-11",
+  "status": "RESEARCH_ONLY_UNVALIDATED",
+  "origin": "User supplied additional directions numbered 7–12, twelve question sketches.",
+  "fixed": {
+    "A_D_bank_each": 12,
+    "E_bank": 2,
+    "total_bank": 50,
+    "A_D_draw_each": 7,
+    "E_draw": 2,
+    "total_draw": 30,
+    "types": 16,
+    "exact_duplicates_allowed": 0,
+    "per_semantic_family_cap": 2
+  },
+  "review": {
+    "methods": 6,
+    "original_ideas": 12,
+    "by_method": {
+      "7": 2,
+      "8": 2,
+      "9": 2,
+      "10": 2,
+      "11": 2,
+      "12": 2
+    },
+    "new_independent_semantic_families_confirmed": 0,
+    "scored_bank_items_approved": 0,
+    "old_approved_scoring_changed": false
+  },
+  "method_risks": {
+    "7": "Sensitivity to condition changes, not direct psychometric estimate of trait strength; pair baseline and manipulated conditions. C prior scarcity pair exists.",
+    "8": "Predicted regret may load on counterfactual imagination and current satisfaction rather than axis values.",
+    "9": "Advice is a subtype of third-person evaluation and is conceptually near method 2 (D179); do not claim method independence.",
+    "10": "Resource deprivation moderator. Equalize baseline available time and ensure obligations/rest are protected.",
+    "11": "Remove observer reputation only; preserve relevant stakeholders, costs, and consequences.",
+    "12": "Within-person forced ranks are relative/ipsative under conventional scoring; do not map directly to 16 types without separate validated model."
+  },
+  "items": [
+    {
+      "id": "D181-7A",
+      "method": 7,
+      "name": "条件変更",
+      "axis": "A",
+      "anchor": [
+        "A01"
+      ],
+      "original": "住み慣れた街に留まるか新しい街に移るかで迷っているとします。新しい街の生活コストが今より2割安い場合、それでも住み慣れた街に留まりますか",
+      "category": "PAIRED_CONDITION_MODERATOR",
+      "priority": "HIGH",
+      "risk": "コスト20%の意味が収入・家計・住宅の質で異なり、安定志向の強度とコスト感度を区別できない",
+      "design": {
+        "baseline": "住み慣れた街に住む場合も、新しい街へ移る場合も、生活費・利便性・人間関係は同等だとします。どちらをより選びたいですか？",
+        "condition": "新しい街を選ぶ場合だけ、その他の条件は同じで生活費が20%少なくなるなら、どちらを選びたいですか？",
+        "choices": [
+          "慣れた街に住み続ける",
+          "新しい街へ移る",
+          "どちらも選べる・判断不能"
+        ],
+        "readout": "同一回答者で基準条件と20%の費用差の両方を提示。切替率は経済条件への感度であり、A軸の強度そのものとはみなさない"
+      }
+    },
+    {
+      "id": "D181-7C",
+      "method": 7,
+      "name": "条件変更",
+      "axis": "C",
+      "anchor": [
+        "C-FU14",
+        "C-FU15",
+        "C01"
+      ],
+      "original": "将来の準備と今の楽しみのどちらかを選ぶ場面で、今の楽しみが『今日しかできない』ものだった場合、それでも将来の準備を優先しますか",
+      "category": "REUSE_EXISTING_SCARCITY_PAIRS",
+      "priority": "HIGH",
+      "risk": "今の楽しみにだけ希少性が与えられる。既存のC-FU14/C-FU15で対称性の比較を研究済み",
+      "design": {
+        "baseline": "同じ時間・負担で将来の準備か今の体験のどちらかに参加できます。どちらを優先したいですか？",
+        "condition": "体験側だけが今日限りのケース、準備側だけが今日限りのケースを対照し、順序も入れ替える",
+        "choices": [
+          "将来の準備",
+          "今の体験",
+          "判断不能"
+        ],
+        "readout": "既存C-FU14/C-FU15のペアを再利用。希少性による回答変更をCの価値志向の強度と同一視しない"
+      }
+    },
+    {
+      "id": "D181-8C",
+      "method": 8,
+      "name": "将来の後悔の予測",
+      "axis": "C",
+      "anchor": [
+        "C05"
+      ],
+      "original": "10年後の自分が今の選択を振り返ったとき、『もっと今を楽しめばよかった』と思うか、『もっと将来のために準備すればよかった』と思うか、どちらに近いですか",
+      "category": "RETROSPECTIVE_FRAME_RESEARCH",
+      "priority": "MEDIUM",
+      "risk": "10年後の想像力・健康・後悔しやすさ・現状満足・時間割引が混入。反事実的後悔の予測は実際の行動と違う",
+      "design": {
+        "stem": "将来の自分が、いま使える自由時間の選び方を振り返るとしたら、どちらを選ばなかったことをより後悔しそうですか？",
+        "choices": [
+          "将来の準備のために使わなかったこと",
+          "今の体験を充実させるために使わなかったこと",
+          "予想できない"
+        ],
+        "readout": "C05との違いが、後悔の予想か価値優先の違いかを本人の言葉で確認"
+      }
+    },
+    {
+      "id": "D181-8A",
+      "method": 8,
+      "name": "将来の後悔の予測",
+      "axis": "A",
+      "anchor": [
+        "A01"
+      ],
+      "original": "10年後の自分が、『あのとき思い切って環境を変えればよかった』と思うか、『あのとき慣れた環境に留まってよかった』と思うか、どちらに近いですか",
+      "category": "ASYMMETRIC_REGRET_REWRITE",
+      "priority": "MEDIUM",
+      "risk": "後悔する変化と肯定する維持の非対称な文面であり、現状満足に強く影響される",
+      "design": {
+        "stem": "10年後に振り返るとしたら、どちらの選択をしなかったことを後悔しそうですか？生活費・便利さ・人間関係は同等とします。",
+        "choices": [
+          "慣れた生活基盤を継続しなかったこと",
+          "生活基盤を別の形に更新しなかったこと",
+          "予想できない"
+        ],
+        "readout": "双方を『しなかった後悔』で統一し、A01との解釈差が将来想像の負荷なのかを検査"
+      }
+    },
+    {
+      "id": "D181-9D",
+      "method": 9,
+      "name": "他者への助言",
+      "axis": "D",
+      "anchor": [
+        "D01",
+        "D179-PD"
+      ],
+      "original": "後輩が『一つの分野を極めたい』と言っています。あなたは『もっと色々な分野を見た方がいい』と助言するか、『その分野を深く追究した方がいい』と助言するか",
+      "category": "NORMATIVE_THIRD_PERSON_OVERLAP",
+      "priority": "LOW",
+      "risk": "他者評価（旧切り口2）と同じ構造。相手が深耕したい意思を尊重すべきという助言規範が主となる",
+      "design": {
+        "stem": "同程度に関心があり、自由時間も同じ後輩が、趣味の学び方に迷っています。どちらの助言をしたくなりますか？",
+        "choices": [
+          "複数の分野も触れてみるよう勧める",
+          "関心のある一分野をさらに深めるよう勧める",
+          "本人の希望で変える"
+        ],
+        "readout": "自己価値の代理尺度ではなく、相手の意思を尊重する規範との関係を観察"
+      }
+    },
+    {
+      "id": "D181-9B",
+      "method": 9,
+      "name": "他者への助言",
+      "axis": "B",
+      "anchor": [
+        "B-FU01",
+        "D179-PB"
+      ],
+      "original": "友人が『家族の反対を押し切ってでも自分の道を選びたい』と言っています。あなたは『自分の納得を優先していい』と助言するか、『まず話し合った方がいい』と助言するか",
+      "category": "NORMATIVE_THIRD_PERSON_OVERLAP",
+      "priority": "LOW",
+      "risk": "相談と自己決定は両立可能。家庭の利害・法的権利・対人規範と交絡",
+      "design": {
+        "stem": "本人に決定権があり関係者の負担が同程度だとします。友人にどちらの判断基準を重視するよう勧めたいですか？",
+        "choices": [
+          "本人の納得を最終基準にする",
+          "関係者が納得することを最終基準にする",
+          "まずどちらも確認する"
+        ],
+        "readout": "本人が選ぶ基準と第三者に薦める基準を区別する。B-G1での両立の可能性を保持"
+      }
+    },
+    {
+      "id": "D181-10C",
+      "method": 10,
+      "name": "制約下の優先順位",
+      "axis": "C",
+      "anchor": [
+        "C05",
+        "C01"
+      ],
+      "original": "使える自由時間が今の半分になったとき、最初に削るのは将来のための準備か、今の楽しみか、どちらですか",
+      "category": "RESOURCE_SCARCITY_PAIRED_TEST",
+      "priority": "HIGH",
+      "risk": "現在の自由時間の有無・必要な休息を削る不合理さが強く影響。半分への変更は価値観以外の制約への感度",
+      "design": {
+        "baseline": "必要な休息や義務の時間を除いた自由時間が週4時間あり、将来の準備と現在の体験に同じだけ関心があるとします。どちらに多く使いたいですか？",
+        "condition": "同じ条件のまま自由時間が週2時間なら、どちらに多く使いたいですか？",
+        "choices": [
+          "将来の準備",
+          "今の体験",
+          "両方同じ・判断不能"
+        ],
+        "readout": "4時間/2時間で優先が切り替わるか、どの制約が理由かを確認。C05の同系統ペア研究"
+      }
+    },
+    {
+      "id": "D181-10D",
+      "method": 10,
+      "name": "制約下の優先順位",
+      "axis": "D",
+      "anchor": [
+        "D01",
+        "D02"
+      ],
+      "original": "使える時間が半分になったとき、新しい分野に触れる時間を削るか、今の分野を深く追究する時間を削るか、どちらですか",
+      "category": "RESOURCE_SCARCITY_PAIRED_TEST",
+      "priority": "HIGH",
+      "risk": "既に一分野へ取り組んでいるという前提、技能・課題期限・活動機会の違い",
+      "design": {
+        "baseline": "義務以外の自由な学びの時間が週4時間あり、どちらも関心のある複数分野の探索と一分野の深化に自由に使えます。どちらをより優先しますか？",
+        "condition": "自由時間が週2時間に減る場合、同じ条件ならどちらを優先しますか？",
+        "choices": [
+          "複数分野を探索",
+          "一分野を深める",
+          "両方同じ・判断不能"
+        ],
+        "readout": "資源制約による切替をD02の幅/深さ志向の強度と自動的に同一視しない"
+      }
+    },
+    {
+      "id": "D181-11B",
+      "method": 11,
+      "name": "他者からの評価を除く想像",
+      "axis": "B",
+      "anchor": [
+        "B-FU01",
+        "B-G1"
+      ],
+      "original": "あなたの選択を誰も知らず、評価もされないとしたら、自分の納得と周囲との合意のどちらをより重視しますか",
+      "category": "SOCIAL_EVALUATION_CONTEXT_PROBE",
+      "priority": "MEDIUM",
+      "risk": "『誰も知らない』なら合意する相手も影響を受けないかのように解釈される。対人責任と他者からの評価は別",
+      "design": {
+        "baseline": "影響する関係者には選択が伝わり、利害も変わらないとします。周りの第三者の評判が伴う場合、最終基準はどちらですか？",
+        "condition": "関係者には伝わりますが、無関係の第三者には知られず評価もされない場合、最終基準は変わりますか？",
+        "choices": [
+          "本人の納得",
+          "関係者との合意",
+          "両方重視・判断不能"
+        ],
+        "readout": "利害関係者を消さず第三者評価の有無だけ変え、B軸の価値志向と社会的望ましさを区別"
+      }
+    },
+    {
+      "id": "D181-11A",
+      "method": 11,
+      "name": "他者からの評価を除く想像",
+      "axis": "A",
+      "anchor": [
+        "A01"
+      ],
+      "original": "誰にも見られていないとしたら、住み慣れた環境を整え続けるか、新しい環境に変えるか、どちらを選びますか",
+      "category": "LOW_INFORMATION_CONTEXT",
+      "priority": "LOW",
+      "risk": "住環境の維持/変化は観衆の有無を前提としないため、条件に情報価値がない可能性が高い",
+      "design": {
+        "stem": "ほかの人からどう評価されるかを考えなくてもよいとき、慣れた住環境を続けることと、新しい住環境を選ぶことのどちらが好みですか？",
+        "choices": [
+          "慣れた環境を続ける",
+          "新しい環境へ変える",
+          "判断不能"
+        ],
+        "readout": "A01から回答が変わらないなら既存案の単なる言い換え。新しい意味系統にしない"
+      }
+    },
+    {
+      "id": "D181-12X",
+      "method": 12,
+      "name": "軸横断ランキング",
+      "axis": "CROSS",
+      "anchor": [
+        "A01",
+        "B-FU01"
+      ],
+      "original": "次の4つを、人生で重視する順に並べてください：①慣れた環境の維持 ②新しい環境への挑戦 ③自分の意思決定 ④他者との合意",
+      "category": "IPSATIVE_CROSS_AXIS_RESEARCH_ONLY",
+      "priority": "MEDIUM",
+      "risk": "同じ軸の相反する極を順位づけする形式。順位が軸間で相互依存し、両方重視・両方重視しないを表現できない。既存4軸16タイプに直接換算不可",
+      "design": {
+        "stem": "独立した価値項目について、各項目への当てはまりを先に個別7段階で答え、その後に相対的な重視順位を試してください（研究用）。",
+        "choices": [
+          "安定した生活基盤の維持",
+          "新しい生活環境への更新",
+          "自分の納得による決定",
+          "関係者との合意形成"
+        ],
+        "readout": "順位情報は回答者内の相対優先だけを示す。通常の順位合算で16タイプへ変換しない。独立評価との不一致を比較"
+      }
+    },
+    {
+      "id": "D181-12C",
+      "method": 12,
+      "name": "C軸＋休息ランキング",
+      "axis": "C",
+      "anchor": [
+        "C05"
+      ],
+      "original": "次の3つを、時間を使いたい順に並べてください：①将来の準備 ②今の趣味 ③休息",
+      "category": "THIRD_OPTION_OFF_AXIS_RESEARCH_ONLY",
+      "priority": "LOW",
+      "risk": "休息は健康・疲労・現在の必要性で変動し、将来vs現在の極ではない。3順位はC軸得点と互換でない",
+      "design": {
+        "stem": "十分な休息を確保した上で、余った自由時間の用途を二つ独立に重視度を評価し、次に相対的な優先を尋ねます（研究用）。",
+        "choices": [
+          "将来の準備",
+          "現在の体験",
+          "両方を同程度に重視・判断不能"
+        ],
+        "readout": "休息を第3のC尺度として扱わない。二択と各独立重視度の違いを観察"
+      }
+    }
+  ],
+  "prior_artifacts": {
+    "prior_methods_1_to_6": "51ad4b145d87c704bb93c70912dcecaa12469b89",
+    "paired_cognitive_D151": "77c6ba8c98e2c7ff7437a6b6b516c6b0b6ec5cf6",
+    "legacy_D153": "9ada6674ed6c2a9c685aab20a8bc2df958060085",
+    "editorial_candidate_D164": "da800cf9c12fb11e89e53ed4f8128f511c74f736",
+    "existing_experiments_D168": "6a23fe4e9a4ee2239fec4f73c6f280f409201a4e"
+  },
+  "sources": [
+    {
+      "title": "Brown & Maydeu-Olivares (2013) on ipsative forced-choice scores",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23148475/"
+    },
+    {
+      "title": "Kaderabek & Sinibaldi (2022) hypothetical-question measurement error",
+      "url": "https://www.surveypractice.org/article/38280-assessing-measurement-error-in-hypothetical-questions"
+    },
+    {
+      "title": "Michigan survey cognitive interviewing guide",
+      "url": "https://ccsg.isr.umich.edu/chapters/pretesting/cognitive-interviewing/"
+    }
+  ],
+  "pilot_design": {
+    "tier1": [
+      "D181-7A",
+      "D181-7C",
+      "D181-10C",
+      "D181-10D"
+    ],
+    "tier2": [
+      "D181-11B",
+      "D181-8C",
+      "D181-8A"
+    ],
+    "tier3": [
+      "D181-9D",
+      "D181-9B",
+      "D181-11A",
+      "D181-12X",
+      "D181-12C"
+    ],
+    "question_order": "Counterbalance condition order when appropriate; avoid presenting asymmetric gain/loss as two independent score items",
+    "record_fields": [
+      "original interpretation",
+      "condition-only choice",
+      "choice after manipulation",
+      "reason for switch or no switch",
+      "stakeholder/cost constraints",
+      "both/neither/nonapplicable",
+      "response confidence"
+    ],
+    "not_to_claim": [
+      "Condition-insensitive response proves psychological strength",
+      "Ranking creates normatively comparable axis scores",
+      "Advice estimates private values",
+      "A new elicitation method is a new semantic family",
+      "Research pairs become two eligible scored items"
+    ]
+  },
+  "editorial_bank_review": {
+    "baseline_16_cognitive_candidates": 16,
+    "baseline_main_axis_unresolved_slots": 32,
+    "additional_accepted_scored_items": 0,
+    "changed_shortfall": 0
+  },
+  "respondents_observed": 0,
+  "production_changed": false,
+  "original_bank_changed": false
+}
