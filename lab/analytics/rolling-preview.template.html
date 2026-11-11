@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src 'self' data:; connect-src 'none'; form-action 'none'; object-src 'none'; base-uri 'none'; frame-ancestors 'none'">
+<title>K. Aito Analytics｜仮想ローリング比較（研究版）</title>
+<style>
+*{box-sizing:border-box}html{color-scheme:light}body{margin:0;background:#f5f7fa;color:#1b2d43;font:15px/1.56 system-ui,-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN",Meiryo,sans-serif}main{max-width:1190px;margin:auto;padding:25px 20px 64px}header{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;padding:6px 0 10px}h1{margin:6px 0 2px;font-size:clamp(24px,3.2vw,35px);letter-spacing:-.025em}h2{font-size:19px;margin:0 0 15px;line-height:1.3}h3{font-size:15px;margin:0 0 8px}.eyebrow{font-size:11px;letter-spacing:.12em;font-weight:800;color:#2766af}.muted{font-size:13px;color:#657489}.pill{font-size:11px;border:1px solid #c5d8ee;background:#e9f2fd;border-radius:20px;padding:5px 10px;font-weight:700;color:#225b98;display:inline-flex}.notice{border-left:4px solid #c18a30;background:#fffaec;padding:13px 16px;border-radius:0 8px 8px 0;font-size:13px;margin:15px 0 22px}.layout{display:grid;grid-template-columns:330px minmax(0,1fr);align-items:start;gap:18px}.panel{background:white;border:1px solid #e0e7ef;border-radius:14px;padding:20px;margin:0 0 17px;box-shadow:0 8px 24px #16344f06;min-width:0}.field-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}.field{display:block;font-size:12px;color:#344963;font-weight:700}.field.full{grid-column:1/-1}.field input,.field select{display:block;width:100%;min-width:0;margin-top:5px;border:1px solid #beccdb;border-radius:8px;background:white;color:#1c344e;font:inherit;padding:9px 9px;height:41px}.field input:focus,.field select:focus,button:focus-visible{outline:2px solid #438ddd;outline-offset:2px}.field input:invalid{border-color:#b14949}.form-section{padding:15px 0;border-top:1px solid #edf0f6}.form-section:first-of-type{padding-top:0;border-top:0}.form-section p{font-size:12px;color:#657489;margin:0 0 8px}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}button{font:inherit;border-radius:9px;padding:10px 13px;font-weight:700;cursor:pointer}button.primary{background:#155fba;border:1px solid #155fba;color:white}button.outline{background:white;color:#245789;border:1px solid #c2d0e0}button:disabled{opacity:.55;cursor:not-allowed}.warning{background:#fff0ef;border:1px solid #f0d4d0;border-radius:8px;padding:10px 12px;color:#9d2522;font-size:13px;margin-top:12px}.status{margin-top:9px;color:#47657c;font-size:12px;min-height:20px}.results{min-width:0}.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.stat{background:#f3f7fc;border:1px solid #e0e8f2;border-radius:10px;padding:14px 13px;min-width:0}.stat .label{font-size:12px;color:#60748a;margin-bottom:6px}.stat strong{font-size:23px;line-height:1.15;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}.stat small{display:block;margin-top:7px;font-size:11px;color:#748398}.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:12px;color:#485f76;margin:8px 0 13px}.dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px}.chart-viewport{max-width:100%;overflow-x:auto;border:1px solid #edf0f5;border-radius:8px}.plot{display:block;width:100%;min-width:630px;height:auto;background:#fff}.callout{border-top:1px solid #e9edf4;margin-top:12px;padding-top:12px;font-size:12px;color:#63748a}.scroll{max-width:100%;overflow-x:auto}.pager{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-top:12px}.pager .pager-actions{display:flex;gap:8px}.pager button{font-size:12px;padding:6px 11px}.pager .page-caption{font-size:12px;color:#657489}.result-table{width:100%;min-width:640px;border-collapse:collapse;font-variant-numeric:tabular-nums}.result-table th,.result-table td{padding:9px 10px;border-bottom:1px solid #e8eef5;text-align:right;white-space:nowrap}.result-table th:first-child,.result-table td:first-child{text-align:left}.result-table th{background:#f7faff;color:#596f87;font-size:11px;position:sticky;top:0}.result-table td{font-size:12px}.result-table tbody tr{cursor:pointer}.result-table tbody tr:hover{background:#eff6ff}.result-table tbody tr.selected{background:#e4f0ff}.result-table tbody tr:focus-visible{outline:2px solid #326eab;outline-offset:-2px}.good{color:#126c50}.bad{color:#a33c37}.detail-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:13px}.detail-card{border:1px solid #e2eaf2;padding:12px;border-radius:9px;background:#fcfdff}.detail-card strong{font-size:16px}.detail-card p{margin:5px 0 0;color:#62758c;font-size:12px}.caps{font-size:11px;font-weight:700;letter-spacing:.08em;color:#50708d}.stale .panel.output{opacity:.65}.stale-label{color:#aa5f14;font-weight:700}footer{font-size:12px;color:#6a7b8d;padding:12px 0 0}.help{color:#5b7590;font-size:12px;margin-top:8px}.empty{color:#78889b;font-size:13px}a{color:#1c62a8}
+@media(max-width:970px){.layout{grid-template-columns:1fr}.form-section{display:inline-block;vertical-align:top;width:49%;padding:9px 12px;border-top:0}.form-section:first-of-type{padding:9px 12px}.controls .panel{padding:12px}.stats{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:600px){main{padding:14px 11px 42px}.panel{padding:15px;margin-bottom:12px}.form-section{display:block;width:100%;padding:12px 3px;border-top:1px solid #edf0f6}.stats{gap:8px}.stat{padding:12px 9px}.stat strong{font-size:18px}.detail-grid{grid-template-columns:1fr}.eyebrow{font-size:10px}}
+</style>
+</head>
+<body>
+<main>
+<header><div><div class="eyebrow">K. AITO ANALYTICS / RESEARCH v0.5</div><h1>ローリング・生活設計比較</h1><div class="muted">運用開始時点をずらして、取り崩し結果の差を調べる</div></div><span class="pill">仮想データ専用・未公開研究版</span></header>
+<div class="notice" role="note"><strong>これは実市場データではありません。</strong> 生成した仮想の月次変動を用いる操作検証です。「全開始月の達成割合」は仮想例の集計であり、過去の実績・将来の成功確率ではありません。実際の資産額は入力しないでください。税・社会保険・NISA・実際の年金改定は未対応。外部通信・保存は行いません。</div>
+<div class="layout">
+<aside class="controls"><section class="panel"><h2>仮想の分析条件</h2><form id="analysis-form">
+<div class="form-section"><h3>運用・期間</h3><div class="field-grid">
+<label class="field">初期資産（万円）<input id="assets" type="number" value="3500" min="0" max="100000" step="10" required></label>
+<label class="field">毎月の生活費（万円）<input id="expense" type="number" value="22" min="0" max="1000" step="1" required></label>
+<label class="field">試算期間（年）<select id="years"><option value="10">10年</option><option value="15" selected>15年</option><option value="20">20年</option></select></label>
+<label class="field">仮想の市場経路<select id="market"><option value="normal" selected>変動を含む</option><option value="calm">比較的穏やか</option><option value="shock">大幅下落あり</option></select></label>
+<label class="field full"><input id="gap" type="checkbox" style="display:inline;width:auto;height:auto;vertical-align:middle;margin:0 6px 0 0">途中の仮想データ1か月を欠損させる</label>
+</div></div>
+<div class="form-section"><h3>比較プランの変更条件</h3><p>基本プランは生活費固定・年金なし。比較プランだけに下記を反映します。</p><div class="field-grid">
+<label class="field">毎月の生活費（万円）<input id="alt-expense" type="number" value="19" min="0" max="1000" step="1" required></label>
+<label class="field">生活費上昇率（年%）<input id="inflation" type="number" value="2" min="-5" max="15" step="0.1" required></label>
+<label class="field">年金開始（運用後・年）<input id="pension-years" type="number" value="8" min="0" max="19" step="1" required></label>
+<label class="field">年金月額（万円）<input id="pension" type="number" value="10" min="0" max="1000" step="1" required></label>
+<label class="field">臨時支出（万円）<input id="event" type="number" value="300" min="0" max="100000" step="10" required></label>
+<label class="field">発生（運用後・年）<input id="event-years" type="number" value="6" min="0" max="19" step="1" required></label>
+</div></div>
+<div class="actions"><button type="submit" id="run" class="primary">ローリング分析を実行</button><button type="button" id="reset" class="outline">初期条件へ</button></div>
+<div id="status" class="status" aria-live="polite">計算開始前</div><div id="error" role="alert" class="warning" hidden></div>
+</form></section></aside>
+<div class="results" id="results">
+<section class="panel output"><h2>全開始月の集計（仮想例）</h2>
+<div class="stats"><div class="stat"><div class="label">検証した開始月</div><strong id="stat-windows">—</strong><small id="stat-period">対象期間：—</small></div>
+<div class="stat"><div class="label">欠損により除外</div><strong id="stat-excluded">—</strong><small>失敗として集計しない</small></div>
+<div class="stat"><div class="label">基本：全額を賄えた開始月</div><strong id="stat-basic">—</strong><small id="stat-basic-ratio">—</small></div>
+<div class="stat"><div class="label">比較：全額を賄えた開始月</div><strong id="stat-alt">—</strong><small id="stat-alt-ratio">—</small></div></div>
+<div id="overview" class="help">分析実行後に結果を表示します。</div></section>
+<section class="panel output"><h2>仮想開始月ごとの最終資産</h2>
+<div class="legend"><span><i class="dot" style="background:#1f68b5"></i>基本プラン</span><span><i class="dot" style="background:#d17a3c"></i>比較プラン</span></div>
+<div class="chart-viewport"><svg id="plot" class="plot" role="img" aria-label="仮想開始月ごとに計算した最終資産の比較折れ線グラフ" viewBox="0 0 850 315"><text x="35" y="40" fill="#718398">分析待機中</text></svg></div>
+<div class="callout">横軸は生成した仮想月次経路の開始位置です。各点は独立の試行ではなく、同じ仮想経路をずらした重複ウィンドウです。欠損をまたぐ期間は除外して折れ線を分断します。</div></section>
+<section class="panel output"><h2>選択した開始月の内訳</h2><div class="muted" id="selected-month">下表から開始月を選択してください。</div><div class="detail-grid">
+<div class="detail-card"><div class="caps">基本プラン</div><strong id="selected-basic">—</strong><p id="selected-basic-detail">—</p></div>
+<div class="detail-card"><div class="caps">比較プラン</div><strong id="selected-alt">—</strong><p id="selected-alt-detail">—</p></div></div></section>
+<section class="panel output"><h2>開始月別の比較表</h2><div class="scroll"><table class="result-table"><thead><tr><th>仮想開始月</th><th>基本・期末資産</th><th>比較・期末資産</th><th>差額（比較−基本）</th><th>基本・達成</th><th>比較・達成</th></tr></thead><tbody id="window-rows"><tr><td colspan="6" class="empty">未計算</td></tr></tbody></table></div><div class="pager"><div class="page-caption" id="page-count" aria-live="polite">—</div><div class="pager-actions"><button type="button" class="outline" id="prev-page">前の25件</button><button type="button" class="outline" id="next-page">次の25件</button></div></div></section>
+</div></div>
+<footer>研究用シミュレーション。実データ認定・指数ライセンス審査・金融計算Coreの本番承認・iPad Safari実機QAは未完了。画面はローカルで完結し、データ取得ブランチやDWZ PR #70には接続しません。</footer>
+</main>
+<script>
+/*__ANALYTICS_ROLLING_BUNDLE__*/
+</script>
+</body></html>
