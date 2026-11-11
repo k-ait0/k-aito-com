@@ -1,0 +1,384 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src 'self' data:; connect-src 'none'; form-action 'none'; object-src 'none'; base-uri 'none'"><title>K. Aito Analytics｜オフライン研究プレビュー</title><style>
+*{box-sizing:border-box}body{margin:0;background:#f5f7fb;color:#1d2a3d;font:15px/1.6 system-ui,-apple-system,sans-serif}main{max-width:1160px;margin:auto;padding:26px 18px 60px}h1{font-size:clamp(24px,3vw,34px);margin:5px 0}h2{font-size:19px;margin:0 0 18px}header{margin-bottom:22px}.small{color:#576a83;font-size:13px}.flag{font-size:11px;letter-spacing:.12em;color:#2266a9;font-weight:800}.notice{padding:13px 17px;border-left:4px solid #df9740;background:#fff8eb;margin:16px 0 22px;font-size:14px}.panel{background:#fff;border:1px solid #e0e7ef;border-radius:14px;padding:22px;margin:16px 0;box-shadow:0 6px 16px #152b4206}.input-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:17px}label{display:block;font-weight:600;font-size:13px}input{display:block;width:100%;padding:10px 11px;border-radius:8px;border:1px solid #bfccdc;font:inherit;margin-top:6px}input:focus{outline:2px solid #4398db;outline-offset:1px}.actions{display:flex;align-items:center;gap:12px;margin-top:20px;flex-wrap:wrap}button{font:inherit;font-weight:650;border-radius:8px;padding:10px 18px;cursor:pointer}button.primary{background:#165cb1;border:1px solid #165cb1;color:#fff}button.secondary{background:#fff;border:1px solid #b8c8db;color:#234d7a}.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.stat{background:#f4f8fd;border:1px solid #e0e9f3;border-radius:12px;padding:16px}.stat p{font-size:12px;color:#586d84;margin:0 0 7px}.stat strong{font-size:22px;font-variant-numeric:tabular-nums;word-break:break-word}.chart-wrap{max-width:100%;overflow-x:auto}.chart{width:100%;min-width:620px;height:auto;display:block}table{width:100%;min-width:610px;border-collapse:collapse}th,td{text-align:right;padding:10px;border-bottom:1px solid #e3eaf2;font-variant-numeric:tabular-nums}th:first-child,td:first-child{text-align:left}th{color:#526982;font-size:12px}.scroll{overflow-x:auto}.legend{display:flex;gap:18px;flex-wrap:wrap;font-size:13px;margin-bottom:8px}.dot{width:10px;height:10px;display:inline-block;border-radius:50%;margin-right:6px}.error{color:#8e2525;background:#fff0f0;padding:12px}#ready{font-size:12px;color:#376482}footer{font-size:12px;color:#5d7088;margin-top:25px}@media(max-width:790px){.input-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.panel{padding:17px}}@media(max-width:440px){.stats{grid-template-columns:1fr 1fr}.stat strong{font-size:16px}.input-grid{grid-template-columns:1fr 1fr;gap:12px}input{padding:9px 7px}main{padding:14px 10px}}
+</style></head><body><main><header><div class="flag">K. AITO ANALYTICS · RESEARCH v0.3</div><h1>資産取り崩し・生活設計比較</h1><div class="small">FINOWA共通計算エンジン検証用／静的オフライン画面</div></header><div class="notice"><strong>研究専用・ダミー条件でのみ使用してください。</strong> 実際の資産情報は入力しないでください。税金・社会保険・NISA・年金の制度上の控除や改定は未対応です。過去市場データではなく仮想の固定利回りで、投資判断には使用できません。入力情報は外部送信・端末保存しません。</div><section class="panel"><h2>比較条件（すべて仮想値）</h2><form id="form"><div class="input-grid"><label>初期資産（万円）<input id="initial" data-title="初期資産" type="number" min="0" step="1" value="5000" required></label><label>毎月の生活費（万円）<input id="expense" data-title="生活費" type="number" min="0" step="1" value="18" required></label><label>仮想利回り（年率%）<input id="annual" data-title="仮想利回り" type="number" min="-50" max="50" step="0.1" value="3" required></label><label>比較側の物価上昇（年率%）<input id="inflation" data-title="物価上昇率" type="number" min="-20" max="30" step="0.1" value="2" required></label><label>比較側の年金（月額万円）<input id="pension" data-title="年金" type="number" min="0" step="1" value="10" required></label><label>年金開始年月<input id="pension-start" data-title="年金開始年月" type="text" value="2037-01" placeholder="YYYY-MM" required></label><label>臨時支出（万円）<input id="repair" data-title="臨時支出" type="number" min="0" step="1" value="100" required></label><label>臨時支出年月<input id="repair-month" data-title="臨時支出年月" type="text" value="2034-01" placeholder="YYYY-MM" required></label></div><div class="actions"><button type="submit" class="primary">条件で再計算</button><button type="button" id="reset" class="secondary">初期値に戻す</button><span id="ready" aria-live="polite">読み込み中</span></div><div id="error" class="error" role="alert" hidden></div></form></section><section class="panel"><h2>20年間の比較結果</h2><div class="stats"><div class="stat"><p>基本の最終資産</p><strong id="stat-base">—</strong></div><div class="stat"><p>比較の最終資産</p><strong id="stat-alt">—</strong></div><div class="stat"><p>比較−基本（最終資産）</p><strong id="stat-diff">—</strong></div><div class="stat"><p>比較側の最初の資金不足月</p><strong id="stat-short">—</strong></div></div><p id="detail" class="small"></p></section><section class="panel"><h2>月末資産の推移</h2><div class="legend"><span><i class="dot" style="background:#1b6acd"></i>基本：物価固定・年金なし</span><span><i class="dot" style="background:#de7e42"></i>比較：物価・年金・臨時支出あり</span></div><div class="chart-wrap"><svg id="plot" class="chart" viewBox="0 0 820 320" role="img" aria-label="資産残高比較折れ線グラフ"></svg></div></section><section class="panel"><h2>年次の比較（各年1月）</h2><div class="scroll"><table><thead><tr><th>月</th><th>基本残高</th><th>比較残高</th><th>差額</th></tr></thead><tbody id="rows"></tbody></table></div></section><footer>本ページは保存・外部通信を行わない研究プレビューです。月次の単純キャッシュフロー計算と年金・臨時資金の検証のみを目的としています。</footer></main><script>
+const __modules = Object.create(null);
+function __require(path){if(!Object.hasOwn(__modules,path))throw Error("Module not bundled: "+path);return __modules[path].exports;}
+__modules["./cashflow-core.cjs"]={exports:{}};
+(function(module,exports,require){
+'use strict';
+/**
+ * K. Aito Analytics / FINOWA shared research cashflow core v0.1.
+ * No network, browser, filesystem, tax or implicit market-data loading.
+ * Monetary inputs and outputs are integer JPY. Research only; not production-approved.
+ */
+const MONTH_RE=/^(\d{4})-(0[1-9]|1[0-2])$/;
+const MAX_MONTHS=1200;
+function monthSerial(value){
+  const match=typeof value==='string' && MONTH_RE.exec(value);
+  if(!match)throw Error('Invalid month: expected YYYY-MM');
+  return Number(match[1])*12+Number(match[2])-1;
+}
+function formatMonth(serial){
+  if(!Number.isSafeInteger(serial)||serial<0||serial>9999*12+11)throw Error('Invalid month index');
+  return String(Math.floor(serial/12)).padStart(4,'0')+'-'+String(serial%12+1).padStart(2,'0');
+}
+function yen(value,name){
+  if(!Number.isSafeInteger(value)||value<0)throw Error(name+' must be a nonnegative safe integer (JPY)');
+  return value;
+}
+function validateMonthlyReturns(monthlyReturns,origin,{allowGaps=false}={}){
+  if(!['OBSERVED','SYNTHETIC'].includes(origin))throw Error('provenance must be OBSERVED or SYNTHETIC');
+  if(!Array.isArray(monthlyReturns)||monthlyReturns.length<1||monthlyReturns.length>MAX_MONTHS)
+    throw Error('monthly_returns must contain 1..'+MAX_MONTHS+' records');
+  let previous=null;
+  return monthlyReturns.map((r,i)=>{
+    if(!r||typeof r!=='object'||Array.isArray(r))throw Error('Malformed return record at '+i);
+    const serial=monthSerial(r.month);
+    if(previous!==null&&(serial<=previous||(!allowGaps&&serial!==previous+1)))
+      throw Error(serial<=previous?'Duplicate or out-of-order month: '+r.month:'Missing month before '+r.month);
+    previous=serial;
+    if(r.origin!==origin||r.proxy===true||r.estimated===true)
+      throw Error('Mixed, proxy or estimated return series is forbidden: '+r.month);
+    if(typeof r.monthly_return!=='number'||!Number.isFinite(r.monthly_return)||r.monthly_return< -1||r.monthly_return>10)
+      throw Error('Invalid monthly return: '+r.month);
+    return {month:r.month,serial,rate:r.monthly_return};
+  });
+}
+function safeRound(value,context){
+  if(!Number.isFinite(value)||value<0||value>Number.MAX_SAFE_INTEGER-0.5)
+    throw Error('Unsafe monetary result: '+context);
+  return Math.round(value);
+}
+function simulateMonthlyCashflow({
+  initial_assets_yen,monthly_withdrawal_yen,monthly_contribution_yen=0,
+  monthly_returns,provenance='SYNTHETIC'
+}){
+  const opening=yen(initial_assets_yen,'initial_assets_yen');
+  const withdrawal=yen(monthly_withdrawal_yen,'monthly_withdrawal_yen');
+  const contribution=yen(monthly_contribution_yen,'monthly_contribution_yen');
+  const returns=validateMonthlyReturns(monthly_returns,provenance);
+  let assets=opening,totalUnfunded=0,firstShortfall=null,shortfallMonths=0;
+  const rows=[];
+  for(const r of returns){
+    const available=safeRound(assets+contribution,'available '+r.month);
+    const paid=Math.min(available,withdrawal);
+    const unfunded=withdrawal-paid;
+    const invested=available-paid;
+    const closing=safeRound(invested*(1+r.rate),'closing '+r.month);
+    if(unfunded>0){shortfallMonths++;if(firstShortfall===null)firstShortfall=r.month;}
+    totalUnfunded=safeRound(totalUnfunded+unfunded,'unfunded total');
+    rows.push({month:r.month,opening_yen:assets,contribution_yen:contribution,
+      requested_withdrawal_yen:withdrawal,paid_withdrawal_yen:paid,unfunded_yen:unfunded,
+      invested_before_return_yen:invested,monthly_return:r.rate,investment_gain_yen:closing-invested,
+      closing_yen:closing});
+    assets=closing;
+  }
+  return {status:shortfallMonths?'SHORTFALL':'FUNDED',provenance,publication_approved:false,
+    timing:'MONTH_START_CONTRIBUTION_THEN_WITHDRAWAL_THEN_RETURN',
+    horizon_months:rows.length,first_shortfall_month:firstShortfall,
+    shortfall_months:shortfallMonths,total_unfunded_yen:totalUnfunded,
+    ending_assets_yen:assets,rows};
+}
+/** Rolling history accepts only observed (non-proxy) private research paths.
+ * Gaps split the series; windows crossing a gap are excluded, not failed.
+ */
+function runRollingCashflow({
+  initial_assets_yen,monthly_withdrawal_yen,monthly_contribution_yen=0,
+  monthly_returns,horizon_months
+}){
+  yen(initial_assets_yen,'initial_assets_yen');
+  yen(monthly_withdrawal_yen,'monthly_withdrawal_yen');
+  yen(monthly_contribution_yen,'monthly_contribution_yen');
+  if(!Number.isInteger(horizon_months)||horizon_months<1||horizon_months>MAX_MONTHS)
+    throw Error('horizon_months must be 1..'+MAX_MONTHS);
+  const rows=validateMonthlyReturns(monthly_returns,'OBSERVED',{allowGaps:true});
+  const windows=[];
+  let blockStart=0,gaps=0;
+  function evaluateBlock(start,end){
+    for(let i=start;i+horizon_months<=end;i++){
+      const segment=monthly_returns.slice(i,i+horizon_months);
+      const outcome=simulateMonthlyCashflow({initial_assets_yen,monthly_withdrawal_yen,
+        monthly_contribution_yen,monthly_returns:segment,provenance:'OBSERVED'});
+      windows.push({start_month:segment[0].month,end_month:segment.at(-1).month,
+        status:outcome.status,first_shortfall_month:outcome.first_shortfall_month,
+        total_unfunded_yen:outcome.total_unfunded_yen,ending_assets_yen:outcome.ending_assets_yen});
+    }
+  }
+  for(let i=1;i<=rows.length;i++){
+    if(i<rows.length&&rows[i].serial===rows[i-1].serial+1)continue;
+    evaluateBlock(blockStart,i);
+    if(i<rows.length)gaps++;
+    blockStart=i;
+  }
+  const theoretical=Math.max(0,rows.at(-1).serial-rows[0].serial+1-horizon_months+1);
+  const funded=windows.filter(x=>x.status==='FUNDED').length;
+  return {
+    status:windows.length?'EVALUATED':'INSUFFICIENT_CONTIGUOUS_HISTORY',
+    provenance:'OBSERVED',publication_approved:false,
+    research_disclaimer:'Observed historical windows are not independent trials or future probabilities.',
+    first_observed_month:rows[0].month,last_observed_month:rows.at(-1).month,
+    observed_return_months:rows.length,gap_boundaries:gaps,
+    theoretical_windows_if_no_gaps:theoretical,complete_windows:windows.length,
+    excluded_windows_due_to_missing_months:theoretical-windows.length,
+    funded_windows:funded,shortfall_windows:windows.length-funded,
+    observed_funded_fraction:windows.length?funded/windows.length:null,
+    windows
+  };
+}
+function makeSyntheticFlatPath({start_month,months,monthly_return}){
+  const first=monthSerial(start_month);
+  if(!Number.isInteger(months)||months<1||months>MAX_MONTHS)throw Error('Invalid synthetic months');
+  if(typeof monthly_return!=='number'||!Number.isFinite(monthly_return)||monthly_return< -1||monthly_return>10)
+    throw Error('Invalid synthetic return');
+  return Array.from({length:months},(_,i)=>({month:formatMonth(first+i),monthly_return,origin:'SYNTHETIC'}));
+}
+module.exports={monthSerial,formatMonth,validateMonthlyReturns,simulateMonthlyCashflow,runRollingCashflow,makeSyntheticFlatPath};
+
+})(__modules["./cashflow-core.cjs"], __modules["./cashflow-core.cjs"].exports, __require);
+__modules["./lifecycle-core.cjs"]={exports:{}};
+(function(module,exports,require){
+'use strict';
+/** Cashflow life events v0.3. Research only; gross-of-tax nominal JPY cashflows. */
+const {monthSerial,validateMonthlyReturns}=require('./cashflow-core.cjs');
+const MAX_EVENTS=500,MAX_SCHEDULES=20;
+function yen(n,label){if(!Number.isSafeInteger(n)||n<0)throw Error(label+' must be a nonnegative safe integer (JPY)');return n;}
+function safeRound(n,label){if(!Number.isFinite(n)||n<0||n>Number.MAX_SAFE_INTEGER-0.5)throw Error('Unsafe monetary result: '+label);return Math.round(n);}
+function safeAdd(a,b,label){return safeRound(a+b,label);}
+function list(input,label,max){if(!Array.isArray(input)||input.length>max)throw Error(label+' must be an array with at most '+max+' records');return input;}
+function id(value,label){if(typeof value!=='string'||!(/^[A-Za-z][A-Za-z0-9_-]{0,39}$/).test(value)||['constructor','prototype','__proto__'].includes(value))throw Error('Invalid '+label);return value;}
+function parsePensions(entries,first,last){
+ const seen=new Set();return list(entries,'pension_schedule',MAX_SCHEDULES).map((x,i)=>{
+  if(!x||typeof x!=='object'||Array.isArray(x))throw Error('Malformed pension schedule '+i);
+  id(x.id,'pension id');if(seen.has(x.id))throw Error('Duplicate pension id '+x.id);seen.add(x.id);
+  const from=monthSerial(x.start_month),to=x.end_month===undefined?Number.MAX_SAFE_INTEGER:monthSerial(x.end_month);
+  if(to<from)throw Error('Pension end before start');
+  if(from>last||to<first)throw Error('Pension schedule does not overlap simulation horizon');
+  return {id:x.id,from,to,amount:yen(x.monthly_yen,'pension monthly_yen')};
+ });
+}
+function parseEvents(entries,returnMonths){
+ const seen=new Set(),byMonth=new Map();
+ for(const [i,x] of list(entries,'one_time_events',MAX_EVENTS).entries()){
+  if(!x||typeof x!=='object'||Array.isArray(x))throw Error('Malformed event '+i);
+  id(x.id,'event id');if(seen.has(x.id))throw Error('Duplicate event id '+x.id);seen.add(x.id);
+  monthSerial(x.month);if(!returnMonths.has(x.month))throw Error('One-time event is outside simulation calendar: '+x.month);
+  if(!['INCOME','EXPENSE'].includes(x.kind))throw Error('Invalid event kind');
+  const amount=yen(x.amount_yen,'event amount_yen');
+  const totals=byMonth.get(x.month)||{income:0,expense:0};
+  totals[x.kind==='INCOME'?'income':'expense']=safeAdd(totals[x.kind==='INCOME'?'income':'expense'],amount,'events '+x.month);
+  byMonth.set(x.month,totals);
+ }
+ return byMonth;
+}
+const ALLOWED_INPUTS=new Set(['initial_assets_yen','monthly_withdrawal_yen','monthly_contribution_yen','monthly_returns','provenance','annual_expense_inflation','pension_schedule','one_time_events']);
+function simulateLifecycleCashflow(input={}){
+ if(!input||typeof input!=='object'||Array.isArray(input))throw Error('Invalid lifecycle input');
+ for(const key of Object.keys(input))if(!ALLOWED_INPUTS.has(key))throw Error('Unsupported lifecycle input: '+key);
+ const {initial_assets_yen,monthly_withdrawal_yen,monthly_contribution_yen=0,monthly_returns,
+   provenance='SYNTHETIC',annual_expense_inflation=0,pension_schedule=[],one_time_events=[]}=input;
+ const initial=yen(initial_assets_yen,'initial_assets_yen');
+ const spending=yen(monthly_withdrawal_yen,'monthly_withdrawal_yen');
+ const contribution=yen(monthly_contribution_yen,'monthly_contribution_yen');
+ if(typeof annual_expense_inflation!=='number'||!Number.isFinite(annual_expense_inflation)||
+    annual_expense_inflation< -0.5||annual_expense_inflation>1)
+    throw Error('annual_expense_inflation must be a decimal between -0.5 and 1');
+ const returns=validateMonthlyReturns(monthly_returns,provenance);
+ const first=returns[0].serial,last=returns.at(-1).serial;
+ const pensions=parsePensions(pension_schedule,first,last);
+ const events=parseEvents(one_time_events,new Set(returns.map(x=>x.month)));
+ let assets=initial,totalUnfunded=0,firstShortfall=null,shortfallMonths=0;
+ const rows=[];
+ for(let i=0;i<returns.length;i++){
+  const r=returns[i],yearFraction=i/12;
+  const living=safeRound(spending*Math.pow(1+annual_expense_inflation,yearFraction),'inflated living expense '+r.month);
+  let pension=0;
+  for(const p of pensions)if(r.serial>=p.from&&r.serial<=p.to)pension=safeAdd(pension,p.amount,'pensions '+r.month);
+  const event=events.get(r.month)||{income:0,expense:0};
+  const available=safeAdd(safeAdd(safeAdd(assets,contribution,'assets plus contribution '+r.month),pension,'pension '+r.month),event.income,'event income '+r.month);
+  const due=safeAdd(living,event.expense,'total expense '+r.month);
+  const paid=Math.min(available,due),unfunded=due-paid,invested=available-paid;
+  const closing=safeRound(invested*(1+r.rate),'closing '+r.month);
+  if(unfunded>0){shortfallMonths++;if(firstShortfall===null)firstShortfall=r.month;}
+  totalUnfunded=safeAdd(totalUnfunded,unfunded,'total unfunded');
+  rows.push({month:r.month,opening_yen:assets,contribution_yen:contribution,
+    pension_income_yen:pension,one_time_income_yen:event.income,one_time_expense_yen:event.expense,
+    living_expense_yen:living,requested_withdrawal_yen:due,paid_withdrawal_yen:paid,
+    unfunded_yen:unfunded,invested_before_return_yen:invested,monthly_return:r.rate,
+    investment_gain_yen:closing-invested,closing_yen:closing});
+  assets=closing;
+ }
+ return {status:shortfallMonths?'SHORTFALL':'FUNDED',provenance,publication_approved:false,
+   timing:'MONTH_START_CONTRIBUTION_PENSION_EVENTS_THEN_EXPENSE_THEN_RETURN',
+   inflation_model:'ASSUMED_COMPOUND_ANNUAL_RATE_APPLIED_TO_LIVING_EXPENSE_ONLY',
+   horizon_months:rows.length,first_shortfall_month:firstShortfall,shortfall_months:shortfallMonths,
+   total_unfunded_yen:totalUnfunded,ending_assets_yen:assets,rows};
+}
+module.exports={simulateLifecycleCashflow};
+
+})(__modules["./lifecycle-core.cjs"], __modules["./lifecycle-core.cjs"].exports, __require);
+__modules["./scenario-compare.cjs"]={exports:{}};
+(function(module,exports,require){
+'use strict';
+/**
+ * K. Aito Analytics / FINOWA scenario comparison v0.2, research only.
+ * CommonJS, no external dependencies. Does not import market data or make network calls.
+ */
+const {simulateMonthlyCashflow}=require('./cashflow-core.cjs');
+const {simulateLifecycleCashflow}=require('./lifecycle-core.cjs');
+const ALLOWED_INPUTS=new Set(['id','label','initial_assets_yen','monthly_withdrawal_yen','monthly_contribution_yen','monthly_returns','provenance','annual_expense_inflation','pension_schedule','one_time_events']);
+const ADVANCED_INPUTS=['annual_expense_inflation','pension_schedule','one_time_events'];
+const MAX_SCENARIOS=8;
+function safeDelta(value,base,context){
+  const delta=value-base;
+  if(!Number.isSafeInteger(delta))throw Error('Unsafe comparison delta: '+context);
+  return delta;
+}
+function totalPaid(rows){
+  return rows.reduce((sum,row)=>{
+    const next=sum+row.paid_withdrawal_yen;
+    if(!Number.isSafeInteger(next))throw Error('Unsafe cumulative withdrawal');
+    return next;
+  },0);
+}
+/**
+ * CONTROLLED: all cases share identical return path, so differences arise from cashflow inputs.
+ * STRESS: rates may differ, and results cannot isolate the cause of differences.
+ * Neither mode is a statistical forecast; observed and synthetic input cannot be mixed.
+ */
+function compareScenarios({scenarios,baseline_id,comparison_mode='CONTROLLED'}={}){
+  if(!Array.isArray(scenarios)||scenarios.length<2||scenarios.length>MAX_SCENARIOS)
+    throw Error('scenarios must contain 2..'+MAX_SCENARIOS+' cases');
+  if(!['CONTROLLED','STRESS'].includes(comparison_mode))
+    throw Error('comparison_mode must be CONTROLLED or STRESS');
+  const ids=new Set();
+  const cases=scenarios.map((input,i)=>{
+    if(!input||typeof input!=='object'||Array.isArray(input))throw Error('Malformed scenario '+i);
+    if(typeof input.id!=='string'||!(/^[A-Za-z][A-Za-z0-9_-]{0,39}$/).test(input.id))
+      throw Error('Invalid scenario id at '+i);
+    if(['constructor','prototype','__proto__'].includes(input.id))
+      throw Error('Invalid scenario id at '+i);
+    if(ids.has(input.id))throw Error('Duplicate scenario id: '+input.id);
+    ids.add(input.id);
+    if(input.label!==undefined&&(typeof input.label!=='string'||input.label.length>80))
+      throw Error('Invalid scenario label: '+input.id);
+    for(const key of Object.keys(input))if(!ALLOWED_INPUTS.has(key))throw Error('Unsupported scenario input: '+key);
+    const advanced=ADVANCED_INPUTS.some(key=>Object.prototype.hasOwnProperty.call(input,key));
+    const {id:scenarioId,label:scenarioLabel,...calcInput}=input;
+    const result=advanced?simulateLifecycleCashflow(calcInput):simulateMonthlyCashflow(calcInput);
+    return {id:input.id,label:input.label??input.id,result};
+  });
+  const baseline=baseline_id===undefined?cases[0]:cases.find(c=>c.id===baseline_id);
+  if(!baseline)throw Error('Unknown baseline_id');
+  const reference=baseline.result;
+  const referenceMonths=reference.rows.map(r=>r.month);
+  const sameReturnPath=cases.every(c=>c.result.rows.every((r,i)=>
+    r.monthly_return===reference.rows[i]?.monthly_return));
+  for(const c of cases){
+    const rows=c.result.rows;
+    if(c.result.provenance!==reference.provenance)throw Error('Mixed market provenance is not comparable');
+    if(rows.length!==referenceMonths.length||rows.some((r,i)=>r.month!==referenceMonths[i]))
+      throw Error('Scenario calendar mismatch: '+c.id);
+  }
+  if(comparison_mode==='CONTROLLED'&&!sameReturnPath)
+    throw Error('CONTROLLED requires an identical monthly return path; use STRESS to compare different paths');
+  const aggregate=cases.map(c=>{
+    const r=c.result;
+    return {id:c.id,label:c.label,status:r.status,ending_assets_yen:r.ending_assets_yen,
+      total_paid_withdrawal_yen:totalPaid(r.rows),total_unfunded_yen:r.total_unfunded_yen,
+      shortfall_months:r.shortfall_months,first_shortfall_month:r.first_shortfall_month};
+  });
+  const baseSummary=aggregate.find(x=>x.id===baseline.id);
+  const summary=aggregate.map(a=>({...a,delta_vs_baseline:{
+    ending_assets_yen:safeDelta(a.ending_assets_yen,baseSummary.ending_assets_yen,a.id+' ending'),
+    total_paid_withdrawal_yen:safeDelta(a.total_paid_withdrawal_yen,baseSummary.total_paid_withdrawal_yen,a.id+' paid'),
+    total_unfunded_yen:safeDelta(a.total_unfunded_yen,baseSummary.total_unfunded_yen,a.id+' unfunded'),
+    shortfall_months:a.shortfall_months-baseSummary.shortfall_months
+  }}));
+  const timeline=referenceMonths.map((month,i)=>{
+    const base=baseline.result.rows[i];
+    return {month,scenarios:cases.map(c=>{
+      const row=c.result.rows[i];
+      return {id:c.id,closing_yen:row.closing_yen,paid_withdrawal_yen:row.paid_withdrawal_yen,
+        unfunded_yen:row.unfunded_yen,
+        delta_closing_vs_baseline_yen:safeDelta(row.closing_yen,base.closing_yen,c.id+' '+month)};
+    })};
+  });
+  return {status:'RESEARCH_ONLY_HOLD',publication_approved:false,baseline_id:baseline.id,
+    comparison_mode,provenance:reference.provenance,same_market_path:sameReturnPath,
+    attribution: sameReturnPath?'CASHFLOW_INPUT_DIFFERENCES':'MIXED_CASHFLOW_AND_MARKET_EFFECTS',
+    horizon_months:referenceMonths.length,first_month:referenceMonths[0],last_month:referenceMonths.at(-1),
+    notice:'Research-only comparisons are not investment advice, actual future probabilities, or production-approved calculations.',
+    summary,timeline};
+}
+module.exports={compareScenarios};
+
+})(__modules["./scenario-compare.cjs"], __modules["./scenario-compare.cjs"].exports, __require);
+
+(()=>{
+'use strict';
+const {compareScenarios}=__require('./scenario-compare.cjs');
+const {makeSyntheticFlatPath}=__require('./cashflow-core.cjs');
+const $=id=>document.getElementById(id);
+const money=v=>new Intl.NumberFormat('ja-JP',{maximumFractionDigits:0}).format(v)+' 円';
+const wan=v=>new Intl.NumberFormat('ja-JP',{maximumFractionDigits:1}).format(v/10000)+' 万円';
+const read=(id,min,max)=>{const raw=$(id).value.trim(),n=Number(raw);if(raw===''||!Number.isFinite(n)||n<min||n>max)throw Error($(id).dataset.title+'の値を確認してください');return n;};
+const getDate=id=>{const raw=$(id).value.trim();if(!/^\d{4}-(0[1-9]|1[0-2])$/.test(raw))throw Error($(id).dataset.title+'はYYYY-MMで入力してください');return raw;};
+const ids=['initial','expense','annual','inflation','pension','pension-start','repair','repair-month'];
+function calculate(){
+ const initial=Math.round(read('initial',0,1e8)*10000),expense=Math.round(read('expense',0,1e6)*10000);
+ const annual=read('annual',-50,50)/100,inflation=read('inflation',-20,30)/100;
+ const pension=Math.round(read('pension',0,1e6)*10000),start=getDate('pension-start');
+ const repair=Math.round(read('repair',0,1e8)*10000),repairMonth=getDate('repair-month');
+ const startMonth='2027-01',months=240,monthly=(1+annual)**(1/12)-1;
+ const path=makeSyntheticFlatPath({start_month:startMonth,months,monthly_return:monthly});
+ const shared={initial_assets_yen:initial,monthly_withdrawal_yen:expense,monthly_returns:path,provenance:'SYNTHETIC'};
+ const scenario={id:'alternate',label:'年金・物価・臨時支出あり',...shared,annual_expense_inflation:inflation,
+    pension_schedule:pension?[{id:'pension',start_month:start,monthly_yen:pension}]:[],
+    one_time_events:repair?[{id:'repair',month:repairMonth,kind:'EXPENSE',amount_yen:repair}]:[]};
+ const r=compareScenarios({baseline_id:'baseline',comparison_mode:'CONTROLLED',scenarios:[{id:'baseline',label:'基本：物価固定・年金なし',...shared},scenario]});
+ show(r);return r;
+}
+function show(r){
+ $('error').hidden=true;
+ const [a,b]=r.summary;
+ $('stat-base').textContent=wan(a.ending_assets_yen);
+ $('stat-alt').textContent=wan(b.ending_assets_yen);
+ $('stat-diff').textContent=(b.delta_vs_baseline.ending_assets_yen>0?'+':'')+wan(b.delta_vs_baseline.ending_assets_yen);
+ $('stat-short').textContent=b.first_shortfall_month||'期間内なし';
+ $('detail').textContent='期間：'+r.first_month+'〜'+r.last_month+'／'+r.horizon_months+'か月。基準と比較の市場条件は共通（'+(r.same_market_path?'一致':'不一致')+'）。比較側の不足総額：'+money(b.total_unfunded_yen)+'。';
+ renderChart(r.timeline);
+ const tbody=$('rows');tbody.replaceChildren();
+ for(let i=0;i<r.timeline.length;i+=12){const x=r.timeline[i];let tr=document.createElement('tr');
+  for(const text of [x.month,wan(x.scenarios[0].closing_yen),wan(x.scenarios[1].closing_yen),wan(x.scenarios[1].delta_closing_vs_baseline_yen)]){
+   let td=document.createElement('td');td.textContent=text;tr.append(td);
+  }tbody.append(tr);
+ }
+ $('ready').textContent='再計算済み（仮想データのみ）';
+}
+const NS='http://www.w3.org/2000/svg';
+function svgEl(tag,attrs={}){const e=document.createElementNS(NS,tag);for(const [k,v] of Object.entries(attrs))e.setAttribute(k,String(v));return e;}
+function renderChart(data){
+ const svg=$('plot');svg.replaceChildren();const W=820,H=320,L=76,R=20,T=18,B=42,plotW=W-L-R,plotH=H-T-B;
+ const max=Math.max(1,...data.flatMap(r=>r.scenarios.map(x=>x.closing_yen)))*1.05;
+ const y=v=>T+plotH-v/max*plotH,x=i=>L+(data.length===1?0:i/(data.length-1)*plotW);
+ for(let i=0;i<=4;i++){
+  const value=max*i/4,py=y(value);
+  svg.append(svgEl('line',{x1:L,y1:py,x2:W-R,y2:py,stroke:'#d9e3ef','stroke-width':1}));
+  let t=svgEl('text',{x:L-10,y:py+5,'text-anchor':'end','font-size':13,fill:'#475569'});
+  t.textContent=Math.round(value/10000).toLocaleString('ja-JP')+'万';svg.append(t);
+ }
+ for(let j=0;j<=4;j++){
+  const i=Math.round((data.length-1)*j/4),xx=x(i),t=svgEl('text',{x:xx,y:H-13,'text-anchor':'middle','font-size':13,fill:'#475569'});
+  t.textContent=data[i].month;svg.append(t);
+ }
+ for(let k=0;k<2;k++){
+  const color=k===0?'#1b6acd':'#de7e42';
+  svg.append(svgEl('polyline',{points:data.map((r,i)=>x(i).toFixed(2)+','+y(r.scenarios[k].closing_yen).toFixed(2)).join(' '),fill:'none',stroke:color,'stroke-width':3,'stroke-linejoin':'round'}));
+ }
+}
+function submit(e){if(e)e.preventDefault();try{calculate();}catch(ex){$('error').hidden=false;$('error').textContent='計算保留：'+ex.message;$('ready').textContent='入力エラー';}}
+$('form').addEventListener('submit',submit);
+$('reset').addEventListener('click',()=>{for(const id of ids){$(id).value=$(id).defaultValue;}submit();});
+submit();
+})();
+</script></body></html>
