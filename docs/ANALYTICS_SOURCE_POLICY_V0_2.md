@@ -83,3 +83,6 @@
 正常取得時の出力はリポジトリ外の `../analytics-private-data` （または `ANALYTICS_PRIVATE_DATA_DIR`）に限定。既存サービスへ自動反映しない。上流仕様変更やエラーで別URLへ勝手に切り替えず失敗させる。2026-11-10の外部実行ではDNS `EAI_AGAIN` が発生し、全履歴の実取得はできていない。
 
 **Fed Board Data Download Programの移行注意：** 2026年11月9日週からDDPの一部機能が廃止予定と公表されているため、現時点の正規ソースはH.10公式国別履歴HTMLに固定。変更が必要になった場合は新しい`SOURCE_CHANGE_ADR`で審査する。FREDへの自動切替は禁止。
+
+## 2026-11-11：長期履歴60年目標の追補
+[60年長期履歴v0.5](ANALYTICS_HISTORY_60Y_PLAN_V0_5.md) と [対象系列カバレッジ台帳](../research/analytics/history_coverage_targets.v0.5.json) を参照。**取得元のロック、公開権の禁止状態は変更しない。** 長期履歴の追加取得・配布経路変更はSOURCE_CHANGE_ADRの承認後のみ実施。市場指数等の実データが提供される長さと、30年間のバックテスト可能期間を区別する。
