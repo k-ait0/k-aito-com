@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="ja">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>A05｜質問文の試行フォーム（研究用）</title>
+<style>
+:root{color-scheme:light;--bg:#f4f7f9;--fg:#172b3d;--muted:#526478;--line:#d7e2ea;--main:#126783;--card:white;--soft:#edf5f8}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.65 system-ui,-apple-system,"Yu Gothic",sans-serif}
+header{background:white;border-bottom:1px solid var(--line)}.wrap{max-width:830px;margin:auto;padding:20px 18px}
+h1{font-size:1.45rem;margin:.2rem 0}h2{font-size:1.14rem;margin:0 0 8px}h3{font-size:1rem;margin:0}
+small,.muted{color:var(--muted)}.intro{max-width:740px;margin:0 0 8px;color:var(--muted)}
+.panel,.case{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;margin:16px 0;box-shadow:0 2px 8px #152b3f08}
+.panel p{margin:8px 0}.warning{background:var(--soft);border-left:3px solid var(--main);padding:12px;border-radius:3px}
+ol{padding-left:23px}select,textarea,button{font:inherit;color:var(--fg)}select,textarea{width:100%;border:1px solid #aebdc8;border-radius:8px;padding:10px;background:white}
+textarea{min-height:82px;resize:vertical}label{display:block;margin:12px 0;font-weight:600}
+input[type="checkbox"]{width:18px;height:18px;vertical-align:middle;margin-right:8px}label.check{font-weight:400}
+button{background:var(--main);border:1px solid var(--main);border-radius:9px;color:white;padding:12px 18px;cursor:pointer;font-weight:700}
+button:disabled{opacity:.45;cursor:not-allowed}button.secondary{background:white;color:var(--main)}
+button:focus-visible,select:focus-visible,textarea:focus-visible,input:focus-visible{outline:3px solid #7fc3e1;outline-offset:2px}
+.case{border-top:4px solid var(--main)}.question{background:#fafcfe;border:1px solid var(--line);padding:16px;border-radius:10px;margin:16px 0}
+.tag{font-size:.8rem;color:var(--muted);letter-spacing:.04em}.stem{font-weight:650;margin:8px 0 12px}
+.choice-list{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:8px 0}
+.choice-list div{border:1px solid var(--line);padding:9px;border-radius:8px;background:white}.choice-list strong{display:block;color:var(--main);font-size:.85rem}
+.reason-label{font-size:.95rem}.actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+[hidden]{display:none!important}#result{margin:12px 0;color:var(--main)}.fine{font-size:.85rem;color:var(--muted)}
+@media(max-width:540px){.panel,.case{padding:16px}.choice-list{grid-template-columns:1fr}h1{font-size:1.25rem}}
+</style></head>
+<body>
+<header><div class="wrap"><h1>A05｜生活の選び方に関する質問の試行</h1>
+<p class="intro">4つのテーマについて、質問文のわかりやすさと解釈を調べるための研究用フォームです。性格診断や適職判断ではありません。</p></div></header>
+<main class="wrap">
+<section class="panel" id="start">
+<h2>はじめに</h2>
+<p>質問の内容について、あなた自身がどう読み取ったかを知るためのものです。正解・不正解はありません。回答したくない質問は飛ばせます。</p>
+<div class="warning"><strong>データの扱い</strong>：氏名・連絡先などの個人情報は記入しないでください。回答は自動送信・自動保存されません。最後にJSONファイルとして自分の端末に保存できます。共有する場合は内容を確認し、ご自身で判断してください。</div>
+<ol><li>各テーマで2つの質問に答えます。</li><li>可能であれば、質問の意味を自分の言葉で書いてください。</li><li>回答は途中でやめられます。心理測定上の結果やタイプ判定は表示しません。</li></ol>
+<label>質問の提示順<select id="order"><option value="reference-first">順序A：比較元 → 試作案</option><option value="probe-first">順序B：試作案 → 比較元</option></select></label>
+<label class="check"><input type="checkbox" id="agree">研究用の質問であり、任意参加・ローカル保存であることを理解しました。</label>
+<button type="button" id="begin" disabled>質問に進む</button>
+</section>
+<section id="survey" hidden>
+<div class="panel"><h2>回答にあたって</h2><p>左右は、どちらをより重視するかの目安です。「両方とも当てはまる」「どちらも当てはまらない」「判断不能」も選べます。二つの問いで回答が違っても問題ありません。</p></div>
+<div id="cases"></div>
+<section class="panel">
+<h2>回答の保存</h2>
+<p>ボタンを押すと、この端末にJSONファイルを保存します。自動的な送信先はありません。調査担当者へ渡す場合は、自由記述に個人情報が含まれていないか確認してください。</p>
+<div class="actions"><button type="button" id="export">回答をJSONで保存</button><button type="button" class="secondary" id="restart">最初からやり直す</button></div>
+<p id="result" role="status" aria-live="polite"></p>
+<p class="fine">このフォームはD-175研究用試作です。正式な診断の得点・16タイプ判定・現在公開されている設問とは独立しています。</p>
+</section>
+</section>
+</main>
+<script type="application/json" id="taskdata">[{"case_id":"A-G2","axis":"A","anchor":{"id":"A04","stem":"家事や用事を行う時間と負担が同じなら、普段の進め方はどちらを好みますか？","left":"慣れた手順を基本として必要なところを整える","right":"手順全体を別の組み立て方に変える"},"probe":{"stem":"年度の区切りがあり、生活の便利さ・負担・必要な活動は今と同じだとします。次の一年の暮らしの基本をどうしたいですか？","left":"現在の暮らしの基本を引き継ぎ、必要な部分を整える","right":"暮らしの基本を別の形に組み立て直す","format":"BIPOLAR_7_RESEARCH_ONLY"},"independent_statements":[],"research_only":true},{"case_id":"B-G1","axis":"B","anchor":{"id":"B-FU01","stem":"大切な人と二つの選択肢の希望が異なり、どちらでも負担が同じなら、何をより重視しますか？","left":"話し合いを踏まえて自分が望む方を選ぶこと","right":"話し合って双方が納得できる方を選ぶこと"},"probe":{"stem":"重要な個人の選択について、次の二つの考えにそれぞれどの程度当てはまるかを独立に答えてください。","left":null,"right":null,"format":"TWO_7_POINT_RATINGS"},"independent_statements":[{"id":"B-G1-AUTONOMY","label":"重要な選択では、他者の意見を聞いた後でも、自分の考えを最終的な判断基準にしたい"},{"id":"B-G1-CONNECTION","label":"重要な選択では、最終的に自分で決める場合も、身近な人と考えを共有してから決めたい"}],"research_only":true},{"case_id":"C-G1","axis":"C","anchor":{"id":"C01","stem":"今週自由に使える同じ時間を、将来と現在のどちらへ優先的に使いたいですか？","left":"数か月後の選択肢を増やすための活動","right":"今週の経験そのものを充実させる活動"},"probe":{"stem":"生活に必要な費用を除いて自由に使える同額の予算があるとします。使い道を選ぶなら、どちらをより重視しますか？","left":"将来の目標に向けた準備や機会づくりに使う","right":"今行う体験を充実させるために使う","format":"BIPOLAR_7_RESEARCH_ONLY"},"independent_statements":[],"research_only":true},{"case_id":"D-G1","axis":"D","anchor":{"id":"D02","stem":"関心がある分野を同じ時間で学べる場合、どちらをより好みますか？","left":"異なる複数分野の基本を学ぶ","right":"一つの分野をさらに詳しく学ぶ"},"probe":{"stem":"一つの学習分野の中で同じ学習時間を使うなら、何をより好みますか？","left":"隣接する複数のテーマの基礎を広く知る","right":"その中の一つのテーマをより詳しく掘り下げる","format":"BIPOLAR_7_RESEARCH_ONLY"},"independent_statements":[],"research_only":true}]</script>
+<script>
+(()=>{"use strict";
+const tasks=JSON.parse(document.getElementById("taskdata").textContent);
+const begin=document.getElementById("begin"),agree=document.getElementById("agree");
+const survey=document.getElementById("survey"),start=document.getElementById("start"),cases=document.getElementById("cases");
+const result=document.getElementById("result"),order=document.getElementById("order");
+const respOptions=[
+["","未回答"],["1","左を強く重視"],["2","左を重視"],["3","やや左"],["4","同程度・中立"],["5","やや右"],["6","右を重視"],["7","右を強く重視"],
+["both","左右とも当てはまる"],["neither","左右とも当てはまらない"],["unknown","判断できない"],["na","自分には当てはまらない"]];
+function el(tag,cls,text){const x=document.createElement(tag);if(cls)x.className=cls;if(text!==undefined)x.textContent=text;return x;}
+function dropdown(name,choices){const sel=el("select");sel.name=name;for(const [v,t] of choices){const o=el("option",null,t);o.value=v;sel.append(o);}return sel;}
+function labelFor(txt,input){const holder=el("label",null,txt);holder.append(input);return holder;}
+function textarea(name,placeholder){const x=el("textarea");x.name=name;x.placeholder=placeholder;x.rows=3;x.maxLength=2500;return x;}
+function question(task,arm){
+ const x=el("section","question");x.dataset.arm=arm;
+ x.append(el("div","tag",arm==="reference"?"質問":task.axis==="B"?"質問（それぞれ個別に回答）":"質問"));
+ const data=arm==="reference"?task.anchor:task.probe;
+ x.append(el("p","stem",data.stem));
+ if(arm==="probe"&&task.independent_statements.length){
+   for(let i=0;i<task.independent_statements.length;i++){
+     x.append(labelFor(task.independent_statements[i].label,
+       dropdown("independent_"+(i+1),[["","未回答"],["1","1：全くそう思わない"],["2","2"],["3","3"],["4","4：どちらともいえない"],["5","5"],["6","6"],["7","7：非常にそう思う"]])))
+   }
+ }else{
+   const poles=el("div","choice-list");
+   for(const [side,text] of [["左",data.left],["右",data.right]]){
+     const d=el("div");d.append(el("strong",null,side),el("span",null,text));poles.append(d);
+   }
+   x.append(poles,labelFor("選択",dropdown("response",respOptions)));
+ }
+ x.append(labelFor("この質問は何を比べていると思いましたか？（任意）",textarea("paraphrase","あなたの言葉で簡単に記入")));
+ x.append(labelFor("その回答を選んだ主な理由は何ですか？（任意）",textarea("reason","正解はありません。理由がない場合は空欄で構いません")));
+ return x;
+}
+agree.addEventListener("change",()=>begin.disabled=!agree.checked);
+begin.addEventListener("click",()=>{
+ if(!agree.checked)return;
+ cases.replaceChildren();
+ const first=order.value==="probe-first"?"probe":"reference";
+ for(const [i,t] of tasks.entries()){
+   const card=el("article","case");card.dataset.caseId=t.case_id;card.dataset.axis=t.axis;
+   card.append(el("div","tag",String(i+1)+" / 4"),el("h2",null,"テーマ "+t.axis));
+   for(const arm of [first,first==="probe"?"reference":"probe"])card.append(question(t,arm));
+   card.append(labelFor("2つの質問は、意味が同じだと感じましたか？",dropdown("same_meaning",[
+      ["","未回答"],["same","ほぼ同じ意味"],["different","異なる意味"],["partly","一部重なる"],["unknown","わからない"]])));
+   card.append(labelFor("2つの質問の違い・気になった点（任意）",textarea("comparison_note","例：条件が違うので回答を変えた／ほぼ同じ問いに感じた")));
+   cases.append(card);
+ }
+ start.hidden=true;survey.hidden=false;window.scrollTo(0,0);
+});
+function readFields(node){return Object.fromEntries([...node.querySelectorAll("[name]")].map(i=>[i.name,i.value]));}
+document.getElementById("export").addEventListener("click",()=>{
+ const responses=[...cases.querySelectorAll(".case")].map(card=>{
+   const arms={};
+   for(const arm of card.querySelectorAll(".question"))arms[arm.dataset.arm]=readFields(arm);
+   return{case_id:card.dataset.caseId,axis:card.dataset.axis,anchor:arms.reference,probe:arms.probe,
+      comparison:readFields(card).same_meaning,comparison_note:card.querySelector('[name="comparison_note"]').value};
+ });
+ const payload={schema:"A05-D175-TIER1-PARTICIPANT-NOTES-0.1",type:"research_only_not_scored",
+  presentation_order:order.value,consent_confirmed:true,questions_from:"D168",
+  responses};
+ const file=new Blob([JSON.stringify(payload,null,2)],{type:"application/json;charset=utf-8"});
+ const u=URL.createObjectURL(file),a=el("a");a.href=u;a.download="a05-tier1-participant-notes.json";document.body.append(a);a.click();a.remove();
+ setTimeout(()=>URL.revokeObjectURL(u),1000);result.textContent="JSONファイルを端末に保存しました。自動送信はされません。";
+});
+document.getElementById("restart").addEventListener("click",()=>{
+ if(!confirm("今回の入力をすべて消去して最初からやり直しますか？"))return;
+ cases.replaceChildren();survey.hidden=true;start.hidden=false;agree.checked=false;begin.disabled=true;
+ result.textContent="";window.scrollTo(0,0);
+});
+})();
+</script>
+</body></html>
