@@ -308,7 +308,34 @@
       "series_kind": "CPI_LEVEL",
       "website_rights_state": "OPEN_METADATA_GATE",
       "source_lock": "LOCKED_PROVISIONAL_20261110",
-      "site_use_approved": false
+      "site_use_approved": false,
+      "acquisition_status": "RAW_ACQUIRED_PRIVATE_QA_PASSED_20261111",
+      "actual_coverage": {
+        "cpi_headline": {
+          "first_month": "1970-01",
+          "last_month": "2026-09",
+          "months": 681,
+          "pinned_file_id": "000040482943",
+          "raw_sha256": "29b63b7aa5cba598b6ab9d7fff839094a5068004bcd571afd20344e14e847c41"
+        },
+        "cpi_ex_imputed_rent": {
+          "first_month": "1946-08",
+          "last_month": "2026-09",
+          "months": 962,
+          "pinned_file_id": "000040482944",
+          "raw_sha256": "42b396d0e71fa2105de064de167bd09f3a878bda542648cca816f03402a1e57f"
+        },
+        "metadata": {
+          "base": "2025=100",
+          "frequency": "MONTHLY",
+          "seasonal_adjustment": "NSA",
+          "official_historical_linked_index": true,
+          "common_csv_rows": 1643,
+          "common_csv_sha256": "18da76e236057e1f59b2e7b224bfb7b0f2186d5586139d14b26c701ba74c36cc",
+          "qa": "PASS",
+          "site_approved": false
+        }
+      }
     },
     {
       "aux_id": "CPI_US",
@@ -407,13 +434,13 @@
       "stored_location": "private-only",
       "public_license": "NOT_VERIFIED"
     },
-    "new_external_download_count": 7,
+    "new_external_download_count": 9,
     "world_bank_monthly_xlsx_attempt": {
       "url": "https://thedocs.worldbank.org/en/doc/74e8be41ceb20fa0da750cda2f6b9e4e-0050012026/related/CMO-Historical-Data-Monthly.xlsx",
       "result": "FAILED_DNS",
       "verified_official_page": "https://www.worldbank.org/en/research/commodity-markets"
     },
-    "next_step": "BLS monthly data private: QA complete, official 2025-10 gap; preserve private key and archive; continue e-Stat JP CPI, Fed ADR, World Bank XLSX rights; no website publication",
+    "next_step": "BLS and JP CPI long histories acquired and QA passed privately; proceed Fed official H.10 long-series ADR, World Bank Pink Sheet, independently verify market-index licenses. Production gate remains closed.",
     "official_page_snapshot_count": 1,
     "official_page_snapshot_rows": 28,
     "snapshot_details": [
@@ -499,6 +526,33 @@
       ],
       "right_to_publish_granted": false,
       "full_details_ledger": "research/analytics/acquisition_status.v0.1.json"
+    },
+    "external_raw_acquisition_proof_jp_cpi": {
+      "as_of": "2026-11-11T03:18:08Z",
+      "source_id": "ESTAT",
+      "official_raw_CSVs": 2,
+      "pinned_file_ids": [
+        "000040482943",
+        "000040482944"
+      ],
+      "data_series": 2,
+      "normalized_monthly_rows": 1643,
+      "independent_overlap_months": 681,
+      "mismatch_months": 0,
+      "normalized_sha256": "18da76e236057e1f59b2e7b224bfb7b0f2186d5586139d14b26c701ba74c36cc",
+      "github_actions": "https://github.com/k-ait0/k-aito-com/actions/runs/42951821449",
+      "qa_report": "docs/ANALYTICS_JP_CPI_ESTAT_20261111_QA.md",
+      "rights_approved_for_website": false
+    },
+    "latest_run_jp_cpi_20261111": {
+      "status": "PASS_OFFICIAL_JP_CPI_PRIVATE",
+      "monthly_observations": 1643,
+      "raw_files": 2,
+      "confirmed_contiguous_30y_starts": {
+        "headline": 321,
+        "ex_imputed_rent": 602
+      },
+      "site_approved": false
     }
   },
   "history_coverage_standard": {
