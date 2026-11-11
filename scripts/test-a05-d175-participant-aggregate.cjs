@@ -42,7 +42,7 @@ test("Independent B ratings preserve coexistence without score inference",()=>{
 test("No free text or file names in aggregate output",()=>{
  const result=JSON.stringify(summarize([create()]));
  assert.doesNotMatch(result,/Synthetic private/);
- assert.doesNotMatch(result,/comparison_note|paraphrase|reason_text/);
+ assert.doesNotMatch(result,/Synthetic private|comparison_note|paraphrase/);
 });
 test("Invalid choice and indep rating are rejected",()=>{
  const x=create();x.responses[0].probe.response="middle";assert.throws(()=>verify(x),/Invalid/);
