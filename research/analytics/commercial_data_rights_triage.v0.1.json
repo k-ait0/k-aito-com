@@ -1,0 +1,533 @@
+{
+  "schema_version": "0.1",
+  "as_of": "2026-11-11",
+  "status": "COMMERCIAL_RIGHTS_TRIAGE_NOT_A_LICENSE_GRANT",
+  "source_registry": "research/analytics/source_registry.v0.2.json",
+  "source_lock_revision": "LOCKED_PROVISIONAL_20261110",
+  "separate_use_cases": [
+    "research_and_metadata",
+    "commercial_server_processing",
+    "public_chart_and_observations",
+    "paid_or_free_derived_outputs",
+    "raw_csv_or_api_redistribution",
+    "realtime_or_periodic_dataset_reuse",
+    "production_activation"
+  ],
+  "caveats": [
+    "Access to a public webpage or document does not confer redistribution or commercial calculation rights",
+    "A license for observation display may not cover derived results, historical database, API, or service calculations",
+    "Investment benchmark total returns cannot be replaced by government yield, spot, futures quote, dividend, or CPI series",
+    "All permissions remain disabled until per-supplier agreements and product release approval"
+  ],
+  "provider_policy_evidence": {
+    "JPX": {
+      "rights_class": "PAID_INDEX_DATA_AND_REDISTRIBUTION_LICENSE",
+      "primary": "https://www.jpx.co.jp/markets/indices/licence/",
+      "price_url": "https://www.jpx.co.jp/english/markets/paid-info-equities/reference/01.html",
+      "rights_notes": "Licensing needed for index data supplied to third parties; index data may trigger homepage display fees. Price schedule scope does not automatically grant site rights.",
+      "computation_kind": "INDEX_OR_PRICE_NOT_LICENSE_FREE"
+    },
+    "SPDJI": {
+      "rights_class": "EXPRESS_WRITTEN_CONSENT_AND_INDEX_DATA_LICENSE",
+      "primary": "https://www.spglobal.com/en/terms-of-use",
+      "licensing": "https://www.spglobal.com/spdji/en/about-us/data-index-licensing/",
+      "rights_notes": "Personal/non-commercial by default; historical database, derived data, copying, third-party display and commercial use require express license/consent.",
+      "computation_kind": "LICENSED_INDEX_TOTAL_RETURN"
+    },
+    "MSCI": {
+      "rights_class": "PRIOR_WRITTEN_LICENSE_REQUIRED_FOR_COMMERCIAL_AND_AI_USES",
+      "primary": "https://www.msci.com/legal/notice-and-disclaimer",
+      "secondary": "https://www.msci.com/legal/index-terms",
+      "rights_notes": "Written permission required for commercial, third-party services, copying, derivative databases and AI uses; do not extract by unauthorized automation.",
+      "computation_kind": "LICENSED_INDEX_TOTAL_RETURN"
+    },
+    "NOMURA_BPI": {
+      "rights_class": "HISTORICAL_DATA_LICENSE_AND_POSSIBLE_SEPARATE_NAME_USE",
+      "primary": "https://www.nfrc.co.jp/SMI/jp/indexlicense.html",
+      "rights_notes": "Historical/recurring use and distribution require index data license regardless of vendor. Commercial index name use requires separately assessed name-use licence.",
+      "computation_kind": "LICENSED_BOND_TOTAL_RETURN"
+    },
+    "BLOOMBERG_INDEX": {
+      "rights_class": "BENCHMARK_INDEX_DATA_SUBSCRIPTION_AND_LICENSE",
+      "primary": "https://www.bloomberg.com/professional/products/indices/regulation/",
+      "secondary": "https://professional.bloomberg.com/products/indices/index-derivatives/",
+      "rights_notes": "Benchmark/index use requires appropriate license; index data redistribution depends on agreement.",
+      "computation_kind": "LICENSED_BOND_TOTAL_RETURN"
+    },
+    "FTSE_RUSSELL": {
+      "rights_class": "FTSE_INDEX_DATA_SUBSCRIPTION_AND_DISTRIBUTION_REVIEW",
+      "primary": "https://www.lseg.com/en/ftse-russell/index-resources/indices-subscribe-data",
+      "rights_notes": "Historical data and monthly index returns offered as subscription; usage, derived use and distribution scope requires licensed agreement.",
+      "computation_kind": "LICENSED_BOND_TOTAL_RETURN"
+    },
+    "BOJ": {
+      "rights_class": "COMMERCIAL_REPRODUCTION_REQUIRES_BOJ_PERMISSION_REVIEW",
+      "primary": "https://www.boj.or.jp/about/copyright.htm",
+      "rights_notes": "Bank of Japan site says commercial copying/reproduction requires prior permission; calculation from official statistical data and re-publishing must be reviewed separately.",
+      "computation_kind": "INTEREST_RATE_INPUT_NOT_TR"
+    },
+    "WORLD_BANK_PINK": {
+      "rights_class": "CC_BY_DEFAULT_WITH_THIRD_PARTY_DATA_EXCEPTIONS",
+      "primary": "https://www.worldbank.org/ext/en/legal/terms-conditions/datasets",
+      "secondary": "https://www.worldbank.org/en/research/commodity-markets",
+      "rights_notes": "General World Bank CC BY 4.0 is not an automatic grant for underlying third-party quoted prices. All 71 commodity series are in per-series rights triage.",
+      "computation_kind": "COMMODITY_SPOT_OR_QUOTE_NOT_TR"
+    },
+    "FED_BOARD": {
+      "rights_class": "FED_PUBLIC_DOMAIN_GENERAL_WITH_EXCEPTIONS",
+      "primary": "https://www.federalreserve.gov/disclaimer.htm",
+      "secondary": "https://www.federalreserve.gov/data/data-download-fred-information.htm",
+      "rights_notes": "Official direct Board data generally public domain with attribution/exceptions; DDP 1971 extension is still ADR draft and candidate only.",
+      "computation_kind": "FX_RATE_NOT_TR"
+    },
+    "ESTAT": {
+      "rights_class": "JAPAN_OFFICIAL_STATISTICS_REUSE_WITH_ATTRIBUTION",
+      "primary": "https://www.e-stat.go.jp/terms-of-use",
+      "rights_notes": "Official Japanese CPI linked base-year series is not investment return. Source attribution, modifications noted, third-party exceptions.",
+      "computation_kind": "CPI_LEVEL_NOT_TR"
+    },
+    "BLS": {
+      "rights_class": "BLS_GOV_PUBLIC_DATA_WITH_MISSING_MONTH",
+      "primary": "https://www.bls.gov/opub/copyright-information.htm",
+      "secondary": "https://www.bls.gov/developers/termsOfService.htm",
+      "rights_notes": "BLS CPI levels are not TR; 2025-10 missing during shutdown not filled. General public data, project release still not approved.",
+      "computation_kind": "CPI_LEVEL_NOT_TR"
+    },
+    "US_TREASURY": {
+      "rights_class": "US_GOV_RATE_OR_YIELD_MODEL_INPUT_NOT_TR",
+      "primary": "https://home.treasury.gov/policy-issues/financing-the-government/interest-rate-statistics",
+      "secondary": "https://home.treasury.gov/policy-issues/financing-the-government/interest-rate-statistics/treasury-yield-curve-methodology",
+      "rights_notes": "Constant maturity yield/real-yield curves are indicative quotation-derived par yields, not realizable bond/TIPS total returns. No automatic transformation.",
+      "computation_kind": "MODEL_INPUT_NOT_TR"
+    }
+  },
+  "entries": [
+    {
+      "category": "ASSET",
+      "id": "JP_EQUITY",
+      "provider": "JPX",
+      "source_lock": "LOCKED_PROVISIONAL_20261110",
+      "declared_kind": "INDEX_TOTAL_RETURN",
+      "rights_class": "PAID_INDEX_DATA_AND_REDISTRIBUTION_LICENSE",
+      "primary_official_url": "https://www.jpx.co.jp/markets/indices/licence/",
+      "computation_class": "INDEX_OR_PRICE_NOT_LICENSE_FREE",
+      "permissions_by_use": {
+        "research_and_metadata": "SUBJECT_TO_SOURCE_TERMS_NO_COMMERCIAL_REUSE_INFERRED",
+        "commercial_server_processing": "BLOCKED_UNTIL_FORMAL_RIGHTS_AND_LICENSE_GATE",
+        "public_chart_and_observations": "NOT_APPROVED",
+        "paid_or_free_derived_outputs": "NOT_APPROVED",
+        "raw_csv_or_api_redistribution": "NOT_APPROVED",
+        "realtime_or_periodic_dataset_reuse": "NOT_APPROVED",
+        "production_activation": "NOT_APPROVED"
+      },
+      "official_source_notes": "Licensing needed for index data supplied to third parties; index data may trigger homepage display fees. Price schedule scope does not automatically grant site rights.",
+      "explicit_release_approval": false
+    },
+    {
+      "category": "ASSET",
+      "id": "US_EQUITY",
+      "provider": "SPDJI",
+      "source_lock": "LOCKED_PROVISIONAL_20261110",
+      "declared_kind": "INDEX_TOTAL_RETURN",
+      "rights_class": "EXPRESS_WRITTEN_CONSENT_AND_INDEX_DATA_LICENSE",
+      "primary_official_url": "https://www.spglobal.com/en/terms-of-use",
+      "computation_class": "LICENSED_INDEX_TOTAL_RETURN",
+      "permissions_by_use": {
+        "research_and_metadata": "SUBJECT_TO_SOURCE_TERMS_NO_COMMERCIAL_REUSE_INFERRED",
+        "commercial_server_processing": "BLOCKED_UNTIL_FORMAL_RIGHTS_AND_LICENSE_GATE",
+        "public_chart_and_observations": "NOT_APPROVED",
+        "paid_or_free_derived_outputs": "NOT_APPROVED",
+        "raw_csv_or_api_redistribution": "NOT_APPROVED",
+        "realtime_or_periodic_dataset_reuse": "NOT_APPROVED",
+        "production_activation": "NOT_APPROVED"
+      },
+      "official_source_notes": "Personal/non-commercial by default; historical database, derived data, copying, third-party display and commercial use require express license/consent.",
+      "explicit_release_approval": false
+    },
+    {
+      "category": "ASSET",
+      "id": "GLOBAL_EQUITY",
+      "provider": "MSCI",
+      "source_lock": "LOCKED_PROVISIONAL_20261110",
+      "declared_kind": "INDEX_TOTAL_RETURN",
+      "rights_class": "PRIOR_WRITTEN_LICENSE_REQUIRED_FOR_COMMERCIAL_AND_AI_USES",
+      "primary_official_url": "https://www.msci.com/legal/notice-and-disclaimer",
+      "computation_class": "LICENSED_INDEX_TOTAL_RETURN",
+      "permissions_by_use": {
+        "research_and_metadata": "SUBJECT_TO_SOURCE_TERMS_NO_COMMERCIAL_REUSE_INFERRED",
+        "commercial_server_processing": "BLOCKED_UNTIL_FORMAL_RIGHTS_AND_LICENSE_GATE",
+        "public_chart_and_observations": "NOT_APPROVED",
+        "paid_or_free_derived_outputs": "NOT_APPROVED",
+        "raw_csv_or_api_redistribution": "NOT_APPROVED",
+        "realtime_or_periodic_dataset_reuse": "NOT_APPROVED",
+        "production_activation": "NOT_APPROVED"
+      },
+      "official_source_notes": "Written permission required for commercial, third-party services, copying, derivative databases and AI uses; do not extract by unauthorized automation.",
+      "explicit_release_approval": false
+    },
+    {
+      "category": "ASSET",
+      "id": "JP_BONDS",
+      "provider": "NOMURA_BPI",
+      "source_lock": "LOCKED_PROVISIONAL_20261110",
+      "declared_kind": "BOND_TOTAL_RETURN",
+      "rights_class": "HISTORICAL_DATA_LICENSE_AND_POSSIBLE_SEPARATE_NAME_USE",
+      "primary_official_url": "https://www.nfrc.co.jp/SMI/jp/indexlicense.html",
+      "computation_class": "LICENSED_BOND_TOTAL_RETURN",
+      "permissions_by_use": {
+        "research_and_metadata": "SUBJECT_TO_SOURCE_TERMS_NO_COMMERCIAL_REUSE_INFERRED",
+        "commercial_server_processing": "BLOCKED_UNTIL_FORMAL_RIGHTS_AND_LICENSE_GATE",
+        "public_chart_and_observations": "NOT_APPROVED",
+        "paid_or_free_derived_outputs": "NOT_APPROVED",
+        "raw_csv_or_api_redistribution": "NOT_APPROVED",
+        "realtime_or_periodic_dataset_reuse": "NOT_APPROVED",
+        "production_activation": "NOT_APPROVED"
+      },
+      "official_source_notes": "Historical/recurring use and distribution require index data license regardless of vendor. Commercial index name use requires separately assessed name-use licence.",
+      "explicit_release_approval": false
+    },
+    {
+      "category": "ASSET",
+      "id": "US_BONDS",
+      "provider": "BLOOMBERG_INDEX",
+      "source_lock": "LOCKED_PROVISIONAL_20261110",
+      "declared_kind": "BOND_TOTAL_RETURN",
+      "rights_class": "BENCHMARK_INDEX_DATA_SUBSCRIPTION_AND_LICENSE",
+      "primary_official_url": "https://www.bloomberg.com/professional/products/indices/regulation/",
+      "computation_class": "LICENSED_BOND_TOTAL_RETURN",
+      "permissions_by_use": {
+        "research_and_metadata": "SUBJECT_TO_SOURCE_TERMS_NO_COMMERCIAL_REUSE_INFERRED",
+        "commercial_server_processing": "BLOCKED_UNTIL_FORMAL_RIGHTS_AND_LICENSE_GATE",
+        "public_chart_and_observations": "NOT_APPROVED",
+        "paid_or_free_derived_outputs": "NOT_APPROVED",
+        "raw_csv_or_api_redistribution": "NOT_APPROVED",
+        "realtime_or_periodic_dataset_reuse": "NOT_APPROVED",
+        "production_activation": "NOT_APPROVED"
+      },
+      "official_source_notes": "Benchmark/index use requires appropriate license; index data redistribution depends on agreement.",
+      "explicit_release_approval": false
+    },
+    {
+      "category": "ASSET",
+      "id": "CASH_SHORT",
+      "provider": "BOJ",
+      "source_lock": "LOCKED_PROVISIONAL_20261110",
+      "declared_kind": "RATE_MODEL_NOT_TR",
+      "rights_class": "COMMERCIAL_REPRODUCTION_REQUIRES_BOJ_PERMISSION_REVIEW",
+      "primary_official_url": "https://www.boj.or.jp/about/copyright.htm",
+      "computation_class": "INTEREST_RATE_INPUT_NOT_TR",
+      "permissions_by_use": {
+        "research_and_metadata": "SUBJECT_TO_SOURCE_TERMS_NO_COMMERCIAL_REUSE_INFERRED",
+        "commercial_server_processing": "BLOCKED_UNTIL_FORMAL_RIGHTS_AND_LICENSE_GATE",
+        "public_chart_and_observations": "NOT_APPROVED",
+        "paid_or_free_derived_outputs": "NOT_APPROVED",
+        "raw_csv_or_api_redistribution": "NOT_APPROVED",
+        "realtime_or_periodic_dataset_reuse": "NOT_APPROVED",
+        "production_activation": "NOT_APPROVED"
+      },
+      "official_source_notes": "Bank of Japan site says commercial copying/reproduction requires prior permission; calculation from official statistical data and re-publishing must be reviewed separately.",
+      "explicit_release_approval": false
+    },
+    {
+      "category": "ASSET",
+      "id": "GOLD",
+      "provider": "WORLD_BANK_PINK",
+      "source_lock": "LOCKED_PROVISIONAL_20261110",
+      "declared_kind": "COMMODITY_SPOT",
+      "rights_class": "CC_BY_DEFAULT_WITH_THIRD_PARTY_DATA_EXCEPTIONS",
+      "primary_official_url": "https://www.worldbank.org/ext/en/legal/terms-conditions/datasets",
+      "computation_class": "COMMODITY_SPOT_OR_QUOTE_NOT_TR",
+      "permissions_by_use": {
+        "research_and_metadata": "SUBJECT_TO_SOURCE_TERMS_NO_COMMERCIAL_REUSE_INFERRED",
+        "commercial_server_processing": "BLOCKED_UNTIL_FORMAL_RIGHTS_AND_LICENSE_GATE",
+        "public_chart_and_observations": "NOT_APPROVED",
+        "paid_or_free_derived_outputs": "NOT_APPROVED",
+        "raw_csv_or_api_redistribution": "NOT_APPROVED",
+        "realtime_or_periodic_dataset_reuse": "NOT_APPROVED",
+        "production_activation": "NOT_APPROVED"
+      },
+      "official_source_notes": "General World Bank CC BY 4.0 is not an automatic grant for underlying third-party quoted prices. All 71 commodity series are in per-series rights triage.",
+      "explicit_release_approval": false
+    },
+    {
+      "category": "ASSET",
+      "id": "REIT",
+      "provider": "JPX",
+      "source_lock": "LOCKED_PROVISIONAL_20261110",
+      "declared_kind": "INDEX_TOTAL_RETURN",
+      "rights_class": "PAID_INDEX_DATA_AND_REDISTRIBUTION_LICENSE",
+      "primary_official_url": "https://www.jpx.co.jp/markets/indices/licence/",
+      "computation_class": "INDEX_OR_PRICE_NOT_LICENSE_FREE",
+      "permissions_by_use": {
+        "research_and_metadata": "SUBJECT_TO_SOURCE_TERMS_NO_COMMERCIAL_REUSE_INFERRED",
+        "commercial_server_processing": "BLOCKED_UNTIL_FORMAL_RIGHTS_AND_LICENSE_GATE",
+        "public_chart_and_observations": "NOT_APPROVED",
+        "paid_or_free_derived_outputs": "NOT_APPROVED",
+        "raw_csv_or_api_redistribution": "NOT_APPROVED",
+        "realtime_or_periodic_dataset_reuse": "NOT_APPROVED",
+        "production_activation": "NOT_APPROVED"
+      },
+      "official_source_notes": "Licensing needed for index data supplied to third parties; index data may trigger homepage display fees. Price schedule scope does not automatically grant site rights.",
+      "explicit_release_approval": false
+    },
+    {
+      "category": "ASSET",
+      "id": "EM_EQUITY",
+      "provider": "MSCI",
+      "source_lock": "LOCKED_PROVISIONAL_20261110",
+      "declared_kind": "INDEX_TOTAL_RETURN",
+      "rights_class": "PRIOR_WRITTEN_LICENSE_REQUIRED_FOR_COMMERCIAL_AND_AI_USES",
+      "primary_official_url": "https://www.msci.com/legal/notice-and-disclaimer",
+      "computation_class": "LICENSED_INDEX_TOTAL_RETURN",
+      "permissions_by_use": {
+        "research_and_metadata": "SUBJECT_TO_SOURCE_TERMS_NO_COMMERCIAL_REUSE_INFERRED",
+        "commercial_server_processing": "BLOCKED_UNTIL_FORMAL_RIGHTS_AND_LICENSE_GATE",
+        "public_chart_and_observations": "NOT_APPROVED",
+        "paid_or_free_derived_outputs": "NOT_APPROVED",
+        "raw_csv_or_api_redistribution": "NOT_APPROVED",
+        "realtime_or_periodic_dataset_reuse": "NOT_APPROVED",
+        "production_activation": "NOT_APPROVED"
+      },
+      "official_source_notes": "Written permission required for commercial, third-party services, copying, derivative databases and AI uses; do not extract by unauthorized automation.",
+      "explicit_release_approval": false
+    },
+    {
+      "category": "ASSET",
+      "id": "DEV_EXUS_BONDS",
+      "provider": "FTSE_RUSSELL",
+      "source_lock": "LOCKED_PROVISIONAL_20261110",
+      "declared_kind": "BOND_TOTAL_RETURN",
+      "rights_class": "FTSE_INDEX_DATA_SUBSCRIPTION_AND_DISTRIBUTION_REVIEW",
+      "primary_official_url": "https://www.lseg.com/en/ftse-russell/index-resources/indices-subscribe-data",
+      "computation_class": "LICENSED_BOND_TOTAL_RETURN",
+      "permissions_by_use": {
+        "research_and_metadata": "SUBJECT_TO_SOURCE_TERMS_NO_COMMERCIAL_REUSE_INFERRED",
+        "commercial_server_processing": "BLOCKED_UNTIL_FORMAL_RIGHTS_AND_LICENSE_GATE",
+        "public_chart_and_observations": "NOT_APPROVED",
+        "paid_or_free_derived_outputs": "NOT_APPROVED",
+        "raw_csv_or_api_redistribution": "NOT_APPROVED",
+        "realtime_or_periodic_dataset_reuse": "NOT_APPROVED",
+        "production_activation": "NOT_APPROVED"
+      },
+      "official_source_notes": "Historical data and monthly index returns offered as subscription; usage, derived use and distribution scope requires licensed agreement.",
+      "explicit_release_approval": false
+    },
+    {
+      "category": "ASSET",
+      "id": "EXGOLD_COMMODITY",
+      "provider": "WORLD_BANK_PINK",
+      "source_lock": "LOCKED_PROVISIONAL_20261110",
+      "declared_kind": "COMMODITY_SPOT",
+      "rights_class": "CC_BY_DEFAULT_WITH_THIRD_PARTY_DATA_EXCEPTIONS",
+      "primary_official_url": "https://www.worldbank.org/ext/en/legal/terms-conditions/datasets",
+      "computation_class": "COMMODITY_SPOT_OR_QUOTE_NOT_TR",
+      "permissions_by_use": {
+        "research_and_metadata": "SUBJECT_TO_SOURCE_TERMS_NO_COMMERCIAL_REUSE_INFERRED",
+        "commercial_server_processing": "BLOCKED_UNTIL_FORMAL_RIGHTS_AND_LICENSE_GATE",
+        "public_chart_and_observations": "NOT_APPROVED",
+        "paid_or_free_derived_outputs": "NOT_APPROVED",
+        "raw_csv_or_api_redistribution": "NOT_APPROVED",
+        "realtime_or_periodic_dataset_reuse": "NOT_APPROVED",
+        "production_activation": "NOT_APPROVED"
+      },
+      "official_source_notes": "General World Bank CC BY 4.0 is not an automatic grant for underlying third-party quoted prices. All 71 commodity series are in per-series rights triage.",
+      "explicit_release_approval": false
+    },
+    {
+      "category": "ASSET",
+      "id": "INFLATION_LINKED",
+      "provider": "US_TREASURY",
+      "source_lock": "LOCKED_PROVISIONAL_20261110",
+      "declared_kind": "REAL_YIELD_MODEL_NOT_TR",
+      "rights_class": "US_GOV_RATE_OR_YIELD_MODEL_INPUT_NOT_TR",
+      "primary_official_url": "https://home.treasury.gov/policy-issues/financing-the-government/interest-rate-statistics",
+      "computation_class": "MODEL_INPUT_NOT_TR",
+      "permissions_by_use": {
+        "research_and_metadata": "SUBJECT_TO_SOURCE_TERMS_NO_COMMERCIAL_REUSE_INFERRED",
+        "commercial_server_processing": "BLOCKED_UNTIL_FORMAL_RIGHTS_AND_LICENSE_GATE",
+        "public_chart_and_observations": "NOT_APPROVED",
+        "paid_or_free_derived_outputs": "NOT_APPROVED",
+        "raw_csv_or_api_redistribution": "NOT_APPROVED",
+        "realtime_or_periodic_dataset_reuse": "NOT_APPROVED",
+        "production_activation": "NOT_APPROVED"
+      },
+      "official_source_notes": "Constant maturity yield/real-yield curves are indicative quotation-derived par yields, not realizable bond/TIPS total returns. No automatic transformation.",
+      "explicit_release_approval": false
+    },
+    {
+      "category": "AUX",
+      "id": "FX",
+      "provider": "FED_BOARD",
+      "source_lock": "LOCKED_PROVISIONAL_20261110",
+      "declared_kind": "FX_RATE",
+      "rights_class": "FED_PUBLIC_DOMAIN_GENERAL_WITH_EXCEPTIONS",
+      "primary_official_url": "https://www.federalreserve.gov/disclaimer.htm",
+      "computation_class": "FX_RATE_NOT_TR",
+      "permissions_by_use": {
+        "research_and_metadata": "SUBJECT_TO_SOURCE_TERMS_NO_COMMERCIAL_REUSE_INFERRED",
+        "commercial_server_processing": "BLOCKED_UNTIL_FORMAL_RIGHTS_AND_LICENSE_GATE",
+        "public_chart_and_observations": "NOT_APPROVED",
+        "paid_or_free_derived_outputs": "NOT_APPROVED",
+        "raw_csv_or_api_redistribution": "NOT_APPROVED",
+        "realtime_or_periodic_dataset_reuse": "NOT_APPROVED",
+        "production_activation": "NOT_APPROVED"
+      },
+      "official_source_notes": "Official direct Board data generally public domain with attribution/exceptions; DDP 1971 extension is still ADR draft and candidate only.",
+      "explicit_release_approval": false
+    },
+    {
+      "category": "AUX",
+      "id": "CPI_JP",
+      "provider": "ESTAT",
+      "source_lock": "LOCKED_PROVISIONAL_20261110",
+      "declared_kind": "CPI_LEVEL",
+      "rights_class": "JAPAN_OFFICIAL_STATISTICS_REUSE_WITH_ATTRIBUTION",
+      "primary_official_url": "https://www.e-stat.go.jp/terms-of-use",
+      "computation_class": "CPI_LEVEL_NOT_TR",
+      "permissions_by_use": {
+        "research_and_metadata": "SUBJECT_TO_SOURCE_TERMS_NO_COMMERCIAL_REUSE_INFERRED",
+        "commercial_server_processing": "BLOCKED_UNTIL_FORMAL_RIGHTS_AND_LICENSE_GATE",
+        "public_chart_and_observations": "NOT_APPROVED",
+        "paid_or_free_derived_outputs": "NOT_APPROVED",
+        "raw_csv_or_api_redistribution": "NOT_APPROVED",
+        "realtime_or_periodic_dataset_reuse": "NOT_APPROVED",
+        "production_activation": "NOT_APPROVED"
+      },
+      "official_source_notes": "Official Japanese CPI linked base-year series is not investment return. Source attribution, modifications noted, third-party exceptions.",
+      "explicit_release_approval": false
+    },
+    {
+      "category": "AUX",
+      "id": "CPI_US",
+      "provider": "BLS",
+      "source_lock": "LOCKED_PROVISIONAL_20261110",
+      "declared_kind": "CPI_LEVEL",
+      "rights_class": "BLS_GOV_PUBLIC_DATA_WITH_MISSING_MONTH",
+      "primary_official_url": "https://www.bls.gov/opub/copyright-information.htm",
+      "computation_class": "CPI_LEVEL_NOT_TR",
+      "permissions_by_use": {
+        "research_and_metadata": "SUBJECT_TO_SOURCE_TERMS_NO_COMMERCIAL_REUSE_INFERRED",
+        "commercial_server_processing": "BLOCKED_UNTIL_FORMAL_RIGHTS_AND_LICENSE_GATE",
+        "public_chart_and_observations": "NOT_APPROVED",
+        "paid_or_free_derived_outputs": "NOT_APPROVED",
+        "raw_csv_or_api_redistribution": "NOT_APPROVED",
+        "realtime_or_periodic_dataset_reuse": "NOT_APPROVED",
+        "production_activation": "NOT_APPROVED"
+      },
+      "official_source_notes": "BLS CPI levels are not TR; 2025-10 missing during shutdown not filled. General public data, project release still not approved.",
+      "explicit_release_approval": false
+    },
+    {
+      "category": "AUX",
+      "id": "RATES_US",
+      "provider": "US_TREASURY",
+      "source_lock": "LOCKED_PROVISIONAL_20261110",
+      "declared_kind": "GOVERNMENT_YIELD",
+      "rights_class": "US_GOV_RATE_OR_YIELD_MODEL_INPUT_NOT_TR",
+      "primary_official_url": "https://home.treasury.gov/policy-issues/financing-the-government/interest-rate-statistics",
+      "computation_class": "MODEL_INPUT_NOT_TR",
+      "permissions_by_use": {
+        "research_and_metadata": "SUBJECT_TO_SOURCE_TERMS_NO_COMMERCIAL_REUSE_INFERRED",
+        "commercial_server_processing": "BLOCKED_UNTIL_FORMAL_RIGHTS_AND_LICENSE_GATE",
+        "public_chart_and_observations": "NOT_APPROVED",
+        "paid_or_free_derived_outputs": "NOT_APPROVED",
+        "raw_csv_or_api_redistribution": "NOT_APPROVED",
+        "realtime_or_periodic_dataset_reuse": "NOT_APPROVED",
+        "production_activation": "NOT_APPROVED"
+      },
+      "official_source_notes": "Constant maturity yield/real-yield curves are indicative quotation-derived par yields, not realizable bond/TIPS total returns. No automatic transformation.",
+      "explicit_release_approval": false
+    },
+    {
+      "category": "AUX",
+      "id": "RATES_JP",
+      "provider": "BOJ",
+      "source_lock": "LOCKED_PROVISIONAL_20261110",
+      "declared_kind": "GOVERNMENT_YIELD",
+      "rights_class": "COMMERCIAL_REPRODUCTION_REQUIRES_BOJ_PERMISSION_REVIEW",
+      "primary_official_url": "https://www.boj.or.jp/about/copyright.htm",
+      "computation_class": "INTEREST_RATE_INPUT_NOT_TR",
+      "permissions_by_use": {
+        "research_and_metadata": "SUBJECT_TO_SOURCE_TERMS_NO_COMMERCIAL_REUSE_INFERRED",
+        "commercial_server_processing": "BLOCKED_UNTIL_FORMAL_RIGHTS_AND_LICENSE_GATE",
+        "public_chart_and_observations": "NOT_APPROVED",
+        "paid_or_free_derived_outputs": "NOT_APPROVED",
+        "raw_csv_or_api_redistribution": "NOT_APPROVED",
+        "realtime_or_periodic_dataset_reuse": "NOT_APPROVED",
+        "production_activation": "NOT_APPROVED"
+      },
+      "official_source_notes": "Bank of Japan site says commercial copying/reproduction requires prior permission; calculation from official statistical data and re-publishing must be reviewed separately.",
+      "explicit_release_approval": false
+    },
+    {
+      "category": "AUX",
+      "id": "DIVIDENDS",
+      "provider": "SPDJI",
+      "source_lock": "LOCKED_PROVISIONAL_20261110",
+      "declared_kind": "DIVIDEND_INDEX",
+      "rights_class": "EXPRESS_WRITTEN_CONSENT_AND_INDEX_DATA_LICENSE",
+      "primary_official_url": "https://www.spglobal.com/en/terms-of-use",
+      "computation_class": "LICENSED_INDEX_TOTAL_RETURN",
+      "permissions_by_use": {
+        "research_and_metadata": "SUBJECT_TO_SOURCE_TERMS_NO_COMMERCIAL_REUSE_INFERRED",
+        "commercial_server_processing": "BLOCKED_UNTIL_FORMAL_RIGHTS_AND_LICENSE_GATE",
+        "public_chart_and_observations": "NOT_APPROVED",
+        "paid_or_free_derived_outputs": "NOT_APPROVED",
+        "raw_csv_or_api_redistribution": "NOT_APPROVED",
+        "realtime_or_periodic_dataset_reuse": "NOT_APPROVED",
+        "production_activation": "NOT_APPROVED"
+      },
+      "official_source_notes": "Personal/non-commercial by default; historical database, derived data, copying, third-party display and commercial use require express license/consent.",
+      "explicit_release_approval": false
+    },
+    {
+      "category": "AUX",
+      "id": "HEDGE_COST",
+      "provider": "BOJ",
+      "source_lock": "LOCKED_PROVISIONAL_20261110",
+      "declared_kind": "DERIVED_ESTIMATE",
+      "rights_class": "COMMERCIAL_REPRODUCTION_REQUIRES_BOJ_PERMISSION_REVIEW",
+      "primary_official_url": "https://www.boj.or.jp/about/copyright.htm",
+      "computation_class": "INTEREST_RATE_INPUT_NOT_TR",
+      "permissions_by_use": {
+        "research_and_metadata": "SUBJECT_TO_SOURCE_TERMS_NO_COMMERCIAL_REUSE_INFERRED",
+        "commercial_server_processing": "BLOCKED_UNTIL_FORMAL_RIGHTS_AND_LICENSE_GATE",
+        "public_chart_and_observations": "NOT_APPROVED",
+        "paid_or_free_derived_outputs": "NOT_APPROVED",
+        "raw_csv_or_api_redistribution": "NOT_APPROVED",
+        "realtime_or_periodic_dataset_reuse": "NOT_APPROVED",
+        "production_activation": "NOT_APPROVED"
+      },
+      "official_source_notes": "Bank of Japan site says commercial copying/reproduction requires prior permission; calculation from official statistical data and re-publishing must be reviewed separately.",
+      "explicit_release_approval": false
+    },
+    {
+      "category": "AUX",
+      "id": "CREDIT_SPREAD",
+      "provider": "US_TREASURY",
+      "source_lock": "LOCKED_PROVISIONAL_20261110",
+      "declared_kind": "BENCHMARK_ONLY",
+      "rights_class": "US_GOV_RATE_OR_YIELD_MODEL_INPUT_NOT_TR",
+      "primary_official_url": "https://home.treasury.gov/policy-issues/financing-the-government/interest-rate-statistics",
+      "computation_class": "MODEL_INPUT_NOT_TR",
+      "permissions_by_use": {
+        "research_and_metadata": "SUBJECT_TO_SOURCE_TERMS_NO_COMMERCIAL_REUSE_INFERRED",
+        "commercial_server_processing": "BLOCKED_UNTIL_FORMAL_RIGHTS_AND_LICENSE_GATE",
+        "public_chart_and_observations": "NOT_APPROVED",
+        "paid_or_free_derived_outputs": "NOT_APPROVED",
+        "raw_csv_or_api_redistribution": "NOT_APPROVED",
+        "realtime_or_periodic_dataset_reuse": "NOT_APPROVED",
+        "production_activation": "NOT_APPROVED"
+      },
+      "official_source_notes": "Constant maturity yield/real-yield curves are indicative quotation-derived par yields, not realizable bond/TIPS total returns. No automatic transformation.",
+      "explicit_release_approval": false
+    }
+  ],
+  "summary": {
+    "asset_classes": 12,
+    "auxiliary_series": 8,
+    "public_approved": 0,
+    "commercial_engine_approved": 0,
+    "licensed_index_assets_pending": 8
+  }
+}
