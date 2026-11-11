@@ -497,10 +497,10 @@
     "production_unchanged": true
   },
   "next_priorities": [
-    "Personal-only browser UI is available; integrate legal personally-held TR CSV inputs with clear series_kind and provenance before extending to 12 assets",
-    "Simple/detailed withdrawal engine parity and balance reconciliation tests vs DWZ",
-    "Optional local-only data import QA for alternate start dates and incomplete history; do not fill missing",
-    "No public release, no commercial license review needed until commercialization decision"
+    "Integrate lawful personal true-TR index CSV adapter for future multi-asset engine; do not equate FX/commodity spot with total returns",
+    "Add one-vs-two asset cash buckets and explicit periodic rebalance after documenting DWZ sell-order policies",
+    "Continue offline Chromium real-CSV regression and save/export provenance test",
+    "Retain commercial license warning; do not deploy analytics research UI publicly or alter DWZ draft"
   ],
   "audit_note": "Existing November 10 registry/acquisition snapshots are historical; this is an additional verified November 11 ledger. Do not convert data-acquired into site-approved.",
   "observed_joint_coverage_research_only": {
@@ -629,5 +629,61 @@
       "Unapproved Fed DDP channel remains research candidate",
       "Local HTML, not hosted website"
     ]
+  },
+  "personal_browser_ui_20261112": {
+    "version": "0.2",
+    "status": "DWZ_R4_192_SCENARIO_PHASE_PARITY_PASS_AND_CHROMIUM_PRIVATE_CSV_QA_PASS",
+    "personal_only": true,
+    "github_entrypoint": "research/analytics/personal-lab/index.html",
+    "reference_dwz_branch": "dwz-r4-v16-5-xserver-preview",
+    "dwz_reference_git_blob_sha": "f15d2ca56b65450e9a590f34bdcbe0d8959d1e59",
+    "approved_dwz_core": false,
+    "fixes": [
+      "beginning_and_end_of_month_explicit_phases",
+      "cash_exhaustion_distinct_from_payment_shortfall",
+      "unpaid_monthly_obligations",
+      "monthly_cashflow_reconciliation",
+      "monthly_CPI_payment_date",
+      "reject_noncontiguous_dates_in_simulator",
+      "horizon_switch_valid_start_month_reset"
+    ],
+    "single_asset_parity": {
+      "test": "scripts/test-analytics-dwz-withdrawal-phase.cjs",
+      "frozen_reference": "research/analytics/fixtures/dwz_simulateOne_r4_v16_9_research_fixture.js",
+      "synthetic_cases_passed": 192,
+      "checked": [
+        "final_balance",
+        "actual_withdrawals",
+        "cumulative_cash_shortfall",
+        "investment_return",
+        "first_shortfall_month"
+      ],
+      "remaining_unverified": [
+        "multi_asset",
+        "tax_NISA",
+        "fees",
+        "income_and_pension_streams",
+        "target_reverse_solve",
+        "portfolio_rebalancing"
+      ]
+    },
+    "chromium_local": {
+      "qa": "PASS",
+      "browser": "Chromium headless set_content",
+      "real_private_CPI_FX_observations": 669,
+      "end_real_index": 12.387653,
+      "thirty_year_windows": 309,
+      "beginning_phase_zero_final_payment": "PAYS_ALL_120_MONTHS_FULLY",
+      "ending_phase_zero_final_payment": "PAYS_ALL_120_MONTHS_FULLY",
+      "initial_10000_yen_fixed100_10year": "DETECTS_FIRST_SHORTFALL_AND_2000_YEN_TOTAL_MISSING",
+      "external_http_requests": 0,
+      "js_page_errors": 0
+    },
+    "github_actions": "https://github.com/k-ait0/k-aito-com/actions/runs/43064712145",
+    "html_git_blob_sha": "7c1cfdae60619eb0b2789673307a6a0d9b00200a",
+    "real_market_values_added_to_github": 0,
+    "commercial_use_approvals_added": 0,
+    "main_and_live_site_modified": false,
+    "doc": "docs/ANALYTICS_PERSONAL_DWZ_PHASE_PARITY_V0_2.md"
   }
 }
