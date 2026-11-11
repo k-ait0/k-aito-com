@@ -1,0 +1,42 @@
+name: Analytics historical data research regression (no network or publication)
+on:
+  push:
+    branches:
+      - analytics-historical-v0-1-20261110
+    paths:
+      - .github/workflows/analytics-historical-research-regression.yml
+permissions:
+  contents: read
+jobs:
+  regression:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Freeze and QA without downloading any licensed series
+        run: |
+          set -euo pipefail
+          node scripts/check-analytics-source-registry.cjs
+          node scripts/acquire-analytics-approved-source.cjs --selftest
+          node scripts/test-analytics-bls-missing-gap.cjs
+          node scripts/test-analytics-history-coverage.cjs
+          node scripts/test-align-analytics-historical-series.cjs
+          python3 -m py_compile scripts/research-probe-fed-h10-ddp.py scripts/normalize-analytics-fed-ddp-candidate.py scripts/normalize-analytics-estat-cpi.py
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          r=json.loads(Path('research/analytics/source_registry.v0.2.json').read_text())
+          a=json.loads(Path('research/analytics/acquisition_status.v0.1.json').read_text())
+          assert len(r['assets'])==12 and len(r['auxiliary'])==8
+          assert r['policy']['no_auto_fallback'] and not r['policy']['public_display_default']
+          assert not any(x.get('site_use_approved') for x in r['assets']+r['auxiliary'])
+          assert a['summary']['site_approved_series']==0
+          assert a['datasets'][-1]['dataset_id']=='FED_H10_1971_DDP_CANDIDATE_RESEARCH'
+          assert a['datasets'][-1]['source_change_adr_status']=='DRAFT_NOT_APPROVED'
+          assert r['auxiliary'][0]['provider_id']=='FED_BOARD'
+          assert r['auxiliary'][0]['full_pinned_history_20261111']['full_1971_1999_not_acquired']
+          print('PASS: Research ledger and 12+8 frozen source/rights gates; Fed DDP candidate remains ADR draft')
+          PY
