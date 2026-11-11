@@ -232,7 +232,7 @@
       "source_lock": "LOCKED_PROVISIONAL_20261110",
       "downloaded_in_this_turn": false,
       "site_use_approved": false,
-      "acquisition_status": "OFFICIAL_GOLD_SPOT_802_MONTHS_PRIVATE_QA_PASS_LICENSE_PENDING",
+      "acquisition_status": "PUBLISHED_802_MONTHS_NUMERICAL_QA_PASS_PROVENANCE_QUARANTINED",
       "actual_coverage_20261111": {
         "from": "1960-01",
         "to": "2026-10",
@@ -245,6 +245,19 @@
         "description_methodology_break": "2025-06",
         "third_party_source_rights": "PENDING",
         "site_publication_approved": false
+      },
+      "origin_qa_20261111": {
+        "previous_private_csv_sha256": "937644f307880a639d4b6298e46763146871db03a9650ae7cf2def21831781a1",
+        "previous_origin_field": "OBSERVED",
+        "origin_reassessment": "SOURCE_DESCRIPTION_STAR_FORECAST_SERIES_MARKER__CELLS_NOT_YET_CLASSIFIED",
+        "new_quarantine_csv_sha256": "1a7a3d97f2566a2389ad131da30600593949b606b8dddff4113a8eb4110641a6",
+        "new_quarantine_origin": "PUBLISHED_LEVEL_STATUS_UNVERIFIED",
+        "prior_csv_frozen_for_audit": true,
+        "canonical_v0_1_approved_for_engine": false,
+        "actual_numeric_rows_unchanged": 802,
+        "publication_allowed": false,
+        "reason": "Workbook Description Gold row 103 has '*' forecast series legend, gold pricing reference changed 2025-06, third-party reuse rights pending",
+        "qa_report": "docs/ANALYTICS_COMMODITY_INDEX_RIGHTS_REVIEW_20261111.md"
       }
     },
     {
@@ -310,7 +323,15 @@
         "coverage_qa_report": "docs/ANALYTICS_WORLDBANK_71_SERIES_COVERAGE_20261111.md",
         "private_71_column_metadata_json_sha256": "7ca87a3e63dcf904581685d82f136ff6c92a1c7a0daa615e6328ca54b8825cc8",
         "per_commodity_definitions": "REVIEW_REQUIRED",
-        "third_party_commercial_licenses": "REVIEW_REQUIRED"
+        "third_party_commercial_licenses": "REVIEW_REQUIRED",
+        "rights_definition_triage_id": "research/analytics/worldbank_71_series_triage.v0.1.json",
+        "forecast_series_marked_count": 47,
+        "description_definition_period_markers": 35,
+        "explicit_futures_contract_reference_count": 5,
+        "non_World_Bank_listed_sources_count": 68,
+        "metadata_qa_status": "PASSED_DEFINITION_RIGHTS_TRIAGE_NO_LICENSE_GRANT",
+        "default_asset_kind_inference_prohibited": true,
+        "all_71_site_approved": 0
       }
     },
     {
@@ -492,7 +513,7 @@
       "result": "FAILED_DNS",
       "verified_official_page": "https://www.worldbank.org/en/research/commodity-markets"
     },
-    "next_step": "Approve Fed DDP direct same-publisher channel via ADR before active switch, clarify source sunset; review World Bank commodity per-series third-party licenses and definition changes; obtain equity/bond TR licenses, preserve private evidence, no production.",
+    "next_step": "Await explicit Fed ADR for DDP live source switch, vet World Bank metadata and forecasts per cell, obtain index licenses and pricing/scope. Gold candidate quarantined; Analytics/FINOWA site remains unapproved.",
     "official_page_snapshot_count": 1,
     "official_page_snapshot_rows": 28,
     "snapshot_details": [
@@ -649,6 +670,16 @@
       "rights_and_methodology_still_pending": true,
       "individual_metadata_sha256": "7ca87a3e63dcf904581685d82f136ff6c92a1c7a0daa615e6328ca54b8825cc8",
       "report": "docs/ANALYTICS_WORLDBANK_71_SERIES_COVERAGE_20261111.md"
+    },
+    "rights_triage_20261111": {
+      "status": "ALL_UNAPPROVED",
+      "metadata_71": "research/analytics/worldbank_71_series_triage.v0.1.json",
+      "rights_20": "research/analytics/commercial_data_rights_triage.v0.1.json",
+      "private_71_detail_sha256": "a11fab3ab2ea68ec0e4423555cd101d848bc27f04a3c0a3837cd9fa269314d54",
+      "gold_quarantine_sha256": "1a7a3d97f2566a2389ad131da30600593949b606b8dddff4113a8eb4110641a6",
+      "source_lock_changes": 0,
+      "site_approvals": 0,
+      "original_raw_files_added": 0
     }
   },
   "history_coverage_standard": {
