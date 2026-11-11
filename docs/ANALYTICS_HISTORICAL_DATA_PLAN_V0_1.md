@@ -1,5 +1,7 @@
 # K. Aito Analytics 過去市場データ収集・活用計画 v0.1
 
+> **2026-11-11：履歴期間の正式目標は「原則60年の連続月次」に変更。** 1980年開始は既存Shiller研究データの取得済み範囲であり、標準仕様ではない。正本：[60年履歴方針](ANALYTICS_HISTORY_60Y_PLAN_V0_5.md)、[期間台帳](../research/analytics/history_coverage_targets.v0.5.json)。60年分がない資産（J-REIT等）を擬似値で延長しない。
+
 > **取得元の正本はv0.2です（2026-11-10追補）。** 本文v0.1の取得候補URLは初期検討記録であり、正式な公開用取得元ではありません。出所の変更・権利審査は [ソース固定ポリシー](ANALYTICS_SOURCE_POLICY_V0_2.md) と [ソース台帳](../research/analytics/source_registry.v0.2.json) に従います。**FREDは独立した商用公開用の標準取得元に採用しません。**
 
 **採用：2026-11-10。研究用。公開・商用利用許諾・金融計算Coreの承認とは別。**
