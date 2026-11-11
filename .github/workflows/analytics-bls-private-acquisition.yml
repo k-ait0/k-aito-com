@@ -26,6 +26,7 @@ jobs:
           node scripts/check-analytics-source-registry.cjs
           node scripts/acquire-analytics-approved-source.cjs --selftest
           node scripts/test-analytics-history-coverage.cjs
+          node scripts/test-analytics-bls-missing-gap.cjs
       - name: Acquire seven BLS official API v1 batches and run private QA
         env:
           ANALYTICS_PRIVATE_DATA_DIR: ${{ runner.temp }}/kaito_analytics_bls_private
