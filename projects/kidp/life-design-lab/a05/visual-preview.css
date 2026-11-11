@@ -15,7 +15,7 @@
 .a05-vp-controls label{display:grid;gap:5px;font-size:.83rem;font-weight:700}
 .a05-vp-controls select{width:100%;min-height:44px;border:1px solid #8496aa;border-radius:8px;padding:7px 11px;background:white;color:#263448;font:inherit}
 .a05-vp-controls p{font-size:.74rem;line-height:1.5;color:#526477;margin:2px 0 0}
-.a05-vp-visual:has(+ .a05-vp-controls select[data-visual-setting="motion"] option[value="on"]:checked){animation:a05-vp-breathe 8s ease-in-out infinite}
+.a05-vp-visual.a05-vp-moving{animation:a05-vp-breathe 8s ease-in-out infinite}
 @keyframes a05-vp-breathe{0%,100%{box-shadow:0 0 0 0 transparent}50%{box-shadow:0 0 16px 3px var(--a05-vp-color)}}
 @media(max-width:650px){.a05-vp-grid{grid-template-columns:1fr}.a05-vp{padding:13px}.a05-vp-visual{min-height:225px}}
 @media(prefers-reduced-motion:reduce){.a05-vp-visual{animation:none!important}}
