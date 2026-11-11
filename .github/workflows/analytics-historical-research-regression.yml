@@ -23,6 +23,7 @@ jobs:
           node scripts/acquire-analytics-approved-source.cjs --selftest
           node scripts/test-analytics-bls-missing-gap.cjs
           node scripts/test-analytics-history-coverage.cjs
+          node scripts/test-analytics-commodity-rights.cjs
           node scripts/test-align-analytics-historical-series.cjs
           python3 -m py_compile scripts/research-probe-fed-h10-ddp.py scripts/normalize-analytics-fed-ddp-candidate.py scripts/normalize-analytics-estat-cpi.py
           python3 - <<'PY'
