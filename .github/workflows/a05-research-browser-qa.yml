@@ -29,7 +29,7 @@ jobs:
           node-version: '22'
       - name: Check browser test syntax
         run: node --check scripts/test-a05-d170-browser.cjs
-      - name: Verify archival provenance and editorial gates (41 tests)
+      - name: Verify archival provenance and editorial gates (42 tests)
         run: node --test scripts/test-a05-d152-d153-content-gates.mjs scripts/test-a05-research-contracts.mjs scripts/test-a05-d170-research-aggregate.cjs
       - name: Install Chromium test runtime
         run: |
