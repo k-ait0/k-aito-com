@@ -326,6 +326,19 @@
         "cpi_type": "NSA All items CPI-U",
         "source_lock": "BLS_DIRECT",
         "license_status": "publication QA pending"
+      },
+      "acquisition_status": "RAW_ACQUIRED_PRIVATE_QA_PASSED_WITH_OFFICIAL_2025_10_GAP",
+      "actual_coverage": {
+        "start_month": "1966-01",
+        "end_month": "2026-10",
+        "observations": 729,
+        "missing_months": [
+          "2025-10"
+        ],
+        "source": "BLS_DIRECT_OFFICIAL_API_V1",
+        "raw_requests": 7,
+        "normalized_sha256": "899c385488b982402bba73b2f5308fe6f37ab330a436fa2cd4d7016c38b81edd",
+        "new_site_approval": false
       }
     },
     {
@@ -394,13 +407,13 @@
       "stored_location": "private-only",
       "public_license": "NOT_VERIFIED"
     },
-    "new_external_download_count": 0,
+    "new_external_download_count": 7,
     "world_bank_monthly_xlsx_attempt": {
       "url": "https://thedocs.worldbank.org/en/doc/74e8be41ceb20fa0da750cda2f6b9e4e-0050012026/related/CMO-Historical-Data-Monthly.xlsx",
       "result": "FAILED_DNS",
       "verified_official_page": "https://www.worldbank.org/en/research/commodity-markets"
     },
-    "next_step": "Private retrieve, verify XLSX Description rights, validate monthly values, then public approval",
+    "next_step": "BLS monthly data private: QA complete, official 2025-10 gap; preserve private key and archive; continue e-Stat JP CPI, Fed ADR, World Bank XLSX rights; no website publication",
     "official_page_snapshot_count": 1,
     "official_page_snapshot_rows": 28,
     "snapshot_details": [
@@ -421,7 +434,7 @@
       }
     ],
     "pipeline_version": "0.3.0",
-    "new_long_history_download_verified": false,
+    "new_long_history_download_verified": true,
     "latest_run_20261110": {
       "status": "DNS_BLOCKED",
       "full_data_downloads": 0,
@@ -450,6 +463,42 @@
       "jpy_full_backtest_status": "BLOCKED_MISSING_HISTORICAL_USDJPY_AND_JP_CPI",
       "source_code": "scripts/prepare-analytics-shiller-research.cjs",
       "status_doc": "docs/ANALYTICS_HISTORICAL_V0_4_QA.md"
+    },
+    "external_raw_acquisition_proof": {
+      "as_of": "2026-11-11T02:41:27Z",
+      "data_id": "CPI_US",
+      "publisher": "BLS",
+      "raw_responses": 7,
+      "observations": 729,
+      "missing": [
+        "2025-10"
+      ],
+      "quality_report": "docs/ANALYTICS_BLS_US_CPI_QA_20261111.md",
+      "updated_status_ledger": "research/analytics/acquisition_status.v0.1.json",
+      "github_actions_url": "https://github.com/k-ait0/k-aito-com/actions/runs/42947688134",
+      "publication_approved": false
+    },
+    "latest_run_20261111": {
+      "status": "SUCCESS_BLS_PRIVATE_ONLY",
+      "full_data_downloads": 7,
+      "full_monthly_observations": 729,
+      "official_missing_months": [
+        "2025-10"
+      ],
+      "verified_30_year_cpi_windows": 357,
+      "normalized_csv_sha256": "899c385488b982402bba73b2f5308fe6f37ab330a436fa2cd4d7016c38b81edd",
+      "production_approved": false
+    },
+    "bls_cpi_us_20261111": {
+      "retrieved": true,
+      "qa_passed": true,
+      "raw_responses": 7,
+      "valid_monthly_observations": 729,
+      "missing_months": [
+        "2025-10"
+      ],
+      "right_to_publish_granted": false,
+      "full_details_ledger": "research/analytics/acquisition_status.v0.1.json"
     }
   },
   "history_coverage_standard": {
