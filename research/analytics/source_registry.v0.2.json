@@ -472,7 +472,7 @@
       "stored_location": "private-only",
       "public_license": "NOT_VERIFIED"
     },
-    "new_external_download_count": 11,
+    "new_external_download_count": 12,
     "world_bank_monthly_xlsx_attempt": {
       "url": "https://thedocs.worldbank.org/en/doc/74e8be41ceb20fa0da750cda2f6b9e4e-0050012026/related/CMO-Historical-Data-Monthly.xlsx",
       "result": "FAILED_DNS",
@@ -607,6 +607,25 @@
       "world_bank_other_commodities_qa_complete": false,
       "site_approval": false,
       "source_change_adr_0001": "DRAFT_UNAPPROVED"
+    },
+    "fed_ddp_source_change_research_candidate_20261111": {
+      "status": "TECHNICALLY_VALIDATED_ADR_DRAFT_NO_SOURCE_LOCK_CHANGE",
+      "alternative_channel_same_publisher": "https://www.federalreserve.gov/datadownload/Output.aspx?rel=H10&filetype=zip",
+      "raw_zip_sha256": "1f9fd18709b09d082b29d01621f52672426eca108a4f74224fa8f190a5f801b2",
+      "raw_zip_bytes": 2087377,
+      "selected_series": "H10/H10/RXI_N.B.JA",
+      "daily_rows": 14570,
+      "valid_daily": 13999,
+      "ND_daily": 571,
+      "original_locked_source_daily_overlap_compared": 7005,
+      "differences": 0,
+      "private_monthly_1971_01_to_2026_10": 670,
+      "complete_30y_months_starts": 310,
+      "canonical_csv_sha256": "4aeae87dd69b33936b5afc17a02ed85eea579fefca278b10dae4544c4a8ae6cf",
+      "source_change_ADR": "docs/decisions/ANALYTICS_SOURCE_CHANGE_ADR_0001_FED_H10_DRAFT.md",
+      "still_active_source": "https://www.federalreserve.gov/releases/h10/hist/dat00_ja.htm",
+      "site_approved": false,
+      "run_url": "https://github.com/k-ait0/k-aito-com/actions/runs/42954684913"
     }
   },
   "history_coverage_standard": {
