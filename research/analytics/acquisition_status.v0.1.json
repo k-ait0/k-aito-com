@@ -497,10 +497,10 @@
     "production_unchanged": true
   },
   "next_priorities": [
-    "Gold/World Bank series-by-series metadata and third-party source rights review before any raw observation claim or engine integration",
-    "Index license quote requests JPX/NFRC/MSCI/S&P/Bloomberg/FTSE with derived-output and redistribution scope",
-    "Fed ADR-0001 still draft: evaluate formal source channel adoption without auto-switch",
-    "No public/site integration until individual approvals"
+    "Personal-only local simplified/detail simulator and private CSV adapter, not commercial-license paperwork",
+    "Use private official CPI/FX data and synthetic TR fixtures for repeatable 10/20/30-year analytics",
+    "Expand lawful personally usable true-TR histories without unauthorized mass collection",
+    "Preserve later release checklist and source-ADR separation; no production deployment"
   ],
   "audit_note": "Existing November 10 registry/acquisition snapshots are historical; this is an additional verified November 11 ledger. Do not convert data-acquired into site-approved.",
   "observed_joint_coverage_research_only": {
@@ -548,5 +548,33 @@
     "worldbank_71_triage": "research/analytics/worldbank_71_series_triage.v0.1.json",
     "source_registry_unchanged_providers": true,
     "gold_802_published_not_fully_verified_actual": true
+  },
+  "development_execution_mode_20261111": {
+    "mode": "PERSONAL_SINGLE_USER_LOCAL_RESEARCH",
+    "decision": "PRIVATE_ONLY_NOW; COMMERCIAL_LICENSING_NOTICE_KEEP_FOR_FUTURE",
+    "details": "docs/ANALYTICS_PERSONAL_LOCAL_RESEARCH_V0_1.md",
+    "machine_readable": "research/analytics/personal_use_scope.v0.1.json",
+    "local_analytics_script": "scripts/analytics-personal-cash-fx-cpi.py",
+    "local_synthetic_tests": "scripts/test-analytics-personal-cash-fx-cpi.py",
+    "available_research_inputs": [
+      "FX_CANDIDATE_1971_PLUS",
+      "ESTAT_JP_CPI_HEADLINE",
+      "BLS_CPI_US"
+    ],
+    "gold": "EXPLORATORY_UNVERIFIED_ONLY",
+    "index_tr": "USE_LAWFULLY_OBTAINED_PERSONAL_DATA_OR_SYNTHETIC_FIXTURES",
+    "source_adrs_unchanged": true,
+    "public_approval_count": 0,
+    "commercial_license_projects_paused_until_public_launch_decision": true,
+    "initial_personal_local_validation": {
+      "fx_cpi_monthly_common": 669,
+      "first": "1971-01",
+      "last": "2026-09",
+      "usd_cash_no_interest_real_purchasing_power_index_start": 100,
+      "usd_cash_no_interest_real_purchasing_power_index_end": 12.387653,
+      "thirty_year_complete_windows": 309,
+      "private_result_sha256": "9a4b6b737e993f5020960a5c76a0c48a598f4f059c5a6d4c10fc43a9cd8ea95d",
+      "investment_total_return": false
+    }
   }
 }
