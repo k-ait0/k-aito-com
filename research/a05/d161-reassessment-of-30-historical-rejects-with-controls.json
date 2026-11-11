@@ -1,0 +1,1268 @@
+{
+  "schema": "A05-D161-REVIEW-ALL-LEGACY-REJECTIONS-0.1",
+  "date": "2026-11-11",
+  "status": "EDITORIAL_REVIEW_ONLY_NO_SCORE_APPROVAL",
+  "scope": "30 previously excluded/merge/probe/structure-hold original items re-reviewed against user cap; 20 other D142 items remain in comparison controls so no rescue bypasses 2-per-real-family limit.",
+  "user_rule": "0 exact duplicates; up to 2 non-identical questions per genuine semantic family; second must add value-relevant information",
+  "fixed": {
+    "pool": 50,
+    "draw": 30,
+    "per_axis_pool": {
+      "A": 12,
+      "B": 12,
+      "C": 12,
+      "D": 12,
+      "E": 2
+    },
+    "per_axis_draw": {
+      "A": 7,
+      "B": 7,
+      "C": 7,
+      "D": 7,
+      "E": 2
+    }
+  },
+  "source_shas": {
+    "research/a05/d130-50item-editorial-candidate-bank.json": "e33ae55f662d55a113e259425b6fd32f0a99e849",
+    "research/a05/d131-full-50-editorial-screen.json": "177a3b8b0d1bc0c17b013708eefb8a3a52829523",
+    "research/a05/d142-full-50-item-content-disposition.json": "85286173eeb6350d7a1d5b17a617702afd9675ff",
+    "research/a05/d146-50slot-before-after-quality-proposals.json": "53b3e137ff3597bdf7072c880c622baf8fee6814",
+    "research/a05/d153-50slot-content-readiness-and-nonscoring-ledger.json": "9ada6674ed6c2a9c685aab20a8bc2df958060085",
+    "research/a05/d158-semantic-family-two-question-limit-and-audit.json": "82c2e809249d6dec4f297c4059d035052cd89073"
+  },
+  "counts": {
+    "historically_flagged": 30,
+    "other_controls": 20,
+    "by_old_disposition": {
+      "OUT_OF_CONSTRUCT": 10,
+      "PROBE_ONLY": 7,
+      "DUPLICATE_MERGE": 11,
+      "STRUCTURE_HOLD": 2
+    },
+    "by_new_decision": {
+      "REWRITE_NEW_ID": 3,
+      "EXCLUDE_ORIGINAL": 10,
+      "CONDITIONAL_SECOND": 10,
+      "ALTERNATIVE_NOT_ADDITIONAL": 1,
+      "RESEARCH_ONLY": 4,
+      "E_TWO_FIXED_REVISE": 2
+    },
+    "approved_for_scored_bank": 0
+  },
+  "definitions": {
+    "CONDITIONAL_SECOND": "Original family/value idea may survive as a second item after meaningful difference and no confound are demonstrated; original wording NOT cleared",
+    "ALTERNATIVE_NOT_ADDITIONAL": "Could replace another synonymous question's wording, not enter alongside it as two accepted questions",
+    "REWRITE_NEW_ID": "Old text cannot be scored as is; changed idea requires new ID and independent review",
+    "EXCLUDE_ORIGINAL": "Old original not salvageable as a scored item by the new duplication cap",
+    "RESEARCH_ONLY": "Context/condition probe, not individually eligible for 7-item scored draw",
+    "E_TWO_FIXED_REVISE": "Keep exactly two E items; scrutinize wording/format separately"
+  },
+  "target_rows": [
+    {
+      "id": "A02",
+      "axis": "A",
+      "origin": "V2_BASE_30",
+      "original": {
+        "stem": "次の二つのあり方では、どちらを優先しますか？",
+        "left": "行きつけの場所や馴染みの空間を持つ",
+        "right": "毎回違う場所や新しい空間に出かける"
+      },
+      "d131_status": "HOLD_FOR_CONTENT_RISK",
+      "d142_disposition": "OUT_OF_CONSTRUCT",
+      "d142_rationale": "店や外出先の新奇性は生活基盤ではなくD03とも重複",
+      "d146_revised": {
+        "proposed_id": "A-D146-02",
+        "stem": "同じ活動を同じ負担で続けられるなら、定期的に使う活動場所をどう選びたいですか？",
+        "left": "使い慣れた同じ場所を活動の拠点にする",
+        "right": "一定の区切りごとに別の場所を活動の拠点にする"
+      },
+      "d153_pre_review_category": "CONTEXT_REWRITE_REQUIRED",
+      "semantic_cluster": "A_ACTIVITY_PLACE",
+      "comparison_id": "A05",
+      "decision": "REWRITE_NEW_ID",
+      "diagnosis_after_rule": "元の行きつけ店舗／外出先は場所の新奇性を測る。D-146の活動拠点案なら軸に近い",
+      "second_item_rule_analysis": "活動の内容・人・費用を揃えた上で拠点の継続と更新を比較。A05と両方採用するには生活基盤としての違いの説明が必要",
+      "next_action": "改稿候補のみ。旧原文は採点不可",
+      "old_original_scored_eligible": false,
+      "revived_or_rewritten_scored_eligible": false,
+      "content_acceptance": false,
+      "pilot_study_not_run": true
+    },
+    {
+      "id": "A03",
+      "axis": "A",
+      "origin": "V2_BASE_30",
+      "original": {
+        "stem": "次の二つのあり方では、どちらを優先しますか？",
+        "left": "気心の知れたメンバーやコミュニティで活動する",
+        "right": "新しい顔ぶれや未知のコミュニティに飛び込む"
+      },
+      "d131_status": "HOLD_FOR_CONTENT_RISK",
+      "d142_disposition": "OUT_OF_CONSTRUCT",
+      "d142_rationale": "対人社交性・新しい集団への参加能力を測っている",
+      "d146_revised": {
+        "proposed_id": "A-D146-03",
+        "stem": "費用とサービス内容が同じなら、毎月利用する生活サービスをどう選びたいですか？",
+        "left": "長く使っている提供先を基本にし、必要な部分を調整する",
+        "right": "一定期間ごとに別の提供先へ切り替える"
+      },
+      "d153_pre_review_category": "CONTEXT_REWRITE_REQUIRED",
+      "semantic_cluster": "A_COMMUNITY_SOCIAL",
+      "comparison_id": "B02",
+      "decision": "EXCLUDE_ORIGINAL",
+      "diagnosis_after_rule": "元の新旧コミュニティは社交性・対人新奇性でありAの基盤継続ではない",
+      "second_item_rule_analysis": "人間関係の新旧を環境更新に読み替えない。D-146サービス提供先案は新IDの別候補として再審査",
+      "next_action": "旧原文を復活させない",
+      "old_original_scored_eligible": false,
+      "revived_or_rewritten_scored_eligible": false,
+      "content_acceptance": false,
+      "pilot_study_not_run": true
+    },
+    {
+      "id": "A05",
+      "axis": "A",
+      "origin": "V2_BASE_30",
+      "original": {
+        "stem": "次の二つのあり方では、どちらを優先しますか？",
+        "left": "今の仕事・活動環境を育てる",
+        "right": "別の仕事・活動環境を経験する"
+      },
+      "d131_status": "HOLD_FOR_CONTENT_RISK",
+      "d142_disposition": "PROBE_ONLY",
+      "d142_rationale": "仕事内容や活動内容変更との切り分けが難しくD04に近い",
+      "d146_revised": {
+        "proposed_id": "A-D146-05",
+        "stem": "仕事内容や趣味の内容、得られる成果が同じなら、活動環境をどう選びたいですか？",
+        "left": "今の活動環境を整えて長く使う",
+        "right": "一定の区切りで活動環境を別のものに替える"
+      },
+      "d153_pre_review_category": "CONTEXT_REWRITE_REQUIRED",
+      "semantic_cluster": "A_ACTIVITY_BASE",
+      "comparison_id": "A02",
+      "decision": "CONDITIONAL_SECOND",
+      "diagnosis_after_rule": "仕事や活動の環境が変わる場面。仕事内容と環境を分ければAの追加観察場面になる可能性",
+      "second_item_rule_analysis": "A02の「活動拠点」だけとの完全重複を避け、制度・運営の継続性など価値関連の差分が示せる場合のみ二問目",
+      "next_action": "元原文そのまま不可。対照面接候補",
+      "old_original_scored_eligible": false,
+      "revived_or_rewritten_scored_eligible": false,
+      "content_acceptance": false,
+      "pilot_study_not_run": true
+    },
+    {
+      "id": "A06",
+      "axis": "A",
+      "origin": "V2_BASE_30",
+      "original": {
+        "stem": "次の二つのあり方では、どちらを優先しますか？",
+        "left": "勝手がわかる環境で確実に力を発揮する",
+        "right": "アウェーな環境（未知の場）に身を置いて刺激を受ける"
+      },
+      "d131_status": "REVISE_BEFORE_PILOT",
+      "d142_disposition": "DUPLICATE_MERGE",
+      "d142_rationale": "有能さと刺激希求の非対称。DS代案もA04と重複",
+      "d146_revised": {
+        "proposed_id": "A-D146-06",
+        "stem": "便利さや必要な費用が同じなら、毎日使う生活用具の構成についてどちらを好みますか？",
+        "left": "今ある用具の構成を活かして調整する",
+        "right": "用具の組合せを定期的に組み直す"
+      },
+      "d153_pre_review_category": "CONTEXT_REWRITE_REQUIRED",
+      "semantic_cluster": "A_COMPETENCE_STIMULUS",
+      "comparison_id": "A04",
+      "decision": "EXCLUDE_ORIGINAL",
+      "diagnosis_after_rule": "慣れた場所で能力を発揮 vs 未知の場所で刺激を得る、は利益・能力・好奇心が非対称",
+      "second_item_rule_analysis": "D-146の用具案はA-P2への統合が有力で独立問として加算しない",
+      "next_action": "旧原文は除外。新題材なら新ID",
+      "old_original_scored_eligible": false,
+      "revived_or_rewritten_scored_eligible": false,
+      "content_acceptance": false,
+      "pilot_study_not_run": true
+    },
+    {
+      "id": "A-FU09",
+      "axis": "A",
+      "origin": "D125_AB_REFRAMED_ONLY_FOR_SIMULATION",
+      "original": {
+        "stem": "生活拠点を移さなければならなくなった場合、新しい拠点でどのような暮らし方を選びますか？",
+        "left": "以前の暮らし方に近い仕組みを再現する",
+        "right": "移転を機に生活の仕組み全体を組み替える"
+      },
+      "d131_status": "CONDITIONAL_PILOT",
+      "d142_disposition": "PROBE_ONLY",
+      "d142_rationale": "強制移転への適応と自主的な変化志向は異なる",
+      "d146_revised": {
+        "proposed_id": "A-D146-08",
+        "stem": "次の季節も今と同じ便利さで暮らせるなら、日常生活の基本的な組み立て方をどうしたいですか？",
+        "left": "今の生活の組み立て方を次の季節にも活かす",
+        "right": "季節の区切りに生活の組み立て方を新しくする"
+      },
+      "d153_pre_review_category": "PROBE_DO_NOT_SCORE",
+      "semantic_cluster": "A_FORCED_VS_VOLUNTARY",
+      "comparison_id": "A01",
+      "decision": "RESEARCH_ONLY",
+      "diagnosis_after_rule": "強制移転後の適応を聞く旧原文は自主的な変化志向と異なる",
+      "second_item_rule_analysis": "強制／任意の違いを研究するなら対照条件として保持。単独のA採点に加えない",
+      "next_action": "条件効果研究のまま",
+      "old_original_scored_eligible": false,
+      "revived_or_rewritten_scored_eligible": false,
+      "content_acceptance": false,
+      "pilot_study_not_run": true
+    },
+    {
+      "id": "A-FU10",
+      "axis": "A",
+      "origin": "D125_AB_REFRAMED_ONLY_FOR_SIMULATION",
+      "original": {
+        "stem": "費用・移動負担・活動内容が同程度なら、今後数年間の生活拠点の持ち方としてどちらを選びますか？",
+        "left": "一つの拠点を中心に生活を組み立てる",
+        "right": "複数の拠点を時期に応じて使い分ける"
+      },
+      "d131_status": "REVISE_BEFORE_PILOT",
+      "d142_disposition": "DUPLICATE_MERGE",
+      "d142_rationale": "多拠点数か移住かという構成概念のずれ。DS案はA01と同義",
+      "d146_revised": {
+        "proposed_id": "A-D146-09",
+        "stem": "日常の移動時間や安全性が同じなら、よく使う移動経路をどう選びたいですか？",
+        "left": "使い慣れた経路を基本として使い続ける",
+        "right": "複数の経路を一定期間ごとに切り替えて使う"
+      },
+      "d153_pre_review_category": "CONTEXT_REWRITE_REQUIRED",
+      "semantic_cluster": "A_MULTIBASE_COUNT",
+      "comparison_id": "A01",
+      "decision": "EXCLUDE_ORIGINAL",
+      "diagnosis_after_rule": "一拠点と複数拠点は住まいを更新する志向と同義ではない",
+      "second_item_rule_analysis": "D-146の移動経路の切替も探索の新規性に寄りやすい。拠点数や経路数でAを判定しない",
+      "next_action": "元原文除外。必要なら非採点比較",
+      "old_original_scored_eligible": false,
+      "revived_or_rewritten_scored_eligible": false,
+      "content_acceptance": false,
+      "pilot_study_not_run": true
+    },
+    {
+      "id": "A-BK13",
+      "axis": "A",
+      "origin": "D130_NEW_RESEARCH_DRAFT",
+      "original": {
+        "stem": "生活環境の費用や便利さが変わらないとして、今後数年間の暮らしの仕組みとしてより好むのはどちらですか？",
+        "left": "毎年ほぼ同じ生活の仕組みを使い続け、必要な部分を少しずつ整える",
+        "right": "便利さが同じでも、一定期間ごとに生活の仕組みを大きく組み替える"
+      },
+      "d131_status": "REVISE_BEFORE_PILOT",
+      "d142_disposition": "DUPLICATE_MERGE",
+      "d142_rationale": "A-FU05と生活仕組み継続/刷新が同型",
+      "d146_revised": {
+        "proposed_id": "A-D146-10",
+        "stem": "生活予定や必要な情報を同じ手間で管理できるなら、どちらを好みますか？",
+        "left": "使い慣れた整理の仕組みを継続して整える",
+        "right": "情報整理の仕組み全体を別の方式に替える"
+      },
+      "d153_pre_review_category": "DUPLICATE_DO_NOT_COUNT",
+      "semantic_cluster": "A_DAILY_SYSTEM",
+      "comparison_id": "A-FU05",
+      "decision": "CONDITIONAL_SECOND",
+      "diagnosis_after_rule": "毎年の生活の仕組みの組替えは、日々の管理手順の微調整とは時間スケールが違う可能性",
+      "second_item_rule_analysis": "長期的な基盤再構成 vs 日常的な運用改善の差が単なる言い換えではないか確認。A04/A-FU05等の同群最大2問",
+      "next_action": "2問目として研究候補へ戻す",
+      "old_original_scored_eligible": false,
+      "revived_or_rewritten_scored_eligible": false,
+      "content_acceptance": false,
+      "pilot_study_not_run": true
+    },
+    {
+      "id": "A-BK14",
+      "axis": "A",
+      "origin": "D130_NEW_RESEARCH_DRAFT",
+      "original": {
+        "stem": "活動内容と得られる成果が同じで、参加する団体の運営方針を選べるなら、どちらを好みますか？",
+        "left": "長く続く運営方針を基盤として、その枠内で活動を積み重ねる",
+        "right": "数年単位で運営方針や仕組みを刷新する団体の中で活動する"
+      },
+      "d131_status": "CONDITIONAL_PILOT",
+      "d142_disposition": "PROBE_ONLY",
+      "d142_rationale": "団体運営の好みは個人生活基盤とは異なりB/Dにも交絡",
+      "d146_revised": {
+        "proposed_id": "A-D146-11",
+        "stem": "暮らしやすさに差がないなら、自宅の部屋や空間の使い分けをどうしたいですか？",
+        "left": "今の役割分担を基本として必要な部分を整える",
+        "right": "一定の区切りで各空間の役割を組み直す"
+      },
+      "d153_pre_review_category": "PROBE_DO_NOT_SCORE",
+      "semantic_cluster": "A_ORGANIZATION_ENV",
+      "comparison_id": "A05",
+      "decision": "RESEARCH_ONLY",
+      "diagnosis_after_rule": "所属団体の運営方針変更は自分の住環境より他者集団の影響を受ける",
+      "second_item_rule_analysis": "活動の同一性を固定した組織基盤の継続／更新で交絡を検証。所属や組織経験がなくても回答できる条件が必要",
+      "next_action": "非採点の比較研究に留める",
+      "old_original_scored_eligible": false,
+      "revived_or_rewritten_scored_eligible": false,
+      "content_acceptance": false,
+      "pilot_study_not_run": true
+    },
+    {
+      "id": "A-BK15",
+      "axis": "A",
+      "origin": "D130_NEW_RESEARCH_DRAFT",
+      "original": {
+        "stem": "住居費・交通の便利さ・周囲との関係が同じ条件で、これから数年間の住まい方としてどちらが魅力的ですか？",
+        "left": "同じ住まいを生活の基盤として使い続け、少しずつ整える",
+        "right": "不満がなくても数年ごとに別の住まいを生活の基盤に選び直す"
+      },
+      "d131_status": "HOLD_FOR_CONTENT_RISK",
+      "d142_disposition": "DUPLICATE_MERGE",
+      "d142_rationale": "A01と住居継続/移動の同義近接",
+      "d146_revised": {
+        "proposed_id": "A-D146-12",
+        "stem": "必要な仕事や用事の時間を確保できるとして、毎週の生活時間の基本的な組み方はどちらを好みますか？",
+        "left": "慣れた一週間の組み方を維持しながら整える",
+        "right": "時期ごとに一週間の組み方を組み直す"
+      },
+      "d153_pre_review_category": "DUPLICATE_DO_NOT_COUNT",
+      "semantic_cluster": "A_RESIDENCE",
+      "comparison_id": "A01",
+      "decision": "ALTERNATIVE_NOT_ADDITIONAL",
+      "diagnosis_after_rule": "同じ住まいを維持 vs 不満がなくても転居という問いはA01の住居継続・更新とほぼ同型",
+      "second_item_rule_analysis": "文面だけの変更では増分がなく、A01と二つ採用する理由がない。D-146週単位の案は意味を替えた新IDとする",
+      "next_action": "住居質問の代替表現として保管",
+      "old_original_scored_eligible": false,
+      "revived_or_rewritten_scored_eligible": false,
+      "content_acceptance": false,
+      "pilot_study_not_run": true
+    },
+    {
+      "id": "B02",
+      "axis": "B",
+      "origin": "V2_BASE_30",
+      "original": {
+        "stem": "次の二つのあり方では、どちらを優先しますか？",
+        "left": "自由時間は誰にも気を使わず一人で過ごしたい",
+        "right": "予定を合わせてでも親しい人たちと過ごしたい"
+      },
+      "d131_status": "HOLD_FOR_CONTENT_RISK",
+      "d142_disposition": "OUT_OF_CONSTRUCT",
+      "d142_rationale": "一人時間か人付き合いかは社交性で自己決定の基準ではない",
+      "d146_revised": {
+        "proposed_id": "B-D146-02",
+        "stem": "同じ予算を一緒に使う相手と使途の希望が異なり、どちらも同程度の利益がある場合、どちらを優先しますか？",
+        "left": "自分がよいと思う用途を優先する",
+        "right": "相手と合意できる用途を優先する"
+      },
+      "d153_pre_review_category": "CONTEXT_REWRITE_REQUIRED",
+      "semantic_cluster": "B_SOCIABILITY",
+      "comparison_id": "B04",
+      "decision": "EXCLUDE_ORIGINAL",
+      "diagnosis_after_rule": "一人時間 vs 親しい人との時間は社交性。自分の意思決定権と関係考慮ではない",
+      "second_item_rule_analysis": "共同予算へ題材を替えるD-146案は旧B02の復活ではなく新候補。B-P2との意味重複を検査",
+      "next_action": "旧原文は除外",
+      "old_original_scored_eligible": false,
+      "revived_or_rewritten_scored_eligible": false,
+      "content_acceptance": false,
+      "pilot_study_not_run": true
+    },
+    {
+      "id": "B03",
+      "axis": "B",
+      "origin": "V2_BASE_30",
+      "original": {
+        "stem": "次の二つのあり方では、どちらを優先しますか？",
+        "left": "自分自身が納得できる基準で成果を出す",
+        "right": "周囲と喜びや手応えを共有できる成果を出す"
+      },
+      "d131_status": "REVISE_BEFORE_PILOT",
+      "d142_disposition": "PROBE_ONLY",
+      "d142_rationale": "成果基準の自己納得と成果の共有は判断段階が異なる",
+      "d146_revised": {
+        "proposed_id": "B-D146-03",
+        "stem": "共同で進める活動の目標について意見が分かれ、結果や負担が同じなら、どちらを重視しますか？",
+        "left": "自分が適切だと考える目標を選ぶ",
+        "right": "参加者が合意できる目標を選ぶ"
+      },
+      "d153_pre_review_category": "PROBE_DO_NOT_SCORE",
+      "semantic_cluster": "B_COLLECTIVE_GOAL",
+      "comparison_id": "B01",
+      "decision": "REWRITE_NEW_ID",
+      "diagnosis_after_rule": "自己納得の成果 vs 他者と喜び共有では決定前の基準と成果後の共有が非対称",
+      "second_item_rule_analysis": "共同目標について自分の基準と参加者合意を対称に比較。B01の共同方針と同じ判断しか出なければ統合",
+      "next_action": "改稿候補として復活、独立採点不可",
+      "old_original_scored_eligible": false,
+      "revived_or_rewritten_scored_eligible": false,
+      "content_acceptance": false,
+      "pilot_study_not_run": true
+    },
+    {
+      "id": "B04",
+      "axis": "B",
+      "origin": "V2_BASE_30",
+      "original": {
+        "stem": "次の二つのあり方では、どちらを優先しますか？",
+        "left": "自分のペースで予定を決める",
+        "right": "周囲と予定を合わせる"
+      },
+      "d131_status": "REVISE_BEFORE_PILOT",
+      "d142_disposition": "DUPLICATE_MERGE",
+      "d142_rationale": "自分のペースで予定を立てることと周囲調整は両立",
+      "d146_revised": {
+        "proposed_id": "B-D146-04",
+        "stem": "共同で使う時間の予定を決めるとき、実行しやすさが同じ二案で意見が割れたら、どちらを重視しますか？",
+        "left": "自分が望む予定を基準にする",
+        "right": "関係者が合意できる予定を基準にする"
+      },
+      "d153_pre_review_category": "DUPLICATE_DO_NOT_COUNT",
+      "semantic_cluster": "B_SHARED_TIME",
+      "comparison_id": "B-FU05",
+      "decision": "CONDITIONAL_SECOND",
+      "diagnosis_after_rule": "自分のペースで予定を決めるか周囲と調整するかは両立し得るが、共有予定の決定権へ焦点を絞れば観察場面になる",
+      "second_item_rule_analysis": "義務を伴う共同予定と任意の余暇を分けると回答が変わるか確認。B-FU05との2問上限",
+      "next_action": "共同予定文面の改稿候補",
+      "old_original_scored_eligible": false,
+      "revived_or_rewritten_scored_eligible": false,
+      "content_acceptance": false,
+      "pilot_study_not_run": true
+    },
+    {
+      "id": "B-FU05",
+      "axis": "B",
+      "origin": "D125_AB_REFRAMED_ONLY_FOR_SIMULATION",
+      "original": {
+        "stem": "身近な人と余暇の過ごし方が食い違い、どちらの案も安全で費用が同じなら、より納得できるのはどちらですか？",
+        "left": "自分が望んだ過ごし方にする",
+        "right": "相手が望んだ過ごし方にする"
+      },
+      "d131_status": "CONDITIONAL_PILOT",
+      "d142_disposition": "DUPLICATE_MERGE",
+      "d142_rationale": "余暇の譲歩はB-FU01の対人衝突と重複",
+      "d146_revised": {
+        "proposed_id": "B-D146-09",
+        "stem": "一緒に過ごす休日の計画で異なる希望が出て、どちらの案も同程度に楽しめるなら、どちらを重視しますか？",
+        "left": "自分が選びたい計画にする",
+        "right": "相手と合意できる計画にする"
+      },
+      "d153_pre_review_category": "DUPLICATE_DO_NOT_COUNT",
+      "semantic_cluster": "B_SHARED_TIME",
+      "comparison_id": "B04",
+      "decision": "CONDITIONAL_SECOND",
+      "diagnosis_after_rule": "余暇の相手への譲歩は他者考慮を測り得るが譲歩規範・親密度が混じる",
+      "second_item_rule_analysis": "共有予定のB04とは任意性が違うが、単なる対象差なら2問として残さない",
+      "next_action": "B04とのペア比較に復帰",
+      "old_original_scored_eligible": false,
+      "revived_or_rewritten_scored_eligible": false,
+      "content_acceptance": false,
+      "pilot_study_not_run": true
+    },
+    {
+      "id": "B-FU11",
+      "axis": "B",
+      "origin": "D125_AB_REFRAMED_ONLY_FOR_SIMULATION",
+      "original": {
+        "stem": "その結果が主に自分だけに影響する活動を選ぶ際、身近な人が別の活動を勧めているとします。どちらも同じくらい魅力的なら、どう決めますか？",
+        "left": "自分の選びたい活動を優先する",
+        "right": "その人の勧めに合わせる"
+      },
+      "d131_status": "REVISE_BEFORE_PILOT",
+      "d142_disposition": "PROBE_ONLY",
+      "d142_rationale": "他人の勧めを採る合理性と関係優先は別",
+      "d146_revised": {
+        "proposed_id": "B-D146-10",
+        "stem": "共同で使える場所や設備の利用方法について意見が違い、どの案も同程度に便利なら、どちらを重視しますか？",
+        "left": "自分が適切だと思う利用方法を選ぶ",
+        "right": "利用する人が合意できる方法を選ぶ"
+      },
+      "d153_pre_review_category": "CONTEXT_REWRITE_REQUIRED",
+      "semantic_cluster": "B_ADVICE_VS_DECISION",
+      "comparison_id": "B-FU01",
+      "decision": "RESEARCH_ONLY",
+      "diagnosis_after_rule": "他人の勧めを受け入れることは、関係者との合意を最終基準にすることと同じでない",
+      "second_item_rule_analysis": "相談・助言重視と決定権を分離した独立評価の研究に使える。Bの二極得点へ直投入しない",
+      "next_action": "非採点プローブのまま",
+      "old_original_scored_eligible": false,
+      "revived_or_rewritten_scored_eligible": false,
+      "content_acceptance": false,
+      "pilot_study_not_run": true
+    },
+    {
+      "id": "B-FU12",
+      "axis": "B",
+      "origin": "D125_AB_REFRAMED_ONLY_FOR_SIMULATION",
+      "original": {
+        "stem": "二人で一つの予定を決めるとき、あなたは強く希望しており、相手には特に強い希望がないと分かっています。安全性や負担が変わらなければどうしますか？",
+        "left": "自分が強く希望する案を選ぶ",
+        "right": "希望の強さにかかわらず相手に譲る"
+      },
+      "d131_status": "HOLD_FOR_CONTENT_RISK",
+      "d142_disposition": "OUT_OF_CONSTRUCT",
+      "d142_rationale": "本人希望が強い一方相手の希望が弱くても譲る非合理な片寄り",
+      "d146_revised": {
+        "proposed_id": "B-D146-11",
+        "stem": "対等な立場で企画を進める二人が同じ負担で異なる案を提案したら、何をより重視しますか？",
+        "left": "自分の提案を企画に反映させる",
+        "right": "二人が合意できる企画にする"
+      },
+      "d153_pre_review_category": "REMOVE_OR_REPLACE",
+      "semantic_cluster": "B_UNEQUAL_YIELD",
+      "comparison_id": "B-FU01",
+      "decision": "EXCLUDE_ORIGINAL",
+      "diagnosis_after_rule": "自分の希望が強い時に相手に譲るという旧左右の不均衡は2問上限では解消しない",
+      "second_item_rule_analysis": "D-146の対等な企画案もB01と極めて近い。差分を説明できなければ新採点問にしない",
+      "next_action": "旧原文除外。新題材なら新ID",
+      "old_original_scored_eligible": false,
+      "revived_or_rewritten_scored_eligible": false,
+      "content_acceptance": false,
+      "pilot_study_not_run": true
+    },
+    {
+      "id": "B-BK13",
+      "axis": "B",
+      "origin": "D130_NEW_RESEARCH_DRAFT",
+      "original": {
+        "stem": "あなたが最終的な責任を負う共同活動で、関係者の意見は一致していません。どの案も成果と負担が同じなら、何を優先しますか？",
+        "left": "意見を聞いた上で、自分が納得した判断を最終基準にする",
+        "right": "時間をかけて関係者が受け入れられる判断を最終基準にする"
+      },
+      "d131_status": "REVISE_BEFORE_PILOT",
+      "d142_disposition": "DUPLICATE_MERGE",
+      "d142_rationale": "B-FU04の同義近接かつ合意側だけ時間コストあり",
+      "d146_revised": {
+        "proposed_id": "B-D146-12",
+        "stem": "同じ人数に同じ影響がある共通ルールを選ぶ際、意見が割れていてどちらにも合理性があるなら、どちらを重視しますか？",
+        "left": "自分の判断を最終的な基準にする",
+        "right": "参加者の合意を最終的な基準にする"
+      },
+      "d153_pre_review_category": "DUPLICATE_DO_NOT_COUNT",
+      "semantic_cluster": "B_FINAL_DECISION",
+      "comparison_id": "B-FU04",
+      "decision": "CONDITIONAL_SECOND",
+      "diagnosis_after_rule": "最終判断 vs 全員合意はB-FU04と近いが、共同ルールの正当な決定権の場面に限定すれば内容差があり得る",
+      "second_item_rule_analysis": "左右の決定時間・影響・権利を揃えて、B01/B-FU04等から最大2問までとする。多数決vs全員一致は別概念",
+      "next_action": "共同ルールとして改稿・対照",
+      "old_original_scored_eligible": false,
+      "revived_or_rewritten_scored_eligible": false,
+      "content_acceptance": false,
+      "pilot_study_not_run": true
+    },
+    {
+      "id": "C02",
+      "axis": "C",
+      "origin": "V2_BASE_30",
+      "original": {
+        "stem": "次の二つのあり方では、どちらを優先しますか？",
+        "left": "今は少し我慢してでも数年後の大きな安心を作る",
+        "right": "先のことは気にしすぎず今日一日の心地よさを優先する"
+      },
+      "d131_status": "HOLD_FOR_CONTENT_RISK",
+      "d142_disposition": "OUT_OF_CONSTRUCT",
+      "d142_rationale": "我慢・不安・将来の安心の希求が混入",
+      "d146_revised": {
+        "proposed_id": "C-D146-02",
+        "stem": "生活に必要な支出や休息が満たされ、予定外に自由に使える時間ができたら、どちらを優先したいですか？",
+        "left": "将来の目標に向けた準備に使う",
+        "right": "今の生活を充実させる体験に使う"
+      },
+      "d153_pre_review_category": "REMOVE_OR_REPLACE",
+      "semantic_cluster": "C_ANXIETY_SELFCONTROL",
+      "comparison_id": "C-FU11",
+      "decision": "EXCLUDE_ORIGINAL",
+      "diagnosis_after_rule": "我慢と未来不安が混入し、将来達成と現在充実の比較が非対称",
+      "second_item_rule_analysis": "D-146の自由時間への改稿はC01/C-FU11と類似。新IDで再審査、旧原文を加算しない",
+      "next_action": "旧原文は除外",
+      "old_original_scored_eligible": false,
+      "revived_or_rewritten_scored_eligible": false,
+      "content_acceptance": false,
+      "pilot_study_not_run": true
+    },
+    {
+      "id": "C03",
+      "axis": "C",
+      "origin": "V2_BASE_30",
+      "original": {
+        "stem": "次の二つのあり方では、どちらを優先しますか？",
+        "left": "後で役立つ知識を学ぶ",
+        "right": "今の関心を満たす知識を学ぶ"
+      },
+      "d131_status": "REVISE_BEFORE_PILOT",
+      "d142_disposition": "PROBE_ONLY",
+      "d142_rationale": "将来役立つ知識と今興味ある知識は同時成立。D学習軸に近い",
+      "d146_revised": {
+        "proposed_id": "C-D146-03",
+        "stem": "同じ時間で参加できる活動が二つあり、どちらにも興味がある場合、どちらを選びたいですか？",
+        "left": "後々の選択肢を広げる活動に参加する",
+        "right": "参加中の充実感が大きい活動に参加する"
+      },
+      "d153_pre_review_category": "PROBE_DO_NOT_SCORE",
+      "semantic_cluster": "C_ACTIVITY_CHOICE",
+      "comparison_id": "C01",
+      "decision": "CONDITIONAL_SECOND",
+      "diagnosis_after_rule": "将来役立つ知識 vs 現在の関心の元原文は同時選択可能。新活動の選択基準ならC01の単発時間配分と場面差が出る",
+      "second_item_rule_analysis": "学習の得意不得意・D軸への交絡を避け、同じ時間・活動興味を揃える。C04と同義なら片方だけ",
+      "next_action": "活動選択の改稿候補",
+      "old_original_scored_eligible": false,
+      "revived_or_rewritten_scored_eligible": false,
+      "content_acceptance": false,
+      "pilot_study_not_run": true
+    },
+    {
+      "id": "C04",
+      "axis": "C",
+      "origin": "V2_BASE_30",
+      "original": {
+        "stem": "次の二つのあり方では、どちらを優先しますか？",
+        "left": "過程が地道でも将来大きな成果につながる挑戦",
+        "right": "将来の役立ち度は未知数でも今この瞬間が夢中になれる挑戦"
+      },
+      "d131_status": "HOLD_FOR_CONTENT_RISK",
+      "d142_disposition": "OUT_OF_CONSTRUCT",
+      "d142_rationale": "成果確実性と夢中になることを同時に変更",
+      "d146_revised": {
+        "proposed_id": "C-D146-04",
+        "stem": "同じ時間と負担で続けられる活動を選べるなら、どちらを優先したいですか？",
+        "left": "数か月後の目標達成につながる活動を続ける",
+        "right": "活動する今の時間が充実する取り組みを続ける"
+      },
+      "d153_pre_review_category": "REMOVE_OR_REPLACE",
+      "semantic_cluster": "C_CONTINUING_ACTIVITY",
+      "comparison_id": "C03",
+      "decision": "REWRITE_NEW_ID",
+      "diagnosis_after_rule": "地道な挑戦 vs 夢中になる挑戦は努力・結果確実性・将来利益を同時に変更",
+      "second_item_rule_analysis": "左右の負担・期待利益を揃えた長期継続活動で現在/将来の価値を比較。C03/C05と似れば1問へ統合",
+      "next_action": "改稿案を別IDで検証",
+      "old_original_scored_eligible": false,
+      "revived_or_rewritten_scored_eligible": false,
+      "content_acceptance": false,
+      "pilot_study_not_run": true
+    },
+    {
+      "id": "C05",
+      "axis": "C",
+      "origin": "V2_BASE_30",
+      "original": {
+        "stem": "次の二つのあり方では、どちらを優先しますか？",
+        "left": "長期の目標に向けた小さな前進",
+        "right": "日々の満足を増やす小さな工夫"
+      },
+      "d131_status": "REVISE_BEFORE_PILOT",
+      "d142_disposition": "DUPLICATE_MERGE",
+      "d142_rationale": "C01の将来準備/今日充実の一般論と同型",
+      "d146_revised": {
+        "proposed_id": "C-D146-05",
+        "stem": "毎週確保できる自由時間を一つの使い道に優先配分するなら、どちらを選びたいですか？",
+        "left": "長期的に役立つ準備を積み重ねる",
+        "right": "毎週の体験そのものを充実させる"
+      },
+      "d153_pre_review_category": "DUPLICATE_DO_NOT_COUNT",
+      "semantic_cluster": "C_TIME_ALLOCATION",
+      "comparison_id": "C01",
+      "decision": "CONDITIONAL_SECOND",
+      "diagnosis_after_rule": "長期前進と日々満足の単純な対句はC01と同義だが、反復投入と一回配分は違う行動場面",
+      "second_item_rule_analysis": "週単位の反復配分としてC01の単発配分と同じ回答者に質問。C-BK15も同群なので最大2問",
+      "next_action": "継続配分に限定して研究候補",
+      "old_original_scored_eligible": false,
+      "revived_or_rewritten_scored_eligible": false,
+      "content_acceptance": false,
+      "pilot_study_not_run": true
+    },
+    {
+      "id": "C06",
+      "axis": "C",
+      "origin": "V2_BASE_30",
+      "original": {
+        "stem": "次の二つのあり方では、どちらを優先しますか？",
+        "left": "数年後の理想から逆算して今の計画を立てる",
+        "right": "その時々の直感や目の前の状況に応じて柔軟に動く"
+      },
+      "d131_status": "HOLD_FOR_CONTENT_RISK",
+      "d142_disposition": "OUT_OF_CONSTRUCT",
+      "d142_rationale": "計画性と柔軟性を測る。将来達成/現在充実ではない",
+      "d146_revised": {
+        "proposed_id": "C-D146-06",
+        "stem": "必要な休息を確保でき、自由に使える休日が一日あるなら、どちらへ優先的に使いたいですか？",
+        "left": "将来の目標に向けて進める",
+        "right": "その日の体験を充実させる活動に使う"
+      },
+      "d153_pre_review_category": "REMOVE_OR_REPLACE",
+      "semantic_cluster": "C_PLANNING_FLEXIBILITY",
+      "comparison_id": "A04",
+      "decision": "EXCLUDE_ORIGINAL",
+      "diagnosis_after_rule": "将来から逆算して計画 vs 柔軟に動くは計画性・即興性でありCの価値極性ではない",
+      "second_item_rule_analysis": "D-146の休暇活用は題材を完全変更した新候補。未来目的の有無にも注意",
+      "next_action": "旧原文除外",
+      "old_original_scored_eligible": false,
+      "revived_or_rewritten_scored_eligible": false,
+      "content_acceptance": false,
+      "pilot_study_not_run": true
+    },
+    {
+      "id": "C-BK13",
+      "axis": "C",
+      "origin": "D130_NEW_RESEARCH_DRAFT",
+      "original": {
+        "stem": "休息が十分で両方に同じ2時間を使う場合、今週の余剰時間をどちらに充てたいですか？",
+        "left": "半年後に選べる活動を増やすための準備に使う",
+        "right": "今週しかできない体験を味わうために使う"
+      },
+      "d131_status": "REVISE_BEFORE_PILOT",
+      "d142_disposition": "DUPLICATE_MERGE",
+      "d142_rationale": "現在体験だけ希少性がありC-FU14と不均等",
+      "d146_revised": {
+        "proposed_id": "C-D146-10",
+        "stem": "必要な支出を満たしたうえで自由に使える同じ予算があれば、何をより優先しますか？",
+        "left": "将来の目標や選択肢を増やすために使う",
+        "right": "現在の経験を豊かにするために使う"
+      },
+      "d153_pre_review_category": "DUPLICATE_DO_NOT_COUNT",
+      "semantic_cluster": "C_SCARCITY_ASYMMETRY",
+      "comparison_id": "C-FU14",
+      "decision": "RESEARCH_ONLY",
+      "diagnosis_after_rule": "今週しかできない経験を現在側にだけ置くと希少性バイアスが発生",
+      "second_item_rule_analysis": "両側の機会を同条件にしたC-FU14/C-FU15との対照研究にのみ残す。現在の採点質問としては使わない",
+      "next_action": "非採点・条件検証",
+      "old_original_scored_eligible": false,
+      "revived_or_rewritten_scored_eligible": false,
+      "content_acceptance": false,
+      "pilot_study_not_run": true
+    },
+    {
+      "id": "C-BK14",
+      "axis": "C",
+      "origin": "D130_NEW_RESEARCH_DRAFT",
+      "original": {
+        "stem": "どちらの活動も同じ時間が必要で、実現する見込みも同程度とすると、どちらを選びたいですか？",
+        "left": "今は手応えが小さくても、数年後に実感できる成果のために取り組む",
+        "right": "数年後の成果は小さくても、取り組む今の充実を感じられる活動をする"
+      },
+      "d131_status": "HOLD_FOR_CONTENT_RISK",
+      "d142_disposition": "OUT_OF_CONSTRUCT",
+      "d142_rationale": "成果規模と時点が同時に異なる",
+      "d146_revised": {
+        "proposed_id": "C-D146-11",
+        "stem": "今後一か月の自由な活動時間の使い方を考えるとき、どちらを優先しますか？",
+        "left": "数か月後の達成に近づく活動を選ぶ",
+        "right": "今月の経験を充実させる活動を選ぶ"
+      },
+      "d153_pre_review_category": "REMOVE_OR_REPLACE",
+      "semantic_cluster": "C_REWARD_SIZE",
+      "comparison_id": "C04",
+      "decision": "EXCLUDE_ORIGINAL",
+      "diagnosis_after_rule": "将来成果の大小と満足の大小を同時に変更しており時間的価値の比較ではない",
+      "second_item_rule_analysis": "C04の期待利益を揃える修正候補に統合。別々の12問枠には数えない",
+      "next_action": "旧原文除外",
+      "old_original_scored_eligible": false,
+      "revived_or_rewritten_scored_eligible": false,
+      "content_acceptance": false,
+      "pilot_study_not_run": true
+    },
+    {
+      "id": "D03",
+      "axis": "D",
+      "origin": "V2_BASE_30",
+      "original": {
+        "stem": "次の二つのあり方では、どちらを優先しますか？",
+        "left": "食事や外出では、まだ行ったことのない店や場所を開拓する",
+        "right": "気に入った店や場所へ繰り返し通い、味わいを深める"
+      },
+      "d131_status": "HOLD_FOR_CONTENT_RISK",
+      "d142_disposition": "OUT_OF_CONSTRUCT",
+      "d142_rationale": "店の新奇性はA02と重複し分野の深さを測れない",
+      "d146_revised": {
+        "proposed_id": "D-D146-03",
+        "stem": "一つのテーマを学ぶうちに、別の分野にも同程度の関心を持った場合、次はどちらを選びたいですか？",
+        "left": "別分野の全体像を新しく学ぶ",
+        "right": "今の分野のより詳しい部分を学ぶ"
+      },
+      "d153_pre_review_category": "PAIRED_RESEARCH_ONLY",
+      "semantic_cluster": "D_VENUE_NOVELTY",
+      "comparison_id": "A02",
+      "decision": "EXCLUDE_ORIGINAL",
+      "diagnosis_after_rule": "飲食店・外出先の新規開拓と通い慣れた店は場所の新奇性であり分野の幅/深さではない",
+      "second_item_rule_analysis": "D-146の途中の関心テーマの切替は新意味の研究用質問としてのみ扱う",
+      "next_action": "旧原文は除外",
+      "old_original_scored_eligible": false,
+      "revived_or_rewritten_scored_eligible": false,
+      "content_acceptance": false,
+      "pilot_study_not_run": true
+    },
+    {
+      "id": "D04",
+      "axis": "D",
+      "origin": "V2_BASE_30",
+      "original": {
+        "stem": "次の二つのあり方では、どちらを優先しますか？",
+        "left": "新しい仕事の進め方を試す",
+        "right": "得意な進め方を磨く"
+      },
+      "d131_status": "HOLD_FOR_CONTENT_RISK",
+      "d142_disposition": "OUT_OF_CONSTRUCT",
+      "d142_rationale": "新しい仕事手順と得意手順は能力・A軸の混入",
+      "d146_revised": {
+        "proposed_id": "D-D146-04",
+        "stem": "創作やものづくりに同じ時間を使える場合、どちらをより好みますか？",
+        "left": "複数の異なる制作分野を試す",
+        "right": "一つの制作分野の表現を掘り下げる"
+      },
+      "d153_pre_review_category": "REMOVE_OR_REPLACE",
+      "semantic_cluster": "D_WORK_METHOD",
+      "comparison_id": "A05",
+      "decision": "EXCLUDE_ORIGINAL",
+      "diagnosis_after_rule": "仕事の新しい方法と得意な方法を磨くことは技能・環境更新の影響が強い",
+      "second_item_rule_analysis": "D-146の創作分野案も経験制約が強い。別分野への関心vs一分野深化という新概念で作り直す必要",
+      "next_action": "旧原文は除外。新IDのみ",
+      "old_original_scored_eligible": false,
+      "revived_or_rewritten_scored_eligible": false,
+      "content_acceptance": false,
+      "pilot_study_not_run": true
+    },
+    {
+      "id": "D-FU09",
+      "axis": "D",
+      "origin": "D125_AB_REFRAMED_ONLY_FOR_SIMULATION",
+      "original": {
+        "stem": "今学んでいる分野にまだ理解したい課題がある状態で、同じ時間を使う場合、次のどちらを選びますか？",
+        "left": "新しい分野を短期間だけ試し、戻るか決める",
+        "right": "今の分野の未解決課題をもう少し深掘りする"
+      },
+      "d131_status": "REVISE_BEFORE_PILOT",
+      "d142_disposition": "DUPLICATE_MERGE",
+      "d142_rationale": "D-FU07と未解決課題条件が同型",
+      "d146_revised": {
+        "proposed_id": "D-D146-08",
+        "stem": "未経験の分野に関心を持ったとき、同じ学習時間ならどちらを選びたいですか？",
+        "left": "複数の未経験分野を短く試す",
+        "right": "最初に選んだ一つの新分野を詳しく学ぶ"
+      },
+      "d153_pre_review_category": "DUPLICATE_DO_NOT_COUNT",
+      "semantic_cluster": "D_FIELD_BREADTH",
+      "comparison_id": "D02",
+      "decision": "CONDITIONAL_SECOND",
+      "diagnosis_after_rule": "旧原文は未解決課題でD-FU07と同義。改稿で未経験の複数分野か一つの未経験分野の深化に変えると違う条件を扱える",
+      "second_item_rule_analysis": "別分野を試す時間配分とD02の既存関心分野の幅/深さが異なる情報か検証。差がなければ統合",
+      "next_action": "新内容で2問目候補・未承認",
+      "old_original_scored_eligible": false,
+      "revived_or_rewritten_scored_eligible": false,
+      "content_acceptance": false,
+      "pilot_study_not_run": true
+    },
+    {
+      "id": "D-FU11",
+      "axis": "D",
+      "origin": "D125_AB_REFRAMED_ONLY_FOR_SIMULATION",
+      "original": {
+        "stem": "現在の分野を深めるほど新しい発見が少なくなってきたとき、同程度の学習時間をどう使いたいですか？",
+        "left": "別の分野の基本を学んで新しい刺激を得る",
+        "right": "今の分野に残る難しい課題を探して掘り下げる"
+      },
+      "d131_status": "REVISE_BEFORE_PILOT",
+      "d142_disposition": "PROBE_ONLY",
+      "d142_rationale": "刺激不足と難問の粘り強さが主に混ざる",
+      "d146_revised": {
+        "proposed_id": "D-D146-10",
+        "stem": "自分が続けている活動が一つあるとき、追加で使える時間をどう使いたいですか？",
+        "left": "別の分野の活動を新たに加える",
+        "right": "今の分野の活動の内容をさらに深める"
+      },
+      "d153_pre_review_category": "PROBE_DO_NOT_SCORE",
+      "semantic_cluster": "D_ACTIVITY_PORTFOLIO",
+      "comparison_id": "D01",
+      "decision": "CONDITIONAL_SECOND",
+      "diagnosis_after_rule": "刺激を得る vs 難問へ粘るは非対称。D-146の活動分野を増やす vs 深めるなら活動の幅/深さへ近づく",
+      "second_item_rule_analysis": "既存趣味D01との重複が強い。活動全体の組合せと一趣味の深耕が価値関連で異なるか検証",
+      "next_action": "改稿条件付きで復帰",
+      "old_original_scored_eligible": false,
+      "revived_or_rewritten_scored_eligible": false,
+      "content_acceptance": false,
+      "pilot_study_not_run": true
+    },
+    {
+      "id": "D-BK13",
+      "axis": "D",
+      "origin": "D130_NEW_RESEARCH_DRAFT",
+      "original": {
+        "stem": "一つの未解決課題について、どちらの進め方でも解決に近づける見込みが同程度なら、次の時間をどう使いますか？",
+        "left": "別分野の基礎を学び、課題を異なる専門領域から捉えてみる",
+        "right": "今の専門領域をさらに掘り下げ、その知識で課題を理解する"
+      },
+      "d131_status": "REVISE_BEFORE_PILOT",
+      "d142_disposition": "DUPLICATE_MERGE",
+      "d142_rationale": "D-FU07と未解決課題/異分野視点が重複",
+      "d146_revised": {
+        "proposed_id": "D-D146-12",
+        "stem": "今後半年の自由に使える学習時間の配分を考えるなら、どちらを好みますか？",
+        "left": "複数の異なる分野に少しずつ取り組む",
+        "right": "一つの分野に継続的に取り組んで深める"
+      },
+      "d153_pre_review_category": "DUPLICATE_DO_NOT_COUNT",
+      "semantic_cluster": "D_CROSSFIELD_UNDERSTANDING",
+      "comparison_id": "D05",
+      "decision": "CONDITIONAL_SECOND",
+      "diagnosis_after_rule": "課題を異なる専門からみる vs 一分野を深く掘るはDの分野配分に近いが問題解決能力も混入",
+      "second_item_rule_analysis": "専門性ではなく学びたい知識領域を比べる条件へ変更すればD05とは異なる場面として2問目を検討",
+      "next_action": "改稿条件付き・未承認",
+      "old_original_scored_eligible": false,
+      "revived_or_rewritten_scored_eligible": false,
+      "content_acceptance": false,
+      "pilot_study_not_run": true
+    },
+    {
+      "id": "E01",
+      "axis": "E",
+      "origin": "V2_BASE_30_E_DEMO_ONLY",
+      "original": {
+        "stem": "次の二つのあり方では、どちらを優先しますか？",
+        "left": "収入を増やせる働き方",
+        "right": "自由な時間を確保できる働き方"
+      },
+      "d131_status": "HOLD_FOR_CONTENT_RISK",
+      "d142_disposition": "STRUCTURE_HOLD",
+      "d142_rationale": "仕事を前提に金額と時間の増分不明。E二極構造自体が未決",
+      "d146_revised": {
+        "proposed_id": "E-D146-01",
+        "stem": "必要な生活費と休息を確保できている状態で、一つだけ増やせるとしたら、どちらを選びたいですか？",
+        "left": "毎月、自分で使えるお金が1万円増える",
+        "right": "毎月、自分で使える時間が8時間増える"
+      },
+      "d153_pre_review_category": "E_2_FIXED_CONTENT_REVIEW",
+      "semantic_cluster": "E_MONEY_TIME",
+      "comparison_id": "E02",
+      "decision": "E_TWO_FIXED_REVISE",
+      "diagnosis_after_rule": "働き方を選ぶ二極案は就労状況と賃金水準に依存する",
+      "second_item_rule_analysis": "2問固定を維持。お金の裁量と時間の裁量をどう尋ねるか回答形式は別審査",
+      "next_action": "E01内容審査のみ",
+      "old_original_scored_eligible": false,
+      "revived_or_rewritten_scored_eligible": false,
+      "content_acceptance": false,
+      "pilot_study_not_run": true
+    },
+    {
+      "id": "E02",
+      "axis": "E",
+      "origin": "V2_BASE_30_E_DEMO_ONLY",
+      "original": {
+        "stem": "次の二つのあり方では、どちらを優先しますか？",
+        "left": "臨時で空いた時間があれば、追加収入になる活動を入れる",
+        "right": "収入は増えなくても、休養や自分のための時間に充てる"
+      },
+      "d131_status": "HOLD_FOR_CONTENT_RISK",
+      "d142_disposition": "STRUCTURE_HOLD",
+      "d142_rationale": "休息必要性と副収入の選択で心理的制約が不均等",
+      "d146_revised": {
+        "proposed_id": "E-D146-02",
+        "stem": "必要な休息と生活費を確保したうえで、追加収入の機会がある自由な半日なら、どちらを優先したいですか？",
+        "left": "追加活動をして自由に使えるお金を4,000円増やす",
+        "right": "その半日を自分の好きなことに使う"
+      },
+      "d153_pre_review_category": "E_2_FIXED_CONTENT_REVIEW",
+      "semantic_cluster": "E_MONEY_TIME",
+      "comparison_id": "E01",
+      "decision": "E_TWO_FIXED_REVISE",
+      "diagnosis_after_rule": "追加収入か休息かは疲労度による偏りが強い",
+      "second_item_rule_analysis": "E01と意味の異なる獲得/使途の文脈にするか、独立評価2問にするか別審査",
+      "next_action": "E02内容審査のみ",
+      "old_original_scored_eligible": false,
+      "revived_or_rewritten_scored_eligible": false,
+      "content_acceptance": false,
+      "pilot_study_not_run": true
+    }
+  ],
+  "comparison_controls": [
+    {
+      "id": "A01",
+      "axis": "A",
+      "d142_disposition": "REWRITE",
+      "review_status": "REFERENCE_CONTROL_RETAINED_FOR_DUPLICATE_CHECK",
+      "needs_two_limit_audit": true,
+      "still_approved": false,
+      "reason": "Original status must be compared to any rescued items; source of one candidate does not automatically license second",
+      "note": null
+    },
+    {
+      "id": "A04",
+      "axis": "A",
+      "d142_disposition": "REWRITE",
+      "review_status": "REFERENCE_CONTROL_RETAINED_FOR_DUPLICATE_CHECK",
+      "needs_two_limit_audit": true,
+      "still_approved": false,
+      "reason": "Original status must be compared to any rescued items; source of one candidate does not automatically license second",
+      "note": null
+    },
+    {
+      "id": "A-FU05",
+      "axis": "A",
+      "d142_disposition": "PROVISIONAL_KEEP",
+      "review_status": "REFERENCE_CONTROL_RETAINED_FOR_DUPLICATE_CHECK",
+      "needs_two_limit_audit": true,
+      "still_approved": false,
+      "reason": "Original status must be compared to any rescued items; source of one candidate does not automatically license second",
+      "note": null
+    },
+    {
+      "id": "B01",
+      "axis": "B",
+      "d142_disposition": "REWRITE",
+      "review_status": "REFERENCE_CONTROL_RETAINED_FOR_DUPLICATE_CHECK",
+      "needs_two_limit_audit": true,
+      "still_approved": false,
+      "reason": "Original status must be compared to any rescued items; source of one candidate does not automatically license second",
+      "note": null
+    },
+    {
+      "id": "B05",
+      "axis": "B",
+      "d142_disposition": "REWRITE",
+      "review_status": "REFERENCE_CONTROL_RETAINED_FOR_DUPLICATE_CHECK",
+      "needs_two_limit_audit": true,
+      "still_approved": false,
+      "reason": "Original status must be compared to any rescued items; source of one candidate does not automatically license second",
+      "note": null
+    },
+    {
+      "id": "B06",
+      "axis": "B",
+      "d142_disposition": "REWRITE",
+      "review_status": "REFERENCE_CONTROL_RETAINED_FOR_DUPLICATE_CHECK",
+      "needs_two_limit_audit": true,
+      "still_approved": false,
+      "reason": "Original status must be compared to any rescued items; source of one candidate does not automatically license second",
+      "note": null
+    },
+    {
+      "id": "B-FU01",
+      "axis": "B",
+      "d142_disposition": "PROVISIONAL_KEEP",
+      "review_status": "REFERENCE_CONTROL_RETAINED_FOR_DUPLICATE_CHECK",
+      "needs_two_limit_audit": true,
+      "still_approved": false,
+      "reason": "Original status must be compared to any rescued items; source of one candidate does not automatically license second",
+      "note": null
+    },
+    {
+      "id": "B-FU04",
+      "axis": "B",
+      "d142_disposition": "PROVISIONAL_KEEP",
+      "review_status": "REFERENCE_CONTROL_RETAINED_FOR_DUPLICATE_CHECK",
+      "needs_two_limit_audit": true,
+      "still_approved": false,
+      "reason": "Original status must be compared to any rescued items; source of one candidate does not automatically license second",
+      "note": null
+    },
+    {
+      "id": "C01",
+      "axis": "C",
+      "d142_disposition": "REWRITE",
+      "review_status": "REFERENCE_CONTROL_RETAINED_FOR_DUPLICATE_CHECK",
+      "needs_two_limit_audit": true,
+      "still_approved": false,
+      "reason": "Original status must be compared to any rescued items; source of one candidate does not automatically license second",
+      "note": null
+    },
+    {
+      "id": "C-FU11",
+      "axis": "C",
+      "d142_disposition": "PROVISIONAL_KEEP",
+      "review_status": "REFERENCE_CONTROL_RETAINED_FOR_DUPLICATE_CHECK",
+      "needs_two_limit_audit": true,
+      "still_approved": false,
+      "reason": "Original status must be compared to any rescued items; source of one candidate does not automatically license second",
+      "note": null
+    },
+    {
+      "id": "C-FU14",
+      "axis": "C",
+      "d142_disposition": "PROVISIONAL_KEEP",
+      "review_status": "REFERENCE_CONTROL_RETAINED_FOR_DUPLICATE_CHECK",
+      "needs_two_limit_audit": true,
+      "still_approved": false,
+      "reason": "Original status must be compared to any rescued items; source of one candidate does not automatically license second",
+      "note": "May be part of a contextual contrast; do not automatically treat as interchangeable scored item"
+    },
+    {
+      "id": "C-FU15",
+      "axis": "C",
+      "d142_disposition": "PROVISIONAL_KEEP",
+      "review_status": "REFERENCE_CONTROL_RETAINED_FOR_DUPLICATE_CHECK",
+      "needs_two_limit_audit": true,
+      "still_approved": false,
+      "reason": "Original status must be compared to any rescued items; source of one candidate does not automatically license second",
+      "note": "May be part of a contextual contrast; do not automatically treat as interchangeable scored item"
+    },
+    {
+      "id": "C-BK15",
+      "axis": "C",
+      "d142_disposition": "REWRITE",
+      "review_status": "REFERENCE_CONTROL_RETAINED_FOR_DUPLICATE_CHECK",
+      "needs_two_limit_audit": true,
+      "still_approved": false,
+      "reason": "Original status must be compared to any rescued items; source of one candidate does not automatically license second",
+      "note": null
+    },
+    {
+      "id": "D01",
+      "axis": "D",
+      "d142_disposition": "PROVISIONAL_KEEP",
+      "review_status": "REFERENCE_CONTROL_RETAINED_FOR_DUPLICATE_CHECK",
+      "needs_two_limit_audit": true,
+      "still_approved": false,
+      "reason": "Original status must be compared to any rescued items; source of one candidate does not automatically license second",
+      "note": null
+    },
+    {
+      "id": "D02",
+      "axis": "D",
+      "d142_disposition": "PROVISIONAL_KEEP",
+      "review_status": "REFERENCE_CONTROL_RETAINED_FOR_DUPLICATE_CHECK",
+      "needs_two_limit_audit": true,
+      "still_approved": false,
+      "reason": "Original status must be compared to any rescued items; source of one candidate does not automatically license second",
+      "note": null
+    },
+    {
+      "id": "D05",
+      "axis": "D",
+      "d142_disposition": "REWRITE",
+      "review_status": "REFERENCE_CONTROL_RETAINED_FOR_DUPLICATE_CHECK",
+      "needs_two_limit_audit": true,
+      "still_approved": false,
+      "reason": "Original status must be compared to any rescued items; source of one candidate does not automatically license second",
+      "note": null
+    },
+    {
+      "id": "D06",
+      "axis": "D",
+      "d142_disposition": "REWRITE",
+      "review_status": "REFERENCE_CONTROL_RETAINED_FOR_DUPLICATE_CHECK",
+      "needs_two_limit_audit": true,
+      "still_approved": false,
+      "reason": "Original status must be compared to any rescued items; source of one candidate does not automatically license second",
+      "note": "May be part of a contextual contrast; do not automatically treat as interchangeable scored item"
+    },
+    {
+      "id": "D-FU07",
+      "axis": "D",
+      "d142_disposition": "PROVISIONAL_KEEP",
+      "review_status": "REFERENCE_CONTROL_RETAINED_FOR_DUPLICATE_CHECK",
+      "needs_two_limit_audit": true,
+      "still_approved": false,
+      "reason": "Original status must be compared to any rescued items; source of one candidate does not automatically license second",
+      "note": "May be part of a contextual contrast; do not automatically treat as interchangeable scored item"
+    },
+    {
+      "id": "D-FU10",
+      "axis": "D",
+      "d142_disposition": "PROVISIONAL_KEEP",
+      "review_status": "REFERENCE_CONTROL_RETAINED_FOR_DUPLICATE_CHECK",
+      "needs_two_limit_audit": true,
+      "still_approved": false,
+      "reason": "Original status must be compared to any rescued items; source of one candidate does not automatically license second",
+      "note": "May be part of a contextual contrast; do not automatically treat as interchangeable scored item"
+    },
+    {
+      "id": "D-FU12",
+      "axis": "D",
+      "d142_disposition": "PROVISIONAL_KEEP",
+      "review_status": "REFERENCE_CONTROL_RETAINED_FOR_DUPLICATE_CHECK",
+      "needs_two_limit_audit": true,
+      "still_approved": false,
+      "reason": "Original status must be compared to any rescued items; source of one candidate does not automatically license second",
+      "note": null
+    }
+  ],
+  "capacity_pair_checks": [
+    {
+      "cluster": "A_RESIDENCE",
+      "ids": [
+        "A01",
+        "A-BK15"
+      ],
+      "rule": "A-BK15 nearly duplicates A01 and cannot coexist unchanged as two scored items"
+    },
+    {
+      "cluster": "A_DAILY_SYSTEM",
+      "ids": [
+        "A04",
+        "A-FU05",
+        "A-BK13"
+      ],
+      "rule": "At most 2 after semantic difference proved; original A-BK13 is not an automatic third"
+    },
+    {
+      "cluster": "A_ACTIVITY_BASE",
+      "ids": [
+        "A02",
+        "A05"
+      ],
+      "rule": "Two rewordings of same activity-base choice are exact duplicates; conditions and rationale must differ for second"
+    },
+    {
+      "cluster": "B_SHARED_TIME",
+      "ids": [
+        "B04",
+        "B-FU05"
+      ],
+      "rule": "Duties vs voluntary leisure may distinguish responses; social obligation alone does not validate two"
+    },
+    {
+      "cluster": "B_FINAL_DECISION",
+      "ids": [
+        "B01",
+        "B-FU04",
+        "B-BK13"
+      ],
+      "rule": "Maximum two substantively non-duplicate; rule/governance vs other collective decisions must be justified"
+    },
+    {
+      "cluster": "C_TIME_ALLOCATION",
+      "ids": [
+        "C01",
+        "C05",
+        "C-BK15"
+      ],
+      "rule": "One-off vs repeated allocation may differ; C05/C-BK15 both weekly and near duplicate in D146"
+    },
+    {
+      "cluster": "C_ACTIVITY_CHOICE",
+      "ids": [
+        "C03",
+        "C04"
+      ],
+      "rule": "New-activity vs continuing-activity can differ, but reward asymmetry must be removed"
+    },
+    {
+      "cluster": "D_FIELD_BREADTH",
+      "ids": [
+        "D02",
+        "D-FU09",
+        "D-FU12"
+      ],
+      "rule": "Several new fields vs one new field may be a new scenario but D02/D-FU12 have strong overlap"
+    },
+    {
+      "cluster": "D_ACTIVITY_PORTFOLIO",
+      "ids": [
+        "D01",
+        "D-FU11"
+      ],
+      "rule": "Activity portfolio vs one hobby could add info if separate from existing interests"
+    },
+    {
+      "cluster": "D_CROSSFIELD_UNDERSTANDING",
+      "ids": [
+        "D05",
+        "D-BK13"
+      ],
+      "rule": "Discipline-crossing vs within-field depth can test different context only if skill/tool efficiency controlled"
+    },
+    {
+      "cluster": "E_MONEY_TIME",
+      "ids": [
+        "E01",
+        "E02"
+      ],
+      "rule": "E is exactly two fixed; ensure questions are not exact duplicates and response format remains separately reviewed"
+    }
+  ],
+  "warnings": [
+    "Cap 2 increases permissible semantic variation; it does not reverse past OUT_OF_CONSTRUCT reasons.",
+    "The 50 old source IDs and 50 D146 proposals remain unapproved; no ID rewritten or scored on this branch.",
+    "Reference controls include C-FU14/FU15 and D stage variants that may be research-only; inspect before scoring.",
+    "Pair check rows are potential maxima, not evidence of 2 validated independent items.",
+    "New candidate IDs from D146 are prototypes only; a changed concept cannot be silently called restoration of old content."
+  ],
+  "respondents_observed": 0,
+  "approved": false,
+  "production_change": false
+}
