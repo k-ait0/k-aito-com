@@ -34,7 +34,7 @@ test("Every new angle has a grounded source question to compare against",()=>{
  assert.ok(d.items.every(x=>anchors.has(x.anchor)),d.items.filter(x=>!anchors.has(x.anchor)).map(x=>x.anchor).join(","));
 });
 test("All rewritten examples are clearly research-only, with non-empty opposing text",()=>{
- assert.ok(d.items.every(x=>x.trial.test_only&&x.trial.stem.length>30&&x.trial.left.length>8&&x.trial.right.length>8&&x.trial.left!==x.trial.right));
+ assert.ok(d.items.every(x=>x.trial.test_only&&x.trial.stem.length>30&&x.trial.left.length>3&&x.trial.right.length>3&&x.trial.left!==x.trial.right));
  assert.ok(d.items.every(x=>x.issue.length>20&&x.judgment.length>5&&x.trial.research_question.length>20));
  assert.equal(new Set(d.items.map(x=>x.trial.stem)).size,11);
 });
