@@ -50,6 +50,15 @@ const assertVisible = async (page, visible, label) => {
       await caseB.locator("select[data-field='independent_2']").selectOption("6");
       await caseB.locator("textarea[data-field='observation']").fill(noteText);
       await caseB.locator("select[data-field='verdict']").selectOption("context_only");
+      await caseB.locator("textarea[data-field='anchor_paraphrase']").fill("意思決定で自分と他者の意見をどう扱うか");
+      await caseB.locator("textarea[data-field='candidate_paraphrase']").fill("相談と最終決定を独立して考える");
+      await caseB.locator("textarea[data-field='choice_reason']").fill("二つとも当てはまる");
+      await caseB.locator("select[data-field='reason_code']").selectOption("value_priority");
+      const caseA = page.locator(".question-card[data-id='A-G2']");
+      await caseA.locator("select[data-field='candidate_choice']").selectOption("both");
+      await caseA.locator("select[data-field='anchor_choice']").selectOption("neutral");
+      const caseC = page.locator(".question-card[data-id='C-G1']");
+      await caseC.locator("select[data-field='candidate_choice']").selectOption("neither");
       const downloadPromise = page.waitForEvent("download");
       await page.locator("#export").click();
       const download = await downloadPromise;
@@ -62,6 +71,13 @@ const assertVisible = async (page, visible, label) => {
       assert.equal(savedB.inputs.independent_1, "7");
       assert.equal(savedB.inputs.independent_2, "6");
       assert.equal(savedB.inputs.observation, noteText);
+      assert.equal(savedB.inputs.reason_code, "value_priority");
+      assert.equal(savedB.inputs.candidate_paraphrase, "相談と最終決定を独立して考える");
+      const savedA = exported.answers.find(x => x.case_id === "A-G2");
+      const savedC = exported.answers.find(x => x.case_id === "C-G1");
+      assert.equal(savedA.inputs.candidate_choice, "both");
+      assert.equal(savedA.inputs.anchor_choice, "neutral");
+      assert.equal(savedC.inputs.candidate_choice, "neither");
       // Negative test: importing wrong schema must not modify the current entries.
       await page.locator("#importFile").setInputFiles({
         name: "invalid.json", mimeType: "application/json",
@@ -81,6 +97,10 @@ const assertVisible = async (page, visible, label) => {
       assert.equal(await caseB.locator("textarea[data-field='observation']").inputValue(), noteText);
       assert.equal(await caseB.locator("select[data-field='independent_1']").inputValue(), "7");
       assert.equal(await caseB.locator("select[data-field='independent_2']").inputValue(), "6");
+      assert.equal(await caseA.locator("select[data-field='candidate_choice']").inputValue(), "both");
+      assert.equal(await caseA.locator("select[data-field='anchor_choice']").inputValue(), "neutral");
+      assert.equal(await caseC.locator("select[data-field='candidate_choice']").inputValue(), "neither");
+      assert.equal(await caseB.locator("select[data-field='reason_code']").inputValue(), "value_priority");
       // The survey must remain a data-free and tracking-free offline tool.
       assert.deepEqual(outbound, [], "No external network requests");
       assert.deepEqual(errors, [], "No page runtime exceptions");
@@ -91,7 +111,7 @@ const assertVisible = async (page, visible, label) => {
         path:path.join(screenshotDir, "a05-d170-" + viewport.width + "px.png"),
         fullPage:false
       });
-      console.log("D170 PASS", viewport.width, "cards=11 filter/export/import/reset/privacy/layout");
+      console.log("D170 PASS", viewport.width, "cards=11 filter/neutral-both-neither/paraphrase/export/import/reset/privacy/layout");
       await context.close();
     }
   } finally {
