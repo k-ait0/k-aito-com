@@ -111,6 +111,7 @@ function simulateWithdrawal(fullRows,startIndex,horizon,initial,monthly,asset,ad
  if(timing==='BEGINNING_OF_MONTH')pay(startIndex,rows[0]);
  for(let j=1;j<=steps;j++){
    const prev=fullRows[startIndex+j-1],now=fullRows[startIndex+j];
+   if(now.month!==addMonths(prev.month,1))throw Error('月次データが連続していません：'+prev.month+' / '+now.month);
    if(!Number.isFinite(prev.cpi)||!Number.isFinite(now.cpi)||now.cpi<=0)
     throw Error('期間中のCPIに不正があります');
    const previousAsset=dataRowAsset(prev,asset),nextAsset=dataRowAsset(now,asset);
@@ -120,11 +121,7 @@ function simulateWithdrawal(fullRows,startIndex,horizon,initial,monthly,asset,ad
    if(!Number.isFinite(grown)||grown<0)throw Error('残高計算で桁溢れが発生しました');
    balance=grown;investmentReturnTotal+=interest;
    const entry={month:now.month,value:balance,withdrawn:0,due:0,shortfall:0,investment_return:interest};
-   if(timing==='END_OF_MONTH'||j<steps) {
-     if(timing==='END_OF_MONTH'||timing==='BEGINNING_OF_MONTH') {
-       if(timing==='END_OF_MONTH'||j<steps)pay(startIndex+j,entry);
-     }
-   }
+   if(timing==='END_OF_MONTH'||j<steps)pay(startIndex+j,entry);
    rows.push(entry);
  }
  if(rows.length!==steps+1||!Number.isFinite(totalDue)||!Number.isFinite(totalShortfall))
