@@ -22,6 +22,8 @@ jobs:
           umask 077
           node scripts/check-analytics-source-registry.cjs
           python3 scripts/research-probe-fed-h10-ddp.py
+          node scripts/acquire-analytics-approved-source.cjs FED_H10_USDJPY
+          python3 scripts/normalize-analytics-fed-ddp-candidate.py "$ANALYTICS_PRIVATE_DATA_DIR"
       - name: Encrypt full native official archive for private research
         env:
           ANALYTICS_PRIVATE_DATA_DIR: ${{ runner.temp }}/kaito_analytics_fed_candidate
