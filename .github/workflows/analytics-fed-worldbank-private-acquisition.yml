@@ -1,0 +1,73 @@
+name: Analytics pinned Fed H10 and World Bank private source acquisition
+on:
+  push:
+    branches:
+      - analytics-historical-v0-1-20261110
+    paths:
+      - .github/workflows/analytics-fed-worldbank-private-acquisition.yml
+permissions:
+  contents: read
+jobs:
+  fed_h10:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Frozen-source QA and Fed H10 2000-onwards direct acquisition
+        env:
+          ANALYTICS_PRIVATE_DATA_DIR: ${{ runner.temp }}/kaito_analytics_fed_private
+        run: |
+          set -euo pipefail
+          umask 077
+          node scripts/check-analytics-source-registry.cjs
+          node scripts/acquire-analytics-approved-source.cjs --selftest
+          node scripts/acquire-analytics-approved-source.cjs FED_H10_USDJPY
+      - name: Encrypt raw Fed data including daily and monthly CSV
+        env:
+          ANALYTICS_PRIVATE_DATA_DIR: ${{ runner.temp }}/kaito_analytics_fed_private
+        run: |
+          set -euo pipefail
+          umask 077
+          tar -czf "$RUNNER_TEMP/fed_h10_private.tar.gz" -C "$ANALYTICS_PRIVATE_DATA_DIR" .
+          node scripts/seal-analytics-research-bundle.cjs "$RUNNER_TEMP/fed_h10_private.tar.gz" research/analytics/bls_private_bundle_public_key_20261111.pem "$RUNNER_TEMP/fed_h10_PRIVATE_ENCRYPTED.json"
+          rm "$RUNNER_TEMP/fed_h10_private.tar.gz"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: fed-h10-pinned-2000-now-encrypted
+          path: ${{ runner.temp }}/fed_h10_PRIVATE_ENCRYPTED.json
+          if-no-files-found: error
+          retention-days: 7
+  world_bank_pink:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Frozen-source QA and World Bank Pink Sheet pinned raw acquisition
+        env:
+          ANALYTICS_PRIVATE_DATA_DIR: ${{ runner.temp }}/kaito_analytics_worldbank_private
+        run: |
+          set -euo pipefail
+          umask 077
+          node scripts/check-analytics-source-registry.cjs
+          node scripts/acquire-analytics-approved-source.cjs WORLD_BANK_PINK_MONTHLY
+      - name: Encrypt World Bank original workbook without publishing
+        env:
+          ANALYTICS_PRIVATE_DATA_DIR: ${{ runner.temp }}/kaito_analytics_worldbank_private
+        run: |
+          set -euo pipefail
+          umask 077
+          tar -czf "$RUNNER_TEMP/worldbank_pink_private.tar.gz" -C "$ANALYTICS_PRIVATE_DATA_DIR" .
+          node scripts/seal-analytics-research-bundle.cjs "$RUNNER_TEMP/worldbank_pink_private.tar.gz" research/analytics/bls_private_bundle_public_key_20261111.pem "$RUNNER_TEMP/worldbank_pink_PRIVATE_ENCRYPTED.json"
+          rm "$RUNNER_TEMP/worldbank_pink_private.tar.gz"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: worldbank-pink-pinned-raw-only-encrypted
+          path: ${{ runner.temp }}/worldbank_pink_PRIVATE_ENCRYPTED.json
+          if-no-files-found: error
+          retention-days: 7
