@@ -1,0 +1,83 @@
+{
+  "schema": "A05-D193-7OF12-FAMILY-AWARE-DRAW-ANALYSIS-0.1",
+  "date": "2026-11-11",
+  "status": "CONDITIONAL_MATH_ONLY",
+  "fixed": {
+    "bank_total": 50,
+    "draw_total": 30,
+    "A_D_per_bank": 12,
+    "A_D_per_draw": 7,
+    "E_bank_draw": 2,
+    "types": 16
+  },
+  "assumption": "If and only if each main axis eventually has exactly 6 distinct, supported semantic families with 2 suitable questions per family. This is not currently proven.",
+  "simple_random": {
+    "possible_seven_question_sets": 792,
+    "distinct_family_count": {
+      "4": 120,
+      "5": 480,
+      "6": 192
+    },
+    "probabilities": {
+      "4": 0.15151515151515152,
+      "5": 0.6060606060606061,
+      "6": 0.24242424242424243
+    },
+    "expected_distinct_families": 5.090909090909091,
+    "each_item_marginal_inclusion": 0.5833333333333334,
+    "both_siblings_selected_probability": 0.3181818181818182,
+    "any_missing_family_probability": 0.7575757575757576
+  },
+  "family_stratified_prototype": {
+    "algorithm": "Draw one of two questions uniformly from each of six families; select one family uniformly and take its second question, then shuffle all seven questions.",
+    "equally_weighted_branch_outcomes": 384,
+    "unique_question_sets": 192,
+    "note_on_duplicate_branches": "Each resulting seven-question set is produced by exactly two branches, because either choice of the doubled family gives the same final pair.",
+    "all_six_families_included_probability": 1,
+    "each_item_marginal_inclusion": 0.5833333333333334,
+    "both_siblings_selected_probability": 0.16666666666666666,
+    "caveat": "Equal inclusion and better family coverage do not prove scoring invariance or response reliability."
+  },
+  "verification": {
+    "source_enumerated_sets": 792,
+    "source_strat_branches": 384,
+    "source_strat_unique_sets": 192,
+    "base_item_probabilities": [
+      0.5833333333333334,
+      0.5833333333333334,
+      0.5833333333333334,
+      0.5833333333333334,
+      0.5833333333333334,
+      0.5833333333333334,
+      0.5833333333333334,
+      0.5833333333333334,
+      0.5833333333333334,
+      0.5833333333333334,
+      0.5833333333333334,
+      0.5833333333333334
+    ],
+    "strat_item_probabilities": [
+      0.5833333333333334,
+      0.5833333333333334,
+      0.5833333333333334,
+      0.5833333333333334,
+      0.5833333333333334,
+      0.5833333333333334,
+      0.5833333333333334,
+      0.5833333333333334,
+      0.5833333333333334,
+      0.5833333333333334,
+      0.5833333333333334,
+      0.5833333333333334
+    ]
+  },
+  "scope": {
+    "no_production_scoring_change": true,
+    "no_item_bank_change": true,
+    "real_respondents": 0
+  },
+  "sources": [
+    "A05 D-190 96 broad candidates",
+    "A05 D-192 multi-lens screening"
+  ]
+}
