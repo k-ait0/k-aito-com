@@ -1,0 +1,43 @@
+name: A05 research review browser QA
+
+on:
+  pull_request:
+    paths:
+      - 'research/a05/d170-eleven-hypotheses-offline-cognitive-review.html'
+      - 'scripts/test-a05-d170-browser.cjs'
+      - '.github/workflows/a05-research-browser-qa.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  d170-offline-review:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - name: Checkout PR branch
+        uses: actions/checkout@v4
+      - name: Setup Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check browser test syntax
+        run: node --check scripts/test-a05-d170-browser.cjs
+      - name: Install Chromium test runtime
+        run: |
+          npm install --prefix /tmp/a05-review --no-audit --no-fund --no-save playwright@1.56.1
+          PLAYWRIGHT_BROWSERS_PATH=/tmp/a05-chromium /tmp/a05-review/node_modules/.bin/playwright install --with-deps chromium
+      - name: Test D-170 offline review (desktop and mobile)
+        env:
+          NODE_PATH: /tmp/a05-review/node_modules
+          PLAYWRIGHT_BROWSERS_PATH: /tmp/a05-chromium
+        run: node scripts/test-a05-d170-browser.cjs
+      - name: Upload QA screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: a05-d170-qa-screenshots
+          path: qa-screenshots/a05-d170-*.png
+          if-no-files-found: ignore
+          retention-days: 7
