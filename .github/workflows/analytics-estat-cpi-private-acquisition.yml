@@ -1,0 +1,44 @@
+name: Analytics e-Stat CPI 2025-base private raw download
+on:
+  push:
+    branches:
+      - analytics-historical-v0-1-20261110
+    paths:
+      - .github/workflows/analytics-estat-cpi-private-acquisition.yml
+permissions:
+  contents: read
+concurrency:
+  group: analytics-estat-cpi-private-once
+  cancel-in-progress: false
+jobs:
+  acquire:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate registry and fetch only two pinned official e-Stat CSV files
+        env:
+          ANALYTICS_PRIVATE_DATA_DIR: ${{ runner.temp }}/kaito_jpcpi_private
+        run: |
+          set -euo pipefail
+          umask 077
+          node scripts/check-analytics-source-registry.cjs
+          node scripts/acquire-analytics-estat-cpi-raw.cjs
+      - name: Encrypt all original evidence, keep raw data off public GitHub
+        env:
+          ANALYTICS_PRIVATE_DATA_DIR: ${{ runner.temp }}/kaito_jpcpi_private
+        run: |
+          set -euo pipefail
+          umask 077
+          tar -czf "$RUNNER_TEMP/jpcpi_private.tar.gz" -C "$ANALYTICS_PRIVATE_DATA_DIR" .
+          node scripts/seal-analytics-research-bundle.cjs "$RUNNER_TEMP/jpcpi_private.tar.gz" research/analytics/bls_private_bundle_public_key_20261111.pem "$RUNNER_TEMP/jpcpi_PRIVATE_ENCRYPTED.json"
+          rm "$RUNNER_TEMP/jpcpi_private.tar.gz"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: jp-cpi-2025base-estat-original-encrypted
+          path: ${{ runner.temp }}/jpcpi_PRIVATE_ENCRYPTED.json
+          if-no-files-found: error
+          retention-days: 7
