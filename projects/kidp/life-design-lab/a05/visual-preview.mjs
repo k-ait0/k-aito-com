@@ -22,7 +22,7 @@ export function renderVisualPreview(input) {
  return '<section class="a05-vp" aria-labelledby="a05-vp-heading" style="--a05-vp-color:'+v.hex+'">'+
   '<div class="a05-vp-head"><h3 id="a05-vp-heading">16の寓意・ビジュアル試作</h3>'+
   '<p>診断判定とは未連動です。以下のモチーフ・色・E軸は表示確認用に手動指定しています。</p></div>'+
-  '<div class="a05-vp-grid"><div class="a05-vp-visual" role="img" aria-label="'+v.name+'の未承認ビジュアルの仮表示">'+
+  '<div class="a05-vp-grid"><div class="a05-vp-visual'+(v.motion?' a05-vp-moving':'')+'" role="img" aria-label="'+v.name+'の未承認ビジュアルの仮表示">'+
   '<div class="a05-vp-symbol" aria-hidden="true">'+SYMBOLS[v.id]+'</div>'+
   '<strong>'+v.name+'</strong><span>'+v.group+'</span>'+
   '<small>Tier2原画は未接続・美術未承認</small>'+
