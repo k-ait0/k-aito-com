@@ -7,7 +7,8 @@ test('16 motifs appear as independent manual choices',()=>{
  const html=renderVisualPreview({motif:'world-tree',accent:'R',eAxis:null,motion:false});
  assert.equal((html.match(/<option value="(?:polaris|sacred-peak|harbor|moon|world-tree|ocean|rainbow|constellation|pegasus|phoenix|nine-tailed-fox|cat-sith|twin-dragons|crow-tengu|whale-pod|carbuncle)"/g)||[]).length,16);
  assert.match(html,/診断判定とは未連動/);
- assert.match(html,/Tier2原画は未接続/);
+ assert.match(html,/Tier2原画：未接続/);
+ assert.match(html,/<use href="\.\/crests\.svg#world-tree"><\/use>/);
  assert.match(html,/--a05-vp-color:#FF3B5C/);
 });
 test('128 explicit display combinations and E-axis withheld',()=>{
@@ -16,6 +17,7 @@ test('128 explicit display combinations and E-axis withheld',()=>{
   const html=renderVisualPreview({motif:motif.id,accent,eAxis,motion:false});
   assert.match(html,/data-visual-setting="motif"/);
   assert.ok(html.includes('--a05-vp-color:'+RGBY[accent]));
+  assert.ok(html.includes('crests.svg#'+motif.id));
   count++;
  }
  assert.equal(count,128);
