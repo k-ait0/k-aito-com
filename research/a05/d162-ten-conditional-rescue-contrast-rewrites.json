@@ -1,0 +1,317 @@
+{
+  "schema": "A05-D162-CONDITIONAL-RECOVERY-WORDING-PACK-0.1",
+  "date": "2026-11-11",
+  "status": "RESEARCH_RESCUE_PROPOSALS_ONLY",
+  "source_shas": {
+    "d161": "4299d6594783dc82aeda62bf2995c28fe5d220d8",
+    "d146": "53b3e137ff3597bdf7072c880c622baf8fee6814"
+  },
+  "definition": "Ten historically excluded/merged/probe originals were re-assessed as possible non-exact second questions. The exact originals remain ineligible; these controlled new versions and references are for paired cognitive testing only.",
+  "user_rule": {
+    "exact_duplicates": 0,
+    "maximum_questions_per_semantic_family": 2,
+    "not_mandatory_two": true
+  },
+  "prototypes": [
+    {
+      "candidate_id": "D162-01",
+      "origin_id": "A05",
+      "axis": "A",
+      "candidate_status": "REWRITE_FOR_PAIRED_COGNITIVE_TEST_ONLY",
+      "source_old_status": "PROBE_ONLY",
+      "old_original": {
+        "stem": "次の二つのあり方では、どちらを優先しますか？",
+        "left": "今の仕事・活動環境を育てる",
+        "right": "別の仕事・活動環境を経験する"
+      },
+      "proposed": {
+        "stem": "同じ活動を続ける際、仕事内容・人間関係・成果・負担が同じだとします。活動を支える組織の運営環境について、どちらをより好みますか？",
+        "left": "使い慣れた運営環境を引き継ぎながら活動する",
+        "right": "運営環境が異なる組織に移って活動する"
+      },
+      "contrast_source_id": "A02",
+      "contrast_revised_question": {
+        "stem": "同じ活動を同じ負担で続けられるなら、定期的に使う活動場所をどう選びたいですか？",
+        "left": "使い慣れた同じ場所を活動の拠点にする",
+        "right": "一定の区切りごとに別の場所を活動の拠点にする"
+      },
+      "incremental_information_hypothesis": "物理的な活動場所A02と制度的な運営環境の更新を区別する",
+      "remaining_confounds": "組織帰属・Bのつながり・A04の運用変更と交絡",
+      "relative_overlap_risk": "HIGH_OVERLAP",
+      "second_in_family_approved": false,
+      "production_scored": false,
+      "respondents_observed": 0
+    },
+    {
+      "candidate_id": "D162-02",
+      "origin_id": "A-BK13",
+      "axis": "A",
+      "candidate_status": "REWRITE_FOR_PAIRED_COGNITIVE_TEST_ONLY",
+      "source_old_status": "DUPLICATE_MERGE",
+      "old_original": {
+        "stem": "生活環境の費用や便利さが変わらないとして、今後数年間の暮らしの仕組みとしてより好むのはどちらですか？",
+        "left": "毎年ほぼ同じ生活の仕組みを使い続け、必要な部分を少しずつ整える",
+        "right": "便利さが同じでも、一定期間ごとに生活の仕組みを大きく組み替える"
+      },
+      "proposed": {
+        "stem": "来年も生活上の負担と便利さが同じで、暮らしの管理方法を選び直せるとします。どちらを好みますか？",
+        "left": "今の管理の基本を維持し、必要な箇所を少しずつ整える",
+        "right": "来年を区切りに管理の基本を別方式へ組み替える"
+      },
+      "contrast_source_id": "A-FU05",
+      "contrast_revised_question": {
+        "stem": "便利さと手間が同程度の生活管理の仕組みを選べるなら、どちらを使いたいですか？",
+        "left": "使い慣れた管理方法を土台として改善する",
+        "right": "管理方法の土台自体を別の方法に切り替える"
+      },
+      "incremental_information_hypothesis": "日々の運用の小修正と年単位の基盤再構築を分けて確認",
+      "remaining_confounds": "時期変更だけで回答が変わるなら別系統とはいえない",
+      "relative_overlap_risk": "HIGH_OVERLAP",
+      "second_in_family_approved": false,
+      "production_scored": false,
+      "respondents_observed": 0
+    },
+    {
+      "candidate_id": "D162-03",
+      "origin_id": "B04",
+      "axis": "B",
+      "candidate_status": "REWRITE_FOR_PAIRED_COGNITIVE_TEST_ONLY",
+      "source_old_status": "DUPLICATE_MERGE",
+      "old_original": {
+        "stem": "次の二つのあり方では、どちらを優先しますか？",
+        "left": "自分のペースで予定を決める",
+        "right": "周囲と予定を合わせる"
+      },
+      "proposed": {
+        "stem": "共通の用事を行う予定について、参加者全員の負担と成果が同じ二つの案で希望が割れました。あなたはどちらをより優先しますか？",
+        "left": "自分が望む予定を基準に決める",
+        "right": "参加者が合意できる予定を基準に決める"
+      },
+      "contrast_source_id": "B-FU05",
+      "contrast_revised_question": {
+        "stem": "一緒に過ごす休日の計画で異なる希望が出て、どちらの案も同程度に楽しめるなら、どちらを重視しますか？",
+        "left": "自分が選びたい計画にする",
+        "right": "相手と合意できる計画にする"
+      },
+      "incremental_information_hypothesis": "必要な共同予定と任意の余暇で、決め方の基準が変わるか",
+      "remaining_confounds": "決定権や義務感が結果を規定する可能性",
+      "relative_overlap_risk": "PAIR_TEST",
+      "second_in_family_approved": false,
+      "production_scored": false,
+      "respondents_observed": 0
+    },
+    {
+      "candidate_id": "D162-04",
+      "origin_id": "B-FU05",
+      "axis": "B",
+      "candidate_status": "REWRITE_FOR_PAIRED_COGNITIVE_TEST_ONLY",
+      "source_old_status": "DUPLICATE_MERGE",
+      "old_original": {
+        "stem": "身近な人と余暇の過ごし方が食い違い、どちらの案も安全で費用が同じなら、より納得できるのはどちらですか？",
+        "left": "自分が望んだ過ごし方にする",
+        "right": "相手が望んだ過ごし方にする"
+      },
+      "proposed": {
+        "stem": "一緒に過ごす休日の予定で、どちらの案も時間・費用・楽しさは同じだとします。希望が異なる場合、どちらをより優先しますか？",
+        "left": "自分が希望する過ごし方を採ること",
+        "right": "一緒に過ごす人が合意できる過ごし方を採ること"
+      },
+      "contrast_source_id": "B04",
+      "contrast_revised_question": {
+        "stem": "共同で使う時間の予定を決めるとき、実行しやすさが同じ二案で意見が割れたら、どちらを重視しますか？",
+        "left": "自分が望む予定を基準にする",
+        "right": "関係者が合意できる予定を基準にする"
+      },
+      "incremental_information_hypothesis": "任意の余暇と共同の必要予定で意思決定基準が異なるか",
+      "remaining_confounds": "譲歩規範・親密度・合意側の社会的望ましさ",
+      "relative_overlap_risk": "PAIR_TEST",
+      "second_in_family_approved": false,
+      "production_scored": false,
+      "respondents_observed": 0
+    },
+    {
+      "candidate_id": "D162-05",
+      "origin_id": "B-BK13",
+      "axis": "B",
+      "candidate_status": "REWRITE_FOR_PAIRED_COGNITIVE_TEST_ONLY",
+      "source_old_status": "DUPLICATE_MERGE",
+      "old_original": {
+        "stem": "あなたが最終的な責任を負う共同活動で、関係者の意見は一致していません。どの案も成果と負担が同じなら、何を優先しますか？",
+        "left": "意見を聞いた上で、自分が納得した判断を最終基準にする",
+        "right": "時間をかけて関係者が受け入れられる判断を最終基準にする"
+      },
+      "proposed": {
+        "stem": "共同活動の共通ルールを長期間使うために選ぶとします。全員の権利・負担が等しく、どちらにも合理性がある場合、何をより重視しますか？",
+        "left": "自分が妥当だと判断するルールを基準とする",
+        "right": "参加者が合意できるルールを基準とする"
+      },
+      "contrast_source_id": "B-FU04",
+      "contrast_revised_question": {
+        "stem": "共同活動の方針について成果と負担が同じ二案で意見が割れたら、どちらを優先しますか？",
+        "left": "自分の判断に近い方針を採る",
+        "right": "関係者が合意できる方針を採る"
+      },
+      "incremental_information_hypothesis": "通常の活動方針B-FU04と継続的な共通ルールで回答理由が変わるか",
+      "remaining_confounds": "正当な合意手続への規範と最終決定権が混入",
+      "relative_overlap_risk": "HIGH_OVERLAP",
+      "second_in_family_approved": false,
+      "production_scored": false,
+      "respondents_observed": 0
+    },
+    {
+      "candidate_id": "D162-06",
+      "origin_id": "C03",
+      "axis": "C",
+      "candidate_status": "REWRITE_FOR_PAIRED_COGNITIVE_TEST_ONLY",
+      "source_old_status": "PROBE_ONLY",
+      "old_original": {
+        "stem": "次の二つのあり方では、どちらを優先しますか？",
+        "left": "後で役立つ知識を学ぶ",
+        "right": "今の関心を満たす知識を学ぶ"
+      },
+      "proposed": {
+        "stem": "同じ時間・負担で参加でき、興味の強さが同じ二つの活動があります。選ぶとき、どちらの価値をより優先しますか？",
+        "left": "数か月後の選択肢が広がる価値",
+        "right": "参加している今の時間が充実する価値"
+      },
+      "contrast_source_id": "C01",
+      "contrast_revised_question": {
+        "stem": "今週自由に使える同じ時間を、将来と現在のどちらへ優先的に使いたいですか？",
+        "left": "数か月後の選択肢を増やすための活動",
+        "right": "今週の経験そのものを充実させる活動"
+      },
+      "incremental_information_hypothesis": "余暇時間配分C01と活動参加基準で異なる価値判断を得られるか",
+      "remaining_confounds": "成果の確実性や未来便益が片側だけ明示される",
+      "relative_overlap_risk": "HIGH_OVERLAP",
+      "second_in_family_approved": false,
+      "production_scored": false,
+      "respondents_observed": 0
+    },
+    {
+      "candidate_id": "D162-07",
+      "origin_id": "C05",
+      "axis": "C",
+      "candidate_status": "REWRITE_FOR_PAIRED_COGNITIVE_TEST_ONLY",
+      "source_old_status": "DUPLICATE_MERGE",
+      "old_original": {
+        "stem": "次の二つのあり方では、どちらを優先しますか？",
+        "left": "長期の目標に向けた小さな前進",
+        "right": "日々の満足を増やす小さな工夫"
+      },
+      "proposed": {
+        "stem": "必要な休息を確保したうえで、毎週同じ自由時間を数か月使うとします。どちらへ多く配分したいですか？",
+        "left": "将来の選択肢を増やす準備を毎週進める",
+        "right": "毎週の体験そのものを充実させる"
+      },
+      "contrast_source_id": "C01",
+      "contrast_revised_question": {
+        "stem": "今週自由に使える同じ時間を、将来と現在のどちらへ優先的に使いたいですか？",
+        "left": "数か月後の選択肢を増やすための活動",
+        "right": "今週の経験そのものを充実させる活動"
+      },
+      "incremental_information_hypothesis": "一度だけの余暇選択と繰り返す時間配分で回答の安定性を比較",
+      "remaining_confounds": "C-BK15とほぼ同一の反復資源配分になる可能性",
+      "relative_overlap_risk": "PAIR_TEST",
+      "second_in_family_approved": false,
+      "production_scored": false,
+      "respondents_observed": 0
+    },
+    {
+      "candidate_id": "D162-08",
+      "origin_id": "D-FU09",
+      "axis": "D",
+      "candidate_status": "REWRITE_FOR_PAIRED_COGNITIVE_TEST_ONLY",
+      "source_old_status": "DUPLICATE_MERGE",
+      "old_original": {
+        "stem": "今学んでいる分野にまだ理解したい課題がある状態で、同じ時間を使う場合、次のどちらを選びますか？",
+        "left": "新しい分野を短期間だけ試し、戻るか決める",
+        "right": "今の分野の未解決課題をもう少し深掘りする"
+      },
+      "proposed": {
+        "stem": "未経験で同じ程度に興味のある分野を学び始めます。同じ学習時間を使うなら、どちらをより好みますか？",
+        "left": "異なる複数の新しい分野の基礎を広く学ぶ",
+        "right": "一つの新しい分野を選んで内容を深く学ぶ"
+      },
+      "contrast_source_id": "D02",
+      "contrast_revised_question": {
+        "stem": "関心がある分野を同じ時間で学べる場合、どちらをより好みますか？",
+        "left": "異なる複数分野の基本を学ぶ",
+        "right": "一つの分野をさらに詳しく学ぶ"
+      },
+      "incremental_information_hypothesis": "既存の関心分野の幅・深さと未経験分野の入口で選択が異なるか",
+      "remaining_confounds": "D02と対象を未経験に変えただけなら同義",
+      "relative_overlap_risk": "HIGH_OVERLAP",
+      "second_in_family_approved": false,
+      "production_scored": false,
+      "respondents_observed": 0
+    },
+    {
+      "candidate_id": "D162-09",
+      "origin_id": "D-FU11",
+      "axis": "D",
+      "candidate_status": "REWRITE_FOR_PAIRED_COGNITIVE_TEST_ONLY",
+      "source_old_status": "PROBE_ONLY",
+      "old_original": {
+        "stem": "現在の分野を深めるほど新しい発見が少なくなってきたとき、同程度の学習時間をどう使いたいですか？",
+        "left": "別の分野の基本を学んで新しい刺激を得る",
+        "right": "今の分野に残る難しい課題を探して掘り下げる"
+      },
+      "proposed": {
+        "stem": "現在続けている活動に加えて自由な時間が増えた場合、どちらの使い方をより好みますか？",
+        "left": "異なる分野の活動も始めて活動の幅を広げる",
+        "right": "今の活動分野の内容をさらに深める"
+      },
+      "contrast_source_id": "D01",
+      "contrast_revised_question": {
+        "stem": "関心を持てる趣味や活動に同じ時間を使えるなら、どちらを選びたいですか？",
+        "left": "まだ取り組んだことのない活動を試す",
+        "right": "以前から取り組んでいる活動を掘り下げる"
+      },
+      "incremental_information_hypothesis": "既存趣味の直接比較と活動全体の組合せでの選好が異なるか",
+      "remaining_confounds": "D01と意味が同じなら追加2問目として認めない",
+      "relative_overlap_risk": "HIGH_OVERLAP",
+      "second_in_family_approved": false,
+      "production_scored": false,
+      "respondents_observed": 0
+    },
+    {
+      "candidate_id": "D162-10",
+      "origin_id": "D-BK13",
+      "axis": "D",
+      "candidate_status": "REWRITE_FOR_PAIRED_COGNITIVE_TEST_ONLY",
+      "source_old_status": "DUPLICATE_MERGE",
+      "old_original": {
+        "stem": "一つの未解決課題について、どちらの進め方でも解決に近づける見込みが同程度なら、次の時間をどう使いますか？",
+        "left": "別分野の基礎を学び、課題を異なる専門領域から捉えてみる",
+        "right": "今の専門領域をさらに掘り下げ、その知識で課題を理解する"
+      },
+      "proposed": {
+        "stem": "一つの関心テーマについて、同じ学習時間で新しい知識を得られるとします。どちらの理解の広げ方を好みますか？",
+        "left": "関連する別分野の基礎も学んで理解を広げる",
+        "right": "今取り組む分野の専門的な内容を掘り下げる"
+      },
+      "contrast_source_id": "D05",
+      "contrast_revised_question": {
+        "stem": "異なる分野に同じ時間を使えるなら、どちらの学び方を選びたいですか？",
+        "left": "いくつかの分野を組み合わせて理解する",
+        "right": "一つの分野を続けて詳しく理解する"
+      },
+      "incremental_information_hypothesis": "単なる複数分野の学習と一つのテーマを理解するための領域横断を区別",
+      "remaining_confounds": "問題解決の効率・知識量・D05との重複",
+      "relative_overlap_risk": "HIGH_OVERLAP",
+      "second_in_family_approved": false,
+      "production_scored": false,
+      "respondents_observed": 0
+    }
+  ],
+  "already_cleared_to_score": 0,
+  "promotions_prohibited": [
+    "Second question cannot be accepted solely because it differs in topic, format or time horizon.",
+    "Distinct answer due purely to work status, ethical obligation, income, skill, fatigue, ownership, or relationship strength is insufficient.",
+    "If prototype and comparison are judged essentially the same question, one alternative is retained for wording comparison only; do not consume two slots.",
+    "Do not use C/D conditional experiments as independent scored random items without research."
+  ],
+  "form_unchanged": true,
+  "bank_unmodified": true,
+  "respondents_observed": 0
+}
