@@ -56,7 +56,7 @@ def summary_years(months,levels,horizon_years):
     vals.append(float(ratio))
   if not vals:return dict(windows=0)
   return {"windows":len(vals),"start_months":[months[0],months[-delta-1]],"horizon_years":horizon_years,
-    "positive_nominal_level_change_share":round(sum(x>1 for x in vals)/len(vals),6),
+    "share_ending_real_purchasing_power_above_start":round(sum(x>1 for x in vals)/len(vals),6),
     "min_multiple":round(min(vals),6),"median_multiple":round(statistics.median(vals),6),
     "max_multiple":round(max(vals),6)}
 def execute(args):
