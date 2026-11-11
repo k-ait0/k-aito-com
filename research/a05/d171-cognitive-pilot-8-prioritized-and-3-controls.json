@@ -1,0 +1,199 @@
+{
+  "schema": "A05-D171-COGNITIVE-PROBE-PILOT-PRIORITY-MANIFEST-0.1",
+  "date": "2026-11-11",
+  "status": "EXPERIMENT_PLAN_UNRUN",
+  "source_shas": {
+    "research/a05/d167-review-of-eleven-missing-family-hypotheses.json": "b87069c888cf6efa0714dbfe9cf6566a9fe49934",
+    "research/a05/d168-eleven-hypothesis-cognitive-probe-questions.json": "6a23fe4e9a4ee2239fec4f73c6f280f409201a4e",
+    "research/a05/d170-eleven-hypotheses-offline-cognitive-review.html": "e24fcd4db12db289a716aade626360db972ae4fb"
+  },
+  "purpose": "Avoid indiscriminate testing of all 11 low-quality family ideas; prioritize 4 high-information comparisons then 4 conditional probes. Negative controls are optional and cannot be converted into scored items.",
+  "cohorts": [
+    {
+      "level": "TIER_1",
+      "cases": [
+        "A-G2",
+        "B-G1",
+        "C-G1",
+        "D-G1"
+      ],
+      "why": "Test one structural/content gap per A-D axis first; B-G1 directly evaluates coexisting autonomy and connectedness",
+      "auto_scored": false
+    },
+    {
+      "level": "TIER_2",
+      "cases": [
+        "B-G2",
+        "C-G2",
+        "D-G2",
+        "D-G3"
+      ],
+      "why": "Only compare after Tier 1 offers interpretable wording; all are uncertain, paired/conditional tests",
+      "auto_scored": false
+    },
+    {
+      "level": "NEGATIVE_CONTROLS",
+      "cases": [
+        "A-G1",
+        "B-G3",
+        "C-G3"
+      ],
+      "why": "Optional methodology check if participants are available; these are explicitly not candidates for scoring",
+      "auto_scored": false
+    }
+  ],
+  "items": [
+    {
+      "id": "A-G2",
+      "axis": "A",
+      "tier": "TIER_1",
+      "method": "BIPOLAR_PAIRED_CONTEXT",
+      "anchor_id": "A04",
+      "hypothesis": "生活の節目という条件だけで回答が変わるなら、A04の独立2問目ではなく条件比較にする。",
+      "preserve_both_poles_if_scoring": false,
+      "approved_as_semantic_family": false
+    },
+    {
+      "id": "B-G1",
+      "axis": "B",
+      "tier": "TIER_1",
+      "method": "TWO_INDEPENDENT_RATINGS",
+      "anchor_id": "B-FU01",
+      "hypothesis": "自分で最終決定したい、他者と相談したいの独立評定が双方高くなる回答の可能性を調べ、二極設計の構造的問題を検討する。",
+      "preserve_both_poles_if_scoring": false,
+      "approved_as_semantic_family": false
+    },
+    {
+      "id": "C-G1",
+      "axis": "C",
+      "tier": "TIER_1",
+      "method": "BIPOLAR_RESOURCE_PROBE",
+      "anchor_id": "C01",
+      "hypothesis": "自由な予算の使途と時間の使途で回答理由が価値配分なのか、経済余力・金融不安なのかを判別する。",
+      "preserve_both_poles_if_scoring": false,
+      "approved_as_semantic_family": false
+    },
+    {
+      "id": "D-G1",
+      "axis": "D",
+      "tier": "TIER_1",
+      "method": "BIPOLAR_CONTEXT_PROBE",
+      "anchor_id": "D02",
+      "hypothesis": "分野間の幅と、分野内部のサブテーマの幅を答え手が区別しているか。単なる表現粒度なら統合。",
+      "preserve_both_poles_if_scoring": false,
+      "approved_as_semantic_family": false
+    },
+    {
+      "id": "B-G2",
+      "axis": "B",
+      "tier": "TIER_2",
+      "method": "BIPOLAR_CONTEXT_PROBE",
+      "anchor_id": "B06",
+      "hypothesis": "権利・責任の違いが回答理由になるならB06の二問目として採らない。",
+      "preserve_both_poles_if_scoring": false,
+      "approved_as_semantic_family": false
+    },
+    {
+      "id": "C-G2",
+      "axis": "C",
+      "tier": "TIER_2",
+      "method": "REUSE_EXISTING_MATCHED_PAIR",
+      "anchor_id": "C-FU14",
+      "hypothesis": "両極で希少性が対称なC-FU14とC-FU15をペアで比較。通常の7問抽出へ流さない。",
+      "preserve_both_poles_if_scoring": false,
+      "approved_as_semantic_family": false
+    },
+    {
+      "id": "D-G2",
+      "axis": "D",
+      "tier": "TIER_2",
+      "method": "BIPOLAR_CONTEXT_PROBE",
+      "anchor_id": "D-BK13",
+      "hypothesis": "興味の分野の幅なのか、問題解決の効率・知識量なのかを判別する。",
+      "preserve_both_poles_if_scoring": false,
+      "approved_as_semantic_family": false
+    },
+    {
+      "id": "D-G3",
+      "axis": "D",
+      "tier": "TIER_2",
+      "method": "REUSE_EXISTING_STAGE_PAIR",
+      "anchor_id": "D06",
+      "hypothesis": "探究途中と目標達成後での回答差が義務や完成感に起因するかを調べる。",
+      "preserve_both_poles_if_scoring": false,
+      "approved_as_semantic_family": false
+    },
+    {
+      "id": "A-G1",
+      "axis": "A",
+      "tier": "NEGATIVE_CONTROLS",
+      "method": "BIPOLAR_RESEARCH_NEGATIVE_CONTROL",
+      "anchor_id": "A01",
+      "hypothesis": "室内の役割変更は整理整頓好みが主であることを確かめる負の対照。",
+      "preserve_both_poles_if_scoring": false,
+      "approved_as_semantic_family": false
+    },
+    {
+      "id": "B-G3",
+      "axis": "B",
+      "tier": "NEGATIVE_CONTROLS",
+      "method": "BIPOLAR_RESEARCH_NEGATIVE_CONTROL",
+      "anchor_id": "B01",
+      "hypothesis": "共同成果配分は公平性・配分の社会規範に支配されることを調べる負の対照。",
+      "preserve_both_poles_if_scoring": false,
+      "approved_as_semantic_family": false
+    },
+    {
+      "id": "C-G3",
+      "axis": "C",
+      "tier": "NEGATIVE_CONTROLS",
+      "method": "BIPOLAR_RESEARCH_NEGATIVE_CONTROL",
+      "anchor_id": "C01",
+      "hypothesis": "同じ体験の受け取り時期は遅延割引でありCの用途選択ではないことを調べる負の対照。",
+      "preserve_both_poles_if_scoring": false,
+      "approved_as_semantic_family": false
+    }
+  ],
+  "codebook": {
+    "value_relevant": "Respondent contrasts maintained value orientation with another distinct life choice priority; independent of material constraints",
+    "duplicate": "Both prompts interpreted as the same basic value judgment, regardless of changed words/context",
+    "confounded": "Response primarily driven by cost, actual opportunity, abilities, duty, family rights, social approval or familiarity",
+    "not_bipolar": "Both ends can be simultaneously true (especially B-G1); requires independent research, not forced 7-point scoring",
+    "ambiguous": "Cannot paraphrase/does not understand without extra explanation",
+    "off_axis": "Main explanation relates to fairness, punctuality, personality, delay discount or something not in axis definition"
+  },
+  "decision_gates": [
+    "If duplicate or merely different task examples, combine and keep better wording only.",
+    "If confounded or off axis, keep as research negative control or reject, without filling a 50-bank slot.",
+    "If two preferences are compatible, test independent ratings; do not assert bipolar score mapping.",
+    "If interpretation differs for credible value-related reasons, continue to cognitive + later response-item analysis; still not approved.",
+    "Require distinct quality-reviewed families and demonstrate 2-cap before 12-bank design changes."
+  ],
+  "suggested_research_process": {
+    "interview_n": "Small voluntary cognitive interview sample, for wording comprehension only; no statistical validation claims",
+    "recording": "Use D-170 offline interviewer form; anonymous research notes; JSON export, no upload",
+    "necessary_data": [
+      "answers for anchor and draft",
+      "participant paraphrase",
+      "reason for any divergent answers",
+      "perceived unfair cost/rights assumptions",
+      "cannot answer / both apply"
+    ],
+    "not_collected": [
+      "name",
+      "email",
+      "health information",
+      "employer",
+      "address"
+    ]
+  },
+  "fixed": {
+    "bank": 50,
+    "draw": 30,
+    "A_D_each": 12,
+    "E": 2,
+    "actual_new_approved_scored": 0
+  },
+  "research_sessions_performed": 0,
+  "production_changed": false
+}
