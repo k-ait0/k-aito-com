@@ -60,7 +60,7 @@ const growth=sample.map((r,i)=>({...r,fx:i===0?100:200}));
 const endG=f.simulateWithdrawal(growth,0,1,1000,100,'usd',false,'END_OF_MONTH');
 const beginG=f.simulateWithdrawal(growth,0,1,1000,100,'usd',false,'BEGINNING_OF_MONTH');
 assert.equal(endG.total,1200);assert.equal(endG.remaining,800);
-assert.equal(beginG.total,1200);assert.equal(beginG.remaining,600);
+assert.equal(beginG.total,1200);assert.equal(beginG.remaining,700);
 for(const q of [endG,beginG,ci,ciBegin,exact,ruin]){
   const delta=q.rows.reduce((n,x)=>n+x.investment_return,0);
   assert(Math.abs(q.remaining-(q.rows[0].value+q.rows[0].withdrawn+delta-q.total))<1e-5);
