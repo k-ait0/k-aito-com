@@ -148,7 +148,7 @@ function warn(msg){$('dataErrors').textContent=msg;$('dataErrors').classList.rem
 function clearWarn(){$('dataErrors').textContent='';$('dataErrors').classList.add('hidden')}
 function setOptions(){const goldAvailable=state.data?.gold.size>0;const opt=$('asset').querySelector('option[value=gold]');opt.disabled=!goldAvailable; if(!goldAvailable&&state.asset==='gold'){state.asset='usd';$('asset').value='usd'};const yrs=state.data?.months||[];
  const old=$('startMonth').value;$('startMonth').textContent='';for(let i=0;i+12*state.horizon<yrs.length;i++){const month=yrs[i].month,el=document.createElement('option');el.value=month;el.textContent=month;$('startMonth').appendChild(el)}
- const last=yrs.at(-1)?.month;if(last&&!yrs.some(r=>r.month===old))$('startMonth').value=yrs[0].month;else $('startMonth').value=old||yrs[0]?.month||'';
+ const eligible=yrs.slice(0,Math.max(0,yrs.length-12*state.horizon));$('startMonth').value=eligible.some(r=>r.month===old)?old:(eligible[0]?.month||'');
  if(state.kind==='demo'){$('sourceBadge').textContent='合成数値です。過去実績ではありません。';$('chartBadge').textContent='SYNTHETIC';$('chartBadge').classList.remove('real')}else {$('sourceBadge').textContent='実CSV（本人専用）。外部送信なし。';$('chartBadge').textContent='PRIVATE CSV';$('chartBadge').classList.add('real')}
  $('metaMode').textContent=state.kind==='demo'?'合成デモ':'私的CSV';$('metaCoverage').textContent=yrs.length?`${yrs[0].month} – ${yrs.at(-1).month} / ${yrs.length}か月`:'未読込';
 }
