@@ -61,3 +61,11 @@ jobs:
           assert r['auxiliary'][0]['full_pinned_history_20261111']['full_1971_1999_not_acquired']
           print('PASS: Research ledger and 12+8 frozen source/rights gates; Fed DDP candidate remains ADR draft')
           PY
+      - name: Package standalone personal HTML (synthetic constants only)
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: kaito-analytics-personal-lab-v0-3
+          path: research/analytics/personal-lab/index.html
+          retention-days: 7
+          if-no-files-found: error
