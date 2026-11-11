@@ -54,7 +54,7 @@ test("Every idea includes a specific confound, comparator and a concrete test re
 test("Methods 7 and 10 are explicitly paired, not free-standing trait-strength scores",()=>{
  for(const x of d.items.filter(x=>[7,10].includes(x.method))){
    assert.ok(x.design.baseline&&x.design.condition,x.id);
-   assert.ok(!x.design.readout.includes("強度そのものとみなす"),x.id+" word check changed"); // Negative wording differs by category; see additional check below
+   assert.ok(x.design.readout.includes("切替")||x.design.readout.includes("対照"),x.id+" should check response under changed condition");
  }
  assert.ok(d.method_risks[7].includes("not direct psychometric"));
  assert.ok(d.method_risks[10].includes("Resource deprivation"));
