@@ -1,0 +1,177 @@
+{
+  "schema_version": "0.1.0",
+  "updated_at_utc": "2026-11-11T02:41:27Z",
+  "scope": "RESEARCH_ONLY_NO_PRODUCTION_CHANGE",
+  "source_of_truth": {
+    "source_registry": "research/analytics/source_registry.v0.2.json",
+    "history_policy": "docs/ANALYTICS_HISTORY_60Y_PLAN_V0_5.md",
+    "archive_decisions": "docs/archive/analytics/2026-11-11_historical_data_decisions_v0.5.md"
+  },
+  "summary": {
+    "asset_classes": 12,
+    "auxiliary_categories": 6,
+    "auxiliary_series": 8,
+    "site_approved_series": 0,
+    "verified_new_official_bls_api_responses": 7,
+    "verified_new_official_bls_observations": 729,
+    "other_new_official_full_history_datasets": 0
+  },
+  "datasets": [
+    {
+      "dataset_id": "BLS_CPI_US_CUUR0000SA0",
+      "source_id": "BLS",
+      "source_url": "https://api.bls.gov/publicAPI/v1/timeseries/data/",
+      "series_id": "CUUR0000SA0",
+      "data_type": "OFFICIAL_CPI_LEVEL",
+      "frequency": "MONTHLY",
+      "seasonal_adjustment": "NSA",
+      "base": "1982-84=100",
+      "currency": "NOT_APPLICABLE",
+      "origin": "OBSERVED",
+      "acquisition": "RAW_ACQUIRED_PRIVATE",
+      "normalization": "NORMALIZED_PRIVATE",
+      "qa": "PASS_WITH_ONE_DOCUMENTED_BLS_SHUTDOWN_MISSING_MONTH",
+      "observed_first": "1966-01",
+      "observed_last": "2026-10",
+      "expected_months": 730,
+      "actual_observations": 729,
+      "missing_months": [
+        "2025-10"
+      ],
+      "duplicates": 0,
+      "unexplained_missing_months": 0,
+      "month_on_month_change_outlier_over_20pct": 0,
+      "observed_contiguous_level_blocks": [
+        717,
+        12
+      ],
+      "observed_30y_complete_start_months": 357,
+      "source_batches": [
+        {
+          "year_from": 1966,
+          "year_to": 1975,
+          "observations": 120,
+          "raw_sha256": "023da5155773116b415ba326d17a445b79e9da36ad106e19d40c7d737b640d27"
+        },
+        {
+          "year_from": 1976,
+          "year_to": 1985,
+          "observations": 120,
+          "raw_sha256": "07e2be0da7125b38820ee3a0f9e9040beae897f986f0971c4cc30b7a939aa320"
+        },
+        {
+          "year_from": 1986,
+          "year_to": 1995,
+          "observations": 120,
+          "raw_sha256": "d8944755a788d46129ff8c247a484256464a3f8fbec537c87eecc4e0330b44a1"
+        },
+        {
+          "year_from": 1996,
+          "year_to": 2005,
+          "observations": 120,
+          "raw_sha256": "4fb8db6974972fa61eaba14071fe27f59be06d8358a444dff086814c2fe684c7"
+        },
+        {
+          "year_from": 2006,
+          "year_to": 2015,
+          "observations": 120,
+          "raw_sha256": "aebd80d6366fc3bfb596c59db942731feb35ad0f443e56e3c28532ed9f9bf5c0"
+        },
+        {
+          "year_from": 2016,
+          "year_to": 2025,
+          "observations": 119,
+          "raw_sha256": "900122a20b8ff95e9f0d448d62b36c290462b7f5e53655d97c87930eba6a3b20"
+        },
+        {
+          "year_from": 2026,
+          "year_to": 2026,
+          "observations": 10,
+          "raw_sha256": "62d8d50b95fe287e6f2cd61114b38246f7bbbff33ae58ebf4a25f2fadf36ec90"
+        }
+      ],
+      "normalized_csv_sha256": "899c385488b982402bba73b2f5308fe6f37ab330a436fa2cd4d7016c38b81edd",
+      "encrypted_artifact": {
+        "github_actions_run_id": 42947688134,
+        "github_actions_artifact_id": 13824035258,
+        "expires_at_utc": "2026-11-18T02:41:26Z",
+        "ciphertext_zip_sha256": "eddb9243bd9a205d566cae0b99a2c7b3c2187bf5f9acc3915480ad50ccb291b4",
+        "plaintext_private_archive_sha256": "2d9052638aaead8c84883d40ab8b15b4d2abedf44e163cfca1ba8d8f9a5ac5f3",
+        "encryption": "AES256_GCM_RSA3072_OAEP_SHA256",
+        "key_file": "research/analytics/bls_private_bundle_public_key_20261111.pem",
+        "private_key_storage": "NOT_IN_GITHUB"
+      },
+      "rights": {
+        "research": "PUBLIC_DOMAIN_GENERAL_WITH_ATTRIBUTION",
+        "commercial_processing": "BLS_GENERAL_PUBLIC_DOMAIN_REVIEWED_SERIES_QA",
+        "public_display": "NOT_APPROVED_PROJECT_RELEASE_GATE",
+        "derived_result_delivery": "NOT_APPROVED_PROJECT_RELEASE_GATE",
+        "raw_csv_redistribution": "NOT_APPROVED_PROJECT_RELEASE_GATE",
+        "production": "NOT_APPROVED"
+      },
+      "quality_report": "docs/ANALYTICS_BLS_US_CPI_QA_20261111.md",
+      "retrieval_timestamp_utc": "2026-11-11T02:41:10Z/2026-11-11T02:41:23Z"
+    },
+    {
+      "dataset_id": "SHILLER_LEGACY_RESEARCH",
+      "source_id": "SHILLER_LEGACY",
+      "acquisition": "PRIOR_PRIVATE_RESEARCH_VERIFIED",
+      "observed_first": "1980-01",
+      "observed_last": "2023-06",
+      "observations": 522,
+      "qa": "PRIOR_RESEARCH_TEST_PASS",
+      "site_approved": false,
+      "note": "Not SPDJI total return; source rights research only"
+    },
+    {
+      "dataset_id": "FED_H10_USDJPY_SNAPSHOT",
+      "source_id": "FED_BOARD",
+      "acquisition": "PRIOR_OFFICIAL_PAGE_SNAPSHOT_ONLY",
+      "daily_observations": 28,
+      "valid_rates": 27,
+      "explicit_ND": 1,
+      "observed_first_day": "2026-09-30",
+      "observed_last_day": "2026-11-06",
+      "full_1971_history_acquired": false,
+      "source_change_adr": "DRAFT_UNAPPROVED",
+      "site_approved": false
+    }
+  ],
+  "not_yet_acquired": [
+    "CPI_JP_ESTAT_LONG",
+    "FX_USDJPY_FED_FULL_1971_PLUS",
+    "WORLD_BANK_PINK_MONTHLY_1960_PLUS",
+    "SHILLER_RESEARCH_PRE1980_AND_POST2023",
+    "JPX_TOPIX_TR",
+    "SPDJI_SP500_TR",
+    "MSCI_ACWI_NET_TR",
+    "NOMURA_BPI_TOTAL",
+    "BLOOMBERG_US_AGGREGATE",
+    "BOJ_CASH_RATES",
+    "JPX_JREIT_TR",
+    "MSCI_EM_NET_TR",
+    "FTSE_RUSSELL_WGBI_EXUS",
+    "US_TREASURY_TIPS_REAL_YIELD",
+    "RATES_US",
+    "RATES_JP",
+    "DIVIDENDS_SP_DJI",
+    "HEDGE_COST",
+    "CREDIT_SPREAD"
+  ],
+  "release_controls": {
+    "frozen_source_switches": 0,
+    "unauthorized_public_csv_or_raw_commit": 0,
+    "all_new_actual_data": "PRIVATE_OR_ENCRYPTED",
+    "observed_and_proxy_mixed": false,
+    "main_branch_unchanged": true,
+    "production_unchanged": true
+  },
+  "next_priorities": [
+    "Save durable private plaintext backup outside ephemeral runner; 7-day Actions artifact is temporary",
+    "Acquire JP CPI via locked e-Stat official source with independent QA",
+    "Review Fed H.10 1971 download-channel ADR and source license before attempting full history",
+    "World Bank Pink Sheet XLSX Description and third-party rights audit",
+    "Complete series-specific commercial publication/license rights review"
+  ],
+  "audit_note": "Existing November 10 registry/acquisition snapshots are historical; this is an additional verified November 11 ledger. Do not convert data-acquired into site-approved."
+}
