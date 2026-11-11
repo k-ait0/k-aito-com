@@ -1,0 +1,58 @@
+name: Analytics BLS CPI 60Y private acquisition (research only)
+on:
+  push:
+    branches:
+      - analytics-historical-v0-1-20261110
+    paths:
+      - .github/workflows/analytics-bls-private-acquisition.yml
+permissions:
+  contents: read
+concurrency:
+  group: analytics-bls-once-research
+  cancel-in-progress: false
+jobs:
+  acquire:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      ANALYTICS_PRIVATE_DATA_DIR: ${{ runner.temp }}/kaito_analytics_bls_private
+    steps:
+      - name: Check out research branch only
+        uses: actions/checkout@v4
+      - name: Prepare Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify frozen source registry and parsers
+        run: |
+          node scripts/check-analytics-source-registry.cjs
+          node scripts/acquire-analytics-approved-source.cjs --selftest
+          node scripts/test-analytics-history-coverage.cjs
+      - name: Acquire seven BLS official API v1 batches and run private QA
+        shell: bash
+        run: |
+          set -euo pipefail
+          umask 077
+          mkdir -p "$ANALYTICS_PRIVATE_DATA_DIR"
+          for years in "1966 1975" "1976 1985" "1986 1995" "1996 2005" "2006 2015" "2016 2025" "2026 2026"; do
+            read -r first last <<< "$years"
+            echo "BLS official request: $first..$last"
+            node scripts/acquire-analytics-approved-source.cjs BLS_CPI_US "$first" "$last"
+            sleep 2
+          done
+          node scripts/merge-analytics-bls-batches.cjs "$ANALYTICS_PRIVATE_DATA_DIR"
+      - name: Encrypt entire source evidence without exposing raw contents
+        shell: bash
+        run: |
+          set -euo pipefail
+          umask 077
+          tar -czf "$RUNNER_TEMP/bls_research_private.tar.gz" -C "$ANALYTICS_PRIVATE_DATA_DIR" .
+          node scripts/seal-analytics-research-bundle.cjs "$RUNNER_TEMP/bls_research_private.tar.gz" research/analytics/bls_private_bundle_public_key_20261111.pem "$RUNNER_TEMP/bls_research_PRIVATE_ENCRYPTED.json"
+          rm -f "$RUNNER_TEMP/bls_research_private.tar.gz"
+      - name: Retain ciphertext only for authorized private recovery
+        uses: actions/upload-artifact@v4
+        with:
+          name: bls-cpi-1966-2026-encrypted-research-20261111
+          path: ${{ runner.temp }}/bls_research_PRIVATE_ENCRYPTED.json
+          if-no-files-found: error
+          retention-days: 7
