@@ -128,6 +128,18 @@ const gaps=rollingPersonalMultiAsset({monthly_market_returns:gap,horizon_months:
  portfolio:p,plan:{monthly_expense_yen:1000}});
 assert.equal(gaps.complete_windows,0);
 assert.equal(gaps.excluded_windows_due_to_gap_or_cpi,6);
+assert.equal(roll.theoretical_calendar_windows,6);
+assert.equal(roll.excluded_calendar_windows_due_to_gap_or_cpi,0);
+assert.equal(roll.observed_calendar_gap_boundaries,0);
+assert.equal(gaps.theoretical_calendar_windows,7);
+assert.equal(gaps.row_based_candidates,6);
+assert.equal(gaps.excluded_calendar_windows_due_to_gap_or_cpi,7,
+ 'Calendar-span gaps must not disappear merely because only 6 row windows can be enumerated');
+assert.equal(gaps.observed_calendar_gap_boundaries,1);
+assert.throws(()=>rollingPersonalMultiAsset({
+ monthly_market_returns:rpath.slice(0,59),horizon_months:60,portfolio:p,
+ plan:{monthly_expense_yen:-1}}),/integer yen|Invalid/i,
+ 'Malformed financial plans must fail even with zero valid rolling windows');
 assert.throws(()=>rollingPersonalMultiAsset({
  monthly_market_returns:rpath.map((x,i)=>i===9?{...x,origin:'OBSERVED'}:x),
  horizon_months:60,portfolio:p,plan:{monthly_expense_yen:1000}}),/provenance|origin/i,
