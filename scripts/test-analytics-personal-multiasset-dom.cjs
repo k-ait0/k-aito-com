@@ -49,6 +49,21 @@ assert.equal(app.getState().twoPhaseEnabled,false,'Legacy 4-column event uses si
 $('events').value='';app.run();
 
 $('withdrawalTiming').value='MONTH_START';app.run();
+$('salaries').value='salary,0,120,100000,MONTH_END';
+$('pensions').value='pension,0,120,70000,MONTH_START';
+app.run();
+assert.equal(app.getState().twoPhaseEnabled,true,'Salary MONTH_END triggers two-phase calculation without event overrides');
+assert(app.getState().downloadEnabled);
+assert.equal(app.parseTextSchedule($('salaries').value,'salary')[0].timing,'MONTH_END');
+assert.throws(()=>app.parseTextSchedule('bad,0,120,100,AFTER_LUNCH','salary'),/不正/);
+$('salaries').value='salary,0,120,100000,UNKNOWN';
+app.run();
+assert.equal(app.getState().downloadEnabled,false,'Invalid recurring salary timing stops export');
+$('salaries').value='salary,0,120,100000';
+$('pensions').value='pension,0,120,70000';
+app.run();
+assert.equal(app.getState().twoPhaseEnabled,false,'Legacy four-column salary and pension keep original one-phase route');
+$('salaries').value='';$('pensions').value='';app.run();
 $('events').value='repair,12,EXPENSE,500000';app.run();
 assert.equal(app.getState().downloadEnabled,true);
 $('events').value='bad,12,EXPENSE,-1';app.run();
