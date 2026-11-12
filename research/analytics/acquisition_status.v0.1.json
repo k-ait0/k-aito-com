@@ -502,10 +502,10 @@
     "production_unchanged": true
   },
   "next_priorities": [
-    "NYU annual 1928-2025 research data acquired and encrypted; add separate private annual research view (never interpolate annual into monthly)",
-    "JPX J-Quants direct official personal API index code/return-type review; service up to 20 years and free plan lacks index bars",
-    "NOMURA BPI monthly snapshot exists, but acquiring full licensed history is still separate; keep manual-personal-source option",
-    "No official S&P DJI/Bloomberg TR source acquisition, no source lock change and no public publication"
+    "Keep local private v0.4 personal simulation and JPY/USD user-supplied legal TR CSV parsing stable; add annual work/life events after timing reconciliation",
+    "For Japanese assets, only official 6000 TOPIX gross TR from 2010 after lawful individual J-Quants entitlement; NOMURA-BPI long cumulative TR still unacquired",
+    "Reconcile v0.4 monthly contributions against DWZ lifecycle core and decide account rounding and contribution fee model",
+    "Do not migrate research prototypes or private market prices to main, FINOWA, public Analytics or user-facing shared API"
   ],
   "audit_note": "Existing November 10 registry/acquisition snapshots are historical; this is an additional verified November 11 ledger. Do not convert data-acquired into site-approved.",
   "observed_joint_coverage_research_only": {
@@ -824,5 +824,49 @@
       "1990s/earlier stock proxy, interest-rate and real-estate methodological consistency require separate review",
       "Private and commercial rights differ, source lock remains SPDJI/BLOOMBERG_INDEX for intended formal indices"
     ]
+  },
+  "personal_browser_ui_v0_4_20261112": {
+    "status": "LOCAL_CHROMIUM_QA_COMPLETE",
+    "mode": "PERSONAL_SINGLE_USER_LOCAL_RESEARCH",
+    "new_capability": "MONTHLY_PERIOD_START_CONTRIBUTION_TO_CASH_AND_RISKY_SLEEVE_WITH_CONCURRENT_WITHDRAWAL",
+    "logic_file": "research/analytics/personal-lab/index.html",
+    "revision": "v0.4",
+    "monthly_contribution_input_max_yen": 100000000,
+    "contribution_occurrences": "N monthly deposits for N monthly returns; no deposit after last period",
+    "drawdown_timings": [
+      "BEGINNING_OF_MONTH",
+      "END_OF_MONTH"
+    ],
+    "prior_v03_parity_if_contribution_zero": true,
+    "tests": {
+      "synthetic_combinations": 432,
+      "single_asset_parity": 576,
+      "dwz_withdrawal_phase_parity_without_contributions": 192,
+      "browser_result_csv_rows_ten_year": 121,
+      "browser_contribution_test_yen_per_month": 100000,
+      "browser_contribution_sum_yen_ten_year": 12000000,
+      "source_series_ids_exported": true,
+      "browser_official_Fed_and_eStat_common_months": 669,
+      "browser_official_usd_cash_jpy_real_terminal_index": 12.387652785974575,
+      "browser_js_errors": 0,
+      "browser_external_http_requests": 0,
+      "mobile_390px_overflow": false,
+      "file_scheme_navigated_directly": false,
+      "browser_set_content_fallback_used": true
+    },
+    "html_sha256": "ee8e9cf0416703749b1e1811ceb09e411314b4dc3d72111859f0551ae2c4e43c",
+    "html_git_blob_sha1": "c322705791bd67a89edad453d4a27c5530c3b5a3",
+    "github_ci": "https://github.com/k-ait0/k-aito-com/actions/runs/43167156268",
+    "technical_report": "docs/ANALYTICS_PERSONAL_TWO_ASSET_V0_4_CONTRIBUTION_QA_20261112.md",
+    "risk_limits": [
+      "No integer-yen rounding or tax account support",
+      "No salary or pension event schedule",
+      "No official monthly 30-year Japanese-stock TR or long Japanese-bond TR obtained",
+      "No iPad Safari real-device QA",
+      "No public site distribution"
+    ],
+    "main_branch_changed": false,
+    "source_registry_changed": false,
+    "commercial_release_approved": false
   }
 }
