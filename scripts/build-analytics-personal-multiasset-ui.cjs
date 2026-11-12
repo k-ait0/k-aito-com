@@ -7,6 +7,7 @@ const root=path.resolve(__dirname,'..');
 const files={
  cashflow:'lib/analytics/cashflow-core.cjs',
  portfolio:'lib/analytics/portfolio-core.cjs',
+ rolling:'lib/analytics/rolling-portfolio-lifecycle.cjs',
  bridge:'lib/analytics/personal-multiasset-bridge.cjs',
  client:'research/analytics/personal-lab/multiasset.client.js',
  template:'research/analytics/personal-lab/multiasset.template.html'
@@ -29,7 +30,8 @@ function build(){
   '// Build inputs SHA256: '+Object.keys(files).map(k=>k+'='+sha(originals[k])).join(' '),
   wrap('coreCashflow',originals.cashflow,{}),
   wrap('corePortfolio',originals.portfolio,{'./cashflow-core.cjs':'coreCashflow'}),
-  wrap('coreBridge',originals.bridge,{'./portfolio-core.cjs':'corePortfolio','./cashflow-core.cjs':'coreCashflow'}),
+  wrap('coreRolling',originals.rolling,{'./cashflow-core.cjs':'coreCashflow','./portfolio-core.cjs':'corePortfolio'}),
+  wrap('coreBridge',originals.bridge,{'./portfolio-core.cjs':'corePortfolio','./cashflow-core.cjs':'coreCashflow','./rolling-portfolio-lifecycle.cjs':'coreRolling'}),
   originals.client,
   '\n})();\n'
  ].join('\n');
