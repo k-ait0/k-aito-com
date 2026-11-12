@@ -18,6 +18,7 @@ on:
       - scripts/test-analytics-personal-cashflow-contract-v02.cjs
       - scripts/test-analytics-cash-source-withdrawal-strategy-v03.cjs
       - scripts/test-analytics-monthly-phase-v04.cjs
+      - scripts/test-analytics-two-phase-event-v05.cjs
       - scripts/test-analytics-cross-engine-divergence-audit.cjs
       - scripts/build-analytics-personal-multiasset-ui.cjs
       - scripts/test-analytics-personal-multiasset-dom.cjs
@@ -68,6 +69,7 @@ jobs:
           node scripts/test-analytics-personal-cashflow-contract-v02.cjs
           node scripts/test-analytics-cash-source-withdrawal-strategy-v03.cjs
           node scripts/test-analytics-monthly-phase-v04.cjs
+          node scripts/test-analytics-two-phase-event-v05.cjs
           node scripts/test-analytics-cross-engine-divergence-audit.cjs
           node scripts/build-analytics-personal-multiasset-ui.cjs --build
           node scripts/build-analytics-personal-multiasset-ui.cjs --verify
