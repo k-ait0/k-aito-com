@@ -177,7 +177,12 @@ function syncStart(){
  }
  sel.value=String(Math.max(0,Math.min(old,end)));
 }
-function invalidate(){state.result=null;state.roll=null;$('download').disabled=true;}
+function invalidate(){state.result=null;state.roll=null;$('download').disabled=true;
+ $('balance').textContent='—';$('inflows').textContent='—';$('windows').textContent='—';
+ $('balanceFoot').textContent='条件変更後、再計算が必要です';
+ $('inflowsFoot').textContent='未計算';$('windowsFoot').textContent='未計算';
+ $('assetResult').textContent='';$('ledgerRows').textContent='';
+}
 function bindData(data){
  state.data=data;invalidate();renderEditor();syncStart();
  $('dataStatus').textContent=data.description+' / 月次リターン '+data.monthly_market_returns.length+'行 / '+data.ids.length+'資産';
@@ -270,14 +275,17 @@ function download(){
  const columns=['market_end_month','relative_offset','monthly_income_yen','regular_deposit_yen',
   'salary_yen','pension_yen','event_income_yen','living_expense_due_yen','event_expense_due_yen',
   'paid_withdrawal_yen','unfunded_yen','investment_gain_yen','rebalance_turnover_yen',
-  'closing_total_yen',...ids.map(id=>'closing_'+id+'_yen'),'market_mode','calculation_contract','not_for_publication'];
+  'closing_total_yen',...ids.map(id=>'closing_'+id+'_yen'),'market_mode','source_series_ids','source_provider_ids','calculation_contract','not_for_publication'];
  const rows=[columns.join(',')];
  for(const x of r.rows){
   const b=x.cashflow_breakdown;
   const vals=[x.month,x.relative_offset,b.total_income_yen,b.monthly_contribution_yen,b.salary_yen,b.pension_yen,
    b.one_time_income_yen,b.living_expense_yen,b.one_time_expense_yen,x.paid_withdrawal_yen,
    x.unfunded_yen,x.investment_gain_yen,x.rebalance_turnover_yen,x.closing_yen,
-   ...ids.map(id=>x.holdings[id].closing_yen),state.data.mode,r.accounting_contract,true];
+   ...ids.map(id=>x.holdings[id].closing_yen),state.data.mode,
+   ids.map(id=>state.data.refs[id]?.series||'UNKNOWN').join('|'),
+   ids.map(id=>state.data.refs[id]?.source||'UNKNOWN').join('|'),
+   r.accounting_contract,true];
   rows.push(vals.map(csvCell).join(','));
  }
  const blob=new Blob(['\uFEFF'+rows.join('\n')+'\n'],{type:'text/csv;charset=utf-8'});
@@ -307,7 +315,8 @@ function handleMode(){
  const isDemo=$('dataMode').value==='demo';
  $('demoControls').classList.toggle('hidden',!isDemo);$('privateControls').classList.toggle('hidden',isDemo);
  if(isDemo)bindData(synthetic(Number($('assetCount').value)));
- else {invalidate();$('dataStatus').textContent='CSVを選択してローカル読込を実行してください';}
+ else {invalidate();state.data=null;$('assetEditor').textContent='';$('startOffset').textContent='';
+ $('dataStatus').textContent='CSVを選択してローカル読込を実行してください';}
 }
 $('dataMode').onchange=handleMode;
 $('assetCount').onchange=()=>bindData(synthetic(Number($('assetCount').value)));
