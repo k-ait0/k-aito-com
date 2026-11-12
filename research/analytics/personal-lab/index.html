@@ -375,7 +375,10 @@ function rollingTwoAsset(fullRows,horizon,initial,monthly,riskAsset,adjust,timin
  for(let i=0;i<n;i++){
    const r=simulateTwoAsset(fullRows,i,horizon,initial,monthly,riskAsset,adjust,timing,config);
    out.push({start:fullRows[i].month,remaining:r.remaining,firstShortfallMonth:r.firstShortfallMonth,
-     covered:r.covered,totalShortfall:r.totalShortfall,totalContributed:r.totalContributed,rebalanceTurnover:r.rebalanceTurnover});
+     covered:r.covered,totalShortfall:r.totalShortfall,totalContributed:r.totalContributed,
+     totalSalaryIncome:r.totalSalaryIncome,totalPensionIncome:r.totalPensionIncome,
+     totalEventIncome:r.totalEventIncome,totalEventExpensePaid:r.totalEventExpensePaid,
+     rebalanceTurnover:r.rebalanceTurnover});
  }
  return out;
 }
