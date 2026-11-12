@@ -35,8 +35,8 @@ table{width:100%;border-collapse:collapse;font-size:12px}td,th{border-bottom:1px
 .assetrow:last-child{border:0}.assetrow label{margin:0}.assetrow .meta{font-size:10px;color:var(--muted);margin-top:4px}
 .note{padding:16px;font-size:11px;color:var(--muted);line-height:1.9;margin-top:15px}
 footer{margin-top:22px;color:#8998a8;font-size:11px;text-align:right}
-@media(max-width:1050px){.layout{grid-template-columns:1fr}.sidebar{display:grid;grid-template-columns:1fr 1fr}.panel{min-width:0}}
-@media(max-width:670px){main{padding:0 14px 25px}header{gap:7px}.brand{gap:9px}.brand strong{font-size:13px}.chip{padding:5px 8px}.sidebar{display:flex}h1{font-size:23px}.summary{grid-template-columns:1fr 1fr}.summary .card:last-child{grid-column:1/-1}.card{padding:13px}.card .v{font-size:20px}.plot{height:235px}}
+@media(max-width:1050px){.layout{grid-template-columns:minmax(0,1fr)}.sidebar,.layout>div{min-width:0}.sidebar{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.panel{min-width:0}}
+@media(max-width:670px){main{padding:0 14px 25px}.sidebar{min-width:0}.layout>div{min-width:0}.tablewrap{max-width:100%}header{gap:7px}.brand{gap:9px}.brand strong{font-size:13px}.chip{padding:5px 8px}.sidebar{display:flex}h1{font-size:23px}.summary{grid-template-columns:1fr 1fr}.summary .card:last-child{grid-column:1/-1}.card{padding:13px}.card .v{font-size:20px}.plot{height:235px}}
 </style></head>
 <body><main>
 <header><div class="brand"><div class="logo">K.</div><div><strong>K. Aito Analytics</strong><div class="kicker">PERSONAL MULTI-ASSET LAB · v0.1</div></div></div><div class="chip">本人専用・完全ローカル</div></header>
@@ -102,7 +102,7 @@ footer{margin-top:22px;color:#8998a8;font-size:11px;text-align:right}
 <section class="panel"><h2>月次収支台帳（抜粋）</h2>
 <div class="tablewrap"><table><thead><tr><th>期間終了月</th><th>月初収入</th><th>うち給与</th><th>うち年金</th><th>臨時収入</th><th>生活費</th><th>臨時支出</th><th>実際の支払</th><th>不足額</th><th>運用損益</th><th>期末残高</th></tr></thead><tbody id="ledgerRows"></tbody></table></div>
 <p class="sub">全月・資産別の保有額はCSV保存で確認できます。月次期間終了月を行見出しにしています。</p></section>
-<div class="note">**計算・データ上の制約**：こちらは整数円で「月初の外部入金・生活費・臨時支出 → 月次騰落 → 期末リバランス」を処理するCoreです。従来Personal Labの月末引出モデルとは一致を保証しません。指数TRは投資可能商品の税引後リターンではありません。月次ローリング窓は重複し、将来の成功確率ではありません。公開・商用配信は未承認です。</div>
+<div class="note"><strong>計算・データ上の制約</strong>：こちらは整数円で「月初の外部入金・生活費・臨時支出 → 月次騰落 → 期末リバランス」を処理するCoreです。従来Personal Labの月末引出モデルとは一致を保証しません。指数TRは投資可能商品の税引後リターンではありません。月次ローリング窓は重複し、将来の成功確率ではありません。公開・商用配信は未承認です。</div>
 </div></div>
 <footer>LOCAL FIRST · NO EXTERNAL DATA REQUESTS · NO RAW DATA BUNDLED · RESEARCH ONLY</footer>
 </main>
