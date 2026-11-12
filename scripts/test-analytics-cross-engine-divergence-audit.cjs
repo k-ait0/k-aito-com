@@ -220,13 +220,16 @@ const level=(assetGrowthByMonth=()=>1,cpiByMonth=()=>100)=>{
  {cashPercent:100,sellOrder:'CASH_FIRST',rebalance:'NONE',monthlyContribution:0,
   lifecycle:{events:[{id:'retirementGift',at:180,kind:'INCOME',amount:2000}]}});
  assert.equal(previous.remaining,500);
- assert.throws(()=>simulatePersonalMultiAsset({
+ const future=simulatePersonalMultiAsset({
   monthly_market_returns:[{month:'2000-02',origin:'SYNTHETIC',asset_returns:{CASH:0}}],
   portfolio:{initial_holdings_yen:{CASH:500},target_weights:{CASH:1},rebalance:{mode:'NONE'}},
   plan:{monthly_expense_yen:0,one_time_events:[{id:'retirementGift',offset_months:180,
-   kind:'INCOME',amount_yen:2000}]}}),/outside horizon/);
+   kind:'INCOME',amount_yen:2000}]}});
+ assert.equal(future.ending_assets_yen,500);
+ assert.equal(future.skipped_events_after_horizon.length,1);
+ assert.equal(future.skipped_events_after_horizon[0].id,'retirementGift');
  say('EVENT_OUTSIDE_HORIZON',{old_personal:'IGNORES_FUTURE_EVENT',
-   new_bridge:'REJECTS_SCENARIO'});
+   new_bridge:'SKIPS_WITH_EXPLICIT_AUDIT_RECORD'});
 }
 // #12: Under exactly matched phase and integer inputs, one-asset finance
 // cores CAN be reconciled; mismatch should never be claimed as universal.
@@ -245,4 +248,4 @@ const level=(assetGrowthByMonth=()=>1,cpiByMonth=()=>100)=>{
  assert.equal(core.rows[0].investment_gain_yen,simple.rows[0].investment_gain_yen);
  say('MATCHED_PHASE_PARITY',{canonical_single_asset_core:138,single_cashflow_core:138});
 }
-console.log('PASS_CROSS_ENGINE_AUDIT: twelve synthetic discrepancy/compatibility assertions, no claim of universal engine equality');
+console.log('PASS_CROSS_ENGINE_AUDIT: twelve synthetic discrepancy/compatibility assertions; future event behavior now reconciled and recorded');
