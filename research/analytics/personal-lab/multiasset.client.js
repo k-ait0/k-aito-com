@@ -40,7 +40,7 @@ function indexCsv(content){
    if(x('currency')!=='JPY')throw Error('新しい多資産画面では円換算済みJPY建てTRだけ対応。USDは事前に正規換算してください');
    if(!knownProviders.has(x('source_id')))throw Error('未登録の指数提供元');
    if(!/^[a-f0-9]{64}$/.test(x('raw_response_sha256')))throw Error('原本ハッシュ形式が不正');
-   if(!/^[A-Za-z0-9._:-]{3,90}$/.test(x('series_id'))||!x('unit'))throw Error('系列IDまたは単位が不正');
+   if(!/^[A-Za-z0-9._:-]{3,90}$/.test(x('series_id'))||x('unit')!=='INDEX_TR')throw Error('TR指数の単位はINDEX_TRに限定します');
    if(!Number.isFinite(value)||value<=0||!/^(?:\d+(?:\.\d+)?|\.\d+)$/.test(x('value')))throw Error('TR指数の水準値が不正');
    const m={series:x('series_id'),source:x('source_id'),unit:x('unit'),currency:x('currency'),hash:x('raw_response_sha256')};
    if(meta&&Object.keys(m).some(k=>m[k]!==meta[k]))throw Error('同一CSVに異なるTR系列・出典が混在');
@@ -53,7 +53,7 @@ function indexCsv(content){
 }
 function cpiCsv(content){
  const {head,rows}=csvParse(content);
- const required=['month','series_id','value','source_id','origin','series_kind'];
+ const required=['month','series_id','value','source_id','origin','series_kind','unit','currency','raw_response_sha256'];
  if(!required.every(k=>head.includes(k)))throw Error('CPI CSVに必要な列がありません');
  const at=Object.fromEntries(head.map((x,i)=>[x,i]));
  const map=new Map();
@@ -61,8 +61,10 @@ function cpiCsv(content){
   const get=k=>r[at[k]];
   if(r.length!==head.length)throw Error('CPI CSVの列数が不正');
   if(get('series_id')!=='JP_CPI_HEADLINE_2025_LINKED')continue;
-  if(get('source_id')!=='ESTAT'||get('origin')!=='OBSERVED'||get('series_kind')!=='CPI_LEVEL')
-    throw Error('指定e-Stat全国総合CPIのOBSERVED以外は拒否');
+  if(get('source_id')!=='ESTAT'||get('origin')!=='OBSERVED'||get('series_kind')!=='CPI_LEVEL'||
+     get('unit')!=='INDEX_2025_100'||get('currency')!=='NOT_APPLICABLE'||
+     !/^[a-f0-9]{64}$/.test(get('raw_response_sha256')))
+    throw Error('指定e-Stat全国総合CPIのOBSERVED・2025基準以外を拒否');
   const k=get('month'),v=Number(get('value'));
   if(!/^\d{4}-(0[1-9]|1[0-2])$/.test(k)||map.has(k)||!Number.isFinite(v)||v<=0)
     throw Error('日本CPIの年月重複または値不正');
@@ -226,7 +228,9 @@ function run(){
   $('inflowsFoot').textContent='予定支出 '+money(result.scheduled_expenses_yen)+' ／ 未払 '+money(result.total_unfunded_yen);
   const funded=rolling.windows.filter(x=>x.status==='FUNDED').length;
   $('windows').textContent=funded+' / '+rolling.complete_windows;
-  $('windowsFoot').textContent='過去の開始月・不足なし／全窓。予測確率ではありません。';
+  $('windowsFoot').textContent='過去の開始月・不足なし／完全窓。暦月基準で除外 '+
+    comma(rolling.excluded_calendar_windows_due_to_gap_or_cpi)+
+    ' 窓（市場欠損・CPI欠損）。将来予測確率ではありません。';
   $('chartDescription').textContent=result.accounting_contract+' / '+result.rounding_contract+
     ' / '+(state.data.mode==='SYNTHETIC_DEMO'?'SYNTHETIC':'PRIVATE USER-DECLARED');
   $('chartRange').textContent='期間 '+result.period_start_month+' ～ '+market.at(-1).month;
