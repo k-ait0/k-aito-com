@@ -62,5 +62,7 @@ assert.throws(()=>app.cpiCsv(cpiValid.replaceAll('INDEX_2025_100','INDEX_2015_10
 assert.throws(()=>app.cpiCsv(cpiValid.replaceAll(',OBSERVED,ESTAT',',ESTIMATED,ESTAT')),
  /2025基準/, 'Estimated CPI values must fail');
 assert.equal(app.buildMarketFromLevels([parsed],true,app.cpiCsv(cpiValid)).cpi_levels.length,145);
+$('events').value='';app.run();
+assert(app.getState().downloadEnabled,'Valid plan must be recomputed before coverage UI is asserted');
 assert($('windowsFoot').textContent.includes('暦月基準で除外'));
 console.log('PASS offline 1..12 asset HTML bundle, DOM synthetic 3/12 assets, fail-closed events, private index levels->monthly JPY returns');
