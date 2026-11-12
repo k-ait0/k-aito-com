@@ -27,6 +27,8 @@ on:
       - 'docs/A05_ALL_QUESTION_TEXTS_AND_EDITORIAL_ASSESSMENTS_20261111.md'
       - 'scripts/test-a05-d198-d199-selection.mjs'
       - 'docs/A05_V2_D199_TEN_TO_FOUR_EDITORIAL_SELECTION_20261112.md'
+      - 'scripts/test-a05-d200-d201-new-angles.mjs'
+      - 'docs/A05_V2_D201_METHODS_13_TO_18_REVIEW_20261112.md'
       - 'research/a05/d1*.json'
       - '.github/workflows/a05-research-browser-qa.yml'
   workflow_dispatch:
@@ -50,8 +52,8 @@ jobs:
           node --check scripts/test-a05-d170-browser.cjs
           node --check scripts/test-a05-d175-participant-browser.cjs
           node --check scripts/a05-d175-participant-aggregate.cjs
-      - name: Verify archival provenance and editorial gates (132 tests)
-        run: node --test scripts/test-a05-d152-d153-content-gates.mjs scripts/test-a05-research-contracts.mjs scripts/test-a05-d170-research-aggregate.cjs scripts/test-a05-d175-participant-aggregate.cjs scripts/test-a05-d179-angle-gates.mjs scripts/test-a05-d181-additional-angles.mjs scripts/test-a05-d183-d185-new-content-questions.mjs scripts/test-a05-d186-d191-wide-patterns.mjs scripts/test-a05-d192-d194-multilens.mjs scripts/test-a05-d197-master-paired-revisions.mjs scripts/test-a05-d198-d199-selection.mjs
+      - name: Verify archival provenance and editorial gates (146 tests)
+        run: node --test scripts/test-a05-d152-d153-content-gates.mjs scripts/test-a05-research-contracts.mjs scripts/test-a05-d170-research-aggregate.cjs scripts/test-a05-d175-participant-aggregate.cjs scripts/test-a05-d179-angle-gates.mjs scripts/test-a05-d181-additional-angles.mjs scripts/test-a05-d183-d185-new-content-questions.mjs scripts/test-a05-d186-d191-wide-patterns.mjs scripts/test-a05-d192-d194-multilens.mjs scripts/test-a05-d197-master-paired-revisions.mjs scripts/test-a05-d198-d199-selection.mjs scripts/test-a05-d200-d201-new-angles.mjs
       - name: Install Chromium test runtime
         run: |
           npm install --prefix /tmp/a05-review --no-audit --no-fund --no-save playwright@1.56.1
