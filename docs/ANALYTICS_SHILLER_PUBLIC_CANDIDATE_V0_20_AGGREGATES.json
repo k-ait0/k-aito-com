@@ -1,0 +1,27 @@
+{
+  "schema": "ANALYTICS_SHILLER_PUBLIC_CANDIDATE_V020_AGGREGATES",
+  "date_jst": "2026-11-13",
+  "report_kind": "AGGREGATE_ONLY_REAL_UPSTREAM_CANDIDATE",
+  "source_repo": "datasets/s-and-p-500",
+  "source_commit": "87a2284276f79d75041c71c8f6d9f2aa1c965e84",
+  "source_path": "data/data.csv",
+  "source_git_blob_sha1": "1c5f64a1cb8377fde80d339fbf0051e5e0e94566",
+  "legacy_exact_pinned_original_sha256": "0cdb8a04bd14d104e53acbb982cf205eb4733371bb9140191b8c4b6e433bc55d",
+  "legacy_exact_bytes_matched": false,
+  "range": "1980-01/2023-06",
+  "observed_months": 522,
+  "derived_monthly_returns": 521,
+  "method": "MONTHLY_AVERAGE_PRICE_PLUS_ANNUALIZED_DIVIDEND_DIVIDED_BY_12_APPROX",
+  "inflation_reference": "UPSTREAM_US_CPI_ONLY_NOT_JP_CPI",
+  "note": "Nominal and US CPI-adjusted USD rolling CAGR; overlapping windows; NOT SPDJI official TR or JPY history or investor success probability.",
+  "windows": [
+    {"horizon_months":120,"count":402,"usd_nominal":{"min":-0.035039418075,"median":0.121306685323,"max":0.192994717925,"negative_windows":23},"usd_real_us_cpi":{"min":-0.059239278110,"median":0.091099095076,"max":0.161303222715,"negative_windows":32}},
+    {"horizon_months":240,"count":282,"usd_nominal":{"min":0.050687618367,"median":0.091284542815,"max":0.179483567970,"negative_windows":0},"usd_real_us_cpi":{"min":0.029337321498,"median":0.066094744905,"max":0.136130653857,"negative_windows":0}},
+    {"horizon_months":360,"count":162,"usd_nominal":{"min":0.092863830720,"median":0.105600331012,"max":0.116408580374,"negative_windows":0},"usd_real_us_cpi":{"min":0.065395090468,"median":0.076127327028,"max":0.084998740227,"negative_windows":0}}
+  ],
+  "publication_approved":false,
+  "official_total_return":false,
+  "original_source_rights_verified":false,
+  "source_monthly_rows_included":false,
+  "production_or_fed_source_lock_changed":false
+}
