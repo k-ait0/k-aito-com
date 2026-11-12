@@ -39,7 +39,7 @@ footer{margin-top:22px;color:#8998a8;font-size:11px;text-align:right}
 @media(max-width:670px){main{padding:0 14px 25px}.sidebar{min-width:0}.layout>div{min-width:0}.tablewrap{max-width:100%}header{gap:7px}.brand{gap:9px}.brand strong{font-size:13px}.chip{padding:5px 8px}.sidebar{display:flex}h1{font-size:23px}.summary{grid-template-columns:1fr 1fr}.summary .card:last-child{grid-column:1/-1}.card{padding:13px}.card .v{font-size:20px}.plot{height:235px}}
 </style></head>
 <body><main>
-<header><div class="brand"><div class="logo">K.</div><div><strong>K. Aito Analytics</strong><div class="kicker">PERSONAL MULTI-ASSET LAB · v0.5</div></div></div><div class="chip">本人専用・完全ローカル</div></header>
+<header><div class="brand"><div class="logo">K.</div><div><strong>K. Aito Analytics</strong><div class="kicker">PERSONAL MULTI-ASSET LAB · v0.6</div></div></div><div class="chip">本人専用・完全ローカル</div></header>
 <div class="eyebrow" style="margin-top:25px">RESEARCH / 1–12 ASSET PORTFOLIOS</div><h1>複数資産 × 生活設計 × 長期分析</h1>
 <p class="kicker">月初収支 → 運用リターン → リバランス。整数円・複数イベント・過去開始月ローリングを、1つのオフラインHTMLで検証します。</p>
 <div class="layout">
@@ -90,13 +90,14 @@ footer{margin-top:22px;color:#8998a8;font-size:11px;text-align:right}
 <div class="group"><label for="inflationRate">物価上昇率（年％、仮定モードのみ）</label><input id="inflationRate" type="number" value="2" min="-50" max="100" step=".1"></div>
 <div class="details">
 <h3>給与・年金のスケジュール</h3>
-<label for="salaries">給与：ID,開始月,終了月（除外）,月額円</label><textarea id="salaries" rows="2" placeholder="work,0,120,150000"></textarea>
-<label for="pensions">年金：同じ4列</label><textarea id="pensions" rows="2" placeholder="public,120,360,120000"></textarea>
+<label for="salaries">給与：ID,開始月,終了月（除外）,月額円[,MONTH_START/MONTH_END]</label><textarea id="salaries" rows="2" placeholder="work,0,120,150000,MONTH_END"></textarea>
+<label for="pensions">年金：給与と同じ4列／5列</label><textarea id="pensions" rows="2" placeholder="public,120,360,120000,MONTH_START"></textarea>
+<p class="sub">給与・年金も5列目を省略した場合は月初入金です。月末入金は当月の市場リターンを受けず、月初の支出には使えません。終了月は含みません。</p>
 <label for="events">臨時収支：ID,経過月,INCOME/EXPENSE,金額円[,MONTH_START/MONTH_END]</label>
 <textarea id="events" rows="3" placeholder="repair,60,EXPENSE,500000,MONTH_START&#10;gift,180,INCOME,1000000,MONTH_END"></textarea>
 <p class="sub">5列目は任意。空欄の4列形式は従来どおり入金＝月初、支出＝上で選んだ取り崩し時点となります。指定時はイベントごとに月初／月末を選べます。</p>
 </div>
-<p class="warning">給与・年金の金額は資産へ流入する額。積立の資金源を明示してください。内部振替は残高に二重加算しません。税・社会保険・年金の支給日・NISA・手数料は未計算。</p>
+<p class="warning">給与・年金の金額は資産へ流入する額です。月末入金は月初の支払い原資になりません。積立の資金源を明示してください。内部振替は残高に二重加算しません。税・社会保険・年金の支給日・NISA・手数料は未計算。</p>
 </section>
 </aside>
 <div>
