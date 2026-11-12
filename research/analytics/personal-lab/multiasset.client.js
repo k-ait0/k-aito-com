@@ -225,7 +225,7 @@ function run(){
    throw Error('現金優先・投資優先の売却には現金0%モデルのCASH_JPYが必要です');
   const p={initial_holdings_yen:Object.fromEntries(w.ids.map((id,i)=>[id,holdings[i]])),
    target_weights:Object.fromEntries(w.ids.map((id,i)=>[id,w.weights[i]])),
-   rebalance:getRebalance(),withdrawal_strategy:strategy};
+   rebalance:getRebalance(),withdrawal_strategy:strategy,withdrawal_timing:$('withdrawalTiming').value};
   if(strategy!=='PRO_RATA')p.cash_asset_id='CASH_JPY';
   const plan=getPlan(),market=state.data.monthly_market_returns.slice(start,start+horizon);
   const cpi=state.data.cpi_levels?.slice(start,start+horizon+1);
@@ -300,6 +300,7 @@ function download(){
   'salary_yen','pension_yen','event_income_yen',
   'living_expense_due_yen','living_expense_paid_yen','living_expense_unfunded_yen',
   'event_expense_due_yen','event_expense_paid_yen','event_expense_unfunded_yen','event_payment_allocations',
+  'expense_price_level_month','withdrawal_timing',
   'expense_priority','withdrawal_strategy','outside_horizon_events',
   'paid_withdrawal_yen','unfunded_yen','investment_gain_yen','rebalance_turnover_yen',
   'closing_total_yen',...ids.map(id=>'closing_'+id+'_yen'),'market_mode','source_series_ids','source_provider_ids','calculation_contract','not_for_publication'];
@@ -312,6 +313,7 @@ function download(){
    b.one_time_income_yen,b.living_expense_yen,b.paid_living_expense_yen,b.unfunded_living_expense_yen,
    b.one_time_expense_yen,b.paid_event_expense_yen,b.unfunded_event_expense_yen,
    b.event_payment_allocations.map(e=>e.id+':'+e.due_yen+':'+e.paid_yen+':'+e.unfunded_yen).join('|'),
+   b.expense_price_level_month,r.withdrawal_timing,
    r.expense_priority,r.withdrawal_strategy,r.skipped_events_after_horizon.length,
    x.paid_withdrawal_yen,x.unfunded_yen,x.investment_gain_yen,x.rebalance_turnover_yen,x.closing_yen,
    ...ids.map(id=>x.holdings[id].closing_yen),state.data.mode,
@@ -357,7 +359,7 @@ $('horizon').onchange=()=>{syncStart();invalidate();};
 $('startOffset').onchange=invalidate;
 $('rebalance').onchange=invalidate;
 ['rebalanceParam','initial','monthlyContribution','monthlyExpense','expenseMode','inflationRate',
- 'salaries','pensions','events','expensePriority','withdrawalStrategy','monthlyContributionSource'].forEach(id=>$(id).addEventListener('change',invalidate));
+ 'salaries','pensions','events','expensePriority','withdrawalStrategy','withdrawalTiming','monthlyContributionSource'].forEach(id=>$(id).addEventListener('change',invalidate));
 window.addEventListener('resize',()=>{if(state.result)draw(state.result.rows.map(r=>r.closing_yen));});
 window.__KAI_MULTI_TEST__={synthetic,indexCsv,cpiCsv,buildMarketFromLevels,
  parseTextSchedule,parseEvents,getState:()=>({
