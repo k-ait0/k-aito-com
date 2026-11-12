@@ -22,7 +22,7 @@ const window={devicePixelRatio:1,addEventListener:noop,setTimeout:noop};
 vm.runInNewContext(s,{document,window,Intl,Map,Set,Date,Math,Number,String,Array,Blob,URL,console});
 const app=window.__KAI_MULTI_TEST__,$=id=>document.getElementById(id);
 assert(app);assert.equal(app.getState().assets,3);
-assert.equal(app.getState().months,600);assert.equal(app.getState().resultMonths,120);
+assert.equal(app.getState().months,600);assert.equal(app.getState().resultMonths,120,$('message').textContent);
 assert.equal(app.getState().rollingWindows,481);
 assert(app.getState().downloadEnabled);
 $('assetCount').value='12';$('assetCount').onchange();
