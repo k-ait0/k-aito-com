@@ -5,6 +5,7 @@ on:
       - analytics-historical-v0-1-20261110
     paths:
       - .github/workflows/analytics-nyu-annual-1928-probe.yml
+      - scripts/research-acquire-damodaran-annual.cjs
   workflow_dispatch:
 permissions:
   contents: read
