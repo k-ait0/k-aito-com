@@ -17,7 +17,7 @@ function el(id=''){
  return e;
 }
 const document={getElementById(id){if(!nodes.has(id))nodes.set(id,el(id));return nodes.get(id)},createElement(tag){const n=el(tag);let value='';Object.defineProperty(n,'id',{get:()=>value,set(v){value=v;if(v)nodes.set(v,n)}});return n;}};
-const form={dataMode:'demo',assetCount:'3',initial:'10000000',horizon:'120',startOffset:'0',rebalance:'NONE',rebalanceParam:'12',expensePriority:'EVENT_FIRST',withdrawalStrategy:'PRO_RATA',monthlyContributionSource:'UNSELECTED',
+const form={dataMode:'demo',assetCount:'3',initial:'10000000',horizon:'120',startOffset:'0',rebalance:'NONE',rebalanceParam:'12',expensePriority:'EVENT_FIRST',withdrawalStrategy:'PRO_RATA',withdrawalTiming:'MONTH_START',monthlyContributionSource:'UNSELECTED',
  monthlyContribution:'0',monthlyExpense:'100000',expenseMode:'NOMINAL_FIXED',inflationRate:'2',salaries:'',pensions:'',events:''};
 for(const [k,v] of Object.entries(form))document.getElementById(k).value=v;
 const window={devicePixelRatio:1,addEventListener:noop,setTimeout:noop};
@@ -34,6 +34,9 @@ assert(app.getState().downloadEnabled,'cash first with CASH_JPY should run');
 $('withdrawalStrategy').value='RISK_FIRST';app.run();
 assert(app.getState().downloadEnabled,'risk first with CASH_JPY should run');
 $('withdrawalStrategy').value='PRO_RATA';app.run();
+$('withdrawalTiming').value='MONTH_END';app.run();
+assert(app.getState().downloadEnabled,'MONTH_END explicit phase should run');
+$('withdrawalTiming').value='MONTH_START';app.run();
 $('events').value='repair,12,EXPENSE,500000';app.run();
 assert.equal(app.getState().downloadEnabled,true);
 $('events').value='bad,12,EXPENSE,-1';app.run();
