@@ -72,6 +72,8 @@ footer{margin-top:22px;color:#8998a8;font-size:11px;text-align:right}
 <h2>03 · 月次生活設計</h2>
 <div class="group"><label for="monthlyContribution">月額の外部積立（円）</label><input id="monthlyContribution" type="number" value="0" min="0" max="1000000000000"></div>
 <div class="group"><label for="monthlyExpense">月額の生活費・通常引出し（円）</label><input id="monthlyExpense" type="number" value="100000" min="0" max="1000000000000"></div>
+<div class="group"><label for="expensePriority">資金不足時の支出充当順序</label><select id="expensePriority"><option value="EVENT_FIRST" selected>臨時支出を先に支払う</option><option value="LIVING_FIRST">通常生活費を先に支払う</option></select>
+<p class="sub">充当順位は「生活費・臨時支出」の実払と未払の内訳のみを変え、税・差押え等の法的優先順位を表すものではありません。</p></div>
 <div class="group"><label for="expenseMode">生活費の物価処理</label><select id="expenseMode"><option value="NOMINAL_FIXED">名目固定</option><option value="ANNUAL_ASSUMPTION">年率の物価仮定</option><option value="HISTORICAL_CPI">指定CPIの実績（月初水準）</option></select></div>
 <div class="group"><label for="inflationRate">物価上昇率（年％、仮定モードのみ）</label><input id="inflationRate" type="number" value="2" min="-50" max="100" step=".1"></div>
 <div class="details">
@@ -100,7 +102,7 @@ footer{margin-top:22px;color:#8998a8;font-size:11px;text-align:right}
 <div class="tablewrap"><table><thead><tr><th>資産ID</th><th>配分目標</th><th>計算後残高</th><th>参考出典</th></tr></thead><tbody id="assetResult"></tbody></table></div>
 </section>
 <section class="panel"><h2>月次収支台帳（抜粋）</h2>
-<div class="tablewrap"><table><thead><tr><th>期間終了月</th><th>月初収入</th><th>うち給与</th><th>うち年金</th><th>臨時収入</th><th>生活費</th><th>臨時支出</th><th>実際の支払</th><th>不足額</th><th>運用損益</th><th>期末残高</th></tr></thead><tbody id="ledgerRows"></tbody></table></div>
+<div class="tablewrap"><table><thead><tr><th>期間終了月</th><th>月初収入</th><th>うち給与</th><th>うち年金</th><th>臨時収入</th><th>生活費予定</th><th>生活費実払</th><th>生活費未払</th><th>臨時支出予定</th><th>臨時支出実払</th><th>臨時支出未払</th><th>実際の支払</th><th>不足額</th><th>運用損益</th><th>期末残高</th></tr></thead><tbody id="ledgerRows"></tbody></table></div>
 <p class="sub">全月・資産別の保有額はCSV保存で確認できます。月次期間終了月を行見出しにしています。</p></section>
 <div class="note"><strong>計算・データ上の制約</strong>：こちらは整数円で「月初の外部入金・生活費・臨時支出 → 月次騰落 → 期末リバランス」を処理するCoreです。従来Personal Labの月末引出モデルとは一致を保証しません。指数TRは投資可能商品の税引後リターンではありません。月次ローリング窓は重複し、将来の成功確率ではありません。公開・商用配信は未承認です。</div>
 </div></div>
