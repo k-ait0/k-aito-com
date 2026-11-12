@@ -52,6 +52,22 @@ assert.equal(old.totalSalaryIncome,12000);
 assert.equal(old.totalPensionIncome,2400);
 assert.equal(old.totalEventExpensePaid,200);
 assert.equal(one.rows.reduce((a,r)=>a+r.contribution_yen,0),27400);
+// Deliberately different contracts must NOT be advertised as interchangeable:
+const growthRows=Array.from({length:13},(_,i)=>({month:formatMonth(monthSerial('2000-01')+i),
+ fx:100*Math.pow(1.011,i),cpi:100,gold:100}));
+const personalStart=personal.simulateTwoAsset(growthRows,0,1,101,5,'usd',false,'BEGINNING_OF_MONTH',
+ {cashPercent:0,sellOrder:'PRO_RATA',rebalance:'NONE',monthlyContribution:0});
+const personalEnd=personal.simulateTwoAsset(growthRows,0,1,101,5,'usd',false,'END_OF_MONTH',
+ {cashPercent:0,sellOrder:'PRO_RATA',rebalance:'NONE',monthlyContribution:0});
+assert(Math.abs(personalStart.remaining-personalEnd.remaining)>1e-6,
+ 'With positive monthly return, BEGIN and END withdrawals must produce different values');
+const marketRounded=Array.from({length:12},(_,i)=>({month:formatMonth(monthSerial('2000-02')+i),
+ origin:'SYNTHETIC',asset_returns:{RISK:0.011}}));
+const coreRounded=simulatePersonalMultiAsset({monthly_market_returns:marketRounded,
+ portfolio:{initial_holdings_yen:{RISK:101},target_weights:{RISK:1},rebalance:{mode:'NONE'}},
+ plan:{monthly_expense_yen:5}});
+assert(Math.abs(coreRounded.ending_assets_yen-personalStart.remaining)>1e-6,
+ 'Integer Core rounding must remain distinct from prior floating-yen Personal calculations');
 assert.equal(one.accounting_contract,'MONTH_START_ALL_CASHFLOWS_BEFORE_MARKET_RETURN');
 assert.equal(one.rounding_contract,'INTEGER_JPY_EACH_ASSET_RETURN_AND_LARGEST_REMAINDER_FOR_ALLOCATION');
 // Core is the engine for all 1..12 assets; separate one-asset and 12-asset checks.
