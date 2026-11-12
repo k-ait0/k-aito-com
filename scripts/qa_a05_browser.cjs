@@ -72,7 +72,13 @@ async function main() {
   const address = live || ("http://127.0.0.1:" + server.address().port);
   console.log("A05 target: " + (live ? "live HTTPS" : "local static server"));
   try {
-    browser = await chromium.launch({ headless: true, channel: "chrome" });
+    // Default stays Chrome; QA hosts can opt into their installed Chromium.
+    // This does not trigger CI, publishing or any network installation.
+    const executable = process.env.A05_CHROMIUM_EXECUTABLE;
+    browser = await chromium.launch({
+      headless: true,
+      ...(executable ? { executablePath: executable } : { channel: "chrome" })
+    });
     const context = await browser.newContext({
       viewport: { width: 390, height: 844 },
       acceptDownloads: true
