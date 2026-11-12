@@ -14,7 +14,7 @@ function el(id=''){
   append(...x){children.push(...x)},appendChild(x){children.push(x)},addEventListener:noop,
   getContext:()=>canvas,getBoundingClientRect:()=>({width:800,height:300})};
 }
-const document={getElementById(id){if(!nodes.has(id))nodes.set(id,el(id));return nodes.get(id)},createElement:el};
+const document={getElementById(id){if(!nodes.has(id))nodes.set(id,el(id));return nodes.get(id)},createElement(tag){const n=el(tag);let value='';Object.defineProperty(n,'id',{get:()=>value,set(v){value=v;if(v)nodes.set(v,n)}});return n;}};
 const form={dataMode:'demo',assetCount:'3',initial:'10000000',horizon:'120',startOffset:'0',rebalance:'NONE',rebalanceParam:'12',
  monthlyContribution:'0',monthlyExpense:'100000',expenseMode:'NOMINAL_FIXED',inflationRate:'2',salaries:'',pensions:'',events:''};
 for(const [k,v] of Object.entries(form))document.getElementById(k).value=v;
