@@ -17,7 +17,7 @@ function el(id=''){
  return e;
 }
 const document={getElementById(id){if(!nodes.has(id))nodes.set(id,el(id));return nodes.get(id)},createElement(tag){const n=el(tag);let value='';Object.defineProperty(n,'id',{get:()=>value,set(v){value=v;if(v)nodes.set(v,n)}});return n;}};
-const form={dataMode:'demo',assetCount:'3',initial:'10000000',horizon:'120',startOffset:'0',rebalance:'NONE',rebalanceParam:'12',
+const form={dataMode:'demo',assetCount:'3',initial:'10000000',horizon:'120',startOffset:'0',rebalance:'NONE',rebalanceParam:'12',expensePriority:'EVENT_FIRST',
  monthlyContribution:'0',monthlyExpense:'100000',expenseMode:'NOMINAL_FIXED',inflationRate:'2',salaries:'',pensions:'',events:''};
 for(const [k,v] of Object.entries(form))document.getElementById(k).value=v;
 const window={devicePixelRatio:1,addEventListener:noop,setTimeout:noop};
@@ -33,6 +33,11 @@ $('events').value='repair,12,EXPENSE,500000';app.run();
 assert.equal(app.getState().downloadEnabled,true);
 $('events').value='bad,12,EXPENSE,-1';app.run();
 assert.equal(app.getState().downloadEnabled,false);
+$('events').value='repair,0,EXPENSE,100000';
+$('expensePriority').value='LIVING_FIRST';app.run();
+assert.equal(app.getState().downloadEnabled,true,'LIVING_FIRST must be selectable');
+$('expensePriority').value='EVENT_FIRST';$('events').value='';app.run();
+assert.equal(app.getState().downloadEnabled,true);
 const sha='a'.repeat(64);
 const csv=['month,series_id,value,unit,currency,series_kind,origin,source_id,raw_response_sha256'];
 for(let i=0;i<145;i++){
