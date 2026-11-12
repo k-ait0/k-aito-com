@@ -63,6 +63,10 @@ footer{margin-top:22px;color:#8998a8;font-size:11px;text-align:right}
 <div class="group"><label for="initial">初期資金（円）</label><input id="initial" type="number" value="10000000" min="1" max="1000000000000"></div>
 <div class="group"><label for="horizon">検証期間</label><select id="horizon"><option value="120" selected>10年</option><option value="240">20年</option><option value="360">30年</option></select></div>
 <div class="group"><label for="startOffset">市場開始月</label><select id="startOffset"></select></div>
+<div class="group"><label for="withdrawalStrategy">資産の実売却順序</label>
+<select id="withdrawalStrategy"><option value="PRO_RATA">保有残高に比例（従来Core）</option>
+<option value="CASH_FIRST">円現金から先に売却</option><option value="RISK_FIRST">円現金以外から先に売却</option></select>
+<p class="sub">現金優先・投資優先では、0%利息のCASH_JPY資産が必要です。資産売却順序は、生活費と臨時費用の支払優先順位とは独立です。</p></div>
 <div class="group"><label for="rebalance">リバランス</label><select id="rebalance"><option value="NONE">なし</option><option value="PERIODIC">定期（月数指定）</option><option value="THRESHOLD">閾値（乖離率）</option></select></div>
 <div class="group"><label for="rebalanceParam">定期：月数／閾値：％</label><input id="rebalanceParam" type="number" value="12" min="1" step="1"></div>
 <p class="sub">配分は合計100%。投入額の端数は最大剰余方式で整数円に配分します。</p>
@@ -70,7 +74,11 @@ footer{margin-top:22px;color:#8998a8;font-size:11px;text-align:right}
 </section>
 <section class="panel">
 <h2>03 · 月次生活設計</h2>
-<div class="group"><label for="monthlyContribution">月額の外部積立（円）</label><input id="monthlyContribution" type="number" value="0" min="0" max="1000000000000"></div>
+<div class="group"><label for="monthlyContribution">毎月の積立・資金移動額（円）</label><input id="monthlyContribution" type="number" value="0" min="0" max="1000000000000"></div>
+<div class="group"><label for="monthlyContributionSource">積立の資金源</label>
+<select id="monthlyContributionSource"><option value="EXTERNAL_NEW_MONEY">給与・年金と別の新規外部資金</option>
+<option value="INTERNAL_FROM_SALARY_PENSION">入力済み給与・年金の一部を積立（内部振替）</option></select>
+<p class="sub">給与・年金も既に資産残高へ入金されます。内部振替なら資産総額へ積立額を二重加算しません。各月の積立額がその月の給与・年金を超えたら計算を停止します。</p></div>
 <div class="group"><label for="monthlyExpense">月額の生活費・通常引出し（円）</label><input id="monthlyExpense" type="number" value="100000" min="0" max="1000000000000"></div>
 <div class="group"><label for="expensePriority">資金不足時の支出充当順序</label><select id="expensePriority"><option value="EVENT_FIRST" selected>臨時支出を先に支払う</option><option value="LIVING_FIRST">通常生活費を先に支払う</option></select>
 <p class="sub">充当順位は「生活費・臨時支出」の実払と未払の内訳のみを変え、税・差押え等の法的優先順位を表すものではありません。</p></div>
@@ -82,7 +90,7 @@ footer{margin-top:22px;color:#8998a8;font-size:11px;text-align:right}
 <label for="pensions">年金：同じ4列</label><textarea id="pensions" rows="2" placeholder="public,120,360,120000"></textarea>
 <label for="events">臨時収支：ID,経過月,INCOME/EXPENSE,金額円</label><textarea id="events" rows="3" placeholder="repair,60,EXPENSE,500000&#10;gift,180,INCOME,1000000"></textarea>
 </div>
-<p class="warning">給与・年金の金額は資産へ流入する額を入力。積立額と二重計上しないでください。税・社会保険・年金の支給日・NISA・手数料は未計算。</p>
+<p class="warning">給与・年金の金額は資産へ流入する額。積立の資金源を明示してください。内部振替は残高に二重加算しません。税・社会保険・年金の支給日・NISA・手数料は未計算。</p>
 </section>
 </aside>
 <div>
@@ -102,7 +110,7 @@ footer{margin-top:22px;color:#8998a8;font-size:11px;text-align:right}
 <div class="tablewrap"><table><thead><tr><th>資産ID</th><th>配分目標</th><th>計算後残高</th><th>参考出典</th></tr></thead><tbody id="assetResult"></tbody></table></div>
 </section>
 <section class="panel"><h2>月次収支台帳（抜粋）</h2>
-<div class="tablewrap"><table><thead><tr><th>期間終了月</th><th>月初収入</th><th>うち給与</th><th>うち年金</th><th>臨時収入</th><th>生活費予定</th><th>生活費実払</th><th>生活費未払</th><th>臨時支出予定</th><th>臨時支出実払</th><th>臨時支出未払</th><th>実際の支払</th><th>不足額</th><th>運用損益</th><th>期末残高</th></tr></thead><tbody id="ledgerRows"></tbody></table></div>
+<div class="tablewrap"><table><thead><tr><th>期間終了月</th><th>月初収入</th><th>積立・外部</th><th>積立・内部振替</th><th>うち給与</th><th>うち年金</th><th>臨時収入</th><th>生活費予定</th><th>生活費実払</th><th>生活費未払</th><th>臨時支出予定</th><th>臨時支出実払</th><th>臨時支出未払</th><th>実際の支払</th><th>不足額</th><th>運用損益</th><th>期末残高</th></tr></thead><tbody id="ledgerRows"></tbody></table></div>
 <p class="sub">全月・資産別の保有額はCSV保存で確認できます。月次期間終了月を行見出しにしています。</p></section>
 <div class="note"><strong>計算・データ上の制約</strong>：こちらは整数円で「月初の外部入金・生活費・臨時支出 → 月次騰落 → 期末リバランス」を処理するCoreです。従来Personal Labの月末引出モデルとは一致を保証しません。指数TRは投資可能商品の税引後リターンではありません。月次ローリング窓は重複し、将来の成功確率ではありません。公開・商用配信は未承認です。</div>
 </div></div>
