@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<title>K. Aito Analytics｜Personal Multi-Asset</title>
+<style>
+:root{font-family:Inter,"Hiragino Sans","Noto Sans JP","Yu Gothic",sans-serif;color:#19324b;background:#f4f7fb;--navy:#193b5c;--blue:#256bd1;--line:#dbe5f0;--soft:#eaf2fc;--muted:#687c91;--ok:#087d75;--bad:#aa333b}
+*{box-sizing:border-box}body{margin:0;min-width:320px}button,input,select,textarea{font:inherit}
+main{max-width:1440px;margin:auto;padding:0 24px 44px}
+header{padding:22px 0;display:flex;gap:16px;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}
+.brand{display:flex;gap:14px;align-items:center}.logo{background:var(--navy);color:white;font-size:21px;font-weight:850;border-radius:13px;padding:10px 13px}
+h1{font-size:27px;margin:28px 0 8px;letter-spacing:-.8px}h2{font-size:15px;margin:0 0 15px}h3{font-size:13px;margin:0 0 11px}
+p{line-height:1.7}small,.muted{color:var(--muted)}.eyebrow{font-size:11px;letter-spacing:1.5px;color:var(--blue);font-weight:800}
+.kicker{font-size:12px;color:var(--muted);line-height:1.6}.chip{border:1px solid #badbd6;background:#edf9f6;color:#10776d;border-radius:22px;padding:7px 11px;font-size:11px;font-weight:800}
+.layout{display:grid;grid-template-columns:330px minmax(0,1fr);gap:18px;align-items:start;margin-top:21px}.sidebar{display:flex;flex-direction:column;gap:14px}
+.panel,.card,.note{border:1px solid var(--line);background:white;border-radius:15px;box-shadow:0 4px 22px #17355209}
+.panel{padding:20px}.panel .group{margin:0 0 13px}.panel .group:last-child{margin:0}
+label{display:block;font-size:12px;font-weight:700;color:#3e5267;margin-bottom:7px}
+input,select,textarea{width:100%;border:1px solid #cad8e7;border-radius:9px;padding:10px;background:#fff;color:#183852}
+textarea{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:11px;resize:vertical;line-height:1.6}
+input[type=file]{font-size:11px}.buttons{display:flex;gap:8px;flex-wrap:wrap}.buttons>*{flex:1}
+button{border-radius:9px;padding:11px 12px;border:1px solid var(--blue);font-size:12px;font-weight:750;cursor:pointer;color:var(--blue);background:white}
+button.primary{background:var(--blue);color:white}button:disabled{opacity:.45;cursor:default}
+button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #81baff;outline-offset:2px}
+.sub{font-size:11px;color:var(--muted);line-height:1.7;margin:5px 0 0}
+.warning{font-size:11px;line-height:1.8;color:#856124;background:#fff9eb;border:1px solid #ead7a7;border-radius:9px;padding:10px}
+.error{font-size:12px;line-height:1.7;color:#a7333d;background:#fff0ef;border:1px solid #ecb3b7;border-radius:10px;padding:11px;margin:13px 0}
+.hidden{display:none!important}.divider{border:0;border-top:1px solid #edf1f5;margin:15px 0}.details{border-top:1px solid var(--line);padding-top:12px;margin-top:13px}
+.summary{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:14px}.card{padding:18px}.card .k{font-size:11px;color:var(--muted)}.card .v{font-size:24px;font-weight:850;margin-top:8px;white-space:nowrap}.card .f{font-size:11px;color:var(--muted);line-height:1.5;margin-top:4px}
+.plot{height:305px;position:relative}.plot canvas{width:100%;height:100%;display:block}
+.legend{display:flex;flex-wrap:wrap;gap:16px;font-size:11px;color:var(--muted);margin-top:12px}.legend i{display:inline-block;width:16px;height:4px;background:var(--blue);vertical-align:middle;margin-right:6px;border-radius:3px}
+table{width:100%;border-collapse:collapse;font-size:12px}td,th{border-bottom:1px solid #eef2f5;padding:10px;text-align:right;white-space:nowrap}td:first-child,th:first-child{text-align:left}th{background:#f6f9fc;color:#516b83}.tablewrap{overflow:auto;border-radius:9px;border:1px solid var(--line)}
+.assetrow{display:grid;grid-template-columns:minmax(0,1fr) 94px;gap:10px;align-items:center;border-bottom:1px solid #edf2f8;padding:8px 0}
+.assetrow:last-child{border:0}.assetrow label{margin:0}.assetrow .meta{font-size:10px;color:var(--muted);margin-top:4px}
+.note{padding:16px;font-size:11px;color:var(--muted);line-height:1.9;margin-top:15px}
+footer{margin-top:22px;color:#8998a8;font-size:11px;text-align:right}
+@media(max-width:1050px){.layout{grid-template-columns:1fr}.sidebar{display:grid;grid-template-columns:1fr 1fr}.panel{min-width:0}}
+@media(max-width:670px){main{padding:0 14px 25px}header{gap:7px}.brand{gap:9px}.brand strong{font-size:13px}.chip{padding:5px 8px}.sidebar{display:flex}h1{font-size:23px}.summary{grid-template-columns:1fr 1fr}.summary .card:last-child{grid-column:1/-1}.card{padding:13px}.card .v{font-size:20px}.plot{height:235px}}
+</style></head>
+<body><main>
+<header><div class="brand"><div class="logo">K.</div><div><strong>K. Aito Analytics</strong><div class="kicker">PERSONAL MULTI-ASSET LAB · v0.1</div></div></div><div class="chip">本人専用・完全ローカル</div></header>
+<div class="eyebrow" style="margin-top:25px">RESEARCH / 1–12 ASSET PORTFOLIOS</div><h1>複数資産 × 生活設計 × 長期分析</h1>
+<p class="kicker">月初収支 → 運用リターン → リバランス。整数円・複数イベント・過去開始月ローリングを、1つのオフラインHTMLで検証します。</p>
+<div class="layout">
+<aside class="sidebar">
+<section class="panel">
+<h2>01 · 分析データ</h2>
+<div class="group"><label for="dataMode">データ形式</label><select id="dataMode"><option value="demo">合成デモ（市場実績ではありません）</option><option value="private">本人所有の正規化TR CSV</option></select></div>
+<div id="demoControls"><div class="group"><label for="assetCount">合成デモの資産数</label><select id="assetCount"><option value="1">1資産</option><option value="2">2資産</option><option value="3" selected>3資産</option><option value="6">6資産</option><option value="12">12資産</option></select></div><p class="sub">最初の資産は円現金0%利息モデル。残りは計算用の架空リターンです。</p></div>
+<div id="privateControls" class="hidden">
+ <div class="group"><label for="filesTr">本人が適法に保持するJPY建て月次TR指数CSV（複数指定・最大12）</label><input type="file" id="filesTr" multiple accept=".csv,text/csv"><p class="sub">Personal Labと同じ9列形式。配当込み指数の水準のみ。株式価格指数、利回り、金スポット、年次データは使用不可。</p></div>
+ <div class="group"><label for="fileCpi">日本CPI（実質生活費を試算する場合のみ）</label><input type="file" id="fileCpi" accept=".csv,text/csv"></div>
+ <div class="group"><label><input type="checkbox" id="includeCash" checked style="width:auto"> 円現金0%モデルを配分対象に追加</label></div>
+ <div class="group"><label><input type="checkbox" id="privateAck" style="width:auto"> 原本の本人利用権限と、出典・系列が自己申告であることを確認</label></div>
+ <button type="button" id="loadPrivate" class="primary" style="width:100%">ローカルでCSVを検証・読込</button>
+</div>
+<div class="warning" style="margin-top:12px">市場データは外部に送信しません。原本はブラウザー内メモリのみ。公式の取得許諾や指数の真正性はこのアプリでは確認できません。</div>
+<p id="dataStatus" class="sub" aria-live="polite">合成デモ：3資産 / 600か月</p>
+</section>
+<section class="panel">
+<h2>02 · 資産配分と運用</h2>
+<div class="group"><label for="initial">初期資金（円）</label><input id="initial" type="number" value="10000000" min="1" max="1000000000000"></div>
+<div class="group"><label for="horizon">検証期間</label><select id="horizon"><option value="120" selected>10年</option><option value="240">20年</option><option value="360">30年</option></select></div>
+<div class="group"><label for="startOffset">市場開始月</label><select id="startOffset"></select></div>
+<div class="group"><label for="rebalance">リバランス</label><select id="rebalance"><option value="NONE">なし</option><option value="PERIODIC">定期（月数指定）</option><option value="THRESHOLD">閾値（乖離率）</option></select></div>
+<div class="group"><label for="rebalanceParam">定期：月数／閾値：％</label><input id="rebalanceParam" type="number" value="12" min="1" step="1"></div>
+<p class="sub">配分は合計100%。投入額の端数は最大剰余方式で整数円に配分します。</p>
+<div id="assetEditor"></div><p id="weightSummary" class="sub">合計 100%</p>
+</section>
+<section class="panel">
+<h2>03 · 月次生活設計</h2>
+<div class="group"><label for="monthlyContribution">月額の外部積立（円）</label><input id="monthlyContribution" type="number" value="0" min="0" max="1000000000000"></div>
+<div class="group"><label for="monthlyExpense">月額の生活費・通常引出し（円）</label><input id="monthlyExpense" type="number" value="100000" min="0" max="1000000000000"></div>
+<div class="group"><label for="expenseMode">生活費の物価処理</label><select id="expenseMode"><option value="NOMINAL_FIXED">名目固定</option><option value="ANNUAL_ASSUMPTION">年率の物価仮定</option><option value="HISTORICAL_CPI">指定CPIの実績（月初水準）</option></select></div>
+<div class="group"><label for="inflationRate">物価上昇率（年％、仮定モードのみ）</label><input id="inflationRate" type="number" value="2" min="-50" max="100" step=".1"></div>
+<div class="details">
+<h3>給与・年金のスケジュール</h3>
+<label for="salaries">給与：ID,開始月,終了月（除外）,月額円</label><textarea id="salaries" rows="2" placeholder="work,0,120,150000"></textarea>
+<label for="pensions">年金：同じ4列</label><textarea id="pensions" rows="2" placeholder="public,120,360,120000"></textarea>
+<label for="events">臨時収支：ID,経過月,INCOME/EXPENSE,金額円</label><textarea id="events" rows="3" placeholder="repair,60,EXPENSE,500000&#10;gift,180,INCOME,1000000"></textarea>
+</div>
+<p class="warning">給与・年金の金額は資産へ流入する額を入力。積立額と二重計上しないでください。税・社会保険・年金の支給日・NISA・手数料は未計算。</p>
+</section>
+</aside>
+<div>
+<div id="message" class="error hidden" role="alert"></div>
+<div class="buttons" style="margin-bottom:14px"><button id="run" class="primary" type="button">この条件で計算</button><button id="download" type="button" disabled>結果CSV保存</button></div>
+<div class="summary">
+ <div class="card"><div class="k">期間終了後の資産総額</div><div id="balance" class="v">—</div><div id="balanceFoot" class="f">未計算</div></div>
+ <div class="card"><div class="k">収入と支出</div><div id="inflows" class="v">—</div><div id="inflowsFoot" class="f">未計算</div></div>
+ <div class="card"><div class="k">全開始月の検証</div><div id="windows" class="v">—</div><div id="windowsFoot" class="f">未計算</div></div>
+</div>
+<section class="panel" style="margin-bottom:14px">
+ <h2>月次残高の推移</h2><p id="chartDescription" class="sub">合成データまたは本人の私的な月次TRに基づきます。</p>
+ <div class="plot"><canvas id="chart" aria-label="月次の資産総額"></canvas></div>
+ <div class="legend"><span><i></i>月次期末資産額</span><span id="chartRange">—</span></div>
+</section>
+<section class="panel" style="margin-bottom:14px"><h2>資産別期末残高</h2>
+<div class="tablewrap"><table><thead><tr><th>資産ID</th><th>配分目標</th><th>計算後残高</th><th>参考出典</th></tr></thead><tbody id="assetResult"></tbody></table></div>
+</section>
+<section class="panel"><h2>月次収支台帳（抜粋）</h2>
+<div class="tablewrap"><table><thead><tr><th>期間終了月</th><th>月初収入</th><th>うち給与</th><th>うち年金</th><th>臨時収入</th><th>生活費</th><th>臨時支出</th><th>実際の支払</th><th>不足額</th><th>運用損益</th><th>期末残高</th></tr></thead><tbody id="ledgerRows"></tbody></table></div>
+<p class="sub">全月・資産別の保有額はCSV保存で確認できます。月次期間終了月を行見出しにしています。</p></section>
+<div class="note">**計算・データ上の制約**：こちらは整数円で「月初の外部入金・生活費・臨時支出 → 月次騰落 → 期末リバランス」を処理するCoreです。従来Personal Labの月末引出モデルとは一致を保証しません。指数TRは投資可能商品の税引後リターンではありません。月次ローリング窓は重複し、将来の成功確率ではありません。公開・商用配信は未承認です。</div>
+</div></div>
+<footer>LOCAL FIRST · NO EXTERNAL DATA REQUESTS · NO RAW DATA BUNDLED · RESEARCH ONLY</footer>
+</main>
+<script>
+/* __KAITO_EMBEDDED_CANONICAL_CORE__ */
+</script>
+</body></html>
