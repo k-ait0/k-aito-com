@@ -3,7 +3,7 @@
 /** Personal v0.4 synthetic cashflow QA. Never include any licensed market observations. */
 const fs=require('node:fs'),vm=require('node:vm'),assert=require('node:assert/strict');
 const html=fs.readFileSync('research/analytics/personal-lab/index.html','utf8');
-assert(html.includes('PERSONAL RESEARCH LAB · v0.4'));
+assert(html.includes('PERSONAL RESEARCH LAB · v0.5'));
 assert(html.includes('id="monthlyContribution"'));
 assert(html.includes('monthly_contribution_yen'));
 assert(html.includes("'cashPercent','monthlyContribution','sellOrder'"),'New input must trigger render');
