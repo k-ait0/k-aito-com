@@ -15,6 +15,7 @@ on:
       - scripts/test-analytics-personal-monthly-contribution.cjs
       - scripts/test-analytics-personal-lifecycle-v05.cjs
       - scripts/test-analytics-personal-multiasset-bridge.cjs
+      - scripts/test-analytics-cross-engine-divergence-audit.cjs
       - scripts/build-analytics-personal-multiasset-ui.cjs
       - scripts/test-analytics-personal-multiasset-dom.cjs
       - research/analytics/personal-lab/multiasset.template.html
@@ -61,6 +62,7 @@ jobs:
           node scripts/test-analytics-personal-monthly-contribution.cjs
           node scripts/test-analytics-personal-lifecycle-v05.cjs
           node scripts/test-analytics-personal-multiasset-bridge.cjs
+          node scripts/test-analytics-cross-engine-divergence-audit.cjs
           node scripts/build-analytics-personal-multiasset-ui.cjs --build
           node scripts/build-analytics-personal-multiasset-ui.cjs --verify
           node scripts/test-analytics-personal-multiasset-dom.cjs
