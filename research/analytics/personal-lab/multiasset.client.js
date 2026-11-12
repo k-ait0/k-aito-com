@@ -380,7 +380,12 @@ window.__KAI_MULTI_TEST__={synthetic,indexCsv,cpiCsv,buildMarketFromLevels,
  parseTextSchedule,parseEvents,getState:()=>({
   mode:state.data?.mode,assets:state.data?.ids.length,months:state.data?.monthly_market_returns.length,
   resultMonths:state.result?.rows.length,ending:state.result?.ending_assets_yen,
-  rollingWindows:state.roll?.complete_windows,downloadEnabled:!$('download').disabled
+  rollingWindows:state.roll?.complete_windows,downloadEnabled:!$('download').disabled,
+  twoPhaseEnabled:state.result?.two_phase_enabled,
+  firstStartDue:state.result?.rows?.[0]?.phases?.MONTH_START?.requested_withdrawal_yen,
+  firstEndDue:state.result?.rows?.[0]?.phases?.MONTH_END?.requested_withdrawal_yen,
+  firstStartUnfunded:state.result?.rows?.[0]?.phases?.MONTH_START?.unfunded_yen,
+  firstEndUnfunded:state.result?.rows?.[0]?.phases?.MONTH_END?.unfunded_yen
  }),run};
 handleMode();
 })();
