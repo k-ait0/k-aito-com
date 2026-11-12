@@ -19,7 +19,7 @@ header{padding:25px 0 18px;display:flex;gap:20px;justify-content:space-between;a
 </head>
 <body>
 <div class="shell">
-<header><div class="brand"><div class="mark">K<span style="font-size:12px;margin-left:1px">.</span></div><div><div class="brandname">K. Aito Analytics</div><div class="subbrand">PERSONAL RESEARCH LAB · v0.3</div></div></div><div class="priv"><span class="dot"></span>ローカル処理専用</div></header>
+<header><div class="brand"><div class="mark">K<span style="font-size:12px;margin-left:1px">.</span></div><div><div class="brandname">K. Aito Analytics</div><div class="subbrand">PERSONAL RESEARCH LAB · v0.4</div></div></div><div class="priv"><span class="dot"></span>ローカル処理専用</div></header>
 <div class="headline"><div><div class="eyebrow">HISTORICAL MARKET RESEARCH</div><h1>資産の購買力と取り崩しを検証する</h1><p>簡易分析から30年ローリング検証まで。実データは端末内で読み込み、外部送信しません。</p></div><div class="meta"><div>データモード：<b id="metaMode">合成デモ</b></div><div id="metaCoverage">期間 1971–2026（サンプル）</div></div></div>
 <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap"><div class="tabs" role="tablist" aria-label="分析対象"><button type="button" id="tabPower" class="active" aria-selected="true">購買力分析</button><button type="button" id="tabWithdraw" aria-selected="false">単一資産の取り崩し</button><button type="button" id="tabPortfolio" aria-selected="false">2資産ポートフォリオ</button></div><div class="mode" aria-label="表示モード"><button type="button" id="modeSimple" class="active">簡易</button><button type="button" id="modeDetail">詳細</button></div></div>
 <div class="layout">
@@ -28,7 +28,7 @@ header{padding:25px 0 18px;display:flex;gap:20px;justify-content:space-between;a
  <div id="uploadBox" class="hidden"><div class="filepair"><label><b>USD/JPY · Fed H.10</b><input id="fileFx" type="file" accept=".csv,text/csv"></label><label><b>日本CPI · 全国総合</b><input id="fileCpi" type="file" accept=".csv,text/csv"></label><label><b>金 · 公表未検証（任意）</b><input id="fileGold" type="file" accept=".csv,text/csv"></label><label><b>配当込み指数TR · 個人用（任意）</b><input id="fileTr" type="file" accept=".csv,text/csv"></label></div><p class="inputnote">研究用の正規化CSVを指定してください。ファイルはアップロードされません。</p><label class="checkline" style="margin:10px 0"><input type="checkbox" id="goldAck"><span>金価格は出典・予測区分未検証の参考値と理解した</span></label><label class="checkline" style="margin:10px 0"><input type="checkbox" id="trAck"><span>TR指数を適法に本人利用できることを確認済み。CSVの自己申告された出典・TR区分はアプリが真正性を保証しない</span></label><div class="buttons"><button type="button" class="primary" id="loadFiles">端末内で読み込む</button><button type="button" class="secondary" id="clearFiles">消去</button></div></div><div id="loadStatus" role="status" class="statusline" aria-live="polite">入力データ：合成デモ</div></div>
  <div class="panel"><h2>02 · 分析条件</h2><div class="group"><label class="fieldlabel" for="asset">比較対象</label><select id="asset"><option value="usd">米ドル現金（利息なし）</option><option value="jpy">円現金（利息なし）</option><option value="gold">金公表価格（探索用）</option><option value="tr">配当込み指数TR（本人データ）</option></select></div>
  <div id="withdrawInputs" class="hidden"><div class="group"><label class="fieldlabel" for="initial">初期資金（円）</label><input type="number" id="initial" min="10000" max="10000000000" step="100000" value="30000000"></div><div class="group"><label class="fieldlabel" for="monthly">毎月の取り崩し（円）</label><input type="number" id="monthly" min="0" max="100000000" step="10000" value="100000"></div><div class="group"><label class="fieldlabel" for="withdrawType">引出し額</label><select id="withdrawType"><option value="real">物価上昇に合わせて調整</option><option value="nominal">毎月同額（名目固定）</option></select></div><div class="group"><label class="fieldlabel" for="withdrawTiming">引出し時点</label><select id="withdrawTiming"><option value="END_OF_MONTH">月末（運用リターン反映後）</option><option value="BEGINNING_OF_MONTH">月初（運用リターン反映前）</option></select></div><div class="group"><label class="fieldlabel" for="startMonth">開始月</label><select id="startMonth"></select></div></div>
- <div id="portfolioInputs" class="hidden"><div class="group"><label class="fieldlabel" for="portfolioRisk">投資資産（もう1つは円現金・利息0%）</label><select id="portfolioRisk"><option value="usd">米ドル現金の円換算（USD金利なし）</option><option value="gold">金公表価格（探索用・TRではない）</option><option value="tr">配当込み指数TR（本人用CSV）</option></select></div><div class="group"><label class="fieldlabel" for="cashPercent">初期の円現金比率（%）</label><input id="cashPercent" type="number" min="0" max="100" step="5" value="20"><div class="inputnote">投資資産は残りの割合。リバランス時はこの割合に戻します。</div></div><div id="portfolioAdvanced" class="hidden"><div class="group"><label class="fieldlabel" for="sellOrder">売却順序</label><select id="sellOrder"><option value="CASH_FIRST">円現金から取り崩す</option><option value="RISK_FIRST">投資資産から取り崩す</option><option value="PRO_RATA">保有比率に従い比例売却</option></select></div><div class="group"><label class="fieldlabel" for="rebalance">リバランス</label><select id="rebalance"><option value="NONE">なし</option><option value="ANNUAL">12か月ごと</option><option value="MONTHLY">毎月</option></select></div></div><p class="inputnote">簡易モードでは現金優先・リバランスなし。詳細モードで売却順と頻度を指定できます。税・手数料なし。</p></div>
+ <div id="portfolioInputs" class="hidden"><div class="group"><label class="fieldlabel" for="portfolioRisk">投資資産（もう1つは円現金・利息0%）</label><select id="portfolioRisk"><option value="usd">米ドル現金の円換算（USD金利なし）</option><option value="gold">金公表価格（探索用・TRではない）</option><option value="tr">配当込み指数TR（本人用CSV）</option></select></div><div class="group"><label class="fieldlabel" for="cashPercent">初期の円現金比率（%）</label><input id="cashPercent" type="number" min="0" max="100" step="5" value="20"><div class="inputnote">投資資産は残りの割合。リバランス時はこの割合に戻します。</div></div><div class="group"><label class="fieldlabel" for="monthlyContribution">毎月の積立額（円）</label><input id="monthlyContribution" type="number" min="0" max="100000000" step="10000" value="0"><div class="inputnote">各月初に指定現金比率で積立、全期間Nか月でN回。毎月の取り崩しとは別計上します。</div></div><div id="portfolioAdvanced" class="hidden"><div class="group"><label class="fieldlabel" for="sellOrder">売却順序</label><select id="sellOrder"><option value="CASH_FIRST">円現金から取り崩す</option><option value="RISK_FIRST">投資資産から取り崩す</option><option value="PRO_RATA">保有比率に従い比例売却</option></select></div><div class="group"><label class="fieldlabel" for="rebalance">リバランス</label><select id="rebalance"><option value="NONE">なし</option><option value="ANNUAL">12か月ごと</option><option value="MONTHLY">毎月</option></select></div></div><p class="inputnote">簡易モードでは現金優先・リバランスなし。詳細モードで売却順と頻度を指定できます。税・手数料なし。</p></div>
  <div class="group"><label class="fieldlabel" for="horizon">検証期間</label><select id="horizon"><option value="10">10年</option><option value="20">20年</option><option value="30" selected>30年</option></select></div>
  <div id="plotModeGroup" class="group"><label class="fieldlabel" for="plotMode">グラフ表示</label><select id="plotMode"><option value="real">日本CPIで実質化</option><option value="nominal">円建て名目水準</option></select></div>
  <div class="buttons"><button type="button" id="exportCsv" class="secondary">結果CSV保存</button></div></div>
@@ -38,7 +38,7 @@ header{padding:25px 0 18px;display:flex;gap:20px;justify-content:space-between;a
  <div class="stats"><div class="stat"><div class="k" id="statLabelA">最終実質指数</div><div class="v" id="statA">—</div><div class="f" id="statFootA">開始月＝100</div></div><div class="stat"><div class="k" id="statLabelB">比較対象期間</div><div class="v" id="statB">—</div><div class="f" id="statFootB">開始月〜終了月</div></div><div class="stat"><div class="k" id="statLabelC">30年の開始月数</div><div class="v" id="statC">—</div><div class="f" id="statFootC">将来の確率ではありません</div></div></div>
  <div class="chartcard"><div class="charthead"><div><h2 id="chartTitle">円建て購買力の変化</h2><p id="chartSubtitle">開始月＝100。利息・税・手数料なし。</p></div><span class="pill" id="chartBadge">SYNTHETIC</span></div><div class="plotwrap" id="plotWrap"><canvas id="chart" aria-label="月次データの折れ線グラフ" role="img"></canvas><div class="tooltip" id="plotTip"></div></div><div class="legend"><span><i class="key" id="legendColor"></i><span id="legendText">実質購買力</span></span></div><div class="rangeinfo"><span id="leftMonth">—</span><span id="rightMonth">—</span></div></div>
  <div class="panel detail hidden" id="detailPanel"><h2 id="detailTitle">期間別ローリング検証</h2><div class="tablewrap"><table><thead id="tableHead"></thead><tbody id="tableRows"></tbody></table></div><p id="tableNote" class="inputnote">これは過去の履歴比較です。将来の成績・成功確率を意味しません。</p></div>
- <div class="panel detail hidden" id="portfolioLedger"><h2>月次台帳の抜粋（全月はCSV保存）</h2><div class="tablewrap"><table><thead><tr><th>年月</th><th>円現金</th><th>投資資産</th><th>引出額</th><th>不足額</th><th>売買金額</th></tr></thead><tbody id="portfolioLedgerRows"></tbody></table></div></div>
+ <div class="panel detail hidden" id="portfolioLedger"><h2>月次台帳の抜粋（全月はCSV保存）</h2><div class="tablewrap"><table><thead><tr><th>年月</th><th>円現金</th><th>投資資産</th><th>積立額</th><th>引出額</th><th>不足額</th><th>売買金額</th></tr></thead><tbody id="portfolioLedgerRows"></tbody></table></div></div>
  <div class="note" id="footnote"><span class="notice-title">データについて</span><div id="noticeText">デモは合成値です。USD現金には金利を付与しておらず、為替変動の影響のみを計算します。</div></div>
 </main></div>
 <div class="footer"><span>K. AITO ANALYTICS · PERSONAL LAB · PRIVATE RESEARCH ONLY</span><span>外部API / CDN / Cookie / ローカル保存：使用しません</span></div>
@@ -200,15 +200,26 @@ function simulateTwoAsset(fullRows,startIndex,horizon,initial,monthly,riskAsset,
     throw Error('複数資産：現金比率は0～100%です');
  if(!['CASH_FIRST','RISK_FIRST','PRO_RATA'].includes(config.sellOrder))throw Error('複数資産：売却順序不正');
  if(!['NONE','ANNUAL','MONTHLY'].includes(config.rebalance))throw Error('複数資産：リバランス頻度不正');
+ const monthlyContribution=config.monthlyContribution===undefined?0:config.monthlyContribution;
+ if(!Number.isFinite(monthlyContribution)||monthlyContribution<0||monthlyContribution>100000000)
+   throw Error('複数資産：毎月積立額は0〜1億円の有限数です');
  const baseCpi=fullRows[startIndex].cpi;
  if(!Number.isFinite(baseCpi)||baseCpi<=0)throw Error('複数資産：基準CPI不正');
  const targetCash=config.cashPercent/100;
  let cash=initial*targetCash,risk=initial-cash;
- let totalWithdrawn=0,totalDue=0,totalShortfall=0,investmentReturnTotal=0,rebalanceTurnover=0;
+ let totalWithdrawn=0,totalDue=0,totalShortfall=0,totalContributed=0,investmentReturnTotal=0,rebalanceTurnover=0;
  let firstShortfallMonth=null,depletedMonth=null,withdrawalCount=0;
  const EPS=1e-8;
  const rows=[{month:fullRows[startIndex].month,value:initial,cash_yen:cash,risk_yen:risk,
-    due:0,withdrawn:0,shortfall:0,investment_return:0,rebalance_yen:0}];
+    due:0,withdrawn:0,shortfall:0,contribution_yen:0,investment_return:0,rebalance_yen:0}];
+ function deposit(entry){
+   if(monthlyContribution===0)return;
+   const intoCash=monthlyContribution*targetCash;
+   cash+=intoCash;risk+=monthlyContribution-intoCash;
+   totalContributed+=monthlyContribution;
+   entry.contribution_yen+=monthlyContribution;
+   entry.cash_yen=cash;entry.risk_yen=risk;entry.value=cash+risk;
+ }
  function pay(index,entry){
    const d=fullRows[index];
    const due=monthly*(adjust?d.cpi/baseCpi:1);
@@ -241,6 +252,7 @@ function simulateTwoAsset(fullRows,startIndex,horizon,initial,monthly,riskAsset,
    rebalanceTurnover+=Math.abs(trade);
    entry.rebalance_yen=Math.abs(trade);entry.cash_yen=cash;entry.risk_yen=risk;entry.value=total;
  }
+ deposit(rows[0]);
  if(timing==='BEGINNING_OF_MONTH')pay(startIndex,rows[0]);
  for(let j=1;j<=steps;j++){
    const prev=fullRows[startIndex+j-1],now=fullRows[startIndex+j];
@@ -252,20 +264,24 @@ function simulateTwoAsset(fullRows,startIndex,horizon,initial,monthly,riskAsset,
    if(!Number.isFinite(afterRisk)||afterRisk<0)throw Error('複数資産：運用残高が非有限数');
    risk=afterRisk;investmentReturnTotal+=ret;
    const entry={month:now.month,value:cash+risk,cash_yen:cash,risk_yen:risk,
-       due:0,withdrawn:0,shortfall:0,investment_return:ret,rebalance_yen:0};
-   if(timing==='END_OF_MONTH'||j<steps)pay(startIndex+j,entry);
+       due:0,withdrawn:0,shortfall:0,contribution_yen:0,investment_return:ret,rebalance_yen:0};
+   if(timing==='END_OF_MONTH')pay(startIndex+j,entry);
+   // Contribution for the NEXT month enters at this boundary, after the
+   // current month's END_OF_MONTH payment; never add after the final month.
+   if(j<steps)deposit(entry);
+   if(timing==='BEGINNING_OF_MONTH'&&j<steps)pay(startIndex+j,entry);
    rebalance(entry,j);
    if(!Number.isFinite(entry.value)||entry.value<0)throw Error('複数資産：期末残高不正');
    rows.push(entry);
  }
- const remaining=cash+risk,conservation=initial+investmentReturnTotal-totalWithdrawn;
+ const remaining=cash+risk,conservation=initial+totalContributed+investmentReturnTotal-totalWithdrawn;
  if(Math.abs(remaining-conservation)>Math.max(1e-5,Math.abs(conservation)*1e-10))
     throw Error('複数資産：資金恒等式が不一致');
  if(Math.abs(totalDue-totalWithdrawn-totalShortfall)>Math.max(1e-5,totalDue*1e-10))
     throw Error('複数資産：予定引出額と未払の差が不一致');
- return {rows,remaining,cash,risk,total:totalWithdrawn,totalDue,totalShortfall,
+ return {rows,remaining,cash,risk,total:totalWithdrawn,totalDue,totalShortfall,totalContributed,
    firstShortfallMonth,ruinMonth:firstShortfallMonth,depletedMonth,
-   investmentReturnTotal,rebalanceTurnover,withdrawalCount,
+   investmentReturnTotal,rebalanceTurnover,withdrawalCount,monthlyContribution,
    covered:firstShortfallMonth===null,months:steps+1,ends:fullRows[startIndex+steps].month,
    timing,sellOrder:config.sellOrder,rebalance:config.rebalance,cashPercent:config.cashPercent};
 }
@@ -274,7 +290,7 @@ function rollingTwoAsset(fullRows,horizon,initial,monthly,riskAsset,adjust,timin
  for(let i=0;i<n;i++){
    const r=simulateTwoAsset(fullRows,i,horizon,initial,monthly,riskAsset,adjust,timing,config);
    out.push({start:fullRows[i].month,remaining:r.remaining,firstShortfallMonth:r.firstShortfallMonth,
-     covered:r.covered,totalShortfall:r.totalShortfall,rebalanceTurnover:r.rebalanceTurnover});
+     covered:r.covered,totalShortfall:r.totalShortfall,totalContributed:r.totalContributed,rebalanceTurnover:r.rebalanceTurnover});
  }
  return out;
 }
@@ -355,13 +371,14 @@ function render(){try{clearWarn();showStates();if(!state.data)throw Error('デ�
    if(idx<0||idx+state.horizon*12>=full.length)throw Error('2資産：選択した開始月には十分な履歴がありません');
    const timing=$('withdrawTiming').value;
    const config={cashPercent:Number($('cashPercent').value),
+     monthlyContribution:Number($('monthlyContribution').value),
      sellOrder:state.mode==='simple'?'CASH_FIRST':$('sellOrder').value,
      rebalance:state.mode==='simple'?'NONE':$('rebalance').value};
    const sim=simulateTwoAsset(full,idx,state.horizon,initial,monthly,asset,inflation,timing,config);
    const roll=rollingTwoAsset(full,state.horizon,initial,monthly,asset,inflation,timing,config);
    series=sim.rows.map(r=>({month:r.month,value:r.value}));
    setStat('A','2資産の期末残高',yen(sim.remaining),'円現金 '+yen(sim.cash)+' / 投資資産 '+yen(sim.risk));
-   setStat('B','実際の引出総額',yen(sim.total),sim.totalShortfall>0?'累積不足額 '+yen(sim.totalShortfall):'引出額の未払なし');
+   setStat('B','実際の引出総額',yen(sim.total),sim.totalShortfall>0?'累積不足額 '+yen(sim.totalShortfall)+'／積立 '+yen(sim.totalContributed):'累積積立 '+yen(sim.totalContributed)+'／未払なし');
    setStat('C',state.horizon+'年の支払完遂窓',roll.filter(x=>x.covered).length+' / '+roll.length,
      '過去の開始月比較。将来の成功確率ではありません');
    $('chartTitle').textContent='円現金 ＋ '+label+'：取り崩し後の合計残高';
@@ -369,7 +386,7 @@ function render(){try{clearWarn();showStates();if(!state.data)throw Error('デ�
       (timing==='BEGINNING_OF_MONTH'?'月初':'月末')+'引出／'+
       ({CASH_FIRST:'現金優先',RISK_FIRST:'投資資産優先',PRO_RATA:'比例売却'}[config.sellOrder])+'／'+
       ({NONE:'リバランスなし',ANNUAL:'年次調整',MONTHLY:'月次調整'}[config.rebalance])+
-      '。税・手数料を含みません。';
+      '／毎月積立 '+yen(config.monthlyContribution)+'。税・手数料を含みません。';
    $('detailTitle').textContent='2資産：ローリング開始月別の結果';
    $('tableHead').innerHTML='<tr><th>開始月</th><th>期末残高</th><th>初回不足月</th><th>累積不足額</th></tr>';
    $('tableRows').textContent='';
@@ -384,14 +401,14 @@ function render(){try{clearWarn();showStates();if(!state.data)throw Error('デ�
    for(const r of sim.rows.filter((x,i)=>i===0||i===sim.rows.length-1||i%Math.max(1,Math.ceil(sim.rows.length/14))===0)){
       const tr=document.createElement('tr');
       tr.innerHTML='<td>'+r.month+'</td><td>'+yen(r.cash_yen)+'</td><td>'+yen(r.risk_yen)+
-        '</td><td>'+yen(r.withdrawn)+'</td><td>'+yen(r.shortfall)+'</td><td>'+yen(r.rebalance_yen)+'</td>';
+        '</td><td>'+yen(r.contribution_yen)+'</td><td>'+yen(r.withdrawn)+'</td><td>'+yen(r.shortfall)+'</td><td>'+yen(r.rebalance_yen)+'</td>';
       $('portfolioLedgerRows').appendChild(tr);
    }
    exportRows=sim.rows.map(r=>({month:r.month,remaining_yen:r.value.toFixed(2),
      cash_yen:r.cash_yen.toFixed(2),risky_yen:r.risk_yen.toFixed(2),
-     withdrawal_due_yen:r.due.toFixed(2),withdrawal_paid_yen:r.withdrawn.toFixed(2),
+     contribution_yen:r.contribution_yen.toFixed(2),withdrawal_due_yen:r.due.toFixed(2),withdrawal_paid_yen:r.withdrawn.toFixed(2),
      shortfall_yen:r.shortfall.toFixed(2),investment_return_yen:r.investment_return.toFixed(2),
-     rebalance_trade_yen:r.rebalance_yen.toFixed(2),cash_target_pct:config.cashPercent,
+     rebalance_trade_yen:r.rebalance_yen.toFixed(2),cash_target_pct:config.cashPercent,monthly_contribution_yen:config.monthlyContribution,
      sale_order:config.sellOrder,rebalance_frequency:config.rebalance,withdraw_timing:timing,
      asset_reference:asset,
      price_quality:asset==='gold'?'PUBLISHED_LEVEL_STATUS_UNVERIFIED':asset==='tr'?'USER_DECLARED_TR_LICENSE_NOT_VERIFIED':state.kind==='demo'?'SYNTHETIC':'FX_QUOTE_NOT_DEPOSIT_TR',
