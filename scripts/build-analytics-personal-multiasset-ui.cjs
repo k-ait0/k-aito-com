@@ -57,7 +57,7 @@ function main(args){
   throw Error('Generated offline HTML is missing/stale; run --build');
  console.log('PASS_MULTI_ASSET_OFFLINE_BUILD',JSON.stringify({path:output,
   html_sha256:sha(Buffer.from(html)),bytes:Buffer.byteLength(html,'utf8'),
-  build_or_verified:args[0],core_source:'UNMODIFIED_V07_CORE_VENDORED_ON_RESEARCH_BRANCH',
+  build_or_verified:args[0],core_source:'RESEARCH_FORK_CORE_V04_EXPLICIT_WITHDRAWAL_PHASE_AND_SALE_ORDER',
   releases_approved:false,external_requests:0}));
 }
 if(require.main===module)try{main(process.argv.slice(2))}catch(e){console.error('MULTI_ASSET_BUILD_FAILED '+e.message);process.exitCode=1}
