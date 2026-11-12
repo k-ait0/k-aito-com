@@ -240,6 +240,7 @@ function validatePersonalLifecycle(lifecycle){
  }
  return {salary:stream(lifecycle.salary,'給与'),pension:stream(lifecycle.pension,'年金'),events:validated};
 }
+
 function simulateTwoAsset(fullRows,startIndex,horizon,initial,monthly,riskAsset,adjust,timing,config){
  const steps=horizon*12;
  if(!Number.isInteger(steps)||steps<=0||!Number.isFinite(initial)||initial<=0||
@@ -253,28 +254,46 @@ function simulateTwoAsset(fullRows,startIndex,horizon,initial,monthly,riskAsset,
  if(!['NONE','ANNUAL','MONTHLY'].includes(config.rebalance))throw Error('複数資産：リバランス頻度不正');
  const monthlyContribution=config.monthlyContribution===undefined?0:config.monthlyContribution;
  if(!Number.isFinite(monthlyContribution)||monthlyContribution<0||monthlyContribution>100000000)
-   throw Error('複数資産：毎月積立額は0〜1億円の有限数です');
+    throw Error('複数資産：毎月積立額は0〜1億円の有限数です');
+ const life=validatePersonalLifecycle(config.lifecycle);
  const baseCpi=fullRows[startIndex].cpi;
  if(!Number.isFinite(baseCpi)||baseCpi<=0)throw Error('複数資産：基準CPI不正');
  const targetCash=config.cashPercent/100;
  let cash=initial*targetCash,risk=initial-cash;
  let totalWithdrawn=0,totalDue=0,totalShortfall=0,totalContributed=0,investmentReturnTotal=0,rebalanceTurnover=0;
+ let totalSalaryIncome=0,totalPensionIncome=0,totalEventIncome=0;
+ let totalEventExpenseDue=0,totalEventExpensePaid=0,totalEventExpenseShortfall=0;
  let firstShortfallMonth=null,depletedMonth=null,withdrawalCount=0;
  const EPS=1e-8;
- const rows=[{month:fullRows[startIndex].month,value:initial,cash_yen:cash,risk_yen:risk,
-    due:0,withdrawn:0,shortfall:0,contribution_yen:0,investment_return:0,rebalance_yen:0}];
- function deposit(entry){
-   if(monthlyContribution===0)return;
-   const intoCash=monthlyContribution*targetCash;
-   cash+=intoCash;risk+=monthlyContribution-intoCash;
-   totalContributed+=monthlyContribution;
-   entry.contribution_yen+=monthlyContribution;
+ const makeEntry=(month,value,cash_yen,risk_yen,investment_return)=>({
+   month,value,cash_yen,risk_yen,due:0,withdrawn:0,shortfall:0,
+   contribution_yen:0,salary_income_yen:0,pension_income_yen:0,one_time_income_yen:0,
+   one_time_expense_due_yen:0,one_time_expense_paid_yen:0,one_time_expense_shortfall_yen:0,
+   investment_return,rebalance_yen:0
+ });
+ const rows=[makeEntry(fullRows[startIndex].month,initial,cash,risk,0)];
+ function credit(amount,entry,key){
+   if(amount===0)return;
+   const intoCash=amount*targetCash;
+   cash+=intoCash;risk+=amount-intoCash;
+   entry[key]+=amount;
    entry.cash_yen=cash;entry.risk_yen=risk;entry.value=cash+risk;
  }
- function pay(index,entry){
+ function deposit(index,entry){
+   const at=index-startIndex;
+   credit(monthlyContribution,entry,'contribution_yen');totalContributed+=monthlyContribution;
+   const salary=at>=life.salary.start&&at<life.salary.end?life.salary.monthly:0;
+   const pension=at>=life.pension.start&&at<life.pension.end?life.pension.monthly:0;
+   credit(salary,entry,'salary_income_yen');totalSalaryIncome+=salary;
+   credit(pension,entry,'pension_income_yen');totalPensionIncome+=pension;
+   for(const evt of life.events)if(evt.at===at&&evt.kind==='INCOME'){
+     credit(evt.amount,entry,'one_time_income_yen');totalEventIncome+=evt.amount;
+   }
+ }
+ function pay(index,entry,overrideDue=null,category='REGULAR'){
    const d=fullRows[index];
-   const due=monthly*(adjust?d.cpi/baseCpi:1);
-   if(!Number.isFinite(due)||due<0)throw Error('複数資産：CPI連動引出額が不正');
+   const due=category==='EVENT'?overrideDue:monthly*(adjust?d.cpi/baseCpi:1);
+   if(!Number.isFinite(due)||due<0)throw Error('複数資産：引出額または臨時支出額が不正');
    const total=cash+risk,amount=Math.min(total,due),missing=Math.max(0,due-amount);
    let cashPay=0,riskPay=0;
    if(config.sellOrder==='CASH_FIRST'){
@@ -288,11 +307,20 @@ function simulateTwoAsset(fullRows,startIndex,horizon,initial,monthly,riskAsset,
    cash=Math.max(0,cash-cashPay);risk=Math.max(0,risk-riskPay);
    const shortfall=missing>EPS?missing:0;
    totalWithdrawn+=amount;totalDue+=due;totalShortfall+=shortfall;
-   if(due>0)withdrawalCount++;
+   if(category==='EVENT'){
+     totalEventExpenseDue+=due;totalEventExpensePaid+=amount;totalEventExpenseShortfall+=shortfall;
+     entry.one_time_expense_due_yen+=due;entry.one_time_expense_paid_yen+=amount;
+     entry.one_time_expense_shortfall_yen+=shortfall;
+   }else if(due>0)withdrawalCount++;
    if(firstShortfallMonth===null&&shortfall>0)firstShortfallMonth=d.month;
    if(depletedMonth===null&&cash+risk<=EPS){cash=0;risk=0;depletedMonth=d.month;}
    entry.cash_yen=cash;entry.risk_yen=risk;entry.value=cash+risk;
    entry.due+=due;entry.withdrawn+=amount;entry.shortfall+=shortfall;
+ }
+ function openMonth(index,entry){
+   deposit(index,entry);
+   for(const evt of life.events)if(evt.at===index-startIndex&&evt.kind==='EXPENSE')
+     pay(index,entry,evt.amount,'EVENT');
  }
  function rebalance(entry,j){
    const doRebalance=config.rebalance==='MONTHLY'||(config.rebalance==='ANNUAL'&&j%12===0);
@@ -303,7 +331,7 @@ function simulateTwoAsset(fullRows,startIndex,horizon,initial,monthly,riskAsset,
    rebalanceTurnover+=Math.abs(trade);
    entry.rebalance_yen=Math.abs(trade);entry.cash_yen=cash;entry.risk_yen=risk;entry.value=total;
  }
- deposit(rows[0]);
+ openMonth(startIndex,rows[0]);
  if(timing==='BEGINNING_OF_MONTH')pay(startIndex,rows[0]);
  for(let j=1;j<=steps;j++){
    const prev=fullRows[startIndex+j-1],now=fullRows[startIndex+j];
@@ -314,23 +342,29 @@ function simulateTwoAsset(fullRows,startIndex,horizon,initial,monthly,riskAsset,
    const beforeRisk=risk,afterRisk=risk*q,ret=afterRisk-beforeRisk;
    if(!Number.isFinite(afterRisk)||afterRisk<0)throw Error('複数資産：運用残高が非有限数');
    risk=afterRisk;investmentReturnTotal+=ret;
-   const entry={month:now.month,value:cash+risk,cash_yen:cash,risk_yen:risk,
-       due:0,withdrawn:0,shortfall:0,contribution_yen:0,investment_return:ret,rebalance_yen:0};
+   const entry=makeEntry(now.month,cash+risk,cash,risk,ret);
    if(timing==='END_OF_MONTH')pay(startIndex+j,entry);
-   // Contribution for the NEXT month enters at this boundary, after the
-   // current month's END_OF_MONTH payment; never add after the final month.
-   if(j<steps)deposit(entry);
-   if(timing==='BEGINNING_OF_MONTH'&&j<steps)pay(startIndex+j,entry);
+   // Begin the NEXT holding interval only if another return period exists.
+   // Relative salary/pension/event timing is reanchored per rolling window.
+   if(j<steps){
+     openMonth(startIndex+j,entry);
+     if(timing==='BEGINNING_OF_MONTH')pay(startIndex+j,entry);
+   }
    rebalance(entry,j);
    if(!Number.isFinite(entry.value)||entry.value<0)throw Error('複数資産：期末残高不正');
    rows.push(entry);
  }
- const remaining=cash+risk,conservation=initial+totalContributed+investmentReturnTotal-totalWithdrawn;
+ const remaining=cash+risk,externalIncome=totalContributed+totalSalaryIncome+totalPensionIncome+totalEventIncome;
+ const conservation=initial+externalIncome+investmentReturnTotal-totalWithdrawn;
  if(Math.abs(remaining-conservation)>Math.max(1e-5,Math.abs(conservation)*1e-10))
     throw Error('複数資産：資金恒等式が不一致');
  if(Math.abs(totalDue-totalWithdrawn-totalShortfall)>Math.max(1e-5,totalDue*1e-10))
-    throw Error('複数資産：予定引出額と未払の差が不一致');
+    throw Error('複数資産：予定支出額と未払の差が不一致');
+ if(Math.abs(totalEventExpenseDue-totalEventExpensePaid-totalEventExpenseShortfall)>Math.max(1e-5,totalEventExpenseDue*1e-10))
+    throw Error('複数資産：臨時支出の不一致');
  return {rows,remaining,cash,risk,total:totalWithdrawn,totalDue,totalShortfall,totalContributed,
+   totalSalaryIncome,totalPensionIncome,totalEventIncome,totalEventExpenseDue,totalEventExpensePaid,
+   totalEventExpenseShortfall,externalIncome,
    firstShortfallMonth,ruinMonth:firstShortfallMonth,depletedMonth,
    investmentReturnTotal,rebalanceTurnover,withdrawalCount,monthlyContribution,
    covered:firstShortfallMonth===null,months:steps+1,ends:fullRows[startIndex+steps].month,
