@@ -353,7 +353,7 @@ function drawGraph(series){const cnv=$('chart'),wrap=$('plotWrap'),ctx=cnv.getCo
  ctx.beginPath();ctx.lineWidth=2.6;ctx.lineJoin='round';ctx.lineCap='round';ctx.strokeStyle=clr;series.forEach((p,i)=>{const [x,y]=xy(i,p.value);if(i===0)ctx.moveTo(x,y);else ctx.lineTo(x,y)});ctx.stroke();
  const grd=ctx.createLinearGradient(0,T,0,h);grd.addColorStop(0,clr+'24');grd.addColorStop(1,clr+'00');ctx.lineTo(L+X,T+Y);ctx.lineTo(L,T+Y);ctx.closePath();ctx.fillStyle=grd;ctx.fill();state.points={L,X,w,h,series,xy};
 }
-function render(){try{clearWarn();showStates();if(!state.data)throw Error('データがありません');const full=state.data.months;const asset=state.tab==='portfolio'?$('portfolioRisk').value:state.asset;const real=state.plotMode==='real';const label=asset==='usd'?'米ドル現金（利息なし）':asset==='jpy'?'円現金（利息なし）':asset==='tr'?'本人入力TR指数（真正性未検証）':'金公表価格（未検証）';$('legendText').textContent=label;
+function render(){try{clearWarn();showStates();if(!state.data)throw Error('データがありません');const full=state.data.months;const asset=state.tab==='portfolio'?$('portfolioRisk').value:state.asset;const real=state.plotMode==='real';const label=asset==='usd'?'米ドル現金（利息なし）':asset==='jpy'?'円現金（利息なし）':asset==='tr'?'本人入力TR指数（'+(state.data.meta?.tr?.source||'合成・未検証')+'／真正性未検証）':'金公表価格（未検証）';$('legendText').textContent=label;
  const risk=asset==='gold';$('noticeText').textContent=state.kind==='demo'?'合成デモです。現実の市場や将来を表しません。':'Fed H.10とe-Statの指定CSVを利用。Fed 1971年系列は取得経路ADR未承認の研究候補です。'+(risk?' 金は予測・出典区分未検証の公表値で、投資可能なTRではありません。':asset==='tr'?' TR指数の出典・自己利用権限は本人確認であり、アプリ側の真正性保証ではありません。':' 利息・売買費用・税は含みません。');
  let series,exportRows,summary;
  if(state.tab==='power'){
@@ -362,7 +362,7 @@ function render(){try{clearWarn();showStates();if(!state.data)throw Error('デ�
   $('chartTitle').textContent=real?'円建て実質購買力の変化':'円建て名目水準の変化';$('chartSubtitle').textContent='開始月＝100。'+(asset==='usd'?'USD金利はゼロ。':asset==='gold'?'公表値の探索的比較。':'円現金の名目価値は一定。');
   $('detailTitle').textContent='10 / 20 / 30年 ローリング比較';$('tableHead').innerHTML='<tr><th>期間</th><th>開始月数</th><th>最小倍率</th><th>中央値</th><th>最大倍率</th><th>1倍超の割合</th></tr>';
   $('tableRows').textContent='';for(const y of [10,20,30]){const s=powerSummary(series,y),tr=document.createElement('tr');tr.innerHTML=`<td>${y}年</td><td>${s.windows}</td><td>${nf(s.min,3)}</td><td>${nf(s.median,3)}</td><td>${nf(s.max,3)}</td><td>${s.windows?nf(s.positive,1)+'%':'—'}</td>`;$('tableRows').appendChild(tr)}
-  $('tableNote').textContent='開始月ごとに全期間の実測水準がある場合のみ集計します。重複する歴史的な窓の割合であり、将来の運用成績の確率ではありません。';exportRows=series.map(x=>({month:x.month,relative_index:x.value.toFixed(8),classification:asset==='gold'?'PUBLISHED_LEVEL_STATUS_UNVERIFIED':state.kind==='demo'?'SYNTHETIC':'OBSERVED_REFERENCE'}));
+  $('tableNote').textContent='開始月ごとに全期間の実測水準がある場合のみ集計します。重複する歴史的な窓の割合であり、将来の運用成績の確率ではありません。';exportRows=series.map(x=>({month:x.month,relative_index:x.value.toFixed(8),source_series_id:asset==='tr'?(state.data.meta?.tr?.id||'SYNTHETIC_TR'):asset,source_id:asset==='tr'?(state.data.meta?.tr?.source||'SYNTHETIC'):'REFERENCE',classification:asset==='gold'?'PUBLISHED_LEVEL_STATUS_UNVERIFIED':state.kind==='demo'?'SYNTHETIC':'OBSERVED_REFERENCE'}));
 
  }else if(state.tab==='portfolio'){
    const initial=Number($('initial').value),monthly=Number($('monthly').value),
@@ -411,6 +411,8 @@ function render(){try{clearWarn();showStates();if(!state.data)throw Error('デ�
      rebalance_trade_yen:r.rebalance_yen.toFixed(2),cash_target_pct:config.cashPercent,monthly_contribution_yen:config.monthlyContribution,
      sale_order:config.sellOrder,rebalance_frequency:config.rebalance,withdraw_timing:timing,
      asset_reference:asset,
+     reference_series_id:asset==='tr'?(state.data.meta?.tr?.id||'SYNTHETIC_TR'):asset,
+     reference_source_id:asset==='tr'?(state.data.meta?.tr?.source||'SYNTHETIC'):asset==='usd'?'FED_BOARD':asset==='gold'?'WORLD_BANK_PINK':'SYNTHETIC',
      price_quality:asset==='gold'?'PUBLISHED_LEVEL_STATUS_UNVERIFIED':asset==='tr'?'USER_DECLARED_TR_LICENSE_NOT_VERIFIED':state.kind==='demo'?'SYNTHETIC':'FX_QUOTE_NOT_DEPOSIT_TR',
      not_for_publication:true}));
  }else{
