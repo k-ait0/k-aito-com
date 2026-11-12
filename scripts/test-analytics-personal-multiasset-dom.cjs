@@ -36,6 +36,18 @@ assert(app.getState().downloadEnabled,'risk first with CASH_JPY should run');
 $('withdrawalStrategy').value='PRO_RATA';app.run();
 $('withdrawalTiming').value='MONTH_END';app.run();
 assert(app.getState().downloadEnabled,'MONTH_END explicit phase should run');
+$('events').value='repair,0,EXPENSE,500000,MONTH_START\nbonus,0,INCOME,200000,MONTH_END';
+app.run();
+assert.equal(app.getState().twoPhaseEnabled,true,'5-column event timing must activate two-phase engine');
+assert.equal(app.getState().firstStartDue,500000);
+assert.equal(app.getState().firstEndDue,100000);
+assert(app.getState().downloadEnabled);
+$('events').value='repair,0,EXPENSE,500000,BEFORE_NOON';app.run();
+assert.equal(app.getState().downloadEnabled,false,'Unsupported event timing fails closed');
+$('events').value='repair,0,EXPENSE,500000';app.run();
+assert.equal(app.getState().twoPhaseEnabled,false,'Legacy 4-column event uses single-phase engine');
+$('events').value='';app.run();
+
 $('withdrawalTiming').value='MONTH_START';app.run();
 $('events').value='repair,12,EXPENSE,500000';app.run();
 assert.equal(app.getState().downloadEnabled,true);
