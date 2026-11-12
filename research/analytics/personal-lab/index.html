@@ -19,7 +19,7 @@ header{padding:25px 0 18px;display:flex;gap:20px;justify-content:space-between;a
 </head>
 <body>
 <div class="shell">
-<header><div class="brand"><div class="mark">K<span style="font-size:12px;margin-left:1px">.</span></div><div><div class="brandname">K. Aito Analytics</div><div class="subbrand">PERSONAL RESEARCH LAB · v0.4</div></div></div><div class="priv"><span class="dot"></span>ローカル処理専用</div></header>
+<header><div class="brand"><div class="mark">K<span style="font-size:12px;margin-left:1px">.</span></div><div><div class="brandname">K. Aito Analytics</div><div class="subbrand">PERSONAL RESEARCH LAB · v0.5</div></div></div><div class="priv"><span class="dot"></span>ローカル処理専用</div></header>
 <div class="headline"><div><div class="eyebrow">HISTORICAL MARKET RESEARCH</div><h1>資産の購買力と取り崩しを検証する</h1><p>簡易分析から30年ローリング検証まで。実データは端末内で読み込み、外部送信しません。</p></div><div class="meta"><div>データモード：<b id="metaMode">合成デモ</b></div><div id="metaCoverage">期間 1971–2026（サンプル）</div></div></div>
 <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap"><div class="tabs" role="tablist" aria-label="分析対象"><button type="button" id="tabPower" class="active" aria-selected="true">購買力分析</button><button type="button" id="tabWithdraw" aria-selected="false">単一資産の取り崩し</button><button type="button" id="tabPortfolio" aria-selected="false">2資産ポートフォリオ</button></div><div class="mode" aria-label="表示モード"><button type="button" id="modeSimple" class="active">簡易</button><button type="button" id="modeDetail">詳細</button></div></div>
 <div class="layout">
@@ -28,7 +28,16 @@ header{padding:25px 0 18px;display:flex;gap:20px;justify-content:space-between;a
  <div id="uploadBox" class="hidden"><div class="filepair"><label><b>USD/JPY · Fed H.10</b><input id="fileFx" type="file" accept=".csv,text/csv"></label><label><b>日本CPI · 全国総合</b><input id="fileCpi" type="file" accept=".csv,text/csv"></label><label><b>金 · 公表未検証（任意）</b><input id="fileGold" type="file" accept=".csv,text/csv"></label><label><b>配当込み指数TR · 個人用（任意）</b><input id="fileTr" type="file" accept=".csv,text/csv"></label></div><p class="inputnote">研究用の正規化CSVを指定してください。ファイルはアップロードされません。</p><label class="checkline" style="margin:10px 0"><input type="checkbox" id="goldAck"><span>金価格は出典・予測区分未検証の参考値と理解した</span></label><label class="checkline" style="margin:10px 0"><input type="checkbox" id="trAck"><span>TR指数を適法に本人利用できることを確認済み。CSVの自己申告された出典・TR区分はアプリが真正性を保証しない</span></label><div class="buttons"><button type="button" class="primary" id="loadFiles">端末内で読み込む</button><button type="button" class="secondary" id="clearFiles">消去</button></div></div><div id="loadStatus" role="status" class="statusline" aria-live="polite">入力データ：合成デモ</div></div>
  <div class="panel"><h2>02 · 分析条件</h2><div class="group"><label class="fieldlabel" for="asset">比較対象</label><select id="asset"><option value="usd">米ドル現金（利息なし）</option><option value="jpy">円現金（利息なし）</option><option value="gold">金公表価格（探索用）</option><option value="tr">配当込み指数TR（本人データ）</option></select></div>
  <div id="withdrawInputs" class="hidden"><div class="group"><label class="fieldlabel" for="initial">初期資金（円）</label><input type="number" id="initial" min="10000" max="10000000000" step="100000" value="30000000"></div><div class="group"><label class="fieldlabel" for="monthly">毎月の取り崩し（円）</label><input type="number" id="monthly" min="0" max="100000000" step="10000" value="100000"></div><div class="group"><label class="fieldlabel" for="withdrawType">引出し額</label><select id="withdrawType"><option value="real">物価上昇に合わせて調整</option><option value="nominal">毎月同額（名目固定）</option></select></div><div class="group"><label class="fieldlabel" for="withdrawTiming">引出し時点</label><select id="withdrawTiming"><option value="END_OF_MONTH">月末（運用リターン反映後）</option><option value="BEGINNING_OF_MONTH">月初（運用リターン反映前）</option></select></div><div class="group"><label class="fieldlabel" for="startMonth">開始月</label><select id="startMonth"></select></div></div>
- <div id="portfolioInputs" class="hidden"><div class="group"><label class="fieldlabel" for="portfolioRisk">投資資産（もう1つは円現金・利息0%）</label><select id="portfolioRisk"><option value="usd">米ドル現金の円換算（USD金利なし）</option><option value="gold">金公表価格（探索用・TRではない）</option><option value="tr">配当込み指数TR（本人用CSV）</option></select></div><div class="group"><label class="fieldlabel" for="cashPercent">初期の円現金比率（%）</label><input id="cashPercent" type="number" min="0" max="100" step="5" value="20"><div class="inputnote">投資資産は残りの割合。リバランス時はこの割合に戻します。</div></div><div class="group"><label class="fieldlabel" for="monthlyContribution">毎月の積立額（円）</label><input id="monthlyContribution" type="number" min="0" max="100000000" step="10000" value="0"><div class="inputnote">各月初に指定現金比率で積立、全期間Nか月でN回。毎月の取り崩しとは別計上します。</div></div><div id="portfolioAdvanced" class="hidden"><div class="group"><label class="fieldlabel" for="sellOrder">売却順序</label><select id="sellOrder"><option value="CASH_FIRST">円現金から取り崩す</option><option value="RISK_FIRST">投資資産から取り崩す</option><option value="PRO_RATA">保有比率に従い比例売却</option></select></div><div class="group"><label class="fieldlabel" for="rebalance">リバランス</label><select id="rebalance"><option value="NONE">なし</option><option value="ANNUAL">12か月ごと</option><option value="MONTHLY">毎月</option></select></div></div><p class="inputnote">簡易モードでは現金優先・リバランスなし。詳細モードで売却順と頻度を指定できます。税・手数料なし。</p></div>
+ <div id="portfolioInputs" class="hidden"><div class="group"><label class="fieldlabel" for="portfolioRisk">投資資産（もう1つは円現金・利息0%）</label><select id="portfolioRisk"><option value="usd">米ドル現金の円換算（USD金利なし）</option><option value="gold">金公表価格（探索用・TRではない）</option><option value="tr">配当込み指数TR（本人用CSV）</option></select></div><div class="group"><label class="fieldlabel" for="cashPercent">初期の円現金比率（%）</label><input id="cashPercent" type="number" min="0" max="100" step="5" value="20"><div class="inputnote">投資資産は残りの割合。リバランス時はこの割合に戻します。</div></div><div class="group"><label class="fieldlabel" for="monthlyContribution">毎月の積立額（円）</label><input id="monthlyContribution" type="number" min="0" max="100000000" step="10000" value="0"><div class="inputnote">各月初に指定現金比率で積立、全期間Nか月でN回。毎月の取り崩しとは別計上します。</div></div><div id="portfolioAdvanced" class="hidden"><div class="group"><label class="fieldlabel" for="sellOrder">売却順序</label><select id="sellOrder"><option value="CASH_FIRST">円現金から取り崩す</option><option value="RISK_FIRST">投資資産から取り崩す</option><option value="PRO_RATA">保有比率に従い比例売却</option></select></div><div class="group"><label class="fieldlabel" for="rebalance">リバランス</label><select id="rebalance"><option value="NONE">なし</option><option value="ANNUAL">12か月ごと</option><option value="MONTHLY">毎月</option></select></div>
+<div class="group"><label class="fieldlabel" for="salaryMonthly">給与から資産に入る月額（円）</label><input id="salaryMonthly" type="number" min="0" max="100000000" step="10000" value="0"><div class="inputnote">税・社会保険等を考慮した後、資産へ入金する金額を手入力。毎月積立とは別の入金なので二重計上に注意。</div></div>
+<div class="group"><label class="fieldlabel" for="salaryStart">給与開始（経過月・含む）</label><input id="salaryStart" type="number" min="0" max="1200" step="1" value="0"></div>
+<div class="group"><label class="fieldlabel" for="salaryEnd">給与終了（経過月・含まない）</label><input id="salaryEnd" type="number" min="0" max="1200" step="1" value="120"></div>
+<div class="group"><label class="fieldlabel" for="pensionMonthly">年金から資産に入る月額（円）</label><input id="pensionMonthly" type="number" min="0" max="100000000" step="10000" value="0"><div class="inputnote">名目固定の研究モデル。実際の年金受給日・改定・税額は再現しません。</div></div>
+<div class="group"><label class="fieldlabel" for="pensionStart">年金開始（経過月・含む）</label><input id="pensionStart" type="number" min="0" max="1200" step="1" value="120"></div>
+<div class="group"><label class="fieldlabel" for="pensionEnd">年金終了（経過月・含まない）</label><input id="pensionEnd" type="number" min="0" max="1200" step="1" value="360"></div>
+<div class="group"><label class="fieldlabel" for="eventKind">臨時イベント種別</label><select id="eventKind"><option value="EXPENSE">臨時支出</option><option value="INCOME">臨時収入</option></select></div>
+<div class="group"><label class="fieldlabel" for="eventOffset">臨時イベントの発生月（経過月）</label><input id="eventOffset" type="number" min="0" max="1200" step="1" value="60"></div>
+<div class="group"><label class="fieldlabel" for="eventAmount">臨時イベント額（円）</label><input id="eventAmount" type="number" min="0" max="10000000000" step="100000" value="0"><div class="inputnote">期間Nか月では月0〜月N−1に発生。開始月を変えても経過月は同じ条件です。</div></div></div><p class="inputnote">簡易モードでは現金優先・リバランスなし。詳細モードで売却順と頻度を指定できます。税・手数料なし。</p></div>
  <div class="group"><label class="fieldlabel" for="horizon">検証期間</label><select id="horizon"><option value="10">10年</option><option value="20">20年</option><option value="30" selected>30年</option></select></div>
  <div id="plotModeGroup" class="group"><label class="fieldlabel" for="plotMode">グラフ表示</label><select id="plotMode"><option value="real">日本CPIで実質化</option><option value="nominal">円建て名目水準</option></select></div>
  <div class="buttons"><button type="button" id="exportCsv" class="secondary">結果CSV保存</button></div></div>
@@ -38,7 +47,7 @@ header{padding:25px 0 18px;display:flex;gap:20px;justify-content:space-between;a
  <div class="stats"><div class="stat"><div class="k" id="statLabelA">最終実質指数</div><div class="v" id="statA">—</div><div class="f" id="statFootA">開始月＝100</div></div><div class="stat"><div class="k" id="statLabelB">比較対象期間</div><div class="v" id="statB">—</div><div class="f" id="statFootB">開始月〜終了月</div></div><div class="stat"><div class="k" id="statLabelC">30年の開始月数</div><div class="v" id="statC">—</div><div class="f" id="statFootC">将来の確率ではありません</div></div></div>
  <div class="chartcard"><div class="charthead"><div><h2 id="chartTitle">円建て購買力の変化</h2><p id="chartSubtitle">開始月＝100。利息・税・手数料なし。</p></div><span class="pill" id="chartBadge">SYNTHETIC</span></div><div class="plotwrap" id="plotWrap"><canvas id="chart" aria-label="月次データの折れ線グラフ" role="img"></canvas><div class="tooltip" id="plotTip"></div></div><div class="legend"><span><i class="key" id="legendColor"></i><span id="legendText">実質購買力</span></span></div><div class="rangeinfo"><span id="leftMonth">—</span><span id="rightMonth">—</span></div></div>
  <div class="panel detail hidden" id="detailPanel"><h2 id="detailTitle">期間別ローリング検証</h2><div class="tablewrap"><table><thead id="tableHead"></thead><tbody id="tableRows"></tbody></table></div><p id="tableNote" class="inputnote">これは過去の履歴比較です。将来の成績・成功確率を意味しません。</p></div>
- <div class="panel detail hidden" id="portfolioLedger"><h2>月次台帳の抜粋（全月はCSV保存）</h2><div class="tablewrap"><table><thead><tr><th>年月</th><th>円現金</th><th>投資資産</th><th>積立額</th><th>引出額</th><th>不足額</th><th>売買金額</th></tr></thead><tbody id="portfolioLedgerRows"></tbody></table></div></div>
+ <div class="panel detail hidden" id="portfolioLedger"><h2>月次台帳の抜粋（全月はCSV保存）</h2><div class="tablewrap"><table><thead><tr><th>年月</th><th>円現金</th><th>投資資産</th><th>積立額</th><th>給与流入</th><th>年金流入</th><th>臨時入金</th><th>出金計</th><th>臨時支出実払</th><th>不足額</th><th>売買金額</th></tr></thead><tbody id="portfolioLedgerRows"></tbody></table></div></div>
  <div class="note" id="footnote"><span class="notice-title">データについて</span><div id="noticeText">デモは合成値です。USD現金には金利を付与しておらず、為替変動の影響のみを計算します。</div></div>
 </main></div>
 <div class="footer"><span>K. AITO ANALYTICS · PERSONAL LAB · PRIVATE RESEARCH ONLY</span><span>外部API / CDN / Cookie / ローカル保存：使用しません</span></div>
@@ -189,6 +198,48 @@ function rollingWithdraw(rows,horizon,initial,monthly,asset,adjust,timing='END_O
 // V0.3: private-only two-asset ledger. One JPY cash sleeve (0% yield) plus ONE
 // risky/reference sleeve. No debt, fees, tax, dividends beyond a genuine TR input.
 // All trades and cash shortfalls are audited; spot/FX remain explicitly not TR.
+
+/* Single-user modelling inputs; event offsets are relative to the chosen
+ * historical rolling-window start, NOT actual pension entitlement dates. */
+function validatePersonalLifecycle(lifecycle){
+ if(lifecycle===undefined||lifecycle===null)return {salary:{monthly:0,start:0,end:0},pension:{monthly:0,start:0,end:0},events:[]};
+ if(typeof lifecycle!=='object'||Array.isArray(lifecycle)||
+    Object.keys(lifecycle).some(k=>!['salary','pension','events'].includes(k)))
+   throw Error('生活設計：未対応パラメータまたは型');
+ const money=(v,tag,max=100000000)=>{
+   if(typeof v!=='number'||!Number.isFinite(v)||!Number.isSafeInteger(v)||v<0||v>max)
+      throw Error('生活設計：'+tag+' は非負の整数円で入力してください');
+   return v;
+ };
+ const offset=(v,tag)=>{
+   if(!Number.isInteger(v)||v<0||v>1200)throw Error('生活設計：'+tag+' は0～1200の経過月整数です');
+   return v;
+ };
+ const stream=(v,tag)=>{
+   if(v===undefined||v===null)return {monthly:0,start:0,end:0};
+   if(typeof v!=='object'||Array.isArray(v)||Object.keys(v).some(k=>!['monthly','start','end'].includes(k)))
+     throw Error('生活設計：'+tag+' の入力が不正');
+   const monthly=money(v.monthly,tag+'月額'),start=offset(v.start,tag+'開始'),end=offset(v.end,tag+'終了');
+   if(end<start||(monthly>0&&end<=start))throw Error('生活設計：'+tag+' 開始より終了が後である必要があります');
+   return {monthly,start,end};
+ };
+ if(lifecycle.events!==undefined&&!Array.isArray(lifecycle.events))throw Error('生活設計：臨時イベントは配列です');
+ const events=lifecycle.events||[];
+ if(events.length>20)throw Error('生活設計：臨時イベントは最大20件');
+ const seen=new Set(),validated=[];
+ for(const e of events){
+   if(!e||typeof e!=='object'||Array.isArray(e)||
+      Object.keys(e).some(k=>!['id','at','kind','amount'].includes(k)))
+      throw Error('生活設計：臨時イベントの項目が不正');
+   if(typeof e.id!=='string'||!/^[A-Za-z0-9_-]{1,48}$/.test(e.id)||seen.has(e.id))
+      throw Error('生活設計：臨時イベントIDが不正・重複');
+   seen.add(e.id);
+   const at=offset(e.at,'臨時イベント月'),amount=money(e.amount,'臨時イベント額',10000000000);
+   if(!['INCOME','EXPENSE'].includes(e.kind))throw Error('生活設計：臨時イベント種別が不正');
+   validated.push({id:e.id,at,kind:e.kind,amount});
+ }
+ return {salary:stream(lifecycle.salary,'給与'),pension:stream(lifecycle.pension,'年金'),events:validated};
+}
 function simulateTwoAsset(fullRows,startIndex,horizon,initial,monthly,riskAsset,adjust,timing,config){
  const steps=horizon*12;
  if(!Number.isInteger(steps)||steps<=0||!Number.isFinite(initial)||initial<=0||
