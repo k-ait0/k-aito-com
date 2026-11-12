@@ -98,7 +98,7 @@ for(const withSalaryPension of [false,true]){
  assert.equal(r.rows.at(-1).salary_income_yen,0);
  audited++;
 }
-assert.equal(audited,432);
+assert.equal(audited,864);
 // Zero-income lifestyle must be exactly the previous v0.4 computation.
 const previous={cashPercent:35,sellOrder:'PRO_RATA',rebalance:'ANNUAL',monthlyContribution:12000};
 const zeroLife={
@@ -130,4 +130,4 @@ for(const [bad,pattern] of [
  assert.throws(()=>f.validatePersonalLifecycle(bad),pattern);
 }
 assert.equal(f.validatePersonalLifecycle(good).events.length,0);
-console.log('PASS personal v0.5 lifecycle: 432 synthetic portfolio invariant combinations, salary/pension month cutoffs, two event types, recovery after shortfall, relative rolling reanchor, v0.4 zero-lifecycle exact monthly parity, invalid inputs');
+console.log('PASS personal v0.5 lifecycle: 864 synthetic portfolio invariant combinations, salary/pension month cutoffs, two event types, recovery after shortfall, relative rolling reanchor, v0.4 zero-lifecycle exact monthly parity, invalid inputs');
