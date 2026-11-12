@@ -502,11 +502,10 @@
     "production_unchanged": true
   },
   "next_priorities": [
-    "Use the verified pure offline 1-12 asset browser and Core for personal synthetic scenarios; keep floating old Personal v0.5 distinct",
-    "Converge rounding/flow timing with DWZ only after explicit model choice and independent forward/withdrawal mismatch test",
-    "Model and independently audit brokerage fees, taxes, NISA account boundaries and salary vs contribution double count prevention before claiming net investment results",
-    "Secure legitimately acquired 10-20 year JPX J-Quants 6000 gross TR or NOMURA-BPI data privately; no unverified auto substitution",
-    "Add controlled 2-8 scenario comparison, iPad Safari actual QA and direct local-file startup verification"
+    "Implement explicit gross-vs-net and BEGIN/END month timing adapters without changing v0.5 historical results",
+    "Design user-facing source-of-funds model for salary/pension versus deposit to prevent double counting",
+    "Explicitly compare cash-first, risk-first and proportionate asset liquidation before tax-lot/NISA work",
+    "Preserve 1-12 asset local self-use simulation and offline source provenance; no public index TR, no market raw values in Git"
   ],
   "audit_note": "Existing November 10 registry/acquisition snapshots are historical; this is an additional verified November 11 ledger. Do not convert data-acquired into site-approved.",
   "observed_joint_coverage_research_only": {
@@ -975,5 +974,52 @@
     "main_updated": false,
     "finowa_or_public_analytics_updated": false,
     "source_rights_approved": false
+  },
+  "personal_cashflow_contract_v0_2_20261113": {
+    "status": "RESEARCH_QA_PASS_NOT_PRODUCTION",
+    "scope": "PERSONAL_SINGLE_USER_ONLY",
+    "source_branch": "analytics-historical-v0-1-20261110",
+    "core_bridge": "lib/analytics/personal-multiasset-bridge.cjs",
+    "new_priority_modes": [
+      "EVENT_FIRST",
+      "LIVING_FIRST"
+    ],
+    "default_priority": "EVENT_FIRST",
+    "each_event_paid_unfunded_ledger": true,
+    "gross_asset_funding_unchanged": true,
+    "pension_schema_migration": "EXPLICIT_LEGACY_INCLUSIVE_TO_HALF_OPEN_FUNCTION_NOT_AUTOMATIC",
+    "horizon_future_event_policy": "SKIP_WITH_ID_AND_AMOUNT_AUDIT_REPORT",
+    "new_synthetic_property_cases": 144,
+    "regression_run": "https://github.com/k-ait0/k-aito-com/actions/runs/43254567309",
+    "chromium_qa": {
+      "html_sha256": "8353332de5c9f1cb56e70535f398324aa7c65c51f59d7a1ebf70a7c31d275c4d",
+      "twelve_asset_120_month_demo": true,
+      "rolling_windows_synthetic": 481,
+      "event_first_due_living": 1000,
+      "event_first_due_event": 100,
+      "event_first_living_paid": 0,
+      "event_first_event_paid": 100,
+      "living_first_living_paid": 100,
+      "living_first_event_paid": 0,
+      "shortfall_same_both_priorities": 1000,
+      "total_paid_same_both_priorities": 100,
+      "future_event_10_to_20_year_horizon_qa": true,
+      "mobile_390px_horizontal_overflow": false,
+      "javascript_errors": 0,
+      "external_http_requests": 0,
+      "direct_file_scheme_launch_verified": false,
+      "chromium_set_content_fallback": true
+    },
+    "documentation": "docs/ANALYTICS_PERSONAL_CASHFLOW_CONTRACT_V0_2_20261113.md",
+    "outstanding_gates": [
+      "DWZ phase-consistent BEGIN/END monthly and gross-vs-net accounting migration",
+      "CASH_FIRST/RISK_FIRST/PRO_RATA asset liquidation policies vs Core pro-rata only",
+      "Salary/pension funded regular contributions may double-count external income; source-of-funds model pending",
+      "Tax lots, NISA, brokerage costs, tax and fee net asset accounting are not implemented",
+      "User-owned authorized Japanese official long TR not acquired"
+    ],
+    "official_source_registry_unchanged": true,
+    "site_use_approved": false,
+    "main_finowa_public_site_modified": false
   }
 }
