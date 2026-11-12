@@ -123,11 +123,15 @@ function parseTextSchedule(text,kind){
  if(!text.trim())return [];
  return text.replace(/\r/g,'').split('\n').map(s=>s.trim()).filter(Boolean).map((line,i)=>{
   const cols=line.split(',').map(s=>s.trim());
-  if(cols.length!==4)throw Error(kind+'行'+(i+1)+'：4列(ID,開始,終了,月額)で記入');
-  const [id,start,end,amount]=cols;
-  if(!/^[A-Za-z][A-Za-z0-9_-]{0,39}$/.test(id)||![start,end,amount].every(x=>/^\d+$/.test(x)))
-    throw Error(kind+'行'+(i+1)+'：IDまたは整数が不正');
-  return {id,start_offset:Number(start),end_offset_exclusive:Number(end),monthly_yen:Number(amount)};
+  if(cols.length!==4&&cols.length!==5)
+   throw Error(kind+'行'+(i+1)+'：ID,開始月,終了月(除外),月額円[,MONTH_START/MONTH_END]の4列または5列');
+  const [id,start,end,amount,timing]=cols;
+  if(!/^[A-Za-z][A-Za-z0-9_-]{0,39}$/.test(id)||
+      ![start,end,amount].every(x=>/^\d+$/.test(x))||
+      (cols.length===5&&!['MONTH_START','MONTH_END'].includes(timing)))
+   throw Error(kind+'行'+(i+1)+'：ID、整数、または入金時点が不正');
+  return {id,start_offset:Number(start),end_offset_exclusive:Number(end),monthly_yen:Number(amount),
+   ...(cols.length===5?{timing}:{})};
  });
 }
 function parseEvents(text){
@@ -299,7 +303,8 @@ function download(){
  const r=state.result,ids=state.weights.ids;
  const columns=['market_end_month','relative_offset','monthly_income_yen','regular_deposit_yen',
   'contribution_source','external_contribution_yen','internal_from_income_yen',
-  'salary_yen','pension_yen','event_income_yen',
+  'salary_yen','salary_month_start_yen','salary_month_end_yen',
+  'pension_yen','pension_month_start_yen','pension_month_end_yen','event_income_yen',
   'living_expense_due_yen','living_expense_paid_yen','living_expense_unfunded_yen',
   'event_expense_due_yen','event_expense_paid_yen','event_expense_unfunded_yen','event_payment_allocations',
   'expense_price_level_month','withdrawal_timing',
@@ -319,7 +324,8 @@ function download(){
   const b=x.cashflow_breakdown;
   const vals=[x.month,x.relative_offset,b.total_income_yen,b.monthly_contribution_yen,
    b.monthly_contribution_source,b.external_contribution_yen,b.internal_from_income_yen,
-   b.salary_yen,b.pension_yen,
+   b.salary_yen,b.salary_month_start_yen,b.salary_month_end_yen,
+   b.pension_yen,b.pension_month_start_yen,b.pension_month_end_yen,
    b.one_time_income_yen,b.living_expense_yen,b.paid_living_expense_yen,b.unfunded_living_expense_yen,
    b.one_time_expense_yen,b.paid_event_expense_yen,b.unfunded_event_expense_yen,
    b.event_payment_allocations.map(e=>e.id+':'+e.timing+':'+e.due_yen+':'+e.paid_yen+':'+e.unfunded_yen).join('|'),
