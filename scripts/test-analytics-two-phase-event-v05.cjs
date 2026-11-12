@@ -189,4 +189,72 @@ for(const eventPlacement of [0,1,2]){
  checked++;
 }
 assert.equal(checked,180);
-console.log('PASS ANALYTICS_TWO_PHASE_V05: 180 synthetic 1..12 asset gross/net phased events, sell priorities, phase-specific unpaid, no retroactive settlement and unchanged old cashflow results');
+// Reference comparison against the frozen DWZ R4 v16.9 financial phase
+// function under a deliberately narrow identical 1-asset, INTEGER yen,
+ // tax-free, fully-funded scenario. DWZ nets inflows/outflows per phase;
+ // the new Core keeps them gross and derives the net.
+{
+ const fs=require('node:fs'),vm=require('node:vm');
+ const fixture=fs.readFileSync('research/analytics/fixtures/dwz_simulateOne_r4_v16_9_research_fixture.js','utf8');
+ const context=vm.createContext({Math,Object,Array,Number,Error});
+ new vm.Script([
+   "const validation_js_1={validateInputs(){return true;}};",
+   "const exports={ENGINE_VERSION:'synthetic-audit'};",
+   "const clone=(h)=>Object.fromEntries(Object.entries(h).map(([k,v])=>[k,{...v}]));",
+   fixture,"globalThis.runDWZ=simulateOne;"
+ ].join('\n')).runInContext(context);
+ const streams=(timing,amount)=>({timing,startAgeMonths:480,endAgeMonths:481,
+   monthlyAmount:amount,escalationModel:{type:'NONE'}});
+ const scenario={id:'fixed-two-phase-dwz-differential',schemaVersion:'synthetic',
+  portfolio:{holdings:{RISK:{marketValue:1000,costBasis:1000}}},
+  person:{simulationStartAgeMonths:480},lifeEvents:[],
+  expenseStreams:[streams('BEGINNING_OF_MONTH',20),streams('END_OF_MONTH',30)],
+  incomeStreams:[streams('BEGINNING_OF_MONTH',60),streams('END_OF_MONTH',50)],
+  pensionStreams:[],target:{valueBasis:'NOMINAL',targetAssets:0}};
+ const d=context.runDWZ(scenario,{months:['2000-02'],cpiIndex:[1],
+  returns:{RISK:[.1]},datasetVersion:'synthetic-audit'});
+ const p=simulatePersonalMultiAsset({
+  portfolio:config(['RISK'],1000,{withdrawal_timing:'MONTH_START'}),
+  monthly_market_returns:[{month:date(0),origin:'SYNTHETIC',asset_returns:{RISK:.1}}],
+  plan:{monthly_expense_yen:20,salary_schedules:[
+   {id:'salary',start_offset:0,end_offset_exclusive:1,monthly_yen:60}],
+   one_time_events:[{id:'bonus',offset_months:0,kind:'INCOME',amount_yen:50,timing:'MONTH_END'},
+    {id:'lateBill',offset_months:0,kind:'EXPENSE',amount_yen:30,timing:'MONTH_END'}]}
+ });
+ assert.equal(p.two_phase_enabled,true);
+ assert.equal(p.ending_assets_yen,1164);
+ assert.equal(d.summary.finalAssets,p.ending_assets_yen);
+ assert.equal(d.summary.totalInvestmentReturn,p.market_investment_gain_yen);
+ assert.equal(d.summary.totalExpenses,p.scheduled_expenses_yen);
+ assert.equal(d.summary.totalIncome,p.expected_deposits_yen);
+ assert.equal(d.summary.totalContributions-d.summary.totalWithdrawals,
+  p.expected_deposits_yen-p.actually_paid_expenses_yen);
+ assert.equal(p.rows[0].phases.MONTH_START.contribution_yen,60);
+ assert.equal(p.rows[0].phases.MONTH_START.paid_withdrawal_yen,20);
+ assert.equal(p.rows[0].phases.MONTH_END.contribution_yen,50);
+ assert.equal(p.rows[0].phases.MONTH_END.paid_withdrawal_yen,30);
+ assert.equal(p.scheduled_net_cashflow_total_yen,60);
+ assert.equal(p.realized_net_cashflow_total_yen,60);
+}
+// Planned net is NOT realized net when the monthly payment is partially
+// unfunded: no future payment magically removes historical shortage.
+{
+ const p=simulatePersonalMultiAsset({
+  portfolio:config(['CASH_JPY'],20,{withdrawal_timing:'MONTH_END'}),
+  monthly_market_returns:path(['CASH_JPY'],1),
+  plan:{monthly_expense_yen:0,one_time_events:[
+   {id:'startDue',offset_months:0,kind:'EXPENSE',amount_yen:100,timing:'MONTH_START'},
+   {id:'lateIncome',offset_months:0,kind:'INCOME',amount_yen:200,timing:'MONTH_END'},
+   {id:'lateDue',offset_months:0,kind:'EXPENSE',amount_yen:100,timing:'MONTH_END'}
+  ]}
+ });
+ const b=p.rows[0].cashflow_breakdown;
+ assert.equal(p.scheduled_net_cashflow_total_yen,0);
+ assert.equal(p.realized_net_cashflow_total_yen,80);
+ assert.equal(b.scheduled_net_month_start_yen,-100);
+ assert.equal(b.realized_net_month_start_yen,-20);
+ assert.equal(b.scheduled_net_month_end_yen,100);
+ assert.equal(b.realized_net_month_end_yen,100);
+ assert.equal(p.total_unfunded_yen,80);
+}
+console.log('PASS ANALYTICS_TWO_PHASE_V05: 180 synthetic 1..12-asset gross/net phased events, frozen one-asset DWZ net-phase parity, planned-vs-realized and historic unpaid cashflow, old-path parity');
