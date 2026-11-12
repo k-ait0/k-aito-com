@@ -55,9 +55,9 @@ function selftest(){
  fields.map(f=>'<tr>'+f.map(c=>'<td class="xl1"><span>'+c+'</span></td>').join('')+'</tr>').join('')+'</table>';
  const rr=parseAnnual(html,{maxYear:1929});
  assert.equal(rr.length,2);
- assert.equal(rr[0].returns.US_STOCK_WITH_DIVIDENDS,.4381);
- assert.equal(rr[0].returns.US_TBOND_10YR_ANNUAL_TOTAL,.0084);
- assert.equal(rr[1].returns.US_STOCK_WITH_DIVIDENDS,-.083);
+ assert(Math.abs(rr[0].returns.US_STOCK_WITH_DIVIDENDS-.4381)<1e-10);
+ assert(Math.abs(rr[0].returns.US_TBOND_10YR_ANNUAL_TOTAL-.0084)<1e-10);
+ assert(Math.abs(rr[1].returns.US_STOCK_WITH_DIVIDENDS+.083)<1e-10);
  assert.match(csvFrom(rr),/^year,US_STOCK_WITH_DIVIDENDS/);
  assert.throws(()=>parseAnnual(html+html,{maxYear:1929}),/Duplicate/);
  assert.throws(()=>parseAnnual(html.replace('1929','1930'),{maxYear:1929}),/Incomplete/);
