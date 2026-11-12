@@ -33,11 +33,15 @@ const document={
  createElement:tag=>makeNode(tag)
 };
 const ids=['initial','monthly','withdrawType','withdrawTiming','startMonth','horizon','plotMode',
- 'asset','portfolioRisk','cashPercent','sellOrder','rebalance'];
+ 'asset','portfolioRisk','cashPercent','sellOrder','rebalance','monthlyContribution',
+ 'salaryMonthly','salaryStart','salaryEnd','pensionMonthly','pensionStart','pensionEnd',
+ 'eventKind','eventOffset','eventAmount'];
 const init={
  initial:'30000000',monthly:'100000',withdrawType:'real',withdrawTiming:'END_OF_MONTH',
  startMonth:'',horizon:'30',plotMode:'real',asset:'usd',portfolioRisk:'usd',
- cashPercent:'20',sellOrder:'CASH_FIRST',rebalance:'NONE'
+ cashPercent:'20',sellOrder:'CASH_FIRST',rebalance:'NONE',monthlyContribution:'0',
+ salaryMonthly:'0',salaryStart:'0',salaryEnd:'120',pensionMonthly:'0',pensionStart:'120',pensionEnd:'360',
+ eventKind:'EXPENSE',eventOffset:'60',eventAmount:'0'
 };
 for(const id of ids)document.getElementById(id).value=init[id];
 const win={addEventListener:()=>{}};
@@ -66,6 +70,21 @@ el('monthlyContribution').onchange();
 assert(el('chartSubtitle').textContent.includes('毎月積立'));
 assert(el('statFootB').textContent.includes('7,200,000'));
 assert(el('portfolioLedgerRows').options.length>0);
+assert(el('dataErrors').classList.contains('hidden'),true);
+el('salaryMonthly').value='100000';el('salaryStart').value='0';el('salaryEnd').value='120';
+el('pensionMonthly').value='50000';el('pensionStart').value='120';el('pensionEnd').value='360';
+el('eventKind').value='EXPENSE';el('eventOffset').value='60';el('eventAmount').value='500000';
+el('eventAmount').onchange();
+assert.equal(get().results,361);
+assert(el('chartSubtitle').textContent.includes('給与'));
+assert(el('chartSubtitle').textContent.includes('年金'));
+assert(el('statFootB').textContent.includes('外部入金'));
+assert(el('dataErrors').classList.contains('hidden'));
+el('eventAmount').value='-1';el('eventAmount').onchange();
+assert(!el('dataErrors').classList.contains('hidden'),'Invalid event expense must block export');
+assert(el('exportCsv').disabled);
+el('eventAmount').value='500000';el('eventAmount').onchange();
+assert(el('dataErrors').classList.contains('hidden'));
 el('monthlyContribution').value='0';
 el('monthlyContribution').onchange();
 assert.equal(get().results,361);
