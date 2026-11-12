@@ -90,7 +90,8 @@ test("All cross-axis tradeoffs expose full 2x2 choices, not bundled extremes",()
  const c=d.cases.find(x=>x.id===id);
  assert.equal(c.revision.format,"FULL_2_BY_2_FOUR_OPTIONS");
  assert.equal(c.revision.choices.length,5);
- assert.ok(c.stop.includes("得点"));
+ assert.equal(c.classification,"CROSS_AXIS_INTERACTION_NONSCORING");
+ assert.ok(c.stop.includes("得点")||c.stop.includes("採点"));
  }
 });
 test("Historical A-BK14 exclusion is reflected in 18-axis caution",()=>{
