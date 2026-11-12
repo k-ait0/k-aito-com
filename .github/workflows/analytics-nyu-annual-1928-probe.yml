@@ -1,0 +1,41 @@
+name: Analytics NYU Stern 1928 annual research probe (private, no source switch)
+on:
+  push:
+    branches:
+      - analytics-historical-v0-1-20261110
+    paths:
+      - .github/workflows/analytics-nyu-annual-1928-probe.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  annual-acquisition:
+    runs-on: ubuntu-latest
+    timeout-minutes: 9
+    steps:
+      - uses: actions/checkout@v4
+      - name: Source-lock and synthetic parser QA
+        run: |
+          set -euo pipefail
+          node scripts/check-analytics-source-registry.cjs
+          node scripts/research-acquire-damodaran-annual.cjs --selftest
+      - name: Fetch NYU official academic table to runner-private temporary area
+        env:
+          ANALYTICS_PRIVATE_DATA_DIR: ${{ runner.temp }}/kaito_analytics_damodaran_annual
+        run: |
+          set -euo pipefail
+          umask 077
+          node scripts/research-acquire-damodaran-annual.cjs --fetch
+      - name: Encrypt raw and normalized annual research records before export
+        run: |
+          set -euo pipefail
+          umask 077
+          tar -czf "$RUNNER_TEMP/nyu_annual_private.tar.gz" -C "$RUNNER_TEMP/kaito_analytics_damodaran_annual" .
+          node scripts/seal-analytics-research-bundle.cjs "$RUNNER_TEMP/nyu_annual_private.tar.gz" research/analytics/bls_private_bundle_public_key_20261111.pem "$RUNNER_TEMP/nyu_annual_PRIVATE_ENCRYPTED.json"
+          rm "$RUNNER_TEMP/nyu_annual_private.tar.gz"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: nyu-damodaran-1928-2025-annual-personal-encrypted
+          path: ${{ runner.temp }}/nyu_annual_PRIVATE_ENCRYPTED.json
+          if-no-files-found: error
+          retention-days: 7
