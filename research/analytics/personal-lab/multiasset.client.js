@@ -134,10 +134,12 @@ function parseEvents(text){
  if(!text.trim())return [];
  return text.replace(/\r/g,'').split('\n').map(s=>s.trim()).filter(Boolean).map((line,i)=>{
   const c=line.split(',').map(s=>s.trim());
-  if(c.length!==4||!/^[A-Za-z][A-Za-z0-9_-]{0,39}$/.test(c[0])||!/^\d+$/.test(c[1])||
-   !['INCOME','EXPENSE'].includes(c[2])||!/^\d+$/.test(c[3]))
-   throw Error('臨時イベント行'+(i+1)+'：ID,経過月,INCOME/EXPENSE,整数円');
-  return {id:c[0],offset_months:Number(c[1]),kind:c[2],amount_yen:Number(c[3])};
+  if((c.length!==4&&c.length!==5)||!/^[A-Za-z][A-Za-z0-9_-]{0,39}$/.test(c[0])||
+     !/^\d+$/.test(c[1])||!['INCOME','EXPENSE'].includes(c[2])||!/^\d+$/.test(c[3])||
+     (c.length===5&&!['MONTH_START','MONTH_END'].includes(c[4])))
+   throw Error('臨時イベント行'+(i+1)+'：ID,経過月,INCOME/EXPENSE,整数円[,MONTH_START/MONTH_END]');
+  return {id:c[0],offset_months:Number(c[1]),kind:c[2],amount_yen:Number(c[3]),
+   ...(c.length===5?{timing:c[4]}:{})};
  });
 }
 function weightsFromEditor(){
@@ -301,6 +303,12 @@ function download(){
   'living_expense_due_yen','living_expense_paid_yen','living_expense_unfunded_yen',
   'event_expense_due_yen','event_expense_paid_yen','event_expense_unfunded_yen','event_payment_allocations',
   'expense_price_level_month','withdrawal_timing',
+  'month_start_income_gross_yen','month_start_expenses_due_gross_yen',
+  'month_start_expenses_paid_yen','month_start_unfunded_yen',
+  'month_end_income_gross_yen','month_end_expenses_due_gross_yen',
+  'month_end_expenses_paid_yen','month_end_unfunded_yen',
+  'month_start_net_cashflow_yen','month_end_net_cashflow_yen',
+  'two_phase_enabled',
   'expense_priority','withdrawal_strategy','outside_horizon_events',
   'paid_withdrawal_yen','unfunded_yen','investment_gain_yen','rebalance_turnover_yen',
   'closing_total_yen',...ids.map(id=>'closing_'+id+'_yen'),'market_mode','source_series_ids','source_provider_ids','calculation_contract','not_for_publication'];
@@ -312,8 +320,15 @@ function download(){
    b.salary_yen,b.pension_yen,
    b.one_time_income_yen,b.living_expense_yen,b.paid_living_expense_yen,b.unfunded_living_expense_yen,
    b.one_time_expense_yen,b.paid_event_expense_yen,b.unfunded_event_expense_yen,
-   b.event_payment_allocations.map(e=>e.id+':'+e.due_yen+':'+e.paid_yen+':'+e.unfunded_yen).join('|'),
+   b.event_payment_allocations.map(e=>e.id+':'+e.timing+':'+e.due_yen+':'+e.paid_yen+':'+e.unfunded_yen).join('|'),
    b.expense_price_level_month,r.withdrawal_timing,
+   b.start_contribution_yen,b.start_withdrawal_yen,
+   x.phases?.MONTH_START?.paid_withdrawal_yen??(r.withdrawal_timing==='MONTH_START'?x.paid_withdrawal_yen:0),
+   x.phases?.MONTH_START?.unfunded_yen??(r.withdrawal_timing==='MONTH_START'?x.unfunded_yen:0),
+   b.end_contribution_yen,b.end_withdrawal_yen,
+   x.phases?.MONTH_END?.paid_withdrawal_yen??(r.withdrawal_timing==='MONTH_END'?x.paid_withdrawal_yen:0),
+   x.phases?.MONTH_END?.unfunded_yen??(r.withdrawal_timing==='MONTH_END'?x.unfunded_yen:0),
+   b.net_month_start_yen,b.net_month_end_yen,r.two_phase_enabled,
    r.expense_priority,r.withdrawal_strategy,r.skipped_events_after_horizon.length,
    x.paid_withdrawal_yen,x.unfunded_yen,x.investment_gain_yen,x.rebalance_turnover_yen,x.closing_yen,
    ...ids.map(id=>x.holdings[id].closing_yen),state.data.mode,
