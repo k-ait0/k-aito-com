@@ -1,0 +1,53 @@
+{
+  "version": "0.14.0",
+  "research_only": true,
+  "new_test_count": 47,
+  "all_tests": 456,
+  "source_files": [
+    {
+      "path": "lib/analytics/rolling-cpi-benchmark.cjs",
+      "sha256": "e6957fe46bba9e52621925ad4b5cfcec4d94a3443ce66e32a8c59f4f7732c1e3",
+      "bytes": 6007
+    },
+    {
+      "path": "lib/analytics/private-cpi-benchmark-research.cjs",
+      "sha256": "17661c5870993cc38e38c92745edea077898d077e9bf7ee3b218647a51143d09",
+      "bytes": 2993
+    },
+    {
+      "path": "lib/analytics/portfolio-ledger-audit.cjs",
+      "sha256": "3f061f366b96e31c5d6422bbadd33fc696ba6332eeaba86722f6eee692077008",
+      "bytes": 7128
+    },
+    {
+      "path": "scripts/run-analytics-private-cpi-benchmark-v14.cjs",
+      "sha256": "a864582846c8e8f6de3baabb848ee630c07c4fc25f587b35addc5b9d080b8107",
+      "bytes": 3617
+    },
+    {
+      "path": "scripts/test-analytics-rolling-cpi-benchmark.cjs",
+      "sha256": "c76e90514948bb20ceec2e3444dfc4f5b0c232e27a6fb453796b76d274baece7",
+      "bytes": 7971
+    },
+    {
+      "path": "scripts/test-analytics-private-cpi-benchmark-v14.cjs",
+      "sha256": "8032b6252b3b4c76d0abffa5fb4512a97f874e7ce67e3e4de2d34f845d737ccb",
+      "bytes": 3857
+    },
+    {
+      "path": "scripts/test-analytics-portfolio-ledger-audit.cjs",
+      "sha256": "b4961051354246c77e3163123aa715a390568d77352d585ba57ea7ed401f4798",
+      "bytes": 4402
+    },
+    {
+      "path": "scripts/fixtures/private-cpi-benchmark-fixture.cjs",
+      "sha256": "92521d6e1d5303961d4607a095b7f36fd44c5d74b7eaeff3f99f2de67ec35951",
+      "bytes": 5074
+    },
+    {
+      "path": "docs/ANALYTICS_PAIRED_CPI_ACCOUNTING_AUDIT_V0_14.md",
+      "sha256": "ef7547b3be9e5f0ab8e627a449e2833b6e1c8c52e3d8900a5f30f18597dc2779",
+      "bytes": 7418
+    }
+  ]
+}
