@@ -66,7 +66,7 @@ footer{margin-top:22px;color:#8998a8;font-size:11px;text-align:right}
 <div class="group"><label for="withdrawalTiming">取り崩しの時点</label>
 <select id="withdrawalTiming"><option value="MONTH_START">月初：入金→全支出→市場変動（既定）</option>
 <option value="MONTH_END">月末：入金→市場変動→全支出</option></select>
-<p class="sub">月末指定では通常生活費も臨時支出も月末に支払います。物価連動もその月末水準を参照。旧DWZの「臨時支出は月初、生活費のみ月末」といった混合位相とはまだ異なります。</p></div>
+<p class="sub">通常生活費はこの設定で月初／月末を指定します。臨時収支は5列目の指定が優先されます。混合位相でも物価連動の通常生活費はここで選んだ参照月を利用します。</p></div>
 <div class="group"><label for="withdrawalStrategy">資産の実売却順序</label>
 <select id="withdrawalStrategy"><option value="PRO_RATA">保有残高に比例（従来Core）</option>
 <option value="CASH_FIRST">円現金から先に売却</option><option value="RISK_FIRST">円現金以外から先に売却</option></select>
@@ -92,7 +92,9 @@ footer{margin-top:22px;color:#8998a8;font-size:11px;text-align:right}
 <h3>給与・年金のスケジュール</h3>
 <label for="salaries">給与：ID,開始月,終了月（除外）,月額円</label><textarea id="salaries" rows="2" placeholder="work,0,120,150000"></textarea>
 <label for="pensions">年金：同じ4列</label><textarea id="pensions" rows="2" placeholder="public,120,360,120000"></textarea>
-<label for="events">臨時収支：ID,経過月,INCOME/EXPENSE,金額円</label><textarea id="events" rows="3" placeholder="repair,60,EXPENSE,500000&#10;gift,180,INCOME,1000000"></textarea>
+<label for="events">臨時収支：ID,経過月,INCOME/EXPENSE,金額円[,MONTH_START/MONTH_END]</label>
+<textarea id="events" rows="3" placeholder="repair,60,EXPENSE,500000,MONTH_START&#10;gift,180,INCOME,1000000,MONTH_END"></textarea>
+<p class="sub">5列目は任意。空欄の4列形式は従来どおり入金＝月初、支出＝上で選んだ取り崩し時点となります。指定時はイベントごとに月初／月末を選べます。</p>
 </div>
 <p class="warning">給与・年金の金額は資産へ流入する額。積立の資金源を明示してください。内部振替は残高に二重加算しません。税・社会保険・年金の支給日・NISA・手数料は未計算。</p>
 </section>
@@ -116,7 +118,7 @@ footer{margin-top:22px;color:#8998a8;font-size:11px;text-align:right}
 <section class="panel"><h2>月次収支台帳（抜粋）</h2>
 <div class="tablewrap"><table><thead><tr><th>期間終了月</th><th>月初収入</th><th>積立・外部</th><th>積立・内部振替</th><th>うち給与</th><th>うち年金</th><th>臨時収入</th><th>生活費予定</th><th>生活費実払</th><th>生活費未払</th><th>臨時支出予定</th><th>臨時支出実払</th><th>臨時支出未払</th><th>実際の支払</th><th>不足額</th><th>運用損益</th><th>期末残高</th></tr></thead><tbody id="ledgerRows"></tbody></table></div>
 <p class="sub">全月・資産別の保有額はCSV保存で確認できます。月次期間終了月を行見出しにしています。</p></section>
-<div class="note"><strong>計算・データ上の制約</strong>：こちらは整数円で「月初の外部入金・生活費・臨時支出 → 月次騰落 → 期末リバランス」を処理するCoreです。従来Personal Labの月末引出モデルとは一致を保証しません。指数TRは投資可能商品の税引後リターンではありません。月次ローリング窓は重複し、将来の成功確率ではありません。公開・商用配信は未承認です。</div>
+<div class="note"><strong>計算・データ上の制約</strong>：こちらは整数円で月初と月末の総収入・総支出をそれぞれ計算するCoreです。イベントに5列目の時点を指定すると二相処理に切り替えます。従来Personal Labの月末引出モデルとは一致を保証しません。指数TRは投資可能商品の税引後リターンではありません。月次ローリング窓は重複し、将来の成功確率ではありません。公開・商用配信は未承認です。</div>
 </div></div>
 <footer>LOCAL FIRST · NO EXTERNAL DATA REQUESTS · NO RAW DATA BUNDLED · RESEARCH ONLY</footer>
 </main>
