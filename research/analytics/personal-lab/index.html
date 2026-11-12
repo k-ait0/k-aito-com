@@ -441,6 +441,13 @@ function drawGraph(series){const cnv=$('chart'),wrap=$('plotWrap'),ctx=cnv.getCo
  ctx.beginPath();ctx.lineWidth=2.6;ctx.lineJoin='round';ctx.lineCap='round';ctx.strokeStyle=clr;series.forEach((p,i)=>{const [x,y]=xy(i,p.value);if(i===0)ctx.moveTo(x,y);else ctx.lineTo(x,y)});ctx.stroke();
  const grd=ctx.createLinearGradient(0,T,0,h);grd.addColorStop(0,clr+'24');grd.addColorStop(1,clr+'00');ctx.lineTo(L+X,T+Y);ctx.lineTo(L,T+Y);ctx.closePath();ctx.fillStyle=grd;ctx.fill();state.points={L,X,w,h,series,xy};
 }
+function readLifecycleNumber(id){
+ const raw=$(id).value;
+ if(typeof raw!=='string'||raw.trim()==='')throw Error('生活設計：'+id+' が空欄です');
+ const value=Number(raw);
+ if(!Number.isSafeInteger(value)||value<0)throw Error('生活設計：'+id+' は非負の整数で入力してください');
+ return value;
+}
 function render(){try{clearWarn();showStates();if(!state.data)throw Error('データがありません');const full=state.data.months;const asset=state.tab==='portfolio'?$('portfolioRisk').value:state.asset;const real=state.plotMode==='real';const label=asset==='usd'?'米ドル現金（利息なし）':asset==='jpy'?'円現金（利息なし）':asset==='tr'?'本人入力TR指数（'+(state.data.meta?.tr?.source||'合成・未検証')+'／真正性未検証）':'金公表価格（未検証）';$('legendText').textContent=label;
  const risk=asset==='gold';$('noticeText').textContent=state.kind==='demo'?'合成デモです。現実の市場や将来を表しません。':'Fed H.10とe-Statの指定CSVを利用。Fed 1971年系列は取得経路ADR未承認の研究候補です。'+(risk?' 金は予測・出典区分未検証の公表値で、投資可能なTRではありません。':asset==='tr'?' TR指数の出典・自己利用権限は本人確認であり、アプリ側の真正性保証ではありません。':' 利息・売買費用・税は含みません。');
  let series,exportRows,summary;
@@ -463,11 +470,11 @@ function render(){try{clearWarn();showStates();if(!state.data)throw Error('デ�
      sellOrder:state.mode==='simple'?'CASH_FIRST':$('sellOrder').value,
      rebalance:state.mode==='simple'?'NONE':$('rebalance').value,
      lifecycle:state.mode==='detail'?{
-       salary:{monthly:Number($('salaryMonthly').value),start:Number($('salaryStart').value),end:Number($('salaryEnd').value)},
-       pension:{monthly:Number($('pensionMonthly').value),start:Number($('pensionStart').value),end:Number($('pensionEnd').value)},
-       events:Number($('eventAmount').value)>0?[{
+       salary:{monthly:readLifecycleNumber('salaryMonthly'),start:readLifecycleNumber('salaryStart'),end:readLifecycleNumber('salaryEnd')},
+       pension:{monthly:readLifecycleNumber('pensionMonthly'),start:readLifecycleNumber('pensionStart'),end:readLifecycleNumber('pensionEnd')},
+       events:readLifecycleNumber('eventAmount')>0?[{
          id:'personal-event-1',kind:$('eventKind').value,
-         at:Number($('eventOffset').value),amount:Number($('eventAmount').value)
+         at:readLifecycleNumber('eventOffset'),amount:readLifecycleNumber('eventAmount')
        }]:[]
      }:undefined};
    const sim=simulateTwoAsset(full,idx,state.horizon,initial,monthly,asset,inflation,timing,config);
