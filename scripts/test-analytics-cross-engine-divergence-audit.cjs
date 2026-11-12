@@ -9,6 +9,7 @@
 const assert=require('node:assert/strict');
 const vm=require('node:vm'),fs=require('node:fs');
 const {simulatePortfolio}=require('../lib/analytics/portfolio-core.cjs');
+const {simulateMonthlyCashflow}=require('../lib/analytics/cashflow-core.cjs');
 const {cashflowsForPlan,simulatePersonalMultiAsset,rollingPersonalMultiAsset}=require('../lib/analytics/personal-multiasset-bridge.cjs');
 const {buildRelativeMonthlyCashflows}=require('../lib/analytics/rolling-portfolio-lifecycle.cjs');
 const {monthSerial,formatMonth}=require('../lib/analytics/cashflow-core.cjs');
@@ -197,4 +198,51 @@ const level=(assetGrowthByMonth=()=>1,cpiByMonth=()=>100)=>{
  say('SCOPE_GATES',{core_tax_lots:false,core_two_phase_end_of_month:false,
   official_market_source_verified:false});
 }
-console.log('PASS_CROSS_ENGINE_AUDIT: nine synthesized differences independently reproduced; intentionally unmatched contracts remain distinct');
+// #10: Rounding is non-associative: splitting the same asset exposure
+// into multiple sleeves can change the total by one yen on tiny balances.
+{
+ const single=simulatePortfolio({
+  initial_holdings_yen:{A:2},target_weights:{A:1},
+  monthly_returns:[{month:'2000-02',origin:'SYNTHETIC',asset_returns:{A:.4}}],
+  market_mode:'SYNTHETIC_DEMO',rebalance:{mode:'NONE'}});
+ const split=simulatePortfolio({
+  initial_holdings_yen:{A:1,B:1},target_weights:{A:.5,B:.5},
+  monthly_returns:[{month:'2000-02',origin:'SYNTHETIC',asset_returns:{A:.4,B:.4}}],
+  market_mode:'SYNTHETIC_DEMO',rebalance:{mode:'NONE'}});
+ assert.equal(single.ending_assets_yen,3);
+ assert.equal(split.ending_assets_yen,2);
+ say('SLEEVE_ROUNDING_NON_ASSOCIATIVITY',{one_sleeve:3,two_sleeves:2});
+}
+// #11: Events outside the chosen horizon are ignored by old Personal but
+// rejected by the new bridge. It matters when switching 10/20/30 years.
+{
+ const previous=old.simulateTwoAsset(level(()=>1),0,1,500,0,'usd',false,'BEGINNING_OF_MONTH',
+ {cashPercent:100,sellOrder:'CASH_FIRST',rebalance:'NONE',monthlyContribution:0,
+  lifecycle:{events:[{id:'retirementGift',at:180,kind:'INCOME',amount:2000}]}});
+ assert.equal(previous.remaining,500);
+ assert.throws(()=>simulatePersonalMultiAsset({
+  monthly_market_returns:[{month:'2000-02',origin:'SYNTHETIC',asset_returns:{CASH:0}}],
+  portfolio:{initial_holdings_yen:{CASH:500},target_weights:{CASH:1},rebalance:{mode:'NONE'}},
+  plan:{monthly_expense_yen:0,one_time_events:[{id:'retirementGift',offset_months:180,
+   kind:'INCOME',amount_yen:2000}]}}),/outside horizon/);
+ say('EVENT_OUTSIDE_HORIZON',{old_personal:'IGNORES_FUTURE_EVENT',
+   new_bridge:'REJECTS_SCENARIO'});
+}
+// #12: Under exactly matched phase and integer inputs, one-asset finance
+// cores CAN be reconciled; mismatch should never be claimed as universal.
+{
+ const core=simulatePortfolio({
+  initial_holdings_yen:{A:120},target_weights:{A:1},
+  monthly_returns:[{month:'2000-02',origin:'SYNTHETIC',asset_returns:{A:.1}}],
+  monthly_contribution_yen:10,monthly_withdrawal_yen:5,
+  market_mode:'SYNTHETIC_DEMO',rebalance:{mode:'NONE'}});
+ const simple=simulateMonthlyCashflow({
+  initial_assets_yen:120,monthly_contribution_yen:10,monthly_withdrawal_yen:5,
+  monthly_returns:[{month:'2000-02',monthly_return:.1,origin:'SYNTHETIC'}],
+  provenance:'SYNTHETIC'});
+ assert.equal(core.ending_assets_yen,138);
+ assert.equal(simple.ending_assets_yen,138);
+ assert.equal(core.rows[0].investment_gain_yen,simple.rows[0].investment_gain_yen);
+ say('MATCHED_PHASE_PARITY',{canonical_single_asset_core:138,single_cashflow_core:138});
+}
+console.log('PASS_CROSS_ENGINE_AUDIT: twelve synthetic discrepancy/compatibility assertions, no claim of universal engine equality');
