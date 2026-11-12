@@ -17,7 +17,7 @@ function el(id=''){
  return e;
 }
 const document={getElementById(id){if(!nodes.has(id))nodes.set(id,el(id));return nodes.get(id)},createElement(tag){const n=el(tag);let value='';Object.defineProperty(n,'id',{get:()=>value,set(v){value=v;if(v)nodes.set(v,n)}});return n;}};
-const form={dataMode:'demo',assetCount:'3',initial:'10000000',horizon:'120',startOffset:'0',rebalance:'NONE',rebalanceParam:'12',expensePriority:'EVENT_FIRST',withdrawalStrategy:'PRO_RATA',monthlyContributionSource:'EXTERNAL_NEW_MONEY',
+const form={dataMode:'demo',assetCount:'3',initial:'10000000',horizon:'120',startOffset:'0',rebalance:'NONE',rebalanceParam:'12',expensePriority:'EVENT_FIRST',withdrawalStrategy:'PRO_RATA',monthlyContributionSource:'UNSELECTED',
  monthlyContribution:'0',monthlyExpense:'100000',expenseMode:'NOMINAL_FIXED',inflationRate:'2',salaries:'',pensions:'',events:''};
 for(const [k,v] of Object.entries(form))document.getElementById(k).value=v;
 const window={devicePixelRatio:1,addEventListener:noop,setTimeout:noop};
@@ -75,6 +75,7 @@ assert.equal(app.buildMarketFromLevels([parsed],true,app.cpiCsv(cpiValid)).cpi_l
 $('events').value='';app.run();
 assert(app.getState().downloadEnabled,'Valid plan must be recomputed before coverage UI is asserted');
 $('monthlyContribution').value='10000';
+app.run();assert.equal(app.getState().downloadEnabled,false,'Nonzero funding with UNSELECTED source must be blocked');
 $('salaries').value='salary,0,120,100000';
 $('monthlyContributionSource').value='INTERNAL_FROM_SALARY_PENSION';app.run();
 assert(app.getState().downloadEnabled,'salary-funded internal contribution must not double count');
