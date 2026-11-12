@@ -151,7 +151,7 @@ function renderEditor(){
  if(ids.includes('CASH_JPY')&&ids.length>1){
   percentages[0]=20;const other=(80/(ids.length-1));
   for(let i=1;i<percentages.length;i++)percentages[i]=Math.floor(other);
-  percentages.at(-1)+=80-percentages.slice(1).reduce((a,b)=>a+b,0);
+  percentages[percentages.length-1]+=80-percentages.slice(1).reduce((a,b)=>a+b,0);
  }
  ids.forEach((id,i)=>{
   const line=document.createElement('div');line.className='assetrow';
