@@ -502,11 +502,11 @@
     "production_unchanged": true
   },
   "next_priorities": [
-    "Extend the v0.5 per-event phase contract to recurring salary/pension/other expense streams only after defining calendar-age offsets and non-duplicate funding source semantics",
-    "Define explicit tax-lot, account type and cost basis tracking, separate from market gross total return and from an internal salary funding label",
-    "Build asset-level investment vs custody/account transfers with rounded integer JPY and audited fee/tax/NISA scenarios; never claim tax-calculated balance before those gates",
-    "Acquire genuine licensed JPY monthly index total return histories for JPX and NOMURA_BPI privately; no proxy, no monthly interpolation from NYU annual data",
-    "Verify independent file:// launch and iPad Safari CSV save; remain personal-only under existing zero-rights publication lock"
+    "Audit and implement CPI_LINKED DWZ income escalation using strictly provenance-matched historical CPI with phase-specific reference periods before accepting migration",
+    "Design actual cash accounts and immutable transaction/cost-basis lots; current INTERNAL_FROM_SALARY_PENSION is only a budget earmark, never a settled transfer",
+    "Specify annual tax year/NISA lot buckets, brokerage fees and dividend tax before introducing net-asset claims",
+    "Safely obtain genuine licensed monthly JPY Japanese equity and bond total-return indices without market-data redistribution",
+    "Perform real iPad/Safari offline file start and export QA; Chromium set_content passes but direct file:// navigation is blocked in the test environment"
   ],
   "audit_note": "Existing November 10 registry/acquisition snapshots are historical; this is an additional verified November 11 ledger. Do not convert data-acquired into site-approved.",
   "observed_joint_coverage_research_only": {
@@ -1129,5 +1129,54 @@
     "dwz_production_updated": false,
     "ci_run": "https://github.com/k-ait0/k-aito-com/actions/runs/43270951837",
     "documentation": "docs/ANALYTICS_TWO_PHASE_PER_EVENT_CONTRACT_V0_5_20261113.md"
+  },
+  "personal_recurring_income_two_phase_v0_6_20261113": {
+    "scope": "PERSONAL_SINGLE_USER_LOCAL_RESEARCH_ONLY",
+    "status": "CHROMIUM_QA_AND_GITHUB_ACTIONS_PASS",
+    "code_branch": "analytics-historical-v0-1-20261110",
+    "features": [
+      "MONTH_START_OR_MONTH_END_RECURRING_SALARY",
+      "MONTH_START_OR_MONTH_END_RECURRING_PENSION",
+      "DWZ_AGE_MONTHS_HALF_OPEN_INCOME_MIGRATION",
+      "NO_INCOME_MONTH_END_RETROACTIVE_MARKET_GAIN",
+      "GROSS_PHASED_INCOME_LEDGER_WITH_EXISTING_SOURCE_OF_FUNDS_GUARD"
+    ],
+    "backwards_compatible_four_column_income_default_start": true,
+    "numeric_suite": {
+      "new_synthetic_matrix_cases": 180,
+      "legacy_dwz_single_asset_age_income_fixture_matched": true,
+      "salary_100_start_on_100_return_10_pct_closing_yen": 220,
+      "salary_100_end_on_100_return_10_pct_closing_yen": 210,
+      "start_shortfall_with_late_salary_remains_yen": 20
+    },
+    "chromium": {
+      "html_sha256": "2b391d587a69b48ddeeed0971738f0b07b6785896c636bd604e517106af91394",
+      "synthetic_assets": 12,
+      "synthetic_months": 600,
+      "horizon_months": 120,
+      "rolling_windows": 481,
+      "csv_rows": 120,
+      "asset_closing_csv_columns": 12,
+      "initial_month_salary_start_yen": 0,
+      "initial_month_salary_end_yen": 100000,
+      "initial_month_pension_start_yen": 60000,
+      "initial_month_pension_end_yen": 0,
+      "previous_four_field_income_schedule_preserves_single_phase": true,
+      "invalid_income_timing_fails_closed": true,
+      "mobile_width_px": 390,
+      "horizontal_overflow_px": 0,
+      "js_exceptions": 0,
+      "external_http_requests": 0,
+      "direct_file_url_qa_status": "BLOCKED_BY_ADMINISTRATOR_UNVERIFIED"
+    },
+    "rights_approved": false,
+    "new_official_jp_equity_tr_acquired": false,
+    "new_official_jp_bond_tr_acquired": false,
+    "tax_nisa_fee_lots_implemented": false,
+    "dwz_original_edited": false,
+    "main_edited": false,
+    "finowa_edited": false,
+    "documentation": "docs/ANALYTICS_RECURRING_INCOME_PHASE_V0_6_20261113.md",
+    "github_actions": "https://github.com/k-ait0/k-aito-com/actions/runs/43273309315"
   }
 }
