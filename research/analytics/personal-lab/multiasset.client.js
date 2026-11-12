@@ -192,7 +192,9 @@ function bindData(data){
 }
 function getPlan(){
  const mode=$('expenseMode').value;
- return {monthly_contribution_yen:strictNum('monthlyContribution'),monthly_expense_yen:strictNum('monthlyExpense'),
+ return {monthly_contribution_yen:strictNum('monthlyContribution'),
+  monthly_contribution_source:$('monthlyContributionSource').value,
+  monthly_expense_yen:strictNum('monthlyExpense'),
   expense_mode:mode,expense_priority:$('expensePriority').value,
   annual_expense_inflation:mode==='ANNUAL_ASSUMPTION'?decimal('inflationRate',-50,100)/100:0,
   salary_schedules:parseTextSchedule($('salaries').value,'給与'),
@@ -214,8 +216,13 @@ function run(){
   if(!Number.isSafeInteger(start)||start<0||start+horizon>state.data.monthly_market_returns.length)
    throw Error('指定期間を満たす月次データがありません');
   const holdings=corePortfolio.apportion(initial,w.weights,w.ids);
+  const strategy=$('withdrawalStrategy').value;
+  if(strategy!=='PRO_RATA'&&!w.ids.includes('CASH_JPY'))
+   throw Error('現金優先・投資優先の売却には現金0%モデルのCASH_JPYが必要です');
   const p={initial_holdings_yen:Object.fromEntries(w.ids.map((id,i)=>[id,holdings[i]])),
-   target_weights:Object.fromEntries(w.ids.map((id,i)=>[id,w.weights[i]])),rebalance:getRebalance()};
+   target_weights:Object.fromEntries(w.ids.map((id,i)=>[id,w.weights[i]])),
+   rebalance:getRebalance(),withdrawal_strategy:strategy};
+  if(strategy!=='PRO_RATA')p.cash_asset_id='CASH_JPY';
   const plan=getPlan(),market=state.data.monthly_market_returns.slice(start,start+horizon);
   const cpi=state.data.cpi_levels?.slice(start,start+horizon+1);
   const result=coreBridge.simulatePersonalMultiAsset({monthly_market_returns:market,portfolio:p,plan,
@@ -227,7 +234,10 @@ function run(){
   $('balanceFoot').textContent=market[0].month+' ～ '+market.at(-1).month+' ／ '+w.ids.length+
    '資産 ／ 期間外イベント '+result.skipped_events_after_horizon.length+'件';
   $('inflows').textContent=money(result.expected_deposits_yen);
-  $('inflowsFoot').textContent='予定支出 '+money(result.scheduled_expenses_yen)+' ／ 未払 '+money(result.total_unfunded_yen);
+  $('inflowsFoot').textContent='積立（新規外部）'+money(result.external_contribution_yen)+
+    '／（内部振替）'+money(result.internal_from_income_yen)+
+    '／予定支出 '+money(result.scheduled_expenses_yen)+
+    '／未払 '+money(result.total_unfunded_yen);
   const funded=rolling.windows.filter(x=>x.status==='FUNDED').length;
   $('windows').textContent=funded+' / '+rolling.complete_windows;
   $('windowsFoot').textContent='過去の開始月・不足なし／完全窓。暦月基準で除外 '+
@@ -246,7 +256,8 @@ function run(){
   $('ledgerRows').textContent='';
   for(const [i,r] of result.rows.entries())if(i===0||i===result.rows.length-1||i%Math.max(1,Math.ceil(horizon/18))===0){
    const t=document.createElement('tr'),b=r.cashflow_breakdown;
-   [r.month,b.total_income_yen,b.salary_yen,b.pension_yen,b.one_time_income_yen,
+   [r.month,b.total_income_yen,b.external_contribution_yen,b.internal_from_income_yen,
+    b.salary_yen,b.pension_yen,b.one_time_income_yen,
     b.living_expense_yen,b.paid_living_expense_yen,b.unfunded_living_expense_yen,
     b.one_time_expense_yen,b.paid_event_expense_yen,b.unfunded_event_expense_yen,
     r.paid_withdrawal_yen,r.unfunded_yen,
@@ -281,20 +292,23 @@ function download(){
  if(!state.result)return;
  const r=state.result,ids=state.weights.ids;
  const columns=['market_end_month','relative_offset','monthly_income_yen','regular_deposit_yen',
+  'contribution_source','external_contribution_yen','internal_from_income_yen',
   'salary_yen','pension_yen','event_income_yen',
   'living_expense_due_yen','living_expense_paid_yen','living_expense_unfunded_yen',
   'event_expense_due_yen','event_expense_paid_yen','event_expense_unfunded_yen','event_payment_allocations',
-  'expense_priority','outside_horizon_events',
+  'expense_priority','withdrawal_strategy','outside_horizon_events',
   'paid_withdrawal_yen','unfunded_yen','investment_gain_yen','rebalance_turnover_yen',
   'closing_total_yen',...ids.map(id=>'closing_'+id+'_yen'),'market_mode','source_series_ids','source_provider_ids','calculation_contract','not_for_publication'];
  const rows=[columns.join(',')];
  for(const x of r.rows){
   const b=x.cashflow_breakdown;
-  const vals=[x.month,x.relative_offset,b.total_income_yen,b.monthly_contribution_yen,b.salary_yen,b.pension_yen,
+  const vals=[x.month,x.relative_offset,b.total_income_yen,b.monthly_contribution_yen,
+   b.monthly_contribution_source,b.external_contribution_yen,b.internal_from_income_yen,
+   b.salary_yen,b.pension_yen,
    b.one_time_income_yen,b.living_expense_yen,b.paid_living_expense_yen,b.unfunded_living_expense_yen,
    b.one_time_expense_yen,b.paid_event_expense_yen,b.unfunded_event_expense_yen,
    b.event_payment_allocations.map(e=>e.id+':'+e.due_yen+':'+e.paid_yen+':'+e.unfunded_yen).join('|'),
-   r.expense_priority,r.skipped_events_after_horizon.length,
+   r.expense_priority,r.withdrawal_strategy,r.skipped_events_after_horizon.length,
    x.paid_withdrawal_yen,x.unfunded_yen,x.investment_gain_yen,x.rebalance_turnover_yen,x.closing_yen,
    ...ids.map(id=>x.holdings[id].closing_yen),state.data.mode,
    ids.map(id=>state.data.refs[id]?.series||'UNKNOWN').join('|'),
@@ -339,7 +353,7 @@ $('horizon').onchange=()=>{syncStart();invalidate();};
 $('startOffset').onchange=invalidate;
 $('rebalance').onchange=invalidate;
 ['rebalanceParam','initial','monthlyContribution','monthlyExpense','expenseMode','inflationRate',
- 'salaries','pensions','events','expensePriority'].forEach(id=>$(id).addEventListener('change',invalidate));
+ 'salaries','pensions','events','expensePriority','withdrawalStrategy','monthlyContributionSource'].forEach(id=>$(id).addEventListener('change',invalidate));
 window.addEventListener('resize',()=>{if(state.result)draw(state.result.rows.map(r=>r.closing_yen));});
 window.__KAI_MULTI_TEST__={synthetic,indexCsv,cpiCsv,buildMarketFromLevels,
  parseTextSchedule,parseEvents,getState:()=>({
