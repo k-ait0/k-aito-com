@@ -9,10 +9,12 @@ const nodes=new Map(),noop=()=>{};
 const canvas={setTransform:noop,clearRect:noop,beginPath:noop,moveTo:noop,lineTo:noop,stroke:noop,fillText:noop};
 function el(id=''){
  const classes=new Set(),children=[];
- return {id,value:'',disabled:false,checked:false,files:[],textContent:'',style:{},children,
+ const e={id,value:'',disabled:false,checked:false,files:[],style:{},children,
   classList:{add:x=>classes.add(x),remove:x=>classes.delete(x),contains:x=>classes.has(x),toggle:(x,on)=>{if(on)classes.add(x);else classes.delete(x)}},
   append(...x){children.push(...x)},appendChild(x){children.push(x)},addEventListener:noop,
   getContext:()=>canvas,getBoundingClientRect:()=>({width:800,height:300})};
+ let text='';Object.defineProperty(e,'textContent',{get:()=>text,set(v){text=String(v);if(text==='')children.length=0}});
+ return e;
 }
 const document={getElementById(id){if(!nodes.has(id))nodes.set(id,el(id));return nodes.get(id)},createElement(tag){const n=el(tag);let value='';Object.defineProperty(n,'id',{get:()=>value,set(v){value=v;if(v)nodes.set(v,n)}});return n;}};
 const form={dataMode:'demo',assetCount:'3',initial:'10000000',horizon:'120',startOffset:'0',rebalance:'NONE',rebalanceParam:'12',
