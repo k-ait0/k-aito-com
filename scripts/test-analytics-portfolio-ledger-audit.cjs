@@ -29,3 +29,9 @@ test('randomized 200 monthly fixtures conserve exact JPY arithmetic',()=>{let se
  const x=simulatePortfolio({initial_holdings_yen:{STOCK:Math.floor(rand()*100000),BOND:Math.floor(rand()*100000)},target_weights:{STOCK:w,BOND:1-w},monthly_returns:r,monthly_contribution_yen:Math.floor(rand()*10000),monthly_withdrawal_yen:Math.floor(rand()*15000),rebalance:i%3===0?{mode:'PERIODIC',interval_months:2}:i%3===1?{mode:'THRESHOLD',threshold:.08}:{mode:'NONE'}});
  const proof=auditPortfolioLedger(x);assert.equal(proof.checked_months,n);
 }});
+
+test('auditor permits valid lifetime cashflow totals over per-month 1-trillion cap',()=>{
+ const returns=months.slice(0,3).map(x=>({...x,asset_returns:{STOCK:0}}));
+ const s=simulatePortfolio({initial_holdings_yen:{STOCK:0},target_weights:{STOCK:1},monthly_returns:returns,monthly_contribution_yen:1_000_000_000_000,monthly_withdrawal_yen:1_000_000_000_000,rebalance:{mode:'NONE'}});
+ const result=auditPortfolioLedger(s);assert.equal(result.total_contributions_yen,3_000_000_000_000);assert.equal(result.total_paid_withdrawals_yen,3_000_000_000_000);assert.equal(result.ending_assets_yen,0);
+});
