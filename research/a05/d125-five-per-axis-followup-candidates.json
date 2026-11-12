@@ -1,0 +1,1025 @@
+{
+  "schema": "A05-D125-FIVE-PER-AXIS-0.1.0",
+  "date": "2026-11-09",
+  "stage": "QUESTION_INVENTORY_GATE",
+  "status": "DRAFT_CANDIDATES_25_NOT_VALIDATED",
+  "sources": {
+    "base30": "projects/kidp/life-design-lab/a05/questions.mjs",
+    "base30BlobSha": "6ffa1291e36385354b016da1e9e68de0d5b983ea",
+    "filteredD124": "research/a05/d124-filtered-adaptive-followup-pool.json",
+    "filteredD124BlobSha": "72bfa43738d611737e8b01908f864cf2147075d9"
+  },
+  "counts": {
+    "A": 5,
+    "B": 5,
+    "C": 5,
+    "D": 5,
+    "E": 5
+  },
+  "sourceExisting": 6,
+  "newDraft": 19,
+  "policy": {
+    "goal": "At least five eligible (not duplicate, not probe-only) additional-question candidates per axis A-E",
+    "scopeCompletedWhen": "Five sufficiently differentiated drafts per axis are documented, with explicit unverified risks",
+    "base30Unchanged": true,
+    "d121HistoryUnchanged": true,
+    "excludedDirectDuplicatesReinstated": false,
+    "allMustPassEditorialReviewBeforeScoring": true,
+    "YNNoIsNotOpposite": true,
+    "notAValidatedPsychometricInstrument": true,
+    "productionNoGo": true,
+    "newQuestionsNeedHumanContentReview": true,
+    "individualDoesNotAnswerAll25": true,
+    "route45to55PerAxis": true,
+    "alsoInsufficientAnswers": true,
+    "EStillAuxiliary": true,
+    "adaptivityNotYetImplemented": true
+  },
+  "items": [
+    {
+      "id": "A-FU02",
+      "axis": "A",
+      "origin": "D124_CONDITIONAL_PILOT",
+      "format": "YN",
+      "stem": "今の生活環境に大きな不満がなくても、数年ごとに生活の拠点を変える暮らしを選びたいですか？",
+      "options": [
+        {
+          "key": "yes",
+          "text": "はい",
+          "polarity": "positive"
+        },
+        {
+          "key": "no",
+          "text": "いいえ",
+          "polarity": null
+        },
+        {
+          "key": "unsure",
+          "text": "判断できない",
+          "polarity": null
+        },
+        {
+          "key": "not_applicable",
+          "text": "自分には当てはまらない",
+          "polarity": null
+        }
+      ],
+      "base30": [
+        "A01",
+        "A05"
+      ],
+      "conditionAdded": "現状不満を固定し居住基盤の変化志向を分離",
+      "distinctness": "条件付派生（レビュー前）",
+      "risk": "現状不満がない条件を付け、転居希望と不満による移動を分ける可能性。",
+      "pairedWith": [],
+      "status": "CANDIDATE_NEEDS_EDITORIAL_REVIEW"
+    },
+    {
+      "id": "A-FU05",
+      "axis": "A",
+      "origin": "D124_CONDITIONAL_PILOT",
+      "format": "AB",
+      "stem": "新しい環境にも現在の環境にも同じくらい便利な設備がある場合、生活の仕組みとしてより好むのはどちらですか？",
+      "options": [
+        {
+          "key": "A",
+          "text": "慣れた仕組みを使い続け必要なところを直す",
+          "polarity": "negative"
+        },
+        {
+          "key": "B",
+          "text": "数年単位で異なる仕組みへ移行する",
+          "polarity": "positive"
+        },
+        {
+          "key": "unsure",
+          "text": "選べない・判断できない",
+          "polarity": null
+        },
+        {
+          "key": "not_applicable",
+          "text": "自分には当てはまらない",
+          "polarity": null
+        }
+      ],
+      "base30": [
+        "A04",
+        "A06"
+      ],
+      "conditionAdded": "新旧の生活システムの便利さを固定し維持/刷新を比較",
+      "distinctness": "条件付派生（レビュー前）",
+      "risk": "設備の便利さを統一。生活システム継続/刷新はA04より限定された文脈。",
+      "pairedWith": [],
+      "status": "CANDIDATE_NEEDS_EDITORIAL_REVIEW"
+    },
+    {
+      "id": "B-FU01",
+      "axis": "B",
+      "origin": "D124_CONDITIONAL_PILOT",
+      "format": "AB",
+      "stem": "親しい人と共同で決める予定について、話し合っても双方の希望が一致しないとき、重大な不利益がなければ何を優先しますか？",
+      "options": [
+        {
+          "key": "A",
+          "text": "自分が納得できる案を選ぶ",
+          "polarity": "negative"
+        },
+        {
+          "key": "B",
+          "text": "相手の希望との一致を優先する",
+          "polarity": "positive"
+        },
+        {
+          "key": "unsure",
+          "text": "選べない・判断できない",
+          "polarity": null
+        },
+        {
+          "key": "not_applicable",
+          "text": "自分には当てはまらない",
+          "polarity": null
+        }
+      ],
+      "base30": [
+        "B01",
+        "B04"
+      ],
+      "conditionAdded": "相談機会と意見衝突後の最終決定を区別",
+      "distinctness": "条件付派生（レビュー前）",
+      "risk": "同じ自分/他者優先でも、希望衝突と重大不利益なしの条件を導入。",
+      "pairedWith": [
+        "B-FU12"
+      ],
+      "status": "CANDIDATE_NEEDS_EDITORIAL_REVIEW"
+    },
+    {
+      "id": "B-FU04",
+      "axis": "B",
+      "origin": "D124_CONDITIONAL_PILOT",
+      "format": "AB",
+      "stem": "共同活動の進め方で、成果と負担が同程度の案が二つあり意見が割れた場合、どちらを選びますか？",
+      "options": [
+        {
+          "key": "A",
+          "text": "全員が受け入れられる案を優先する",
+          "polarity": "positive"
+        },
+        {
+          "key": "B",
+          "text": "自分の納得できる案を優先する",
+          "polarity": "negative"
+        },
+        {
+          "key": "unsure",
+          "text": "選べない・判断できない",
+          "polarity": null
+        },
+        {
+          "key": "not_applicable",
+          "text": "自分には当てはまらない",
+          "polarity": null
+        }
+      ],
+      "base30": [
+        "B05",
+        "B01"
+      ],
+      "conditionAdded": "単独/協業の好みと共同作業中の対立処理を区別",
+      "distinctness": "条件付派生（レビュー前）",
+      "risk": "協働の成果・負担を同等に固定した紛争場面。B05の単独/協働選好とは異なる。",
+      "pairedWith": [],
+      "status": "CANDIDATE_NEEDS_EDITORIAL_REVIEW"
+    },
+    {
+      "id": "B-FU05",
+      "axis": "B",
+      "origin": "D124_CONDITIONAL_PILOT",
+      "format": "AB",
+      "stem": "身近な人と余暇の過ごし方が食い違い、どちらの案も安全で費用が同じなら、より納得できるのはどちらですか？",
+      "options": [
+        {
+          "key": "A",
+          "text": "自分が望んだ過ごし方にする",
+          "polarity": "negative"
+        },
+        {
+          "key": "B",
+          "text": "相手が望んだ過ごし方にする",
+          "polarity": "positive"
+        },
+        {
+          "key": "unsure",
+          "text": "選べない・判断できない",
+          "polarity": null
+        },
+        {
+          "key": "not_applicable",
+          "text": "自分には当てはまらない",
+          "polarity": null
+        }
+      ],
+      "base30": [
+        "B04",
+        "B02"
+      ],
+      "conditionAdded": "日常の余暇における希望対立と一般的な相談志向を区別",
+      "distinctness": "条件付派生（レビュー前）",
+      "risk": "費用・安全を固定した余暇の希望衝突。B02の一人/集団好みとは区別可能。",
+      "pairedWith": [],
+      "status": "CANDIDATE_NEEDS_EDITORIAL_REVIEW"
+    },
+    {
+      "id": "D-FU07",
+      "axis": "D",
+      "origin": "D124_CONDITIONAL_PILOT",
+      "format": "AB",
+      "stem": "すでに学んでいる内容に未解決の問いが残っており、別の興味深い分野もあるとき、次の時間をどちらに割きますか？",
+      "options": [
+        {
+          "key": "A",
+          "text": "別分野の基本を知る",
+          "polarity": "negative"
+        },
+        {
+          "key": "B",
+          "text": "現在の問いをさらに解く",
+          "polarity": "positive"
+        },
+        {
+          "key": "unsure",
+          "text": "選べない・判断できない",
+          "polarity": null
+        },
+        {
+          "key": "not_applicable",
+          "text": "自分には当てはまらない",
+          "polarity": null
+        }
+      ],
+      "base30": [
+        "D06"
+      ],
+      "conditionAdded": "現在の学習課題が未解決の条件で新規探索か継続深耕か確認",
+      "distinctness": "条件付派生（レビュー前）",
+      "risk": "未解決の問いに戻るか新規学習か。進捗と将来便益の混入を統制できれば派生価値。",
+      "pairedWith": [
+        "D-FU10"
+      ],
+      "status": "CANDIDATE_NEEDS_EDITORIAL_REVIEW"
+    },
+    {
+      "id": "A-FU09",
+      "axis": "A",
+      "origin": "D125_NEW_CONDITIONAL_DESIGN",
+      "format": "AB",
+      "stem": "生活拠点を移さなければならなくなった場合、新しい拠点でどのような暮らし方を選びますか？",
+      "options": [
+        {
+          "key": "A",
+          "text": "以前の暮らし方に近い仕組みを再現する",
+          "polarity": "negative"
+        },
+        {
+          "key": "B",
+          "text": "移転を機に生活の仕組み全体を組み替える",
+          "polarity": "positive"
+        },
+        {
+          "key": "unsure",
+          "text": "選べない・判断できない",
+          "polarity": null
+        },
+        {
+          "key": "not_applicable",
+          "text": "自分には当てはまらない",
+          "polarity": null
+        }
+      ],
+      "base30": [
+        "A01",
+        "A04"
+      ],
+      "conditionAdded": "転居が必須という条件の下で環境の連続性を選ぶか。自発的な転居志向と区別。",
+      "distinctness": "強制移転時の維持/刷新",
+      "risk": "旧生活環境への満足度、移転の機会費用の影響",
+      "pairedWith": [],
+      "status": "CANDIDATE_NEEDS_EDITORIAL_REVIEW",
+      "conditionalOnly": true
+    },
+    {
+      "id": "A-FU10",
+      "axis": "A",
+      "origin": "D125_NEW_CONDITIONAL_DESIGN",
+      "format": "AB",
+      "stem": "費用・移動負担・活動内容が同程度なら、今後数年間の生活拠点の持ち方としてどちらを選びますか？",
+      "options": [
+        {
+          "key": "A",
+          "text": "一つの拠点を中心に生活を組み立てる",
+          "polarity": "negative"
+        },
+        {
+          "key": "B",
+          "text": "複数の拠点を時期に応じて使い分ける",
+          "polarity": "positive"
+        },
+        {
+          "key": "unsure",
+          "text": "選べない・判断できない",
+          "polarity": null
+        },
+        {
+          "key": "not_applicable",
+          "text": "自分には当てはまらない",
+          "polarity": null
+        }
+      ],
+      "base30": [
+        "A01",
+        "A05"
+      ],
+      "conditionAdded": "転居か定住かではなく、同時に複数の拠点を運用するかを比較。",
+      "distinctness": "単一拠点/複数拠点の編成",
+      "risk": "二拠点生活に金銭・家族・社会関係の非現実的条件",
+      "pairedWith": [],
+      "status": "CANDIDATE_NEEDS_EDITORIAL_REVIEW",
+      "conditionalOnly": true
+    },
+    {
+      "id": "A-FU11",
+      "axis": "A",
+      "origin": "D125_NEW_CONDITIONAL_DESIGN",
+      "format": "YN",
+      "stem": "この先の暮らし方がまだ定まらず、数年後に変更できる選択肢が残るなら、当面は生活の仕組みを固定しておきたいですか？",
+      "options": [
+        {
+          "key": "yes",
+          "text": "はい",
+          "polarity": "negative"
+        },
+        {
+          "key": "no",
+          "text": "いいえ",
+          "polarity": null
+        },
+        {
+          "key": "unsure",
+          "text": "判断できない",
+          "polarity": null
+        },
+        {
+          "key": "not_applicable",
+          "text": "自分には当てはまらない",
+          "polarity": null
+        }
+      ],
+      "base30": [
+        "A04",
+        "A05"
+      ],
+      "conditionAdded": "先の予定が不確実でも維持を選ぶか。安定選好と流動性の優先を検討。",
+      "distinctness": "先行き不確実な状況での基盤の固定",
+      "risk": "不確実性への耐性やリスク回避と交絡。Noは変化志向の証拠にならない",
+      "pairedWith": [],
+      "status": "CANDIDATE_NEEDS_EDITORIAL_REVIEW",
+      "conditionalOnly": true
+    },
+    {
+      "id": "B-FU11",
+      "axis": "B",
+      "origin": "D125_NEW_CONDITIONAL_DESIGN",
+      "format": "AB",
+      "stem": "その結果が主に自分だけに影響する活動を選ぶ際、身近な人が別の活動を勧めているとします。どちらも同じくらい魅力的なら、どう決めますか？",
+      "options": [
+        {
+          "key": "A",
+          "text": "自分の選びたい活動を優先する",
+          "polarity": "negative"
+        },
+        {
+          "key": "B",
+          "text": "その人の勧めに合わせる",
+          "polarity": "positive"
+        },
+        {
+          "key": "unsure",
+          "text": "選べない・判断できない",
+          "polarity": null
+        },
+        {
+          "key": "not_applicable",
+          "text": "自分には当てはまらない",
+          "polarity": null
+        }
+      ],
+      "base30": [
+        "B01",
+        "B06"
+      ],
+      "conditionAdded": "相手に重大な直接的不利益がない私的選択についても関係者に合わせるか。",
+      "distinctness": "本人だけに影響する選択の対人参照",
+      "risk": "他者の意見の専門性や圧力、同じくらい魅力的という前提で選択が不明瞭",
+      "pairedWith": [],
+      "status": "CANDIDATE_NEEDS_EDITORIAL_REVIEW",
+      "conditionalOnly": true
+    },
+    {
+      "id": "B-FU12",
+      "axis": "B",
+      "origin": "D125_NEW_CONDITIONAL_DESIGN",
+      "format": "AB",
+      "stem": "二人で一つの予定を決めるとき、あなたは強く希望しており、相手には特に強い希望がないと分かっています。安全性や負担が変わらなければどうしますか？",
+      "options": [
+        {
+          "key": "A",
+          "text": "自分が強く希望する案を選ぶ",
+          "polarity": "negative"
+        },
+        {
+          "key": "B",
+          "text": "希望の強さにかかわらず相手に譲る",
+          "polarity": "positive"
+        },
+        {
+          "key": "unsure",
+          "text": "選べない・判断できない",
+          "polarity": null
+        },
+        {
+          "key": "not_applicable",
+          "text": "自分には当てはまらない",
+          "polarity": null
+        }
+      ],
+      "base30": [
+        "B04",
+        "B06"
+      ],
+      "conditionAdded": "自分の希望の強度と相手の希望の強度に差がある場面での譲歩基準を確認。",
+      "distinctness": "希望強度が非対称な場合の最終判断",
+      "risk": "一方を選ぶのが合理的に見える誘導。B-FU01とのペアで条件差を評価",
+      "pairedWith": [
+        "B-FU01"
+      ],
+      "status": "CANDIDATE_NEEDS_EDITORIAL_REVIEW",
+      "conditionalOnly": true
+    },
+    {
+      "id": "C-FU11",
+      "axis": "C",
+      "origin": "D125_NEW_CONDITIONAL_DESIGN",
+      "format": "AB",
+      "stem": "必要な休息を確保でき、将来の準備による便益が確実に得られるとして、同じ時間を使うならどちらを選びますか？",
+      "options": [
+        {
+          "key": "A",
+          "text": "将来の選択肢を広げる準備をする",
+          "polarity": "negative"
+        },
+        {
+          "key": "B",
+          "text": "現在の体験を楽しむ",
+          "polarity": "positive"
+        },
+        {
+          "key": "unsure",
+          "text": "選べない・判断できない",
+          "polarity": null
+        },
+        {
+          "key": "not_applicable",
+          "text": "自分には当てはまらない",
+          "polarity": null
+        }
+      ],
+      "base30": [
+        "C01",
+        "C04"
+      ],
+      "conditionAdded": "将来成果の不確実性を取り除く点がC04から増える。",
+      "distinctness": "将来便益の確実性を統制した選択",
+      "risk": "『将来の便益が確実』という条件は非現実的な場合がある。便益の規模は統一されず、本人の想像に依存。",
+      "pairedWith": [],
+      "status": "CANDIDATE_NEEDS_EDITORIAL_REVIEW",
+      "conditionalOnly": true
+    },
+    {
+      "id": "C-FU12",
+      "axis": "C",
+      "origin": "D125_NEW_CONDITIONAL_DESIGN",
+      "format": "YN",
+      "stem": "必要な休息を確保できるとき、今週の自由時間を2時間使って、3か月後に役立つ準備をしたいですか？",
+      "options": [
+        {
+          "key": "yes",
+          "text": "はい",
+          "polarity": "negative"
+        },
+        {
+          "key": "no",
+          "text": "いいえ",
+          "polarity": null
+        },
+        {
+          "key": "unsure",
+          "text": "判断できない",
+          "polarity": null
+        },
+        {
+          "key": "not_applicable",
+          "text": "自分には当てはまらない",
+          "polarity": null
+        }
+      ],
+      "base30": [
+        "C02",
+        "C05"
+      ],
+      "conditionAdded": "将来便益が近い3か月後と明示しC-FU13の長期地平との反応差を見る。",
+      "distinctness": "比較的短い時間地平（3か月）",
+      "risk": "C02の直接派生のため単独で出すと重複。C-FU13と対照で使う",
+      "pairedWith": [
+        "C-FU13"
+      ],
+      "status": "CANDIDATE_NEEDS_EDITORIAL_REVIEW",
+      "conditionalOnly": true
+    },
+    {
+      "id": "C-FU13",
+      "axis": "C",
+      "origin": "D125_NEW_CONDITIONAL_DESIGN",
+      "format": "YN",
+      "stem": "必要な休息を確保できるとき、今週の自由時間を2時間使って、3年後に役立つ準備をしたいですか？",
+      "options": [
+        {
+          "key": "yes",
+          "text": "はい",
+          "polarity": "negative"
+        },
+        {
+          "key": "no",
+          "text": "いいえ",
+          "polarity": null
+        },
+        {
+          "key": "unsure",
+          "text": "判断できない",
+          "polarity": null
+        },
+        {
+          "key": "not_applicable",
+          "text": "自分には当てはまらない",
+          "polarity": null
+        }
+      ],
+      "base30": [
+        "C02",
+        "C05"
+      ],
+      "conditionAdded": "C-FU12と同じ構造で時間地平だけを3か月から3年へ変更。セットで反応の変化を確認。",
+      "distinctness": "比較的長い時間地平（3年）",
+      "risk": "単独ではC02の言い換え。利益量・確実性を揃えられていない",
+      "pairedWith": [
+        "C-FU12"
+      ],
+      "status": "CANDIDATE_NEEDS_EDITORIAL_REVIEW",
+      "conditionalOnly": true
+    },
+    {
+      "id": "C-FU14",
+      "axis": "C",
+      "origin": "D125_NEW_CONDITIONAL_DESIGN",
+      "format": "AB",
+      "stem": "将来に役立つ準備も、現在を楽しむ体験も、どちらも今週しか選べない機会だとします。同じ時間ならどちらを選びますか？",
+      "options": [
+        {
+          "key": "A",
+          "text": "今週限りの将来の準備機会を選ぶ",
+          "polarity": "negative"
+        },
+        {
+          "key": "B",
+          "text": "今週限りの現在の体験を選ぶ",
+          "polarity": "positive"
+        },
+        {
+          "key": "unsure",
+          "text": "選べない・判断できない",
+          "polarity": null
+        },
+        {
+          "key": "not_applicable",
+          "text": "自分には当てはまらない",
+          "polarity": null
+        }
+      ],
+      "base30": [
+        "C01",
+        "C04"
+      ],
+      "conditionAdded": "両側とも機会が今週限りとなる条件を揃え、C-FU15と比較する。",
+      "distinctness": "両方の機会が一度きりの場合の選択",
+      "risk": "どちらも一度きりでも将来便益と現在便益の大小は本人に依存。C-FU15と対で確認する必要がある。",
+      "pairedWith": [
+        "C-FU15"
+      ],
+      "status": "CANDIDATE_NEEDS_EDITORIAL_REVIEW",
+      "conditionalOnly": true
+    },
+    {
+      "id": "C-FU15",
+      "axis": "C",
+      "origin": "D125_NEW_CONDITIONAL_DESIGN",
+      "format": "AB",
+      "stem": "将来の準備も、現在を楽しむ体験も、今週選ばなくても来週同じように実行できるとします。同じ時間なら今週はどちらを選びますか？",
+      "options": [
+        {
+          "key": "A",
+          "text": "来週にもできる将来の準備を先にする",
+          "polarity": "negative"
+        },
+        {
+          "key": "B",
+          "text": "来週にもできる現在の体験を先にする",
+          "polarity": "positive"
+        },
+        {
+          "key": "unsure",
+          "text": "選べない・判断できない",
+          "polarity": null
+        },
+        {
+          "key": "not_applicable",
+          "text": "自分には当てはまらない",
+          "polarity": null
+        }
+      ],
+      "base30": [
+        "C01",
+        "C04"
+      ],
+      "conditionAdded": "両側とも後日に同じ条件でできるとしC-FU14の一度きり条件と比較する。",
+      "distinctness": "両方の機会が繰り返し可能な場合の選択",
+      "risk": "来週同じ条件とする仮定は非現実的な場合がある。両項の価値量や確実性は固定されていない。",
+      "pairedWith": [
+        "C-FU14"
+      ],
+      "status": "CANDIDATE_NEEDS_EDITORIAL_REVIEW",
+      "conditionalOnly": true
+    },
+    {
+      "id": "D-FU09",
+      "axis": "D",
+      "origin": "D125_NEW_CONDITIONAL_DESIGN",
+      "format": "AB",
+      "stem": "今学んでいる分野にまだ理解したい課題がある状態で、同じ時間を使う場合、次のどちらを選びますか？",
+      "options": [
+        {
+          "key": "A",
+          "text": "今の分野の未解決課題をもう少し深掘りする",
+          "polarity": "positive"
+        },
+        {
+          "key": "B",
+          "text": "新しい分野を短期間だけ試し、戻るか決める",
+          "polarity": "negative"
+        },
+        {
+          "key": "unsure",
+          "text": "選べない・判断できない",
+          "polarity": null
+        },
+        {
+          "key": "not_applicable",
+          "text": "自分には当てはまらない",
+          "polarity": null
+        }
+      ],
+      "base30": [
+        "D06"
+      ],
+      "conditionAdded": "完全移行ではなく可逆的な短期探索を認めた時の優先順位。",
+      "distinctness": "短期試行できる状態での探索志向",
+      "risk": "D-FU07に近く、戻れるという安心感と探索の混入",
+      "pairedWith": [],
+      "status": "CANDIDATE_NEEDS_EDITORIAL_REVIEW",
+      "conditionalOnly": true
+    },
+    {
+      "id": "D-FU10",
+      "axis": "D",
+      "origin": "D125_NEW_CONDITIONAL_DESIGN",
+      "format": "AB",
+      "stem": "今の学習テーマで当初の目標は達成したとします。同程度の時間があれば、その後はどちらを選びますか？",
+      "options": [
+        {
+          "key": "A",
+          "text": "同じテーマの応用領域を深める",
+          "polarity": "positive"
+        },
+        {
+          "key": "B",
+          "text": "今まで触れなかった別分野を学び始める",
+          "polarity": "negative"
+        },
+        {
+          "key": "unsure",
+          "text": "選べない・判断できない",
+          "polarity": null
+        },
+        {
+          "key": "not_applicable",
+          "text": "自分には当てはまらない",
+          "polarity": null
+        }
+      ],
+      "base30": [
+        "D06",
+        "D02"
+      ],
+      "conditionAdded": "未達成の課題が残るD-FU07と対をなし、達成後の選択を確認。",
+      "distinctness": "目標達成後の探索/深耕",
+      "risk": "達成の満足や疲労感で新分野に魅力が増える",
+      "pairedWith": [
+        "D-FU07"
+      ],
+      "status": "CANDIDATE_NEEDS_EDITORIAL_REVIEW",
+      "conditionalOnly": true
+    },
+    {
+      "id": "D-FU11",
+      "axis": "D",
+      "origin": "D125_NEW_CONDITIONAL_DESIGN",
+      "format": "AB",
+      "stem": "現在の分野を深めるほど新しい発見が少なくなってきたとき、同程度の学習時間をどう使いたいですか？",
+      "options": [
+        {
+          "key": "A",
+          "text": "今の分野に残る難しい課題を探して掘り下げる",
+          "polarity": "positive"
+        },
+        {
+          "key": "B",
+          "text": "別の分野の基本を学んで新しい刺激を得る",
+          "polarity": "negative"
+        },
+        {
+          "key": "unsure",
+          "text": "選べない・判断できない",
+          "polarity": null
+        },
+        {
+          "key": "not_applicable",
+          "text": "自分には当てはまらない",
+          "polarity": null
+        }
+      ],
+      "base30": [
+        "D06"
+      ],
+      "conditionAdded": "限界的な追加学習成果が小さくなった状態を明示し、選好が変わるかを調べる。",
+      "distinctness": "学習の限界成果が減った後の選択",
+      "risk": "成果見込み・困難回避・刺激追求と交絡",
+      "pairedWith": [],
+      "status": "CANDIDATE_NEEDS_EDITORIAL_REVIEW",
+      "conditionalOnly": true
+    },
+    {
+      "id": "D-FU12",
+      "axis": "D",
+      "origin": "D125_NEW_CONDITIONAL_DESIGN",
+      "format": "AB",
+      "stem": "週4時間の自由な学習時間が毎週確保でき、生活環境や仕事を変えなくてよい場合、どちらに配分しますか？",
+      "options": [
+        {
+          "key": "A",
+          "text": "一つの分野を週4時間、集中的に掘り下げる",
+          "polarity": "positive"
+        },
+        {
+          "key": "B",
+          "text": "二つの異なる分野を週2時間ずつ並行して学ぶ",
+          "polarity": "negative"
+        },
+        {
+          "key": "unsure",
+          "text": "選べない・判断できない",
+          "polarity": null
+        },
+        {
+          "key": "not_applicable",
+          "text": "自分には当てはまらない",
+          "polarity": null
+        }
+      ],
+      "base30": [
+        "D02",
+        "D04"
+      ],
+      "conditionAdded": "学習範囲の幅だけでなく一分野に集約するか複数を並行するか、同一総時間で資源配分を固定する。",
+      "distinctness": "同一総時間の並行学習/集中学習ポートフォリオ",
+      "risk": "D02の幅と深さに近いが具体的な時間配分を追加。分野の難度・必要時間・進捗が同じとは限らない。",
+      "pairedWith": [],
+      "status": "CANDIDATE_NEEDS_EDITORIAL_REVIEW",
+      "conditionalOnly": true
+    },
+    {
+      "id": "E-FU05",
+      "axis": "E",
+      "origin": "D125_NEW_CONDITIONAL_DESIGN",
+      "format": "YN",
+      "stem": "今の仕事内容は変わらないとして、毎週2時間ほど自由時間が減る代わりに、毎月の手取り収入が1万円増えるなら選びますか？",
+      "options": [
+        {
+          "key": "yes",
+          "text": "はい",
+          "polarity": "negative"
+        },
+        {
+          "key": "no",
+          "text": "いいえ",
+          "polarity": null
+        },
+        {
+          "key": "unsure",
+          "text": "判断できない",
+          "polarity": null
+        },
+        {
+          "key": "not_applicable",
+          "text": "自分には当てはまらない",
+          "polarity": null
+        }
+      ],
+      "base30": [
+        "E01",
+        "E04"
+      ],
+      "conditionAdded": "労働時間と手取り収入の変更量を両方示す。条件付き追加収入を選ぶ下限を試す。",
+      "distinctness": "労働時間と増収の数量アンカー",
+      "risk": "月1万円と週2時間の交換条件は個人の賃金・家庭状況に依存。Noは時間重視の証明ではない",
+      "pairedWith": [
+        "E-FU08"
+      ],
+      "status": "CANDIDATE_NEEDS_EDITORIAL_REVIEW",
+      "conditionalOnly": true
+    },
+    {
+      "id": "E-FU06",
+      "axis": "E",
+      "origin": "D125_NEW_CONDITIONAL_DESIGN",
+      "format": "AB",
+      "stem": "毎月1万円の出費を増やすと、日常の用事に使う時間が月4時間減らせる場合、どちらを選びますか？",
+      "options": [
+        {
+          "key": "A",
+          "text": "出費を増やさず、月4時間の用事を自分でする",
+          "polarity": "negative"
+        },
+        {
+          "key": "B",
+          "text": "月1万円を使って、自由な4時間を得る",
+          "polarity": "positive"
+        },
+        {
+          "key": "unsure",
+          "text": "選べない・判断できない",
+          "polarity": null
+        },
+        {
+          "key": "not_applicable",
+          "text": "自分には当てはまらない",
+          "polarity": null
+        }
+      ],
+      "base30": [
+        "E03"
+      ],
+      "conditionAdded": "E03の出費対時間節約に具体的な価格と時間の数量を付ける。",
+      "distinctness": "時間を購入するときの価格判断",
+      "risk": "E03に意味が非常に近い。固定レート1万円/4時間への価格感応度の試行以外には使わない",
+      "pairedWith": [],
+      "status": "CANDIDATE_NEEDS_EDITORIAL_REVIEW",
+      "conditionalOnly": true
+    },
+    {
+      "id": "E-FU07",
+      "axis": "E",
+      "origin": "D125_NEW_CONDITIONAL_DESIGN",
+      "format": "AB",
+      "stem": "同じ年度の福利厚生として、次のどちらか一方を受け取れる場合、より魅力的なのはどちらですか？",
+      "options": [
+        {
+          "key": "A",
+          "text": "手取り2万円の一時金",
+          "polarity": "negative"
+        },
+        {
+          "key": "B",
+          "text": "手取りが減らない1日（8時間）の有給休暇",
+          "polarity": "positive"
+        },
+        {
+          "key": "unsure",
+          "text": "選べない・判断できない",
+          "polarity": null
+        },
+        {
+          "key": "not_applicable",
+          "text": "自分には当てはまらない",
+          "polarity": null
+        }
+      ],
+      "base30": [
+        "E01",
+        "E04"
+      ],
+      "conditionAdded": "既存仕事の責任を固定したうえで一時金と休みの数量を提示。",
+      "distinctness": "臨時収入と有給休暇の交換",
+      "risk": "金額と休暇の個人的価値は等しくない。雇用形態・休暇取得の現実性に左右される。金額・時間アンカーが結論を誘導する可能性。",
+      "pairedWith": [],
+      "status": "CANDIDATE_NEEDS_EDITORIAL_REVIEW",
+      "conditionalOnly": true
+    },
+    {
+      "id": "E-FU08",
+      "axis": "E",
+      "origin": "D125_NEW_CONDITIONAL_DESIGN",
+      "format": "YN",
+      "stem": "現在の生活費と休息を十分確保できているとして、毎月の手取りが5千円減っても、毎月4時間の自由時間が増える働き方を選びますか？",
+      "options": [
+        {
+          "key": "yes",
+          "text": "はい",
+          "polarity": "positive"
+        },
+        {
+          "key": "no",
+          "text": "いいえ",
+          "polarity": null
+        },
+        {
+          "key": "unsure",
+          "text": "判断できない",
+          "polarity": null
+        },
+        {
+          "key": "not_applicable",
+          "text": "自分には当てはまらない",
+          "polarity": null
+        }
+      ],
+      "base30": [
+        "E01",
+        "E04"
+      ],
+      "conditionAdded": "基礎生活確保・少額減収と増える自由時間を明示する。",
+      "distinctness": "追加自由時間のための減収受容",
+      "risk": "E-FU05との価格条件が異なる。Yesの強さは所得状況・賃金に左右される",
+      "pairedWith": [
+        "E-FU05"
+      ],
+      "status": "CANDIDATE_NEEDS_EDITORIAL_REVIEW",
+      "conditionalOnly": true
+    },
+    {
+      "id": "E-FU09",
+      "axis": "E",
+      "origin": "D125_NEW_CONDITIONAL_DESIGN",
+      "format": "AB",
+      "stem": "1週間の総労働時間を変えず、次のどちらか一つの勤務条件が選べるとしたら、どちらを選びますか？",
+      "options": [
+        {
+          "key": "A",
+          "text": "毎月の手取りが1万円増える",
+          "polarity": "negative"
+        },
+        {
+          "key": "B",
+          "text": "週に1日、働く時間帯を自分で決められる",
+          "polarity": "positive"
+        },
+        {
+          "key": "unsure",
+          "text": "選べない・判断できない",
+          "polarity": null
+        },
+        {
+          "key": "not_applicable",
+          "text": "自分には当てはまらない",
+          "polarity": null
+        }
+      ],
+      "base30": [
+        "E01",
+        "E06"
+      ],
+      "conditionAdded": "自由時間の長さではなく、時間の裁量（スケジュールを自分で決める権利）を明示。",
+      "distinctness": "時間量ではなく時間裁量とお金の比較",
+      "risk": "時間帯変更を選べる仕事に限定。E軸の『時間的自由』の定義見直しが必要",
+      "pairedWith": [],
+      "status": "CANDIDATE_NEEDS_EDITORIAL_REVIEW",
+      "conditionalOnly": true
+    }
+  ]
+}

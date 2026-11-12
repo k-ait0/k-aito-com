@@ -1,0 +1,741 @@
+{
+  "schema": "A05-D131-FULL-50-CONTENT-SCREEN-0.1",
+  "date": "2026-11-10",
+  "status": "INTERNAL_EDITORIAL_SCREEN_ONLY",
+  "psychometricValidityEstablished": false,
+  "ownerApproved": false,
+  "source": {
+    "file": "research/a05/d130-50item-editorial-candidate-bank.json",
+    "blobSha": "e33ae55f662d55a113e259425b6fd32f0a99e849",
+    "version": "D130-CANDIDATE-POC-0.1"
+  },
+  "scope": "All 50 visible candidates, including 24 legacy A-D, 2 auxiliary E, 16 D125 AB-derived and 8 D130 new drafts",
+  "rules": {
+    "H": "Temporarily exclude from even provisional scored research draws; preserve provenance.",
+    "R": "Require item rewrite/review; for diagnostic PoC, do not label as usable.",
+    "T": "Conditional pilot candidate only, not approved/validated, still needs cognitive interviews and empirical testing."
+  },
+  "items": [
+    {
+      "id": "A01",
+      "axis": "A",
+      "origin": "V2_BASE_30",
+      "negative": "住み慣れた街や住環境を整えて暮らす",
+      "positive": "新しい街や異なる住環境を試して暮らす",
+      "status": "REVISE_BEFORE_PILOT",
+      "rationale": "住み替え可能性・費用・現状満足度が混入",
+      "nearby": [
+        "A-BK15",
+        "A-FU10"
+      ],
+      "approved": false,
+      "observedInRealRespondents": false
+    },
+    {
+      "id": "A02",
+      "axis": "A",
+      "origin": "V2_BASE_30",
+      "negative": "行きつけの場所や馴染みの空間を持つ",
+      "positive": "毎回違う場所や新しい空間に出かける",
+      "status": "HOLD_FOR_CONTENT_RISK",
+      "rationale": "AとDの双方で場所の新規性を問う。安定志向ではなく外出先の嗜好",
+      "nearby": [
+        "D03"
+      ],
+      "approved": false,
+      "observedInRealRespondents": false
+    },
+    {
+      "id": "A03",
+      "axis": "A",
+      "origin": "V2_BASE_30",
+      "negative": "気心の知れたメンバーやコミュニティで活動する",
+      "positive": "新しい顔ぶれや未知のコミュニティに飛び込む",
+      "status": "HOLD_FOR_CONTENT_RISK",
+      "rationale": "新しいコミュニティへの社交性とB軸の関係志向が混入",
+      "nearby": [
+        "B02",
+        "A05"
+      ],
+      "approved": false,
+      "observedInRealRespondents": false
+    },
+    {
+      "id": "A04",
+      "axis": "A",
+      "origin": "V2_BASE_30",
+      "negative": "日々の生活リズムやルーティンを一定に保つ",
+      "positive": "時期や気分によって生活スタイルを大きく変える",
+      "status": "REVISE_BEFORE_PILOT",
+      "rationale": "生活リズムの不規則さと環境基盤の刷新は異なる。就業等の制約あり",
+      "nearby": [
+        "A-BK13"
+      ],
+      "approved": false,
+      "observedInRealRespondents": false
+    },
+    {
+      "id": "A05",
+      "axis": "A",
+      "origin": "V2_BASE_30",
+      "negative": "今の仕事・活動環境を育てる",
+      "positive": "別の仕事・活動環境を経験する",
+      "status": "HOLD_FOR_CONTENT_RISK",
+      "rationale": "仕事内容を変える/活動環境を変えるが曖昧。D04と重複",
+      "nearby": [
+        "D04",
+        "A-FU09"
+      ],
+      "approved": false,
+      "observedInRealRespondents": false
+    },
+    {
+      "id": "A06",
+      "axis": "A",
+      "origin": "V2_BASE_30",
+      "negative": "勝手がわかる環境で確実に力を発揮する",
+      "positive": "アウェーな環境（未知の場）に身を置いて刺激を受ける",
+      "status": "REVISE_BEFORE_PILOT",
+      "rationale": "確実に力を発揮できるか・刺激があるかを左右で同時変更",
+      "nearby": [
+        "A-FU05"
+      ],
+      "approved": false,
+      "observedInRealRespondents": false
+    },
+    {
+      "id": "A-FU05",
+      "axis": "A",
+      "origin": "D125_AB_REFRAMED_ONLY_FOR_SIMULATION",
+      "negative": "慣れた仕組みを使い続け必要なところを直す",
+      "positive": "数年単位で異なる仕組みへ移行する",
+      "status": "CONDITIONAL_PILOT",
+      "rationale": "設備の便利さを揃えた条件で生活システム刷新を問うがA-BK13に類似",
+      "nearby": [
+        "A-BK13",
+        "A04"
+      ],
+      "approved": false,
+      "observedInRealRespondents": false
+    },
+    {
+      "id": "A-FU09",
+      "axis": "A",
+      "origin": "D125_AB_REFRAMED_ONLY_FOR_SIMULATION",
+      "negative": "以前の暮らし方に近い仕組みを再現する",
+      "positive": "移転を機に生活の仕組み全体を組み替える",
+      "status": "CONDITIONAL_PILOT",
+      "rationale": "強制移転時に生活ルールの再現/刷新を問う。意図が自発的変化志向と異なる",
+      "nearby": [
+        "A01",
+        "A04"
+      ],
+      "approved": false,
+      "observedInRealRespondents": false
+    },
+    {
+      "id": "A-FU10",
+      "axis": "A",
+      "origin": "D125_AB_REFRAMED_ONLY_FOR_SIMULATION",
+      "negative": "一つの拠点を中心に生活を組み立てる",
+      "positive": "複数の拠点を時期に応じて使い分ける",
+      "status": "REVISE_BEFORE_PILOT",
+      "rationale": "二拠点生活の費用同等という想定の現実味とA01近接",
+      "nearby": [
+        "A01",
+        "A-BK15"
+      ],
+      "approved": false,
+      "observedInRealRespondents": false
+    },
+    {
+      "id": "A-BK13",
+      "axis": "A",
+      "origin": "D130_NEW_RESEARCH_DRAFT",
+      "negative": "毎年ほぼ同じ生活の仕組みを使い続け、必要な部分を少しずつ整える",
+      "positive": "便利さが同じでも、一定期間ごとに生活の仕組みを大きく組み替える",
+      "status": "REVISE_BEFORE_PILOT",
+      "rationale": "A-FU05と同じ『生活の仕組みを続ける/刷新』という判断",
+      "nearby": [
+        "A-FU05"
+      ],
+      "approved": false,
+      "observedInRealRespondents": false
+    },
+    {
+      "id": "A-BK14",
+      "axis": "A",
+      "origin": "D130_NEW_RESEARCH_DRAFT",
+      "negative": "長く続く運営方針を基盤として、その枠内で活動を積み重ねる",
+      "positive": "数年単位で運営方針や仕組みを刷新する団体の中で活動する",
+      "status": "CONDITIONAL_PILOT",
+      "rationale": "団体運営方針の継続/刷新を問う。Bの関係性や所属の影響あり",
+      "nearby": [
+        "A03",
+        "A05",
+        "D04"
+      ],
+      "approved": false,
+      "observedInRealRespondents": false
+    },
+    {
+      "id": "A-BK15",
+      "axis": "A",
+      "origin": "D130_NEW_RESEARCH_DRAFT",
+      "negative": "同じ住まいを生活の基盤として使い続け、少しずつ整える",
+      "positive": "不満がなくても数年ごとに別の住まいを生活の基盤に選び直す",
+      "status": "HOLD_FOR_CONTENT_RISK",
+      "rationale": "A01の住環境の維持/転居の条件変更にとどまる",
+      "nearby": [
+        "A01",
+        "A-FU10"
+      ],
+      "approved": false,
+      "observedInRealRespondents": false
+    },
+    {
+      "id": "B01",
+      "axis": "B",
+      "origin": "V2_BASE_30",
+      "negative": "自分で判断する余地を重視する",
+      "positive": "周囲と相談する機会を重視する",
+      "status": "REVISE_BEFORE_PILOT",
+      "rationale": "相談の機会と自己決定は両立しうる",
+      "nearby": [
+        "B-FU01"
+      ],
+      "approved": false,
+      "observedInRealRespondents": false
+    },
+    {
+      "id": "B02",
+      "axis": "B",
+      "origin": "V2_BASE_30",
+      "negative": "自由時間は誰にも気を使わず一人で過ごしたい",
+      "positive": "予定を合わせてでも親しい人たちと過ごしたい",
+      "status": "HOLD_FOR_CONTENT_RISK",
+      "rationale": "一人時間/社交性が主で自律的意思決定を測れない",
+      "nearby": [
+        "A03",
+        "B-FU05"
+      ],
+      "approved": false,
+      "observedInRealRespondents": false
+    },
+    {
+      "id": "B03",
+      "axis": "B",
+      "origin": "V2_BASE_30",
+      "negative": "自分自身が納得できる基準で成果を出す",
+      "positive": "周囲と喜びや手応えを共有できる成果を出す",
+      "status": "REVISE_BEFORE_PILOT",
+      "rationale": "成果基準の設定と達成の共有は別の意思決定段階",
+      "nearby": [
+        "B-FU04"
+      ],
+      "approved": false,
+      "observedInRealRespondents": false
+    },
+    {
+      "id": "B04",
+      "axis": "B",
+      "origin": "V2_BASE_30",
+      "negative": "自分のペースで予定を決める",
+      "positive": "周囲と予定を合わせる",
+      "status": "REVISE_BEFORE_PILOT",
+      "rationale": "予定を自分で立てることと他者と調整することは同時に成立",
+      "nearby": [
+        "B-FU01",
+        "B-FU05"
+      ],
+      "approved": false,
+      "observedInRealRespondents": false
+    },
+    {
+      "id": "B05",
+      "axis": "B",
+      "origin": "V2_BASE_30",
+      "negative": "最初から最後まで自分の裁量で完結できる取り組み",
+      "positive": "役割を分担し、チームで助け合いながら進める取り組み",
+      "status": "REVISE_BEFORE_PILOT",
+      "rationale": "単独遂行かチーム作業かの適性/仕事内容が決定基準と混ざる",
+      "nearby": [
+        "B-FU04"
+      ],
+      "approved": false,
+      "observedInRealRespondents": false
+    },
+    {
+      "id": "B06",
+      "axis": "B",
+      "origin": "V2_BASE_30",
+      "negative": "住む場所や働き方は自分の希望条件を最優先する",
+      "positive": "大切な人との物理的な近さや関わりやすさを最優先する",
+      "status": "REVISE_BEFORE_PILOT",
+      "rationale": "住居条件と関係者へのアクセスが不均等。制約や責任を統制すべき",
+      "nearby": [
+        "B-FU01"
+      ],
+      "approved": false,
+      "observedInRealRespondents": false
+    },
+    {
+      "id": "B-FU01",
+      "axis": "B",
+      "origin": "D125_AB_REFRAMED_ONLY_FOR_SIMULATION",
+      "negative": "自分が納得できる案を選ぶ",
+      "positive": "相手の希望との一致を優先する",
+      "status": "CONDITIONAL_PILOT",
+      "rationale": "実際に希望が衝突した場面を設定。関係者の種類と責任の扱いを要検証",
+      "nearby": [
+        "B-FU04",
+        "B-FU05"
+      ],
+      "approved": false,
+      "observedInRealRespondents": false
+    },
+    {
+      "id": "B-FU04",
+      "axis": "B",
+      "origin": "D125_AB_REFRAMED_ONLY_FOR_SIMULATION",
+      "negative": "自分の納得できる案を優先する",
+      "positive": "全員が受け入れられる案を優先する",
+      "status": "CONDITIONAL_PILOT",
+      "rationale": "共同活動で合意/自己判断を比較。ただし全員の受容基準が複数解釈",
+      "nearby": [
+        "B-FU01",
+        "B-BK13"
+      ],
+      "approved": false,
+      "observedInRealRespondents": false
+    },
+    {
+      "id": "B-FU05",
+      "axis": "B",
+      "origin": "D125_AB_REFRAMED_ONLY_FOR_SIMULATION",
+      "negative": "自分が望んだ過ごし方にする",
+      "positive": "相手が望んだ過ごし方にする",
+      "status": "CONDITIONAL_PILOT",
+      "rationale": "余暇の具体的対立。関係性・譲歩規範・希望強度の影響",
+      "nearby": [
+        "B-FU01"
+      ],
+      "approved": false,
+      "observedInRealRespondents": false
+    },
+    {
+      "id": "B-FU11",
+      "axis": "B",
+      "origin": "D125_AB_REFRAMED_ONLY_FOR_SIMULATION",
+      "negative": "自分の選びたい活動を優先する",
+      "positive": "その人の勧めに合わせる",
+      "status": "REVISE_BEFORE_PILOT",
+      "rationale": "自分にだけ影響する選択で他者推奨を優先する理由が曖昧。助言の合理性と混入",
+      "nearby": [
+        "B-FU01"
+      ],
+      "approved": false,
+      "observedInRealRespondents": false
+    },
+    {
+      "id": "B-FU12",
+      "axis": "B",
+      "origin": "D125_AB_REFRAMED_ONLY_FOR_SIMULATION",
+      "negative": "自分が強く希望する案を選ぶ",
+      "positive": "希望の強さにかかわらず相手に譲る",
+      "status": "HOLD_FOR_CONTENT_RISK",
+      "rationale": "本人が強く希望・他者は希望せず、相手に譲る側だけ不合理に見える非対称",
+      "nearby": [
+        "B-FU01"
+      ],
+      "approved": false,
+      "observedInRealRespondents": false
+    },
+    {
+      "id": "B-BK13",
+      "axis": "B",
+      "origin": "D130_NEW_RESEARCH_DRAFT",
+      "negative": "意見を聞いた上で、自分が納得した判断を最終基準にする",
+      "positive": "時間をかけて関係者が受け入れられる判断を最終基準にする",
+      "status": "REVISE_BEFORE_PILOT",
+      "rationale": "B-FU04に近く『時間をかけて』というコスト非対称と最終責任を混入",
+      "nearby": [
+        "B-FU04"
+      ],
+      "approved": false,
+      "observedInRealRespondents": false
+    },
+    {
+      "id": "C01",
+      "axis": "C",
+      "origin": "V2_BASE_30",
+      "negative": "将来の選択肢を増やす活動",
+      "positive": "今日の充実を高める活動",
+      "status": "REVISE_BEFORE_PILOT",
+      "rationale": "将来選択肢と今日の充実の利益量・選べる機会が未指定",
+      "nearby": [
+        "C-FU11"
+      ],
+      "approved": false,
+      "observedInRealRespondents": false
+    },
+    {
+      "id": "C02",
+      "axis": "C",
+      "origin": "V2_BASE_30",
+      "negative": "今は少し我慢してでも数年後の大きな安心を作る",
+      "positive": "先のことは気にしすぎず今日一日の心地よさを優先する",
+      "status": "HOLD_FOR_CONTENT_RISK",
+      "rationale": "将来の安心と現在の心地よさを比較し、不安/リスク・我慢を混同",
+      "nearby": [
+        "C-FU11"
+      ],
+      "approved": false,
+      "observedInRealRespondents": false
+    },
+    {
+      "id": "C03",
+      "axis": "C",
+      "origin": "V2_BASE_30",
+      "negative": "後で役立つ知識を学ぶ",
+      "positive": "今の関心を満たす知識を学ぶ",
+      "status": "REVISE_BEFORE_PILOT",
+      "rationale": "将来役立つ知識と現在関心がある知識は共存。D軸の学習選好混入",
+      "nearby": [
+        "C01",
+        "D02"
+      ],
+      "approved": false,
+      "observedInRealRespondents": false
+    },
+    {
+      "id": "C04",
+      "axis": "C",
+      "origin": "V2_BASE_30",
+      "negative": "過程が地道でも将来大きな成果につながる挑戦",
+      "positive": "将来の役立ち度は未知数でも今この瞬間が夢中になれる挑戦",
+      "status": "HOLD_FOR_CONTENT_RISK",
+      "rationale": "将来成果の確実性と現在の没入感を同時に変更。旧BLOCK継続",
+      "nearby": [
+        "C-BK14"
+      ],
+      "approved": false,
+      "observedInRealRespondents": false
+    },
+    {
+      "id": "C05",
+      "axis": "C",
+      "origin": "V2_BASE_30",
+      "negative": "長期の目標に向けた小さな前進",
+      "positive": "日々の満足を増やす小さな工夫",
+      "status": "REVISE_BEFORE_PILOT",
+      "rationale": "長期目標に向けた小さな前進と日々満足の工夫は両立",
+      "nearby": [
+        "C-BK15"
+      ],
+      "approved": false,
+      "observedInRealRespondents": false
+    },
+    {
+      "id": "C06",
+      "axis": "C",
+      "origin": "V2_BASE_30",
+      "negative": "数年後の理想から逆算して今の計画を立てる",
+      "positive": "その時々の直感や目の前の状況に応じて柔軟に動く",
+      "status": "HOLD_FOR_CONTENT_RISK",
+      "rationale": "計画志向と状況への柔軟性であって、時点間選好とは別",
+      "nearby": [
+        "A04"
+      ],
+      "approved": false,
+      "observedInRealRespondents": false
+    },
+    {
+      "id": "C-FU11",
+      "axis": "C",
+      "origin": "D125_AB_REFRAMED_ONLY_FOR_SIMULATION",
+      "negative": "将来の選択肢を広げる準備をする",
+      "positive": "現在の体験を楽しむ",
+      "status": "CONDITIONAL_PILOT",
+      "rationale": "休息・確実性を固定。便益の規模/価値等価性はまだ不明",
+      "nearby": [
+        "C01",
+        "C-BK14"
+      ],
+      "approved": false,
+      "observedInRealRespondents": false
+    },
+    {
+      "id": "C-FU14",
+      "axis": "C",
+      "origin": "D125_AB_REFRAMED_ONLY_FOR_SIMULATION",
+      "negative": "今週限りの将来の準備機会を選ぶ",
+      "positive": "今週限りの現在の体験を選ぶ",
+      "status": "CONDITIONAL_PILOT",
+      "rationale": "将来準備/現在体験とも今週限りという希少性を揃えるが同等便益は未検証",
+      "nearby": [
+        "C-BK13"
+      ],
+      "approved": false,
+      "observedInRealRespondents": false
+    },
+    {
+      "id": "C-FU15",
+      "axis": "C",
+      "origin": "D125_AB_REFRAMED_ONLY_FOR_SIMULATION",
+      "negative": "来週にもできる将来の準備を先にする",
+      "positive": "来週にもできる現在の体験を先にする",
+      "status": "CONDITIONAL_PILOT",
+      "rationale": "両者再実行可を仮定。C-FU14との対照が前提",
+      "nearby": [
+        "C-FU14"
+      ],
+      "approved": false,
+      "observedInRealRespondents": false
+    },
+    {
+      "id": "C-BK13",
+      "axis": "C",
+      "origin": "D130_NEW_RESEARCH_DRAFT",
+      "negative": "半年後に選べる活動を増やすための準備に使う",
+      "positive": "今週しかできない体験を味わうために使う",
+      "status": "REVISE_BEFORE_PILOT",
+      "rationale": "今しかできない体験と半年後の準備で機会希少性が不均等",
+      "nearby": [
+        "C-FU14"
+      ],
+      "approved": false,
+      "observedInRealRespondents": false
+    },
+    {
+      "id": "C-BK14",
+      "axis": "C",
+      "origin": "D130_NEW_RESEARCH_DRAFT",
+      "negative": "今は手応えが小さくても、数年後に実感できる成果のために取り組む",
+      "positive": "数年後の成果は小さくても、取り組む今の充実を感じられる活動をする",
+      "status": "HOLD_FOR_CONTENT_RISK",
+      "rationale": "現在/将来の時間差に成果の大きさの差を加えてしまう",
+      "nearby": [
+        "C04",
+        "C-FU11"
+      ],
+      "approved": false,
+      "observedInRealRespondents": false
+    },
+    {
+      "id": "C-BK15",
+      "axis": "C",
+      "origin": "D130_NEW_RESEARCH_DRAFT",
+      "negative": "数か月後に役立つ準備を毎週少しずつ進める",
+      "positive": "毎週その時間にしかできない経験を積み重ねる",
+      "status": "CONDITIONAL_PILOT",
+      "rationale": "週2時間の繰返し配分を提示。ただし片側のみ『その時間しかできない』",
+      "nearby": [
+        "C05",
+        "C-FU15"
+      ],
+      "approved": false,
+      "observedInRealRespondents": false
+    },
+    {
+      "id": "D01",
+      "axis": "D",
+      "origin": "V2_BASE_30",
+      "negative": "未経験の趣味を試す",
+      "positive": "好きな趣味を深める",
+      "status": "CONDITIONAL_PILOT",
+      "rationale": "趣味の探索/深耕の例として理解容易だが接触機会・既存技能に依存",
+      "nearby": [
+        "D02",
+        "D06"
+      ],
+      "approved": false,
+      "observedInRealRespondents": false
+    },
+    {
+      "id": "D02",
+      "axis": "D",
+      "origin": "V2_BASE_30",
+      "negative": "幅広い分野を学ぶ",
+      "positive": "一つの分野を掘り下げる",
+      "status": "CONDITIONAL_PILOT",
+      "rationale": "分野の幅と深さに直接対応。両立するため優先配分の教示が必要",
+      "nearby": [
+        "D-FU12"
+      ],
+      "approved": false,
+      "observedInRealRespondents": false
+    },
+    {
+      "id": "D03",
+      "axis": "D",
+      "origin": "V2_BASE_30",
+      "negative": "食事や外出では、まだ行ったことのない店や場所を開拓する",
+      "positive": "気に入った店や場所へ繰り返し通い、味わいを深める",
+      "status": "HOLD_FOR_CONTENT_RISK",
+      "rationale": "A02と店舗・場所の新旧嗜好が重複。学びの深耕を測れない",
+      "nearby": [
+        "A02"
+      ],
+      "approved": false,
+      "observedInRealRespondents": false
+    },
+    {
+      "id": "D04",
+      "axis": "D",
+      "origin": "V2_BASE_30",
+      "negative": "新しい仕事の進め方を試す",
+      "positive": "得意な進め方を磨く",
+      "status": "HOLD_FOR_CONTENT_RISK",
+      "rationale": "新しい方法と得意手法は環境・能力差の混入が大きい",
+      "nearby": [
+        "A05"
+      ],
+      "approved": false,
+      "observedInRealRespondents": false
+    },
+    {
+      "id": "D05",
+      "axis": "D",
+      "origin": "V2_BASE_30",
+      "negative": "いろいろな役割やスキルを掛け合わせる（多能工）",
+      "positive": "一つの専門領域やスキルを極める（専門職）",
+      "status": "REVISE_BEFORE_PILOT",
+      "rationale": "多能工と専門職の雇用条件・報酬・能力・職業経験が混入",
+      "nearby": [
+        "D02",
+        "D-FU12"
+      ],
+      "approved": false,
+      "observedInRealRespondents": false
+    },
+    {
+      "id": "D06",
+      "axis": "D",
+      "origin": "V2_BASE_30",
+      "negative": "ある程度わかったら次の新しいテーマへ移る",
+      "positive": "一度始めたテーマを納得いくまで長く続ける",
+      "status": "REVISE_BEFORE_PILOT",
+      "rationale": "次へ移る理由に飽き・進捗・成果達成が混入",
+      "nearby": [
+        "D-FU10"
+      ],
+      "approved": false,
+      "observedInRealRespondents": false
+    },
+    {
+      "id": "D-FU07",
+      "axis": "D",
+      "origin": "D125_AB_REFRAMED_ONLY_FOR_SIMULATION",
+      "negative": "別分野の基本を知る",
+      "positive": "現在の問いをさらに解く",
+      "status": "CONDITIONAL_PILOT",
+      "rationale": "未解決の問いvs別分野は探索/深耕に沿うが前提負担・価値量の均衡未検証",
+      "nearby": [
+        "D-FU09",
+        "D-BK13"
+      ],
+      "approved": false,
+      "observedInRealRespondents": false
+    },
+    {
+      "id": "D-FU09",
+      "axis": "D",
+      "origin": "D125_AB_REFRAMED_ONLY_FOR_SIMULATION",
+      "negative": "新しい分野を短期間だけ試し、戻るか決める",
+      "positive": "今の分野の未解決課題をもう少し深掘りする",
+      "status": "REVISE_BEFORE_PILOT",
+      "rationale": "D-FU07に同じ未解決課題の条件で接近。短期で戻れる可逆性の増分はある",
+      "nearby": [
+        "D-FU07"
+      ],
+      "approved": false,
+      "observedInRealRespondents": false
+    },
+    {
+      "id": "D-FU10",
+      "axis": "D",
+      "origin": "D125_AB_REFRAMED_ONLY_FOR_SIMULATION",
+      "negative": "今まで触れなかった別分野を学び始める",
+      "positive": "同じテーマの応用領域を深める",
+      "status": "CONDITIONAL_PILOT",
+      "rationale": "課題達成後の幅/深さでD-FU07との対照あり。達成感の交絡に注意",
+      "nearby": [
+        "D06"
+      ],
+      "approved": false,
+      "observedInRealRespondents": false
+    },
+    {
+      "id": "D-FU11",
+      "axis": "D",
+      "origin": "D125_AB_REFRAMED_ONLY_FOR_SIMULATION",
+      "negative": "別の分野の基本を学んで新しい刺激を得る",
+      "positive": "今の分野に残る難しい課題を探して掘り下げる",
+      "status": "REVISE_BEFORE_PILOT",
+      "rationale": "現分野の新発見が少ない設定で能力・難度・刺激を混合",
+      "nearby": [
+        "D-FU07"
+      ],
+      "approved": false,
+      "observedInRealRespondents": false
+    },
+    {
+      "id": "D-FU12",
+      "axis": "D",
+      "origin": "D125_AB_REFRAMED_ONLY_FOR_SIMULATION",
+      "negative": "二つの異なる分野を週2時間ずつ並行して学ぶ",
+      "positive": "一つの分野を週4時間、集中的に掘り下げる",
+      "status": "CONDITIONAL_PILOT",
+      "rationale": "同じ週4時間で1分野か2分野かの配分比較。学習効率の影響",
+      "nearby": [
+        "D02"
+      ],
+      "approved": false,
+      "observedInRealRespondents": false
+    },
+    {
+      "id": "D-BK13",
+      "axis": "D",
+      "origin": "D130_NEW_RESEARCH_DRAFT",
+      "negative": "別分野の基礎を学び、課題を異なる専門領域から捉えてみる",
+      "positive": "今の専門領域をさらに掘り下げ、その知識で課題を理解する",
+      "status": "REVISE_BEFORE_PILOT",
+      "rationale": "D-FU07と未解決課題・別分野学習が近く追加情報が小さい",
+      "nearby": [
+        "D-FU07",
+        "D-FU09"
+      ],
+      "approved": false,
+      "observedInRealRespondents": false
+    },
+    {
+      "id": "E01",
+      "axis": "E",
+      "origin": "V2_BASE_30_E_DEMO_ONLY",
+      "negative": "収入を増やせる働き方",
+      "positive": "自由な時間を確保できる働き方",
+      "status": "HOLD_FOR_CONTENT_RISK",
+      "rationale": "収入増加と時間増加の量・生活条件が不明。E2のみの構成に不適合",
+      "nearby": [
+        "E02"
+      ],
+      "approved": false,
+      "observedInRealRespondents": false
+    },
+    {
+      "id": "E02",
+      "axis": "E",
+      "origin": "V2_BASE_30_E_DEMO_ONLY",
+      "negative": "臨時で空いた時間があれば、追加収入になる活動を入れる",
+      "positive": "収入は増えなくても、休養や自分のための時間に充てる",
+      "status": "HOLD_FOR_CONTENT_RISK",
+      "rationale": "休息が必要な人と余暇を買いたい人を同一視。収入/余暇の対価不等",
+      "nearby": [
+        "E01"
+      ],
+      "approved": false,
+      "observedInRealRespondents": false
+    }
+  ]
+}

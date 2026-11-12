@@ -1,0 +1,219 @@
+{
+  "schema": "A05-D152-AT-RISK-THREE-FAMILY-REWRITE-0.1",
+  "date": "2026-11-10",
+  "status": "RESEARCH_CONTENT_DRAFT_ONLY",
+  "from": {
+    "D149_blob": "c5724d7c60e89be490131cbe375c66f244a42cbf",
+    "D149_path": "research/a05/d149-four-contexts-per-axis-alternative.json"
+  },
+  "locked_architecture": {
+    "bank": 50,
+    "draw": 30,
+    "source_axis_bank": {
+      "A": 12,
+      "B": 12,
+      "C": 12,
+      "D": 12,
+      "E": 2
+    },
+    "source_axis_draw": {
+      "A": 7,
+      "B": 7,
+      "C": 7,
+      "D": 7,
+      "E": 2
+    }
+  },
+  "scope": "A-P3, A-P4, B-P3. Each gets a primary controlled wording and one contrasted wording. None of 6 are added scored questions or validated independent items.",
+  "decisions": [
+    {
+      "family": "A-P3",
+      "primary_candidate": "A-P3-R1",
+      "comparison_candidate": "A-P3-R2",
+      "if_same_concept": "Do not score both; use one best wording if field-test passes. Consider collapse into A-P1 if only moving-place preferences appear.",
+      "if_context_interpretable": "Keep activity base as a coverage context only, not a separately validated factor.",
+      "promotion": "BLOCKED_PENDING_HUMAN_INTERPRETATION"
+    },
+    {
+      "family": "A-P4",
+      "primary_candidate": "A-P4-R1",
+      "comparison_candidate": "A-P4-R2",
+      "if_same_concept": "Merge into A-P2 and free this editorial context for a genuinely distinct scenario; do not count two synonyms.",
+      "if_context_interpretable": "Retain separate context only if respondents distinguish service infrastructure from daily method without shopping/tech experience.",
+      "promotion": "BLOCKED_PENDING_HUMAN_INTERPRETATION"
+    },
+    {
+      "family": "B-P3",
+      "primary_candidate": "B-P3-R1",
+      "comparison_candidate": "B-P3-R2",
+      "if_same_concept": "Merge with B-P2 instead of filling 3 B slots with nearly identical shared-decision scenarios.",
+      "if_context_interpretable": "Treat ownership/decision-rights as a moderator, not autonomous/connected latent trait until tested.",
+      "promotion": "BLOCKED_PENDING_HUMAN_INTERPRETATION"
+    }
+  ],
+  "candidates": [
+    {
+      "candidate_id": "A-P3-R1",
+      "axis": "A",
+      "source_family": "A-P3",
+      "source_question_ids": [
+        "A02",
+        "A05",
+        "A-FU10"
+      ],
+      "source_question_snapshot": {
+        "question": "同じ活動を同程度の負担で続けられるなら、その活動の拠点はどちらを好みますか？",
+        "left": "慣れた活動場所を引き続き拠点にして整える",
+        "right": "別の活動場所へ拠点を移して環境を作り直す"
+      },
+      "study_condition": "CONTROLLED_LOCATION",
+      "question": "同じ活動を続ける拠点を選ぶ場面です。場所を変えても、移動時間・費用・設備・一緒に活動する人・活動成果・変更の手間は同じだとします。どちらを好みますか？",
+      "left": "今の活動拠点を維持し、使い方を必要に応じて整える",
+      "right": "活動の区切りで別の拠点に替え、利用環境を組み直す",
+      "remaining_confounds": "場所の新規性や馴染み。活動場所の変更と生活基盤の変更が異なる可能性",
+      "compare_with": "A-P1",
+      "next_gate": "REWRITE_FOR_COGNITIVE_INTERVIEW",
+      "editorial_change": "両極の活動内容・人的関係・金銭・移動の負担を揃える。拠点選択そのものの好みを残す",
+      "status": "UNAPPROVED_RESEARCH_DRAFT",
+      "independent_scored_item": false,
+      "approved": false
+    },
+    {
+      "candidate_id": "A-P3-R2",
+      "axis": "A",
+      "source_family": "A-P3",
+      "source_question_ids": [
+        "A02",
+        "A05",
+        "A-FU10"
+      ],
+      "source_question_snapshot": {
+        "question": "同じ活動を同程度の負担で続けられるなら、その活動の拠点はどちらを好みますか？",
+        "left": "慣れた活動場所を引き続き拠点にして整える",
+        "right": "別の活動場所へ拠点を移して環境を作り直す"
+      },
+      "study_condition": "STAGE_SENSITIVITY",
+      "question": "長く続けた活動が一区切りした後、同じ活動を次の期間も続けます。拠点の設備・仲間・費用・移動時間が同じならどちらを選びますか？",
+      "left": "これまでの活動拠点を継続して使う",
+      "right": "次の期間から別の活動拠点を基盤にする",
+      "remaining_confounds": "区切りによる変更の正当化。場所への愛着と単なる刺激欲求",
+      "compare_with": "A-P3-R1",
+      "next_gate": "RESEARCH_CONTRAST_ONLY",
+      "editorial_change": "一区切り条件が回答に及ぼす効果を比較する。別の得点設問として独立登録しない",
+      "status": "UNAPPROVED_RESEARCH_DRAFT",
+      "independent_scored_item": false,
+      "approved": false
+    },
+    {
+      "candidate_id": "A-P4-R1",
+      "axis": "A",
+      "source_family": "A-P4",
+      "source_question_ids": [
+        "A03",
+        "A06"
+      ],
+      "source_question_snapshot": {
+        "question": "費用・安全性・使い勝手が同じで、追加購入も必要ない場合、生活の仕組みをどうしたいですか？",
+        "left": "今使っているサービスや道具の組み合わせを調整して使う",
+        "right": "同等のサービスや道具の組み合わせを別方式に組み直す"
+      },
+      "study_condition": "NO_PURCHASE_OPERATION",
+      "question": "日常的に利用する生活サービスの組合せを、追加費用・手間・安全性・機能・手続負担が同じ条件で選び直せるとします。どちらを選びたいですか？",
+      "left": "現在のサービスの組合せを土台に使い続ける",
+      "right": "同等の別の組合せへ一度切り替えて使う",
+      "remaining_confounds": "既存サービスへの信頼感、A-P2の日常運用手順との同義性",
+      "compare_with": "A-P2",
+      "next_gate": "REWRITE_FOR_COGNITIVE_INTERVIEW",
+      "editorial_change": "商品購入・廃棄・新製品への好奇心を外した条件統制の比較",
+      "status": "UNAPPROVED_RESEARCH_DRAFT",
+      "independent_scored_item": false,
+      "approved": false
+    },
+    {
+      "candidate_id": "A-P4-R2",
+      "axis": "A",
+      "source_family": "A-P4",
+      "source_question_ids": [
+        "A03",
+        "A06"
+      ],
+      "source_question_snapshot": {
+        "question": "費用・安全性・使い勝手が同じで、追加購入も必要ない場合、生活の仕組みをどうしたいですか？",
+        "left": "今使っているサービスや道具の組み合わせを調整して使う",
+        "right": "同等のサービスや道具の組み合わせを別方式に組み直す"
+      },
+      "study_condition": "SEMANTIC_CONTROL",
+      "question": "必要な機能が変わらない生活管理の仕組みを更新するなら、どちらを好みますか？",
+      "left": "現在の管理手順を保ち、必要な部分だけ調整する",
+      "right": "管理手順の全体構成を入れ替える",
+      "remaining_confounds": "A-P2と実質同義。対照で区別できなければ統合すべき",
+      "compare_with": "A-P2",
+      "next_gate": "MERGE_CONTROL_ONLY",
+      "editorial_change": "あえてA-P2に近い統制用文面。新しい採点候補としては数えない",
+      "status": "UNAPPROVED_RESEARCH_DRAFT",
+      "independent_scored_item": false,
+      "approved": false
+    },
+    {
+      "candidate_id": "B-P3-R1",
+      "axis": "B",
+      "source_family": "B-P3",
+      "source_question_ids": [
+        "B02",
+        "B05",
+        "B-FU11"
+      ],
+      "source_question_snapshot": {
+        "question": "双方が同じ権利と負担で共同利用する設備の使い方について希望が違うとき、どちらをより重視しますか？",
+        "left": "自分が適切だと考える使い方を優先する",
+        "right": "共同利用者との合意を優先する"
+      },
+      "study_condition": "EQUAL_STAKE_RESOURCE",
+      "question": "同じ負担と利用権を持つ二人が、共通の設備の使い方について同じ程度に合理的な二案で意見が分かれました。話し合いの後、どちらを判断基準としてより重視しますか？",
+      "left": "自分が納得できる設備の使い方を優先する",
+      "right": "二人が受け入れられる設備の使い方を優先する",
+      "remaining_confounds": "共同利用権が対等でも、一方的な決定は倫理・責任の問題。B-P2との差分が小さい",
+      "compare_with": "B-P2",
+      "next_gate": "REWRITE_FOR_COGNITIVE_INTERVIEW",
+      "editorial_change": "所有権・負担割合・合理性を両側で揃えるが関係規範は残る",
+      "status": "UNAPPROVED_RESEARCH_DRAFT",
+      "independent_scored_item": false,
+      "approved": false
+    },
+    {
+      "candidate_id": "B-P3-R2",
+      "axis": "B",
+      "source_family": "B-P3",
+      "source_question_ids": [
+        "B02",
+        "B05",
+        "B-FU11"
+      ],
+      "source_question_snapshot": {
+        "question": "双方が同じ権利と負担で共同利用する設備の使い方について希望が違うとき、どちらをより重視しますか？",
+        "left": "自分が適切だと考える使い方を優先する",
+        "right": "共同利用者との合意を優先する"
+      },
+      "study_condition": "PRIVATE_STAKE_CONTROL",
+      "question": "自分だけが管理責任を持つ設備を、他の人も一緒に利用しています。利用への影響は小さく、どちらも公平な二案で希望が異なるとき、どちらを優先しますか？",
+      "left": "管理する立場として自分が納得した使い方",
+      "right": "利用する人と合意できる使い方",
+      "remaining_confounds": "管理責任が自分だけにあるのでB-P3-R1と権限が異なる。B-P1の人生選択とも重なる",
+      "compare_with": "B-P3-R1",
+      "next_gate": "RESEARCH_CONTRAST_ONLY",
+      "editorial_change": "共同権利と単独管理責任の違いが回答理由を変えるか試す。既存B-P2との差が証明されなければ統合",
+      "status": "UNAPPROVED_RESEARCH_DRAFT",
+      "independent_scored_item": false,
+      "approved": false
+    }
+  ],
+  "identity_guards": [
+    "Candidate IDs are new, never modify the meaning of original D130 IDs.",
+    "Two variants of the same context never count as two independent scored questions.",
+    "A-P4-R2 is a deliberately similar A-P2 control, not a new distinct facet.",
+    "B-P3-R1/R2 vary decision rights; their answers cannot be interpreted as pure autonomous-vs-connected without rights moderator.",
+    "No automatic promotion to D130 question bank or D151 scoring. No real participant test performed."
+  ],
+  "approved": false,
+  "respondents_observed": 0
+}

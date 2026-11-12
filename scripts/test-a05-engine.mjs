@@ -51,6 +51,9 @@ test("30 questions; six per axis; unique IDs; SHA-256 real hash", () => {
   }
   assert.match(hash, /^[a-f0-9]{64}$/);
   assert.ok(canonicalQuestionManifest().includes("A01"));
+  assert.equal(QUESTION_SET_VERSION, "A05-Q-2.0.0-draft");
+  assert.equal(SCORING_VERSION, "A05-S-2.0.0-draft");
+  assert.ok(QUESTIONS.every(q => q.direction === 1), "v2 visual polarity stays fixed");
   assert.equal(typeof QUESTION_SET_VERSION, "string");
   assert.equal(typeof SCORING_VERSION, "string");
 });
@@ -104,12 +107,17 @@ test("three valid A answers withhold; four valid A answers provisionally classif
   assert.equal(scoreAssessment(answers).classification, "provisional");
 });
 
-test("exact plus and minus 20 are provisional, not classified", () => {
+test("v2 +/-33.3 percent boundary: threshold stays provisional", () => {
   assert.equal(resolveAxis(5, 3).value, 20);
   assert.equal(resolveAxis(5, 3).status, "provisional");
   assert.equal(resolveAxis(5, -3).value, -20);
   assert.equal(resolveAxis(5, -3).status, "provisional");
-  assert.equal(resolveAxis(6, 4).status, "classified");
+  assert.equal(resolveAxis(6, 4).status, "provisional");
+  assert.equal(resolveAxis(6, 6).status, "provisional");
+  assert.equal(resolveAxis(6, -6).status, "provisional");
+  assert.equal(resolveAxis(6, 7).status, "classified");
+  assert.equal(resolveAxis(6, -7).status, "classified");
+  assert.equal(resolveAxis(6, 0).status, "withheld");
 });
 
 test("E exact +/-20 is neutral and does not alter T11", () => {
@@ -170,7 +178,8 @@ test("current snapshots verify and retain raw only by explicit choice", () => {
 
 test("old scoring version is preserved as legacy, never recalculated", () => {
   const prior = snapshotOf(11);
-  prior.versions.scoring = "S-OLD";
+  prior.versions.scoring = "A05-S-1.0.0-draft";
+  prior.versions.question = "A05-Q-1.0.0-draft";
   assert.equal(classifySnapshot(prior, hash), "legacy");
 });
 

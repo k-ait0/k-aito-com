@@ -1,0 +1,160 @@
+{
+  "id": "A05-D135-DS-IND-COMPARISON",
+  "version": "0.1.0-research",
+  "created_on": "2026-11-10",
+  "source": "User-provided DS external AI proposal; editorial rewrite in A05 D-135",
+  "status": "UNAPPROVED_RESEARCH_ONLY",
+  "is_active_question_set": false,
+  "is_scored": false,
+  "type_assignment_allowed": false,
+  "replaces_existing_questions": false,
+  "scale": [
+    {
+      "value": 1,
+      "label": "まったく重視しない"
+    },
+    {
+      "value": 2,
+      "label": "あまり重視しない"
+    },
+    {
+      "value": 3,
+      "label": "どちらともいえない"
+    },
+    {
+      "value": 4,
+      "label": "やや重視する"
+    },
+    {
+      "value": 5,
+      "label": "非常に重視する"
+    },
+    {
+      "value": null,
+      "code": "unsure",
+      "label": "判断できない"
+    },
+    {
+      "value": null,
+      "code": "not_applicable",
+      "label": "該当する場面がない"
+    }
+  ],
+  "items": [
+    {
+      "id": "B-IND-R1",
+      "axis": "B",
+      "ds_source_id": "B-Ind-1",
+      "text": "自分とほかの人の双方に影響する重要な選択では、自分の意向が最終的な選択に反映されることをどの程度重視しますか。",
+      "format": "FIVE_POINT_IMPORTANCE_WITH_UNSURE_AND_NA",
+      "nearest_existing_ids": [
+        "B01",
+        "B-BK13"
+      ],
+      "goal": "自己決定・意向反映の独立重視度",
+      "risks": [
+        "責任や実際の決定権の有無",
+        "社会的望ましさ・同意傾向"
+      ],
+      "status": "STRUCTURE_RESEARCH_REWRITE",
+      "scored": false,
+      "accepted": false
+    },
+    {
+      "id": "B-IND-R2",
+      "axis": "B",
+      "ds_source_id": "B-Ind-2",
+      "text": "自分とほかの人の双方に影響する重要な選択では、関係者が納得できるよう合意を作ることをどの程度重視しますか。",
+      "format": "FIVE_POINT_IMPORTANCE_WITH_UNSURE_AND_NA",
+      "nearest_existing_ids": [
+        "B01",
+        "B-FU04",
+        "B-BK13"
+      ],
+      "goal": "合意形成の独立重視度",
+      "risks": [
+        "関係者の範囲、合意可能性、社会的望ましさ",
+        "社会的望ましさ・同意傾向"
+      ],
+      "status": "STRUCTURE_RESEARCH_REWRITE",
+      "scored": false,
+      "accepted": false
+    },
+    {
+      "id": "C-IND-R1",
+      "axis": "C",
+      "ds_source_id": "C-Ind-1",
+      "text": "自分で使い道を決められる余力があるとき、将来の目標や選択肢のために準備することをどの程度重視しますか。",
+      "format": "FIVE_POINT_IMPORTANCE_WITH_UNSURE_AND_NA",
+      "nearest_existing_ids": [
+        "C-BK15",
+        "C-FU11"
+      ],
+      "goal": "将来準備の独立重視度",
+      "risks": [
+        "目標の有無と将来利益の確実性",
+        "社会的望ましさ・同意傾向"
+      ],
+      "status": "STRUCTURE_RESEARCH_REWRITE",
+      "scored": false,
+      "accepted": false
+    },
+    {
+      "id": "C-IND-R2",
+      "axis": "C",
+      "ds_source_id": "C-Ind-2",
+      "text": "自分で使い道を決められる余力があるとき、今行う活動それ自体の充実感をどの程度重視しますか。",
+      "format": "FIVE_POINT_IMPORTANCE_WITH_UNSURE_AND_NA",
+      "nearest_existing_ids": [
+        "C-BK15",
+        "C01"
+      ],
+      "goal": "現在充実の独立重視度",
+      "risks": [
+        "現在の幸福度や活動内容との混同",
+        "社会的望ましさ・同意傾向"
+      ],
+      "status": "STRUCTURE_RESEARCH_REWRITE",
+      "scored": false,
+      "accepted": false
+    },
+    {
+      "id": "E-IND-R1",
+      "axis": "E",
+      "ds_source_id": "E-Ind-1",
+      "text": "日々の生活で、必要な支出を賄ったうえで自分の判断で使えるお金の余裕を持つことをどの程度重視しますか。",
+      "format": "FIVE_POINT_IMPORTANCE_WITH_UNSURE_AND_NA",
+      "nearest_existing_ids": [
+        "E01",
+        "E02"
+      ],
+      "goal": "金銭的裁量の独立重視度",
+      "risks": [
+        "現在所得・資産や不安との交絡",
+        "社会的望ましさ・同意傾向"
+      ],
+      "status": "STRUCTURE_RESEARCH_REWRITE",
+      "scored": false,
+      "accepted": false
+    },
+    {
+      "id": "E-IND-R2",
+      "axis": "E",
+      "ds_source_id": "E-Ind-2",
+      "text": "日々の生活で、必要な用事や休息を満たしたうえで自分の判断で使える時間の余裕を持つことをどの程度重視しますか。",
+      "format": "FIVE_POINT_IMPORTANCE_WITH_UNSURE_AND_NA",
+      "nearest_existing_ids": [
+        "E01",
+        "E02"
+      ],
+      "goal": "時間的裁量の独立重視度",
+      "risks": [
+        "既存の自由時間や義務量との交絡",
+        "社会的望ましさ・同意傾向"
+      ],
+      "status": "STRUCTURE_RESEARCH_REWRITE",
+      "scored": false,
+      "accepted": false
+    }
+  ]
+}

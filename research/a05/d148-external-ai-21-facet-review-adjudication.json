@@ -1,0 +1,363 @@
+{
+  "schema": "A05-D148-EXTERNAL-REVIEW-ADJUDICATION-0.1",
+  "date": "2026-11-10",
+  "origin": "User-pasted external AI review; reviewer could not access D142/D146/D147 sources",
+  "status": "RESEARCH_CRITIQUE_NOT_OWNER_APPROVED",
+  "source_blobs": {
+    "research/a05/d142-full-50-item-content-disposition.json": "85286173eeb6350d7a1d5b17a617702afd9675ff",
+    "research/a05/d146-50slot-before-after-quality-proposals.json": "53b3e137ff3597bdf7072c880c622baf8fee6814",
+    "research/a05/d147-main4-situation-facet-taxonomy.json": "f9fedddceb947b3f96a828f34dac90a19cb706ce"
+  },
+  "reviewed": 21,
+  "adjudication": [
+    {
+      "id": "A1",
+      "external_verdict": "維持",
+      "our_verdict": "KEEP_FACET_FOR_RESEARCH",
+      "reason": "居住基盤はAの中心。ただしA01とA-BK15の転居・住居評価の類似は解消していない",
+      "old_name": "居住基盤・住空間",
+      "old_ids": [
+        "A01",
+        "A-BK14"
+      ],
+      "old_risks": "転居可能性・住宅費・住空間の制約"
+    },
+    {
+      "id": "A2",
+      "external_verdict": "維持",
+      "our_verdict": "KEEP_MERGE_A5",
+      "reason": "日常生活の運用は主軸に合う。A5と同じ維持/刷新判断なので統合して情報・予定管理を文脈の一例にする",
+      "old_name": "日常生活の運用手順",
+      "old_ids": [
+        "A04",
+        "A-FU05",
+        "A-FU09"
+      ],
+      "old_risks": "生活能力・気分による生活リズムの違い・季節変化"
+    },
+    {
+      "id": "A3",
+      "external_verdict": "修正",
+      "our_verdict": "REVISE_DROP_MULTI_BASE",
+      "reason": "一拠点か複数拠点かは居住地数と移動可否を測る。安定vs変化と等置しない。A-FU10はD142で重複統合扱い",
+      "old_name": "活動拠点・日常移動の環境",
+      "old_ids": [
+        "A02",
+        "A05",
+        "A-FU10"
+      ],
+      "old_risks": "単なる場所好き・移動の好奇心・活動の種類"
+    },
+    {
+      "id": "A4",
+      "external_verdict": "修正または差替",
+      "our_verdict": "REVISE_AVOID_PURCHASE",
+      "reason": "同価格/同機能でも新製品への買替は廃棄・環境配慮・保有意識を測る。購入なしの運用環境の再構成を優先",
+      "old_name": "生活サービス・道具の基盤",
+      "old_ids": [
+        "A03",
+        "A06"
+      ],
+      "old_risks": "機器への親しみ・デジタル技能・購買の好み"
+    },
+    {
+      "id": "A5",
+      "external_verdict": "統合",
+      "our_verdict": "MERGE_A2",
+      "reason": "A-BK13/A-BK15の予定管理と日常運用はA2の場面差に留まりやすく独立系統とする根拠は弱い",
+      "old_name": "生活情報・予定管理の環境",
+      "old_ids": [
+        "A-BK13",
+        "A-BK15"
+      ],
+      "old_risks": "計画性・几帳面さとC軸への交絡。A2/A4との重複を優先審査"
+    },
+    {
+      "id": "B1",
+      "external_verdict": "維持",
+      "our_verdict": "KEEP_AS_CONTEXT",
+      "reason": "共同の最終決定基準は中核。B-FU04/B-BK13は合意の望ましさと決定権が混入し重複",
+      "old_name": "重要な共同意思決定の最終基準",
+      "old_ids": [
+        "B01",
+        "B06",
+        "B-FU01"
+      ],
+      "old_risks": "最終責任と権利の所在・道徳的望ましさ"
+    },
+    {
+      "id": "B2",
+      "external_verdict": "修正",
+      "our_verdict": "KEEP_AS_CONTEXT",
+      "reason": "共有資源の使用場面を揃えた比較は可能。ただし所有権と負担割合の統制が不可欠",
+      "old_name": "共有する資源の使い方",
+      "old_ids": [
+        "B02",
+        "B-FU11"
+      ],
+      "old_risks": "所有権・負担割合・利用者の権利"
+    },
+    {
+      "id": "B3",
+      "external_verdict": "統合",
+      "our_verdict": "MERGE_B1",
+      "reason": "目標・方法に対象を変えただけで共同決定基準はB1と同一。別下位尺度としては扱わない",
+      "old_name": "協働活動の方針決定",
+      "old_ids": [
+        "B03",
+        "B05",
+        "B-FU04"
+      ],
+      "old_risks": "技能差・責任分担・B1と問いの核が重複"
+    },
+    {
+      "id": "B4",
+      "external_verdict": "修正",
+      "our_verdict": "KEEP_AS_CONTEXT",
+      "reason": "共同予定は社交性ではなく希望不一致での判断基準として条件統制。譲歩規範に注意",
+      "old_name": "共同予定・余暇の調整",
+      "old_ids": [
+        "B04",
+        "B-FU05"
+      ],
+      "old_risks": "相手との距離・協調規範・実行可能な時間"
+    },
+    {
+      "id": "B5",
+      "external_verdict": "修正",
+      "our_verdict": "MERGE_B1_PROBE_GOVERNANCE",
+      "reason": "外部提案の多数決vs全員一致は自己判断vs関係合意を測らず合意手続を測る。共同ルールはB1へ、手続は非採点プローブ",
+      "old_name": "共通ルールと対等な企画",
+      "old_ids": [
+        "B-FU12",
+        "B-BK13"
+      ],
+      "old_risks": "決定権・合意手続・多数決への受容と混同"
+    },
+    {
+      "id": "C1",
+      "external_verdict": "統合",
+      "our_verdict": "KEEP_ONE_OFF_DIFFERENT_FROM_SCARCITY",
+      "reason": "一度だけ使える自由時間の配分と、機会が繰返せるかというC5の希少性は論理的に異なる。統合は不適切",
+      "old_name": "一度だけ使える自由時間",
+      "old_ids": [
+        "C01",
+        "C02",
+        "C-FU11"
+      ],
+      "old_risks": "現在の余暇の不足・将来目標の有無"
+    },
+    {
+      "id": "C2",
+      "external_verdict": "維持",
+      "our_verdict": "KEEP_AS_CONTEXT",
+      "reason": "反復的な時間配分は重要。ただし毎週の活動が今も将来も意味を持ち得る",
+      "old_name": "繰り返し使える時間の配分",
+      "old_ids": [
+        "C05",
+        "C-BK15"
+      ],
+      "old_risks": "一度の回答で長期継続を想像する難しさ・C1と重複"
+    },
+    {
+      "id": "C3",
+      "external_verdict": "修正",
+      "our_verdict": "KEEP_AS_CONTEXT",
+      "reason": "活動を選ぶ場面として維持。利益の確実性と関心の強さを左右で変えない",
+      "old_name": "活動を選ぶときの価値基準",
+      "old_ids": [
+        "C03",
+        "C04",
+        "C-BK14"
+      ],
+      "old_risks": "成果の確実性・興味・学習志向（D軸）"
+    },
+    {
+      "id": "C4",
+      "external_verdict": "修正",
+      "our_verdict": "DEFER_MONEY_AS_PROBE",
+      "reason": "金銭という資源の利用先を将来/今に分けること自体はEの金銭vs時間と別だが所得差が大きいため補助プローブのみ",
+      "old_name": "金銭・休暇など資源の種類",
+      "old_ids": [
+        "C06",
+        "C-BK13"
+      ],
+      "old_risks": "金銭の余裕（E軸）・休息の必要性・不等価な将来便益"
+    },
+    {
+      "id": "C5",
+      "external_verdict": "維持（修正）",
+      "our_verdict": "KEEP_CONTEXT_PAIR_ONLY",
+      "reason": "C-FU14とC-FU15は両選択肢の希少性を揃えた対照ペア。外部の片側だけ今週限定な例は旧C-BK13の問題を再導入",
+      "old_name": "機会の希少性・先送り可能性",
+      "old_ids": [
+        "C-FU14",
+        "C-FU15"
+      ],
+      "old_risks": "同一人へのペア対照用。単独の等価な無作為抽出問ではない"
+    },
+    {
+      "id": "D1",
+      "external_verdict": "維持",
+      "our_verdict": "KEEP_AS_CONTEXT",
+      "reason": "分野の幅/深さが主構成概念に直結。D02/D-FU12は近似するため別々に自動加点しない",
+      "old_name": "学習分野の幅と深さ",
+      "old_ids": [
+        "D02",
+        "D-FU12"
+      ],
+      "old_risks": "学習効率・D2との意味近接"
+    },
+    {
+      "id": "D2",
+      "external_verdict": "統合または維持",
+      "our_verdict": "MERGE_D1_AS_CONTEXT",
+      "reason": "趣味と学習は領域違いだが同じ幅/深さ。分野をまたぐ生活場面の代表性の観点で残し単独下位尺度にしない",
+      "old_name": "趣味・体験する活動の幅と深さ",
+      "old_ids": [
+        "D01",
+        "D-FU11"
+      ],
+      "old_risks": "活動経験の有無・新しいことの始めやすさ"
+    },
+    {
+      "id": "D3",
+      "external_verdict": "差替",
+      "our_verdict": "REJECT_METHOD_REPLACEMENT",
+      "reason": "創作経験への依存は正当な指摘。ただし新しい方法vs磨くは旧D04で軸外除外。代替案も再び方法志向へ逸脱する",
+      "old_name": "創作・制作の領域",
+      "old_ids": [
+        "D04",
+        "D-BK13"
+      ],
+      "old_risks": "創作経験の有無・技法の新旧と別分野の違い"
+    },
+    {
+      "id": "D4",
+      "external_verdict": "保留または修正",
+      "our_verdict": "PROBE_CROSS_FIELD",
+      "reason": "問題を理解するため他分野を参照するかは課題解決法/知識量に依存。学習分野の幅と深さと区別して採点する根拠なし",
+      "old_name": "問いを理解する専門領域の使い方",
+      "old_ids": [
+        "D05",
+        "D-FU09"
+      ],
+      "old_risks": "解決の効率・仕事上の専門性・能力との交絡が大きい"
+    },
+    {
+      "id": "D5",
+      "external_verdict": "維持",
+      "our_verdict": "KEEP_PAIRED_STAGE_PROBE",
+      "reason": "途中で別分野に惹かれる状況は注意散漫・締切で左右される。D6と条件差を見る研究ペアとして価値がある",
+      "old_name": "途中で別分野に関心が生じた場面",
+      "old_ids": [
+        "D03",
+        "D-FU07"
+      ],
+      "old_risks": "注意の散漫さ・未完了の課題の負荷"
+    },
+    {
+      "id": "D6",
+      "external_verdict": "統合",
+      "our_verdict": "RETAIN_STAGE_CONTRAST_UNSCORED",
+      "reason": "目標達成後の変更は未解決課題を抱えたD5と合理的に判断が異なり得る。根拠なしの即時統合は避けて対照比較する",
+      "old_name": "目標達成後の次の進み方",
+      "old_ids": [
+        "D06",
+        "D-FU10"
+      ],
+      "old_risks": "目標達成時の満足・一区切りの程度"
+    }
+  ],
+  "corrections": [
+    {
+      "type": "reference_gap",
+      "detail": "External AI explicitly could not inspect the four GitHub references. This adjudication uses D142, D146 and D147 fetched directly from the connected repository.",
+      "ids": []
+    },
+    {
+      "type": "counts",
+      "detail": "External tally is internally inconsistent: '維持6' enumerates 7 IDs (A1,A2,B1,C2,C5,D1,D5), '修正7' enumerates 8 IDs (A3,A4,B2,B4,B5,C3,C4,D4); mixed verdicts are not mutually exclusive. Do not use category totals.",
+      "ids": [
+        "A1",
+        "A2",
+        "B1",
+        "C2",
+        "C5",
+        "D1",
+        "D5",
+        "A3",
+        "A4",
+        "B2",
+        "B4",
+        "B5",
+        "C3",
+        "C4",
+        "D4"
+      ]
+    },
+    {
+      "type": "old_B06",
+      "detail": "The suggested new B3 'personal life choice' was present as old B06 (residence/work) and as D146 B06 revised to a cohabiting decision. Coverage restoration, not a wholly novel conceptual direction.",
+      "ids": [
+        "B1"
+      ]
+    },
+    {
+      "type": "B5_voting",
+      "detail": "Majority vote vs unanimity is governance mechanism preference and cannot be equated with personal autonomy vs relational consensus.",
+      "ids": [
+        "B5"
+      ]
+    },
+    {
+      "type": "C_goal",
+      "detail": "Presence/specificity of future goals is a background covariate, not a scored C-axis pole and not a separate scored 3-item facet by default.",
+      "ids": [
+        "C2",
+        "C3"
+      ]
+    },
+    {
+      "type": "C_rarity",
+      "detail": "External C-3 wording 'event this week only vs future preparation' gives only present pole time scarcity and replicates D142 C-BK13 defect, unlike paired C-FU14/C-FU15.",
+      "ids": [
+        "C5"
+      ]
+    },
+    {
+      "type": "D_method",
+      "detail": "New method vs polishing old method restates D04, which D142 excluded as OUT_OF_CONSTRUCT; also reversal of left/right orientation from original D exploration left / depth right.",
+      "ids": [
+        "D3"
+      ]
+    },
+    {
+      "type": "D_stage",
+      "detail": "Middle-of-task and after-milestone choices need not be identical; retain as a contrast for a cognitive trial, not two validated independent scored factors.",
+      "ids": [
+        "D5",
+        "D6"
+      ]
+    },
+    {
+      "type": "A_tools",
+      "detail": "Same functionality and price for tool replacement do not eliminate sunk cost, disposal, environmental concerns, familiarity, or experience confounds.",
+      "ids": [
+        "A4"
+      ]
+    },
+    {
+      "type": "facets_not_factors",
+      "detail": "D147 explicitly defined observation contexts, not independent psychometric factors, so redundancy claims should address content coverage and item dependence rather than impose facet independence.",
+      "ids": [
+        "A1",
+        "B1",
+        "C1",
+        "D1"
+      ]
+    }
+  ],
+  "overall": "Pursue a 4-context-per-axis comparison blueprint, NOT automatic adoption of external 4-facet solution. Retain original D147 and 50/30 fixed policy. Preserve B/C/E independent ratings as separate research; do not map them into type scoring.",
+  "approved": false
+}

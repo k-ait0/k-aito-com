@@ -29,13 +29,13 @@ test('withheld result never asserts a type and keeps individual axis withholding
  const h=renderReport(snapshot(0,{withheld:true}));
  assert.equal(x.type,null);
  assert.match(h,/基本タイプの判定保留/);
- assert.match(h,/回答不足または方向の拮抗/);
+ assert.match(h,/回答不足または左右の回答が相殺/);
  assert.doesNotMatch(h,/着実な開拓者/);
 });
 test('borderline/provisional score is explicitly qualified, never a probability',()=>{
  const h=renderReport(snapshot(10,{status:'provisional'}));
  assert.match(h,/暫定判定/);
- assert.match(h,/境界付近、または一部未回答/);
+ assert.match(h,/左右の合計差は小さめ/);
  assert.match(h,/確率や百分率ではありません/);
 });
 test('raw answers and identifiers excluded even when source snapshot retains them',()=>{

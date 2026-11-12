@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="ja">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A05 D-170｜11観察仮説・認知面接レビュー（オフライン）</title>
+<style>
+:root{color-scheme:light;--ink:#14263a;--muted:#566779;--line:#d8e0e7;--bg:#f5f7f9;--deep:#0a5273;--paper:#fff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.65 system-ui,-apple-system,"Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif}
+header{background:#fff;border-bottom:1px solid var(--line)}.wrap{max-width:1120px;margin:auto;padding:22px 18px}
+h1{font-size:1.4rem;margin:0 0 8px}h2{font-size:1.05rem}h3{font-size:1.06rem;margin:0}h4{margin:0 0 7px;font-size:.88rem}small,.subtle{color:var(--muted)}
+.intro{color:var(--muted);max-width:900px;margin:5px 0}.policy{margin:12px 0 0;padding-left:18px;color:var(--muted)}
+.toolbar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:18px 0}.toolbar label{display:flex;align-items:center;gap:6px}
+select,textarea,button{font:inherit}select,textarea{background:#fff;color:var(--ink);border:1px solid #bccbd7;border-radius:6px;padding:8px;max-width:100%}
+button{border-radius:8px;padding:9px 14px;border:1px solid #9cb5c5;background:white;cursor:pointer;color:var(--ink)}
+button.primary{background:var(--deep);border-color:var(--deep);color:white}button:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #86bed7;outline-offset:2px}
+#cases{display:grid;gap:18px}.question-card{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:20px;box-shadow:0 2px 7px #16304d08}
+.question-card[hidden]{display:none!important}.card-head{display:flex;align-items:start;justify-content:space-between;gap:12px}.card-head small{display:block;font-weight:400;font-size:.86rem}.axis{font-weight:700;color:#0b5b7a;white-space:nowrap}
+.two-col{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:14px 0}.question{padding:14px;border:1px solid var(--line);border-radius:9px;min-width:0}.reference{background:#f8fafc}
+.stem{font-weight:600;margin:4px 0 12px}.poles{display:grid;gap:5px;margin:0 0 12px}.poles div{display:flex;gap:10px;align-items:baseline}.poles dt{font-weight:700;min-width:1.5em;color:#335872}.poles dd{margin:0}
+label{display:block;font-size:.89rem;margin:8px 0 0}label select{display:inline-block;margin-left:6px;max-width:90%}.pair{padding:12px 0;border-top:1px dashed var(--line)}.separate{padding:6px 0}
+.instructions{font-size:.9rem;background:#f7f9fb;padding:8px 12px;border-left:3px solid #87adbe}.instructions p{margin:5px 0}
+.entry{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;align-items:start;margin-top:12px}.entry label{margin:0}.entry textarea{width:100%;display:block;margin-top:5px}
+footer{color:var(--muted);font-size:.85rem;padding:15px 0 40px}
+@media(max-width:700px){.two-col,.entry{grid-template-columns:1fr}.question-card{padding:14px}h1{font-size:1.2rem}}
+</style></head>
+<body>
+<header><div class="wrap"><h1>A05｜11観察仮説・認知面接レビュー</h1>
+<p class="intro">D-170・研究者向けオフライン資料。新系統11件はすべて未確定、採点問への採用0件。既存の50問バンクや30問フォームには影響しません。</p>
+<ul class="policy"><li>完全重複は不可。同じ意味系統は実質異なる質問のみ最大2問。</li><li>ここでの回答は16タイプ診断の得点や個人の評価には使用しません。</li><li>「中立」「両方とも当てはまる」「どちらも当てはまらない」は別々に選択してください。旧版の記録は区別できないため、必要に応じて再確認します。</li><li>通信や自動保存は行いません。画面を閉じる前にJSONを保存してください。個人識別情報を記入しないでください。</li></ul>
+</div></header>
+<main class="wrap">
+<div class="toolbar"><label>軸で絞る<select id="axisFilter"><option value="ALL">すべて（11）</option><option value="A">A軸</option><option value="B">B軸</option><option value="C">C軸</option><option value="D">D軸</option></select></label>
+<span id="count" aria-live="polite">11件を表示</span><button id="export" class="primary" type="button">記録をJSON保存</button><button id="import" type="button">保存済みJSONを読み込む</button><input id="importFile" type="file" accept=".json,application/json" hidden><button id="reset" type="button">入力を消去</button><span id="ioStatus" role="status" aria-live="polite"></span></div>
+<div id="cases"><article class="question-card" data-id="A-G1" data-axis="A">
+<div class="card-head"><h3>01 · A-G1 <small>新系統として不採用</small></h3><span class="axis">軸A</span></div>
+<div class="two-col"><div class="question"><h4>試作質問</h4><p class="stem">同じ住まいで生活する条件が変わらない場合、部屋の使い方を次の期間にどうしたいですか？</p><dl class="poles"><div><dt>左</dt><dd>これまでの部屋の役割を基本にして使い続ける</dd></div><div><dt>右</dt><dd>部屋ごとの役割を組み直して使う</dd></div></dl><label>試作側の回答 <select data-field="candidate_choice" aria-label="candidate_choice"><option value="">未記録</option><option value="left">左</option><option value="neutral">どちらでもない・中立</option><option value="both">両方とも当てはまる</option><option value="neither">どちらも当てはまらない</option><option value="middle" disabled>旧記録：中立・両方の区別不可（再確認）</option><option value="right">右</option><option value="unknown">判断不能</option><option value="not_applicable">非該当</option></select></label></div><div class="question reference"><h4>比較する既存案：A01</h4><p class="stem">費用・便利さ・周囲との関係が同じ住まいを選べるとき、今後の生活基盤としてどちらを好みますか？</p><dl class="poles"><div><dt>左</dt><dd>今の住まいを基盤に、必要な部分を整えながら暮らす</dd></div><div><dt>右</dt><dd>別の住まいへ移り、暮らしの基盤を組み直す</dd></div></dl><label>参照側の回答 <select data-field="anchor_choice" aria-label="anchor_choice"><option value="">未記録</option><option value="left">左</option><option value="neutral">どちらでもない・中立</option><option value="both">両方とも当てはまる</option><option value="neither">どちらも当てはまらない</option><option value="middle" disabled>旧記録：中立・両方の区別不可（再確認）</option><option value="right">右</option><option value="unknown">判断不能</option><option value="not_applicable">非該当</option></select></label></div></div>
+<div class="instructions"><p><strong>確認事項：</strong>住居内の役割変更と住居基盤の更新は異なるか。ただし片側は室内整理や同居人数の事情で有利になる</p><p><strong>中止・差替条件：</strong>一緒の居住条件でも整理整頓・利便性の理由だけで選択するならAとして除外</p></div>
+<div class="entry"><label>暫定判定 <select data-field="verdict" aria-label="verdict"><option value="">未判定</option><option value="meaningfully_different">異なる価値判断として検証継続</option><option value="same_meaning_merge">実質同義・統合</option><option value="context_only">条件差・非採点</option><option value="off_axis">軸外・棄却</option><option value="cannot_determine">判断材料不足</option></select></label>
+<label>比較先の解釈（回答者自身の言葉）<textarea data-field="anchor_paraphrase" rows="2" placeholder="比較先の質問は何を比べていると思ったか"></textarea></label>
+<label>試作案の解釈（回答者自身の言葉）<textarea data-field="candidate_paraphrase" rows="2" placeholder="試作案は何を比べていると思ったか"></textarea></label>
+<label>回答を選んだ主な理由<textarea data-field="choice_reason" rows="2" placeholder="複数の理由がある場合は主要なものから記録"></textarea></label>
+<label>主な回答理由のコード
+<select data-field="reason_code" aria-label="主な回答理由のコード"><option value="">未判定</option><option value="value_priority">価値判断の違い</option><option value="same_meaning">実質同じ意味</option><option value="money_time">金銭・時間・機会制約</option><option value="rights_duties">権利・責任・義務</option><option value="ability_skill">知識・経験・技能</option><option value="relationship">相手との関係・距離感</option><option value="fairness_norm">公平性・社会的望ましさ</option><option value="time_discount">遅延割引・受領時期</option><option value="other">その他</option><option value="unclear">判断不能</option></select></label>
+<label>補足メモ（個人を特定する情報は記入しない）<textarea data-field="observation" rows="3" placeholder="左右が両方成立するか、条件を揃えても回答が変わるか、など"></textarea></label>
+</div></article>
+<article class="question-card" data-id="A-G2" data-axis="A">
+<div class="card-head"><h3>02 · A-G2 <small>段階・条件の比較</small></h3><span class="axis">軸A</span></div>
+<div class="two-col"><div class="question"><h4>試作質問</h4><p class="stem">年度の区切りがあり、生活の便利さ・負担・必要な活動は今と同じだとします。次の一年の暮らしの基本をどうしたいですか？</p><dl class="poles"><div><dt>左</dt><dd>現在の暮らしの基本を引き継ぎ、必要な部分を整える</dd></div><div><dt>右</dt><dd>暮らしの基本を別の形に組み立て直す</dd></div></dl><label>試作側の回答 <select data-field="candidate_choice" aria-label="candidate_choice"><option value="">未記録</option><option value="left">左</option><option value="neutral">どちらでもない・中立</option><option value="both">両方とも当てはまる</option><option value="neither">どちらも当てはまらない</option><option value="middle" disabled>旧記録：中立・両方の区別不可（再確認）</option><option value="right">右</option><option value="unknown">判断不能</option><option value="not_applicable">非該当</option></select></label></div><div class="question reference"><h4>比較する既存案：A04</h4><p class="stem">家事や用事を行う時間と負担が同じなら、普段の進め方はどちらを好みますか？</p><dl class="poles"><div><dt>左</dt><dd>慣れた手順を基本として必要なところを整える</dd></div><div><dt>右</dt><dd>手順全体を別の組み立て方に変える</dd></div></dl><label>参照側の回答 <select data-field="anchor_choice" aria-label="anchor_choice"><option value="">未記録</option><option value="left">左</option><option value="neutral">どちらでもない・中立</option><option value="both">両方とも当てはまる</option><option value="neither">どちらも当てはまらない</option><option value="middle" disabled>旧記録：中立・両方の区別不可（再確認）</option><option value="right">右</option><option value="unknown">判断不能</option><option value="not_applicable">非該当</option></select></label></div></div>
+<div class="instructions"><p><strong>確認事項：</strong>節目のある条件と普通の生活手順の選択を比べる。条件効果があるなら新しい系統ではなく変調要因</p><p><strong>中止・差替条件：</strong>回答理由が節目だからというだけなら通常採点に追加しない</p></div>
+<div class="entry"><label>暫定判定 <select data-field="verdict" aria-label="verdict"><option value="">未判定</option><option value="meaningfully_different">異なる価値判断として検証継続</option><option value="same_meaning_merge">実質同義・統合</option><option value="context_only">条件差・非採点</option><option value="off_axis">軸外・棄却</option><option value="cannot_determine">判断材料不足</option></select></label>
+<label>比較先の解釈（回答者自身の言葉）<textarea data-field="anchor_paraphrase" rows="2" placeholder="比較先の質問は何を比べていると思ったか"></textarea></label>
+<label>試作案の解釈（回答者自身の言葉）<textarea data-field="candidate_paraphrase" rows="2" placeholder="試作案は何を比べていると思ったか"></textarea></label>
+<label>回答を選んだ主な理由<textarea data-field="choice_reason" rows="2" placeholder="複数の理由がある場合は主要なものから記録"></textarea></label>
+<label>主な回答理由のコード
+<select data-field="reason_code" aria-label="主な回答理由のコード"><option value="">未判定</option><option value="value_priority">価値判断の違い</option><option value="same_meaning">実質同じ意味</option><option value="money_time">金銭・時間・機会制約</option><option value="rights_duties">権利・責任・義務</option><option value="ability_skill">知識・経験・技能</option><option value="relationship">相手との関係・距離感</option><option value="fairness_norm">公平性・社会的望ましさ</option><option value="time_discount">遅延割引・受領時期</option><option value="other">その他</option><option value="unclear">判断不能</option></select></label>
+<label>補足メモ（個人を特定する情報は記入しない）<textarea data-field="observation" rows="3" placeholder="左右が両方成立するか、条件を揃えても回答が変わるか、など"></textarea></label>
+</div></article>
+<article class="question-card" data-id="B-G1" data-axis="B">
+<div class="card-head"><h3>03 · B-G1 <small>独立評定で研究</small></h3><span class="axis">軸B</span></div>
+<div class="two-col"><div class="question"><h4>試作質問</h4><p class="stem">重要な個人の選択について、次の二つの考えにそれぞれどの程度当てはまるかを独立に答えてください。</p><label class="separate">重要な選択では、他者の意見を聞いた後でも、自分の考えを最終的な判断基準にしたい <select data-field="independent_1" aria-label="independent_1"><option value="">未記録</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option></select></label><label class="separate">重要な選択では、最終的に自分で決める場合も、身近な人と考えを共有してから決めたい <select data-field="independent_2" aria-label="independent_2"><option value="">未記録</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option></select></label></div><div class="question reference"><h4>比較する既存案：B-FU01</h4><p class="stem">大切な人と二つの選択肢の希望が異なり、どちらでも負担が同じなら、何をより重視しますか？</p><dl class="poles"><div><dt>左</dt><dd>話し合いを踏まえて自分が望む方を選ぶこと</dd></div><div><dt>右</dt><dd>話し合って双方が納得できる方を選ぶこと</dd></div></dl><label>参照側の回答 <select data-field="anchor_choice" aria-label="anchor_choice"><option value="">未記録</option><option value="left">左</option><option value="neutral">どちらでもない・中立</option><option value="both">両方とも当てはまる</option><option value="neither">どちらも当てはまらない</option><option value="middle" disabled>旧記録：中立・両方の区別不可（再確認）</option><option value="right">右</option><option value="unknown">判断不能</option><option value="not_applicable">非該当</option></select></label></div></div>
+<div class="instructions"><p><strong>確認事項：</strong>同じ人が自分で最終判断したい一方で、他者と十分に相談もしたいかを見る</p><p><strong>中止・差替条件：</strong>二つを一つの二極尺度に変換しない</p></div>
+<div class="entry"><label>暫定判定 <select data-field="verdict" aria-label="verdict"><option value="">未判定</option><option value="meaningfully_different">異なる価値判断として検証継続</option><option value="same_meaning_merge">実質同義・統合</option><option value="context_only">条件差・非採点</option><option value="off_axis">軸外・棄却</option><option value="cannot_determine">判断材料不足</option></select></label>
+<label>比較先の解釈（回答者自身の言葉）<textarea data-field="anchor_paraphrase" rows="2" placeholder="比較先の質問は何を比べていると思ったか"></textarea></label>
+<label>試作案の解釈（回答者自身の言葉）<textarea data-field="candidate_paraphrase" rows="2" placeholder="試作案は何を比べていると思ったか"></textarea></label>
+<label>回答を選んだ主な理由<textarea data-field="choice_reason" rows="2" placeholder="複数の理由がある場合は主要なものから記録"></textarea></label>
+<label>主な回答理由のコード
+<select data-field="reason_code" aria-label="主な回答理由のコード"><option value="">未判定</option><option value="value_priority">価値判断の違い</option><option value="same_meaning">実質同じ意味</option><option value="money_time">金銭・時間・機会制約</option><option value="rights_duties">権利・責任・義務</option><option value="ability_skill">知識・経験・技能</option><option value="relationship">相手との関係・距離感</option><option value="fairness_norm">公平性・社会的望ましさ</option><option value="time_discount">遅延割引・受領時期</option><option value="other">その他</option><option value="unclear">判断不能</option></select></label>
+<label>補足メモ（個人を特定する情報は記入しない）<textarea data-field="observation" rows="3" placeholder="左右が両方成立するか、条件を揃えても回答が変わるか、など"></textarea></label>
+</div></article>
+<article class="question-card" data-id="B-G2" data-axis="B">
+<div class="card-head"><h3>04 · B-G2 <small>文面の区別を再検討</small></h3><span class="axis">軸B</span></div>
+<div class="two-col"><div class="question"><h4>試作質問</h4><p class="stem">自分に最終決定権があり、身近な人にも影響する生活の選択をします。双方への負担が同じ二案なら、何を最終基準にしたいですか？</p><dl class="poles"><div><dt>左</dt><dd>相手の意見を聞いたうえで自分が納得できる案</dd></div><div><dt>右</dt><dd>自分の意見も伝えたうえで双方が受け入れられる案</dd></div></dl><label>試作側の回答 <select data-field="candidate_choice" aria-label="candidate_choice"><option value="">未記録</option><option value="left">左</option><option value="neutral">どちらでもない・中立</option><option value="both">両方とも当てはまる</option><option value="neither">どちらも当てはまらない</option><option value="middle" disabled>旧記録：中立・両方の区別不可（再確認）</option><option value="right">右</option><option value="unknown">判断不能</option><option value="not_applicable">非該当</option></select></label></div><div class="question reference"><h4>比較する既存案：B06</h4><p class="stem">一緒に暮らす相手と生活の重要な選択で希望が分かれ、双方への影響が同じなら、どちらを重視しますか？</p><dl class="poles"><div><dt>左</dt><dd>自分の希望に合う選択を優先する</dd></div><div><dt>右</dt><dd>双方で合意できる選択を優先する</dd></div></dl><label>参照側の回答 <select data-field="anchor_choice" aria-label="anchor_choice"><option value="">未記録</option><option value="left">左</option><option value="neutral">どちらでもない・中立</option><option value="both">両方とも当てはまる</option><option value="neither">どちらも当てはまらない</option><option value="middle" disabled>旧記録：中立・両方の区別不可（再確認）</option><option value="right">右</option><option value="unknown">判断不能</option><option value="not_applicable">非該当</option></select></label></div></div>
+<div class="instructions"><p><strong>確認事項：</strong>選択権と負担を揃えても同居関係・社会規範が動くか</p><p><strong>中止・差替条件：</strong>B06/B-FU01から違いが説明できなければ既存案の代替のみ</p></div>
+<div class="entry"><label>暫定判定 <select data-field="verdict" aria-label="verdict"><option value="">未判定</option><option value="meaningfully_different">異なる価値判断として検証継続</option><option value="same_meaning_merge">実質同義・統合</option><option value="context_only">条件差・非採点</option><option value="off_axis">軸外・棄却</option><option value="cannot_determine">判断材料不足</option></select></label>
+<label>比較先の解釈（回答者自身の言葉）<textarea data-field="anchor_paraphrase" rows="2" placeholder="比較先の質問は何を比べていると思ったか"></textarea></label>
+<label>試作案の解釈（回答者自身の言葉）<textarea data-field="candidate_paraphrase" rows="2" placeholder="試作案は何を比べていると思ったか"></textarea></label>
+<label>回答を選んだ主な理由<textarea data-field="choice_reason" rows="2" placeholder="複数の理由がある場合は主要なものから記録"></textarea></label>
+<label>主な回答理由のコード
+<select data-field="reason_code" aria-label="主な回答理由のコード"><option value="">未判定</option><option value="value_priority">価値判断の違い</option><option value="same_meaning">実質同じ意味</option><option value="money_time">金銭・時間・機会制約</option><option value="rights_duties">権利・責任・義務</option><option value="ability_skill">知識・経験・技能</option><option value="relationship">相手との関係・距離感</option><option value="fairness_norm">公平性・社会的望ましさ</option><option value="time_discount">遅延割引・受領時期</option><option value="other">その他</option><option value="unclear">判断不能</option></select></label>
+<label>補足メモ（個人を特定する情報は記入しない）<textarea data-field="observation" rows="3" placeholder="左右が両方成立するか、条件を揃えても回答が変わるか、など"></textarea></label>
+</div></article>
+<article class="question-card" data-id="B-G3" data-axis="B">
+<div class="card-head"><h3>05 · B-G3 <small>軸外の負の対照</small></h3><span class="axis">軸B</span></div>
+<div class="two-col"><div class="question"><h4>試作質問</h4><p class="stem">共同で作った成果の分け方について意見が異なるとき、何を重視しますか？</p><dl class="poles"><div><dt>左</dt><dd>自分が妥当だと判断する配分の仕方</dd></div><div><dt>右</dt><dd>参加者が合意できる配分の仕方</dd></div></dl><label>試作側の回答 <select data-field="candidate_choice" aria-label="candidate_choice"><option value="">未記録</option><option value="left">左</option><option value="neutral">どちらでもない・中立</option><option value="both">両方とも当てはまる</option><option value="neither">どちらも当てはまらない</option><option value="middle" disabled>旧記録：中立・両方の区別不可（再確認）</option><option value="right">右</option><option value="unknown">判断不能</option><option value="not_applicable">非該当</option></select></label></div><div class="question reference"><h4>比較する既存案：B01</h4><p class="stem">自分と関係者の意見が違い、どちらの案でも成果や負担が同じなら、何をより優先しますか？</p><dl class="poles"><div><dt>左</dt><dd>自分が妥当だと思う案で決める</dd></div><div><dt>右</dt><dd>関係者が納得する合意を優先する</dd></div></dl><label>参照側の回答 <select data-field="anchor_choice" aria-label="anchor_choice"><option value="">未記録</option><option value="left">左</option><option value="neutral">どちらでもない・中立</option><option value="both">両方とも当てはまる</option><option value="neither">どちらも当てはまらない</option><option value="middle" disabled>旧記録：中立・両方の区別不可（再確認）</option><option value="right">右</option><option value="unknown">判断不能</option><option value="not_applicable">非該当</option></select></label></div></div>
+<div class="instructions"><p><strong>確認事項：</strong>成果の所有・貢献の公平さという軸外の回答を抽出する負の対照</p><p><strong>中止・差替条件：</strong>公平規範中心ならB軸で採点しない</p></div>
+<div class="entry"><label>暫定判定 <select data-field="verdict" aria-label="verdict"><option value="">未判定</option><option value="meaningfully_different">異なる価値判断として検証継続</option><option value="same_meaning_merge">実質同義・統合</option><option value="context_only">条件差・非採点</option><option value="off_axis">軸外・棄却</option><option value="cannot_determine">判断材料不足</option></select></label>
+<label>比較先の解釈（回答者自身の言葉）<textarea data-field="anchor_paraphrase" rows="2" placeholder="比較先の質問は何を比べていると思ったか"></textarea></label>
+<label>試作案の解釈（回答者自身の言葉）<textarea data-field="candidate_paraphrase" rows="2" placeholder="試作案は何を比べていると思ったか"></textarea></label>
+<label>回答を選んだ主な理由<textarea data-field="choice_reason" rows="2" placeholder="複数の理由がある場合は主要なものから記録"></textarea></label>
+<label>主な回答理由のコード
+<select data-field="reason_code" aria-label="主な回答理由のコード"><option value="">未判定</option><option value="value_priority">価値判断の違い</option><option value="same_meaning">実質同じ意味</option><option value="money_time">金銭・時間・機会制約</option><option value="rights_duties">権利・責任・義務</option><option value="ability_skill">知識・経験・技能</option><option value="relationship">相手との関係・距離感</option><option value="fairness_norm">公平性・社会的望ましさ</option><option value="time_discount">遅延割引・受領時期</option><option value="other">その他</option><option value="unclear">判断不能</option></select></label>
+<label>補足メモ（個人を特定する情報は記入しない）<textarea data-field="observation" rows="3" placeholder="左右が両方成立するか、条件を揃えても回答が変わるか、など"></textarea></label>
+</div></article>
+<article class="question-card" data-id="C-G1" data-axis="C">
+<div class="card-head"><h3>06 · C-G1 <small>資源による交絡検証</small></h3><span class="axis">軸C</span></div>
+<div class="two-col"><div class="question"><h4>試作質問</h4><p class="stem">生活に必要な費用を除いて自由に使える同額の予算があるとします。使い道を選ぶなら、どちらをより重視しますか？</p><dl class="poles"><div><dt>左</dt><dd>将来の目標に向けた準備や機会づくりに使う</dd></div><div><dt>右</dt><dd>今行う体験を充実させるために使う</dd></div></dl><label>試作側の回答 <select data-field="candidate_choice" aria-label="candidate_choice"><option value="">未記録</option><option value="left">左</option><option value="neutral">どちらでもない・中立</option><option value="both">両方とも当てはまる</option><option value="neither">どちらも当てはまらない</option><option value="middle" disabled>旧記録：中立・両方の区別不可（再確認）</option><option value="right">右</option><option value="unknown">判断不能</option><option value="not_applicable">非該当</option></select></label></div><div class="question reference"><h4>比較する既存案：C01</h4><p class="stem">今週自由に使える同じ時間を、将来と現在のどちらへ優先的に使いたいですか？</p><dl class="poles"><div><dt>左</dt><dd>数か月後の選択肢を増やすための活動</dd></div><div><dt>右</dt><dd>今週の経験そのものを充実させる活動</dd></div></dl><label>参照側の回答 <select data-field="anchor_choice" aria-label="anchor_choice"><option value="">未記録</option><option value="left">左</option><option value="neutral">どちらでもない・中立</option><option value="both">両方とも当てはまる</option><option value="neither">どちらも当てはまらない</option><option value="middle" disabled>旧記録：中立・両方の区別不可（再確認）</option><option value="right">右</option><option value="unknown">判断不能</option><option value="not_applicable">非該当</option></select></label></div></div>
+<div class="instructions"><p><strong>確認事項：</strong>C01の自由時間と、同額予算の用途選択を比べる。Eの金銭と時間の選択ではなく、資源ごとの価値配分の違い</p><p><strong>中止・差替条件：</strong>所得・使える余裕・リスク感が決め手ならC得点は認めない</p></div>
+<div class="entry"><label>暫定判定 <select data-field="verdict" aria-label="verdict"><option value="">未判定</option><option value="meaningfully_different">異なる価値判断として検証継続</option><option value="same_meaning_merge">実質同義・統合</option><option value="context_only">条件差・非採点</option><option value="off_axis">軸外・棄却</option><option value="cannot_determine">判断材料不足</option></select></label>
+<label>比較先の解釈（回答者自身の言葉）<textarea data-field="anchor_paraphrase" rows="2" placeholder="比較先の質問は何を比べていると思ったか"></textarea></label>
+<label>試作案の解釈（回答者自身の言葉）<textarea data-field="candidate_paraphrase" rows="2" placeholder="試作案は何を比べていると思ったか"></textarea></label>
+<label>回答を選んだ主な理由<textarea data-field="choice_reason" rows="2" placeholder="複数の理由がある場合は主要なものから記録"></textarea></label>
+<label>主な回答理由のコード
+<select data-field="reason_code" aria-label="主な回答理由のコード"><option value="">未判定</option><option value="value_priority">価値判断の違い</option><option value="same_meaning">実質同じ意味</option><option value="money_time">金銭・時間・機会制約</option><option value="rights_duties">権利・責任・義務</option><option value="ability_skill">知識・経験・技能</option><option value="relationship">相手との関係・距離感</option><option value="fairness_norm">公平性・社会的望ましさ</option><option value="time_discount">遅延割引・受領時期</option><option value="other">その他</option><option value="unclear">判断不能</option></select></label>
+<label>補足メモ（個人を特定する情報は記入しない）<textarea data-field="observation" rows="3" placeholder="左右が両方成立するか、条件を揃えても回答が変わるか、など"></textarea></label>
+</div></article>
+<article class="question-card" data-id="C-G2" data-axis="C">
+<div class="card-head"><h3>07 · C-G2 <small>段階・条件の比較</small></h3><span class="axis">軸C</span></div>
+<div class="two-col"><div class="question"><h4>既存の設問ペアを再利用（新規の得点用質問なし）</h4><div class="pair">C-FU14<p class="stem">将来に役立つ準備と現在を楽しむ体験がどちらも今週限りの機会で、所要時間が同じなら、どちらを選びたいですか？</p><dl class="poles"><div><dt>左</dt><dd>今週限りの将来の準備機会を選ぶ</dd></div><div><dt>右</dt><dd>今週限りの現在の体験を選ぶ</dd></div></dl><label>回答 <select data-field="pair_C-FU14" aria-label="pair_C-FU14"><option value="">未記録</option><option value="left">左</option><option value="neutral">どちらでもない・中立</option><option value="both">両方とも当てはまる</option><option value="neither">どちらも当てはまらない</option><option value="middle" disabled>旧記録：中立・両方の区別不可（再確認）</option><option value="right">右</option><option value="unknown">判断不能</option><option value="not_applicable">非該当</option></select></label></div><div class="pair">C-FU15<p class="stem">将来に役立つ準備と現在を楽しむ体験がどちらも来週にも同じ条件でできるなら、今週はどちらを選びたいですか？</p><dl class="poles"><div><dt>左</dt><dd>来週にもできる将来の準備を先にする</dd></div><div><dt>右</dt><dd>来週にもできる現在の体験を先にする</dd></div></dl><label>回答 <select data-field="pair_C-FU15" aria-label="pair_C-FU15"><option value="">未記録</option><option value="left">左</option><option value="neutral">どちらでもない・中立</option><option value="both">両方とも当てはまる</option><option value="neither">どちらも当てはまらない</option><option value="middle" disabled>旧記録：中立・両方の区別不可（再確認）</option><option value="right">右</option><option value="unknown">判断不能</option><option value="not_applicable">非該当</option></select></label></div></div><div class="question reference"><h4>比較する既存案：C-FU14</h4><p class="stem">将来に役立つ準備と現在を楽しむ体験がどちらも今週限りの機会で、所要時間が同じなら、どちらを選びたいですか？</p><dl class="poles"><div><dt>左</dt><dd>今週限りの将来の準備機会を選ぶ</dd></div><div><dt>右</dt><dd>今週限りの現在の体験を選ぶ</dd></div></dl><label>参照側の回答 <select data-field="anchor_choice" aria-label="anchor_choice"><option value="">未記録</option><option value="left">左</option><option value="neutral">どちらでもない・中立</option><option value="both">両方とも当てはまる</option><option value="neither">どちらも当てはまらない</option><option value="middle" disabled>旧記録：中立・両方の区別不可（再確認）</option><option value="right">右</option><option value="unknown">判断不能</option><option value="not_applicable">非該当</option></select></label></div></div>
+<div class="instructions"><p><strong>確認事項：</strong>今週限りと来週も可能という条件の違いを見る</p><p><strong>中止・差替条件：</strong>必ず同一回答者にC-FU14とC-FU15を提示。新しい得点用の2問として増設しない</p></div>
+<div class="entry"><label>暫定判定 <select data-field="verdict" aria-label="verdict"><option value="">未判定</option><option value="meaningfully_different">異なる価値判断として検証継続</option><option value="same_meaning_merge">実質同義・統合</option><option value="context_only">条件差・非採点</option><option value="off_axis">軸外・棄却</option><option value="cannot_determine">判断材料不足</option></select></label>
+<label>比較先の解釈（回答者自身の言葉）<textarea data-field="anchor_paraphrase" rows="2" placeholder="比較先の質問は何を比べていると思ったか"></textarea></label>
+<label>試作案の解釈（回答者自身の言葉）<textarea data-field="candidate_paraphrase" rows="2" placeholder="試作案は何を比べていると思ったか"></textarea></label>
+<label>回答を選んだ主な理由<textarea data-field="choice_reason" rows="2" placeholder="複数の理由がある場合は主要なものから記録"></textarea></label>
+<label>主な回答理由のコード
+<select data-field="reason_code" aria-label="主な回答理由のコード"><option value="">未判定</option><option value="value_priority">価値判断の違い</option><option value="same_meaning">実質同じ意味</option><option value="money_time">金銭・時間・機会制約</option><option value="rights_duties">権利・責任・義務</option><option value="ability_skill">知識・経験・技能</option><option value="relationship">相手との関係・距離感</option><option value="fairness_norm">公平性・社会的望ましさ</option><option value="time_discount">遅延割引・受領時期</option><option value="other">その他</option><option value="unclear">判断不能</option></select></label>
+<label>補足メモ（個人を特定する情報は記入しない）<textarea data-field="observation" rows="3" placeholder="左右が両方成立するか、条件を揃えても回答が変わるか、など"></textarea></label>
+</div></article>
+<article class="question-card" data-id="C-G3" data-axis="C">
+<div class="card-head"><h3>08 · C-G3 <small>軸外の負の対照</small></h3><span class="axis">軸C</span></div>
+<div class="two-col"><div class="question"><h4>試作質問</h4><p class="stem">内容と価値が同程度の体験を一度得られるとします。どちらを選びたいですか？</p><dl class="poles"><div><dt>左</dt><dd>数か月後にその体験を受け取る</dd></div><div><dt>右</dt><dd>今日その体験を受け取る</dd></div></dl><label>試作側の回答 <select data-field="candidate_choice" aria-label="candidate_choice"><option value="">未記録</option><option value="left">左</option><option value="neutral">どちらでもない・中立</option><option value="both">両方とも当てはまる</option><option value="neither">どちらも当てはまらない</option><option value="middle" disabled>旧記録：中立・両方の区別不可（再確認）</option><option value="right">右</option><option value="unknown">判断不能</option><option value="not_applicable">非該当</option></select></label></div><div class="question reference"><h4>比較する既存案：C01</h4><p class="stem">今週自由に使える同じ時間を、将来と現在のどちらへ優先的に使いたいですか？</p><dl class="poles"><div><dt>左</dt><dd>数か月後の選択肢を増やすための活動</dd></div><div><dt>右</dt><dd>今週の経験そのものを充実させる活動</dd></div></dl><label>参照側の回答 <select data-field="anchor_choice" aria-label="anchor_choice"><option value="">未記録</option><option value="left">左</option><option value="neutral">どちらでもない・中立</option><option value="both">両方とも当てはまる</option><option value="neither">どちらも当てはまらない</option><option value="middle" disabled>旧記録：中立・両方の区別不可（再確認）</option><option value="right">右</option><option value="unknown">判断不能</option><option value="not_applicable">非該当</option></select></label></div></div>
+<div class="instructions"><p><strong>確認事項：</strong>将来へ備えることと、同一体験を後で受け取る遅延選好は別であることを調べる</p><p><strong>中止・差替条件：</strong>単に早く受け取りたい・忘れるのが不安ならCに含めない</p></div>
+<div class="entry"><label>暫定判定 <select data-field="verdict" aria-label="verdict"><option value="">未判定</option><option value="meaningfully_different">異なる価値判断として検証継続</option><option value="same_meaning_merge">実質同義・統合</option><option value="context_only">条件差・非採点</option><option value="off_axis">軸外・棄却</option><option value="cannot_determine">判断材料不足</option></select></label>
+<label>比較先の解釈（回答者自身の言葉）<textarea data-field="anchor_paraphrase" rows="2" placeholder="比較先の質問は何を比べていると思ったか"></textarea></label>
+<label>試作案の解釈（回答者自身の言葉）<textarea data-field="candidate_paraphrase" rows="2" placeholder="試作案は何を比べていると思ったか"></textarea></label>
+<label>回答を選んだ主な理由<textarea data-field="choice_reason" rows="2" placeholder="複数の理由がある場合は主要なものから記録"></textarea></label>
+<label>主な回答理由のコード
+<select data-field="reason_code" aria-label="主な回答理由のコード"><option value="">未判定</option><option value="value_priority">価値判断の違い</option><option value="same_meaning">実質同じ意味</option><option value="money_time">金銭・時間・機会制約</option><option value="rights_duties">権利・責任・義務</option><option value="ability_skill">知識・経験・技能</option><option value="relationship">相手との関係・距離感</option><option value="fairness_norm">公平性・社会的望ましさ</option><option value="time_discount">遅延割引・受領時期</option><option value="other">その他</option><option value="unclear">判断不能</option></select></label>
+<label>補足メモ（個人を特定する情報は記入しない）<textarea data-field="observation" rows="3" placeholder="左右が両方成立するか、条件を揃えても回答が変わるか、など"></textarea></label>
+</div></article>
+<article class="question-card" data-id="D-G1" data-axis="D">
+<div class="card-head"><h3>09 · D-G1 <small>文面の区別を再検討</small></h3><span class="axis">軸D</span></div>
+<div class="two-col"><div class="question"><h4>試作質問</h4><p class="stem">一つの学習分野の中で同じ学習時間を使うなら、何をより好みますか？</p><dl class="poles"><div><dt>左</dt><dd>隣接する複数のテーマの基礎を広く知る</dd></div><div><dt>右</dt><dd>その中の一つのテーマをより詳しく掘り下げる</dd></div></dl><label>試作側の回答 <select data-field="candidate_choice" aria-label="candidate_choice"><option value="">未記録</option><option value="left">左</option><option value="neutral">どちらでもない・中立</option><option value="both">両方とも当てはまる</option><option value="neither">どちらも当てはまらない</option><option value="middle" disabled>旧記録：中立・両方の区別不可（再確認）</option><option value="right">右</option><option value="unknown">判断不能</option><option value="not_applicable">非該当</option></select></label></div><div class="question reference"><h4>比較する既存案：D02</h4><p class="stem">関心がある分野を同じ時間で学べる場合、どちらをより好みますか？</p><dl class="poles"><div><dt>左</dt><dd>異なる複数分野の基本を学ぶ</dd></div><div><dt>右</dt><dd>一つの分野をさらに詳しく学ぶ</dd></div></dl><label>参照側の回答 <select data-field="anchor_choice" aria-label="anchor_choice"><option value="">未記録</option><option value="left">左</option><option value="neutral">どちらでもない・中立</option><option value="both">両方とも当てはまる</option><option value="neither">どちらも当てはまらない</option><option value="middle" disabled>旧記録：中立・両方の区別不可（再確認）</option><option value="right">右</option><option value="unknown">判断不能</option><option value="not_applicable">非該当</option></select></label></div></div>
+<div class="instructions"><p><strong>確認事項：</strong>大きな分野をまたぐD02と、大きな分野内のテーマの幅を広げることの差を確認</p><p><strong>中止・差替条件：</strong>単なる分野の粒度の言い換えなら二問目にしない</p></div>
+<div class="entry"><label>暫定判定 <select data-field="verdict" aria-label="verdict"><option value="">未判定</option><option value="meaningfully_different">異なる価値判断として検証継続</option><option value="same_meaning_merge">実質同義・統合</option><option value="context_only">条件差・非採点</option><option value="off_axis">軸外・棄却</option><option value="cannot_determine">判断材料不足</option></select></label>
+<label>比較先の解釈（回答者自身の言葉）<textarea data-field="anchor_paraphrase" rows="2" placeholder="比較先の質問は何を比べていると思ったか"></textarea></label>
+<label>試作案の解釈（回答者自身の言葉）<textarea data-field="candidate_paraphrase" rows="2" placeholder="試作案は何を比べていると思ったか"></textarea></label>
+<label>回答を選んだ主な理由<textarea data-field="choice_reason" rows="2" placeholder="複数の理由がある場合は主要なものから記録"></textarea></label>
+<label>主な回答理由のコード
+<select data-field="reason_code" aria-label="主な回答理由のコード"><option value="">未判定</option><option value="value_priority">価値判断の違い</option><option value="same_meaning">実質同じ意味</option><option value="money_time">金銭・時間・機会制約</option><option value="rights_duties">権利・責任・義務</option><option value="ability_skill">知識・経験・技能</option><option value="relationship">相手との関係・距離感</option><option value="fairness_norm">公平性・社会的望ましさ</option><option value="time_discount">遅延割引・受領時期</option><option value="other">その他</option><option value="unclear">判断不能</option></select></label>
+<label>補足メモ（個人を特定する情報は記入しない）<textarea data-field="observation" rows="3" placeholder="左右が両方成立するか、条件を揃えても回答が変わるか、など"></textarea></label>
+</div></article>
+<article class="question-card" data-id="D-G2" data-axis="D">
+<div class="card-head"><h3>10 · D-G2 <small>文面の区別を再検討</small></h3><span class="axis">軸D</span></div>
+<div class="two-col"><div class="question"><h4>試作質問</h4><p class="stem">一つの関心のある問いを調べるとき、同じ学習時間でどちらの知識を増やしたいですか？</p><dl class="poles"><div><dt>左</dt><dd>関連する複数分野の基本も知って理解を広げる</dd></div><div><dt>右</dt><dd>現在学んでいる分野の専門内容を深く知る</dd></div></dl><label>試作側の回答 <select data-field="candidate_choice" aria-label="candidate_choice"><option value="">未記録</option><option value="left">左</option><option value="neutral">どちらでもない・中立</option><option value="both">両方とも当てはまる</option><option value="neither">どちらも当てはまらない</option><option value="middle" disabled>旧記録：中立・両方の区別不可（再確認）</option><option value="right">右</option><option value="unknown">判断不能</option><option value="not_applicable">非該当</option></select></label></div><div class="question reference"><h4>比較する既存案：D-BK13</h4><p class="stem">今後半年の自由に使える学習時間の配分を考えるなら、どちらを好みますか？</p><dl class="poles"><div><dt>左</dt><dd>複数の異なる分野に少しずつ取り組む</dd></div><div><dt>右</dt><dd>一つの分野に継続的に取り組んで深める</dd></div></dl><label>参照側の回答 <select data-field="anchor_choice" aria-label="anchor_choice"><option value="">未記録</option><option value="left">左</option><option value="neutral">どちらでもない・中立</option><option value="both">両方とも当てはまる</option><option value="neither">どちらも当てはまらない</option><option value="middle" disabled>旧記録：中立・両方の区別不可（再確認）</option><option value="right">右</option><option value="unknown">判断不能</option><option value="not_applicable">非該当</option></select></label></div></div>
+<div class="instructions"><p><strong>確認事項：</strong>知りたい領域の幅と、問題を解く効率という説明の違いを見る</p><p><strong>中止・差替条件：</strong>学習能力や課題解決法を主に問うならD得点に加えない</p></div>
+<div class="entry"><label>暫定判定 <select data-field="verdict" aria-label="verdict"><option value="">未判定</option><option value="meaningfully_different">異なる価値判断として検証継続</option><option value="same_meaning_merge">実質同義・統合</option><option value="context_only">条件差・非採点</option><option value="off_axis">軸外・棄却</option><option value="cannot_determine">判断材料不足</option></select></label>
+<label>比較先の解釈（回答者自身の言葉）<textarea data-field="anchor_paraphrase" rows="2" placeholder="比較先の質問は何を比べていると思ったか"></textarea></label>
+<label>試作案の解釈（回答者自身の言葉）<textarea data-field="candidate_paraphrase" rows="2" placeholder="試作案は何を比べていると思ったか"></textarea></label>
+<label>回答を選んだ主な理由<textarea data-field="choice_reason" rows="2" placeholder="複数の理由がある場合は主要なものから記録"></textarea></label>
+<label>主な回答理由のコード
+<select data-field="reason_code" aria-label="主な回答理由のコード"><option value="">未判定</option><option value="value_priority">価値判断の違い</option><option value="same_meaning">実質同じ意味</option><option value="money_time">金銭・時間・機会制約</option><option value="rights_duties">権利・責任・義務</option><option value="ability_skill">知識・経験・技能</option><option value="relationship">相手との関係・距離感</option><option value="fairness_norm">公平性・社会的望ましさ</option><option value="time_discount">遅延割引・受領時期</option><option value="other">その他</option><option value="unclear">判断不能</option></select></label>
+<label>補足メモ（個人を特定する情報は記入しない）<textarea data-field="observation" rows="3" placeholder="左右が両方成立するか、条件を揃えても回答が変わるか、など"></textarea></label>
+</div></article>
+<article class="question-card" data-id="D-G3" data-axis="D">
+<div class="card-head"><h3>11 · D-G3 <small>段階・条件の比較</small></h3><span class="axis">軸D</span></div>
+<div class="two-col"><div class="question"><h4>既存の設問ペアを再利用（新規の得点用質問なし）</h4><div class="pair">D-FU07<p class="stem">今のテーマと別分野に同程度の関心があり、学ぶ時間も同じ場合、次にどちらを選びたいですか？</p><dl class="poles"><div><dt>左</dt><dd>別の分野の基礎を新しく学ぶこと</dd></div><div><dt>右</dt><dd>今のテーマの知識をさらに詳しく深めること</dd></div></dl><label>回答 <select data-field="pair_D-FU07" aria-label="pair_D-FU07"><option value="">未記録</option><option value="left">左</option><option value="neutral">どちらでもない・中立</option><option value="both">両方とも当てはまる</option><option value="neither">どちらも当てはまらない</option><option value="middle" disabled>旧記録：中立・両方の区別不可（再確認）</option><option value="right">右</option><option value="unknown">判断不能</option><option value="not_applicable">非該当</option></select></label></div><div class="pair">D-FU10<p class="stem">現在のテーマで最初の目標に到達した後、どちらに進みたいですか？</p><dl class="poles"><div><dt>左</dt><dd>新しく別の分野の基本を学び始める</dd></div><div><dt>右</dt><dd>同じテーマの応用的な内容をさらに掘り下げる</dd></div></dl><label>回答 <select data-field="pair_D-FU10" aria-label="pair_D-FU10"><option value="">未記録</option><option value="left">左</option><option value="neutral">どちらでもない・中立</option><option value="both">両方とも当てはまる</option><option value="neither">どちらも当てはまらない</option><option value="middle" disabled>旧記録：中立・両方の区別不可（再確認）</option><option value="right">右</option><option value="unknown">判断不能</option><option value="not_applicable">非該当</option></select></label></div></div><div class="question reference"><h4>比較する既存案：D06</h4><p class="stem">関心のあるテーマで当初の目標に到達し、次に同じ時間を使えるなら、どちらを選びたいですか？</p><dl class="poles"><div><dt>左</dt><dd>今まで触れなかった別分野へ進む</dd></div><div><dt>右</dt><dd>今のテーマの応用を深める</dd></div></dl><label>参照側の回答 <select data-field="anchor_choice" aria-label="anchor_choice"><option value="">未記録</option><option value="left">左</option><option value="neutral">どちらでもない・中立</option><option value="both">両方とも当てはまる</option><option value="neither">どちらも当てはまらない</option><option value="middle" disabled>旧記録：中立・両方の区別不可（再確認）</option><option value="right">右</option><option value="unknown">判断不能</option><option value="not_applicable">非該当</option></select></label></div></div>
+<div class="instructions"><p><strong>確認事項：</strong>探究途中と目標達成後の反応を同一回答者内で比較する</p><p><strong>中止・差替条件：</strong>D-FU07とD-FU10/D06の条件差を読む。単独採点や追加された別質問系統とは扱わない</p></div>
+<div class="entry"><label>暫定判定 <select data-field="verdict" aria-label="verdict"><option value="">未判定</option><option value="meaningfully_different">異なる価値判断として検証継続</option><option value="same_meaning_merge">実質同義・統合</option><option value="context_only">条件差・非採点</option><option value="off_axis">軸外・棄却</option><option value="cannot_determine">判断材料不足</option></select></label>
+<label>比較先の解釈（回答者自身の言葉）<textarea data-field="anchor_paraphrase" rows="2" placeholder="比較先の質問は何を比べていると思ったか"></textarea></label>
+<label>試作案の解釈（回答者自身の言葉）<textarea data-field="candidate_paraphrase" rows="2" placeholder="試作案は何を比べていると思ったか"></textarea></label>
+<label>回答を選んだ主な理由<textarea data-field="choice_reason" rows="2" placeholder="複数の理由がある場合は主要なものから記録"></textarea></label>
+<label>主な回答理由のコード
+<select data-field="reason_code" aria-label="主な回答理由のコード"><option value="">未判定</option><option value="value_priority">価値判断の違い</option><option value="same_meaning">実質同じ意味</option><option value="money_time">金銭・時間・機会制約</option><option value="rights_duties">権利・責任・義務</option><option value="ability_skill">知識・経験・技能</option><option value="relationship">相手との関係・距離感</option><option value="fairness_norm">公平性・社会的望ましさ</option><option value="time_discount">遅延割引・受領時期</option><option value="other">その他</option><option value="unclear">判断不能</option></select></label>
+<label>補足メモ（個人を特定する情報は記入しない）<textarea data-field="observation" rows="3" placeholder="左右が両方成立するか、条件を揃えても回答が変わるか、など"></textarea></label>
+</div></article></div>
+<footer>原資料 D-168。質問文は研究用の仮案です。認知面接の実施結果・心理測定の妥当性・回答の交換可能性を示すものではありません。</footer>
+</main>
+<script>
+(() => {
+  "use strict";
+  const cards=[...document.querySelectorAll(".question-card")],f=document.getElementById("axisFilter"),count=document.getElementById("count");
+  f.addEventListener("change",()=>{let shown=0;for(const card of cards){const yes=f.value==="ALL"||card.dataset.axis===f.value;card.hidden=!yes;if(yes)shown++;}count.textContent=shown+"件を表示";});
+  const status=document.getElementById("ioStatus");
+  const getInputs=card=>[...card.querySelectorAll("[data-field]")];
+  const makeRecord=()=>({
+    schema:"A05-D170-COGNITIVE-REVIEW-NOTES-0.1",
+    type:"non_scoring_research_notes",
+    protocol:"D168",
+    respondents_not_identified:true,
+    answers:cards.map(card=>({case_id:card.dataset.id,axis:card.dataset.axis,inputs:Object.fromEntries(getInputs(card).map(x=>[x.dataset.field,x.value]))}))
+  });
+  document.getElementById("export").addEventListener("click",()=>{
+    const doc=makeRecord(),blob=new Blob([JSON.stringify(doc,null,2)],{type:"application/json;charset=utf-8"});
+    const url=URL.createObjectURL(blob),a=document.createElement("a");
+    a.href=url;a.download="a05-d170-review-notes.json";document.body.appendChild(a);a.click();a.remove();
+    setTimeout(()=>URL.revokeObjectURL(url),1000);
+    status.textContent="記録をJSONに書き出しました。ファイルを安全な場所に保管してください。";
+  });
+  const fileInput=document.getElementById("importFile");
+  document.getElementById("import").addEventListener("click",()=>fileInput.click());
+  fileInput.addEventListener("change",async()=>{
+    const file=fileInput.files?.[0];
+    if(!file)return;
+    try{
+      if(file.size>262144)throw Error("JSONファイルが大きすぎます（256KB以下）。");
+      const data=JSON.parse(await file.text());
+      if(data?.schema!=="A05-D170-COGNITIVE-REVIEW-NOTES-0.1"||!Array.isArray(data.answers)||data.answers.length!==cards.length)
+        throw Error("D-170形式の11件の記録ではありません。");
+      const saved=new Map();
+      for(const entry of data.answers){
+        const card=cards.find(c=>c.dataset.id===entry.case_id);
+        if(!card||saved.has(entry.case_id)||entry.axis!==card.dataset.axis||!entry.inputs||typeof entry.inputs!=="object"||Array.isArray(entry.inputs))
+          throw Error("ケースID、軸、または入力形式が不正です。");
+        const fields=new Set(getInputs(card).map(x=>x.dataset.field));
+        if(Object.keys(entry.inputs).some(key=>!fields.has(key)||typeof entry.inputs[key]!=="string"||entry.inputs[key].length>8000))
+          throw Error("不明な入力欄または不正なデータが含まれています。");
+        saved.set(entry.case_id,entry.inputs);
+      }
+      if(getInputs(document).some(x=>x.value)&&!confirm("現在の入力を保存済みJSONで上書きしますか？")){
+        status.textContent="読み込みを中止しました。";return;
+      }
+      for(const card of cards)for(const input of getInputs(card)){
+        const value=saved.get(card.dataset.id)[input.dataset.field]??"";
+        if(input.tagName==="SELECT" && value && ![...input.options].some(opt=>opt.value===value))
+          throw Error("選択値がこの画面で使用できません。");
+      }
+      for(const card of cards)for(const input of getInputs(card))input.value=saved.get(card.dataset.id)[input.dataset.field]??"";
+      status.textContent="11件の記録を読み込みました。";
+    }catch(err){status.textContent="読み込み失敗："+err.message;}
+    finally{fileInput.value="";}
+  });
+  document.getElementById("reset").addEventListener("click",()=>{if(!confirm("入力した観察メモをすべて消去しますか？"))return;
+    for(const element of document.querySelectorAll("[data-field]"))element.value="";
+    status.textContent="入力を消去しました。";
+  });
+})();
+</script>
+</body></html>

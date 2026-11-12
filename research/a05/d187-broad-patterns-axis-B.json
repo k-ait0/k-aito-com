@@ -1,0 +1,467 @@
+{
+  "schema": "A05-D187-BROAD-IDEATION-B-0.1",
+  "date": "2026-11-11",
+  "status": "RAW_RESEARCH_IDEAS_UNVALIDATED",
+  "goal": "Retain even closely overlapping research alternatives; test concept crossover between independent autonomy, consensus, and help-seeking",
+  "count": 24,
+  "provisional_families": 8,
+  "questions": [
+    {
+      "id": "B-X01",
+      "axis": "B",
+      "family_id": "B-QF01",
+      "family_label": "個人の重要選択",
+      "family_hypothesis": "本人の選択基準と身近な人の合意を比較",
+      "closest_prior_ids": [
+        "B-FU01",
+        "B06"
+      ],
+      "overlap_risk": "HIGH",
+      "confounds": "相談と自己決定は両立可能。権利・負担を統制",
+      "format": "個人選択",
+      "stem": "自分の今後に関わる選択で、身近な人と希望が分かれたとします。相手の負担が同じなら何を決め手にしたいですか？",
+      "left": "相手の意見を聞いたうえで自分の納得",
+      "right": "相手と話し合って双方が納得すること",
+      "semantic_distinctness_proven": false,
+      "scored_approved": false
+    },
+    {
+      "id": "B-X02",
+      "axis": "B",
+      "family_id": "B-QF01",
+      "family_label": "個人の重要選択",
+      "family_hypothesis": "本人の選択基準と身近な人の合意を比較",
+      "closest_prior_ids": [
+        "B-FU01",
+        "B06"
+      ],
+      "overlap_risk": "HIGH",
+      "confounds": "相談と自己決定は両立可能。権利・負担を統制",
+      "format": "小さな個人選択",
+      "stem": "自分の趣味の方向性について、近しい人と意見が異なります。自分への負担と結果が等しいならどちらを望みますか？",
+      "left": "自分が選んだ方向を最終案にする",
+      "right": "近しい人が納得する方向へ調整する",
+      "semantic_distinctness_proven": false,
+      "scored_approved": false
+    },
+    {
+      "id": "B-X03",
+      "axis": "B",
+      "family_id": "B-QF01",
+      "family_label": "個人の重要選択",
+      "family_hypothesis": "本人の選択基準と身近な人の合意を比較",
+      "closest_prior_ids": [
+        "B-FU01",
+        "B06"
+      ],
+      "overlap_risk": "HIGH",
+      "confounds": "相談と自己決定は両立可能。権利・負担を統制",
+      "format": "計画の判断基準",
+      "stem": "自分の生活計画を決める機会があり、周囲は別案を好むとします。利害が等しい場合はどちらをより重視しますか？",
+      "left": "自分の判断を最後のよりどころとする",
+      "right": "関係者の合意を最後のよりどころとする",
+      "semantic_distinctness_proven": false,
+      "scored_approved": false
+    },
+    {
+      "id": "B-X04",
+      "axis": "B",
+      "family_id": "B-QF02",
+      "family_label": "共同目標の決定",
+      "family_hypothesis": "複数人で実施する活動の目標を誰の判断で決めるか",
+      "closest_prior_ids": [
+        "B01",
+        "B03"
+      ],
+      "overlap_risk": "HIGH",
+      "confounds": "作業権限・参加者数・合議手続、B01と近い",
+      "format": "共同目標",
+      "stem": "同じ成果が得られる共同活動で目標案が割れたとします。どちらを最終基準にしたいですか？",
+      "left": "自分が適切だと考えた目標",
+      "right": "参加者が納得する共通の目標",
+      "semantic_distinctness_proven": false,
+      "scored_approved": false
+    },
+    {
+      "id": "B-X05",
+      "axis": "B",
+      "family_id": "B-QF02",
+      "family_label": "共同目標の決定",
+      "family_hypothesis": "複数人で実施する活動の目標を誰の判断で決めるか",
+      "closest_prior_ids": [
+        "B01",
+        "B03"
+      ],
+      "overlap_risk": "HIGH",
+      "confounds": "作業権限・参加者数・合議手続、B01と近い",
+      "format": "方向性選択",
+      "stem": "共同プロジェクトの最初に方向性を決めます。費用や負担が同じ二案なら何を優先したいですか？",
+      "left": "自分が重要と考える方向性",
+      "right": "全員が納得できる方向性",
+      "semantic_distinctness_proven": false,
+      "scored_approved": false
+    },
+    {
+      "id": "B-X06",
+      "axis": "B",
+      "family_id": "B-QF02",
+      "family_label": "共同目標の決定",
+      "family_hypothesis": "複数人で実施する活動の目標を誰の判断で決めるか",
+      "closest_prior_ids": [
+        "B01",
+        "B03"
+      ],
+      "overlap_risk": "HIGH",
+      "confounds": "作業権限・参加者数・合議手続、B01と近い",
+      "format": "年度方針",
+      "stem": "グループの来年度の活動を決めるとき、自分の提案と他の案が同程度に実現可能ならどちらが望ましいですか？",
+      "left": "自分の提案を判断の中心にする",
+      "right": "参加者の合意を判断の中心にする",
+      "semantic_distinctness_proven": false,
+      "scored_approved": false
+    },
+    {
+      "id": "B-X07",
+      "axis": "B",
+      "family_id": "B-QF03",
+      "family_label": "共同で使う時間",
+      "family_hypothesis": "本人の希望と一緒に過ごす相手との調整",
+      "closest_prior_ids": [
+        "B-FU05",
+        "B04"
+      ],
+      "overlap_risk": "HIGH",
+      "confounds": "公平性・相手に譲るべきという規範",
+      "format": "休日予定",
+      "stem": "同じくらい楽しい二つの休日プランについて同行者と希望が異なるなら、どう決めたいですか？",
+      "left": "自分の希望を優先して選ぶ",
+      "right": "同行者と合意できる案を選ぶ",
+      "semantic_distinctness_proven": false,
+      "scored_approved": false
+    },
+    {
+      "id": "B-X08",
+      "axis": "B",
+      "family_id": "B-QF03",
+      "family_label": "共同で使う時間",
+      "family_hypothesis": "本人の希望と一緒に過ごす相手との調整",
+      "closest_prior_ids": [
+        "B-FU05",
+        "B04"
+      ],
+      "overlap_risk": "HIGH",
+      "confounds": "公平性・相手に譲るべきという規範",
+      "format": "自由時間",
+      "stem": "一緒に過ごす自由時間の使い方で意見が分かれ、どちらも全員に同じ利益なら何を重視しますか？",
+      "left": "自分がしたい活動を選ぶ",
+      "right": "全員が納得した活動を選ぶ",
+      "semantic_distinctness_proven": false,
+      "scored_approved": false
+    },
+    {
+      "id": "B-X09",
+      "axis": "B",
+      "family_id": "B-QF03",
+      "family_label": "共同で使う時間",
+      "family_hypothesis": "本人の希望と一緒に過ごす相手との調整",
+      "closest_prior_ids": [
+        "B-FU05",
+        "B04"
+      ],
+      "overlap_risk": "HIGH",
+      "confounds": "公平性・相手に譲るべきという規範",
+      "format": "イベント選択",
+      "stem": "費用も時間も等しい共同のイベントを決める場面で、好みが分かれたらどちらを望みますか？",
+      "left": "自分の希望を中心にした案",
+      "right": "参加者が調整して合意した案",
+      "semantic_distinctness_proven": false,
+      "scored_approved": false
+    },
+    {
+      "id": "B-X10",
+      "axis": "B",
+      "family_id": "B-QF04",
+      "family_label": "作業実行の裁量・協働",
+      "family_hypothesis": "同じ成果の実行過程で単独裁量と共同進行を比べる",
+      "closest_prior_ids": [
+        "B-N03",
+        "B-G1"
+      ],
+      "overlap_risk": "MEDIUM",
+      "confounds": "相談と自律は両立できる。技能・援助への不安",
+      "format": "実行主体",
+      "stem": "自分で選んだ活動を進めます。一人でも誰かと一緒でも成果と負担が等しい場合、どちらが好みですか？",
+      "left": "自分の裁量で一人で進める",
+      "right": "信頼する人と相談しながら進める",
+      "semantic_distinctness_proven": false,
+      "scored_approved": false
+    },
+    {
+      "id": "B-X11",
+      "axis": "B",
+      "family_id": "B-QF04",
+      "family_label": "作業実行の裁量・協働",
+      "family_hypothesis": "同じ成果の実行過程で単独裁量と共同進行を比べる",
+      "closest_prior_ids": [
+        "B-N03",
+        "B-G1"
+      ],
+      "overlap_risk": "MEDIUM",
+      "confounds": "相談と自律は両立できる。技能・援助への不安",
+      "format": "進行の共同性",
+      "stem": "難しい作業を同じ時間で仕上げられるとします。進め方としてどちらに魅力を感じますか？",
+      "left": "取り組む順序を一人で決めて実行する",
+      "right": "取り組む順序を一緒に話して実行する",
+      "semantic_distinctness_proven": false,
+      "scored_approved": false
+    },
+    {
+      "id": "B-X12",
+      "axis": "B",
+      "family_id": "B-QF04",
+      "family_label": "作業実行の裁量・協働",
+      "family_hypothesis": "同じ成果の実行過程で単独裁量と共同進行を比べる",
+      "closest_prior_ids": [
+        "B-N03",
+        "B-G1"
+      ],
+      "overlap_risk": "MEDIUM",
+      "confounds": "相談と自律は両立できる。技能・援助への不安",
+      "format": "途中判断",
+      "stem": "作業の途中で判断が必要になっても成果が変わらないとします。どちらの形を望みますか？",
+      "left": "都度自分で判断して進める",
+      "right": "その都度相手と判断を共有して進める",
+      "semantic_distinctness_proven": false,
+      "scored_approved": false
+    },
+    {
+      "id": "B-X13",
+      "axis": "B",
+      "family_id": "B-QF05",
+      "family_label": "表現・共同制作",
+      "family_hypothesis": "共同作品で各人の表現と合意形成の優先を比べる",
+      "closest_prior_ids": [
+        "B-FU12",
+        "B-N02"
+      ],
+      "overlap_risk": "HIGH",
+      "confounds": "共同決定B01と同内容、創作能力や役割分担",
+      "format": "共同表現",
+      "stem": "二人で一つの作品を作るとき、完成度と作業負担が等しい別案で意見が異なったら何を重視しますか？",
+      "left": "自分が伝えたい表現を最終形に残す",
+      "right": "二人の納得を最終形に反映する",
+      "semantic_distinctness_proven": false,
+      "scored_approved": false
+    },
+    {
+      "id": "B-X14",
+      "axis": "B",
+      "family_id": "B-QF05",
+      "family_label": "表現・共同制作",
+      "family_hypothesis": "共同作品で各人の表現と合意形成の優先を比べる",
+      "closest_prior_ids": [
+        "B-FU12",
+        "B-N02"
+      ],
+      "overlap_risk": "HIGH",
+      "confounds": "共同決定B01と同内容、創作能力や役割分担",
+      "format": "題材決定",
+      "stem": "共同制作物の題材を決める場面で、二つの題材の出来が同程度ならどう決めたいですか？",
+      "left": "自分が選びたい題材を中心にする",
+      "right": "参加者が合意する題材を中心にする",
+      "semantic_distinctness_proven": false,
+      "scored_approved": false
+    },
+    {
+      "id": "B-X15",
+      "axis": "B",
+      "family_id": "B-QF05",
+      "family_label": "表現・共同制作",
+      "family_hypothesis": "共同作品で各人の表現と合意形成の優先を比べる",
+      "closest_prior_ids": [
+        "B-FU12",
+        "B-N02"
+      ],
+      "overlap_risk": "HIGH",
+      "confounds": "共同決定B01と同内容、創作能力や役割分担",
+      "format": "発表表現",
+      "stem": "複数人で発表する企画の見せ方を決めます。全員の利益が等しいならどちらを希望しますか？",
+      "left": "自分の表現意図を最終判断にする",
+      "right": "全員の合意を最終判断にする",
+      "semantic_distinctness_proven": false,
+      "scored_approved": false
+    },
+    {
+      "id": "B-X16",
+      "axis": "B",
+      "family_id": "B-QF06",
+      "family_label": "私的な境界と参加",
+      "family_hypothesis": "私的領域の意思決定に相手をどこまで参加させたいか",
+      "closest_prior_ids": [
+        "B-N04",
+        "B-G1"
+      ],
+      "overlap_risk": "HIGH",
+      "confounds": "意思決定と相談の両立、共同生活の同意義務",
+      "format": "予定関与",
+      "stem": "自分だけが使う自由時間の予定を決める場合、相手に影響がないならどちらが自然ですか？",
+      "left": "まず自分で決め、後で必要なことを伝える",
+      "right": "決める段階から身近な人と考えを共有する",
+      "semantic_distinctness_proven": false,
+      "scored_approved": false
+    },
+    {
+      "id": "B-X17",
+      "axis": "B",
+      "family_id": "B-QF06",
+      "family_label": "私的な境界と参加",
+      "family_hypothesis": "私的領域の意思決定に相手をどこまで参加させたいか",
+      "closest_prior_ids": [
+        "B-N04",
+        "B-G1"
+      ],
+      "overlap_risk": "HIGH",
+      "confounds": "意思決定と相談の両立、共同生活の同意義務",
+      "format": "私的環境",
+      "stem": "自分専用の作業環境を整えるとき、相手には負担がない場合、どちらの決め方が好みですか？",
+      "left": "自分の判断で構成を決める",
+      "right": "親しい人と考えを交換して構成を決める",
+      "semantic_distinctness_proven": false,
+      "scored_approved": false
+    },
+    {
+      "id": "B-X18",
+      "axis": "B",
+      "family_id": "B-QF06",
+      "family_label": "私的な境界と参加",
+      "family_hypothesis": "私的領域の意思決定に相手をどこまで参加させたいか",
+      "closest_prior_ids": [
+        "B-N04",
+        "B-G1"
+      ],
+      "overlap_risk": "HIGH",
+      "confounds": "意思決定と相談の両立、共同生活の同意義務",
+      "format": "意思決定参加",
+      "stem": "自分が責任を持つ趣味の活動方針について、同じ成果ならどちらの過程を好みますか？",
+      "left": "自分で方向を決めてから共有する",
+      "right": "方向を決める過程から相手に参加してもらう",
+      "semantic_distinctness_proven": false,
+      "scored_approved": false
+    },
+    {
+      "id": "B-X19",
+      "axis": "B",
+      "family_id": "B-QF07",
+      "family_label": "頼り方と共同負担",
+      "family_hypothesis": "個人課題に対する自力解決と相互扶助の好み",
+      "closest_prior_ids": [
+        "B-N03",
+        "B-G1"
+      ],
+      "overlap_risk": "HIGH",
+      "confounds": "技能・相談相手の有無・自立への規範",
+      "format": "援助の形",
+      "stem": "自分の生活の困りごとを同じ時間と労力で解消できるなら、どちらを望みますか？",
+      "left": "自分で手段を決めて解消する",
+      "right": "信頼できる人と手段を考えて解消する",
+      "semantic_distinctness_proven": false,
+      "scored_approved": false
+    },
+    {
+      "id": "B-X20",
+      "axis": "B",
+      "family_id": "B-QF07",
+      "family_label": "頼り方と共同負担",
+      "family_hypothesis": "個人課題に対する自力解決と相互扶助の好み",
+      "closest_prior_ids": [
+        "B-N03",
+        "B-G1"
+      ],
+      "overlap_risk": "HIGH",
+      "confounds": "技能・相談相手の有無・自立への規範",
+      "format": "目標遂行",
+      "stem": "個人の目標に取り組むとき、一人でも助けを借りても必要な負担が同じなら、どちらに近いですか？",
+      "left": "自分の計画と裁量で進めたい",
+      "right": "身近な人と協力しながら進めたい",
+      "semantic_distinctness_proven": false,
+      "scored_approved": false
+    },
+    {
+      "id": "B-X21",
+      "axis": "B",
+      "family_id": "B-QF07",
+      "family_label": "頼り方と共同負担",
+      "family_hypothesis": "個人課題に対する自力解決と相互扶助の好み",
+      "closest_prior_ids": [
+        "B-N03",
+        "B-G1"
+      ],
+      "overlap_risk": "HIGH",
+      "confounds": "技能・相談相手の有無・自立への規範",
+      "format": "解法の交流",
+      "stem": "誰かと一緒に問題を考える時間があっても、一人で同じ結果に届くとします。どちらが心地よいですか？",
+      "left": "自分の判断だけで解く過程",
+      "right": "互いの考えを出し合って解く過程",
+      "semantic_distinctness_proven": false,
+      "scored_approved": false
+    },
+    {
+      "id": "B-X22",
+      "axis": "B",
+      "family_id": "B-QF08",
+      "family_label": "共通ルールと裁量",
+      "family_hypothesis": "集団の共通規則を決める際に本人の判断と合意を比べる",
+      "closest_prior_ids": [
+        "B-BK13",
+        "B-N05"
+      ],
+      "overlap_risk": "HIGH",
+      "confounds": "正当性や手続公平感が価値観より強い",
+      "format": "共通規則",
+      "stem": "複数人が同じ条件で使う場所の利用ルールを決めるとき、意見が分かれたら何を優先しますか？",
+      "left": "自分が最も適切と考えるルール",
+      "right": "利用者が合意できるルール",
+      "semantic_distinctness_proven": false,
+      "scored_approved": false
+    },
+    {
+      "id": "B-X23",
+      "axis": "B",
+      "family_id": "B-QF08",
+      "family_label": "共通ルールと裁量",
+      "family_hypothesis": "集団の共通規則を決める際に本人の判断と合意を比べる",
+      "closest_prior_ids": [
+        "B-BK13",
+        "B-N05"
+      ],
+      "overlap_risk": "HIGH",
+      "confounds": "正当性や手続公平感が価値観より強い",
+      "format": "グループ規則",
+      "stem": "同じ負担で守れる二つのグループ規則があります。自分と他の人の希望が異なる場合は何を重視しますか？",
+      "left": "自分の考える合理的な規則を選ぶ",
+      "right": "全員が納得する規則を選ぶ",
+      "semantic_distinctness_proven": false,
+      "scored_approved": false
+    },
+    {
+      "id": "B-X24",
+      "axis": "B",
+      "family_id": "B-QF08",
+      "family_label": "共通ルールと裁量",
+      "family_hypothesis": "集団の共通規則を決める際に本人の判断と合意を比べる",
+      "closest_prior_ids": [
+        "B-BK13",
+        "B-N05"
+      ],
+      "overlap_risk": "HIGH",
+      "confounds": "正当性や手続公平感が価値観より強い",
+      "format": "合意過程",
+      "stem": "今後の共通の仕組みを参加者で決めます。どの案でも公平性が等しいならどちらの結論を望みますか？",
+      "left": "自分の判断に近い仕組みを採る",
+      "right": "参加者が話し合って合意した仕組みを採る",
+      "semantic_distinctness_proven": false,
+      "scored_approved": false
+    }
+  ],
+  "production_changed": false
+}

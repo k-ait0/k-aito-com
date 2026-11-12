@@ -1,0 +1,1882 @@
+{
+  "schema": "A05-D121-ADAPTIVE-QUESTION-BANK-0.1.0",
+  "date": "2026-11-09",
+  "status": "RESEARCH_ONLY_UNAPPROVED",
+  "baseQuestionVersion": "A05-Q-2.0.0-draft",
+  "draftPR": 76,
+  "provenance": "D120 rule-based adaptive follow-up design and actual v2 30-item BANK",
+  "counts": {
+    "A": 8,
+    "B": 10,
+    "C": 10,
+    "D": 8,
+    "E": 4
+  },
+  "scope": "A-D classification-related follow-ups; E auxiliary-only",
+  "outputPolicy": {
+    "classificationPossibleOnlyAfterFutureValidation": true,
+    "initialBaseQuestionsUnchanged": true,
+    "notCatOrIrtCalibrated": true,
+    "noAutomaticScoreConversion": true,
+    "existingHistoryUnmodified": true,
+    "questionOrderMayVary": true,
+    "absenceOfFollowupDoesNotImplyValidity": true,
+    "answeringDoesNotGuaranteeClassification": true,
+    "yesSupportsHypothesisButNoDoesNotProveOpposite": true,
+    "probesNeverScore": true
+  },
+  "polarityByAxis": {
+    "A": {
+      "negative": "安定",
+      "positive": "変化"
+    },
+    "B": {
+      "negative": "自律",
+      "positive": "つながり"
+    },
+    "C": {
+      "negative": "将来",
+      "positive": "現在"
+    },
+    "D": {
+      "negative": "探索",
+      "positive": "深耕"
+    },
+    "E": {
+      "negative": "経済的余裕",
+      "positive": "時間的自由"
+    }
+  },
+  "selectionTriggers": {
+    "zero_sum": "6問の和がゼロなど、軸の方向が出ない",
+    "near_boundary": "方向はあるが合計絶対値が小さい",
+    "insufficient_valid_answers": "有効回答数が4未満",
+    "not_applicable": "既存設問の文脈が該当しない",
+    "cross_axis_overlap": "A/Dなど隣接軸と概念が混ざる",
+    "answer_inconsistency": "異なる場面で回答の方向が異なる",
+    "scenario_sensitivity": "条件の違いにより選好が変わり得る"
+  },
+  "responseContract": {
+    "AB": {
+      "keys": [
+        "A",
+        "B",
+        "unsure",
+        "not_applicable"
+      ],
+      "scoreRules": "選択をそのまま元7段階の点に変換しない"
+    },
+    "YN": {
+      "keys": [
+        "yes",
+        "no",
+        "unsure",
+        "not_applicable"
+      ],
+      "scoreRules": "yesの支持方向は研究仮説、noは反対極性の証明ではない"
+    },
+    "PROBE": {
+      "keys": [
+        "yes",
+        "no",
+        "unsure",
+        "not_applicable"
+      ],
+      "scoreRules": "回答は交絡確認のみ、タイプ判定に加算しない"
+    }
+  },
+  "reviewGate": {
+    "mechanical": "ID/軸/値域/選択肢方向/トリガー/重複候補/非採点の静的整合性",
+    "editorial": "質問単独での理解、単調さ/重複、左右の魅力度、負荷・倫理的影響、必要な選好情報の可観測性",
+    "human": "認知面接と予備調査はG1/D42等の許可後",
+    "production": "NO_GO"
+  },
+  "items": [
+    {
+      "id": "A-FU01",
+      "axis": "A",
+      "format": "AB",
+      "stem": "数年間の生活拠点を選べ、どちらも安全で暮らしやすい場合、どちらを選びますか？",
+      "options": [
+        {
+          "key": "A",
+          "text": "現在の地域や住環境を少しずつ整えて暮らす",
+          "polarity": "negative"
+        },
+        {
+          "key": "B",
+          "text": "別の地域で生活基盤を新しく築く",
+          "polarity": "positive"
+        },
+        {
+          "key": "unsure",
+          "text": "選べない・判断できない",
+          "polarity": null
+        },
+        {
+          "key": "not_applicable",
+          "text": "自分には当てはまらない",
+          "polarity": null
+        }
+      ],
+      "selectionTriggers": [
+        "zero_sum",
+        "near_boundary"
+      ],
+      "decisionIntent": "移動できる条件下の居住基盤の継続/変更",
+      "differentiation": "D軸の学習テーマ変更から独立",
+      "risk": "費用と人間関係の再構築の負担を等価と想定しづらい",
+      "priority": "P1",
+      "editorialStatus": "TRIAL_CANDIDATE",
+      "overlapCandidates": [
+        "A01",
+        "A05"
+      ],
+      "experimental": true,
+      "calibrated": false,
+      "productionApproved": false,
+      "scoringRule": "NONE_UNCALIBRATED"
+    },
+    {
+      "id": "A-FU02",
+      "axis": "A",
+      "format": "YN",
+      "stem": "今の生活環境に大きな不満がなくても、数年ごとに生活の拠点を変える暮らしを選びたいですか？",
+      "options": [
+        {
+          "key": "yes",
+          "text": "はい",
+          "polarity": "positive"
+        },
+        {
+          "key": "no",
+          "text": "いいえ",
+          "polarity": null
+        },
+        {
+          "key": "unsure",
+          "text": "判断できない",
+          "polarity": null
+        },
+        {
+          "key": "not_applicable",
+          "text": "自分には当てはまらない",
+          "polarity": null
+        }
+      ],
+      "selectionTriggers": [
+        "zero_sum",
+        "near_boundary"
+      ],
+      "decisionIntent": "不満の有無に左右されない環境の刷新志向",
+      "differentiation": "現状不満による転居と価値観を切り分ける",
+      "risk": "転居を選ぶ経済力・家族条件と混ざる",
+      "priority": "P1",
+      "editorialStatus": "TRIAL_CANDIDATE",
+      "overlapCandidates": [
+        "A01",
+        "A05"
+      ],
+      "experimental": true,
+      "calibrated": false,
+      "productionApproved": false,
+      "scoringRule": "NONE_UNCALIBRATED"
+    },
+    {
+      "id": "A-FU03",
+      "axis": "A",
+      "format": "AB",
+      "stem": "同じ仕事と趣味を続けられ、生活の負担も同程度なら、今後の生活ルールはどうしたいですか？",
+      "options": [
+        {
+          "key": "A",
+          "text": "時期によって新しい生活リズムを組み直す",
+          "polarity": "positive"
+        },
+        {
+          "key": "B",
+          "text": "慣れた生活リズムを磨いて続ける",
+          "polarity": "negative"
+        },
+        {
+          "key": "unsure",
+          "text": "選べない・判断できない",
+          "polarity": null
+        },
+        {
+          "key": "not_applicable",
+          "text": "自分には当てはまらない",
+          "polarity": null
+        }
+      ],
+      "selectionTriggers": [
+        "scenario_sensitivity",
+        "answer_inconsistency"
+      ],
+      "decisionIntent": "生活ルールの継続/更新",
+      "differentiation": "仕事や興味の分野は固定する",
+      "risk": "職種・育児・健康の制約と混ざる",
+      "priority": "P1",
+      "editorialStatus": "TRIAL_CANDIDATE",
+      "overlapCandidates": [
+        "A04",
+        "C06"
+      ],
+      "experimental": true,
+      "calibrated": false,
+      "productionApproved": false,
+      "scoringRule": "NONE_UNCALIBRATED"
+    },
+    {
+      "id": "A-FU04",
+      "axis": "A",
+      "format": "YN",
+      "stem": "暮らしに不満がない場合、住む場所や生活の仕組みは長く維持できる方が魅力的ですか？",
+      "options": [
+        {
+          "key": "yes",
+          "text": "はい",
+          "polarity": "negative"
+        },
+        {
+          "key": "no",
+          "text": "いいえ",
+          "polarity": null
+        },
+        {
+          "key": "unsure",
+          "text": "判断できない",
+          "polarity": null
+        },
+        {
+          "key": "not_applicable",
+          "text": "自分には当てはまらない",
+          "polarity": null
+        }
+      ],
+      "selectionTriggers": [
+        "cross_axis_overlap",
+        "answer_inconsistency"
+      ],
+      "decisionIntent": "基盤の維持そのものへの魅力",
+      "differentiation": "人付き合いを続けるためではなく環境継続を問う",
+      "risk": "すべての生活要素を一緒に扱いすぎる",
+      "priority": "P1",
+      "editorialStatus": "TRIAL_CANDIDATE",
+      "overlapCandidates": [
+        "A01",
+        "A04"
+      ],
+      "experimental": true,
+      "calibrated": false,
+      "productionApproved": false,
+      "scoringRule": "NONE_UNCALIBRATED"
+    },
+    {
+      "id": "A-FU05",
+      "axis": "A",
+      "format": "AB",
+      "stem": "新しい環境にも現在の環境にも同じくらい便利な設備がある場合、生活の仕組みとしてより好むのはどちらですか？",
+      "options": [
+        {
+          "key": "A",
+          "text": "慣れた仕組みを使い続け必要なところを直す",
+          "polarity": "negative"
+        },
+        {
+          "key": "B",
+          "text": "数年単位で異なる仕組みへ移行する",
+          "polarity": "positive"
+        },
+        {
+          "key": "unsure",
+          "text": "選べない・判断できない",
+          "polarity": null
+        },
+        {
+          "key": "not_applicable",
+          "text": "自分には当てはまらない",
+          "polarity": null
+        }
+      ],
+      "selectionTriggers": [
+        "cross_axis_overlap",
+        "answer_inconsistency"
+      ],
+      "decisionIntent": "環境システムの恒常性",
+      "differentiation": "D軸の知識やスキルの幅ではなく生活の仕組み",
+      "risk": "習熟のコストやデジタル慣れに左右される",
+      "priority": "P1",
+      "editorialStatus": "TRIAL_CANDIDATE",
+      "overlapCandidates": [
+        "A04",
+        "A06"
+      ],
+      "experimental": true,
+      "calibrated": false,
+      "productionApproved": false,
+      "scoringRule": "NONE_UNCALIBRATED"
+    },
+    {
+      "id": "A-FU06",
+      "axis": "A",
+      "format": "AB",
+      "stem": "もし仕事や関係する人が変わらないとしたら、拠点のあり方はどちらに魅力を感じますか？",
+      "options": [
+        {
+          "key": "A",
+          "text": "複数の新しい地域へ拠点を移してみる",
+          "polarity": "positive"
+        },
+        {
+          "key": "B",
+          "text": "一つの地域を長く拠点にする",
+          "polarity": "negative"
+        },
+        {
+          "key": "unsure",
+          "text": "選べない・判断できない",
+          "polarity": null
+        },
+        {
+          "key": "not_applicable",
+          "text": "自分には当てはまらない",
+          "polarity": null
+        }
+      ],
+      "selectionTriggers": [
+        "cross_axis_overlap",
+        "answer_inconsistency"
+      ],
+      "decisionIntent": "B関係志向を固定した環境選好",
+      "differentiation": "人間関係の変化と環境変化の切り分け",
+      "risk": "関係者不変での移住が非現実的",
+      "priority": "P1",
+      "editorialStatus": "REVISE",
+      "overlapCandidates": [
+        "A03",
+        "B06"
+      ],
+      "experimental": true,
+      "calibrated": false,
+      "productionApproved": false,
+      "scoringRule": "NONE_UNCALIBRATED"
+    },
+    {
+      "id": "A-FU07",
+      "axis": "A",
+      "format": "YN",
+      "stem": "同じ活動内容であっても、慣れた拠点に留まるより新しい拠点へ移る方を選ぶことが多いと思いますか？",
+      "options": [
+        {
+          "key": "yes",
+          "text": "はい",
+          "polarity": "positive"
+        },
+        {
+          "key": "no",
+          "text": "いいえ",
+          "polarity": null
+        },
+        {
+          "key": "unsure",
+          "text": "判断できない",
+          "polarity": null
+        },
+        {
+          "key": "not_applicable",
+          "text": "自分には当てはまらない",
+          "polarity": null
+        }
+      ],
+      "selectionTriggers": [
+        "scenario_sensitivity",
+        "answer_inconsistency"
+      ],
+      "decisionIntent": "活動内容を固定した環境の選択",
+      "differentiation": "Dの活動テーマの新規性と分離",
+      "risk": "A05-R2と近く活動場所嗜好に矮小化する可能性",
+      "priority": "P1",
+      "editorialStatus": "REVISE",
+      "overlapCandidates": [
+        "A05",
+        "D04"
+      ],
+      "experimental": true,
+      "calibrated": false,
+      "productionApproved": false,
+      "scoringRule": "NONE_UNCALIBRATED"
+    },
+    {
+      "id": "A-FU08",
+      "axis": "A",
+      "format": "PROBE",
+      "stem": "環境を変えたいと思う理由は、新しいことを学びたいという気持ちとは別にありますか？",
+      "options": [
+        {
+          "key": "yes",
+          "text": "はい",
+          "polarity": null
+        },
+        {
+          "key": "no",
+          "text": "いいえ",
+          "polarity": null
+        },
+        {
+          "key": "unsure",
+          "text": "判断できない",
+          "polarity": null
+        },
+        {
+          "key": "not_applicable",
+          "text": "自分には当てはまらない",
+          "polarity": null
+        }
+      ],
+      "selectionTriggers": [
+        "cross_axis_overlap",
+        "answer_inconsistency"
+      ],
+      "decisionIntent": "A/Dの主観的区別ができるか確認",
+      "differentiation": "AとDの混同検査のみ",
+      "risk": "自己分析の難しさ・質問意図の推測",
+      "priority": "P1",
+      "editorialStatus": "PROBE_ONLY",
+      "overlapCandidates": [
+        "A05",
+        "D04"
+      ],
+      "experimental": true,
+      "calibrated": false,
+      "productionApproved": false,
+      "scoringRule": "NONE_UNCALIBRATED"
+    },
+    {
+      "id": "B-FU01",
+      "axis": "B",
+      "format": "AB",
+      "stem": "親しい人と共同で決める予定について、話し合っても双方の希望が一致しないとき、重大な不利益がなければ何を優先しますか？",
+      "options": [
+        {
+          "key": "A",
+          "text": "自分が納得できる案を選ぶ",
+          "polarity": "negative"
+        },
+        {
+          "key": "B",
+          "text": "相手の希望との一致を優先する",
+          "polarity": "positive"
+        },
+        {
+          "key": "unsure",
+          "text": "選べない・判断できない",
+          "polarity": null
+        },
+        {
+          "key": "not_applicable",
+          "text": "自分には当てはまらない",
+          "polarity": null
+        }
+      ],
+      "selectionTriggers": [
+        "zero_sum",
+        "near_boundary"
+      ],
+      "decisionIntent": "利害対立時の最終判断基準",
+      "differentiation": "社交性・孤独の好みではなく決定準拠枠",
+      "risk": "誰との関係かで結果が大きく変わる",
+      "priority": "P1",
+      "editorialStatus": "TRIAL_CANDIDATE",
+      "overlapCandidates": [
+        "B01",
+        "B04"
+      ],
+      "experimental": true,
+      "calibrated": false,
+      "productionApproved": false,
+      "scoringRule": "NONE_UNCALIBRATED"
+    },
+    {
+      "id": "B-FU02",
+      "axis": "B",
+      "format": "YN",
+      "stem": "関係者の意見を十分に聞いた後でも、決定の責任を自分で持つ場合は、自分の希望を最優先したいですか？",
+      "options": [
+        {
+          "key": "yes",
+          "text": "はい",
+          "polarity": "negative"
+        },
+        {
+          "key": "no",
+          "text": "いいえ",
+          "polarity": null
+        },
+        {
+          "key": "unsure",
+          "text": "判断できない",
+          "polarity": null
+        },
+        {
+          "key": "not_applicable",
+          "text": "自分には当てはまらない",
+          "polarity": null
+        }
+      ],
+      "selectionTriggers": [
+        "zero_sum",
+        "near_boundary"
+      ],
+      "decisionIntent": "自己決定の優先",
+      "differentiation": "相談することと決定することを分離",
+      "risk": "責任の重さと選好が交絡",
+      "priority": "P1",
+      "editorialStatus": "TRIAL_CANDIDATE",
+      "overlapCandidates": [
+        "B01",
+        "B06"
+      ],
+      "experimental": true,
+      "calibrated": false,
+      "productionApproved": false,
+      "scoringRule": "NONE_UNCALIBRATED"
+    },
+    {
+      "id": "B-FU03",
+      "axis": "B",
+      "format": "YN",
+      "stem": "対等な立場の人と意見が一致しないとき、自分の希望を一部変えてでも、その人との合意を優先しますか？",
+      "options": [
+        {
+          "key": "yes",
+          "text": "はい",
+          "polarity": "positive"
+        },
+        {
+          "key": "no",
+          "text": "いいえ",
+          "polarity": null
+        },
+        {
+          "key": "unsure",
+          "text": "判断できない",
+          "polarity": null
+        },
+        {
+          "key": "not_applicable",
+          "text": "自分には当てはまらない",
+          "polarity": null
+        }
+      ],
+      "selectionTriggers": [
+        "zero_sum",
+        "near_boundary"
+      ],
+      "decisionIntent": "他者との合意の優先",
+      "differentiation": "個人内判断と関係の合意",
+      "risk": "関係の重要性・合意の費用が不明",
+      "priority": "P1",
+      "editorialStatus": "TRIAL_CANDIDATE",
+      "overlapCandidates": [
+        "B04",
+        "B05"
+      ],
+      "experimental": true,
+      "calibrated": false,
+      "productionApproved": false,
+      "scoringRule": "NONE_UNCALIBRATED"
+    },
+    {
+      "id": "B-FU04",
+      "axis": "B",
+      "format": "AB",
+      "stem": "共同活動の進め方で、成果と負担が同程度の案が二つあり意見が割れた場合、どちらを選びますか？",
+      "options": [
+        {
+          "key": "A",
+          "text": "全員が受け入れられる案を優先する",
+          "polarity": "positive"
+        },
+        {
+          "key": "B",
+          "text": "自分の納得できる案を優先する",
+          "polarity": "negative"
+        },
+        {
+          "key": "unsure",
+          "text": "選べない・判断できない",
+          "polarity": null
+        },
+        {
+          "key": "not_applicable",
+          "text": "自分には当てはまらない",
+          "polarity": null
+        }
+      ],
+      "selectionTriggers": [
+        "scenario_sensitivity",
+        "answer_inconsistency"
+      ],
+      "decisionIntent": "共同作業の意思決定準拠枠",
+      "differentiation": "一人好きかチーム好きかを問わない",
+      "risk": "協議の役割・意見人数の差",
+      "priority": "P1",
+      "editorialStatus": "TRIAL_CANDIDATE",
+      "overlapCandidates": [
+        "B05"
+      ],
+      "experimental": true,
+      "calibrated": false,
+      "productionApproved": false,
+      "scoringRule": "NONE_UNCALIBRATED"
+    },
+    {
+      "id": "B-FU05",
+      "axis": "B",
+      "format": "AB",
+      "stem": "身近な人と余暇の過ごし方が食い違い、どちらの案も安全で費用が同じなら、より納得できるのはどちらですか？",
+      "options": [
+        {
+          "key": "A",
+          "text": "自分が望んだ過ごし方にする",
+          "polarity": "negative"
+        },
+        {
+          "key": "B",
+          "text": "相手が望んだ過ごし方にする",
+          "polarity": "positive"
+        },
+        {
+          "key": "unsure",
+          "text": "選べない・判断できない",
+          "polarity": null
+        },
+        {
+          "key": "not_applicable",
+          "text": "自分には当てはまらない",
+          "polarity": null
+        }
+      ],
+      "selectionTriggers": [
+        "scenario_sensitivity",
+        "answer_inconsistency"
+      ],
+      "decisionIntent": "日常の小さな衝突での優先",
+      "differentiation": "B01の総論と別場面を確認",
+      "risk": "相手にとっての重要度差・頻度差",
+      "priority": "P1",
+      "editorialStatus": "TRIAL_CANDIDATE",
+      "overlapCandidates": [
+        "B04"
+      ],
+      "experimental": true,
+      "calibrated": false,
+      "productionApproved": false,
+      "scoringRule": "NONE_UNCALIBRATED"
+    },
+    {
+      "id": "B-FU06",
+      "axis": "B",
+      "format": "YN",
+      "stem": "自分の価値観と違う案でも、相手にとって大切なことであれば、関係の維持を優先して選びたいですか？",
+      "options": [
+        {
+          "key": "yes",
+          "text": "はい",
+          "polarity": "positive"
+        },
+        {
+          "key": "no",
+          "text": "いいえ",
+          "polarity": null
+        },
+        {
+          "key": "unsure",
+          "text": "判断できない",
+          "polarity": null
+        },
+        {
+          "key": "not_applicable",
+          "text": "自分には当てはまらない",
+          "polarity": null
+        }
+      ],
+      "selectionTriggers": [
+        "cross_axis_overlap",
+        "answer_inconsistency"
+      ],
+      "decisionIntent": "相手の重要度を考慮した関係維持",
+      "differentiation": "一律迎合と選択的譲歩の違い",
+      "risk": "価値判断・道徳的望ましさが混入",
+      "priority": "P1",
+      "editorialStatus": "REVISE",
+      "overlapCandidates": [
+        "B03",
+        "B06"
+      ],
+      "experimental": true,
+      "calibrated": false,
+      "productionApproved": false,
+      "scoringRule": "NONE_UNCALIBRATED"
+    },
+    {
+      "id": "B-FU07",
+      "axis": "B",
+      "format": "AB",
+      "stem": "自分が一人で責任を負う選択に周囲から異なる希望が出された場合、どちらをより重視しますか？",
+      "options": [
+        {
+          "key": "A",
+          "text": "周囲の希望を優先する",
+          "polarity": "positive"
+        },
+        {
+          "key": "B",
+          "text": "責任を負う自分の判断を優先する",
+          "polarity": "negative"
+        },
+        {
+          "key": "unsure",
+          "text": "選べない・判断できない",
+          "polarity": null
+        },
+        {
+          "key": "not_applicable",
+          "text": "自分には当てはまらない",
+          "polarity": null
+        }
+      ],
+      "selectionTriggers": [
+        "scenario_sensitivity",
+        "answer_inconsistency"
+      ],
+      "decisionIntent": "責任所在の違いが決定を変えるか",
+      "differentiation": "B01/B02の交絡確認",
+      "risk": "責任と決定権に関する規範が混入",
+      "priority": "P1",
+      "editorialStatus": "REVISE",
+      "overlapCandidates": [
+        "B01",
+        "B02"
+      ],
+      "experimental": true,
+      "calibrated": false,
+      "productionApproved": false,
+      "scoringRule": "NONE_UNCALIBRATED"
+    },
+    {
+      "id": "B-FU08",
+      "axis": "B",
+      "format": "AB",
+      "stem": "家計や生活の共同ルールを対等に決めるとき、お互いに不利益の少ない二案ならどちらを選びますか？",
+      "options": [
+        {
+          "key": "A",
+          "text": "各自の希望を尊重するため、まず自分の希望をはっきり通す",
+          "polarity": "negative"
+        },
+        {
+          "key": "B",
+          "text": "共同の一体感を守るため、相手の希望に合わせる",
+          "polarity": "positive"
+        },
+        {
+          "key": "unsure",
+          "text": "選べない・判断できない",
+          "polarity": null
+        },
+        {
+          "key": "not_applicable",
+          "text": "自分には当てはまらない",
+          "polarity": null
+        }
+      ],
+      "selectionTriggers": [
+        "scenario_sensitivity",
+        "answer_inconsistency"
+      ],
+      "decisionIntent": "生活上の共通ルールの相対優先",
+      "differentiation": "B06の物理的近さを避け意思決定へ限定",
+      "risk": "自己主張と相手への配慮が両立し文章が誘導的",
+      "priority": "P1",
+      "editorialStatus": "REVISE",
+      "overlapCandidates": [
+        "B06"
+      ],
+      "experimental": true,
+      "calibrated": false,
+      "productionApproved": false,
+      "scoringRule": "NONE_UNCALIBRATED"
+    },
+    {
+      "id": "B-FU09",
+      "axis": "B",
+      "format": "PROBE",
+      "stem": "自分の希望も相手の希望も両方大事なので、どちらか片方だけを選ぶ質問は答えにくいですか？",
+      "options": [
+        {
+          "key": "yes",
+          "text": "はい",
+          "polarity": null
+        },
+        {
+          "key": "no",
+          "text": "いいえ",
+          "polarity": null
+        },
+        {
+          "key": "unsure",
+          "text": "判断できない",
+          "polarity": null
+        },
+        {
+          "key": "not_applicable",
+          "text": "自分には当てはまらない",
+          "polarity": null
+        }
+      ],
+      "selectionTriggers": [
+        "zero_sum",
+        "near_boundary"
+      ],
+      "decisionIntent": "二極回答形式が適用できるか確認",
+      "differentiation": "独立高高/低低や中立を診断値へ変換しない",
+      "risk": "抽象度が高く二者関係がない場合の不適用",
+      "priority": "P1",
+      "editorialStatus": "PROBE_ONLY",
+      "overlapCandidates": [
+        "B02"
+      ],
+      "experimental": true,
+      "calibrated": false,
+      "productionApproved": false,
+      "scoringRule": "NONE_UNCALIBRATED"
+    },
+    {
+      "id": "B-FU10",
+      "axis": "B",
+      "format": "PROBE",
+      "stem": "判断する相手が家族・友人・仕事仲間のどれかによって、優先する基準が大きく変わりますか？",
+      "options": [
+        {
+          "key": "yes",
+          "text": "はい",
+          "polarity": null
+        },
+        {
+          "key": "no",
+          "text": "いいえ",
+          "polarity": null
+        },
+        {
+          "key": "unsure",
+          "text": "判断できない",
+          "polarity": null
+        },
+        {
+          "key": "not_applicable",
+          "text": "自分には当てはまらない",
+          "polarity": null
+        }
+      ],
+      "selectionTriggers": [
+        "scenario_sensitivity",
+        "answer_inconsistency"
+      ],
+      "decisionIntent": "関係種類による場面依存の検査",
+      "differentiation": "固定人格ではなく選好条件を探る",
+      "risk": "関係対象不在・プライバシー",
+      "priority": "P1",
+      "editorialStatus": "PROBE_ONLY",
+      "overlapCandidates": [
+        "B06"
+      ],
+      "experimental": true,
+      "calibrated": false,
+      "productionApproved": false,
+      "scoringRule": "NONE_UNCALIBRATED"
+    },
+    {
+      "id": "C-FU01",
+      "axis": "C",
+      "format": "AB",
+      "stem": "自由に使える時間が週に同じだけあり、基本的な休息や義務を満たせる場合、その時間はどちらに使いたいですか？",
+      "options": [
+        {
+          "key": "A",
+          "text": "将来の選択肢を広げる準備に使う",
+          "polarity": "negative"
+        },
+        {
+          "key": "B",
+          "text": "今しかできない経験を楽しむために使う",
+          "polarity": "positive"
+        },
+        {
+          "key": "unsure",
+          "text": "選べない・判断できない",
+          "polarity": null
+        },
+        {
+          "key": "not_applicable",
+          "text": "自分には当てはまらない",
+          "polarity": null
+        }
+      ],
+      "selectionTriggers": [
+        "zero_sum",
+        "near_boundary"
+      ],
+      "decisionIntent": "余暇の現在/将来配分",
+      "differentiation": "時間量ではなく使途の優先を問う",
+      "risk": "将来便益と現在便益の大きさを揃えられない",
+      "priority": "P1",
+      "editorialStatus": "TRIAL_CANDIDATE",
+      "overlapCandidates": [
+        "C01",
+        "C05"
+      ],
+      "experimental": true,
+      "calibrated": false,
+      "productionApproved": false,
+      "scoringRule": "NONE_UNCALIBRATED"
+    },
+    {
+      "id": "C-FU02",
+      "axis": "C",
+      "format": "YN",
+      "stem": "今日の楽しみを少し減らす必要があっても、数年後の選択肢を増やす準備を優先したいですか？",
+      "options": [
+        {
+          "key": "yes",
+          "text": "はい",
+          "polarity": "negative"
+        },
+        {
+          "key": "no",
+          "text": "いいえ",
+          "polarity": null
+        },
+        {
+          "key": "unsure",
+          "text": "判断できない",
+          "polarity": null
+        },
+        {
+          "key": "not_applicable",
+          "text": "自分には当てはまらない",
+          "polarity": null
+        }
+      ],
+      "selectionTriggers": [
+        "zero_sum",
+        "near_boundary"
+      ],
+      "decisionIntent": "将来準備の優先",
+      "differentiation": "計画を立てる能力ではなく便益の時点",
+      "risk": "『少し』の尺度、将来成果の不確実性",
+      "priority": "P1",
+      "editorialStatus": "TRIAL_CANDIDATE",
+      "overlapCandidates": [
+        "C02",
+        "C05"
+      ],
+      "experimental": true,
+      "calibrated": false,
+      "productionApproved": false,
+      "scoringRule": "NONE_UNCALIBRATED"
+    },
+    {
+      "id": "C-FU03",
+      "axis": "C",
+      "format": "YN",
+      "stem": "将来の役立ち方がはっきりしている活動があっても、その日にしかできない経験を選ぶことがありますか？",
+      "options": [
+        {
+          "key": "yes",
+          "text": "はい",
+          "polarity": "positive"
+        },
+        {
+          "key": "no",
+          "text": "いいえ",
+          "polarity": null
+        },
+        {
+          "key": "unsure",
+          "text": "判断できない",
+          "polarity": null
+        },
+        {
+          "key": "not_applicable",
+          "text": "自分には当てはまらない",
+          "polarity": null
+        }
+      ],
+      "selectionTriggers": [
+        "scenario_sensitivity",
+        "answer_inconsistency"
+      ],
+      "decisionIntent": "今しかない経験の優先",
+      "differentiation": "計画性ではなく時間選好",
+      "risk": "『その日しかない』という希少性が誘導する",
+      "priority": "P1",
+      "editorialStatus": "REVISE",
+      "overlapCandidates": [
+        "C04",
+        "C06"
+      ],
+      "experimental": true,
+      "calibrated": false,
+      "productionApproved": false,
+      "scoringRule": "NONE_UNCALIBRATED"
+    },
+    {
+      "id": "C-FU04",
+      "axis": "C",
+      "format": "AB",
+      "stem": "余裕のある週末に、どちらか一つの活動しか選べず負担は同程度なら、どちらに魅力を感じますか？",
+      "options": [
+        {
+          "key": "A",
+          "text": "今週末だけの体験に参加する",
+          "polarity": "positive"
+        },
+        {
+          "key": "B",
+          "text": "将来役立つ可能性がある練習を続ける",
+          "polarity": "negative"
+        },
+        {
+          "key": "unsure",
+          "text": "選べない・判断できない",
+          "polarity": null
+        },
+        {
+          "key": "not_applicable",
+          "text": "自分には当てはまらない",
+          "polarity": null
+        }
+      ],
+      "selectionTriggers": [
+        "scenario_sensitivity",
+        "answer_inconsistency"
+      ],
+      "decisionIntent": "一回限りの現在経験と継続準備",
+      "differentiation": "新しいこと自体への関心ではなく便益時点",
+      "risk": "一回限りの機会 vs 継続という選択肢非対称",
+      "priority": "P1",
+      "editorialStatus": "REVISE",
+      "overlapCandidates": [
+        "C01",
+        "C04"
+      ],
+      "experimental": true,
+      "calibrated": false,
+      "productionApproved": false,
+      "scoringRule": "NONE_UNCALIBRATED"
+    },
+    {
+      "id": "C-FU05",
+      "axis": "C",
+      "format": "AB",
+      "stem": "準備に使える時間が限られる中、どちらも将来と現在にそれぞれ同程度の価値があると感じる場合、何を優先しますか？",
+      "options": [
+        {
+          "key": "A",
+          "text": "長期目標のための小さな準備",
+          "polarity": "negative"
+        },
+        {
+          "key": "B",
+          "text": "今日の満足を高める小さな活動",
+          "polarity": "positive"
+        },
+        {
+          "key": "unsure",
+          "text": "選べない・判断できない",
+          "polarity": null
+        },
+        {
+          "key": "not_applicable",
+          "text": "自分には当てはまらない",
+          "polarity": null
+        }
+      ],
+      "selectionTriggers": [
+        "cross_axis_overlap",
+        "answer_inconsistency"
+      ],
+      "decisionIntent": "本人基準で価値の均衡下の相対優先",
+      "differentiation": "将来成果の確率を過度に動かさない",
+      "risk": "価値が『同程度』という教示で選択不能になりやすい",
+      "priority": "P1",
+      "editorialStatus": "REVISE",
+      "overlapCandidates": [
+        "C05"
+      ],
+      "experimental": true,
+      "calibrated": false,
+      "productionApproved": false,
+      "scoringRule": "NONE_UNCALIBRATED"
+    },
+    {
+      "id": "C-FU06",
+      "axis": "C",
+      "format": "YN",
+      "stem": "今の楽しみを後日に回せる場合でも、目先の経験を選んで満足したいと思いますか？",
+      "options": [
+        {
+          "key": "yes",
+          "text": "はい",
+          "polarity": "positive"
+        },
+        {
+          "key": "no",
+          "text": "いいえ",
+          "polarity": null
+        },
+        {
+          "key": "unsure",
+          "text": "判断できない",
+          "polarity": null
+        },
+        {
+          "key": "not_applicable",
+          "text": "自分には当てはまらない",
+          "polarity": null
+        }
+      ],
+      "selectionTriggers": [
+        "zero_sum",
+        "near_boundary"
+      ],
+      "decisionIntent": "現在経験の優先",
+      "differentiation": "現在の幸せの量そのものは測らない",
+      "risk": "楽しみを後日にできるかという前提が不自然",
+      "priority": "P1",
+      "editorialStatus": "REVISE",
+      "overlapCandidates": [
+        "C02",
+        "C03"
+      ],
+      "experimental": true,
+      "calibrated": false,
+      "productionApproved": false,
+      "scoringRule": "NONE_UNCALIBRATED"
+    },
+    {
+      "id": "C-FU07",
+      "axis": "C",
+      "format": "AB",
+      "stem": "今年自由に使える余力を分けるなら、どちらの計画を先に満たしたいですか？",
+      "options": [
+        {
+          "key": "A",
+          "text": "今日を充実させる体験の予定を確保する",
+          "polarity": "positive"
+        },
+        {
+          "key": "B",
+          "text": "来年以降に役立つ学習や準備を確保する",
+          "polarity": "negative"
+        },
+        {
+          "key": "unsure",
+          "text": "選べない・判断できない",
+          "polarity": null
+        },
+        {
+          "key": "not_applicable",
+          "text": "自分には当てはまらない",
+          "polarity": null
+        }
+      ],
+      "selectionTriggers": [
+        "scenario_sensitivity",
+        "answer_inconsistency"
+      ],
+      "decisionIntent": "先に確保したい便益の時点",
+      "differentiation": "C06の計画性より配分の選択",
+      "risk": "学習と体験への興味・健康状態の影響",
+      "priority": "P1",
+      "editorialStatus": "TRIAL_CANDIDATE",
+      "overlapCandidates": [
+        "C03",
+        "C06"
+      ],
+      "experimental": true,
+      "calibrated": false,
+      "productionApproved": false,
+      "scoringRule": "NONE_UNCALIBRATED"
+    },
+    {
+      "id": "C-FU08",
+      "axis": "C",
+      "format": "AB",
+      "stem": "同じ時間の使い道を決めるとき、成果がまだ確実でない将来準備と確実に楽しめる今の経験ではどちらを選びますか？",
+      "options": [
+        {
+          "key": "A",
+          "text": "将来の準備を選ぶ",
+          "polarity": "negative"
+        },
+        {
+          "key": "B",
+          "text": "今の経験を選ぶ",
+          "polarity": "positive"
+        },
+        {
+          "key": "unsure",
+          "text": "選べない・判断できない",
+          "polarity": null
+        },
+        {
+          "key": "not_applicable",
+          "text": "自分には当てはまらない",
+          "polarity": null
+        }
+      ],
+      "selectionTriggers": [
+        "cross_axis_overlap",
+        "answer_inconsistency"
+      ],
+      "decisionIntent": "将来便益の不確実性に反応が左右されるか",
+      "differentiation": "C04の確実性交絡を切り分けるための意図的変化",
+      "risk": "リスク選好を測るため分類得点として扱わない",
+      "priority": "P1",
+      "editorialStatus": "PROBE_ONLY",
+      "overlapCandidates": [
+        "C04"
+      ],
+      "experimental": true,
+      "calibrated": false,
+      "productionApproved": false,
+      "scoringRule": "NONE_UNCALIBRATED"
+    },
+    {
+      "id": "C-FU09",
+      "axis": "C",
+      "format": "PROBE",
+      "stem": "将来得られる利益が確実かどうかによって、今と将来のどちらを選ぶかが変わりますか？",
+      "options": [
+        {
+          "key": "yes",
+          "text": "はい",
+          "polarity": null
+        },
+        {
+          "key": "no",
+          "text": "いいえ",
+          "polarity": null
+        },
+        {
+          "key": "unsure",
+          "text": "判断できない",
+          "polarity": null
+        },
+        {
+          "key": "not_applicable",
+          "text": "自分には当てはまらない",
+          "polarity": null
+        }
+      ],
+      "selectionTriggers": [
+        "cross_axis_overlap",
+        "answer_inconsistency"
+      ],
+      "decisionIntent": "将来成果の確率による選択変動",
+      "differentiation": "時間割引とリスク反応を区別",
+      "risk": "本人が正確に自己報告できるとは限らない",
+      "priority": "P1",
+      "editorialStatus": "PROBE_ONLY",
+      "overlapCandidates": [],
+      "experimental": true,
+      "calibrated": false,
+      "productionApproved": false,
+      "scoringRule": "NONE_UNCALIBRATED"
+    },
+    {
+      "id": "C-FU10",
+      "axis": "C",
+      "format": "PROBE",
+      "stem": "日常の時間的余裕や健康上の条件が変わると、今と将来のどちらを優先するかも変わりますか？",
+      "options": [
+        {
+          "key": "yes",
+          "text": "はい",
+          "polarity": null
+        },
+        {
+          "key": "no",
+          "text": "いいえ",
+          "polarity": null
+        },
+        {
+          "key": "unsure",
+          "text": "判断できない",
+          "polarity": null
+        },
+        {
+          "key": "not_applicable",
+          "text": "自分には当てはまらない",
+          "polarity": null
+        }
+      ],
+      "selectionTriggers": [
+        "insufficient_valid_answers",
+        "not_applicable"
+      ],
+      "decisionIntent": "制約条件によるC回答の適用可能性",
+      "differentiation": "E時間的自由や健康状態との交絡検査",
+      "risk": "センシティブな健康情報の詳細は収集しない",
+      "priority": "P1",
+      "editorialStatus": "PROBE_ONLY",
+      "overlapCandidates": [
+        "E01",
+        "E02"
+      ],
+      "experimental": true,
+      "calibrated": false,
+      "productionApproved": false,
+      "scoringRule": "NONE_UNCALIBRATED"
+    },
+    {
+      "id": "D-FU01",
+      "axis": "D",
+      "format": "AB",
+      "stem": "暮らしの場所や仕事はそのままで、同じ学習時間を使うなら、どちらを優先しますか？",
+      "options": [
+        {
+          "key": "A",
+          "text": "まだ知らない複数分野の入門を試す",
+          "polarity": "negative"
+        },
+        {
+          "key": "B",
+          "text": "今学んでいる一分野の専門知識を深める",
+          "polarity": "positive"
+        },
+        {
+          "key": "unsure",
+          "text": "選べない・判断できない",
+          "polarity": null
+        },
+        {
+          "key": "not_applicable",
+          "text": "自分には当てはまらない",
+          "polarity": null
+        }
+      ],
+      "selectionTriggers": [
+        "zero_sum",
+        "near_boundary"
+      ],
+      "decisionIntent": "学習テーマの幅と深さの優先",
+      "differentiation": "A環境変更と切り離す",
+      "risk": "D02と内容が重複",
+      "priority": "P1",
+      "editorialStatus": "TRIAL_CANDIDATE",
+      "overlapCandidates": [
+        "D01",
+        "D02"
+      ],
+      "experimental": true,
+      "calibrated": false,
+      "productionApproved": false,
+      "scoringRule": "NONE_UNCALIBRATED"
+    },
+    {
+      "id": "D-FU02",
+      "axis": "D",
+      "format": "YN",
+      "stem": "今取り組んでいる分野に学ぶ余地が十分残っていても、別の分野に取り組む時間を優先したいですか？",
+      "options": [
+        {
+          "key": "yes",
+          "text": "はい",
+          "polarity": "negative"
+        },
+        {
+          "key": "no",
+          "text": "いいえ",
+          "polarity": null
+        },
+        {
+          "key": "unsure",
+          "text": "判断できない",
+          "polarity": null
+        },
+        {
+          "key": "not_applicable",
+          "text": "自分には当てはまらない",
+          "polarity": null
+        }
+      ],
+      "selectionTriggers": [
+        "zero_sum",
+        "near_boundary"
+      ],
+      "decisionIntent": "深める余地があっても探索するか",
+      "differentiation": "達成度でない幅優先",
+      "risk": "新分野の魅力と経験に依存",
+      "priority": "P1",
+      "editorialStatus": "TRIAL_CANDIDATE",
+      "overlapCandidates": [
+        "D06"
+      ],
+      "experimental": true,
+      "calibrated": false,
+      "productionApproved": false,
+      "scoringRule": "NONE_UNCALIBRATED"
+    },
+    {
+      "id": "D-FU03",
+      "axis": "D",
+      "format": "YN",
+      "stem": "興味のある新分野が見つかっても、しばらくは今の専門テーマを掘り下げる方を優先したいですか？",
+      "options": [
+        {
+          "key": "yes",
+          "text": "はい",
+          "polarity": "positive"
+        },
+        {
+          "key": "no",
+          "text": "いいえ",
+          "polarity": null
+        },
+        {
+          "key": "unsure",
+          "text": "判断できない",
+          "polarity": null
+        },
+        {
+          "key": "not_applicable",
+          "text": "自分には当てはまらない",
+          "polarity": null
+        }
+      ],
+      "selectionTriggers": [
+        "zero_sum",
+        "near_boundary"
+      ],
+      "decisionIntent": "新たな関心があっても深耕するか",
+      "differentiation": "A安定ではなく知識の深度",
+      "risk": "仕事上の必要性・試験期限の影響",
+      "priority": "P1",
+      "editorialStatus": "TRIAL_CANDIDATE",
+      "overlapCandidates": [
+        "D06"
+      ],
+      "experimental": true,
+      "calibrated": false,
+      "productionApproved": false,
+      "scoringRule": "NONE_UNCALIBRATED"
+    },
+    {
+      "id": "D-FU04",
+      "axis": "D",
+      "format": "AB",
+      "stem": "新しい制作テーマと進行中の制作テーマがどちらも魅力的で、同じ時間しか使えない場合、どちらを選びますか？",
+      "options": [
+        {
+          "key": "A",
+          "text": "進行中のテーマを一段深く仕上げる",
+          "polarity": "positive"
+        },
+        {
+          "key": "B",
+          "text": "新しいテーマの試作を始める",
+          "polarity": "negative"
+        },
+        {
+          "key": "unsure",
+          "text": "選べない・判断できない",
+          "polarity": null
+        },
+        {
+          "key": "not_applicable",
+          "text": "自分には当てはまらない",
+          "polarity": null
+        }
+      ],
+      "selectionTriggers": [
+        "scenario_sensitivity",
+        "answer_inconsistency"
+      ],
+      "decisionIntent": "創作内容の幅と完成度の優先",
+      "differentiation": "居住地や活動拠点を変えない",
+      "risk": "納期・制作経験・新規性の魅力",
+      "priority": "P1",
+      "editorialStatus": "TRIAL_CANDIDATE",
+      "overlapCandidates": [
+        "D01",
+        "D06"
+      ],
+      "experimental": true,
+      "calibrated": false,
+      "productionApproved": false,
+      "scoringRule": "NONE_UNCALIBRATED"
+    },
+    {
+      "id": "D-FU05",
+      "axis": "D",
+      "format": "AB",
+      "stem": "数か月の自己学習計画を自由に組め、成果や費用の条件が同程度なら、どう進めたいですか？",
+      "options": [
+        {
+          "key": "A",
+          "text": "複数の専門分野を少しずつ試す",
+          "polarity": "negative"
+        },
+        {
+          "key": "B",
+          "text": "一つの専門領域を重点的に積み上げる",
+          "polarity": "positive"
+        },
+        {
+          "key": "unsure",
+          "text": "選べない・判断できない",
+          "polarity": null
+        },
+        {
+          "key": "not_applicable",
+          "text": "自分には当てはまらない",
+          "polarity": null
+        }
+      ],
+      "selectionTriggers": [
+        "scenario_sensitivity",
+        "answer_inconsistency"
+      ],
+      "decisionIntent": "学習テーマのポートフォリオ選択",
+      "differentiation": "D05の職業選択から離し純粋な学習へ",
+      "risk": "D02との反復・『同程度の成果』が不自然",
+      "priority": "P1",
+      "editorialStatus": "REVISE",
+      "overlapCandidates": [
+        "D02",
+        "D05"
+      ],
+      "experimental": true,
+      "calibrated": false,
+      "productionApproved": false,
+      "scoringRule": "NONE_UNCALIBRATED"
+    },
+    {
+      "id": "D-FU06",
+      "axis": "D",
+      "format": "YN",
+      "stem": "専門テーマを深く理解している実感が、複数の新しいテーマを知る楽しさより重要ですか？",
+      "options": [
+        {
+          "key": "yes",
+          "text": "はい",
+          "polarity": "positive"
+        },
+        {
+          "key": "no",
+          "text": "いいえ",
+          "polarity": null
+        },
+        {
+          "key": "unsure",
+          "text": "判断できない",
+          "polarity": null
+        },
+        {
+          "key": "not_applicable",
+          "text": "自分には当てはまらない",
+          "polarity": null
+        }
+      ],
+      "selectionTriggers": [
+        "cross_axis_overlap",
+        "answer_inconsistency"
+      ],
+      "decisionIntent": "本人の深度志向",
+      "differentiation": "学習の達成可能性から価値選好を切り出す",
+      "risk": "理解の能力評価と高低の魅力度が混ざる",
+      "priority": "P1",
+      "editorialStatus": "REVISE",
+      "overlapCandidates": [
+        "D02"
+      ],
+      "experimental": true,
+      "calibrated": false,
+      "productionApproved": false,
+      "scoringRule": "NONE_UNCALIBRATED"
+    },
+    {
+      "id": "D-FU07",
+      "axis": "D",
+      "format": "AB",
+      "stem": "すでに学んでいる内容に未解決の問いが残っており、別の興味深い分野もあるとき、次の時間をどちらに割きますか？",
+      "options": [
+        {
+          "key": "A",
+          "text": "別分野の基本を知る",
+          "polarity": "negative"
+        },
+        {
+          "key": "B",
+          "text": "現在の問いをさらに解く",
+          "polarity": "positive"
+        },
+        {
+          "key": "unsure",
+          "text": "選べない・判断できない",
+          "polarity": null
+        },
+        {
+          "key": "not_applicable",
+          "text": "自分には当てはまらない",
+          "polarity": null
+        }
+      ],
+      "selectionTriggers": [
+        "cross_axis_overlap",
+        "answer_inconsistency"
+      ],
+      "decisionIntent": "同時に魅力あるテーマの限界優先",
+      "differentiation": "A環境/拠点を変えず同じ資源を配分",
+      "risk": "問いの難度や成果見込みが揃わない",
+      "priority": "P1",
+      "editorialStatus": "TRIAL_CANDIDATE",
+      "overlapCandidates": [
+        "D06"
+      ],
+      "experimental": true,
+      "calibrated": false,
+      "productionApproved": false,
+      "scoringRule": "NONE_UNCALIBRATED"
+    },
+    {
+      "id": "D-FU08",
+      "axis": "D",
+      "format": "PROBE",
+      "stem": "生活する場所や働く環境を変えたい気持ちと、学びたい分野を変えたい気持ちは別のものだと感じますか？",
+      "options": [
+        {
+          "key": "yes",
+          "text": "はい",
+          "polarity": null
+        },
+        {
+          "key": "no",
+          "text": "いいえ",
+          "polarity": null
+        },
+        {
+          "key": "unsure",
+          "text": "判断できない",
+          "polarity": null
+        },
+        {
+          "key": "not_applicable",
+          "text": "自分には当てはまらない",
+          "polarity": null
+        }
+      ],
+      "selectionTriggers": [
+        "cross_axis_overlap",
+        "answer_inconsistency"
+      ],
+      "decisionIntent": "A/Dの弁別可能性の検査",
+      "differentiation": "分類得点としない認知的プローブ",
+      "risk": "難しいメタ認知質問のため解釈が揺れる",
+      "priority": "P1",
+      "editorialStatus": "PROBE_ONLY",
+      "overlapCandidates": [
+        "A05",
+        "D04"
+      ],
+      "experimental": true,
+      "calibrated": false,
+      "productionApproved": false,
+      "scoringRule": "NONE_UNCALIBRATED"
+    },
+    {
+      "id": "E-FU01",
+      "axis": "E",
+      "format": "AB",
+      "stem": "基本的な生活費と休息が確保され、追加の余裕をどちらか一つ得られるなら、今のあなたは何を優先しますか？",
+      "options": [
+        {
+          "key": "A",
+          "text": "自由に使えるお金の余裕",
+          "polarity": "negative"
+        },
+        {
+          "key": "B",
+          "text": "自由に使える時間の余裕",
+          "polarity": "positive"
+        },
+        {
+          "key": "unsure",
+          "text": "選べない・判断できない",
+          "polarity": null
+        },
+        {
+          "key": "not_applicable",
+          "text": "自分には当てはまらない",
+          "polarity": null
+        }
+      ],
+      "selectionTriggers": [
+        "zero_sum",
+        "near_boundary"
+      ],
+      "decisionIntent": "Eの補助的相対選好",
+      "differentiation": "経済と時間の補助方向のみ",
+      "risk": "増える量が統一されず評価不可能な場合がある",
+      "priority": "P1",
+      "editorialStatus": "REVISE",
+      "overlapCandidates": [
+        "E01",
+        "E05"
+      ],
+      "experimental": true,
+      "calibrated": false,
+      "productionApproved": false,
+      "scoringRule": "NONE_UNCALIBRATED"
+    },
+    {
+      "id": "E-FU02",
+      "axis": "E",
+      "format": "YN",
+      "stem": "十分な休息はあるとして、自由時間を少し増やすよりも、使い道を選べる追加収入の方を優先したいですか？",
+      "options": [
+        {
+          "key": "yes",
+          "text": "はい",
+          "polarity": "negative"
+        },
+        {
+          "key": "no",
+          "text": "いいえ",
+          "polarity": null
+        },
+        {
+          "key": "unsure",
+          "text": "判断できない",
+          "polarity": null
+        },
+        {
+          "key": "not_applicable",
+          "text": "自分には当てはまらない",
+          "polarity": null
+        }
+      ],
+      "selectionTriggers": [
+        "zero_sum",
+        "near_boundary"
+      ],
+      "decisionIntent": "経済余力の優先",
+      "differentiation": "必要な休養と自由時間を区別",
+      "risk": "所得/時間の増分が不明・必要性に依存",
+      "priority": "P1",
+      "editorialStatus": "REVISE",
+      "overlapCandidates": [
+        "E01",
+        "E02"
+      ],
+      "experimental": true,
+      "calibrated": false,
+      "productionApproved": false,
+      "scoringRule": "NONE_UNCALIBRATED"
+    },
+    {
+      "id": "E-FU03",
+      "axis": "E",
+      "format": "YN",
+      "stem": "生活費に不安がないとして、追加収入よりも予定を自由に使える時間を増やしたいですか？",
+      "options": [
+        {
+          "key": "yes",
+          "text": "はい",
+          "polarity": "positive"
+        },
+        {
+          "key": "no",
+          "text": "いいえ",
+          "polarity": null
+        },
+        {
+          "key": "unsure",
+          "text": "判断できない",
+          "polarity": null
+        },
+        {
+          "key": "not_applicable",
+          "text": "自分には当てはまらない",
+          "polarity": null
+        }
+      ],
+      "selectionTriggers": [
+        "zero_sum",
+        "near_boundary"
+      ],
+      "decisionIntent": "時間裁量の優先",
+      "differentiation": "生活不安をある程度統制",
+      "risk": "追加量が不明でE03やE05と重複",
+      "priority": "P1",
+      "editorialStatus": "REVISE",
+      "overlapCandidates": [
+        "E03",
+        "E05"
+      ],
+      "experimental": true,
+      "calibrated": false,
+      "productionApproved": false,
+      "scoringRule": "NONE_UNCALIBRATED"
+    },
+    {
+      "id": "E-FU04",
+      "axis": "E",
+      "format": "PROBE",
+      "stem": "収入・家計・休養の状況が変われば、お金と自由時間のどちらを重視するかも大きく変わりますか？",
+      "options": [
+        {
+          "key": "yes",
+          "text": "はい",
+          "polarity": null
+        },
+        {
+          "key": "no",
+          "text": "いいえ",
+          "polarity": null
+        },
+        {
+          "key": "unsure",
+          "text": "判断できない",
+          "polarity": null
+        },
+        {
+          "key": "not_applicable",
+          "text": "自分には当てはまらない",
+          "polarity": null
+        }
+      ],
+      "selectionTriggers": [
+        "insufficient_valid_answers",
+        "not_applicable"
+      ],
+      "decisionIntent": "E軸回答の資源制約依存を確認",
+      "differentiation": "価値観と欠乏状態の交絡検査",
+      "risk": "生活状況の詳細は求めずYes/Noのみ",
+      "priority": "P1",
+      "editorialStatus": "PROBE_ONLY",
+      "overlapCandidates": [
+        "E05",
+        "E06"
+      ],
+      "experimental": true,
+      "calibrated": false,
+      "productionApproved": false,
+      "scoringRule": "NONE_UNCALIBRATED"
+    }
+  ]
+}

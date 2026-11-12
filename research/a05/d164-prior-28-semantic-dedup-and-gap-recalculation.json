@@ -1,0 +1,603 @@
+{
+  "schema": "A05-D164-28CANDIDATE-SEMANTIC-TRIAGE-0.1",
+  "date": "2026-11-11",
+  "status": "NOT_APPROVED_EDITORIAL_SHORTLIST",
+  "purpose": "Review optimistic 28 after 0-exact and 2-per-semantic family user policy. Count only wording candidates for cognitive interviews; none are valid scored bank items yet.",
+  "source_blobs": {
+    "research/a05/d161-reassessment-of-30-historical-rejects-with-controls.json": "4299d6594783dc82aeda62bf2995c28fe5d220d8",
+    "research/a05/d162-ten-conditional-rescue-contrast-rewrites.json": "6fb14eea4f2ecbff502b428791d1de715a346ae9",
+    "research/a05/d146-50slot-before-after-quality-proposals.json": "53b3e137ff3597bdf7072c880c622baf8fee6814",
+    "research/a05/d142-full-50-item-content-disposition.json": "85286173eeb6350d7a1d5b17a617702afd9675ff",
+    "research/a05/d158-semantic-family-two-question-limit-and-audit.json": "82c2e809249d6dec4f297c4059d035052cd89073"
+  },
+  "fixed": {
+    "pool": 50,
+    "draw": 30,
+    "axis_pool": {
+      "A": 12,
+      "B": 12,
+      "C": 12,
+      "D": 12,
+      "E": 2
+    },
+    "axis_draw": {
+      "A": 7,
+      "B": 7,
+      "C": 7,
+      "D": 7,
+      "E": 2
+    },
+    "exact_duplicates_allowed": 0,
+    "per_semantic_family_max": 2
+  },
+  "levels": {
+    "PRIMARY": "Preferred compared wording for cognitive interview, not scored approval",
+    "CONDITIONAL": "Possible second or extra scenario pending evidence that response reasons materially differ",
+    "ALTERNATE": "Paraphrase or near duplicate; does not create extra bank capacity",
+    "HOLD": "Unresolved axis overlap; not considered bank capacity"
+  },
+  "records": [
+    {
+      "id": "A01",
+      "axis": "A",
+      "level": "PRIMARY",
+      "semantic_family_hypothesis": "A_RESIDENCE",
+      "compare_to": "A-BK15",
+      "editorial_reason": "住居基盤の継続と更新。転居の実現可能性に注意",
+      "old_d142": "REWRITE",
+      "current_text_source": "D146",
+      "proposal": {
+        "stem": "費用・便利さ・周囲との関係が同じ住まいを選べるとき、今後の生活基盤としてどちらを好みますか？",
+        "left": "今の住まいを基盤に、必要な部分を整えながら暮らす",
+        "right": "別の住まいへ移り、暮らしの基盤を組み直す"
+      },
+      "content_approved": false,
+      "interviewed": false
+    },
+    {
+      "id": "A02",
+      "axis": "A",
+      "level": "PRIMARY",
+      "semantic_family_hypothesis": "A_ACTIVITY_BASE",
+      "compare_to": "A05",
+      "editorial_reason": "活動を続ける拠点。場所の新奇性への回答に注意",
+      "old_d142": "OUT_OF_CONSTRUCT",
+      "current_text_source": "D146",
+      "proposal": {
+        "stem": "同じ活動を同じ負担で続けられるなら、定期的に使う活動場所をどう選びたいですか？",
+        "left": "使い慣れた同じ場所を活動の拠点にする",
+        "right": "一定の区切りごとに別の場所を活動の拠点にする"
+      },
+      "content_approved": false,
+      "interviewed": false
+    },
+    {
+      "id": "A04",
+      "axis": "A",
+      "level": "PRIMARY",
+      "semantic_family_hypothesis": "A_DAILY_PROCEDURE",
+      "compare_to": "A-FU05",
+      "editorial_reason": "家事の運用手順の継続と再編",
+      "old_d142": "REWRITE",
+      "current_text_source": "D146",
+      "proposal": {
+        "stem": "家事や用事を行う時間と負担が同じなら、普段の進め方はどちらを好みますか？",
+        "left": "慣れた手順を基本として必要なところを整える",
+        "right": "手順全体を別の組み立て方に変える"
+      },
+      "content_approved": false,
+      "interviewed": false
+    },
+    {
+      "id": "A05",
+      "axis": "A",
+      "level": "HOLD",
+      "semantic_family_hypothesis": "A_ORGANIZATION_ENV",
+      "compare_to": "A02",
+      "editorial_reason": "組織帰属意識やB軸が混入しやすい",
+      "old_d142": "PROBE_ONLY",
+      "current_text_source": "D162",
+      "proposal": {
+        "stem": "同じ活動を続ける際、仕事内容・人間関係・成果・負担が同じだとします。活動を支える組織の運営環境について、どちらをより好みますか？",
+        "left": "使い慣れた運営環境を引き継ぎながら活動する",
+        "right": "運営環境が異なる組織に移って活動する"
+      },
+      "content_approved": false,
+      "interviewed": false
+    },
+    {
+      "id": "A-FU05",
+      "axis": "A",
+      "level": "CONDITIONAL",
+      "semantic_family_hypothesis": "A_LIFE_MANAGEMENT",
+      "compare_to": "A04",
+      "editorial_reason": "生活管理基盤と家事手順を区別できるか",
+      "old_d142": "PROVISIONAL_KEEP",
+      "current_text_source": "D146",
+      "proposal": {
+        "stem": "便利さと手間が同程度の生活管理の仕組みを選べるなら、どちらを使いたいですか？",
+        "left": "使い慣れた管理方法を土台として改善する",
+        "right": "管理方法の土台自体を別の方法に切り替える"
+      },
+      "content_approved": false,
+      "interviewed": false
+    },
+    {
+      "id": "A-BK13",
+      "axis": "A",
+      "level": "ALTERNATE",
+      "semantic_family_hypothesis": "A_LIFE_MANAGEMENT",
+      "compare_to": "A-FU05",
+      "editorial_reason": "年単位という条件を加えただけで管理基盤の同義近接",
+      "old_d142": "DUPLICATE_MERGE",
+      "current_text_source": "D162",
+      "proposal": {
+        "stem": "来年も生活上の負担と便利さが同じで、暮らしの管理方法を選び直せるとします。どちらを好みますか？",
+        "left": "今の管理の基本を維持し、必要な箇所を少しずつ整える",
+        "right": "来年を区切りに管理の基本を別方式へ組み替える"
+      },
+      "content_approved": false,
+      "interviewed": false
+    },
+    {
+      "id": "B01",
+      "axis": "B",
+      "level": "PRIMARY",
+      "semantic_family_hypothesis": "B_COLLECTIVE_FINAL",
+      "compare_to": "B-FU04",
+      "editorial_reason": "共同判断の最終基準を直接比較",
+      "old_d142": "REWRITE",
+      "current_text_source": "D146",
+      "proposal": {
+        "stem": "自分と関係者の意見が違い、どちらの案でも成果や負担が同じなら、何をより優先しますか？",
+        "left": "自分が妥当だと思う案で決める",
+        "right": "関係者が納得する合意を優先する"
+      },
+      "content_approved": false,
+      "interviewed": false
+    },
+    {
+      "id": "B03",
+      "axis": "B",
+      "level": "CONDITIONAL",
+      "semantic_family_hypothesis": "B_COLLECTIVE_FINAL",
+      "compare_to": "B01",
+      "editorial_reason": "共同目標が一般の共同方針と異なるか未確認",
+      "old_d142": "PROBE_ONLY",
+      "current_text_source": "D146",
+      "proposal": {
+        "stem": "共同で進める活動の目標について意見が分かれ、結果や負担が同じなら、どちらを重視しますか？",
+        "left": "自分が適切だと考える目標を選ぶ",
+        "right": "参加者が合意できる目標を選ぶ"
+      },
+      "content_approved": false,
+      "interviewed": false
+    },
+    {
+      "id": "B04",
+      "axis": "B",
+      "level": "ALTERNATE",
+      "semantic_family_hypothesis": "B_SHARED_SCHEDULE",
+      "compare_to": "B-FU05",
+      "editorial_reason": "必要な用事と任意余暇の義務差が大きい",
+      "old_d142": "DUPLICATE_MERGE",
+      "current_text_source": "D162",
+      "proposal": {
+        "stem": "共通の用事を行う予定について、参加者全員の負担と成果が同じ二つの案で希望が割れました。あなたはどちらをより優先しますか？",
+        "left": "自分が望む予定を基準に決める",
+        "right": "参加者が合意できる予定を基準に決める"
+      },
+      "content_approved": false,
+      "interviewed": false
+    },
+    {
+      "id": "B05",
+      "axis": "B",
+      "level": "ALTERNATE",
+      "semantic_family_hypothesis": "B_COLLECTIVE_FINAL",
+      "compare_to": "B01",
+      "editorial_reason": "作業方法という題材違いで共同決定の同義近接",
+      "old_d142": "REWRITE",
+      "current_text_source": "D146",
+      "proposal": {
+        "stem": "同じ成果と負担で行える二つの作業方法に意見が割れたら、どちらを基準に決めたいですか？",
+        "left": "自分が適切だと思う進め方を選ぶ",
+        "right": "関係者が合意できる進め方を選ぶ"
+      },
+      "content_approved": false,
+      "interviewed": false
+    },
+    {
+      "id": "B06",
+      "axis": "B",
+      "level": "CONDITIONAL",
+      "semantic_family_hypothesis": "B_PERSONAL_DECISION",
+      "compare_to": "B-FU01",
+      "editorial_reason": "同居相手の重要決定は大切な人との判断と近い",
+      "old_d142": "REWRITE",
+      "current_text_source": "D146",
+      "proposal": {
+        "stem": "一緒に暮らす相手と生活の重要な選択で希望が分かれ、双方への影響が同じなら、どちらを重視しますか？",
+        "left": "自分の希望に合う選択を優先する",
+        "right": "双方で合意できる選択を優先する"
+      },
+      "content_approved": false,
+      "interviewed": false
+    },
+    {
+      "id": "B-FU01",
+      "axis": "B",
+      "level": "PRIMARY",
+      "semantic_family_hypothesis": "B_PERSONAL_DECISION",
+      "compare_to": "B06",
+      "editorial_reason": "個人の選択で自己判断と合意の優先を比較",
+      "old_d142": "PROVISIONAL_KEEP",
+      "current_text_source": "D146",
+      "proposal": {
+        "stem": "大切な人と二つの選択肢の希望が異なり、どちらでも負担が同じなら、何をより重視しますか？",
+        "left": "話し合いを踏まえて自分が望む方を選ぶこと",
+        "right": "話し合って双方が納得できる方を選ぶこと"
+      },
+      "content_approved": false,
+      "interviewed": false
+    },
+    {
+      "id": "B-FU04",
+      "axis": "B",
+      "level": "ALTERNATE",
+      "semantic_family_hypothesis": "B_COLLECTIVE_FINAL",
+      "compare_to": "B01",
+      "editorial_reason": "共同方針の一般論でB01に近い",
+      "old_d142": "PROVISIONAL_KEEP",
+      "current_text_source": "D146",
+      "proposal": {
+        "stem": "共同活動の方針について成果と負担が同じ二案で意見が割れたら、どちらを優先しますか？",
+        "left": "自分の判断に近い方針を採る",
+        "right": "関係者が合意できる方針を採る"
+      },
+      "content_approved": false,
+      "interviewed": false
+    },
+    {
+      "id": "B-FU05",
+      "axis": "B",
+      "level": "PRIMARY",
+      "semantic_family_hypothesis": "B_SHARED_SCHEDULE",
+      "compare_to": "B04",
+      "editorial_reason": "任意の共同余暇の調整。譲歩規範への誘導が残る",
+      "old_d142": "DUPLICATE_MERGE",
+      "current_text_source": "D162",
+      "proposal": {
+        "stem": "一緒に過ごす休日の予定で、どちらの案も時間・費用・楽しさは同じだとします。希望が異なる場合、どちらをより優先しますか？",
+        "left": "自分が希望する過ごし方を採ること",
+        "right": "一緒に過ごす人が合意できる過ごし方を採ること"
+      },
+      "content_approved": false,
+      "interviewed": false
+    },
+    {
+      "id": "B-BK13",
+      "axis": "B",
+      "level": "ALTERNATE",
+      "semantic_family_hypothesis": "B_COLLECTIVE_FINAL",
+      "compare_to": "B01",
+      "editorial_reason": "共同ルールは題材違いの可能性が高い",
+      "old_d142": "DUPLICATE_MERGE",
+      "current_text_source": "D162",
+      "proposal": {
+        "stem": "共同活動の共通ルールを長期間使うために選ぶとします。全員の権利・負担が等しく、どちらにも合理性がある場合、何をより重視しますか？",
+        "left": "自分が妥当だと判断するルールを基準とする",
+        "right": "参加者が合意できるルールを基準とする"
+      },
+      "content_approved": false,
+      "interviewed": false
+    },
+    {
+      "id": "C01",
+      "axis": "C",
+      "level": "PRIMARY",
+      "semantic_family_hypothesis": "C_ONEOFF_TIME",
+      "compare_to": "C-FU11",
+      "editorial_reason": "単発の自由時間を将来準備か現在充実に使う",
+      "old_d142": "REWRITE",
+      "current_text_source": "D146",
+      "proposal": {
+        "stem": "今週自由に使える同じ時間を、将来と現在のどちらへ優先的に使いたいですか？",
+        "left": "数か月後の選択肢を増やすための活動",
+        "right": "今週の経験そのものを充実させる活動"
+      },
+      "content_approved": false,
+      "interviewed": false
+    },
+    {
+      "id": "C03",
+      "axis": "C",
+      "level": "CONDITIONAL",
+      "semantic_family_hypothesis": "C_ACTIVITY_SELECTION",
+      "compare_to": "C04",
+      "editorial_reason": "活動選択と単発時間配分の差分を確認",
+      "old_d142": "PROBE_ONLY",
+      "current_text_source": "D162",
+      "proposal": {
+        "stem": "同じ時間・負担で参加でき、興味の強さが同じ二つの活動があります。選ぶとき、どちらの価値をより優先しますか？",
+        "left": "数か月後の選択肢が広がる価値",
+        "right": "参加している今の時間が充実する価値"
+      },
+      "content_approved": false,
+      "interviewed": false
+    },
+    {
+      "id": "C04",
+      "axis": "C",
+      "level": "ALTERNATE",
+      "semantic_family_hypothesis": "C_ACTIVITY_SELECTION",
+      "compare_to": "C03",
+      "editorial_reason": "継続活動と活動選択が同じ価値判断になりやすい",
+      "old_d142": "OUT_OF_CONSTRUCT",
+      "current_text_source": "D146",
+      "proposal": {
+        "stem": "同じ時間と負担で続けられる活動を選べるなら、どちらを優先したいですか？",
+        "left": "数か月後の目標達成につながる活動を続ける",
+        "right": "活動する今の時間が充実する取り組みを続ける"
+      },
+      "content_approved": false,
+      "interviewed": false
+    },
+    {
+      "id": "C05",
+      "axis": "C",
+      "level": "PRIMARY",
+      "semantic_family_hypothesis": "C_REPEATED_TIME",
+      "compare_to": "C-BK15",
+      "editorial_reason": "毎週の繰り返す時間配分と単発配分を区別",
+      "old_d142": "DUPLICATE_MERGE",
+      "current_text_source": "D162",
+      "proposal": {
+        "stem": "必要な休息を確保したうえで、毎週同じ自由時間を数か月使うとします。どちらへ多く配分したいですか？",
+        "left": "将来の選択肢を増やす準備を毎週進める",
+        "right": "毎週の体験そのものを充実させる"
+      },
+      "content_approved": false,
+      "interviewed": false
+    },
+    {
+      "id": "C-FU11",
+      "axis": "C",
+      "level": "ALTERNATE",
+      "semantic_family_hypothesis": "C_ONEOFF_TIME",
+      "compare_to": "C01",
+      "editorial_reason": "必要な休息後という条件以外はC01と近い",
+      "old_d142": "PROVISIONAL_KEEP",
+      "current_text_source": "D146",
+      "proposal": {
+        "stem": "生活上の負担や必要な休息を満たした後、自由な時間があればどちらを優先しますか？",
+        "left": "後から選べる活動を増やすための準備",
+        "right": "今行える体験を充実させるための活動"
+      },
+      "content_approved": false,
+      "interviewed": false
+    },
+    {
+      "id": "C-BK15",
+      "axis": "C",
+      "level": "ALTERNATE",
+      "semantic_family_hypothesis": "C_REPEATED_TIME",
+      "compare_to": "C05",
+      "editorial_reason": "毎週の将来準備／現在充実の反復配分で同型",
+      "old_d142": "REWRITE",
+      "current_text_source": "D146",
+      "proposal": {
+        "stem": "毎週確保できる同じ自由時間を、今後数週間どちらへ優先配分したいですか？",
+        "left": "数か月後の目標に向けて少しずつ進める",
+        "right": "各週の体験そのものを充実させる"
+      },
+      "content_approved": false,
+      "interviewed": false
+    },
+    {
+      "id": "D01",
+      "axis": "D",
+      "level": "PRIMARY",
+      "semantic_family_hypothesis": "D_HOBBY_BREADTH",
+      "compare_to": "D-FU11",
+      "editorial_reason": "趣味・活動の幅と深さ",
+      "old_d142": "PROVISIONAL_KEEP",
+      "current_text_source": "D146",
+      "proposal": {
+        "stem": "関心を持てる趣味や活動に同じ時間を使えるなら、どちらを選びたいですか？",
+        "left": "まだ取り組んだことのない活動を試す",
+        "right": "以前から取り組んでいる活動を掘り下げる"
+      },
+      "content_approved": false,
+      "interviewed": false
+    },
+    {
+      "id": "D02",
+      "axis": "D",
+      "level": "PRIMARY",
+      "semantic_family_hypothesis": "D_STUDY_BREADTH",
+      "compare_to": "D-FU12",
+      "editorial_reason": "学習分野の幅と深さ",
+      "old_d142": "PROVISIONAL_KEEP",
+      "current_text_source": "D146",
+      "proposal": {
+        "stem": "関心がある分野を同じ時間で学べる場合、どちらをより好みますか？",
+        "left": "異なる複数分野の基本を学ぶ",
+        "right": "一つの分野をさらに詳しく学ぶ"
+      },
+      "content_approved": false,
+      "interviewed": false
+    },
+    {
+      "id": "D05",
+      "axis": "D",
+      "level": "ALTERNATE",
+      "semantic_family_hypothesis": "D_STUDY_BREADTH",
+      "compare_to": "D02",
+      "editorial_reason": "複数分野の学びか専門深化かはD02と同型",
+      "old_d142": "REWRITE",
+      "current_text_source": "D146",
+      "proposal": {
+        "stem": "異なる分野に同じ時間を使えるなら、どちらの学び方を選びたいですか？",
+        "left": "いくつかの分野を組み合わせて理解する",
+        "right": "一つの分野を続けて詳しく理解する"
+      },
+      "content_approved": false,
+      "interviewed": false
+    },
+    {
+      "id": "D-FU09",
+      "axis": "D",
+      "level": "ALTERNATE",
+      "semantic_family_hypothesis": "D_STUDY_BREADTH",
+      "compare_to": "D02",
+      "editorial_reason": "未経験という条件を付しただけでD02と近い",
+      "old_d142": "DUPLICATE_MERGE",
+      "current_text_source": "D162",
+      "proposal": {
+        "stem": "未経験で同じ程度に興味のある分野を学び始めます。同じ学習時間を使うなら、どちらをより好みますか？",
+        "left": "異なる複数の新しい分野の基礎を広く学ぶ",
+        "right": "一つの新しい分野を選んで内容を深く学ぶ"
+      },
+      "content_approved": false,
+      "interviewed": false
+    },
+    {
+      "id": "D-FU11",
+      "axis": "D",
+      "level": "CONDITIONAL",
+      "semantic_family_hypothesis": "D_HOBBY_BREADTH",
+      "compare_to": "D01",
+      "editorial_reason": "活動全体の組合せが一趣味の選択と異なるか確認",
+      "old_d142": "PROBE_ONLY",
+      "current_text_source": "D162",
+      "proposal": {
+        "stem": "現在続けている活動に加えて自由な時間が増えた場合、どちらの使い方をより好みますか？",
+        "left": "異なる分野の活動も始めて活動の幅を広げる",
+        "right": "今の活動分野の内容をさらに深める"
+      },
+      "content_approved": false,
+      "interviewed": false
+    },
+    {
+      "id": "D-FU12",
+      "axis": "D",
+      "level": "ALTERNATE",
+      "semantic_family_hypothesis": "D_STUDY_BREADTH",
+      "compare_to": "D02",
+      "editorial_reason": "具体的時間数でD02を言い換えている",
+      "old_d142": "PROVISIONAL_KEEP",
+      "current_text_source": "D146",
+      "proposal": {
+        "stem": "週4時間の自由な学習時間があれば、どちらを選びたいですか？",
+        "left": "異なる二分野に2時間ずつ使う",
+        "right": "一つの分野を4時間学んで深める"
+      },
+      "content_approved": false,
+      "interviewed": false
+    },
+    {
+      "id": "D-BK13",
+      "axis": "D",
+      "level": "CONDITIONAL",
+      "semantic_family_hypothesis": "D_TOPIC_UNDERSTANDING",
+      "compare_to": "D05",
+      "editorial_reason": "一つの問いを理解するための異分野参照。能力・方法の交絡",
+      "old_d142": "DUPLICATE_MERGE",
+      "current_text_source": "D162",
+      "proposal": {
+        "stem": "一つの関心テーマについて、同じ学習時間で新しい知識を得られるとします。どちらの理解の広げ方を好みますか？",
+        "left": "関連する別分野の基礎も学んで理解を広げる",
+        "right": "今取り組む分野の専門的な内容を掘り下げる"
+      },
+      "content_approved": false,
+      "interviewed": false
+    }
+  ],
+  "axes": {
+    "A": {
+      "previous_optimistic": 6,
+      "primary": 3,
+      "conditional": 1,
+      "alternates": 1,
+      "hold": 1,
+      "review_shortlist": 4,
+      "unresolved_if_all_shortlisted_survive": 8,
+      "unresolved_if_only_primary_survive": 9,
+      "semantic_families_in_shortlist": 4,
+      "per_family": {
+        "A_RESIDENCE": 1,
+        "A_ACTIVITY_BASE": 1,
+        "A_DAILY_PROCEDURE": 1,
+        "A_LIFE_MANAGEMENT": 1
+      }
+    },
+    "B": {
+      "previous_optimistic": 9,
+      "primary": 3,
+      "conditional": 2,
+      "alternates": 4,
+      "hold": 0,
+      "review_shortlist": 5,
+      "unresolved_if_all_shortlisted_survive": 7,
+      "unresolved_if_only_primary_survive": 9,
+      "semantic_families_in_shortlist": 3,
+      "per_family": {
+        "B_COLLECTIVE_FINAL": 2,
+        "B_PERSONAL_DECISION": 2,
+        "B_SHARED_SCHEDULE": 1
+      }
+    },
+    "C": {
+      "previous_optimistic": 6,
+      "primary": 2,
+      "conditional": 1,
+      "alternates": 3,
+      "hold": 0,
+      "review_shortlist": 3,
+      "unresolved_if_all_shortlisted_survive": 9,
+      "unresolved_if_only_primary_survive": 10,
+      "semantic_families_in_shortlist": 3,
+      "per_family": {
+        "C_ONEOFF_TIME": 1,
+        "C_REPEATED_TIME": 1,
+        "C_ACTIVITY_SELECTION": 1
+      }
+    },
+    "D": {
+      "previous_optimistic": 7,
+      "primary": 2,
+      "conditional": 2,
+      "alternates": 3,
+      "hold": 0,
+      "review_shortlist": 4,
+      "unresolved_if_all_shortlisted_survive": 8,
+      "unresolved_if_only_primary_survive": 10,
+      "semantic_families_in_shortlist": 3,
+      "per_family": {
+        "D_HOBBY_BREADTH": 2,
+        "D_STUDY_BREADTH": 1,
+        "D_TOPIC_UNDERSTANDING": 1
+      }
+    }
+  },
+  "totals": {
+    "previous": 28,
+    "primary": 10,
+    "conditional": 6,
+    "alternate": 11,
+    "hold": 1,
+    "shortlist": 16
+  },
+  "unresolved_bank_slots_if_all_16_pass": 32,
+  "unresolved_if_only_ten_primary_pass": 38,
+  "actual_approved_score_items": 0,
+  "original_bank_modified": false,
+  "scoring_modified": false,
+  "respondents_tested": 0,
+  "limitations": [
+    "No empirical content or psychometric evidence confirms even the primary candidates.",
+    "32 is an optimistic editorial gap under this shortlist, not exactly 32 brand new items to write; alternates can be reconsidered later.",
+    "Some conditional second items may prove exact semantic duplicates and fail; do not artificially split labels."
+  ]
+}

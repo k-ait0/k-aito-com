@@ -1,0 +1,80 @@
+name: A05 research review browser QA
+
+on:
+  pull_request:
+    paths:
+      - 'research/a05/d170-eleven-hypotheses-offline-cognitive-review.html'
+      - 'research/a05/d175-tier1-participant-pilot-offline.html'
+      - 'scripts/test-a05-d170-browser.cjs'
+      - 'scripts/test-a05-d175-participant-browser.cjs'
+      - 'scripts/a05-d175-participant-aggregate.cjs'
+      - 'scripts/test-a05-d175-participant-aggregate.cjs'
+      - 'scripts/a05-d170-research-aggregate.cjs'
+      - 'scripts/test-a05-d170-research-aggregate.cjs'
+      - 'scripts/test-a05-research-contracts.mjs'
+      - 'scripts/test-a05-d152-d153-content-gates.mjs'
+      - 'scripts/test-a05-d179-angle-gates.mjs'
+      - 'docs/A05_V2_D180_SIX_ALTERNATIVE_ANGLES_EDITORIAL_REVIEW_20261111.md'
+      - 'scripts/test-a05-d181-additional-angles.mjs'
+      - 'docs/A05_V2_D182_SIX_ADDITIONAL_ANGLES_REVIEW_20261111.md'
+      - 'scripts/test-a05-d183-d185-new-content-questions.mjs'
+      - 'docs/A05_V2_D185_TWENTYFOUR_ACTUAL_NEW_QUESTIONS_AND_DEDUP_20261111.md'
+      - 'scripts/test-a05-d186-d191-wide-patterns.mjs'
+      - 'docs/A05_V2_D191_96PATTERN_BREADTH_FIRST_ANALYSIS_20261111.md'
+      - 'scripts/test-a05-d192-d194-multilens.mjs'
+      - 'docs/A05_V2_D194_MULTILENS_96QUESTIONS_AND_DRAW_DIAGNOSIS_20261111.md'
+      - 'scripts/test-a05-d197-master-paired-revisions.mjs'
+      - 'docs/A05_ALL_QUESTION_TEXTS_AND_EDITORIAL_ASSESSMENTS_20261111.md'
+      - 'scripts/test-a05-d198-d199-selection.mjs'
+      - 'docs/A05_V2_D199_TEN_TO_FOUR_EDITORIAL_SELECTION_20261112.md'
+      - 'scripts/test-a05-d200-d201-new-angles.mjs'
+      - 'docs/A05_V2_D201_METHODS_13_TO_18_REVIEW_20261112.md'
+      - 'research/a05/d1*.json'
+      - '.github/workflows/a05-research-browser-qa.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  d170-offline-review:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - name: Checkout PR branch
+        uses: actions/checkout@v4
+      - name: Setup Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check browser test syntax
+        run: |
+          node --check scripts/test-a05-d170-browser.cjs
+          node --check scripts/test-a05-d175-participant-browser.cjs
+          node --check scripts/a05-d175-participant-aggregate.cjs
+      - name: Verify archival provenance and editorial gates (146 tests)
+        run: node --test scripts/test-a05-d152-d153-content-gates.mjs scripts/test-a05-research-contracts.mjs scripts/test-a05-d170-research-aggregate.cjs scripts/test-a05-d175-participant-aggregate.cjs scripts/test-a05-d179-angle-gates.mjs scripts/test-a05-d181-additional-angles.mjs scripts/test-a05-d183-d185-new-content-questions.mjs scripts/test-a05-d186-d191-wide-patterns.mjs scripts/test-a05-d192-d194-multilens.mjs scripts/test-a05-d197-master-paired-revisions.mjs scripts/test-a05-d198-d199-selection.mjs scripts/test-a05-d200-d201-new-angles.mjs
+      - name: Install Chromium test runtime
+        run: |
+          npm install --prefix /tmp/a05-review --no-audit --no-fund --no-save playwright@1.56.1
+          PLAYWRIGHT_BROWSERS_PATH=/tmp/a05-chromium /tmp/a05-review/node_modules/.bin/playwright install --with-deps chromium
+      - name: Test D-170 offline review (desktop and mobile)
+        env:
+          NODE_PATH: /tmp/a05-review/node_modules
+          PLAYWRIGHT_BROWSERS_PATH: /tmp/a05-chromium
+        run: node scripts/test-a05-d170-browser.cjs
+      - name: Test D-175 participant pilot (desktop and mobile)
+        env:
+          NODE_PATH: /tmp/a05-review/node_modules
+          PLAYWRIGHT_BROWSERS_PATH: /tmp/a05-chromium
+        run: node scripts/test-a05-d175-participant-browser.cjs
+      - name: Upload QA screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: a05-d170-qa-screenshots
+          path: |
+            qa-screenshots/a05-d170-*.png
+            qa-screenshots/a05-d175-*.png
+          if-no-files-found: ignore
+          retention-days: 7

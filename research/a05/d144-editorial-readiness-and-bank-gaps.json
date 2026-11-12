@@ -1,0 +1,88 @@
+{
+  "schema": "A05-D144-50BANK-CONTENT-GATE-0.1",
+  "date": "2026-11-10",
+  "status": "RESEARCH_ONLY_NOT_APPROVED",
+  "target_policy": {
+    "A": 7,
+    "B": 7,
+    "C": 7,
+    "D": 7,
+    "E": 2,
+    "basePool": {
+      "A": 12,
+      "B": 12,
+      "C": 12,
+      "D": 12,
+      "E": 2
+    },
+    "total": 30
+  },
+  "verified_source_blob_shas": {
+    "research/a05/d130-50item-editorial-candidate-bank.json": "e33ae55f662d55a113e259425b6fd32f0a99e849",
+    "research/a05/d131-full-50-editorial-screen.json": "177a3b8b0d1bc0c17b013708eefb8a3a52829523",
+    "research/a05/d142-full-50-item-content-disposition.json": "85286173eeb6350d7a1d5b17a617702afd9675ff",
+    "research/a05/d143-20-comparable-item-rewrite-drafts.json": "9c387002826a0aff5ec3c9fbf5736afa42420fb2"
+  },
+  "guardrails": {
+    "existing_30_question_form_unchanged": true,
+    "existing_random_draw_unchanged": true,
+    "original_50_item_bank_unchanged": true,
+    "no_autoscoring_of_new_rewrites": true,
+    "no_actual_respondent_data": true
+  },
+  "potential_editable_by_axis": {
+    "A": 3,
+    "B": 5,
+    "C": 5,
+    "D": 7,
+    "E": 0
+  },
+  "semantic_family_coverage": {
+    "A": [
+      "A_RESIDENCE",
+      "A_DAILY_SYSTEM"
+    ],
+    "B": [
+      "B_FINAL_DECISION",
+      "B_COLLECTIVE_RIGHTS",
+      "B_PERSONAL_RELATION",
+      "B_PRIORITY_CONFLICT"
+    ],
+    "C": [
+      "C_RESOURCE_PRIORITY",
+      "C_SCARCITY_PAIRED"
+    ],
+    "D": [
+      "D_ACTIVITIES",
+      "D_FIELD_ALLOCATION",
+      "D_POST_MILESTONE",
+      "D_OPEN_TOPIC"
+    ],
+    "E": []
+  },
+  "min_content_gaps_if_all_20_rewrites_become_conditional_pilot": {
+    "A": 4,
+    "B": 2,
+    "C": 2,
+    "D": 0,
+    "E": 2
+  },
+  "qualification": "Gap is an optimistic text-slot lower bound, NOT an empirical estimate. D143 provides 20 revised variants; all unapproved. Similar family variants should not automatically count as independent scored items.",
+  "issues": [],
+  "passed": true,
+  "check_count": 14,
+  "currently_approved": 0,
+  "required_next_work": [
+    "A: develop additional nonduplicate contexts or reduce eligibility assumptions; residence and daily routines alone insufficient for 7 distinct items",
+    "B: prove personal-vs-collective decision distinctions beyond rephrasing conflict scenarios",
+    "C: validate C-FU14/FU15 as inseparable paired contexts, and develop distinct future-vs-present resource-choice situations",
+    "D: remove the triplet D02/D05/D-FU12 and pair D06/D-FU10 from independent random sampling until response discriminants established",
+    "E: decide bipolar two slots vs independent ratings as a schema change, without silently reinterpreting E01/E02",
+    "After editorial review: cognitive interviews, small pilot, item-level response spread and cross-form comparability"
+  ],
+  "sampling_preflight": {
+    "current_bank_poc_draw_is_proven_technically_only": true,
+    "pairing_and_family_constraints_unresolved": true,
+    "scoring_and_type_mapping_not_enabled_by_this_artifact": true
+  }
+}

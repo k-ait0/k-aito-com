@@ -1,0 +1,270 @@
+{
+  "schema": "A05-D151-CONTRAST-COGNITIVE-TEST-PACKET-0.1",
+  "date": "2026-11-10",
+  "status": "RESEARCH_INSTRUMENT_NOT_ADMINISTERED",
+  "source_blobs": {
+    "d149": "c5724d7c60e89be490131cbe375c66f244a42cbf",
+    "d146": "53b3e137ff3597bdf7072c880c622baf8fee6814",
+    "d150": "02541af696980c340f72b0f0f5720b7094199d7c"
+  },
+  "study_goal": "Decide whether 4 contextual families per axis improve coverage without promoting near-duplicate or context-confounded prompts to scored bank",
+  "number_of_pairs": 8,
+  "number_of_prompt_presentations": 16,
+  "context_pairs_per_axis": {
+    "A": 2,
+    "B": 2,
+    "C": 2,
+    "D": 2
+  },
+  "instructions": [
+    "Read the two questions separately and let participant answer independently; do not show interviewer rationale first",
+    "Ask participant to paraphrase what each question means and explain what made them choose each side",
+    "Record non-applicable and unsure separately from midpoint",
+    "Do not lead participants to the proposed interpretation or assert that changing answers is a problem",
+    "For C-FU14/C-FU15 present both arms to same person and mark their coupled status",
+    "Use non-identifying notes and obtain informed voluntary participation; no personal details collected by this document"
+  ],
+  "preanalysis": {
+    "merge": "If the two prompts are paraphrased as the same decision without a meaningful context distinction, favor combining editorial families",
+    "reframe": "If most explanations depend on skill, income, responsibilities, ownership, fatigue or social duty rather than the intended axis, revise or remove that scenario",
+    "keep_context": "If distinct contexts are consistently understood, keep them as candidate observation contexts without asserting separate latent factors",
+    "do_not_infer": "No sample count or hypothetical response pattern by itself establishes psychometric validity, inter-form equivalence or causal dependence"
+  },
+  "pairs": [
+    {
+      "pair_id": "A-CA01",
+      "axis": "A",
+      "title": "住まいの変更と活動拠点の変更",
+      "arm_1": {
+        "source_ref": "A-P1",
+        "stem": "今後の生活の基盤として、費用・便利さ・周囲との関係が同程度ならどちらを好みますか？",
+        "left": "慣れた生活空間を整えながら使い続ける",
+        "right": "別の生活空間を選び、暮らしの基盤を組み直す"
+      },
+      "arm_2": {
+        "source_ref": "A-P3",
+        "stem": "同じ活動を同程度の負担で続けられるなら、その活動の拠点はどちらを好みますか？",
+        "left": "慣れた活動場所を引き続き拠点にして整える",
+        "right": "別の活動場所へ拠点を移して環境を作り直す"
+      },
+      "hypothesis_confounds": "実際の転居負担や通勤条件だけで選択が変わるか",
+      "rational_opposite_response_example": "自宅の生活基盤は維持、無費用で選べる活動拠点は変更を好む",
+      "what_to_decide": "A1/A3を同一の安定↔変化とみなせるか、別の生活条件を測るか",
+      "administration": "Present both arms to same interviewee; counterbalance order where practical; do not score or classify",
+      "observations": [
+        "understood_both_poles",
+        "perceived_as_same_question",
+        "choice_reason",
+        "whether_context_drives_difference",
+        "not_applicable_or_unsure",
+        "clarification_needed"
+      ]
+    },
+    {
+      "pair_id": "A-CA02",
+      "axis": "A",
+      "title": "生活運用手順と道具・サービス構成",
+      "arm_1": {
+        "source_ref": "A-P2",
+        "stem": "必要な日常用事を同じ負担で行える場合、進め方の基本をどうしたいですか？",
+        "left": "使い慣れた進め方を基本に必要な部分だけ整える",
+        "right": "日常の進め方の基本を別の仕組みに組み直す"
+      },
+      "arm_2": {
+        "source_ref": "A-P4",
+        "stem": "費用・安全性・使い勝手が同じで、追加購入も必要ない場合、生活の仕組みをどうしたいですか？",
+        "left": "今使っているサービスや道具の組み合わせを調整して使う",
+        "right": "同等のサービスや道具の組み合わせを別方式に組み直す"
+      },
+      "hypothesis_confounds": "製品交換・廃棄・機能への好き嫌いで回答が変わるか",
+      "rational_opposite_response_example": "家事手順は変えないが使用サービスの組合せは更新する",
+      "what_to_decide": "A-P4が環境倫理や購買志向の影響に支配されるなら非採点",
+      "administration": "Present both arms to same interviewee; counterbalance order where practical; do not score or classify",
+      "observations": [
+        "understood_both_poles",
+        "perceived_as_same_question",
+        "choice_reason",
+        "whether_context_drives_difference",
+        "not_applicable_or_unsure",
+        "clarification_needed"
+      ]
+    },
+    {
+      "pair_id": "B-CB01",
+      "axis": "B",
+      "title": "個人の人生選択と共同の最終判断",
+      "arm_1": {
+        "source_ref": "B-P1",
+        "stem": "自分の人生に関する選択で、身近な人にも影響があり希望が異なる場合、どちらをより重視しますか？",
+        "left": "相手の考えも聞いたうえで、自分が希望する選択を優先する",
+        "right": "自分の希望も伝えたうえで、相手と合意できる選択を優先する"
+      },
+      "arm_2": {
+        "source_ref": "B-P2",
+        "stem": "参加者に同じ影響がある共同活動の方針に複数の妥当な案がある場合、どちらを最終基準としたいですか？",
+        "left": "自分が適切だと判断する案を最終基準にする",
+        "right": "参加者が納得できる合意を最終基準にする"
+      },
+      "hypothesis_confounds": "最終決定権・他者への影響・実害の違いによる回答差",
+      "rational_opposite_response_example": "自分の進路では自分の最終判断を重視、共同計画では合意を重視",
+      "what_to_decide": "個人選択を含めたB-P1の場面網羅性と、独立下位尺度ではないことの確認",
+      "administration": "Present both arms to same interviewee; counterbalance order where practical; do not score or classify",
+      "observations": [
+        "understood_both_poles",
+        "perceived_as_same_question",
+        "choice_reason",
+        "whether_context_drives_difference",
+        "not_applicable_or_unsure",
+        "clarification_needed"
+      ]
+    },
+    {
+      "pair_id": "B-CB02",
+      "axis": "B",
+      "title": "共同方針と共同資源の使途",
+      "arm_1": {
+        "source_ref": "B-P2",
+        "stem": "参加者に同じ影響がある共同活動の方針に複数の妥当な案がある場合、どちらを最終基準としたいですか？",
+        "left": "自分が適切だと判断する案を最終基準にする",
+        "right": "参加者が納得できる合意を最終基準にする"
+      },
+      "arm_2": {
+        "source_ref": "B-P3",
+        "stem": "双方が同じ権利と負担で共同利用する設備の使い方について希望が違うとき、どちらをより重視しますか？",
+        "left": "自分が適切だと考える使い方を優先する",
+        "right": "共同利用者との合意を優先する"
+      },
+      "hypothesis_confounds": "設備の所有権・費用分担が回答を決めないか",
+      "rational_opposite_response_example": "方針では自分の判断を重視、共有設備では合意を重視",
+      "what_to_decide": "B-P3がB-P2の単なる対象差なら統合",
+      "administration": "Present both arms to same interviewee; counterbalance order where practical; do not score or classify",
+      "observations": [
+        "understood_both_poles",
+        "perceived_as_same_question",
+        "choice_reason",
+        "whether_context_drives_difference",
+        "not_applicable_or_unsure",
+        "clarification_needed"
+      ]
+    },
+    {
+      "pair_id": "C-CC01",
+      "axis": "C",
+      "title": "一回の自由時間と毎週の自由時間",
+      "arm_1": {
+        "source_ref": "C-P1",
+        "stem": "必要な用事と休息を済ませた後、自由に使える同じ時間を一度だけ選ぶなら、どちらに使いたいですか？",
+        "left": "数か月後の選択肢を増やすための準備に使う",
+        "right": "今行う体験そのものを充実させるために使う"
+      },
+      "arm_2": {
+        "source_ref": "C-P2",
+        "stem": "今後数週間、毎週確保できる同じ自由時間を使うなら、どちらに多く配分したいですか？",
+        "left": "数か月後の目標に向けて少しずつ準備を積み重ねる",
+        "right": "各週の体験や活動をその都度充実させる"
+      },
+      "hypothesis_confounds": "繰返し可能性によって将来準備と現在充実の優先が変わるか",
+      "rational_opposite_response_example": "単発の余暇は現在充実、毎週の時間は将来準備に配分する",
+      "what_to_decide": "反応差を別のC価値次元と誤認しない",
+      "administration": "Present both arms to same interviewee; counterbalance order where practical; do not score or classify",
+      "observations": [
+        "understood_both_poles",
+        "perceived_as_same_question",
+        "choice_reason",
+        "whether_context_drives_difference",
+        "not_applicable_or_unsure",
+        "clarification_needed"
+      ]
+    },
+    {
+      "pair_id": "C-CC02",
+      "axis": "C",
+      "title": "両側に対称な希少性：今週限りと来週も可能",
+      "arm_1": {
+        "source_ref": "C-FU14",
+        "stem": "将来に役立つ準備と現在を楽しむ体験がどちらも今週限りの機会で、所要時間が同じなら、どちらを選びたいですか？",
+        "left": "今週限りの将来の準備機会を選ぶ",
+        "right": "今週限りの現在の体験を選ぶ"
+      },
+      "arm_2": {
+        "source_ref": "C-FU15",
+        "stem": "将来に役立つ準備と現在を楽しむ体験がどちらも来週にも同じ条件でできるなら、今週はどちらを選びたいですか？",
+        "left": "来週にもできる将来の準備を先にする",
+        "right": "来週にもできる現在の体験を先にする"
+      },
+      "hypothesis_confounds": "両側の機会制約だけを変えたとき選択が変わるか",
+      "rational_opposite_response_example": "両方今週限りなら現在体験、来週も可能なら将来準備を先にする",
+      "what_to_decide": "必ず同一回答者にペアで提示。条件効果が主目的で単独得点に使わない",
+      "administration": "Present both arms to same interviewee; counterbalance order where practical; do not score or classify",
+      "observations": [
+        "understood_both_poles",
+        "perceived_as_same_question",
+        "choice_reason",
+        "whether_context_drives_difference",
+        "not_applicable_or_unsure",
+        "clarification_needed"
+      ]
+    },
+    {
+      "pair_id": "D-CD01",
+      "axis": "D",
+      "title": "知識の幅・深さと活動の幅・深さ",
+      "arm_1": {
+        "source_ref": "D-P1",
+        "stem": "同じ学習時間を使い、どちらにも関心を持てるなら、何をより好みますか？",
+        "left": "複数の異なる分野の基礎を幅広く知る",
+        "right": "一つの分野の内容をより詳しく掘り下げる"
+      },
+      "arm_2": {
+        "source_ref": "D-P2",
+        "stem": "自由な活動時間で、次のどちらの使い方をより好みますか？",
+        "left": "今まで触れていない別の活動分野を追加で試す",
+        "right": "以前から関心のある活動分野をさらに掘り下げる"
+      },
+      "hypothesis_confounds": "学習の効率・活動経験の有無だけで志向が変わるか",
+      "rational_opposite_response_example": "学習分野は一つを深め、余暇の活動は複数試したい",
+      "what_to_decide": "独立要素なのか領域違いか、認知上の説明を記録",
+      "administration": "Present both arms to same interviewee; counterbalance order where practical; do not score or classify",
+      "observations": [
+        "understood_both_poles",
+        "perceived_as_same_question",
+        "choice_reason",
+        "whether_context_drives_difference",
+        "not_applicable_or_unsure",
+        "clarification_needed"
+      ]
+    },
+    {
+      "pair_id": "D-CD02",
+      "axis": "D",
+      "title": "未完了の途中と目標達成後の進み方",
+      "arm_1": {
+        "source_ref": "D-P3",
+        "stem": "今学んでいるテーマにまだ知りたいことがあり、同程度に興味を持つ別分野もある場合、次の時間をどちらに使いたいですか？",
+        "left": "別分野の基礎を新しく学ぶ",
+        "right": "今のテーマについて未解決の内容をさらに深める"
+      },
+      "arm_2": {
+        "source_ref": "D-P4",
+        "stem": "今学んでいるテーマで当初の目標に到達し、自由に使う時間があればどちらに進みたいですか？",
+        "left": "まだ触れていない別の分野を新しく学び始める",
+        "right": "同じテーマの応用的な内容をさらに深める"
+      },
+      "hypothesis_confounds": "未完了義務・納期・達成感を回答理由にしていないか",
+      "rational_opposite_response_example": "まだ目標未達なら深堀り、達成したら別分野を探索",
+      "what_to_decide": "段階効果として研究する。別得点の2問と即判断しない",
+      "administration": "Present both arms to same interviewee; counterbalance order where practical; do not score or classify",
+      "observations": [
+        "understood_both_poles",
+        "perceived_as_same_question",
+        "choice_reason",
+        "whether_context_drives_difference",
+        "not_applicable_or_unsure",
+        "clarification_needed"
+      ]
+    }
+  ],
+  "scored": false,
+  "approved": false,
+  "respondents_observed": 0
+}

@@ -1,0 +1,282 @@
+{
+  "schema": "A05-D184-24NEW-DRAFTS-COLLISION-AUDIT-0.1",
+  "date": "2026-11-11",
+  "status": "EDITORIAL_AUDIT_ALL_UNAPPROVED",
+  "purpose": "Proactively remove near-duplicates from 24 newly authored questions before treating them as new content. Historical 50 item D146 and existing 16 shortlist checked.",
+  "source_shas": {
+    "research/a05/d183-twentyfour-new-content-question-drafts.json": "2a80c3c724458b96a5eee4d66c45aed6737d28c5",
+    "research/a05/d146-50slot-before-after-quality-proposals.json": "53b3e137ff3597bdf7072c880c622baf8fee6814",
+    "research/a05/d164-prior-28-semantic-dedup-and-gap-recalculation.json": "da800cf9c12fb11e89e53ed4f8128f511c74f736",
+    "research/a05/d181-six-more-elicitation-methods-twelve-ideas.json": "127ebcef68a1b1b0b8dbe0d20c1cc8c70efde38f"
+  },
+  "count": 24,
+  "counts": {
+    "NEW_CONTENT_POSSIBILITY": 6,
+    "HIGH_OVERLAP_HOLD": 3,
+    "DUPLICATE_REJECT": 10,
+    "RESEARCH_ONLY": 5
+  },
+  "per_axis": {
+    "A": {
+      "NEW_CONTENT_POSSIBILITY": 2,
+      "HIGH_OVERLAP_HOLD": 0,
+      "DUPLICATE_REJECT": 3,
+      "RESEARCH_ONLY": 1
+    },
+    "B": {
+      "NEW_CONTENT_POSSIBILITY": 1,
+      "HIGH_OVERLAP_HOLD": 1,
+      "DUPLICATE_REJECT": 2,
+      "RESEARCH_ONLY": 2
+    },
+    "C": {
+      "NEW_CONTENT_POSSIBILITY": 2,
+      "HIGH_OVERLAP_HOLD": 0,
+      "DUPLICATE_REJECT": 2,
+      "RESEARCH_ONLY": 2
+    },
+    "D": {
+      "NEW_CONTENT_POSSIBILITY": 1,
+      "HIGH_OVERLAP_HOLD": 2,
+      "DUPLICATE_REJECT": 3,
+      "RESEARCH_ONLY": 0
+    }
+  },
+  "definitions": {
+    "NEW_CONTENT_POSSIBILITY": "Question asks a potentially meaningfully different value judgement. Only a new content hypothesis, not an independent valid semantic family.",
+    "HIGH_OVERLAP_HOLD": "Possibly new operational facet but strong near duplication; not countable until discriminating evidence.",
+    "DUPLICATE_REJECT": "Substantively already asked in 50 source/other prior prototypes; do not enter bank as another item.",
+    "RESEARCH_ONLY": "New framing or conditional/non-bipolar probe, but not a standalone scored question."
+  },
+  "cases": [
+    {
+      "new_id": "A-N01",
+      "axis": "A",
+      "closest_historical_id": "A-BK15",
+      "editorial_decision": "DUPLICATE_REJECT",
+      "reason": "1週間の時間の組み直しはA-BK15で既に提案済み。語句の差で別枠にはしない",
+      "add_to_bank": false,
+      "semantic_family_established": false
+    },
+    {
+      "new_id": "A-N02",
+      "axis": "A",
+      "closest_historical_id": "A-FU09",
+      "editorial_decision": "NEW_CONTENT_POSSIBILITY",
+      "reason": "毎年の自発的記念行為という継承対象は生活全体の再設計より具体的。ただし儀式の慣習と季節ルーティンの違いが価値と関係するか未証明",
+      "add_to_bank": false,
+      "semantic_family_established": false
+    },
+    {
+      "new_id": "A-N03",
+      "axis": "A",
+      "closest_historical_id": "A06",
+      "editorial_decision": "NEW_CONTENT_POSSIBILITY",
+      "reason": "機能が同じ持ち物を修理継続するか同役割の新品へ更新するかは、用具の組合せA06とは判断対象が違う。ただし物品への愛着は別概念",
+      "add_to_bank": false,
+      "semantic_family_established": false
+    },
+    {
+      "new_id": "A-N04",
+      "axis": "A",
+      "closest_historical_id": "A03",
+      "editorial_decision": "DUPLICATE_REJECT",
+      "reason": "月額生活サービスの継続と新提供先への乗換はA03と直接重なる",
+      "add_to_bank": false,
+      "semantic_family_established": false
+    },
+    {
+      "new_id": "A-N05",
+      "axis": "A",
+      "closest_historical_id": "A01",
+      "editorial_decision": "DUPLICATE_REJECT",
+      "reason": "住む街を変えるか維持するかを失う条件で再提示しただけ。A01の提示形式比較に限定",
+      "add_to_bank": false,
+      "semantic_family_established": false
+    },
+    {
+      "new_id": "A-N06",
+      "axis": "A",
+      "closest_historical_id": "A-FU09",
+      "editorial_decision": "RESEARCH_ONLY",
+      "reason": "年間の生活基本を維持/更新する価値を後悔で問う。A-FU09の提示方法差で、新系統とは数えない",
+      "add_to_bank": false,
+      "semantic_family_established": false
+    },
+    {
+      "new_id": "B-N01",
+      "axis": "B",
+      "closest_historical_id": "B-FU01",
+      "editorial_decision": "HIGH_OVERLAP_HOLD",
+      "reason": "他人に直接不利益がなくても合意を求めるという条件は興味深いが、B-FU01の個人決定に極めて近い",
+      "add_to_bank": false,
+      "semantic_family_established": false
+    },
+    {
+      "new_id": "B-N02",
+      "axis": "B",
+      "closest_historical_id": "B-FU12",
+      "editorial_decision": "DUPLICATE_REJECT",
+      "reason": "共同企画で自分の創作案か相手と合意か、という意味はB-FU12とほぼ同型",
+      "add_to_bank": false,
+      "semantic_family_established": false
+    },
+    {
+      "new_id": "B-N03",
+      "axis": "B",
+      "closest_historical_id": "B-FU01",
+      "editorial_decision": "NEW_CONTENT_POSSIBILITY",
+      "reason": "最終決定の主体ではなく実行過程を一人で進める/協働する価値を扱う。自律とつながりが二極でない可能性も検証対象",
+      "add_to_bank": false,
+      "semantic_family_established": false
+    },
+    {
+      "new_id": "B-N04",
+      "axis": "B",
+      "closest_historical_id": "B-FU05",
+      "editorial_decision": "RESEARCH_ONLY",
+      "reason": "決める前の相談か決めた後の共有かは両立可能。Bの二極得点ではなくB-G1の独立評定系へ",
+      "add_to_bank": false,
+      "semantic_family_established": false
+    },
+    {
+      "new_id": "B-N05",
+      "axis": "B",
+      "closest_historical_id": "B05",
+      "editorial_decision": "DUPLICATE_REJECT",
+      "reason": "共同活動で自分の進め方か参加者合意かはB05の同じ判断",
+      "add_to_bank": false,
+      "semantic_family_established": false
+    },
+    {
+      "new_id": "B-N06",
+      "axis": "B",
+      "closest_historical_id": "B-G1",
+      "editorial_decision": "RESEARCH_ONLY",
+      "reason": "自己決定と合意形成の両立を調べる研究課題であり左右はBの対立極ではない",
+      "add_to_bank": false,
+      "semantic_family_established": false
+    },
+    {
+      "new_id": "C-N01",
+      "axis": "C",
+      "closest_historical_id": "C05",
+      "editorial_decision": "NEW_CONTENT_POSSIBILITY",
+      "reason": "一年が充実したと判断する基準という評価軸は、日々の自由時間の配分C05とは問いの内容が異なる",
+      "add_to_bank": false,
+      "semantic_family_established": false
+    },
+    {
+      "new_id": "C-N02",
+      "axis": "C",
+      "closest_historical_id": "C04",
+      "editorial_decision": "DUPLICATE_REJECT",
+      "reason": "将来の成果 vs 活動中の充実はC04とほぼ同型",
+      "add_to_bank": false,
+      "semantic_family_established": false
+    },
+    {
+      "new_id": "C-N03",
+      "axis": "C",
+      "closest_historical_id": "C05",
+      "editorial_decision": "NEW_CONTENT_POSSIBILITY",
+      "reason": "既に目標を達成した後の自由時間で先の目標か当面の実感かという基準。休息・燃え尽きによる回答変化が最大の問題",
+      "add_to_bank": false,
+      "semantic_family_established": false
+    },
+    {
+      "new_id": "C-N04",
+      "axis": "C",
+      "closest_historical_id": "D181-10C",
+      "editorial_decision": "DUPLICATE_REJECT",
+      "reason": "自由時間4時間から2時間という変更はD181-10Cと同一の研究課題",
+      "add_to_bank": false,
+      "semantic_family_established": false
+    },
+    {
+      "new_id": "C-N05",
+      "axis": "C",
+      "closest_historical_id": "D181-8C",
+      "editorial_decision": "RESEARCH_ONLY",
+      "reason": "将来に振り返る後悔予測はD181-8Cと重なり、C01の提示法検査として扱う",
+      "add_to_bank": false,
+      "semantic_family_established": false
+    },
+    {
+      "new_id": "C-N06",
+      "axis": "C",
+      "closest_historical_id": "C-FU14",
+      "editorial_decision": "RESEARCH_ONLY",
+      "reason": "機会が今週限りという条件はC-FU14/C-FU15の希少性対照で既に設計済み。Cの左右ではない",
+      "add_to_bank": false,
+      "semantic_family_established": false
+    },
+    {
+      "new_id": "D-N01",
+      "axis": "D",
+      "closest_historical_id": "D04",
+      "editorial_decision": "DUPLICATE_REJECT",
+      "reason": "複数の創作メディアを試すか一つを深めるかはD04と同義",
+      "add_to_bank": false,
+      "semantic_family_established": false
+    },
+    {
+      "new_id": "D-N02",
+      "axis": "D",
+      "closest_historical_id": "D-BK13",
+      "editorial_decision": "NEW_CONTENT_POSSIBILITY",
+      "reason": "複数の異なる疑問を追うか一つの疑問を追うか。分野を複数学ぶか、一つの問いに複数分野から迫るかとは判断対象が異なる",
+      "add_to_bank": false,
+      "semantic_family_established": false
+    },
+    {
+      "new_id": "D-N03",
+      "axis": "D",
+      "closest_historical_id": "D02",
+      "editorial_decision": "HIGH_OVERLAP_HOLD",
+      "reason": "紹介する内容の幅/深さはD02学習の幅/深さと似る。教えることや相手の反応に左右される",
+      "add_to_bank": false,
+      "semantic_family_established": false
+    },
+    {
+      "new_id": "D-N04",
+      "axis": "D",
+      "closest_historical_id": "D04",
+      "editorial_decision": "HIGH_OVERLAP_HOLD",
+      "reason": "短い作品を複数作る vs 長い作品一つを作るは、複数媒体 vs 一媒体より対象は違うがD04やD01の文脈に近い",
+      "add_to_bank": false,
+      "semantic_family_established": false
+    },
+    {
+      "new_id": "D-N05",
+      "axis": "D",
+      "closest_historical_id": "D06",
+      "editorial_decision": "DUPLICATE_REJECT",
+      "reason": "目標達成後に新しい分野へ移るか今の分野の応用へ進むかはD06に既出",
+      "add_to_bank": false,
+      "semantic_family_established": false
+    },
+    {
+      "new_id": "D-N06",
+      "axis": "D",
+      "closest_historical_id": "D05",
+      "editorial_decision": "DUPLICATE_REJECT",
+      "reason": "いくつかの専門分野から説明を集めるか一分野を調べるかはD05とほぼ同義",
+      "add_to_bank": false,
+      "semantic_family_established": false
+    }
+  ],
+  "most_promising_ids": [
+    "A-N02",
+    "A-N03",
+    "B-N03",
+    "C-N01",
+    "C-N03",
+    "D-N02"
+  ],
+  "no_auto_adoption": true,
+  "approved_new_scored_items": 0,
+  "confirmed_new_families": 0,
+  "baseline_unresolved_slots": 32,
+  "production_changed": false
+}

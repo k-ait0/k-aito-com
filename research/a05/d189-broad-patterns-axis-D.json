@@ -1,0 +1,473 @@
+{
+  "schema": "A05-D189-BROAD-IDEATION-D-0.1",
+  "date": "2026-11-11",
+  "status": "RAW_RESEARCH_IDEAS_UNVALIDATED",
+  "goal": "Keep multiple overlapping D-axis research variants until cross-family content review, never auto-score",
+  "count": 24,
+  "provisional_families": 8,
+  "questions": [
+    {
+      "id": "D-X01",
+      "axis": "D",
+      "family_id": "D-QF01",
+      "family_label": "学習する分野の幅",
+      "family_hypothesis": "関心ある学習分野を広げるか一分野に集中するか",
+      "closest_prior_ids": [
+        "D02",
+        "D-FU12"
+      ],
+      "overlap_risk": "HIGH",
+      "confounds": "科目粒度・専門能力・学習への苦手意識",
+      "format": "学習の幅",
+      "stem": "自由に学べる時間を同じだけ使うとき、何を学ぶ形がより好みですか？",
+      "left": "異なる分野の入門をいくつか学ぶ",
+      "right": "一つの分野の内容をより詳しく学ぶ",
+      "semantic_distinctness_proven": false,
+      "scored_approved": false
+    },
+    {
+      "id": "D-X02",
+      "axis": "D",
+      "family_id": "D-QF01",
+      "family_label": "学習する分野の幅",
+      "family_hypothesis": "関心ある学習分野を広げるか一分野に集中するか",
+      "closest_prior_ids": [
+        "D02",
+        "D-FU12"
+      ],
+      "overlap_risk": "HIGH",
+      "confounds": "科目粒度・専門能力・学習への苦手意識",
+      "format": "時間配分",
+      "stem": "来月から学ぶテーマを複数選べるとしたら、どちらの配分を希望しますか？",
+      "left": "別々の分野に時間を分ける",
+      "right": "一つの分野にまとまった時間を使う",
+      "semantic_distinctness_proven": false,
+      "scored_approved": false
+    },
+    {
+      "id": "D-X03",
+      "axis": "D",
+      "family_id": "D-QF01",
+      "family_label": "学習する分野の幅",
+      "family_hypothesis": "関心ある学習分野を広げるか一分野に集中するか",
+      "closest_prior_ids": [
+        "D02",
+        "D-FU12"
+      ],
+      "overlap_risk": "HIGH",
+      "confounds": "科目粒度・専門能力・学習への苦手意識",
+      "format": "学習の出口",
+      "stem": "学びたいことが複数あるとき、同じ期間でどちらの学びを終えたいですか？",
+      "left": "違う分野をそれぞれ概観する",
+      "right": "一分野をより専門的なところまで進める",
+      "semantic_distinctness_proven": false,
+      "scored_approved": false
+    },
+    {
+      "id": "D-X04",
+      "axis": "D",
+      "family_id": "D-QF02",
+      "family_label": "探究する問いの数",
+      "family_hypothesis": "分野の数でなく問いのポートフォリオと一問の深掘り",
+      "closest_prior_ids": [
+        "D-N02",
+        "D-BK13"
+      ],
+      "overlap_risk": "MEDIUM",
+      "confounds": "問いの難易度・調査能力・未完了への抵抗",
+      "format": "問いの数",
+      "stem": "関心のある疑問を同じ時間で調べるなら、どちらが好みですか？",
+      "left": "異なる複数の疑問の入口を調べる",
+      "right": "一つの疑問を深く追い続ける",
+      "semantic_distinctness_proven": false,
+      "scored_approved": false
+    },
+    {
+      "id": "D-X05",
+      "axis": "D",
+      "family_id": "D-QF02",
+      "family_label": "探究する問いの数",
+      "family_hypothesis": "分野の数でなく問いのポートフォリオと一問の深掘り",
+      "closest_prior_ids": [
+        "D-N02",
+        "D-BK13"
+      ],
+      "overlap_risk": "MEDIUM",
+      "confounds": "問いの難易度・調査能力・未完了への抵抗",
+      "format": "気になる疑問",
+      "stem": "気になる疑問がいくつか見つかり、どれにも同程度に興味がある場合、どうしたいですか？",
+      "left": "一つずつ少し調べて視野を広げる",
+      "right": "一つ選んで詳しい答えを探す",
+      "semantic_distinctness_proven": false,
+      "scored_approved": false
+    },
+    {
+      "id": "D-X06",
+      "axis": "D",
+      "family_id": "D-QF02",
+      "family_label": "探究する問いの数",
+      "family_hypothesis": "分野の数でなく問いのポートフォリオと一問の深掘り",
+      "closest_prior_ids": [
+        "D-N02",
+        "D-BK13"
+      ],
+      "overlap_risk": "MEDIUM",
+      "confounds": "問いの難易度・調査能力・未完了への抵抗",
+      "format": "探究一日",
+      "stem": "知りたいことを自分で決めて調べる一日があるなら、何を優先しますか？",
+      "left": "いくつもの別々の疑問に触れる",
+      "right": "一つの問いをできるだけ掘り下げる",
+      "semantic_distinctness_proven": false,
+      "scored_approved": false
+    },
+    {
+      "id": "D-X07",
+      "axis": "D",
+      "family_id": "D-QF03",
+      "family_label": "創作メディアの広さ",
+      "family_hypothesis": "複数種類の表現媒体を試すか一種類の専門性を高めるか",
+      "closest_prior_ids": [
+        "D04",
+        "D-N01"
+      ],
+      "overlap_risk": "HIGH",
+      "confounds": "創作の経験や技能・作品成果の違い",
+      "format": "創作の媒体",
+      "stem": "創作を自由に楽しむ時間があり、費用と楽しさが同じならどちらが好みですか？",
+      "left": "文章・画像・音など複数の表現を試す",
+      "right": "自分の選んだ一つの表現を磨く",
+      "semantic_distinctness_proven": false,
+      "scored_approved": false
+    },
+    {
+      "id": "D-X08",
+      "axis": "D",
+      "family_id": "D-QF03",
+      "family_label": "創作メディアの広さ",
+      "family_hypothesis": "複数種類の表現媒体を試すか一種類の専門性を高めるか",
+      "closest_prior_ids": [
+        "D04",
+        "D-N01"
+      ],
+      "overlap_risk": "HIGH",
+      "confounds": "創作の経験や技能・作品成果の違い",
+      "format": "同一題材",
+      "stem": "同じ題材を表現する場面で、制作の手間が同じならどうしたいですか？",
+      "left": "異なる媒体でいくつか表現してみる",
+      "right": "一つの媒体で表現を深く追究する",
+      "semantic_distinctness_proven": false,
+      "scored_approved": false
+    },
+    {
+      "id": "D-X09",
+      "axis": "D",
+      "family_id": "D-QF03",
+      "family_label": "創作メディアの広さ",
+      "family_hypothesis": "複数種類の表現媒体を試すか一種類の専門性を高めるか",
+      "closest_prior_ids": [
+        "D04",
+        "D-N01"
+      ],
+      "overlap_risk": "HIGH",
+      "confounds": "創作の経験や技能・作品成果の違い",
+      "format": "一年の創作",
+      "stem": "今年一年の趣味の創作活動を決めるとき、どちらの幅を望みますか？",
+      "left": "いくつかの表現方法の入口を知る",
+      "right": "一つの表現方法の技術を深める",
+      "semantic_distinctness_proven": false,
+      "scored_approved": false
+    },
+    {
+      "id": "D-X10",
+      "axis": "D",
+      "family_id": "D-QF04",
+      "family_label": "趣味スキルの深まり",
+      "family_hypothesis": "趣味で新しい活動を増やすか既存の能力を磨くか",
+      "closest_prior_ids": [
+        "D01",
+        "D-FU11"
+      ],
+      "overlap_risk": "HIGH",
+      "confounds": "能力・習熟度と探索価値を混同する",
+      "format": "趣味の熟練",
+      "stem": "自由な趣味の時間が同じだけある場合、どちらの取り組み方を好みますか？",
+      "left": "これまで経験のない趣味を試す",
+      "right": "続けている趣味をもっと上達させる",
+      "semantic_distinctness_proven": false,
+      "scored_approved": false
+    },
+    {
+      "id": "D-X11",
+      "axis": "D",
+      "family_id": "D-QF04",
+      "family_label": "趣味スキルの深まり",
+      "family_hypothesis": "趣味で新しい活動を増やすか既存の能力を磨くか",
+      "closest_prior_ids": [
+        "D01",
+        "D-FU11"
+      ],
+      "overlap_risk": "HIGH",
+      "confounds": "能力・習熟度と探索価値を混同する",
+      "format": "年間の期待",
+      "stem": "一年間の趣味の過ごし方を選ぶとき、どちらを楽しみにしますか？",
+      "left": "新しい活動の種類を増やすこと",
+      "right": "同じ活動の技術を磨いていくこと",
+      "semantic_distinctness_proven": false,
+      "scored_approved": false
+    },
+    {
+      "id": "D-X12",
+      "axis": "D",
+      "family_id": "D-QF04",
+      "family_label": "趣味スキルの深まり",
+      "family_hypothesis": "趣味で新しい活動を増やすか既存の能力を磨くか",
+      "closest_prior_ids": [
+        "D01",
+        "D-FU11"
+      ],
+      "overlap_risk": "HIGH",
+      "confounds": "能力・習熟度と探索価値を混同する",
+      "format": "経験の質",
+      "stem": "習熟の成果や費用が等しいと想像した場合、どちらの経験が魅力的ですか？",
+      "left": "知らなかった活動を次々に知る",
+      "right": "一つの活動の細かな違いが分かるようになる",
+      "semantic_distinctness_proven": false,
+      "scored_approved": false
+    },
+    {
+      "id": "D-X13",
+      "axis": "D",
+      "family_id": "D-QF05",
+      "family_label": "関連分野からの理解",
+      "family_hypothesis": "一つの課題を複数の分野から見るか一分野の説明を深めるか",
+      "closest_prior_ids": [
+        "D05",
+        "D-BK13",
+        "D-N06"
+      ],
+      "overlap_risk": "HIGH",
+      "confounds": "問題解決効率・知識量・説明力",
+      "format": "説明の広さ",
+      "stem": "関心のある一つの話題を調べるとき、同じ時間ならどちらの知識を得たいですか？",
+      "left": "異なる分野から見た説明をいくつか知る",
+      "right": "一つの分野による詳しい説明を知る",
+      "semantic_distinctness_proven": false,
+      "scored_approved": false
+    },
+    {
+      "id": "D-X14",
+      "axis": "D",
+      "family_id": "D-QF05",
+      "family_label": "関連分野からの理解",
+      "family_hypothesis": "一つの課題を複数の分野から見るか一分野の説明を深めるか",
+      "closest_prior_ids": [
+        "D05",
+        "D-BK13",
+        "D-N06"
+      ],
+      "overlap_risk": "HIGH",
+      "confounds": "問題解決効率・知識量・説明力",
+      "format": "背景理解",
+      "stem": "一つの疑問の背景を理解するとき、どちらの調べ方を好みますか？",
+      "left": "関係するいくつかの学問分野を調べる",
+      "right": "中心となる分野の専門的な話を掘る",
+      "semantic_distinctness_proven": false,
+      "scored_approved": false
+    },
+    {
+      "id": "D-X15",
+      "axis": "D",
+      "family_id": "D-QF05",
+      "family_label": "関連分野からの理解",
+      "family_hypothesis": "一つの課題を複数の分野から見るか一分野の説明を深めるか",
+      "closest_prior_ids": [
+        "D05",
+        "D-BK13",
+        "D-N06"
+      ],
+      "overlap_risk": "HIGH",
+      "confounds": "問題解決効率・知識量・説明力",
+      "format": "複眼的理解",
+      "stem": "同じ正確さで説明が得られるとすれば、気になるテーマをどのように知りたいですか？",
+      "left": "複数の異なる視点を集めて知る",
+      "right": "一つの視点を細部まで検討する",
+      "semantic_distinctness_proven": false,
+      "scored_approved": false
+    },
+    {
+      "id": "D-X16",
+      "axis": "D",
+      "family_id": "D-QF06",
+      "family_label": "目標達成後の次の探究",
+      "family_hypothesis": "一テーマの目標到達後に他へ進むか深化を続けるか",
+      "closest_prior_ids": [
+        "D06",
+        "D-FU10",
+        "D-N05"
+      ],
+      "overlap_risk": "HIGH",
+      "confounds": "燃え尽き・当初目標の難度・将来達成C軸",
+      "format": "達成後",
+      "stem": "学習の目標を一つ達成し、さらに自由に学べるなら、次は何をしたいですか？",
+      "left": "別の分野の基礎を学び始める",
+      "right": "同じ分野のより高度な内容に進む",
+      "semantic_distinctness_proven": false,
+      "scored_approved": false
+    },
+    {
+      "id": "D-X17",
+      "axis": "D",
+      "family_id": "D-QF06",
+      "family_label": "目標達成後の次の探究",
+      "family_hypothesis": "一テーマの目標到達後に他へ進むか深化を続けるか",
+      "closest_prior_ids": [
+        "D06",
+        "D-FU10",
+        "D-N05"
+      ],
+      "overlap_risk": "HIGH",
+      "confounds": "燃え尽き・当初目標の難度・将来達成C軸",
+      "format": "問いの達成後",
+      "stem": "ずっと調べてきたテーマについて当初の疑問が解けた後、同じ時間を使うならどちらが好みですか？",
+      "left": "別の疑問を探し始める",
+      "right": "今の問いに関連する深い問題を追う",
+      "semantic_distinctness_proven": false,
+      "scored_approved": false
+    },
+    {
+      "id": "D-X18",
+      "axis": "D",
+      "family_id": "D-QF06",
+      "family_label": "目標達成後の次の探究",
+      "family_hypothesis": "一テーマの目標到達後に他へ進むか深化を続けるか",
+      "closest_prior_ids": [
+        "D06",
+        "D-FU10",
+        "D-N05"
+      ],
+      "overlap_risk": "HIGH",
+      "confounds": "燃え尽き・当初目標の難度・将来達成C軸",
+      "format": "趣味の区切り",
+      "stem": "長く続けた趣味の最初の目標を終えた場面で、次に進みたいのはどちらですか？",
+      "left": "新しい趣味に触れてみる",
+      "right": "同じ趣味の別の高度な課題へ進む",
+      "semantic_distinctness_proven": false,
+      "scored_approved": false
+    },
+    {
+      "id": "D-X19",
+      "axis": "D",
+      "family_id": "D-QF07",
+      "family_label": "人に伝える範囲と深さ",
+      "family_hypothesis": "共有する話題を広げるか一題材を詳しく説明するか",
+      "closest_prior_ids": [
+        "D-N03",
+        "D02"
+      ],
+      "overlap_risk": "MEDIUM",
+      "confounds": "相手の理解・教える能力・B軸の対人欲求",
+      "format": "紹介の構成",
+      "stem": "自分の興味について短い紹介をする際、相手の理解が同じならどんな構成を選びたいですか？",
+      "left": "違うテーマの入口をいくつか伝える",
+      "right": "一つのテーマについて詳しく伝える",
+      "semantic_distinctness_proven": false,
+      "scored_approved": false
+    },
+    {
+      "id": "D-X20",
+      "axis": "D",
+      "family_id": "D-QF07",
+      "family_label": "人に伝える範囲と深さ",
+      "family_hypothesis": "共有する話題を広げるか一題材を詳しく説明するか",
+      "closest_prior_ids": [
+        "D-N03",
+        "D02"
+      ],
+      "overlap_risk": "MEDIUM",
+      "confounds": "相手の理解・教える能力・B軸の対人欲求",
+      "format": "説明の対象",
+      "stem": "同じ長さの説明の機会を得た場合、どんな話し方が好みですか？",
+      "left": "関連するいくつかの分野に触れる",
+      "right": "一つの分野の細かな内容まで話す",
+      "semantic_distinctness_proven": false,
+      "scored_approved": false
+    },
+    {
+      "id": "D-X21",
+      "axis": "D",
+      "family_id": "D-QF07",
+      "family_label": "人に伝える範囲と深さ",
+      "family_hypothesis": "共有する話題を広げるか一題材を詳しく説明するか",
+      "closest_prior_ids": [
+        "D-N03",
+        "D02"
+      ],
+      "overlap_risk": "MEDIUM",
+      "confounds": "相手の理解・教える能力・B軸の対人欲求",
+      "format": "公開形式",
+      "stem": "自分の調べたことを記録として公開するなら、同じ労力で何を望みますか？",
+      "left": "複数テーマの短い紹介をまとめる",
+      "right": "一テーマの詳しい解説を作る",
+      "semantic_distinctness_proven": false,
+      "scored_approved": false
+    },
+    {
+      "id": "D-X22",
+      "axis": "D",
+      "family_id": "D-QF08",
+      "family_label": "複数プロジェクトと一作品",
+      "family_hypothesis": "複数題材を並行して進めるか単一課題を深めるか",
+      "closest_prior_ids": [
+        "D04",
+        "D-N04"
+      ],
+      "overlap_risk": "MEDIUM",
+      "confounds": "達成速度・完成の質、作業効率と計画能力",
+      "format": "作品数",
+      "stem": "同じ自由時間で趣味の作品を作る場合、完成したときの満足度が同じならどちらが好みですか？",
+      "left": "異なる題材の作品をいくつか作る",
+      "right": "一つの題材の作品をじっくり作り込む",
+      "semantic_distinctness_proven": false,
+      "scored_approved": false
+    },
+    {
+      "id": "D-X23",
+      "axis": "D",
+      "family_id": "D-QF08",
+      "family_label": "複数プロジェクトと一作品",
+      "family_hypothesis": "複数題材を並行して進めるか単一課題を深めるか",
+      "closest_prior_ids": [
+        "D04",
+        "D-N04"
+      ],
+      "overlap_risk": "MEDIUM",
+      "confounds": "達成速度・完成の質、作業効率と計画能力",
+      "format": "年間作品計画",
+      "stem": "創作の一年間を自由に計画できるなら、どちらの進め方に魅力を感じますか？",
+      "left": "複数の小さな作品に順番に挑戦する",
+      "right": "一つの大きな作品に継続して取り組む",
+      "semantic_distinctness_proven": false,
+      "scored_approved": false
+    },
+    {
+      "id": "D-X24",
+      "axis": "D",
+      "family_id": "D-QF08",
+      "family_label": "複数プロジェクトと一作品",
+      "family_hypothesis": "複数題材を並行して進めるか単一課題を深めるか",
+      "closest_prior_ids": [
+        "D04",
+        "D-N04"
+      ],
+      "overlap_risk": "MEDIUM",
+      "confounds": "達成速度・完成の質、作業効率と計画能力",
+      "format": "課題の幅深さ",
+      "stem": "趣味として取り組む課題を決めるとき、同じ成果の満足を得られるならどちらを望みますか？",
+      "left": "別々の課題をいくつか経験する",
+      "right": "一つの課題の細部まで研究する",
+      "semantic_distinctness_proven": false,
+      "scored_approved": false
+    }
+  ],
+  "production_changed": false
+}

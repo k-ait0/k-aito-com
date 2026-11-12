@@ -1,0 +1,97 @@
+{
+  "schema": "A05-D136-DS-SECOND-REVIEW-0.1",
+  "source": "Second DS answer supplied in chat on 2026-11-10",
+  "review_docs": [
+    "docs/A05_V2_D133_FULL_QUESTION_INVENTORY_AND_MEASUREMENT_GOALS_20261110.md",
+    "docs/A05_V2_D135_DS_EXTERNAL_REVIEW_ADJUDICATION_20261110.md"
+  ],
+  "status": "RESEARCH_ONLY_UNAPPROVED",
+  "active": false,
+  "scored": false,
+  "approved": false,
+  "changes_type_mapping": false,
+  "items": [
+    {
+      "id": "A06",
+      "axis": "A",
+      "ds_text": "生活の基本ルール（起床・食事・掃除など）を、決まった形で続けるか、定期的に見直して変えるか",
+      "nearest": [
+        "A04",
+        "A-FU05",
+        "A-BK13"
+      ],
+      "decision": "REWRITE_DUPLICATE_RISK",
+      "issue": "生活ルールの維持・定期的見直しは既存A04/A-FU05/A-BK13の構成と重なり、見直す側だけ前向きに聞こえる。",
+      "action": "原文は採用しない。生活基盤の別領域を開拓できるまで既存A04群との同一設問ファミリーとして扱う。"
+    },
+    {
+      "id": "A-BK14",
+      "axis": "A",
+      "ds_text": "長年続けている自分の生活習慣を、大きな不満がなくても一新するか、維持するか",
+      "nearest": [
+        "A04",
+        "A-FU05",
+        "A-BK13",
+        "A-BK15"
+      ],
+      "decision": "HOLD_AS_NEAR_DUPLICATE",
+      "issue": "組織方針の混入は解消したが、生活習慣の維持/刷新という同一軸の近似が強い。",
+      "action": "新規1問に数えず、A04群の言い換えとして対照用に保管。"
+    },
+    {
+      "id": "A-FU10",
+      "axis": "A",
+      "ds_text": "生活コストや通勤条件が同程度なら、住み慣れた地域に留まるか、新しい地域に移るか",
+      "nearest": [
+        "A01",
+        "A-BK15"
+      ],
+      "decision": "EXCLUDE_FROM_SCORED_CANDIDATES",
+      "issue": "A01を条件統制して言い直したもので独立情報の証拠がない。通勤条件は非就業者に不適用。",
+      "action": "A01の文面改善材料としてのみ扱い、独立候補として加算しない。"
+    },
+    {
+      "id": "D-FU07",
+      "axis": "D",
+      "ds_text": "学習中に、今のテーマとは別の分野の面白い資料を見つけたとき、その資料も読むか、今のテーマに留まるか",
+      "nearest": [
+        "D-FU07",
+        "D-FU09",
+        "D02"
+      ],
+      "decision": "REWRITE_ATTENTION_CONFOUND",
+      "issue": "新旧分野の優先以外に、資料の面白さ・気の散りやすさ・すぐ読めるかが混ざる。",
+      "action": "未解決課題の負荷は除去できるが、等しい魅力・等しい可処分時間を前提にした研究用対照に再改稿。"
+    },
+    {
+      "id": "D03",
+      "axis": "D",
+      "ds_text": "一つのテーマについて本を読むとき、関連する複数の著者を読むか、一冊を繰り返し読むか",
+      "nearest": [
+        "D02",
+        "D-FU12"
+      ],
+      "decision": "REWRITE_METHOD_CONFOUND",
+      "issue": "複数著者＝同一分野内の見解多様性、一冊反復＝読書方法であり、分野数対深度ではない。読書習慣も前提。",
+      "action": "分野の幅を明示した時間配分の対照なら候補。ただしD02/D-FU12と意味重複するので新設問として加算しない。"
+    },
+    {
+      "id": "D04",
+      "axis": "D",
+      "ds_text": "習い事で、基礎の反復を続けるか、新しい技に次々挑戦するか",
+      "nearest": [
+        "D04",
+        "D06"
+      ],
+      "decision": "EXCLUDE_FROM_SCORED_CANDIDATES",
+      "issue": "同一分野内の基礎反復と新しい技術習得であり、複数分野への探索ではない。",
+      "action": "D軸から除外寄り。反復/技法学習を別指標に分離し、新設D問としては扱わない。"
+    }
+  ],
+  "independent_scale_guidance": {
+    "B": "Keep two raw importance values separately; no classification from their difference or an uncalibrated balance flag.",
+    "C": "Prefer D135 C-IND-R1/R2 importance ratings; reject raw hours, and do not conflate allocation proportions with independent importance.",
+    "E": "Keep D135 E-IND-R1/R2 as candidate comparison; do not assume E01/E04 are both in D130.",
+    "missing": "Not applicable/unsure distinct from middle score."
+  }
+}

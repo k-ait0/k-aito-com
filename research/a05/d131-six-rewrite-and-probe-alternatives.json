@@ -1,0 +1,125 @@
+{
+  "schema": "A05-D131-SIX-REWRITE-ALTERNATIVES-0.1",
+  "date": "2026-11-10",
+  "status": "RESEARCH_COMPARISON_ONLY_DO_NOT_MERGE",
+  "usage": "Side-by-side alternatives, not replacement of source bank; PROBE_ONLY items are not eligible for scored random draws",
+  "originalScreenBlobSha": "177a3b8b0d1bc0c17b013708eefb8a3a52829523",
+  "numberOfAlternatives": 6,
+  "items": [
+    {
+      "id": "A-BK13",
+      "approach": "REPLACE_WITH_DISTINCT_FACET",
+      "facet": "公共環境の予測可能性",
+      "stem": "引っ越しや仕事の変更はせず、暮らす地域の公共施設の運営が選べるとしたら、どちらが好ましいですか？",
+      "negative": "利用できる施設やサービスの内容が数年間ほぼ変わらず、使い方を見通せる地域",
+      "positive": "同程度に便利だが、施設やサービスの種類が数年ごとに入れ替わる地域",
+      "additionalInfo": "居住地や活動環境そのものを移動しない条件で外部の公共環境が変化することへの選好",
+      "closest": [
+        "A-FU05",
+        "A04",
+        "A-BK15"
+      ],
+      "risk": "既存A04の予測可能性、A-BK15の街並み変化と近い。公共サービスの更新が便利さ以上の魅力・負担を生む",
+      "status": "ALTERNATIVE_NEEDS_EDITORIAL_REVIEW",
+      "originalStatus": "REVISE_BEFORE_PILOT",
+      "sourceItemId": "A-BK13",
+      "noAutomaticPromotion": true
+    },
+    {
+      "id": "A-BK15",
+      "approach": "REPLACE_HOLD_WITH_NEW_CONSTRUCT_CONTEXT",
+      "facet": "物理的街並みの継続/変化",
+      "stem": "今の住まいは変えず、利便性や生活費も変わらないとします。近隣の街並みについて、どちらの状況がより好ましいですか？",
+      "negative": "なじみの街並みが長く保たれ、周囲の使い方や景観を予想しやすい",
+      "positive": "定期的に建物や空間の使われ方が変わり、新しい街並みになっていく",
+      "additionalInfo": "本人の転居から、生活を囲む物理環境の変化へ対象を変更",
+      "closest": [
+        "A01",
+        "A-BK13",
+        "A02"
+      ],
+      "risk": "景観嗜好・地域開発への価値観・経済格差の影響。環境変化という同概念の単なる場面追加の可能性",
+      "status": "ALTERNATIVE_NEEDS_EDITORIAL_REVIEW",
+      "originalStatus": "HOLD_FOR_CONTENT_RISK",
+      "sourceItemId": "A-BK15",
+      "noAutomaticPromotion": true
+    },
+    {
+      "id": "B-BK13",
+      "approach": "PAIRED_CONTEXT_PROBE_NOT_BASE_SCORE",
+      "facet": "本人責任/関係者責任の条件差",
+      "stem": "共同で進める活動で、最終責任を負う人が自分から相手に変わった場合、判断の最終基準も変えますか？",
+      "negative": "自分の納得を重視する姿勢は基本的に変えない",
+      "positive": "責任者である相手の納得や判断をより優先する",
+      "additionalInfo": "責任主体の変化でB-FU04への回答が変わるかを問う対照プローブ。単独二極尺度としない",
+      "closest": [
+        "B-FU04",
+        "B-FU01",
+        "B06"
+      ],
+      "risk": "倫理規範・責任配分の認識。Bの個人内基準/合意基準を直接採点するものではない",
+      "status": "PROBE_ONLY_DO_NOT_SCORE",
+      "originalStatus": "REVISE_BEFORE_PILOT",
+      "sourceItemId": "B-BK13",
+      "noAutomaticPromotion": true
+    },
+    {
+      "id": "C-BK13",
+      "approach": "REPLACE_WITH_CONTEXT_PROBE",
+      "facet": "時間的便益の確実性の条件差",
+      "stem": "将来に向けた準備と今の体験のどちらも毎週実行できるとして、将来の準備が確実に役立つ場合と、役立つか不明な場合で選択は変わりますか？",
+      "negative": "将来の準備の確実性が変わっても、将来に時間を配分する方針を維持する",
+      "positive": "将来に役立つか不確実になると、今の体験に配分を移す",
+      "additionalInfo": "C-FU11の確実性仮定の感度検査。時点選好と確率選好の識別用、主軸に得点化しない",
+      "closest": [
+        "C-FU11",
+        "C02",
+        "C-FU14"
+      ],
+      "risk": "リスク選好を測る可能性が高く、現在/将来の選好への直接加点に不適切",
+      "status": "PROBE_ONLY_DO_NOT_SCORE",
+      "originalStatus": "REVISE_BEFORE_PILOT",
+      "sourceItemId": "C-BK13",
+      "noAutomaticPromotion": true
+    },
+    {
+      "id": "C-BK14",
+      "approach": "REPLACE_HOLD_WITH_CONTRAST_PROBE",
+      "facet": "遅延時間に対する感度",
+      "stem": "同じ満足が得られる活動を、今週と半年後のどちらにも同じ条件で行えるとします。実行する時期はどちらにしたいですか？",
+      "negative": "半年後に実行する",
+      "positive": "今週実行する",
+      "additionalInfo": "活動内容・便益の種類・負担を固定し、実行時期のみを変える対照設問",
+      "closest": [
+        "C01",
+        "C-FU15",
+        "C05"
+      ],
+      "risk": "『半年後に延期する』合理的理由が乏しい場合、現在側への強い誘導が出る。Cの将来投資/現在経験とは別の時間割引尺度",
+      "status": "PROBE_ONLY_DO_NOT_SCORE",
+      "originalStatus": "HOLD_FOR_CONTENT_RISK",
+      "sourceItemId": "C-BK14",
+      "noAutomaticPromotion": true
+    },
+    {
+      "id": "D-BK13",
+      "approach": "REPLACE_WITH_WITHIN_FIELD_EXPLORATION",
+      "facet": "同一分野内の横展開/深耕",
+      "stem": "今学んでいる分野で、同じ学習時間・同程度の難しさとすると、次にどちらを学びますか？",
+      "negative": "今の知識に隣接する別のテーマを広く試す",
+      "positive": "今扱っているテーマの難しい部分をさらに詳しく理解する",
+      "additionalInfo": "未解決課題の解決法でなく、同一分野内の横展開と既存主題の深耕を比較",
+      "closest": [
+        "D02",
+        "D-FU07",
+        "D-FU09",
+        "D06"
+      ],
+      "risk": "D02の広さ/深さの具体的言換えの可能性が残り、新規独立項目という証拠はない",
+      "status": "ALTERNATIVE_NEEDS_EDITORIAL_REVIEW",
+      "originalStatus": "REVISE_BEFORE_PILOT",
+      "sourceItemId": "D-BK13",
+      "noAutomaticPromotion": true
+    }
+  ]
+}

@@ -1,0 +1,780 @@
+{
+  "schema": "A05-D156-14CONTEXT-48ID-CROSSWALK-0.1",
+  "date": "2026-11-11",
+  "status": "EDITORIAL_MERGE_SIMULATION_NO_PRODUCTION_CHANGE",
+  "sources": {
+    "research/a05/d149-four-contexts-per-axis-alternative.json": "c5724d7c60e89be490131cbe375c66f244a42cbf",
+    "research/a05/d153-50slot-content-readiness-and-nonscoring-ledger.json": "9ada6674ed6c2a9c685aab20a8bc2df958060085",
+    "research/a05/d155-merge-or-replace-family-ideas.json": "f5c1e0b5d671bea4f38ef008e615d8c6a644071b",
+    "research/a05/d142-full-50-item-content-disposition.json": "85286173eeb6350d7a1d5b17a617702afd9675ff"
+  },
+  "fixed": {
+    "pool_total": 50,
+    "draw_total": 30,
+    "E_pool": 2,
+    "E_draw": 2,
+    "main_pool_per_axis": 12,
+    "main_draw_per_axis": 7,
+    "production_unchanged": true
+  },
+  "family_revisions": [
+    {
+      "from": "A-P4",
+      "to": "A-P2",
+      "reason": "生活用具・サービスの基盤を維持／再構築する判断は、日常生活の手順・情報管理の継続／刷新と内容が近い。新品・購買・廃棄を外すと差分がさらに小さくなる。"
+    },
+    {
+      "from": "B-P3",
+      "to": "B-P2",
+      "reason": "共有設備の利用方針を自分の判断か合意で決める基準は、共同活動の方針決定と同じ二極判断。権利・責任を変えると別の価値観より正当な意思決定権限の差が出る。"
+    }
+  ],
+  "targets": [
+    {
+      "id": "A-P1",
+      "axis": "A",
+      "primary_name": "住まい・物理的生活基盤の継続と更新",
+      "member_old_families": [
+        "A-P1"
+      ],
+      "source_ids": [
+        "A01",
+        "A-BK14"
+      ],
+      "role": "EDITORIAL_MAIN_CONTEXT_NOT_APPROVED",
+      "do_not_score": true,
+      "source_count": 2
+    },
+    {
+      "id": "A-P2",
+      "axis": "A",
+      "primary_name": "日常生活の手順と情報管理",
+      "member_old_families": [
+        "A-P2",
+        "A-P4"
+      ],
+      "source_ids": [
+        "A04",
+        "A-FU05",
+        "A-FU09",
+        "A-BK13",
+        "A-BK15",
+        "A03",
+        "A06"
+      ],
+      "role": "EDITORIAL_MAIN_CONTEXT_NOT_APPROVED",
+      "do_not_score": true,
+      "source_count": 7
+    },
+    {
+      "id": "A-P3",
+      "axis": "A",
+      "primary_name": "活動の拠点と環境の継続・変更",
+      "member_old_families": [
+        "A-P3"
+      ],
+      "source_ids": [
+        "A02",
+        "A05",
+        "A-FU10"
+      ],
+      "role": "EDITORIAL_MAIN_CONTEXT_NOT_APPROVED",
+      "do_not_score": true,
+      "source_count": 3
+    },
+    {
+      "id": "B-P1",
+      "axis": "B",
+      "primary_name": "自分の重要な選択での他者考慮",
+      "member_old_families": [
+        "B-P1"
+      ],
+      "source_ids": [
+        "B06",
+        "B-FU01"
+      ],
+      "role": "EDITORIAL_MAIN_CONTEXT_NOT_APPROVED",
+      "do_not_score": true,
+      "source_count": 2
+    },
+    {
+      "id": "B-P2",
+      "axis": "B",
+      "primary_name": "共同方針・共通ルールの最終決定",
+      "member_old_families": [
+        "B-P2",
+        "B-P3"
+      ],
+      "source_ids": [
+        "B01",
+        "B03",
+        "B-FU04",
+        "B-FU12",
+        "B-BK13",
+        "B02",
+        "B05",
+        "B-FU11"
+      ],
+      "role": "EDITORIAL_MAIN_CONTEXT_NOT_APPROVED",
+      "do_not_score": true,
+      "source_count": 8
+    },
+    {
+      "id": "B-P4",
+      "axis": "B",
+      "primary_name": "共有時間・余暇の予定調整",
+      "member_old_families": [
+        "B-P4"
+      ],
+      "source_ids": [
+        "B04",
+        "B-FU05"
+      ],
+      "role": "EDITORIAL_MAIN_CONTEXT_NOT_APPROVED",
+      "do_not_score": true,
+      "source_count": 2
+    },
+    {
+      "id": "C-P1",
+      "axis": "C",
+      "primary_name": "単発の余力の使途",
+      "member_old_families": [
+        "C-P1"
+      ],
+      "source_ids": [
+        "C01",
+        "C02",
+        "C-FU11"
+      ],
+      "role": "EDITORIAL_MAIN_CONTEXT_NOT_APPROVED",
+      "do_not_score": true,
+      "source_count": 3
+    },
+    {
+      "id": "C-P2",
+      "axis": "C",
+      "primary_name": "継続的な時間配分",
+      "member_old_families": [
+        "C-P2"
+      ],
+      "source_ids": [
+        "C05",
+        "C-BK14",
+        "C-BK15"
+      ],
+      "role": "EDITORIAL_MAIN_CONTEXT_NOT_APPROVED",
+      "do_not_score": true,
+      "source_count": 3
+    },
+    {
+      "id": "C-P3",
+      "axis": "C",
+      "primary_name": "活動選択と資源の種類",
+      "member_old_families": [
+        "C-P3"
+      ],
+      "source_ids": [
+        "C03",
+        "C04",
+        "C06",
+        "C-BK13"
+      ],
+      "role": "EDITORIAL_MAIN_CONTEXT_NOT_APPROVED",
+      "do_not_score": true,
+      "source_count": 4
+    },
+    {
+      "id": "C-P4",
+      "axis": "C",
+      "primary_name": "双方に対称な機会の希少性",
+      "member_old_families": [
+        "C-P4"
+      ],
+      "source_ids": [
+        "C-FU14",
+        "C-FU15"
+      ],
+      "role": "RESEARCH_ONLY",
+      "do_not_score": true,
+      "source_count": 2
+    },
+    {
+      "id": "D-P1",
+      "axis": "D",
+      "primary_name": "知識・学習分野の幅と深さ",
+      "member_old_families": [
+        "D-P1"
+      ],
+      "source_ids": [
+        "D02",
+        "D05",
+        "D-FU09",
+        "D-FU12",
+        "D-BK13"
+      ],
+      "role": "EDITORIAL_MAIN_CONTEXT_NOT_APPROVED",
+      "do_not_score": true,
+      "source_count": 5
+    },
+    {
+      "id": "D-P2",
+      "axis": "D",
+      "primary_name": "趣味・活動領域の幅と深さ",
+      "member_old_families": [
+        "D-P2"
+      ],
+      "source_ids": [
+        "D01",
+        "D04",
+        "D-FU11"
+      ],
+      "role": "EDITORIAL_MAIN_CONTEXT_NOT_APPROVED",
+      "do_not_score": true,
+      "source_count": 3
+    },
+    {
+      "id": "D-P3",
+      "axis": "D",
+      "primary_name": "探究途中での新分野の選択",
+      "member_old_families": [
+        "D-P3"
+      ],
+      "source_ids": [
+        "D03",
+        "D-FU07"
+      ],
+      "role": "RESEARCH_ONLY",
+      "do_not_score": true,
+      "source_count": 2
+    },
+    {
+      "id": "D-P4",
+      "axis": "D",
+      "primary_name": "一区切り・目標達成後の次の選択",
+      "member_old_families": [
+        "D-P4"
+      ],
+      "source_ids": [
+        "D06",
+        "D-FU10"
+      ],
+      "role": "RESEARCH_ONLY",
+      "do_not_score": true,
+      "source_count": 2
+    }
+  ],
+  "axis_summary": {
+    "A": {
+      "contexts_total": 3,
+      "editorial_contexts": 3,
+      "paired_research_contexts": 0,
+      "main_source_counts": {
+        "A-P1": 2,
+        "A-P2": 7,
+        "A-P3": 3
+      },
+      "research_source_counts": {},
+      "hypothetical_balanced_floor_per_main_context": 4,
+      "hypothetical_balanced_ceiling_per_main_context": 4,
+      "main_source_slots": 12,
+      "research_source_slots": 0,
+      "legacy_distribution_is_not_validated": true
+    },
+    "B": {
+      "contexts_total": 3,
+      "editorial_contexts": 3,
+      "paired_research_contexts": 0,
+      "main_source_counts": {
+        "B-P1": 2,
+        "B-P2": 8,
+        "B-P4": 2
+      },
+      "research_source_counts": {},
+      "hypothetical_balanced_floor_per_main_context": 4,
+      "hypothetical_balanced_ceiling_per_main_context": 4,
+      "main_source_slots": 12,
+      "research_source_slots": 0,
+      "legacy_distribution_is_not_validated": true
+    },
+    "C": {
+      "contexts_total": 4,
+      "editorial_contexts": 3,
+      "paired_research_contexts": 1,
+      "main_source_counts": {
+        "C-P1": 3,
+        "C-P2": 3,
+        "C-P3": 4
+      },
+      "research_source_counts": {
+        "C-P4": 2
+      },
+      "hypothetical_balanced_floor_per_main_context": 4,
+      "hypothetical_balanced_ceiling_per_main_context": 4,
+      "main_source_slots": 10,
+      "research_source_slots": 2,
+      "legacy_distribution_is_not_validated": true
+    },
+    "D": {
+      "contexts_total": 4,
+      "editorial_contexts": 2,
+      "paired_research_contexts": 2,
+      "main_source_counts": {
+        "D-P1": 5,
+        "D-P2": 3
+      },
+      "research_source_counts": {
+        "D-P3": 2,
+        "D-P4": 2
+      },
+      "hypothetical_balanced_floor_per_main_context": 6,
+      "hypothetical_balanced_ceiling_per_main_context": 6,
+      "main_source_slots": 8,
+      "research_source_slots": 4,
+      "legacy_distribution_is_not_validated": true
+    }
+  },
+  "content_coverage_hypotheses": {
+    "A": {
+      "editorial_only_guideline": {
+        "A-P1": 4,
+        "A-P2": 4,
+        "A-P3": 4
+      },
+      "provenance": [
+        2,
+        7,
+        3
+      ],
+      "note": "Target 4 per context is a coverage thought experiment only. Reassign or newly design 2 A-P1 and 1 A-P3 while dropping/merging excess similar A-P2 content. Not an authorization to fill 12."
+    },
+    "B": {
+      "editorial_only_guideline": {
+        "B-P1": 4,
+        "B-P2": 4,
+        "B-P4": 4
+      },
+      "provenance": [
+        2,
+        8,
+        2
+      ],
+      "note": "Focus on truly distinct choice contexts, rather than rewording 4 B-P2 topics. B-P1/P4 need conceptual broadening without relationship duties or social desirability."
+    },
+    "C": {
+      "note": "C-P4 two research source IDs must not fill two independent 7-question scored bank slots. C-P1/P2/P3 ten provenance IDs are not ten validated alternatives."
+    },
+    "D": {
+      "note": "D-P3/P4 source IDs form context contrast, not four interchangeable scored items. D-P1/P2 eight provenance IDs, with high synonymy risk. Do not assert D has 7 valid scored items."
+    }
+  },
+  "original_id_to_comparison_context": {
+    "A01": {
+      "group": "A-P1",
+      "role": "EDITORIAL_MAIN_CONTEXT_NOT_APPROVED",
+      "original_editorial_status": "REWRITE",
+      "source_legacy_context_ids": [
+        "A-P1"
+      ]
+    },
+    "A-BK14": {
+      "group": "A-P1",
+      "role": "EDITORIAL_MAIN_CONTEXT_NOT_APPROVED",
+      "original_editorial_status": "PROBE_ONLY",
+      "source_legacy_context_ids": [
+        "A-P1"
+      ]
+    },
+    "A04": {
+      "group": "A-P2",
+      "role": "EDITORIAL_MAIN_CONTEXT_NOT_APPROVED",
+      "original_editorial_status": "REWRITE",
+      "source_legacy_context_ids": [
+        "A-P2",
+        "A-P4"
+      ]
+    },
+    "A-FU05": {
+      "group": "A-P2",
+      "role": "EDITORIAL_MAIN_CONTEXT_NOT_APPROVED",
+      "original_editorial_status": "PROVISIONAL_KEEP",
+      "source_legacy_context_ids": [
+        "A-P2",
+        "A-P4"
+      ]
+    },
+    "A-FU09": {
+      "group": "A-P2",
+      "role": "EDITORIAL_MAIN_CONTEXT_NOT_APPROVED",
+      "original_editorial_status": "PROBE_ONLY",
+      "source_legacy_context_ids": [
+        "A-P2",
+        "A-P4"
+      ]
+    },
+    "A-BK13": {
+      "group": "A-P2",
+      "role": "EDITORIAL_MAIN_CONTEXT_NOT_APPROVED",
+      "original_editorial_status": "DUPLICATE_MERGE",
+      "source_legacy_context_ids": [
+        "A-P2",
+        "A-P4"
+      ]
+    },
+    "A-BK15": {
+      "group": "A-P2",
+      "role": "EDITORIAL_MAIN_CONTEXT_NOT_APPROVED",
+      "original_editorial_status": "DUPLICATE_MERGE",
+      "source_legacy_context_ids": [
+        "A-P2",
+        "A-P4"
+      ]
+    },
+    "A03": {
+      "group": "A-P2",
+      "role": "EDITORIAL_MAIN_CONTEXT_NOT_APPROVED",
+      "original_editorial_status": "OUT_OF_CONSTRUCT",
+      "source_legacy_context_ids": [
+        "A-P2",
+        "A-P4"
+      ]
+    },
+    "A06": {
+      "group": "A-P2",
+      "role": "EDITORIAL_MAIN_CONTEXT_NOT_APPROVED",
+      "original_editorial_status": "DUPLICATE_MERGE",
+      "source_legacy_context_ids": [
+        "A-P2",
+        "A-P4"
+      ]
+    },
+    "A02": {
+      "group": "A-P3",
+      "role": "EDITORIAL_MAIN_CONTEXT_NOT_APPROVED",
+      "original_editorial_status": "OUT_OF_CONSTRUCT",
+      "source_legacy_context_ids": [
+        "A-P3"
+      ]
+    },
+    "A05": {
+      "group": "A-P3",
+      "role": "EDITORIAL_MAIN_CONTEXT_NOT_APPROVED",
+      "original_editorial_status": "PROBE_ONLY",
+      "source_legacy_context_ids": [
+        "A-P3"
+      ]
+    },
+    "A-FU10": {
+      "group": "A-P3",
+      "role": "EDITORIAL_MAIN_CONTEXT_NOT_APPROVED",
+      "original_editorial_status": "DUPLICATE_MERGE",
+      "source_legacy_context_ids": [
+        "A-P3"
+      ]
+    },
+    "B06": {
+      "group": "B-P1",
+      "role": "EDITORIAL_MAIN_CONTEXT_NOT_APPROVED",
+      "original_editorial_status": "REWRITE",
+      "source_legacy_context_ids": [
+        "B-P1"
+      ]
+    },
+    "B-FU01": {
+      "group": "B-P1",
+      "role": "EDITORIAL_MAIN_CONTEXT_NOT_APPROVED",
+      "original_editorial_status": "PROVISIONAL_KEEP",
+      "source_legacy_context_ids": [
+        "B-P1"
+      ]
+    },
+    "B01": {
+      "group": "B-P2",
+      "role": "EDITORIAL_MAIN_CONTEXT_NOT_APPROVED",
+      "original_editorial_status": "REWRITE",
+      "source_legacy_context_ids": [
+        "B-P2",
+        "B-P3"
+      ]
+    },
+    "B03": {
+      "group": "B-P2",
+      "role": "EDITORIAL_MAIN_CONTEXT_NOT_APPROVED",
+      "original_editorial_status": "PROBE_ONLY",
+      "source_legacy_context_ids": [
+        "B-P2",
+        "B-P3"
+      ]
+    },
+    "B-FU04": {
+      "group": "B-P2",
+      "role": "EDITORIAL_MAIN_CONTEXT_NOT_APPROVED",
+      "original_editorial_status": "PROVISIONAL_KEEP",
+      "source_legacy_context_ids": [
+        "B-P2",
+        "B-P3"
+      ]
+    },
+    "B-FU12": {
+      "group": "B-P2",
+      "role": "EDITORIAL_MAIN_CONTEXT_NOT_APPROVED",
+      "original_editorial_status": "OUT_OF_CONSTRUCT",
+      "source_legacy_context_ids": [
+        "B-P2",
+        "B-P3"
+      ]
+    },
+    "B-BK13": {
+      "group": "B-P2",
+      "role": "EDITORIAL_MAIN_CONTEXT_NOT_APPROVED",
+      "original_editorial_status": "DUPLICATE_MERGE",
+      "source_legacy_context_ids": [
+        "B-P2",
+        "B-P3"
+      ]
+    },
+    "B02": {
+      "group": "B-P2",
+      "role": "EDITORIAL_MAIN_CONTEXT_NOT_APPROVED",
+      "original_editorial_status": "OUT_OF_CONSTRUCT",
+      "source_legacy_context_ids": [
+        "B-P2",
+        "B-P3"
+      ]
+    },
+    "B05": {
+      "group": "B-P2",
+      "role": "EDITORIAL_MAIN_CONTEXT_NOT_APPROVED",
+      "original_editorial_status": "REWRITE",
+      "source_legacy_context_ids": [
+        "B-P2",
+        "B-P3"
+      ]
+    },
+    "B-FU11": {
+      "group": "B-P2",
+      "role": "EDITORIAL_MAIN_CONTEXT_NOT_APPROVED",
+      "original_editorial_status": "PROBE_ONLY",
+      "source_legacy_context_ids": [
+        "B-P2",
+        "B-P3"
+      ]
+    },
+    "B04": {
+      "group": "B-P4",
+      "role": "EDITORIAL_MAIN_CONTEXT_NOT_APPROVED",
+      "original_editorial_status": "DUPLICATE_MERGE",
+      "source_legacy_context_ids": [
+        "B-P4"
+      ]
+    },
+    "B-FU05": {
+      "group": "B-P4",
+      "role": "EDITORIAL_MAIN_CONTEXT_NOT_APPROVED",
+      "original_editorial_status": "DUPLICATE_MERGE",
+      "source_legacy_context_ids": [
+        "B-P4"
+      ]
+    },
+    "C01": {
+      "group": "C-P1",
+      "role": "EDITORIAL_MAIN_CONTEXT_NOT_APPROVED",
+      "original_editorial_status": "REWRITE",
+      "source_legacy_context_ids": [
+        "C-P1"
+      ]
+    },
+    "C02": {
+      "group": "C-P1",
+      "role": "EDITORIAL_MAIN_CONTEXT_NOT_APPROVED",
+      "original_editorial_status": "OUT_OF_CONSTRUCT",
+      "source_legacy_context_ids": [
+        "C-P1"
+      ]
+    },
+    "C-FU11": {
+      "group": "C-P1",
+      "role": "EDITORIAL_MAIN_CONTEXT_NOT_APPROVED",
+      "original_editorial_status": "PROVISIONAL_KEEP",
+      "source_legacy_context_ids": [
+        "C-P1"
+      ]
+    },
+    "C05": {
+      "group": "C-P2",
+      "role": "EDITORIAL_MAIN_CONTEXT_NOT_APPROVED",
+      "original_editorial_status": "DUPLICATE_MERGE",
+      "source_legacy_context_ids": [
+        "C-P2"
+      ]
+    },
+    "C-BK14": {
+      "group": "C-P2",
+      "role": "EDITORIAL_MAIN_CONTEXT_NOT_APPROVED",
+      "original_editorial_status": "OUT_OF_CONSTRUCT",
+      "source_legacy_context_ids": [
+        "C-P2"
+      ]
+    },
+    "C-BK15": {
+      "group": "C-P2",
+      "role": "EDITORIAL_MAIN_CONTEXT_NOT_APPROVED",
+      "original_editorial_status": "REWRITE",
+      "source_legacy_context_ids": [
+        "C-P2"
+      ]
+    },
+    "C03": {
+      "group": "C-P3",
+      "role": "EDITORIAL_MAIN_CONTEXT_NOT_APPROVED",
+      "original_editorial_status": "PROBE_ONLY",
+      "source_legacy_context_ids": [
+        "C-P3"
+      ]
+    },
+    "C04": {
+      "group": "C-P3",
+      "role": "EDITORIAL_MAIN_CONTEXT_NOT_APPROVED",
+      "original_editorial_status": "OUT_OF_CONSTRUCT",
+      "source_legacy_context_ids": [
+        "C-P3"
+      ]
+    },
+    "C06": {
+      "group": "C-P3",
+      "role": "EDITORIAL_MAIN_CONTEXT_NOT_APPROVED",
+      "original_editorial_status": "OUT_OF_CONSTRUCT",
+      "source_legacy_context_ids": [
+        "C-P3"
+      ]
+    },
+    "C-BK13": {
+      "group": "C-P3",
+      "role": "EDITORIAL_MAIN_CONTEXT_NOT_APPROVED",
+      "original_editorial_status": "DUPLICATE_MERGE",
+      "source_legacy_context_ids": [
+        "C-P3"
+      ]
+    },
+    "C-FU14": {
+      "group": "C-P4",
+      "role": "RESEARCH_ONLY",
+      "original_editorial_status": "PROVISIONAL_KEEP",
+      "source_legacy_context_ids": [
+        "C-P4"
+      ]
+    },
+    "C-FU15": {
+      "group": "C-P4",
+      "role": "RESEARCH_ONLY",
+      "original_editorial_status": "PROVISIONAL_KEEP",
+      "source_legacy_context_ids": [
+        "C-P4"
+      ]
+    },
+    "D02": {
+      "group": "D-P1",
+      "role": "EDITORIAL_MAIN_CONTEXT_NOT_APPROVED",
+      "original_editorial_status": "PROVISIONAL_KEEP",
+      "source_legacy_context_ids": [
+        "D-P1"
+      ]
+    },
+    "D05": {
+      "group": "D-P1",
+      "role": "EDITORIAL_MAIN_CONTEXT_NOT_APPROVED",
+      "original_editorial_status": "REWRITE",
+      "source_legacy_context_ids": [
+        "D-P1"
+      ]
+    },
+    "D-FU09": {
+      "group": "D-P1",
+      "role": "EDITORIAL_MAIN_CONTEXT_NOT_APPROVED",
+      "original_editorial_status": "DUPLICATE_MERGE",
+      "source_legacy_context_ids": [
+        "D-P1"
+      ]
+    },
+    "D-FU12": {
+      "group": "D-P1",
+      "role": "EDITORIAL_MAIN_CONTEXT_NOT_APPROVED",
+      "original_editorial_status": "PROVISIONAL_KEEP",
+      "source_legacy_context_ids": [
+        "D-P1"
+      ]
+    },
+    "D-BK13": {
+      "group": "D-P1",
+      "role": "EDITORIAL_MAIN_CONTEXT_NOT_APPROVED",
+      "original_editorial_status": "DUPLICATE_MERGE",
+      "source_legacy_context_ids": [
+        "D-P1"
+      ]
+    },
+    "D01": {
+      "group": "D-P2",
+      "role": "EDITORIAL_MAIN_CONTEXT_NOT_APPROVED",
+      "original_editorial_status": "PROVISIONAL_KEEP",
+      "source_legacy_context_ids": [
+        "D-P2"
+      ]
+    },
+    "D04": {
+      "group": "D-P2",
+      "role": "EDITORIAL_MAIN_CONTEXT_NOT_APPROVED",
+      "original_editorial_status": "OUT_OF_CONSTRUCT",
+      "source_legacy_context_ids": [
+        "D-P2"
+      ]
+    },
+    "D-FU11": {
+      "group": "D-P2",
+      "role": "EDITORIAL_MAIN_CONTEXT_NOT_APPROVED",
+      "original_editorial_status": "PROBE_ONLY",
+      "source_legacy_context_ids": [
+        "D-P2"
+      ]
+    },
+    "D03": {
+      "group": "D-P3",
+      "role": "RESEARCH_ONLY",
+      "original_editorial_status": "OUT_OF_CONSTRUCT",
+      "source_legacy_context_ids": [
+        "D-P3"
+      ]
+    },
+    "D-FU07": {
+      "group": "D-P3",
+      "role": "RESEARCH_ONLY",
+      "original_editorial_status": "PROVISIONAL_KEEP",
+      "source_legacy_context_ids": [
+        "D-P3"
+      ]
+    },
+    "D06": {
+      "group": "D-P4",
+      "role": "RESEARCH_ONLY",
+      "original_editorial_status": "REWRITE",
+      "source_legacy_context_ids": [
+        "D-P4"
+      ]
+    },
+    "D-FU10": {
+      "group": "D-P4",
+      "role": "RESEARCH_ONLY",
+      "original_editorial_status": "PROVISIONAL_KEEP",
+      "source_legacy_context_ids": [
+        "D-P4"
+      ]
+    }
+  },
+  "warnings": [
+    "Counting old 48 IDs as mapped is provenance completeness, not 48 eligible scored items.",
+    "Merger creates A-P2 7 of 12 source slots and B-P2 8 of 12; retaining a uniformly random draw from these source slots in a future bank would overrepresent those topics without further redesign.",
+    "C-P4 is paired research only (C-FU14 and C-FU15); D-P3/P4 are contrast research, not interchangeable scored questions.",
+    "Balancing 4/4/4 within A or B is a hypothetical allocation that requires distinct validated content; it does not change bank size, existing extractor, or item acceptance.",
+    "Research merging of observational families does not remove old IDs, change production v1, or establish axis factor structures."
+  ],
+  "approved": false,
+  "scored_question_count_in_this_artifact": 0
+}

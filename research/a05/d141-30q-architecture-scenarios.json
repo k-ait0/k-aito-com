@@ -1,0 +1,114 @@
+{
+  "id": "A05-D141-30Q-ARCH-RESEARCH-0.1",
+  "date": "2026-11-10",
+  "status": "NOT_APPROVED_RESEARCH_ONLY",
+  "d131_conditional_pilot_counts": {
+    "A": 3,
+    "B": 3,
+    "C": 4,
+    "D": 5,
+    "E": 0
+  },
+  "formulas": {
+    "total": "sum(core relative counts) + sum(extra counts)",
+    "optimistic_gap": "sum(max(core_required - D131 conditional available, 0)) + supplement required not present among D131 conditional"
+  },
+  "terms": {
+    "conditional": "編集上の条件付き試行候補であり承認済みではない",
+    "independent": "D-135の独立6文面は研究草案、既存50バンクと加算しない",
+    "shortage": "必要な出題枠に対して現状の条件付き試行文面だけで満たせない下限であり、採用済み数量ではない"
+  },
+  "variants": [
+    {
+      "id": "S1",
+      "title": "既存案7/7/7/7/2",
+      "core": {
+        "A": 7,
+        "B": 7,
+        "C": 7,
+        "D": 7
+      },
+      "extra": {
+        "E_relative": 2
+      },
+      "description": "50問バンク可変抽出を目指す従来案",
+      "technical": "現行v2 6/軸固定とE4有効回答ゲートに非互換",
+      "total_count": 30,
+      "base_relative_shortage": {
+        "A": 4,
+        "B": 4,
+        "C": 3,
+        "D": 2
+      },
+      "base_relative_shortage_total": 13,
+      "supplement_shortage": 2,
+      "research_only": true,
+      "is_active": false,
+      "type_mapping_approved": false
+    },
+    {
+      "id": "S2",
+      "title": "固定6/6/6/6/6",
+      "core": {
+        "A": 6,
+        "B": 6,
+        "C": 6,
+        "D": 6
+      },
+      "extra": {
+        "E_relative": 6
+      },
+      "description": "v2ドラフトの各軸固定6問構造",
+      "technical": "既存コード形状は維持できるがE用の候補・内容品質不足",
+      "total_count": 30,
+      "base_relative_shortage": {
+        "A": 3,
+        "B": 3,
+        "C": 2,
+        "D": 1
+      },
+      "base_relative_shortage_total": 9,
+      "supplement_shortage": 6,
+      "research_only": true,
+      "is_active": false,
+      "type_mapping_approved": false
+    },
+    {
+      "id": "S3",
+      "title": "研究用30問：主軸24＋補助6",
+      "core": {
+        "A": 6,
+        "B": 6,
+        "C": 6,
+        "D": 6
+      },
+      "extra": {
+        "B_independent": 2,
+        "C_independent": 2,
+        "E_independent": 2
+      },
+      "description": "A〜D各6問の二極（計24）＋独立評定B2/C2/E2（計6）を別枠記録",
+      "technical": "Eの6→2変更、質問フォームと採点境界・保存契約の変更が必要。独立補助を旧16タイプや45〜55%ゲートへ無断変換しない",
+      "total_count": 30,
+      "base_relative_shortage": {
+        "A": 3,
+        "B": 3,
+        "C": 2,
+        "D": 1
+      },
+      "base_relative_shortage_total": 9,
+      "supplement_shortage": 6,
+      "research_only": true,
+      "is_active": false,
+      "type_mapping_approved": false
+    }
+  ],
+  "release_gate": {
+    "content_quality": "実回答の認知面接と概念の適合確認",
+    "B_C_structure": "相対/独立の相互変換禁止、独立2値生保持",
+    "E_policy": "E2独立は16タイプ判定外、旧v2 E6ゲート転用禁止",
+    "history": "旧結果不変、新マニフェストと版・IDの保存",
+    "sampling": "可変フォームの等化未校正、ランダム抽出は研究のみ",
+    "publish": "current PR76 remains Draft and NO-GO"
+  }
+}

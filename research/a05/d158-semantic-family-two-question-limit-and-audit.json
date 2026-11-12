@@ -1,0 +1,399 @@
+{
+  "schema": "A05-D158-SEMANTIC-REPETITION-LIMIT-0.1",
+  "date": "2026-11-11",
+  "status": "USER_CONFIRMED_CONTENT_POLICY_APPLIED_TO_RESEARCH_ONLY",
+  "user_decision": "完全重複ではない同系統質問は2つまでの存在を認めます",
+  "fixed": {
+    "bank_total": 50,
+    "per_run": 30,
+    "bank_per_axis": {
+      "A": 12,
+      "B": 12,
+      "C": 12,
+      "D": 12,
+      "E": 2
+    },
+    "run_per_axis": {
+      "A": 7,
+      "B": 7,
+      "C": 7,
+      "D": 7,
+      "E": 2
+    }
+  },
+  "limits": {
+    "exact_duplicate_max": 0,
+    "same_semantic_family_max_in_bank": 2,
+    "same_semantic_family_max_in_single_run": 2,
+    "per_main_axis_min_semantically_distinct_families_if_bank_full": 6,
+    "E_auxiliary_exactly_two": true
+  },
+  "operational_definitions": {
+    "broad_context": "Higher-level observational domain such as daily systems or joint decisions; may contain several genuinely distinct semantic question families, but re-labeling does not establish distinctness.",
+    "semantic_family": "Questions using substantively the same judgment process and contrast/poles, even if object, location, or participants change.",
+    "exact_duplicate": "Two questions with equivalent decision, equivalent constraints and equivalent response reasoning, including paraphrases.",
+    "allowable_second_item": "Distinct enough that a respondent can give different answers for a legitimate value-relevant reason rather than merely differing money, skills, ownership, relationships, fatigue, or duties.",
+    "not_counted_as_evidence": "Different examples, new wording, same polarity, or new proposed IDs without new information do not establish different families."
+  },
+  "hierarchy_rule": "D156 3/3/4/4 broad contexts are NOT a substitute for >=6 distinct semantic families per A-D axis. Distinct subfamilies require editorial and respondent-review evidence.",
+  "acceptance_gates": [
+    "0 exact semantic duplicates",
+    "<=2 per independently supported semantic family in the bank",
+    "same-family paired wording must add justified value-relevant information",
+    "cross-axis confounding and asymmetry screened",
+    "research-only C/D comparison pairs not counted as validated scored items",
+    "do not make up extra families to fill 12",
+    "approve semantic diversity before adjusting any randomizer or scoring"
+  ],
+  "evidence": {
+    "D156_blob": "63648f5e8a7430dd7f6375e18c00ea66bf8827e3",
+    "D153_blob": "9ada6674ed6c2a9c685aab20a8bc2df958060085",
+    "D146_blob": "53b3e137ff3597bdf7072c880c622baf8fee6814"
+  },
+  "audit_by_broad_context": [
+    {
+      "id": "A-P1",
+      "axis": "A",
+      "primary_name": "住まい・物理的生活基盤の継続と更新",
+      "member_old_families": [
+        "A-P1"
+      ],
+      "source_ids": [
+        "A01",
+        "A-BK14"
+      ],
+      "role": "EDITORIAL_MAIN_CONTEXT_NOT_APPROVED",
+      "do_not_score": true,
+      "source_count": 2,
+      "bank_source_count": 2,
+      "over_max_if_broad_group_is_one_semantic_family": 0,
+      "eligibility": "UNDETERMINED"
+    },
+    {
+      "id": "A-P2",
+      "axis": "A",
+      "primary_name": "日常生活の手順と情報管理",
+      "member_old_families": [
+        "A-P2",
+        "A-P4"
+      ],
+      "source_ids": [
+        "A04",
+        "A-FU05",
+        "A-FU09",
+        "A-BK13",
+        "A-BK15",
+        "A03",
+        "A06"
+      ],
+      "role": "EDITORIAL_MAIN_CONTEXT_NOT_APPROVED",
+      "do_not_score": true,
+      "source_count": 7,
+      "bank_source_count": 7,
+      "over_max_if_broad_group_is_one_semantic_family": 5,
+      "eligibility": "UNDETERMINED"
+    },
+    {
+      "id": "A-P3",
+      "axis": "A",
+      "primary_name": "活動の拠点と環境の継続・変更",
+      "member_old_families": [
+        "A-P3"
+      ],
+      "source_ids": [
+        "A02",
+        "A05",
+        "A-FU10"
+      ],
+      "role": "EDITORIAL_MAIN_CONTEXT_NOT_APPROVED",
+      "do_not_score": true,
+      "source_count": 3,
+      "bank_source_count": 3,
+      "over_max_if_broad_group_is_one_semantic_family": 1,
+      "eligibility": "UNDETERMINED"
+    },
+    {
+      "id": "B-P1",
+      "axis": "B",
+      "primary_name": "自分の重要な選択での他者考慮",
+      "member_old_families": [
+        "B-P1"
+      ],
+      "source_ids": [
+        "B06",
+        "B-FU01"
+      ],
+      "role": "EDITORIAL_MAIN_CONTEXT_NOT_APPROVED",
+      "do_not_score": true,
+      "source_count": 2,
+      "bank_source_count": 2,
+      "over_max_if_broad_group_is_one_semantic_family": 0,
+      "eligibility": "UNDETERMINED"
+    },
+    {
+      "id": "B-P2",
+      "axis": "B",
+      "primary_name": "共同方針・共通ルールの最終決定",
+      "member_old_families": [
+        "B-P2",
+        "B-P3"
+      ],
+      "source_ids": [
+        "B01",
+        "B03",
+        "B-FU04",
+        "B-FU12",
+        "B-BK13",
+        "B02",
+        "B05",
+        "B-FU11"
+      ],
+      "role": "EDITORIAL_MAIN_CONTEXT_NOT_APPROVED",
+      "do_not_score": true,
+      "source_count": 8,
+      "bank_source_count": 8,
+      "over_max_if_broad_group_is_one_semantic_family": 6,
+      "eligibility": "UNDETERMINED"
+    },
+    {
+      "id": "B-P4",
+      "axis": "B",
+      "primary_name": "共有時間・余暇の予定調整",
+      "member_old_families": [
+        "B-P4"
+      ],
+      "source_ids": [
+        "B04",
+        "B-FU05"
+      ],
+      "role": "EDITORIAL_MAIN_CONTEXT_NOT_APPROVED",
+      "do_not_score": true,
+      "source_count": 2,
+      "bank_source_count": 2,
+      "over_max_if_broad_group_is_one_semantic_family": 0,
+      "eligibility": "UNDETERMINED"
+    },
+    {
+      "id": "C-P1",
+      "axis": "C",
+      "primary_name": "単発の余力の使途",
+      "member_old_families": [
+        "C-P1"
+      ],
+      "source_ids": [
+        "C01",
+        "C02",
+        "C-FU11"
+      ],
+      "role": "EDITORIAL_MAIN_CONTEXT_NOT_APPROVED",
+      "do_not_score": true,
+      "source_count": 3,
+      "bank_source_count": 3,
+      "over_max_if_broad_group_is_one_semantic_family": 1,
+      "eligibility": "UNDETERMINED"
+    },
+    {
+      "id": "C-P2",
+      "axis": "C",
+      "primary_name": "継続的な時間配分",
+      "member_old_families": [
+        "C-P2"
+      ],
+      "source_ids": [
+        "C05",
+        "C-BK14",
+        "C-BK15"
+      ],
+      "role": "EDITORIAL_MAIN_CONTEXT_NOT_APPROVED",
+      "do_not_score": true,
+      "source_count": 3,
+      "bank_source_count": 3,
+      "over_max_if_broad_group_is_one_semantic_family": 1,
+      "eligibility": "UNDETERMINED"
+    },
+    {
+      "id": "C-P3",
+      "axis": "C",
+      "primary_name": "活動選択と資源の種類",
+      "member_old_families": [
+        "C-P3"
+      ],
+      "source_ids": [
+        "C03",
+        "C04",
+        "C06",
+        "C-BK13"
+      ],
+      "role": "EDITORIAL_MAIN_CONTEXT_NOT_APPROVED",
+      "do_not_score": true,
+      "source_count": 4,
+      "bank_source_count": 4,
+      "over_max_if_broad_group_is_one_semantic_family": 2,
+      "eligibility": "UNDETERMINED"
+    },
+    {
+      "id": "C-P4",
+      "axis": "C",
+      "primary_name": "双方に対称な機会の希少性",
+      "member_old_families": [
+        "C-P4"
+      ],
+      "source_ids": [
+        "C-FU14",
+        "C-FU15"
+      ],
+      "role": "RESEARCH_ONLY",
+      "do_not_score": true,
+      "source_count": 2,
+      "bank_source_count": 2,
+      "over_max_if_broad_group_is_one_semantic_family": 0,
+      "eligibility": "NOT_STANDALONE_SCORING"
+    },
+    {
+      "id": "D-P1",
+      "axis": "D",
+      "primary_name": "知識・学習分野の幅と深さ",
+      "member_old_families": [
+        "D-P1"
+      ],
+      "source_ids": [
+        "D02",
+        "D05",
+        "D-FU09",
+        "D-FU12",
+        "D-BK13"
+      ],
+      "role": "EDITORIAL_MAIN_CONTEXT_NOT_APPROVED",
+      "do_not_score": true,
+      "source_count": 5,
+      "bank_source_count": 5,
+      "over_max_if_broad_group_is_one_semantic_family": 3,
+      "eligibility": "UNDETERMINED"
+    },
+    {
+      "id": "D-P2",
+      "axis": "D",
+      "primary_name": "趣味・活動領域の幅と深さ",
+      "member_old_families": [
+        "D-P2"
+      ],
+      "source_ids": [
+        "D01",
+        "D04",
+        "D-FU11"
+      ],
+      "role": "EDITORIAL_MAIN_CONTEXT_NOT_APPROVED",
+      "do_not_score": true,
+      "source_count": 3,
+      "bank_source_count": 3,
+      "over_max_if_broad_group_is_one_semantic_family": 1,
+      "eligibility": "UNDETERMINED"
+    },
+    {
+      "id": "D-P3",
+      "axis": "D",
+      "primary_name": "探究途中での新分野の選択",
+      "member_old_families": [
+        "D-P3"
+      ],
+      "source_ids": [
+        "D03",
+        "D-FU07"
+      ],
+      "role": "RESEARCH_ONLY",
+      "do_not_score": true,
+      "source_count": 2,
+      "bank_source_count": 2,
+      "over_max_if_broad_group_is_one_semantic_family": 0,
+      "eligibility": "NOT_STANDALONE_SCORING"
+    },
+    {
+      "id": "D-P4",
+      "axis": "D",
+      "primary_name": "一区切り・目標達成後の次の選択",
+      "member_old_families": [
+        "D-P4"
+      ],
+      "source_ids": [
+        "D06",
+        "D-FU10"
+      ],
+      "role": "RESEARCH_ONLY",
+      "do_not_score": true,
+      "source_count": 2,
+      "bank_source_count": 2,
+      "over_max_if_broad_group_is_one_semantic_family": 0,
+      "eligibility": "NOT_STANDALONE_SCORING"
+    }
+  ],
+  "axis_capacity_if_broad_contexts_are_undivided": {
+    "A": {
+      "bank_target": 12,
+      "minimum_distinct_semantic_families": 6,
+      "broad_groups": 3,
+      "broad_groups_for_question_drafting": 3,
+      "old_items_in_main": 12,
+      "old_items_in_study": 0,
+      "maximum_slots_under_existing_main_broad_groups": 6,
+      "minimum_new_semantic_families_needed_if_main_groups_remain_single_semantic_families": 3,
+      "old_items_exceeding_two_per_broad_group": 6,
+      "research_pairs_not_substitutable": []
+    },
+    "B": {
+      "bank_target": 12,
+      "minimum_distinct_semantic_families": 6,
+      "broad_groups": 3,
+      "broad_groups_for_question_drafting": 3,
+      "old_items_in_main": 12,
+      "old_items_in_study": 0,
+      "maximum_slots_under_existing_main_broad_groups": 6,
+      "minimum_new_semantic_families_needed_if_main_groups_remain_single_semantic_families": 3,
+      "old_items_exceeding_two_per_broad_group": 6,
+      "research_pairs_not_substitutable": []
+    },
+    "C": {
+      "bank_target": 12,
+      "minimum_distinct_semantic_families": 6,
+      "broad_groups": 4,
+      "broad_groups_for_question_drafting": 3,
+      "old_items_in_main": 10,
+      "old_items_in_study": 2,
+      "maximum_slots_under_existing_main_broad_groups": 6,
+      "minimum_new_semantic_families_needed_if_main_groups_remain_single_semantic_families": 3,
+      "old_items_exceeding_two_per_broad_group": 4,
+      "research_pairs_not_substitutable": [
+        "C-P4"
+      ]
+    },
+    "D": {
+      "bank_target": 12,
+      "minimum_distinct_semantic_families": 6,
+      "broad_groups": 4,
+      "broad_groups_for_question_drafting": 2,
+      "old_items_in_main": 8,
+      "old_items_in_study": 4,
+      "maximum_slots_under_existing_main_broad_groups": 4,
+      "minimum_new_semantic_families_needed_if_main_groups_remain_single_semantic_families": 4,
+      "old_items_exceeding_two_per_broad_group": 4,
+      "research_pairs_not_substitutable": [
+        "D-P3",
+        "D-P4"
+      ]
+    }
+  },
+  "note": "Broad-context counts are conservative screening diagnostics, not proof of full semantic duplication or accepted item slots.",
+  "test_assertions": [
+    "original50",
+    "old48mapped",
+    "noAccidentalE",
+    "cap2",
+    "minimum6",
+    "mainBroadCounts",
+    "Efixed",
+    "legacyNoApproval",
+    "sourceUnchanged"
+  ],
+  "applied_to_original_bank": false,
+  "changes_to_form_or_score": false,
+  "approved_items": 0
+}
