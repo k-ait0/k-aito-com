@@ -502,10 +502,11 @@
     "production_unchanged": true
   },
   "next_priorities": [
-    "Implement explicit gross-vs-net and BEGIN/END month timing adapters without changing v0.5 historical results",
-    "Design user-facing source-of-funds model for salary/pension versus deposit to prevent double counting",
-    "Explicitly compare cash-first, risk-first and proportionate asset liquidation before tax-lot/NISA work",
-    "Preserve 1-12 asset local self-use simulation and offline source provenance; no public index TR, no market raw values in Git"
+    "Design DWZ two-phase per-event BEGIN/END month cashflows; v0.4 currently sets all spending to one chosen phase, with salaries/pensions/incomes at start",
+    "Promote internal salary/pension contribution earmark from budget-only label to explicit per-account cash transfers only after designing cash account holdings and transaction lots",
+    "Build explicit gross-versus-net ledger reconciliation and tax-lot/cost-basis model before adding taxes, NISA, or brokerage fees",
+    "Acquire Japanese official monthly TOPIX gross TR and NOMURA-BPI only with lawful personal entitlement; never fill gaps by price indices or annual proxies",
+    "Run Safari/iPad local file open and download acceptance before any broader personal-use claims"
   ],
   "audit_note": "Existing November 10 registry/acquisition snapshots are historical; this is an additional verified November 11 ledger. Do not convert data-acquired into site-approved.",
   "observed_joint_coverage_research_only": {
@@ -1021,5 +1022,70 @@
     "official_source_registry_unchanged": true,
     "site_use_approved": false,
     "main_finowa_public_site_modified": false
+  },
+  "personal_multiasset_ui_v0_4_20261113": {
+    "status": "PERSONAL_LOCAL_HTML_CHROMIUM_QA_PASS_NO_RELEASE",
+    "feature_branch": "analytics-historical-v0-1-20261110",
+    "modes": [
+      "MONTH_START",
+      "MONTH_END"
+    ],
+    "default_withdrawal_timing": "MONTH_START",
+    "sale_strategies": [
+      "PRO_RATA",
+      "CASH_FIRST",
+      "RISK_FIRST"
+    ],
+    "default_sale_strategy": "PRO_RATA",
+    "cash_first_and_risk_first_requires_explicit_zero_return_cash_asset": true,
+    "contribution_source_modes": [
+      "EXTERNAL_NEW_MONEY",
+      "INTERNAL_FROM_SALARY_PENSION"
+    ],
+    "browser_requires_explicit_contribution_source_if_nonzero": true,
+    "api_unspecified_contribution_source": "EXTERNAL_NEW_MONEY_BACKWARD_COMPATIBILITY",
+    "internal_contribution_budget_only_no_additional_cash_or_brokerage_trade": true,
+    "double_count_block_if_internal_exceeds_salary_plus_pension_in_any_month": true,
+    "monthly_cpi_reference_start_or_end_by_withdrawal_timing": true,
+    "all_expenses_same_phase_not_dwz_mixed_event_phase": true,
+    "numeric_qa_cases": {
+      "source_and_sale": 180,
+      "monthly_start_and_end": 120,
+      "legacy_cashflow_priority": 144
+    },
+    "chromium": {
+      "artifact_id": 13966800420,
+      "source_action_run_id": 43266161926,
+      "html_sha256": "f5849a13d27d937477c8c42a73c4e307d7d081939a7f0b9127f177338bd30b5d",
+      "synthetic_asset_count": 12,
+      "synthetic_historical_months": 600,
+      "synthetic_horizon_months": 120,
+      "rolling_windows": 481,
+      "downloaded_csv_months": 120,
+      "downloaded_asset_columns": 12,
+      "internal_monthly_contribution_yen": 10000,
+      "internal_sum_yen": 1200000,
+      "external_contribution_sum_yen": 0,
+      "salary_total_yen": 12000000,
+      "unselected_contribution_source_fails": true,
+      "too_large_internal_contribution_fails": true,
+      "cash_first_month_end_ran": true,
+      "risk_first_month_end_ran": true,
+      "mobile_width_px": 390,
+      "mobile_document_overflow_px": 0,
+      "browser_js_exceptions": 0,
+      "external_http_requests": 0,
+      "direct_file_scheme_navigation_verified": false,
+      "ipad_safari_tested": false
+    },
+    "regression": "https://github.com/k-ait0/k-aito-com/actions/runs/43266161926",
+    "documentation": "docs/ANALYTICS_PERSONAL_CAPITAL_AND_PHASE_CONTRACT_V0_4_20261113.md",
+    "public_data_rights_approved": false,
+    "official_jp_equity_tr_acquired": false,
+    "official_jp_bond_tr_acquired": false,
+    "taxes_and_nisa_implemented": false,
+    "main_changed": false,
+    "finowa_changed": false,
+    "dwz_core_changed": false
   }
 }
