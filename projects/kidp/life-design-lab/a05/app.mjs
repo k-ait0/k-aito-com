@@ -60,7 +60,7 @@ function reflectBusy() {
   root.setAttribute("aria-busy", state.busy ? "true" : "false");
   tabs.setAttribute("aria-busy", state.busy ? "true" : "false");
   for (const control of document.querySelectorAll(
-    "#a05-tabs button, #a05-content button, #a05-content input"
+    "#a05-tabs button, #a05-content button, #a05-content input, #a05-content select"
   )) {
     if (state.busy) {
       if (control.dataset.a05OriginalDisabled === undefined) {
