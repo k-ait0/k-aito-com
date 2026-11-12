@@ -4,7 +4,7 @@
 
 ## Quick regression
 
-`node --test scripts/test-analytics-*.cjs` — 456/456 PASS (Node.js 22.16.0 at development time).
+`node --test scripts/test-analytics-*.cjs` — 457/457 PASS (Node.js 22.16.0 at development time).
 
 For the full purpose, restrictions and manual-only private experiment:
 `docs/ANALYTICS_PAIRED_CPI_ACCOUNTING_AUDIT_V0_14.md`.
