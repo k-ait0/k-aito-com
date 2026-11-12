@@ -502,11 +502,11 @@
     "production_unchanged": true
   },
   "next_priorities": [
-    "Design DWZ two-phase per-event BEGIN/END month cashflows; v0.4 currently sets all spending to one chosen phase, with salaries/pensions/incomes at start",
-    "Promote internal salary/pension contribution earmark from budget-only label to explicit per-account cash transfers only after designing cash account holdings and transaction lots",
-    "Build explicit gross-versus-net ledger reconciliation and tax-lot/cost-basis model before adding taxes, NISA, or brokerage fees",
-    "Acquire Japanese official monthly TOPIX gross TR and NOMURA-BPI only with lawful personal entitlement; never fill gaps by price indices or annual proxies",
-    "Run Safari/iPad local file open and download acceptance before any broader personal-use claims"
+    "Extend the v0.5 per-event phase contract to recurring salary/pension/other expense streams only after defining calendar-age offsets and non-duplicate funding source semantics",
+    "Define explicit tax-lot, account type and cost basis tracking, separate from market gross total return and from an internal salary funding label",
+    "Build asset-level investment vs custody/account transfers with rounded integer JPY and audited fee/tax/NISA scenarios; never claim tax-calculated balance before those gates",
+    "Acquire genuine licensed JPY monthly index total return histories for JPX and NOMURA_BPI privately; no proxy, no monthly interpolation from NYU annual data",
+    "Verify independent file:// launch and iPad Safari CSV save; remain personal-only under existing zero-rights publication lock"
   ],
   "audit_note": "Existing November 10 registry/acquisition snapshots are historical; this is an additional verified November 11 ledger. Do not convert data-acquired into site-approved.",
   "observed_joint_coverage_research_only": {
@@ -1087,5 +1087,47 @@
     "main_changed": false,
     "finowa_changed": false,
     "dwz_core_changed": false
+  },
+  "personal_two_phase_per_event_v0_5_20261113": {
+    "status": "PERSONAL_RESEARCH_TWO_PHASE_CHROMIUM_AND_CI_QA_PASS",
+    "research_only": true,
+    "public_release_approved": false,
+    "licensed_index_series_acquired_in_this_work": 0,
+    "title": "Per-event month-start/month-end gross cashflow and scheduled-vs-realized net",
+    "legacy_single_phase_behavior_preserved": true,
+    "per_event_income_and_expense_timing": [
+      "MONTH_START",
+      "MONTH_END"
+    ],
+    "salaried_income_and_pensions_timing": "MONTH_START_ONLY",
+    "phase_liabilities_recorded_separately": true,
+    "phase_shortfall_not_retroactively_paid": true,
+    "gross_and_net_values_preserved": true,
+    "event_payment_priority_applied_per_phase": true,
+    "source_registry_unchanged": true,
+    "research_browser_single_html_sha256": "deb6efb9516adf0c60ca2b03724c8167605b190e29eebc74abd9341b47c045de",
+    "tested_qa_cases": {
+      "synthetic_mixed_two_phase_asset_scenario_combinations": 180,
+      "frozen_one_asset_dwz_begin_end_matches": 1,
+      "browser_12_asset_months": 120,
+      "browser_synthetic_market_months": 600,
+      "browser_roll_windows": 481,
+      "browser_1_asset_shortfall_start_yen": 80,
+      "browser_1_asset_shortfall_end_yen": 0,
+      "browser_scheduled_net_yen": 0,
+      "browser_realized_net_yen": 80,
+      "browser_javascript_errors": 0,
+      "external_http_requests": 0,
+      "mobile_390px_document_horizontal_overflow": 0
+    },
+    "validated_in_browser": "Chromium via Playwright set_content; file:// direct navigation not tested",
+    "formal_dwz_full_schema_compatibility_achieved": false,
+    "tax_nisa_brokerage_fee_account_lots_implemented": false,
+    "salary_and_pension_phase_options_not_yet_implemented": true,
+    "main_updated": false,
+    "finowa_updated": false,
+    "dwz_production_updated": false,
+    "ci_run": "https://github.com/k-ait0/k-aito-com/actions/runs/43270951837",
+    "documentation": "docs/ANALYTICS_TWO_PHASE_PER_EVENT_CONTRACT_V0_5_20261113.md"
   }
 }
