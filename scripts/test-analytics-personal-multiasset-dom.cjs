@@ -17,7 +17,7 @@ function el(id=''){
  return e;
 }
 const document={getElementById(id){if(!nodes.has(id))nodes.set(id,el(id));return nodes.get(id)},createElement(tag){const n=el(tag);let value='';Object.defineProperty(n,'id',{get:()=>value,set(v){value=v;if(v)nodes.set(v,n)}});return n;}};
-const form={dataMode:'demo',assetCount:'3',initial:'10000000',horizon:'120',startOffset:'0',rebalance:'NONE',rebalanceParam:'12',expensePriority:'EVENT_FIRST',
+const form={dataMode:'demo',assetCount:'3',initial:'10000000',horizon:'120',startOffset:'0',rebalance:'NONE',rebalanceParam:'12',expensePriority:'EVENT_FIRST',withdrawalStrategy:'PRO_RATA',monthlyContributionSource:'EXTERNAL_NEW_MONEY',
  monthlyContribution:'0',monthlyExpense:'100000',expenseMode:'NOMINAL_FIXED',inflationRate:'2',salaries:'',pensions:'',events:''};
 for(const [k,v] of Object.entries(form))document.getElementById(k).value=v;
 const window={devicePixelRatio:1,addEventListener:noop,setTimeout:noop};
@@ -29,6 +29,11 @@ assert.equal(app.getState().rollingWindows,481);
 assert(app.getState().downloadEnabled);
 $('assetCount').value='12';$('assetCount').onchange();
 assert.equal(app.getState().assets,12);assert.equal($('assetEditor').children.length,12);
+$('withdrawalStrategy').value='CASH_FIRST';app.run();
+assert(app.getState().downloadEnabled,'cash first with CASH_JPY should run');
+$('withdrawalStrategy').value='RISK_FIRST';app.run();
+assert(app.getState().downloadEnabled,'risk first with CASH_JPY should run');
+$('withdrawalStrategy').value='PRO_RATA';app.run();
 $('events').value='repair,12,EXPENSE,500000';app.run();
 assert.equal(app.getState().downloadEnabled,true);
 $('events').value='bad,12,EXPENSE,-1';app.run();
@@ -69,5 +74,14 @@ assert.throws(()=>app.cpiCsv(cpiValid.replaceAll(',OBSERVED,ESTAT',',ESTIMATED,E
 assert.equal(app.buildMarketFromLevels([parsed],true,app.cpiCsv(cpiValid)).cpi_levels.length,145);
 $('events').value='';app.run();
 assert(app.getState().downloadEnabled,'Valid plan must be recomputed before coverage UI is asserted');
+$('monthlyContribution').value='10000';
+$('salaries').value='salary,0,120,100000';
+$('monthlyContributionSource').value='INTERNAL_FROM_SALARY_PENSION';app.run();
+assert(app.getState().downloadEnabled,'salary-funded internal contribution must not double count');
+$('monthlyContribution').value='200000';app.run();
+assert.equal(app.getState().downloadEnabled,false,'insufficient salary source must fail closed');
+$('monthlyContribution').value='0';$('salaries').value='';
+$('monthlyContributionSource').value='EXTERNAL_NEW_MONEY';app.run();
+assert(app.getState().downloadEnabled,'restore valid inputs');
 assert($('windowsFoot').textContent.includes('暦月基準で除外'));
 console.log('PASS offline 1..12 asset HTML bundle, DOM synthetic 3/12 assets, fail-closed events, private index levels->monthly JPY returns');
