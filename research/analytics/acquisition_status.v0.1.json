@@ -502,10 +502,11 @@
     "production_unchanged": true
   },
   "next_priorities": [
-    "Phase/rounding audit between Personal Lab v0.5 BEGIN/END monthly lifecycle cashflows and separate DWZ / Analytics Core; don't claim full DWZ parity",
-    "Add multiple private lifecycle event input and salary/pension vs separate contribution double-count prevention in detailed UI",
-    "Keep research-only historical annual NYU returns separated from monthly investable TR, and don't auto-fill missing JPX/NOMURA official TR history",
-    "Retain private, local-only deployment with zero publication rights; commercial provider licensing is a future release prerequisite"
+    "Use the verified pure offline 1-12 asset browser and Core for personal synthetic scenarios; keep floating old Personal v0.5 distinct",
+    "Converge rounding/flow timing with DWZ only after explicit model choice and independent forward/withdrawal mismatch test",
+    "Model and independently audit brokerage fees, taxes, NISA account boundaries and salary vs contribution double count prevention before claiming net investment results",
+    "Secure legitimately acquired 10-20 year JPX J-Quants 6000 gross TR or NOMURA-BPI data privately; no unverified auto substitution",
+    "Add controlled 2-8 scenario comparison, iPad Safari actual QA and direct local-file startup verification"
   ],
   "audit_note": "Existing November 10 registry/acquisition snapshots are historical; this is an additional verified November 11 ledger. Do not convert data-acquired into site-approved.",
   "observed_joint_coverage_research_only": {
@@ -912,5 +913,67 @@
     "regression_script": "scripts/test-analytics-personal-lifecycle-v05.cjs",
     "documentation": "docs/ANALYTICS_PERSONAL_LIFECYCLE_V0_5_QA_20261112.md",
     "source_registry_still_unchanged": true
+  },
+  "personal_multiasset_ui_v0_1_20261112": {
+    "status": "RESEARCH_ONLY_12_ASSET_HTML_CORE_AND_CHROMIUM_QA_PASS",
+    "scope": "PERSONAL_SINGLE_USER_LOCAL_RESEARCH",
+    "source_core_imported_unmodified": [
+      "lib/analytics/cashflow-core.cjs",
+      "lib/analytics/portfolio-core.cjs",
+      "lib/analytics/rolling-portfolio-lifecycle.cjs",
+      "lib/analytics/rolling-portfolio-compare.cjs"
+    ],
+    "personal_bridge": "lib/analytics/personal-multiasset-bridge.cjs",
+    "generated_local_html": "research/analytics/personal-lab/multiasset.html (generated in Actions, no raw data bundled)",
+    "html_sha256": "5653707c5e499ecbac065abbdf8160fb341431b8ce56e6f548dad6e1ae15561d",
+    "browser_test": {
+      "synthetic_asset_count": 12,
+      "synthetic_monthly_return_history": 600,
+      "synthetic_horizon_months": 120,
+      "starting_window_count": 481,
+      "downloaded_csv_rows": 120,
+      "downloaded_asset_columns": 12,
+      "salary_test_total_yen": 1800000,
+      "pension_test_total_yen": 600000,
+      "event_expense_test_yen": 500000,
+      "event_income_test_yen": 200000,
+      "private_csv_format_qa_uses_synthetic_market_values": true,
+      "synthetic_JPX_and_NOMURA_TR_imported": true,
+      "hypothetical_JPX_and_NOMURA_licensed_values_acquired": false,
+      "private_test_horizon_months": 120,
+      "private_test_return_months": 144,
+      "private_test_complete_10yr_windows": 25,
+      "invalid_negative_event_blocked": true,
+      "browser_javascript_errors": 0,
+      "external_http_requests": 0,
+      "mobile_390px_horizontal_overflow": false,
+      "direct_file_scheme_navigation_verified": false
+    },
+    "arithmetic": {
+      "max_assets": 12,
+      "integer_yen_core": true,
+      "salary_pension_intervals": true,
+      "multiple_event_count_max": 500,
+      "expense_modes": [
+        "NOMINAL_FIXED",
+        "HISTORICAL_CPI",
+        "ANNUAL_ASSUMPTION"
+      ],
+      "rebalance_modes": [
+        "NONE",
+        "PERIODIC",
+        "THRESHOLD"
+      ],
+      "source_registry_unchanged": true,
+      "older_v05_end_month_timing_parity_claim": false
+    },
+    "regression": "https://github.com/k-ait0/k-aito-com/actions/runs/43238132226",
+    "guide": "docs/ANALYTICS_PERSONAL_MULTI_ASSET_V0_1_INTEGRATION_20261112.md",
+    "monthly_genuine_JP_equity_TR_acquired": false,
+    "monthly_genuine_JP_bond_TR_acquired": false,
+    "taxes_nisa_brokerage_cost_model_implemented": false,
+    "main_updated": false,
+    "finowa_or_public_analytics_updated": false,
+    "source_rights_approved": false
   }
 }
