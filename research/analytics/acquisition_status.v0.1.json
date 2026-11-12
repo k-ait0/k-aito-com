@@ -29,7 +29,12 @@
     "world_bank_price_and_index_columns_coverage_audited": 71,
     "world_bank_price_and_index_total_observed_entries": 50514,
     "world_bank_columns_complete_30y": 65,
-    "world_bank_columns_missing_internal_data": 4
+    "world_bank_columns_missing_internal_data": 4,
+    "research_only_annual_academic_datasets_new": 1,
+    "academic_annual_source_series": 7,
+    "academic_annual_values_verified": 686,
+    "academic_annual_30y_windows_usd": 69,
+    "academic_annual_30y_windows_jpy_real": 25
   },
   "datasets": [
     {
@@ -497,10 +502,10 @@
     "production_unchanged": true
   },
   "next_priorities": [
-    "Personal v0.3 is available offline: source-only audit for first real personally lawful TR index input, no external downloads",
-    "Add optional trade-fee/slippage and taxes in separate, explicitly non-validated accounting research model",
-    "Review one cash+one index strategy output with independently sourced observed total-return history before multi-asset generalization",
-    "Keep one-off self-use research mode and public/commercial license gates separate; no production release"
+    "NYU annual 1928-2025 research data acquired and encrypted; add separate private annual research view (never interpolate annual into monthly)",
+    "JPX J-Quants direct official personal API index code/return-type review; service up to 20 years and free plan lacks index bars",
+    "NOMURA BPI monthly snapshot exists, but acquiring full licensed history is still separate; keep manual-personal-source option",
+    "No official S&P DJI/Bloomberg TR source acquisition, no source lock change and no public publication"
   ],
   "audit_note": "Existing November 10 registry/acquisition snapshots are historical; this is an additional verified November 11 ledger. Do not convert data-acquired into site-approved.",
   "observed_joint_coverage_research_only": {
@@ -768,5 +773,56 @@
     "site_approved": false,
     "main_branch_modified": false,
     "live_site_deployed": false
+  },
+  "academic_annual_research_acquisition_20261112": {
+    "status": "OFFICIAL_NYU_HOST_ACADEMIC_ANNUAL_RESEARCH_SOURCE_PRIVATE_QA_PASS",
+    "publisher": "NYU Stern / Aswath Damodaran (academic research compilation)",
+    "url": "https://pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/histretSP.html",
+    "acquisition_date": "2026-11-12",
+    "document_last_updated": "2026-01-05",
+    "original_webpage_title_says_1928_2024_but_final_data_row_is_2025": true,
+    "from_year": 1928,
+    "to_year": 2025,
+    "observed_annual_years": 98,
+    "return_series": 7,
+    "annual_return_values": 686,
+    "raw_html_sha256": "127c772f0fea8763391dbf2c1c7d3ecd3a07ca2b23f81ab47af58b529e2b5647",
+    "normalized_annual_csv_sha256": "582c2ccdc6abe75f3e118cd61628f4d428fed9acbd1ec275c811699fe1c5b440",
+    "source_csv_kind": "ANNUAL_ACADEMIC_RESEARCH_7_RETURN_SERIES",
+    "not_monthly_data": true,
+    "not_official_spdji_tr": true,
+    "not_official_bloomberg_bond_tr": true,
+    "usable_as_primary_licensed_us_equity_index": false,
+    "usable_as_primary_licensed_us_bonds_index": false,
+    "private_local_research_only": true,
+    "available_for_annual_rolling": true,
+    "thirty_year_annual_rolling_windows": 69,
+    "thirty_year_annual_jpy_rolling_windows": 25,
+    "jpy_derived_annual_range": "1972-2025",
+    "jpy_derived_rows": 54,
+    "source_fx": "FED_BOARD_DDP_1971_CANDIDATE_RESEARCH_ADR_DRAFT_UNAPPROVED",
+    "source_jp_cpi": "ESTAT_JP_CPI_HEADLINE_2025_LINKED",
+    "source_implementation": "scripts/research-acquire-damodaran-annual.cjs",
+    "annual_jpy_calculation": "scripts/analytics-annual-personal-jpy.cjs",
+    "private_local_python_verification": true,
+    "private_local_median_real_jpy_30yr_cagr": {
+      "stock": 0.07894988819071314,
+      "bond": 0.044772147141324936,
+      "stock60bond40": 0.07021884142098211
+    },
+    "workflow_run": "https://github.com/k-ait0/k-aito-com/actions/runs/43149434554",
+    "encrypted_artifact_id": 13913241236,
+    "encrypted_artifact_retention_days": 7,
+    "private_archive_decrypted_sha256_verified": true,
+    "source_lock_change": 0,
+    "site_use_approved": false,
+    "rights": "FOR_PRIVATE_PERSONAL_NONCOMMERCIAL_RESEARCH_ONLY; NO REDISTRIBUTION OR COMMERCIAL GRANT",
+    "risk_notes": [
+      "Underlying stock/bond is academic reconstruction from multiple services, not vendor-endorsed investable index total return",
+      "Calendar-year only; cannot substitute monthly stock/bond returns or simulate monthly withdrawals",
+      "JN Fed currency transformation for annual return uses December-to-December H10 last valid quote; 1971 not computable because 1970-12 unavailable",
+      "1990s/earlier stock proxy, interest-rate and real-estate methodological consistency require separate review",
+      "Private and commercial rights differ, source lock remains SPDJI/BLOOMBERG_INDEX for intended formal indices"
+    ]
   }
 }
