@@ -1,0 +1,21 @@
+{
+  "schema": "ANALYTICS_V015_CHECKSUM_MANIFEST",
+  "status": "RESEARCH_ONLY_HOLD",
+  "source_files": {
+    "lib/analytics/portfolio-input-audit.cjs": "a05b734957d0012b59428e6430127ec7e1560931114905e0005d071bedc44edb",
+    "lib/analytics/rolling-portfolio-lifecycle.cjs": "e81fc9cd8f8ab53b4a0ab15f947b921a52b37420f885f726f5ca49973ae2705e",
+    "lib/analytics/rolling-portfolio-cpi.cjs": "3fd510bef371dec89170f69a3a2d927b1e36021b7b22f5b08180964f1c6c8de4",
+    "scripts/test-analytics-portfolio-input-audit.cjs": "4f297bd5c6142a88d38de709ed0527e0ea093f807b0ebed37f92b29df566ea8a",
+    "scripts/test-analytics-portfolio-input-rolling.cjs": "17320cd7f25055744547a058fcce5c3f62131ef1736cbb74cf36b360c305453b",
+    "docs/ANALYTICS_EXTERNAL_INPUT_CONCORDANCE_V0_15.md": "0a184ad7cf2b3dabf7e2f265790e0194ee8744a24007d60a0c4bb7234c9cb8b5"
+  },
+  "tests": {
+    "total": 480,
+    "passed": 480,
+    "failed": 0,
+    "node_version": "v22.16.0",
+    "log": "QA_NODE_V015.log"
+  },
+  "source_data_bytes_accessed": false,
+  "public_release_approved": false
+}
