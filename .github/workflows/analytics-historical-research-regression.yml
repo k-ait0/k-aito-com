@@ -12,6 +12,7 @@ on:
       - scripts/test-analytics-personal-ui.cjs
       - scripts/test-analytics-dwz-withdrawal-phase.cjs
       - scripts/test-analytics-two-asset.cjs
+      - scripts/test-analytics-personal-monthly-contribution.cjs
       - scripts/test-analytics-personal-dom.cjs
       - scripts/analytics-annual-personal-jpy.cjs
       - scripts/import-analytics-jquants-topix-tr-personal.cjs
@@ -46,6 +47,7 @@ jobs:
           node scripts/test-analytics-personal-ui.cjs
           node scripts/test-analytics-dwz-withdrawal-phase.cjs
           node scripts/test-analytics-two-asset.cjs
+          node scripts/test-analytics-personal-monthly-contribution.cjs
           node scripts/research-acquire-damodaran-annual.cjs --selftest
           node scripts/analytics-annual-personal-jpy.cjs --selftest
           node scripts/import-analytics-jquants-topix-tr-personal.cjs --selftest
@@ -71,7 +73,7 @@ jobs:
         if: success()
         uses: actions/upload-artifact@v4
         with:
-          name: kaito-analytics-personal-lab-v0-3
+          name: kaito-analytics-personal-lab-v0-4
           path: research/analytics/personal-lab/index.html
           retention-days: 7
           if-no-files-found: error
