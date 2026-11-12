@@ -1,0 +1,143 @@
+{
+  "schema": "ANALYTICS_SHILLER_CANDIDATE_WITHDRAWAL_BOUNDARY_V022",
+  "recorded_date_jst": "2026-11-13",
+  "data_use": "RESEARCH_ONLY",
+  "market_return_definition": "APPROX_USD_FROM_AVG_MONTHLY_PRICE_AND_1_12_ANNUAL_DIVIDEND",
+  "source_repository": "datasets/s-and-p-500",
+  "source_commit": "87a2284276f79d75041c71c8f6d9f2aa1c965e84",
+  "source_git_blob_sha1": "1c5f64a1cb8377fde80d339fbf0051e5e0e94566",
+  "source_first_month": "1980-01",
+  "source_last_month": "2023-06",
+  "source_rows": 522,
+  "source_raw_redistributed": false,
+  "calculation_units": "USD_DENOMINATED_ILLUSTRATIVE_100000",
+  "monthly_rate_unit": "0.1bp = 0.001% of initial capital / month",
+  "capital": 100000,
+  "withdraw_at_month_start": true,
+  "cpi_model": "TWO_MONTH_LAG_US_CPI_ILLUSTRATIVE",
+  "cpi_japan": false,
+  "fx": false,
+  "taxes": false,
+  "fees": false,
+  "official_total_return": false,
+  "private_shiller_sha_matched": false,
+  "historical_windows_not_independent": true,
+  "future_safe_rate_claim": false,
+  "publication_approved": false,
+  "horizons": [
+    {
+      "horizon_months": 120,
+      "complete_overlapping_windows": 401,
+      "first_start": "1980-03",
+      "last_start": "2013-07",
+      "fixed_nominal_ceiling_tenth_bps": {
+        "minimum": 691,
+        "p10_nearest_rank": 900,
+        "median": 1467,
+        "p90_nearest_rank": 1713,
+        "maximum": 2071
+      },
+      "cpi_indexed_ceiling_tenth_bps": {
+        "minimum": 613,
+        "p10_nearest_rank": 809,
+        "median": 1302,
+        "p90_nearest_rank": 1517,
+        "maximum": 1821
+      },
+      "paired_fixed_minus_cpi_ceiling_tenth_bps": {
+        "minimum": 34,
+        "p10_nearest_rank": 83,
+        "median": 146,
+        "p90_nearest_rank": 228,
+        "maximum": 354
+      },
+      "paired_starts_fixed_greater": 401,
+      "paired_starts_equal": 0,
+      "paired_starts_cpi_greater": 0,
+      "most_restrictive_fixed_start": "2000-09",
+      "most_restrictive_cpi_start": "2000-09",
+      "historical_funded_at_0_30pct_monthly_fixed": 401,
+      "historical_funded_at_0_30pct_monthly_cpi": 401,
+      "historical_funded_at_0_50pct_monthly_fixed": 401,
+      "historical_funded_at_0_50pct_monthly_cpi": 401,
+      "historical_funded_at_1_00pct_monthly_fixed": 317,
+      "historical_funded_at_1_00pct_monthly_cpi": 279
+    },
+    {
+      "horizon_months": 240,
+      "complete_overlapping_windows": 281,
+      "first_start": "1980-03",
+      "last_start": "2003-07",
+      "fixed_nominal_ceiling_tenth_bps": {
+        "minimum": 461,
+        "p10_nearest_rank": 556,
+        "median": 1057,
+        "p90_nearest_rank": 1366,
+        "maximum": 1674
+      },
+      "cpi_indexed_ceiling_tenth_bps": {
+        "minimum": 382,
+        "p10_nearest_rank": 460,
+        "median": 858,
+        "p90_nearest_rank": 1097,
+        "maximum": 1368
+      },
+      "paired_fixed_minus_cpi_ceiling_tenth_bps": {
+        "minimum": 79,
+        "p10_nearest_rank": 97,
+        "median": 199,
+        "p90_nearest_rank": 268,
+        "maximum": 374
+      },
+      "paired_starts_fixed_greater": 281,
+      "paired_starts_equal": 0,
+      "paired_starts_cpi_greater": 0,
+      "most_restrictive_fixed_start": "2000-09",
+      "most_restrictive_cpi_start": "2000-09",
+      "historical_funded_at_0_30pct_monthly_fixed": 281,
+      "historical_funded_at_0_30pct_monthly_cpi": 281,
+      "historical_funded_at_0_50pct_monthly_fixed": 266,
+      "historical_funded_at_0_50pct_monthly_cpi": 242,
+      "historical_funded_at_1_00pct_monthly_fixed": 180,
+      "historical_funded_at_1_00pct_monthly_cpi": 55
+    },
+    {
+      "horizon_months": 360,
+      "complete_overlapping_windows": 161,
+      "first_start": "1980-03",
+      "last_start": "1993-07",
+      "fixed_nominal_ceiling_tenth_bps": {
+        "minimum": 791,
+        "p10_nearest_rank": 903,
+        "median": 1058,
+        "p90_nearest_rank": 1268,
+        "maximum": 1522
+      },
+      "cpi_indexed_ceiling_tenth_bps": {
+        "minimum": 584,
+        "p10_nearest_rank": 692,
+        "median": 790,
+        "p90_nearest_rank": 954,
+        "maximum": 1168
+      },
+      "paired_fixed_minus_cpi_ceiling_tenth_bps": {
+        "minimum": 197,
+        "p10_nearest_rank": 205,
+        "median": 270,
+        "p90_nearest_rank": 320,
+        "maximum": 396
+      },
+      "paired_starts_fixed_greater": 161,
+      "paired_starts_equal": 0,
+      "paired_starts_cpi_greater": 0,
+      "most_restrictive_fixed_start": "1987-09",
+      "most_restrictive_cpi_start": "1987-09",
+      "historical_funded_at_0_30pct_monthly_fixed": 161,
+      "historical_funded_at_0_30pct_monthly_cpi": 161,
+      "historical_funded_at_0_50pct_monthly_fixed": 161,
+      "historical_funded_at_0_50pct_monthly_cpi": 161,
+      "historical_funded_at_1_00pct_monthly_fixed": 99,
+      "historical_funded_at_1_00pct_monthly_cpi": 9
+    }
+  ]
+}
