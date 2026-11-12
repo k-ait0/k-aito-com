@@ -887,6 +887,30 @@ async function main() {
         assert.match(await visualPage.locator(".result-head h2").innerText(), /T11/);
         assert.match(await visualPage.locator(".a05-vp-head").innerText(), /診断判定とは未連動/);
         assert.equal(await visualPage.locator('.a05-vp-crest').count(), 1);
+        const card = await visualPage.locator(".a05-vp-visual").evaluate(el => {
+          const figcaption = el.querySelector("figcaption");
+          const img = el.querySelector("img.a05-vp-crest");
+          return {
+            tag: el.tagName, role: el.getAttribute("role"),
+            caption: figcaption?.innerText ?? "",
+            imgAlt: img?.getAttribute("alt"), imgHidden: img?.getAttribute("aria-hidden"),
+            visibleName: figcaption?.querySelector("strong")?.innerText ?? "",
+            controlsInsideCard: el.querySelectorAll("button,input,select").length
+          };
+        });
+        assert.equal(card.tag, "FIGURE", "visual card must use semantic figure");
+        assert.equal(card.role, null, "do not hide caption behind role=img");
+        assert.ok(card.caption.includes(card.visibleName) && card.visibleName.length > 0);
+        assert.equal(card.imgAlt, "", "crest is decorative; figcaption carries the name");
+        assert.equal(card.imgHidden, "true");
+        assert.equal(card.controlsInsideCard, 0);
+        for (const selector of ["motif", "accent", "eAxis", "motion"]) {
+          const control = visualPage.locator('[data-visual-setting="' + selector + '"]');
+          assert.equal(await control.evaluate(el => el.closest("label") !== null), true,
+            selector + " must have a visible label");
+          assert.ok(await control.evaluate(el => el.getBoundingClientRect().height) >= 44,
+            selector + " must meet 44px touch height");
+        }
         const resultBefore = await visualPage.locator(".result-head").innerText();
         const axesBefore = await visualPage.locator(".value-axis").allInnerTexts();
         const motifIds = [
