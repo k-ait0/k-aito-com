@@ -76,8 +76,8 @@ footer{margin-top:22px;color:#8998a8;font-size:11px;text-align:right}
 <h2>03 · 月次生活設計</h2>
 <div class="group"><label for="monthlyContribution">毎月の積立・資金移動額（円）</label><input id="monthlyContribution" type="number" value="0" min="0" max="1000000000000"></div>
 <div class="group"><label for="monthlyContributionSource">積立の資金源</label>
-<select id="monthlyContributionSource"><option value="EXTERNAL_NEW_MONEY">給与・年金と別の新規外部資金</option>
-<option value="INTERNAL_FROM_SALARY_PENSION">入力済み給与・年金の一部を積立（内部振替）</option></select>
+<select id="monthlyContributionSource"><option value="UNSELECTED" selected>積立がある場合は資金源を選択してください</option><option value="EXTERNAL_NEW_MONEY">給与・年金と別の新規外部資金</option>
+<option value="INTERNAL_FROM_SALARY_PENSION">入力済み給与・年金の一部を記録（追加入金なし）</option></select>
 <p class="sub">給与・年金も既に資産残高へ入金されます。内部振替なら資産総額へ積立額を二重加算しません。各月の積立額がその月の給与・年金を超えたら計算を停止します。</p></div>
 <div class="group"><label for="monthlyExpense">月額の生活費・通常引出し（円）</label><input id="monthlyExpense" type="number" value="100000" min="0" max="1000000000000"></div>
 <div class="group"><label for="expensePriority">資金不足時の支出充当順序</label><select id="expensePriority"><option value="EVENT_FIRST" selected>臨時支出を先に支払う</option><option value="LIVING_FIRST">通常生活費を先に支払う</option></select>
