@@ -14,6 +14,7 @@ on:
       - scripts/test-analytics-two-asset.cjs
       - scripts/test-analytics-personal-dom.cjs
       - scripts/analytics-annual-personal-jpy.cjs
+      - scripts/import-analytics-jquants-topix-tr-personal.cjs
       - scripts/research-acquire-damodaran-annual.cjs
       - research/analytics/fixtures/dwz_simulateOne_r4_v16_9_research_fixture.js
       - research/analytics/personal-lab/index.html
@@ -47,6 +48,7 @@ jobs:
           node scripts/test-analytics-two-asset.cjs
           node scripts/research-acquire-damodaran-annual.cjs --selftest
           node scripts/analytics-annual-personal-jpy.cjs --selftest
+          node scripts/import-analytics-jquants-topix-tr-personal.cjs --selftest
           node scripts/test-analytics-personal-dom.cjs
           node scripts/test-align-analytics-historical-series.cjs
           python3 -m py_compile scripts/research-probe-fed-h10-ddp.py scripts/normalize-analytics-fed-ddp-candidate.py scripts/normalize-analytics-estat-cpi.py
