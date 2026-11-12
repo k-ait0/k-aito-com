@@ -1,0 +1,18 @@
+{
+  "schema": "ANALYTICS_V020_SOURCE_MANIFEST",
+  "test_status": "603/603_PASS_LOCAL_NODE22",
+  "actual_ciphertext_verified": 5,
+  "actual_jpy_qa": false,
+  "legacy_original_recovered": false,
+  "sources": {
+    "lib/analytics/public-shiller-candidate-v20.cjs": "c7033ddc90ae71eb9c9edadc03d57990d79fbf7644b0b5d7e1d2b0fd87ca3dc4",
+    "lib/analytics/private-readiness-v20.cjs": "acf29ea38defd13a95cebc8b8941b207f9a66bb3998e4271f6044ceeb696611b",
+    "scripts/analyze-analytics-shiller-candidate-v20.cjs": "37fe74132b2753d3a66518109192bcdf34577e50ed472441638f6a5a931a8bb4",
+    "scripts/check-analytics-private-readiness-v20.cjs": "bb7e710f3b10da96c47983f40b1f93fd552b60060be0adf16b103e9738d97a26",
+    "scripts/test-analytics-public-shiller-candidate-v20.cjs": "8b57450cdf3f77c797457491956bc342391774911b68a651f94e1d4265260ce0",
+    "scripts/test-analytics-private-readiness-v20.cjs": "7fb781fda271d40496e6fee72f66a5c779497b7744e293bf6c5af8a8dc2bbe34",
+    "docs/ANALYTICS_PUBLIC_SHILLER_CANDIDATE_AND_READINESS_V0_20.md": "72b177f036ab4fb3a683a8e7579db1a829311494c9e47871e3249d6bb89d4e1d",
+    "docs/ANALYTICS_SHILLER_PUBLIC_CANDIDATE_V0_20_AGGREGATES.json": "0b3cf2fa5455d070a28eb89f8d550f5bf81125647bc9a5ce36398b9ec761733e",
+    "README_V20.md": "c6d571fdc588d0f93f4c9e489d4a0b017259de3e8fb62e8dc9a50cf911ea4a8e"
+  }
+}
