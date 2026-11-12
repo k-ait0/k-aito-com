@@ -502,10 +502,10 @@
     "production_unchanged": true
   },
   "next_priorities": [
-    "Keep local private v0.4 personal simulation and JPY/USD user-supplied legal TR CSV parsing stable; add annual work/life events after timing reconciliation",
-    "For Japanese assets, only official 6000 TOPIX gross TR from 2010 after lawful individual J-Quants entitlement; NOMURA-BPI long cumulative TR still unacquired",
-    "Reconcile v0.4 monthly contributions against DWZ lifecycle core and decide account rounding and contribution fee model",
-    "Do not migrate research prototypes or private market prices to main, FINOWA, public Analytics or user-facing shared API"
+    "Phase/rounding audit between Personal Lab v0.5 BEGIN/END monthly lifecycle cashflows and separate DWZ / Analytics Core; don't claim full DWZ parity",
+    "Add multiple private lifecycle event input and salary/pension vs separate contribution double-count prevention in detailed UI",
+    "Keep research-only historical annual NYU returns separated from monthly investable TR, and don't auto-fill missing JPX/NOMURA official TR history",
+    "Retain private, local-only deployment with zero publication rights; commercial provider licensing is a future release prerequisite"
   ],
   "audit_note": "Existing November 10 registry/acquisition snapshots are historical; this is an additional verified November 11 ledger. Do not convert data-acquired into site-approved.",
   "observed_joint_coverage_research_only": {
@@ -868,5 +868,49 @@
     "main_branch_changed": false,
     "source_registry_changed": false,
     "commercial_release_approved": false
+  },
+  "personal_browser_ui_v0_5_20261112": {
+    "status": "RESEARCH_CHROMIUM_LOCAL_E2E_QA_PASS",
+    "mode": "PERSONAL_SINGLE_USER_LOCAL_RESEARCH",
+    "version": "0.5",
+    "entrypoint": "research/analytics/personal-lab/index.html",
+    "description": "Relative monthly salary/pension inflows, one-time income/expense, double-entry-like audit columns and rolling window offsets in two-sleeve Personal Lab",
+    "user_local_html_sha256": "472a6960eaee203321d5f8a870a78ba543c93a7901557ff745689f6176ef76d5",
+    "local_browser_evidence": {
+      "status": "PASS",
+      "screenshot_synthetic_only": true,
+      "html_github_actions_artifact": 13922273059,
+      "html_github_actions_run": "https://github.com/k-ait0/k-aito-com/actions/runs/43171704407",
+      "synthetic_10year_ledger_rows": 121,
+      "scheduled_months": 120,
+      "per_month_contribution_yen": 20000,
+      "total_contributed_yen": 2400000,
+      "salary_12_months_yen": 1200000,
+      "pension_12_months_yen": 600000,
+      "one_time_repair_paid_yen": 500000,
+      "invalid_negative_event_blocks_download": true,
+      "simple_mode_excludes_hidden_lifecycle": true,
+      "official_private_fx_cpi_months": 669,
+      "usd_jpy_cpi_reference_terminal_index": 12.387652785974575,
+      "external_requests": 0,
+      "browser_js_errors": 0,
+      "mobile_390px_page_overflow": false,
+      "file_scheme_navigation_verified": false,
+      "user_ipad_safari_verified": false
+    },
+    "automated_cases": {
+      "lifecycle_synthetic_combinations": 864,
+      "prior_contribution_combinations": 432,
+      "prior_single_asset_parity_cases": 576,
+      "dwz_single_asset_no_lifecycle_parity_cases": 192
+    },
+    "new_salary_pension_tax_computation": false,
+    "expenses_interpreted_as_pension_contract": false,
+    "multi_asset_more_than_two_supported": false,
+    "official_index_total_return_rights_approved": false,
+    "main_or_public_site_changed": false,
+    "regression_script": "scripts/test-analytics-personal-lifecycle-v05.cjs",
+    "documentation": "docs/ANALYTICS_PERSONAL_LIFECYCLE_V0_5_QA_20261112.md",
+    "source_registry_still_unchanged": true
   }
 }
