@@ -46,4 +46,21 @@ assert.equal(app.buildMarketFromLevels([parsed],true,null).monthly_market_return
 assert.throws(()=>app.indexCsv(valid.replaceAll('INDEX_TOTAL_RETURN','COMMODITY_SPOT')),/TR以外/);
 assert.throws(()=>app.indexCsv(valid.replaceAll(',JPY,INDEX_TOTAL_RETURN',',USD,INDEX_TOTAL_RETURN')),/JPY/);
 assert.throws(()=>app.buildMarketFromLevels([parsed,parsed],true,null),/重複/);
+assert.throws(()=>app.indexCsv(valid.replaceAll(',INDEX_TR,JPY,',',FX_RATE,JPY,')),/INDEX_TR/,
+ 'Index kind alone is insufficient if its declared unit is a currency quotation');
+const cp=['month,series_id,value,unit,currency,series_kind,origin,source_id,raw_response_sha256'];
+for(let i=0;i<145;i++){
+ const n=2000*12+i;
+ cp.push([Math.floor(n/12)+'-'+String(n%12+1).padStart(2,'0'),
+  'JP_CPI_HEADLINE_2025_LINKED',(100+i/10).toFixed(1),'INDEX_2025_100','NOT_APPLICABLE',
+  'CPI_LEVEL','OBSERVED','ESTAT',sha].join(','));
+}
+const cpiValid=cp.join('\n')+'\n';
+assert.equal(app.cpiCsv(cpiValid).size,145);
+assert.throws(()=>app.cpiCsv(cpiValid.replaceAll('INDEX_2025_100','INDEX_2015_100')),
+ /2025基準/, 'Silent CPI base-year substitution must fail');
+assert.throws(()=>app.cpiCsv(cpiValid.replaceAll(',OBSERVED,ESTAT',',ESTIMATED,ESTAT')),
+ /2025基準/, 'Estimated CPI values must fail');
+assert.equal(app.buildMarketFromLevels([parsed],true,app.cpiCsv(cpiValid)).cpi_levels.length,145);
+assert($('windowsFoot').textContent.includes('暦月基準で除外'));
 console.log('PASS offline 1..12 asset HTML bundle, DOM synthetic 3/12 assets, fail-closed events, private index levels->monthly JPY returns');
