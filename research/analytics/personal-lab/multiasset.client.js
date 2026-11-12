@@ -192,8 +192,12 @@ function bindData(data){
 }
 function getPlan(){
  const mode=$('expenseMode').value;
- return {monthly_contribution_yen:strictNum('monthlyContribution'),
-  monthly_contribution_source:$('monthlyContributionSource').value,
+ const contribution=strictNum('monthlyContribution');
+ const selectedSource=$('monthlyContributionSource').value;
+ if(contribution>0&&selectedSource==='UNSELECTED')
+  throw Error('二重計上を防ぐため、積立額がある場合は給与・年金と別の外部資金か内部振替かを選択してください');
+ return {monthly_contribution_yen:contribution,
+  monthly_contribution_source:selectedSource==='UNSELECTED'?'EXTERNAL_NEW_MONEY':selectedSource,
   monthly_expense_yen:strictNum('monthlyExpense'),
   expense_mode:mode,expense_priority:$('expensePriority').value,
   annual_expense_inflation:mode==='ANNUAL_ASSUMPTION'?decimal('inflationRate',-50,100)/100:0,
