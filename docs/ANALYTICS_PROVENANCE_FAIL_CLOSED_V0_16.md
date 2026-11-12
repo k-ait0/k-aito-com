@@ -4,16 +4,16 @@
 
 ## 1. 再現できた不備
 
-v0.15の \`portfolio-core.cjs\` は、研究用の観測市場月次レコードに \`proxy: 'yes'\`、\`estimated: 1\`、\`backfilled: true\`、\`return_kind: 'MODEL_ESTIMATE'\` が混入していても \`origin: 'OBSERVED'\` だけを見て受け入れていた。\`rolling-portfolio-lifecycle.cjs\`、\`cashflow-core.cjs\` も \`proxy === true\` / \`estimated === true\` のみを拒否し、文字列・数値・nullを通す経路があった。
+v0.15の `portfolio-core.cjs` は、研究用の観測市場月次レコードに `proxy: 'yes'`、`estimated: 1`、`backfilled: true`、`return_kind: 'MODEL_ESTIMATE'` が混入していても `origin: 'OBSERVED'` だけを見て受け入れていた。`rolling-portfolio-lifecycle.cjs`、`cashflow-core.cjs` も `proxy === true` / `estimated === true` のみを拒否し、文字列・数値・nullを通す経路があった。
 
 これは、真の実測データでない代理・推計値を実測バックテストの母集団に混入させる事故につながる。数値計算の合計が整合していても防げない。
 
 ## 2. 変更内容
 
-1. **portfolio-core**：月次市場レコードを \`month,origin,asset_returns,proxy,estimated\` の5種類に限定。予期しないフィールドは拒否。\`proxy\` / \`estimated\` が存在するなら必ずリテラル \`false\` を要求し、\`true\`、\`'yes'\`、\`'false'\`、\`1\`、\`null\` などを拒否。
+1. **portfolio-core**：月次市場レコードを `month,origin,asset_returns,proxy,estimated` の5種類に限定。予期しないフィールドは拒否。`proxy` / `estimated` が存在するなら必ずリテラル `false` を要求し、`true`、`'yes'`、`'false'`、`1`、`null` などを拒否。
 2. **rolling-portfolio-lifecycle**：市場系列が不連続な場合の分割は従来どおり維持しつつ、上記の真偽値検査を厳格化。
-3. **cashflow-core**：単一資産・ライフサイクル系の月次リターンも \`month,origin,monthly_return,proxy,estimated\` に限定し、同じ検査を適用。
-4. **テスト**：実測モードの不正マーカー10例 × 3入力経路、合法な明示 \`false\`、合成モード、複数戦略比較、v0.15外部入力監査、CPI連動、CPIと固定率のペア比較にも拒否が伝わることを確認。
+3. **cashflow-core**：単一資産・ライフサイクル系の月次リターンも `month,origin,monthly_return,proxy,estimated` に限定し、同じ検査を適用。
+4. **テスト**：実測モードの不正マーカー10例 × 3入力経路、合法な明示 `false`、合成モード、複数戦略比較、v0.15外部入力監査、CPI連動、CPIと固定率のペア比較にも拒否が伝わることを確認。
 
 ## 3. 計算の横断監査
 
@@ -26,22 +26,22 @@ v0.15の \`portfolio-core.cjs\` は、研究用の観測市場月次レコード
 
 ## 4. QA結果
 
-実行：\`node --test scripts/test-analytics-*.cjs\`
+実行：`node --test scripts/test-analytics-*.cjs`
 
 - v0.15既存：**480件 PASS**
 - v0.16新規：**40件 PASS**（60条件の独立計算照合は新規テスト40件のうち1件に包含）
 - 合計：**520 / 520件 PASS**（Node 22.16.0）
-- 新規テスト：\`scripts/test-analytics-observed-provenance-contract-v016.cjs\`
+- 新規テスト：`scripts/test-analytics-observed-provenance-contract-v016.cjs`
 
 **全て今回の新規入力値は模擬値**。旧Shiller CSV、Fed・e-Statの復号済み原本でのバックテストは引き続き未実施。
 
 ## 5. 不変条件・未完了ゲート
 
-- \`origin:'OBSERVED'\` は入力者の申告であり、発行元認証・SHA-256原本照合・公開許諾を証明しない。v0.10/v0.12の原本検証ゲートを通った私的データだけを、統合QAに使う。
+- `origin:'OBSERVED'` は入力者の申告であり、発行元認証・SHA-256原本照合・公開許諾を証明しない。v0.10/v0.12の原本検証ゲートを通った私的データだけを、統合QAに使う。
 - 欠損月をゼロや補間値で埋めない。Shillerは旧版の概算配当込み米ドル収益率であって公式S&P 500 TRではない。金スポットは投資商品TRではない。
 - 単一資産モデルとの一致は同一前提の計算整合性であり、手数料・税・FX・市場データの収集経路・取引可能性に関する外部監査ではない。
 - 暗号化Artifact 5件の元のGitHub Actions保存期限は2026-11-18。ユーザー管理下での永続保全は別途要確認。RSA秘密鍵をチャット・GitHub・サイトに置かない。
-- \`main\`、DWZ Draft PR #70、実データ取得ブランチ、本番サイト、確認用Webページは変更しない。
+- `main`、DWZ Draft PR #70、実データ取得ブランチ、本番サイト、確認用Webページは変更しない。
 
 ## 6. 次の実作業
 
