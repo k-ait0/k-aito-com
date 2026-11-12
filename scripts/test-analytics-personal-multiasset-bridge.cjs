@@ -123,11 +123,28 @@ const rpath=path.slice(0,65).map((x,i)=>({...x,month:formatMonth(monthSerial('20
 const roll=rollingPersonalMultiAsset({monthly_market_returns:rpath,horizon_months:60,
  portfolio:p,plan:{monthly_expense_yen:1000}});
 assert.equal(roll.complete_windows,6);
-const gap=rpath.map(x=>({...x}));gap[30].month='2010-01';
+const gap=rpath.map((x,i)=>({...x,month:formatMonth(monthSerial('2001-01')+i+(i>=30?1:0))}));
 const gaps=rollingPersonalMultiAsset({monthly_market_returns:gap,horizon_months:60,
  portfolio:p,plan:{monthly_expense_yen:1000}});
 assert.equal(gaps.complete_windows,0);
 assert.equal(gaps.excluded_windows_due_to_gap_or_cpi,6);
+assert.throws(()=>rollingPersonalMultiAsset({
+ monthly_market_returns:rpath.map((x,i)=>i===9?{...x,origin:'OBSERVED'}:x),
+ horizon_months:60,portfolio:p,plan:{monthly_expense_yen:1000}}),/provenance|origin/i,
+ 'Incorrect origin in market series must be an error, not a silently excluded rolling window');
+assert.throws(()=>rollingPersonalMultiAsset({
+ monthly_market_returns:rpath,horizon_months:60,portfolio:p,plan:{monthly_expense_yen:-1}}),/integer yen|Invalid/i,
+ 'Bad user plan must not silently pass without a full rolling window');
+assert.throws(()=>simulatePersonalMultiAsset({
+ monthly_market_returns:path.slice(0,12),portfolio:p,
+ plan:{monthly_expense_yen:1000,expense_mode:'HISTORICAL_CPI'},
+ cpi_levels:cpi.slice(0,13).map(x=>({...x,origin:'OBSERVED'}))}),/CPI origin/,
+ 'Synthetic market cannot be silently paired with observed CPI and called homogeneous');
+assert.throws(()=>rollingPersonalMultiAsset({
+ monthly_market_returns:rpath,horizon_months:60,portfolio:p,
+ plan:{monthly_expense_yen:1000,expense_mode:'HISTORICAL_CPI'},
+ cpi_levels:cpi.slice(0,66).map(x=>({...x,origin:'OBSERVED'}))}),/CPI origin/,
+ 'Rolling CPI origin mismatch fails before making a result table');
 for(const [bad,regexp] of [
  [{...plan,unknown:'unused'},/Unknown/],
  [{...plan,salary_schedules:[{id:'bad',start_offset:2,end_offset_exclusive:1,monthly_yen:10}]},/offset/],
