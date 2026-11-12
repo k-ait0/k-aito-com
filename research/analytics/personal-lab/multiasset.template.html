@@ -63,6 +63,10 @@ footer{margin-top:22px;color:#8998a8;font-size:11px;text-align:right}
 <div class="group"><label for="initial">初期資金（円）</label><input id="initial" type="number" value="10000000" min="1" max="1000000000000"></div>
 <div class="group"><label for="horizon">検証期間</label><select id="horizon"><option value="120" selected>10年</option><option value="240">20年</option><option value="360">30年</option></select></div>
 <div class="group"><label for="startOffset">市場開始月</label><select id="startOffset"></select></div>
+<div class="group"><label for="withdrawalTiming">取り崩しの時点</label>
+<select id="withdrawalTiming"><option value="MONTH_START">月初：入金→全支出→市場変動（既定）</option>
+<option value="MONTH_END">月末：入金→市場変動→全支出</option></select>
+<p class="sub">月末指定では通常生活費も臨時支出も月末に支払います。物価連動もその月末水準を参照。旧DWZの「臨時支出は月初、生活費のみ月末」といった混合位相とはまだ異なります。</p></div>
 <div class="group"><label for="withdrawalStrategy">資産の実売却順序</label>
 <select id="withdrawalStrategy"><option value="PRO_RATA">保有残高に比例（従来Core）</option>
 <option value="CASH_FIRST">円現金から先に売却</option><option value="RISK_FIRST">円現金以外から先に売却</option></select>
