@@ -44,14 +44,20 @@ const level=(assetGrowthByMonth=()=>1,cpiByMonth=()=>100)=>{
    {cashPercent:50,sellOrder:'CASH_FIRST',rebalance:'NONE',monthlyContribution:0});
  const y=old.simulateTwoAsset(data,0,1,200,100,'usd',false,'BEGINNING_OF_MONTH',
    {cashPercent:50,sellOrder:'PRO_RATA',rebalance:'NONE',monthlyContribution:0});
- close(x.rows[1].value,110,'cash first month 1');
- close(y.rows[1].value,105,'pro rata month 1');
+ close(x.rows[1].investment_return,10,'cash-first risk exposure gains');
+ close(y.rows[1].investment_return,5,'pro-rata risk exposure gains');
+ // Old Personal v0.5 attaches the NEXT month-start withdrawal to the same
+ // end-boundary row; these row closing balances are not comparable to Core's
+ // one-period end states without subtracting that next withdrawal.
+ close(x.rows[1].value,10,'old next-month-start cash-first ledger balance');
+ close(y.rows[1].value,5,'old next-month-start pro-rata ledger balance');
  const portfolio=simulatePortfolio({
   initial_holdings_yen:{CASH:100,RISK:100},target_weights:{CASH:.5,RISK:.5},
   monthly_returns:[{month:'2000-02',origin:'SYNTHETIC',asset_returns:{CASH:0,RISK:.1}}],
   monthly_withdrawal_yen:100,market_mode:'SYNTHETIC_DEMO',rebalance:{mode:'NONE'}});
  close(portfolio.rows[0].closing_yen,105,'canonical pro rata first month');
- say('SELL_ORDER',{old_cash_first:x.rows[1].value,old_pro_rata:y.rows[1].value,core_pro_rata:105});
+ say('SELL_ORDER',{old_first_month_gain_cash_first:10,old_first_month_gain_pro_rata:5,
+ old_next_boundary_cash_first:10,old_next_boundary_pro_rata:5,core_end_first_period:105});
 }
 // #2: DWZ nets gross streams within one timing phase. Same end value but
 // cashflow ledger and future tax/cost-basis are not equivalent.
