@@ -30,6 +30,7 @@ function fixture(){
  const manifest={usd:{...receipt('SHILLER_LEGACY',hashes.shiller,'https://github.com/datasets/s-and-p-500/blob/main/data/data.csv'),return_kind:'RESEARCH_APPROX_RETURN',currency:'USD',method:'SHILLER_PRICE_PLUS_DIVIDEND_APPROX'},fx:{...receipt('FED_BOARD',hashes.fed,'https://www.federalreserve.gov/releases/h10/hist/dat00_ja.htm'),source_channel:'H10_ACTIVE_JAPAN_HISTORY',quote:'JPY_PER_USD',aggregation:'LAST_AVAILABLE_OBSERVED_IN_MONTH'},cpi:{...receipt('ESTAT',hashes.cpi_headline,'https://www.e-stat.go.jp/stat-search/files'),country:'JP',basket:'HEADLINE_NSA',index_unit:'POSITIVE_INDEX_LEVEL'}};
  return {files,manifest,source_registry:registry};
 }
+
 const plan={portfolio:{initial_holdings_yen:{US_EQUITY:10000},target_weights:{US_EQUITY:1},rebalance:{mode:'NONE'}},cashflow_plan:{monthly_withdrawal_yen:1000},horizons_months:[120,240,360]};
 const run=(changes={})=>buildPrivateCpiRollingReport({...fixture(),plan,...changes});
 test('v0.13 private report requires six pinned bytes and independent raw normalization',()=>{
