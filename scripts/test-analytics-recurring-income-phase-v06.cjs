@@ -124,7 +124,7 @@ assert.throws(()=>validatePlan({salary_schedules:[salary('MONTH_END'),salary('MO
  assert.equal(f.breakdown.reduce((a,x)=>a+x.salary_month_end_yen,0),1500);
  assert.throws(()=>migrateDWZAgeIncomeStreams([{
   ...inDWZ[0],escalationModel:{type:'CPI_LINKED'}
- }],{simulationStartAgeMonths:480,horizon_months:24,kind:'salary'}),/requires an explicit transformation/);
+ }],{simulationStartAgeMonths:480,horizon_months:24,kind:'salary'}),/requires explicit.*contract/);
  assert.throws(()=>migrateDWZAgeIncomeStreams([{
   ...inDWZ[0],timing:'INTRA_MONTH'
  }],{simulationStartAgeMonths:480,horizon_months:24,kind:'salary'}),/timing/);
