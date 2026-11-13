@@ -80,6 +80,11 @@ progress { display:block; width:100%; height:14px; margin:0 0 16px; }
     <p>以下は**設問の検証専用**で、50問の採点には含みません。どちらの価値も強く重視するケースを見分けるための補助質問です。</p>
     <p class="muted">以下の補助質問は各項目を独立に評価します。1＝まったく当てはまらない、4＝どちらともいえない、7＝非常によく当てはまる。</p>
     <div id="probes"></div>
+    <div id="pairPanel" hidden>
+      <h2>重点設問の比較（全50問モードのみ）</h2>
+      <p class="muted">以下の比較は研究用です。二つの設問を同じ意味だと感じたか、どう判断したかを記録します。採点や診断分類には反映しません。氏名や連絡先は記入しないでください。</p>
+      <div id="pairCases"></div>
+    </div>
     <label for="notes">設問で迷った理由やわかりにくい表現（任意）</label>
     <textarea id="notes" rows="4" maxlength="2000" placeholder="氏名、住所、連絡先など個人情報は記入しないでください"></textarea>
     <div class="controls"><button id="editLast">最後の設問を確認</button></div>
@@ -106,6 +111,7 @@ const begin=document.getElementById("begin");
 const notice=document.getElementById("notice");
 const el=id=>document.getElementById(id);
 let session=null;
+const sameMeaningChoices=[["","未回答"],["same","ほぼ同じ意味"],["different","異なる意味"],["unsure","判断できない"]];
 function announce(s){notice.textContent=s;}
 function makeSeed(){return Array.from(crypto.getRandomValues(new Uint32Array(4)),n=>n.toString(16).padStart(8,"0")).join("");}
 function hash(s){let h=2166136261;for(let i=0;i<s.length;i++)h=Math.imul(h^s.charCodeAt(i),16777619);return h>>>0;}
@@ -130,11 +136,11 @@ function fullOrder(seed){
 function fresh(mode){
  const seed=makeSeed();
  if(mode==="full50"){
-  return {schema:"A05-D210-RESEARCH-SESSION-1",mode,bankDigest:source.bankDigest,bankVersion:source.bankVersion,seed,manifestChecksum:null,order:fullOrder(seed),answers:{},probes:{},notes:"",index:0,consent:true};
+  return {schema:"A05-D210-RESEARCH-SESSION-1",mode,bankDigest:source.bankDigest,bankVersion:source.bankVersion,seed,manifestChecksum:null,order:fullOrder(seed),answers:{},probes:{},pairReviews:{},notes:"",index:0,consent:true};
  }
  const i=crypto.getRandomValues(new Uint32Array(1))[0]%source.previewManifests.length;
  const m=source.previewManifests[i];
- return {schema:"A05-D210-RESEARCH-SESSION-1",mode,bankDigest:source.bankDigest,bankVersion:source.bankVersion,seed:m.seed,manifestChecksum:m.checksum,order:m.ids.slice(),answers:{},probes:{},notes:"",index:0,consent:true};
+ return {schema:"A05-D210-RESEARCH-SESSION-1",mode,bankDigest:source.bankDigest,bankVersion:source.bankVersion,seed:m.seed,manifestChecksum:m.checksum,order:m.ids.slice(),answers:{},probes:{},pairReviews:{},notes:"",index:0,consent:true};
 }
 function validate(input){
  if(!input||input.schema!=="A05-D210-RESEARCH-SESSION-1"||input.bankDigest!==source.bankDigest||input.bankVersion!==source.bankVersion||input.consent!==true)throw Error("異なるデータ版・同意がないデータです");
@@ -156,6 +162,17 @@ function validate(input){
  const probes=new Set(source.probes.map(p=>p.id));
  if(!input.probes||typeof input.probes!=="object"||Array.isArray(input.probes))throw Error("補助回答が不正です");
  for(const [id,v] of Object.entries(input.probes))if(!probes.has(id)||!(Number.isInteger(v)&&v>=1&&v<=7))throw Error("補助回答値が不正です");
+ const pairReviews=input.pairReviews??{};
+ if(!pairReviews||typeof pairReviews!=="object"||Array.isArray(pairReviews))throw Error("設問比較データが不正です");
+ const knownPairs=new Set(source.pairCases.map(x=>x.id));
+ if(input.mode!=="full50"&&Object.keys(pairReviews).length)throw Error("30問モードでの比較回答は許可されません");
+ for(const [id,item] of Object.entries(pairReviews)){
+  if(!knownPairs.has(id)||!item||typeof item!=="object"||Array.isArray(item))throw Error("不明な設問比較です");
+  if(!["same","different","unsure",null].includes(item.sameMeaning??null) ||
+     typeof (item.reason??"")!=="string" || (item.reason??"").length>800 ||
+     Object.keys(item).some(k=>!["sameMeaning","reason"].includes(k)))
+    throw Error("設問比較の回答値が不正です");
+ }
  if(typeof input.notes!=="string"||input.notes.length>2000)throw Error("メモが不正です");
  return true;
 }
@@ -173,6 +190,50 @@ function renderProbes(){
   box.append(label,select);holder.append(box);
  }
 }
+function renderPairs(){
+ const panel=el("pairPanel"), holder=el("pairCases");
+ panel.hidden=session.mode!=="full50";
+ holder.replaceChildren();
+ if(panel.hidden)return;
+ if(!session.pairReviews)session.pairReviews={};
+ for(const pair of source.pairCases){
+  const field=document.createElement("fieldset");
+  field.className="probe";field.dataset.pairId=pair.id;
+  const legend=document.createElement("legend");legend.textContent=pair.axis+"軸・重点比較 "+pair.slots.join(" / ");
+  field.append(legend);
+  for(const id of pair.ids){
+   const q=items.get(id);
+   const box=document.createElement("div");box.className="probe";
+   const p=document.createElement("p");p.textContent=q.stem;
+   const answer=document.createElement("p");
+   const v=Object.prototype.hasOwnProperty.call(session.answers,id)?session.answers[id]:"未回答";
+   answer.className="muted";answer.textContent=id+"："+q.left+" ／ "+q.right+"（回答："+(v===null?"判断不能":v)+"）";
+   box.append(p,answer);field.append(box);
+  }
+  const risk=document.createElement("p");risk.className="muted";risk.textContent="確認したい点："+pair.issue;
+  field.append(risk);
+  const label=document.createElement("label");label.htmlFor="compare-"+pair.id;label.textContent="2問をほぼ同じ意味の質問と感じましたか？";
+  const select=document.createElement("select");select.id="compare-"+pair.id;select.dataset.pairMeaning=pair.id;
+  for(const [value,labelText] of sameMeaningChoices){
+   const option=document.createElement("option");option.value=value;option.textContent=labelText;select.append(option);
+  }
+  select.value=session.pairReviews[pair.id]?.sameMeaning??"";
+  select.addEventListener("change",()=>{
+   const x=session.pairReviews[pair.id]??{sameMeaning:null,reason:""};
+   x.sameMeaning=select.value||null;session.pairReviews[pair.id]=x;
+  });
+  const commentLabel=document.createElement("label");commentLabel.htmlFor="pair-reason-"+pair.id;
+  commentLabel.textContent="同じ／違うと感じた理由、どの条件で回答が変わったか（任意）";
+  const area=document.createElement("textarea");area.id="pair-reason-"+pair.id;area.dataset.pairReason=pair.id;
+  area.rows=3;area.maxLength=800;area.placeholder="設問の解釈や判断した条件を具体的に。個人情報は記入しないでください";
+  area.value=session.pairReviews[pair.id]?.reason??"";
+  area.addEventListener("input",()=>{
+   const x=session.pairReviews[pair.id]??{sameMeaning:null,reason:""};
+   x.reason=area.value;session.pairReviews[pair.id]=x;
+  });
+  field.append(label,select,commentLabel,area);holder.append(field);
+ }
+}
 function render(){
  el("intro").hidden=!!session;el("survey").hidden=!session||session.index>=session.order.length;
  el("completed").hidden=!session||session.index<session.order.length;
@@ -181,7 +242,7 @@ function render(){
  if(session.index>=session.order.length){
   const saved=Object.keys(session.answers).length,valid=Object.values(session.answers).filter(x=>x!==null).length;
   el("completion").textContent="回答が記録された設問："+saved+"/"+session.order.length+"（有効回答 "+valid+"件）。採点・分類は行っていません。";
-  renderProbes();el("notes").value=session.notes;return;
+  renderProbes();renderPairs();el("notes").value=session.notes;return;
  }
  const q=items.get(session.order[session.index]);
  el("progress").textContent=(session.index+1)+" / "+session.order.length+"問";
@@ -222,7 +283,7 @@ el("importFile").addEventListener("change",async(e)=>{
  try{
   if(file.size>1000000)throw Error("ファイルが大きすぎます");
   const candidate=JSON.parse(await file.text());validate(candidate);
-  session=candidate;announce("保存済みの研究用回答を復元しました");render();
+  session={...candidate,pairReviews:candidate.pairReviews??{}};announce("保存済みの研究用回答を復元しました");render();
  }catch(err){announce("読込不可："+err.message);}
 });
 render();
