@@ -43,6 +43,9 @@ on:
       - 'scripts/a05-d216-form-variation.mjs'
       - 'scripts/test-a05-d216-form-variation.mjs'
       - 'preview/a05/server.mjs'
+      - 'research/a05/d219-simple-diagnosis-template.html'
+      - 'scripts/a05-d219-build-simple-diagnosis.mjs'
+      - 'scripts/test-a05-d219-simple-browser.cjs'
       - 'preview/a05/Dockerfile'
       - 'scripts/test-a05-private-preview-server.mjs'
       - 'docs/A05_D216_FORM_VARIATION_PROTOCOL_20261113.md'
@@ -79,6 +82,8 @@ jobs:
         run: node scripts/a05-d210-build-offline-form.mjs
       - name: Test authenticated A05 preview server (fail-closed)
         run: node --test scripts/test-a05-private-preview-server.mjs
+      - name: Build simple 30-question type preview
+        run: node scripts/a05-d219-build-simple-diagnosis.mjs
       - name: Install Chromium test runtime
         run: |
           npm install --prefix /tmp/a05-review --no-audit --no-fund --no-save playwright@1.56.1
@@ -98,6 +103,11 @@ jobs:
           NODE_PATH: /tmp/a05-review/node_modules
           PLAYWRIGHT_BROWSERS_PATH: /tmp/a05-chromium
         run: node scripts/test-a05-d210-research-browser.cjs
+      - name: Test D-219 simple diagnosis preview on desktop and mobile
+        env:
+          NODE_PATH: /tmp/a05-review/node_modules
+          PLAYWRIGHT_BROWSERS_PATH: /tmp/a05-chromium
+        run: node scripts/test-a05-d219-simple-browser.cjs
       - name: Upload QA screenshots
         if: always()
         uses: actions/upload-artifact@v4
@@ -107,8 +117,18 @@ jobs:
             qa-screenshots/a05-d170-*.png
             qa-screenshots/a05-d175-*.png
             qa-screenshots/a05-d210-*.png
+            qa-screenshots/a05-d219-*.png
           if-no-files-found: ignore
           retention-days: 7
+
+      - name: Upload D-219 offline simple diagnosis demo
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: a05-d219-simple-demo
+          path: research/a05/generated/d219-simple-diagnosis.html
+          if-no-files-found: error
+          retention-days: 14
 
       - name: Upload D-210 offline research questionnaire
         if: always()
