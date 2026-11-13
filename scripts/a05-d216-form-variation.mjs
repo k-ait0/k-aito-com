@@ -31,7 +31,7 @@ function rejectReason(x){
 }
 export function analyzeFormVariation(records,options={}){
   if(!Array.isArray(records))throw Error("Expected array of locally supplied D210 records");
-  const n=options.draws??256;
+  const n=options.draws===undefined?256:options.draws;
   if(!Number.isInteger(n)||n<1||n>2048)throw Error("draws must be an integer in [1,2048]");
   const forms=Array.from({length:n},(_,i)=>drawResearchManifest("D216-fixed-form-"+String(i).padStart(4,"0")));
   const perAxis=Object.fromEntries(AXES.map(a=>[a,{
