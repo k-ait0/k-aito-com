@@ -94,7 +94,7 @@ const screenshots=path.resolve(__dirname,"../qa-screenshots");
    });
    await page.waitForFunction(()=>document.getElementById("notice").textContent.includes("読込不可"));
    assert.match(await page.locator("#notice").textContent(),/読込不可/);
-   const invalidPair={...d30,mode:"full50",pairReviews:{"C35-36":{sameMeaning:"yes",reason:""}}};
+   const invalidPair={...out,pairReviews:{"C35-36":{sameMeaning:"yes",reason:""}}};
    await page.locator("#importFile").setInputFiles({
      name:"a05-invalid-pair.json",mimeType:"application/json",buffer:Buffer.from(JSON.stringify(invalidPair))
    });
