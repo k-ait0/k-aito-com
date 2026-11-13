@@ -67,8 +67,8 @@ const dwz=ctx.simulateDWZ(legacy,{months:['2000-02'],cpiIndex:[1.1],
  returns:{RISK:[.1]},datasetVersion:'synthetic-index'});
 assert.equal(dwz.summary.finalAssets,result.ending_assets_yen);
 assert.equal(dwz.summary.totalInvestmentReturn,result.market_investment_gain_yen);
-assert.equal(dwz.summary.totalIncome,110);
-assert.equal(dwz.summary.totalPension,44);
+assert(Math.abs(dwz.summary.totalIncome-110)<1e-9,'DWZ fixture uses floating yen before canonical rounding');
+assert(Math.abs(dwz.summary.totalPension-44)<1e-9,'DWZ fixture uses floating yen before canonical rounding');
 const fullPlan={salary_schedules:[{id:'wage',start_offset:0,end_offset_exclusive:12,
  monthly_yen:100,timing:'MONTH_START',escalation_model:'DWZ_CPI_INDEX'}]};
 const costs=cpi(12,120),flows=cashflowsForPlan(fullPlan,12,'2000-01',costs);
