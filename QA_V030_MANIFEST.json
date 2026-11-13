@@ -1,0 +1,43 @@
+{
+  "schema": "ANALYTICS_V030_SOURCE_MANIFEST",
+  "files": [
+    {
+      "path": "lib/analytics/cpi-reference-capture-v030.cjs",
+      "size": 6081,
+      "sha256": "e110443f3da2d559e56dd1d97a4593ad96287d83430375915a25948f635ffc54"
+    },
+    {
+      "path": "scripts/capture-analytics-cpi-reference-v30.cjs",
+      "size": 1037,
+      "sha256": "4e9b2f0bc27c1296d337017b5037d45fc851faa52e89a79fc47c112e986b6405"
+    },
+    {
+      "path": "scripts/test-analytics-cpi-reference-capture-v030.cjs",
+      "size": 7251,
+      "sha256": "83c8c2b5ffdcf4a95e66917a68fa2c9ea199d6b497f5e9209ae5c3e0d7d1438a"
+    },
+    {
+      "path": "docs/ANALYTICS_CPI_OFFICIAL_REFERENCE_CAPTURE_V0_30.md",
+      "size": 5229,
+      "sha256": "4674b93a314fa753f6eee7e1be27885c196c8336735752bea02224425be348cd"
+    },
+    {
+      "path": "README_V30.md",
+      "size": 1010,
+      "sha256": "bb57fe40ddc69a7bdf7a6fba9c5ba4426796afea8d87b8eb527e6eb1be504ddb"
+    },
+    {
+      "path": "research/analytics/bls_private_bundle_public_key_20261111.pem",
+      "size": 625,
+      "sha256": "bfe78c5a3684d8272a94d778d4d1c49b0ea56c4a9a03fdc5de42bcb437281e28"
+    },
+    {
+      "path": ".github/workflows/analytics-cpi-2025-reference-capture-v30.yml",
+      "size": 1614,
+      "sha256": "7a272e629f3d3bb663dd6cde927a9b90fc3f15c38e8a9c4e1dc7986ac368aac5"
+    }
+  ],
+  "all_tests_pass": 881,
+  "original_source_bytes_obtained": false,
+  "changes_production": false
+}
