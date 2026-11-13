@@ -1,0 +1,17 @@
+{
+  "market_mode": "SYNTHETIC_DEMO",
+  "cashflow_timing": "MONTH_START",
+  "horizon_months": 3,
+  "portfolio": {"initial_holdings_yen": {"STOCK": 10000}, "target_weights": {"STOCK": 1}, "rebalance": {"mode": "NONE"}},
+  "cashflow_plan": {"monthly_withdrawal_yen": 1000},
+  "monthly_market_returns": [
+    {"month": "2026-01", "origin": "SYNTHETIC", "asset_returns": {"STOCK": 0}},
+    {"month": "2026-02", "origin": "SYNTHETIC", "asset_returns": {"STOCK": 0}},
+    {"month": "2026-03", "origin": "SYNTHETIC", "asset_returns": {"STOCK": 0}}
+  ],
+  "cpi_vintage_snapshots": [
+    {"vintage_id": "SYN_0", "published_on": "2025-12-15", "origin": "SYNTHETIC", "source_id": "SYNTHETIC_FIXTURE", "series_id": "JP_CPI_HEADLINE_2025_LINKED", "series_kind": "CPI_LEVEL", "unit": "INDEX_2025_100", "seasonal_adjustment": "NSA", "levels": [{"month": "2025-11", "value": 100}]},
+    {"vintage_id": "SYN_1", "published_on": "2026-01-15", "origin": "SYNTHETIC", "source_id": "SYNTHETIC_FIXTURE", "series_id": "JP_CPI_HEADLINE_2025_LINKED", "series_kind": "CPI_LEVEL", "unit": "INDEX_2025_100", "seasonal_adjustment": "NSA", "levels": [{"month": "2025-11", "value": 100}, {"month": "2025-12", "value": 110}]},
+    {"vintage_id": "SYN_2", "published_on": "2026-02-15", "origin": "SYNTHETIC", "source_id": "SYNTHETIC_FIXTURE", "series_id": "JP_CPI_HEADLINE_2025_LINKED", "series_kind": "CPI_LEVEL", "unit": "INDEX_2025_100", "seasonal_adjustment": "NSA", "levels": [{"month": "2025-11", "value": 100}, {"month": "2025-12", "value": 110}, {"month": "2026-01", "value": 121}]}
+  ]
+}
