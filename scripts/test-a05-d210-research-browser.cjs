@@ -79,6 +79,7 @@ const screenshots=path.resolve(__dirname,"../qa-screenshots");
    await page.locator("#importFile").setInputFiles({
     name:"a05-malformed.json",mimeType:"application/json",buffer:Buffer.from(JSON.stringify(corrupted))
    });
+   await page.waitForFunction(()=>document.getElementById("notice").textContent.includes("読込不可"));
    assert.match(await page.locator("#notice").textContent(),/読込不可/);
    assert.deepEqual(errors,[],"JavaScript page error");
    assert.deepEqual(external,[],"No external requests");
