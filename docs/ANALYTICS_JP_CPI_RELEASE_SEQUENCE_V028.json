@@ -1,0 +1,45 @@
+{
+  "schema": "ANALYTICS_JP_CPI_RELEASE_SEQUENCE_V028",
+  "record_status": "OFFICIAL_METADATA_AND_VALUE_REVIEWED_SOURCE_BYTES_UNAVAILABLE",
+  "purpose": "RESEARCH_ONLY_ASOF_DEMONSTRATION_NOT_FULL_VINTAGE_HISTORY",
+  "indicator": "JP_NATIONAL_HEADLINE_CPI_NON_SEASONALLY_ADJUSTED",
+  "base_year": 2025,
+  "unit": "INDEX_2025_100",
+  "allow_backtest_as_verified_vintage": false,
+  "raw_pdf_bytes_authenticated": false,
+  "all_historical_monthly_releases_obtained": false,
+  "official_monthly_change_reconstructed_from_unrounded_values": false,
+  "data_source": "STATISTICS_BUREAU_JAPAN_ESTAT",
+  "records": [
+    {
+      "observation_month": "2026-07",
+      "headline_index": 102.0,
+      "published_on": "2026-08-21",
+      "published_at_jst": "2026-08-21T08:30:00+09:00",
+      "stat_infid": "000040491312",
+      "publication_metadata_url": "https://www.e-stat.go.jp/stat-search/files?layout=dataset&stat_infid=000040491312",
+      "headline_value_source_url": "https://www.stat.go.jp/data/cpi/sokuhou/tsuki/index-z.html?mod=article_inline",
+      "release_pdf_sha256": null
+    },
+    {
+      "observation_month": "2026-08",
+      "headline_index": 102.2,
+      "published_on": "2026-09-18",
+      "published_at_jst": "2026-09-18T08:30:00+09:00",
+      "stat_infid": "000040501408",
+      "publication_metadata_url": "https://www.e-stat.go.jp/stat-search/files?layout=dataset&stat_infid=000040501408",
+      "headline_value_source_url": "https://dashboard.e-stat.go.jp/",
+      "release_pdf_sha256": null
+    },
+    {
+      "observation_month": "2026-09",
+      "headline_index": 102.2,
+      "published_on": "2026-10-23",
+      "published_at_jst": "2026-10-23T08:30:00+09:00",
+      "stat_infid": "000040513537",
+      "publication_metadata_url": "https://www.e-stat.go.jp/stat-search/files?layout=dataset&stat_infid=000040513537",
+      "headline_value_source_url": "https://www.stat.go.jp/data/cpi/sokuhou/tsuki/index-z.htm",
+      "release_pdf_sha256": null
+    }
+  ]
+}
