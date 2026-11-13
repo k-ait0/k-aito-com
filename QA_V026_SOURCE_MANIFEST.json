@@ -1,0 +1,59 @@
+{
+  "version": "v0.26",
+  "created_jst_date": "2026-11-13",
+  "scope": "RESEARCH_ONLY_NO_PRIVATE_MARKET_DATA",
+  "baseline_tests": 724,
+  "new_tests": 28,
+  "total_tests": 752,
+  "test_result": "PASS",
+  "source": [
+    {
+      "path": "lib/analytics/cpi-historical-release-contract-v026.cjs",
+      "sha256": "34e58f726c12635550db98541f0a0a1350701d5325caa7138b7e14c652b9631a",
+      "bytes": 5590
+    },
+    {
+      "path": "lib/analytics/rolling-portfolio-cpi-chain-v026.cjs",
+      "sha256": "7416138ff520ebf8e9057125fbf74d202ac4e44d82840d22548f568e72e33b25",
+      "bytes": 7062
+    },
+    {
+      "path": "scripts/run-analytics-private-cpi-chain-v26.cjs",
+      "sha256": "0d437450c3284ec43e969a89b1ef3b6901c43db4c8a3c2640a1064666d3b96f0",
+      "bytes": 3869
+    },
+    {
+      "path": "scripts/test-analytics-historical-cpi-chain-v026.cjs",
+      "sha256": "896a7fe3cacfe8a43c944a8199170efc19ada81472fb6dd5660bc49b527cb1aa",
+      "bytes": 9821
+    },
+    {
+      "path": "scripts/test-analytics-cpi-chain-cli-v026.cjs",
+      "sha256": "9ad29d84c17453b5072cb9b413e63393243feb03b849a5f31c0e385fe5a2cc62",
+      "bytes": 2766
+    },
+    {
+      "path": "examples/cpi-chain-v026-SYNTHETIC.json",
+      "sha256": "03ebb68ae25be3b3c42e325b3d200c1b5e81110d8068b6c6fb145fbd3a6990aa",
+      "bytes": 2346
+    },
+    {
+      "path": "docs/ANALYTICS_CPI_HISTORICAL_BASE_RELEASE_CHAIN_V0_26.md",
+      "sha256": "b29d88d03dcc57c004018663c44d36f01716524f99b530a20e3b52ac5e60f4ed",
+      "bytes": 6578
+    },
+    {
+      "path": "README_V26.md",
+      "sha256": "681525d1907e96af18c8030f69dca8cf3321da1be0a9480b410039de3c26f9fa",
+      "bytes": 1140
+    }
+  ],
+  "official_release_documents": [
+    "https://www.stat.go.jp/data/cpi/2015/pdf/2015_sche.pdf",
+    "https://www.stat.go.jp/data/cpi/2020/pdf/def2020-2015.pdf",
+    "https://www.stat.go.jp/data/cpi/2025/sokyu.html"
+  ],
+  "cpi_archive_authenticated": false,
+  "main_changed": false,
+  "legacy_shiller_pinned_changed": false
+}
