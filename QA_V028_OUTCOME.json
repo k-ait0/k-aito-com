@@ -1,0 +1,12 @@
+{
+  "schema": "ANALYTICS_CPI_V028_OUTCOME",
+  "status": "RESEARCH_ONLY_OFFICIAL_VALUE_AND_RELEASE_METADATA_QA_PASS",
+  "existing_tests_pass": 788,
+  "new_tests_pass": 42,
+  "all_tests_pass": 830,
+  "reviewed_national_cpi_observations": 3,
+  "original_document_bytes_authenticated": false,
+  "rounding_precise_monthly_inflation_verified": false,
+  "vintage_reconstruction_complete": false,
+  "production_approved": false
+}
