@@ -49,3 +49,30 @@ The script *cannot attest a locally supplied file's official origin*. Confirm yo
 `node --test scripts/test-analytics-*.cjs` — 881/881 PASS on Node.js v22.16.0 (v0.29: 860 plus v0.30: 21 new tests). Tested synthetic byte fixtures, local encryption round-trip with an ephemeral test RSA-3072 key, tamper rejection, hard-coded public key fingerprint, offline CLI and workflow path restrictions. **No official original CSV bytes were tested yet.**
 
 Sources: https://www.stat.go.jp/data/cpi/2025/sokyu.html ; https://www.stat.go.jp/data/cpi/1.htm .
+
+## 6. Actual official-source acquisition result (2026-11-13 UTC)
+
+The branch-scoped workflow **ran successfully** on GitHub Actions: https://github.com/k-ait0/k-aito-com/actions/runs/43427925063 . Run 43427925063, job 131893853150, fetched from the fixed Statistics Bureau HTTPS URL and produced one encrypted artifact, ID 14037218574. The job succeeded at its pinned `curl` download, local byte checks, RSA-3072/AES-256-GCM encryption, and encrypted-only artifact upload steps.
+
+- Acquired original bytes: **167,310**; detected `shift_jis` text encoding and 28 physical lines; year-month tokens include `202501`, `202607`, `202608`, `202609`. The file's complete column layout **has not been authenticated or decoded**.
+- Actual original source SHA-256: `c5893ac45a0f124277d92c2ec286451be15ce0b7d5bbc84152e4f4226cedbce2`.
+- Capture time UTC: `2026-11-13T12:45:57.422Z`.
+- Encrypted artifact ZIP SHA-256: `d65dab15b874f01c0980f001899e4327058d82128c97f698b02ad1a94e7750cb`; ZIP size 169,555 bytes; one encrypted JSON member, uncompressed 224,944 bytes. Local ZIP CRC test **PASS** and metadata/source digest agree with job logs.
+- Artifact expiry: `2026-11-18T12:45:57Z` (**2026-11-18 21:45:57 JST**). Copy the encrypted ZIP to durable user-managed storage; existing older encrypted evidence artifacts also expire on Nov 18 and are separate.
+
+These are externally acquired **real source bytes and an authenticated encrypted archive**, but only the captured file metadata—not its plaintext values—was inspected here. The official file's XLS/CSV column mapping, rounded headline, independent source-provider content hash and historical as-of release vintages are **NOT** verified. Do not mislabel the latest 2025-base 3dp reference CSV as a reconstruction of past publication-time levels.
+
+### Local offline restoration (user-controlled private key only)
+
+1. Download `K_Aito_Analytics_CPI_2025_3DP_Encrypted_20261113.zip` to a safe directory, and expand the single `.encrypted.json` file using Windows Explorer, or `tar -xf ...`.
+2. Use the owner-held original RSA private key **on the owner's PC only**. Never upload the key to GitHub/ChatGPT.
+3. In the v0.30 checkout:
+
+```powershell
+node scripts/restore-analytics-cpi-reference-v30.cjs `
+  --encrypted-json 'C:\AnalyticsPrivate\JP_CPI_2025_3DP_REFERENCE_CANDIDATE_c5893ac45a0f1242.encrypted.json' `
+  --private-key 'C:\AnalyticsPrivate\owner_rsa_private.pem' `
+  --out-dir 'C:\AnalyticsPrivate\RestoredCpiReference'
+```
+
+The CLI requires a PKCS#8 PEM or equivalent Node.js-supported unencrypted private key, strictly verifies the corresponding public SPKI fingerprint, authenticated encryption tag, actual pinned SHA-256 and CSV plausibility, and writes the original bytes with exclusive creation. It never prints raw CPI levels or key material. **Success only establishes locally restored original bytes—not historical-vintage certification.**
