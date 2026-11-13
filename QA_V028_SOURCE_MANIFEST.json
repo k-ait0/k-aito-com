@@ -1,0 +1,40 @@
+{
+  "schema": "ANALYTICS_V028_SOURCE_SHA256_MANIFEST",
+  "date_jst": "2026-11-13",
+  "research_only": true,
+  "original_pdfs_downloaded": false,
+  "verified_official_release_metadata_records": 3,
+  "historical_vintage_coverage_complete": false,
+  "source_files": [
+    {
+      "path": "lib/analytics/cpi-official-consecutive-v028.cjs",
+      "bytes": 6761,
+      "sha256": "a7c8cc43dcbb25a26ef8e71f321772953537c848b2ea8c7fbbdf42088b30f723"
+    },
+    {
+      "path": "scripts/check-analytics-cpi-consecutive-v28.cjs",
+      "bytes": 1802,
+      "sha256": "88eb1803b4cf70a12febfd812c1a54db9d1eba703b979731c56c6a8c91292662"
+    },
+    {
+      "path": "scripts/test-analytics-cpi-consecutive-v028.cjs",
+      "bytes": 7561,
+      "sha256": "b73550e2b98e21f981f511d86dba66df9e1d3385b74ed2f8568ec2c1632e4572"
+    },
+    {
+      "path": "docs/ANALYTICS_JP_CPI_RELEASE_SEQUENCE_V028.json",
+      "bytes": 1977,
+      "sha256": "bc5486d25110fa8d68c1d7d383df2a8505028eda7ba91d35ae76bf53b8bc9043"
+    },
+    {
+      "path": "docs/ANALYTICS_JP_CPI_CONSECUTIVE_ASOF_V028.md",
+      "bytes": 5630,
+      "sha256": "06c8bd891b3baa4a5f0a68d220d1e34e836c4236008f67e22d5ff491b3ae4b51"
+    },
+    {
+      "path": "README_V28.md",
+      "bytes": 1153,
+      "sha256": "de2c6e91ce3e7d8445a267f85a076ea4ffa31e6abb6bd024936aa3ef6b1e5ffb"
+    }
+  ]
+}
