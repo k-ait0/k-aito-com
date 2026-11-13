@@ -1,0 +1,20 @@
+name: A05 public mobile preview live smoke
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/a05-preview-live-smoke.yml'
+      - 'scripts/test-a05-d220-public-live.mjs'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  live-preview:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify unauthenticated live HTTP access and page content
+        run: node --test scripts/test-a05-d220-public-live.mjs
