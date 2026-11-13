@@ -34,6 +34,9 @@ on:
       - 'research/a05/d209-milestone-gates.json'
       - 'docs/A05_D209_SHORTEST_CONSISTENT_ROADMAP_20261113.md'
       - 'scripts/test-a05-d209-release-gates.mjs'
+      - 'research/a05/d210-research-template.html'
+      - 'scripts/a05-d210-build-offline-form.mjs'
+      - 'scripts/test-a05-d210-research-browser.cjs'
       - 'scripts/a05-d208-research-sampler.mjs'
       - 'scripts/test-a05-d208-mass.mjs'
       - 'scripts/test-a05-d206-full50-coverage.mjs'
@@ -63,6 +66,8 @@ jobs:
         run: node --test scripts/test-a05-d152-d153-content-gates.mjs scripts/test-a05-research-contracts.mjs scripts/test-a05-d170-research-aggregate.cjs scripts/test-a05-d175-participant-aggregate.cjs scripts/test-a05-d179-angle-gates.mjs scripts/test-a05-d181-additional-angles.mjs scripts/test-a05-d183-d185-new-content-questions.mjs scripts/test-a05-d186-d191-wide-patterns.mjs scripts/test-a05-d192-d194-multilens.mjs scripts/test-a05-d197-master-paired-revisions.mjs scripts/test-a05-d198-d199-selection.mjs scripts/test-a05-d200-d201-new-angles.mjs
       - name: Stress-test the D206 editorial bank and D208 nonproduction sampler
         run: node --test scripts/test-a05-d206-full50-coverage.mjs scripts/test-a05-d208-mass.mjs scripts/test-a05-d209-release-gates.mjs
+      - name: Build research-only D210 full50 / UX30 offline form
+        run: node scripts/a05-d210-build-offline-form.mjs
       - name: Install Chromium test runtime
         run: |
           npm install --prefix /tmp/a05-review --no-audit --no-fund --no-save playwright@1.56.1
@@ -77,6 +82,11 @@ jobs:
           NODE_PATH: /tmp/a05-review/node_modules
           PLAYWRIGHT_BROWSERS_PATH: /tmp/a05-chromium
         run: node scripts/test-a05-d175-participant-browser.cjs
+      - name: Test D-210 research full50 and UX30 form (desktop and mobile)
+        env:
+          NODE_PATH: /tmp/a05-review/node_modules
+          PLAYWRIGHT_BROWSERS_PATH: /tmp/a05-chromium
+        run: node scripts/test-a05-d210-research-browser.cjs
       - name: Upload QA screenshots
         if: always()
         uses: actions/upload-artifact@v4
@@ -85,5 +95,7 @@ jobs:
           path: |
             qa-screenshots/a05-d170-*.png
             qa-screenshots/a05-d175-*.png
+            qa-screenshots/a05-d210-*.png
+            research/a05/generated/d210-research-questionnaire.html
           if-no-files-found: ignore
           retention-days: 7
