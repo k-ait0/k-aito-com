@@ -23,7 +23,7 @@ test("50 item bank guard and adversarial mutations",()=>{
   b=>b.items[0].production_scoring_approved=true,
   b=>b.items[0].user_formally_approved=true,
   b=>b.items[12].proposed_semantic_family="INVALID_FAMILY",
-  b=>b.items[30].proposed_semantic_family="C_OPPORTUNITY_TIMING"
+  b=>b.items[24].proposed_semantic_family="C_OPPORTUNITY_TIMING"
  ];
  for(const mutate of mutations){const x=copy(BANK);mutate(x);assert.throws(()=>validateBank(x));}
 });
