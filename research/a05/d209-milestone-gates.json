@@ -74,7 +74,7 @@
     },
     {
       "id": "G2_RESEARCH_INSTRUMENT",
-      "status": "NOT_STARTED",
+      "status": "PASS",
       "requires": [
         "single reusable offline respondent UI for full-50 calibration mode and sampled-30 UX mode",
         "explicit informed consent, no implicit upload or PII",
@@ -82,7 +82,8 @@
         "CSV/JSON export with bank SHA and response-format version",
         "browser E2E desktop/mobile and restart/skip/validation"
       ],
-      "next": "Build one research-only form with two modes, not duplicate applications"
+      "next": "Keep research-only; use cognitive interviews to close G1. Generated HTML is a GitHub Actions artifact, not a deployed website.",
+      "evidence": "GitHub Actions run 43398998639: generated D210 offline full50 and UX30 forms, desktop/mobile 1280/390 browser E2E PASS, JSON export/import/skip/probe/invalid file/privacy verified"
     },
     {
       "id": "G3_HUMAN_COGNITIVE_REVIEW",
@@ -124,9 +125,16 @@
     "allowed": false,
     "reason": "G1-G5 not passed; research artifact only"
   },
-  "current_next_action": "G1 targeted content audit and G2 offline non-scoring 50/30 research UI can proceed in parallel; do not start scoring or production integration",
+  "current_next_action": "G1 focused semantic/cognitive review of 18 flagged pairs and G3 human interpretation collection; G2 offline form has CI browser acceptance, G4 and G5 must remain blocked.",
   "claim_policy": {
     "allowed": "sampling correctness, checkpoint integrity, editorial wording selection",
     "prohibited": "psychometric validation, invariant 16-type result across different 30-item forms, validated independent semantic families, deployed live 50-bank"
+  },
+  "evidence_of_new_form": {
+    "run": "https://github.com/k-ait0/k-aito-com/actions/runs/43398998639",
+    "build_script": "scripts/a05-d210-build-offline-form.mjs",
+    "template": "research/a05/d210-research-template.html",
+    "test": "scripts/test-a05-d210-research-browser.cjs",
+    "generated_artifact": "research/a05/generated/d210-research-questionnaire.html"
   }
 }
