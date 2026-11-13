@@ -1,0 +1,38 @@
+name: Analytics CPI 2025 reference archive (encrypted research)
+on:
+  push:
+    branches: [analytics-cpi-reference-capture-v0-30-20261113]
+    paths:
+      - '.github/workflows/analytics-cpi-2025-reference-capture-v30.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  archive:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Get official Statistics Bureau 2025-base reference CSV
+        shell: bash
+        run: |
+          set -euo pipefail
+          umask 077
+          mkdir -p "$RUNNER_TEMP/analytics-cpi-v30/original" "$RUNNER_TEMP/analytics-cpi-v30/encrypted"
+          curl --fail --silent --show-error --retry 2 --connect-timeout 15 --max-time 90 \
+            --proto '=https' --tlsv1.2 \
+            --output "$RUNNER_TEMP/analytics-cpi-v30/original/zmi2025aa.csv" \
+            'https://www.stat.go.jp/data/cpi/2025/csv/zmi2025aa.csv'
+          node scripts/capture-analytics-cpi-reference-v30.cjs \
+            --input "$RUNNER_TEMP/analytics-cpi-v30/original/zmi2025aa.csv" \
+            --public-key "$GITHUB_WORKSPACE/research/analytics/bls_private_bundle_public_key_20261111.pem" \
+            --out-dir "$RUNNER_TEMP/analytics-cpi-v30/encrypted"
+      - name: Upload only RSA-wrapped, AES-GCM encrypted source
+        uses: actions/upload-artifact@v4
+        with:
+          name: cpi-2025-3dp-reference-private-encrypted-v030
+          path: ${{ runner.temp }}/analytics-cpi-v30/encrypted/*.encrypted.json
+          if-no-files-found: error
+          retention-days: 5
