@@ -49,8 +49,17 @@ assert.equal(app.getState().twoPhaseEnabled,false,'Legacy 4-column event uses si
 $('events').value='';app.run();
 
 $('withdrawalTiming').value='MONTH_START';app.run();
-$('salaries').value='salary,0,120,100000,MONTH_END';
+$('salaries').value='salary,0,120,100000,MONTH_END,CPI_LINKED_DWZ';
 $('pensions').value='pension,0,120,70000,MONTH_START';
+app.run();
+assert.equal(app.getState().twoPhaseEnabled,true,'CPI-linked month-end salary should trigger phase calculation');
+assert(app.getState().downloadEnabled,'synthetic local CPI should support CPI-linked salary');
+assert.equal(app.parseTextSchedule($('salaries').value,'salary')[0].escalation_model,'DWZ_CPI_INDEX');
+$('salaries').value='salary,0,120,100000,MONTH_END,UNSUPPORTED';
+app.run();assert.equal(app.getState().downloadEnabled,false,'unsupported CPI contract must fail closed');
+$('salaries').value='salary,0,120,100000,MONTH_END';
+app.run();assert(app.getState().downloadEnabled);
+
 app.run();
 assert.equal(app.getState().twoPhaseEnabled,true,'Salary MONTH_END triggers two-phase calculation without event overrides');
 assert(app.getState().downloadEnabled);
