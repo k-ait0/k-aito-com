@@ -1,0 +1,112 @@
+{
+  "monthly_market_returns": [
+    {
+      "month": "2021-07",
+      "origin": "SYNTHETIC",
+      "asset_returns": {
+        "STOCK": 0
+      }
+    },
+    {
+      "month": "2021-08",
+      "origin": "SYNTHETIC",
+      "asset_returns": {
+        "STOCK": 0
+      }
+    },
+    {
+      "month": "2021-09",
+      "origin": "SYNTHETIC",
+      "asset_returns": {
+        "STOCK": 0
+      }
+    }
+  ],
+  "cpi_vintage_snapshots": [
+    {
+      "vintage_id": "synthetic2015",
+      "published_on": "2021-07-23",
+      "origin": "SYNTHETIC",
+      "source_id": "SYNTHETIC_FIXTURE",
+      "series_id": "JP_CPI_HEADLINE_2015_BASE",
+      "series_kind": "CPI_LEVEL",
+      "unit": "INDEX_2015_100",
+      "seasonal_adjustment": "NSA",
+      "levels": [
+        {
+          "month": "2021-05",
+          "value": 100
+        },
+        {
+          "month": "2021-06",
+          "value": 106
+        }
+      ]
+    },
+    {
+      "vintage_id": "synthetic2020",
+      "published_on": "2021-08-06",
+      "origin": "SYNTHETIC",
+      "source_id": "SYNTHETIC_FIXTURE",
+      "series_id": "JP_CPI_HEADLINE_2020_BASE",
+      "series_kind": "CPI_LEVEL",
+      "unit": "INDEX_2020_100",
+      "seasonal_adjustment": "NSA",
+      "levels": [
+        {
+          "month": "2021-05",
+          "value": 100
+        },
+        {
+          "month": "2021-06",
+          "value": 110
+        }
+      ]
+    },
+    {
+      "vintage_id": "synthetic2020later",
+      "published_on": "2021-09-24",
+      "origin": "SYNTHETIC",
+      "source_id": "SYNTHETIC_FIXTURE",
+      "series_id": "JP_CPI_HEADLINE_2020_BASE",
+      "series_kind": "CPI_LEVEL",
+      "unit": "INDEX_2020_100",
+      "seasonal_adjustment": "NSA",
+      "levels": [
+        {
+          "month": "2021-05",
+          "value": 100
+        },
+        {
+          "month": "2021-06",
+          "value": 110
+        },
+        {
+          "month": "2021-07",
+          "value": 121
+        },
+        {
+          "month": "2021-08",
+          "value": 133.1
+        }
+      ]
+    }
+  ],
+  "horizon_months": 3,
+  "portfolio": {
+    "initial_holdings_yen": {
+      "STOCK": 10000
+    },
+    "target_weights": {
+      "STOCK": 1
+    },
+    "rebalance": {
+      "mode": "NONE"
+    }
+  },
+  "cashflow_plan": {
+    "monthly_withdrawal_yen": 1000
+  },
+  "market_mode": "SYNTHETIC_DEMO",
+  "cashflow_timing": "MONTH_END"
+}
