@@ -1,0 +1,51 @@
+{
+  "schema": "ANALYTICS_CPI_OFFICIAL_INTRADAY_CALENDAR_V029",
+  "review_cutoff_jst": "2026-11-13T23:59:59+09:00",
+  "release_event_status": "FIRST_PARTY_PUBLICATION_METADATA_REVIEWED_PDF_UNAUTHENTICATED",
+  "original_pdf_bytes_authenticated": false,
+  "complete_vintage_history": false,
+  "rebase_reference_levels_acquired": false,
+  "publication_approved": false,
+  "events": [
+    {
+      "event_id": "CPI_REBASE_2025_20260807",
+      "event_type": "REBASE_RETROSPECTIVE",
+      "published_at_jst": "2026-08-07T16:00:00+09:00",
+      "observation_month": null,
+      "base_year": 2025,
+      "headline_index_rounded_1dp": null,
+      "source_url": "https://www.stat.go.jp/data/cpi/2025/sokyu.html",
+      "pdf_status": "SOURCE_BYTES_NOT_ACQUIRED"
+    },
+    {
+      "event_id": "CPI_NATIONAL_202607",
+      "event_type": "MONTHLY_HEADLINE",
+      "published_at_jst": "2026-08-21T08:30:00+09:00",
+      "observation_month": "2026-07",
+      "base_year": 2025,
+      "headline_index_rounded_1dp": 102,
+      "source_url": "https://www.e-stat.go.jp/stat-search/files?layout=dataset&stat_infid=000040491312",
+      "pdf_status": "SOURCE_BYTES_NOT_ACQUIRED"
+    },
+    {
+      "event_id": "CPI_NATIONAL_202608",
+      "event_type": "MONTHLY_HEADLINE",
+      "published_at_jst": "2026-09-18T08:30:00+09:00",
+      "observation_month": "2026-08",
+      "base_year": 2025,
+      "headline_index_rounded_1dp": 102.2,
+      "source_url": "https://www.e-stat.go.jp/stat-search/files?layout=dataset&stat_infid=000040501408",
+      "pdf_status": "SOURCE_BYTES_NOT_ACQUIRED"
+    },
+    {
+      "event_id": "CPI_NATIONAL_202609",
+      "event_type": "MONTHLY_HEADLINE",
+      "published_at_jst": "2026-10-23T08:30:00+09:00",
+      "observation_month": "2026-09",
+      "base_year": 2025,
+      "headline_index_rounded_1dp": 102.2,
+      "source_url": "https://www.e-stat.go.jp/stat-search/files?layout=dataset&stat_infid=000040513537",
+      "pdf_status": "SOURCE_BYTES_NOT_ACQUIRED"
+    }
+  ]
+}
