@@ -502,11 +502,11 @@
     "production_unchanged": true
   },
   "next_priorities": [
-    "Audit and implement CPI_LINKED DWZ income escalation using strictly provenance-matched historical CPI with phase-specific reference periods before accepting migration",
-    "Design actual cash accounts and immutable transaction/cost-basis lots; current INTERNAL_FROM_SALARY_PENSION is only a budget earmark, never a settled transfer",
-    "Specify annual tax year/NISA lot buckets, brokerage fees and dividend tax before introducing net-asset claims",
-    "Safely obtain genuine licensed monthly JPY Japanese equity and bond total-return indices without market-data redistribution",
-    "Perform real iPad/Safari offline file start and export QA; Chromium set_content passes but direct file:// navigation is blocked in the test environment"
+    "Implement account-level custody ledger and tax-lot cost basis using integer JPY independent audit; do not yet compute NISA or real tax",
+    "Model explicit internal transfers and brokerage buys separately from salary/pension contribution earmark",
+    "Add real CPI index source validation and data entitlement evidence; formal DWZ CPI month reference convention might differ by source version",
+    "Acquire genuine legally usable Japanese equity/bond monthly total returns privately; do not publicize unlicensed index data",
+    "Run iPad/Safari direct local file open and CSV download acceptance"
   ],
   "audit_note": "Existing November 10 registry/acquisition snapshots are historical; this is an additional verified November 11 ledger. Do not convert data-acquired into site-approved.",
   "observed_joint_coverage_research_only": {
@@ -1178,5 +1178,41 @@
     "finowa_edited": false,
     "documentation": "docs/ANALYTICS_RECURRING_INCOME_PHASE_V0_6_20261113.md",
     "github_actions": "https://github.com/k-ait0/k-aito-com/actions/runs/43273309315"
+  },
+  "personal_dwz_cpi_linked_income_v0_7_20261113": {
+    "status": "PERSONAL_LOCAL_CPI_INCOME_V07_CI_AND_CHROMIUM_PASS",
+    "research_only": true,
+    "canonical_dwz_contract": "CURRENT_PERIOD_END_OVER_PRE_PERIOD_CPI",
+    "explicit_dwz_migration_required": true,
+    "salary_pension_escalation_model": "DWZ_CPI_INDEX",
+    "integer_yen_income_rounding": true,
+    "legacy_dwz_float_yen_full_parity": false,
+    "official_CPI_data_acquired_in_this_work": false,
+    "official_jpx_tr_acquired_in_this_work": false,
+    "official_bond_tr_acquired_in_this_work": false,
+    "origin_mix_rejected": true,
+    "no_cpi_roll_windows_skip_not_fabricated": true,
+    "tax_nisa_cost_basis_implemented": false,
+    "numeric_qa": {
+      "synthetic_cpi_recurring_scenarios": 180,
+      "dwz_1_asset_frozen_reference": 1,
+      "synthetic_market_months": 600,
+      "browser_12_asset_horizon_months": 120,
+      "browser_12_asset_complete_rolling_windows": 481,
+      "browser_initial_salary_month_end_yen": 100200,
+      "browser_initial_pension_month_start_yen": 60120,
+      "browser_initial_cpi_multiplier": 1.002,
+      "browser_javascript_errors": 0,
+      "browser_external_http_requests": 0,
+      "browser_mobile_390px_overflow": 0,
+      "file_scheme_direct_open_verified": false
+    },
+    "verified_html_sha256": "92addb7defc595188104f66da2a2cb8b746ff0714da1e505b59211c8d334c2c5",
+    "last_checked_actions_run": "https://github.com/k-ait0/k-aito-com/actions/runs/43346409827",
+    "documentation": "docs/ANALYTICS_DWZ_CPI_LINKED_INCOME_V0_7_20261113.md",
+    "main_changed": false,
+    "finowa_changed": false,
+    "dwz_production_changed": false,
+    "public_releases_approved": false
   }
 }
