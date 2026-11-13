@@ -123,15 +123,17 @@ function parseTextSchedule(text,kind){
  if(!text.trim())return [];
  return text.replace(/\r/g,'').split('\n').map(s=>s.trim()).filter(Boolean).map((line,i)=>{
   const cols=line.split(',').map(s=>s.trim());
-  if(cols.length!==4&&cols.length!==5)
-   throw Error(kind+'行'+(i+1)+'：ID,開始月,終了月(除外),月額円[,MONTH_START/MONTH_END]の4列または5列');
-  const [id,start,end,amount,timing]=cols;
+  if(![4,5,6].includes(cols.length))
+   throw Error(kind+'行'+(i+1)+'：ID,開始月,終了月(除外),円[,MONTH_START/MONTH_END[,CPI_LINKED_DWZ]] の4〜6列');
+  const [id,start,end,amount,timing,escalation]=cols;
   if(!/^[A-Za-z][A-Za-z0-9_-]{0,39}$/.test(id)||
       ![start,end,amount].every(x=>/^\d+$/.test(x))||
-      (cols.length===5&&!['MONTH_START','MONTH_END'].includes(timing)))
-   throw Error(kind+'行'+(i+1)+'：ID、整数、または入金時点が不正');
+      (cols.length>=5&&!['MONTH_START','MONTH_END'].includes(timing))||
+      (cols.length===6&&escalation!=='CPI_LINKED_DWZ'))
+   throw Error(kind+'行'+(i+1)+'：ID・整数・入金時点・CPI変換指定が不正');
   return {id,start_offset:Number(start),end_offset_exclusive:Number(end),monthly_yen:Number(amount),
-   ...(cols.length===5?{timing}:{})};
+   ...(cols.length>=5?{timing}:{}),
+   ...(cols.length===6?{escalation_model:'DWZ_CPI_INDEX'}:{})};
  });
 }
 function parseEvents(text){
@@ -305,6 +307,7 @@ function download(){
   'contribution_source','external_contribution_yen','internal_from_income_yen',
   'salary_yen','salary_month_start_yen','salary_month_end_yen',
   'pension_yen','pension_month_start_yen','pension_month_end_yen','event_income_yen',
+  'dwz_income_cpi_multiplier','dwz_income_cpi_reference_month',
   'living_expense_due_yen','living_expense_paid_yen','living_expense_unfunded_yen',
   'event_expense_due_yen','event_expense_paid_yen','event_expense_unfunded_yen','event_payment_allocations',
   'expense_price_level_month','withdrawal_timing',
@@ -326,7 +329,8 @@ function download(){
    b.monthly_contribution_source,b.external_contribution_yen,b.internal_from_income_yen,
    b.salary_yen,b.salary_month_start_yen,b.salary_month_end_yen,
    b.pension_yen,b.pension_month_start_yen,b.pension_month_end_yen,
-   b.one_time_income_yen,b.living_expense_yen,b.paid_living_expense_yen,b.unfunded_living_expense_yen,
+   b.one_time_income_yen,b.dwz_income_cpi_multiplier,b.dwz_income_cpi_reference_month,
+   b.living_expense_yen,b.paid_living_expense_yen,b.unfunded_living_expense_yen,
    b.one_time_expense_yen,b.paid_event_expense_yen,b.unfunded_event_expense_yen,
    b.event_payment_allocations.map(e=>e.id+':'+e.timing+':'+e.due_yen+':'+e.paid_yen+':'+e.unfunded_yen).join('|'),
    b.expense_price_level_month,r.withdrawal_timing,
