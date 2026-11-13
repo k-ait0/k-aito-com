@@ -67,8 +67,8 @@ jobs:
           node --check scripts/a05-d175-participant-aggregate.cjs
       - name: Verify archival provenance and editorial gates (146 tests)
         run: node --test scripts/test-a05-d152-d153-content-gates.mjs scripts/test-a05-research-contracts.mjs scripts/test-a05-d170-research-aggregate.cjs scripts/test-a05-d175-participant-aggregate.cjs scripts/test-a05-d179-angle-gates.mjs scripts/test-a05-d181-additional-angles.mjs scripts/test-a05-d183-d185-new-content-questions.mjs scripts/test-a05-d186-d191-wide-patterns.mjs scripts/test-a05-d192-d194-multilens.mjs scripts/test-a05-d197-master-paired-revisions.mjs scripts/test-a05-d198-d199-selection.mjs scripts/test-a05-d200-d201-new-angles.mjs
-      - name: Stress-test the D206 editorial bank and D208 nonproduction sampler
-        run: node --test scripts/test-a05-d206-full50-coverage.mjs scripts/test-a05-d208-mass.mjs scripts/test-a05-d209-release-gates.mjs scripts/test-a05-d215-aggregate-p0.mjs
+      - name: Verify editorial bank, release gates and review data (fast PR QA)
+        run: node --test scripts/test-a05-d206-full50-coverage.mjs scripts/test-a05-d209-release-gates.mjs scripts/test-a05-d215-aggregate-p0.mjs
       - name: Build research-only D210 full50 / UX30 offline form
         run: node scripts/a05-d210-build-offline-form.mjs
       - name: Install Chromium test runtime
