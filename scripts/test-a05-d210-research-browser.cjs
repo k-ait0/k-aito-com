@@ -60,6 +60,7 @@ const screenshots=path.resolve(__dirname,"../qa-screenshots");
    await page.reload();
    assert.equal(await page.locator("#intro").isVisible(),true);
    await page.locator("#importFile").setInputFiles(await downloaded.path());
+   await page.locator("#completed").waitFor({state:"visible"});
    assert.equal(await page.locator("#completed").isVisible(),true);
    assert.equal(await page.locator("#probe-B_CONNECTION").inputValue(),"7");
    assert.equal(await page.locator("#notes").inputValue(),out.notes);
