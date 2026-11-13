@@ -31,6 +31,10 @@ on:
       - 'docs/A05_V2_D201_METHODS_13_TO_18_REVIEW_20261112.md'
       - 'research/a05/d1*.json'
       - '.github/workflows/a05-research-browser-qa.yml'
+      - 'scripts/a05-d208-research-sampler.mjs'
+      - 'scripts/test-a05-d208-mass.mjs'
+      - 'scripts/test-a05-d206-full50-coverage.mjs'
+      - 'research/a05/d206-editorial-50-question-bank-v1-2.json'
   workflow_dispatch:
 
 permissions:
@@ -54,6 +58,8 @@ jobs:
           node --check scripts/a05-d175-participant-aggregate.cjs
       - name: Verify archival provenance and editorial gates (146 tests)
         run: node --test scripts/test-a05-d152-d153-content-gates.mjs scripts/test-a05-research-contracts.mjs scripts/test-a05-d170-research-aggregate.cjs scripts/test-a05-d175-participant-aggregate.cjs scripts/test-a05-d179-angle-gates.mjs scripts/test-a05-d181-additional-angles.mjs scripts/test-a05-d183-d185-new-content-questions.mjs scripts/test-a05-d186-d191-wide-patterns.mjs scripts/test-a05-d192-d194-multilens.mjs scripts/test-a05-d197-master-paired-revisions.mjs scripts/test-a05-d198-d199-selection.mjs scripts/test-a05-d200-d201-new-angles.mjs
+      - name: Stress-test the D206 editorial bank and D208 nonproduction sampler
+        run: node --test scripts/test-a05-d206-full50-coverage.mjs scripts/test-a05-d208-mass.mjs
       - name: Install Chromium test runtime
         run: |
           npm install --prefix /tmp/a05-review --no-audit --no-fund --no-save playwright@1.56.1
