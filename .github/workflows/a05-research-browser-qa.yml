@@ -42,6 +42,7 @@ on:
       - 'scripts/test-a05-d215-aggregate-p0.mjs'
       - 'scripts/a05-d216-form-variation.mjs'
       - 'scripts/test-a05-d216-form-variation.mjs'
+      - 'docs/A05_D216_FORM_VARIATION_PROTOCOL_20261113.md'
       - 'scripts/a05-d208-research-sampler.mjs'
       - 'scripts/test-a05-d208-mass.mjs'
       - 'scripts/test-a05-d206-full50-coverage.mjs'
