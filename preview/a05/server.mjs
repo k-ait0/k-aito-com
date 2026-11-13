@@ -6,8 +6,8 @@
 import http from "node:http";
 import {readFileSync} from "node:fs";
 import {createHash,timingSafeEqual} from "node:crypto";
-const contentUrl=new URL("../../research/a05/generated/d210-research-questionnaire.html",import.meta.url);
-const body=readFileSync(contentUrl);
+const simple=readFileSync(new URL("../../research/a05/generated/d219-simple-diagnosis.html",import.meta.url));
+const research=readFileSync(new URL("../../research/a05/generated/d210-research-questionnaire.html",import.meta.url));
 const username=process.env.A05_PREVIEW_USER||"review";
 const secret=process.env.A05_PREVIEW_SECRET;
 const port=Number(process.env.PORT||3000);
@@ -47,7 +47,9 @@ const server=http.createServer((req,res)=>{
  if(!authorized(req.headers.authorization)){
   send(res,401,"Authentication required",{"WWW-Authenticate":'Basic realm="A05 Research Review", charset="UTF-8"'});return;
  }
- if(req.url!=="/" && req.url!=="/index.html"){send(res,404,"Not found");return;}
+ const body=(req.url==="/"||req.url==="/index.html"||req.url==="/diagnosis")?simple:
+            (req.url==="/research"||req.url==="/research/")?research:null;
+ if(!body){send(res,404,"Not found");return;}
  res.writeHead(200,{"Content-Type":"text/html; charset=utf-8","Content-Length":String(body.byteLength),...genericHeaders});
  res.end(req.method==="HEAD"?undefined:body);
 });
