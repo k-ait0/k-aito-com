@@ -11,9 +11,20 @@ const here=dirname(fileURLToPath(import.meta.url));
 const root=resolve(here,"..");
 const template=readFileSync(resolve(root,"research/a05/d210-research-template.html"),"utf8");
 const chosen=drawResearchManifest("D210-template-check");
+const p0=JSON.parse(readFileSync(resolve(root,"research/a05/d213-p0-editorial-decisions.json"),"utf8"));
+const pairCases=p0.findings.map(x=>({
+ id:x.axis+x.pair[0]+"-"+x.pair[1],
+ axis:x.axis,
+ slots:x.pair,
+ ids:x.pair.map(slot=>BANK.items.find(q=>q.slot===slot)?.bank_id),
+ issue:x.reason,
+ research_goal:x.next
+}));
+if(pairCases.length!==3||pairCases.some(x=>x.ids.some(id=>!id)))throw Error("Invalid P0 pair mapping");
 const data={
  schema:"A05-D210-RESEARCH-FORM-DATA-1",mode:"RESEARCH_ONLY",
  bankDigest:chosen.bankDigest,bankVersion:BANK.schema,
+ pairCases,
  questions:BANK.items.map(x=>({id:x.bank_id,axis:x.axis,stem:x.stem,left:x.left,right:x.right,family:x.proposed_semantic_family||null})),
  previewManifests:Array.from({length:128},(_,i)=>{
    const m=drawResearchManifest("D210-ux-"+String(i).padStart(3,"0"));
