@@ -3,7 +3,7 @@
 // No market histories: synthetic month-end normalized CPI v0.7 acceptance.
 // Source is the pinned DWZ research simulateOne fixture (not current production).
 const assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm');
-const {migrateDWZAgeIncomeStreams,simulatePersonalMultiAsset,cashflowsForPlan}=require('../lib/analytics/personal-multiasset-bridge.cjs');
+const {migrateDWZAgeIncomeStreams,simulatePersonalMultiAsset,cashflowsForPlan,rollingPersonalMultiAsset}=require('../lib/analytics/personal-multiasset-bridge.cjs');
 const {monthSerial,formatMonth}=require('../lib/analytics/cashflow-core.cjs');
 const month=i=>formatMonth(monthSerial('2000-01')+i);
 const market=(months,rate=0)=>Array.from({length:months},(_,i)=>({month:month(i+1),
@@ -127,4 +127,33 @@ for(const income of [0,80,1000]){
  checks++;
 }
 assert.equal(checks,180);
+const rollMarket=Array.from({length:13},(_,i)=>({
+ month:month(i+1),origin:'SYNTHETIC',asset_returns:{RISK:0}
+}));
+const rollCpi=cpi(13,110);
+const roll=rollingPersonalMultiAsset({
+ monthly_market_returns:rollMarket,portfolio,horizon_months:12,
+ plan:fullPlan,cpi_levels:rollCpi
+});
+assert.equal(roll.complete_windows,2);
+assert.equal(roll.excluded_calendar_windows_due_to_gap_or_cpi,0);
+const noCpi=rollingPersonalMultiAsset({
+ monthly_market_returns:rollMarket,portfolio,horizon_months:12,plan:fullPlan
+});
+assert.equal(noCpi.complete_windows,0);
+assert.equal(noCpi.excluded_calendar_windows_due_to_gap_or_cpi,2);
+const gap=rollingPersonalMultiAsset({
+ monthly_market_returns:rollMarket,portfolio,horizon_months:12,plan:fullPlan,
+ cpi_levels:rollCpi.filter(x=>x.month!=='2000-06')
+});
+assert.equal(gap.complete_windows,0);
+assert.equal(gap.excluded_calendar_windows_due_to_gap_or_cpi,2);
+// A future-only linked income must not require current-period CPI.
+const future=simulatePersonalMultiAsset({
+ portfolio,monthly_market_returns:market(1,0),
+ plan:{salary_schedules:[{id:'future',start_offset:12,end_offset_exclusive:24,
+ monthly_yen:200,escalation_model:'DWZ_CPI_INDEX'}]}
+});
+assert.equal(future.ending_assets_yen,1000);
+assert.equal(future.two_phase_enabled,false);
 console.log('PASS ANALYTICS_DWZ_CPI_INCOME_V07: 180 synthetic CPI-linked salary/pension scenarios, frozen 1-asset DWZ parity, explicit source and normalization failures');
