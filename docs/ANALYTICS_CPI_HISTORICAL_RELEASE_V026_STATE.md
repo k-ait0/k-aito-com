@@ -21,7 +21,7 @@ New off-checkout, offline-tested source modules:
 Node.js 22.16.0 local QA: **752/752 PASS**, including 28 new assertions, re-run 2026-11-13.
 Full local source/test ZIP SHA-256: `cdc2880ed52899b97e2316b675b9c17373aeb81d7073ec134717f82a7c608488`.
 
-**Important:** This tracking record alone does **not** mean all eight source files have been committed to this branch. The source ZIP is an independently delivered conversation artifact. Until code files are committed and compared byte-for-byte, GitHub source sync remains `PENDING`; treat this branch as an audit anchor, not runnable v0.26.
+**GitHub source sync completed and verified:** the eight new source/example/spec/README files plus the source manifest have been committed. Git Blob SHA-1 comparison with the locally tested files: **9/9 exact matches**. The zipped 99-file source/test bundle remains an independently delivered conversation artifact.
 
 ## Limitations
 The official first-release dates are verified; later individual historical releases and vintage index observations are not independently authenticated. Current final revised CPI series must not be presented as historical as-of vintages. No JPY actual backtest, private-source decryption, archive key processing, public-data redistribution, or release approval is claimed.
