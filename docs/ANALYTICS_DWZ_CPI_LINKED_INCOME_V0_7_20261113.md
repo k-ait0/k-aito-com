@@ -61,3 +61,14 @@ CI: https://github.com/k-ait0/k-aito-com/actions/runs/43346409827（研究ブラ
 - 取得価額、口座別取引履歴・内部振替、特定口座/NISA、譲渡損益・配当課税・費用は未実装。金融ロット設計と独立監査を経てから統合する。
 - 指数・CPIの合法的取得、販売/公開利用権、実機Safari QAも未確認。合成テストを実際の市場実績として表示しない。
 - main／FINOWA／公開K. Aito Analytics／DWZ本体／市場原本／商用権利の登録状態は無変更。
+
+## Chromium画面受入：CPIリンク6列（別環境）
+
+CIで生成した本人専用HTML（SHA-256 `92addb7defc595188104f66da2a2cb8b746ff0714da1e505b59211c8d334c2c5`）を、Chromium＋Playwrightで実際に操作。これは実世界の株式・債券CPI系列を使った試験ではなく**合成市場デモ**である。
+
+- 初期3資産／合成600か月／ローリング481窓。
+- 給与 `salary,0,120,100000,MONTH_END,CPI_LINKED_DWZ` および年金 `pension,0,120,60000,MONTH_START,CPI_LINKED_DWZ` を入力。CPI連動＋二相計算でCSV120行をダウンロード。
+- 初月の合成CPI倍率1.002、給与100,200円（月末）・年金60,120円（月初）、CPI参照月1971-02をCSVの列で再検証。
+- 6列目を不正値にすると計算と出力が停止。12資産へ変更しても120行・12保有資産列、481ローリング窓を確認。
+- モバイル390pxで文書横方向のオーバーフロー0px、JS未処理例外0件、HTTP(S)外部通信0件。
+- 直接 `file://` 移動は `ERR_BLOCKED_BY_ADMINISTRATOR`。新規ページにHTML本文を `set_content` する代替経路で全テストを行った。**本人の端末やSafariでのファイル直接起動は未検証**。
