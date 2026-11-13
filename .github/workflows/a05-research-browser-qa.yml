@@ -80,10 +80,10 @@ jobs:
         run: node --test scripts/test-a05-d206-full50-coverage.mjs scripts/test-a05-d209-release-gates.mjs scripts/test-a05-d215-aggregate-p0.mjs scripts/test-a05-d216-form-variation.mjs
       - name: Build research-only D210 full50 / UX30 offline form
         run: node scripts/a05-d210-build-offline-form.mjs
-      - name: Test authenticated A05 preview server (fail-closed)
-        run: node --test scripts/test-a05-private-preview-server.mjs
       - name: Build simple 30-question type preview
         run: node scripts/a05-d219-build-simple-diagnosis.mjs
+      - name: Test authenticated A05 preview server (fail-closed)
+        run: node --test scripts/test-a05-private-preview-server.mjs
       - name: Install Chromium test runtime
         run: |
           npm install --prefix /tmp/a05-review --no-audit --no-fund --no-save playwright@1.56.1
