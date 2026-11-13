@@ -96,6 +96,14 @@ jobs:
             qa-screenshots/a05-d170-*.png
             qa-screenshots/a05-d175-*.png
             qa-screenshots/a05-d210-*.png
-            research/a05/generated/d210-research-questionnaire.html
           if-no-files-found: ignore
           retention-days: 7
+
+      - name: Upload D-210 offline research questionnaire
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: a05-d210-offline-research-form
+          path: research/a05/generated/d210-research-questionnaire.html
+          if-no-files-found: error
+          retention-days: 14
