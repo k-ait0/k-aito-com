@@ -1,0 +1,25 @@
+name: A05 D208 heavy sampling regression
+
+on:
+  pull_request:
+    paths:
+      - 'scripts/a05-d208-research-sampler.mjs'
+      - 'scripts/test-a05-d208-mass.mjs'
+      - 'research/a05/d206-editorial-50-question-bank-v1-2.json'
+      - '.github/workflows/a05-d208-stress.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  large-case-sampling:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run 200,000 manifests and 50,000 checkpoint tests
+        run: node --test scripts/test-a05-d208-mass.mjs
