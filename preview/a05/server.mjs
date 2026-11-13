@@ -15,7 +15,7 @@ if(typeof secret!=="string"||secret.length<24||!/^[A-Za-z0-9_-]+$/.test(secret))
  console.error("Missing or invalid A05_PREVIEW_SECRET: refusing to start private preview");
  process.exit(78);
 }
-if(!Number.isInteger(port)||port<=0||port>65535)process.exit(78);
+if(!Number.isInteger(port)||port<0||port>65535)process.exit(78);
 const sha=x=>createHash("sha256").update(x).digest();
 const expected=sha(username+":"+secret);
 const genericHeaders={
@@ -51,4 +51,4 @@ const server=http.createServer((req,res)=>{
  res.writeHead(200,{"Content-Type":"text/html; charset=utf-8","Content-Length":String(body.byteLength),...genericHeaders});
  res.end(req.method==="HEAD"?undefined:body);
 });
-server.listen(port,"0.0.0.0",()=>console.log("A05_PRIVATE_PREVIEW_READY port="+port));
+server.listen(port,"0.0.0.0",()=>console.log("A05_PRIVATE_PREVIEW_READY port="+server.address().port));
