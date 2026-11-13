@@ -33,6 +33,12 @@ const screenshots=path.resolve(__dirname,"../qa-screenshots");
    assert.match(await page.locator("#completion").textContent(),/50\/50/);
    for(const id of ["B_AUTONOMY","B_CONNECTION","C_FUTURE","C_PRESENT"])await page.locator('#probe-'+id).selectOption("7");
    await page.locator("#notes").fill("同じ価値を両方重視する場合は、中間回答では表しきれない。");
+   const pairIds=["C31-32","C35-36","E49-50"];
+   assert.deepEqual(await page.locator("[data-pair-id]").evaluateAll(nodes=>nodes.map(n=>n.dataset.pairId)),pairIds);
+   for(const id of pairIds){
+    await page.locator('[data-pair-meaning="'+id+'"]').selectOption(id==="C35-36"?"same":"different");
+    await page.locator('[data-pair-reason="'+id+'"]').fill("比較調査メモ："+id+"。回答理由は条件によって変わる。");
+   }
    const ev=page.waitForEvent("download");
    await page.locator("#export").click();
    const downloaded=await ev, out=JSON.parse(fs.readFileSync(await downloaded.path(),"utf8"));
@@ -46,6 +52,9 @@ const screenshots=path.resolve(__dirname,"../qa-screenshots");
    assert.equal(out.probes.B_CONNECTION,7);
    assert.equal(out.probes.C_FUTURE,7);
    assert.equal(out.probes.C_PRESENT,7);
+   assert.equal(out.pairReviews["C35-36"].sameMeaning,"same");
+   assert.equal(out.pairReviews["E49-50"].sameMeaning,"different");
+   assert.match(out.pairReviews["C31-32"].reason,/比較調査メモ/);
    assert.equal(Object.hasOwn(out,"score"),false);
    assert.equal(Object.hasOwn(out,"typeId"),false);
    await page.reload();
@@ -54,6 +63,8 @@ const screenshots=path.resolve(__dirname,"../qa-screenshots");
    assert.equal(await page.locator("#completed").isVisible(),true);
    assert.equal(await page.locator("#probe-B_CONNECTION").inputValue(),"7");
    assert.equal(await page.locator("#notes").inputValue(),out.notes);
+   assert.equal(await page.locator('[data-pair-meaning="C35-36"]').inputValue(),"same");
+   assert.match(await page.locator('[data-pair-reason="E49-50"]').inputValue(),/比較調査メモ/);
    page.once("dialog",d=>d.accept());
    await page.locator("#reset").click();
    await page.locator("#mode").selectOption("ux30");
@@ -71,6 +82,8 @@ const screenshots=path.resolve(__dirname,"../qa-screenshots");
    await page.locator("#export").click();
    const d30=JSON.parse(fs.readFileSync(await (await wait30).path(),"utf8"));
    assert.equal(d30.mode,"ux30");
+   assert.equal(await page.locator("#pairPanel").isVisible(),false);
+   assert.deepEqual(d30.pairReviews,{});
    assert.equal(d30.order.length,30);
    assert.equal(new Set(d30.order).size,30);
    assert.equal(d30.answers[d30.order[0]],null);
@@ -78,6 +91,12 @@ const screenshots=path.resolve(__dirname,"../qa-screenshots");
    const corrupted={...d30,answers:{...d30.answers,FAKE_ID:7}};
    await page.locator("#importFile").setInputFiles({
     name:"a05-malformed.json",mimeType:"application/json",buffer:Buffer.from(JSON.stringify(corrupted))
+   });
+   await page.waitForFunction(()=>document.getElementById("notice").textContent.includes("読込不可"));
+   assert.match(await page.locator("#notice").textContent(),/読込不可/);
+   const invalidPair={...d30,mode:"full50",pairReviews:{"C35-36":{sameMeaning:"yes",reason:""}}};
+   await page.locator("#importFile").setInputFiles({
+     name:"a05-invalid-pair.json",mimeType:"application/json",buffer:Buffer.from(JSON.stringify(invalidPair))
    });
    await page.waitForFunction(()=>document.getElementById("notice").textContent.includes("読込不可"));
    assert.match(await page.locator("#notice").textContent(),/読込不可/);
