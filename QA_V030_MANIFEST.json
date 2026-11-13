@@ -1,5 +1,5 @@
 {
-  "schema": "ANALYTICS_V030_SOURCE_MANIFEST",
+  "schema": "ANALYTICS_V030_FINAL_SOURCE_MANIFEST",
   "files": [
     {
       "path": "lib/analytics/cpi-reference-capture-v030.cjs",
@@ -17,14 +17,34 @@
       "sha256": "83c8c2b5ffdcf4a95e66917a68fa2c9ea199d6b497f5e9209ae5c3e0d7d1438a"
     },
     {
+      "path": "lib/analytics/cpi-reference-restore-v030.cjs",
+      "size": 6074,
+      "sha256": "559a6e88a7156cc99f876492d4f7ba981c11c4e29796ca74895df8b08c115f47"
+    },
+    {
+      "path": "scripts/restore-analytics-cpi-reference-v30.cjs",
+      "size": 969,
+      "sha256": "a46f21d3c00b60704a6f72419b91ad1420c15faaa599aafd3d0a9acb620aa060"
+    },
+    {
+      "path": "scripts/test-analytics-cpi-reference-restore-v030.cjs",
+      "size": 4816,
+      "sha256": "8ac6570dbfb7075a82548881aadf794c0f58698ad38687bba7271ce11698dbc1"
+    },
+    {
       "path": "docs/ANALYTICS_CPI_OFFICIAL_REFERENCE_CAPTURE_V0_30.md",
-      "size": 5229,
-      "sha256": "4674b93a314fa753f6eee7e1be27885c196c8336735752bea02224425be348cd"
+      "size": 8132,
+      "sha256": "f27d86f55428a0878e17a449919fda830df94a9fad8244be792a51cc5362673d"
+    },
+    {
+      "path": "docs/ANALYTICS_CPI_REAL_CAPTURE_EVIDENCE_V0_30.json",
+      "size": 1428,
+      "sha256": "eba95de0236f15d9e5e8c4c37cc6a26e2f5583d07048bcfed75a85fc09105a4b"
     },
     {
       "path": "README_V30.md",
-      "size": 1010,
-      "sha256": "bb57fe40ddc69a7bdf7a6fba9c5ba4426796afea8d87b8eb527e6eb1be504ddb"
+      "size": 1401,
+      "sha256": "a99280bc617445c49237886dba715f60657794ec9bfb4f81b947fe61365d09e9"
     },
     {
       "path": "research/analytics/bls_private_bundle_public_key_20261111.pem",
@@ -37,7 +57,9 @@
       "sha256": "7a272e629f3d3bb663dd6cde927a9b90fc3f15c38e8a9c4e1dc7986ac368aac5"
     }
   ],
-  "all_tests_pass": 881,
-  "original_source_bytes_obtained": false,
-  "changes_production": false
+  "all_tests_expected": 899,
+  "official_capture_sha256": "c5893ac45a0f124277d92c2ec286451be15ce0b7d5bbc84152e4f4226cedbce2",
+  "encrypted_original_zip_sha256": "d65dab15b874f01c0980f001899e4327058d82128c97f698b02ad1a94e7750cb",
+  "historical_asof_verified": false,
+  "production_modified": false
 }
