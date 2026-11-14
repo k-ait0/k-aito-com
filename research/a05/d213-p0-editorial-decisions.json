@@ -1,0 +1,46 @@
+{
+  "schema": "A05-D213-P0-EDITORIAL-DECISIONS-1",
+  "date": "2026-11-13",
+  "source_bank": "research/a05/d206-editorial-50-question-bank-v1-2.json",
+  "source_review": "research/a05/d211-semantic-collision-triage.json",
+  "status": "RESEARCH_EDITING_DECISIONS_NOT_PSYCHOMETRIC_VALIDATION",
+  "findings": [
+    {
+      "pair": [
+        31,
+        32
+      ],
+      "axis": "C",
+      "decision": "PAIRED_CONTRAST_RESEARCH_ONLY",
+      "score_eligibility": "HOLD",
+      "reason": "C31 allows future preparation next week while the present experience is unique; C32 presents both options as unique. A response difference may be due to opportunity scarcity, not C future/present preference.",
+      "next": "Ask respondent whether rarity or future/present priority changed choice; do not treat both as independent C scores without calibration."
+    },
+    {
+      "pair": [
+        35,
+        36
+      ],
+      "axis": "C",
+      "decision": "KEEP_35_AS_REFERENCE_MARK_36_REPLACEMENT_NEEDED",
+      "score_eligibility": "C35_CANDIDATE_C36_HOLD",
+      "reason": "Both items ask retrospectively whether a good year is defined by downstream future benefit or satisfying everyday experiences. Text differs but comparison and response reasoning appear equivalent; the second adds little independent information.",
+      "next": "Retain C36 original in 50-item research bank for paired comparison only; do not replace by synonyms. Identify substantively new C facet and document which old candidate is removed."
+    },
+    {
+      "pair": [
+        49,
+        50
+      ],
+      "axis": "E",
+      "decision": "AUXILIARY_DESCRIPTIVE_ONLY",
+      "score_eligibility": "HOLD",
+      "reason": "E49 compares a monthly 10,000-yen increment with eight monthly hours. E50 compares 4,000 yen from a half-day of activity with taking the time. Unspecified half-day duration, labor disutility and differing framing prevent a stable comparable threshold.",
+      "next": "Probe sensitivity to relative price, work effort, and resources. Do not infer a stable E personality score from two items."
+    }
+  ],
+  "bank_mutation": false,
+  "scoring_mutation": false,
+  "gate": "G1 remains BLOCKED; factual content issues clarified but real cognitive explanations outstanding",
+  "rule": "No inferred real-respondent outcomes. No claims that the final 50 scoring-eligible slots are settled."
+}

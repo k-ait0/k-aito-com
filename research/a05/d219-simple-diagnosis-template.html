@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; base-uri 'none'; form-action 'none'">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<title>A05｜かんたん価値観診断（試作）</title>
+<style>
+:root{font-family:system-ui,-apple-system,"Hiragino Kaku Gothic ProN",Meiryo,sans-serif;background:#f5f7fb;color:#1d2b44;line-height:1.6;color-scheme:light}
+*{box-sizing:border-box}
+body{margin:0;padding:0 16px 40px}
+main{max-width:760px;margin:0 auto}
+button{font:inherit;cursor:pointer}
+button:focus-visible,a:focus-visible{outline:3px solid #6495d4;outline-offset:3px}
+header{padding:24px 0 18px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{font-size:.82rem;font-weight:800;color:#33629d;letter-spacing:.1em}
+.pill{font-size:.72rem;display:inline-block;border:1px solid #e2cb8b;background:#fff9e7;color:#66512a;padding:4px 10px;border-radius:40px;font-weight:700}
+.card{background:#fff;border:1px solid #dfe5ee;border-radius:22px;box-shadow:0 8px 30px rgba(38,57,88,.055);padding:clamp(20px,4vw,40px)}
+h1{font-size:clamp(1.7rem,5vw,2.65rem);line-height:1.35;margin:8px 0 16px;letter-spacing:-.03em}
+h2{font-size:1.35rem;line-height:1.45;margin:12px 0}
+p{margin:8px 0 16px}
+.muted{color:#657187;font-size:.92rem}
+.minor{color:#68758a;font-size:.8rem}
+.point-list{display:flex;gap:8px;flex-wrap:wrap;margin:22px 0}
+.point-list span{background:#eff4fc;border-radius:20px;padding:6px 12px;color:#375681;font-size:.82rem}
+.primary{background:#245ea5;color:white;border:1px solid #245ea5;padding:14px 22px;border-radius:12px;font-weight:700;min-height:48px}
+.primary:disabled{background:#a6b3c6;border-color:#a6b3c6;cursor:not-allowed}
+.secondary{border:1px solid #ccd5e2;background:white;color:#40536f;border-radius:12px;padding:11px 14px;min-height:44px}
+.actions{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:20px;flex-wrap:wrap}
+.actions button{flex:1}
+.progress-line{height:9px;background:#e9edf4;border-radius:20px;overflow:hidden;margin:15px 0 26px}
+.progress-line>div{height:100%;background:#3478c4;width:0;transition:width .15s ease;border-radius:20px}
+.stephead{display:flex;align-items:center;justify-content:space-between;gap:12px;color:#526685;font-size:.9rem;font-weight:700}
+#qtext{font-size:clamp(1.2rem,4vw,1.48rem);font-weight:760;line-height:1.65;margin:16px 0 22px;min-height:105px}
+.poles{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.pole{background:#f1f5fb;border-radius:12px;padding:13px 14px;min-height:107px;font-weight:660;line-height:1.5}
+.pole:last-child{background:#fcf6ec}
+.pole small{display:block;font-size:.75rem;color:#69778d;font-weight:600;margin-bottom:6px}
+.scale{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px;margin:18px 0 5px}
+.scale button{height:58px;border:1px solid #c6d1e2;border-radius:12px;background:#fff;color:#304b72;font-weight:800;font-size:1.02rem;min-width:0;padding:0}
+.scale button:first-child{border-color:#83a6d9}
+.scale button:last-child{border-color:#cea975}
+.scale button[aria-pressed=true]{background:#245ea5;color:white;box-shadow:0 0 0 3px rgba(34,99,172,.17)}
+.scalehint{display:flex;justify-content:space-between;color:#748198;font-size:.75rem}
+.skip{margin-top:17px;width:100%;background:transparent;border:0;text-decoration:underline;color:#667790;padding:9px}
+.warning{border-top:1px solid #e6eaf0;margin-top:28px;padding-top:14px;color:#6c788b;font-size:.8rem;line-height:1.7}
+#intro,#question,#result{margin-top:4px}
+[hidden]{display:none!important}
+.eyebrow{text-transform:uppercase;font-size:.78rem;font-weight:800;letter-spacing:.08em;color:#4273b0}
+.result-hero{text-align:center;padding:24px 4px 16px;border-bottom:1px solid #e5eaf3;margin-bottom:20px}
+.result-icon{font-size:3.6rem;line-height:1.2}
+.result-name{font-size:clamp(1.7rem,5.5vw,2.5rem);font-weight:840;line-height:1.3;margin:9px 0}
+.result-badge{display:inline-block;border-radius:8px;padding:4px 12px;font-weight:700;background:#edf3fb;color:#285b96}
+.axisrow{padding:13px 0;border-bottom:1px solid #eff2f6}
+.axis-title{display:flex;justify-content:space-between;gap:12px;font-size:.88rem}
+.axis-title strong{font-size:.91rem}
+.track{height:10px;background:#e7ecf3;border-radius:20px;position:relative;margin:10px 0 4px}
+.track:after{content:"";position:absolute;left:50%;width:2px;top:-3px;bottom:-3px;background:#7e8da6}
+.track>span{display:block;height:100%;background:#377db9;border-radius:20px;width:50%;transition:width .2s}
+.notes{margin-top:18px;background:#f5f7fa;border-radius:12px;padding:12px 16px;font-size:.82rem;color:#5f6c80}
+.linkish{background:transparent;border:0;text-decoration:underline;color:#5579a4;padding:12px 0}
+@media(max-width:480px){
+ body{padding:0 10px 24px}
+ header{padding:14px 6px}
+ .card{padding:20px 14px;border-radius:16px}
+ .scale{gap:4px}
+ .scale button{height:52px;border-radius:9px}
+ #qtext{min-height:0}
+ .pole{padding:12px 9px;font-size:.84rem}
+}
+</style>
+</head>
+<body>
+<main>
+<header><div class="brand">K. AITO · LIFE DESIGN LAB</div><span class="pill">試作版 · 非公式判定</span></header>
+<section id="intro" class="card">
+ <div class="eyebrow">A05 · Values Explorer</div>
+ <h1>あなたの価値観は、<br>どんなタイプ？</h1>
+ <p>30の質問に答えるだけ。4つの価値観の方向から、16タイプの中で近い傾向を表示します。</p>
+ <div class="point-list"><span>30問</span><span>7段階で答える</span><span>スマホ対応</span><span>回答の自動送信なし</span></div>
+ <button class="primary" id="start" style="width:100%">診断を始める</button>
+ <p class="muted" style="margin-top:14px">結果は設問・採点ともに未検証の参考表示です。正式な心理検査や適職判定ではありません。</p>
+</section>
+<section id="question" class="card" hidden>
+ <div class="stephead"><span id="counter">1 / 30</span><span id="axisLabel"></span></div>
+ <div class="progress-line"><div id="progress"></div></div>
+ <div id="qtext"></div>
+ <div class="poles"><div class="pole"><small>1に近い</small><span id="left"></span></div><div class="pole"><small>7に近い</small><span id="right"></span></div></div>
+ <div class="scale" id="scale" aria-label="7段階の回答"></div>
+ <div class="scalehint"><span>左に近い</span><span>どちらとも</span><span>右に近い</span></div>
+ <button class="skip" id="skip">判断できない・当てはまらない</button>
+ <div class="actions"><button class="secondary" id="prev">前の質問</button><button class="primary" id="next" disabled>次へ</button></div>
+</section>
+<section id="result" class="card" hidden>
+ <div class="eyebrow">YOUR VALUES · 参考結果</div>
+ <div class="result-hero">
+   <div class="result-icon" id="typeIcon">✦</div>
+   <div class="result-name" id="typeName">集計中</div>
+   <div class="result-badge" id="typeBadge">参考タイプ</div>
+   <p id="typeSummary" style="margin-top:18px"></p>
+ </div>
+ <h2>4つの価値観のバランス</h2>
+ <div id="axes"></div>
+ <div class="notes" id="resultNotice">参考表示です。</div>
+ <div class="actions"><button class="primary" id="restart">もう一度診断する</button></div>
+</section>
+<p class="warning">A05試作版：本番診断の回答履歴とは連携していません。16タイプ名は開発途中のものです。回答はこの画面内でのみ処理し、サーバーへ送信・保存しません。画面を閉じると回答は失われます。</p>
+</main>
+<script id="data" type="application/json">__D219_DATA__</script>
+<script>
+"use strict";
+(()=>{
+ const data=JSON.parse(document.getElementById("data").textContent);
+ const byId=new Map(data.questions.map(x=>[x.id,x]));
+ const $=id=>document.getElementById(id);
+ const axes=["A","B","C","D"];
+ let manifest=null,position=0,answers={};
+ function show(which){
+  for(const id of ["intro","question","result"])$(id).hidden=id!==which;
+  window.scrollTo({top:0,behavior:"instant"});
+ }
+ function randomIndex(){
+  if(globalThis.crypto?.getRandomValues){
+    const n=new Uint32Array(1);crypto.getRandomValues(n);return n[0]%data.manifests.length;
+  }
+  return Math.floor(Math.random()*data.manifests.length);
+ }
+ function start(){
+  manifest=data.manifests[randomIndex()];
+  position=0;answers={};paintQuestion();show("question");
+ }
+ function answered(id){return Object.prototype.hasOwnProperty.call(answers,id);}
+ function paintQuestion(){
+  const q=byId.get(manifest.ids[position]);
+  $("counter").textContent=(position+1)+" / "+manifest.ids.length;
+  $("axisLabel").textContent=q.axis==="E"?"補助項目":q.axis+"軸";
+  $("progress").style.width=String((position+1)/manifest.ids.length*100)+"%";
+  $("qtext").textContent=q.stem;$("left").textContent=q.left;$("right").textContent=q.right;
+  const holder=$("scale");holder.replaceChildren();
+  for(let i=1;i<=7;i++){
+   const b=document.createElement("button");b.type="button";b.textContent=String(i);
+   b.dataset.value=String(i);
+   b.setAttribute("aria-pressed",String(answers[q.id]===i));
+   b.addEventListener("click",()=>{
+    answers[q.id]=i;paintQuestion();
+   });
+   holder.append(b);
+  }
+  $("prev").disabled=position===0;
+  $("next").disabled=!answered(q.id);
+  $("next").textContent=position===manifest.ids.length-1?"結果を見る":"次へ";
+ }
+ function step(delta){
+  if(!manifest)return;
+  if(delta>0&&!answered(manifest.ids[position]))return;
+  const next=position+delta;
+  if(next<0)return;
+  if(next>=manifest.ids.length){paintResult();show("result");return;}
+  position=next;paintQuestion();window.scrollTo({top:0,behavior:"instant"});
+ }
+ function paintResult(){
+  const stats=axes.map(axis=>{
+    const ids=manifest.ids.filter(id=>byId.get(id).axis===axis);
+    const nums=ids.map(id=>answers[id]).filter(x=>Number.isInteger(x)&&x>=1&&x<=7);
+    const total=nums.reduce((s,x)=>s+x-4,0);
+    const n=nums.length;
+    const ratio=n?total/(3*n):0;
+    const direction=n<5||total===0?null:total>0?1:-1;
+    return {axis,n,total,ratio,direction,low:Math.abs(ratio)<1/3};
+  });
+  const all=stats.every(x=>x.direction!==null);
+  if(all){
+    const [a,b,c,d]=stats;
+    const group=(a.direction===1?2:0)+(b.direction===1?1:0);
+    const within=(c.direction===1?2:0)+(d.direction===1?1:0);
+    const type=data.types[group*4+within];
+    $("typeIcon").textContent=type.emoji;
+    $("typeName").textContent=type.name;
+    $("typeBadge").textContent=type.id+" · 暫定タイプ";
+    $("typeSummary").textContent=type.summary;
+  }else{
+    $("typeIcon").textContent="◇";
+    $("typeName").textContent="価値観が拮抗しています";
+    $("typeBadge").textContent="タイプ判定を保留";
+    $("typeSummary").textContent="一部の軸で傾向が同じ程度、または回答が不足しています。4つの軸の参考結果を確認してください。";
+  }
+  const holder=$("axes");holder.replaceChildren();
+  for(const s of stats){
+    const axis=data.axes.find(a=>a.id===s.axis),item=document.createElement("div");item.className="axisrow";
+    const heading=document.createElement("div");heading.className="axis-title";
+    const left=document.createElement("span");left.textContent=axis.name;
+    const right=document.createElement("strong");
+    right.textContent=s.direction===null?"方向未判定":s.direction===-1?axis.left+"寄り":axis.right+"寄り";
+    heading.append(left,right);
+    const track=document.createElement("div");track.className="track";
+    const fill=document.createElement("span");
+    fill.style.width=(50+50*s.ratio)+"%";
+    track.append(fill);
+    const note=document.createElement("div");note.className="minor";
+    note.textContent="有効回答 "+s.n+"/7 · "+(s.direction===null?"判定保留":s.low?"中心に近い傾向":"選択の傾向が比較的明確");
+    item.append(heading,track,note);holder.append(item);
+  }
+  const weak=stats.some(s=>s.low||s.direction===null);
+  $("resultNotice").textContent=(weak?"境界に近い回答があり、タイプが変わりやすい可能性があります。":"回答した質問内では方向が比較的明瞭でした。")+
+   " この結果は試作の単純集計で、信頼性・妥当性は未確認です。E軸の補助2問は16タイプの判定に含めていません。";
+ }
+ $("start").addEventListener("click",start);
+ $("prev").addEventListener("click",()=>step(-1));
+ $("next").addEventListener("click",()=>step(1));
+ $("skip").addEventListener("click",()=>{
+  if(!manifest)return;
+  answers[manifest.ids[position]]=null;step(1);
+ });
+ $("restart").addEventListener("click",start);
+})();
+</script>
+</body>
+</html>
