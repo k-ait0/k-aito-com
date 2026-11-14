@@ -1,0 +1,73 @@
+name: Publish A05 demo HTML to gh-pages branch
+
+on:
+  push:
+    branches:
+      - research/a05-editorial-50-v1-20261113
+    paths:
+      - '.github/workflows/a05-publish-gh-pages.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: a05-publish-gh-pages
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: Checkout research source
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Setup Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Generate only the standalone 30-question demo
+        run: |
+          node scripts/a05-d219-build-simple-diagnosis.mjs
+          node --check scripts/a05-d219-build-simple-diagnosis.mjs
+          test -s research/a05/generated/d219-simple-diagnosis.html
+          grep -q 'A05-D219-UNVALIDATED-DEMO-1' research/a05/generated/d219-simple-diagnosis.html
+          grep -q '診断を始める' research/a05/generated/d219-simple-diagnosis.html
+      - name: Prepare isolated publish payload
+        run: |
+          mkdir -p /tmp/a05-gh-pages
+          cp research/a05/generated/d219-simple-diagnosis.html /tmp/a05-gh-pages/index.html
+          printf '' > /tmp/a05-gh-pages/.nojekyll
+          printf 'User-agent: *\nDisallow: /\n' > /tmp/a05-gh-pages/robots.txt
+      - name: Publish just the demo to gh-pages branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if git ls-remote --exit-code --heads origin gh-pages >/dev/null; then
+            git fetch origin gh-pages
+            git checkout -B gh-pages origin/gh-pages
+          else
+            git checkout --orphan gh-pages
+          fi
+          git rm -rf --ignore-unmatch .
+          git clean -fdx
+          cp /tmp/a05-gh-pages/index.html ./index.html
+          cp /tmp/a05-gh-pages/.nojekyll ./.nojekyll
+          cp /tmp/a05-gh-pages/robots.txt ./robots.txt
+          git add -A
+          if git diff --cached --quiet; then
+            echo "A05 GH_PAGES_CONTENT_UNCHANGED"
+          else
+            git commit -m "Publish standalone A05 30-question preview"
+            git push origin HEAD:refs/heads/gh-pages
+          fi
+      - name: Verify published branch contains only standalone site files
+        run: |
+          git fetch origin gh-pages
+          test "$(git ls-tree -r --name-only origin/gh-pages | wc -l)" -eq 3
+          git ls-tree -r --name-only origin/gh-pages | grep -Fx 'index.html'
+          git ls-tree -r --name-only origin/gh-pages | grep -Fx '.nojekyll'
+          git ls-tree -r --name-only origin/gh-pages | grep -Fx 'robots.txt'
+          echo 'A05_PAGES_BRANCH_READY https://k-ait0.github.io/k-aito-com/'
