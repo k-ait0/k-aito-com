@@ -96,7 +96,8 @@ export function summarizePilot(records,opts={}){
   const comparable=Object.fromEntries(AXES.map(a=>[a,0]));
   for(let j=0;j<forms;j++){
    const manifest=manifests[j];
-   const score=scoreResearchForm(manifest,answers);
+   const selectedAnswers=Object.fromEntries(manifest.questions.map(q=>[q.id,answers[q.id]]));
+   const score=scoreResearchForm(manifest,selectedAnswers);
    out.coreCandidateCounts[String(score.numberOfCandidateTypes)]++;
    for(let k=0;k<4;k++){
     const axis=AXES[k],entry=axes[axis],ids=formIds[j][k];
