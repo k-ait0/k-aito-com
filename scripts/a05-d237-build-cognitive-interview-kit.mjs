@@ -5,6 +5,7 @@
  * The 24 slots are allocation placeholders, not enrolled people.
  */
 import assert from "node:assert/strict";
+import {createHash} from "node:crypto";
 import {readFileSync, writeFileSync, mkdirSync} from "node:fs";
 import {dirname,resolve} from "node:path";
 import {fileURLToPath,pathToFileURL} from "node:url";
@@ -43,12 +44,18 @@ function rotate(items,shift){
  return items.slice(shift).concat(items.slice(0,shift));
 }
 function orderedPairs(i){
- const batch=Math.floor(i/BUNDLE);
- const within=i%BUNDLE;
- const five=others.slice(batch*5,(batch+1)*5);
+ // Eight deterministic rounds, each partitioning all 15 non-P0 pairs into
+ // three different five-pair bundles. Every pair is covered once per round,
+ // and therefore exactly eight times across 24 slots. This avoids tying
+ // the same five interview topics to one fixed eight-person cohort.
+ const round=Math.floor(i/3),lane=i%3;
+ const shuffled=others.slice().sort((a,b)=>{
+  const key=id=>createHash("sha256").update("D237|"+round+"|"+id).digest("hex");
+  return key(a.pair).localeCompare(key(b.pair));
+ });
+ const five=shuffled.slice(lane*5,(lane+1)*5);
  assert.equal(five.length,5);
- // Rotate only the presentation order. P0 stays in every assignment.
- const all=rotate([...P0,...five],within%8);
+ const all=rotate([...P0,...five],i%8);
  assert.equal(all.length,PAIR_PER_SHEET);
  return all;
 }
@@ -101,7 +108,7 @@ function sheet(slot){
  ].map(([id,txt])=>"- "+id+"：「"+txt+"」 回答1〜7／保留：____");
  const more=candidateOrder.map(id=>replacementCard(byCandidate.get(id)));
  return {
-  slot:id,batch:Math.floor(slot/BUNDLE)+1,
+  slot:id,batch:Math.floor(slot/3)+1,
   pairIds:pairs.map(p=>p.pair),allQuestionIds:pairs.flatMap(p=>p.ids),
   candidateOrder,
   markdown:[
