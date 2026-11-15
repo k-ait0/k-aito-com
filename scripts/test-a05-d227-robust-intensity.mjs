@@ -60,7 +60,14 @@ test("D227 insufficient answers/skip, malformed answers, duplicate IDs and edito
  assert.throws(()=>scoreResearchForm(held,{}));
  const spoof=structuredClone(f);spoof.questions[0].axis="E";
  assert.throws(()=>scoreResearchForm(spoof,{}));
- assert.throws(()=>scoreResearchForm(drawResearchManifest("D227-A"),{})); // may have held C31/C32/C36
+ let found=0;
+ for(let i=0;i<64;i++){
+  const prior=drawResearchManifest("D227-OLD-"+i);
+  if(prior.questions.some(q=>["A05-V1-31","A05-V1-32","A05-V1-36"].includes(q.id))){
+   assert.throws(()=>scoreResearchForm(prior,{}));found++;
+  }
+ }
+ assert.ok(found>0);
 });
 test("D227 follow-up is deterministic, two eligible unasked items, respects cap and never mutates initial answers",()=>{
  const original=form(),neutral=all(original,4);
