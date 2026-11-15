@@ -35,6 +35,13 @@ async function fill30(page,value){
    page.on("pageerror",e=>exceptions.push(e.message));
    await page.goto(local);
    assert.equal(await page.title(),"A05｜かんたん価値観診断（試作）");
+   const payload=JSON.parse(await page.locator("#data").textContent());
+   assert.equal(payload.scoringVersion,"A05-D242-POWER-1_5-RESEARCH-PREVIEW-1");
+   assert.equal(payload.scoringPower,1.5);
+   assert.match(payload.scoringValidation,/NOT_PSYCHOMETRICALLY_VALIDATED/);
+   assert.equal(payload.manifests.length,128);
+   for(const m of payload.manifests)
+    assert.ok(m.ids.every(id=>!payload.excludedCoreScoringIds.includes(id)),"Held C item in D242 form");
    assert.equal(await page.locator("#intro").isVisible(),true);
    assert.equal(await page.locator("#question").isVisible(),false);
    assert.match(await page.locator("body").textContent(),/心理検査/);
@@ -57,6 +64,7 @@ async function fill30(page,value){
    assert.equal((await page.locator("#typeName").textContent()).trim(),"情熱を分かち合う人");
    assert.match(await page.locator("#typeBadge").textContent(),/T16/);
    assert.match(await page.locator("#resultNotice").textContent(),/E軸/);
+   assert.match(await page.locator("#resultNotice").textContent(),/1.5乗/);
    assert.equal(await page.locator("#axes .axisrow").count(),4);
    assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>window.innerWidth+2),false);
    await page.screenshot({path:path.join(screenshotDir,"a05-d219-"+width+"px.png"),fullPage:true});
@@ -121,7 +129,7 @@ async function fill30(page,value){
    assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>window.innerWidth+2),false);
    assert.deepEqual(requests,[],"No data sent over network");
    assert.deepEqual(exceptions,[],"No client JS error");
-   console.log("D222 PASS",width,"30Q/T01/T16/tie completion/near2/optional 32-34Q/zero network");
+   console.log("D242 PASS",width,"30Q/T01/T16/tie completion/near2/optional 32-34Q/zero network");
    await ctx.close();
   }
  }finally{await browser.close();}
