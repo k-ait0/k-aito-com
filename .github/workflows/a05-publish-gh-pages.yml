@@ -9,6 +9,10 @@ on:
       - 'research/a05/d219-simple-diagnosis-template.html'
       - 'scripts/a05-d219-build-simple-diagnosis.mjs'
       - 'scripts/test-a05-d219-simple-browser.cjs'
+      - 'scripts/test-a05-d242-preview-scoring.mjs'
+      - 'scripts/a05-d224-hold-filtered-sampler.mjs'
+      - 'scripts/a05-d227-robust-intensity-scoring.mjs'
+      - 'scripts/a05-d226-answer-intensity-comparison.mjs'
       - 'scripts/a05-d208-research-sampler.mjs'
       - 'research/a05/d206-editorial-50-question-bank-v1-2.json'
       - 'projects/kidp/life-design-lab/a05/types.mjs'
@@ -40,12 +44,15 @@ jobs:
           node --check scripts/a05-d219-build-simple-diagnosis.mjs
           test -s research/a05/generated/d219-simple-diagnosis.html
           grep -q 'A05-D219-UNVALIDATED-DEMO-1' research/a05/generated/d219-simple-diagnosis.html
+          grep -q 'A05-D242-POWER-1_5-RESEARCH-PREVIEW-1' research/a05/generated/d219-simple-diagnosis.html
           grep -q '診断を始める' research/a05/generated/d219-simple-diagnosis.html
+      - name: Gate publication on D242 browser-versus-research 1.5-power scoring
+        run: node --test scripts/test-a05-d242-preview-scoring.mjs
       - name: Install Chromium for desktop and phone browser acceptance
         run: |
           npm install --prefix /tmp/a05-pages-qa --no-audit --no-fund --no-save playwright@1.56.1
           PLAYWRIGHT_BROWSERS_PATH=/tmp/a05-pages-browser /tmp/a05-pages-qa/node_modules/.bin/playwright install --with-deps chromium
-      - name: Gate publication on D222 30-question and borderline follow-up E2E
+      - name: Gate publication on D242 30-question and held-safe follow-up E2E
         env:
           NODE_PATH: /tmp/a05-pages-qa/node_modules
           PLAYWRIGHT_BROWSERS_PATH: /tmp/a05-pages-browser
@@ -75,7 +82,7 @@ jobs:
           if git diff --cached --quiet; then
             echo "A05 GH_PAGES_CONTENT_UNCHANGED"
           else
-            git commit -m "Publish standalone A05 30-question preview"
+            git commit -m "Publish D242 A05 1.5-power research preview"
             git push origin HEAD:refs/heads/gh-pages
           fi
       - name: Verify published branch contains only standalone site files
