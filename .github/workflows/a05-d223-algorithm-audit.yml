@@ -6,6 +6,8 @@ on:
     paths:
       - 'scripts/a05-d223-audit-and-simulate.mjs'
       - 'scripts/a05-d224-hold-filtered-sampler.mjs'
+      - 'scripts/a05-d226-answer-intensity-comparison.mjs'
+      - 'scripts/test-a05-d226-answer-intensity.mjs'
       - 'scripts/test-a05-d224-hold-filtered.mjs'
       - 'scripts/test-a05-d223-algorithm-audit.mjs'
       - '.github/workflows/a05-d223-algorithm-audit.yml'
@@ -29,8 +31,19 @@ jobs:
           node --check scripts/a05-d223-audit-and-simulate.mjs
           node --check scripts/a05-d224-hold-filtered-sampler.mjs
           node --test scripts/test-a05-d223-algorithm-audit.mjs scripts/test-a05-d224-hold-filtered.mjs
+          node --check scripts/a05-d226-answer-intensity-comparison.mjs
+          node --test scripts/test-a05-d226-answer-intensity.mjs
       - name: Run 50-item inventory and compare baseline versus P0-filtered 128-form simulations
         run: node scripts/a05-d223-audit-and-simulate.mjs
+      - name: Run matched A (1.5 power) versus B (2 power) comparison and linear control
+        run: node scripts/a05-d226-answer-intensity-comparison.mjs
+      - name: Upload D226 reproducible synthetic comparison
+        uses: actions/upload-artifact@v4
+        with:
+          name: a05-d226-answer-intensity-comparison
+          path: research/a05/generated/d226-answer-intensity-comparison.json
+          retention-days: 30
+          if-no-files-found: error
       - name: Upload D223 machine-readable audit (not human data)
         uses: actions/upload-artifact@v4
         with:
