@@ -1,0 +1,121 @@
+{
+  "schema": "a05.canonical-motif-lock.v30",
+  "asOf": "2026-11-16",
+  "canonicalSource": "A05_16寓意_採用16種_v13.xlsx (2026-11-10 user-approved motif selection)",
+  "authority": "This JSON is a machine-readable mirror of the approved workbook, not a replacement or new choice.",
+  "classificationNote": "Slots express the agreed visual motif selection grid; the final psychological scoring/type mapping is not approved.",
+  "motifs": [
+    {
+      "slot": "SA-11",
+      "id": "polaris",
+      "name": "北極星",
+      "group": "安定×自律"
+    },
+    {
+      "slot": "SA-10",
+      "id": "sacred-peak",
+      "name": "霊峰",
+      "group": "安定×自律"
+    },
+    {
+      "slot": "SA-01",
+      "id": "harbor",
+      "name": "港",
+      "group": "安定×自律"
+    },
+    {
+      "slot": "SA-00",
+      "id": "moon",
+      "name": "月",
+      "group": "安定×自律"
+    },
+    {
+      "slot": "SC-11",
+      "id": "world-tree",
+      "name": "世界樹",
+      "group": "安定×つながり"
+    },
+    {
+      "slot": "SC-10",
+      "id": "ocean",
+      "name": "大海",
+      "group": "安定×つながり"
+    },
+    {
+      "slot": "SC-01",
+      "id": "rainbow",
+      "name": "虹",
+      "group": "安定×つながり"
+    },
+    {
+      "slot": "SC-00",
+      "id": "constellation",
+      "name": "星座",
+      "group": "安定×つながり"
+    },
+    {
+      "slot": "CA-11",
+      "id": "pegasus",
+      "name": "ペガサス",
+      "group": "変化×自律"
+    },
+    {
+      "slot": "CA-10",
+      "id": "phoenix",
+      "name": "フェニックス",
+      "group": "変化×自律"
+    },
+    {
+      "slot": "CA-01",
+      "id": "nine-tailed-fox",
+      "name": "九尾狐",
+      "group": "変化×自律"
+    },
+    {
+      "slot": "CA-00",
+      "id": "cat-sith",
+      "name": "ケット・シー",
+      "group": "変化×自律"
+    },
+    {
+      "slot": "CC-11",
+      "id": "twin-dragons",
+      "name": "双龍",
+      "group": "変化×つながり"
+    },
+    {
+      "slot": "CC-10",
+      "id": "crow-tengu",
+      "name": "鴉天狗",
+      "group": "変化×つながり"
+    },
+    {
+      "slot": "CC-01",
+      "id": "whale-pod",
+      "name": "鯨の群れ",
+      "group": "変化×つながり"
+    },
+    {
+      "slot": "CC-00",
+      "id": "carbuncle",
+      "name": "カーバンクル",
+      "group": "変化×つながり"
+    }
+  ],
+  "displayContract": {
+    "rgbY": "Four changeable UI/CSS accents per motif; no fixed R/G/B/Y assignment to a motif.",
+    "eAxis": [
+      "money",
+      "time"
+    ],
+    "rgbYScoreMapping": "unapproved",
+    "typeScoreMapping": "unapproved",
+    "originalArtMustContainUI": false
+  },
+  "productionState": {
+    "tier1": "16 SVG drafts; small-size human QA and final art approval pending",
+    "tier2ApprovedCount": 0,
+    "tier2ProductionAssetPaths": [],
+    "publicReleaseApproved": false
+  }
+}
