@@ -19,6 +19,9 @@ const plan=createInterviewPlan();
 const validSlots=new Map(plan.slots.map(s=>[s.slot,s]));
 const CODES=["SAME_REASON","DISTINCT_REASON","CONFOUNDED","UNCLEAR","SKIPPED"];
 const C36_CODES=["NEW_C_FACET","OVERLAPS_EXISTING","OTHER_CONFOUND","UNCLEAR","SKIPPED"];
+const SUBSTANTIVE_PAIR=new Set(["SAME_REASON","DISTINCT_REASON","CONFOUNDED"]);
+const SUBSTANTIVE_C36=new Set(["NEW_C_FACET","OVERLAPS_EXISTING","OTHER_CONFOUND"]);
+const rate=(same,evaluable)=>evaluable?Number((same/evaluable).toFixed(5)):null;
 const CANDIDATES=["C36-R1","C36-R2","C36-R3"];
 function simple(x){return x!==null&&typeof x==="object"&&!Array.isArray(x)&&Object.getPrototypeOf(x)===Object.prototype;}
 function exactKeys(x,keys){
@@ -59,13 +62,15 @@ function badReason(record){
 }
 function categoryCount(keys){return Object.fromEntries(keys.map(k=>[k,0]));}
 const initPair=()=>({
-  pairedReviews:0,agreements:0,disagreements:0,skippedEither:0,
-  criticalMisunderstandingEither:0,
+  pairedReviews:0,agreements:0,disagreements:0,skippedEither:0,unclearEither:0,
+  substantivePairedReviews:0,substantiveAgreements:0,substantiveDisagreements:0,
+  substantiveAgreementRate:null,criticalMisunderstandingEither:0,
   agreedCodeCounts:categoryCount(CODES)
 });
 const initCandidate=()=>({
-  pairedReviews:0,agreements:0,disagreements:0,skippedEither:0,
-  agreedCodeCounts:categoryCount(C36_CODES)
+  pairedReviews:0,agreements:0,disagreements:0,skippedEither:0,unclearEither:0,
+  substantivePairedReviews:0,substantiveAgreements:0,substantiveDisagreements:0,
+  substantiveAgreementRate:null,agreedCodeCounts:categoryCount(C36_CODES)
 });
 export function summarizeInterviewCodes(records){
  if(!Array.isArray(records))throw Error("Only local arrays of coding sheets accepted");
@@ -101,18 +106,36 @@ export function summarizeInterviewCodes(records){
    cur.pairedReviews++;
    if(a.criticalMisunderstanding||b.criticalMisunderstanding)cur.criticalMisunderstandingEither++;
    if(a.code==="SKIPPED"||b.code==="SKIPPED")cur.skippedEither++;
+   if(a.code==="UNCLEAR"||b.code==="UNCLEAR")cur.unclearEither++;
    if(a.code===b.code){cur.agreements++;cur.agreedCodeCounts[a.code]++;}
    else cur.disagreements++;
+   if(SUBSTANTIVE_PAIR.has(a.code)&&SUBSTANTIVE_PAIR.has(b.code)){
+    cur.substantivePairedReviews++;
+    if(a.code===b.code)cur.substantiveAgreements++;
+    else cur.substantiveDisagreements++;
+   }
   }
   for(const c of CANDIDATES){
    const a=r1.candidateJudgments[c],b=r2.candidateJudgments[c];
    const cur=res.C36Candidates[c];
    cur.pairedReviews++;
    if(a==="SKIPPED"||b==="SKIPPED")cur.skippedEither++;
+   if(a==="UNCLEAR"||b==="UNCLEAR")cur.unclearEither++;
    if(a===b){cur.agreements++;cur.agreedCodeCounts[a]++;}
    else cur.disagreements++;
+   if(SUBSTANTIVE_C36.has(a)&&SUBSTANTIVE_C36.has(b)){
+    cur.substantivePairedReviews++;
+    if(a===b)cur.substantiveAgreements++;
+    else cur.substantiveDisagreements++;
+   }
   }
  }
+ // Never count agreement on UNCLEAR or SKIPPED as substantive agreement.
+ // Expose denominators explicitly; small/zero denominators do not imply validity.
+ for(const cur of Object.values(res.pairResults))
+  cur.substantiveAgreementRate=rate(cur.substantiveAgreements,cur.substantivePairedReviews);
+ for(const cur of Object.values(res.C36Candidates))
+  cur.substantiveAgreementRate=rate(cur.substantiveAgreements,cur.substantivePairedReviews);
  res.unreviewedSlots=plan.slots.length-res.pairedInterviewSlots;
  res.status=res.pairedInterviewSlots?
   "BLIND_CODER_COUNTS_NOT_VALIDATED":
