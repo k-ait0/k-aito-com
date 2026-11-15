@@ -65,5 +65,8 @@ test("D223 report is marked research-only and never presents UI scores or approv
  const out=buildReport({forms:16,repetitions:1});
  assert.equal(out.audit.items.length,50);
  assert.equal(out.simulation.scenarios.length,4);
+ assert.equal(out.hold_filtered_comparison.scenarios.length,4);
+ assert.equal(out.hold_filtered_comparison.input.formMode,"hold_filtered");
+ assert.equal(out.simulation.input.formMode,"current");
  assert.ok(out.caveats.some(x=>x.includes("No real participant data")));
 });
