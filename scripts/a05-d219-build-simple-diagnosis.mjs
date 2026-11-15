@@ -3,21 +3,27 @@
  * Generates a fully offline static HTML from the D206 editorial bank,
  * D208 research sampler and existing draft 16-type presentation names.
  * Does not change/enable the production engine or save assessments.
+ * D242 public PREVIEW is explicitly non-validated; uses D224-held-safe forms.
  */
 import {readFileSync,writeFileSync,mkdirSync} from "node:fs";
 import {resolve,dirname} from "node:path";
 import {fileURLToPath} from "node:url";
 import {BANK,drawResearchManifest} from "./a05-d208-research-sampler.mjs";
+import {drawResearchHoldFilteredManifest} from "./a05-d224-hold-filtered-sampler.mjs";
 import {TYPES,GROUPS} from "../projects/kidp/life-design-lab/a05/types.mjs";
 const root=resolve(dirname(fileURLToPath(import.meta.url)),"..");
 const template=readFileSync(resolve(root,"research/a05/d219-simple-diagnosis-template.html"),"utf8");
 const manifests=Array.from({length:128},(_,i)=>{
- const m=drawResearchManifest("D219-simple-"+String(i).padStart(3,"0"));
+ const m=drawResearchHoldFilteredManifest("D219-simple-"+String(i).padStart(3,"0"));
  return {ids:m.questions.map(q=>q.id),seed:m.seed};
 });
 const data={
  schema:"A05-D219-UNVALIDATED-DEMO-1",
- scoringVersion:"A05-D222-EQUAL-WEIGHT-AMBIGUITY-DEMO-1",
+ scoringVersion:"A05-D242-POWER-1_5-RESEARCH-PREVIEW-1",
+ scoringPower:1.5,
+ scoringValidation:"RESEARCH_ONLY_NOT_PSYCHOMETRICALLY_VALIDATED",
+ scoringBoundary:Math.pow(1/3,1.5),
+ excludedCoreScoringIds:["A05-V1-31","A05-V1-32","A05-V1-36"],
  bankVersion:BANK.schema,
  bankDigest:drawResearchManifest("D219").bankDigest,
  questions:BANK.items.map(q=>({
@@ -34,6 +40,14 @@ const data={
  ]
 };
 if(BANK.items.length!==50||TYPES.length!==16||GROUPS.length!==4||manifests.some(x=>x.ids.length!==30))throw Error("Unexpected demo source shape");
+for(const m of manifests){
+ const present=new Set(m.ids);
+ if(present.size!==30||data.excludedCoreScoringIds.some(id=>present.has(id)))throw Error("Research-scoring-held item leaked into public preview");
+ for(const axis of ["A","B","C","D","E"]){
+  const count=m.ids.filter(id=>BANK.items.find(x=>x.bank_id===id)?.axis===axis).length;
+  if(count!==(axis==="E"?2:7))throw Error("Unexpected axis quota in D242 preview");
+ }
+}
 if(!template.includes("__D219_DATA__"))throw Error("Template placeholder absent");
 const output=resolve(root,"research/a05/generated/d219-simple-diagnosis.html");
 const safe=JSON.stringify(data).replace(/</g,"\\u003c");
