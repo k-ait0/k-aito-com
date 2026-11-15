@@ -87,7 +87,7 @@ p{margin:8px 0 16px}
  <p>30の質問に答えるだけ。4つの価値観の方向から、16タイプの中で近い傾向を表示します。</p>
  <div class="point-list"><span>30問</span><span>7段階で答える</span><span>スマホ対応</span><span>回答の自動送信なし</span></div>
  <button class="primary" id="start" style="width:100%">診断を始める</button>
- <p class="muted" style="margin-top:14px">結果は設問・採点ともに未検証の参考表示です。正式な心理検査や適職判定ではありません。</p>
+ <p class="muted" style="margin-top:14px">結果は1.5乗加点を使った研究用の参考表示です。設問・採点の心理測定上の妥当性は未検証で、正式な心理検査や適職判定ではありません。</p>
 </section>
 <section id="question" class="card" hidden>
  <div class="stephead"><span id="counter">1 / 30</span><span id="axisLabel"></span></div>
@@ -115,7 +115,7 @@ p{margin:8px 0 16px}
  <div class="actions"><button class="primary" id="extraButton" hidden>追加で2問に答える（任意）</button><button class="secondary" id="restart">新しく診断する</button></div>
  <p id="extraNote" class="extra-note"></p>
 </section>
-<p class="warning">A05試作版：本番診断の回答履歴とは連携していません。16タイプ名は開発途中のものです。回答はこの画面内でのみ処理し、サーバーへ送信・保存しません。画面を閉じると回答は失われます。</p>
+<p class="warning">A05研究用試作版（1.5乗加点・未較正）：本番診断の回答履歴とは連携していません。16タイプ名は開発途中のものです。回答はこの画面内でのみ処理し、サーバーへ送信・保存しません。画面を閉じると回答は失われます。</p>
 </main>
 <script id="data" type="application/json">__D219_DATA__</script>
 <script>
@@ -126,7 +126,8 @@ p{margin:8px 0 16px}
  const $=id=>document.getElementById(id);
  const axes=["A","B","C","D"];
  const AXIS_MIN_VALID=5;
- const BORDERLINE_RATIO=1/3; // exploration-only threshold: not a calibrated confidence interval
+ const POWER=1.5; // D226/D227 exploratory research choice, NOT psychometrically validated
+ const BORDERLINE_RATIO=Math.pow(1/3,POWER); // power-matched provisional reference, NOT confidence
  const MAX_EXTRA_ROUNDS=2; // two questions per round, at most four extra questions
  let manifest=null,position=0,answers={},initialCount=30,extraRounds=0,offered=null;
  function show(which){
@@ -173,15 +174,38 @@ p{margin:8px 0 16px}
   if(next>=manifest.ids.length){paintResult();show("result");return;}
   position=next;paintQuestion();window.scrollTo({top:0,behavior:"instant"});
  }
+ function scoreAnswer(x){
+  const d=(x-4)/3;
+  return d===0?0:Math.sign(d)*Math.pow(Math.abs(d),POWER);
+ }
+ function sumSign(x){return Math.abs(x)<=1e-12?0:Math.sign(x);}
+ function hash(s){
+  let h=2166136261;
+  for(let i=0;i<s.length;i++)h=Math.imul(h^s.charCodeAt(i),16777619);
+  return h>>>0;
+ }
  function collectStats(){
   return axes.map(axis=>{
    const ids=manifest.ids.filter(id=>byId.get(id).axis===axis);
-   const nums=ids.map(id=>answers[id]).filter(x=>Number.isInteger(x)&&x>=1&&x<=7);
-   const total=nums.reduce((sum,x)=>sum+x-4,0);
-   const n=nums.length;
-   const ratio=n?total/(3*n):0;
-   const status=n<AXIS_MIN_VALID?"insufficient":Math.abs(ratio)<=BORDERLINE_RATIO+1e-12?"borderline":"clear";
-   return {axis,n,presented:ids.length,total,ratio,status};
+   const scored=ids.filter(id=>Number.isInteger(answers[id])&&answers[id]>=1&&answers[id]<=7)
+    .map(id=>({id,family:byId.get(id).family,score:scoreAnswer(answers[id])}));
+   const n=scored.length;
+   const total=scored.reduce((acc,q)=>acc+q.score,0);
+   const ratio=n?total/n:0;
+   const sign=sumSign(total);
+   const families=[...new Set(scored.map(q=>q.family))];
+   let itemFlipCount=0,familyFlipCount=0;
+   for(const q of scored)if(sumSign(total-q.score)!==sign)itemFlipCount++;
+   for(const family of families){
+    const subtotal=scored.filter(q=>q.family===family).reduce((acc,q)=>acc+q.score,0);
+    if(sumSign(total-subtotal)!==sign)familyFlipCount++;
+   }
+   const insufficient=n<AXIS_MIN_VALID||families.length<4;
+   const fragile=itemFlipCount>0||familyFlipCount>0;
+   const status=insufficient?"insufficient":sign===0?"tie":
+    Math.abs(ratio)<=BORDERLINE_RATIO+1e-12?"borderline":fragile?"fragile":"clear";
+   return {axis,n,presented:ids.length,total,ratio,sign,
+    distinctFamilies:families.length,itemFlipCount,familyFlipCount,status};
   });
  }
  function candidateDirections(index){
@@ -191,46 +215,44 @@ p{margin:8px 0 16px}
  function candidateTypes(stats){
   return data.types.filter((type,index)=>{
    const signs=candidateDirections(index);
-   return stats.every((s,i)=>s.status!=="clear"||signs[i]===(s.total>0?1:-1));
+   return stats.every((s,i)=>s.status!=="clear"||signs[i]===s.sign);
   });
  }
  function chooseExtras(axis){
   const existing=new Set(manifest.ids);
-  let unused=data.questions.filter(q=>q.axis===axis&&!existing.has(q.id));
-  if(unused.length<2)return null;
-  // The research protocol treats the special C timing contrast as indivisible.
-  if(axis==="C"){
-   const timing=unused.filter(q=>q.family==="C_OPPORTUNITY_TIMING");
-   const ordinary=unused.filter(q=>q.family!=="C_OPPORTUNITY_TIMING");
-   if(timing.length===2&&ordinary.length<2)return timing.map(q=>q.id);
-   unused=ordinary;
-  }
+  const held=new Set(data.excludedCoreScoringIds);
+  const unused=data.questions.filter(q=>q.axis===axis&&!existing.has(q.id)&&!held.has(q.id));
   if(unused.length<2)return null;
   const familyUsed={};
   for(const id of manifest.ids){
    const q=byId.get(id);
    familyUsed[q.family]=(familyUsed[q.family]||0)+1;
   }
-  unused.sort((a,b)=>(familyUsed[a.family]||0)-(familyUsed[b.family]||0)||a.id.localeCompare(b.id));
-  const first=unused[0];
-  const second=unused.find(q=>q.family!==first.family)||unused[1];
+  unused.sort((a,b)=>
+   (familyUsed[a.family]||0)-(familyUsed[b.family]||0)||
+   hash(manifest.seed+"|"+a.id)-hash(manifest.seed+"|"+b.id)||
+   a.id.localeCompare(b.id));
+  const first=unused[0],second=unused.find(q=>q.family!==first.family)||unused[1];
   return [first.id,second.id];
  }
  function nextOffer(stats){
   if(extraRounds>=MAX_EXTRA_ROUNDS)return null;
-  const ambiguous=stats.filter(s=>s.status!=="clear")
-   .sort((a,b)=>a.n-b.n||Math.abs(a.ratio)-Math.abs(b.ratio)||a.axis.localeCompare(b.axis));
-  for(const s of ambiguous){
+  const priority={insufficient:0,tie:1,fragile:2,borderline:3,clear:4};
+  const unresolved=stats.filter(s=>s.status!=="clear")
+   .sort((a,b)=>priority[a.status]-priority[b.status]||
+    Math.abs(a.ratio)-Math.abs(b.ratio)||a.axis.localeCompare(b.axis));
+  for(const s of unresolved){
    const ids=chooseExtras(s.axis);
    if(ids&&ids.length===2&&new Set(ids).size===2)return {axis:s.axis,ids};
   }
   return null;
  }
  function addExtraQuestions(){
-  if(!offered||!manifest)return;
+  if(!offered||!manifest||extraRounds>=MAX_EXTRA_ROUNDS)return;
   const pair=offered;
-  // Never repeat an item or alter answers already submitted.
-  if(pair.ids.some(id=>manifest.ids.includes(id)))return;
+  // Held C31/32/36 and E auxiliary questions must never enter 16-type follow-ups.
+  if(pair.ids.some(id=>manifest.ids.includes(id)||data.excludedCoreScoringIds.includes(id)||
+     byId.get(id)?.axis!==pair.axis||pair.axis==="E"))return;
   position=manifest.ids.length;
   manifest.ids.push(...pair.ids);
   extraRounds++;
@@ -275,9 +297,10 @@ p{margin:8px 0 16px}
    const left=document.createElement("span");left.textContent=axis.name;
    const right=document.createElement("strong");
    if(s.status==="insufficient")right.textContent="回答不足 · 方向保留";
-   else if(s.status==="borderline"&&s.total===0)right.textContent="左右が拮抗";
-   else if(s.status==="borderline")right.textContent="境界付近 · "+(s.total<0?axis.left:axis.right)+"寄り";
-   else right.textContent=(s.total<0?axis.left:axis.right)+"寄り";
+   else if(s.status==="tie")right.textContent="左右が拮抗";
+   else if(s.status==="fragile")right.textContent="設問差に敏感 · "+(s.sign<0?axis.left:axis.right)+"寄り";
+   else if(s.status==="borderline")right.textContent="境界付近 · "+(s.sign<0?axis.left:axis.right)+"寄り";
+   else right.textContent=(s.sign<0?axis.left:axis.right)+"寄り";
    heading.append(left,right);
    const track=document.createElement("div");track.className="track";
    const fill=document.createElement("span");
@@ -285,14 +308,14 @@ p{margin:8px 0 16px}
    track.append(fill);
    const note=document.createElement("div");note.className="minor";
    note.textContent="有効回答 "+s.n+"/"+s.presented+" · "+
-    (s.status==="insufficient"?"回答が不足しています":s.status==="borderline"?"中間に近い傾向です。両方重視・両方重視しない・状況次第の区別はできません":"今回の回答では方向が比較的明確です");
+    (s.status==="insufficient"?"有効回答または意味グループが不足しています":s.status==="tie"?"左右の選好が拮抗しています":s.status==="fragile"?"1問または1グループを除くと方向が変わります":s.status==="borderline"?"中間に近い傾向です。両方重視・両方重視しない・状況次第は区別できません":"今回の回答では比較的安定した方向性があります");
    item.append(heading,track,note);holder.append(item);
   }
   $("resultComplete").textContent=manifest.ids.length+"問の回答を確認しました。追加質問をしなくても、この時点で診断は完了です。";
   $("resultNotice").textContent=(unresolved.length
    ?unresolved.map(s=>s.axis).join("・")+"軸は境界付近または回答不足のため、単一のタイプへ断定していません。"
    :"4軸とも今回の設問では左右の傾向が比較的明確でした。")+
-   " この結果は均等配点による試作の参考集計であり、心理測定としての信頼性・妥当性は未確認です。E軸の補助2問は分類に含めていません。";
+   " この結果は1・7の強い回答を相対的に重視する1.5乗の研究用加点、暫定境界、設問除外時の方向安定性による参考表示です。心理測定としての信頼性・妥当性は未検証です。E軸の補助2問は分類に含めず、C31・C32・C36は採点保留としています。";
   offered=nextOffer(stats);
   $("extraButton").hidden=!offered;
   if(offered)$("extraButton").textContent=offered.axis+"軸に2問追加する（任意）";
