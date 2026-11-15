@@ -911,28 +911,32 @@
       "statement": "最終的には自分の基準で決めたい",
       "scale": "1-7 (existing D210 research form)",
       "non_scoring": true,
-      "note": "Measure each preference separately; no core-axis scoring"
+      "note": "Measure each preference separately; no core-axis scoring",
+      "maps_to_existing_D210_id": "B_AUTONOMY"
     },
     {
       "id": "B-CONSULT",
       "statement": "決める前には大切な人と十分に相談したい",
       "scale": "1-7 (existing D210 research form)",
       "non_scoring": true,
-      "note": "Measure each preference separately; no core-axis scoring"
+      "note": "Measure each preference separately; no core-axis scoring",
+      "maps_to_existing_D210_id": "B_CONNECTION"
     },
     {
       "id": "C-FUTURE",
       "statement": "今の時間を使って将来の可能性を広げたい",
       "scale": "1-7 (existing D210 research form)",
       "non_scoring": true,
-      "note": "Measure each preference separately; no core-axis scoring"
+      "note": "Measure each preference separately; no core-axis scoring",
+      "maps_to_existing_D210_id": "C_FUTURE"
     },
     {
       "id": "C-PRESENT",
       "statement": "今の時間そのものを十分に味わいたい",
       "scale": "1-7 (existing D210 research form)",
       "non_scoring": true,
-      "note": "Measure each preference separately; no core-axis scoring"
+      "note": "Measure each preference separately; no core-axis scoring",
+      "maps_to_existing_D210_id": "C_PRESENT"
     }
   ],
   "gate_state": {
