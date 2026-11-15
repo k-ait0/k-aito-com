@@ -1,0 +1,44 @@
+name: A05 D228 large scoring robustness stress (research only)
+
+on:
+  push:
+    branches:
+      - research/a05-editorial-50-v1-20261113
+    paths:
+      - 'scripts/a05-d227-robust-intensity-scoring.mjs'
+      - 'scripts/test-a05-d227-robust-intensity.mjs'
+      - 'scripts/a05-d228-large-scoring-stress.mjs'
+      - '.github/workflows/a05-d228-large-scoring-stress.yml'
+      - 'scripts/a05-d226-answer-intensity-comparison.mjs'
+      - 'scripts/a05-d224-hold-filtered-sampler.mjs'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  heavy-research-stress:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - name: Checkout research branch
+        uses: actions/checkout@v4
+      - name: Setup Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Syntax and adversarial unit tests
+        run: |
+          node --check scripts/a05-d227-robust-intensity-scoring.mjs
+          node --check scripts/a05-d228-large-scoring-stress.mjs
+          node --test scripts/test-a05-d227-robust-intensity.mjs
+      - name: Run >1 million deterministic property tests and randomized 30-item scenarios
+        run: node scripts/a05-d228-large-scoring-stress.mjs
+      - name: Archive counted results for independent review
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: a05-d228-large-scoring-stress
+          path: research/a05/generated/d228-large-scoring-stress-report.json
+          retention-days: 30
+          if-no-files-found: warn
