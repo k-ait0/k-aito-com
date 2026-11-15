@@ -80,13 +80,16 @@ function evaluateProfile(idsByAxis,answers,p){
   const avg=total/ids.length;
   return {avg,sign:Math.abs(avg)<1e-10?0:Math.sign(avg),
    // Fixed, exploratory 1/3 normalized score threshold from D222.
-   clear:Math.abs(avg)>1/3+1e-12};
+   clear:Math.abs(avg)>1/3+1e-12,
+   matchedClear:Math.abs(avg)>Math.pow(1/3,p)+1e-12};
  });
  const strict=axes.some(x=>x.sign===0)?null:
   ((axes[0].sign>0?2:0)+(axes[1].sign>0?1:0))*4+
   ((axes[2].sign>0?2:0)+(axes[3].sign>0?1:0));
  const nUnknown=axes.filter(x=>!x.clear).length;
- return {axes,strict,ambiguous:nUnknown>0,candidates:2**nUnknown};
+ const matchedUnknown=axes.filter(x=>!x.matchedClear).length;
+ return {axes,strict,ambiguous:nUnknown>0,candidates:2**nUnknown,
+  matchedAmbiguous:matchedUnknown>0,matchedCandidates:2**matchedUnknown};
 }
 function summarize(perPerson,checks,profiles,forms){
  const total=checks.formCount;
@@ -97,6 +100,11 @@ function summarize(perPerson,checks,profiles,forms){
   axis_direction_wrong_fraction:rounded(checks.wrongAxis/checks.axisCount),
   strict_type_wrong_fraction:rounded(checks.strictWrong/total),
   strict_type_abstained_fraction:rounded(checks.strictAbstained/total),
+  strict_type_wrong_given_classified_fraction:total-checks.strictAbstained
+   ?rounded(checks.strictWrong/(total-checks.strictAbstained)):null,
+  matched_boundary_form_fraction:rounded(checks.matchedBorderline/total),
+  matched_boundary_mean_candidate_types:rounded(checks.matchedCandidateTotal/total),
+  matched_boundary_reference_covered_fraction:rounded(checks.matchedCovered/total),
   all_forms_same_strict_type_fraction:rounded(checks.allFormsStable/profiles),
   people_with_multiple_strict_types_fraction:rounded(checks.multipleStrictTypes/profiles),
   borderline_form_fraction:rounded(checks.borderline/total),
@@ -118,7 +126,8 @@ export function compareExponents({forms=128,repeats=8}={}){
   for(const scenario of scenarios){
    const totals=Object.fromEntries(POWERS.map(p=>[p,{
     formCount:0,axisCount:0,wrongAxis:0,strictWrong:0,strictAbstained:0,allFormsStable:0,
-    multipleStrictTypes:0,borderline:0,candidateTotal:0,candidateCovered:0}]));
+    multipleStrictTypes:0,borderline:0,candidateTotal:0,candidateCovered:0,
+    matchedBorderline:0,matchedCandidateTotal:0,matchedCovered:0}]));
    for(let type=0;type<16;type++){
     const expected=expectedSigns(type);
     for(let rep=0;rep<repeats;rep++){
@@ -139,6 +148,9 @@ export function compareExponents({forms=128,repeats=8}={}){
        if(v.ambiguous)t.borderline++;
        t.candidateTotal+=v.candidates;
        if(v.axes.every((a,i)=>!a.clear||a.sign===expected[i]))t.candidateCovered++;
+       if(v.matchedAmbiguous)t.matchedBorderline++;
+       t.matchedCandidateTotal+=v.matchedCandidates;
+       if(v.axes.every((a,i)=>!a.matchedClear||a.sign===expected[i]))t.matchedCovered++;
       }
      }
      for(const p of POWERS){
@@ -163,7 +175,7 @@ export function compareExponents({forms=128,repeats=8}={}){
   input:{forms,repeats,types:16,perScenarioPeople:16*repeats,scenarios:scenarios.map(x=>x.id),
    samplers:models.map(x=>x.id),powers:POWERS},
   score_formula:"sign(answer-4)*(abs(answer-4)/3)^p; mean per axis (range -1..1)",
-  boundary:"abs(axis_mean)>1/3 for clear (exploratory, not statistically calibrated)",
+  boundary:"Two sensitivity checks: (a) old fixed abs(axis_mean)>1/3; (b) power-matched abs(axis_mean)>(1/3)^p, mapping an all-5 response to threshold. Neither is calibrated.",
   result,
   decision_guardrails:[
    "Compare A and B on the same synthetic respondents and 30-item forms, with linear reference.",
@@ -187,7 +199,10 @@ if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href){
    wrong_type:s.strict_type_wrong_fraction,
    multi_type:s.people_with_multiple_strict_types_fraction,
    borderline:s.borderline_form_fraction,
-   avg_candidates:s.mean_candidate_types
+   avg_candidates:s.mean_candidate_types,
+   matched_boundary_fraction:s.matched_boundary_form_fraction,
+   matched_candidates:s.matched_boundary_mean_candidate_types,
+   matched_reference_covered:s.matched_boundary_reference_covered_fraction
   }]));
   console.log("D226_ROW "+JSON.stringify({sampler:row.sampler,scenario:row.scenario,metrics:mini}));
  }
