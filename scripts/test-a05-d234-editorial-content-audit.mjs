@@ -77,6 +77,8 @@ test("D232: B/C independent response probes are research-only and already repres
  for(const id of ids)assert.ok(builder.includes('"'+id+'"'));
  assert.ok(audit.BC_independent_probes.every(x=>x.non_scoring===true));
  assert.deepEqual(audit.BC_independent_probes.map(x=>x.maps_to_existing_D210_id),ids);
+ assert.ok(audit.pairs.find(p=>p.pair==="B14-15").contrast_probe.includes("1～7"));
+ assert.ok(!audit.pairs.find(p=>p.pair==="B14-15").contrast_probe.includes("0～4"));
  assert.ok(audit.BC_independent_probes.every(x=>x.scale.startsWith("1-7")));
  for(const id of ids)assert.ok(prereg.includes(id));
 });
