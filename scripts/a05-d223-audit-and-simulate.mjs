@@ -9,6 +9,7 @@ import {readFileSync,writeFileSync,mkdirSync} from "node:fs";
 import {fileURLToPath,pathToFileURL} from "node:url";
 import {dirname,resolve} from "node:path";
 import {BANK,drawResearchManifest} from "./a05-d208-research-sampler.mjs";
+import {drawResearchHoldFilteredManifest} from "./a05-d224-hold-filtered-sampler.mjs";
 const root=resolve(dirname(fileURLToPath(import.meta.url)),"..");
 const triage=JSON.parse(readFileSync(resolve(root,"research/a05/d211-semantic-collision-triage.json"),"utf8"));
 const decisions=JSON.parse(readFileSync(resolve(root,"research/a05/d213-p0-editorial-decisions.json"),"utf8"));
@@ -125,16 +126,19 @@ function normalize(stats){
  const clear=stats.map(x=>x.n>=5&&Math.abs(x.total)/(3*x.n)>1/3);
  return {strict,clear,signs,candidateCount:Math.pow(2,clear.filter(x=>!x).length)};
 }
-export function runSyntheticStability({forms=128,repetitions=8}={}){
+export function runSyntheticStability({forms=128,repetitions=8,formMode="current"}={}){
  assertData();
- if(!Number.isInteger(forms)||forms<1||forms>2048||!Number.isInteger(repetitions)||repetitions<1||repetitions>50)throw Error("bad simulation range");
+ if(!Number.isInteger(forms)||forms<1||forms>2048||!Number.isInteger(repetitions)||repetitions<1||repetitions>50||!["current","hold_filtered"].includes(formMode))throw Error("bad simulation range or formMode");
  const scenarios=[
   {name:"strong_separable",signal:2.8,noise:0.2,family:0},
   {name:"moderate_item_variation",signal:1.45,noise:1.7,family:0},
   {name:"near_midpoint",signal:0.55,noise:1.7,family:0},
   {name:"family_dependent",signal:1.3,noise:0.8,family:2.1}
  ];
- const manifests=Array.from({length:forms},(_,i)=>drawResearchManifest("D223-simulation-form-"+String(i).padStart(4,"0")));
+ const manifests=Array.from({length:forms},(_,i)=>{
+  const seed="D223-simulation-form-"+String(i).padStart(4,"0");
+  return formMode==="hold_filtered"?drawResearchHoldFilteredManifest(seed):drawResearchManifest(seed);
+ });
  const indexed=manifests.map(m=>AXES.map(axis=>m.questions.filter(q=>q.axis===axis).map(q=>q.id)));
  const reported=[];
  for(const scenario of scenarios){
@@ -204,18 +208,20 @@ export function runSyntheticStability({forms=128,repetitions=8}={}){
   });
  }
  return {schema:"A05-D223-SYNTHETIC-STABILITY-1",
-  status:"SYNTHETIC_ONLY_NO_REAL_HUMAN_RESPONSES",input:{forms,repetitions,profiles:16,
+  status:"SYNTHETIC_ONLY_NO_REAL_HUMAN_RESPONSES",input:{forms,repetitions,profiles:16,formMode,
   answer_scale:"7-level, item- and family-level deterministic perturbations; true types are generated assumptions",
   reference:"D222 provisional 1/3 boundary; D219 old sign-only type mapping",
   no_validity_claim:true},scenarios:reported};
 }
 export function buildReport(options={}){
- return {schema:"A05-D223-RESEARCH-AUDIT-SUMMARY-1",audit:auditInventory(options),simulation:runSyntheticStability(options),
+ return {schema:"A05-D223-RESEARCH-AUDIT-SUMMARY-1",audit:auditInventory(options),simulation:runSyntheticStability({...options,formMode:"current"}),
+  hold_filtered_comparison:runSyntheticStability({...options,formMode:"hold_filtered"}),
   caveats:[
    "Automated inventory of 50 items and 18 already-flagged pairs is not independent semantic/cognitive review.",
    "No real participant data was read, created, or inferred.",
    "Simulation models assumed item response profiles, not measurement validity or human test-retest reliability.",
-   "C31/32, C36, E49/50 retain their D213 score hold. Neither questions nor demo scoring is changed.",
+   "C31/32 and C36 are excluded only in the D224 research comparator. The public D222 scoring still includes them and has not been changed.",
+   "E49/50 remain auxiliary descriptive responses, never part of the A-D type classifier.",
    "Any 80-point assessment is about research method and code quality, not psychometric validation."
   ]};
 }
@@ -226,6 +232,11 @@ if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href){
  writeFileSync(target,JSON.stringify(report,null,2)+"\n");
  const {summary}=report.audit;
  const tiny={file:target,items:summary.items,flagged_pairs:summary.preexisting_flagged_pairs,
+  hold_filtered_scenarios:report.hold_filtered_comparison.scenarios.map(x=>({
+    scenario:x.scenario,strictly_stable_person_fraction:x.strictly_stable_person_fraction,
+    people_with_multiple_strict_types_fraction:x.people_with_multiple_strict_types_fraction,
+    borderline_form_fraction:x.borderline_form_fraction,mean_candidate_types:x.mean_candidate_types
+  })),
   hold_ids:summary.scoring_hold_items,
   priorities:summary.priorities,
   flagged_unique_items:summary.flagged_unique_items,
