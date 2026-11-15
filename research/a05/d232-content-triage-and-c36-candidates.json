@@ -1,0 +1,947 @@
+{
+  "schema": "A05-D232-CONTENT-TRIAGE-1",
+  "date": "2026-11-16",
+  "status": "EDITORIAL_CANDIDATES_NOT_HUMAN_VALIDATED",
+  "source_bank": "A05-D206-EDITORIAL-50-V1-2",
+  "source_triage": "A05-D211-SEMANTIC-COLLISION-TRIAGE-1",
+  "scope": "50-item index + 18-pair review + C36 candidate comparison + B/C independent non-scoring probes",
+  "counts": {
+    "bank_items": 50,
+    "flagged_pairs": 18,
+    "flagged_unique_items": 36
+  },
+  "items": [
+    {
+      "id": "A05-V1-01",
+      "axis": "A",
+      "family": "A_HOUSING_BASE",
+      "known_residual_risk": "転居の実現性・現在の住居への愛着",
+      "pair_ids": [],
+      "status": "EDITORIAL_PENDING",
+      "human_validation": "NOT_DONE"
+    },
+    {
+      "id": "A05-V1-02",
+      "axis": "A",
+      "family": "A_ACTIVITY_SETTING",
+      "known_residual_risk": "外出頻度・場所の好奇心",
+      "pair_ids": [
+        "A2-5"
+      ],
+      "status": "EDITORIAL_PENDING",
+      "human_validation": "NOT_DONE"
+    },
+    {
+      "id": "A05-V1-03",
+      "axis": "A",
+      "family": "A_SERVICE_PROVIDER",
+      "known_residual_risk": "提供先への信頼・契約変更負担",
+      "pair_ids": [],
+      "status": "EDITORIAL_PENDING",
+      "human_validation": "NOT_DONE"
+    },
+    {
+      "id": "A05-V1-04",
+      "axis": "A",
+      "family": "A_ROUTINE_PATTERN",
+      "known_residual_risk": "生活技能・A-FU05との重複",
+      "pair_ids": [
+        "A4-12"
+      ],
+      "status": "EDITORIAL_PENDING",
+      "human_validation": "NOT_DONE"
+    },
+    {
+      "id": "A05-V1-05",
+      "axis": "A",
+      "family": "A_ACTIVITY_SETTING",
+      "known_residual_risk": "組織規範や集団合意（B軸）との交絡。本人が変える権限を持つか",
+      "pair_ids": [
+        "A2-5"
+      ],
+      "status": "EDITORIAL_PENDING",
+      "human_validation": "NOT_DONE"
+    },
+    {
+      "id": "A05-V1-06",
+      "axis": "A",
+      "family": "A_MATERIAL_TOOLS",
+      "known_residual_risk": "購買好み・物の廃棄への抵抗",
+      "pair_ids": [],
+      "status": "EDITORIAL_PENDING",
+      "human_validation": "NOT_DONE"
+    },
+    {
+      "id": "A05-V1-07",
+      "axis": "A",
+      "family": "A_PERSONAL_MANAGEMENT",
+      "known_residual_risk": "ツール使用経験・デジタル技能。A10情報整理との近接",
+      "pair_ids": [
+        "A7-10"
+      ],
+      "status": "EDITORIAL_PENDING",
+      "human_validation": "NOT_DONE"
+    },
+    {
+      "id": "A05-V1-08",
+      "axis": "A",
+      "family": "A_PERSONAL_RITUAL",
+      "known_residual_risk": "人の期待や記念日の重要度でのみ選ぶ、または行事未経験者が回答不能なら要再設計",
+      "pair_ids": [],
+      "status": "EDITORIAL_PENDING",
+      "human_validation": "NOT_DONE"
+    },
+    {
+      "id": "A05-V1-09",
+      "axis": "A",
+      "family": "A_MATERIAL_TOOLS",
+      "known_residual_risk": "愛着・環境保護・所有物への思いがAの一般志向と別概念である可能性",
+      "pair_ids": [],
+      "status": "EDITORIAL_PENDING",
+      "human_validation": "NOT_DONE"
+    },
+    {
+      "id": "A05-V1-10",
+      "axis": "A",
+      "family": "A_PERSONAL_MANAGEMENT",
+      "known_residual_risk": "記録習慣、過去への愛着、A07と同じ判断理由になる可能性",
+      "pair_ids": [
+        "A7-10"
+      ],
+      "status": "EDITORIAL_PENDING",
+      "human_validation": "NOT_DONE"
+    },
+    {
+      "id": "A05-V1-11",
+      "axis": "A",
+      "family": "A_HOUSING_BASE",
+      "known_residual_risk": "整理整頓好き・住居の広さ",
+      "pair_ids": [],
+      "status": "EDITORIAL_PENDING",
+      "human_validation": "NOT_DONE"
+    },
+    {
+      "id": "A05-V1-12",
+      "axis": "A",
+      "family": "A_ROUTINE_PATTERN",
+      "known_residual_risk": "生活リズム・勤務形態・C軸の時間活用との交絡",
+      "pair_ids": [
+        "A4-12"
+      ],
+      "status": "EDITORIAL_PENDING",
+      "human_validation": "NOT_DONE"
+    },
+    {
+      "id": "A05-V1-13",
+      "axis": "B",
+      "family": "B_CONSENSUS_DECISION",
+      "known_residual_risk": "責任の所在・合意側の社会的望ましさ",
+      "pair_ids": [
+        "B13-24"
+      ],
+      "status": "EDITORIAL_PENDING",
+      "human_validation": "NOT_DONE"
+    },
+    {
+      "id": "A05-V1-14",
+      "axis": "B",
+      "family": "B_PERSONAL_DECISION",
+      "known_residual_risk": "自分で決めることと意見を取り入れることは両立し得る",
+      "pair_ids": [
+        "B14-15"
+      ],
+      "status": "EDITORIAL_PENDING",
+      "human_validation": "NOT_DONE"
+    },
+    {
+      "id": "A05-V1-15",
+      "axis": "B",
+      "family": "B_PERSONAL_DECISION",
+      "known_residual_risk": "自律と相談の同時高評価／相談相手の有無",
+      "pair_ids": [
+        "B14-15"
+      ],
+      "status": "EDITORIAL_PENDING",
+      "human_validation": "NOT_DONE"
+    },
+    {
+      "id": "A05-V1-16",
+      "axis": "B",
+      "family": "B_THOUGHT_PROCESS",
+      "known_residual_risk": "内向性、相談できる人の存在、結果までの過程で両者を併用可能",
+      "pair_ids": [
+        "B16-17"
+      ],
+      "status": "EDITORIAL_PENDING",
+      "human_validation": "NOT_DONE"
+    },
+    {
+      "id": "A05-V1-17",
+      "axis": "B",
+      "family": "B_THOUGHT_PROCESS",
+      "known_residual_risk": "B16と同じ回答理由になる場合は片方を除外",
+      "pair_ids": [
+        "B16-17"
+      ],
+      "status": "EDITORIAL_PENDING",
+      "human_validation": "NOT_DONE"
+    },
+    {
+      "id": "A05-V1-18",
+      "axis": "B",
+      "family": "B_TASK_OWNERSHIP",
+      "known_residual_risk": "相手への信頼、技能、単独作業の好みとの交絡",
+      "pair_ids": [
+        "B18-21"
+      ],
+      "status": "EDITORIAL_PENDING",
+      "human_validation": "NOT_DONE"
+    },
+    {
+      "id": "A05-V1-19",
+      "axis": "B",
+      "family": "B_RELATIONAL_PRIORITY",
+      "known_residual_risk": "転居の好み（A軸）・家族義務・物理的距離の意味",
+      "pair_ids": [],
+      "status": "EDITORIAL_PENDING",
+      "human_validation": "NOT_DONE"
+    },
+    {
+      "id": "A05-V1-20",
+      "axis": "B",
+      "family": "B_RELATIONAL_PRIORITY",
+      "known_residual_risk": "社交性や休日の疲労、B19と同じ価値理由での回答",
+      "pair_ids": [],
+      "status": "EDITORIAL_PENDING",
+      "human_validation": "NOT_DONE"
+    },
+    {
+      "id": "A05-V1-21",
+      "axis": "B",
+      "family": "B_TASK_OWNERSHIP",
+      "known_residual_risk": "能力・援助を求める抵抗・対人好みを測る恐れがある。Bの二極性そのものに注意",
+      "pair_ids": [
+        "B18-21"
+      ],
+      "status": "EDITORIAL_PENDING",
+      "human_validation": "NOT_DONE"
+    },
+    {
+      "id": "A05-V1-22",
+      "axis": "B",
+      "family": "B_FULFILLMENT_SHARING",
+      "known_residual_risk": "成功体験の有無、B21との協働重複、成果への自尊心",
+      "pair_ids": [
+        "B22-23"
+      ],
+      "status": "EDITORIAL_PENDING",
+      "human_validation": "NOT_DONE"
+    },
+    {
+      "id": "A05-V1-23",
+      "axis": "B",
+      "family": "B_FULFILLMENT_SHARING",
+      "known_residual_risk": "対人嗜好や一人行動の快適さがB軸の自律と異なる可能性",
+      "pair_ids": [
+        "B22-23"
+      ],
+      "status": "EDITORIAL_PENDING",
+      "human_validation": "NOT_DONE"
+    },
+    {
+      "id": "A05-V1-24",
+      "axis": "B",
+      "family": "B_CONSENSUS_DECISION",
+      "known_residual_risk": "多数決・権限・B-FU04との同義",
+      "pair_ids": [
+        "B13-24"
+      ],
+      "status": "EDITORIAL_PENDING",
+      "human_validation": "NOT_DONE"
+    },
+    {
+      "id": "A05-V1-25",
+      "axis": "C",
+      "family": "C_TIME_ALLOCATION",
+      "known_residual_risk": "便益の大きさ・将来の目標の有無",
+      "pair_ids": [],
+      "status": "EDITORIAL_PENDING",
+      "human_validation": "NOT_DONE"
+    },
+    {
+      "id": "A05-V1-26",
+      "axis": "C",
+      "family": "C_TIME_ALLOCATION",
+      "known_residual_risk": "時間量・C-FU11との類似",
+      "pair_ids": [],
+      "status": "EDITORIAL_PENDING",
+      "human_validation": "NOT_DONE"
+    },
+    {
+      "id": "A05-V1-27",
+      "axis": "C",
+      "family": "C_PROCESS_VS_OUTCOME",
+      "known_residual_risk": "成果と楽しさの両立／D軸の学習や達成感",
+      "pair_ids": [
+        "C27-28"
+      ],
+      "status": "EDITORIAL_PENDING",
+      "human_validation": "NOT_DONE"
+    },
+    {
+      "id": "A05-V1-28",
+      "axis": "C",
+      "family": "C_PROCESS_VS_OUTCOME",
+      "known_residual_risk": "C35の人生評価と類似、趣味をしない人が回答しにくい",
+      "pair_ids": [
+        "C27-28"
+      ],
+      "status": "EDITORIAL_PENDING",
+      "human_validation": "NOT_DONE"
+    },
+    {
+      "id": "A05-V1-29",
+      "axis": "C",
+      "family": "C_POST_GOAL",
+      "known_residual_risk": "燃え尽き、目標の有無、休養需要",
+      "pair_ids": [
+        "C29-30"
+      ],
+      "status": "EDITORIAL_PENDING",
+      "human_validation": "NOT_DONE"
+    },
+    {
+      "id": "A05-V1-30",
+      "axis": "C",
+      "family": "C_POST_GOAL",
+      "known_residual_risk": "C29と同じ判断理由なら重複として差し替え",
+      "pair_ids": [
+        "C29-30"
+      ],
+      "status": "EDITORIAL_PENDING",
+      "human_validation": "NOT_DONE"
+    },
+    {
+      "id": "A05-V1-31",
+      "axis": "C",
+      "family": "C_OPPORTUNITY_TIMING",
+      "known_residual_risk": "希少性バイアスが現在充実志向と混ざる／C32と対で検査すべき",
+      "pair_ids": [
+        "C31-32"
+      ],
+      "status": "C_SCORING_HOLD",
+      "human_validation": "NOT_DONE"
+    },
+    {
+      "id": "A05-V1-32",
+      "axis": "C",
+      "family": "C_OPPORTUNITY_TIMING",
+      "known_residual_risk": "C-FU15とペア研究のため抽出単独不可",
+      "pair_ids": [
+        "C31-32"
+      ],
+      "status": "C_SCORING_HOLD",
+      "human_validation": "NOT_DONE"
+    },
+    {
+      "id": "A05-V1-33",
+      "axis": "C",
+      "family": "C_FUTURE_UNCERTAINTY",
+      "known_residual_risk": "リスク選好や損失回避への交絡が強い",
+      "pair_ids": [
+        "C33-34"
+      ],
+      "status": "EDITORIAL_PENDING",
+      "human_validation": "NOT_DONE"
+    },
+    {
+      "id": "A05-V1-34",
+      "axis": "C",
+      "family": "C_FUTURE_UNCERTAINTY",
+      "known_residual_risk": "学習好き（D軸）・リスク選好、C33との近接",
+      "pair_ids": [
+        "C33-34"
+      ],
+      "status": "EDITORIAL_PENDING",
+      "human_validation": "NOT_DONE"
+    },
+    {
+      "id": "A05-V1-35",
+      "axis": "C",
+      "family": "C_LIFE_EVALUATION",
+      "known_residual_risk": "後の成果とその期間の満足を同時に評価できるなら、強制的に片側へ割り当てない",
+      "pair_ids": [
+        "C35-36"
+      ],
+      "status": "EDITORIAL_PENDING",
+      "human_validation": "NOT_DONE"
+    },
+    {
+      "id": "A05-V1-36",
+      "axis": "C",
+      "family": "C_LIFE_EVALUATION",
+      "known_residual_risk": "C35と意味上の実質重複が最も疑われる。2問とも採用すべきか要精査",
+      "pair_ids": [
+        "C35-36"
+      ],
+      "status": "C_SCORING_HOLD",
+      "human_validation": "NOT_DONE"
+    },
+    {
+      "id": "A05-V1-37",
+      "axis": "D",
+      "family": "D_ACTIVITY_BREADTH",
+      "known_residual_risk": "趣味経験・現在の興味の強さ",
+      "pair_ids": [],
+      "status": "EDITORIAL_PENDING",
+      "human_validation": "NOT_DONE"
+    },
+    {
+      "id": "A05-V1-38",
+      "axis": "D",
+      "family": "D_FIELD_LEARNING",
+      "known_residual_risk": "D-FU12の時間配分と重複",
+      "pair_ids": [
+        "D38-48"
+      ],
+      "status": "EDITORIAL_PENDING",
+      "human_validation": "NOT_DONE"
+    },
+    {
+      "id": "A05-V1-39",
+      "axis": "D",
+      "family": "D_STAGE_TRANSITION",
+      "known_residual_risk": "基礎到達度や学習の難度、D42との意味差が小さい可能性",
+      "pair_ids": [
+        "D39-42"
+      ],
+      "status": "EDITORIAL_PENDING",
+      "human_validation": "NOT_DONE"
+    },
+    {
+      "id": "A05-V1-40",
+      "axis": "D",
+      "family": "D_CREATIVE_OUTPUT",
+      "known_residual_risk": "制作経験・関心領域の有無",
+      "pair_ids": [
+        "D40-45"
+      ],
+      "status": "EDITORIAL_PENDING",
+      "human_validation": "NOT_DONE"
+    },
+    {
+      "id": "A05-V1-41",
+      "axis": "D",
+      "family": "D_INQUIRY_STRUCTURE",
+      "known_residual_risk": "異分野統合と専門性の選好。D43複数疑問との区別",
+      "pair_ids": [
+        "D41-43"
+      ],
+      "status": "EDITORIAL_PENDING",
+      "human_validation": "NOT_DONE"
+    },
+    {
+      "id": "A05-V1-42",
+      "axis": "D",
+      "family": "D_STAGE_TRANSITION",
+      "known_residual_risk": "D-FU10とほぼ同義",
+      "pair_ids": [
+        "D39-42"
+      ],
+      "status": "EDITORIAL_PENDING",
+      "human_validation": "NOT_DONE"
+    },
+    {
+      "id": "A05-V1-43",
+      "axis": "D",
+      "family": "D_INQUIRY_STRUCTURE",
+      "known_residual_risk": "複数の疑問が同じ分野に属する場合と別分野の場合で解釈が大きく変わるなら条件を再設計",
+      "pair_ids": [
+        "D41-43"
+      ],
+      "status": "EDITORIAL_PENDING",
+      "human_validation": "NOT_DONE"
+    },
+    {
+      "id": "A05-V1-44",
+      "axis": "D",
+      "family": "D_ACTIVITY_BREADTH",
+      "known_residual_risk": "深耕対象も未経験であることの影響",
+      "pair_ids": [],
+      "status": "EDITORIAL_PENDING",
+      "human_validation": "NOT_DONE"
+    },
+    {
+      "id": "A05-V1-45",
+      "axis": "D",
+      "family": "D_CREATIVE_OUTPUT",
+      "known_residual_risk": "作品の難しさ・完成数・品質。D40との違いが単なる文脈差の可能性",
+      "pair_ids": [
+        "D40-45"
+      ],
+      "status": "EDITORIAL_PENDING",
+      "human_validation": "NOT_DONE"
+    },
+    {
+      "id": "A05-V1-46",
+      "axis": "D",
+      "family": "D_KNOWLEDGE_ORGANIZATION",
+      "known_residual_risk": "メモ習慣、文章力、D43探究する疑問の数との近接",
+      "pair_ids": [],
+      "status": "EDITORIAL_PENDING",
+      "human_validation": "NOT_DONE"
+    },
+    {
+      "id": "A05-V1-47",
+      "axis": "D",
+      "family": "D_INFORMATION_SOURCES",
+      "known_residual_risk": "複数資料を確認する必要性・情報の信頼性・読書能力",
+      "pair_ids": [],
+      "status": "EDITORIAL_PENDING",
+      "human_validation": "NOT_DONE"
+    },
+    {
+      "id": "A05-V1-48",
+      "axis": "D",
+      "family": "D_FIELD_LEARNING",
+      "known_residual_risk": "D38と実質同一の判断なら内容差を確認できず一方を差し替え",
+      "pair_ids": [
+        "D38-48"
+      ],
+      "status": "EDITORIAL_PENDING",
+      "human_validation": "NOT_DONE"
+    },
+    {
+      "id": "A05-V1-49",
+      "axis": "E",
+      "family": "E_AUX",
+      "known_residual_risk": "金額・時間の交換比率が任意で現在の所得・労働状況に依存",
+      "pair_ids": [
+        "E49-50"
+      ],
+      "status": "AUXILIARY_RESEARCH_ONLY",
+      "human_validation": "NOT_DONE"
+    },
+    {
+      "id": "A05-V1-50",
+      "axis": "E",
+      "family": "E_AUX",
+      "known_residual_risk": "追加活動の疲労・心身の状態・職業経験とE01の意味重複",
+      "pair_ids": [
+        "E49-50"
+      ],
+      "status": "AUXILIARY_RESEARCH_ONLY",
+      "human_validation": "NOT_DONE"
+    }
+  ],
+  "pairs": [
+    {
+      "pair": "A2-5",
+      "ids": [
+        "A05-V1-02",
+        "A05-V1-05"
+      ],
+      "axis": "A",
+      "priority": "P2",
+      "suspected_confusion": "活動場所と運営方法の差が相対志向として独立か",
+      "distinction": "活動場所と運営方式",
+      "contrast_probe": "場所のみ更新 vs 運営のみ変更を比較",
+      "provisional_action": "KEEP_UNTIL_INTERVIEW",
+      "reject_if": "B軸の合意形成との交絡",
+      "human_cognitive_evidence": "NONE",
+      "independence_confirmed": false,
+      "scoring_approved": false
+    },
+    {
+      "pair": "A4-12",
+      "ids": [
+        "A05-V1-04",
+        "A05-V1-12"
+      ],
+      "axis": "A",
+      "priority": "P2",
+      "suspected_confusion": "個々の作業手順と週単位の生活パターンが混同される",
+      "distinction": "個別作業手順と週間リズム",
+      "contrast_probe": "作業時間を固定し手順だけ変える／作業手順固定で週間リズム変更",
+      "provisional_action": "KEEP_UNTIL_INTERVIEW",
+      "reject_if": "生活技能とCの時間配分",
+      "human_cognitive_evidence": "NONE",
+      "independence_confirmed": false,
+      "scoring_approved": false
+    },
+    {
+      "pair": "A7-10",
+      "ids": [
+        "A05-V1-07",
+        "A05-V1-10"
+      ],
+      "axis": "A",
+      "priority": "P1",
+      "suspected_confusion": "予定管理と個人記録の方式が維持か切替かで重なる",
+      "distinction": "予定管理と長期記録保存",
+      "contrast_probe": "媒体・乗換費用を揃えた2問の回答理由を比較",
+      "provisional_action": "CONSIDER_COLLAPSE",
+      "reject_if": "同じ更新忌避なら片方除外",
+      "human_cognitive_evidence": "NONE",
+      "independence_confirmed": false,
+      "scoring_approved": false
+    },
+    {
+      "pair": "B13-24",
+      "ids": [
+        "A05-V1-13",
+        "A05-V1-24"
+      ],
+      "axis": "B",
+      "priority": "P1",
+      "suspected_confusion": "共同意思決定で本人判断か全員合意かを繰り返す",
+      "distinction": "個別提案と共同規則",
+      "contrast_probe": "最終決定権を揃えて合意必要性の理由を比較",
+      "provisional_action": "CONSIDER_COLLAPSE",
+      "reject_if": "参加者の正当な権限と責任",
+      "human_cognitive_evidence": "NONE",
+      "independence_confirmed": false,
+      "scoring_approved": false
+    },
+    {
+      "pair": "B14-15",
+      "ids": [
+        "A05-V1-14",
+        "A05-V1-15"
+      ],
+      "axis": "B",
+      "priority": "P1",
+      "suspected_confusion": "個人の人生計画と目標について自律か相談かが近い",
+      "distinction": "自己決定権と意見交換",
+      "contrast_probe": "自己決定と相談をそれぞれ0～4で独立評価",
+      "provisional_action": "REWRITE_PRIORITY",
+      "reject_if": "両方高い/両方低い場合の強制選択",
+      "human_cognitive_evidence": "NONE",
+      "independence_confirmed": false,
+      "scoring_approved": false
+    },
+    {
+      "pair": "B16-17",
+      "ids": [
+        "A05-V1-16",
+        "A05-V1-17"
+      ],
+      "axis": "B",
+      "priority": "P1",
+      "suspected_confusion": "個人問題の検討と計画の見直し、両方とも単独思考か共有か",
+      "distinction": "初期検討と見直し作業",
+      "contrast_probe": "同一の課題を初回・見直しで提示",
+      "provisional_action": "CONSIDER_COLLAPSE",
+      "reject_if": "内向性と話し相手へのアクセス",
+      "human_cognitive_evidence": "NONE",
+      "independence_confirmed": false,
+      "scoring_approved": false
+    },
+    {
+      "pair": "B18-21",
+      "ids": [
+        "A05-V1-18",
+        "A05-V1-21"
+      ],
+      "axis": "B",
+      "priority": "P1",
+      "suspected_confusion": "単独の裁量か誰かと進めるかという実行過程の重複",
+      "distinction": "任意活動と難しい課題の共同作業",
+      "contrast_probe": "困難度・能力・相手への信頼を揃える",
+      "provisional_action": "CONSIDER_COLLAPSE",
+      "reject_if": "協業の必要性と自律性の混同",
+      "human_cognitive_evidence": "NONE",
+      "independence_confirmed": false,
+      "scoring_approved": false
+    },
+    {
+      "pair": "B22-23",
+      "ids": [
+        "A05-V1-22",
+        "A05-V1-23"
+      ],
+      "axis": "B",
+      "priority": "P2",
+      "suspected_confusion": "達成共有と体験共有で対人選好を測る恐れ",
+      "distinction": "達成共有と経験共有",
+      "contrast_probe": "同じ満足度の達成場面と経験場面で理由を比較",
+      "provisional_action": "KEEP_UNTIL_INTERVIEW",
+      "reject_if": "一般的な社交性に過ぎない可能性",
+      "human_cognitive_evidence": "NONE",
+      "independence_confirmed": false,
+      "scoring_approved": false
+    },
+    {
+      "pair": "C27-28",
+      "ids": [
+        "A05-V1-27",
+        "A05-V1-28"
+      ],
+      "axis": "C",
+      "priority": "P1",
+      "suspected_confusion": "将来の到達点か現在の過程に価値を置く点が同じ",
+      "distinction": "事前の活動選択と事後の満足判断",
+      "contrast_probe": "同一活動の開始前と終了後を比較",
+      "provisional_action": "CONSIDER_COLLAPSE",
+      "reject_if": "成果/過程をどちらも重視できる",
+      "human_cognitive_evidence": "NONE",
+      "independence_confirmed": false,
+      "scoring_approved": false
+    },
+    {
+      "pair": "C29-30",
+      "ids": [
+        "A05-V1-29",
+        "A05-V1-30"
+      ],
+      "axis": "C",
+      "priority": "P1",
+      "suspected_confusion": "目標完了後に新計画へ進むか現在充実かが同じ",
+      "distinction": "達成直後と数週間後",
+      "contrast_probe": "時間だけ変え休息を固定する",
+      "provisional_action": "CONSIDER_COLLAPSE",
+      "reject_if": "燃え尽きや疲労",
+      "human_cognitive_evidence": "NONE",
+      "independence_confirmed": false,
+      "scoring_approved": false
+    },
+    {
+      "pair": "C31-32",
+      "ids": [
+        "A05-V1-31",
+        "A05-V1-32"
+      ],
+      "axis": "C",
+      "priority": "P0",
+      "suspected_confusion": "希少性の条件を操作した研究対照で、独立採点に向かない",
+      "distinction": "機会の希少性操作",
+      "contrast_probe": "将来準備だけ再実施可能／どちらも再実施不能を対照",
+      "provisional_action": "CONTRAST_ONLY_HOLD",
+      "reject_if": "C軸採点に含めない",
+      "human_cognitive_evidence": "NONE",
+      "independence_confirmed": false,
+      "scoring_approved": false
+    },
+    {
+      "pair": "C33-34",
+      "ids": [
+        "A05-V1-33",
+        "A05-V1-34"
+      ],
+      "axis": "C",
+      "priority": "P1",
+      "suspected_confusion": "不確実な将来投資と今の満足の比較が近い",
+      "distinction": "一般的な不確実性と学習",
+      "contrast_probe": "学習以外の準備を用いてリスク選好を分離",
+      "provisional_action": "CONSIDER_COLLAPSE",
+      "reject_if": "D軸学習好みの混入",
+      "human_cognitive_evidence": "NONE",
+      "independence_confirmed": false,
+      "scoring_approved": false
+    },
+    {
+      "pair": "C35-36",
+      "ids": [
+        "A05-V1-35",
+        "A05-V1-36"
+      ],
+      "axis": "C",
+      "priority": "P0",
+      "suspected_confusion": "よい一年を将来成果か日々の納得感で評価する同義性が高い",
+      "distinction": "年間評価の同義性",
+      "contrast_probe": "C35と候補C36-Rを別場面で比較",
+      "provisional_action": "HOLD_36_REPLACEMENT",
+      "reject_if": "C35と同じ判断理由なら棄却",
+      "human_cognitive_evidence": "NONE",
+      "independence_confirmed": false,
+      "scoring_approved": false
+    },
+    {
+      "pair": "D38-48",
+      "ids": [
+        "A05-V1-38",
+        "A05-V1-48"
+      ],
+      "axis": "D",
+      "priority": "P1",
+      "suspected_confusion": "複数分野か一分野を深めるかの時間幅違い",
+      "distinction": "学習の幅と深さ、期間だけ相違",
+      "contrast_probe": "短期と半年の時間幅を交換",
+      "provisional_action": "CONSIDER_COLLAPSE",
+      "reject_if": "重複する回答理由",
+      "human_cognitive_evidence": "NONE",
+      "independence_confirmed": false,
+      "scoring_approved": false
+    },
+    {
+      "pair": "D39-42",
+      "ids": [
+        "A05-V1-39",
+        "A05-V1-42"
+      ],
+      "axis": "D",
+      "priority": "P1",
+      "suspected_confusion": "基本習得後と当初の目標達成後の分岐が近い",
+      "distinction": "基礎理解後 vs 目標達成後",
+      "contrast_probe": "到達状態を揃えて再比較",
+      "provisional_action": "CONSIDER_COLLAPSE",
+      "reject_if": "飽き・新奇性",
+      "human_cognitive_evidence": "NONE",
+      "independence_confirmed": false,
+      "scoring_approved": false
+    },
+    {
+      "pair": "D40-45",
+      "ids": [
+        "A05-V1-40",
+        "A05-V1-45"
+      ],
+      "axis": "D",
+      "priority": "P2",
+      "suspected_confusion": "制作分野の幅と作品題材の幅を混同し得る",
+      "distinction": "制作ジャンル数と題材数",
+      "contrast_probe": "ジャンル固定で題材を操作／逆も実施",
+      "provisional_action": "KEEP_UNTIL_INTERVIEW",
+      "reject_if": "制作経験の有無",
+      "human_cognitive_evidence": "NONE",
+      "independence_confirmed": false,
+      "scoring_approved": false
+    },
+    {
+      "pair": "D41-43",
+      "ids": [
+        "A05-V1-41",
+        "A05-V1-43"
+      ],
+      "axis": "D",
+      "priority": "P2",
+      "suspected_confusion": "調べる分野数と疑問数の違いはあり得るが検証必要",
+      "distinction": "一つの問いへの学際性 vs 複数の問い",
+      "contrast_probe": "問い数と分野数をそれぞれ固定",
+      "provisional_action": "KEEP_UNTIL_INTERVIEW",
+      "reject_if": "両者が同じ幅広志向か",
+      "human_cognitive_evidence": "NONE",
+      "independence_confirmed": false,
+      "scoring_approved": false
+    },
+    {
+      "pair": "E49-50",
+      "ids": [
+        "A05-V1-49",
+        "A05-V1-50"
+      ],
+      "axis": "E",
+      "priority": "P0",
+      "suspected_confusion": "金銭と自由時間の交換比と半日単位が揃っていない",
+      "distinction": "交換比率と労働を伴うか",
+      "contrast_probe": "金額/時間/疲労を揃えた条件違い",
+      "provisional_action": "AUXILIARY_ONLY_HOLD",
+      "reject_if": "E型採点禁止",
+      "human_cognitive_evidence": "NONE",
+      "independence_confirmed": false,
+      "scoring_approved": false
+    }
+  ],
+  "C36_replacement_candidates": [
+    {
+      "id": "C36-R1",
+      "priority": 1,
+      "facet": "FUTURE_OPTION_PRESERVATION",
+      "title": "現在利用するか、将来選択できる余地を残すか",
+      "stem": "自由に利用できる一度限りの特典があります。今月使うと満足できる体験ができます。使わずに置けば、半年後に自分の状況に合わせて使い道を選べます。価値・利用の確実性・所要時間が同じなら、どちらをより重視しますか？",
+      "left": "半年後の選択肢を残すこと",
+      "right": "今月の充実した体験に使うこと",
+      "novelty": "C35は一年の過去評価。R1は将来の選択権と今の利用を同一条件で比較",
+      "critical_competitors": [
+        "A05-V1-25",
+        "A05-V1-26",
+        "A05-V1-35"
+      ],
+      "confounds": [
+        "A軸の維持志向",
+        "先送り嗜好",
+        "将来機会への不安"
+      ],
+      "accept_only_if": "回答理由が既存C25/C26/C35と区別され、将来の選択余地と現在の実用が一貫して対比される"
+    },
+    {
+      "id": "C36-R2",
+      "priority": 2,
+      "facet": "FUTURE_RESOURCE_RESERVATION",
+      "title": "将来の時間枠予約／今週の充実",
+      "stem": "総自由時間が等しく、どちらも確実に実現できるとして、今週の余暇を充実させることと、半年後に新しい計画を始める時間枠を今から確保することでは、どちらを優先しますか？",
+      "left": "半年後の計画に必要な時間枠を確保する",
+      "right": "今週の余暇をより充実させる",
+      "novelty": "C29/C30の達成後判断と異なり計画前の資源確保",
+      "critical_competitors": [
+        "A05-V1-25",
+        "A05-V1-26",
+        "A05-V1-29"
+      ],
+      "confounds": [
+        "C25/C26との同義性が高い",
+        "時間管理能力",
+        "環境による制約"
+      ],
+      "accept_only_if": "C25/C26と独立の判断理由が繰り返し現れる場合のみ採用"
+    },
+    {
+      "id": "C36-R3",
+      "priority": 3,
+      "facet": "DELAYED_REWARD_NEGATIVE_CONTROL",
+      "title": "同じ楽しみを今か半年後か（採点候補ではなく負の対照）",
+      "stem": "内容・費用・満足度が同じ体験を、今週か半年後のどちらか一度だけ確実に実施できます。いつ実施したいですか？",
+      "left": "半年後に楽しみを残しておく",
+      "right": "今週楽しむ",
+      "novelty": "将来への準備ではなく単に享受時点の差を測るためC軸外の対照",
+      "critical_competitors": [
+        "A05-V1-25",
+        "A05-V1-35"
+      ],
+      "confounds": [
+        "待つ楽しみ",
+        "時間割引・忍耐"
+      ],
+      "accept_only_if": "原則としてC軸に加点しない。R1が単なる時間割引を測っていないかの負の対照"
+    }
+  ],
+  "BC_independent_probes": [
+    {
+      "id": "B-SELF",
+      "statement": "最終的には自分の基準で決めたい",
+      "scale": "0-4",
+      "non_scoring": true
+    },
+    {
+      "id": "B-CONSULT",
+      "statement": "決める前には大切な人と十分に相談したい",
+      "scale": "0-4",
+      "non_scoring": true
+    },
+    {
+      "id": "C-FUTURE",
+      "statement": "今の時間を使って将来の可能性を広げたい",
+      "scale": "0-4",
+      "non_scoring": true
+    },
+    {
+      "id": "C-PRESENT",
+      "statement": "今の時間そのものを十分に味わいたい",
+      "scale": "0-4",
+      "non_scoring": true
+    }
+  ],
+  "gate_state": {
+    "G1": "BLOCKED",
+    "G3": "AWAITING_DATA",
+    "G4": "AWAITING_DATA",
+    "G5": "BLOCKED"
+  },
+  "immutability": {
+    "D206_bank_changed": false,
+    "D224_sampler_changed": false,
+    "live_scoring_changed": false,
+    "UI_changed": false
+  },
+  "rule": "Do not count editorial judgment, synthetic answers or model-generated reasoning as real respondent cognitive evidence."
+}
