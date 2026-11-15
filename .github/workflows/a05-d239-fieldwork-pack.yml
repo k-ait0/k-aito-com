@@ -13,6 +13,7 @@ on:
       - 'scripts/test-a05-d239-fieldwork-bundle.mjs'
       - '.github/workflows/a05-d239-fieldwork-pack.yml'
       - 'research/a05/d232-content-triage-and-c36-candidates.json'
+      - 'docs/A05_D240_COGNITIVE_RATER_CODEBOOK_20261116.md'
       - 'research/a05/d206-editorial-50-question-bank-v1-2.json'
   workflow_dispatch:
 
@@ -47,5 +48,6 @@ jobs:
             research/a05/generated/d237-blank-interview-kit.md
             research/a05/generated/d239-blank-rater-codes.json
             research/a05/generated/d239-fieldwork-quickstart.md
+            docs/A05_D240_COGNITIVE_RATER_CODEBOOK_20261116.md
           if-no-files-found: error
           retention-days: 30
