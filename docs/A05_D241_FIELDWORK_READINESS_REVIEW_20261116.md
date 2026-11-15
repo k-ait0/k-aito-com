@@ -13,8 +13,8 @@
 ## 生成物と実測テスト
 
 - <https://github.com/k-ait0/k-aito-com/actions/runs/43746246937>：最新版D239キット生成・テスト合格（D232のB14/15プローブ尺度を既存D210と同じ1〜7に修正後）。
-- <https://github.com/k-ait0/k-aito-com/actions/runs/43746246990>：D234の研究台帳・研究ゲート回帰検証合格。
-- <https://github.com/k-ait0/k-aito-com/actions/runs/43746109506>：D238の実質一致率改善後の13テスト合格。
+- <https://github.com/k-ait0/k-aito-com/actions/runs/43746270671>：D234の研究台帳・研究ゲート回帰検証合格。
+- <https://github.com/k-ait0/k-aito-com/actions/runs/43746246937/artifacts/14174561244>：生成した空欄フィールドキット5ファイル（面接カード、割付、評価用シート、手順、コードブック）。
 - 24面接枠：各枠にP0の3組＋非P0の5組、計8組。P0は各24回、非P0は各8回となるよう割付。
 - 非P0の同時提示を固定せず、8ラウンド×3束で各回15組を再配分。内容の組合せと参加者の集団が完全に固定される交絡を緩和。
 - C36-R1/R2の先行順を12/12で均衡させ、R3は負の対照として最後に提示。
