@@ -785,7 +785,7 @@
       "distinction": "基礎理解後 vs 目標達成後",
       "contrast_probe": "到達状態を揃えて再比較",
       "provisional_action": "CONSIDER_COLLAPSE",
-      "reject_if": "飽き・新奇性",
+      "reject_if": "新分野への移動が単なる飽き・新奇性追求だけなら幅広志向の根拠として不十分",
       "human_cognitive_evidence": "NONE",
       "independence_confirmed": false,
       "scoring_approved": false
@@ -836,7 +836,7 @@
       "distinction": "交換比率と労働を伴うか",
       "contrast_probe": "金額/時間/疲労を揃えた条件違い",
       "provisional_action": "AUXILIARY_ONLY_HOLD",
-      "reject_if": "E型採点禁止",
+      "reject_if": "金額・労働負担の違いだけで回答が変わるなら安定したE軸を推定しない",
       "human_cognitive_evidence": "NONE",
       "independence_confirmed": false,
       "scoring_approved": false
