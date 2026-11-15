@@ -177,7 +177,7 @@ export function runSyntheticStability({forms=128,repetitions=8}={}){
       }
      }
     }
-    if(seenStrict.size===1&&totals.strictUnclassified>=0){
+    if(seenStrict.size===1){
      // A respondent counts as stable only if all forms classify to a single type.
      const strictlyClassified=indexed.every(form=>form.every(ids=>ids.reduce((s,id)=>s+responses[id]-4,0)!==0));
      if(strictlyClassified)totals.strictStablePersons++;
@@ -226,10 +226,17 @@ if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href){
  writeFileSync(target,JSON.stringify(report,null,2)+"\n");
  const {summary}=report.audit;
  const tiny={file:target,items:summary.items,flagged_pairs:summary.preexisting_flagged_pairs,
-  hold_ids:summary.scoring_hold_items,scenarios:report.simulation.scenarios.map(x=>({
+  hold_ids:summary.scoring_hold_items,
+  priorities:summary.priorities,
+  flagged_unique_items:summary.flagged_unique_items,
+  p0_pair_exposure:summary.p0_pair_exposure,
+  scenarios:report.simulation.scenarios.map(x=>({
    scenario:x.scenario,strictly_stable_person_fraction:x.strictly_stable_person_fraction,
    people_with_multiple_strict_types_fraction:x.people_with_multiple_strict_types_fraction,
-   borderline_form_fraction:x.borderline_form_fraction,
+   strict_unclassified_form_fraction:x.strict_unclassified_form_fraction,
+   strict_type_disagrees_with_simulated_target_fraction:x.strict_type_disagrees_with_simulated_target_fraction,
+   borderline_form_fraction:x.borderline_form_fraction,mean_candidate_types:x.mean_candidate_types,
+   subset_axis_sign_differs_from_full50_fraction:x.subset_axis_sign_differs_from_full50_fraction,
    reference_in_candidate_set_fraction:x.reference_in_candidate_set_fraction}))};
  console.log(JSON.stringify(tiny,null,2));
 }
