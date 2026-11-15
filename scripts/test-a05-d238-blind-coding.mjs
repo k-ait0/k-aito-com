@@ -101,6 +101,33 @@ test("D238 strict shape rejects PII fields and forged/unknown pair or coding",()
  assert.ok(!JSON.stringify(a).includes("DO_NOT_OUTPUT_PERSON"));
  assert.ok(!JSON.stringify(a).includes("identifying-information"));
 });
+test("D238 agreement excludes UNDECIDED and SKIPPED codes from substantive denominator",()=>{
+ const s1=filled("S01","R1","UNCLEAR");
+ const s2=filled("S01","R2","UNCLEAR");
+ const pair=plan.slots[0].pairIds[0];
+ const pair2=plan.slots[0].pairIds[1];
+ s1.pairJudgments[pair].code="SAME_REASON";
+ s2.pairJudgments[pair].code="SAME_REASON";
+ s1.pairJudgments[pair2].code="DISTINCT_REASON";
+ s2.pairJudgments[pair2].code="CONFOUNDED";
+ s1.candidateJudgments["C36-R1"]="NEW_C_FACET";
+ s2.candidateJudgments["C36-R1"]="NEW_C_FACET";
+ s1.candidateJudgments["C36-R2"]="OVERLAPS_EXISTING";
+ s2.candidateJudgments["C36-R2"]="OTHER_CONFOUND";
+ s1.candidateJudgments["C36-R3"]="SKIPPED";
+ const summary=summarizeInterviewCodes([s1,s2]);
+ assert.equal(summary.pairResults[pair].substantivePairedReviews,1);
+ assert.equal(summary.pairResults[pair].substantiveAgreementRate,1);
+ assert.equal(summary.pairResults[pair2].substantivePairedReviews,1);
+ assert.equal(summary.pairResults[pair2].substantiveAgreementRate,0);
+ const other=plan.slots[0].pairIds[2];
+ assert.equal(summary.pairResults[other].agreements,1); // both UNCLEAR
+ assert.equal(summary.pairResults[other].substantivePairedReviews,0);
+ assert.equal(summary.pairResults[other].substantiveAgreementRate,null);
+ assert.equal(summary.C36Candidates["C36-R1"].substantiveAgreementRate,1);
+ assert.equal(summary.C36Candidates["C36-R2"].substantiveAgreementRate,0);
+ assert.equal(summary.C36Candidates["C36-R3"].substantiveAgreementRate,null);
+});
 test("D238 generated blank sheets are explicitly non-consented and unscored",()=>{
  const blank=blankCodingSheet("S01","R1");
  assert.equal(blank.consentConfirmed,false);
