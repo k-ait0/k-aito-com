@@ -613,7 +613,7 @@
       "priority": "P1",
       "suspected_confusion": "個人の人生計画と目標について自律か相談かが近い",
       "distinction": "自己決定権と意見交換",
-      "contrast_probe": "自己決定と相談をそれぞれ0～4で独立評価",
+      "contrast_probe": "自己決定と相談をそれぞれ1～7で独立評価",
       "provisional_action": "REWRITE_PRIORITY",
       "reject_if": "両方高い/両方低い場合の強制選択",
       "human_cognitive_evidence": "NONE",
