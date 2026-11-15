@@ -285,7 +285,7 @@ p{margin:8px 0 16px}
    track.append(fill);
    const note=document.createElement("div");note.className="minor";
    note.textContent="有効回答 "+s.n+"/"+s.presented+" · "+
-    (s.status==="insufficient"?"回答が不足しています":s.status==="borderline"?"両側を大切にする、または状況によって選ぶ可能性があります":"今回の回答では方向が比較的明確です");
+    (s.status==="insufficient"?"回答が不足しています":s.status==="borderline"?"中間に近い傾向です。両方重視・両方重視しない・状況次第の区別はできません":"今回の回答では方向が比較的明確です");
    item.append(heading,track,note);holder.append(item);
   }
   $("resultComplete").textContent=manifest.ids.length+"問の回答を確認しました。追加質問をしなくても、この時点で診断は完了です。";
