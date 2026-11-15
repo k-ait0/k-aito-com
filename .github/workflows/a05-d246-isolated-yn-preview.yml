@@ -1,0 +1,51 @@
+name: A05 D246 isolated YN interactive preview QA
+on:
+  push:
+    branches:
+      - research/a05-editorial-50-v1-20261113
+    paths:
+      - 'research/a05/d246-isolated-yn-preview-template.html'
+      - 'research/a05/d243-midpoint-yn-probe-bank.json'
+      - 'scripts/a05-d246-build-isolated-yn-preview.mjs'
+      - 'scripts/test-a05-d246-isolated-browser.cjs'
+      - 'scripts/a05-d243-midpoint-yn-research.mjs'
+      - 'scripts/test-a05-d243-midpoint-yn-research.mjs'
+      - '.github/workflows/a05-d246-isolated-yn-preview.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  isolated-yn-preview:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Research-only Y/N engine unit tests
+        run: |
+          node --check scripts/a05-d246-build-isolated-yn-preview.mjs
+          node --test scripts/test-a05-d243-midpoint-yn-research.mjs
+      - name: Build isolated standalone preview
+        run: |
+          node scripts/a05-d246-build-isolated-yn-preview.mjs
+          test -s research/a05/generated/d246-isolated-midpoint-yn-preview.html
+          grep -q 'A05-D246-ISOLATED-Y-N-PREVIEW-1' research/a05/generated/d246-isolated-midpoint-yn-preview.html
+          grep -q 'A05-D242-POWER-1_5-RESEARCH-PREVIEW-1' research/a05/generated/d246-isolated-midpoint-yn-preview.html
+      - name: Install Chromium for desktop and mobile E2E
+        run: |
+          npm install --prefix /tmp/a05-yn-playwright --no-audit --no-fund --no-save playwright@1.56.1
+          PLAYWRIGHT_BROWSERS_PATH=/tmp/a05-yn-browsers /tmp/a05-yn-playwright/node_modules/.bin/playwright install --with-deps chromium
+      - name: Verify midpoint/skip, Y/N, optional context, stop/resume and unchanged type
+        env:
+          NODE_PATH: /tmp/a05-yn-playwright/node_modules
+          PLAYWRIGHT_BROWSERS_PATH: /tmp/a05-yn-browsers
+        run: node scripts/test-a05-d246-isolated-browser.cjs
+      - name: Publish only self-contained research HTML as downloadable artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: a05-d246-isolated-yn-preview-html
+          path: research/a05/generated/d246-isolated-midpoint-yn-preview.html
+          if-no-files-found: error
+          retention-days: 30
