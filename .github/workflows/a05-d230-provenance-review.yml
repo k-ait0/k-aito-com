@@ -1,0 +1,39 @@
+name: A05 D230 provenance and independent scoring review
+on:
+  push:
+    branches:
+      - research/a05-editorial-50-v1-20261113
+    paths:
+      - 'scripts/a05-d230-replay-provenance.mjs'
+      - 'scripts/test-a05-d230-replay-provenance.mjs'
+      - 'scripts/a05-d230-provenance-stress.mjs'
+      - '.github/workflows/a05-d230-provenance-review.yml'
+      - 'scripts/a05-d227-robust-intensity-scoring.mjs'
+      - 'scripts/a05-d224-hold-filtered-sampler.mjs'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  integrity-review:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Syntax and adversarial unit tests
+        run: |
+          node --check scripts/a05-d230-replay-provenance.mjs
+          node --test scripts/test-a05-d230-replay-provenance.mjs
+      - name: Large replay and deliberate mutation tests
+        if: hashFiles('scripts/a05-d230-provenance-stress.mjs') != ''
+        run: node scripts/a05-d230-provenance-stress.mjs
+      - name: Archive counts, including rejected mutations
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: a05-d230-provenance-review
+          path: research/a05/generated/d230-provenance-stress.json
+          retention-days: 30
+          if-no-files-found: warn
