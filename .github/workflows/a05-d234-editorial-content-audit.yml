@@ -1,0 +1,26 @@
+name: A05 D234 editorial research protocol integrity
+on:
+  push:
+    branches:
+      - research/a05-editorial-50-v1-20261113
+    paths:
+      - 'research/a05/d232-content-triage-and-c36-candidates.json'
+      - 'docs/A05_D233_HUMAN_RESEARCH_PREREG_PROTOCOL_20261116.md'
+      - 'scripts/test-a05-d234-editorial-content-audit.mjs'
+      - '.github/workflows/a05-d234-editorial-content-audit.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  research-pack:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify all 50 questions, 18 semantic pairs, C36 hold and B/C non-scoring probes
+        run: |
+          node --check scripts/test-a05-d234-editorial-content-audit.mjs
+          node --test scripts/test-a05-d234-editorial-content-audit.mjs
