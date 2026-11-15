@@ -378,6 +378,79 @@ p{margin:8px 0 16px}
    ?"追加質問は最大4問まで。回答しなくても結果は成立します。追加後も拮抗していれば、無理にタイプを決めません。"
    :unresolved.length?"今回はこの結果で完了です。追加質問はありません。":"追加質問は不要です。";
  }
+
+ function eligibleYNAxes(stats){
+  return stats.filter(s=>
+   s.midpointOnInitial+s.skippedOnInitial>=data.ynProbes.policy.triggerCombinedMidpointOrSkippedAtLeast&&s.status!=="clear")
+   .sort((a,b)=>
+    (b.midpointOnInitial+b.skippedOnInitial)-(a.midpointOnInitial+a.skippedOnInitial)||
+    b.skippedOnInitial-a.skippedOnInitial||a.axis.localeCompare(b.axis));
+ }
+ function planYN(stats){
+  const used=Object.keys(ynState.responses).length;
+  if(used>=data.ynProbes.policy.maxIndependentYNPerSession)return null;
+  const eligible=eligibleYNAxes(stats);
+  // All eligible axes receive both independent pole questions before any
+  // context followups. This keeps one axis from consuming the whole budget.
+  for(const axis of eligible){
+   const def=data.ynProbes.axes.find(x=>x.axis===axis.axis);
+   const missing=def.initial.filter(q=>!Object.hasOwn(ynState.responses,q.id));
+   if(missing.length)return {axis:axis.axis,stage:"INDEPENDENT_POLES",questions:missing.slice(0,2)};
+  }
+  for(const axis of eligible){
+   const def=data.ynProbes.axes.find(x=>x.axis===axis.axis);
+   const unsure=def.initial.some(q=>ynState.responses[q.id]==="UNSURE");
+   const reason=ynState.reasons[axis.axis];
+   if(!unsure&&!["CONTEXT_DEPENDENT","WORDING_DIFFICULT"].includes(reason))continue;
+   const missing=def.context.filter(q=>!Object.hasOwn(ynState.responses,q.id));
+   if(missing.length)return {axis:axis.axis,stage:"OPTIONAL_CONTEXT",questions:missing.slice(0,2)};
+  }
+  return null;
+ }
+ function openYN(){
+  ynOffer=planYN(collectStats());
+  if(!ynOffer)return;
+  ynPosition=0;paintYN();show("yn");
+ }
+ function paintYN(){
+  if(!ynOffer)return;
+  const q=ynOffer.questions[ynPosition];
+  $("ynHeading").textContent=ynOffer.axis+"軸 · 左右それぞれの価値観";
+  $("ynStage").textContent=ynOffer.stage==="INDEPENDENT_POLES"?"独立した重視度":"具体的な場面";
+  $("ynCounter").textContent=(ynPosition+1)+" / "+ynOffer.questions.length+
+   " · 回答済み "+Object.keys(ynState.responses).length+" / 8";
+  $("ynQuestion").textContent=q.prompt;
+  $("ynChoices").replaceChildren();
+  for(const [value,label] of [["YES","YES"],["NO","NO"],["UNSURE","判断できない"]]){
+   const b=document.createElement("button");b.type="button";b.textContent=label;
+   b.setAttribute("aria-pressed",String(ynState.responses[q.id]===value));
+   b.addEventListener("click",()=>{ynState.responses[q.id]=value;paintYN();});
+   $("ynChoices").append(b);
+  }
+  $("ynPrev").disabled=ynPosition===0;
+  $("ynNext").disabled=!Object.hasOwn(ynState.responses,q.id);
+  $("ynNext").textContent=ynPosition===ynOffer.questions.length-1?"補助質問を続ける":"次の補助質問";
+  $("ynReasonBox").hidden=ynOffer.stage!=="INDEPENDENT_POLES";
+  $("ynReason").value=ynState.reasons[ynOffer.axis]||"";
+ }
+ function nextYN(){
+  if(!ynOffer||!Object.hasOwn(ynState.responses,ynOffer.questions[ynPosition].id))return;
+  if(ynPosition+1<ynOffer.questions.length){ynPosition++;paintYN();return;}
+  const next=planYN(collectStats());
+  if(next){ynOffer=next;ynPosition=0;paintYN();show("yn");}
+  else stopYN();
+ }
+ function stopYN(){ynOffer=null;paintResult();show("result");}
+ $("ynButton").addEventListener("click",openYN);
+ $("ynNext").addEventListener("click",nextYN);
+ $("ynPrev").addEventListener("click",()=>{if(ynPosition>0){ynPosition--;paintYN();}});
+ $("ynStop").addEventListener("click",stopYN);
+ $("ynReason").addEventListener("change",()=>{
+  if(!ynOffer)return;
+  if($("ynReason").value)ynState.reasons[ynOffer.axis]=$("ynReason").value;
+  else delete ynState.reasons[ynOffer.axis];
+ });
+
  $("start").addEventListener("click",start);
  $("prev").addEventListener("click",()=>step(-1));
  $("next").addEventListener("click",()=>step(1));
