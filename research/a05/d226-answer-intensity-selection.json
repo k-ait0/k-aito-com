@@ -1,0 +1,99 @@
+{
+  "schema": "A05-D226-ANSWER-INTENSITY-SELECTION-1",
+  "date": "2026-11-16",
+  "status": "A_SELECTED_AS_RESEARCH_CANDIDATE_NOT_PRODUCTION_APPROVAL",
+  "scope": "A05 research-only core-axes A/B/C/D scoring. No UI or GitHub Pages change.",
+  "powers_compared": {
+    "baseline": 1,
+    "A": 1.5,
+    "B": 2
+  },
+  "selected": {
+    "id": "A",
+    "power": 1.5,
+    "response_score_formula": "sign(x-4)*(abs(x-4)/3)^1.5",
+    "axis_score_formula": "mean(response_score over valid 1..7 responses on selected axis)",
+    "score_range": [
+      -1,
+      1
+    ],
+    "question_base_weights": "equal",
+    "cross_axis_weights": "none",
+    "E_axis": "auxiliary non-core, no 16-type contribution",
+    "insufficient_responses": "withhold; exact minimum to be re-evaluated",
+    "boundary_threshold": "not calibrated; no threshold approved in this decision",
+    "final_type_classification": "not approved until content G1 / human G3 / calibration G4"
+  },
+  "decision_basis": {
+    "sample": "128 forms x 128 synthetic profiles per scenario, 8 synthetic scenarios; same generated answers across 3 powers; both D208 and D224 samplers",
+    "preferred_sampler": "D224_hold_filtered",
+    "assumption": "Synthetic latent type is declared by the generator; not empirical ground truth.",
+    "observed_wrong_axis_fraction": {
+      "sparse_correct_extremes": {
+        "linear": 0.67012,
+        "A": 0.18919,
+        "B": 0.13051
+      },
+      "single_false_extreme": {
+        "linear": 0,
+        "A": 0.31538,
+        "B": 0.58839
+      },
+      "double_false_extreme": {
+        "linear": 0.32272,
+        "A": 0.32272,
+        "B": 0.86346
+      },
+      "semantic_family_conflict": {
+        "linear": 0.12589,
+        "A": 0.18259,
+        "B": 0.54488
+      }
+    },
+    "power_matched_threshold": "abs(mean)>pow(1/3,p) (reference-only comparator; not calibrated)",
+    "target_in_candidates_using_power_matched_threshold": {
+      "double_false_extreme": {
+        "linear": 1,
+        "A": 1,
+        "B": 0.20728
+      },
+      "semantic_family_conflict": {
+        "linear": 1,
+        "A": 1,
+        "B": 0.5813
+      },
+      "matched_extreme_conflict": {
+        "linear": 1,
+        "A": 0.73383,
+        "B": 0.39099
+      }
+    },
+    "decision": "B achieves modest additional recovery of intentionally strong minority signals, but it is much more sensitive to contradictory extreme answers and can exclude the modeled reference under the power-matched boundary. A is the conservative nonlinear compromise.",
+    "not_a_claim": [
+      "No psychometric validity established",
+      "Not an empirical probability of misclassification",
+      "No numerical endorsement of 1.5 as optimal for people",
+      "No production implementation authorized",
+      "Original UI independent 80-point acceptance score 74 remains unchanged"
+    ]
+  },
+  "evaluation_status": {
+    "ui_excluded": true,
+    "algorithm_prior_score": 74,
+    "pass_threshold": 80,
+    "passed": false
+  },
+  "comparison_sources": {
+    "source": "scripts/a05-d226-answer-intensity-comparison.mjs",
+    "tests": "scripts/test-a05-d226-answer-intensity.mjs",
+    "action_run": "https://github.com/k-ait0/k-aito-com/actions/runs/43728436731"
+  },
+  "next_steps": [
+    "Preserve p=1 baseline for before/after evaluation",
+    "Run A in isolated research scoring, not as replacement of public D222",
+    "Collect actual 50-item consented answers and evaluate item-response style and re-sampled form stability",
+    "Recalibrate boundary and abstention; power-matched threshold is illustrative only",
+    "Review C31/C32/C36 scoring holds before scoring final forms",
+    "Only change published version after G1/G3/G4 evidence and approval"
+  ]
+}
