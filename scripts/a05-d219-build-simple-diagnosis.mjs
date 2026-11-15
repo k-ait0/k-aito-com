@@ -17,10 +17,11 @@ const manifests=Array.from({length:128},(_,i)=>{
 });
 const data={
  schema:"A05-D219-UNVALIDATED-DEMO-1",
+ scoringVersion:"A05-D222-EQUAL-WEIGHT-AMBIGUITY-DEMO-1",
  bankVersion:BANK.schema,
  bankDigest:drawResearchManifest("D219").bankDigest,
  questions:BANK.items.map(q=>({
-  id:q.bank_id,axis:q.axis,stem:q.stem,left:q.left,right:q.right
+  id:q.bank_id,axis:q.axis,stem:q.stem,left:q.left,right:q.right,family:q.proposed_semantic_family||q.axis
  })),
  manifests,
  types:TYPES.map(x=>({id:x.id,group:x.group,name:x.name,emoji:x.emoji,summary:x.summary,action:x.action})),
