@@ -7,6 +7,8 @@ on:
       - 'research/a05/d232-content-triage-and-c36-candidates.json'
       - 'docs/A05_D233_HUMAN_RESEARCH_PREREG_PROTOCOL_20261116.md'
       - 'scripts/test-a05-d234-editorial-content-audit.mjs'
+      - 'scripts/a05-d235-full50-pilot-aggregator.mjs'
+      - 'scripts/test-a05-d235-full50-pilot.mjs'
       - '.github/workflows/a05-d234-editorial-content-audit.yml'
   workflow_dispatch:
 permissions:
@@ -24,3 +26,7 @@ jobs:
         run: |
           node --check scripts/test-a05-d234-editorial-content-audit.mjs
           node --test scripts/test-a05-d234-editorial-content-audit.mjs
+          node --check scripts/a05-d235-full50-pilot-aggregator.mjs
+          node --test scripts/test-a05-d235-full50-pilot.mjs
+      - name: Verify zero-data mode is explicitly not real human evidence
+        run: node scripts/a05-d235-full50-pilot-aggregator.mjs
