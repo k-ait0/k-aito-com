@@ -1,0 +1,37 @@
+name: A05 D244 midpoint and independent Y/N research-only audit
+on:
+  push:
+    branches:
+      - research/a05-editorial-50-v1-20261113
+    paths:
+      - 'research/a05/d243-midpoint-yn-probe-bank.json'
+      - 'scripts/a05-d243-midpoint-yn-research.mjs'
+      - 'scripts/test-a05-d243-midpoint-yn-research.mjs'
+      - 'scripts/a05-d244-midpoint-yn-stress.mjs'
+      - '.github/workflows/a05-d244-midpoint-yn-research.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  scoring-safety:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check research-only syntax and midpoint/Y-N unit tests
+        run: |
+          node --check scripts/a05-d243-midpoint-yn-research.mjs
+          node --check scripts/a05-d244-midpoint-yn-stress.mjs
+          node --test scripts/test-a05-d243-midpoint-yn-research.mjs
+      - name: Mass-test 12,800 synthetic 30-question scenarios and Y/N budget
+        run: node scripts/a05-d244-midpoint-yn-stress.mjs
+      - name: Upload nonpersonal synthetic aggregate only
+        uses: actions/upload-artifact@v4
+        with:
+          name: a05-d244-midpoint-yn-synthetic-report
+          path: research/a05/generated/d244-midpoint-yn-stress.json
+          retention-days: 30
+          if-no-files-found: error
