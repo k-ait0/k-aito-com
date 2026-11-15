@@ -5,6 +5,8 @@ on:
       - research/a05-editorial-50-v1-20261113
     paths:
       - 'scripts/a05-d223-audit-and-simulate.mjs'
+      - 'scripts/a05-d224-hold-filtered-sampler.mjs'
+      - 'scripts/test-a05-d224-hold-filtered.mjs'
       - 'scripts/test-a05-d223-algorithm-audit.mjs'
       - '.github/workflows/a05-d223-algorithm-audit.yml'
       - 'research/a05/d206-editorial-50-question-bank-v1-2.json'
@@ -25,8 +27,9 @@ jobs:
       - name: Check syntax and research-only contract tests
         run: |
           node --check scripts/a05-d223-audit-and-simulate.mjs
-          node --test scripts/test-a05-d223-algorithm-audit.mjs
-      - name: Run complete 50-item inventory and 128-form synthetic profiles
+          node --check scripts/a05-d224-hold-filtered-sampler.mjs
+          node --test scripts/test-a05-d223-algorithm-audit.mjs scripts/test-a05-d224-hold-filtered.mjs
+      - name: Run 50-item inventory and compare baseline versus P0-filtered 128-form simulations
         run: node scripts/a05-d223-audit-and-simulate.mjs
       - name: Upload D223 machine-readable audit (not human data)
         uses: actions/upload-artifact@v4
