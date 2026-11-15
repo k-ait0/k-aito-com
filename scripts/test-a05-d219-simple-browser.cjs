@@ -68,10 +68,60 @@ async function fill30(page,value){
    await fill30(page,4);
    assert.equal((await page.locator("#typeName").textContent()).trim(),"価値観が拮抗しています");
    assert.match(await page.locator("#typeBadge").textContent(),/判定を保留/);
+
+   assert.equal(await page.locator("#resultComplete").isVisible(),true);
+   assert.match(await page.locator("#resultComplete").textContent(),/診断は完了/);
+   assert.equal(await page.locator("#extraButton").isVisible(),true);
+   assert.equal(await page.locator("#nearTypes").isVisible(),false);
+   // All four axes tied: the user may opt to finish, or answer 2 + 2 optional items.
+   await page.locator("#extraButton").click();
+   assert.equal(await page.locator("#question").isVisible(),true);
+   assert.equal(await page.locator("#counter").textContent(),"31 / 32");
+   for(let i=0;i<2;i++){
+    await page.locator('#scale button[data-value="4"]').click();
+    await page.locator("#next").click();
+   }
+   assert.equal(await page.locator("#result").isVisible(),true);
+   assert.match(await page.locator("#resultComplete").textContent(),/32問/);
+   assert.equal(await page.locator("#extraButton").isVisible(),true);
+   await page.locator("#extraButton").click();
+   assert.equal(await page.locator("#counter").textContent(),"33 / 34");
+   for(let i=0;i<2;i++){
+    await page.locator('#scale button[data-value="4"]').click();
+    await page.locator("#next").click();
+   }
+   assert.equal(await page.locator("#result").isVisible(),true);
+   assert.match(await page.locator("#resultComplete").textContent(),/34問/);
+   assert.equal(await page.locator("#extraButton").isVisible(),false);
+   assert.equal(await page.locator("#axes .axisrow").count(),4);
+   // Exactly one ambiguous A axis: show the two plausible types instead of forcing a restart.
+   await page.locator("#restart").click();
+   for(let i=0;i<30;i++){
+    const isA=(await page.locator("#axisLabel").textContent()).trim()==="A軸";
+    await page.locator('#scale button[data-value="'+(isA?4:7)+'"]').click();
+    await page.locator("#next").click();
+   }
+   assert.equal(await page.locator("#result").isVisible(),true);
+   assert.match(await page.locator("#typeBadge").textContent(),/2タイプが参考候補/);
+   assert.equal(await page.locator("#nearTypes .near-type-item").count(),2);
+   assert.equal(await page.locator("#extraButton").isVisible(),true);
+   assert.match(await page.locator("#extraButton").textContent(),/A軸に2問追加/);
+   assert.match(await page.locator("#resultComplete").textContent(),/診断は完了/);
+   // Additional questions must come from the same axis and never count E as a classifier.
+   await page.locator("#extraButton").click();
+   assert.match(await page.locator("#axisLabel").textContent(),/追加質問 · A軸/);
+   for(let i=0;i<2;i++){
+    await page.locator('#scale button[data-value="7"]').click();
+    await page.locator("#next").click();
+   }
+   assert.equal(await page.locator("#result").isVisible(),true);
+   assert.equal(await page.locator("#axes .axisrow").count(),4);
+   assert.match(await page.locator("#resultNotice").textContent(),/E軸/);
+
    assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>window.innerWidth+2),false);
    assert.deepEqual(requests,[],"No data sent over network");
    assert.deepEqual(exceptions,[],"No client JS error");
-   console.log("D219 PASS",width,"mobile/demo 30 Q/T01 T16/tie withheld/edge/back/zero network");
+   console.log("D222 PASS",width,"30Q/T01/T16/tie completion/near2/optional 32-34Q/zero network");
    await ctx.close();
   }
  }finally{await browser.close();}
