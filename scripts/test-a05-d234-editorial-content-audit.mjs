@@ -76,6 +76,8 @@ test("D232: B/C independent response probes are research-only and already repres
  const ids=["B_AUTONOMY","B_CONNECTION","C_FUTURE","C_PRESENT"];
  for(const id of ids)assert.ok(builder.includes('"'+id+'"'));
  assert.ok(audit.BC_independent_probes.every(x=>x.non_scoring===true));
+ assert.deepEqual(audit.BC_independent_probes.map(x=>x.maps_to_existing_D210_id),ids);
+ assert.ok(audit.BC_independent_probes.every(x=>x.scale.startsWith("1-7")));
  for(const id of ids)assert.ok(prereg.includes(id));
 });
 test("D233: preregistration explicitly does not claim human results, or promote any gate",()=>{
