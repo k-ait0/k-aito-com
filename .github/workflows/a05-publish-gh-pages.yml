@@ -14,6 +14,8 @@ on:
       - 'research/a05/d243-midpoint-yn-probe-bank.json'
       - 'scripts/a05-d246-build-isolated-yn-preview.mjs'
       - 'scripts/test-a05-d246-isolated-browser.cjs'
+      - 'scripts/a05-d249-live-pages-audit.mjs'
+      - 'scripts/test-a05-d249-live-pages-audit.mjs'
       - 'scripts/a05-d224-hold-filtered-sampler.mjs'
       - 'scripts/a05-d227-robust-intensity-scoring.mjs'
       - 'scripts/a05-d226-answer-intensity-comparison.mjs'
@@ -59,6 +61,8 @@ jobs:
           test -s research/a05/generated/d246-isolated-midpoint-yn-preview.html
           grep -q 'A05-D246-ISOLATED-Y-N-PREVIEW-1' research/a05/generated/d246-isolated-midpoint-yn-preview.html
           grep -q 'RESEARCH_ONLY_NOT_PSYCHOMETRICALLY_VALIDATED' research/a05/generated/d246-isolated-midpoint-yn-preview.html
+      - name: Check real Pages verifier failure modes with isolated local fixtures
+        run: node --test scripts/test-a05-d249-live-pages-audit.mjs
       - name: Install Chromium for desktop and phone browser acceptance
         run: |
           npm install --prefix /tmp/a05-pages-qa --no-audit --no-fund --no-save playwright@1.56.1
@@ -76,6 +80,7 @@ jobs:
       - name: Prepare isolated publish payload
         run: |
           mkdir -p /tmp/a05-gh-pages/preview/yn
+          cp scripts/a05-d249-live-pages-audit.mjs /tmp/a05-d249-live-pages-audit.mjs
           cp research/a05/generated/d219-simple-diagnosis.html /tmp/a05-gh-pages/index.html
           cp research/a05/generated/d246-isolated-midpoint-yn-preview.html /tmp/a05-gh-pages/preview/yn/index.html
           printf '' > /tmp/a05-gh-pages/.nojekyll
@@ -117,3 +122,5 @@ jobs:
           git show origin/gh-pages:preview/yn/index.html | grep -q 'noindex,nofollow,noarchive'
           echo 'A05_PAGES_BRANCH_READY https://k-ait0.github.io/k-aito-com/'
           echo 'A05_YN_RESEARCH_TEST_URL https://k-ait0.github.io/k-aito-com/preview/yn/'
+      - name: Verify GitHub Pages HTTP responses match exact tested HTML for both sites
+        run: node /tmp/a05-d249-live-pages-audit.mjs /tmp/a05-gh-pages/index.html /tmp/a05-gh-pages/preview/yn/index.html
