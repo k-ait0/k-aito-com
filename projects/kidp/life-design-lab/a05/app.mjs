@@ -608,6 +608,10 @@ root.addEventListener("click", async event => {
       updateNotice("このブラウザの新A05試作の保存記録を削除しました。端末のバックアップ等の複製が残っていないことまでは保証できません。");
       render();
       focusAfterRender = "h2";
+    } else if (action === "tier2-clear" && TIER2_REVIEW_ENABLED && state.view === "result") {
+      delete tier2Images[state.tier2Review.motif];
+      render();
+      focusAfterRender = '[data-action="tier2-clear"]';
     } else if (action === "share") {
       state.share = !state.share;
       render();
@@ -666,6 +670,55 @@ root.addEventListener("change", async event => {
     state.visualPreview = next;
     render();
     root.querySelector('select[data-visual-setting="' + field + '"]')?.focus({ preventScroll: true });
+    return;
+  }
+  // Opt-in Tier2 review is entirely local and excluded from assessment snapshots.
+  const tier2Control = event.target.closest('[data-tier2-setting], [data-tier2-upload]');
+  if (TIER2_REVIEW_ENABLED && tier2Control && root.contains(tier2Control) &&
+      state.view === "result" && !state.busy) {
+    if (tier2Control.hasAttribute("data-tier2-upload")) {
+      const file = tier2Control.files?.[0];
+      if (!file) return;
+      if (!["image/png", "image/jpeg", "image/webp"].includes(file.type) ||
+          file.size === 0 || file.size > 12 * 1024 * 1024) {
+        updateNotice("PNG/JPEG/WebP、12MiB以内の画像を指定してください。SVGは読み込めません。");
+        return;
+      }
+      const motifAtSelection = state.tier2Review.motif;
+      try {
+        const dataURL = await new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onerror = () => reject(new Error("画像を読み込めませんでした"));
+          reader.onload = () => resolve(reader.result);
+          reader.readAsDataURL(file);
+        });
+        validateTier2ReviewImageSrc(dataURL);
+        const probe = new Image();
+        probe.src = dataURL;
+        await probe.decode();
+        if (!probe.naturalWidth || !probe.naturalHeight ||
+            probe.naturalWidth * probe.naturalHeight > 20_000_000) {
+          throw new Error("画像の画素数は2000万画素以内にしてください");
+        }
+        tier2Images[motifAtSelection] = dataURL;
+        render();
+        root.querySelector('input[data-tier2-upload]')?.focus({preventScroll:true});
+      } catch (error) {
+        updateNotice("画像を読み込めません：" + error.message);
+      }
+      return;
+    }
+    const field = tier2Control.dataset.tier2Setting;
+    const raw = tier2Control.type === "checkbox" ? tier2Control.checked : tier2Control.value;
+    if (!["motif","accent","eAxis","worldTreeRatio","guide"].includes(field)) return;
+    const value = field === "eAxis" ? (raw === "none" ? null : raw) : raw;
+    const next = { ...state.tier2Review, [field]: value };
+    try {
+      renderTier2Review({ ...next, imageSrc: tier2Images[next.motif] ?? null });
+    } catch { return; }
+    state.tier2Review = next;
+    render();
+    root.querySelector('[data-tier2-setting="' + field + '"]')?.focus({preventScroll:true});
     return;
   }
   if (event.target.id === "a05-inspect-file") {
