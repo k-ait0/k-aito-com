@@ -22,4 +22,4 @@ jobs:
         with:
           node-version: "22"
       - name: Check exact 16 approved motifs and 128 display variants
-        run: node --test scripts/test-a05-visual-canonical-lock-v30.mjs scripts/test-a05-visual-integrity-v23.mjs scripts/test-a05-visual-card-v22.mjs
+        run: node --test scripts/test-a05-visual-canonical-lock-v30.mjs scripts/test-a05-visual-integrity-v23.mjs scripts/test-a05-visual-card-v22.mjs scripts/test-a05-visual-tier2-review-v37.mjs
