@@ -14,6 +14,7 @@ import { exportA05Data } from "./export.mjs";
 import { formatLocalCompletionDay } from "./format.mjs";
 import { renderReport } from "./report.mjs";
 import { renderVisualPreview } from "./visual-preview.mjs";
+import { renderTier2Review, validateTier2ReviewImageSrc } from "./tier2-review.mjs";
 import { resolveVisualDisplay } from "./visual-contract.mjs";
 import { inspectA05Backup, A05_BACKUP_MAX_BYTES } from "./backup-inspect.mjs";
 import { inspectA05RestorePlan } from "./restore-review.mjs";
@@ -22,6 +23,9 @@ const root = document.querySelector("#a05-content");
 const notice = document.querySelector("#a05-notice");
 const tabs = document.querySelector("#a05-tabs");
 const OWN = (x, k) => Object.prototype.hasOwnProperty.call(x, k);
+// No artwork is loaded in the ordinary result page; URL must explicitly opt in.
+const TIER2_REVIEW_ENABLED = new URLSearchParams(window.location.search).get("a05_tier2_review") === "1";
+const tier2Images = Object.create(null); // Browser tab memory only, never persisted.
 const escapeHTML = value => String(value).replace(/[&<>"']/g, c => ({
   "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
 })[c]);
@@ -30,7 +34,9 @@ const state = {
   legacy: [], quarantined: [], consent: false, retainRaw: false,
   readOnly: false, busy: false, selected: null, sample: null,
   filter: "all", share: false, status: "", backupInspection: null,
-  visualPreview: { motif: "world-tree", accent: "R", eAxis: null, motion: false }
+  visualPreview: { motif: "world-tree", accent: "R", eAxis: null, motion: false },
+  tier2Review: { motif: "world-tree", accent: "R", eAxis: null,
+    worldTreeRatio: "natural", guide: true }
 };
 const uid = () => "a05-" + (globalThis.crypto?.randomUUID?.() ??
   Date.now().toString(36) + "-" + Math.random().toString(36).slice(2));
@@ -269,6 +275,8 @@ function renderResult() {
     '<strong>第5軸：' + wealthLabel(result.wealth) + '</strong></div>';
   return '<h2>あなたの価値観の現在地</h2>' + header +
     renderVisualPreview(state.visualPreview) +
+    (TIER2_REVIEW_ENABLED ? renderTier2Review({ ...state.tier2Review,
+      imageSrc: tier2Images[state.tier2Review.motif] ?? null }) : "") +
     '<h3>5軸のスコア</h3>' + axisChart(result) +
     '<div class="card tinted"><strong>次の一歩</strong><p>' +
     escapeHTML(display?.action ?? "大切にしたい価値観を一つ書き出す") +
