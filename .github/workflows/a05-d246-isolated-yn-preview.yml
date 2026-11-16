@@ -8,6 +8,7 @@ on:
       - 'research/a05/d243-midpoint-yn-probe-bank.json'
       - 'scripts/a05-d246-build-isolated-yn-preview.mjs'
       - 'scripts/test-a05-d246-isolated-browser.cjs'
+      - 'scripts/test-a05-d248-yn-research-parity.mjs'
       - 'scripts/a05-d243-midpoint-yn-research.mjs'
       - 'scripts/test-a05-d243-midpoint-yn-research.mjs'
       - '.github/workflows/a05-d246-isolated-yn-preview.yml'
@@ -33,6 +34,8 @@ jobs:
           test -s research/a05/generated/d246-isolated-midpoint-yn-preview.html
           grep -q 'A05-D246-ISOLATED-Y-N-PREVIEW-1' research/a05/generated/d246-isolated-midpoint-yn-preview.html
           grep -q 'A05-D242-POWER-1_5-RESEARCH-PREVIEW-1' research/a05/generated/d246-isolated-midpoint-yn-preview.html
+      - name: Audit browser scoring against independent D243 over 1408 cases and follow-ups
+        run: node --test scripts/test-a05-d248-yn-research-parity.mjs
       - name: Install Chromium for desktop and mobile E2E
         run: |
           npm install --prefix /tmp/a05-yn-playwright --no-audit --no-fund --no-save playwright@1.56.1
