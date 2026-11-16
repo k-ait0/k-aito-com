@@ -1,0 +1,32 @@
+/* A05 v37: opt-in Tier2 review in existing light result page; no production image assets. */
+.a05-t2-lab{border:1px dashed #b5c5d5;background:#fff;border-radius:16px;padding:18px;margin:18px 0;color:#263448}
+.a05-t2-lab *{box-sizing:border-box}
+.a05-t2-heading h3{margin:0 0 5px;font-size:1.08rem}
+.a05-t2-heading p{font-size:.8rem;color:#526477;line-height:1.6;margin:0 0 14px}
+.a05-t2-grid{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(220px,1fr);gap:18px;align-items:start}
+.a05-t2-figure{display:flex;align-items:center;flex-direction:column;gap:10px;margin:0;min-width:0}
+.a05-t2-stage{width:min(100%,420px);aspect-ratio:3/4;position:relative;border:4px solid var(--a05-t2-accent);border-radius:12px;overflow:hidden;background:linear-gradient(150deg,#eef3f7,#e5edf4);display:flex;align-items:center;justify-content:center}
+.a05-t2-stage--natural{aspect-ratio:1229/1280}
+.a05-t2-art{width:100%;height:100%;object-fit:contain;display:block}
+.a05-t2-fallback{width:min(40%,150px);height:auto;aspect-ratio:1}
+.a05-t2-guide{position:absolute;inset:7%;border:2px dashed #d97b1c;pointer-events:none;box-shadow:0 0 0 100vmax #0001}
+.a05-t2-figure figcaption{text-align:center;display:flex;flex-direction:column;gap:3px;max-width:100%}
+.a05-t2-figure figcaption strong{font-size:1.16rem}
+.a05-t2-figure figcaption small{font-size:.76rem;color:#526477}
+.a05-t2-controls{display:grid;gap:11px;align-content:start}
+.a05-t2-controls label{display:grid;gap:5px;font-size:.8rem;font-weight:700}
+.a05-t2-controls select,.a05-t2-controls input[type=file]{display:block;max-width:100%;width:100%;min-height:44px;border:1px solid #8096af;border-radius:8px;background:#fff;color:#263448;padding:7px 9px;font:inherit;font-size:.88rem}
+.a05-t2-controls input[type=file]{padding:7px;overflow:hidden}
+.a05-t2-controls .a05-t2-check{display:flex;align-items:center;gap:10px}
+.a05-t2-check input{width:20px;height:20px;flex:none}
+.a05-t2-controls p,.a05-t2-caution{font-size:.74rem;line-height:1.65;color:#596c7c}
+.a05-t2-controls select:focus-visible,.a05-t2-controls input:focus-visible,.a05-t2-controls button:focus-visible{outline:3px solid #1465b2;outline-offset:3px}
+.a05-t2-thumbnails{margin-top:16px;display:flex;justify-content:center;flex-wrap:wrap;gap:16px}
+.a05-t2-thumbnails>div{display:grid;justify-items:center;gap:7px}
+.a05-t2-thumbnails strong{font-size:.8rem}
+.a05-t2-mini{width:96px;height:96px;border:2px solid var(--a05-t2-accent);border-radius:8px;overflow:hidden;background:#eaf1f8}
+.a05-t2-mini img{display:block;width:100%;height:100%;object-fit:contain}
+.a05-t2-mini--crop img{object-fit:cover;transform:scale(1.30)}
+.a05-t2-caution{text-align:center}
+@media(max-width:650px){.a05-t2-grid{grid-template-columns:minmax(0,1fr)}.a05-t2-lab{padding:12px}.a05-t2-stage{max-width:320px}}
+@media(forced-colors:active){.a05-t2-stage,.a05-t2-mini{border-color:CanvasText}.a05-t2-guide{border-color:Highlight;box-shadow:none}}
