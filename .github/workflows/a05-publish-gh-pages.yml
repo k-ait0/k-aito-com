@@ -1,4 +1,4 @@
-name: Publish A05 demo HTML to gh-pages branch
+name: Publish A05 D242 root and D246 YN test page
 
 on:
   push:
@@ -10,6 +10,10 @@ on:
       - 'scripts/a05-d219-build-simple-diagnosis.mjs'
       - 'scripts/test-a05-d219-simple-browser.cjs'
       - 'scripts/test-a05-d242-preview-scoring.mjs'
+      - 'research/a05/d246-isolated-yn-preview-template.html'
+      - 'research/a05/d243-midpoint-yn-probe-bank.json'
+      - 'scripts/a05-d246-build-isolated-yn-preview.mjs'
+      - 'scripts/test-a05-d246-isolated-browser.cjs'
       - 'scripts/a05-d224-hold-filtered-sampler.mjs'
       - 'scripts/a05-d227-robust-intensity-scoring.mjs'
       - 'scripts/a05-d226-answer-intensity-comparison.mjs'
@@ -48,6 +52,13 @@ jobs:
           grep -q '診断を始める' research/a05/generated/d219-simple-diagnosis.html
       - name: Gate publication on D242 browser-versus-research 1.5-power scoring
         run: node --test scripts/test-a05-d242-preview-scoring.mjs
+      - name: Build Y/N supplementary research page separately from unchanged D242 root
+        run: |
+          node scripts/a05-d246-build-isolated-yn-preview.mjs
+          node --check scripts/a05-d246-build-isolated-yn-preview.mjs
+          test -s research/a05/generated/d246-isolated-midpoint-yn-preview.html
+          grep -q 'A05-D246-ISOLATED-Y-N-PREVIEW-1' research/a05/generated/d246-isolated-midpoint-yn-preview.html
+          grep -q 'RESEARCH_ONLY_NOT_PSYCHOMETRICALLY_VALIDATED' research/a05/generated/d246-isolated-midpoint-yn-preview.html
       - name: Install Chromium for desktop and phone browser acceptance
         run: |
           npm install --prefix /tmp/a05-pages-qa --no-audit --no-fund --no-save playwright@1.56.1
@@ -57,10 +68,16 @@ jobs:
           NODE_PATH: /tmp/a05-pages-qa/node_modules
           PLAYWRIGHT_BROWSERS_PATH: /tmp/a05-pages-browser
         run: node scripts/test-a05-d219-simple-browser.cjs
+      - name: Gate Y/N public test page on PC and mobile research-only browser E2E
+        env:
+          NODE_PATH: /tmp/a05-pages-qa/node_modules
+          PLAYWRIGHT_BROWSERS_PATH: /tmp/a05-pages-browser
+        run: node scripts/test-a05-d246-isolated-browser.cjs
       - name: Prepare isolated publish payload
         run: |
-          mkdir -p /tmp/a05-gh-pages
+          mkdir -p /tmp/a05-gh-pages/preview/yn
           cp research/a05/generated/d219-simple-diagnosis.html /tmp/a05-gh-pages/index.html
+          cp research/a05/generated/d246-isolated-midpoint-yn-preview.html /tmp/a05-gh-pages/preview/yn/index.html
           printf '' > /tmp/a05-gh-pages/.nojekyll
           printf 'User-agent: *\nDisallow: /\n' > /tmp/a05-gh-pages/robots.txt
       - name: Publish just the demo to gh-pages branch
@@ -78,18 +95,25 @@ jobs:
           cp /tmp/a05-gh-pages/index.html ./index.html
           cp /tmp/a05-gh-pages/.nojekyll ./.nojekyll
           cp /tmp/a05-gh-pages/robots.txt ./robots.txt
+          mkdir -p preview/yn
+          cp /tmp/a05-gh-pages/preview/yn/index.html ./preview/yn/index.html
           git add -A
           if git diff --cached --quiet; then
             echo "A05 GH_PAGES_CONTENT_UNCHANGED"
           else
-            git commit -m "Publish D242 A05 1.5-power research preview"
+            git commit -m "Publish isolated D246 Y/N browser test alongside D242 root"
             git push origin HEAD:refs/heads/gh-pages
           fi
       - name: Verify published branch contains only standalone site files
         run: |
           git fetch origin gh-pages
-          test "$(git ls-tree -r --name-only origin/gh-pages | wc -l)" -eq 3
+          test "$(git ls-tree -r --name-only origin/gh-pages | wc -l)" -eq 4
           git ls-tree -r --name-only origin/gh-pages | grep -Fx 'index.html'
           git ls-tree -r --name-only origin/gh-pages | grep -Fx '.nojekyll'
           git ls-tree -r --name-only origin/gh-pages | grep -Fx 'robots.txt'
+          git ls-tree -r --name-only origin/gh-pages | grep -Fx 'preview/yn/index.html'
+          git show origin/gh-pages:index.html | grep -q 'A05-D242-POWER-1_5-RESEARCH-PREVIEW-1'
+          git show origin/gh-pages:preview/yn/index.html | grep -q 'A05-D246-ISOLATED-Y-N-PREVIEW-1'
+          git show origin/gh-pages:preview/yn/index.html | grep -q 'noindex,nofollow,noarchive'
           echo 'A05_PAGES_BRANCH_READY https://k-ait0.github.io/k-aito-com/'
+          echo 'A05_YN_RESEARCH_TEST_URL https://k-ait0.github.io/k-aito-com/preview/yn/'
