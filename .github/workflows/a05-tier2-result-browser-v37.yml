@@ -1,0 +1,30 @@
+name: A05 Tier2 result-view browser smoke
+
+on:
+  pull_request:
+    paths:
+      - "projects/kidp/life-design-lab/a05/app.mjs"
+      - "projects/kidp/life-design-lab/a05/tier2-review.*"
+      - "projects/kidp/life-design-lab/a05/index.html"
+      - "scripts/qa-a05-tier2-result-v37.cjs"
+      - ".github/workflows/a05-tier2-result-browser-v37.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  browser-smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Install isolated Playwright and Chromium
+        run: |
+          npm install --prefix "$RUNNER_TEMP/a05-playwright" --no-audit --no-fund playwright@1.58.2
+          "$RUNNER_TEMP/a05-playwright/node_modules/.bin/playwright" install --with-deps chromium
+      - name: Smoke-test actual A05 result with opt-in Tier2 review
+        run: NODE_PATH="$RUNNER_TEMP/a05-playwright/node_modules" node scripts/qa-a05-tier2-result-v37.cjs
