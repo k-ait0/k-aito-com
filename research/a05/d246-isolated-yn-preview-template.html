@@ -80,9 +80,6 @@ p{margin:8px 0 16px}
 .yn-choices{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin:18px 0}
 .yn-choices button{border:1px solid #c6d1e2;background:#fff;padding:14px 8px;border-radius:10px;min-height:52px}
 .yn-choices button[aria-pressed=true]{background:#245ea5;color:#fff;border-color:#245ea5}
-#ynReasonBox{background:#f4f7fa;padding:12px;border-radius:12px;margin:18px 0}
-#ynReasonBox label{display:block;font-size:.88rem;font-weight:650}
-#ynReason{width:100%;min-height:44px;margin-top:8px;border-radius:8px;padding:7px;background:white;color:#1d2b44;border:1px solid #c6d1e2;font:inherit}
 @media(max-width:480px){.yn-choices{gap:5px}.yn-choices button{font-size:.87rem;padding:12px 4px}}
 </style>
 </head>
@@ -131,19 +128,6 @@ p{margin:8px 0 16px}
  <div class="stephead"><span id="ynCounter"></span><span id="ynStage"></span></div>
  <div id="ynQuestion" class="yn-question"></div>
  <div class="yn-choices" id="ynChoices" role="group" aria-label="補助質問の回答"></div>
- <div id="ynReasonBox">
-  <label for="ynReason">「4」や「判断できない」を選んだ理由（任意）</label>
-  <select id="ynReason">
-   <option value="">理由は回答しない</option>
-   <option value="BOTH_STRONG">左右どちらも強く重視する</option>
-   <option value="BOTH_WEAK">どちらもそれほど重視しない</option>
-   <option value="CONTEXT_DEPENDENT">状況によって変わる</option>
-   <option value="BALANCED_MODERATE">左右とも同程度に重視する</option>
-   <option value="WORDING_DIFFICULT">設問の意味が分かりにくい</option>
-   <option value="OTHER">その他</option>
-   <option value="PREFER_NOT">回答したくない</option>
-  </select>
- </div>
  <div class="actions"><button class="secondary" id="ynPrev">前へ</button><button class="primary" id="ynNext" disabled>次へ</button></div>
  <button class="skip" id="ynStop">ここで終了して結果へ戻る</button>
  <p class="muted">追加質問はY/N形式のみ・最大8問。回答により研究用の暫定候補が変わることがあります。途中終了は任意で、回答は端末から送信・保存されません。</p>
@@ -371,8 +355,6 @@ p{margin:8px 0 16px}
   $("ynPrev").disabled=ynPosition===0;
   $("ynNext").disabled=!Object.hasOwn(ynState.responses,q.id);
   $("ynNext").textContent=ynPosition===ynOffer.questions.length-1?"補助質問を続ける":"次の補助質問";
-  $("ynReasonBox").hidden=ynOffer.stage!=="INDEPENDENT_POLES";
-  $("ynReason").value=ynState.reasons[ynOffer.axis]||"";
  }
  function nextYN(){
   if(!ynOffer||!Object.hasOwn(ynState.responses,ynOffer.questions[ynPosition].id))return;
@@ -386,11 +368,6 @@ p{margin:8px 0 16px}
  $("ynNext").addEventListener("click",nextYN);
  $("ynPrev").addEventListener("click",()=>{if(ynPosition>0){ynPosition--;paintYN();}});
  $("ynStop").addEventListener("click",stopYN);
- $("ynReason").addEventListener("change",()=>{
-  if(!ynOffer)return;
-  if($("ynReason").value)ynState.reasons[ynOffer.axis]=$("ynReason").value;
-  else delete ynState.reasons[ynOffer.axis];
- });
 
  $("start").addEventListener("click",start);
  $("prev").addEventListener("click",()=>step(-1));
