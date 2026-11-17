@@ -14,6 +14,11 @@ import {drawResearchHoldFilteredManifest} from "./a05-d224-hold-filtered-sampler
 import {TYPES,GROUPS} from "../projects/kidp/life-design-lab/a05/types.mjs";
 const root=resolve(dirname(fileURLToPath(import.meta.url)),"..");
 const template=readFileSync(resolve(root,"research/a05/d246-isolated-yn-preview-template.html"),"utf8");
+const classifierSource=readFileSync(resolve(root,"scripts/a05-d255-yn-provisional-classifier.mjs"),"utf8");
+if(!classifierSource.includes('A05-D255-YN-PROVISIONAL-CLASSIFIER-1')||
+ /(^|\\n)\\s*import\\s/.test(classifierSource)||
+ /<\\/script/i.test(classifierSource))throw Error("Unexpected D255 classifier source");
+const browserClassifier=classifierSource.replace(/^export /gm,"");
 const manifests=Array.from({length:128},(_,i)=>{
  const m=drawResearchHoldFilteredManifest("D219-simple-"+String(i).padStart(3,"0"));
  return {ids:m.questions.map(q=>q.id),seed:m.seed};
@@ -21,6 +26,7 @@ const manifests=Array.from({length:128},(_,i)=>{
 const data={
  schema:"A05-D219-UNVALIDATED-DEMO-1",
  ynVersion:"A05-D246-ISOLATED-Y-N-PREVIEW-1",
+ ynClassificationVersion:"A05-D255-YN-PROVISIONAL-CLASSIFIER-1",
  ynProbes:JSON.parse(readFileSync(resolve(root,"research/a05/d243-midpoint-yn-probe-bank.json"),"utf8")),
  scoringVersion:"A05-D242-POWER-1_5-RESEARCH-PREVIEW-1",
  scoringPower:1.5,
@@ -51,10 +57,10 @@ for(const m of manifests){
   if(count!==(axis==="E"?2:7))throw Error("Unexpected axis quota in D242 preview");
  }
 }
-if(!template.includes("__D219_DATA__"))throw Error("Template placeholder absent");
+if(!template.includes("__D219_DATA__")||!template.includes("__D255_ENGINE__"))throw Error("Template placeholders absent");
 const output=resolve(root,"research/a05/generated/d246-isolated-midpoint-yn-preview.html");
 const safe=JSON.stringify(data).replace(/</g,"\\u003c");
-const html=template.replace("__D219_DATA__",safe);
+const html=template.replace("__D219_DATA__",safe).replace("__D255_ENGINE__",browserClassifier);
 mkdirSync(dirname(output),{recursive:true});
 writeFileSync(output,html,"utf8");
 console.log("D246_ISOLATED_PREVIEW_BUILD_OK items=50 manifests=128 types=16 bytes="+Buffer.byteLength(html));
