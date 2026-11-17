@@ -53,13 +53,13 @@
 ## v0.33 自動実行の確定結果（2026-11-18 JST）
 
 - GitHub Actions 実行: https://github.com/k-ait0/k-aito-com/actions/runs/44137474822
-- 対象commit: \`95331e542989fc4a0692b7bbcff19e10cc670a83\`
+- 対象commit: `95331e542989fc4a0692b7bbcff19e10cc670a83`
 - 実行環境: Ubuntu 24.04 / Playwright / Chromium 157.0.8103.50 / file:// HTML / browser context offline=true
-- 構築: \`node scripts/build-analytics-offline-preview-v032.cjs\` 後の \`git diff --exit-code\` が成功。生成HTMLの再現性保持。
-- Node全Analytics回帰: **920件検出、917 PASS、3 SKIP、0 FAIL**。SKIPは v20 の暗号化バックアップ受入・Shiller誤ファイル・合成秘密鍵の3ケース。 \`920/920 PASS\` と記載しない。
+- 構築: `node scripts/build-analytics-offline-preview-v032.cjs` 後の `git diff --exit-code` が成功。生成HTMLの再現性保持。
+- Node全Analytics回帰: **920件検出、917 PASS、3 SKIP、0 FAIL**。SKIPは v20 の暗号化バックアップ受入・Shiller誤ファイル・合成秘密鍵の3ケース。 `920/920 PASS` と記載しない。
 - 実Chromium自動E2E: **UI-01〜UI-14の14/14 PASS、0 FAIL**。外部 HTTP(S)リクエスト **0**、ページエラー **0**。375 / 390 / 1280 px の横方向溢れ **0**。
-- 日本語フォントを追加した再実行の証拠Artifact: ID \`14353620434\`、\`analytics-v033-browser-qa-synthetic-only\`。JSON結果とPC(1280px)/スマートフォン(390px)の画像を含む。これは5日間保持の期限付きArtifactであって永続保存先ではない。
-- これにより **\`B07-B-AUTO=PASS\`**（自動実Chromiumオフライン受入）を記録。ただしWindows本人PCの手動目視・クリック、EdgeとSafariなどの追加ブラウザ検証は実施していないので、**\`B07-B=NOT_COMPLETE\`** のまま。
+- 日本語フォントを追加した再実行の証拠Artifact: ID `14353620434`、`analytics-v033-browser-qa-synthetic-only`。JSON結果とPC(1280px)/スマートフォン(390px)の画像を含む。これは5日間保持の期限付きArtifactであって永続保存先ではない。
+- これにより **`B07-B-AUTO=PASS`**（自動実Chromiumオフライン受入）を記録。ただしWindows本人PCの手動目視・クリック、EdgeとSafariなどの追加ブラウザ検証は実施していないので、**`B07-B=NOT_COMPLETE`** のまま。
 
 ### 画像レビューで発見されたUI改善候補
 
@@ -74,4 +74,4 @@
 - SHA manifest付きの6件統合ZIPも、チャットのダウンロード成果物として作成した。**別媒体・別サービスへの第二保管の完了は未確認**。
 - **B02=PARTIAL_OWNER_COPY_VERIFIED**（Google Driveで6/6保全・再取得ハッシュ一致、2カ所保管未確認）。**B03はBLOCKED**（所有者秘密鍵での復号/タグ認証/原本照合なし）。**B04-B06=BLOCKED**。Fed DDPは候補扱い、2025基準CPI参照は過去ビンテージではない。
 - この公開GitHub文書には秘密鍵・平文原本・個人所有Driveリンク/IDを含めない。
-- \`main\`、本番サイト、Draft DWZ PR #70は未変更。\`B08=NOT_APPROVED\` のまま。
+- `main`、本番サイト、Draft DWZ PR #70は未変更。`B08=NOT_APPROVED` のまま。
