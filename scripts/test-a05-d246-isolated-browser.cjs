@@ -126,7 +126,8 @@ async function fill30(page,chooser){
    await page.locator("#ynNext").click();
    assert.equal(await page.locator("#result").isVisible(),true);
    assert.equal(await page.locator("#ynButton").isVisible(),false);
-   assert.match(await page.locator("#ynSummary").textContent(),/未確定/);
+   assert.match(await page.locator("#ynSummary").textContent(),/具体場面Y\/Nで/);
+   assert.match(await page.locator("#typeBadge").textContent(),/Y\/N補完の暫定参考タイプ/);
 
    assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>window.innerWidth+2),false);
    // Case VI: all 30 skipped; the only post-30 question format is Y/N.
