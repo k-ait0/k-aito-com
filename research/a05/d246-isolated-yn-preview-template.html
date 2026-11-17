@@ -93,7 +93,7 @@ p{margin:8px 0 16px}
  <div class="eyebrow">A05 · Values Explorer</div>
  <h1>あなたの価値観は、<br>どんなタイプ？</h1>
  <p>30の質問に答えるだけ。4つの価値観の方向から、16タイプの中で近い傾向を表示します。</p>
- <div class="point-list"><span>30問</span><span>7段階で答える</span><span>スマホ対応</span><span>回答の自動送信なし</span></div>
+ <div class="point-list"><span>最初の30問は7段階</span><span>31問目以降はY/N形式のみ（任意）</span><span>スマホ対応</span><span>回答の自動送信なし</span></div>
  <button class="primary" id="start" style="width:100%">診断を始める</button>
  <p class="muted" style="margin-top:14px">結果は1.5乗加点を使った研究用の参考表示です。設問・採点の心理測定上の妥当性は未検証で、正式な心理検査や適職判定ではありません。</p>
 </section>
@@ -121,8 +121,8 @@ p{margin:8px 0 16px}
  <div class="notes" id="resultNotice">参考表示です。</div>
  <div class="result-complete" id="resultComplete" role="status">診断はここで完了です。補助Y/Nは任意で、採点には含まれません。</div>
  <div id="ynSummary" class="notes" hidden aria-live="polite"></div>
- <div class="actions"><button class="secondary" id="ynButton" hidden>Y/Nの補助質問（任意）</button><button class="primary" id="extraButton" hidden>7段階の追加2問（任意）</button><button class="secondary" id="restart">新しく診断する</button></div>
- <p id="extraNote" class="extra-note"></p>
+ <div class="actions"><button class="secondary" id="ynButton" hidden>Y/Nの補助質問（任意）</button><button class="secondary" id="restart">新しく診断する</button></div>
+ <p id="post30Note" class="extra-note">30問の後はY/N形式のみを使用します。追加質問は任意です。</p>
 </section>
 <section id="yn" class="card" hidden>
  <div class="eyebrow">補助質問 · 研究用／16タイプの加点なし</div>
@@ -161,8 +161,7 @@ p{margin:8px 0 16px}
  const AXIS_MIN_VALID=5;
  const POWER=1.5; // D226/D227 exploratory research choice, NOT psychometrically validated
  const BORDERLINE_RATIO=Math.pow(1/3,POWER); // power-matched provisional reference, NOT confidence
- const MAX_EXTRA_ROUNDS=2; // two questions per round, at most four extra questions
- let manifest=null,position=0,answers={},initialCount=30,extraRounds=0,offered=null;
+ let manifest=null,position=0,answers={},initialCount=30;
  let ynState={responses:{},reasons:{}},ynOffer=null,ynPosition=0;
  function show(which){
   for(const id of ["intro","question","result","yn"])$(id).hidden=id!==which;
@@ -178,7 +177,7 @@ p{margin:8px 0 16px}
   const selected=data.manifests[randomIndex()];
   // The bundled manifest catalog is immutable; append follow-ups only to this user's session.
   manifest={ids:selected.ids.slice(),seed:selected.seed};
-  initialCount=manifest.ids.length;position=0;answers={};extraRounds=0;offered=null;
+  initialCount=manifest.ids.length;position=0;answers={};
   ynState={responses:{},reasons:{}};ynOffer=null;ynPosition=0;
   paintQuestion();show("question");
  }
@@ -186,7 +185,7 @@ p{margin:8px 0 16px}
  function paintQuestion(){
   const q=byId.get(manifest.ids[position]);
   $("counter").textContent=(position+1)+" / "+manifest.ids.length;
-  $("axisLabel").textContent=(position>=initialCount?"追加質問 · ":"")+(q.axis==="E"?"補助項目":q.axis+"軸");
+  $("axisLabel").textContent=q.axis==="E"?"補助項目":q.axis+"軸";
   $("progress").style.width=String((position+1)/manifest.ids.length*100)+"%";
   $("qtext").textContent=q.stem;$("left").textContent=q.left;$("right").textContent=q.right;
   const holder=$("scale");holder.replaceChildren();
@@ -257,47 +256,6 @@ p{margin:8px 0 16px}
    return stats.every((s,i)=>s.status!=="clear"||signs[i]===s.sign);
   });
  }
- function chooseExtras(axis){
-  const existing=new Set(manifest.ids);
-  const held=new Set(data.excludedCoreScoringIds);
-  const unused=data.questions.filter(q=>q.axis===axis&&!existing.has(q.id)&&!held.has(q.id));
-  if(unused.length<2)return null;
-  const familyUsed={};
-  for(const id of manifest.ids){
-   const q=byId.get(id);
-   familyUsed[q.family]=(familyUsed[q.family]||0)+1;
-  }
-  unused.sort((a,b)=>
-   (familyUsed[a.family]||0)-(familyUsed[b.family]||0)||
-   hash(manifest.seed+"|"+a.id)-hash(manifest.seed+"|"+b.id)||
-   a.id.localeCompare(b.id));
-  const first=unused[0],second=unused.find(q=>q.family!==first.family)||unused[1];
-  return [first.id,second.id];
- }
- function nextOffer(stats){
-  if(extraRounds>=MAX_EXTRA_ROUNDS)return null;
-  const priority={few_directional:-1,insufficient:0,tie:1,fragile:2,borderline:3,clear:4};
-  const unresolved=stats.filter(s=>s.status!=="clear")
-   .sort((a,b)=>priority[a.status]-priority[b.status]||
-    Math.abs(a.ratio)-Math.abs(b.ratio)||a.axis.localeCompare(b.axis));
-  for(const s of unresolved){
-   const ids=chooseExtras(s.axis);
-   if(ids&&ids.length===2&&new Set(ids).size===2)return {axis:s.axis,ids};
-  }
-  return null;
- }
- function addExtraQuestions(){
-  if(!offered||!manifest||extraRounds>=MAX_EXTRA_ROUNDS)return;
-  const pair=offered;
-  // Held C31/32/36 and E auxiliary questions must never enter 16-type follow-ups.
-  if(pair.ids.some(id=>manifest.ids.includes(id)||data.excludedCoreScoringIds.includes(id)||
-     byId.get(id)?.axis!==pair.axis||pair.axis==="E"))return;
-  position=manifest.ids.length;
-  manifest.ids.push(...pair.ids);
-  extraRounds++;
-  offered=null;
-  paintQuestion();show("question");
- }
  function addNearType(container,type){
   const item=document.createElement("div");item.className="near-type-item";
   const heading=document.createElement("strong");heading.textContent=type.emoji+" "+type.name;
@@ -356,9 +314,6 @@ p{margin:8px 0 16px}
    ?unresolved.map(s=>s.axis).join("・")+"軸は境界付近または回答不足のため、単一のタイプへ断定していません。"
    :"4軸とも今回の設問では左右の傾向が比較的明確でした。")+
    " この結果は1・7の強い回答を相対的に重視する1.5乗の研究用加点、暫定境界、設問除外時の方向安定性による参考表示です。心理測定としての信頼性・妥当性は未検証です。E軸の補助2問は分類に含めず、C31・C32・C36は採点保留としています。";
-  offered=nextOffer(stats);
-  $("extraButton").hidden=!offered;
-  if(offered)$("extraButton").textContent=offered.axis+"軸に7段階で2問追加（任意）";
   const ynNextOffer=planYN(stats);
   $("ynButton").hidden=!ynNextOffer;
   if(ynNextOffer)$("ynButton").textContent=ynNextOffer.axis+"軸のY/N補助質問（任意・得点外）";
@@ -374,9 +329,9 @@ p{margin:8px 0 16px}
    });
   ynSummary.hidden=notes.length===0;
   ynSummary.textContent=notes.length?"Y/N補助（16タイプの加点なし）："+notes.join("／"):"";
-  $("extraNote").textContent=offered
-   ?"追加質問は最大4問まで。回答しなくても結果は成立します。追加後も拮抗していれば、無理にタイプを決めません。"
-   :unresolved.length?"今回はこの結果で完了です。追加質問はありません。":"追加質問は不要です。";
+  $("post30Note").textContent=ynNextOffer
+   ?"30問目以降の追加質問はY/N形式のみです。補助質問は任意・得点外で、16タイプ判定は変わりません。"
+   :"30問の回答はここで終了です。追加の7段階質問はありません。";
  }
 
  function eligibleYNAxes(stats){
@@ -458,7 +413,6 @@ p{margin:8px 0 16px}
   if(!manifest)return;
   answers[manifest.ids[position]]=null;step(1);
  });
- $("extraButton").addEventListener("click",addExtraQuestions);
  $("restart").addEventListener("click",start);
 })();
 </script>
