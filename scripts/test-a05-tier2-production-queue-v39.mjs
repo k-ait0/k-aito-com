@@ -36,5 +36,10 @@ test('v39: the Polaris review candidate has a verified local hash, not a publish
  assert.equal(p.localArtifact.sha256,'1247b27543edc662a9629abf107d57ce44dfd31368e755f4bb1945d434b23fee');
  assert.equal(p.localArtifact.size,'1024x1536');
  assert.equal(p.localArtifact.gitHubUploaded,false);
+ assert.equal(p.alternateLocalArtifacts.length,1);
+ assert.equal(p.alternateLocalArtifacts[0].label,'v39-B');
+ assert.equal(p.alternateLocalArtifacts[0].sha256,'0c57a4829e362a20e91f47ff79a6f6e99c9ed0dc33e005764b68bf1931d066f2');
+ assert.equal(p.alternateLocalArtifacts[0].gitHubUploaded,false);
+ assert.equal(queue.newCandidateCount,1,'two Polaris variants count as one motif');
  assert.ok(queue.notes.some(n=>n.includes('霊峰')));
 });
