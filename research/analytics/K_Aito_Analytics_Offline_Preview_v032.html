@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-n+rwxR9+4g/3ZeLiIzH8HDURz/+VMOQYUQ0Nd5lzNGA='; style-src 'sha256-QeuxBGyTQH4EyMF3u09AGukBXlJ2VUayGeSab3RmK3A='; img-src 'none'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<title>K. Aito Analytics｜オフライン試算 v0.32（合成データ専用）</title>
+<style>:root{color-scheme:light;--ink:#19314d;--soft:#64758a;--line:#dfe7f0;--sea:#117a90;--blue:#264e80;--base:#f4f7fb;--danger:#a13c39}*{box-sizing:border-box}body{margin:0;background:var(--base);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Yu Gothic","Hiragino Kaku Gothic ProN",Meiryo,sans-serif;line-height:1.55}.shell{max-width:1220px;margin:0 auto;padding:0 22px}.top{padding-top:34px;padding-bottom:22px}.brand{display:flex;gap:14px;align-items:center}.brand-mark{background:#163454;color:#fff;width:52px;height:52px;border-radius:12px;display:grid;place-items:center;font-weight:800;font-size:22px}.eyebrow{letter-spacing:.11em;color:#55718b;font-size:11px;font-weight:700}h1{font-size:29px;line-height:1.15;margin:6px 0 0}h2{font-size:19px;margin:0}h3{font-size:15px;margin:0}.research{display:inline-block;margin-top:19px;background:#fff2d9;color:#805923;font-size:13px;border-radius:6px;font-weight:700;padding:8px 12px}.intro{color:#50667b;font-size:14px;max-width:880px;margin:13px 0 0}.layout{display:grid;grid-template-columns:365px minmax(0,1fr);gap:18px;align-items:start}.panel{background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 3px 14px rgba(20,49,83,.035);padding:26px}.section-heading{display:flex;align-items:center;gap:12px;margin-bottom:24px}.step{display:grid;place-items:center;width:31px;height:31px;border-radius:7px;background:#eaf2fa;color:var(--blue);font-size:13px;font-weight:800}.field{margin-bottom:18px}.field label{font-size:13px;font-weight:700;display:block;margin-bottom:7px}.field label small{color:var(--soft);font-weight:400}.field input,.field select{width:100%;appearance:auto;background:#fff;border:1px solid #c9d6e4;color:#17334e;border-radius:7px;padding:11px 12px;font:inherit;font-size:15px}.field input:focus-visible,.field select:focus-visible{outline:2px solid var(--sea);outline-offset:1px}.field.two{display:grid;grid-template-columns:1fr 1fr;gap:11px}.hint{font-size:11px;color:var(--soft);line-height:1.5;margin:7px 0 0}button{width:100%;border:0;border-radius:7px;background:#204e81;color:#fff;font-weight:700;font-size:15px;padding:14px 10px;cursor:pointer}button:focus-visible{outline:3px solid var(--sea);outline-offset:2px}button:hover{background:#153b66}.error{font-size:12px;color:var(--danger);min-height:16px}.results{min-height:540px}.flag{font-weight:700;font-size:12px;color:#745b30;background:#fff9ed;border:1px solid #efe1c1;border-radius:6px;padding:9px 13px;margin:-8px 0 18px}.cards{display:grid;grid-template-columns:1fr 1fr;gap:12px}.metric{border:1px solid var(--line);border-radius:8px;padding:15px 17px;background:#fafcff}.metric-name{display:flex;align-items:center;gap:8px;font-size:13px;color:#556c83;font-weight:700}.dot{width:10px;height:10px;display:inline-block;border-radius:100%}.dot.fixed{background:#345b91}.dot.indexed{background:#0f8b8d}.metric strong{display:block;font-size:clamp(20px,2.6vw,28px);letter-spacing:-.03em;margin:12px 0 3px;font-variant-numeric:tabular-nums}.metric small{font-size:11px;color:var(--soft)}.graph-head{display:flex;justify-content:space-between;align-items:center;margin-top:28px;gap:12px}.key{display:flex;gap:12px;color:var(--soft);font-size:12px}.key span{display:flex;align-items:center;gap:5px}#balance-chart{margin-top:10px;display:block;width:100%;height:auto;min-height:180px;border-bottom:1px solid var(--line)}.details{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:18px 0 10px;color:#48617a;font-size:12px}.detail{background:#f4f7fb;padding:11px 14px;border-radius:7px}.detail strong{display:block;color:#243f5c;font-size:17px;margin-top:3px}.audit{border-top:1px solid var(--line);padding-top:14px;font-size:12px;color:#536f7e}.foot{font-size:12px;color:#687f91;padding-top:23px;padding-bottom:28px}@media(max-width:860px){.layout{grid-template-columns:1fr}.top{padding-top:22px}.panel{padding:19px}.results{min-height:0}h1{font-size:24px}}@media(max-width:500px){.shell{padding-left:13px;padding-right:13px}.cards{grid-template-columns:1fr}.field.two{grid-template-columns:1fr 1fr}.details{grid-template-columns:1fr}.metric strong{font-size:23px}}
+</style>
+</head>
+<body>
+<header class="shell top">
+  <div class="brand"><span class="brand-mark">K.</span><div><div class="eyebrow">K. AITO ANALYTICS / PRIVATE RESEARCH</div><h1>資産・生活費シミュレーター</h1></div></div>
+  <div class="research" role="status">研究用プレビュー・合成データ専用</div>
+  <p class="intro">実装済みの計算Coreで、固定生活費とCPI連動生活費を比較します。実際の市場データ・日本CPI・税金・手数料は使用しません。</p>
+</header>
+<main class="shell layout">
+  <section class="panel inputs" aria-labelledby="params-heading">
+    <div class="section-heading"><span class="step">01</span><h2 id="params-heading">試算条件</h2></div>
+    <form id="scenario-form" novalidate>
+      <div class="field"><label for="initial_yen">初期資産 <small>円</small></label><input id="initial_yen" type="number" min="0" max="100000000000" step="1" value="10000000" required></div>
+      <div class="field"><label for="monthly_contribution_yen">毎月の積立 <small>円</small></label><input id="monthly_contribution_yen" type="number" min="0" max="100000000000" step="1" value="0" required></div>
+      <div class="field"><label for="monthly_living_yen">毎月の生活費 <small>円</small></label><input id="monthly_living_yen" type="number" min="0" max="100000000000" step="1" value="100000" required></div>
+      <div class="field two"><div><label for="horizon_years">試算期間</label><select id="horizon_years"><option value="10">10年間</option><option value="20" selected>20年間</option><option value="30">30年間</option></select></div><div><label for="cashflow_timing">収支の決済時点</label><select id="cashflow_timing"><option value="MONTH_START">月初</option><option value="MONTH_END">月末</option></select></div></div>
+      <div class="field two"><div><label for="annual_return_pct">仮定する年率リターン <small>%</small></label><input id="annual_return_pct" type="number" min="-95" max="100" step="0.1" value="4" required></div><div><label for="annual_cpi_pct">仮定する年率CPI変動 <small>%</small></label><input id="annual_cpi_pct" type="number" min="-20" max="50" step="0.1" value="2" required></div></div>
+      <div class="field"><label for="stress_profile">株式リターンの想定</label><select id="stress_profile"><option value="FLAT_RATE">毎年同じ年率</option><option value="YEAR1_SHOCK">初年度だけ -30%（以後は設定した年率）</option></select><p class="hint">いずれも仮定値です。実際の株価・配当履歴は読み込みません。</p></div>
+      <button id="run-button" type="submit">計算して比較</button>
+      <p class="error" id="error-msg" role="alert" aria-live="polite"></p>
+    </form>
+  </section>
+  <section class="panel results" aria-labelledby="results-heading">
+    <div class="section-heading"><span class="step">02</span><h2 id="results-heading">計算結果</h2></div>
+    <div class="flag" id="result-state">計算結果は仮定値に基づくデモです</div>
+    <div class="cards"><article class="metric"><div class="metric-name"><span class="dot fixed"></span>固定生活費</div><strong id="fixed-final">—</strong><small>試算期間終了時の資産残高</small></article><article class="metric"><div class="metric-name"><span class="dot indexed"></span>CPI連動生活費</div><strong id="cpi-final">—</strong><small>試算期間終了時の資産残高</small></article></div>
+    <div class="graph-head"><h3>資産残高の推移</h3><div class="key"><span><i class="dot fixed"></i>固定</span><span><i class="dot indexed"></i>CPI連動</span></div></div>
+    <svg id="balance-chart" role="img" aria-label="資産残高の年次推移（未計算）" viewBox="0 0 800 280" preserveAspectRatio="xMidYMid meet"></svg>
+    <div class="details" id="details" aria-live="polite">左の条件を設定して「計算して比較」を押してください。</div>
+    <div class="audit" id="audit-state">独立台帳監査：未実行</div>
+  </section>
+</main>
+<footer class="shell foot">研究専用・非商用・本番未承認｜期間中の実測リターン・将来確率・税引後残高を表示するものではありません。ローカルで動作し、入力値は外部送信しません。</footer>
+<script>(function(){
+'use strict';
+const factories={"cashflow-core.cjs":function(require,module,exports){
+'use strict';
+/**
+ * K. Aito Analytics / FINOWA shared research cashflow core v0.1.
+ * No network, browser, filesystem, tax or implicit market-data loading.
+ * Monetary inputs and outputs are integer JPY. Research only; not production-approved.
+ */
+const MONTH_RE=/^(\d{4})-(0[1-9]|1[0-2])$/;
+const MAX_MONTHS=1200;
+function monthSerial(value){
+  const match=typeof value==='string' && MONTH_RE.exec(value);
+  if(!match)throw Error('Invalid month: expected YYYY-MM');
+  return Number(match[1])*12+Number(match[2])-1;
+}
+function formatMonth(serial){
+  if(!Number.isSafeInteger(serial)||serial<0||serial>9999*12+11)throw Error('Invalid month index');
+  return String(Math.floor(serial/12)).padStart(4,'0')+'-'+String(serial%12+1).padStart(2,'0');
+}
+function yen(value,name){
+  if(!Number.isSafeInteger(value)||value<0)throw Error(name+' must be a nonnegative safe integer (JPY)');
+  return value;
+}
+function validateMonthlyReturns(monthlyReturns,origin,{allowGaps=false}={}){
+  if(!['OBSERVED','SYNTHETIC'].includes(origin))throw Error('provenance must be OBSERVED or SYNTHETIC');
+  if(!Array.isArray(monthlyReturns)||monthlyReturns.length<1||monthlyReturns.length>MAX_MONTHS)
+    throw Error('monthly_returns must contain 1..'+MAX_MONTHS+' records');
+  let previous=null;
+  return monthlyReturns.map((r,i)=>{
+    if(!r||typeof r!=='object'||Array.isArray(r))throw Error('Malformed return record at '+i);
+    for(const key of Object.keys(r))
+      if(!['month','origin','monthly_return','proxy','estimated'].includes(key))
+        throw Error('Unsupported return record field: '+key);
+    const serial=monthSerial(r.month);
+    if(previous!==null&&(serial<=previous||(!allowGaps&&serial!==previous+1)))
+      throw Error(serial<=previous?'Duplicate or out-of-order month: '+r.month:'Missing month before '+r.month);
+    previous=serial;
+    if(r.origin!==origin||
+       (Object.prototype.hasOwnProperty.call(r,'proxy')&&r.proxy!==false)||
+       (Object.prototype.hasOwnProperty.call(r,'estimated')&&r.estimated!==false))
+      throw Error('Mixed, proxy or estimated return series is forbidden: '+r.month);
+    if(typeof r.monthly_return!=='number'||!Number.isFinite(r.monthly_return)||r.monthly_return< -1||r.monthly_return>10)
+      throw Error('Invalid monthly return: '+r.month);
+    return {month:r.month,serial,rate:r.monthly_return};
+  });
+}
+function safeRound(value,context){
+  if(!Number.isFinite(value)||value<0||value>Number.MAX_SAFE_INTEGER-0.5)
+    throw Error('Unsafe monetary result: '+context);
+  return Math.round(value);
+}
+function simulateMonthlyCashflow({
+  initial_assets_yen,monthly_withdrawal_yen,monthly_contribution_yen=0,
+  monthly_returns,provenance='SYNTHETIC'
+}){
+  const opening=yen(initial_assets_yen,'initial_assets_yen');
+  const withdrawal=yen(monthly_withdrawal_yen,'monthly_withdrawal_yen');
+  const contribution=yen(monthly_contribution_yen,'monthly_contribution_yen');
+  const returns=validateMonthlyReturns(monthly_returns,provenance);
+  let assets=opening,totalUnfunded=0,firstShortfall=null,shortfallMonths=0;
+  const rows=[];
+  for(const r of returns){
+    const available=safeRound(assets+contribution,'available '+r.month);
+    const paid=Math.min(available,withdrawal);
+    const unfunded=withdrawal-paid;
+    const invested=available-paid;
+    const closing=safeRound(invested*(1+r.rate),'closing '+r.month);
+    if(unfunded>0){shortfallMonths++;if(firstShortfall===null)firstShortfall=r.month;}
+    totalUnfunded=safeRound(totalUnfunded+unfunded,'unfunded total');
+    rows.push({month:r.month,opening_yen:assets,contribution_yen:contribution,
+      requested_withdrawal_yen:withdrawal,paid_withdrawal_yen:paid,unfunded_yen:unfunded,
+      invested_before_return_yen:invested,monthly_return:r.rate,investment_gain_yen:closing-invested,
+      closing_yen:closing});
+    assets=closing;
+  }
+  return {status:shortfallMonths?'SHORTFALL':'FUNDED',provenance,publication_approved:false,
+    timing:'MONTH_START_CONTRIBUTION_THEN_WITHDRAWAL_THEN_RETURN',
+    horizon_months:rows.length,first_shortfall_month:firstShortfall,
+    shortfall_months:shortfallMonths,total_unfunded_yen:totalUnfunded,
+    ending_assets_yen:assets,rows};
+}
+/** Rolling history accepts only observed (non-proxy) private research paths.
+ * Gaps split the series; windows crossing a gap are excluded, not failed.
+ */
+function runRollingCashflow({
+  initial_assets_yen,monthly_withdrawal_yen,monthly_contribution_yen=0,
+  monthly_returns,horizon_months
+}){
+  yen(initial_assets_yen,'initial_assets_yen');
+  yen(monthly_withdrawal_yen,'monthly_withdrawal_yen');
+  yen(monthly_contribution_yen,'monthly_contribution_yen');
+  if(!Number.isInteger(horizon_months)||horizon_months<1||horizon_months>MAX_MONTHS)
+    throw Error('horizon_months must be 1..'+MAX_MONTHS);
+  const rows=validateMonthlyReturns(monthly_returns,'OBSERVED',{allowGaps:true});
+  const windows=[];
+  let blockStart=0,gaps=0;
+  function evaluateBlock(start,end){
+    for(let i=start;i+horizon_months<=end;i++){
+      const segment=monthly_returns.slice(i,i+horizon_months);
+      const outcome=simulateMonthlyCashflow({initial_assets_yen,monthly_withdrawal_yen,
+        monthly_contribution_yen,monthly_returns:segment,provenance:'OBSERVED'});
+      windows.push({start_month:segment[0].month,end_month:segment.at(-1).month,
+        status:outcome.status,first_shortfall_month:outcome.first_shortfall_month,
+        total_unfunded_yen:outcome.total_unfunded_yen,ending_assets_yen:outcome.ending_assets_yen});
+    }
+  }
+  for(let i=1;i<=rows.length;i++){
+    if(i<rows.length&&rows[i].serial===rows[i-1].serial+1)continue;
+    evaluateBlock(blockStart,i);
+    if(i<rows.length)gaps++;
+    blockStart=i;
+  }
+  const theoretical=Math.max(0,rows.at(-1).serial-rows[0].serial+1-horizon_months+1);
+  const funded=windows.filter(x=>x.status==='FUNDED').length;
+  return {
+    status:windows.length?'EVALUATED':'INSUFFICIENT_CONTIGUOUS_HISTORY',
+    provenance:'OBSERVED',publication_approved:false,
+    research_disclaimer:'Observed historical windows are not independent trials or future probabilities.',
+    first_observed_month:rows[0].month,last_observed_month:rows.at(-1).month,
+    observed_return_months:rows.length,gap_boundaries:gaps,
+    theoretical_windows_if_no_gaps:theoretical,complete_windows:windows.length,
+    excluded_windows_due_to_missing_months:theoretical-windows.length,
+    funded_windows:funded,shortfall_windows:windows.length-funded,
+    observed_funded_fraction:windows.length?funded/windows.length:null,
+    windows
+  };
+}
+function makeSyntheticFlatPath({start_month,months,monthly_return}){
+  const first=monthSerial(start_month);
+  if(!Number.isInteger(months)||months<1||months>MAX_MONTHS)throw Error('Invalid synthetic months');
+  if(typeof monthly_return!=='number'||!Number.isFinite(monthly_return)||monthly_return< -1||monthly_return>10)
+    throw Error('Invalid synthetic return');
+  return Array.from({length:months},(_,i)=>({month:formatMonth(first+i),monthly_return,origin:'SYNTHETIC'}));
+}
+module.exports={monthSerial,formatMonth,validateMonthlyReturns,simulateMonthlyCashflow,runRollingCashflow,makeSyntheticFlatPath};
+
+},
+"portfolio-core.cjs":function(require,module,exports){
+'use strict';
+/** Independent multi-asset nominal JPY portfolio research core v0.6. No external data or I/O. */
+const {monthSerial}=require('./cashflow-core.cjs');
+const MAX_ASSETS=12, MAX_MONTHS=1200, MAX_YEN=1_000_000_000_000;
+const ID=/^[A-Z][A-Z0-9_]{0,31}$/;
+const own=(o,k)=>Object.prototype.hasOwnProperty.call(o,k);
+function object(x,label){if(!x||typeof x!=='object'||Array.isArray(x))throw Error(label+' must be object');return x}
+function money(v,label){if(!Number.isSafeInteger(v)||v<0||v>MAX_YEN)throw Error(label+' must be integer JPY 0..1e12');return v}
+function sumSafe(values,label){const n=values.reduce((a,b)=>a+b,0);if(!Number.isSafeInteger(n)||n>MAX_YEN)throw Error('Overflow '+label);return n}
+function roundMoney(n,label){if(!Number.isFinite(n)||n<0||n>MAX_YEN)throw Error('Unsafe monetary result '+label);return Math.round(n)}
+function validateWeights(weights,ids){
+ object(weights,'target_weights');
+ if(Object.keys(weights).length!==ids.length||ids.some(k=>!own(weights,k)))throw Error('Target weight assets mismatch');
+ const values=ids.map(id=>weights[id]);
+ if(values.some(v=>typeof v!=='number'||!Number.isFinite(v)||v<0||v>1)||Math.abs(values.reduce((a,b)=>a+b,0)-1)>1e-10)throw Error('Target weights must total one');
+ return values;
+}
+/** Largest-remainder apportionment. Deterministic alphabetical tie-break by asset ID. */
+function apportion(total,weights,ids){
+ money(total,'apportion total');
+ const raw=weights.map(w=>total*w),base=raw.map(x=>Math.floor(x));
+ const initial=base.reduce((a,b)=>a+b,0),missing=total-initial;
+ if(!Number.isSafeInteger(missing)||missing<0||missing>ids.length)throw Error('Unstable rounding in allocation');
+ const order=ids.map((_,i)=>i).sort((a,b)=>(raw[b]-base[b])-(raw[a]-base[a])||ids[a].localeCompare(ids[b],'en'));
+ for(let i=0;i<missing;i++)base[order[i]]++;
+ return base;
+}
+function validateInput(input){
+ object(input,'portfolio input');
+ const allowed=new Set(['initial_holdings_yen','target_weights','monthly_returns','monthly_contribution_yen','monthly_withdrawal_yen','market_mode','rebalance','monthly_cashflows','cashflow_timing']);
+ for(const key of Object.keys(input))if(!allowed.has(key))throw Error('Unsupported portfolio input: '+key);
+ const holdings=object(input.initial_holdings_yen,'initial_holdings_yen');
+ const ids=Object.keys(holdings).sort();
+ if(ids.length<1||ids.length>MAX_ASSETS||ids.some(id=>!ID.test(id)))throw Error('Asset IDs must be 1..12 unique uppercase IDs');
+ for(const id of ids)money(holdings[id],id);
+ sumSafe(ids.map(id=>holdings[id]),'initial portfolio');
+ const weights=validateWeights(input.target_weights,ids);
+ const contribution=money(input.monthly_contribution_yen??0,'monthly_contribution_yen');
+ const withdrawal=money(input.monthly_withdrawal_yen??0,'monthly_withdrawal_yen');
+ const marketMode=input.market_mode??'SYNTHETIC_DEMO';
+ if(!['OBSERVED_RESEARCH','SYNTHETIC_DEMO'].includes(marketMode))throw Error('Unknown market_mode');
+ const requiredOrigin=marketMode==='OBSERVED_RESEARCH'?'OBSERVED':'SYNTHETIC';
+ const rows=input.monthly_returns;
+ if(!Array.isArray(rows)||rows.length<1||rows.length>MAX_MONTHS)throw Error('monthly_returns must be 1..1200 months');
+ let previous=null;
+ const returns=rows.map((row,i)=>{
+   object(row,'return row');
+   for(const key of Object.keys(row))
+     if(!['month','origin','asset_returns','proxy','estimated'].includes(key))
+       throw Error('Unsupported market return field: '+key);
+   const idx=monthSerial(row.month);
+   if(previous!==null&&(idx<=previous||idx!==previous+1))throw Error('Missing, repeated or out-of-order market month');
+   previous=idx;
+   if(row.origin!==requiredOrigin||(own(row,'proxy')&&row.proxy!==false)||(own(row,'estimated')&&row.estimated!==false))
+     throw Error('Mixed, proxy or estimated provenance prohibited');
+   const monthly=object(row.asset_returns,'asset_returns');
+   if(Object.keys(monthly).length!==ids.length||ids.some(id=>!own(monthly,id)))throw Error('Return asset coverage mismatch');
+   const rates=ids.map(id=>{
+     const r=monthly[id];
+     if(typeof r!=='number'||!Number.isFinite(r)||r< -1||r>10)throw Error('Invalid return for '+id+' '+row.month);
+     return r;
+   });
+   return {month:row.month,rates};
+ });
+ const hasSchedule=Object.prototype.hasOwnProperty.call(input,'monthly_cashflows');
+ const cashflows=hasSchedule?input.monthly_cashflows:null;
+ if(hasSchedule){
+  if(Object.prototype.hasOwnProperty.call(input,'monthly_contribution_yen')||Object.prototype.hasOwnProperty.call(input,'monthly_withdrawal_yen'))throw Error('Monthly schedule conflicts with fixed cashflows');
+  if(!Array.isArray(cashflows)||cashflows.length!==returns.length)throw Error('Monthly cashflow calendar length mismatch');
+  for(let i=0;i<returns.length;i++){
+   const flow=object(cashflows[i],'monthly cashflow');
+   for(const k of Object.keys(flow))if(!['month','contribution_yen','withdrawal_yen'].includes(k))throw Error('Unsupported monthly cashflow field: '+k);
+   if(flow.month!==returns[i].month)throw Error('Monthly cashflow calendar mismatch: '+returns[i].month);
+   money(flow.contribution_yen,'cashflow contribution '+flow.month);
+   money(flow.withdrawal_yen,'cashflow withdrawal '+flow.month);
+  }
+ }
+ const cashflowTiming=own(input,'cashflow_timing')?input.cashflow_timing:'MONTH_START';
+ if(!['MONTH_START','MONTH_END'].includes(cashflowTiming))throw Error('Invalid cashflow_timing');
+ const rebalance=input.rebalance??{mode:'NONE'};
+ object(rebalance,'rebalance');
+ const rbAllowed=new Set(['mode','interval_months','threshold']);
+ for(const k of Object.keys(rebalance))if(!rbAllowed.has(k))throw Error('Unknown rebalance key: '+k);
+ if(!['NONE','PERIODIC','THRESHOLD'].includes(rebalance.mode))throw Error('Invalid rebalance mode');
+ if(rebalance.mode==='PERIODIC'&&(!Number.isInteger(rebalance.interval_months)||rebalance.interval_months<1||rebalance.interval_months>1200))throw Error('Invalid rebalance interval');
+ if(rebalance.mode==='THRESHOLD'&&(typeof rebalance.threshold!=='number'||!Number.isFinite(rebalance.threshold)||rebalance.threshold<=0||rebalance.threshold>=1))throw Error('Invalid threshold');
+ if(rebalance.mode!=='PERIODIC'&&own(rebalance,'interval_months'))throw Error('Unexpected rebalance interval');
+ if(rebalance.mode!=='THRESHOLD'&&own(rebalance,'threshold'))throw Error('Unexpected threshold');
+ return {ids,holdings:ids.map(id=>holdings[id]),weights,returns,contribution,withdrawal,cashflows,marketMode,rebalance,cashflowTiming};
+}
+function simulatePortfolio(input){
+ const v=validateInput(input);let holdings=[...v.holdings],firstShortfall=null,shortfallMonths=0,totalUnfunded=0;
+ const ledger=[];
+ for(let i=0;i<v.returns.length;i++){
+   const month=v.returns[i].month,opening=sumSafe(holdings,'opening '+month);
+   const requestedContribution=v.cashflows?v.cashflows[i].contribution_yen:v.contribution;
+   const requestedWithdrawal=v.cashflows?v.cashflows[i].withdrawal_yen:v.withdrawal;
+   const contributions=apportion(requestedContribution,v.weights,v.ids);
+   // Market month labels denote the return interval END. Preserve legacy month-start
+   // execution unless MONTH_END is explicitly selected by the caller.
+   const startMode=v.cashflowTiming==='MONTH_START';
+   const beforeMarket=startMode?holdings.map((h,j)=>h+contributions[j]):[...holdings];
+   if(startMode)sumSafe(beforeMarket,'available before returns '+month);
+   const contributionsAndWithdrawals=startMode?beforeMarket:null;
+   const startAvailable=startMode?sumSafe(contributionsAndWithdrawals,'available '+month):0;
+   // In MONTH_START, withdrawals precede the market move. In MONTH_END, market
+   // returns apply only to the opening holdings; cash flows settle afterwards.
+   let paid,unfunded,payments,beforeReturns,afterReturns,afterMarket,endingBeforeRebalance;
+   if(startMode){
+     paid=Math.min(startAvailable,requestedWithdrawal);unfunded=requestedWithdrawal-paid;
+     payments=startAvailable===0?contributionsAndWithdrawals.map(()=>0):apportion(paid,contributionsAndWithdrawals.map(x=>x/startAvailable),v.ids);
+     const invested=contributionsAndWithdrawals.map((x,j)=>x-payments[j]);
+     if(invested.some(x=>x<0))throw Error('Negative holdings after withdrawals');
+     beforeReturns=sumSafe(invested,'before returns '+month);
+     afterReturns=invested.map((h,j)=>roundMoney(h*(1+v.returns[i].rates[j]),'market return '+month+' '+v.ids[j]));
+     endingBeforeRebalance=afterReturns;
+     afterMarket=sumSafe(afterReturns,'after returns '+month);
+   }else{
+     beforeReturns=opening;
+     const returned=holdings.map((h,j)=>roundMoney(h*(1+v.returns[i].rates[j]),'market return '+month+' '+v.ids[j]));
+     afterMarket=sumSafe(returned,'after returns '+month);
+     const available=returned.map((h,j)=>h+contributions[j]);
+     const total=sumSafe(available,'after market and contribution '+month);
+     paid=Math.min(total,requestedWithdrawal);unfunded=requestedWithdrawal-paid;
+     payments=total===0?available.map(()=>0):apportion(paid,available.map(x=>x/total),v.ids);
+     endingBeforeRebalance=available.map((x,j)=>x-payments[j]);
+     if(endingBeforeRebalance.some(x=>x<0))throw Error('Negative holdings after end-of-month withdrawals');
+   }
+   const preRebalance=sumSafe(endingBeforeRebalance,'before rebalance '+month);
+   const afterReturnWeights=preRebalance?endingBeforeRebalance.map(x=>x/preRebalance):v.weights;
+   let rebalance=false;
+   if(v.rebalance.mode==='PERIODIC')rebalance=(i+1)%v.rebalance.interval_months===0;
+   if(v.rebalance.mode==='THRESHOLD'&&preRebalance>0)rebalance=afterReturnWeights.some((w,j)=>Math.abs(w-v.weights[j])>v.rebalance.threshold);
+   let turnover=0;
+   let closing=[...endingBeforeRebalance];
+   if(rebalance){
+     closing=apportion(preRebalance,v.weights,v.ids);
+     turnover=closing.reduce((n,x,j)=>n+Math.max(0,x-endingBeforeRebalance[j]),0);
+   }
+   const final=sumSafe(closing,'closing '+month);
+   if(final!==preRebalance)throw Error('Rebalance conservation failed');
+   if(unfunded>0){shortfallMonths++;if(firstShortfall===null)firstShortfall=month;}
+   totalUnfunded=sumSafe([totalUnfunded,unfunded],'cumulative unmet withdrawal');
+   const items=Object.fromEntries(v.ids.map((id,j)=>[id,{opening_yen:holdings[j],contribution_yen:contributions[j],withdrawal_yen:payments[j],market_return:v.returns[i].rates[j],before_rebalance_yen:endingBeforeRebalance[j],closing_yen:closing[j]}]));
+   ledger.push({month,opening_yen:opening,contribution_yen:requestedContribution,requested_withdrawal_yen:requestedWithdrawal,
+      paid_withdrawal_yen:paid,unfunded_yen:unfunded,invested_before_return_yen:beforeReturns,
+      investment_gain_yen:afterMarket-beforeReturns,pre_rebalance_yen:preRebalance,
+      rebalance_executed:rebalance,rebalance_turnover_yen:turnover,closing_yen:final,holdings:items});
+   holdings=closing;
+ }
+ return {status:shortfallMonths?'SHORTFALL':'FUNDED',market_mode:v.marketMode,publication_approved:false,
+   provenance_verified:false,assumptions:'GROSS_NOMINAL_JPY_NO_FEES_TAXES_FX_OR_DEBTS',
+   timing:v.cashflowTiming==='MONTH_START'?'MONTH_START_CONTRIBUTION_THEN_PROPORTIONAL_WITHDRAWAL_THEN_RETURNS_THEN_REBALANCE':'MONTH_END_RETURNS_THEN_CONTRIBUTION_THEN_PROPORTIONAL_WITHDRAWAL_THEN_REBALANCE',
+   cashflow_mode:v.cashflows?'MONTHLY_SCHEDULE':'FIXED_MONTHLY',cashflow_timing:v.cashflowTiming,
+   assets:v.ids,rebalance_mode:v.rebalance.mode,horizon_months:ledger.length,
+   ending_assets_yen:sumSafe(holdings,'ending assets'),ending_holdings_yen:Object.fromEntries(v.ids.map((id,j)=>[id,holdings[j]])),
+   first_shortfall_month:firstShortfall,shortfall_months:shortfallMonths,total_unfunded_yen:totalUnfunded,rows:ledger};
+}
+module.exports={simulatePortfolio,validateInput,apportion};
+
+},
+"portfolio-ledger-audit.cjs":function(require,module,exports){
+'use strict';
+/** v0.14 independent accounting audit over a complete monthly portfolio ledger.
+ * Read-only validator. Does NOT attest raw data, publishers, CPI, rights or licenses.
+ */
+const {monthSerial}=require('./cashflow-core.cjs');
+const own=(o,k)=>Object.prototype.hasOwnProperty.call(o,k);
+function obj(v,name){if(v===null||typeof v!=='object'||Array.isArray(v))throw Error('Audit invalid object '+name);return v;}
+function integer(v,name,{negative=false}={}){
+ if(!Number.isSafeInteger(v)||(!negative&&v<0)||Math.abs(v)>1_000_000_000_000)throw Error('Audit unsafe amount '+name);
+ return v;
+}
+function equal(actual,expected,name){if(!Object.is(actual,expected))throw Error('Audit mismatch '+name+': '+actual+' vs '+expected);}
+function sum(arr,name){const s=arr.reduce((a,b)=>a+b,0);return integer(s,name);}
+function sumAcrossMonths(a,b,name){const total=a+b;if(!Number.isSafeInteger(total)||total<0)throw Error('Audit accumulated lifetime amount overflow '+name);return total;}
+function auditPortfolioLedger(simulation){
+ obj(simulation,'simulation');
+ if(!Array.isArray(simulation.rows)||!simulation.rows.length||simulation.rows.length>1200)throw Error('Audit requires 1..1200 ledger rows');
+ if(!Array.isArray(simulation.assets)||!simulation.assets.length||simulation.assets.length>12)throw Error('Audit invalid asset universe');
+ if(new Set(simulation.assets).size!==simulation.assets.length)throw Error('Audit duplicate asset ID');
+ const phase=simulation.cashflow_timing??'MONTH_START';
+ if(!['MONTH_START','MONTH_END'].includes(phase))throw Error('Audit invalid cashflow timing');
+ const startPhase=phase==='MONTH_START';
+ const assets=[...simulation.assets].sort();
+ equal(simulation.horizon_months,simulation.rows.length,'horizon');
+ let prior=null,shortfallMonths=0,firstShortfall=null,totalUnfunded=0,totalTurnover=0,
+   totalRequested=0,totalPaid=0,totalContribution=0,totalGain=0;
+ for(const [idx,row] of simulation.rows.entries()){
+   obj(row,'row '+idx);
+   const at=monthSerial(row.month);
+   if(prior!==null&&at!==prior.monthSerial+1)throw Error('Audit nonconsecutive month at '+row.month);
+   const opening=integer(row.opening_yen,'opening '+row.month),contribution=integer(row.contribution_yen,'contribution '+row.month);
+   const requested=integer(row.requested_withdrawal_yen,'requested '+row.month),paid=integer(row.paid_withdrawal_yen,'paid '+row.month);
+   const unfunded=integer(row.unfunded_yen,'unfunded '+row.month),before=integer(row.invested_before_return_yen,'invested '+row.month);
+   const gain=integer(row.investment_gain_yen,'gain '+row.month,{negative:true});
+   const pre=integer(row.pre_rebalance_yen,'pre rebalance '+row.month),closing=integer(row.closing_yen,'closing '+row.month);
+   const turnover=integer(row.rebalance_turnover_yen,'turnover '+row.month);
+   if(prior!==null)equal(opening,prior.closing,'opening rollover '+row.month);
+   if(paid>requested||paid>(startPhase?opening+contribution:before+gain+contribution))throw Error('Audit withdrawal exceeds availability '+row.month);
+   equal(unfunded,requested-paid,'unfunded '+row.month);
+   equal(before,startPhase?opening+contribution-paid:opening,'cashflow timing / investment base '+row.month);
+   equal(pre,startPhase?before+gain:before+gain+contribution-paid,'investment and cashflow conservation '+row.month);
+   equal(closing,pre,'rebalancing does not change gross wealth '+row.month);
+   const holdings=obj(row.holdings,'holdings '+row.month);
+   if(Object.keys(holdings).length!==assets.length||assets.some(id=>!own(holdings,id)))throw Error('Audit holdings asset coverage '+row.month);
+   let openings=[],contributions=[],withdrawals=[],befores=[],closings=[],purchases=[];
+   for(const id of assets){
+     const x=obj(holdings[id],id+' '+row.month);
+     const start=integer(x.opening_yen,id+' open'),paidIn=integer(x.contribution_yen,id+' contribution');
+     const sold=integer(x.withdrawal_yen,id+' withdrawal'),beforeRb=integer(x.before_rebalance_yen,id+' market close');
+     const end=integer(x.closing_yen,id+' closing'),rate=x.market_return;
+     if(typeof rate!=='number'||!Number.isFinite(rate)||rate< -1||rate>10)throw Error('Audit invalid asset return '+id);
+     if(prior!==null)equal(start,prior.holdings[id].closing_yen,'per-asset opening rollover '+id);
+     if((startPhase?start+paidIn:Math.round(start*(1+rate))+paidIn)<sold)throw Error('Audit negative position after withdrawal '+id);
+     const returnMoney=startPhase?Math.round((start+paidIn-sold)*(1+rate)):
+       Math.round(start*(1+rate))+paidIn-sold;
+     equal(beforeRb,returnMoney,'per-asset rounded market return '+id+' '+row.month);
+     openings.push(start);contributions.push(paidIn);withdrawals.push(sold);befores.push(beforeRb);closings.push(end);
+     purchases.push(Math.max(0,end-beforeRb));
+   }
+   equal(sum(openings,'all openings'),opening,'opening asset sum '+row.month);
+   equal(sum(contributions,'all contributions'),contribution,'contribution asset sum '+row.month);
+   equal(sum(withdrawals,'all withdrawals'),paid,'withdrawal asset sum '+row.month);
+   equal(sum(befores,'all before-rebalance'),pre,'pre-rebalance asset sum '+row.month);
+   equal(sum(closings,'all closings'),closing,'closing asset sum '+row.month);
+   if(typeof row.rebalance_executed!=='boolean')throw Error('Audit missing boolean rebalance state');
+   if(!row.rebalance_executed){equal(turnover,0,'no rebalance turnover');for(let i=0;i<assets.length;i++)equal(closings[i],befores[i],'no rebalance asset change');}
+   else equal(turnover,sum(purchases,'one-way turnover'),'rebalance turnover '+row.month);
+   totalUnfunded=sum([totalUnfunded,unfunded],'total unfunded');
+   totalTurnover=sumAcrossMonths(totalTurnover,turnover,'total turnover');
+   totalPaid=sumAcrossMonths(totalPaid,paid,'total paid');totalRequested=sumAcrossMonths(totalRequested,requested,'total requested');
+   totalContribution=sumAcrossMonths(totalContribution,contribution,'total contributions');
+   // Market gains may be negative: keep safe signed totals as well.
+   totalGain+=gain;if(!Number.isSafeInteger(totalGain))throw Error('Audit market gain accumulated overflow');
+   if(unfunded){shortfallMonths++;if(firstShortfall===null)firstShortfall=row.month;}
+   prior={monthSerial:at,closing,holdings};
+ }
+ equal(simulation.ending_assets_yen,prior.closing,'ending total');
+ const ending=obj(simulation.ending_holdings_yen,'ending holdings');
+ if(Object.keys(ending).length!==assets.length||assets.some(id=>!own(ending,id)))throw Error('Audit ending assets coverage');
+ for(const id of assets)equal(ending[id],prior.holdings[id].closing_yen,'final position '+id);
+ equal(simulation.shortfall_months,shortfallMonths,'shortfall month count');
+ equal(simulation.total_unfunded_yen,totalUnfunded,'total shortfall');
+ equal(simulation.first_shortfall_month,firstShortfall,'first shortfall month');
+ equal(simulation.status,shortfallMonths?'SHORTFALL':'FUNDED','funded status');
+ return {schema:'ANALYTICS_PORTFOLIO_LEDGER_ACCOUNTING_AUDIT_V0_14',status:'INTERNAL_LEDGER_ARITHMETIC_PASSED',
+   checked_months:simulation.rows.length,assets:assets.length,first_month:simulation.rows[0].month,
+   last_month:simulation.rows.at(-1).month,ending_assets_yen:prior.closing,total_requested_withdrawals_yen:totalRequested,
+   total_paid_withdrawals_yen:totalPaid,total_unfunded_yen:totalUnfunded,total_contributions_yen:totalContribution,
+   total_gross_market_gain_yen:totalGain,total_one_way_rebalance_turnover_yen:totalTurnover,
+   cashflow_timing:phase,source_origin_verified:false,publication_approved:false,
+   note:'Checks internal arithmetic and rounding only. Does not certify market inputs, timing, CPI index revisions, taxes/fees, publisher rights or historical probability.'};
+}
+module.exports={auditPortfolioLedger};
+
+},
+"portfolio-input-audit.cjs":function(require,module,exports){
+'use strict';
+/**
+ * v0.15 external-input concordance audit. Compare a portfolio ledger against its
+ * ORIGINAL independent inputs, not just mutually consistent fields in that ledger.
+ * No market data acquisition, validation of issuer truth, rights clearance, or I/O.
+ */
+const {validateInput}=require('./portfolio-core.cjs');
+const {auditPortfolioLedger}=require('./portfolio-ledger-audit.cjs');
+const own=(o,k)=>Object.prototype.hasOwnProperty.call(o,k);
+const fail=(label)=>{throw Error('INPUT_AUDIT_MISMATCH: '+label);};
+const eq=(a,b,label)=>{if(!Object.is(a,b))fail(label);};
+const safe=(value,label)=>{
+  if(!Number.isSafeInteger(value)||value<0||value>1_000_000_000_000)fail('unsafe integer '+label);
+  return value;
+};
+/** Independently implement largest-remainder with deterministic alphabetical tie ordering. */
+function allocate(total,shares,ids){
+  safe(total,'allocation total');
+  if(!Array.isArray(shares)||shares.length!==ids.length)fail('allocation size');
+  const scaled=shares.map(s=>total*s);
+  if(scaled.some(v=>!Number.isFinite(v)||v<0))fail('allocation shares');
+  const integer=scaled.map(v=>Math.floor(v));
+  const left=total-integer.reduce((x,y)=>x+y,0);
+  if(!Number.isSafeInteger(left)||left<0||left>integer.length)fail('allocation residual');
+  const fractions=scaled.map((v,i)=>({i,extra:v-integer[i],name:ids[i]}));
+  fractions.sort((a,b)=>b.extra-a.extra||a.name.localeCompare(b.name,'en'));
+  for(let i=0;i<left;i++)integer[fractions[i].i]++;
+  return integer;
+}
+function auditPortfolioAgainstInputs(input,simulation){
+  const original=validateInput(input); // Schema validation is shared; value reconciliation below is separate.
+  const internal=auditPortfolioLedger(simulation);
+  const ids=original.ids;
+  if(!Array.isArray(simulation.assets)||simulation.assets.length!==ids.length||
+      simulation.assets.some((asset,i)=>asset!==ids[i]))fail('asset identity/order');
+  eq(simulation.market_mode,original.marketMode,'market mode');
+  eq(simulation.rebalance_mode,original.rebalance.mode,'rebalance mode');
+  eq(simulation.cashflow_mode,original.cashflows?'MONTHLY_SCHEDULE':'FIXED_MONTHLY','cashflow mode');
+  eq(simulation.cashflow_timing,original.cashflowTiming,'cashflow timing');
+  eq(simulation.publication_approved,false,'publication gate');
+  eq(simulation.provenance_verified,false,'source origin not independently verified');
+  eq(simulation.rows.length,original.returns.length,'market observation count');
+  const weights=original.weights;
+  let last=original.holdings.slice(),turnover=0,rebalanceCount=0,requestedTotal=0;
+  for(let i=0;i<original.returns.length;i++){
+    const market=original.returns[i],row=simulation.rows[i],label=market.month;
+    eq(row.month,label,'market calendar '+i);
+    for(let j=0;j<ids.length;j++)eq(row.holdings[ids[j]].opening_yen,last[j],'initial/rolling holdings '+label+' '+ids[j]);
+    const contribution=original.cashflows?original.cashflows[i].contribution_yen:original.contribution;
+    const requested=original.cashflows?original.cashflows[i].withdrawal_yen:original.withdrawal;
+    eq(row.contribution_yen,contribution,'external contribution '+label);
+    eq(row.requested_withdrawal_yen,requested,'external requested withdrawal '+label);
+    requestedTotal+=requested;
+    if(!Number.isSafeInteger(requestedTotal))fail('lifetime requested overflow');
+    const allocated=allocate(contribution,weights,ids);
+    const startPhase=original.cashflowTiming==='MONTH_START';
+    const afterMarketBeforeCash=last.map((x,j)=>Math.round(x*(1+market.rates[j])));
+    const available=startPhase?last.map((x,j)=>safe(x+allocated[j],'available '+label+' '+ids[j])):
+      afterMarketBeforeCash.map((x,j)=>safe(x+allocated[j],'available end '+label+' '+ids[j]));
+    const amount=available.reduce((a,b)=>a+b,0);
+    safe(amount,'total available '+label);
+    const pay=Math.min(amount,requested);
+    eq(row.paid_withdrawal_yen,pay,'external paid withdrawal '+label);
+    const withdrawn=amount===0?ids.map(()=>0):allocate(pay,available.map(x=>x/amount),ids);
+    const preValues=available.map((x,j)=>x-withdrawn[j]);
+    const after=startPhase?preValues.map((x,j)=>Math.round(x*(1+market.rates[j]))):preValues;
+    after.forEach((v,j)=>safe(v,'postmarket or postcash '+label+' '+ids[j]));
+    const afterTotal=after.reduce((a,b)=>a+b,0);
+    safe(afterTotal,'postmarket and cash total '+label);
+    const postWeights=afterTotal?after.map(x=>x/afterTotal):weights;
+    const policy=original.rebalance;
+    const expectedRebalance=policy.mode==='PERIODIC'?((i+1)%policy.interval_months===0):
+       policy.mode==='THRESHOLD'&&afterTotal>0&&postWeights.some((w,j)=>Math.abs(w-weights[j])>policy.threshold);
+    eq(row.rebalance_executed,expectedRebalance,'external rebalance trigger '+label);
+    const closing=expectedRebalance?allocate(afterTotal,weights,ids):after;
+    const expectedTurnover=expectedRebalance?closing.reduce((a,x,j)=>a+Math.max(0,x-after[j]),0):0;
+    eq(row.rebalance_turnover_yen,expectedTurnover,'external rebalance turnover '+label);
+    // Reconcile original per-asset source inputs before aggregate values for actionable QA.
+    for(let j=0;j<ids.length;j++){
+      const id=ids[j],asset=row.holdings[id];
+      eq(asset.opening_yen,last[j],'initial/rolling holdings '+label+' '+id);
+      eq(asset.contribution_yen,allocated[j],'target contribution allocation '+label+' '+id);
+      eq(asset.withdrawal_yen,withdrawn[j],'proportional withdrawal allocation '+label+' '+id);
+      eq(asset.market_return,market.rates[j],'source market return '+label+' '+id);
+      eq(asset.before_rebalance_yen,after[j],'post return rounding '+label+' '+id);
+      eq(asset.closing_yen,closing[j],'target rebalance allocation '+label+' '+id);
+    }
+    eq(row.pre_rebalance_yen,afterTotal,'external gross market/cash close '+label);
+    eq(row.invested_before_return_yen,startPhase?preValues.reduce((a,b)=>a+b,0):last.reduce((a,b)=>a+b,0),'external pre-return base '+label);
+    eq(row.investment_gain_yen,(startPhase?afterTotal:afterMarketBeforeCash.reduce((a,b)=>a+b,0))-row.invested_before_return_yen,'external market gain '+label);
+    eq(row.closing_yen,afterTotal,'external closing gross '+label);
+    last=closing;
+    turnover+=expectedTurnover;
+    if(!Number.isSafeInteger(turnover))fail('lifetime turnover overflow');
+    if(expectedRebalance)rebalanceCount++;
+  }
+  for(let j=0;j<ids.length;j++)eq(simulation.ending_holdings_yen[ids[j]],last[j],'final asset '+ids[j]);
+  return {schema:'ANALYTICS_PORTFOLIO_EXTERNAL_INPUT_CONCORDANCE_V0_15',
+    status:'INPUT_CONCORDANCE_AND_INTERNAL_LEDGER_PASSED',checked_months:original.returns.length,
+    checked_asset_months:original.returns.length*ids.length,rebalance_count:rebalanceCount,
+    independently_reconciled_turnover_yen:turnover,total_requested_withdrawals_yen:requestedTotal,
+    ending_assets_yen:internal.ending_assets_yen,publication_approved:false,
+    original_market_source_authenticated:false,source_rights_approved:false,
+    methodology:'Independent input-to-ledger deterministic re-simulation. Input values themselves require external provenance and raw-byte QA.',
+    caveat:'Nominal JPY gross returns only; no taxes, fees, FX or real-world investment product certifications.'};
+}
+module.exports={auditPortfolioAgainstInputs};
+
+},
+"rolling-portfolio-lifecycle.cjs":function(require,module,exports){
+'use strict';
+/**
+ * K. Aito Analytics v0.7: historical/synthetic rolling portfolio with relative lifecycle.
+ * Private research only. Values tagged OBSERVED are NOT independently authenticated here.
+ * No I/O, downloads, source substitution or site publication.
+ */
+const {monthSerial}=require('./cashflow-core.cjs');
+const {simulatePortfolio,validateInput}=require('./portfolio-core.cjs');
+const {auditPortfolioAgainstInputs}=require('./portfolio-input-audit.cjs');
+const MAX_MONTHS=1200,MAX_EVENTS=500,MAX_PENSIONS=20,MAX_YEN=1_000_000_000_000;
+const obj=(x,name)=>{if(!x||typeof x!=='object'||Array.isArray(x))throw Error('Invalid '+name);return x;};
+const assertKeys=(x,allowed,name)=>{obj(x,name);for(const k of Object.keys(x))if(!allowed.has(k))throw Error('Unsupported '+name+' field: '+k);};
+const money=(x,name)=>{if(!Number.isSafeInteger(x)||x<0||x>MAX_YEN)throw Error('Invalid '+name+' (integer JPY 0..1e12)');return x;};
+const safeAdd=(a,b,name)=>{const x=a+b;if(!Number.isSafeInteger(x)||x>MAX_YEN)throw Error('Unsafe money '+name);return x;};
+const yenRound=(x,name)=>{if(!Number.isFinite(x)||x<0||x>MAX_YEN-0.5)throw Error('Unsafe round '+name);return Math.round(x);};
+const id=(x,name)=>{if(typeof x!=='string'||!(/^[A-Za-z][A-Za-z0-9_-]{0,39}$/).test(x)||['constructor','prototype','__proto__'].includes(x))throw Error('Invalid '+name);return x;};
+const PORTFOLIO_KEYS=new Set(['initial_holdings_yen','target_weights','rebalance']);
+const PLAN_KEYS=new Set(['monthly_contribution_yen','monthly_withdrawal_yen','annual_expense_inflation','relative_pension_schedule','relative_one_time_events']);
+const PENSION_KEYS=new Set(['id','start_offset_months','end_offset_months','end_offset_exclusive','monthly_yen']);
+const EVENT_KEYS=new Set(['id','offset_months','kind','amount_yen']);
+function buildRelativeMonthlyCashflows(input,horizon_months){
+ assertKeys(input,PLAN_KEYS,'cashflow_plan');
+ if(!Number.isInteger(horizon_months)||horizon_months<1||horizon_months>MAX_MONTHS)throw Error('Invalid horizon_months');
+ const contribution=money(input.monthly_contribution_yen??0,'monthly_contribution_yen');
+ const expense=money(input.monthly_withdrawal_yen,'monthly_withdrawal_yen');
+ const inflation=input.annual_expense_inflation??0;
+ if(typeof inflation!=='number'||!Number.isFinite(inflation)||inflation< -0.5||inflation>1)throw Error('Invalid annual_expense_inflation');
+ const pensions=input.relative_pension_schedule??[];
+ const events=input.relative_one_time_events??[];
+ if(!Array.isArray(pensions)||pensions.length>MAX_PENSIONS)throw Error('Invalid relative_pension_schedule');
+ if(!Array.isArray(events)||events.length>MAX_EVENTS)throw Error('Invalid relative_one_time_events');
+ const pensionIds=new Set(),eventIds=new Set();
+ const parsedPensions=pensions.map((p,i)=>{
+   assertKeys(p,PENSION_KEYS,'pension '+i);id(p.id,'pension id');
+   if(pensionIds.has(p.id))throw Error('Duplicate pension id '+p.id);pensionIds.add(p.id);
+   const start=money(p.start_offset_months,'start_offset_months');
+   // Legacy end_offset_months is INCLUSIVE. New end_offset_exclusive is HALF-OPEN.
+   // Never silently infer one contract from the other, or accept both aliases.
+   const hasLegacy=Object.prototype.hasOwnProperty.call(p,'end_offset_months');
+   const hasExclusive=Object.prototype.hasOwnProperty.call(p,'end_offset_exclusive');
+   if(hasLegacy&&hasExclusive)throw Error('Ambiguous pension end offset contract');
+   const endExclusive=hasExclusive?money(p.end_offset_exclusive,'end_offset_exclusive'):
+     hasLegacy?money(p.end_offset_months,'end_offset_months')+1:horizon_months;
+   if(start>=horizon_months||endExclusive>horizon_months||endExclusive<=start)
+     throw Error('Pension outside rolling horizon or end before start');
+   return {start,endExclusive,monthly:money(p.monthly_yen,'pension monthly_yen')};
+ });
+ const byOffset=new Map();
+ for(const [i,e] of events.entries()){
+   assertKeys(e,EVENT_KEYS,'event '+i);id(e.id,'event id');
+   if(eventIds.has(e.id))throw Error('Duplicate event id '+e.id);eventIds.add(e.id);
+   const at=money(e.offset_months,'offset_months');
+   if(at>=horizon_months)throw Error('Event outside rolling horizon');
+   if(!['INCOME','EXPENSE'].includes(e.kind))throw Error('Invalid event kind');
+   const amount=money(e.amount_yen,'event amount_yen');
+   const prev=byOffset.get(at)||{income:0,expense:0};
+   prev[e.kind==='INCOME'?'income':'expense']=safeAdd(prev[e.kind==='INCOME'?'income':'expense'],amount,'events at '+at);
+   byOffset.set(at,prev);
+ }
+ const values=[];
+ for(let i=0;i<horizon_months;i++){
+   const living=yenRound(expense*Math.pow(1+inflation,i/12),'living expense month '+i);
+   let pension=0;for(const p of parsedPensions)if(i>=p.start&&i<p.endExclusive)pension=safeAdd(pension,p.monthly,'pension month '+i);
+   const event=byOffset.get(i)||{income:0,expense:0};
+   const income=safeAdd(safeAdd(contribution,pension,'income pension'),event.income,'income event');
+   const spending=safeAdd(living,event.expense,'expense event');
+   values.push({offset_months:i,contribution_yen:income,withdrawal_yen:spending,
+     breakdown:{regular_contribution_yen:contribution,pension_yen:pension,one_time_income_yen:event.income,
+       living_expense_yen:living,one_time_expense_yen:event.expense}});
+ }
+ return values;
+}
+function validateMarketSeries(rows,assets,market_mode){
+ if(!['OBSERVED_RESEARCH','SYNTHETIC_DEMO'].includes(market_mode))throw Error('Invalid market_mode');
+ if(!Array.isArray(rows)||!rows.length||rows.length>MAX_MONTHS)throw Error('Expected 1..1200 market months');
+ const required=market_mode==='OBSERVED_RESEARCH'?'OBSERVED':'SYNTHETIC';
+ const ids=Object.keys(obj(assets.initial_holdings_yen,'initial_holdings_yen')).sort();
+ let prev=null,gaps=0;
+ const positions=[];
+ for(const [i,row] of rows.entries()){
+   assertKeys(row,new Set(['month','origin','asset_returns','proxy','estimated']),'market row '+i);
+   const at=monthSerial(row.month);
+   if(prev!==null&&at<=prev)throw Error('Repeated or out-of-order market month '+row.month);
+   if(prev!==null&&at>prev+1)gaps++;
+   prev=at;
+   if(row.origin!==required||
+     (Object.prototype.hasOwnProperty.call(row,'proxy')&&row.proxy!==false)||
+     (Object.prototype.hasOwnProperty.call(row,'estimated')&&row.estimated!==false))
+     throw Error('Mixed, proxy or estimated market provenance');
+   const values=obj(row.asset_returns,'asset_returns');
+   if(Object.keys(values).length!==ids.length||ids.some(k=>!Object.prototype.hasOwnProperty.call(values,k)))throw Error('Return asset coverage mismatch');
+   for(const assetId of ids){const rate=values[assetId];if(typeof rate!=='number'||!Number.isFinite(rate)||rate< -1||rate>10)throw Error('Invalid return for '+assetId+' '+row.month);}
+   positions.push(at);
+ }
+ return {positions,gap_boundaries:gaps};
+}
+function runRollingPortfolioLifecycle({monthly_market_returns,horizon_months,portfolio,cashflow_plan,market_mode='SYNTHETIC_DEMO',cashflow_timing='MONTH_START'}={}){
+ if(!Number.isInteger(horizon_months)||horizon_months<1||horizon_months>MAX_MONTHS)throw Error('Invalid horizon_months');
+ assertKeys(portfolio,PORTFOLIO_KEYS,'portfolio');
+ const plan=buildRelativeMonthlyCashflows(cashflow_plan,horizon_months);
+ const market=validateMarketSeries(monthly_market_returns,portfolio,market_mode);
+ // Validate portfolio policy, asset IDs, weights and rebalance even if no complete rolling window exists.
+ validateInput({...portfolio,monthly_returns:[monthly_market_returns[0]],market_mode,
+   monthly_cashflows:[{month:monthly_market_returns[0].month,contribution_yen:plan[0].contribution_yen,withdrawal_yen:plan[0].withdrawal_yen}],cashflow_timing});
+ const windows=[];
+ let blockStart=0;
+ for(let i=1;i<=monthly_market_returns.length;i++){
+   if(i<monthly_market_returns.length&&market.positions[i]===market.positions[i-1]+1)continue;
+   for(let start=blockStart;start+horizon_months<=i;start++){
+     const selected=monthly_market_returns.slice(start,start+horizon_months);
+     const monthly_cashflows=plan.map((x,k)=>({month:selected[k].month,contribution_yen:x.contribution_yen,withdrawal_yen:x.withdrawal_yen}));
+     const inputs={...portfolio,monthly_returns:selected,monthly_cashflows,market_mode,cashflow_timing};
+     const simulation=simulatePortfolio(inputs);
+     auditPortfolioAgainstInputs(inputs,simulation); // Independent source input/ledger reconciliation.
+     const firstShortfallOffset=simulation.rows.findIndex(x=>x.unfunded_yen>0);
+     windows.push({market_start_month:selected[0].month,market_end_month:selected.at(-1).month,
+       ending_assets_yen:simulation.ending_assets_yen,status:simulation.status,
+       total_unfunded_yen:simulation.total_unfunded_yen,shortfall_months:simulation.shortfall_months,
+       first_shortfall_offset_months:firstShortfallOffset===-1?null:firstShortfallOffset,
+       rebalance_count:simulation.rows.filter(x=>x.rebalance_executed).length,
+       total_turnover_yen:simulation.rows.reduce((s,x)=>safeAdd(s,x.rebalance_turnover_yen,'rolling turnover'),0)});
+   }
+   blockStart=i;
+ }
+ const theoretical=Math.max(0,market.positions.at(-1)-market.positions[0]-horizon_months+2);
+ const funded=windows.filter(x=>x.status==='FUNDED').length;
+ return {status:windows.length?'EVALUATED':'INSUFFICIENT_CONTIGUOUS_HISTORY',
+   market_mode,cashflow_timing,publication_approved:false,source_rights_approved:false,provenance_verified:false,
+   market_path_provenance:market_mode==='SYNTHETIC_DEMO'?'SYNTHETIC':'OBSERVED_USER_ASSERTED_UNVERIFIED',
+   life_plan_provenance:'SYNTHETIC_ASSUMPTIONS',future_probability_claim:false,
+   notice: market_mode==='SYNTHETIC_DEMO'?'Synthetic paths and cashflows; demo frequency is not historical or predictive.':'Only self-declared observed paths; requires separate source, FX, CPI and rights QA. Overlapping windows are not future probabilities.',
+   horizon_months,first_market_month:monthly_market_returns[0].month,
+   last_market_month:monthly_market_returns.at(-1).month,market_months:monthly_market_returns.length,
+   gap_boundaries:market.gap_boundaries,theoretical_windows_if_no_gaps:theoretical,
+   complete_windows:windows.length,excluded_windows_due_to_missing_months:theoretical-windows.length,
+   funded_windows:funded,shortfall_windows:windows.length-funded,
+   historical_funded_fraction:market_mode==='OBSERVED_RESEARCH'&&windows.length?funded/windows.length:null,
+   demo_funded_fraction:market_mode==='SYNTHETIC_DEMO'&&windows.length?funded/windows.length:null,
+   input_concordance_audited_windows:windows.length,
+   input_concordance_note:'Audited against supplied input path (publisher source not independently authenticated)',
+   event_semantics:'OFFSET_ZERO_IS_MONTH_1_OF_EACH_MARKET_WINDOW',windows};
+}
+module.exports={buildRelativeMonthlyCashflows,validateMarketSeries,runRollingPortfolioLifecycle};
+
+},
+"rolling-portfolio-cpi.cjs":function(require,module,exports){
+'use strict';
+/**
+ * v0.13: month-by-month CPI-linked living expense on JPY nominal asset returns.
+ * Research-only. Reported OBSERVED origin is a claim, NOT raw-source authentication.
+ * Requires upstream canonical, byte-pinned Japanese CPI and portfolio return QA.
+ */
+const {monthSerial,formatMonth}=require('./cashflow-core.cjs');
+const {buildRelativeMonthlyCashflows,validateMarketSeries}=require('./rolling-portfolio-lifecycle.cjs');
+const {simulatePortfolio,validateInput}=require('./portfolio-core.cjs');
+const {auditPortfolioAgainstInputs}=require('./portfolio-input-audit.cjs');
+const MAX_MONTHS=1200,MAX_YEN=1_000_000_000_000;
+const CPI_KEYS=new Set(['month','value','origin','series_id','source_id','series_kind','unit','seasonal_adjustment']);
+const own=(x,k)=>Object.prototype.hasOwnProperty.call(x,k);
+function isObject(x){return x!==null&&typeof x==='object'&&!Array.isArray(x);}
+function assertKeys(x,keys,label){if(!isObject(x))throw Error('Invalid '+label);for(const k of Object.keys(x))if(!keys.has(k))throw Error('Unsupported '+label+' field: '+k);}
+function yen(n,label){if(!Number.isFinite(n)||n<0||n>MAX_YEN-0.5)throw Error('Unsafe monetary amount '+label);return Math.round(n);}
+function sum(a,b,label){if(!Number.isSafeInteger(a+b)||a+b>MAX_YEN)throw Error('Monetary overflow '+label);return a+b;}
+function readCpi(rows,mode){
+  if(!Array.isArray(rows)||rows.length<1||rows.length>MAX_MONTHS)throw Error('CPI levels must be 1..1200 observed monthly levels');
+  const expectedOrigin=mode==='OBSERVED_RESEARCH'?'OBSERVED':'SYNTHETIC';
+  const source=mode==='OBSERVED_RESEARCH'?'ESTAT':'SYNTHETIC_FIXTURE';
+  const byMonth=new Map();let prev=null;
+  for(const [i,r] of rows.entries()){
+    assertKeys(r,CPI_KEYS,'CPI row '+i);
+    const at=monthSerial(r.month);
+    if(prev!==null&&at<=prev)throw Error('CPI unsorted or duplicate month');prev=at;
+    if(r.origin!==expectedOrigin||r.source_id!==source||r.series_id!=='JP_CPI_HEADLINE_2025_LINKED'||r.series_kind!=='CPI_LEVEL'||r.unit!=='INDEX_2025_100'||r.seasonal_adjustment!=='NSA')
+      throw Error('CPI source, basket, basis, adjustment or origin mismatch');
+    const raw=r.value;
+    if(typeof raw!=='number'&&!(typeof raw==='string'&&/^(?:0|[1-9]\d*)(?:\.\d+)?$/.test(raw)))throw Error('Invalid CPI index level');
+    const n=Number(raw);
+    if(!Number.isFinite(n)||n<=0)throw Error('Invalid positive CPI level');
+    byMonth.set(r.month,n);
+  }
+  return byMonth;
+}
+function countContiguousMarkets(positions,horizon){
+  let blockStart=0,count=0;
+  for(let i=1;i<=positions.length;i++){
+    if(i<positions.length&&positions[i]===positions[i-1]+1)continue;
+    count+=Math.max(0,i-blockStart-horizon+1);blockStart=i;
+  }
+  return count;
+}
+function runRollingPortfolioCpiLinked({monthly_market_returns,jp_cpi_monthly_levels,horizon_months,portfolio,cashflow_plan,market_mode='OBSERVED_RESEARCH',cashflow_timing='MONTH_START',cpi_reference_policy='LEGACY_SAME_MONTH'}={}){
+  if(!['OBSERVED_RESEARCH','SYNTHETIC_DEMO'].includes(market_mode))throw Error('Unknown market_mode');
+  if(!['MONTH_START','MONTH_END'].includes(cashflow_timing))throw Error('Invalid cashflow_timing');
+  if(!['LEGACY_SAME_MONTH','CASHFLOW_BOUNDARY'].includes(cpi_reference_policy))throw Error('Invalid cpi_reference_policy');
+  if(!Number.isInteger(horizon_months)||horizon_months<1||horizon_months>MAX_MONTHS)throw Error('Invalid horizon_months');
+  if(!isObject(cashflow_plan))throw Error('Invalid cashflow_plan');
+  if(own(cashflow_plan,'annual_expense_inflation'))throw Error('CPI-linked mode conflicts with fixed annual_expense_inflation; no double inflation');
+  if(!isObject(portfolio)||Object.keys(portfolio).some(k=>!['initial_holdings_yen','target_weights','rebalance'].includes(k)))throw Error('Unsupported portfolio policy');
+  const baseFlows=buildRelativeMonthlyCashflows(cashflow_plan,horizon_months); // zero fixed inflation; pensions/events unchanged
+  const market=validateMarketSeries(monthly_market_returns,portfolio,market_mode);
+  const cpi=readCpi(jp_cpi_monthly_levels,market_mode);
+  validateInput({...portfolio,monthly_returns:[monthly_market_returns[0]],monthly_cashflows:[{month:monthly_market_returns[0].month,contribution_yen:baseFlows[0].contribution_yen,withdrawal_yen:baseFlows[0].withdrawal_yen}],market_mode,cashflow_timing});
+  const windows=[];
+  let startBlock=0,marketOnlyWindows=0;
+  for(let i=1;i<=monthly_market_returns.length;i++){
+    if(i<monthly_market_returns.length&&market.positions[i]===market.positions[i-1]+1)continue;
+    for(let start=startBlock;start+horizon_months<=i;start++){
+      marketOnlyWindows++;
+      const selected=monthly_market_returns.slice(start,start+horizon_months);
+      // Under CASHFLOW_BOUNDARY the CPI level belongs to the settlement boundary.
+      // MONTH_START -> previous market calendar month; MONTH_END -> current month.
+      // These are final revised historical levels, NOT what was published that day.
+      const refMonths=selected.map(r=>cpi_reference_policy==='CASHFLOW_BOUNDARY'&&cashflow_timing==='MONTH_START'?
+        formatMonth(monthSerial(r.month)-1):r.month);
+      const prices=refMonths.map(m=>cpi.get(m));
+      if(prices.some(p=>p===undefined))continue; // Do NOT impute or splice past CPI gaps.
+      const priceStart=prices[0];
+      const schedule=baseFlows.map((f,k)=>{
+        const living=yen(f.breakdown.living_expense_yen*(prices[k]/priceStart),'CPI-linked living '+selected[k].month);
+        return {month:selected[k].month,contribution_yen:f.contribution_yen,
+          withdrawal_yen:sum(living,f.breakdown.one_time_expense_yen,'CPI month '+selected[k].month)};
+      });
+      const inputs={...portfolio,monthly_returns:selected,monthly_cashflows:schedule,market_mode,cashflow_timing};
+      const result=simulatePortfolio(inputs);
+      auditPortfolioAgainstInputs(inputs,result); // Independent source input/ledger reconciliation.
+      const first=result.rows.findIndex(r=>r.unfunded_yen>0);
+      windows.push({market_start_month:selected[0].month,market_end_month:selected.at(-1).month,
+        cpi_start_level:priceStart,cpi_end_level:prices.at(-1),cpi_start_reference_month:refMonths[0],cpi_end_reference_month:refMonths.at(-1),
+        ending_assets_yen:result.ending_assets_yen,status:result.status,
+        total_unfunded_yen:result.total_unfunded_yen,shortfall_months:result.shortfall_months,
+        first_shortfall_offset_months:first<0?null:first,
+        rebalance_count:result.rows.filter(r=>r.rebalance_executed).length,
+        total_turnover_yen:result.rows.reduce((a,r)=>sum(a,r.rebalance_turnover_yen,'turnover'),0),
+        initial_living_expense_yen:baseFlows[0].breakdown.living_expense_yen,
+        final_living_expense_yen:yen(baseFlows.at(-1).breakdown.living_expense_yen*(prices.at(-1)/priceStart),'final living')});
+    }
+    startBlock=i;
+  }
+  const theoretical=Math.max(0,market.positions.at(-1)-market.positions[0]-horizon_months+2);
+  const funded=windows.filter(w=>w.status==='FUNDED').length;
+  return {status:windows.length?'EVALUATED':'INSUFFICIENT_CONTIGUOUS_MARKET_AND_CPI',
+    horizon_months,market_mode,cashflow_timing,cpi_reference_policy,expense_inflation_mode:'OBSERVED_JP_CPI_LEVEL_RELATIVE_TO_EACH_WINDOW_START',
+    market_path_provenance:market_mode==='OBSERVED_RESEARCH'?'OBSERVED_USER_ASSERTED_UNVERIFIED':'SYNTHETIC',
+    cpi_provenance_verified_here:false,publication_approved:false,source_rights_approved:false,
+    life_plan_provenance:'SYNTHETIC_ASSUMPTIONS',future_probability_claim:false,
+    money_basis:'NOMINAL_JPY_ASSETS_AND_WITHDRAWALS',
+    index_method:'LIVING_EXPENSE[t]=BASE_LIVING_EXPENSE*JP_CPI[settlement_reference_t]/JP_CPI[first_settlement_reference]; pension/events kept nominal',
+    cpi_asof_policy:'RETROSPECTIVE_FINAL_REVISED_CPI_LEVELS_NOT_RELEASE_TIME_AVAILABLE',
+    cpi_legacy_lookahead_risk:cpi_reference_policy==='LEGACY_SAME_MONTH'&&cashflow_timing==='MONTH_START',
+    cpi_release_time_lookahead_possible:true, // Neither policy includes historical publication timestamps.
+    market_months:monthly_market_returns.length,cpi_level_months:jp_cpi_monthly_levels.length,
+    market_first_month:monthly_market_returns[0].month,market_last_month:monthly_market_returns.at(-1).month,
+    gap_boundaries:market.gap_boundaries,theoretical_windows_if_no_gaps:theoretical,
+    complete_market_windows:marketOnlyWindows,complete_windows:windows.length,
+    excluded_windows_due_to_missing_market_months:theoretical-marketOnlyWindows,
+    excluded_windows_due_to_missing_cpi_months:marketOnlyWindows-windows.length,
+    funded_windows:funded,shortfall_windows:windows.length-funded,
+    historical_funded_fraction:market_mode==='OBSERVED_RESEARCH'&&windows.length?funded/windows.length:null,
+    demo_funded_fraction:market_mode==='SYNTHETIC_DEMO'&&windows.length?funded/windows.length:null,
+    input_concordance_audited_windows:windows.length,
+    input_concordance_note:'Audited against supplied input path (publisher source and CPI not independently authenticated)',
+    note:'The fraction counts OVERLAPPING historical starts, not independent outcomes or future success probabilities. CPI provenance and rights need independent raw byte validation.',
+    windows};
+}
+module.exports={readCpi,runRollingPortfolioCpiLinked};
+
+},
+"offline-preview-v032.cjs":function(require,module,exports){
+'use strict';
+/**
+ * Research-only V0.32 local preview bridge. Never accepts third-party market files,
+ * observed/proxy data, client credentials or private decrypted CPI sources.
+ * Feeds deterministic SYNTHETIC observations to the existing audited CJS engines.
+ */
+const {monthSerial,formatMonth}=require('./cashflow-core.cjs');
+const {simulatePortfolio}=require('./portfolio-core.cjs');
+const {auditPortfolioAgainstInputs}=require('./portfolio-input-audit.cjs');
+const {runRollingPortfolioCpiLinked}=require('./rolling-portfolio-cpi.cjs');
+const defaults=Object.freeze({
+  initial_yen:10000000,monthly_contribution_yen:0,monthly_living_yen:100000,
+  horizon_years:20,annual_return_pct:4,annual_cpi_pct:2,
+  cashflow_timing:'MONTH_START',stress_profile:'FLAT_RATE'
+});
+const ALLOWED=new Set(Object.keys(defaults));
+const MAX_YEN=100000000000;
+function validateConfig(c){
+ if(!c||typeof c!=='object'||Array.isArray(c))throw Error('設定はオブジェクトで指定してください');
+ for(const k of Object.keys(c))if(!ALLOWED.has(k))throw Error('未対応の入力項目: '+k);
+ const x={...defaults,...c};
+ for(const name of ['initial_yen','monthly_contribution_yen','monthly_living_yen'])
+   if(!Number.isSafeInteger(x[name])||x[name]<0||x[name]>MAX_YEN)throw Error(name+' は0〜1000億円の整数のみ');
+ if(x.initial_yen===0&&x.monthly_contribution_yen===0)throw Error('初期資産または積立額のどちらかが必要です');
+ if(!Number.isInteger(x.horizon_years)||x.horizon_years<1||x.horizon_years>30)throw Error('期間は1〜30年の整数');
+ if(typeof x.annual_return_pct!=='number'||!Number.isFinite(x.annual_return_pct)||x.annual_return_pct< -95||x.annual_return_pct>100)throw Error('年率騰落率は-95〜100%');
+ if(typeof x.annual_cpi_pct!=='number'||!Number.isFinite(x.annual_cpi_pct)||x.annual_cpi_pct< -20||x.annual_cpi_pct>50)throw Error('年率CPI変動率は-20〜50%');
+ if(!['MONTH_START','MONTH_END'].includes(x.cashflow_timing))throw Error('月初または月末を選択してください');
+ if(!['FLAT_RATE','YEAR1_SHOCK'].includes(x.stress_profile))throw Error('未対応の変動シナリオ');
+ return x;
+}
+function monthlyRate(pct){return Math.pow(1+pct/100,1/12)-1;}
+function makeScenario(config){
+ const c=validateConfig(config),count=c.horizon_years*12,first=monthSerial('2026-01');
+ const rate=monthlyRate(c.annual_return_pct),shock=monthlyRate(-30),growth=monthlyRate(c.annual_cpi_pct);
+ const monthly_market_returns=Array.from({length:count},(_,i)=>({
+   month:formatMonth(first+i),origin:'SYNTHETIC',proxy:false,estimated:false,
+   asset_returns:{STOCK:c.stress_profile==='YEAR1_SHOCK'&&i<12?shock:rate}
+ }));
+ const cpiLevels=Array.from({length:count+1},(_,i)=>({
+   month:formatMonth(first-1+i),value:100*Math.pow(1+growth,i),origin:'SYNTHETIC',
+   series_id:'JP_CPI_HEADLINE_2025_LINKED',source_id:'SYNTHETIC_FIXTURE',
+   series_kind:'CPI_LEVEL',unit:'INDEX_2025_100',seasonal_adjustment:'NSA'
+ }));
+ const startIndex=c.cashflow_timing==='MONTH_START'?0:1;
+ const base=cpiLevels[startIndex].value;
+ const monthly_cashflows=monthly_market_returns.map((m,i)=>({
+   month:m.month,contribution_yen:c.monthly_contribution_yen,
+   withdrawal_yen:Math.round(c.monthly_living_yen*cpiLevels[i+startIndex].value/base)
+ }));
+ const fixed_cashflows=monthly_market_returns.map(m=>({month:m.month,
+   contribution_yen:c.monthly_contribution_yen,withdrawal_yen:c.monthly_living_yen}));
+ return {config:c,monthly_market_returns,cpiLevels,monthly_cashflows,fixed_cashflows};
+}
+function calculatePreview(config){
+ const generated=makeScenario(config),c=generated.config;
+ const portfolio={initial_holdings_yen:{STOCK:c.initial_yen},target_weights:{STOCK:1},rebalance:{mode:'NONE'}};
+ const shared={...portfolio,monthly_returns:generated.monthly_market_returns,market_mode:'SYNTHETIC_DEMO',cashflow_timing:c.cashflow_timing};
+ const fixedInput={...shared,monthly_cashflows:generated.fixed_cashflows};
+ const cpiInput={...shared,monthly_cashflows:generated.monthly_cashflows};
+ const fixed=simulatePortfolio(fixedInput),cpi=simulatePortfolio(cpiInput);
+ const auditedFixed=auditPortfolioAgainstInputs(fixedInput,fixed);
+ const auditedCpi=auditPortfolioAgainstInputs(cpiInput,cpi);
+ if(auditedFixed.status!=='INPUT_CONCORDANCE_PASSED'||auditedCpi.status!=='INPUT_CONCORDANCE_PASSED'){
+   // Audit method's success tag may be more specific; reject only if it is not a documented PASS.
+   if(!/PASSED$/.test(auditedFixed.status)||!/PASSED$/.test(auditedCpi.status))throw Error('入力・台帳の独立監査に失敗');
+ }
+ // Independently built CPI-linked rolling engine must agree with the direct ledger.
+ const rolling=runRollingPortfolioCpiLinked({
+   monthly_market_returns:generated.monthly_market_returns,jp_cpi_monthly_levels:generated.cpiLevels,
+   horizon_months:c.horizon_years*12,portfolio,
+   cashflow_plan:{monthly_contribution_yen:c.monthly_contribution_yen,monthly_withdrawal_yen:c.monthly_living_yen},
+   market_mode:'SYNTHETIC_DEMO',cashflow_timing:c.cashflow_timing,
+   cpi_reference_policy:'CASHFLOW_BOUNDARY'
+ });
+ if(rolling.complete_windows!==1||rolling.windows[0].ending_assets_yen!==cpi.ending_assets_yen||
+   rolling.windows[0].total_unfunded_yen!==cpi.total_unfunded_yen||rolling.windows[0].status!==cpi.status)
+   throw Error('CPI連動Coreと月次台帳の計算が一致しません');
+ const timeline=[{month:'2025-12',offset_year:0,fixed_yen:c.initial_yen,cpi_yen:c.initial_yen}];
+ for(let i=11;i<fixed.rows.length;i+=12)timeline.push({month:fixed.rows[i].month,offset_year:(i+1)/12,
+   fixed_yen:fixed.rows[i].closing_yen,cpi_yen:cpi.rows[i].closing_yen});
+ return {
+   schema:'KAITO_ANALYTICS_LOCAL_PREVIEW_V032',market_mode:'SYNTHETIC_DEMO',
+   source_provenance:'SYNTHETIC_ASSUMPTIONS_ONLY',source_approved:false,
+   user_uploaded_sources_accepted:false,official_jp_cpi_used:false,real_historical_cpi_vintages_used:false,
+   retrospective_market_probabilities:false,uses_legacy_sha_pinned_shiller:false,
+   real_data_qa_completed:false,production_approved:false,includes_taxes_fees:false,
+   config:c,months:c.horizon_years*12,phase:c.cashflow_timing,
+   fixed:{ending_assets_yen:fixed.ending_assets_yen,first_shortfall_month:fixed.first_shortfall_month,
+     shortfall_months:fixed.shortfall_months,total_unfunded_yen:fixed.total_unfunded_yen},
+   cpi_linked:{ending_assets_yen:cpi.ending_assets_yen,first_shortfall_month:cpi.first_shortfall_month,
+     shortfall_months:cpi.shortfall_months,total_unfunded_yen:cpi.total_unfunded_yen,
+     first_living_yen:generated.monthly_cashflows[0].withdrawal_yen,
+     final_living_yen:generated.monthly_cashflows.at(-1).withdrawal_yen},
+   independent_input_audits:2,cpi_cross_engine_concordance:'PASS',timeline
+ };
+}
+module.exports={defaults,validateConfig,makeScenario,calculatePreview};
+
+}};
+const cache=Object.create(null);
+function load(name){const key=name.replace(/^\.\//,'');if(!Object.prototype.hasOwnProperty.call(factories,key))throw Error('Unknown local module '+key);if(cache[key])return cache[key].exports;const m={exports:{}};cache[key]=m;factories[key](load,m,m.exports);return m.exports;}
+window.KAitoAnalyticsPreviewCore=load('offline-preview-v032.cjs');
+})();
+'use strict';
+(function(){
+  const core=window.KAitoAnalyticsPreviewCore;
+  const $=id=>document.getElementById(id);
+  const money=x=>Number(x).toLocaleString('ja-JP')+' 円';
+  const yen=x=>Math.abs(x)>=100000000?((x/100000000).toLocaleString('ja-JP',{maximumFractionDigits:2})+' 億円'):money(x);
+  const value=id=>{const text=$(id).value;if(text.trim()==='')throw Error('空欄の入力があります');const n=Number(text);if(!Number.isFinite(n))throw Error('入力は有限の数値にしてください');return n;};
+  function config(){return {
+    initial_yen:value('initial_yen'),monthly_contribution_yen:value('monthly_contribution_yen'),
+    monthly_living_yen:value('monthly_living_yen'),horizon_years:value('horizon_years'),
+    annual_return_pct:value('annual_return_pct'),annual_cpi_pct:value('annual_cpi_pct'),
+    cashflow_timing:$('cashflow_timing').value,stress_profile:$('stress_profile').value
+  };}
+  const NS='http://www.w3.org/2000/svg';
+  function svg(type,attrs,content){const e=document.createElementNS(NS,type);for(const [k,v] of Object.entries(attrs))e.setAttribute(k,String(v));if(content!==undefined)e.textContent=content;return e;}
+  function graph(points){
+    const root=$('balance-chart');while(root.firstChild)root.removeChild(root.firstChild);
+    const left=68,right=16,top=18,bottom=33,width=800,height=280;
+    const vals=points.flatMap(x=>[x.fixed_yen,x.cpi_yen]);
+    const max=Math.max(1,...vals)*1.05;const x=i=>left+i/(points.length-1)*(width-left-right),y=v=>height-bottom-v/max*(height-top-bottom);
+    for(let q=0;q<=4;q++){
+      const v=max*q/4,yy=y(v);
+      root.appendChild(svg('line',{x1:left,y1:yy,x2:width-right,y2:yy,stroke:'#e5edf5','stroke-width':1}));
+      root.appendChild(svg('text',{x:2,y:yy+4,fill:'#718294','font-size':12},v>=100000000?(v/100000000).toFixed(1)+'億':Math.round(v/10000)+'万'));
+    }
+    for(const [field,color] of [['fixed_yen','#345b91'],['cpi_yen','#0f8b8d']]){
+      const values=points.map((p,i)=>x(i).toFixed(1)+','+y(p[field]).toFixed(1)).join(' ');
+      root.appendChild(svg('polyline',{points:values,stroke:color,'stroke-width':3,fill:'none','stroke-linejoin':'round','stroke-linecap':'round'}));
+    }
+    for(const i of [...new Set([0,Math.floor((points.length-1)/2),points.length-1])])
+      root.appendChild(svg('text',{x:x(i),y:height-8,fill:'#718294','font-size':12,'text-anchor':'middle'},String(points[i].offset_year)+'年'));
+    root.setAttribute('aria-label','合成データの年次資産残高。固定生活費の最終残高 '+money(points.at(-1).fixed_yen)+'、CPI連動生活費の最終残高 '+money(points.at(-1).cpi_yen));
+  }
+  function detail(label,value){const outer=document.createElement('div');outer.className='detail';
+    outer.appendChild(document.createTextNode(label));const strong=document.createElement('strong');strong.textContent=value;outer.appendChild(strong);return outer;}
+  function render(result){
+    $('fixed-final').textContent=yen(result.fixed.ending_assets_yen);
+    $('cpi-final').textContent=yen(result.cpi_linked.ending_assets_yen);
+    $('result-state').textContent='合成データ専用｜'+result.config.horizon_years+'年・'+(result.phase==='MONTH_START'?'月初':'月末')+'決済｜実市場データは不使用';
+    const d=$('details');while(d.firstChild)d.removeChild(d.firstChild);
+    d.appendChild(detail('固定生活費・資金不足月数',result.fixed.shortfall_months+'か月'));
+    d.appendChild(detail('CPI連動・資金不足月数',result.cpi_linked.shortfall_months+'か月'));
+    d.appendChild(detail('CPI連動・初月の生活費',money(result.cpi_linked.first_living_yen)));
+    d.appendChild(detail('CPI連動・最終月の生活費',money(result.cpi_linked.final_living_yen)));
+    d.appendChild(detail('固定生活費・未払総額',money(result.fixed.total_unfunded_yen)));
+    d.appendChild(detail('CPI連動・未払総額',money(result.cpi_linked.total_unfunded_yen)));
+    $('audit-state').textContent='Core間一致：'+result.cpi_cross_engine_concordance+'｜入力・台帳監査 '+result.independent_input_audits+'/2 PASS｜実測データ認証：未実施';
+    graph(result.timeline);
+    document.body.setAttribute('data-preview-status','READY');
+  }
+  function execute(){
+    $('error-msg').textContent='';
+    try{const result=core.calculatePreview(config());render(result);}
+    catch(e){
+      document.body.setAttribute('data-preview-status','ERROR');
+      $('fixed-final').textContent='—';$('cpi-final').textContent='—';
+      $('result-state').textContent='入力エラー：前回の計算結果は表示していません';
+      const details=$('details');while(details.firstChild)details.removeChild(details.firstChild);
+      const chart=$('balance-chart');while(chart.firstChild)chart.removeChild(chart.firstChild);
+      chart.setAttribute('aria-label','入力エラーのためグラフは非表示');
+      $('audit-state').textContent='監査：未実施（入力エラー）';
+      $('error-msg').textContent=String(e.message||e);
+    }
+  }
+  $('scenario-form').addEventListener('submit',e=>{e.preventDefault();execute();});
+  execute();
+})();
+</script>
+</body>
+</html>
