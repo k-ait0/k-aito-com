@@ -68,7 +68,7 @@ def case01(page):
     return "file:// loaded offline; chart, audit and metrics visible"
 
 def case02(page):
-    a, b = fill(page, dict(CONSTRAINTS, annual_return_pct="4", annual_cpi_pct="2"))
+    a, b = fill(page, dict(CONSTRAINTS, horizon_years="10", annual_return_pct="4", annual_cpi_pct="2"))
     expect(a != "—" and b != "—", "numeric result")
     expect("10年" in page.locator("#result-state").inner_text(), "horizon label")
     expect(page.locator("#details .detail").count() == 6, "metric count")
@@ -107,7 +107,7 @@ def case07(page):
     seen = []
     for n in (10, 20, 30):
         a, b = fill(page, {"horizon_years": str(n)})
-        texts = page.locator("#balance-chart text").all_inner_texts()
+        texts = page.locator("#balance-chart text").all_text_contents()
         expect(f"{n}年" in texts, f"missing year axis: {n}")
         expect(f"{n}年" in page.locator("#result-state").inner_text(), "label")
         seen.append((n, a, b))
