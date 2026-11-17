@@ -15,9 +15,10 @@ import {TYPES,GROUPS} from "../projects/kidp/life-design-lab/a05/types.mjs";
 const root=resolve(dirname(fileURLToPath(import.meta.url)),"..");
 const template=readFileSync(resolve(root,"research/a05/d246-isolated-yn-preview-template.html"),"utf8");
 const classifierSource=readFileSync(resolve(root,"scripts/a05-d255-yn-provisional-classifier.mjs"),"utf8");
-if(!classifierSource.includes('A05-D255-YN-PROVISIONAL-CLASSIFIER-1')||
- /(^|\\n)\\s*import\\s/.test(classifierSource)||
- /<\\/script/i.test(classifierSource))throw Error("Unexpected D255 classifier source");
+if(!classifierSource.includes("A05-D255-YN-PROVISIONAL-CLASSIFIER-1")||
+ classifierSource.includes("</script")||
+ classifierSource.split("\n").some(line=>line.trimStart().startsWith("import ")))
+ throw Error("Unexpected D255 classifier source");
 const browserClassifier=classifierSource.replace(/^export /gm,"");
 const manifests=Array.from({length:128},(_,i)=>{
  const m=drawResearchHoldFilteredManifest("D219-simple-"+String(i).padStart(3,"0"));
