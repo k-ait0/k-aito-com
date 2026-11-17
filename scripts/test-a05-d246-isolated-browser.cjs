@@ -21,13 +21,6 @@ async function fill30(page,chooser){
  assert.equal(await page.locator("#result").isVisible(),true);
  assert.equal(await page.locator("#axes .axisrow").count(),4);
 }
-async function ynAnswer(page,choice,reason){
- assert.equal(await page.locator("#yn").isVisible(),true);
- if(reason)await page.locator("#ynReason").selectOption(reason);
- await page.locator("#ynChoices button").filter({hasText:choice}).click();
- assert.equal(await page.locator("#ynNext").isEnabled(),true);
- await page.locator("#ynNext").click();
-}
 (async()=>{
  const browser=await chromium.launch({headless:true});
  try{
@@ -43,6 +36,7 @@ async function ynAnswer(page,choice,reason){
    assert.equal(data.ynClassificationVersion,"A05-D255-YN-PROVISIONAL-CLASSIFIER-1");
    assert.equal(data.scoringVersion,"A05-D242-POWER-1_5-RESEARCH-PREVIEW-1");
    assert.equal(data.ynProbes.policy.maxIndependentYNPerSession,8);
+   assert.equal(await page.locator("#ynReasonBox").count(),0,"No post-30 non-Y/N input");
    assert.equal(data.manifests.length,128);
    await page.locator("#start").click();
 
