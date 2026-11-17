@@ -50,7 +50,8 @@ async function ynAnswer(page,choice,reason){
    await fill30(page,(axis,i)=>axis==="B"&&i<5?4:7);
    assert.match(await page.locator("#typeBadge").textContent(),/2タイプが参考候補/);
    assert.equal(await page.locator("#ynButton").isVisible(),true);
-   assert.equal(await page.locator("#extraButton").isVisible(),true);
+   assert.equal(await page.locator("#extraButton").count(),0);
+   assert.match(await page.locator("#post30Note").textContent(),/Y\/N形式のみ/);
    const badgeBefore=await page.locator("#typeBadge").textContent();
    await page.locator("#ynButton").click();
    assert.match(await page.locator("#ynHeading").textContent(),/B軸/);
@@ -131,9 +132,22 @@ async function ynAnswer(page,choice,reason){
    assert.match(await page.locator("#ynSummary").textContent(),/未確定/);
 
    assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>window.innerWidth+2),false);
+   // Case VI: all 30 skipped; the only post-30 question format is Y/N.
+   await page.locator("#restart").click();
+   await fill30(page,()=>null);
+   assert.match(await page.locator("#typeBadge").textContent(),/16候補/);
+   assert.equal(await page.locator("#extraButton").count(),0);
+   assert.match(await page.locator("#post30Note").textContent(),/Y\/N形式のみ/);
+   assert.equal(await page.locator("#ynButton").isVisible(),true);
+   await page.locator("#ynButton").click();
+   assert.equal(await page.locator("#question").isVisible(),false);
+   assert.equal(await page.locator("#ynChoices button").count(),3);
+   await page.locator("#ynStop").click();
+   assert.equal(await page.locator("#result").isVisible(),true);
+
    assert.deepEqual(requests,[],"No network requests");
    assert.deepEqual(errors,[],"No browser JS errors");
-   console.log("D246_ISOLATED_BROWSER_PASS "+JSON.stringify({width,forms:128,scoring:"p1.5",cases:5,noNetwork:true}));
+   console.log("D246_ISOLATED_BROWSER_PASS "+JSON.stringify({width,forms:128,scoring:"p1.5",cases:6,post30OnlyYN:true,noNetwork:true}));
    await ctx.close();
   }
  }finally{await browser.close();}
