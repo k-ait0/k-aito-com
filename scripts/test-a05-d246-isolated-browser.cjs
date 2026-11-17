@@ -37,9 +37,10 @@ async function ynAnswer(page,choice,reason){
    page.on("pageerror",e=>errors.push(e.message));
    page.on("request",r=>{if(!r.url().startsWith("file:")&&!r.url().startsWith("data:"))requests.push(r.url());});
    await page.goto(local);
-   assert.match(await page.title(),/中間回答とY\/N/);
+   assert.match(await page.title(),/30問.*Y\/N補完/);
    const data=JSON.parse(await page.locator("#data").textContent());
    assert.equal(data.ynVersion,"A05-D246-ISOLATED-Y-N-PREVIEW-1");
+   assert.equal(data.ynClassificationVersion,"A05-D255-YN-PROVISIONAL-CLASSIFIER-1");
    assert.equal(data.scoringVersion,"A05-D242-POWER-1_5-RESEARCH-PREVIEW-1");
    assert.equal(data.ynProbes.policy.maxIndependentYNPerSession,8);
    assert.equal(data.manifests.length,128);
@@ -63,11 +64,12 @@ async function ynAnswer(page,choice,reason){
    await page.locator("#ynPrev").click();
    assert.equal(await page.locator("#ynChoices button").filter({hasText:"YES"}).getAttribute("aria-pressed"),"true");
    await page.locator("#ynNext").click();
-   await page.locator("#ynChoices button").filter({hasText:"YES"}).click();
+   await page.locator("#ynChoices button").filter({hasText:"NO"}).click();
    await page.locator("#ynNext").click();
    assert.equal(await page.locator("#result").isVisible(),true);
-   assert.equal(await page.locator("#typeBadge").textContent(),badgeBefore);
-   assert.match(await page.locator("#ynSummary").textContent(),/B軸：両方を重視/);
+   assert.notEqual(await page.locator("#typeBadge").textContent(),badgeBefore);
+   assert.match(await page.locator("#typeBadge").textContent(),/Y\/N補完の暫定参考タイプ/);
+   assert.match(await page.locator("#ynSummary").textContent(),/B軸：左側を重視/);
    assert.equal(await page.locator("#ynButton").isVisible(),false);
    assert.match(await page.locator("#resultNotice").textContent(),/1.5乗/);
 
@@ -88,11 +90,11 @@ async function ynAnswer(page,choice,reason){
    // but the *five* threshold does not trigger Y/N.
    await page.locator("#restart").click();
    await fill30(page,(axis,i)=>axis==="B"&&i<4?4:7);
-   assert.equal(await page.locator("#ynButton").isVisible(),false);
+   assert.equal(await page.locator("#ynButton").isVisible(),true);
    assert.match(await page.locator("#typeBadge").textContent(),/2タイプが参考候補/);
 
    // Case IV: all 4 => 16 candidates, 8 independent questions
-   // across A/B/C/D, never more and never a scored type.
+   // across A/B/C/D; the provisional classifier may narrow candidates, not rescore 30Q.
    await page.locator("#restart").click();
    await fill30(page,()=>4);
    const tie=await page.locator("#typeBadge").textContent();
@@ -105,7 +107,8 @@ async function ynAnswer(page,choice,reason){
     await page.locator("#ynNext").click();
    }
    assert.equal(await page.locator("#result").isVisible(),true);
-   assert.equal(await page.locator("#typeBadge").textContent(),tie);
+   assert.notEqual(await page.locator("#typeBadge").textContent(),tie);
+   assert.match(await page.locator("#typeBadge").textContent(),/Y\/N補完の暫定参考タイプ/);
    assert.equal(await page.locator("#ynButton").isVisible(),false);
    assert.match(await page.locator("#ynSummary").textContent(),/D軸/);
 
@@ -135,7 +138,7 @@ async function ynAnswer(page,choice,reason){
    // Case VI: all 30 skipped; the only post-30 question format is Y/N.
    await page.locator("#restart").click();
    await fill30(page,()=>null);
-   assert.match(await page.locator("#typeBadge").textContent(),/16候補/);
+   assert.match(await page.locator("#typeBadge").textContent(),/16通りの組み合わせ/);
    assert.equal(await page.locator("#extraButton").count(),0);
    assert.match(await page.locator("#post30Note").textContent(),/Y\/N形式のみ/);
    assert.equal(await page.locator("#ynButton").isVisible(),true);
