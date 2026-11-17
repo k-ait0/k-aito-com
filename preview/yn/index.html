@@ -421,9 +421,10 @@ function d255NextBatch(stats,state,probes){
   }
   const valid30=Object.values(answers).filter(v=>v!==null).length;
   $("resultComplete").textContent="30問の回答手続きを終了しました。有効回答"+valid30+"問、スキップ"+(30-valid30)+"問。追加はY/N形式のみです。";
-  $("resultNotice").textContent=(unresolved.length
-   ?unresolved.map(s=>s.axis).join("・")+"軸は境界付近または回答不足のため、単一のタイプへ断定していません。"
-   :"4軸とも今回の設問では左右の傾向が比較的明確でした。")+
+  $("resultNotice").textContent=(rescued&&research.numberOfCandidateTypes===1
+   ?"30問では未確定だった軸をY/Nで暫定補完しました。表示した1タイプは研究用の仮説で、確定判定ではありません。"
+   :unresolved.length?unresolved.map(s=>s.axis).join("・")+"軸の方向は未確定のままです。"
+   :"4軸とも今回の30問では比較的明確な方向が観察されました。")+
    " 30問の1.5乗加点は維持。Y/Nによる候補の絞り込みは得点には混ぜない別の研究仮説です。心理測定としての信頼性・妥当性は未検証です。E補助2問は分類せず、C31・C32・C36は採点保留です。";
   const ynNextOffer=planYN(stats);
   $("ynButton").hidden=!ynNextOffer;
@@ -432,7 +433,10 @@ function d255NextBatch(stats,state,probes){
   const notes=data.ynProbes.axes.filter(x=>x.initial.some(q=>Object.hasOwn(ynState.responses,q.id)))
    .map(axis=>{
     const x=axis.initial.map(q=>ynState.responses[q.id]);
-    const label=x.includes(undefined)||x.includes("UNSURE")?"回答中または未確定":
+    const resolved=research.axes.find(s=>s.axis===axis.axis);
+    const label=resolved.source==="YN_CONTEXT_PROVISIONAL"
+     ?"具体場面Y/Nで"+(resolved.sign<0?axis.left:axis.right)+"寄り（暫定）":
+     x.includes(undefined)||x.includes("UNSURE")?"判断できない・方向未確定":
      x[0]==="YES"&&x[1]==="YES"?"両方を重視":
      x[0]==="NO"&&x[1]==="NO"?"両方とも非重視":
      x[0]==="YES"?"左側を重視":"右側を重視";
