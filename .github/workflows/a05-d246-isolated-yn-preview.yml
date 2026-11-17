@@ -7,6 +7,8 @@ on:
       - 'research/a05/d246-isolated-yn-preview-template.html'
       - 'research/a05/d243-midpoint-yn-probe-bank.json'
       - 'scripts/a05-d246-build-isolated-yn-preview.mjs'
+      - 'scripts/a05-d255-yn-provisional-classifier.mjs'
+      - 'scripts/test-a05-d255-yn-provisional-classifier.mjs'
       - 'scripts/test-a05-d246-isolated-browser.cjs'
       - 'scripts/test-a05-d248-yn-research-parity.mjs'
       - 'scripts/a05-d243-midpoint-yn-research.mjs'
@@ -28,13 +30,15 @@ jobs:
         run: |
           node --check scripts/a05-d246-build-isolated-yn-preview.mjs
           node --test scripts/test-a05-d243-midpoint-yn-research.mjs
+      - name: Gate Y/N provisional research classification with independent unit tests
+        run: node --test scripts/test-a05-d255-yn-provisional-classifier.mjs
       - name: Build isolated standalone preview
         run: |
           node scripts/a05-d246-build-isolated-yn-preview.mjs
           test -s research/a05/generated/d246-isolated-midpoint-yn-preview.html
           grep -q 'A05-D246-ISOLATED-Y-N-PREVIEW-1' research/a05/generated/d246-isolated-midpoint-yn-preview.html
           grep -q 'A05-D242-POWER-1_5-RESEARCH-PREVIEW-1' research/a05/generated/d246-isolated-midpoint-yn-preview.html
-      - name: Audit browser scoring against independent D243 over 1408 cases and follow-ups
+      - name: Audit unchanged 30Q scoring against D243 over 1408 cases and archival research followups
         run: node --test scripts/test-a05-d248-yn-research-parity.mjs
       - name: Install Chromium for desktop and mobile E2E
         run: |
