@@ -53,6 +53,25 @@ async function main(){
   assert.equal(await page.locator('.a05-t2-fallback').count(),1);
   const headBefore=await page.locator(".result-head").innerText();
   const axesBefore=await page.locator(".value-axis").allInnerTexts();
+  const canonical = [
+   ['polaris','北極星'],['sacred-peak','霊峰'],['harbor','港'],['moon','月'],
+   ['world-tree','世界樹'],['ocean','大海'],['rainbow','虹'],['constellation','星座'],
+   ['pegasus','ペガサス'],['phoenix','フェニックス'],
+   ['nine-tailed-fox','九尾狐'],['cat-sith','ケット・シー'],
+   ['twin-dragons','双龍'],['crow-tengu','鴉天狗'],['whale-pod','鯨の群れ'],
+   ['carbuncle','カーバンクル']
+  ];
+  const actual = await page.locator('[data-tier2-setting="motif"] option').evaluateAll(nodes =>
+    nodes.map(n=>[n.value,n.textContent]));
+  assert.deepEqual(actual,canonical,"Tier2 dropdown must contain only canonical 16");
+  for(const [id,name] of canonical) {
+   await page.locator('[data-tier2-setting="motif"]').selectOption(id);
+   assert.match(await page.locator(".a05-t2-figure figcaption").innerText(),new RegExp(name));
+   const fallback=page.locator('.a05-t2-fallback');
+   assert.equal(await fallback.count(),1);
+   assert.ok((await fallback.getAttribute('src')).endsWith('/crests/'+id+'.svg'));
+  }
+  await page.locator('[data-tier2-setting="motif"]').selectOption('world-tree');
 
   await page.locator('input[data-tier2-upload]').setInputFiles({
    name:"review-fixture.png",mimeType:"image/png",buffer:PNG
@@ -110,7 +129,7 @@ async function main(){
   assert.equal(await page.locator(".a05-vp").count(),1);
   assert.deepEqual(posts,[],"the preview must never POST to the server");
   assert.deepEqual(errors,[]);
-  console.log("PASS A05 v37 actual result: 4 widths, local PNG, CSS/E, fallback, no storage");
+  console.log("PASS A05 v39 actual result: 16 canonical motifs, 4 widths, local PNG, CSS/E, no storage");
   await context.close();
  }finally{
   if(browser) await browser.close();
