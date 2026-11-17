@@ -87,7 +87,7 @@ async function ynAnswer(page,choice,reason){
    assert.equal(await page.locator("#ynButton").isVisible(),true);
 
    // Case III: 4 midpoints and three signed answers => held,
-   // but the *five* threshold does not trigger Y/N.
+   // D255 now offers Y/N even though the old five-of-seven trigger was not met.
    await page.locator("#restart").click();
    await fill30(page,(axis,i)=>axis==="B"&&i<4?4:7);
    assert.equal(await page.locator("#ynButton").isVisible(),true);
@@ -98,7 +98,7 @@ async function ynAnswer(page,choice,reason){
    await page.locator("#restart").click();
    await fill30(page,()=>4);
    const tie=await page.locator("#typeBadge").textContent();
-   assert.match(tie,/16候補/);
+   assert.match(tie,/16通りの組み合わせ/);
    await page.locator("#ynButton").click();
    for(let i=0;i<8;i++){
     assert.equal(await page.locator("#yn").isVisible(),true);
