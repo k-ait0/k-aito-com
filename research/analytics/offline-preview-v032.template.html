@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta http-equiv="Content-Security-Policy" content="__CSP__">
+<title>K. Aito Analytics｜オフライン試算 v0.32（合成データ専用）</title>
+<style>__CSS__</style>
+</head>
+<body>
+<header class="shell top">
+  <div class="brand"><span class="brand-mark">K.</span><div><div class="eyebrow">K. AITO ANALYTICS / PRIVATE RESEARCH</div><h1>資産・生活費シミュレーター</h1></div></div>
+  <div class="research" role="status">研究用プレビュー・合成データ専用</div>
+  <p class="intro">実装済みの計算Coreで、固定生活費とCPI連動生活費を比較します。実際の市場データ・日本CPI・税金・手数料は使用しません。</p>
+</header>
+<main class="shell layout">
+  <section class="panel inputs" aria-labelledby="params-heading">
+    <div class="section-heading"><span class="step">01</span><h2 id="params-heading">試算条件</h2></div>
+    <form id="scenario-form" novalidate>
+      <div class="field"><label for="initial_yen">初期資産 <small>円</small></label><input id="initial_yen" type="number" min="0" max="100000000000" step="1" value="10000000" required></div>
+      <div class="field"><label for="monthly_contribution_yen">毎月の積立 <small>円</small></label><input id="monthly_contribution_yen" type="number" min="0" max="100000000000" step="1" value="0" required></div>
+      <div class="field"><label for="monthly_living_yen">毎月の生活費 <small>円</small></label><input id="monthly_living_yen" type="number" min="0" max="100000000000" step="1" value="100000" required></div>
+      <div class="field two"><div><label for="horizon_years">試算期間</label><select id="horizon_years"><option value="10">10年間</option><option value="20" selected>20年間</option><option value="30">30年間</option></select></div><div><label for="cashflow_timing">収支の決済時点</label><select id="cashflow_timing"><option value="MONTH_START">月初</option><option value="MONTH_END">月末</option></select></div></div>
+      <div class="field two"><div><label for="annual_return_pct">仮定する年率リターン <small>%</small></label><input id="annual_return_pct" type="number" min="-95" max="100" step="0.1" value="4" required></div><div><label for="annual_cpi_pct">仮定する年率CPI変動 <small>%</small></label><input id="annual_cpi_pct" type="number" min="-20" max="50" step="0.1" value="2" required></div></div>
+      <div class="field"><label for="stress_profile">株式リターンの想定</label><select id="stress_profile"><option value="FLAT_RATE">毎年同じ年率</option><option value="YEAR1_SHOCK">初年度だけ -30%（以後は設定した年率）</option></select><p class="hint">いずれも仮定値です。実際の株価・配当履歴は読み込みません。</p></div>
+      <button id="run-button" type="submit">計算して比較</button>
+      <p class="error" id="error-msg" role="alert" aria-live="polite"></p>
+    </form>
+  </section>
+  <section class="panel results" aria-labelledby="results-heading">
+    <div class="section-heading"><span class="step">02</span><h2 id="results-heading">計算結果</h2></div>
+    <div class="flag" id="result-state">計算結果は仮定値に基づくデモです</div>
+    <div class="cards"><article class="metric"><div class="metric-name"><span class="dot fixed"></span>固定生活費</div><strong id="fixed-final">—</strong><small>試算期間終了時の資産残高</small></article><article class="metric"><div class="metric-name"><span class="dot indexed"></span>CPI連動生活費</div><strong id="cpi-final">—</strong><small>試算期間終了時の資産残高</small></article></div>
+    <div class="graph-head"><h3>資産残高の推移</h3><div class="key"><span><i class="dot fixed"></i>固定</span><span><i class="dot indexed"></i>CPI連動</span></div></div>
+    <svg id="balance-chart" role="img" aria-label="資産残高の年次推移（未計算）" viewBox="0 0 800 280" preserveAspectRatio="xMidYMid meet"></svg>
+    <div class="details" id="details" aria-live="polite">左の条件を設定して「計算して比較」を押してください。</div>
+    <div class="audit" id="audit-state">独立台帳監査：未実行</div>
+  </section>
+</main>
+<footer class="shell foot">研究専用・非商用・本番未承認｜期間中の実測リターン・将来確率・税引後残高を表示するものではありません。ローカルで動作し、入力値は外部送信しません。</footer>
+<script>__JS__</script>
+</body>
+</html>
