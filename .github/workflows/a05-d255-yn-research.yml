@@ -1,0 +1,27 @@
+name: A05 D255 provisional YN classifier test
+on:
+  push:
+    branches:
+      - research/a05-editorial-50-v1-20261113
+    paths:
+      - 'scripts/a05-d255-yn-provisional-classifier.mjs'
+      - 'scripts/test-a05-d255-yn-provisional-classifier.mjs'
+      - '.github/workflows/a05-d255-yn-research.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  provisional-yn:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Syntax of the new research-only module
+        run: |
+          node --check scripts/a05-d255-yn-provisional-classifier.mjs
+          node --check scripts/test-a05-d255-yn-provisional-classifier.mjs
+      - name: Run D255 all-skipped / all-midpoint / 128-manifest parity tests
+        run: node --test scripts/test-a05-d255-yn-provisional-classifier.mjs
