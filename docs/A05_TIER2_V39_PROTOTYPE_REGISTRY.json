@@ -1,0 +1,210 @@
+{
+  "schema": "a05.tier2.prototype-registry.v39",
+  "updated": "2026-11-17",
+  "canonicalSource": "A05_16寓意_採用16種_v13.xlsx, mirrored by docs/A05_VISUAL_CANONICAL_MOTIFS_V30.json",
+  "counts": {
+    "prototypePass": 4,
+    "newCandidatePendingReview": 1,
+    "withoutCandidate": 11,
+    "formalArtApproval": 0
+  },
+  "permissions": {
+    "prototypePassMeaning": "User accepted the 4 early works as sufficient prototypes, not formally approved final assets.",
+    "publishApproved": false,
+    "automaticMotifScoringLink": false
+  },
+  "artifacts": {
+    "origin": "Previous chat v38 originals and current chat v39 Polaris candidate",
+    "registration": "Images remain conversation-only and are NOT in the GitHub repository."
+  },
+  "rejects": [
+    {
+      "motif": "sacred-peak",
+      "attempts": 2,
+      "reason": "Incorrect 16-motif poster, not a standalone sacred peak"
+    },
+    {
+      "motif": "harbor",
+      "attempts": 1,
+      "reason": "Incorrect 16-motif poster, not a standalone natural harbor"
+    }
+  ],
+  "entries": [
+    {
+      "slot": "SA-11",
+      "id": "polaris",
+      "name": "北極星",
+      "group": "安定×自律",
+      "prototypeStatus": "candidate_pending_review",
+      "artVersion": "v39",
+      "sha256": "0c57a4829e362a20e91f47ff79a6f6e99c9ed0dc33e005764b68bf1931d066f2",
+      "formalArtApproved": false,
+      "githubAssetRegistered": false
+    },
+    {
+      "slot": "SA-10",
+      "id": "sacred-peak",
+      "name": "霊峰",
+      "group": "安定×自律",
+      "prototypeStatus": "not_started",
+      "artVersion": null,
+      "sha256": null,
+      "formalArtApproved": false,
+      "githubAssetRegistered": false
+    },
+    {
+      "slot": "SA-01",
+      "id": "harbor",
+      "name": "港",
+      "group": "安定×自律",
+      "prototypeStatus": "not_started",
+      "artVersion": null,
+      "sha256": null,
+      "formalArtApproved": false,
+      "githubAssetRegistered": false
+    },
+    {
+      "slot": "SA-00",
+      "id": "moon",
+      "name": "月",
+      "group": "安定×自律",
+      "prototypeStatus": "not_started",
+      "artVersion": null,
+      "sha256": null,
+      "formalArtApproved": false,
+      "githubAssetRegistered": false
+    },
+    {
+      "slot": "SC-11",
+      "id": "world-tree",
+      "name": "世界樹",
+      "group": "安定×つながり",
+      "prototypeStatus": "prototype_pass",
+      "artVersion": "v31-A",
+      "sha256": "5c4b071de3c186a55b73d98891000517ece5e3d26581e86f8e3923eddbb32c97",
+      "formalArtApproved": false,
+      "githubAssetRegistered": false
+    },
+    {
+      "slot": "SC-10",
+      "id": "ocean",
+      "name": "大海",
+      "group": "安定×つながり",
+      "prototypeStatus": "not_started",
+      "artVersion": null,
+      "sha256": null,
+      "formalArtApproved": false,
+      "githubAssetRegistered": false
+    },
+    {
+      "slot": "SC-01",
+      "id": "rainbow",
+      "name": "虹",
+      "group": "安定×つながり",
+      "prototypeStatus": "not_started",
+      "artVersion": null,
+      "sha256": null,
+      "formalArtApproved": false,
+      "githubAssetRegistered": false
+    },
+    {
+      "slot": "SC-00",
+      "id": "constellation",
+      "name": "星座",
+      "group": "安定×つながり",
+      "prototypeStatus": "not_started",
+      "artVersion": null,
+      "sha256": null,
+      "formalArtApproved": false,
+      "githubAssetRegistered": false
+    },
+    {
+      "slot": "CA-11",
+      "id": "pegasus",
+      "name": "ペガサス",
+      "group": "変化×自律",
+      "prototypeStatus": "prototype_pass",
+      "artVersion": "v27",
+      "sha256": "5c3815e11ecc6e40e011f015aebd38e990e35a42650529cf53175266acd53ded",
+      "formalArtApproved": false,
+      "githubAssetRegistered": false
+    },
+    {
+      "slot": "CA-10",
+      "id": "phoenix",
+      "name": "フェニックス",
+      "group": "変化×自律",
+      "prototypeStatus": "not_started",
+      "artVersion": null,
+      "sha256": null,
+      "formalArtApproved": false,
+      "githubAssetRegistered": false
+    },
+    {
+      "slot": "CA-01",
+      "id": "nine-tailed-fox",
+      "name": "九尾狐",
+      "group": "変化×自律",
+      "prototypeStatus": "not_started",
+      "artVersion": null,
+      "sha256": null,
+      "formalArtApproved": false,
+      "githubAssetRegistered": false
+    },
+    {
+      "slot": "CA-00",
+      "id": "cat-sith",
+      "name": "ケット・シー",
+      "group": "変化×自律",
+      "prototypeStatus": "not_started",
+      "artVersion": null,
+      "sha256": null,
+      "formalArtApproved": false,
+      "githubAssetRegistered": false
+    },
+    {
+      "slot": "CC-11",
+      "id": "twin-dragons",
+      "name": "双龍",
+      "group": "変化×つながり",
+      "prototypeStatus": "not_started",
+      "artVersion": null,
+      "sha256": null,
+      "formalArtApproved": false,
+      "githubAssetRegistered": false
+    },
+    {
+      "slot": "CC-10",
+      "id": "crow-tengu",
+      "name": "鴉天狗",
+      "group": "変化×つながり",
+      "prototypeStatus": "prototype_pass",
+      "artVersion": "v34",
+      "sha256": "975d955c14422d030932f521b47dac8dc1ff7a0025d6b417f31c28238bffb5df",
+      "formalArtApproved": false,
+      "githubAssetRegistered": false
+    },
+    {
+      "slot": "CC-01",
+      "id": "whale-pod",
+      "name": "鯨の群れ",
+      "group": "変化×つながり",
+      "prototypeStatus": "not_started",
+      "artVersion": null,
+      "sha256": null,
+      "formalArtApproved": false,
+      "githubAssetRegistered": false
+    },
+    {
+      "slot": "CC-00",
+      "id": "carbuncle",
+      "name": "カーバンクル",
+      "group": "変化×つながり",
+      "prototypeStatus": "prototype_pass",
+      "artVersion": "v33",
+      "sha256": "66bc6f4d11db888d7cc4a08c6d1493cd732ae5527cea939efd796dfb436dccfe",
+      "formalArtApproved": false,
+      "githubAssetRegistered": false
+    }
+  ]
+}
