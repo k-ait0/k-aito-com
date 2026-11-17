@@ -2,8 +2,9 @@
  * D248 — compare the D246 shipped browser computation against the independent
  * D243 research-only mathematical implementation. Zero human records.
  * Covers all 128 hold-filtered 30-item manifests, several boundary/skip
- * patterns and 30->32->34 item states when research followups are available.
- * Y/N must NEVER alter A/B/C/D scores or the 16-type candidate set.
+ * patterns and archival 30->32->34 computational states (not reachable from the D254 UI).
+ * D243 keeps its non-scoring original research result invariant.
+ * D255 provisional Y/N narrowing is tested independently, not here.
  */
 import test from "node:test";
 import assert from "node:assert/strict";
@@ -20,9 +21,8 @@ const match=generated.match(/<script id="data" type="application\/json">([\s\S]*
 assert.ok(match,"D246 inline JSON is missing");
 const data=JSON.parse(match[1]);
 const start=tpl.indexOf(" function scoreAnswer("),end=tpl.indexOf(" function addNearType(",start);
-const ynStart=tpl.indexOf(" function eligibleYNAxes("),ynEnd=tpl.indexOf(" function openYN(",ynStart);
-assert.ok(start>=0&&end>start&&ynStart>0&&ynEnd>ynStart,"D246 scoring hooks moved, update parity audit");
-const code=tpl.slice(start,end)+"\n"+tpl.slice(ynStart,ynEnd);
+assert.ok(start>=0&&end>start,"D246 scoring hooks moved, update parity audit");
+const code=tpl.slice(start,end);
 const context={
  data,byId:new Map(data.questions.map(q=>[q.id,q])),
  axes:["A","B","C","D"],AXIS_MIN_VALID:5,POWER:1.5,
@@ -30,7 +30,7 @@ const context={
  manifest:null,answers:null,initialCount:30,extraRounds:0,
  ynState:null
 };
-const site=runInNewContext(code+"\n({collectStats,candidateTypes,planYN})",context);
+const site=runInNewContext(code+"\n({collectStats,candidateTypes})",context);
 const plain=x=>JSON.parse(JSON.stringify(x));
 const statuses={FEW_DIRECTIONAL:"few_directional",DIRECTIONAL:"clear",
  INSUFFICIENT:"insufficient",TIE:"tie",WEAK:"borderline",FRAGILE:"fragile"};
@@ -61,30 +61,13 @@ function compare(m,answers){
   assert.ok(Math.abs(a.ratio-core.mean)<1e-12);
  }
  assert.deepEqual(plain(site.candidateTypes(stats)).map(t=>t.id),expected.possibleTypes);
- let promptCount=0;
- while(promptCount<8){
-  const ref=nextYNBatch(m,answers,context.ynState);
-  const rendered=plain(site.planYN(stats));
-  if(ref.kind==="NONE"){assert.equal(rendered,null);break;}
-  assert.ok(rendered,"The browser failed to suggest an eligible Y/N pair");
-  assert.equal(rendered.axis,ref.axis);
-  assert.equal(rendered.stage,ref.stage);
-  assert.deepEqual(rendered.questions.map(q=>q.id),ref.questions.map(q=>q.id));
-  for(const q of ref.questions){
-   const reply=promptCount%3===0?"UNSURE":promptCount%3===1?"YES":"NO";
-   context.ynState.responses[q.id]=reply;
-   promptCount++;
-  }
-  if(promptCount%4===2)context.ynState.reasons[ref.axis]="CONTEXT_DEPENDENT";
- }
- assert.ok(promptCount<=8);
- assert.equal(plain(site.planYN(stats)),null,"Y/N should be fully handled within cap");
- const final=summarizeYN(m,answers,context.ynState);
- assert.deepEqual(final.possibleTypes,expected.possibleTypes);
- assert.equal(final.scoreEffect,"NONE");
- return {candidateCount:expected.numberOfCandidateTypes,prompts:promptCount,
+ const raw=summarizeYN(m,answers,emptyYNState());
+ assert.deepEqual(raw.possibleTypes,expected.possibleTypes);
+ assert.equal(raw.scoreEffect,"NONE");
+ return {candidateCount:expected.numberOfCandidateTypes,
   heavy:expected.axes.filter(a=>a.independentYNRecommended).length};
 }
+
 function make(m,pattern){
  const axes={A:[],B:[],C:[],D:[],E:[]};
  for(const q of m.questions)axes[q.axis].push(q.id);
@@ -122,16 +105,16 @@ test("D248 version contract and all shipped 128 D224 manifests",()=>{
 test("D248 128x11 generated 30Q profiles agree with D243 and independent Y/N planner",()=>{
  const patterns=["all7","all1","all4","allSkip","five4_B","four4_B",
   "three4_twoSkip_B","fiveSkip_C","three4_fourSkip_A","allAxesFive4","mixed"];
- let cases=0,heavy=0,prompts=0;
+ let cases=0,heavy=0;
  for(const meta of data.manifests){
   const m=drawResearchHoldFilteredManifest(meta.seed);
   for(const pattern of patterns){
    const r=compare(m,make(m,pattern));
-   cases++;heavy+=r.heavy;prompts+=r.prompts;
+   cases++;heavy+=r.heavy;
   }
  }
  assert.equal(cases,1408);
- assert.ok(heavy>0&&prompts>0);
+ assert.ok(heavy>0);
 });
 test("D248 32Q and 34Q research continuations preserve signed evidence and Y/N isolation",()=>{
  let n=0;
