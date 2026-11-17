@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; base-uri 'none'; form-action 'none'">
 <meta name="robots" content="noindex,nofollow,noarchive">
-<title>A05｜中間回答とY/N補助の研究用診断</title>
+<title>A05｜30問＋Y/N補完型16タイプ研究診断</title>
 <style>
 :root{font-family:system-ui,-apple-system,"Hiragino Kaku Gothic ProN",Meiryo,sans-serif;background:#f5f7fb;color:#1d2b44;line-height:1.6;color-scheme:light}
 *{box-sizing:border-box}
@@ -125,9 +125,9 @@ p{margin:8px 0 16px}
  <p id="post30Note" class="extra-note">30問の後はY/N形式のみを使用します。追加質問は任意です。</p>
 </section>
 <section id="yn" class="card" hidden>
- <div class="eyebrow">補助質問 · 研究用／16タイプの加点なし</div>
+ <div class="eyebrow">Y/Nによる分類補完 · 未較正の研究用</div>
  <h2 id="ynHeading">左右それぞれの重視度を確認</h2>
- <p class="muted">YES/NOは左右それぞれ独立に答えられます。両方YESでも、両方NOでも構いません。</p>
+ <p class="muted">YES/NOは左右それぞれ独立です。両方YES、両方NOも可能です。分類補完は未検証の研究仮説で、7段階の得点は変えません。</p>
  <div class="stephead"><span id="ynCounter"></span><span id="ynStage"></span></div>
  <div id="ynQuestion" class="yn-question"></div>
  <div class="yn-choices" id="ynChoices" role="group" aria-label="補助質問の回答"></div>
@@ -146,11 +146,12 @@ p{margin:8px 0 16px}
  </div>
  <div class="actions"><button class="secondary" id="ynPrev">前へ</button><button class="primary" id="ynNext" disabled>次へ</button></div>
  <button class="skip" id="ynStop">ここで終了して結果へ戻る</button>
- <p class="muted">補助質問は全体で最大8問。途中終了してもタイプ判定は変わりません。回答は端末から送信・保存されません。</p>
+ <p class="muted">追加質問はY/N形式のみ・最大8問。回答により研究用の暫定候補が変わることがあります。途中終了は任意で、回答は端末から送信・保存されません。</p>
 </section>
 <p class="warning">A05研究用試作版（1.5乗加点・未較正）：本番診断の回答履歴とは連携していません。16タイプ名は開発途中のものです。回答はこの画面内でのみ処理し、サーバーへ送信・保存しません。画面を閉じると回答は失われます。</p>
 </main>
 <script id="data" type="application/json">__D219_DATA__</script>
+<script id="d255-engine">__D255_ENGINE__</script>
 <script>
 "use strict";
 (()=>{
@@ -263,15 +264,20 @@ p{margin:8px 0 16px}
   item.append(heading,summary);container.append(item);
  }
  function paintResult(){
-  const stats=collectStats(),candidates=candidateTypes(stats);
+  const stats=collectStats(),baseCandidates=candidateTypes(stats);
+  const research=d255Analyze(stats,ynState,data.ynProbes);
+  const candidates=data.types.filter(type=>research.candidateIds.includes(type.id));
+  const rescued=candidates.length<baseCandidates.length;
+  const missingAll=stats.every(s=>s.n===0);
+  const midOnly=stats.every(s=>s.directionalCurrent===0)&&!missingAll;
   const unresolved=stats.filter(s=>s.status!=="clear");
   const near=$("nearTypes");near.replaceChildren();
   if(candidates.length===1){
    const type=candidates[0];
    $("typeIcon").textContent=type.emoji;
    $("typeName").textContent=type.name;
-   $("typeBadge").textContent=type.id+" · 暫定タイプ";
-   $("typeSummary").textContent=type.summary;
+   $("typeBadge").textContent=type.id+(rescued?" · Y/N補完の暫定参考タイプ":" · 30問の暫定参考タイプ");
+   $("typeSummary").textContent=type.summary+(rescued?" Y/Nで候補を絞った未検証の研究仮説です。":"");
    near.hidden=true;
   }else if(candidates.length<=4){
    $("typeIcon").textContent="⚖️";
@@ -282,9 +288,9 @@ p{margin:8px 0 16px}
    near.hidden=false;
   }else{
    $("typeIcon").textContent="◇";
-   $("typeName").textContent="価値観が拮抗しています";
-   $("typeBadge").textContent="タイプ判定を保留 · "+candidates.length+"候補";
-   $("typeSummary").textContent="いくつかの軸が中間に近いため、特定のタイプへ絞り込めません。これは診断の失敗ではなく、今回の回答から読み取れる結果です。";
+   $("typeName").textContent=missingAll?"今回の回答からは判断できません":midOnly?"中間回答が多く、方向が未確定です":"タイプを十分に絞り込めません";
+   $("typeBadge").textContent="未確定 · "+candidates.length+"通りの組み合わせ";
+   $("typeSummary").textContent=missingAll?"30問すべてスキップされ、判定材料がありません。希望すればY/Nで追加確認できます。":midOnly?"中間回答はありますが、左右の方向は未確定です。":"方向が不明な軸があります。任意のY/Nで参考候補を減らせる場合があります。";
    near.hidden=true;
   }
   const holder=$("axes");holder.replaceChildren();
@@ -293,7 +299,11 @@ p{margin:8px 0 16px}
    const heading=document.createElement("div");heading.className="axis-title";
    const left=document.createElement("span");left.textContent=axis.name;
    const right=document.createElement("strong");
-   if(s.status==="few_directional")right.textContent="方向を示す回答が少ないため保留";
+   const ynAxis=research.axes.find(x=>x.axis===s.axis);
+   if(s.status!=="clear"&&ynAxis.sign!==0)right.textContent=(ynAxis.sign<0?axis.left:axis.right)+"寄り（Y/N暫定）";
+   else if(s.n===0)right.textContent="回答情報なし";
+   else if(s.directionalCurrent===0)right.textContent="中間回答のみ・方向未確定";
+   else if(s.status==="few_directional")right.textContent="方向を示す回答が少ないため保留";
    else if(s.status==="insufficient")right.textContent="回答不足 · 方向保留";
    else if(s.status==="tie")right.textContent="左右が拮抗";
    else if(s.status==="fragile")right.textContent="設問差に敏感 · "+(s.sign<0?axis.left:axis.right)+"寄り";
@@ -302,21 +312,24 @@ p{margin:8px 0 16px}
    heading.append(left,right);
    const track=document.createElement("div");track.className="track";
    const fill=document.createElement("span");
-   fill.style.width=Math.max(0,Math.min(100,50+50*s.ratio))+"%";
+   track.hidden=s.n===0||s.directionalCurrent===0;
+   if(!track.hidden)fill.style.width=Math.max(0,Math.min(100,50+50*s.ratio))+"%";
    track.append(fill);
    const note=document.createElement("div");note.className="minor";
    note.textContent="有効回答 "+s.n+"/"+s.presented+" · "+
     (s.status==="few_directional"?"4・スキップ以外の回答が4問未満です":s.status==="insufficient"?"有効回答または意味グループが不足しています":s.status==="tie"?"左右の選好が拮抗しています":s.status==="fragile"?"1問または1グループを除くと方向が変わります":s.status==="borderline"?"中間に近い傾向です。両方重視・両方重視しない・状況次第は区別できません":"今回の回答では比較的安定した方向性があります");
+   note.textContent+=" · 中間"+s.midpointOnInitial+" / スキップ"+s.skippedOnInitial+(ynAxis.source.startsWith("YN_")?" · Y/N補完の暫定方向":"");
    item.append(heading,track,note);holder.append(item);
   }
-  $("resultComplete").textContent=manifest.ids.length+"問の回答を確認しました。追加質問をしなくても、この時点で診断は完了です。";
+  const valid30=Object.values(answers).filter(v=>v!==null).length;
+  $("resultComplete").textContent="30問の回答手続きを終了しました。有効回答"+valid30+"問、スキップ"+(30-valid30)+"問。追加はY/N形式のみです。";
   $("resultNotice").textContent=(unresolved.length
    ?unresolved.map(s=>s.axis).join("・")+"軸は境界付近または回答不足のため、単一のタイプへ断定していません。"
    :"4軸とも今回の設問では左右の傾向が比較的明確でした。")+
-   " この結果は1・7の強い回答を相対的に重視する1.5乗の研究用加点、暫定境界、設問除外時の方向安定性による参考表示です。心理測定としての信頼性・妥当性は未検証です。E軸の補助2問は分類に含めず、C31・C32・C36は採点保留としています。";
+   " 30問の1.5乗加点は維持。Y/Nによる候補の絞り込みは得点には混ぜない別の研究仮説です。心理測定としての信頼性・妥当性は未検証です。E補助2問は分類せず、C31・C32・C36は採点保留です。";
   const ynNextOffer=planYN(stats);
   $("ynButton").hidden=!ynNextOffer;
-  if(ynNextOffer)$("ynButton").textContent=ynNextOffer.axis+"軸のY/N補助質問（任意・得点外）";
+  if(ynNextOffer)$("ynButton").textContent=ynNextOffer.axis+"軸をY/Nで追加確認（任意）";
   const ynSummary=$("ynSummary");
   const notes=data.ynProbes.axes.filter(x=>x.initial.some(q=>Object.hasOwn(ynState.responses,q.id)))
    .map(axis=>{
@@ -328,40 +341,13 @@ p{margin:8px 0 16px}
     return axis.axis+"軸："+label;
    });
   ynSummary.hidden=notes.length===0;
-  ynSummary.textContent=notes.length?"Y/N補助（16タイプの加点なし）："+notes.join("／"):"";
+  ynSummary.textContent=notes.length?"Y/N回答の内容（未検証の参考情報）："+notes.join("／"):"";
   $("post30Note").textContent=ynNextOffer
-   ?"30問目以降の追加質問はY/N形式のみです。補助質問は任意・得点外で、16タイプ判定は変わりません。"
-   :"30問の回答はここで終了です。追加の7段階質問はありません。";
+   ?"31問目以降もY/N形式のみ。任意の回答で研究用の暫定候補を減らせる場合があります。"
+   :research.numberOfCandidateTypes===1?"4軸の暫定方向が揃いました。追加質問はありません。":"追加のY/Nは終了です。未確定な方向を無理に決めません。";
  }
 
- function eligibleYNAxes(stats){
-  return stats.filter(s=>
-   s.midpointOnInitial+s.skippedOnInitial>=data.ynProbes.policy.triggerCombinedMidpointOrSkippedAtLeast&&s.status!=="clear")
-   .sort((a,b)=>
-    (b.midpointOnInitial+b.skippedOnInitial)-(a.midpointOnInitial+a.skippedOnInitial)||
-    b.skippedOnInitial-a.skippedOnInitial||a.axis.localeCompare(b.axis));
- }
- function planYN(stats){
-  const used=Object.keys(ynState.responses).length;
-  if(used>=data.ynProbes.policy.maxIndependentYNPerSession)return null;
-  const eligible=eligibleYNAxes(stats);
-  // All eligible axes receive both independent pole questions before any
-  // context followups. This keeps one axis from consuming the whole budget.
-  for(const axis of eligible){
-   const def=data.ynProbes.axes.find(x=>x.axis===axis.axis);
-   const missing=def.initial.filter(q=>!Object.hasOwn(ynState.responses,q.id));
-   if(missing.length)return {axis:axis.axis,stage:"INDEPENDENT_POLES",questions:missing.slice(0,2)};
-  }
-  for(const axis of eligible){
-   const def=data.ynProbes.axes.find(x=>x.axis===axis.axis);
-   const unsure=def.initial.some(q=>ynState.responses[q.id]==="UNSURE");
-   const reason=ynState.reasons[axis.axis];
-   if(!unsure&&!["CONTEXT_DEPENDENT","WORDING_DIFFICULT"].includes(reason))continue;
-   const missing=def.context.filter(q=>!Object.hasOwn(ynState.responses,q.id));
-   if(missing.length)return {axis:axis.axis,stage:"OPTIONAL_CONTEXT",questions:missing.slice(0,2)};
-  }
-  return null;
- }
+ function planYN(stats){return d255NextBatch(stats,ynState,data.ynProbes);}
  function openYN(){
   ynOffer=planYN(collectStats());
   if(!ynOffer)return;
