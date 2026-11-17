@@ -10,9 +10,14 @@ import {
 const assetRoot = new URL('../projects/kidp/life-design-lab/a05/',import.meta.url);
 const sampleData = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUg==';
 
-test('v37: the four art-review motifs are exactly the agreed 4 works', () => {
- assert.deepEqual(TIER2_REVIEW_MOTIFS, ['world-tree','pegasus','crow-tengu','carbuncle']);
- for (const id of TIER2_REVIEW_MOTIFS) assert.ok(MOTIFS.find(m => m.id === id));
+test('v39: artwork review offers precisely the 16 approved motifs in canonical order', () => {
+ assert.equal(TIER2_REVIEW_MOTIFS.length,16);
+ assert.deepEqual(TIER2_REVIEW_MOTIFS, MOTIFS.map(m => m.id));
+ for (const m of MOTIFS) {
+  const html=renderTier2Review({motif:m.id,accent:'R'});
+  assert.match(html,new RegExp('value="'+m.id+'"'));
+  assert.ok(html.includes(m.name));
+ }
  assert.throws(() => renderTier2Review({motif:'unicorn'}),TypeError);
  assert.throws(() => renderTier2Review({motif:'T01'}),TypeError);
 });
