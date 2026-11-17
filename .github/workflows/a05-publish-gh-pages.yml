@@ -13,6 +13,8 @@ on:
       - 'research/a05/d246-isolated-yn-preview-template.html'
       - 'research/a05/d243-midpoint-yn-probe-bank.json'
       - 'scripts/a05-d246-build-isolated-yn-preview.mjs'
+      - 'scripts/a05-d255-yn-provisional-classifier.mjs'
+      - 'scripts/test-a05-d255-yn-provisional-classifier.mjs'
       - 'scripts/test-a05-d246-isolated-browser.cjs'
       - 'scripts/a05-d249-live-pages-audit.mjs'
       - 'scripts/test-a05-d249-live-pages-audit.mjs'
@@ -54,6 +56,8 @@ jobs:
           grep -q '診断を始める' research/a05/generated/d219-simple-diagnosis.html
       - name: Gate publication on D242 browser-versus-research 1.5-power scoring
         run: node --test scripts/test-a05-d242-preview-scoring.mjs
+      - name: Gate D255 research-only Y/N candidate classifier
+        run: node --test scripts/test-a05-d255-yn-provisional-classifier.mjs
       - name: Build Y/N supplementary research page separately from unchanged D242 root
         run: |
           node scripts/a05-d246-build-isolated-yn-preview.mjs
