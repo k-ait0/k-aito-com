@@ -17,7 +17,8 @@
     "霊峰の2度の出力は正本外キャラを含む16枠ポスターだったためreject。制作数に計上しない。",
     "RGBYは全モチーフ共通の可変UI/CSS枠線。固定色属性ではない。",
     "E軸はmoney/timeの補助表示。16寓意の自動判定・旧T型への紐付けは未決定。",
-    "原画バイナリはこのPRの公開アセットへ登録しない。"
+    "原画バイナリはこのPRの公開アセットへ登録しない。",
+    "北極星には別案B（1086x1448、SHA-256先頭0c57a482）も存在する。別案は同一モチーフの比較候補であり新たなモチーフ数には加算しない。"
   ],
   "motifs": [
     {
@@ -36,7 +37,17 @@
         "sha256": "1247b27543edc662a9629abf107d57ce44dfd31368e755f4bb1945d434b23fee",
         "size": "1024x1536",
         "gitHubUploaded": false
-      }
+      },
+      "alternateLocalArtifacts": [
+        {
+          "label": "v39-B",
+          "description": "Alternate North Star illustration generated in current chat; not formally approved",
+          "filename": "A05_Tier2_v39_new_prototypes/polaris.png",
+          "sha256": "0c57a4829e362a20e91f47ff79a6f6e99c9ed0dc33e005764b68bf1931d066f2",
+          "size": "1086x1448",
+          "gitHubUploaded": false
+        }
+      ]
     },
     {
       "slot": "SA-10",
