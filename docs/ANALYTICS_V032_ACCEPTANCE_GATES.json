@@ -1,0 +1,34 @@
+{
+  "schema": "KAITO_ANALYTICS_V032_ACCEPTANCE_GATES",
+  "recorded_date_jst": "2026-11-18",
+  "data_mode": "SYNTHETIC_DEMO_ONLY",
+  "private_market_or_cpi_input_enabled": false,
+  "historical_market_data_verified": false,
+  "historical_publication_vintage_cpi_used": false,
+  "private_key_or_encrypted_archives_embedded": false,
+  "external_network_requests": false,
+  "user_data_transmitted": false,
+  "core_implementation_reused": [
+    "portfolio-core.cjs",
+    "portfolio-input-audit.cjs",
+    "rolling-portfolio-cpi.cjs"
+  ],
+  "browser_preview_single_file": "research/analytics/K_Aito_Analytics_Offline_Preview_v032.html",
+  "preview_html_status": "BUILT_AND_VM_DOM_TESTED",
+  "actual_browser_manual_acceptance": "NOT_COMPLETE",
+  "regression_tests": { "previous": 899, "new": 21, "total": 920, "result": "PASS" },
+  "gates": [
+    { "id": "B01", "status": "PASS", "note": "v0.31 encrypted archive integrity" },
+    { "id": "B02", "status": "UNCONFIRMED", "note": "owner-controlled durable copies" },
+    { "id": "B03", "status": "BLOCKED", "note": "owner-local RSA decryption and raw hash QA" },
+    { "id": "B04", "status": "BLOCKED", "note": "reference CPI raw CSV column mapping" },
+    { "id": "B05", "status": "BLOCKED", "note": "legacy Shiller and Fed/eStat source pins" },
+    { "id": "B06", "status": "BLOCKED", "note": "verified JPY historical withdrawals" },
+    { "id": "B07-A", "status": "PASS", "note": "standalone synthetic UI with audited Core and VM DOM interactions" },
+    { "id": "B07-B", "status": "NOT_COMPLETE", "note": "manual browser UI acceptance" },
+    { "id": "B07-C", "status": "NOT_COMPLETE", "note": "integration into owner-facing website" },
+    { "id": "B08", "status": "NOT_APPROVED", "note": "production release and rights review" }
+  ],
+  "main_or_production_modified": false,
+  "dwz_draft_pr70_modified": false
+}
