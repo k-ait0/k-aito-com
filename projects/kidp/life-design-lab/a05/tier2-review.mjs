@@ -1,12 +1,13 @@
 /** A05 v37: opt-in, display-only review of unapproved Tier2 local images.
  * No scores, historical type IDs, persistence, remote uploads or production URLs.
  */
-import { resolveVisualDisplay, RGBY } from './visual-contract.mjs';
+import { resolveVisualDisplay, MOTIFS } from './visual-contract.mjs';
 
-export const TIER2_REVIEW_MOTIFS = Object.freeze(['world-tree','pegasus','crow-tengu','carbuncle']);
+// The selection comes solely from the workbook-backed runtime contract, never a generated poster.
+export const TIER2_REVIEW_MOTIFS = Object.freeze(MOTIFS.map(m => m.id));
 const E_TEXT = Object.freeze({money:'経済的余裕',time:'時間的自由'});
 const OPTIONS = Object.freeze({
- motif:[['world-tree','世界樹'],['pegasus','ペガサス'],['crow-tengu','鴉天狗'],['carbuncle','カーバンクル']],
+ motif:MOTIFS.map(m => [m.id,m.name]),
  accent:[['R','R：赤'],['G','G：緑'],['B','B：青'],['Y','Y：黄']],
  eAxis:[['none','未割当'],['money','経済的余裕'],['time','時間的自由']],
  worldTreeRatio:[['natural','原画比率（世界樹のみ）'],['portrait','共通3:4の表示枠']]
@@ -28,7 +29,7 @@ export function renderTier2Review({
  motif='world-tree', accent='R', eAxis=null, guide=true,
  worldTreeRatio='natural', imageSrc=null
 }={}) {
- if (!TIER2_REVIEW_MOTIFS.includes(motif)) throw new TypeError('Motif is not in the four-work review');
+ if (!TIER2_REVIEW_MOTIFS.includes(motif)) throw new TypeError('Motif is not in the canonical sixteen');
  if (typeof guide !== 'boolean' || !['natural','portrait'].includes(worldTreeRatio)) {
   throw new TypeError('Invalid Tier2 review setting');
  }
