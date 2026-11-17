@@ -1,0 +1,68 @@
+{
+  "schema": "KAITO_ANALYTICS_COMPLETION_GATES_V031",
+  "recorded_date_jst": "2026-11-18",
+  "branch": "analytics-finalization-readiness-v0-31-20261118",
+  "research_only": true,
+  "owner_durable_backup_confirmed": false,
+  "current_integrity": {
+    "encrypted_archives": 6,
+    "original_zip_archives": 2,
+    "legacy_nested_archives": 5,
+    "archive_and_ciphertext_integrity": "PASS",
+    "private_key_used": false,
+    "plaintext_qa": false,
+    "v030_full_regression": "899/899 PASS"
+  },
+  "archive_sha256": {
+    "K_Aito_Analytics_Encrypted_Evidence_Backup_20261112.zip": "74a2ae337f83f591b505a97b9deb643f226df0a39767449118117caeb2beabeb",
+    "K_Aito_Analytics_CPI_2025_3DP_Encrypted_20261113.zip": "d65dab15b874f01c0980f001899e4327058d82128c97f698b02ad1a94e7750cb",
+    "K_Aito_Analytics_Encrypted_Retention_v031_20261118.zip": "7c42e35cd31660c15a72b0714682b1f90d5468bbf7d0fbb9bad7e1e82c44a842"
+  },
+  "gates": [
+    {
+      "id": "B01",
+      "name": "archival_ciphertext_integrity",
+      "status": "PASS"
+    },
+    {
+      "id": "B02",
+      "name": "owner_controlled_durable_backup",
+      "status": "UNCONFIRMED"
+    },
+    {
+      "id": "B03",
+      "name": "owner_local_decryption_and_gcm_authentication",
+      "status": "BLOCKED"
+    },
+    {
+      "id": "B04",
+      "name": "official_reference_cpi_csv_schema_audit",
+      "status": "BLOCKED"
+    },
+    {
+      "id": "B05",
+      "name": "legacy_pinned_shiller_fed_estat_qa",
+      "status": "BLOCKED"
+    },
+    {
+      "id": "B06",
+      "name": "jpy_historical_lifecycle_qa",
+      "status": "BLOCKED"
+    },
+    {
+      "id": "B07",
+      "name": "frontend_integration_and_acceptance",
+      "status": "NOT_COMPLETE"
+    },
+    {
+      "id": "B08",
+      "name": "production_release",
+      "status": "NOT_APPROVED"
+    }
+  ],
+  "official_reference_source_as_historical_vintage_approved": false,
+  "legacy_fed_ddp_long_history_approved": false,
+  "market_data_republication_approved": false,
+  "main_or_production_changed": false,
+  "dwz_pr70_changed": false
+}
