@@ -78,6 +78,8 @@ async function main(){
   // The image is associated with explicit motif selection, never with T11.
   await page.locator('[data-tier2-setting="motif"]').selectOption("pegasus");
   assert.equal(await page.locator('img[data-tier2-art]').count(),0);
+  assert.equal(await page.locator('[data-tier2-setting="worldTreeRatio"]').count(),0,
+    "World Tree ratio control must be hidden for Pegasus");
   await page.locator('input[data-tier2-upload]').setInputFiles({
    name:"pegasus-fixture.png",mimeType:"image/png",buffer:PNG
   });
