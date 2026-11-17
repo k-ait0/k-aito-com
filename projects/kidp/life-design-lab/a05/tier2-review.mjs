@@ -58,8 +58,8 @@ export function renderTier2Review({
   '<label>表示モチーフ<select data-tier2-setting="motif">'+asOptions(OPTIONS.motif,motif)+'</select></label>'+
   '<label>RGBY枠線（手動）<select data-tier2-setting="accent">'+asOptions(OPTIONS.accent,accent)+'</select></label>'+
   '<label>E軸補助（手動）<select data-tier2-setting="eAxis">'+asOptions(OPTIONS.eAxis,eAxis??'none')+'</select></label>'+
-  '<label>表示枠の比率<select data-tier2-setting="worldTreeRatio">'+
-    asOptions(OPTIONS.worldTreeRatio,worldTreeRatio)+'</select></label>'+
+  (v.id==='world-tree' ? '<label>表示枠の比率<select data-tier2-setting="worldTreeRatio">'+
+    asOptions(OPTIONS.worldTreeRatio,worldTreeRatio)+'</select></label>' : '')+
   '<label class="a05-t2-check"><input type="checkbox" data-tier2-setting="guide"'+
    (guide?' checked':'')+'>セーフゾーン7%を表示</label>'+
   '<label>このモチーフの画像を端末から読み込む（PNG/JPEG/WebP）'+
