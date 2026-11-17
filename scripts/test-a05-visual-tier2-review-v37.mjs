@@ -53,6 +53,10 @@ test('v37: Pegasus thumbnails are optional and the principal image preserves con
  const w=renderTier2Review({motif:'world-tree',imageSrc:sampleData,worldTreeRatio:'portrait'});
  assert.doesNotMatch(w,/a05-t2-stage--natural/);
  assert.doesNotMatch(w,/a05-t2-thumbnails/);
+ assert.match(w,/data-tier2-setting="worldTreeRatio"/);
+ assert.doesNotMatch(p,/data-tier2-setting="worldTreeRatio"/);
+ assert.doesNotMatch(renderTier2Review({motif:'crow-tengu'}),/data-tier2-setting="worldTreeRatio"/);
+ assert.doesNotMatch(renderTier2Review({motif:'carbuncle'}),/data-tier2-setting="worldTreeRatio"/);
  const css=readFileSync(new URL('tier2-review.css',assetRoot),'utf8');
  assert.match(css,/\.a05-t2-art\{[^}]*object-fit:contain/);
  assert.match(css,/\.a05-t2-mini--crop img\{object-fit:cover/);
