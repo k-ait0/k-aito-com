@@ -19,7 +19,8 @@ const A05 = "/projects/kidp/life-design-lab/a05/";
 const MIME = {
   ".html": "text/html; charset=utf-8",
   ".mjs": "text/javascript; charset=utf-8",
-  ".css": "text/css; charset=utf-8"
+  ".css": "text/css; charset=utf-8",
+  ".svg": "image/svg+xml"
 };
 
 function startServer() {
@@ -71,7 +72,13 @@ async function main() {
   const address = live || ("http://127.0.0.1:" + server.address().port);
   console.log("A05 target: " + (live ? "live HTTPS" : "local static server"));
   try {
-    browser = await chromium.launch({ headless: true, channel: "chrome" });
+    // Default stays Chrome; QA hosts can opt into their installed Chromium.
+    // This does not trigger CI, publishing or any network installation.
+    const executable = process.env.A05_CHROMIUM_EXECUTABLE;
+    browser = await chromium.launch({
+      headless: true,
+      ...(executable ? { executablePath: executable } : { channel: "chrome" })
+    });
     const context = await browser.newContext({
       viewport: { width: 390, height: 844 },
       acceptDownloads: true
@@ -856,6 +863,105 @@ async function main() {
       assert.equal(values.scroll, "auto");
       assert.equal(values.border, "#52657b");
       await page.emulateMedia({ reducedMotion: "no-preference", contrast: "no-preference" });
+    });
+
+    // V20: Isolated visual integration QA. Do not reuse the main test context
+    // because some existing checks deliberately mutate consent and history.
+    await check("v20 Tier1 16 crests, RGBY borders and visual-only selection", async () => {
+      const visualContext = await browser.newContext({
+        viewport: { width: 390, height: 844 },
+        reducedMotion: "reduce"
+      });
+      const visualPage = await visualContext.newPage();
+      const errors = [];
+      visualPage.on("pageerror", error => errors.push(error.message));
+      visualPage.on("response", response => {
+        if (response.url().startsWith(address) && response.status() >= 400) {
+          errors.push(response.status() + " " + response.url());
+        }
+      });
+      try {
+        await visualPage.goto(address + A05);
+        await visualPage.locator('[data-action="sample"][data-index="10"]').click();
+        await waitForUICommit(visualPage, "result");
+        assert.match(await visualPage.locator(".result-head h2").innerText(), /T11/);
+        assert.match(await visualPage.locator(".a05-vp-head").innerText(), /診断判定とは未連動/);
+        assert.equal(await visualPage.locator('.a05-vp-crest').count(), 1);
+        const card = await visualPage.locator(".a05-vp-visual").evaluate(el => {
+          const figcaption = el.querySelector("figcaption");
+          const img = el.querySelector("img.a05-vp-crest");
+          return {
+            tag: el.tagName, role: el.getAttribute("role"),
+            caption: figcaption?.innerText ?? "",
+            imgAlt: img?.getAttribute("alt"), imgHidden: img?.getAttribute("aria-hidden"),
+            visibleName: figcaption?.querySelector("strong")?.innerText ?? "",
+            controlsInsideCard: el.querySelectorAll("button,input,select").length
+          };
+        });
+        assert.equal(card.tag, "FIGURE", "visual card must use semantic figure");
+        assert.equal(card.role, null, "do not hide caption behind role=img");
+        assert.ok(card.caption.includes(card.visibleName) && card.visibleName.length > 0);
+        assert.equal(card.imgAlt, "", "crest is decorative; figcaption carries the name");
+        assert.equal(card.imgHidden, "true");
+        assert.equal(card.controlsInsideCard, 0);
+        for (const selector of ["motif", "accent", "eAxis", "motion"]) {
+          const control = visualPage.locator('[data-visual-setting="' + selector + '"]');
+          assert.equal(await control.evaluate(el => el.closest("label") !== null), true,
+            selector + " must have a visible label");
+          assert.ok(await control.evaluate(el => el.getBoundingClientRect().height) >= 44,
+            selector + " must meet 44px touch height");
+        }
+        const resultBefore = await visualPage.locator(".result-head").innerText();
+        const axesBefore = await visualPage.locator(".value-axis").allInnerTexts();
+        const motifIds = [
+          "polaris", "sacred-peak", "harbor", "moon",
+          "world-tree", "ocean", "rainbow", "constellation",
+          "pegasus", "phoenix", "nine-tailed-fox", "cat-sith",
+          "twin-dragons", "crow-tengu", "whale-pod", "carbuncle"
+        ];
+        for (const id of motifIds) {
+          await visualPage.locator('[data-visual-setting="motif"]').selectOption(id);
+          const crest = visualPage.locator(".a05-vp-crest");
+          await crest.evaluate(async img => { await img.decode(); });
+          const data = await crest.evaluate(img => ({
+            src: new URL(img.src).pathname,
+            width: img.naturalWidth,
+            height: img.naturalHeight
+          }));
+          assert.ok(data.src.endsWith("/crests/" + id + ".svg"), "wrong crest: " + id);
+          assert.equal(data.width, 128, "crest width: " + id);
+          assert.equal(data.height, 128, "crest height: " + id);
+        }
+        for (const [color, expected] of [
+          ["R", "rgb(255, 59, 92)"], ["G", "rgb(57, 255, 136)"],
+          ["B", "rgb(41, 182, 255)"], ["Y", "rgb(255, 232, 74)"]
+        ]) {
+          await visualPage.locator('[data-visual-setting="accent"]').selectOption(color);
+          const border = await visualPage.locator(".a05-vp-visual").evaluate(element =>
+            getComputedStyle(element).borderTopColor);
+          assert.equal(border, expected, "RGBY border: " + color);
+        }
+        await visualPage.locator('[data-visual-setting="eAxis"]').selectOption("none");
+        assert.match(await visualPage.locator(".a05-vp-footer").innerText(), /未割当/);
+        await visualPage.locator('[data-visual-setting="eAxis"]').selectOption("time");
+        assert.match(await visualPage.locator(".a05-vp-footer").innerText(), /時間的自由/);
+        await visualPage.locator('[data-visual-setting="motion"]').selectOption("on");
+        const motion = await visualPage.locator(".a05-vp-visual").evaluate(element =>
+          getComputedStyle(element).animationName);
+        assert.equal(motion, "none", "reduced-motion must suppress animation");
+        assert.equal(await visualPage.locator(".result-head").innerText(), resultBefore);
+        assert.deepEqual(await visualPage.locator(".value-axis").allInnerTexts(), axesBefore);
+        const mobileOverflow = await visualPage.evaluate(() =>
+          document.documentElement.scrollWidth > document.documentElement.clientWidth + 2);
+        assert.equal(mobileOverflow, false, "390px visual preview overflow");
+        await visualPage.setViewportSize({ width: 1280, height: 800 });
+        const desktopOverflow = await visualPage.evaluate(() =>
+          document.documentElement.scrollWidth > document.documentElement.clientWidth + 2);
+        assert.equal(desktopOverflow, false, "1280px visual preview overflow");
+        assert.deepEqual(errors, []);
+      } finally {
+        await visualContext.close();
+      }
     });
 
     assert.deepEqual(consoleErrors, []);

@@ -1,0 +1,35 @@
+name: A05 visual canonical lock
+
+on:
+  pull_request:
+    paths:
+      - "projects/kidp/life-design-lab/a05/**"
+      - "scripts/*a05*visual*.mjs"
+      - "scripts/test-a05-tier2-production-queue-v39.mjs scripts/test-a05-tier2-production-queue-v40.mjs scripts/test-a05-tier2-production-queue-v41.mjs scripts/test-a05-tier2-production-queue-v42.mjs scripts/test-a05-tier2-production-queue-v43.mjs"
+      - "docs/A05_TIER2_PRODUCTION_QUEUE_V39.json"
+      - "docs/A05_TIER2_PRODUCTION_QUEUE_V40.json"
+      - "docs/A05_TIER2_PRODUCTION_QUEUE_V41.json"
+      - "docs/A05_TIER2_PRODUCTION_QUEUE_V42.json"
+      - "docs/A05_TIER2_PRODUCTION_QUEUE_V43.json"
+      - "scripts/test-a05-tier2-production-queue-v43.mjs"
+      - "scripts/test-a05-tier2-production-queue-v42.mjs"
+      - "scripts/test-a05-tier2-production-queue-v41.mjs"
+      - "scripts/test-a05-tier2-production-queue-v40.mjs"
+      - "docs/A05_VISUAL_CANONICAL_MOTIFS_V30.json"
+      - ".github/workflows/a05-visual-canonical-lock.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify-a05-canonical:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Check exact 16 approved motifs and 128 display variants
+        run: node --test scripts/test-a05-visual-canonical-lock-v30.mjs scripts/test-a05-visual-integrity-v23.mjs scripts/test-a05-visual-card-v22.mjs scripts/test-a05-visual-tier2-review-v37.mjs scripts/test-a05-tier2-production-queue-v39.mjs

@@ -1,0 +1,247 @@
+{
+  "schema": "a05.tier2-production-queue.v40",
+  "updatedAt": "2026-11-17",
+  "canonicalMotifs": "docs/A05_VISUAL_CANONICAL_MOTIFS_V30.json",
+  "selectedCount": 16,
+  "pilotPassedCount": 4,
+  "newCandidateCount": 2,
+  "newCandidateIds": [
+    "polaris",
+    "sacred-peak"
+  ],
+  "remainingWithoutCandidateCount": 10,
+  "formallyApprovedCount": 0,
+  "releaseApproved": false,
+  "notes": [
+    "試作品合格は世界樹・ペガサス・鴉天狗・カーバンクルの4モチーフ（ユーザー認識に合意）。",
+    "新規北極星は画像の機械的寸法と目視適合を確認したレビュー候補。ユーザーの試作合格判定は未取得。",
+    "霊峰の2度の出力は正本外キャラを含む16枠ポスターだったためreject。制作数に計上しない。",
+    "RGBYは全モチーフ共通の可変UI/CSS枠線。固定色属性ではない。",
+    "E軸はmoney/timeの補助表示。16寓意の自動判定・旧T型への紐付けは未決定。",
+    "原画バイナリはこのPRの公開アセットへ登録しない。",
+    "北極星には別案B（1086x1448、SHA-256先頭0c57a482）も存在する。別案は同一モチーフの比較候補であり新たなモチーフ数には加算しない。",
+    "港も1回の生成が誤った16枠ポスターとなったためreject。港の独立原画は未制作・未採用。",
+    "霊峰（SA-10）の単独縦長原画1点をv40レビュー候補に追加。山を主役とした画像のみを採用し、山を描いた複数候補を複数モチーフとして計上しない。",
+    "港（SA-01）の原画は未制作。山岳作品の一部に水や建物が映っていても港に流用しない。"
+  ],
+  "motifs": [
+    {
+      "slot": "SA-11",
+      "id": "polaris",
+      "name": "北極星",
+      "group": "安定×自律",
+      "phase": "tier2",
+      "prototypeStatus": "candidate-review",
+      "artReview": "pending",
+      "productionAccepted": false,
+      "releaseAsset": false,
+      "subjectGate": "単独の北極星を空の明確な中心に。星座や太陽・月を主役にしない。",
+      "localArtifact": {
+        "filename": "A05_Tier2_v39_polaris_candidate.png",
+        "sha256": "1247b27543edc662a9629abf107d57ce44dfd31368e755f4bb1945d434b23fee",
+        "size": "1024x1536",
+        "gitHubUploaded": false
+      },
+      "alternateLocalArtifacts": [
+        {
+          "label": "v39-B",
+          "description": "Alternate North Star illustration generated in current chat; not formally approved",
+          "filename": "A05_Tier2_v39_new_prototypes/polaris.png",
+          "sha256": "0c57a4829e362a20e91f47ff79a6f6e99c9ed0dc33e005764b68bf1931d066f2",
+          "size": "1086x1448",
+          "gitHubUploaded": false
+        }
+      ]
+    },
+    {
+      "slot": "SA-10",
+      "id": "sacred-peak",
+      "name": "霊峰",
+      "group": "安定×自律",
+      "phase": "tier2",
+      "prototypeStatus": "candidate-review",
+      "artReview": "pending",
+      "productionAccepted": false,
+      "releaseAsset": false,
+      "subjectGate": "荘厳な霊峰の山容を主役に。北極星・湖・寺院は副次的にとどめる。",
+      "localArtifact": {
+        "filename": "A05_Tier2_v40_SacredPeak_Review/art/sacred-peak.png",
+        "sha256": "e85fc30130f2ce502b9b63d93252372b73428a77aeccdd0c105db833871699d6",
+        "size": "1024x1536",
+        "gitHubUploaded": false
+      }
+    },
+    {
+      "slot": "SA-01",
+      "id": "harbor",
+      "name": "港",
+      "group": "安定×自律",
+      "phase": "tier2",
+      "prototypeStatus": "not-started",
+      "artReview": "pending",
+      "productionAccepted": false,
+      "releaseAsset": false,
+      "subjectGate": "静かな天然の入り江と泊地。開放された大海・都会のコンテナ港にしない。"
+    },
+    {
+      "slot": "SA-00",
+      "id": "moon",
+      "name": "月",
+      "group": "安定×自律",
+      "phase": "tier2",
+      "prototypeStatus": "not-started",
+      "artReview": "pending",
+      "productionAccepted": false,
+      "releaseAsset": false,
+      "subjectGate": "月の天体と月光の周期を主役に。月の女神など人物に置き換えない。"
+    },
+    {
+      "slot": "SC-11",
+      "id": "world-tree",
+      "name": "世界樹",
+      "group": "安定×つながり",
+      "phase": "tier2",
+      "prototypeStatus": "pilot-passed",
+      "artReview": "pending",
+      "productionAccepted": false,
+      "releaseAsset": false,
+      "subjectGate": "一本の巨大な世界樹の根・幹・樹冠を保持。",
+      "pilotSourceVersion": "v31-A"
+    },
+    {
+      "slot": "SC-10",
+      "id": "ocean",
+      "name": "大海",
+      "group": "安定×つながり",
+      "phase": "tier2",
+      "prototypeStatus": "not-started",
+      "artReview": "pending",
+      "productionAccepted": false,
+      "releaseAsset": false,
+      "subjectGate": "地平線まで続く大海の広がり。小湾・港・海龍は主役にしない。"
+    },
+    {
+      "slot": "SC-01",
+      "id": "rainbow",
+      "name": "虹",
+      "group": "安定×つながり",
+      "phase": "tier2",
+      "prototypeStatus": "not-started",
+      "artReview": "pending",
+      "productionAccepted": false,
+      "releaseAsset": false,
+      "subjectGate": "大きな虹のアーチを主役に。虹の女神・人物には置換しない。"
+    },
+    {
+      "slot": "SC-00",
+      "id": "constellation",
+      "name": "星座",
+      "group": "安定×つながり",
+      "phase": "tier2",
+      "prototypeStatus": "not-started",
+      "artReview": "pending",
+      "productionAccepted": false,
+      "releaseAsset": false,
+      "subjectGate": "複数の星とその関係性を描き単独北極星と差別化。文字・星座図表禁止。"
+    },
+    {
+      "slot": "CA-11",
+      "id": "pegasus",
+      "name": "ペガサス",
+      "group": "変化×自律",
+      "phase": "tier2",
+      "prototypeStatus": "pilot-passed",
+      "artReview": "pending",
+      "productionAccepted": false,
+      "releaseAsset": false,
+      "subjectGate": "両翼と四肢が見えるペガサスを主役にする。",
+      "pilotSourceVersion": "v27"
+    },
+    {
+      "slot": "CA-10",
+      "id": "phoenix",
+      "name": "フェニックス",
+      "group": "変化×自律",
+      "phase": "tier2",
+      "prototypeStatus": "not-started",
+      "artReview": "pending",
+      "productionAccepted": false,
+      "releaseAsset": false,
+      "subjectGate": "炎の鳥フェニックスの再生・飛翔。別の鳥や別名で置き換えない。"
+    },
+    {
+      "slot": "CA-01",
+      "id": "nine-tailed-fox",
+      "name": "九尾狐",
+      "group": "変化×自律",
+      "phase": "tier2",
+      "prototypeStatus": "not-started",
+      "artReview": "pending",
+      "productionAccepted": false,
+      "releaseAsset": false,
+      "subjectGate": "九つの尾が数えられる九尾狐。単なる狼にしない。"
+    },
+    {
+      "slot": "CA-00",
+      "id": "cat-sith",
+      "name": "ケット・シー",
+      "group": "変化×自律",
+      "phase": "tier2",
+      "prototypeStatus": "not-started",
+      "artReview": "pending",
+      "productionAccepted": false,
+      "releaseAsset": false,
+      "subjectGate": "伝承上のケット・シー。一般の可愛い猫だけで終わらせない。"
+    },
+    {
+      "slot": "CC-11",
+      "id": "twin-dragons",
+      "name": "双龍",
+      "group": "変化×つながり",
+      "phase": "tier2",
+      "prototypeStatus": "not-started",
+      "artReview": "pending",
+      "productionAccepted": false,
+      "releaseAsset": false,
+      "subjectGate": "相互作用する二頭の龍を明確に。単独の龍としない。"
+    },
+    {
+      "slot": "CC-10",
+      "id": "crow-tengu",
+      "name": "鴉天狗",
+      "group": "変化×つながり",
+      "phase": "tier2",
+      "prototypeStatus": "pilot-passed",
+      "artReview": "pending",
+      "productionAccepted": false,
+      "releaseAsset": false,
+      "subjectGate": "鴉頭、黒翼、山伏風の装束と全身構図を保持。",
+      "pilotSourceVersion": "v34"
+    },
+    {
+      "slot": "CC-01",
+      "id": "whale-pod",
+      "name": "鯨の群れ",
+      "group": "変化×つながり",
+      "phase": "tier2",
+      "prototypeStatus": "not-started",
+      "artReview": "pending",
+      "productionAccepted": false,
+      "releaseAsset": false,
+      "subjectGate": "少なくとも2頭以上の鯨を主役に。単独鯨や海龍は不可。"
+    },
+    {
+      "slot": "CC-00",
+      "id": "carbuncle",
+      "name": "カーバンクル",
+      "group": "変化×つながり",
+      "phase": "tier2",
+      "prototypeStatus": "pilot-passed",
+      "artReview": "pending",
+      "productionAccepted": false,
+      "releaseAsset": false,
+      "subjectGate": "額の宝石を持つ小型の伝承幻獣。過度なマスコット感を避ける。",
+      "pilotSourceVersion": "v33"
+    }
+  ]
+}

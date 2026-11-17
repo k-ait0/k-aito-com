@@ -41,13 +41,25 @@ assert.equal(root.res.headers.get('x-content-type-options'),'nosniff');
 assert.equal(root.res.headers.get('x-frame-options'),'DENY');
 assert.match(root.res.headers.get('x-robots-tag')||'',/noindex/i);
 assert.match(root.res.headers.get('content-security-policy')||'',/connect-src 'none'/);
-const files=['index.html','app.mjs','report.mjs','engine.mjs','types.mjs','questions.mjs','storage.mjs','export.mjs','format.mjs','backup-inspect.mjs','restore-review.mjs','report.css','style.css'];
+const motifs = [
+ 'polaris','sacred-peak','harbor','moon',
+ 'world-tree','ocean','rainbow','constellation',
+ 'pegasus','phoenix','nine-tailed-fox','cat-sith',
+ 'twin-dragons','crow-tengu','whale-pod','carbuncle'
+];
+const files=[
+ 'index.html','app.mjs','report.mjs','engine.mjs','types.mjs','questions.mjs',
+ 'storage.mjs','export.mjs','format.mjs','backup-inspect.mjs','restore-review.mjs',
+ 'report.css','style.css','visual-contract.mjs','visual-preview.mjs','visual-preview.css',
+ ...motifs.map(id => 'crests/'+id+'.svg')
+];
 for(const name of files) {
  const got=await get(origin+prefix+name);
  assert.equal(got.res.status,200,name+' unavailable');
  const local=readFileSync(new URL('../projects/kidp/life-design-lab/a05/'+name,import.meta.url));
  assert.equal(sha(got.body),sha(local),name+' live bytes differ from approved candidate');
  if(name.endsWith('.mjs'))assert.match(got.res.headers.get('content-type')||'',/javascript/i,name+' wrong ES module MIME');
+ if(name.endsWith('.svg'))assert.match(got.res.headers.get('content-type')||'',/image\/svg\+xml/i,name+' wrong SVG MIME');
  console.log('MATCH',name,got.body.length,got.res.headers.get('content-type'));
 }
-console.log('PASS A05 real HTTPS deployment: all 13 assets byte-matched, CSP/noindex/nosniff/ESM MIME validated.');
+console.log('PASS A05 real HTTPS deployment: all '+files.length+' assets byte-matched, CSP/noindex/nosniff/MIME validated.');

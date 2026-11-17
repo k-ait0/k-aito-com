@@ -13,6 +13,9 @@ import {
 import { exportA05Data } from "./export.mjs";
 import { formatLocalCompletionDay } from "./format.mjs";
 import { renderReport } from "./report.mjs";
+import { renderVisualPreview } from "./visual-preview.mjs";
+import { renderTier2Review, validateTier2ReviewImageSrc } from "./tier2-review.mjs";
+import { resolveVisualDisplay } from "./visual-contract.mjs";
 import { inspectA05Backup, A05_BACKUP_MAX_BYTES } from "./backup-inspect.mjs";
 import { inspectA05RestorePlan } from "./restore-review.mjs";
 
@@ -20,6 +23,9 @@ const root = document.querySelector("#a05-content");
 const notice = document.querySelector("#a05-notice");
 const tabs = document.querySelector("#a05-tabs");
 const OWN = (x, k) => Object.prototype.hasOwnProperty.call(x, k);
+// No artwork is loaded in the ordinary result page; URL must explicitly opt in.
+const TIER2_REVIEW_ENABLED = new URLSearchParams(window.location.search).get("a05_tier2_review") === "1";
+const tier2Images = Object.create(null); // Browser tab memory only, never persisted.
 const escapeHTML = value => String(value).replace(/[&<>"']/g, c => ({
   "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
 })[c]);
@@ -27,7 +33,10 @@ const state = {
   view: "home", db: null, hash: "", draft: null, history: [],
   legacy: [], quarantined: [], consent: false, retainRaw: false,
   readOnly: false, busy: false, selected: null, sample: null,
-  filter: "all", share: false, status: "", backupInspection: null
+  filter: "all", share: false, status: "", backupInspection: null,
+  visualPreview: { motif: "world-tree", accent: "R", eAxis: null, motion: false },
+  tier2Review: { motif: "world-tree", accent: "R", eAxis: null,
+    worldTreeRatio: "natural", guide: true }
 };
 const uid = () => "a05-" + (globalThis.crypto?.randomUUID?.() ??
   Date.now().toString(36) + "-" + Math.random().toString(36).slice(2));
@@ -57,7 +66,7 @@ function reflectBusy() {
   root.setAttribute("aria-busy", state.busy ? "true" : "false");
   tabs.setAttribute("aria-busy", state.busy ? "true" : "false");
   for (const control of document.querySelectorAll(
-    "#a05-tabs button, #a05-content button, #a05-content input"
+    "#a05-tabs button, #a05-content button, #a05-content input, #a05-content select"
   )) {
     if (state.busy) {
       if (control.dataset.a05OriginalDisabled === undefined) {
@@ -265,6 +274,9 @@ function renderResult() {
       "基本4軸の方向が定まらなかったため、タイプを無理に割り当てていません。") + '</p>' +
     '<strong>第5軸：' + wealthLabel(result.wealth) + '</strong></div>';
   return '<h2>あなたの価値観の現在地</h2>' + header +
+    renderVisualPreview(state.visualPreview) +
+    (TIER2_REVIEW_ENABLED ? renderTier2Review({ ...state.tier2Review,
+      imageSrc: tier2Images[state.tier2Review.motif] ?? null }) : "") +
     '<h3>5軸のスコア</h3>' + axisChart(result) +
     '<div class="card tinted"><strong>次の一歩</strong><p>' +
     escapeHTML(display?.action ?? "大切にしたい価値観を一つ書き出す") +
@@ -596,6 +608,10 @@ root.addEventListener("click", async event => {
       updateNotice("このブラウザの新A05試作の保存記録を削除しました。端末のバックアップ等の複製が残っていないことまでは保証できません。");
       render();
       focusAfterRender = "h2";
+    } else if (action === "tier2-clear" && TIER2_REVIEW_ENABLED && state.view === "result") {
+      delete tier2Images[state.tier2Review.motif];
+      render();
+      focusAfterRender = '[data-action="tier2-clear"]';
     } else if (action === "share") {
       state.share = !state.share;
       render();
@@ -640,6 +656,71 @@ tabs.addEventListener("click", event => {
 });
 
 root.addEventListener("change", async event => {
+  // Display-only controls: never infer motifs from legacy T01..T16 or save
+  // this selection with assessment snapshots.
+  const visualControl = event.target.closest('select[data-visual-setting]');
+  if (visualControl && root.contains(visualControl) && state.view === "result" && !state.busy) {
+    const field = visualControl.dataset.visualSetting;
+    if (!["motif", "accent", "eAxis", "motion"].includes(field)) return;
+    const raw = visualControl.value;
+    const value = field === "eAxis" ? (raw === "none" ? null : raw) :
+      field === "motion" ? raw === "on" : raw;
+    const next = { ...state.visualPreview, [field]: value };
+    try { resolveVisualDisplay(next); } catch { return; }
+    state.visualPreview = next;
+    render();
+    root.querySelector('select[data-visual-setting="' + field + '"]')?.focus({ preventScroll: true });
+    return;
+  }
+  // Opt-in Tier2 review is entirely local and excluded from assessment snapshots.
+  const tier2Control = event.target.closest('[data-tier2-setting], [data-tier2-upload]');
+  if (TIER2_REVIEW_ENABLED && tier2Control && root.contains(tier2Control) &&
+      state.view === "result" && !state.busy) {
+    if (tier2Control.hasAttribute("data-tier2-upload")) {
+      const file = tier2Control.files?.[0];
+      if (!file) return;
+      if (!["image/png", "image/jpeg", "image/webp"].includes(file.type) ||
+          file.size === 0 || file.size > 12 * 1024 * 1024) {
+        updateNotice("PNG/JPEG/WebP、12MiB以内の画像を指定してください。SVGは読み込めません。");
+        return;
+      }
+      const motifAtSelection = state.tier2Review.motif;
+      try {
+        const dataURL = await new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onerror = () => reject(new Error("画像を読み込めませんでした"));
+          reader.onload = () => resolve(reader.result);
+          reader.readAsDataURL(file);
+        });
+        validateTier2ReviewImageSrc(dataURL);
+        const probe = new Image();
+        probe.src = dataURL;
+        await probe.decode();
+        if (!probe.naturalWidth || !probe.naturalHeight ||
+            probe.naturalWidth * probe.naturalHeight > 20_000_000) {
+          throw new Error("画像の画素数は2000万画素以内にしてください");
+        }
+        tier2Images[motifAtSelection] = dataURL;
+        render();
+        root.querySelector('input[data-tier2-upload]')?.focus({preventScroll:true});
+      } catch (error) {
+        updateNotice("画像を読み込めません：" + error.message);
+      }
+      return;
+    }
+    const field = tier2Control.dataset.tier2Setting;
+    const raw = tier2Control.type === "checkbox" ? tier2Control.checked : tier2Control.value;
+    if (!["motif","accent","eAxis","worldTreeRatio","guide"].includes(field)) return;
+    const value = field === "eAxis" ? (raw === "none" ? null : raw) : raw;
+    const next = { ...state.tier2Review, [field]: value };
+    try {
+      renderTier2Review({ ...next, imageSrc: tier2Images[next.motif] ?? null });
+    } catch { return; }
+    state.tier2Review = next;
+    render();
+    root.querySelector('[data-tier2-setting="' + field + '"]')?.focus({preventScroll:true});
+    return;
+  }
   if (event.target.id === "a05-inspect-file") {
     if (state.busy || state.view !== "history") return;
     const file = event.target.files?.[0];
