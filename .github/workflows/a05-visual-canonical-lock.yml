@@ -5,8 +5,10 @@ on:
     paths:
       - "projects/kidp/life-design-lab/a05/**"
       - "scripts/*a05*visual*.mjs"
-      - "scripts/test-a05-tier2-production-queue-v39.mjs"
+      - "scripts/test-a05-tier2-production-queue-v39.mjs scripts/test-a05-tier2-production-queue-v40.mjs"
       - "docs/A05_TIER2_PRODUCTION_QUEUE_V39.json"
+      - "docs/A05_TIER2_PRODUCTION_QUEUE_V40.json"
+      - "scripts/test-a05-tier2-production-queue-v40.mjs"
       - "docs/A05_VISUAL_CANONICAL_MOTIFS_V30.json"
       - ".github/workflows/a05-visual-canonical-lock.yml"
   workflow_dispatch:
