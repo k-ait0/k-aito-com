@@ -4,9 +4,37 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-n+rwxR9+4g/3ZeLiIzH8HDURz/+VMOQYUQ0Nd5lzNGA='; style-src 'sha256-QeuxBGyTQH4EyMF3u09AGukBXlJ2VUayGeSab3RmK3A='; img-src 'none'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-9w//iI4SrwcTle1YgzDtA1HzdOhs6J9le9xo3nQr55U='; style-src 'sha256-+Ayh/gP6BggB6axjUok7/57uOCc3VJC8qHanTc4/wtc='; img-src 'none'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
 <title>K. Aito Analytics｜オフライン試算 v0.32（合成データ専用）</title>
 <style>:root{color-scheme:light;--ink:#19314d;--soft:#64758a;--line:#dfe7f0;--sea:#117a90;--blue:#264e80;--base:#f4f7fb;--danger:#a13c39}*{box-sizing:border-box}body{margin:0;background:var(--base);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Yu Gothic","Hiragino Kaku Gothic ProN",Meiryo,sans-serif;line-height:1.55}.shell{max-width:1220px;margin:0 auto;padding:0 22px}.top{padding-top:34px;padding-bottom:22px}.brand{display:flex;gap:14px;align-items:center}.brand-mark{background:#163454;color:#fff;width:52px;height:52px;border-radius:12px;display:grid;place-items:center;font-weight:800;font-size:22px}.eyebrow{letter-spacing:.11em;color:#55718b;font-size:11px;font-weight:700}h1{font-size:29px;line-height:1.15;margin:6px 0 0}h2{font-size:19px;margin:0}h3{font-size:15px;margin:0}.research{display:inline-block;margin-top:19px;background:#fff2d9;color:#805923;font-size:13px;border-radius:6px;font-weight:700;padding:8px 12px}.intro{color:#50667b;font-size:14px;max-width:880px;margin:13px 0 0}.layout{display:grid;grid-template-columns:365px minmax(0,1fr);gap:18px;align-items:start}.panel{background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 3px 14px rgba(20,49,83,.035);padding:26px}.section-heading{display:flex;align-items:center;gap:12px;margin-bottom:24px}.step{display:grid;place-items:center;width:31px;height:31px;border-radius:7px;background:#eaf2fa;color:var(--blue);font-size:13px;font-weight:800}.field{margin-bottom:18px}.field label{font-size:13px;font-weight:700;display:block;margin-bottom:7px}.field label small{color:var(--soft);font-weight:400}.field input,.field select{width:100%;appearance:auto;background:#fff;border:1px solid #c9d6e4;color:#17334e;border-radius:7px;padding:11px 12px;font:inherit;font-size:15px}.field input:focus-visible,.field select:focus-visible{outline:2px solid var(--sea);outline-offset:1px}.field.two{display:grid;grid-template-columns:1fr 1fr;gap:11px}.hint{font-size:11px;color:var(--soft);line-height:1.5;margin:7px 0 0}button{width:100%;border:0;border-radius:7px;background:#204e81;color:#fff;font-weight:700;font-size:15px;padding:14px 10px;cursor:pointer}button:focus-visible{outline:3px solid var(--sea);outline-offset:2px}button:hover{background:#153b66}.error{font-size:12px;color:var(--danger);min-height:16px}.results{min-height:540px}.flag{font-weight:700;font-size:12px;color:#745b30;background:#fff9ed;border:1px solid #efe1c1;border-radius:6px;padding:9px 13px;margin:-8px 0 18px}.cards{display:grid;grid-template-columns:1fr 1fr;gap:12px}.metric{border:1px solid var(--line);border-radius:8px;padding:15px 17px;background:#fafcff}.metric-name{display:flex;align-items:center;gap:8px;font-size:13px;color:#556c83;font-weight:700}.dot{width:10px;height:10px;display:inline-block;border-radius:100%}.dot.fixed{background:#345b91}.dot.indexed{background:#0f8b8d}.metric strong{display:block;font-size:clamp(20px,2.6vw,28px);letter-spacing:-.03em;margin:12px 0 3px;font-variant-numeric:tabular-nums}.metric small{font-size:11px;color:var(--soft)}.graph-head{display:flex;justify-content:space-between;align-items:center;margin-top:28px;gap:12px}.key{display:flex;gap:12px;color:var(--soft);font-size:12px}.key span{display:flex;align-items:center;gap:5px}#balance-chart{margin-top:10px;display:block;width:100%;height:auto;min-height:180px;border-bottom:1px solid var(--line)}.details{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:18px 0 10px;color:#48617a;font-size:12px}.detail{background:#f4f7fb;padding:11px 14px;border-radius:7px}.detail strong{display:block;color:#243f5c;font-size:17px;margin-top:3px}.audit{border-top:1px solid var(--line);padding-top:14px;font-size:12px;color:#536f7e}.foot{font-size:12px;color:#687f91;padding-top:23px;padding-bottom:28px}@media(max-width:860px){.layout{grid-template-columns:1fr}.top{padding-top:22px}.panel{padding:19px}.results{min-height:0}h1{font-size:24px}}@media(max-width:500px){.shell{padding-left:13px;padding-right:13px}.cards{grid-template-columns:1fr}.field.two{grid-template-columns:1fr 1fr}.details{grid-template-columns:1fr}.metric strong{font-size:23px}}
+
+/* v0.34 — presentation-only improvements. Keep the audited calculation Core unchanged. */
+.brand > div{min-width:0}
+.error:not(:empty){background:#fff2f0;border:1px solid #d9958e;border-radius:7px;padding:11px 12px;font-size:13px;font-weight:600;line-height:1.5}
+.field [aria-invalid="true"]{border:2px solid var(--danger);background:#fff6f5}
+body[data-preview-status="STALE"] .flag{background:#eff4fa;border-color:#cedbe7;color:#2b4e72}
+body[data-preview-status="ERROR"] .flag{background:#fff2f0;border-color:#edc4bf;color:#933b35}
+.metric strong,.detail strong{overflow-wrap:anywhere}
+@media(max-width:500px){
+  .brand{gap:10px;align-items:center}
+  .brand-mark{flex:none;width:42px;height:42px;border-radius:10px;font-size:19px}
+  h1{font-size:20px;letter-spacing:-.035em;line-height:1.25;word-break:keep-all;overflow-wrap:normal}
+  .eyebrow{font-size:9px;letter-spacing:.055em}
+  .top{padding-bottom:17px}
+  .panel{padding:18px 16px}
+  .metric{padding:13px 14px}
+  .metric strong{font-size:clamp(20px,6vw,24px)}
+  .graph-head{flex-wrap:wrap}
+  #balance-chart{min-height:0;aspect-ratio:340/252}
+  .details{gap:8px}
+  .detail{padding:10px 12px}
+}
+@media(max-width:350px){
+  h1{font-size:17px}
+  .brand-mark{width:38px;height:38px}
+  .eyebrow{font-size:8px}
+  .field.two{grid-template-columns:1fr}
+}
 </style>
 </head>
 <body>
@@ -925,7 +953,29 @@ window.KAitoAnalyticsPreviewCore=load('offline-preview-v032.cjs');
   const $=id=>document.getElementById(id);
   const money=x=>Number(x).toLocaleString('ja-JP')+' 円';
   const yen=x=>Math.abs(x)>=100000000?((x/100000000).toLocaleString('ja-JP',{maximumFractionDigits:2})+' 億円'):money(x);
-  const value=id=>{const text=$(id).value;if(text.trim()==='')throw Error('空欄の入力があります');const n=Number(text);if(!Number.isFinite(n))throw Error('入力は有限の数値にしてください');return n;};
+  const labels=Object.freeze({
+    initial_yen:'初期資産',monthly_contribution_yen:'毎月の積立',
+    monthly_living_yen:'毎月の生活費',horizon_years:'試算期間',
+    annual_return_pct:'仮定する年率リターン',annual_cpi_pct:'仮定する年率CPI変動',
+    cashflow_timing:'収支の決済時点',stress_profile:'株式リターンの想定'
+  });
+  const fieldIds=Object.keys(labels);
+  let lastTimeline=null;
+  const value=id=>{
+    const text=$(id).value;
+    if(String(text).trim()===''){
+      const error=Error(labels[id]+'が未入力です');
+      error.fieldId=id;
+      throw error;
+    }
+    const n=Number(text);
+    if(!Number.isFinite(n)){
+      const error=Error(labels[id]+'には有限の数値を入力してください');
+      error.fieldId=id;
+      throw error;
+    }
+    return n;
+  };
   function config(){return {
     initial_yen:value('initial_yen'),monthly_contribution_yen:value('monthly_contribution_yen'),
     monthly_living_yen:value('monthly_living_yen'),horizon_years:value('horizon_years'),
@@ -934,22 +984,38 @@ window.KAitoAnalyticsPreviewCore=load('offline-preview-v032.cjs');
   };}
   const NS='http://www.w3.org/2000/svg';
   function svg(type,attrs,content){const e=document.createElementNS(NS,type);for(const [k,v] of Object.entries(attrs))e.setAttribute(k,String(v));if(content!==undefined)e.textContent=content;return e;}
+  function wipe(){
+    const d=$('details');while(d.firstChild)d.removeChild(d.firstChild);
+    const chart=$('balance-chart');while(chart.firstChild)chart.removeChild(chart.firstChild);
+    chart.setAttribute('aria-label','条件が変更されたため、グラフは未計算です');
+    $('fixed-final').textContent='—';
+    $('cpi-final').textContent='—';
+    lastTimeline=null;
+  }
   function graph(points){
     const root=$('balance-chart');while(root.firstChild)root.removeChild(root.firstChild);
-    const left=68,right=16,top=18,bottom=33,width=800,height=280;
-    const vals=points.flatMap(x=>[x.fixed_yen,x.cpi_yen]);
-    const max=Math.max(1,...vals)*1.05;const x=i=>left+i/(points.length-1)*(width-left-right),y=v=>height-bottom-v/max*(height-top-bottom);
+    const mobile=typeof window.innerWidth==='number'&&window.innerWidth<=500;
+    const left=mobile?72:68,right=mobile?14:16,top=18,bottom=mobile?38:33,width=mobile?340:800,height=mobile?252:280;
+    const font=mobile?14:12;
+    root.setAttribute('viewBox','0 0 '+width+' '+height);
+    const vals=points.flatMap(p=>[p.fixed_yen,p.cpi_yen]);
+    const max=Math.max(1,...vals)*1.05;
+    const x=i=>left+i/(points.length-1)*(width-left-right),y=v=>height-bottom-v/max*(height-top-bottom);
     for(let q=0;q<=4;q++){
       const v=max*q/4,yy=y(v);
       root.appendChild(svg('line',{x1:left,y1:yy,x2:width-right,y2:yy,stroke:'#e5edf5','stroke-width':1}));
-      root.appendChild(svg('text',{x:2,y:yy+4,fill:'#718294','font-size':12},v>=100000000?(v/100000000).toFixed(1)+'億':Math.round(v/10000)+'万'));
+      const caption=v>=100000000?(v/100000000).toFixed(1)+'億':Math.round(v/10000)+'万';
+      root.appendChild(svg('text',{x:mobile?1:2,y:yy+4,fill:'#52657a','font-size':font},caption));
     }
     for(const [field,color] of [['fixed_yen','#345b91'],['cpi_yen','#0f8b8d']]){
       const values=points.map((p,i)=>x(i).toFixed(1)+','+y(p[field]).toFixed(1)).join(' ');
-      root.appendChild(svg('polyline',{points:values,stroke:color,'stroke-width':3,fill:'none','stroke-linejoin':'round','stroke-linecap':'round'}));
+      root.appendChild(svg('polyline',{points:values,stroke:color,'stroke-width':mobile?2.5:3,fill:'none','stroke-linejoin':'round','stroke-linecap':'round'}));
     }
-    for(const i of [...new Set([0,Math.floor((points.length-1)/2),points.length-1])])
-      root.appendChild(svg('text',{x:x(i),y:height-8,fill:'#718294','font-size':12,'text-anchor':'middle'},String(points[i].offset_year)+'年'));
+    const positions=[...new Set([0,Math.floor((points.length-1)/2),points.length-1])];
+    for(let j=0;j<positions.length;j++){
+      const i=positions[j],anchor=mobile&&j===positions.length-1?'end':'middle';
+      root.appendChild(svg('text',{x:x(i),y:height-10,fill:'#52657a','font-size':font,'text-anchor':anchor},String(points[i].offset_year)+'年'));
+    }
     root.setAttribute('aria-label','合成データの年次資産残高。固定生活費の最終残高 '+money(points.at(-1).fixed_yen)+'、CPI連動生活費の最終残高 '+money(points.at(-1).cpi_yen));
   }
   function detail(label,value){const outer=document.createElement('div');outer.className='detail';
@@ -966,24 +1032,45 @@ window.KAitoAnalyticsPreviewCore=load('offline-preview-v032.cjs');
     d.appendChild(detail('固定生活費・未払総額',money(result.fixed.total_unfunded_yen)));
     d.appendChild(detail('CPI連動・未払総額',money(result.cpi_linked.total_unfunded_yen)));
     $('audit-state').textContent='Core間一致：'+result.cpi_cross_engine_concordance+'｜入力・台帳監査 '+result.independent_input_audits+'/2 PASS｜実測データ認証：未実施';
+    lastTimeline=result.timeline;
     graph(result.timeline);
     document.body.setAttribute('data-preview-status','READY');
   }
+  function markDirty(){
+    if(document.body.getAttribute&&document.body.getAttribute('data-preview-status')==='STALE')return;
+    wipe();
+    document.body.setAttribute('data-preview-status','STALE');
+    $('result-state').textContent='条件が変更されました。「計算して比較」を押してください';
+    $('audit-state').textContent='監査：未実施（条件変更後の再計算待ち）';
+    $('error-msg').textContent='';
+  }
   function execute(){
     $('error-msg').textContent='';
+    for(const id of fieldIds)$(id).setAttribute('aria-invalid','false');
     try{const result=core.calculatePreview(config());render(result);}
     catch(e){
       document.body.setAttribute('data-preview-status','ERROR');
-      $('fixed-final').textContent='—';$('cpi-final').textContent='—';
+      wipe();
       $('result-state').textContent='入力エラー：前回の計算結果は表示していません';
-      const details=$('details');while(details.firstChild)details.removeChild(details.firstChild);
-      const chart=$('balance-chart');while(chart.firstChild)chart.removeChild(chart.firstChild);
-      chart.setAttribute('aria-label','入力エラーのためグラフは非表示');
+      $('balance-chart').setAttribute('aria-label','入力エラーのためグラフは非表示');
       $('audit-state').textContent='監査：未実施（入力エラー）';
-      $('error-msg').textContent=String(e.message||e);
+      const message=String(e.message||e);
+      const invalid=e.fieldId||fieldIds.find(id=>message.includes(id));
+      if(invalid){
+        $(invalid).setAttribute('aria-invalid','true');
+        if(typeof $(invalid).focus==='function')$(invalid).focus();
+      }
+      $('error-msg').textContent=message.replace(/^([a-z_]+)(?= は)/,id=>labels[id]||id);
     }
   }
   $('scenario-form').addEventListener('submit',e=>{e.preventDefault();execute();});
+  for(const id of fieldIds){
+    $(id).addEventListener('input',markDirty);
+    $(id).addEventListener('change',markDirty);
+  }
+  if(typeof window.addEventListener==='function'){
+    window.addEventListener('resize',()=>{if(lastTimeline)graph(lastTimeline);});
+  }
   execute();
 })();
 </script>
