@@ -4,7 +4,29 @@
   const $=id=>document.getElementById(id);
   const money=x=>Number(x).toLocaleString('ja-JP')+' 円';
   const yen=x=>Math.abs(x)>=100000000?((x/100000000).toLocaleString('ja-JP',{maximumFractionDigits:2})+' 億円'):money(x);
-  const value=id=>{const text=$(id).value;if(text.trim()==='')throw Error('空欄の入力があります');const n=Number(text);if(!Number.isFinite(n))throw Error('入力は有限の数値にしてください');return n;};
+  const labels=Object.freeze({
+    initial_yen:'初期資産',monthly_contribution_yen:'毎月の積立',
+    monthly_living_yen:'毎月の生活費',horizon_years:'試算期間',
+    annual_return_pct:'仮定する年率リターン',annual_cpi_pct:'仮定する年率CPI変動',
+    cashflow_timing:'収支の決済時点',stress_profile:'株式リターンの想定'
+  });
+  const fieldIds=Object.keys(labels);
+  let lastTimeline=null;
+  const value=id=>{
+    const text=$(id).value;
+    if(String(text).trim()===''){
+      const error=Error(labels[id]+'が未入力です');
+      error.fieldId=id;
+      throw error;
+    }
+    const n=Number(text);
+    if(!Number.isFinite(n)){
+      const error=Error(labels[id]+'には有限の数値を入力してください');
+      error.fieldId=id;
+      throw error;
+    }
+    return n;
+  };
   function config(){return {
     initial_yen:value('initial_yen'),monthly_contribution_yen:value('monthly_contribution_yen'),
     monthly_living_yen:value('monthly_living_yen'),horizon_years:value('horizon_years'),
@@ -13,22 +35,38 @@
   };}
   const NS='http://www.w3.org/2000/svg';
   function svg(type,attrs,content){const e=document.createElementNS(NS,type);for(const [k,v] of Object.entries(attrs))e.setAttribute(k,String(v));if(content!==undefined)e.textContent=content;return e;}
+  function wipe(){
+    const d=$('details');while(d.firstChild)d.removeChild(d.firstChild);
+    const chart=$('balance-chart');while(chart.firstChild)chart.removeChild(chart.firstChild);
+    chart.setAttribute('aria-label','条件が変更されたため、グラフは未計算です');
+    $('fixed-final').textContent='—';
+    $('cpi-final').textContent='—';
+    lastTimeline=null;
+  }
   function graph(points){
     const root=$('balance-chart');while(root.firstChild)root.removeChild(root.firstChild);
-    const left=68,right=16,top=18,bottom=33,width=800,height=280;
-    const vals=points.flatMap(x=>[x.fixed_yen,x.cpi_yen]);
-    const max=Math.max(1,...vals)*1.05;const x=i=>left+i/(points.length-1)*(width-left-right),y=v=>height-bottom-v/max*(height-top-bottom);
+    const mobile=typeof window.innerWidth==='number'&&window.innerWidth<=500;
+    const left=mobile?54:68,right=mobile?14:16,top=18,bottom=mobile?38:33,width=mobile?340:800,height=mobile?252:280;
+    const font=mobile?14:12;
+    root.setAttribute('viewBox','0 0 '+width+' '+height);
+    const vals=points.flatMap(p=>[p.fixed_yen,p.cpi_yen]);
+    const max=Math.max(1,...vals)*1.05;
+    const x=i=>left+i/(points.length-1)*(width-left-right),y=v=>height-bottom-v/max*(height-top-bottom);
     for(let q=0;q<=4;q++){
       const v=max*q/4,yy=y(v);
       root.appendChild(svg('line',{x1:left,y1:yy,x2:width-right,y2:yy,stroke:'#e5edf5','stroke-width':1}));
-      root.appendChild(svg('text',{x:2,y:yy+4,fill:'#718294','font-size':12},v>=100000000?(v/100000000).toFixed(1)+'億':Math.round(v/10000)+'万'));
+      const caption=v>=100000000?(v/100000000).toFixed(1)+'億':Math.round(v/10000)+'万';
+      root.appendChild(svg('text',{x:mobile?1:2,y:yy+4,fill:'#52657a','font-size':font},caption));
     }
     for(const [field,color] of [['fixed_yen','#345b91'],['cpi_yen','#0f8b8d']]){
       const values=points.map((p,i)=>x(i).toFixed(1)+','+y(p[field]).toFixed(1)).join(' ');
-      root.appendChild(svg('polyline',{points:values,stroke:color,'stroke-width':3,fill:'none','stroke-linejoin':'round','stroke-linecap':'round'}));
+      root.appendChild(svg('polyline',{points:values,stroke:color,'stroke-width':mobile?2.5:3,fill:'none','stroke-linejoin':'round','stroke-linecap':'round'}));
     }
-    for(const i of [...new Set([0,Math.floor((points.length-1)/2),points.length-1])])
-      root.appendChild(svg('text',{x:x(i),y:height-8,fill:'#718294','font-size':12,'text-anchor':'middle'},String(points[i].offset_year)+'年'));
+    const positions=[...new Set([0,Math.floor((points.length-1)/2),points.length-1])];
+    for(let j=0;j<positions.length;j++){
+      const i=positions[j],anchor=mobile&&j===positions.length-1?'end':'middle';
+      root.appendChild(svg('text',{x:x(i),y:height-10,fill:'#52657a','font-size':font,'text-anchor':anchor},String(points[i].offset_year)+'年'));
+    }
     root.setAttribute('aria-label','合成データの年次資産残高。固定生活費の最終残高 '+money(points.at(-1).fixed_yen)+'、CPI連動生活費の最終残高 '+money(points.at(-1).cpi_yen));
   }
   function detail(label,value){const outer=document.createElement('div');outer.className='detail';
@@ -45,23 +83,44 @@
     d.appendChild(detail('固定生活費・未払総額',money(result.fixed.total_unfunded_yen)));
     d.appendChild(detail('CPI連動・未払総額',money(result.cpi_linked.total_unfunded_yen)));
     $('audit-state').textContent='Core間一致：'+result.cpi_cross_engine_concordance+'｜入力・台帳監査 '+result.independent_input_audits+'/2 PASS｜実測データ認証：未実施';
+    lastTimeline=result.timeline;
     graph(result.timeline);
     document.body.setAttribute('data-preview-status','READY');
   }
+  function markDirty(){
+    if(document.body.getAttribute&&document.body.getAttribute('data-preview-status')==='STALE')return;
+    wipe();
+    document.body.setAttribute('data-preview-status','STALE');
+    $('result-state').textContent='条件が変更されました。「計算して比較」を押してください';
+    $('audit-state').textContent='監査：未実施（条件変更後の再計算待ち）';
+    $('error-msg').textContent='';
+  }
   function execute(){
     $('error-msg').textContent='';
+    for(const id of fieldIds)$(id).setAttribute('aria-invalid','false');
     try{const result=core.calculatePreview(config());render(result);}
     catch(e){
       document.body.setAttribute('data-preview-status','ERROR');
-      $('fixed-final').textContent='—';$('cpi-final').textContent='—';
+      wipe();
       $('result-state').textContent='入力エラー：前回の計算結果は表示していません';
-      const details=$('details');while(details.firstChild)details.removeChild(details.firstChild);
-      const chart=$('balance-chart');while(chart.firstChild)chart.removeChild(chart.firstChild);
-      chart.setAttribute('aria-label','入力エラーのためグラフは非表示');
+      $('balance-chart').setAttribute('aria-label','入力エラーのためグラフは非表示');
       $('audit-state').textContent='監査：未実施（入力エラー）';
-      $('error-msg').textContent=String(e.message||e);
+      const message=String(e.message||e);
+      const invalid=e.fieldId||fieldIds.find(id=>message.includes(id));
+      if(invalid){
+        $(invalid).setAttribute('aria-invalid','true');
+        if(typeof $(invalid).focus==='function')$(invalid).focus();
+      }
+      $('error-msg').textContent=message.replace(/^([a-z_]+)(?= は)/,id=>labels[id]||id);
     }
   }
   $('scenario-form').addEventListener('submit',e=>{e.preventDefault();execute();});
+  for(const id of fieldIds){
+    $(id).addEventListener('input',markDirty);
+    $(id).addEventListener('change',markDirty);
+  }
+  if(typeof window.addEventListener==='function'){
+    window.addEventListener('resize',()=>{if(lastTimeline)graph(lastTimeline);});
+  }
   execute();
 })();
