@@ -31,6 +31,28 @@ on:
       - 'docs/A05_V2_D201_METHODS_13_TO_18_REVIEW_20261112.md'
       - 'research/a05/d1*.json'
       - '.github/workflows/a05-research-browser-qa.yml'
+      - 'research/a05/d209-milestone-gates.json'
+      - 'docs/A05_D209_SHORTEST_CONSISTENT_ROADMAP_20261113.md'
+      - 'scripts/test-a05-d209-release-gates.mjs'
+      - 'research/a05/d210-research-template.html'
+      - 'scripts/a05-d210-build-offline-form.mjs'
+      - 'scripts/test-a05-d210-research-browser.cjs'
+      - 'research/a05/d213-p0-editorial-decisions.json'
+      - 'scripts/a05-d215-aggregate-p0.mjs'
+      - 'scripts/test-a05-d215-aggregate-p0.mjs'
+      - 'scripts/a05-d216-form-variation.mjs'
+      - 'scripts/test-a05-d216-form-variation.mjs'
+      - 'preview/a05/server.mjs'
+      - 'research/a05/d219-simple-diagnosis-template.html'
+      - 'scripts/a05-d219-build-simple-diagnosis.mjs'
+      - 'scripts/test-a05-d219-simple-browser.cjs'
+      - 'preview/a05/Dockerfile'
+      - 'scripts/test-a05-private-preview-server.mjs'
+      - 'docs/A05_D216_FORM_VARIATION_PROTOCOL_20261113.md'
+      - 'scripts/a05-d208-research-sampler.mjs'
+      - 'scripts/test-a05-d208-mass.mjs'
+      - 'scripts/test-a05-d206-full50-coverage.mjs'
+      - 'research/a05/d206-editorial-50-question-bank-v1-2.json'
   workflow_dispatch:
 
 permissions:
@@ -38,7 +60,7 @@ permissions:
 
 jobs:
   d170-offline-review:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 12
     steps:
       - name: Checkout PR branch
@@ -54,6 +76,14 @@ jobs:
           node --check scripts/a05-d175-participant-aggregate.cjs
       - name: Verify archival provenance and editorial gates (146 tests)
         run: node --test scripts/test-a05-d152-d153-content-gates.mjs scripts/test-a05-research-contracts.mjs scripts/test-a05-d170-research-aggregate.cjs scripts/test-a05-d175-participant-aggregate.cjs scripts/test-a05-d179-angle-gates.mjs scripts/test-a05-d181-additional-angles.mjs scripts/test-a05-d183-d185-new-content-questions.mjs scripts/test-a05-d186-d191-wide-patterns.mjs scripts/test-a05-d192-d194-multilens.mjs scripts/test-a05-d197-master-paired-revisions.mjs scripts/test-a05-d198-d199-selection.mjs scripts/test-a05-d200-d201-new-angles.mjs
+      - name: Verify editorial bank, release gates and review data (fast PR QA)
+        run: node --test scripts/test-a05-d206-full50-coverage.mjs scripts/test-a05-d209-release-gates.mjs scripts/test-a05-d215-aggregate-p0.mjs scripts/test-a05-d216-form-variation.mjs
+      - name: Build research-only D210 full50 / UX30 offline form
+        run: node scripts/a05-d210-build-offline-form.mjs
+      - name: Build simple 30-question type preview
+        run: node scripts/a05-d219-build-simple-diagnosis.mjs
+      - name: Test authenticated A05 preview server (fail-closed)
+        run: node --test scripts/test-a05-private-preview-server.mjs
       - name: Install Chromium test runtime
         run: |
           npm install --prefix /tmp/a05-review --no-audit --no-fund --no-save playwright@1.56.1
@@ -68,6 +98,16 @@ jobs:
           NODE_PATH: /tmp/a05-review/node_modules
           PLAYWRIGHT_BROWSERS_PATH: /tmp/a05-chromium
         run: node scripts/test-a05-d175-participant-browser.cjs
+      - name: Test D-210 research full50 and UX30 form (desktop and mobile)
+        env:
+          NODE_PATH: /tmp/a05-review/node_modules
+          PLAYWRIGHT_BROWSERS_PATH: /tmp/a05-chromium
+        run: node scripts/test-a05-d210-research-browser.cjs
+      - name: Test D-219 simple diagnosis preview on desktop and mobile
+        env:
+          NODE_PATH: /tmp/a05-review/node_modules
+          PLAYWRIGHT_BROWSERS_PATH: /tmp/a05-chromium
+        run: node scripts/test-a05-d219-simple-browser.cjs
       - name: Upload QA screenshots
         if: always()
         uses: actions/upload-artifact@v4
@@ -76,5 +116,25 @@ jobs:
           path: |
             qa-screenshots/a05-d170-*.png
             qa-screenshots/a05-d175-*.png
+            qa-screenshots/a05-d210-*.png
+            qa-screenshots/a05-d219-*.png
           if-no-files-found: ignore
           retention-days: 7
+
+      - name: Upload D-219 offline simple diagnosis demo
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: a05-d219-simple-demo
+          path: research/a05/generated/d219-simple-diagnosis.html
+          if-no-files-found: error
+          retention-days: 14
+
+      - name: Upload D-210 offline research questionnaire
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: a05-d210-offline-research-form
+          path: research/a05/generated/d210-research-questionnaire.html
+          if-no-files-found: error
+          retention-days: 14

@@ -1,0 +1,155 @@
+{
+  "schema": "D204-GATE-SIM-0.1",
+  "date": "2026-11-13",
+  "ref": "research/a05-editorial-50-v1-20261113",
+  "source_sha": "3b9f8f32c00df015c5e3a9b83afaab0ea7df8e68",
+  "test_count": 15,
+  "pass_count": 15,
+  "failed": [],
+  "tests": [
+    {
+      "name": "50 unique entries",
+      "pass": true,
+      "detail": 50
+    },
+    {
+      "name": "per-axis 12/12/12/12/2",
+      "pass": true,
+      "detail": {
+        "A": 12,
+        "B": 12,
+        "C": 12,
+        "D": 12,
+        "E": 2
+      }
+    },
+    {
+      "name": "17 D204 rewrites",
+      "pass": true,
+      "detail": 17
+    },
+    {
+      "name": "all options and source provenance nonblank",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "all draft items not scoring-approved",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "full text exact duplicate count zero",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "B 6 provisional facets each size 2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "C 6 provisional facets each size 2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "10,000 draws all have 30 unique entries & quotas",
+      "pass": true,
+      "detail": 0
+    },
+    {
+      "name": "B 6 families represented every draw with <=2 each",
+      "pass": true,
+      "detail": 0
+    },
+    {
+      "name": "C paired timing comparison is both or none",
+      "pass": true,
+      "detail": 0
+    },
+    {
+      "name": "C none of provisional families >2",
+      "pass": true,
+      "detail": 0
+    },
+    {
+      "name": "E both always shown",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "seed reproducibility",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "item selection fairness within 3 pct points (all axes)",
+      "pass": true,
+      "detail": {
+        "A": {
+          "min": 0.5763,
+          "max": 0.5904,
+          "target": 0.5833333333333334
+        },
+        "B": {
+          "min": 0.5719,
+          "max": 0.5959,
+          "target": 0.5833333333333334
+        },
+        "C": {
+          "min": 0.5759,
+          "max": 0.5963,
+          "target": 0.5833333333333334
+        },
+        "D": {
+          "min": 0.5764,
+          "max": 0.5881,
+          "target": 0.5833333333333334
+        },
+        "E": {
+          "min": 1,
+          "max": 1,
+          "target": 1
+        }
+      }
+    }
+  ],
+  "run_count": 10000,
+  "unique_draws": 10000,
+  "contrasted_c_pair_draws": 5759,
+  "contrasted_c_pair_percentage": 0.5759,
+  "selection_ranges": {
+    "A": {
+      "min": 0.5763,
+      "max": 0.5904,
+      "target": 0.5833333333333334
+    },
+    "B": {
+      "min": 0.5719,
+      "max": 0.5959,
+      "target": 0.5833333333333334
+    },
+    "C": {
+      "min": 0.5759,
+      "max": 0.5963,
+      "target": 0.5833333333333334
+    },
+    "D": {
+      "min": 0.5764,
+      "max": 0.5881,
+      "target": 0.5833333333333334
+    },
+    "E": {
+      "min": 1,
+      "max": 1,
+      "target": 1
+    }
+  },
+  "notes": [
+    "Sampling test is authored as a standalone deterministic JS simulation, not live A05 engine",
+    "6 families B/C are a provisional editorial classification and cannot be treated as empirically distinct",
+    "C31/32 is treated as an inseparable pair, or omitted together, to avoid partial context-pair presentation",
+    "A,D semantics not constrained, and final user approval, human respondents, psychometric validity untested"
+  ]
+}

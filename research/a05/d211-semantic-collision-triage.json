@@ -1,0 +1,3662 @@
+{
+  "schema": "A05-D211-SEMANTIC-COLLISION-TRIAGE-1",
+  "date": "2026-11-13",
+  "bank_blob_sha": "1c90a5f26824f1ad816ddee04fc52b29f3411b63",
+  "items_checked": 50,
+  "same_axis_pairs_count": 265,
+  "prioritized_pairs_count": 18,
+  "prioritized": [
+    {
+      "priority": "P2",
+      "axis": "A",
+      "slots": [
+        2,
+        5
+      ],
+      "ids": [
+        "A05-V1-02",
+        "A05-V1-05"
+      ],
+      "questionA": {
+        "stem": "同じ活動を同じ負担で続けられるなら、定期的に使う活動場所をどう選びたいですか？",
+        "left": "使い慣れた同じ場所を活動の拠点にする",
+        "right": "一定の区切りごとに別の場所を活動の拠点にする"
+      },
+      "questionB": {
+        "stem": "同じ趣味や任意の活動を、同じ仲間・内容・負担で続けられるとします。活動を支える運営の仕組みとして、どちらを好みますか？",
+        "left": "これまでの運営方法を土台に、必要な部分を整えて続ける",
+        "right": "一定の区切りで運営方法の土台を組み替える"
+      },
+      "risk": "活動場所と運営方法の差が相対志向として独立か",
+      "comparison_probe": "活動場所を固定し、運営のみ変更した場合の回答理由",
+      "disposition": "REVIEW_BEFORE_FINAL_SCORE",
+      "validated": false
+    },
+    {
+      "priority": "P2",
+      "axis": "A",
+      "slots": [
+        4,
+        12
+      ],
+      "ids": [
+        "A05-V1-04",
+        "A05-V1-12"
+      ],
+      "questionA": {
+        "stem": "家事や用事を行う時間と負担が同じなら、普段の進め方はどちらを好みますか？",
+        "left": "慣れた手順を基本として必要なところを整える",
+        "right": "手順全体を別の組み立て方に変える"
+      },
+      "questionB": {
+        "stem": "生活上の必要な用事と自由時間の総量が同じなら、毎週の過ごし方の基本的な型をどうしたいですか？",
+        "left": "馴染んだ一週間の流れを基本として維持する",
+        "right": "一定の時期ごとに一週間の流れを組み替える"
+      },
+      "risk": "個々の作業手順と週単位の生活パターンが混同される",
+      "comparison_probe": "同じ生活時間配分で家事手順だけ変更した場合の理由",
+      "disposition": "REVIEW_BEFORE_FINAL_SCORE",
+      "validated": false
+    },
+    {
+      "priority": "P1",
+      "axis": "A",
+      "slots": [
+        7,
+        10
+      ],
+      "ids": [
+        "A05-V1-07",
+        "A05-V1-10"
+      ],
+      "questionA": {
+        "stem": "自分だけが管理する日々の予定や用事について、手間と正確さが同じならどちらの仕組みを使いたいですか？",
+        "left": "使い慣れた管理の仕組みを土台に調整する",
+        "right": "予定や用事を管理する仕組みを新しい方式へ替える"
+      },
+      "questionB": {
+        "stem": "個人的な記録を長く続けるとして、記録の安全性や使いやすさが同じならどちらの保存方法を好みますか？",
+        "left": "これまでの記録の残し方を活かして整理を続ける",
+        "right": "記録の残し方を新しい方式へ切り替える"
+      },
+      "risk": "予定管理と個人記録の方式が維持か切替かで重なる",
+      "comparison_probe": "同一コストで予定管理と記録保存の回答が違う理由",
+      "disposition": "REVIEW_BEFORE_FINAL_SCORE",
+      "validated": false
+    },
+    {
+      "priority": "P1",
+      "axis": "B",
+      "slots": [
+        13,
+        24
+      ],
+      "ids": [
+        "A05-V1-13",
+        "A05-V1-24"
+      ],
+      "questionA": {
+        "stem": "自分と関係者の意見が違い、どちらの案でも成果や負担が同じなら、何をより優先しますか？",
+        "left": "自分が妥当だと思う案で決める",
+        "right": "関係者が納得する合意を優先する"
+      },
+      "questionB": {
+        "stem": "同じ人数に同じ影響がある共通ルールを選ぶ際、意見が割れていてどちらにも合理性があるなら、どちらを重視しますか？",
+        "left": "自分の判断を最終的な基準にする",
+        "right": "参加者の合意を最終的な基準にする"
+      },
+      "risk": "共同意思決定で本人判断か全員合意かを繰り返す",
+      "comparison_probe": "共同ルールと個別提案で別の判断基準か",
+      "disposition": "REVIEW_BEFORE_FINAL_SCORE",
+      "validated": false
+    },
+    {
+      "priority": "P1",
+      "axis": "B",
+      "slots": [
+        14,
+        15
+      ],
+      "ids": [
+        "A05-V1-14",
+        "A05-V1-15"
+      ],
+      "questionA": {
+        "stem": "結果と負担を自分だけが引き受ける将来の計画について、親しい人から異なる意見を聞いたとします。どちらをより重視したいですか？",
+        "left": "最後は自分が納得できる基準で決めること",
+        "right": "身近な人の考えも取り入れて決め方を組み立てること"
+      },
+      "questionB": {
+        "stem": "自分の生活上の大切な目標を選ぶとき、周囲に迷惑はかからず、どちらの決め方も実現可能だとします。より大切なのはどちらですか？",
+        "left": "自分自身で目標を定める自由があること",
+        "right": "大切な人と相談して目標を形にできること"
+      },
+      "risk": "個人の人生計画と目標について自律か相談かが近い",
+      "comparison_probe": "自己決定と相談参加が同時高い場合どう回答するか",
+      "disposition": "REVIEW_BEFORE_FINAL_SCORE",
+      "validated": false
+    },
+    {
+      "priority": "P1",
+      "axis": "B",
+      "slots": [
+        16,
+        17
+      ],
+      "ids": [
+        "A05-V1-16",
+        "A05-V1-17"
+      ],
+      "questionA": {
+        "stem": "これから個人的な課題の解決方法を考えます。十分な情報があり、どちらでも同じ結論に達せるなら、どの過程を好みますか？",
+        "left": "まず自分の考えを一人で整理する過程",
+        "right": "信頼できる人と考えを出し合う過程"
+      },
+      "questionB": {
+        "stem": "個人的な計画を見直す必要が生じ、必要な情報と所要時間は同じだとします。どの進め方をより好みますか？",
+        "left": "自分の中で判断を整理して修正案を決める",
+        "right": "身近な人と考えを共有しながら修正案を決める"
+      },
+      "risk": "個人問題の検討と計画の見直し、両方とも単独思考か共有か",
+      "comparison_probe": "初回検討と見直しで価値判断が異なるか",
+      "disposition": "REVIEW_BEFORE_FINAL_SCORE",
+      "validated": false
+    },
+    {
+      "priority": "P1",
+      "axis": "B",
+      "slots": [
+        18,
+        21
+      ],
+      "ids": [
+        "A05-V1-18",
+        "A05-V1-21"
+      ],
+      "questionA": {
+        "stem": "一つの任意の活動を自分で始めます。一人でも二人でも成果・時間・負担が同程度なら、どちらの形を好みますか？",
+        "left": "活動の進め方を自分の裁量で組み立てる",
+        "right": "信頼する相手と役割や進め方を一緒に組み立てる"
+      },
+      "questionB": {
+        "stem": "難しい個人的な課題に取り組むとき、一人でも誰かと協力しても結果と所要時間が同じだとします。どちらが好みに近いですか？",
+        "left": "自分の裁量で最初から最後まで進める",
+        "right": "信頼する人と相談しながら一緒に進める"
+      },
+      "risk": "単独の裁量か誰かと進めるかという実行過程の重複",
+      "comparison_probe": "誰かの信頼・能力差を除いて判断理由が違うか",
+      "disposition": "REVIEW_BEFORE_FINAL_SCORE",
+      "validated": false
+    },
+    {
+      "priority": "P2",
+      "axis": "B",
+      "slots": [
+        22,
+        23
+      ],
+      "ids": [
+        "A05-V1-22",
+        "A05-V1-23"
+      ],
+      "questionA": {
+        "stem": "達成したい目標があり、単独でも共同でも成果や労力は同じだとします。達成するとき、どちらの充実感をより大切にしたいですか？",
+        "left": "自分の力で形にしたという納得感",
+        "right": "誰かと達成を分かち合える実感"
+      },
+      "questionB": {
+        "stem": "自分が楽しみにしている体験を選べます。内容と満足度が同じなら、どちらの価値に魅力を感じますか？",
+        "left": "自分のペースで体験を味わえること",
+        "right": "親しい人と同じ体験を共有できること"
+      },
+      "risk": "達成共有と体験共有で対人選好を測る恐れ",
+      "comparison_probe": "成功結果と体験過程の共有価値が独立か",
+      "disposition": "REVIEW_BEFORE_FINAL_SCORE",
+      "validated": false
+    },
+    {
+      "priority": "P1",
+      "axis": "C",
+      "slots": [
+        27,
+        28
+      ],
+      "ids": [
+        "A05-V1-27",
+        "A05-V1-28"
+      ],
+      "questionA": {
+        "stem": "半年続ける自由参加の活動を選ぶとします。費用と時間が同じなら、次のうち何をより大切にしたいですか？",
+        "left": "半年後にできることや選択肢が増えること",
+        "right": "参加している毎回の時間を楽しめること"
+      },
+      "questionB": {
+        "stem": "自分の趣味の取り組み方を振り返るとき、どちらが『充実していた』と感じる主な理由に近いですか？",
+        "left": "最終的に以前よりできることが増えたこと",
+        "right": "取り組んでいる日々が心地よく過ごせたこと"
+      },
+      "risk": "将来の到達点か現在の過程に価値を置く点が同じ",
+      "comparison_probe": "選択前と事後評価で異なる理由が出るか",
+      "disposition": "REVIEW_BEFORE_FINAL_SCORE",
+      "validated": false
+    },
+    {
+      "priority": "P1",
+      "axis": "C",
+      "slots": [
+        29,
+        30
+      ],
+      "ids": [
+        "A05-V1-29",
+        "A05-V1-30"
+      ],
+      "questionA": {
+        "stem": "大きな目標を達成し、必要な休息も取れた後に自由な時間ができました。次により優先したいのはどちらですか？",
+        "left": "次の将来目標のための準備を始める",
+        "right": "目標を達成した今の時間を十分に味わう"
+      },
+      "questionB": {
+        "stem": "長く取り組んだ課題が一段落し、新しい義務はなく、休息も足りています。次の数週間でより魅力を感じるのはどちらですか？",
+        "left": "将来に向けた新しい計画に着手する",
+        "right": "次の目標を急がず今の生活の充実を深める"
+      },
+      "risk": "目標完了後に新計画へ進むか現在充実かが同じ",
+      "comparison_probe": "直後と数週間後で価値理由が変わるか",
+      "disposition": "REVIEW_BEFORE_FINAL_SCORE",
+      "validated": false
+    },
+    {
+      "priority": "P0",
+      "axis": "C",
+      "slots": [
+        31,
+        32
+      ],
+      "ids": [
+        "A05-V1-31",
+        "A05-V1-32"
+      ],
+      "questionA": {
+        "stem": "同じ2時間で選べる二つの機会があります。将来に役立つ準備は来週もできますが、今楽しめる体験は今回限りです。どちらを優先しますか？",
+        "left": "来週にもできる将来の準備を今進める",
+        "right": "今回限りの現在の体験を選ぶ"
+      },
+      "questionB": {
+        "stem": "将来に役立つ準備と現在を楽しむ体験がどちらも今週限りの機会で、所要時間が同じなら、どちらを選びたいですか？",
+        "left": "今週限りの将来の準備機会を選ぶ",
+        "right": "今週限りの現在の体験を選ぶ"
+      },
+      "risk": "希少性の条件を操作した研究対照で、独立採点に向かない",
+      "comparison_probe": "差分はC軸か希少性選好か。得点化より対照調査",
+      "disposition": "RELEASE_BLOCKING_REVIEW",
+      "validated": false
+    },
+    {
+      "priority": "P1",
+      "axis": "C",
+      "slots": [
+        33,
+        34
+      ],
+      "ids": [
+        "A05-V1-33",
+        "A05-V1-34"
+      ],
+      "questionA": {
+        "stem": "同じ時間を使う二つの選択肢があります。将来の成果は得られるか不確実ですが、その準備自体にも意義を感じています。どちらをより重視しますか？",
+        "left": "成果が確実でなくても将来の可能性を広げること",
+        "right": "今の時間に確かな充実感を得ること"
+      },
+      "questionB": {
+        "stem": "将来の役立ち方がまだわからない学習と、今すぐ楽しめる活動を同じ時間だけ選べるとします。どちらに魅力を感じますか？",
+        "left": "役立つか未定でも将来につながる学習に取り組む",
+        "right": "その時間を今楽しめる活動に充てる"
+      },
+      "risk": "不確実な将来投資と今の満足の比較が近い",
+      "comparison_probe": "リスク選好・学習趣味を固定して理由が変わるか",
+      "disposition": "REVIEW_BEFORE_FINAL_SCORE",
+      "validated": false
+    },
+    {
+      "priority": "P0",
+      "axis": "C",
+      "slots": [
+        35,
+        36
+      ],
+      "ids": [
+        "A05-V1-35",
+        "A05-V1-36"
+      ],
+      "questionA": {
+        "stem": "この一年を振り返って「充実していた」と感じる理由として、どちらの見方がより近いですか？",
+        "left": "これからの選択肢や目標につながるものを得た",
+        "right": "その一年の日々を納得して過ごすことができた"
+      },
+      "questionB": {
+        "stem": "自分にとって『よい一年』とはどんな一年だったと感じるか考えます。どちらの充足をより重視しますか？",
+        "left": "その後の人生に役立つものを積み重ねられたこと",
+        "right": "一年を通して納得できる日々を過ごせたこと"
+      },
+      "risk": "よい一年を将来成果か日々の納得感で評価する同義性が高い",
+      "comparison_probe": "同じ意味なら片方を採点候補から外す",
+      "disposition": "RELEASE_BLOCKING_REVIEW",
+      "validated": false
+    },
+    {
+      "priority": "P1",
+      "axis": "D",
+      "slots": [
+        38,
+        48
+      ],
+      "ids": [
+        "A05-V1-38",
+        "A05-V1-48"
+      ],
+      "questionA": {
+        "stem": "関心がある分野を同じ時間で学べる場合、どちらをより好みますか？",
+        "left": "異なる複数分野の基本を学ぶ",
+        "right": "一つの分野をさらに詳しく学ぶ"
+      },
+      "questionB": {
+        "stem": "半年の自由な学習期間に、同じ総学習時間を使えるとします。どちらの学び方に魅力を感じますか？",
+        "left": "それぞれ興味のある複数分野の入口を学ぶ",
+        "right": "特に興味がある一つの分野を体系的に学び進める"
+      },
+      "risk": "複数分野か一分野を深めるかの時間幅違い",
+      "comparison_probe": "短期と半年の時間差で回答理由が変わるか",
+      "disposition": "REVIEW_BEFORE_FINAL_SCORE",
+      "validated": false
+    },
+    {
+      "priority": "P1",
+      "axis": "D",
+      "slots": [
+        39,
+        42
+      ],
+      "ids": [
+        "A05-V1-39",
+        "A05-V1-42"
+      ],
+      "questionA": {
+        "stem": "興味がある一つの分野を学び始めて基礎を理解しました。別の分野にも同程度に興味がある場合、次にどちらへ進みたいですか？",
+        "left": "新しく関心を持った分野の基礎を知る",
+        "right": "最初の分野について専門的な部分へ進む"
+      },
+      "questionB": {
+        "stem": "関心のあるテーマで当初の目標に到達し、次に同じ時間を使えるなら、どちらを選びたいですか？",
+        "left": "今まで触れなかった別分野へ進む",
+        "right": "今のテーマの応用を深める"
+      },
+      "risk": "基本習得後と当初の目標達成後の分岐が近い",
+      "comparison_probe": "達成段階の差で価値判断が分離できるか",
+      "disposition": "REVIEW_BEFORE_FINAL_SCORE",
+      "validated": false
+    },
+    {
+      "priority": "P2",
+      "axis": "D",
+      "slots": [
+        40,
+        45
+      ],
+      "ids": [
+        "A05-V1-40",
+        "A05-V1-45"
+      ],
+      "questionA": {
+        "stem": "創作やものづくりに同じ時間を使える場合、どちらをより好みますか？",
+        "left": "複数の異なる制作分野を試す",
+        "right": "一つの制作分野の表現を掘り下げる"
+      },
+      "questionB": {
+        "stem": "趣味として一年間、同じ制作時間を自由に使えるとします。どちらの作品づくりを好みますか？",
+        "left": "異なる題材の小さな作品をいくつか完成させる",
+        "right": "一つの題材の作品を繰り返し作り込み表現を深める"
+      },
+      "risk": "制作分野の幅と作品題材の幅を混同し得る",
+      "comparison_probe": "媒体と題材の組合せを変える場合でも違うか",
+      "disposition": "REVIEW_BEFORE_FINAL_SCORE",
+      "validated": false
+    },
+    {
+      "priority": "P2",
+      "axis": "D",
+      "slots": [
+        41,
+        43
+      ],
+      "ids": [
+        "A05-V1-41",
+        "A05-V1-43"
+      ],
+      "questionA": {
+        "stem": "一つの疑問を理解するために同じ時間を使えるなら、どの調べ方に魅力を感じますか？",
+        "left": "異なる学問分野の見方を集めて疑問を考える",
+        "right": "一つの分野の理論や根拠を詳しく調べて疑問を考える"
+      },
+      "questionB": {
+        "stem": "同じくらい気になる疑問がいくつかあり、自由に調べる時間を使えるなら、どちらの探究の進め方をより好みますか？",
+        "left": "異なる複数の疑問について、それぞれの背景を調べる",
+        "right": "一つの疑問を選び、その背景や根拠を詳しく調べる"
+      },
+      "risk": "調べる分野数と疑問数の違いはあり得るが検証必要",
+      "comparison_probe": "問い数固定／分野数固定の対照で違いが残るか",
+      "disposition": "REVIEW_BEFORE_FINAL_SCORE",
+      "validated": false
+    },
+    {
+      "priority": "P0",
+      "axis": "E",
+      "slots": [
+        49,
+        50
+      ],
+      "ids": [
+        "A05-V1-49",
+        "A05-V1-50"
+      ],
+      "questionA": {
+        "stem": "必要な生活費と休息を確保できている状態で、一つだけ増やせるとしたら、どちらを選びたいですか？",
+        "left": "毎月、自分で使えるお金が1万円増える",
+        "right": "毎月、自分で使える時間が8時間増える"
+      },
+      "questionB": {
+        "stem": "必要な休息と生活費を確保したうえで、追加収入の機会がある自由な半日なら、どちらを優先したいですか？",
+        "left": "追加活動をして自由に使えるお金を4,000円増やす",
+        "right": "その半日を自分の好きなことに使う"
+      },
+      "risk": "金銭と自由時間の交換比と半日単位が揃っていない",
+      "comparison_probe": "単位と交換比の感度を検査し、安定したE型分類はしない",
+      "disposition": "RELEASE_BLOCKING_REVIEW",
+      "validated": false
+    }
+  ],
+  "lexical_rank": [
+    {
+      "axis": "D",
+      "slot_pair": [
+        38,
+        40
+      ],
+      "ids": [
+        "A05-V1-38",
+        "A05-V1-40"
+      ],
+      "trigram_similarity": 0.2
+    },
+    {
+      "axis": "D",
+      "slot_pair": [
+        37,
+        42
+      ],
+      "ids": [
+        "A05-V1-37",
+        "A05-V1-42"
+      ],
+      "trigram_similarity": 0.1835
+    },
+    {
+      "axis": "D",
+      "slot_pair": [
+        41,
+        43
+      ],
+      "ids": [
+        "A05-V1-41",
+        "A05-V1-43"
+      ],
+      "trigram_similarity": 0.1679
+    },
+    {
+      "axis": "B",
+      "slot_pair": [
+        15,
+        19
+      ],
+      "ids": [
+        "A05-V1-15",
+        "A05-V1-19"
+      ],
+      "trigram_similarity": 0.1678
+    },
+    {
+      "axis": "C",
+      "slot_pair": [
+        31,
+        32
+      ],
+      "ids": [
+        "A05-V1-31",
+        "A05-V1-32"
+      ],
+      "trigram_similarity": 0.1591
+    },
+    {
+      "axis": "D",
+      "slot_pair": [
+        43,
+        46
+      ],
+      "ids": [
+        "A05-V1-43",
+        "A05-V1-46"
+      ],
+      "trigram_similarity": 0.1429
+    },
+    {
+      "axis": "B",
+      "slot_pair": [
+        19,
+        20
+      ],
+      "ids": [
+        "A05-V1-19",
+        "A05-V1-20"
+      ],
+      "trigram_similarity": 0.1351
+    },
+    {
+      "axis": "D",
+      "slot_pair": [
+        41,
+        48
+      ],
+      "ids": [
+        "A05-V1-41",
+        "A05-V1-48"
+      ],
+      "trigram_similarity": 0.1343
+    },
+    {
+      "axis": "D",
+      "slot_pair": [
+        37,
+        40
+      ],
+      "ids": [
+        "A05-V1-37",
+        "A05-V1-40"
+      ],
+      "trigram_similarity": 0.1333
+    },
+    {
+      "axis": "D",
+      "slot_pair": [
+        38,
+        47
+      ],
+      "ids": [
+        "A05-V1-38",
+        "A05-V1-47"
+      ],
+      "trigram_similarity": 0.1207
+    },
+    {
+      "axis": "A",
+      "slot_pair": [
+        1,
+        5
+      ],
+      "ids": [
+        "A05-V1-01",
+        "A05-V1-05"
+      ],
+      "trigram_similarity": 0.1176
+    },
+    {
+      "axis": "B",
+      "slot_pair": [
+        20,
+        23
+      ],
+      "ids": [
+        "A05-V1-20",
+        "A05-V1-23"
+      ],
+      "trigram_similarity": 0.1176
+    },
+    {
+      "axis": "D",
+      "slot_pair": [
+        37,
+        44
+      ],
+      "ids": [
+        "A05-V1-37",
+        "A05-V1-44"
+      ],
+      "trigram_similarity": 0.1161
+    },
+    {
+      "axis": "B",
+      "slot_pair": [
+        15,
+        20
+      ],
+      "ids": [
+        "A05-V1-15",
+        "A05-V1-20"
+      ],
+      "trigram_similarity": 0.1141
+    },
+    {
+      "axis": "D",
+      "slot_pair": [
+        43,
+        47
+      ],
+      "ids": [
+        "A05-V1-43",
+        "A05-V1-47"
+      ],
+      "trigram_similarity": 0.1141
+    },
+    {
+      "axis": "A",
+      "slot_pair": [
+        11,
+        12
+      ],
+      "ids": [
+        "A05-V1-11",
+        "A05-V1-12"
+      ],
+      "trigram_similarity": 0.1136
+    },
+    {
+      "axis": "A",
+      "slot_pair": [
+        1,
+        6
+      ],
+      "ids": [
+        "A05-V1-01",
+        "A05-V1-06"
+      ],
+      "trigram_similarity": 0.1102
+    },
+    {
+      "axis": "D",
+      "slot_pair": [
+        38,
+        43
+      ],
+      "ids": [
+        "A05-V1-38",
+        "A05-V1-43"
+      ],
+      "trigram_similarity": 0.1094
+    },
+    {
+      "axis": "D",
+      "slot_pair": [
+        40,
+        43
+      ],
+      "ids": [
+        "A05-V1-40",
+        "A05-V1-43"
+      ],
+      "trigram_similarity": 0.1077
+    },
+    {
+      "axis": "C",
+      "slot_pair": [
+        28,
+        35
+      ],
+      "ids": [
+        "A05-V1-28",
+        "A05-V1-35"
+      ],
+      "trigram_similarity": 0.1071
+    },
+    {
+      "axis": "B",
+      "slot_pair": [
+        17,
+        21
+      ],
+      "ids": [
+        "A05-V1-17",
+        "A05-V1-21"
+      ],
+      "trigram_similarity": 0.1067
+    },
+    {
+      "axis": "D",
+      "slot_pair": [
+        40,
+        46
+      ],
+      "ids": [
+        "A05-V1-40",
+        "A05-V1-46"
+      ],
+      "trigram_similarity": 0.1053
+    },
+    {
+      "axis": "A",
+      "slot_pair": [
+        2,
+        3
+      ],
+      "ids": [
+        "A05-V1-02",
+        "A05-V1-03"
+      ],
+      "trigram_similarity": 0.1032
+    },
+    {
+      "axis": "A",
+      "slot_pair": [
+        3,
+        12
+      ],
+      "ids": [
+        "A05-V1-03",
+        "A05-V1-12"
+      ],
+      "trigram_similarity": 0.1022
+    },
+    {
+      "axis": "A",
+      "slot_pair": [
+        7,
+        10
+      ],
+      "ids": [
+        "A05-V1-07",
+        "A05-V1-10"
+      ],
+      "trigram_similarity": 0.1
+    },
+    {
+      "axis": "D",
+      "slot_pair": [
+        38,
+        48
+      ],
+      "ids": [
+        "A05-V1-38",
+        "A05-V1-48"
+      ],
+      "trigram_similarity": 0.0984
+    },
+    {
+      "axis": "D",
+      "slot_pair": [
+        43,
+        45
+      ],
+      "ids": [
+        "A05-V1-43",
+        "A05-V1-45"
+      ],
+      "trigram_similarity": 0.098
+    },
+    {
+      "axis": "D",
+      "slot_pair": [
+        38,
+        41
+      ],
+      "ids": [
+        "A05-V1-38",
+        "A05-V1-41"
+      ],
+      "trigram_similarity": 0.0973
+    },
+    {
+      "axis": "A",
+      "slot_pair": [
+        2,
+        5
+      ],
+      "ids": [
+        "A05-V1-02",
+        "A05-V1-05"
+      ],
+      "trigram_similarity": 0.0972
+    },
+    {
+      "axis": "A",
+      "slot_pair": [
+        5,
+        10
+      ],
+      "ids": [
+        "A05-V1-05",
+        "A05-V1-10"
+      ],
+      "trigram_similarity": 0.0968
+    },
+    {
+      "axis": "A",
+      "slot_pair": [
+        1,
+        11
+      ],
+      "ids": [
+        "A05-V1-01",
+        "A05-V1-11"
+      ],
+      "trigram_similarity": 0.0963
+    },
+    {
+      "axis": "C",
+      "slot_pair": [
+        25,
+        26
+      ],
+      "ids": [
+        "A05-V1-25",
+        "A05-V1-26"
+      ],
+      "trigram_similarity": 0.096
+    },
+    {
+      "axis": "D",
+      "slot_pair": [
+        40,
+        41
+      ],
+      "ids": [
+        "A05-V1-40",
+        "A05-V1-41"
+      ],
+      "trigram_similarity": 0.0957
+    },
+    {
+      "axis": "D",
+      "slot_pair": [
+        42,
+        44
+      ],
+      "ids": [
+        "A05-V1-42",
+        "A05-V1-44"
+      ],
+      "trigram_similarity": 0.0957
+    },
+    {
+      "axis": "A",
+      "slot_pair": [
+        5,
+        11
+      ],
+      "ids": [
+        "A05-V1-05",
+        "A05-V1-11"
+      ],
+      "trigram_similarity": 0.094
+    },
+    {
+      "axis": "D",
+      "slot_pair": [
+        39,
+        44
+      ],
+      "ids": [
+        "A05-V1-39",
+        "A05-V1-44"
+      ],
+      "trigram_similarity": 0.0923
+    },
+    {
+      "axis": "A",
+      "slot_pair": [
+        4,
+        6
+      ],
+      "ids": [
+        "A05-V1-04",
+        "A05-V1-06"
+      ],
+      "trigram_similarity": 0.0909
+    },
+    {
+      "axis": "D",
+      "slot_pair": [
+        44,
+        46
+      ],
+      "ids": [
+        "A05-V1-44",
+        "A05-V1-46"
+      ],
+      "trigram_similarity": 0.0909
+    },
+    {
+      "axis": "D",
+      "slot_pair": [
+        45,
+        48
+      ],
+      "ids": [
+        "A05-V1-45",
+        "A05-V1-48"
+      ],
+      "trigram_similarity": 0.0884
+    },
+    {
+      "axis": "A",
+      "slot_pair": [
+        6,
+        10
+      ],
+      "ids": [
+        "A05-V1-06",
+        "A05-V1-10"
+      ],
+      "trigram_similarity": 0.0853
+    },
+    {
+      "axis": "E",
+      "slot_pair": [
+        49,
+        50
+      ],
+      "ids": [
+        "A05-V1-49",
+        "A05-V1-50"
+      ],
+      "trigram_similarity": 0.0851
+    },
+    {
+      "axis": "D",
+      "slot_pair": [
+        41,
+        46
+      ],
+      "ids": [
+        "A05-V1-41",
+        "A05-V1-46"
+      ],
+      "trigram_similarity": 0.084
+    },
+    {
+      "axis": "D",
+      "slot_pair": [
+        45,
+        47
+      ],
+      "ids": [
+        "A05-V1-45",
+        "A05-V1-47"
+      ],
+      "trigram_similarity": 0.0833
+    },
+    {
+      "axis": "D",
+      "slot_pair": [
+        40,
+        42
+      ],
+      "ids": [
+        "A05-V1-40",
+        "A05-V1-42"
+      ],
+      "trigram_similarity": 0.0811
+    },
+    {
+      "axis": "A",
+      "slot_pair": [
+        1,
+        4
+      ],
+      "ids": [
+        "A05-V1-01",
+        "A05-V1-04"
+      ],
+      "trigram_similarity": 0.0809
+    },
+    {
+      "axis": "D",
+      "slot_pair": [
+        40,
+        45
+      ],
+      "ids": [
+        "A05-V1-40",
+        "A05-V1-45"
+      ],
+      "trigram_similarity": 0.0806
+    },
+    {
+      "axis": "D",
+      "slot_pair": [
+        37,
+        41
+      ],
+      "ids": [
+        "A05-V1-37",
+        "A05-V1-41"
+      ],
+      "trigram_similarity": 0.08
+    },
+    {
+      "axis": "D",
+      "slot_pair": [
+        39,
+        48
+      ],
+      "ids": [
+        "A05-V1-39",
+        "A05-V1-48"
+      ],
+      "trigram_similarity": 0.08
+    },
+    {
+      "axis": "D",
+      "slot_pair": [
+        40,
+        48
+      ],
+      "ids": [
+        "A05-V1-40",
+        "A05-V1-48"
+      ],
+      "trigram_similarity": 0.0794
+    },
+    {
+      "axis": "D",
+      "slot_pair": [
+        41,
+        42
+      ],
+      "ids": [
+        "A05-V1-41",
+        "A05-V1-42"
+      ],
+      "trigram_similarity": 0.0794
+    },
+    {
+      "axis": "B",
+      "slot_pair": [
+        21,
+        22
+      ],
+      "ids": [
+        "A05-V1-21",
+        "A05-V1-22"
+      ],
+      "trigram_similarity": 0.0769
+    },
+    {
+      "axis": "C",
+      "slot_pair": [
+        31,
+        33
+      ],
+      "ids": [
+        "A05-V1-31",
+        "A05-V1-33"
+      ],
+      "trigram_similarity": 0.0769
+    },
+    {
+      "axis": "D",
+      "slot_pair": [
+        43,
+        48
+      ],
+      "ids": [
+        "A05-V1-43",
+        "A05-V1-48"
+      ],
+      "trigram_similarity": 0.0759
+    },
+    {
+      "axis": "D",
+      "slot_pair": [
+        38,
+        44
+      ],
+      "ids": [
+        "A05-V1-38",
+        "A05-V1-44"
+      ],
+      "trigram_similarity": 0.0755
+    },
+    {
+      "axis": "A",
+      "slot_pair": [
+        3,
+        11
+      ],
+      "ids": [
+        "A05-V1-03",
+        "A05-V1-11"
+      ],
+      "trigram_similarity": 0.0746
+    },
+    {
+      "axis": "C",
+      "slot_pair": [
+        26,
+        29
+      ],
+      "ids": [
+        "A05-V1-26",
+        "A05-V1-29"
+      ],
+      "trigram_similarity": 0.073
+    },
+    {
+      "axis": "C",
+      "slot_pair": [
+        27,
+        32
+      ],
+      "ids": [
+        "A05-V1-27",
+        "A05-V1-32"
+      ],
+      "trigram_similarity": 0.073
+    },
+    {
+      "axis": "D",
+      "slot_pair": [
+        38,
+        39
+      ],
+      "ids": [
+        "A05-V1-38",
+        "A05-V1-39"
+      ],
+      "trigram_similarity": 0.072
+    },
+    {
+      "axis": "A",
+      "slot_pair": [
+        2,
+        11
+      ],
+      "ids": [
+        "A05-V1-02",
+        "A05-V1-11"
+      ],
+      "trigram_similarity": 0.0714
+    },
+    {
+      "axis": "B",
+      "slot_pair": [
+        18,
+        21
+      ],
+      "ids": [
+        "A05-V1-18",
+        "A05-V1-21"
+      ],
+      "trigram_similarity": 0.0714
+    },
+    {
+      "axis": "C",
+      "slot_pair": [
+        33,
+        34
+      ],
+      "ids": [
+        "A05-V1-33",
+        "A05-V1-34"
+      ],
+      "trigram_similarity": 0.0706
+    },
+    {
+      "axis": "B",
+      "slot_pair": [
+        15,
+        22
+      ],
+      "ids": [
+        "A05-V1-15",
+        "A05-V1-22"
+      ],
+      "trigram_similarity": 0.0705
+    },
+    {
+      "axis": "B",
+      "slot_pair": [
+        13,
+        23
+      ],
+      "ids": [
+        "A05-V1-13",
+        "A05-V1-23"
+      ],
+      "trigram_similarity": 0.0703
+    },
+    {
+      "axis": "D",
+      "slot_pair": [
+        37,
+        43
+      ],
+      "ids": [
+        "A05-V1-37",
+        "A05-V1-43"
+      ],
+      "trigram_similarity": 0.0699
+    },
+    {
+      "axis": "D",
+      "slot_pair": [
+        42,
+        43
+      ],
+      "ids": [
+        "A05-V1-42",
+        "A05-V1-43"
+      ],
+      "trigram_similarity": 0.0694
+    },
+    {
+      "axis": "A",
+      "slot_pair": [
+        4,
+        11
+      ],
+      "ids": [
+        "A05-V1-04",
+        "A05-V1-11"
+      ],
+      "trigram_similarity": 0.0692
+    },
+    {
+      "axis": "C",
+      "slot_pair": [
+        31,
+        34
+      ],
+      "ids": [
+        "A05-V1-31",
+        "A05-V1-34"
+      ],
+      "trigram_similarity": 0.0692
+    },
+    {
+      "axis": "D",
+      "slot_pair": [
+        38,
+        46
+      ],
+      "ids": [
+        "A05-V1-38",
+        "A05-V1-46"
+      ],
+      "trigram_similarity": 0.069
+    },
+    {
+      "axis": "A",
+      "slot_pair": [
+        9,
+        10
+      ],
+      "ids": [
+        "A05-V1-09",
+        "A05-V1-10"
+      ],
+      "trigram_similarity": 0.068
+    },
+    {
+      "axis": "B",
+      "slot_pair": [
+        15,
+        21
+      ],
+      "ids": [
+        "A05-V1-15",
+        "A05-V1-21"
+      ],
+      "trigram_similarity": 0.0679
+    },
+    {
+      "axis": "B",
+      "slot_pair": [
+        17,
+        22
+      ],
+      "ids": [
+        "A05-V1-17",
+        "A05-V1-22"
+      ],
+      "trigram_similarity": 0.0667
+    },
+    {
+      "axis": "C",
+      "slot_pair": [
+        28,
+        36
+      ],
+      "ids": [
+        "A05-V1-28",
+        "A05-V1-36"
+      ],
+      "trigram_similarity": 0.0667
+    },
+    {
+      "axis": "A",
+      "slot_pair": [
+        4,
+        5
+      ],
+      "ids": [
+        "A05-V1-04",
+        "A05-V1-05"
+      ],
+      "trigram_similarity": 0.0658
+    },
+    {
+      "axis": "B",
+      "slot_pair": [
+        16,
+        17
+      ],
+      "ids": [
+        "A05-V1-16",
+        "A05-V1-17"
+      ],
+      "trigram_similarity": 0.0658
+    },
+    {
+      "axis": "A",
+      "slot_pair": [
+        4,
+        10
+      ],
+      "ids": [
+        "A05-V1-04",
+        "A05-V1-10"
+      ],
+      "trigram_similarity": 0.0657
+    },
+    {
+      "axis": "B",
+      "slot_pair": [
+        13,
+        22
+      ],
+      "ids": [
+        "A05-V1-13",
+        "A05-V1-22"
+      ],
+      "trigram_similarity": 0.0657
+    },
+    {
+      "axis": "D",
+      "slot_pair": [
+        38,
+        45
+      ],
+      "ids": [
+        "A05-V1-38",
+        "A05-V1-45"
+      ],
+      "trigram_similarity": 0.0645
+    },
+    {
+      "axis": "D",
+      "slot_pair": [
+        40,
+        47
+      ],
+      "ids": [
+        "A05-V1-40",
+        "A05-V1-47"
+      ],
+      "trigram_similarity": 0.0645
+    },
+    {
+      "axis": "D",
+      "slot_pair": [
+        40,
+        44
+      ],
+      "ids": [
+        "A05-V1-40",
+        "A05-V1-44"
+      ],
+      "trigram_similarity": 0.0642
+    },
+    {
+      "axis": "A",
+      "slot_pair": [
+        3,
+        7
+      ],
+      "ids": [
+        "A05-V1-03",
+        "A05-V1-07"
+      ],
+      "trigram_similarity": 0.0634
+    },
+    {
+      "axis": "A",
+      "slot_pair": [
+        3,
+        9
+      ],
+      "ids": [
+        "A05-V1-03",
+        "A05-V1-09"
+      ],
+      "trigram_similarity": 0.0621
+    },
+    {
+      "axis": "A",
+      "slot_pair": [
+        5,
+        6
+      ],
+      "ids": [
+        "A05-V1-05",
+        "A05-V1-06"
+      ],
+      "trigram_similarity": 0.0612
+    },
+    {
+      "axis": "C",
+      "slot_pair": [
+        26,
+        30
+      ],
+      "ids": [
+        "A05-V1-26",
+        "A05-V1-30"
+      ],
+      "trigram_similarity": 0.0612
+    },
+    {
+      "axis": "C",
+      "slot_pair": [
+        26,
+        32
+      ],
+      "ids": [
+        "A05-V1-26",
+        "A05-V1-32"
+      ],
+      "trigram_similarity": 0.0611
+    },
+    {
+      "axis": "A",
+      "slot_pair": [
+        6,
+        7
+      ],
+      "ids": [
+        "A05-V1-06",
+        "A05-V1-07"
+      ],
+      "trigram_similarity": 0.0606
+    },
+    {
+      "axis": "A",
+      "slot_pair": [
+        2,
+        7
+      ],
+      "ids": [
+        "A05-V1-02",
+        "A05-V1-07"
+      ],
+      "trigram_similarity": 0.0597
+    },
+    {
+      "axis": "A",
+      "slot_pair": [
+        2,
+        12
+      ],
+      "ids": [
+        "A05-V1-02",
+        "A05-V1-12"
+      ],
+      "trigram_similarity": 0.0597
+    },
+    {
+      "axis": "C",
+      "slot_pair": [
+        33,
+        36
+      ],
+      "ids": [
+        "A05-V1-33",
+        "A05-V1-36"
+      ],
+      "trigram_similarity": 0.0588
+    },
+    {
+      "axis": "A",
+      "slot_pair": [
+        4,
+        12
+      ],
+      "ids": [
+        "A05-V1-04",
+        "A05-V1-12"
+      ],
+      "trigram_similarity": 0.058
+    },
+    {
+      "axis": "D",
+      "slot_pair": [
+        41,
+        47
+      ],
+      "ids": [
+        "A05-V1-41",
+        "A05-V1-47"
+      ],
+      "trigram_similarity": 0.0571
+    },
+    {
+      "axis": "B",
+      "slot_pair": [
+        19,
+        22
+      ],
+      "ids": [
+        "A05-V1-19",
+        "A05-V1-22"
+      ],
+      "trigram_similarity": 0.0563
+    },
+    {
+      "axis": "D",
+      "slot_pair": [
+        41,
+        45
+      ],
+      "ids": [
+        "A05-V1-41",
+        "A05-V1-45"
+      ],
+      "trigram_similarity": 0.0563
+    },
+    {
+      "axis": "D",
+      "slot_pair": [
+        43,
+        44
+      ],
+      "ids": [
+        "A05-V1-43",
+        "A05-V1-44"
+      ],
+      "trigram_similarity": 0.0563
+    },
+    {
+      "axis": "D",
+      "slot_pair": [
+        45,
+        46
+      ],
+      "ids": [
+        "A05-V1-45",
+        "A05-V1-46"
+      ],
+      "trigram_similarity": 0.0563
+    },
+    {
+      "axis": "B",
+      "slot_pair": [
+        13,
+        24
+      ],
+      "ids": [
+        "A05-V1-13",
+        "A05-V1-24"
+      ],
+      "trigram_similarity": 0.0543
+    },
+    {
+      "axis": "A",
+      "slot_pair": [
+        3,
+        6
+      ],
+      "ids": [
+        "A05-V1-03",
+        "A05-V1-06"
+      ],
+      "trigram_similarity": 0.0538
+    },
+    {
+      "axis": "A",
+      "slot_pair": [
+        7,
+        9
+      ],
+      "ids": [
+        "A05-V1-07",
+        "A05-V1-09"
+      ],
+      "trigram_similarity": 0.0537
+    },
+    {
+      "axis": "D",
+      "slot_pair": [
+        44,
+        47
+      ],
+      "ids": [
+        "A05-V1-44",
+        "A05-V1-47"
+      ],
+      "trigram_similarity": 0.0534
+    },
+    {
+      "axis": "B",
+      "slot_pair": [
+        15,
+        23
+      ],
+      "ids": [
+        "A05-V1-15",
+        "A05-V1-23"
+      ],
+      "trigram_similarity": 0.0533
+    },
+    {
+      "axis": "B",
+      "slot_pair": [
+        19,
+        23
+      ],
+      "ids": [
+        "A05-V1-19",
+        "A05-V1-23"
+      ],
+      "trigram_similarity": 0.0526
+    },
+    {
+      "axis": "B",
+      "slot_pair": [
+        16,
+        18
+      ],
+      "ids": [
+        "A05-V1-16",
+        "A05-V1-18"
+      ],
+      "trigram_similarity": 0.0523
+    },
+    {
+      "axis": "C",
+      "slot_pair": [
+        29,
+        30
+      ],
+      "ids": [
+        "A05-V1-29",
+        "A05-V1-30"
+      ],
+      "trigram_similarity": 0.0523
+    },
+    {
+      "axis": "C",
+      "slot_pair": [
+        35,
+        36
+      ],
+      "ids": [
+        "A05-V1-35",
+        "A05-V1-36"
+      ],
+      "trigram_similarity": 0.0523
+    },
+    {
+      "axis": "B",
+      "slot_pair": [
+        13,
+        18
+      ],
+      "ids": [
+        "A05-V1-13",
+        "A05-V1-18"
+      ],
+      "trigram_similarity": 0.0515
+    },
+    {
+      "axis": "B",
+      "slot_pair": [
+        23,
+        24
+      ],
+      "ids": [
+        "A05-V1-23",
+        "A05-V1-24"
+      ],
+      "trigram_similarity": 0.0515
+    },
+    {
+      "axis": "A",
+      "slot_pair": [
+        4,
+        7
+      ],
+      "ids": [
+        "A05-V1-04",
+        "A05-V1-07"
+      ],
+      "trigram_similarity": 0.0504
+    },
+    {
+      "axis": "D",
+      "slot_pair": [
+        42,
+        48
+      ],
+      "ids": [
+        "A05-V1-42",
+        "A05-V1-48"
+      ],
+      "trigram_similarity": 0.0504
+    },
+    {
+      "axis": "D",
+      "slot_pair": [
+        46,
+        47
+      ],
+      "ids": [
+        "A05-V1-46",
+        "A05-V1-47"
+      ],
+      "trigram_similarity": 0.0496
+    },
+    {
+      "axis": "A",
+      "slot_pair": [
+        5,
+        12
+      ],
+      "ids": [
+        "A05-V1-05",
+        "A05-V1-12"
+      ],
+      "trigram_similarity": 0.0494
+    },
+    {
+      "axis": "B",
+      "slot_pair": [
+        16,
+        21
+      ],
+      "ids": [
+        "A05-V1-16",
+        "A05-V1-21"
+      ],
+      "trigram_similarity": 0.0494
+    },
+    {
+      "axis": "A",
+      "slot_pair": [
+        3,
+        10
+      ],
+      "ids": [
+        "A05-V1-03",
+        "A05-V1-10"
+      ],
+      "trigram_similarity": 0.0486
+    },
+    {
+      "axis": "B",
+      "slot_pair": [
+        19,
+        21
+      ],
+      "ids": [
+        "A05-V1-19",
+        "A05-V1-21"
+      ],
+      "trigram_similarity": 0.0479
+    },
+    {
+      "axis": "A",
+      "slot_pair": [
+        7,
+        12
+      ],
+      "ids": [
+        "A05-V1-07",
+        "A05-V1-12"
+      ],
+      "trigram_similarity": 0.0476
+    },
+    {
+      "axis": "A",
+      "slot_pair": [
+        1,
+        10
+      ],
+      "ids": [
+        "A05-V1-01",
+        "A05-V1-10"
+      ],
+      "trigram_similarity": 0.0473
+    },
+    {
+      "axis": "B",
+      "slot_pair": [
+        14,
+        17
+      ],
+      "ids": [
+        "A05-V1-14",
+        "A05-V1-17"
+      ],
+      "trigram_similarity": 0.0473
+    },
+    {
+      "axis": "B",
+      "slot_pair": [
+        14,
+        20
+      ],
+      "ids": [
+        "A05-V1-14",
+        "A05-V1-20"
+      ],
+      "trigram_similarity": 0.0471
+    },
+    {
+      "axis": "C",
+      "slot_pair": [
+        26,
+        31
+      ],
+      "ids": [
+        "A05-V1-26",
+        "A05-V1-31"
+      ],
+      "trigram_similarity": 0.047
+    },
+    {
+      "axis": "C",
+      "slot_pair": [
+        27,
+        28
+      ],
+      "ids": [
+        "A05-V1-27",
+        "A05-V1-28"
+      ],
+      "trigram_similarity": 0.047
+    },
+    {
+      "axis": "C",
+      "slot_pair": [
+        25,
+        32
+      ],
+      "ids": [
+        "A05-V1-25",
+        "A05-V1-32"
+      ],
+      "trigram_similarity": 0.0469
+    },
+    {
+      "axis": "B",
+      "slot_pair": [
+        14,
+        22
+      ],
+      "ids": [
+        "A05-V1-14",
+        "A05-V1-22"
+      ],
+      "trigram_similarity": 0.0468
+    },
+    {
+      "axis": "B",
+      "slot_pair": [
+        15,
+        24
+      ],
+      "ids": [
+        "A05-V1-15",
+        "A05-V1-24"
+      ],
+      "trigram_similarity": 0.0467
+    },
+    {
+      "axis": "B",
+      "slot_pair": [
+        17,
+        18
+      ],
+      "ids": [
+        "A05-V1-17",
+        "A05-V1-18"
+      ],
+      "trigram_similarity": 0.0467
+    },
+    {
+      "axis": "B",
+      "slot_pair": [
+        20,
+        22
+      ],
+      "ids": [
+        "A05-V1-20",
+        "A05-V1-22"
+      ],
+      "trigram_similarity": 0.0455
+    },
+    {
+      "axis": "B",
+      "slot_pair": [
+        14,
+        21
+      ],
+      "ids": [
+        "A05-V1-14",
+        "A05-V1-21"
+      ],
+      "trigram_similarity": 0.0452
+    },
+    {
+      "axis": "B",
+      "slot_pair": [
+        13,
+        14
+      ],
+      "ids": [
+        "A05-V1-13",
+        "A05-V1-14"
+      ],
+      "trigram_similarity": 0.0449
+    },
+    {
+      "axis": "B",
+      "slot_pair": [
+        16,
+        20
+      ],
+      "ids": [
+        "A05-V1-16",
+        "A05-V1-20"
+      ],
+      "trigram_similarity": 0.0449
+    },
+    {
+      "axis": "C",
+      "slot_pair": [
+        27,
+        34
+      ],
+      "ids": [
+        "A05-V1-27",
+        "A05-V1-34"
+      ],
+      "trigram_similarity": 0.0446
+    },
+    {
+      "axis": "B",
+      "slot_pair": [
+        15,
+        17
+      ],
+      "ids": [
+        "A05-V1-15",
+        "A05-V1-17"
+      ],
+      "trigram_similarity": 0.0443
+    },
+    {
+      "axis": "D",
+      "slot_pair": [
+        44,
+        48
+      ],
+      "ids": [
+        "A05-V1-44",
+        "A05-V1-48"
+      ],
+      "trigram_similarity": 0.0441
+    },
+    {
+      "axis": "B",
+      "slot_pair": [
+        20,
+        21
+      ],
+      "ids": [
+        "A05-V1-20",
+        "A05-V1-21"
+      ],
+      "trigram_similarity": 0.0437
+    },
+    {
+      "axis": "B",
+      "slot_pair": [
+        13,
+        17
+      ],
+      "ids": [
+        "A05-V1-13",
+        "A05-V1-17"
+      ],
+      "trigram_similarity": 0.0435
+    },
+    {
+      "axis": "C",
+      "slot_pair": [
+        25,
+        35
+      ],
+      "ids": [
+        "A05-V1-25",
+        "A05-V1-35"
+      ],
+      "trigram_similarity": 0.0435
+    },
+    {
+      "axis": "C",
+      "slot_pair": [
+        31,
+        36
+      ],
+      "ids": [
+        "A05-V1-31",
+        "A05-V1-36"
+      ],
+      "trigram_similarity": 0.0435
+    },
+    {
+      "axis": "C",
+      "slot_pair": [
+        25,
+        27
+      ],
+      "ids": [
+        "A05-V1-25",
+        "A05-V1-27"
+      ],
+      "trigram_similarity": 0.0432
+    },
+    {
+      "axis": "D",
+      "slot_pair": [
+        37,
+        39
+      ],
+      "ids": [
+        "A05-V1-37",
+        "A05-V1-39"
+      ],
+      "trigram_similarity": 0.0432
+    },
+    {
+      "axis": "D",
+      "slot_pair": [
+        37,
+        48
+      ],
+      "ids": [
+        "A05-V1-37",
+        "A05-V1-48"
+      ],
+      "trigram_similarity": 0.0432
+    },
+    {
+      "axis": "C",
+      "slot_pair": [
+        26,
+        35
+      ],
+      "ids": [
+        "A05-V1-26",
+        "A05-V1-35"
+      ],
+      "trigram_similarity": 0.042
+    },
+    {
+      "axis": "B",
+      "slot_pair": [
+        17,
+        24
+      ],
+      "ids": [
+        "A05-V1-17",
+        "A05-V1-24"
+      ],
+      "trigram_similarity": 0.0417
+    },
+    {
+      "axis": "B",
+      "slot_pair": [
+        18,
+        23
+      ],
+      "ids": [
+        "A05-V1-18",
+        "A05-V1-23"
+      ],
+      "trigram_similarity": 0.0417
+    },
+    {
+      "axis": "C",
+      "slot_pair": [
+        27,
+        33
+      ],
+      "ids": [
+        "A05-V1-27",
+        "A05-V1-33"
+      ],
+      "trigram_similarity": 0.0414
+    },
+    {
+      "axis": "D",
+      "slot_pair": [
+        39,
+        41
+      ],
+      "ids": [
+        "A05-V1-39",
+        "A05-V1-41"
+      ],
+      "trigram_similarity": 0.0411
+    },
+    {
+      "axis": "D",
+      "slot_pair": [
+        39,
+        46
+      ],
+      "ids": [
+        "A05-V1-39",
+        "A05-V1-46"
+      ],
+      "trigram_similarity": 0.0411
+    },
+    {
+      "axis": "B",
+      "slot_pair": [
+        14,
+        15
+      ],
+      "ids": [
+        "A05-V1-14",
+        "A05-V1-15"
+      ],
+      "trigram_similarity": 0.0395
+    },
+    {
+      "axis": "D",
+      "slot_pair": [
+        41,
+        44
+      ],
+      "ids": [
+        "A05-V1-41",
+        "A05-V1-44"
+      ],
+      "trigram_similarity": 0.0394
+    },
+    {
+      "axis": "B",
+      "slot_pair": [
+        17,
+        20
+      ],
+      "ids": [
+        "A05-V1-17",
+        "A05-V1-20"
+      ],
+      "trigram_similarity": 0.0392
+    },
+    {
+      "axis": "B",
+      "slot_pair": [
+        19,
+        24
+      ],
+      "ids": [
+        "A05-V1-19",
+        "A05-V1-24"
+      ],
+      "trigram_similarity": 0.0392
+    },
+    {
+      "axis": "D",
+      "slot_pair": [
+        37,
+        46
+      ],
+      "ids": [
+        "A05-V1-37",
+        "A05-V1-46"
+      ],
+      "trigram_similarity": 0.0385
+    },
+    {
+      "axis": "C",
+      "slot_pair": [
+        25,
+        33
+      ],
+      "ids": [
+        "A05-V1-25",
+        "A05-V1-33"
+      ],
+      "trigram_similarity": 0.0382
+    },
+    {
+      "axis": "D",
+      "slot_pair": [
+        39,
+        40
+      ],
+      "ids": [
+        "A05-V1-39",
+        "A05-V1-40"
+      ],
+      "trigram_similarity": 0.0382
+    },
+    {
+      "axis": "D",
+      "slot_pair": [
+        42,
+        46
+      ],
+      "ids": [
+        "A05-V1-42",
+        "A05-V1-46"
+      ],
+      "trigram_similarity": 0.0382
+    },
+    {
+      "axis": "A",
+      "slot_pair": [
+        3,
+        5
+      ],
+      "ids": [
+        "A05-V1-03",
+        "A05-V1-05"
+      ],
+      "trigram_similarity": 0.0373
+    },
+    {
+      "axis": "A",
+      "slot_pair": [
+        5,
+        8
+      ],
+      "ids": [
+        "A05-V1-05",
+        "A05-V1-08"
+      ],
+      "trigram_similarity": 0.0373
+    },
+    {
+      "axis": "B",
+      "slot_pair": [
+        17,
+        19
+      ],
+      "ids": [
+        "A05-V1-17",
+        "A05-V1-19"
+      ],
+      "trigram_similarity": 0.0373
+    },
+    {
+      "axis": "A",
+      "slot_pair": [
+        6,
+        12
+      ],
+      "ids": [
+        "A05-V1-06",
+        "A05-V1-12"
+      ],
+      "trigram_similarity": 0.037
+    },
+    {
+      "axis": "C",
+      "slot_pair": [
+        34,
+        36
+      ],
+      "ids": [
+        "A05-V1-34",
+        "A05-V1-36"
+      ],
+      "trigram_similarity": 0.037
+    },
+    {
+      "axis": "A",
+      "slot_pair": [
+        5,
+        7
+      ],
+      "ids": [
+        "A05-V1-05",
+        "A05-V1-07"
+      ],
+      "trigram_similarity": 0.0366
+    },
+    {
+      "axis": "B",
+      "slot_pair": [
+        14,
+        23
+      ],
+      "ids": [
+        "A05-V1-14",
+        "A05-V1-23"
+      ],
+      "trigram_similarity": 0.0366
+    },
+    {
+      "axis": "C",
+      "slot_pair": [
+        30,
+        34
+      ],
+      "ids": [
+        "A05-V1-30",
+        "A05-V1-34"
+      ],
+      "trigram_similarity": 0.0366
+    },
+    {
+      "axis": "A",
+      "slot_pair": [
+        3,
+        4
+      ],
+      "ids": [
+        "A05-V1-03",
+        "A05-V1-04"
+      ],
+      "trigram_similarity": 0.0362
+    },
+    {
+      "axis": "C",
+      "slot_pair": [
+        29,
+        32
+      ],
+      "ids": [
+        "A05-V1-29",
+        "A05-V1-32"
+      ],
+      "trigram_similarity": 0.036
+    },
+    {
+      "axis": "D",
+      "slot_pair": [
+        42,
+        45
+      ],
+      "ids": [
+        "A05-V1-42",
+        "A05-V1-45"
+      ],
+      "trigram_similarity": 0.036
+    },
+    {
+      "axis": "A",
+      "slot_pair": [
+        5,
+        9
+      ],
+      "ids": [
+        "A05-V1-05",
+        "A05-V1-09"
+      ],
+      "trigram_similarity": 0.0359
+    },
+    {
+      "axis": "A",
+      "slot_pair": [
+        2,
+        9
+      ],
+      "ids": [
+        "A05-V1-02",
+        "A05-V1-09"
+      ],
+      "trigram_similarity": 0.0357
+    },
+    {
+      "axis": "D",
+      "slot_pair": [
+        39,
+        42
+      ],
+      "ids": [
+        "A05-V1-39",
+        "A05-V1-42"
+      ],
+      "trigram_similarity": 0.0355
+    },
+    {
+      "axis": "D",
+      "slot_pair": [
+        37,
+        38
+      ],
+      "ids": [
+        "A05-V1-37",
+        "A05-V1-38"
+      ],
+      "trigram_similarity": 0.0354
+    },
+    {
+      "axis": "B",
+      "slot_pair": [
+        14,
+        18
+      ],
+      "ids": [
+        "A05-V1-14",
+        "A05-V1-18"
+      ],
+      "trigram_similarity": 0.0353
+    },
+    {
+      "axis": "D",
+      "slot_pair": [
+        38,
+        42
+      ],
+      "ids": [
+        "A05-V1-38",
+        "A05-V1-42"
+      ],
+      "trigram_similarity": 0.0351
+    },
+    {
+      "axis": "B",
+      "slot_pair": [
+        18,
+        24
+      ],
+      "ids": [
+        "A05-V1-18",
+        "A05-V1-24"
+      ],
+      "trigram_similarity": 0.0347
+    },
+    {
+      "axis": "A",
+      "slot_pair": [
+        9,
+        11
+      ],
+      "ids": [
+        "A05-V1-09",
+        "A05-V1-11"
+      ],
+      "trigram_similarity": 0.0345
+    },
+    {
+      "axis": "C",
+      "slot_pair": [
+        26,
+        27
+      ],
+      "ids": [
+        "A05-V1-26",
+        "A05-V1-27"
+      ],
+      "trigram_similarity": 0.0345
+    },
+    {
+      "axis": "A",
+      "slot_pair": [
+        8,
+        12
+      ],
+      "ids": [
+        "A05-V1-08",
+        "A05-V1-12"
+      ],
+      "trigram_similarity": 0.0342
+    },
+    {
+      "axis": "B",
+      "slot_pair": [
+        13,
+        15
+      ],
+      "ids": [
+        "A05-V1-13",
+        "A05-V1-15"
+      ],
+      "trigram_similarity": 0.0342
+    },
+    {
+      "axis": "B",
+      "slot_pair": [
+        17,
+        23
+      ],
+      "ids": [
+        "A05-V1-17",
+        "A05-V1-23"
+      ],
+      "trigram_similarity": 0.0342
+    },
+    {
+      "axis": "C",
+      "slot_pair": [
+        25,
+        34
+      ],
+      "ids": [
+        "A05-V1-25",
+        "A05-V1-34"
+      ],
+      "trigram_similarity": 0.0342
+    },
+    {
+      "axis": "A",
+      "slot_pair": [
+        1,
+        3
+      ],
+      "ids": [
+        "A05-V1-01",
+        "A05-V1-03"
+      ],
+      "trigram_similarity": 0.034
+    },
+    {
+      "axis": "B",
+      "slot_pair": [
+        13,
+        21
+      ],
+      "ids": [
+        "A05-V1-13",
+        "A05-V1-21"
+      ],
+      "trigram_similarity": 0.034
+    },
+    {
+      "axis": "B",
+      "slot_pair": [
+        22,
+        24
+      ],
+      "ids": [
+        "A05-V1-22",
+        "A05-V1-24"
+      ],
+      "trigram_similarity": 0.034
+    },
+    {
+      "axis": "B",
+      "slot_pair": [
+        13,
+        19
+      ],
+      "ids": [
+        "A05-V1-13",
+        "A05-V1-19"
+      ],
+      "trigram_similarity": 0.0338
+    },
+    {
+      "axis": "B",
+      "slot_pair": [
+        22,
+        23
+      ],
+      "ids": [
+        "A05-V1-22",
+        "A05-V1-23"
+      ],
+      "trigram_similarity": 0.0338
+    },
+    {
+      "axis": "A",
+      "slot_pair": [
+        8,
+        9
+      ],
+      "ids": [
+        "A05-V1-08",
+        "A05-V1-09"
+      ],
+      "trigram_similarity": 0.0336
+    },
+    {
+      "axis": "A",
+      "slot_pair": [
+        10,
+        12
+      ],
+      "ids": [
+        "A05-V1-10",
+        "A05-V1-12"
+      ],
+      "trigram_similarity": 0.0336
+    },
+    {
+      "axis": "B",
+      "slot_pair": [
+        16,
+        24
+      ],
+      "ids": [
+        "A05-V1-16",
+        "A05-V1-24"
+      ],
+      "trigram_similarity": 0.0336
+    },
+    {
+      "axis": "B",
+      "slot_pair": [
+        14,
+        19
+      ],
+      "ids": [
+        "A05-V1-14",
+        "A05-V1-19"
+      ],
+      "trigram_similarity": 0.0333
+    },
+    {
+      "axis": "B",
+      "slot_pair": [
+        16,
+        23
+      ],
+      "ids": [
+        "A05-V1-16",
+        "A05-V1-23"
+      ],
+      "trigram_similarity": 0.0333
+    },
+    {
+      "axis": "C",
+      "slot_pair": [
+        27,
+        29
+      ],
+      "ids": [
+        "A05-V1-27",
+        "A05-V1-29"
+      ],
+      "trigram_similarity": 0.0333
+    },
+    {
+      "axis": "A",
+      "slot_pair": [
+        9,
+        12
+      ],
+      "ids": [
+        "A05-V1-09",
+        "A05-V1-12"
+      ],
+      "trigram_similarity": 0.0329
+    },
+    {
+      "axis": "B",
+      "slot_pair": [
+        21,
+        24
+      ],
+      "ids": [
+        "A05-V1-21",
+        "A05-V1-24"
+      ],
+      "trigram_similarity": 0.0327
+    },
+    {
+      "axis": "D",
+      "slot_pair": [
+        47,
+        48
+      ],
+      "ids": [
+        "A05-V1-47",
+        "A05-V1-48"
+      ],
+      "trigram_similarity": 0.0327
+    },
+    {
+      "axis": "B",
+      "slot_pair": [
+        18,
+        22
+      ],
+      "ids": [
+        "A05-V1-18",
+        "A05-V1-22"
+      ],
+      "trigram_similarity": 0.0325
+    },
+    {
+      "axis": "B",
+      "slot_pair": [
+        21,
+        23
+      ],
+      "ids": [
+        "A05-V1-21",
+        "A05-V1-23"
+      ],
+      "trigram_similarity": 0.0325
+    },
+    {
+      "axis": "C",
+      "slot_pair": [
+        29,
+        31
+      ],
+      "ids": [
+        "A05-V1-29",
+        "A05-V1-31"
+      ],
+      "trigram_similarity": 0.0321
+    },
+    {
+      "axis": "C",
+      "slot_pair": [
+        28,
+        30
+      ],
+      "ids": [
+        "A05-V1-28",
+        "A05-V1-30"
+      ],
+      "trigram_similarity": 0.0318
+    },
+    {
+      "axis": "C",
+      "slot_pair": [
+        27,
+        31
+      ],
+      "ids": [
+        "A05-V1-27",
+        "A05-V1-31"
+      ],
+      "trigram_similarity": 0.0314
+    },
+    {
+      "axis": "A",
+      "slot_pair": [
+        6,
+        11
+      ],
+      "ids": [
+        "A05-V1-06",
+        "A05-V1-11"
+      ],
+      "trigram_similarity": 0.031
+    },
+    {
+      "axis": "D",
+      "slot_pair": [
+        39,
+        43
+      ],
+      "ids": [
+        "A05-V1-39",
+        "A05-V1-43"
+      ],
+      "trigram_similarity": 0.0303
+    },
+    {
+      "axis": "A",
+      "slot_pair": [
+        6,
+        8
+      ],
+      "ids": [
+        "A05-V1-06",
+        "A05-V1-08"
+      ],
+      "trigram_similarity": 0.0301
+    },
+    {
+      "axis": "C",
+      "slot_pair": [
+        29,
+        33
+      ],
+      "ids": [
+        "A05-V1-29",
+        "A05-V1-33"
+      ],
+      "trigram_similarity": 0.0298
+    },
+    {
+      "axis": "C",
+      "slot_pair": [
+        25,
+        29
+      ],
+      "ids": [
+        "A05-V1-25",
+        "A05-V1-29"
+      ],
+      "trigram_similarity": 0.029
+    },
+    {
+      "axis": "D",
+      "slot_pair": [
+        42,
+        47
+      ],
+      "ids": [
+        "A05-V1-42",
+        "A05-V1-47"
+      ],
+      "trigram_similarity": 0.029
+    },
+    {
+      "axis": "A",
+      "slot_pair": [
+        6,
+        9
+      ],
+      "ids": [
+        "A05-V1-06",
+        "A05-V1-09"
+      ],
+      "trigram_similarity": 0.0288
+    },
+    {
+      "axis": "A",
+      "slot_pair": [
+        8,
+        10
+      ],
+      "ids": [
+        "A05-V1-08",
+        "A05-V1-10"
+      ],
+      "trigram_similarity": 0.0272
+    },
+    {
+      "axis": "B",
+      "slot_pair": [
+        20,
+        24
+      ],
+      "ids": [
+        "A05-V1-20",
+        "A05-V1-24"
+      ],
+      "trigram_similarity": 0.0272
+    },
+    {
+      "axis": "D",
+      "slot_pair": [
+        46,
+        48
+      ],
+      "ids": [
+        "A05-V1-46",
+        "A05-V1-48"
+      ],
+      "trigram_similarity": 0.027
+    },
+    {
+      "axis": "C",
+      "slot_pair": [
+        32,
+        34
+      ],
+      "ids": [
+        "A05-V1-32",
+        "A05-V1-34"
+      ],
+      "trigram_similarity": 0.0268
+    },
+    {
+      "axis": "A",
+      "slot_pair": [
+        1,
+        12
+      ],
+      "ids": [
+        "A05-V1-01",
+        "A05-V1-12"
+      ],
+      "trigram_similarity": 0.0265
+    },
+    {
+      "axis": "C",
+      "slot_pair": [
+        27,
+        35
+      ],
+      "ids": [
+        "A05-V1-27",
+        "A05-V1-35"
+      ],
+      "trigram_similarity": 0.0261
+    },
+    {
+      "axis": "A",
+      "slot_pair": [
+        1,
+        9
+      ],
+      "ids": [
+        "A05-V1-01",
+        "A05-V1-09"
+      ],
+      "trigram_similarity": 0.026
+    },
+    {
+      "axis": "C",
+      "slot_pair": [
+        34,
+        35
+      ],
+      "ids": [
+        "A05-V1-34",
+        "A05-V1-35"
+      ],
+      "trigram_similarity": 0.0252
+    },
+    {
+      "axis": "C",
+      "slot_pair": [
+        32,
+        33
+      ],
+      "ids": [
+        "A05-V1-32",
+        "A05-V1-33"
+      ],
+      "trigram_similarity": 0.0248
+    },
+    {
+      "axis": "B",
+      "slot_pair": [
+        14,
+        24
+      ],
+      "ids": [
+        "A05-V1-14",
+        "A05-V1-24"
+      ],
+      "trigram_similarity": 0.0242
+    },
+    {
+      "axis": "B",
+      "slot_pair": [
+        15,
+        16
+      ],
+      "ids": [
+        "A05-V1-15",
+        "A05-V1-16"
+      ],
+      "trigram_similarity": 0.0242
+    },
+    {
+      "axis": "C",
+      "slot_pair": [
+        30,
+        33
+      ],
+      "ids": [
+        "A05-V1-30",
+        "A05-V1-33"
+      ],
+      "trigram_similarity": 0.0225
+    },
+    {
+      "axis": "D",
+      "slot_pair": [
+        37,
+        47
+      ],
+      "ids": [
+        "A05-V1-37",
+        "A05-V1-47"
+      ],
+      "trigram_similarity": 0.0217
+    },
+    {
+      "axis": "C",
+      "slot_pair": [
+        25,
+        28
+      ],
+      "ids": [
+        "A05-V1-25",
+        "A05-V1-28"
+      ],
+      "trigram_similarity": 0.0214
+    },
+    {
+      "axis": "D",
+      "slot_pair": [
+        37,
+        45
+      ],
+      "ids": [
+        "A05-V1-37",
+        "A05-V1-45"
+      ],
+      "trigram_similarity": 0.0214
+    },
+    {
+      "axis": "B",
+      "slot_pair": [
+        13,
+        20
+      ],
+      "ids": [
+        "A05-V1-13",
+        "A05-V1-20"
+      ],
+      "trigram_similarity": 0.0211
+    },
+    {
+      "axis": "C",
+      "slot_pair": [
+        28,
+        32
+      ],
+      "ids": [
+        "A05-V1-28",
+        "A05-V1-32"
+      ],
+      "trigram_similarity": 0.0211
+    },
+    {
+      "axis": "C",
+      "slot_pair": [
+        32,
+        35
+      ],
+      "ids": [
+        "A05-V1-32",
+        "A05-V1-35"
+      ],
+      "trigram_similarity": 0.021
+    },
+    {
+      "axis": "A",
+      "slot_pair": [
+        7,
+        11
+      ],
+      "ids": [
+        "A05-V1-07",
+        "A05-V1-11"
+      ],
+      "trigram_similarity": 0.0208
+    },
+    {
+      "axis": "C",
+      "slot_pair": [
+        26,
+        28
+      ],
+      "ids": [
+        "A05-V1-26",
+        "A05-V1-28"
+      ],
+      "trigram_similarity": 0.0207
+    },
+    {
+      "axis": "A",
+      "slot_pair": [
+        4,
+        9
+      ],
+      "ids": [
+        "A05-V1-04",
+        "A05-V1-09"
+      ],
+      "trigram_similarity": 0.0205
+    },
+    {
+      "axis": "A",
+      "slot_pair": [
+        7,
+        8
+      ],
+      "ids": [
+        "A05-V1-07",
+        "A05-V1-08"
+      ],
+      "trigram_similarity": 0.0203
+    },
+    {
+      "axis": "C",
+      "slot_pair": [
+        32,
+        36
+      ],
+      "ids": [
+        "A05-V1-32",
+        "A05-V1-36"
+      ],
+      "trigram_similarity": 0.0203
+    },
+    {
+      "axis": "C",
+      "slot_pair": [
+        30,
+        32
+      ],
+      "ids": [
+        "A05-V1-30",
+        "A05-V1-32"
+      ],
+      "trigram_similarity": 0.02
+    },
+    {
+      "axis": "C",
+      "slot_pair": [
+        29,
+        35
+      ],
+      "ids": [
+        "A05-V1-29",
+        "A05-V1-35"
+      ],
+      "trigram_similarity": 0.0199
+    },
+    {
+      "axis": "B",
+      "slot_pair": [
+        18,
+        20
+      ],
+      "ids": [
+        "A05-V1-18",
+        "A05-V1-20"
+      ],
+      "trigram_similarity": 0.0194
+    },
+    {
+      "axis": "D",
+      "slot_pair": [
+        39,
+        47
+      ],
+      "ids": [
+        "A05-V1-39",
+        "A05-V1-47"
+      ],
+      "trigram_similarity": 0.0194
+    },
+    {
+      "axis": "D",
+      "slot_pair": [
+        39,
+        45
+      ],
+      "ids": [
+        "A05-V1-39",
+        "A05-V1-45"
+      ],
+      "trigram_similarity": 0.0191
+    },
+    {
+      "axis": "C",
+      "slot_pair": [
+        29,
+        34
+      ],
+      "ids": [
+        "A05-V1-29",
+        "A05-V1-34"
+      ],
+      "trigram_similarity": 0.019
+    },
+    {
+      "axis": "C",
+      "slot_pair": [
+        27,
+        36
+      ],
+      "ids": [
+        "A05-V1-27",
+        "A05-V1-36"
+      ],
+      "trigram_similarity": 0.0189
+    },
+    {
+      "axis": "C",
+      "slot_pair": [
+        30,
+        35
+      ],
+      "ids": [
+        "A05-V1-30",
+        "A05-V1-35"
+      ],
+      "trigram_similarity": 0.0187
+    },
+    {
+      "axis": "B",
+      "slot_pair": [
+        15,
+        18
+      ],
+      "ids": [
+        "A05-V1-15",
+        "A05-V1-18"
+      ],
+      "trigram_similarity": 0.0186
+    },
+    {
+      "axis": "B",
+      "slot_pair": [
+        16,
+        22
+      ],
+      "ids": [
+        "A05-V1-16",
+        "A05-V1-22"
+      ],
+      "trigram_similarity": 0.0186
+    },
+    {
+      "axis": "C",
+      "slot_pair": [
+        26,
+        33
+      ],
+      "ids": [
+        "A05-V1-26",
+        "A05-V1-33"
+      ],
+      "trigram_similarity": 0.0182
+    },
+    {
+      "axis": "B",
+      "slot_pair": [
+        16,
+        19
+      ],
+      "ids": [
+        "A05-V1-16",
+        "A05-V1-19"
+      ],
+      "trigram_similarity": 0.0179
+    },
+    {
+      "axis": "C",
+      "slot_pair": [
+        33,
+        35
+      ],
+      "ids": [
+        "A05-V1-33",
+        "A05-V1-35"
+      ],
+      "trigram_similarity": 0.0174
+    },
+    {
+      "axis": "B",
+      "slot_pair": [
+        14,
+        16
+      ],
+      "ids": [
+        "A05-V1-14",
+        "A05-V1-16"
+      ],
+      "trigram_similarity": 0.0169
+    },
+    {
+      "axis": "A",
+      "slot_pair": [
+        2,
+        6
+      ],
+      "ids": [
+        "A05-V1-02",
+        "A05-V1-06"
+      ],
+      "trigram_similarity": 0.0159
+    },
+    {
+      "axis": "D",
+      "slot_pair": [
+        44,
+        45
+      ],
+      "ids": [
+        "A05-V1-44",
+        "A05-V1-45"
+      ],
+      "trigram_similarity": 0.0145
+    },
+    {
+      "axis": "A",
+      "slot_pair": [
+        4,
+        8
+      ],
+      "ids": [
+        "A05-V1-04",
+        "A05-V1-08"
+      ],
+      "trigram_similarity": 0.0142
+    },
+    {
+      "axis": "A",
+      "slot_pair": [
+        10,
+        11
+      ],
+      "ids": [
+        "A05-V1-10",
+        "A05-V1-11"
+      ],
+      "trigram_similarity": 0.0138
+    },
+    {
+      "axis": "B",
+      "slot_pair": [
+        13,
+        16
+      ],
+      "ids": [
+        "A05-V1-13",
+        "A05-V1-16"
+      ],
+      "trigram_similarity": 0.0137
+    },
+    {
+      "axis": "C",
+      "slot_pair": [
+        25,
+        36
+      ],
+      "ids": [
+        "A05-V1-25",
+        "A05-V1-36"
+      ],
+      "trigram_similarity": 0.0136
+    },
+    {
+      "axis": "C",
+      "slot_pair": [
+        25,
+        30
+      ],
+      "ids": [
+        "A05-V1-25",
+        "A05-V1-30"
+      ],
+      "trigram_similarity": 0.0134
+    },
+    {
+      "axis": "C",
+      "slot_pair": [
+        25,
+        31
+      ],
+      "ids": [
+        "A05-V1-25",
+        "A05-V1-31"
+      ],
+      "trigram_similarity": 0.0134
+    },
+    {
+      "axis": "A",
+      "slot_pair": [
+        1,
+        8
+      ],
+      "ids": [
+        "A05-V1-01",
+        "A05-V1-08"
+      ],
+      "trigram_similarity": 0.0133
+    },
+    {
+      "axis": "C",
+      "slot_pair": [
+        28,
+        29
+      ],
+      "ids": [
+        "A05-V1-28",
+        "A05-V1-29"
+      ],
+      "trigram_similarity": 0.0132
+    },
+    {
+      "axis": "A",
+      "slot_pair": [
+        1,
+        7
+      ],
+      "ids": [
+        "A05-V1-01",
+        "A05-V1-07"
+      ],
+      "trigram_similarity": 0.0131
+    },
+    {
+      "axis": "C",
+      "slot_pair": [
+        26,
+        34
+      ],
+      "ids": [
+        "A05-V1-26",
+        "A05-V1-34"
+      ],
+      "trigram_similarity": 0.013
+    },
+    {
+      "axis": "C",
+      "slot_pair": [
+        28,
+        31
+      ],
+      "ids": [
+        "A05-V1-28",
+        "A05-V1-31"
+      ],
+      "trigram_similarity": 0.0125
+    },
+    {
+      "axis": "C",
+      "slot_pair": [
+        28,
+        34
+      ],
+      "ids": [
+        "A05-V1-28",
+        "A05-V1-34"
+      ],
+      "trigram_similarity": 0.0125
+    },
+    {
+      "axis": "B",
+      "slot_pair": [
+        18,
+        19
+      ],
+      "ids": [
+        "A05-V1-18",
+        "A05-V1-19"
+      ],
+      "trigram_similarity": 0.0122
+    },
+    {
+      "axis": "C",
+      "slot_pair": [
+        30,
+        36
+      ],
+      "ids": [
+        "A05-V1-30",
+        "A05-V1-36"
+      ],
+      "trigram_similarity": 0.012
+    },
+    {
+      "axis": "C",
+      "slot_pair": [
+        30,
+        31
+      ],
+      "ids": [
+        "A05-V1-30",
+        "A05-V1-31"
+      ],
+      "trigram_similarity": 0.0119
+    },
+    {
+      "axis": "C",
+      "slot_pair": [
+        28,
+        33
+      ],
+      "ids": [
+        "A05-V1-28",
+        "A05-V1-33"
+      ],
+      "trigram_similarity": 0.0116
+    },
+    {
+      "axis": "A",
+      "slot_pair": [
+        2,
+        4
+      ],
+      "ids": [
+        "A05-V1-02",
+        "A05-V1-04"
+      ],
+      "trigram_similarity": 0.0075
+    },
+    {
+      "axis": "A",
+      "slot_pair": [
+        2,
+        8
+      ],
+      "ids": [
+        "A05-V1-02",
+        "A05-V1-08"
+      ],
+      "trigram_similarity": 0.0072
+    },
+    {
+      "axis": "C",
+      "slot_pair": [
+        26,
+        36
+      ],
+      "ids": [
+        "A05-V1-26",
+        "A05-V1-36"
+      ],
+      "trigram_similarity": 0.0065
+    },
+    {
+      "axis": "C",
+      "slot_pair": [
+        29,
+        36
+      ],
+      "ids": [
+        "A05-V1-29",
+        "A05-V1-36"
+      ],
+      "trigram_similarity": 0.0063
+    },
+    {
+      "axis": "C",
+      "slot_pair": [
+        31,
+        35
+      ],
+      "ids": [
+        "A05-V1-31",
+        "A05-V1-35"
+      ],
+      "trigram_similarity": 0.0062
+    },
+    {
+      "axis": "C",
+      "slot_pair": [
+        27,
+        30
+      ],
+      "ids": [
+        "A05-V1-27",
+        "A05-V1-30"
+      ],
+      "trigram_similarity": 0.0061
+    },
+    {
+      "axis": "A",
+      "slot_pair": [
+        1,
+        2
+      ],
+      "ids": [
+        "A05-V1-01",
+        "A05-V1-02"
+      ],
+      "trigram_similarity": 0
+    },
+    {
+      "axis": "A",
+      "slot_pair": [
+        2,
+        10
+      ],
+      "ids": [
+        "A05-V1-02",
+        "A05-V1-10"
+      ],
+      "trigram_similarity": 0
+    },
+    {
+      "axis": "A",
+      "slot_pair": [
+        3,
+        8
+      ],
+      "ids": [
+        "A05-V1-03",
+        "A05-V1-08"
+      ],
+      "trigram_similarity": 0
+    },
+    {
+      "axis": "A",
+      "slot_pair": [
+        8,
+        11
+      ],
+      "ids": [
+        "A05-V1-08",
+        "A05-V1-11"
+      ],
+      "trigram_similarity": 0
+    }
+  ],
+  "warning": "Lexical trigram similarity sorts work only; it is not semantic equivalence or psychometric validation. No human interviews in this audit.",
+  "gate_status": "G1_BLOCKED"
+}

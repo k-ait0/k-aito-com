@@ -1,0 +1,192 @@
+{
+  "schema": "A05-D207-POST-AD-REWRITE-TEST-0.1",
+  "date": "2026-11-13",
+  "file": "research/a05/d206-editorial-50-question-bank-v1-2.json",
+  "sha": "1c90a5f26824f1ad816ddee04fc52b29f3411b63",
+  "run_count": 10000,
+  "check_count": 14,
+  "passed": 14,
+  "failed": 0,
+  "qa": [
+    {
+      "test": "50 unique IDs and prompts",
+      "pass": true,
+      "detail": 50
+    },
+    {
+      "test": "axis pool 12/12/12/12/2",
+      "pass": true,
+      "detail": {
+        "A": 12,
+        "B": 12,
+        "C": 12,
+        "D": 12,
+        "E": 2
+      }
+    },
+    {
+      "test": "10 D206 text changes with old source preserved",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "test": "A&D have exactly five pair groups and two singleton groups",
+      "pass": true,
+      "detail": {
+        "A": {
+          "paired": 5,
+          "single": 2
+        },
+        "D": {
+          "paired": 5,
+          "single": 2
+        }
+      }
+    },
+    {
+      "test": "B&C have six pairs each",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "test": "all have original source / edit rationale and left-right distinct",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "test": "none of 50 approved for production scoring",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "test": "10000 draws with no quota, identity or family violations",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "test": "all B six semantic labels covered each draw",
+      "pass": true,
+      "detail": {
+        "min": 6,
+        "max": 6
+      }
+    },
+    {
+      "test": "A and D at least five labels each draw",
+      "pass": true,
+      "detail": {
+        "A": {
+          "min": 5,
+          "max": 7
+        },
+        "D": {
+          "min": 5,
+          "max": 7
+        }
+      }
+    },
+    {
+      "test": "C paired experiment not split across draws",
+      "pass": true,
+      "detail": {
+        "paired": 5852,
+        "rate": 0.5852
+      }
+    },
+    {
+      "test": "same-seed determinism",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "test": "all 50 question frequencies within 3pp of intended inclusion rates",
+      "pass": true,
+      "detail": {
+        "A": {
+          "min": 0.5742,
+          "max": 0.5924,
+          "target": 0.5833333333333334
+        },
+        "B": {
+          "min": 0.5754,
+          "max": 0.5937,
+          "target": 0.5833333333333334
+        },
+        "C": {
+          "min": 0.576,
+          "max": 0.5945,
+          "target": 0.5833333333333334
+        },
+        "D": {
+          "min": 0.5795,
+          "max": 0.5896,
+          "target": 0.5833333333333334
+        },
+        "E": {
+          "min": 1,
+          "max": 1,
+          "target": 1
+        }
+      }
+    },
+    {
+      "test": "all E items selected in all draws",
+      "pass": true,
+      "detail": null
+    }
+  ],
+  "first_errors": [],
+  "unique_draw_patterns": 10000,
+  "provisional_facets_covered": {
+    "A": {
+      "min": 5,
+      "max": 7
+    },
+    "B": {
+      "min": 6,
+      "max": 6
+    },
+    "C": {
+      "min": 5,
+      "max": 6
+    },
+    "D": {
+      "min": 5,
+      "max": 7
+    }
+  },
+  "c_condition_pair_both": 5852,
+  "per_axis_frequency": {
+    "A": {
+      "min": 0.5742,
+      "max": 0.5924,
+      "target": 0.5833333333333334
+    },
+    "B": {
+      "min": 0.5754,
+      "max": 0.5937,
+      "target": 0.5833333333333334
+    },
+    "C": {
+      "min": 0.576,
+      "max": 0.5945,
+      "target": 0.5833333333333334
+    },
+    "D": {
+      "min": 0.5795,
+      "max": 0.5896,
+      "target": 0.5833333333333334
+    },
+    "E": {
+      "min": 1,
+      "max": 1,
+      "target": 1
+    }
+  },
+  "limitations": [
+    "Runs use standalone code in an isolated JavaScript evaluation, not Node, GitHub Actions or live A05 engine.",
+    "A-D groups are editorial hypotheses; min family coverage is not evidence of psychometric independence.",
+    "The C31/32 pair is an editorial study contrast, not established scoreable standalone items.",
+    "No human respondents, validity calibration, or revised production code test."
+  ]
+}

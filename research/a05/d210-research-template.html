@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data:; base-uri 'none'; form-action 'none'; connect-src 'none'">
+<title>A05｜50問研究用回答フォーム（非採点）</title>
+<style>
+:root { font-family: system-ui,-apple-system,"Hiragino Kaku Gothic ProN",Meiryo,sans-serif; color:#223149; background:#f4f6fb; }
+* { box-sizing:border-box; }
+body { margin:0; padding:16px; line-height:1.7; }
+main { max-width:800px; margin:24px auto 60px; }
+h1 { font-size:clamp(1.5rem,3.5vw,2rem); line-height:1.35; margin:4px 0 12px; }
+h2 { font-size:1.25rem; margin:0 0 16px; }
+p { margin:8px 0 14px; }
+small,.muted { color:#52637a; }
+.panel { background:#fff; border:1px solid #d6dce7; border-radius:16px; padding:clamp(18px,3.5vw,32px); margin:18px 0; }
+.eyebrow { font-weight:700; letter-spacing:.04em; font-size:.8rem; color:#405e93; }
+button,select,input[type="file"],textarea { font:inherit; }
+button { cursor:pointer; border:1px solid #a8b8d2; background:#fff; border-radius:9px; padding:10px 16px; color:#213651; min-height:44px; }
+button:focus-visible,select:focus-visible,input:focus-visible,textarea:focus-visible { outline:3px solid #6c8dc4; outline-offset:2px; }
+button.primary { color:#fff; background:#275a98; border-color:#275a98; }
+button:disabled { opacity:.5; cursor:not-allowed; }
+button[aria-pressed="true"],button.selected { background:#275a98; color:#fff; border-color:#275a98; }
+select,textarea { border:1px solid #9aacc7; border-radius:7px; padding:10px; width:100%; background:#fff; color:#203149; }
+label { display:block; margin:12px 0 8px; }
+.controls { display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-top:16px; }
+.choice-row { display:grid; grid-template-columns: repeat(7,minmax(0,1fr)); gap:8px; margin:18px 0; }
+.choice-row button { padding:8px 0; min-width:0; font-weight:700; }
+.poles { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:16px 0 4px; }
+.poles div { border-left:3px solid #a8bddc; padding:10px; background:#f6f8fc; border-radius:4px; }
+.poles div:last-child { border-left-color:#d1aa76; }
+#progress { font-weight:650; margin-bottom:8px; }
+progress { display:block; width:100%; height:14px; margin:0 0 16px; }
+#qtext { font-size:1.12rem; font-weight:650; }
+#notice { font-weight:600; min-height:1.6em; }
+.probe { margin:14px 0; padding:12px; background:#f7f9fd; border-radius:8px; }
+.probe label { margin:0 0 6px; font-weight:600; }
+.hidden,[hidden] { display:none !important; }
+.footer { font-size:.83rem; color:#4f6079; }
+@media(max-width:480px) {
+ body {padding:10px;}
+ .panel {border-radius:12px;padding:18px 14px;}
+ .poles {grid-template-columns:1fr;gap:6px;}
+ .choice-row {gap:4px;}
+ .choice-row button {padding:10px 0;}
+ .controls button {flex:1;}
+}
+</style>
+</head>
+<body>
+<main>
+  <div class="eyebrow">LIFE DESIGN LAB A05 · 研究用 / 非採点</div>
+  <h1>価値観の設問を検証するための回答フォーム</h1>
+  <p class="muted">このフォームは診断結果や16タイプを表示しません。回答は端末内で処理し、外部には自動送信されません。</p>
+  <section class="panel" id="intro">
+    <h2>回答の方法を選択</h2>
+    <label for="mode">試験モード</label>
+    <select id="mode">
+      <option value="full50">全50問：設問校正用（推奨）</option>
+      <option value="ux30">抽出30問：操作性の確認用（分析用の50問データとは分離）</option>
+    </select>
+    <p class="muted">回答は1〜7の相対選択です。4は中間であり、「両方を強く重視する」と「どちらも重視しない」は区別できません。研究目的以外の採点に使いません。</p>
+    <label><input id="agree" type="checkbox"> 研究用・非採点であること、データが自動送信されないことを理解して回答します。</label>
+    <div class="controls"><button id="begin" class="primary" disabled>回答を開始</button></div>
+  </section>
+
+  <section class="panel" id="survey" hidden>
+    <div id="progress" aria-live="polite"></div><progress id="bar" max="50" value="0"></progress>
+    <div id="qid" class="eyebrow"></div><p id="qtext"></p>
+    <div class="poles"><div><small>1 の方向</small><div id="left"></div></div><div><small>7 の方向</small><div id="right"></div></div></div>
+    <div class="choice-row" id="choices" role="group" aria-label="1から7の選択肢"></div>
+    <div class="controls"><button id="skip">判断できない／該当しない</button></div>
+    <p class="muted">1＝左に強く近い、4＝中間、7＝右に強く近い。回答は後から変更できます。</p>
+    <div class="controls"><button id="back">前へ</button><button id="next" class="primary">次へ</button></div>
+  </section>
+
+  <section class="panel" id="completed" hidden>
+    <h2>回答の記録</h2><p id="completion"></p>
+    <p>以下は**設問の検証専用**で、50問の採点には含みません。どちらの価値も強く重視するケースを見分けるための補助質問です。</p>
+    <p class="muted">以下の補助質問は各項目を独立に評価します。1＝まったく当てはまらない、4＝どちらともいえない、7＝非常によく当てはまる。</p>
+    <div id="probes"></div>
+    <div id="pairPanel" hidden>
+      <h2>重点設問の比較（全50問モードのみ）</h2>
+      <p class="muted">以下の比較は研究用です。二つの設問を同じ意味だと感じたか、どう判断したかを記録します。採点や診断分類には反映しません。氏名や連絡先は記入しないでください。</p>
+      <div id="pairCases"></div>
+    </div>
+    <label for="notes">設問で迷った理由やわかりにくい表現（任意）</label>
+    <textarea id="notes" rows="4" maxlength="2000" placeholder="氏名、住所、連絡先など個人情報は記入しないでください"></textarea>
+    <div class="controls"><button id="editLast">最後の設問を確認</button></div>
+  </section>
+
+  <section class="panel" aria-label="データの管理">
+    <h2>回答データの管理</h2>
+    <p class="muted">回答はブラウザに自動保存しません。途中経過を残す場合は明示的にJSONを書き出し、続けるときに読み込んでください。ファイルはご自身で管理してください。</p>
+    <div class="controls"><button id="export" disabled>JSONを書き出す</button><button id="reset">初期化</button></div>
+    <label for="importFile">保存済みの回答JSONを読み込む</label>
+    <input id="importFile" type="file" accept=".json,application/json">
+    <p id="notice" role="status" aria-live="polite"></p>
+  </section>
+  <p class="footer">研究用の編集版50問です。心理測定学上の妥当性・採点の精度・タイプ分類は未検証です。データの送信機能はありません。</p>
+</main>
+<script id="d210-embedded" type="application/json">__D210_EMBEDDED_DATA__</script>
+<script>
+"use strict";
+(function(){
+const source=JSON.parse(document.getElementById("d210-embedded").textContent);
+const items=new Map(source.questions.map(q=>[q.id,q]));
+const consent=document.getElementById("agree");
+const begin=document.getElementById("begin");
+const notice=document.getElementById("notice");
+const el=id=>document.getElementById(id);
+let session=null;
+const sameMeaningChoices=[["","未回答"],["same","ほぼ同じ意味"],["different","異なる意味"],["unsure","判断できない"]];
+function announce(s){notice.textContent=s;}
+function makeSeed(){return Array.from(crypto.getRandomValues(new Uint32Array(4)),n=>n.toString(16).padStart(8,"0")).join("");}
+function hash(s){let h=2166136261;for(let i=0;i<s.length;i++)h=Math.imul(h^s.charCodeAt(i),16777619);return h>>>0;}
+function rng(seed){let t=hash(seed);return ()=>{t+=0x6D2B79F5;let x=t;x=Math.imul(x^x>>>15,x|1);x^=x+Math.imul(x^x>>>7,x|61);return ((x^x>>>14)>>>0)/4294967296;};}
+function sh(xs,r){const out=xs.slice();for(let i=out.length-1;i>0;i--){let j=Math.floor(r()*(i+1));[out[i],out[j]]=[out[j],out[i]];}return out;}
+function fullOrder(seed){
+ const r=rng(seed);
+ const groups=Object.fromEntries("ABCDE".split("").map(a=>[a,sh(source.questions.filter(x=>x.axis===a),r)]));
+ const erounds=sh(Array.from({length:12},(_,i)=>i),r).slice(0,2);
+ const eMap=new Map(erounds.map((round,i)=>[round,groups.E[i]]));
+ const result=[];
+ for(let round=0;round<12;round++){
+  const part=sh("ABCD".split("").map(a=>groups[a][round]).concat(eMap.has(round)?[eMap.get(round)]:[]),r);
+  if(result.length&&part[0].axis===result[result.length-1].axis){
+   let i=part.findIndex(q=>q.axis!==result[result.length-1].axis);
+   let hold=part[0];part[0]=part[i];part[i]=hold;
+  }
+  result.push(...part.map(q=>q.id));
+ }
+ return result;
+}
+function fresh(mode){
+ const seed=makeSeed();
+ if(mode==="full50"){
+  return {schema:"A05-D210-RESEARCH-SESSION-1",mode,bankDigest:source.bankDigest,bankVersion:source.bankVersion,seed,manifestChecksum:null,order:fullOrder(seed),answers:{},probes:{},pairReviews:{},notes:"",index:0,consent:true};
+ }
+ const i=crypto.getRandomValues(new Uint32Array(1))[0]%source.previewManifests.length;
+ const m=source.previewManifests[i];
+ return {schema:"A05-D210-RESEARCH-SESSION-1",mode,bankDigest:source.bankDigest,bankVersion:source.bankVersion,seed:m.seed,manifestChecksum:m.checksum,order:m.ids.slice(),answers:{},probes:{},pairReviews:{},notes:"",index:0,consent:true};
+}
+function validate(input){
+ if(!input||input.schema!=="A05-D210-RESEARCH-SESSION-1"||input.bankDigest!==source.bankDigest||input.bankVersion!==source.bankVersion||input.consent!==true)throw Error("異なるデータ版・同意がないデータです");
+ if(!["full50","ux30"].includes(input.mode)||!Array.isArray(input.order)||!input.answers||typeof input.answers!=="object"||Array.isArray(input.answers))throw Error("データ形式が不正です");
+ const want=input.mode==="full50"?50:30;
+ if(input.order.length!==want||new Set(input.order).size!==want||input.order.some(id=>!items.has(id)))throw Error("設問の構成が不正です");
+ if(input.mode==="full50"){
+  if(input.order.some(id=>!source.questions.some(q=>q.id===id)))throw Error("設問ID不正");
+  if(input.order.join("|")!==fullOrder(input.seed).join("|"))throw Error("設問順が一致しません");
+ }else{
+  const known=source.previewManifests.some(m=>m.seed===input.seed&&m.checksum===input.manifestChecksum&&m.ids.join("|")===input.order.join("|"));
+  if(!known)throw Error("研究用抽出manifestが一致しません");
+ }
+ if(!Number.isInteger(input.index)||input.index<0||input.index>want)throw Error("回答位置が不正です");
+ const ids=new Set(input.order);
+ for(const [id,v] of Object.entries(input.answers)){
+  if(!ids.has(id)||!(v===null||(Number.isInteger(v)&&v>=1&&v<=7)))throw Error("回答値が不正です");
+ }
+ const probes=new Set(source.probes.map(p=>p.id));
+ if(!input.probes||typeof input.probes!=="object"||Array.isArray(input.probes))throw Error("補助回答が不正です");
+ for(const [id,v] of Object.entries(input.probes))if(!probes.has(id)||!(Number.isInteger(v)&&v>=1&&v<=7))throw Error("補助回答値が不正です");
+ const pairReviews=input.pairReviews??{};
+ if(!pairReviews||typeof pairReviews!=="object"||Array.isArray(pairReviews))throw Error("設問比較データが不正です");
+ const knownPairs=new Set(source.pairCases.map(x=>x.id));
+ if(input.mode!=="full50"&&Object.keys(pairReviews).length)throw Error("30問モードでの比較回答は許可されません");
+ for(const [id,item] of Object.entries(pairReviews)){
+  if(!knownPairs.has(id)||!item||typeof item!=="object"||Array.isArray(item))throw Error("不明な設問比較です");
+  if(!["same","different","unsure",null].includes(item.sameMeaning??null) ||
+     typeof (item.reason??"")!=="string" || (item.reason??"").length>800 ||
+     Object.keys(item).some(k=>!["sameMeaning","reason"].includes(k)))
+    throw Error("設問比較の回答値が不正です");
+ }
+ if(typeof input.notes!=="string"||input.notes.length>2000)throw Error("メモが不正です");
+ return true;
+}
+function renderProbes(){
+ const holder=el("probes");holder.replaceChildren();
+ for(const p of source.probes){
+  const box=document.createElement("div");box.className="probe";
+  const label=document.createElement("label");label.textContent=p.text;label.htmlFor="probe-"+p.id;
+  const select=document.createElement("select");select.id="probe-"+p.id;select.dataset.probe=p.id;
+  for(const [value,name] of [["","未回答（採点対象外）"],...[1,2,3,4,5,6,7].map(n=>[String(n),String(n)])]){
+   const o=document.createElement("option");o.value=value;o.textContent=name;select.append(o);
+  }
+  select.value=String(session.probes[p.id]??"");
+  select.addEventListener("change",()=>{if(select.value)session.probes[p.id]=Number(select.value);else delete session.probes[p.id];});
+  box.append(label,select);holder.append(box);
+ }
+}
+function renderPairs(){
+ const panel=el("pairPanel"), holder=el("pairCases");
+ panel.hidden=session.mode!=="full50";
+ holder.replaceChildren();
+ if(panel.hidden)return;
+ if(!session.pairReviews)session.pairReviews={};
+ for(const pair of source.pairCases){
+  const field=document.createElement("fieldset");
+  field.className="probe";field.dataset.pairId=pair.id;
+  const legend=document.createElement("legend");legend.textContent=pair.axis+"軸・重点比較 "+pair.slots.join(" / ");
+  field.append(legend);
+  for(const id of pair.ids){
+   const q=items.get(id);
+   const box=document.createElement("div");box.className="probe";
+   const p=document.createElement("p");p.textContent=q.stem;
+   const answer=document.createElement("p");
+   const v=Object.prototype.hasOwnProperty.call(session.answers,id)?session.answers[id]:"未回答";
+   answer.className="muted";answer.textContent=id+"："+q.left+" ／ "+q.right+"（回答："+(v===null?"判断不能":v)+"）";
+   box.append(p,answer);field.append(box);
+  }
+  const risk=document.createElement("p");risk.className="muted";risk.textContent="確認したい点："+pair.issue;
+  field.append(risk);
+  const label=document.createElement("label");label.htmlFor="compare-"+pair.id;label.textContent="2問をほぼ同じ意味の質問と感じましたか？";
+  const select=document.createElement("select");select.id="compare-"+pair.id;select.dataset.pairMeaning=pair.id;
+  for(const [value,labelText] of sameMeaningChoices){
+   const option=document.createElement("option");option.value=value;option.textContent=labelText;select.append(option);
+  }
+  select.value=session.pairReviews[pair.id]?.sameMeaning??"";
+  select.addEventListener("change",()=>{
+   const x=session.pairReviews[pair.id]??{sameMeaning:null,reason:""};
+   x.sameMeaning=select.value||null;session.pairReviews[pair.id]=x;
+  });
+  const commentLabel=document.createElement("label");commentLabel.htmlFor="pair-reason-"+pair.id;
+  commentLabel.textContent="同じ／違うと感じた理由、どの条件で回答が変わったか（任意）";
+  const area=document.createElement("textarea");area.id="pair-reason-"+pair.id;area.dataset.pairReason=pair.id;
+  area.rows=3;area.maxLength=800;area.placeholder="設問の解釈や判断した条件を具体的に。個人情報は記入しないでください";
+  area.value=session.pairReviews[pair.id]?.reason??"";
+  area.addEventListener("input",()=>{
+   const x=session.pairReviews[pair.id]??{sameMeaning:null,reason:""};
+   x.reason=area.value;session.pairReviews[pair.id]=x;
+  });
+  field.append(label,select,commentLabel,area);holder.append(field);
+ }
+}
+function render(){
+ el("intro").hidden=!!session;el("survey").hidden=!session||session.index>=session.order.length;
+ el("completed").hidden=!session||session.index<session.order.length;
+ el("export").disabled=!session;
+ if(!session){consent.checked=false;begin.disabled=true;return;}
+ if(session.index>=session.order.length){
+  const saved=Object.keys(session.answers).length,valid=Object.values(session.answers).filter(x=>x!==null).length;
+  el("completion").textContent="回答が記録された設問："+saved+"/"+session.order.length+"（有効回答 "+valid+"件）。採点・分類は行っていません。";
+  renderProbes();renderPairs();el("notes").value=session.notes;return;
+ }
+ const q=items.get(session.order[session.index]);
+ el("progress").textContent=(session.index+1)+" / "+session.order.length+"問";
+ el("bar").max=session.order.length;el("bar").value=session.index+1;
+ el("qid").textContent=q.axis+"軸 · "+q.id;
+ el("qtext").textContent=q.stem;
+ el("left").textContent=q.left;el("right").textContent=q.right;
+ const choices=el("choices");choices.replaceChildren();
+ for(let i=1;i<=7;i++){
+  const b=document.createElement("button");b.type="button";b.textContent=String(i);b.dataset.choice=String(i);
+  b.setAttribute("aria-pressed",String(session.answers[q.id]===i));
+  b.addEventListener("click",()=>{session.answers[q.id]=i;render();});
+  choices.append(b);
+ }
+ el("skip").classList.toggle("selected",Object.prototype.hasOwnProperty.call(session.answers,q.id)&&session.answers[q.id]===null);
+ el("back").disabled=session.index===0;
+ el("next").textContent=session.index===session.order.length-1?"回答記録を確認":"次へ";
+}
+consent.addEventListener("change",()=>{begin.disabled=!consent.checked;});
+begin.addEventListener("click",()=>{if(!consent.checked)return;session=fresh(el("mode").value);announce("外部送信なし。研究用の回答を開始しました");render();});
+el("back").addEventListener("click",()=>{if(!session)return;session.index=Math.max(0,session.index-1);render();});
+el("next").addEventListener("click",()=>{if(!session)return;session.index=Math.min(session.order.length,session.index+1);render();});
+el("skip").addEventListener("click",()=>{if(!session)return;session.answers[session.order[session.index]]=null;render();});
+el("editLast").addEventListener("click",()=>{session.index=session.order.length-1;render();});
+el("notes").addEventListener("input",()=>{if(session)session.notes=el("notes").value;});
+el("reset").addEventListener("click",()=>{if(!session||confirm("端末上の回答を消して初期化しますか？")){session=null;el("importFile").value="";announce("回答を初期化しました");render();}});
+el("export").addEventListener("click",()=>{
+ if(!session)return;
+ validate(session);
+ const blob=new Blob([JSON.stringify(session,null,2)],{type:"application/json"});
+ const url=URL.createObjectURL(blob),a=document.createElement("a");
+ a.download="a05-research-"+session.mode+"-"+session.seed.slice(0,8)+".json";a.href=url;document.body.append(a);a.click();a.remove();
+ setTimeout(()=>URL.revokeObjectURL(url),500);
+ announce("研究用JSONを作成しました。ファイルはご自身で管理してください");
+});
+el("importFile").addEventListener("change",async(e)=>{
+ const file=e.target.files[0];if(!file)return;
+ try{
+  if(file.size>1000000)throw Error("ファイルが大きすぎます");
+  const candidate=JSON.parse(await file.text());validate(candidate);
+  session={...candidate,pairReviews:candidate.pairReviews??{}};announce("保存済みの研究用回答を復元しました");render();
+ }catch(err){announce("読込不可："+err.message);}
+});
+render();
+})();
+</script>
+</body>
+</html>

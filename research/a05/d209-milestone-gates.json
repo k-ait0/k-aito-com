@@ -1,0 +1,140 @@
+{
+  "schema": "A05-D209-CONSISTENT-DELIVERY-GATES-1.0",
+  "date": "2026-11-13",
+  "scope": "A05 50-item editorial bank and research-only 30-item draw; release requires independent human evidence",
+  "baseline": {
+    "repo": "k-ait0/k-aito-com",
+    "branch": "research/a05-editorial-50-v1-20261113",
+    "editorial_bank": "research/a05/d206-editorial-50-question-bank-v1-2.json",
+    "sampler": "scripts/a05-d208-research-sampler.mjs",
+    "existing_engine": "projects/kidp/life-design-lab/a05/engine.mjs",
+    "ci_url": "https://github.com/k-ait0/k-aito-com/actions/runs/43346728216",
+    "pr": "https://github.com/k-ait0/k-aito-com/pull/78"
+  },
+  "immutable_project_constraints": {
+    "items_in_bank": 50,
+    "bank_by_axis": {
+      "A": 12,
+      "B": 12,
+      "C": 12,
+      "D": 12,
+      "E": 2
+    },
+    "run_items": 30,
+    "run_by_axis": {
+      "A": 7,
+      "B": 7,
+      "C": 7,
+      "D": 7,
+      "E": 2
+    },
+    "base_types": 16,
+    "core_axes": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "auxiliary_axis": "E",
+    "exact_duplicate_max": 0,
+    "substantive_equivalence_cap_per_family": 2,
+    "do_not_conflate": "16 base profiles from A-D vs visual motif classifications"
+  },
+  "provisional_measurement_policy": {
+    "status": "DESIGN_RECOMMENDATION_NOT_USER_APPROVAL",
+    "forced_choice": "Keep existing seven-position bipolar relative-preference wording for editing and exploratory pilot; the midpoint cannot distinguish both-high and both-low",
+    "B_and_C": "Probe independent intensity for autonomy/connection and future/present in separate non-scoring research items; do not silently blend response scales into 50-bank scores",
+    "E": "Two choices are auxiliary descriptive responses only until reliability and exchange-rate sensitivity are investigated; not a core type classifier",
+    "no_auto_classification": true,
+    "no_cross_form_equivalence_claim": true,
+    "scoring_after_evidence_only": true
+  },
+  "no_work_repetition": {
+    "keep_last_technical_run": true,
+    "do_not_repeat_mass_draw_without_algorithm_change": true,
+    "do_not_add_synonymous_questions_to_fill_50": true,
+    "do_not_build_final_scoring_before_response_protocol_and_human_data": true
+  },
+  "gates": [
+    {
+      "id": "G0_TECHNICAL_BASELINE",
+      "status": "PASS",
+      "evidence": "GitHub Actions run 43346728216: 146 existing, 14 new tests; 200000 manifests, 50000 checkpoints; 4 prior offline browser fixtures",
+      "next": "Do not rerun without source changes"
+    },
+    {
+      "id": "G1_CONTENT_AND_CONSTRUCT",
+      "status": "BLOCKED",
+      "requires": [
+        "50 question-by-question semantic independence editorial audit with comparison pairs and reason codes",
+        "B/C both-high both-low conceptual boundary agreed",
+        "No unsupported 16-type scientific validity claim"
+      ],
+      "next": "Audit specifically high-collision pairs; remove/replace only demonstrated duplicates"
+    },
+    {
+      "id": "G2_RESEARCH_INSTRUMENT",
+      "status": "PASS",
+      "requires": [
+        "single reusable offline respondent UI for full-50 calibration mode and sampled-30 UX mode",
+        "explicit informed consent, no implicit upload or PII",
+        "non-scoring B/C independent value probes",
+        "CSV/JSON export with bank SHA and response-format version",
+        "browser E2E desktop/mobile and restart/skip/validation"
+      ],
+      "next": "Keep research-only; use cognitive interviews to close G1. Generated HTML is a GitHub Actions artifact, not a deployed website.",
+      "evidence": "GitHub Actions run 43398998639: generated D210 offline full50 and UX30 forms, desktop/mobile 1280/390 browser E2E PASS, JSON export/import/skip/probe/invalid file/privacy verified"
+    },
+    {
+      "id": "G3_HUMAN_COGNITIVE_REVIEW",
+      "status": "AWAITING_DATA",
+      "requires": [
+        "real respondents verify questions are understood as intended",
+        "record why similarly worded items elicit same or different reasoning",
+        "review B/C dual-high and dual-low and E tradeoffs",
+        "revise only demonstrated issues"
+      ],
+      "next": "Collect voluntary responses through research form; simulated answers do not count"
+    },
+    {
+      "id": "G4_FORMS_AND_SCORE_CALIBRATION",
+      "status": "AWAITING_DATA",
+      "requires": [
+        "use real full-50 records to repeatedly resample 30 per respondent and measure direction/type stability",
+        "assess item discrimination, axis overlap, missingness and order effects",
+        "pre-register decision rules before interpreting results",
+        "explicit low-confidence/withheld outcomes",
+        "document E as descriptive or establish defensible auxiliary scoring"
+      ],
+      "next": "Only after first human datasets and scoring protocol review"
+    },
+    {
+      "id": "G5_PRODUCTION_V3",
+      "status": "BLOCKED",
+      "requires": [
+        "separately versioned engine supports 7/7/7/7/2",
+        "16 core type mapping independently tested",
+        "fixed-30 legacy snapshots never silently rescored",
+        "privacy, E2E, regression and accessibility checks",
+        "release signoff"
+      ],
+      "next": "Implement only after G1-G4 evidence permits; no merge or deployment"
+    }
+  ],
+  "release": {
+    "allowed": false,
+    "reason": "G1-G5 not passed; research artifact only"
+  },
+  "current_next_action": "G1 focused semantic/cognitive review of 18 flagged pairs and G3 human interpretation collection; G2 offline form has CI browser acceptance, G4 and G5 must remain blocked.",
+  "claim_policy": {
+    "allowed": "sampling correctness, checkpoint integrity, editorial wording selection",
+    "prohibited": "psychometric validation, invariant 16-type result across different 30-item forms, validated independent semantic families, deployed live 50-bank"
+  },
+  "evidence_of_new_form": {
+    "run": "https://github.com/k-ait0/k-aito-com/actions/runs/43398998639",
+    "build_script": "scripts/a05-d210-build-offline-form.mjs",
+    "template": "research/a05/d210-research-template.html",
+    "test": "scripts/test-a05-d210-research-browser.cjs",
+    "generated_artifact": "research/a05/generated/d210-research-questionnaire.html"
+  }
+}

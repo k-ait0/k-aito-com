@@ -1,0 +1,159 @@
+{
+  "schema": "A05-D243-MIDPOINT-YN-PROBE-BANK-1",
+  "created": "2026-11-16",
+  "status": "RESEARCH_ONLY_NOT_HUMAN_VALIDATED",
+  "policy": {
+    "triggerCombinedMidpointOrSkippedAtLeast": 5,
+    "holdAxisIfDirectionalResponsesBelow": 4,
+    "maxIndependentYNPerSession": 8,
+    "initialQuestionsPerTriggeredAxis": 2,
+    "optionalContextQuestionsPerAxis": 2,
+    "reasonsNonScoring": true,
+    "ynOptions": [
+      "YES",
+      "NO",
+      "UNSURE"
+    ],
+    "reasonOptions": [
+      "BOTH_STRONG",
+      "BOTH_WEAK",
+      "CONTEXT_DEPENDENT",
+      "BALANCED_MODERATE",
+      "WORDING_DIFFICULT",
+      "OTHER",
+      "PREFER_NOT"
+    ],
+    "resultInterpretations": [
+      "BOTH_AFFIRMED",
+      "NEITHER_AFFIRMED",
+      "LEFT_ONLY",
+      "RIGHT_ONLY",
+      "UNRESOLVED",
+      "NOT_ASKED"
+    ],
+    "typeScoreEffect": "NONE",
+    "noAdditionalQuestionsNeededIfNoTrigger": true,
+    "stopAlwaysAllowed": true
+  },
+  "rationale": "A four is a valid midpoint response and cannot be treated as equivalent to skipped/null. The combined count determines whether an axis has enough directional evidence, not whether the person has an invalid profile. The Y/N probes distinguish independent importance and must not be converted to a signed 1-7 score.",
+  "reasonPrompt": "この軸の質問で『4』を選んだ理由に最も近いものは何ですか？（任意。『判断できない』が多い場合はその理由でも構いません）",
+  "axes": [
+    {
+      "axis": "A",
+      "left": "安定",
+      "right": "変化",
+      "initial": [
+        {
+          "id": "A05-D243-A-L",
+          "pole": "LEFT",
+          "prompt": "慣れた方法や大切な仕組みは、できるだけ維持したいと思いますか？"
+        },
+        {
+          "id": "A05-D243-A-R",
+          "pole": "RIGHT",
+          "prompt": "より良くなる可能性があれば、慣れた方法でも変更したいと思いますか？"
+        }
+      ],
+      "context": [
+        {
+          "id": "A05-D243-A-C1",
+          "prompt": "今の方法が特に問題なく使えているときは、維持したいと思いますか？"
+        },
+        {
+          "id": "A05-D243-A-C2",
+          "prompt": "変更に多少の手間があっても、改善できるなら試したいと思いますか？"
+        }
+      ]
+    },
+    {
+      "axis": "B",
+      "left": "自律",
+      "right": "つながり",
+      "initial": [
+        {
+          "id": "A05-D243-B-L",
+          "pole": "LEFT",
+          "prompt": "重要なことは、最終的には自分の基準で決めたいと思いますか？"
+        },
+        {
+          "id": "A05-D243-B-R",
+          "pole": "RIGHT",
+          "prompt": "重要なことを決める前に、周囲の人と十分に相談したいと思いますか？"
+        }
+      ],
+      "context": [
+        {
+          "id": "A05-D243-B-C1",
+          "prompt": "人と十分相談していても、最終的な判断は自分で下したいと思いますか？"
+        },
+        {
+          "id": "A05-D243-B-C2",
+          "prompt": "最終的な決定権が自分にあっても、判断する前に周囲の意見を聞きたいですか？"
+        }
+      ]
+    },
+    {
+      "axis": "C",
+      "left": "将来達成",
+      "right": "現在充実",
+      "initial": [
+        {
+          "id": "A05-D243-C-L",
+          "pole": "LEFT",
+          "prompt": "今の時間を使って、将来の選択肢や成果を増やしたいと思いますか？"
+        },
+        {
+          "id": "A05-D243-C-R",
+          "pole": "RIGHT",
+          "prompt": "将来への準備とは別に、今この時間自体の充実を大切にしたいと思いますか？"
+        }
+      ],
+      "context": [
+        {
+          "id": "A05-D243-C-C1",
+          "prompt": "今すぐの満足が減っても、将来の目標のために準備したいですか？"
+        },
+        {
+          "id": "A05-D243-C-C2",
+          "prompt": "将来の目標を持っていても、今日の時間を楽しむことを意識したいですか？"
+        }
+      ]
+    },
+    {
+      "axis": "D",
+      "left": "探索",
+      "right": "深耕",
+      "initial": [
+        {
+          "id": "A05-D243-D-L",
+          "pole": "LEFT",
+          "prompt": "一つの領域だけでなく、幅広い分野に触れたいと思いますか？"
+        },
+        {
+          "id": "A05-D243-D-R",
+          "pole": "RIGHT",
+          "prompt": "関心を持った一つの分野を、時間をかけて深く学びたいと思いますか？"
+        }
+      ],
+      "context": [
+        {
+          "id": "A05-D243-D-C1",
+          "prompt": "新しい分野を知る機会があれば、今の専門から少し離れても試したいですか？"
+        },
+        {
+          "id": "A05-D243-D-C2",
+          "prompt": "ほかに面白そうな分野があっても、選んだ一つを掘り下げる時間を確保したいですか？"
+        }
+      ]
+    }
+  ],
+  "guardrails": [
+    "No Y/N or reason contributes to A/B/C/D scoring or the 16-type candidate set.",
+    "A05-D243 prompts are editorial drafts; do not silently replace or score D206 items.",
+    "A choice of 4 has numeric score zero but counts as a valid 7-point response, whereas null is skipped.",
+    "Do not infer a latent type from YES/YES, NO/NO, or UNSURE.",
+    "At most 8 Y/N extra items per whole session; ask at most two per step, optional and stop-friendly.",
+    "Context Y/N questions are optional when initial answers are unsure or the stated reason is context dependent; they cannot be treated as independent validated items.",
+    "No production UI, public D242 preview, or real respondent evidence is changed by this bank."
+  ]
+}

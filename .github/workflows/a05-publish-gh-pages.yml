@@ -1,0 +1,130 @@
+name: Publish A05 D242 root and D246 YN test page
+
+on:
+  push:
+    branches:
+      - research/a05-editorial-50-v1-20261113
+    paths:
+      - '.github/workflows/a05-publish-gh-pages.yml'
+      - 'research/a05/d219-simple-diagnosis-template.html'
+      - 'scripts/a05-d219-build-simple-diagnosis.mjs'
+      - 'scripts/test-a05-d219-simple-browser.cjs'
+      - 'scripts/test-a05-d242-preview-scoring.mjs'
+      - 'research/a05/d246-isolated-yn-preview-template.html'
+      - 'research/a05/d243-midpoint-yn-probe-bank.json'
+      - 'scripts/a05-d246-build-isolated-yn-preview.mjs'
+      - 'scripts/a05-d255-yn-provisional-classifier.mjs'
+      - 'scripts/test-a05-d255-yn-provisional-classifier.mjs'
+      - 'scripts/test-a05-d246-isolated-browser.cjs'
+      - 'scripts/a05-d249-live-pages-audit.mjs'
+      - 'scripts/test-a05-d249-live-pages-audit.mjs'
+      - 'scripts/a05-d224-hold-filtered-sampler.mjs'
+      - 'scripts/a05-d227-robust-intensity-scoring.mjs'
+      - 'scripts/a05-d226-answer-intensity-comparison.mjs'
+      - 'scripts/a05-d208-research-sampler.mjs'
+      - 'research/a05/d206-editorial-50-question-bank-v1-2.json'
+      - 'projects/kidp/life-design-lab/a05/types.mjs'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: a05-publish-gh-pages
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: Checkout research source
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Setup Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Generate only the standalone 30-question demo
+        run: |
+          node scripts/a05-d219-build-simple-diagnosis.mjs
+          node --check scripts/a05-d219-build-simple-diagnosis.mjs
+          test -s research/a05/generated/d219-simple-diagnosis.html
+          grep -q 'A05-D219-UNVALIDATED-DEMO-1' research/a05/generated/d219-simple-diagnosis.html
+          grep -q 'A05-D242-POWER-1_5-RESEARCH-PREVIEW-1' research/a05/generated/d219-simple-diagnosis.html
+          grep -q '診断を始める' research/a05/generated/d219-simple-diagnosis.html
+      - name: Gate publication on D242 browser-versus-research 1.5-power scoring
+        run: node --test scripts/test-a05-d242-preview-scoring.mjs
+      - name: Gate D255 research-only Y/N candidate classifier
+        run: node --test scripts/test-a05-d255-yn-provisional-classifier.mjs
+      - name: Build Y/N supplementary research page separately from unchanged D242 root
+        run: |
+          node scripts/a05-d246-build-isolated-yn-preview.mjs
+          node --check scripts/a05-d246-build-isolated-yn-preview.mjs
+          test -s research/a05/generated/d246-isolated-midpoint-yn-preview.html
+          grep -q 'A05-D246-ISOLATED-Y-N-PREVIEW-1' research/a05/generated/d246-isolated-midpoint-yn-preview.html
+          grep -q 'RESEARCH_ONLY_NOT_PSYCHOMETRICALLY_VALIDATED' research/a05/generated/d246-isolated-midpoint-yn-preview.html
+      - name: Check real Pages verifier failure modes with isolated local fixtures
+        run: node --test scripts/test-a05-d249-live-pages-audit.mjs
+      - name: Install Chromium for desktop and phone browser acceptance
+        run: |
+          npm install --prefix /tmp/a05-pages-qa --no-audit --no-fund --no-save playwright@1.56.1
+          PLAYWRIGHT_BROWSERS_PATH=/tmp/a05-pages-browser /tmp/a05-pages-qa/node_modules/.bin/playwright install --with-deps chromium
+      - name: Gate publication on D242 30-question and held-safe follow-up E2E
+        env:
+          NODE_PATH: /tmp/a05-pages-qa/node_modules
+          PLAYWRIGHT_BROWSERS_PATH: /tmp/a05-pages-browser
+        run: node scripts/test-a05-d219-simple-browser.cjs
+      - name: Gate Y/N public test page on PC and mobile research-only browser E2E
+        env:
+          NODE_PATH: /tmp/a05-pages-qa/node_modules
+          PLAYWRIGHT_BROWSERS_PATH: /tmp/a05-pages-browser
+        run: node scripts/test-a05-d246-isolated-browser.cjs
+      - name: Prepare isolated publish payload
+        run: |
+          mkdir -p /tmp/a05-gh-pages/preview/yn
+          cp scripts/a05-d249-live-pages-audit.mjs /tmp/a05-d249-live-pages-audit.mjs
+          cp research/a05/generated/d219-simple-diagnosis.html /tmp/a05-gh-pages/index.html
+          cp research/a05/generated/d246-isolated-midpoint-yn-preview.html /tmp/a05-gh-pages/preview/yn/index.html
+          printf '' > /tmp/a05-gh-pages/.nojekyll
+          printf 'User-agent: *\nDisallow: /\n' > /tmp/a05-gh-pages/robots.txt
+      - name: Publish just the demo to gh-pages branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if git ls-remote --exit-code --heads origin gh-pages >/dev/null; then
+            git fetch origin gh-pages
+            git checkout -B gh-pages origin/gh-pages
+          else
+            git checkout --orphan gh-pages
+          fi
+          git rm -rf --ignore-unmatch .
+          git clean -fdx
+          cp /tmp/a05-gh-pages/index.html ./index.html
+          cp /tmp/a05-gh-pages/.nojekyll ./.nojekyll
+          cp /tmp/a05-gh-pages/robots.txt ./robots.txt
+          mkdir -p preview/yn
+          cp /tmp/a05-gh-pages/preview/yn/index.html ./preview/yn/index.html
+          git add -A
+          if git diff --cached --quiet; then
+            echo "A05 GH_PAGES_CONTENT_UNCHANGED"
+          else
+            git commit -m "Publish isolated D246 Y/N browser test alongside D242 root"
+            git push origin HEAD:refs/heads/gh-pages
+          fi
+      - name: Verify published branch contains only standalone site files
+        run: |
+          git fetch origin gh-pages
+          test "$(git ls-tree -r --name-only origin/gh-pages | wc -l)" -eq 4
+          git ls-tree -r --name-only origin/gh-pages | grep -Fx 'index.html'
+          git ls-tree -r --name-only origin/gh-pages | grep -Fx '.nojekyll'
+          git ls-tree -r --name-only origin/gh-pages | grep -Fx 'robots.txt'
+          git ls-tree -r --name-only origin/gh-pages | grep -Fx 'preview/yn/index.html'
+          git show origin/gh-pages:index.html | grep -q 'A05-D242-POWER-1_5-RESEARCH-PREVIEW-1'
+          git show origin/gh-pages:preview/yn/index.html | grep -q 'A05-D246-ISOLATED-Y-N-PREVIEW-1'
+          git show origin/gh-pages:preview/yn/index.html | grep -q 'noindex,nofollow,noarchive'
+          echo 'A05_PAGES_BRANCH_READY https://k-ait0.github.io/k-aito-com/'
+          echo 'A05_YN_RESEARCH_TEST_URL https://k-ait0.github.io/k-aito-com/preview/yn/'
+      - name: Verify GitHub Pages HTTP responses match exact tested HTML for both sites
+        run: node /tmp/a05-d249-live-pages-audit.mjs /tmp/a05-gh-pages/index.html /tmp/a05-gh-pages/preview/yn/index.html
