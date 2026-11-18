@@ -31,3 +31,18 @@
 - 自動テスト合格は実機iOS Safariの合格、心理測定の信頼性・妥当性、ユーザーのVer.2.1承認を意味しない。
 
 **状態：実装済み／QA結果はGitHub Actionsの実行で判断。**
+
+## D260｜Ver.2.1技術受入証跡（2026-11-18 12:00 JST頃）
+
+**TECHNICAL_QA_PASS / USER_VER_2_1_ACCEPTANCE_PENDING / PSYCHOMETRIC_VALIDITY_NOT_TESTED**
+
+- GitHub Actions：<https://github.com/k-ait0/k-aito-com/actions/runs/44226891021>、commit `b256cf901e558bcb1593b7089e5085fc06a7412b`、**SUCCESS**。
+- 完成プレビュー：<https://k-ait0.github.io/k-aito-com/preview/yn-v21/>。
+- 実配信HTMLとテスト済み成果物：**118,879 bytes／SHA-256 `39a07c893b1060b06f0a6050d2610510f494eb85801034c2b85ecee811164c0f` 完全一致**（`A05_D259_LIVE_VERIFIED`、attempt 11、PASS）。
+- Git blob SHA：`e27693b1efad0c60210ca5d7a946d100b7f390bf`。
+- 既存のVer.1／Ver.2／D242の公開HTMLはsha256不変のガードに通過。3つの既存ファイルは更新せず、`preview/yn-v21/index.html`を追加。
+- Y/N研究用D255分類エンジンの独立単体テスト9件合格。
+- Chrome 157の実ブラウザテスト：PC 1280×852、スマホ320×568・360×640・375×667・390×844・430×932の6サイズすべて合格。各サイズ、全50設問の文面/左右選択肢のレイアウトストレス・8操作ケースを検証。
+- 合格要件：回答画面で縦スクロール不要、全設問と回答ボタンの画面内表示、スキップ理由別集計・修正、結果の3タブ、Y/N通算件数/最大8問、30問後はY/Nのみ、無通信・JS例外なし。
+- 追加QAを途中で修正：旧文言の期待値、0件進捗バーが幅0の時の可視判定を、外側進捗トラックとARIA数値の確認に変更。コード／テストに差分を残した。
+- **留保**：GitHub ActionsはChromeによる画面サイズエミュレーション。実機iOS SafariのブラウザUI、特大文字、VoiceOverの受入は未実施。利用者によるVer.2.1合格承認は未取得。心理測定上の分類精度・妥当性・人間の認知面接はVer.1から引き続き未解決。
