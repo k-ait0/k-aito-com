@@ -72,7 +72,7 @@ async function fill30(page,chooser){
  assert.equal(await page.locator("#axes .axisrow").count(),4);
 }
 (async()=>{
- const browser=await chromium.launch({headless:true});
+ const browser=await chromium.launch({headless:true,...(process.env.A05_CHROME_PATH?{executablePath:process.env.A05_CHROME_PATH}:{})});
  try{
   for(const [width,height] of [[1280,852],[320,568],[360,640],[375,667],[390,844],[430,932]]){
    const ctx=await browser.newContext({viewport:{width,height}});
