@@ -60,6 +60,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           cp research/a05/generated/d257-mobile-v2-preview.html /tmp/a05-d257-tested-preview.html
+          cp scripts/a05-d257-live-preview-audit.mjs /tmp/a05-d257-live-preview-audit.mjs
           git fetch origin gh-pages
           git checkout -B gh-pages origin/gh-pages
           mkdir -p preview/yn-v2
@@ -72,7 +73,7 @@ jobs:
           test "$(git show HEAD:index.html | sha256sum | cut -d' ' -f1)" = 'd4be3ac612c7bc1cad07bbbb385a7b6910614ac0356598ae6345d7ed5300d070'
           test "$(git show HEAD:preview/yn/index.html | sha256sum | cut -d' ' -f1)" = '5cf61a5114e69c292080be803ae835c5e75d400f4a773a8e89fb2347547d11e1'
       - name: Verify live Ver.2 site exactly matches tested HTML
-        run: node scripts/a05-d257-live-preview-audit.mjs /tmp/a05-d257-tested-preview.html
+        run: node /tmp/a05-d257-live-preview-audit.mjs /tmp/a05-d257-tested-preview.html
       - name: Upload Ver.2 offline preview as independent QA artifact
         uses: actions/upload-artifact@v4
         with:
