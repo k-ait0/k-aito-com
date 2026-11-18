@@ -533,7 +533,7 @@ p{margin:8px 0 16px}
   ynSummary.hidden=notes.length===0;
   ynSummary.textContent=notes.length?"Y/N回答の内容（未検証の参考情報）："+notes.join("／"):"";
   $("post30Note").textContent=ynNextOffer
-   ?"31問目以降も任意のY/Nのみ。回答から暫定候補を減らせる場合があります。"
+   ?"31問目以降は任意のY/N形式のみ。回答から暫定候補を減らせる場合があります。"
    :research.numberOfCandidateTypes===1?"4軸の暫定方向が揃いました。追加質問はありません。":"追加のY/Nは終了です。未確定な方向を無理に決めません。";
   setResultTab("type");
  }
