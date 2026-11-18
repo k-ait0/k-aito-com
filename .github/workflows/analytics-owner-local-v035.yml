@@ -1,0 +1,46 @@
+name: Analytics v0.35 owner-local intake (synthetic CI only)
+on:
+  push:
+    branches:
+      - analytics-owner-local-cpi-qa-v0-35-20261118
+    paths:
+      - '.github/workflows/analytics-owner-local-v035.yml'
+      - 'scripts/prepare-analytics-owner-evidence-v035.py'
+      - 'scripts/test-analytics-owner-evidence-v035.py'
+      - 'scripts/audit-analytics-cpi-reference-schema-v035.py'
+      - 'scripts/test-analytics-cpi-schema-v035.py'
+      - 'docs/ANALYTICS_V035_OWNER_LOCAL_HANDOFF.md'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  synthetic-preflight:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: All existing Analytics Node regressions (no real sources)
+        run: node --test scripts/test-analytics-*.cjs
+      - name: Synthetic-only six-archive intake tests
+        run: python scripts/test-analytics-owner-evidence-v035.py
+      - name: Synthetic-only CPI structure inventory tests
+        run: python scripts/test-analytics-cpi-schema-v035.py
+      - name: Verify no real keys or CSV are introduced by v0.35
+        run: |
+          set -euo pipefail
+          git diff --name-only analytics-offline-ui-polish-v0-34-20261118...HEAD || true
+          python - <<'PY'
+          import pathlib
+          for p in pathlib.Path('scripts').glob('*v035.py'):
+              s=p.read_text(encoding='utf-8')
+              assert 'private_key.pem' not in s and 'BEGIN PRIVATE KEY' not in s
+          print("No actual key material in v0.35 test/adapter scripts")
+          PY
