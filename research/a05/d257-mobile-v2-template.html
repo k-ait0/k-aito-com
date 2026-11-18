@@ -176,6 +176,16 @@ p{margin:8px 0 16px}
   border-radius:10px;background:#f7f9fc;
  }
 }
+/* When user font scaling or an unusually short live viewport makes a single
+   screen physically impossible, expose scrolling instead of clipping text. */
+@media (max-width:600px) and (orientation:portrait) and (min-height:560px) {
+ body.mobile-safe-scroll[data-screen="question"],
+ body.mobile-safe-scroll[data-screen="yn"] {height:auto;min-height:100dvh;overflow-y:auto;overscroll-behavior:auto}
+ body.mobile-safe-scroll[data-screen="question"] main,
+ body.mobile-safe-scroll[data-screen="yn"] main {height:auto;min-height:100dvh}
+ body.mobile-safe-scroll[data-screen="question"] #question,
+ body.mobile-safe-scroll[data-screen="yn"] #yn {flex:0 0 auto;overflow:visible}
+}
 @media (max-width:600px) and (orientation:portrait) and (min-height:560px) and (max-height:650px) {
  body[data-screen="question"] header,body[data-screen="yn"] header {min-height:30px;padding:3px 2px}
  body[data-screen="question"] #question,body[data-screen="yn"] #yn {padding:7px 10px max(7px,env(safe-area-inset-bottom))}
@@ -258,9 +268,28 @@ p{margin:8px 0 16px}
  function show(which){
   for(const id of ["intro","question","result","yn"])$(id).hidden=id!==which;
   document.body.dataset.screen=which;
+  document.body.classList.remove("mobile-safe-scroll");
+  requestAnimationFrame(checkMobileOverflow);
   window.scrollTo({top:0,behavior:"instant"});
  }
- function randomIndex(){
+ function checkMobileOverflow(){
+  const current=document.body.dataset.screen;
+  if(current!=="question"&&current!=="yn")return;
+  // Reconsider layout whenever answer length changes.
+  document.body.classList.remove("mobile-safe-scroll");
+  if(!matchMedia("(max-width:600px) and (orientation:portrait) and (min-height:560px)").matches)return;
+  const panel=$(current);
+  if(panel.scrollHeight>panel.clientHeight+2 ||
+     [...panel.querySelectorAll("button")].some(b=>{
+       if(b.offsetParent===null)return false;
+       const rect=b.getBoundingClientRect();
+       return rect.bottom>window.innerHeight+1||rect.top<0;
+     })){
+    document.body.classList.add("mobile-safe-scroll");
+  }
+ }
+ window.addEventListener("resize",()=>requestAnimationFrame(checkMobileOverflow));
+  function randomIndex(){
   if(globalThis.crypto?.getRandomValues){
    const n=new Uint32Array(1);crypto.getRandomValues(n);return n[0]%data.manifests.length;
   }
@@ -294,6 +323,7 @@ p{margin:8px 0 16px}
   $("prev").disabled=position===0;
   $("next").disabled=!answered(q.id);
   $("next").textContent=position===manifest.ids.length-1?"結果を見る":"次へ";
+  requestAnimationFrame(checkMobileOverflow);
  }
  function step(delta){
   if(!manifest)return;
@@ -469,6 +499,7 @@ p{margin:8px 0 16px}
   $("ynPrev").disabled=ynPosition===0;
   $("ynNext").disabled=!Object.hasOwn(ynState.responses,q.id);
   $("ynNext").textContent=ynPosition===ynOffer.questions.length-1?"補助質問を続ける":"次の補助質問";
+  requestAnimationFrame(checkMobileOverflow);
  }
  function nextYN(){
   if(!ynOffer||!Object.hasOwn(ynState.responses,ynOffer.questions[ynPosition].id))return;
