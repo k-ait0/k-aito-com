@@ -1,6 +1,6 @@
 # A05 D261｜設問品質DB・16タイプ分布・結果画面指標の設計（2026-11-18）
 
-**状態：ARCHITECTURE_APPROVED_FOR_RESEARCH_DRAFT／NOT_DEPLOYED／NO_DATA_COLLECTION.**
+**状態：ARCHITECTURE_PROPOSAL_FOR_REVIEW／NOT_DEPLOYED／NO_DATA_COLLECTION.**
 この資料はVer.2.1を読み取り、次版の技術設計を先に固めるもの。現在公開中のVer.1／Ver.2／Ver.2.1／D242のコード・配信HTMLを変更しない。実際の回答者データは未取得。
 
 ## 0. 決定の解釈
