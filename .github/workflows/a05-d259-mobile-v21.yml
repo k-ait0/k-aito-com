@@ -1,0 +1,85 @@
+name: A05 Ver.2.1 mobile UI improvements QA and isolated publish
+on:
+  push:
+    branches:
+      - research/a05-mobile-ui-v21-20261118
+    paths:
+      - '.github/workflows/a05-d259-mobile-v21.yml'
+      - 'research/a05/d259-mobile-v21-template.html'
+      - 'scripts/a05-d259-build-mobile-v21.mjs'
+      - 'scripts/test-a05-d259-mobile-v21-browser.cjs'
+      - 'scripts/a05-d259-live-preview-audit.mjs'
+      - 'scripts/a05-d255-yn-provisional-classifier.mjs'
+      - 'research/a05/d243-midpoint-yn-probe-bank.json'
+      - 'research/a05/d206-editorial-50-question-bank-v1-2.json'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: a05-publish-gh-pages
+  cancel-in-progress: false
+jobs:
+  mobile-v2:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - name: Checkout independent Ver.2 research branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Set up Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Protect approved Ver.1 and Ver.2 deployments
+        run: |
+          git fetch origin gh-pages
+          test "$(git show origin/gh-pages:index.html | sha256sum | cut -d' ' -f1)" = 'd4be3ac612c7bc1cad07bbbb385a7b6910614ac0356598ae6345d7ed5300d070'
+          test "$(git show origin/gh-pages:preview/yn/index.html | sha256sum | cut -d' ' -f1)" = '5cf61a5114e69c292080be803ae835c5e75d400f4a773a8e89fb2347547d11e1'
+          test "$(git show origin/gh-pages:preview/yn-v2/index.html | sha256sum | cut -d' ' -f1)" = '31d6ecf62393c24100604c51a1ba0ec280369f8780e37c2bc775b1913ba6dfc8'
+      - name: Gate unchanged Y/N research classification
+        run: node --test scripts/test-a05-d255-yn-provisional-classifier.mjs
+      - name: Build separate Ver.2 from Ver.1-safe sources
+        run: |
+          node --check scripts/a05-d259-build-mobile-v21.mjs
+          node --check scripts/a05-d259-live-preview-audit.mjs
+          node scripts/a05-d259-build-mobile-v21.mjs
+          test -s research/a05/generated/d259-mobile-v21-preview.html
+          grep -q 'A05-D259-MOBILE-V2_1-1' research/a05/generated/d259-mobile-v21-preview.html
+          grep -q 'A05-D255-YN-PROVISIONAL-CLASSIFIER-1' research/a05/generated/d259-mobile-v21-preview.html
+      - name: Install Chromium for six-screen browser QA
+        run: |
+          npm install --prefix /tmp/a05-v21-playwright --no-audit --no-fund --no-save playwright@1.56.1
+          PLAYWRIGHT_BROWSERS_PATH=/tmp/a05-v21-browsers /tmp/a05-v21-playwright/node_modules/.bin/playwright install --with-deps chromium
+      - name: Verify all texts, separated skips, tabs, YN progress, viewport fit, and PC compatibility
+        env:
+          NODE_PATH: /tmp/a05-v21-playwright/node_modules
+          PLAYWRIGHT_BROWSERS_PATH: /tmp/a05-v21-browsers
+        run: node scripts/test-a05-d259-mobile-v21-browser.cjs
+      - name: Publish only preview/yn-v21 and keep Ver.1 byte-for-byte frozen
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          cp research/a05/generated/d259-mobile-v21-preview.html /tmp/a05-d259-tested-preview.html
+          cp scripts/a05-d259-live-preview-audit.mjs /tmp/a05-d259-live-preview-audit.mjs
+          git fetch origin gh-pages
+          git checkout -B gh-pages origin/gh-pages
+          mkdir -p preview/yn-v21
+          cp /tmp/a05-d259-tested-preview.html preview/yn-v21/index.html
+          git add preview/yn-v21/index.html
+          if ! git diff --cached --quiet; then
+            git commit -m "Publish isolated A05 Ver.2.1 UI improvements preview"
+            git push origin HEAD:refs/heads/gh-pages
+          fi
+          test "$(git show HEAD:index.html | sha256sum | cut -d' ' -f1)" = 'd4be3ac612c7bc1cad07bbbb385a7b6910614ac0356598ae6345d7ed5300d070'
+          test "$(git show HEAD:preview/yn/index.html | sha256sum | cut -d' ' -f1)" = '5cf61a5114e69c292080be803ae835c5e75d400f4a773a8e89fb2347547d11e1'
+          test "$(git show HEAD:preview/yn-v2/index.html | sha256sum | cut -d' ' -f1)" = '31d6ecf62393c24100604c51a1ba0ec280369f8780e37c2bc775b1913ba6dfc8'
+      - name: Verify live Ver.2 site exactly matches tested HTML
+        run: node /tmp/a05-d259-live-preview-audit.mjs /tmp/a05-d259-tested-preview.html
+      - name: Upload Ver.2 offline preview as independent QA artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: a05-d259-mobile-v21-preview
+          path: /tmp/a05-d259-tested-preview.html
+          if-no-files-found: error
+          retention-days: 30
