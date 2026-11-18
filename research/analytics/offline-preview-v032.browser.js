@@ -46,7 +46,7 @@
   function graph(points){
     const root=$('balance-chart');while(root.firstChild)root.removeChild(root.firstChild);
     const mobile=typeof window.innerWidth==='number'&&window.innerWidth<=500;
-    const left=mobile?54:68,right=mobile?14:16,top=18,bottom=mobile?38:33,width=mobile?340:800,height=mobile?252:280;
+    const left=mobile?72:68,right=mobile?14:16,top=18,bottom=mobile?38:33,width=mobile?340:800,height=mobile?252:280;
     const font=mobile?14:12;
     root.setAttribute('viewBox','0 0 '+width+' '+height);
     const vals=points.flatMap(p=>[p.fixed_yen,p.cpi_yen]);
