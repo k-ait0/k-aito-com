@@ -152,7 +152,8 @@ async function fill30(page,chooser){
     assert.equal(await page.locator("#yn").isVisible(),true);
     await noScrollMobile(page,"yn");
     assert.match(await page.locator("#ynCounter").textContent(),/上限8問/);
-    assert.equal(await page.locator("#ynProgress").isVisible(),true);
+    assert.equal(await page.locator(".yn-progress-line").isVisible(),true);
+    assert.equal(await page.locator(".yn-progress-line").getAttribute("aria-valuenow"),String(i));
     await page.locator("#ynChoices button").filter({hasText:i%2?"NO":"YES"}).click();
     await page.locator("#ynNext").click();
    }
