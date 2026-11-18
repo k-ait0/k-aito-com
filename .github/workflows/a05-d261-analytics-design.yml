@@ -1,0 +1,33 @@
+name: A05 D261 analytics architecture synthetic contract QA
+on:
+  push:
+    branches:
+      - research/a05-analytics-foundation-v22-20261118
+    paths:
+      - '.github/workflows/a05-d261-analytics-design.yml'
+      - 'docs/A05_D261_ANALYTICS_DB_AND_RESULT_PARAMETERS_20261118.md'
+      - 'research/a05/analytics/schema_draft_v1.sql'
+      - 'scripts/a05-d261-analytics-contract.mjs'
+      - 'scripts/test-a05-d261-analytics-contract.mjs'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  contract:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify static offline analytics contract
+        run: |
+          node --check scripts/a05-d261-analytics-contract.mjs
+          node --check scripts/test-a05-d261-analytics-contract.mjs
+          node --test scripts/test-a05-d261-analytics-contract.mjs
+      - name: Confirm no production site or collection endpoint changed
+        run: |
+          ! git diff --name-only HEAD^ HEAD | grep -E '^(research/a05/d259-mobile-v21-template.html|scripts/a05-d259-build-mobile-v21.mjs|scripts/a05-d255-yn-provisional-classifier.mjs)$'
+          test -f research/a05/analytics/schema_draft_v1.sql
+          echo 'A05_D261_ARCHITECTURE_ONLY_QA_PASS'
