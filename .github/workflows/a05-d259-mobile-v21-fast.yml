@@ -1,0 +1,70 @@
+name: A05 Ver.2.1 fast system Chrome QA and isolated publish
+on:
+  push:
+    branches:
+      - research/a05-mobile-ui-v21-20261118
+    paths:
+      - '.github/workflows/a05-d259-mobile-v21-fast.yml'
+      - 'research/a05/d259-mobile-v21-template.html'
+      - 'scripts/a05-d259-build-mobile-v21.mjs'
+      - 'scripts/test-a05-d259-mobile-v21-browser.cjs'
+      - 'scripts/a05-d259-live-preview-audit.mjs'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: a05-v21-system-chrome
+  cancel-in-progress: false
+jobs:
+  fast-chrome-v21:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Guard all prior approved deployments
+        run: |
+          git fetch origin gh-pages
+          test "$(git show origin/gh-pages:index.html | sha256sum | cut -d' ' -f1)" = 'd4be3ac612c7bc1cad07bbbb385a7b6910614ac0356598ae6345d7ed5300d070'
+          test "$(git show origin/gh-pages:preview/yn/index.html | sha256sum | cut -d' ' -f1)" = '5cf61a5114e69c292080be803ae835c5e75d400f4a773a8e89fb2347547d11e1'
+          test "$(git show origin/gh-pages:preview/yn-v2/index.html | sha256sum | cut -d' ' -f1)" = '31d6ecf62393c24100604c51a1ba0ec280369f8780e37c2bc775b1913ba6dfc8'
+      - name: Build Ver.2.1 and test unchanged classification
+        run: |
+          node --test scripts/test-a05-d255-yn-provisional-classifier.mjs
+          node scripts/a05-d259-build-mobile-v21.mjs
+          test -s research/a05/generated/d259-mobile-v21-preview.html
+      - name: Use installed hosted-runner Chrome without browser downloads
+        run: |
+          npm install --prefix /tmp/a05-v21-fast --no-audit --no-fund --no-save playwright@1.56.1
+          CHROME="$(command -v google-chrome-stable || command -v google-chrome || command -v chromium || true)"
+          test -n "$CHROME"
+          "$CHROME" --version
+          echo "A05_CHROME_PATH=$CHROME" >> "$GITHUB_ENV"
+      - name: Gate six-viewport UI, 50 stems, two skips, tabs, 8-Y/N progress
+        env:
+          NODE_PATH: /tmp/a05-v21-fast/node_modules
+        run: node scripts/test-a05-d259-mobile-v21-browser.cjs
+      - name: Publish new v21 path only
+        run: |
+          cp research/a05/generated/d259-mobile-v21-preview.html /tmp/a05-d259-tested-preview.html
+          cp scripts/a05-d259-live-preview-audit.mjs /tmp/a05-d259-live-preview-audit.mjs
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin gh-pages
+          git checkout -B gh-pages origin/gh-pages
+          mkdir -p preview/yn-v21
+          cp /tmp/a05-d259-tested-preview.html preview/yn-v21/index.html
+          git add preview/yn-v21/index.html
+          if ! git diff --cached --quiet; then
+            git commit -m "Publish A05 Ver.2.1 isolated UI research preview"
+            git push origin HEAD:refs/heads/gh-pages
+          fi
+          test "$(git show HEAD:index.html | sha256sum | cut -d' ' -f1)" = 'd4be3ac612c7bc1cad07bbbb385a7b6910614ac0356598ae6345d7ed5300d070'
+          test "$(git show HEAD:preview/yn/index.html | sha256sum | cut -d' ' -f1)" = '5cf61a5114e69c292080be803ae835c5e75d400f4a773a8e89fb2347547d11e1'
+          test "$(git show HEAD:preview/yn-v2/index.html | sha256sum | cut -d' ' -f1)" = '31d6ecf62393c24100604c51a1ba0ec280369f8780e37c2bc775b1913ba6dfc8'
+      - name: Verify production Pages delivers exact tested v21 bytes
+        run: node /tmp/a05-d259-live-preview-audit.mjs /tmp/a05-d259-tested-preview.html
