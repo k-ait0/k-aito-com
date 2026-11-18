@@ -1,0 +1,97 @@
+{
+  "schema": "ANALYTICS_V035_ACCEPTANCE_GATES",
+  "recorded_date_jst": "2026-11-18",
+  "branch": "analytics-owner-local-cpi-qa-v0-35-20261118",
+  "source_mode": "SYNTHETIC_TESTS_AND_ENCRYPTED_INTAKE_ONLY",
+  "main_modified": false,
+  "production_modified": false,
+  "dwz_pr70_modified": false,
+  "encrypted_originals_committed": false,
+  "private_key_used_in_ci": false,
+  "private_key_received": false,
+  "raw_market_data_committed": false,
+  "execution": {
+    "github_actions_run": 44225872681,
+    "node": {
+      "detected": 920,
+      "pass": 917,
+      "skip": 3,
+      "fail": 0
+    },
+    "synthetic_encrypted_intake": {
+      "total": 14,
+      "pass": 14,
+      "fail": 0
+    },
+    "synthetic_cpi_schema": {
+      "total": 8,
+      "pass": 8,
+      "fail": 0
+    },
+    "local_encrypted_bundle_sha_crc": {
+      "verified": 6,
+      "total": 6,
+      "decryption_performed": false
+    },
+    "actual_owner_key_decryption": "NOT_RUN",
+    "actual_cpi_column_mapping": "NOT_RUN"
+  },
+  "gates": [
+    {
+      "id": "B01",
+      "status": "PASS",
+      "note": "Encrypted ZIP integrity; private plaintext unverified"
+    },
+    {
+      "id": "B02",
+      "status": "PARTIAL",
+      "note": "Six private Google Drive backup copies verified; second independent medium unconfirmed"
+    },
+    {
+      "id": "B03",
+      "status": "BLOCKED_OWNER_KEY",
+      "note": "Offline key-held GCM/RSA and actual plaintext SHA pending"
+    },
+    {
+      "id": "B04",
+      "status": "NOT_COMPLETE",
+      "note": "CSV source byte/shape tooling ready, actual column map not verified"
+    },
+    {
+      "id": "B05",
+      "status": "BLOCKED",
+      "note": "Legacy Shiller/Fed/eStat pinned originals and normalized series not accepted"
+    },
+    {
+      "id": "B06",
+      "status": "BLOCKED",
+      "note": "No verified JPY historical market QA"
+    },
+    {
+      "id": "B07_A",
+      "status": "PASS",
+      "note": "Offline synthetic UI"
+    },
+    {
+      "id": "B07_B_AUTO",
+      "status": "PASS",
+      "note": "v0.34 actual Chromium 19/19"
+    },
+    {
+      "id": "B07_B_MANUAL",
+      "status": "NOT_COMPLETE",
+      "note": "Owner Windows/iPad/Safari device validation"
+    },
+    {
+      "id": "B07_C",
+      "status": "NOT_COMPLETE",
+      "note": "Website integration"
+    },
+    {
+      "id": "B08",
+      "status": "NOT_APPROVED",
+      "note": "No production or public-data approval"
+    }
+  ],
+  "note": "Actual historical provenance and CPI publication vintages require independent owner-local review."
+}
