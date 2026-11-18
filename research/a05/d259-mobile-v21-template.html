@@ -549,7 +549,7 @@ p{margin:8px 0 16px}
   const q=ynOffer.questions[ynPosition];
   $("ynHeading").textContent=ynOffer.axis+"軸 · 左右それぞれの価値観";
   const ynAnswered=Object.keys(ynState.responses).length;
-  $("ynStage").textContent=(ynOffer.stage==="INDEPENDENT_POLES"?"左右の確認":"具体場面")+
+  $("ynStage").textContent=(ynOffer.stage==="INDEPENDENT_POLES"?"左右の確認":"具体的な場面")+
    " · この組"+(ynPosition+1)+"/"+ynOffer.questions.length;
   $("ynCounter").textContent="Y/N 回答済み "+ynAnswered+" / 上限8問";
   $("ynProgress").style.width=(ynAnswered/8*100)+"%";
