@@ -97,8 +97,7 @@ function statusBody(res,code,value){
   "cache-control":"no-store",
   "x-content-type-options":"nosniff",
   "content-security-policy":"default-src 'none'",
-  "referrer-policy":"no-referrer",
-  "access-control-allow-origin":"null"
+  "referrer-policy":"no-referrer"
  });
  res.end(JSON.stringify(value));
 }
@@ -290,14 +289,18 @@ export function createSyntheticSandboxHandler({pool,roleTokens,clock=()=>new Dat
   const requestPath=req.url?.split("?")[0]||"";
   const role=allowedRoles.find(r=>equalSecret(req.headers.authorization,
    "Bearer "+roleTokens[r]))||"anonymous";
-  const deny=()=>statusBody(res,role==="anonymous"?401:403,
-   {error:role==="anonymous"?"Authentication required":"Forbidden"});
+  const deny=async()=>{
+   // Only action/role/outcome; never store secrets, body, IP, URL or user agent.
+   await audit(pool,role,"AUTH_DENIED","DENIED");
+   statusBody(res,role==="anonymous"?401:403,
+    {error:role==="anonymous"?"Authentication required":"Forbidden"});
+  };
   try{
    if(req.method==="GET"&&requestPath==="/health"){
     statusBody(res,200,{status:"synthetic-only",version:D267_VERSION});return;
    }
    if(req.method==="POST"&&requestPath==="/v1/synthetic/submissions"){
-    if(role!=="ingestion-service"){deny();return;}
+    if(role!=="ingestion-service"){await deny();return;}
     const input=await readJSON(req),reply=await accept(pool,input,clock());
     statusBody(res,reply.status,reply.result);return;
    }
@@ -311,18 +314,18 @@ export function createSyntheticSandboxHandler({pool,roleTokens,clock=()=>new Dat
     return;
    }
    if(req.method==="GET"&&requestPath==="/v1/synthetic/admin/metrics"){
-    if(role!=="reviewer"){deny();return;}
+    if(role!=="reviewer"){await deny();return;}
     const value=await metrics(pool);
     await audit(pool,"reviewer","METRICS_READ","OK");
     statusBody(res,200,value);return;
    }
    if(req.method==="GET"&&requestPath==="/v1/synthetic/admin/audit"){
-    if(role!=="security-admin"){deny();return;}
+    if(role!=="security-admin"){await deny();return;}
     await audit(pool,"security-admin","AUDIT_READ","OK");
     statusBody(res,200,await auditAggregate(pool));return;
    }
    if(req.method==="POST"&&requestPath==="/v1/synthetic/admin/rebuild"){
-    if(role!=="aggregator"){deny();return;}
+    if(role!=="aggregator"){await deny();return;}
     await tx(pool,async db=>{
      await rebuild(db);await audit(db,"aggregator","ROLLUP_REBUILT","OK");
     });
