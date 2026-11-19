@@ -73,6 +73,7 @@ const rollup=buildOfflineQualityRollups(sessions);
 if(rollup.uniqueConsentedCompleted!==600||rollup.manualReviewCandidates.length===0)
  throw Error("D265 synthetic demonstrator lacks expected review candidates");
 const data={
+ ...rollup,
  schema:"A05-D265-SYNTHETIC-DASHBOARD-1",
  synthetic:true,noActualResponses:true,
  scope:"OFFLINE_EXEMPLAR_ONLY",
@@ -82,8 +83,7 @@ const data={
  questionLabels:Object.fromEntries(BANK.items.map(q=>[q.bank_id,{
   id:q.bank_id,revision:1,axis:q.axis,stem:q.stem,format:"CORE"
  }])),
- ynQuestionLabels:Object.fromEntries(probes.map(q=>[q.id,{id:q.id,revision:1,stem:q.prompt,format:"YN"}])),
- ...rollup
+ ynQuestionLabels:Object.fromEntries(probes.map(q=>[q.id,{id:q.id,revision:1,stem:q.prompt,format:"YN"}]))
 };
 if(!template.includes("__D265_SYNTHETIC_DATA__"))throw Error("D265 template marker not found");
 const safe=JSON.stringify(data).replace(/</g,"\\u003c").replace(/\u2028/g,"\\u2028").replace(/\u2029/g,"\\u2029");
