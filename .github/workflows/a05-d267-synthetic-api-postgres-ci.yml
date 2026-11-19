@@ -1,0 +1,70 @@
+name: A05 D267 synthetic loopback API and ephemeral PostgreSQL integration
+on:
+  push:
+    branches:
+      - research/a05-synthetic-api-d267-20261120
+    paths:
+      - '.github/workflows/a05-d267-synthetic-api-postgres-ci.yml'
+      - 'research/a05/analytics/d267_ephemeral_api_schema.sql'
+      - 'scripts/a05-d267-synthetic-api.mjs'
+      - 'scripts/test-a05-d267-synthetic-api-integration.mjs'
+      - 'docs/A05_D267_SYNTHETIC_API_SECURITY_CONTRACT_20261120.md'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  ephemeral-api-db:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: a05_d267_ci
+          POSTGRES_PASSWORD: disposable_ci_only_never_production
+          POSTGRES_DB: a05_d267_ci
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U a05_d267_ci -d a05_d267_ci"
+          --health-interval 5s --health-timeout 3s --health-retries 10
+    env:
+      PGHOST: '127.0.0.1'
+      PGPORT: '5432'
+      PGUSER: a05_d267_ci
+      PGPASSWORD: disposable_ci_only_never_production
+      PGDATABASE: a05_d267_ci
+      A05_D267_SANDBOX_MODE: synthetic-ephemeral-ci
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Ensure no prior A05 public file changed
+        run: |
+          git fetch origin gh-pages
+          test "$(git show origin/gh-pages:index.html | sha256sum | cut -d' ' -f1)" = 'd4be3ac612c7bc1cad07bbbb385a7b6910614ac0356598ae6345d7ed5300d070'
+          test "$(git show origin/gh-pages:preview/yn/index.html | sha256sum | cut -d' ' -f1)" = '5cf61a5114e69c292080be803ae835c5e75d400f4a773a8e89fb2347547d11e1'
+          test "$(git show origin/gh-pages:preview/yn-v2/index.html | sha256sum | cut -d' ' -f1)" = '31d6ecf62393c24100604c51a1ba0ec280369f8780e37c2bc775b1913ba6dfc8'
+          test "$(git show origin/gh-pages:preview/yn-v21/index.html | sha256sum | cut -d' ' -f1)" = '39a07c893b1060b06f0a6050d2610510f494eb85801034c2b85ecee811164c0f'
+          test "$(git show origin/gh-pages:preview/yn-v22/index.html | sha256sum | cut -d' ' -f1)" = 'fa0919ce234aa01674f52a1ee999bea4fe0d92695ae9cc9e1924fd18ca9bdc61'
+          test "$(git show origin/gh-pages:preview/a05-analytics-d265/index.html | sha256sum | cut -d' ' -f1)" = '01669940e630341742521f561dde0ff5badceea2491595f01c15046109632650'
+      - name: Verify prior data quality contracts and D267 syntax
+        run: |
+          node --test scripts/test-a05-d261-analytics-contract.mjs
+          node --test scripts/test-a05-d264-quality-rollups.mjs
+          node --check scripts/a05-d267-synthetic-api.mjs
+          node --check scripts/test-a05-d267-synthetic-api-integration.mjs
+      - name: Install only PostgreSQL client library for this disposable job
+        run: npm install --prefix /tmp/a05-d267-sandbox --no-audit --no-fund --no-save pg@8
+      - name: Run synthetic server-to-PostgreSQL integration and deletion checks
+        env:
+          NODE_PATH: /tmp/a05-d267-sandbox/node_modules
+        run: node scripts/test-a05-d267-synthetic-api-integration.mjs
+      - name: Verify no production deployment or real data path exists
+        run: |
+          test ! -e research/a05/analytics/production_db_credentials
+          ! git diff --name-only HEAD~4 HEAD | grep -E '^(research/a05/d262-result-parameters-v22-template.html|research/a05/d265-synthetic-dashboard-template.html|scripts/a05-d255-yn-provisional-classifier.mjs)$'
+          echo 'A05_D267_SYNTHETIC_POSTGRES_ONLY_CI_PASS'
