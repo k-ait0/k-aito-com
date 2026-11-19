@@ -71,6 +71,16 @@ function sum(rows,filter){return rows.filter(filter).reduce((n,x)=>n+x.n,0);}
    await page.locator("#format").selectOption("YN");
    assert.match(await page.locator("#questionDetail").textContent(),/YES/);
    assert.match(await page.locator("#questionDetail").textContent(),/提示後未回答/);
+   assert.match(await page.locator("#rateName").textContent(),/回答者比/);
+   // Y/N UNSURE and YES are normalized over answered Y/N, not shown-without-answer.
+   const displayedYnId=(await page.locator("#questionRows tr").first().locator("button").textContent()).split(" / ")[0];
+   const ynSource=data.dailyQuestionCounts.filter(q=>q.questionnaire_version==="V_DEMO_A"&&
+    q.question_id===displayedYnId&&q.phase==="YN");
+   const ynN=ynSource.reduce((n,q)=>n+q.yn_yes+q.yn_no+q.yn_unsure,0);
+   const ynUnsure=ynSource.reduce((n,q)=>n+q.yn_unsure,0);
+   assert.ok(ynN>0);
+   assert.equal(await page.locator("#questionRows tr").first().locator("td").nth(3).textContent(),
+    (ynUnsure/ynN*100).toFixed(1)+"%");
    await page.locator("#format").selectOption("CORE");
    await page.locator("#period").selectOption("last1");
    assert.equal(await page.locator("#queueList .queue").count(),0,
