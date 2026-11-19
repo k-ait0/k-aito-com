@@ -72,6 +72,13 @@ function metric(rows,phase,bucket){return rows.find(x=>x.phase===phase&&x.type_b
 async function doTests(){
  assert.equal(process.env.A05_D267_SANDBOX_MODE,"synthetic-ephemeral-ci");
  assert.ok(process.env.PGDATABASE?.includes("ci"),"Refuse non-CI database name");
+ const mode=process.env.A05_D267_SANDBOX_MODE;
+ process.env.A05_D267_SANDBOX_MODE="disabled";
+ assert.throws(()=>createSyntheticSandboxHandler({pool,roleTokens}),/refuses to run/);
+ process.env.A05_D267_SANDBOX_MODE=mode;
+ assert.throws(()=>createSyntheticSandboxHandler({pool,roleTokens:{
+  ...roleTokens,"security-admin":"too-short"
+ }}),/distinct ephemeral/);
  for(const path of expectedSchema)await pool.query(readFileSync(resolve(path),"utf8"));
  say("ephemeral-postgresql-migrations",{versions:3});
 
@@ -133,6 +140,8 @@ async function doTests(){
  assert.equal(await counts(),4);
  const m=await call("/v1/synthetic/admin/metrics",{role:"reviewer"});
  assert.equal(m.status,200);
+ assert.equal(m.headers.get("access-control-allow-origin"),null,
+  "Do not enable null-origin CORS for credentialed APIs");
  assert.equal(m.data.totalSyntheticSubmissions,4);
  assert.equal(JSON.stringify(m.data).includes("submissionId"),false);
  assert.equal(JSON.stringify(m.data).includes(a.data.deletionToken),false);
@@ -199,7 +208,7 @@ async function doTests(){
  assert.equal(auditResult.data.synthetic,true);
  const logs=JSON.stringify(auditResult.data);
  assert.ok(logs.includes("SUBMISSION_ACCEPTED")&&logs.includes("DELETE_COMPLETED")&&
-  logs.includes("ROLLUP_REBUILT"));
+  logs.includes("ROLLUP_REBUILT")&&logs.includes("AUTH_DENIED"));
  assert.equal(logs.includes(receipts.A),false);
  assert.equal(logs.includes(A.submissionId),false);
  assert.equal(logs.includes("127.0.0.1"),false);
