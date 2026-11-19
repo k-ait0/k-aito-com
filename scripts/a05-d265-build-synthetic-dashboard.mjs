@@ -25,10 +25,10 @@ function demoSession(index,version,globalId){
  const seed="D265-DEMO-"+version+"-"+String(index).padStart(4,"0");
  const manifest=drawResearchHoldFilteredManifest(seed);
  const rng=prng(globalId*971+743);
- if(manifest.questions.length!==30||new Set(manifest.questions.map(q=>q.bank_id)).size!==30)
+ if(manifest.questions.length!==30||new Set(manifest.questions.map(q=>q.id)).size!==30)
   throw Error("D265 invalid 30-item manifest");
  const exposures=manifest.questions.map(q=>{
-  const id=q.bank_id;
+  const id=q.id;
   if(excluded.has(id))throw Error("D265 held question leaked");
   const first=rng(),choice=rng();
   const unknownBoundary=version==="V_DEMO_A"&&id===triggerQuestion?0.45:0.045;
