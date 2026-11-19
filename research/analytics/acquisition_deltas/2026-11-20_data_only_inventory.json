@@ -140,19 +140,18 @@
     },
     {
       "category": "RATES",
-      "state": "PARTIAL_4_SERIES_RECENT_PLUS_BOJ_114_MONTH_EARLY_EXCERPT",
+      "state": "BOJ_2_SERIES_496_MONTH_RESEARCH_TRANSCRIBED_FRB_2_SERIES_20_MONTH_EXCERPT",
       "records": [
-        "BOJ FM02'STRECLUCON, FM02'STRACLUCON: 2025-03..2026-10 20 months each, official HTML monthly table excerpt stored privately.",
-        "FED H15 RIFSPFF_N.M, RIFLGFCY10_N.M: 2025-03..2026-10 20 months each, official DDP preview HTML table excerpt stored privately.",
-        "80 numeric observations, zero missing/duplicates; data CSV not uploaded to public repository due to unapproved reuse permissions.",
-        "BOJ two overnight-rate monthly series 1985-07..1994-12: additional 114 months and 228 numeric observations transcribed into private CSV; 0 missing/duplicates within excerpt.",
-        "BOJ monthly official table 1985-07..2026-10 comprises 496 months; 134 months per series are extracted in two disjoint segments, with 362 months (1995-01..2025-02) not yet locally extracted."
+        "BOJ uncollateralized overnight call rate (month-end, monthly average): 1985-07..2026-10 all 496 monthly periods transcribed from official rendered web table, 992 numeric rows, no duplicate month-series pairs, no missing months. NOT authenticated raw-byte original.",
+        "New gap closed at transcription level: BOJ 1995-01..2025-02, 362 months x 2 series = 724 additional research rows, private CSV only.",
+        "FRB H.15 federal funds effective rate monthly average and Treasury 10-year constant maturity monthly average: 2025-03..2026-10, 20 monthly rows each in prior research excerpt, full official time series not downloaded."
       ],
-      "missing": "BOJ 1995-01..2025-02, FRB monthly full archives, byte-authenticated official originals and SHA verification, source-vintage and reuse-rights review; rate observations must not be treated as bond total returns.",
+      "missing": "Independent direct BOJ source-file bytes and 992-value reconciliation; long-term full Fed H.15 monthly historical original downloads, source hash and QA; BOJ reuse rights and vintage tracking.",
       "receipt_path": "research/analytics/acquisition_deltas/2026-11-20_rates_aux_capture_receipt.json",
       "receipt_paths": [
         "research/analytics/acquisition_deltas/2026-11-20_rates_aux_capture_receipt.json",
-        "research/analytics/acquisition_deltas/2026-11-20_boj_early_rates_receipt.json"
+        "research/analytics/acquisition_deltas/2026-11-20_boj_early_rates_receipt.json",
+        "research/analytics/acquisition_deltas/2026-11-20_boj_complete_span_transcription_receipt.json"
       ]
     },
     {
