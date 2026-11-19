@@ -1,0 +1,64 @@
+name: A05 D264 analytics review rollups and ephemeral PostgreSQL QA
+on:
+  push:
+    branches:
+      - research/a05-analytics-qa-d264-20261120
+    paths:
+      - '.github/workflows/a05-d264-analytics-rollups-sandbox.yml'
+      - 'scripts/a05-d264-quality-rollups.mjs'
+      - 'scripts/test-a05-d264-quality-rollups.mjs'
+      - 'research/a05/analytics/d264_integrity_patch_draft.sql'
+      - 'research/a05/analytics/d264_ephemeral_postgres_qa.sql'
+      - 'docs/A05_D264_ANALYTICS_SANDBOX_HANDOFF_20261120.md'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  analytics-sandbox:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: a05_ci_only
+          POSTGRES_PASSWORD: ci_ephemeral_no_data
+          POSTGRES_DB: a05_ci_only
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U a05_ci_only -d a05_ci_only"
+          --health-interval 5s --health-timeout 3s --health-retries 10
+    env:
+      PGHOST: localhost
+      PGPORT: '5432'
+      PGUSER: a05_ci_only
+      PGPASSWORD: ci_ephemeral_no_data
+      PGDATABASE: a05_ci_only
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify independent D261 and D264 synthetic contracts
+        run: |
+          node --check scripts/a05-d264-quality-rollups.mjs
+          node --check scripts/test-a05-d264-quality-rollups.mjs
+          node --test scripts/test-a05-d261-analytics-contract.mjs
+          node --test scripts/test-a05-d264-quality-rollups.mjs
+      - name: Install PostgreSQL client only if runner lacks psql
+        run: |
+          if ! command -v psql >/dev/null 2>&1; then
+            sudo apt-get update -qq
+            sudo apt-get install -y -qq postgresql-client
+          fi
+          psql --version
+      - name: Create schemas only in disposable CI Postgres and validate views
+        run: |
+          psql -v ON_ERROR_STOP=1 -f research/a05/analytics/schema_draft_v1.sql
+          psql -v ON_ERROR_STOP=1 -f research/a05/analytics/d264_integrity_patch_draft.sql
+          psql -v ON_ERROR_STOP=1 -f research/a05/analytics/d264_ephemeral_postgres_qa.sql
+      - name: Keep deployment boundary explicit
+        run: |
+          test ! -e research/a05/analytics/production_db_credentials
+          echo 'A05_D264_SYNTHETIC_ROLLUPS_AND_EPHEMERAL_POSTGRES_PASS'
