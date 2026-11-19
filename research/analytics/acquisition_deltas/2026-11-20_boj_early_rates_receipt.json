@@ -1,0 +1,78 @@
+{
+  "schema": "KAITO_ANALYTICS_BOJ_EARLY_RATES_CAPTURE_RECEIPT_V1",
+  "recorded_date_jst": "2026-11-20",
+  "scope": "DATA_ACQUISITION_AND_QA_ONLY",
+  "source": "Bank of Japan",
+  "source_table_url": "https://www.stat-search.boj.or.jp/ssi/mtshtml/fm02_m_1.html",
+  "official_page_update_jst": "2026-11-19 15:00",
+  "source_series": [
+    {
+      "code": "FM02'STRECLUCON",
+      "label": "Uncollateralized overnight call rate / end-of-month",
+      "unit": "percent per annum"
+    },
+    {
+      "code": "FM02'STRACLUCON",
+      "label": "Uncollateralized overnight call rate / monthly average",
+      "unit": "percent per annum"
+    }
+  ],
+  "source_table_full_period": {
+    "first": "1985-07",
+    "last": "2026-10",
+    "months": 496
+  },
+  "newly_extracted_period": {
+    "first": "1985-07",
+    "last": "1994-12",
+    "months": 114,
+    "observations": 228,
+    "continuous": true,
+    "missing_months": 0,
+    "duplicate_month_series": 0,
+    "all_values_numeric": true
+  },
+  "private_file": {
+    "file_name": "K_Aito_Analytics_BOJ_OVERNIGHT_RATES_198507_199412_TRANSCRIBED.csv",
+    "sha256": "11279fa1be2f79173406d6163b3cfe0f332728917632a9ca3d21deebfe4a8233",
+    "bytes": 35981,
+    "published_in_git": false
+  },
+  "existing_private_recent_excerpt": {
+    "first": "2025-03",
+    "last": "2026-10",
+    "months": 20,
+    "boj_series_observations": 40
+  },
+  "aggregate_private_extracted_noncontiguous": {
+    "periods": [
+      "1985-07..1994-12",
+      "2025-03..2026-10"
+    ],
+    "months": 134,
+    "boj_observations": 268,
+    "full_months": 496,
+    "coverage_percent": 27.0161290323
+  },
+  "unfilled_gap": {
+    "first": "1995-01",
+    "last": "2025-02",
+    "months": 362
+  },
+  "source_original_bytes_preserved": false,
+  "source_original_sha256_verified": false,
+  "api_historical_independent_qa": false,
+  "data_release": "PRIVATE_RESEARCH_ONLY",
+  "rights_status": "NOT_CLEARED_FOR_PUBLIC_RAW_DATA_REPUBLICATION",
+  "status": "OFFICIAL_WEB_TABLE_TRANSCRIPTION_PARTIAL_COVERAGE_NOT_VERIFIED_FULL_ORIGINAL",
+  "caution": [
+    "These data are rate inputs, not actual total returns of investable securities.",
+    "Do not replace canonical source data or declare raw-source QA passed.",
+    "Do not publish raw values or private source artifacts in public repository."
+  ],
+  "next_steps": [
+    "Obtain and authenticate BOJ official API/CSV raw source independently.",
+    "Fill the contiguous 1995-01 through 2025-02 gap.",
+    "Verify and preserve original 1953/1954-to-2026 Fed H.15 monthly source bytes and transformations."
+  ]
+}
