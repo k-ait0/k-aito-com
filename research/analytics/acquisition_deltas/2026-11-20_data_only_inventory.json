@@ -140,9 +140,14 @@
     },
     {
       "category": "RATES",
-      "state": "NOT_ACQUIRED",
-      "records": [],
-      "missing": "日米金利系列の公式原本と観測期間・定義"
+      "state": "PARTIAL_4_SERIES_20_MONTH_OFFICIAL_TABLE_EXCERPT",
+      "records": [
+        "BOJ FM02'STRECLUCON, FM02'STRACLUCON: 2025-03..2026-10 20 months each, official HTML monthly table excerpt stored privately.",
+        "FED H15 RIFSPFF_N.M, RIFLGFCY10_N.M: 2025-03..2026-10 20 months each, official DDP preview HTML table excerpt stored privately.",
+        "80 numeric observations, zero missing/duplicates; data CSV not uploaded to public repository due to unapproved reuse permissions."
+      ],
+      "missing": "Full historical source-byte downloads, SHA and independent QA; source vintage and rights; never confuse rate inputs with investable bond total-return observations.",
+      "receipt_path": "research/analytics/acquisition_deltas/2026-11-20_rates_aux_capture_receipt.json"
     },
     {
       "category": "DIVIDENDS",
