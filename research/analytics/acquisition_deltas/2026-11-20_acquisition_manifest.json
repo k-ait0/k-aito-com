@@ -25,14 +25,25 @@
     "extract_format": "CSV",
     "extract_path": "research/analytics/acquisition_deltas/2026-11-20_fed_h10_usdjpy_daily.csv",
     "qa": {
-      "status": "OFFICIAL_HTML_ROWS_VISUALLY_CHECKED_ONLY",
+      "status": "OFFICIAL_WEEKLY_HISTORICAL_DDP_CROSSCHECK_PASS_RAW_BYTES_NOT_ARCHIVED",
       "date_order": "PASS",
       "duplicate_dates": "NONE",
       "source_table_last_row": "2026-11-13",
       "nd_preserved": true,
       "source_bytes_or_original_hash_verified": false,
       "matching_to_private_pinned_original": false,
-      "monthly_2026_11_finalization": "NOT_ALLOWED_PROVISIONAL"
+      "monthly_2026_11_finalization": "NOT_ALLOWED_PROVISIONAL",
+      "official_published_value_crosscheck": "PASS_5_OF_5",
+      "official_endpoints_checked": [
+        "https://www.federalreserve.gov/releases/h10/current/",
+        "https://www.federalreserve.gov/releases/h10/hist/dat00_ja.htm",
+        "https://www.federalreserve.gov/datadownload/Preview.aspx?pi=400&preview=H10%2FH10%2FRXI_N.B.JA&rel=H10"
+      ],
+      "official_endpoints_agree": true,
+      "original_html_raw_bytes_archived": false,
+      "original_html_raw_sha256_verified": false,
+      "synthetic_or_filled_values_included": false,
+      "notes": "Checked 2026-11-09 through 2026-11-13 across Board H.10 weekly, H.10 historical Japan yen, and official DDP series preview. Four numeric values plus one official ND agree exactly. This crosscheck does not establish preserved HTML byte identity or canonical-monthly acceptance."
     },
     "caveat": "Values captured from official rendered H.10 HTML, not authenticated source HTML bytes. Research delta only; do not overwrite pinned originals or monthly canonical files."
   },
@@ -42,19 +53,25 @@
       "next_release_month": "2026-10",
       "next_release_jst": "2026-11-20T08:30:00+09:00",
       "status": "AWAIT_OFFICIAL_RELEASE",
-      "reference": "https://www.e-stat.go.jp/release-calendar/detail/00200573/202611200830"
+      "reference": "https://www.e-stat.go.jp/release-calendar/detail/00200573/202611200830",
+      "official_overview_still_2026_09": true
     },
     "us_cpi": {
       "last_publication_month": "2026-10",
       "status": "NO_NEW_MONTH_SINCE_2026_11_10_PUBLICATION",
       "source": "https://www.bls.gov/news.release/cpi.htm",
-      "official_2025_10_absence_remains": true
+      "official_2025_10_absence_remains": true,
+      "official_latest_news_release_modified_at": "2026-11-13"
     },
     "world_bank_commodities": {
       "published_november_2026_pink_sheet_pdf": true,
       "historical_monthly_workbook_updated_since_previous_capture": "NOT_VERIFIED",
       "monthly_new_values_accepted": false,
-      "source": "https://www.worldbank.org/en/research/commodity-markets"
+      "source": "https://www.worldbank.org/en/research/commodity-markets",
+      "november_2026_official_monthly_workbook_link": "https://thedocs.worldbank.org/en/doc/74e8be41ceb20fa0da750cda2f6b9e4e-0050012026/related/CMO-Historical-Data-Monthly.xlsx",
+      "last_official_monthly_publication_date": "2026-11-03",
+      "next_scheduled_update": "2026-12-02",
+      "raw_workbook_download_and_hash": "NOT_VERIFIED"
     }
   },
   "next_actions": [
