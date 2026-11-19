@@ -1,0 +1,66 @@
+{
+  "schema": "KAITO_ANALYTICS_ACQUISITION_DELTA_V1",
+  "created_at_jst": "2026-11-20T01:21:25+09:00",
+  "scope": "MARKET_DATA_AND_CPI_ACQUISITION_ONLY",
+  "research_only": true,
+  "production_modified": false,
+  "analytics_core_or_ui_modified": false,
+  "source_registry_changed": false,
+  "canonical_monthly_series_modified": false,
+  "acquisition": {
+    "dataset_id": "FED_H10_USDJPY_DAILY",
+    "source_id": "FED_BOARD",
+    "source_series_id": "H10/H10/RXI_N.B.JA",
+    "source_url": "https://www.federalreserve.gov/releases/h10/hist/dat00_ja.htm",
+    "source_release_date": "2026-11-16",
+    "previous_acquisition_end_date": "2026-11-06",
+    "delta_first": "2026-11-09",
+    "delta_last": "2026-11-13",
+    "records": 5,
+    "numeric_records": 4,
+    "nd_records": 1,
+    "raw_official_html_bytes_archived": false,
+    "raw_official_html_sha256": null,
+    "original_source_last_update": "2026-11-16",
+    "extract_format": "CSV",
+    "extract_path": "research/analytics/acquisition_deltas/2026-11-20_fed_h10_usdjpy_daily.csv",
+    "qa": {
+      "status": "OFFICIAL_HTML_ROWS_VISUALLY_CHECKED_ONLY",
+      "date_order": "PASS",
+      "duplicate_dates": "NONE",
+      "source_table_last_row": "2026-11-13",
+      "nd_preserved": true,
+      "source_bytes_or_original_hash_verified": false,
+      "matching_to_private_pinned_original": false,
+      "monthly_2026_11_finalization": "NOT_ALLOWED_PROVISIONAL"
+    },
+    "caveat": "Values captured from official rendered H.10 HTML, not authenticated source HTML bytes. Research delta only; do not overwrite pinned originals or monthly canonical files."
+  },
+  "status_checked": {
+    "japan_cpi": {
+      "published_last_verified_month": "2026-09",
+      "next_release_month": "2026-10",
+      "next_release_jst": "2026-11-20T08:30:00+09:00",
+      "status": "AWAIT_OFFICIAL_RELEASE",
+      "reference": "https://www.e-stat.go.jp/release-calendar/detail/00200573/202611200830"
+    },
+    "us_cpi": {
+      "last_publication_month": "2026-10",
+      "status": "NO_NEW_MONTH_SINCE_2026_11_10_PUBLICATION",
+      "source": "https://www.bls.gov/news.release/cpi.htm",
+      "official_2025_10_absence_remains": true
+    },
+    "world_bank_commodities": {
+      "published_november_2026_pink_sheet_pdf": true,
+      "historical_monthly_workbook_updated_since_previous_capture": "NOT_VERIFIED",
+      "monthly_new_values_accepted": false,
+      "source": "https://www.worldbank.org/en/research/commodity-markets"
+    }
+  },
+  "next_actions": [
+    "Capture the new Japan national CPI October 2026 official raw file only after scheduled publication and authenticate source bytes",
+    "Preserve full H10 HTML source bytes and hash separately before labeling official original archived",
+    "Independently verify source-locked existing CPI, Fed, Shiller and World Bank original bytes; never infer decryption success",
+    "Do not modify any Analytics engine, UI, calculation or site files"
+  ]
+}
