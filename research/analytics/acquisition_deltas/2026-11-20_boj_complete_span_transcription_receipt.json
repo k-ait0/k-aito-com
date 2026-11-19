@@ -1,0 +1,60 @@
+{
+  "schema": "KAITO_ANALYTICS_BOJ_MONTHLY_RATE_PRIVATE_TRANSCRIPTION_RECEIPT_V2",
+  "recorded_date_jst": "2026-11-20",
+  "scope": "MARKET_DATA_ACQUISITION_AND_QA_ONLY",
+  "source_url": "https://www.stat-search.boj.or.jp/ssi/mtshtml/fm02_m_1_en.html",
+  "source_last_update": "2026-11-19 15:00 JST",
+  "source_series": [
+    "FM02'STRECLUCON",
+    "FM02'STRACLUCON"
+  ],
+  "source_period": {
+    "first": "1985-07",
+    "last": "2026-10",
+    "months": 496
+  },
+  "new_private_gap": {
+    "first": "1995-01",
+    "last": "2025-02",
+    "months": 362,
+    "observations": 724,
+    "filename": "K_Aito_Analytics_BOJ_OVERNIGHT_RATES_199501_202502_EXTRACTED.csv",
+    "byte_length": 122058,
+    "sha256": "f79614524f050b9da40f0e21876d3f12331e39ae0b4c23ac1a79da9ba3dcf89c"
+  },
+  "combined_private_research_csv": {
+    "first": "1985-07",
+    "last": "2026-10",
+    "months": 496,
+    "observations": 992,
+    "filename": "K_Aito_Analytics_BOJ_OVERNIGHT_RATES_198507_202610_COMBINED_RESEARCH.csv",
+    "byte_length": 163723,
+    "sha256": "aa0213ba0e7629ee762a54c70a28f6477801da31785b0a820d061eb3e04038f8"
+  },
+  "qa": {
+    "range_and_monthly_continuity": "PASS",
+    "unique_month_and_series_pairs": "PASS",
+    "missing_months": 0,
+    "nonnumeric_observations": 0,
+    "input_segment_join": "PASS",
+    "source_html_byte_acquisition": "FAILED_ENVIRONMENT_NETWORK",
+    "source_html_sha256": null,
+    "independent_official_file_vs_extracted_all_values": "NOT_DONE",
+    "transcription_error_excluded": false,
+    "historical_vintage_verified": false
+  },
+  "data_classification": "RESEARCH_EXCERPT_MANUAL_TRANSCRIPTION_NOT_OFFICIAL_RAW_FILE",
+  "restrictions": {
+    "raw_values_stored_in_public_git": false,
+    "private_research_only": true,
+    "source_redistribution_rights_reviewed": false,
+    "existing_canonical_files_modified": false,
+    "analytics_core_ui_modified": false
+  },
+  "next_actions": [
+    "Acquire official BOJ source bytes/CSV in owner-controlled network-enabled environment and independently compare all 992 monthly values.",
+    "Safely archive authenticated raw BOJ source bytes, source URL, retrieval timestamp and SHA256.",
+    "Acquire FRB H.15 full monthly history with original bytes/QA; do not infer Fed observation completion from published start dates.",
+    "Keep this transcription-level dataset separate from official raw-verified canonical data."
+  ]
+}
