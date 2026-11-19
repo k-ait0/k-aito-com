@@ -154,6 +154,7 @@ async function fill30(page,chooser){
    await fill30(page,()=>4);
    const tie=await page.locator("#typeBadge").textContent();
    assert.match(tie,/16通りの組み合わせ/);
+   await page.locator("#resultTabAxes").click();
    for(const axis of ["A","B","C","D"]){
     const node=page.locator('.axisrow[data-axis="'+axis+'"]');
     assert.equal(await node.locator(".axis-score-track").isVisible(),false,
@@ -176,6 +177,7 @@ async function fill30(page,chooser){
    assert.equal(await page.locator("#result").isVisible(),true);
    assert.notEqual(await page.locator("#typeBadge").textContent(),tie);
    assert.match(await page.locator("#typeEvidenceSummary").textContent(),/Y\/N暫定補完 4軸／保留 0軸/);
+   await page.locator("#resultTabAxes").click();
    for(const axis of ["A","B","C","D"]){
     const node=page.locator('.axisrow[data-axis="'+axis+'"]');
     assert.equal(await node.getAttribute("data-evidence"),"YN_INITIAL_PROVISIONAL");
@@ -215,6 +217,7 @@ async function fill30(page,chooser){
    await page.locator("#restart").click();
    await fill30(page,()=>null);
    assert.match(await page.locator("#typeBadge").textContent(),/16通りの組み合わせ/);
+   await page.locator("#resultTabAxes").click();
    for(const axis of ["A","B","C","D"]){
     const node=page.locator('.axisrow[data-axis="'+axis+'"]');
     assert.equal(await node.locator(".axis-score-track").isVisible(),false);
@@ -284,6 +287,7 @@ async function fill30(page,chooser){
    // this is NOT a single midpoint answer, not no data, and not 'clear'.
    await page.locator("#restart").click();
    await fill30(page,(axis,i)=>axis==="A"?(i<3?1:i<6?7:4):7);
+   await page.locator("#resultTabAxes").click();
    const cancelled=page.locator('.axisrow[data-axis="A"]');
    assert.equal(await cancelled.getAttribute("data-axis-status"),"tie");
    assert.equal(await cancelled.getAttribute("data-evidence"),"UNRESOLVED");
@@ -291,13 +295,13 @@ async function fill30(page,chooser){
    assert.equal(await cancelled.locator(".axis-score-marker.is-tie").count(),1);
    assert.match(await cancelled.locator(".axis-position-text").textContent(),/0\.00.*相殺/);
    assert.match(await cancelled.locator(".axis-evidence").textContent(),/方向回答 6\/7 · 中間4 1\/7/);
-   await page.locator("#resultTabAxes").click();
    const overflow=await page.evaluate(()=>document.documentElement.scrollWidth-window.innerWidth);
    assert.ok(overflow<=2,"Result axis tab caused horizontal overflow "+overflow);
 
    // Case X: no invented probability, count provenance visible, 7-item pole at +1.
    await page.locator("#restart").click();
    await fill30(page,()=>7);
+   await page.locator("#resultTabAxes").click();
    assert.match(await page.locator("#typeEvidenceSummary").textContent(),/30問の参考方向 4軸／Y\/N暫定補完 0軸／保留 0軸/);
    for(const axis of ["A","B","C","D"]){
     const node=page.locator('.axisrow[data-axis="'+axis+'"]');
@@ -305,6 +309,7 @@ async function fill30(page,chooser){
     assert.match(await node.locator(".axis-position-text").textContent(),/\+1\.00/);
     assert.match(await node.locator(".axis-evidence").textContent(),/方向回答 7\/7/);
     assert.equal(await node.locator(".axis-score-marker.is-reference").count(),0);
+    assert.equal(await node.locator(".axis-score-track").isVisible(),true);
    }
    assert.doesNotMatch(await page.locator("#resultPanelAxes").textContent(),/診断精度\s*\d+%|信頼度\s*\d+%/);
 
