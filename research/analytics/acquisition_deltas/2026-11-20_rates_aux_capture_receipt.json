@@ -1,0 +1,69 @@
+{
+  "schema": "KAITO_ANALYTICS_RATES_AUX_CAPTURE_RECEIPT_V1",
+  "recorded_date_jst": "2026-11-20",
+  "scope": "DATA_ACQUISITION_AND_QA_ONLY",
+  "dataset_class": "AUX_RATES",
+  "source_period": "2025-03..2026-10",
+  "months": 20,
+  "series": 4,
+  "observations": 80,
+  "datasets": [
+    {
+      "series_id": "FM02'STRECLUCON",
+      "origin": "BOJ",
+      "kind": "OVERNIGHT_CALL_RATE_EOM",
+      "count": 20,
+      "official_url": "https://www.stat-search.boj.or.jp/ssi/mtshtml/fm02_m_1_en.html",
+      "official_full_series_first": "1985-07",
+      "official_full_series_last": "2026-10"
+    },
+    {
+      "series_id": "FM02'STRACLUCON",
+      "origin": "BOJ",
+      "kind": "OVERNIGHT_CALL_RATE_MONTH_AVG",
+      "count": 20,
+      "official_url": "https://www.stat-search.boj.or.jp/ssi/mtshtml/fm02_m_1_en.html",
+      "official_full_series_first": "1985-07",
+      "official_full_series_last": "2026-10"
+    },
+    {
+      "series_id": "H15/H15/RIFSPFF_N.M",
+      "origin": "FED_BOARD",
+      "kind": "FED_FUNDS_EFFECTIVE_RATE_MONTH_AVG",
+      "count": 20,
+      "official_url": "https://www.federalreserve.gov/datadownload/Preview.aspx?pi=400&preview=H15%2FH15%2FRIFSPFF_N.M&rel=H15",
+      "official_full_series_first": "1954-07",
+      "official_full_series_last": "2026-10"
+    },
+    {
+      "series_id": "H15/H15/RIFLGFCY10_N.M",
+      "origin": "FED_BOARD",
+      "kind": "TEN_YEAR_TREASURY_CMT_YIELD_MONTH_AVG",
+      "count": 20,
+      "official_url": "https://www.federalreserve.gov/datadownload/Preview.aspx?pi=400&preview=H15%2FH15%2FRIFLGFCY10_N.M&rel=H15",
+      "official_full_series_first": "1953-04",
+      "official_full_series_last": "2026-10"
+    }
+  ],
+  "derived_private_csv_file_name": "K_Aito_Analytics_RATES_OFFICIAL_TABLE_EXCERPT_202503_202610.csv",
+  "derived_private_csv_sha256": "17574c4f3ab93ea5c924fd75e90ffec539667cdc9eb52392e8941f1c49ed3a37",
+  "csv_stored_in_public_git": false,
+  "official_original_html_bytes_stored": false,
+  "official_original_sha256": null,
+  "observations_saved_as_official_original": false,
+  "data_status": "EXTRACTED_OFFICIAL_HTML_TABLE_SUBSET_NOT_FULL_RAW_ARCHIVE",
+  "quality_checks": {
+    "series_20_each": "PASS",
+    "unique_month_series": "PASS",
+    "numeric_80": "PASS",
+    "blank_values": 0
+  },
+  "license_gate": "BOJ_SOURCE_REUSE_NOT_CLEARED; NO_PUBLIC_RAW_NUMERIC_DISTRIBUTION",
+  "scope_gate": "Rates as economic inputs; do not claim government bond/asset total returns",
+  "missing": [
+    "Full historical original downloads and source-byte SHA256",
+    "Historic month-by-month source integrity, publication-vintage, revisions QA",
+    "BOJ rights before any public redistribution",
+    "Owner-controlled permanent raw-data backup"
+  ]
+}
