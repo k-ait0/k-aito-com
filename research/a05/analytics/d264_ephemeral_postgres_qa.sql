@@ -104,34 +104,46 @@ BEGIN
 END
 $check$;
 
+-- Separate synthetic submission avoids a duplicate-key masking the expected
+-- format/ordinal/check violations in the negative cases.
+INSERT INTO a05_analytics.assessment_submissions
+ (submission_id,idempotency_key,questionnaire_version,manifest_variant,
+  consent_at,consent_policy_version,completion_status)
+ VALUES (
+ '55555555-5555-4555-8555-555555555555',
+ '66666666-6666-4666-8666-666666666666',
+ 'D264_SYNTHETIC','negative-only',now()-interval '1 day',
+ 'SYNTHETIC_CI_ONLY','CORE_COMPLETE'
+ );
+
 -- Negative schema tests must fail with exact expected constraint categories.
 DO $negative$
 BEGIN
  BEGIN
   INSERT INTO a05_analytics.question_exposures
    (submission_id,question_id,question_revision,phase,ordinal,response_code)
-   VALUES ('11111111-1111-4111-8111-111111111111','Q-CORE-01',1,'YN',2,'YN_YES');
+   VALUES ('55555555-5555-4555-8555-555555555555','Q-CORE-01',1,'YN',2,'YN_YES');
   RAISE EXCEPTION 'D264 accepted Y/N response for SCALE_7 question';
  EXCEPTION WHEN foreign_key_violation THEN NULL;
  END;
  BEGIN
   INSERT INTO a05_analytics.question_exposures
    (submission_id,question_id,question_revision,phase,ordinal,response_code,scale_value)
-   VALUES ('11111111-1111-4111-8111-111111111111','Q-YN-01',1,'CORE',2,'SCALE_7',5);
+   VALUES ('55555555-5555-4555-8555-555555555555','Q-YN-01',1,'CORE',2,'SCALE_7',5);
   RAISE EXCEPTION 'D264 accepted SCALE_7 response for Y/N question';
  EXCEPTION WHEN foreign_key_violation THEN NULL;
  END;
  BEGIN
   INSERT INTO a05_analytics.question_exposures
    (submission_id,question_id,question_revision,phase,ordinal,response_code)
-   VALUES ('11111111-1111-4111-8111-111111111111','Q-YN-01',1,'YN',9,'YN_NO');
+   VALUES ('55555555-5555-4555-8555-555555555555','Q-YN-01',1,'YN',9,'YN_NO');
   RAISE EXCEPTION 'D264 accepted ninth Y/N question';
  EXCEPTION WHEN check_violation THEN NULL;
  END;
  BEGIN
   INSERT INTO a05_analytics.classification_snapshots
    (submission_id,phase,classification_version,outcome,type_id,candidate_count,yn_supplemented_axes)
-   VALUES ('33333333-3333-4333-8333-333333333333','BASE_30','SYNTHETIC',
+   VALUES ('55555555-5555-4555-8555-555555555555','BASE_30','SYNTHETIC',
     'SINGLE_PROVISIONAL','T01',1,1);
   RAISE EXCEPTION 'D264 accepted Y/N supplement in baseline snapshot';
  EXCEPTION WHEN check_violation THEN NULL;
