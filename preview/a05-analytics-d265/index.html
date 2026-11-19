@@ -84,7 +84,14 @@ h1{font-size:clamp(23px,3.1vw,34px);letter-spacing:-.03em;margin:5px 0 0}h2{font
  function selectedDays(version){
   const days=[...new Set(data.dailyTypeCounts.filter(x=>x.questionnaire_version===version).map(x=>x.day_jst))].sort();
   const mode=$("period").value;
-  return new Set(mode==="all"?days:mode==="last1"?days.slice(-1):days.slice(-7));
+  if(mode==="all")return new Set(days);
+  if(mode==="last1")return new Set(days.slice(-1));
+  if(!days.length)return new Set();
+  const latest=days[days.length-1];
+  const cutoff=new Date(latest+"T00:00:00Z");
+  cutoff.setUTCDate(cutoff.getUTCDate()-6);
+  const from=cutoff.toISOString().slice(0,10);
+  return new Set(days.filter(day=>day>=from&&day<=latest));
  }
  function readTypeCounts(version,phase,days){
   const rs=data.dailyTypeCounts.filter(r=>r.questionnaire_version===version&&r.phase===phase&&days.has(r.day_jst));
@@ -193,12 +200,12 @@ h1{font-size:clamp(23px,3.1vw,34px);letter-spacing:-.03em;margin:5px 0 0}h2{font
  function paintQuestions(rows,flagged,phase){
   const tbody=$("questionRows");tbody.replaceChildren();
   const isCore=phase==="CORE";
-  $("rateName").textContent=isCore?"判断不能率":"Y/N 判断不能率";
-  $("secondRateName").textContent=isCore?"非該当率":"YES率";
+  $("rateName").textContent=isCore?"判断不能率":"Y/N判断不能率（回答者比）";
+  $("secondRateName").textContent=isCore?"非該当率":"YES率（回答者比）";
   const flaggedSet=new Set(flagged.map(q=>JSON.stringify([q.id,q.revision])));
   const arr=rows.slice().sort((a,b)=>{
-   const ar=isCore?a.skipUnknown/a.shown:a.unsure/a.shown;
-   const br=isCore?b.skipUnknown/b.shown:b.unsure/b.shown;
+   const ar=isCore?a.skipUnknown/a.shown:(a.yes+a.no+a.unsure?a.unsure/(a.yes+a.no+a.unsure):0);
+   const br=isCore?b.skipUnknown/b.shown:(b.yes+b.no+b.unsure?b.unsure/(b.yes+b.no+b.unsure):0);
    return br-ar||b.shown-a.shown||a.id.localeCompare(b.id);
   });
   for(const q of arr){
@@ -209,9 +216,10 @@ h1{font-size:clamp(23px,3.1vw,34px);letter-spacing:-.03em;margin:5px 0 0}h2{font
    btn.addEventListener("click",()=>{selectedQuestionId=key;drawDetail(q,phase);});
    idCell.append(btn);
    const valid=q.c.reduce((n,x)=>n+x,0);
+   const ynAnswered=q.yes+q.no+q.unsure;
    tr.append(idCell,make("td","",tag?.axis||"Y/N"),make("td","",q.shown),
-    make("td","",toPercent((isCore?q.skipUnknown:q.unsure)/q.shown)),
-    make("td","",toPercent((isCore?q.skipNA:q.yes)/q.shown)),
+    make("td","",isCore?toPercent(q.skipUnknown/q.shown):toPercent(ynAnswered?q.unsure/ynAnswered:null)),
+    make("td","",isCore?toPercent(q.skipNA/q.shown):toPercent(ynAnswered?q.yes/ynAnswered:null)),
     make("td","",isCore?toPercent(valid?q.c[3]/valid:null):"未回答 "+q.notAnswered+"件"));
    const status=make("td"),isFlag=flaggedSet.has(key)&&isCore;
    status.append(make("span","pill"+(isFlag?" critical":""),isFlag?"要レビュー":"—"));
