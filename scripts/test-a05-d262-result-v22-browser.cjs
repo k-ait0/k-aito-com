@@ -271,6 +271,14 @@ async function fill30(page,chooser){
    assert.equal(await page.locator("#skipUnknown").getAttribute("aria-pressed"),"false");
    assert.equal(await page.locator('#scale button[data-value="4"]').getAttribute("aria-pressed"),"true");
    await noScrollMobile(page,"question");
+   // Case VIII intentionally ends on the editable question screen.
+   // Finish that session through the normal UI before clicking restart.
+   await page.locator("#next").click();
+   for(let i=1;i<30;i++){
+    await page.locator('#scale button[data-value="7"]').click();
+    await page.locator("#next").click();
+   }
+   assert.equal(await page.locator("#result").isVisible(),true);
 
    // Case IX: six directional 7-point answers cancel around true zero:
    // this is NOT a single midpoint answer, not no data, and not 'clear'.
