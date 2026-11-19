@@ -140,14 +140,20 @@
     },
     {
       "category": "RATES",
-      "state": "PARTIAL_4_SERIES_20_MONTH_OFFICIAL_TABLE_EXCERPT",
+      "state": "PARTIAL_4_SERIES_RECENT_PLUS_BOJ_114_MONTH_EARLY_EXCERPT",
       "records": [
         "BOJ FM02'STRECLUCON, FM02'STRACLUCON: 2025-03..2026-10 20 months each, official HTML monthly table excerpt stored privately.",
         "FED H15 RIFSPFF_N.M, RIFLGFCY10_N.M: 2025-03..2026-10 20 months each, official DDP preview HTML table excerpt stored privately.",
-        "80 numeric observations, zero missing/duplicates; data CSV not uploaded to public repository due to unapproved reuse permissions."
+        "80 numeric observations, zero missing/duplicates; data CSV not uploaded to public repository due to unapproved reuse permissions.",
+        "BOJ two overnight-rate monthly series 1985-07..1994-12: additional 114 months and 228 numeric observations transcribed into private CSV; 0 missing/duplicates within excerpt.",
+        "BOJ monthly official table 1985-07..2026-10 comprises 496 months; 134 months per series are extracted in two disjoint segments, with 362 months (1995-01..2025-02) not yet locally extracted."
       ],
-      "missing": "Full historical source-byte downloads, SHA and independent QA; source vintage and rights; never confuse rate inputs with investable bond total-return observations.",
-      "receipt_path": "research/analytics/acquisition_deltas/2026-11-20_rates_aux_capture_receipt.json"
+      "missing": "BOJ 1995-01..2025-02, FRB monthly full archives, byte-authenticated official originals and SHA verification, source-vintage and reuse-rights review; rate observations must not be treated as bond total returns.",
+      "receipt_path": "research/analytics/acquisition_deltas/2026-11-20_rates_aux_capture_receipt.json",
+      "receipt_paths": [
+        "research/analytics/acquisition_deltas/2026-11-20_rates_aux_capture_receipt.json",
+        "research/analytics/acquisition_deltas/2026-11-20_boj_early_rates_receipt.json"
+      ]
     },
     {
       "category": "DIVIDENDS",
