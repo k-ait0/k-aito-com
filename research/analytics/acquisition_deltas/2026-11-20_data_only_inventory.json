@@ -1,0 +1,175 @@
+{
+  "schema": "KAITO_ANALYTICS_DATA_ACQUISITION_INVENTORY_V1",
+  "inventory_date_jst": "2026-11-20",
+  "inventory_cutoff": "before 2026-11-20 08:30 JST CPI release",
+  "research_only": true,
+  "strict_scope": "DATA_ACQUISITION_SOURCE_AUTHENTICATION_NORMALIZATION_QA_AND_DATA_RIGHTS_ONLY",
+  "excluded": "UI_CALCULATION_CORE_SIMULATION_PRODUCTION_RELEASE",
+  "basis": [
+    "research/analytics/historical_data_catalog_v0.1.json",
+    "research/analytics/acquisition_status.v0.1.json",
+    "research/analytics/history_coverage_targets.v0.5.json",
+    "docs/ANALYTICS_V035_GATES.json",
+    "research/analytics/acquisition_deltas/2026-11-20_acquisition_manifest.json"
+  ],
+  "caveats": [
+    "Prior acquisition QA and saved encrypted-original integrity do NOT constitute owner-key plaintext verification.",
+    "Acquired price levels cannot be treated as licensed tradable total-return indices.",
+    "No official-site production data accepted by this inventory.",
+    "World Bank 71 columns include price and index series; not 71 separately approved investable commodities."
+  ],
+  "assets": [
+    {
+      "id": "JP_EQUITY",
+      "name": "日本株",
+      "source": "JPX",
+      "state": "NO_LOCKED_INDEX_DATA",
+      "missing_or_gates": "TOPIX TR等の公式配当込み連続系列",
+      "complete_60y_accepted": false
+    },
+    {
+      "id": "US_EQUITY",
+      "name": "米国株",
+      "source": "SPDJI;Shiller",
+      "state": "PARTIAL_RESEARCH_SOURCE",
+      "missing_or_gates": "Shiller研究系列1980-01〜2023-06・522か月。正式なS&P500 TRではない。対象外期間と公式TRが未取得",
+      "complete_60y_accepted": false
+    },
+    {
+      "id": "GLOBAL_EQUITY",
+      "name": "世界株",
+      "source": "MSCI",
+      "state": "NO_LOCKED_INDEX_DATA",
+      "missing_or_gates": "MSCI ACWI Net TR長期系列",
+      "complete_60y_accepted": false
+    },
+    {
+      "id": "JP_BONDS",
+      "name": "日本債券",
+      "source": "NOMURA_BPI",
+      "state": "NO_LOCKED_INDEX_DATA",
+      "missing_or_gates": "野村BPI等の総合収益指数",
+      "complete_60y_accepted": false
+    },
+    {
+      "id": "US_BONDS",
+      "name": "米国債券",
+      "source": "BLOOMBERG_INDEX",
+      "state": "NO_LOCKED_INDEX_DATA",
+      "missing_or_gates": "Bloomberg US Aggregate等の収益指数",
+      "complete_60y_accepted": false
+    },
+    {
+      "id": "CASH_SHORT",
+      "name": "現金・短期資産",
+      "source": "BOJ",
+      "state": "NO_LOCKED_SERIES",
+      "missing_or_gates": "日銀短期金利等の連続観測系列",
+      "complete_60y_accepted": false
+    },
+    {
+      "id": "GOLD",
+      "name": "金",
+      "source": "WORLD_BANK_PINK",
+      "state": "PARTIAL_PUBLISHED_CANDIDATE",
+      "missing_or_gates": "World Bank Gold月次1960-01〜2026-10・802件の数値監査済み。実測/予測や原出典・第三者権利の確認未了。スポット≠総収益",
+      "complete_60y_accepted": false
+    },
+    {
+      "id": "REIT",
+      "name": "REIT",
+      "source": "JPX",
+      "state": "NO_LOCKED_INDEX_DATA",
+      "missing_or_gates": "J-REIT TR、指数開始前の60年実績は存在しない",
+      "complete_60y_accepted": false
+    },
+    {
+      "id": "EM_EQUITY",
+      "name": "新興国株",
+      "source": "MSCI",
+      "state": "NO_LOCKED_INDEX_DATA",
+      "missing_or_gates": "MSCI EM Net TR長期系列",
+      "complete_60y_accepted": false
+    },
+    {
+      "id": "DEV_EXUS_BONDS",
+      "name": "先進国債券（米国除く）",
+      "source": "FTSE_RUSSELL",
+      "state": "NO_LOCKED_INDEX_DATA",
+      "missing_or_gates": "FTSE Russell WGBI等の長期系列",
+      "complete_60y_accepted": false
+    },
+    {
+      "id": "EXGOLD_COMMODITY",
+      "name": "金以外の商品",
+      "source": "WORLD_BANK_PINK",
+      "state": "PARTIAL_PUBLISHED_CANDIDATE",
+      "missing_or_gates": "World Bankの金・指数等を含む71列/50,514観測の数値監査あり。系列定義・予測・権利未確定。商品先物TRではない",
+      "complete_60y_accepted": false
+    },
+    {
+      "id": "INFLATION_LINKED",
+      "name": "物価連動債",
+      "source": "US_TREASURY",
+      "state": "NO_INVESTABLE_RETURN_SERIES",
+      "missing_or_gates": "米国Treasury TIPS利回りは運用TRではない。対応する収益系列は未取得",
+      "complete_60y_accepted": false
+    }
+  ],
+  "auxiliary": [
+    {
+      "category": "FX",
+      "state": "PARTIAL_OBSERVED_AND_RESEARCH_CANDIDATE",
+      "records": [
+        "Fed H.10固定2000-01〜2026-10の月次322か月（旧取得QA、現在は原本再照合待ち）",
+        "Fed DDP長期1971-01〜2026-10の月次670か月は取得元変更未承認の候補",
+        "2026-11-09〜11-13の日次5行はFed週次/履歴/DDPで照合、原本HTMLのバイト保全未完了"
+      ],
+      "missing": "2026年11月月末確定値、旧正規化CSVの本人PC原本認証、1971年起点の正式採用"
+    },
+    {
+      "category": "CPI",
+      "state": "PRIVATE_CAPTURE_QA_AND_PROVENANCE_BLOCKED",
+      "records": [
+        "日本2025年基準CPI総合1970-01〜2026-09・681か月の旧取得QAあり",
+        "日本・持家の帰属家賃を除く総合1946-08〜2026-09・962か月の旧取得QAあり",
+        "米国CPI-U（NSA）1966-01〜2026-10・729か月の旧取得QAあり（2025-10公式欠測）",
+        "日本2025年基準公式参照CSV 2026-11-13取得、167310バイト、暗号化原本の整合性確認"
+      ],
+      "missing": "日本2026-10（2026-11-20 08:30公表予定）、公式参照CSVの列マッピング、旧暗号化原本の本人PC復号・SHA認証、過去公表ビンテージ確証"
+    },
+    {
+      "category": "RATES",
+      "state": "NOT_ACQUIRED",
+      "records": [],
+      "missing": "日米金利系列の公式原本と観測期間・定義"
+    },
+    {
+      "category": "DIVIDENDS",
+      "state": "PARTIAL_RESEARCH_SOURCE",
+      "records": [
+        "Shiller旧研究系列は配当近似を含む。公式SPDJI配当・総収益系列の正本未取得"
+      ],
+      "missing": "公式配当・利息の対応する継続系列と権利"
+    },
+    {
+      "category": "HEDGE_COST",
+      "state": "NOT_ACQUIRED",
+      "records": [],
+      "missing": "為替ヘッジ費用の長期観測系列と出典"
+    },
+    {
+      "category": "CREDIT_SPREAD",
+      "state": "NOT_ACQUIRED",
+      "records": [],
+      "missing": "信用スプレッドの公式長期系列と定義"
+    }
+  ],
+  "near_term_acceptance_sequence": [
+    "Official published CPI October 2026: capture both specified nationwide CPI series only after release, then compare to September rows without assumptions.",
+    "Archive actual source byte hashes for Fed newly verified 5 daily observations; do not finalize November monthly rate early.",
+    "Owner-local verify encrypted backups and original CPI, Fed, Shiller bytes and exact normalization SHA; never upload private keys/plaintext.",
+    "Verify World Bank monthly 2026-11 XLS byte hash and per-column definitions/forecast flags; do not call this a new observed month until verified.",
+    "Acquire still-missing official long-history index series under their specific source and licensing gates."
+  ]
+}
