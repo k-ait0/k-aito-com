@@ -133,7 +133,7 @@ async function fill30(page,chooser){
    await page.locator("#restart").click();
    await fill30(page,(axis,i)=>axis!=="B"?7:i<3?4:i<5?null:7);
    assert.equal(await page.locator("#ynButton").isVisible(),true);
-   assert.match(await page.locator("#axes").textContent(),/4・スキップ以外の回答が4問未満/);
+   assert.match(await page.locator("#axes").textContent(),/方向を示す回答が4問未満です/);
    const bBadge=await page.locator("#typeBadge").textContent();
    await page.locator("#ynButton").click();
    await page.locator("#ynStop").click();
@@ -254,7 +254,7 @@ async function fill30(page,chooser){
    await page.locator("#resultTabAxes").click();
    assert.equal(await page.locator("#resultPanelAxes").isVisible(),true);
    assert.equal(await page.locator("#resultPanelType").isVisible(),false);
-   assert.match(await page.locator("#axes").textContent(),/判断不可/);
+   assert.match(await page.locator("#axes").textContent(),/判断できない/);
    await page.locator("#resultTabNotes").click();
    assert.equal(await page.locator("#resultPanelNotes").isVisible(),true);
    assert.match(await page.locator("#resultNotice").textContent(),/未検証/);
