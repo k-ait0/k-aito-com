@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; connect-src 'none'; img-src 'none'; object-src 'none'; form-action 'none'; base-uri 'none'">
+<title>A05 D265｜設問品質・16タイプ分析（合成データ専用）</title>
+<style>
+:root{font-family:Inter,"Hiragino Kaku Gothic ProN","Yu Gothic",system-ui,sans-serif;color:#1c2b43;background:#f5f7fa;font-synthesis:none}
+*{box-sizing:border-box}body{margin:0;padding:0 16px 56px}button,select{font:inherit}button:focus-visible,select:focus-visible{outline:3px solid #3684dc;outline-offset:2px}
+.wrapper{max-width:1150px;margin:auto}.top{display:flex;align-items:center;justify-content:space-between;padding:28px 0 22px;gap:16px}.eyebrow{font-size:12px;letter-spacing:.13em;color:#436281;font-weight:800}.mark{font-size:12px;border:1px solid #cedaeb;padding:7px 11px;border-radius:7px;color:#35547b}
+h1{font-size:clamp(23px,3.1vw,34px);letter-spacing:-.03em;margin:5px 0 0}h2{font-size:18px;letter-spacing:-.01em;margin:0 0 14px}h3{font-size:15px;margin:0 0 10px}p{line-height:1.65}
+.intro{font-size:13px;color:#56687e;margin:0 0 18px}.notice{padding:13px 16px;border-left:3px solid #6988b1;background:#eaf0f8;border-radius:0 10px 10px 0;margin-bottom:22px;font-size:13px;line-height:1.65;color:#29466a}
+.card{background:#fff;border:1px solid #e3e9f1;border-radius:15px;padding:20px 22px;margin-bottom:18px;box-shadow:0 3px 16px #213e6005}
+.filters{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.filter label{display:block;font-size:12px;font-weight:750;color:#53687f;margin-bottom:5px}.filter select{width:100%;background:#fff;border:1px solid #cad6e5;border-radius:8px;padding:10px 8px;color:#24415d;min-height:44px}
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:18px}.kpi{padding:18px;border-radius:14px;border:1px solid #e0e8f1;background:#fff}.kpi small{color:#5b6f89;display:block;font-size:12px}.kpi strong{display:block;font-size:28px;font-weight:780;margin:6px 0 2px;font-variant-numeric:tabular-nums}.kpi span{font-size:11px;color:#77879b}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:18px}.muted{font-size:12px;color:#687c91}.meta{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:14px}.count{font-size:12px;color:#63768b;font-variant-numeric:tabular-nums}
+.type-list{display:grid;gap:6px}.type-item{display:grid;grid-template-columns:58px minmax(0,1fr) 60px 60px;align-items:center;gap:8px;min-height:27px}.type-item strong{font-size:12px}.type-item .bar{height:10px;border-radius:3px;background:#edf2f7;overflow:hidden}.type-item .bar>span{height:100%;display:block;background:#427eae;border-radius:3px}.type-item .pct{font-size:12px;text-align:right;font-variant-numeric:tabular-nums}.type-item .n{font-size:11px;color:#7c8a9a;text-align:right;font-variant-numeric:tabular-nums}
+.unresolved{padding:12px;background:#f6f8fb;border-radius:8px;margin-top:13px;font-size:12px;color:#4b637d}
+.queue-list{display:grid;gap:10px}.queue{border:1px solid #dae5f0;border-radius:9px;padding:10px 12px;display:flex;justify-content:space-between;gap:10px;align-items:center}
+.queue strong{font-size:13px}.queue p{font-size:11px;margin:5px 0 0;color:#718197}
+.queue .num{text-align:right;font-variant-numeric:tabular-nums;font-size:12px;color:#2f597d}
+.table-scroll{overflow-x:auto}.datatable{border-collapse:collapse;width:100%;min-width:670px;font-size:12px}.datatable th{text-align:left;color:#64788f;font-size:11px;font-weight:750;background:#f7f9fc;padding:10px;border-bottom:1px solid #e0e7f0}.datatable td{padding:9px 10px;border-bottom:1px solid #edf0f4;white-space:nowrap;font-variant-numeric:tabular-nums}.datatable tr:hover{background:#f7faff}
+.datatable button{background:transparent;color:#235d93;border:0;text-align:left;text-decoration:underline;cursor:pointer;padding:4px 0;font-weight:750}
+.pill{font-size:10px;color:#365477;background:#edf2fa;border-radius:20px;padding:4px 7px;display:inline-block}.pill.critical{color:#85542b;background:#fcf2e7}
+.bars{display:grid;gap:8px}.dist-row{display:grid;grid-template-columns:140px minmax(0,1fr) 60px;gap:10px;align-items:center;font-size:12px}
+.dist-track{height:13px;background:#edf2f8;border-radius:4px;overflow:hidden}.dist-fill{height:100%;background:#6e9dc5;display:block}.dist-row strong{font-variant-numeric:tabular-nums;text-align:right}
+.detail{border-top:1px solid #e3e9f0;padding-top:14px;margin-top:16px}.detail-info{font-size:12px;color:#62768d;margin-bottom:11px}
+.code{font-variant-numeric:tabular-nums}footer{font-size:12px;color:#75859b;line-height:1.8;padding:10px 0}.empty{font-size:13px;color:#74849a;padding:14px 4px}
+@media(max-width:850px){.filters{grid-template-columns:repeat(2,minmax(0,1fr))}.two{grid-template-columns:1fr}.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:450px){body{padding:0 10px 40px}.top{padding:20px 4px}.mark{font-size:10px}.card{padding:15px}.kpi{padding:13px}.kpi strong{font-size:23px}.filters{gap:8px}.type-item{grid-template-columns:40px minmax(0,1fr) 51px 36px;gap:4px}.dist-row{grid-template-columns:94px minmax(0,1fr) 56px}.notice{font-size:12px}}
+</style>
+</head>
+<body>
+<div class="wrapper">
+<header class="top"><div><div class="eyebrow">A05 · ANALYTICS SANDBOX</div><h1>設問品質と16タイプの分布</h1></div><span class="mark">D265 / 合成データ</span></header>
+<p class="intro">診断品質の評価に向けた管理画面の研究用プレビュー。現在は外部回答の取得やデータベース連携を行いません。</p>
+<div class="notice" role="note"><strong>表示値はすべて合成・架空データです。</strong> 受検者から収集した統計ではありません。16タイプのIDも模擬分類による例示です。設問レビュー基準は未承認で、自動的な設問変更は行いません。</div>
+<section class="card" aria-label="集計フィルター">
+<div class="filters">
+ <div class="filter"><label for="version">診断バージョン</label><select id="version"></select></div>
+ <div class="filter"><label for="period">期間（日本時間）</label><select id="period"><option value="all">全期間</option><option value="last7">直近7日</option><option value="last1">最終日</option></select></div>
+ <div class="filter"><label for="phase">分類時点</label><select id="phase"><option value="BASE_30">30問終了時</option><option value="FINAL_AFTER_YN">Y/N補完後</option></select></div>
+ <div class="filter"><label for="denominator">タイプ分布の分母</label><select id="denominator"><option value="all">全診断完了者</option><option value="single">単独分類者のみ</option></select></div>
+</div>
+</section>
+<section class="kpis" id="kpis" aria-label="集計サマリー"></section>
+<div class="two">
+ <section class="card" aria-label="16タイプ">
+  <div class="meta"><h2>16タイプの出現割合</h2><span id="typeMeta" class="count"></span></div>
+  <div class="type-list" id="typeList"></div>
+  <div id="typeUnresolved" class="unresolved"></div>
+  <p class="muted">割合は選択した診断版・期間・分類時点で算出。未確定者を16タイプに按分しません。人口の割合や分類確率を表すものではありません。</p>
+ </section>
+ <section class="card" aria-label="設問の見直し候補">
+  <div class="meta"><h2>編集レビュー候補</h2><span id="policyVersion" class="pill"></span></div>
+  <p class="muted">仮基準：出題100件以上、判断不能率25%以上、他設問の加重平均より10ポイント以上高い場合。編集者の確認が必要で、質問は自動変更されません。</p>
+  <div class="queue-list" id="queueList"></div>
+ </section>
+</div>
+<section class="card" aria-label="設問別の回答分布">
+ <div class="meta"><h2>設問別回答分布</h2><div class="filter"><label for="format">回答形式</label><select id="format"><option value="CORE">7段階／スキップ</option><option value="YN">補助Y/N</option></select></div></div>
+ <div class="table-scroll"><table class="datatable"><thead><tr><th>設問ID・版</th><th>軸</th><th>出題数</th><th id="rateName">判断不能率</th><th id="secondRateName">非該当率</th><th>中間4率 / 備考</th><th>編集候補</th></tr></thead><tbody id="questionRows"></tbody></table></div>
+ <div id="questionDetail" class="detail" aria-live="polite"></div>
+</section>
+<footer>研究環境：外部通信なし・回答送信APIなし・本番DB接続なし。診断の採点・公開プレビューは変更していません。分析データの取得・保持・削除・管理権限は別途承認が必要です。</footer>
+</div>
+<script id="data" type="application/json">__D265_SYNTHETIC_DATA__</script>
+<script>
+"use strict";
+(()=>{
+ const data=JSON.parse(document.getElementById("data").textContent);
+ if(!data.synthetic||!data.noActualResponses||data.flags.dbConnected||data.flags.networkEnabled||data.flags.autoReplacementEnabled)
+  throw Error("D265: real data / collection must never be enabled in this preview");
+ const $=id=>document.getElementById(id);
+ const toPercent=x=>x==null?"—":(x*100).toFixed(1)+"%";
+ const types=Array.from({length:16},(_,i)=>"T"+String(i+1).padStart(2,"0"));
+ const make=(tag,cls,txt)=>{
+  const e=document.createElement(tag);if(cls)e.className=cls;if(txt!==undefined)e.textContent=String(txt);return e;
+ };
+ const versions=[...new Set(data.dailyTypeCounts.map(x=>x.questionnaire_version))].sort();
+ for(const v of versions){const o=make("option","",v);o.value=v;$("version").append(o);}
+ function selectedDays(version){
+  const days=[...new Set(data.dailyTypeCounts.filter(x=>x.questionnaire_version===version).map(x=>x.day_jst))].sort();
+  const mode=$("period").value;
+  return new Set(mode==="all"?days:mode==="last1"?days.slice(-1):days.slice(-7));
+ }
+ function readTypeCounts(version,phase,days){
+  const rs=data.dailyTypeCounts.filter(r=>r.questionnaire_version===version&&r.phase===phase&&days.has(r.day_jst));
+  const b=Object.fromEntries(types.map(t=>[t,0]));let unresolved=0,multiple=0,info=0,fromYN=0;
+  for(const r of rs){
+   if(types.includes(r.type_bucket)){
+    b[r.type_bucket]+=r.n;if(r.source_bucket==="YN_PROVISIONAL")fromYN+=r.n;
+   }else{
+    unresolved+=r.n;
+    if(r.type_bucket==="MULTIPLE")multiple+=r.n;
+    if(r.type_bucket==="NO_INFORMATION")info+=r.n;
+   }
+  }
+  const all=rs.reduce((n,r)=>n+r.n,0);
+  const single=all-unresolved;
+  return {b,all,single,unresolved,multiple,info,fromYN};
+ }
+ function readQuestionCounts(version,days,phase){
+  const items=new Map();
+  for(const r of data.dailyQuestionCounts){
+   if(r.questionnaire_version!==version||r.phase!==phase||!days.has(r.day_jst))continue;
+   const key=JSON.stringify([r.question_id,r.question_revision]);
+   if(!items.has(key))items.set(key,{id:r.question_id,revision:r.question_revision,
+    shown:0,skipUnknown:0,skipNA:0,c:[0,0,0,0,0,0,0],yes:0,no:0,unsure:0,notAnswered:0});
+   const x=items.get(key);
+   x.shown+=r.shown_count;x.skipUnknown+=r.skip_unknown;x.skipNA+=r.skip_not_applicable;
+   for(let i=0;i<7;i++)x.c[i]+=r["c"+(i+1)];
+   x.yes+=r.yn_yes;x.no+=r.yn_no;x.unsure+=r.yn_unsure;x.notAnswered+=r.not_answered;
+  }
+  return [...items.values()];
+ }
+ function reviewed(items){
+  const p=data.reviewPolicy;
+  return items.filter(q=>{
+   if(q.shown<p.minQuestionExposures||q.skipUnknown/q.shown<p.unknownRateAtLeast)return false;
+   const others=items.filter(o=>o.id!==q.id);
+   const n=others.reduce((s,o)=>s+o.shown,0);
+   if(n<p.minOtherItemExposures)return false;
+   const unk=others.reduce((s,o)=>s+o.skipUnknown,0);
+   return q.skipUnknown/q.shown-unk/n>=p.excessVsOtherItemsAtLeast;
+  }).sort((a,b)=>b.skipUnknown/b.shown-a.skipUnknown/a.shown);
+ }
+ function paintKpis(summary,flagged){
+  const list=[
+   ["診断完了件数",summary.all,"選択した版と期間"],
+   ["単独タイプ",summary.single,toPercent(summary.all?summary.single/summary.all:null)+"（全完了者比）"],
+   ["未確定",summary.unresolved,toPercent(summary.all?summary.unresolved/summary.all:null)+"（全完了者比）"],
+   ["編集レビュー候補",flagged.length,"仮ルール・実行なし"]
+  ];
+  $("kpis").replaceChildren(...list.map(([name,n,info])=>{
+   const e=make("article","kpi");
+   e.append(make("small","",name),make("strong","",String(n)),make("span","",info));return e;
+  }));
+ }
+ function paintTypes(s){
+  const target=$("typeList");target.replaceChildren();
+  const denom=$("denominator").value==="all"?s.all:s.single;
+  const values=types.map(t=>denom?s.b[t]/denom:0);
+  const peak=Math.max(...values,0.001);
+  for(let i=0;i<16;i++){
+   const r=make("div","type-item");
+   const label=make("strong","",types[i]);
+   const track=make("div","bar");const fill=make("span");
+   fill.style.width=(values[i]/peak*100)+"%";track.append(fill);
+   const pct=make("span","pct",denom?toPercent(values[i]):"—");
+   const n=make("span","n",s.b[types[i]]);
+   r.append(label,track,pct,n);target.append(r);
+  }
+  $("typeMeta").textContent="分母 "+denom+"件（"+($("denominator").value==="all"?"全完了":"単独分類")+"）";
+  $("typeUnresolved").textContent="未確定 "+s.unresolved+"件（複数候補 "+s.multiple+"件／情報不足 "+s.info+"件）"+
+   " · Y/Nでの暫定単独分類 "+s.fromYN+"件。";
+ }
+ function paintQueue(items){
+  const list=$("queueList");list.replaceChildren();
+  $("policyVersion").textContent=data.reviewPolicy.version+" / 未承認";
+  if(!items.length){list.append(make("p","empty","この版・期間では仮基準に該当する設問はありません。"));return;}
+  for(const q of items){
+   const div=make("div","queue");
+   const intro=make("div");intro.append(make("strong","",q.id+" · rev."+q.revision),
+    make("p","","回答者に確認し、設問文・左右選択肢・意味領域を編集レビュー"));
+   const number=make("div","num",toPercent(q.skipUnknown/q.shown));
+   number.append(make("p","","判断不能 "+q.skipUnknown+" / 出題 "+q.shown));
+   div.append(intro,number);list.append(div);
+  }
+ }
+ function drawDetail(q,phase){
+  const wrap=$("questionDetail");wrap.replaceChildren();
+  const isCore=phase==="CORE";
+  const meta=isCore?data.questionLabels[q.id]:data.ynQuestionLabels[q.id];
+  wrap.append(make("h3","",q.id+" · rev."+q.revision+"の回答分布"));
+  wrap.append(make("p","detail-info",meta?.stem||"補助設問（合成データ）"));
+  const rates=isCore?[...q.c.map((n,i)=>[String(i+1),n]),["判断できない",q.skipUnknown],["当てはまらない",q.skipNA]]:
+   [["YES",q.yes],["NO",q.no],["判断できない",q.unsure],["提示後未回答",q.notAnswered]];
+  const group=make("div","bars");
+  for(const [label,n] of rates){
+   const line=make("div","dist-row"),heading=make("span","",label),track=make("span","dist-track"),fill=make("span","dist-fill");
+   fill.style.width=(q.shown?n/q.shown*100:0)+"%";
+   track.append(fill);
+   line.append(heading,track,make("strong","",n+" / "+q.shown));
+   group.append(line);
+  }
+  wrap.append(group);
+  wrap.append(make("p","muted","分母：この設問版を実際に提示した完了セッション。未出題のセッションは含めません。"));
+ }
+ let selectedQuestionId=null;
+ function paintQuestions(rows,flagged,phase){
+  const tbody=$("questionRows");tbody.replaceChildren();
+  const isCore=phase==="CORE";
+  $("rateName").textContent=isCore?"判断不能率":"Y/N 判断不能率";
+  $("secondRateName").textContent=isCore?"非該当率":"YES率";
+  const flaggedSet=new Set(flagged.map(q=>JSON.stringify([q.id,q.revision])));
+  const arr=rows.slice().sort((a,b)=>{
+   const ar=isCore?a.skipUnknown/a.shown:a.unsure/a.shown;
+   const br=isCore?b.skipUnknown/b.shown:b.unsure/b.shown;
+   return br-ar||b.shown-a.shown||a.id.localeCompare(b.id);
+  });
+  for(const q of arr){
+   const tr=make("tr");
+   const key=JSON.stringify([q.id,q.revision]),tag=(isCore?data.questionLabels:data.ynQuestionLabels)[q.id];
+   const idCell=make("td"),btn=make("button","",q.id+" / "+q.revision);
+   btn.type="button";btn.setAttribute("aria-label",q.id+"の回答分布を見る");
+   btn.addEventListener("click",()=>{selectedQuestionId=key;drawDetail(q,phase);});
+   idCell.append(btn);
+   const valid=q.c.reduce((n,x)=>n+x,0);
+   tr.append(idCell,make("td","",tag?.axis||"Y/N"),make("td","",q.shown),
+    make("td","",toPercent((isCore?q.skipUnknown:q.unsure)/q.shown)),
+    make("td","",toPercent((isCore?q.skipNA:q.yes)/q.shown)),
+    make("td","",isCore?toPercent(valid?q.c[3]/valid:null):"未回答 "+q.notAnswered+"件"));
+   const status=make("td"),isFlag=flaggedSet.has(key)&&isCore;
+   status.append(make("span","pill"+(isFlag?" critical":""),isFlag?"要レビュー":"—"));
+   tr.append(status);tbody.append(tr);
+  }
+  if(!arr.length){
+   const tr=make("tr"),td=make("td","empty","該当期間の回答分布はありません。");td.colSpan=7;tr.append(td);tbody.append(tr);
+  }
+  const selected=arr.find(q=>JSON.stringify([q.id,q.revision])===selectedQuestionId)||arr[0];
+  if(selected){selectedQuestionId=JSON.stringify([selected.id,selected.revision]);drawDetail(selected,phase);}
+  else {$("questionDetail").replaceChildren(make("p","empty","表示対象がありません。"));selectedQuestionId=null;}
+ }
+ function paint(){
+  const version=$("version").value,days=selectedDays(version);
+  const phase=$("phase").value,format=$("format").value;
+  const type=readTypeCounts(version,phase,days);
+  const core=readQuestionCounts(version,days,"CORE");
+  const flagged=reviewed(core);
+  paintKpis(type,flagged);paintTypes(type);paintQueue(flagged);
+  paintQuestions(format==="CORE"?core:readQuestionCounts(version,days,"YN"),flagged,format);
+ }
+ for(const id of ["version","period","phase","denominator","format"]){
+  $(id).addEventListener("change",()=>{if(["version","period","format"].includes(id))selectedQuestionId=null;paint();});
+ }
+ paint();
+ window.__A05_D265_TEST_HOOK__=Object.freeze({
+  synthetic:true, noNetwork:true, status:()=>({
+   form:$("version").value,period:$("period").value,phase:$("phase").value,
+   coreRows:$("questionRows").children.length,reviewItems:$("queueList").children.length
+  })
+ });
+})();
+</script>
+</body>
+</html>
