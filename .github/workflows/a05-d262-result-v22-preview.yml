@@ -1,0 +1,81 @@
+name: A05 Ver.2.2 evidence-centered result UI QA and preview publication
+on:
+  push:
+    branches:
+      - research/a05-result-parameters-v22-20261120
+    paths:
+      - '.github/workflows/a05-d262-result-v22-preview.yml'
+      - 'research/a05/d262-result-parameters-v22-template.html'
+      - 'scripts/a05-d262-build-result-v22.mjs'
+      - 'scripts/test-a05-d262-result-v22-browser.cjs'
+      - 'scripts/a05-d262-live-preview-audit.mjs'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: a05-v22-publication
+  cancel-in-progress: false
+jobs:
+  result-v22:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Guard accepted Ver.1 and published Ver.2/Ver.2.1 and root
+        run: |
+          git fetch origin gh-pages
+          test "$(git show origin/gh-pages:index.html | sha256sum | cut -d' ' -f1)" = 'd4be3ac612c7bc1cad07bbbb385a7b6910614ac0356598ae6345d7ed5300d070'
+          test "$(git show origin/gh-pages:preview/yn/index.html | sha256sum | cut -d' ' -f1)" = '5cf61a5114e69c292080be803ae835c5e75d400f4a773a8e89fb2347547d11e1'
+          test "$(git show origin/gh-pages:preview/yn-v2/index.html | sha256sum | cut -d' ' -f1)" = '31d6ecf62393c24100604c51a1ba0ec280369f8780e37c2bc775b1913ba6dfc8'
+          test "$(git show origin/gh-pages:preview/yn-v21/index.html | sha256sum | cut -d' ' -f1)" = '39a07c893b1060b06f0a6050d2610510f494eb85801034c2b85ecee811164c0f'
+          test "$(git rev-parse HEAD:research/a05/d259-mobile-v21-template.html)" = '04d591f87e36d6e9ca760451423e85d0972bb096'
+          test "$(git rev-parse HEAD:scripts/a05-d255-yn-provisional-classifier.mjs)" = 'e54414dfbca32cfd0064d5dd6326dd083f14754d'
+      - name: Verify unchanged scoring and analytics-contract tests
+        run: |
+          node --test scripts/test-a05-d255-yn-provisional-classifier.mjs
+          node --test scripts/test-a05-d261-analytics-contract.mjs
+      - name: Build v2.2 isolated offline HTML
+        run: |
+          node --check scripts/a05-d262-build-result-v22.mjs
+          node --check scripts/test-a05-d262-result-v22-browser.cjs
+          node --check scripts/a05-d262-live-preview-audit.mjs
+          node scripts/a05-d262-build-result-v22.mjs
+          test -s research/a05/generated/d262-result-v22-preview.html
+          grep -q 'A05-D262-RESULT-EVIDENCE-V2_2-1' research/a05/generated/d262-result-v22-preview.html
+      - name: Use existing hosted-runner Chrome without browser downloads
+        run: |
+          npm install --prefix /tmp/a05-v22-fast --no-audit --no-fund --no-save playwright@1.56.1
+          CHROME="$(command -v google-chrome-stable || command -v google-chrome || command -v chromium || true)"
+          test -n "$CHROME"
+          "$CHROME" --version
+          echo "A05_CHROME_PATH=$CHROME" >> "$GITHUB_ENV"
+      - name: Gate 6 viewports, 50 question layouts, and 10 evidence scenarios each
+        env:
+          NODE_PATH: /tmp/a05-v22-fast/node_modules
+        run: node scripts/test-a05-d262-result-v22-browser.cjs
+      - name: Publish only new preview/yn-v22, preserve earlier pages
+        run: |
+          cp research/a05/generated/d262-result-v22-preview.html /tmp/a05-d262-tested.html
+          cp scripts/a05-d262-live-preview-audit.mjs /tmp/a05-d262-live-preview-audit.mjs
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin gh-pages
+          git checkout -B gh-pages origin/gh-pages
+          mkdir -p preview/yn-v22
+          cp /tmp/a05-d262-tested.html preview/yn-v22/index.html
+          git add preview/yn-v22/index.html
+          if ! git diff --cached --quiet; then
+            git commit -m "Publish isolated A05 v2.2 result parameter UX preview"
+            git push origin HEAD:refs/heads/gh-pages
+          fi
+          test "$(git show HEAD:index.html | sha256sum | cut -d' ' -f1)" = 'd4be3ac612c7bc1cad07bbbb385a7b6910614ac0356598ae6345d7ed5300d070'
+          test "$(git show HEAD:preview/yn/index.html | sha256sum | cut -d' ' -f1)" = '5cf61a5114e69c292080be803ae835c5e75d400f4a773a8e89fb2347547d11e1'
+          test "$(git show HEAD:preview/yn-v2/index.html | sha256sum | cut -d' ' -f1)" = '31d6ecf62393c24100604c51a1ba0ec280369f8780e37c2bc775b1913ba6dfc8'
+          test "$(git show HEAD:preview/yn-v21/index.html | sha256sum | cut -d' ' -f1)" = '39a07c893b1060b06f0a6050d2610510f494eb85801034c2b85ecee811164c0f'
+      - name: Verify public v2.2 HTML exactly matches tested artifact
+        run: node /tmp/a05-d262-live-preview-audit.mjs /tmp/a05-d262-tested.html
