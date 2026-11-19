@@ -13,6 +13,11 @@ assert.match(source,/connect-src 'none'/);
 assert.match(source,/form-action 'none'/);
 assert.match(source,/noindex,nofollow/);
 assert.doesNotMatch(source,/https?:\/\//);
+// Published mock must contain only aggregate counts, never a synthetic session snapshot.
+assert.doesNotMatch(source,/SYNTHETIC-NONUSER-|SYNTHETIC-DEDUP-/);
+assert.doesNotMatch(source,/"submissionId"\s*:/);
+assert.doesNotMatch(source,/"idempotencyKey"\s*:/);
+assert.doesNotMatch(source,/"exposures"\s*:/);
 const local=pathToFileURL(pathname).href;
 const dateSessions={V_DEMO_A:420,V_DEMO_B:180};
 function sum(rows,filter){return rows.filter(filter).reduce((n,x)=>n+x.n,0);}
