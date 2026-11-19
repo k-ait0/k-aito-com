@@ -1,0 +1,51 @@
+{
+  "schema": "KAITO_ANALYTICS_FED_H15_HISTORICAL_SOURCE_INVENTORY_V1",
+  "as_of_jst": "2026-11-20",
+  "work_scope": "DATA_ACQUISITION_PROVENANCE_QA_ONLY",
+  "source_review_url": "https://www.federalreserve.gov/datadownload/Review.aspx?filetype=csv&from=01%2F01%2F1970&label=include&layout=seriescolumn&rel=H15&series=d7e27b7b09a3a7feae95b9c61781fcd8&to=12%2F31%2F1980",
+  "official_release": "H.15 Selected Interest Rates",
+  "series": [
+    {
+      "id": "H15/H15/RIFSPFF_N.M",
+      "type": "Federal funds effective rate, monthly average",
+      "published_start": "1954-07",
+      "published_end": "2026-10",
+      "official_published_observations": 868,
+      "private_extract_first": "2025-03",
+      "private_extract_last": "2026-10",
+      "private_extracted_observations": 20,
+      "not_extracted_prior_months": 848
+    },
+    {
+      "id": "H15/H15/RIFLGFCY10_N.M",
+      "type": "10-year US Treasury constant maturity market yield, monthly average",
+      "published_start": "1953-04",
+      "published_end": "2026-10",
+      "official_published_observations": 883,
+      "private_extract_first": "2025-03",
+      "private_extract_last": "2026-10",
+      "private_extracted_observations": 20,
+      "not_extracted_prior_months": 863
+    }
+  ],
+  "data_state": "OFFICIAL_PUBLISHED_COVERAGE_CONFIRMED_PRIVATE_EXCERPT_ONLY_FULL_RAW_NOT_ACQUIRED",
+  "source_raw_bytes_downloaded": false,
+  "raw_source_sha256": null,
+  "qc_early_values_against_official_source": "NOT_RUN",
+  "private_source_years_not_yet_acquired": true,
+  "official_ddp_transition": {
+    "source_url": "https://www.federalreserve.gov/data/data-download-fred-information.htm",
+    "package_option_retirement": "2027-03-31",
+    "ddp_page_retirement": "2027-07-01",
+    "raw_xml_release_pages_remain_available": true,
+    "fred_fallback": true,
+    "fred_ddp_crosswalk_official_link": "https://www.federalreserve.gov/data/data-download-fred-information.htm",
+    "fred_api_key_may_be_needed": true
+  },
+  "next_actions": [
+    "Acquire original Fed H.15 full-history XML (direct official release) or official series-validated FRED equivalent and independently compare values.",
+    "Preserve original bytes and SHA256 outside public GitHub, then normalize distinct two H15 monthly series.",
+    "Do not equate benchmark yields with investable long-bond total returns."
+  ],
+  "publication_status": "NO_MARKET_DATA_RELEASE_APPROVAL"
+}
