@@ -22,8 +22,9 @@ function dayJST(value){
   "completedAt must be ISO8601 with explicit timezone");
  const date=new Date(value);
  need(Number.isFinite(date.getTime()),"completedAt invalid");
- return new Intl.DateTimeFormat("en-CA",{timeZone:"Asia/Tokyo",year:"numeric",month:"2-digit",day:"2-digit"})
-  .format(date).replaceAll("/","-");
+ const parts=new Intl.DateTimeFormat("en-US",{timeZone:"Asia/Tokyo",year:"numeric",month:"2-digit",day:"2-digit"}).formatToParts(date);
+ const get=type=>parts.find(p=>p.type===type)?.value;
+ return [get("year"),get("month"),get("day")].join("-");
 }
 function countRows(){
  return {shown_count:0,c1:0,c2:0,c3:0,c4:0,c5:0,c6:0,c7:0,
@@ -80,10 +81,11 @@ export function buildOfflineQualityRollups(sessions,{reviewPolicy=D264_PROPOSED_
    else r[map[e.responseCode]]++;
   }
  }
- const typeBuckets=new Map();
+ const typeBuckets=new Map(),seenTypeIds=new Set();
  for(const s of sessions){
   // Duplicates are handled by preserving the first snapshot once.
-  if(s!==sessions.find(t=>t.submissionId===s.submissionId))continue;
+  if(seenTypeIds.has(s.submissionId))continue;
+  seenTypeIds.add(s.submissionId);
   const day=dayJST(s.completedAt);
   for(const phase of phaseNames){
    const [type_bucket,source_bucket]=resultBucket(s.classifications[phase],phase);
