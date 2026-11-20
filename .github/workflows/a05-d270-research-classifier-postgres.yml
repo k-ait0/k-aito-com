@@ -1,0 +1,78 @@
+name: A05 D270 actual research classifier and synthetic Postgres integration
+on:
+  push:
+    branches:
+      - research/a05-d270-real-classifier-db-20261120
+    paths:
+      - '.github/workflows/a05-d270-research-classifier-postgres.yml'
+      - 'scripts/a05-d270-classifier-db.mjs'
+      - 'scripts/a05-d270-loopback-api.mjs'
+      - 'scripts/test-a05-d270-integrated-postgres.mjs'
+      - 'docs/A05_D270_CLASSIFIER_DB_INTEGRATION_20261120.md'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  integrated-research-synthetic-postgres:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 17
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: a05_d270_ci
+          POSTGRES_PASSWORD: ephemeral_ci_only_not_production
+          POSTGRES_DB: a05_d270_ci
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U a05_d270_ci -d a05_d270_ci"
+          --health-interval 5s --health-timeout 3s --health-retries 10
+    env:
+      PGHOST: 127.0.0.1
+      PGPORT: '5432'
+      PGUSER: a05_d270_ci
+      PGPASSWORD: ephemeral_ci_only_not_production
+      PGDATABASE: a05_d270_ci
+      A05_D267_SANDBOX_MODE: synthetic-ephemeral-ci
+      A05_D270_SANDBOX_MODE: synthetic-ephemeral-ci
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify public A05 research and release files were not changed
+        run: |
+          git fetch origin gh-pages
+          test "$(git show origin/gh-pages:index.html | sha256sum | cut -d' ' -f1)" = 'd4be3ac612c7bc1cad07bbbb385a7b6910614ac0356598ae6345d7ed5300d070'
+          test "$(git show origin/gh-pages:preview/yn/index.html | sha256sum | cut -d' ' -f1)" = '5cf61a5114e69c292080be803ae835c5e75d400f4a773a8e89fb2347547d11e1'
+          test "$(git show origin/gh-pages:preview/yn-v2/index.html | sha256sum | cut -d' ' -f1)" = '31d6ecf62393c24100604c51a1ba0ec280369f8780e37c2bc775b1913ba6dfc8'
+          test "$(git show origin/gh-pages:preview/yn-v21/index.html | sha256sum | cut -d' ' -f1)" = '39a07c893b1060b06f0a6050d2610510f494eb85801034c2b85ecee811164c0f'
+          test "$(git show origin/gh-pages:preview/yn-v22/index.html | sha256sum | cut -d' ' -f1)" = 'fa0919ce234aa01674f52a1ee999bea4fe0d92695ae9cc9e1924fd18ca9bdc61'
+          test "$(git show origin/gh-pages:preview/a05-analytics-d265/index.html | sha256sum | cut -d' ' -f1)" = '01669940e630341742521f561dde0ff5badceea2491595f01c15046109632650'
+          git diff --exit-code origin/research/a05-d269-classifier-parity-20261120 HEAD -- scripts/a05-d269-server-reference.mjs scripts/a05-d255-yn-provisional-classifier.mjs research/a05/d262-result-parameters-v22-template.html
+      - name: Verify D255, D261, D264 and D270 module syntax
+        run: |
+          node --test scripts/test-a05-d255-yn-provisional-classifier.mjs
+          node --test scripts/test-a05-d261-analytics-contract.mjs
+          node --test scripts/test-a05-d264-quality-rollups.mjs
+          node --check scripts/a05-d270-classifier-db.mjs
+          node --check scripts/a05-d270-loopback-api.mjs
+          node --check scripts/test-a05-d270-integrated-postgres.mjs
+      - name: Install only ephemeral test Postgres client
+        run: npm install --prefix /tmp/a05-d270-pg --no-audit --no-fund --no-save pg@8
+      - name: Run legacy D267 synthetic-only fixtures in this disposable database
+        env:
+          NODE_PATH: /tmp/a05-d270-pg/node_modules
+        run: node scripts/test-a05-d267-synthetic-api-integration.mjs
+      - name: Run D270 128 form validation and server research classifier to SQL integration
+        env:
+          NODE_PATH: /tmp/a05-d270-pg/node_modules
+        run: node scripts/test-a05-d270-integrated-postgres.mjs
+      - name: Deny production deployment boundary
+        run: |
+          test ! -e research/a05/analytics/production_db_credentials
+          test ! -e preview/a05-d270
+          echo 'A05_D270_SYNTHETIC_D269_REAL_RESEARCH_CLASSIFIER_DB_CI_PASS'
