@@ -1,0 +1,61 @@
+{
+  "schema": "KAITO_ANALYTICS_JP_CPI_202610_OFFICIAL_DISPLAY_DELTA_V1",
+  "checked_as_of_jst": "2026-11-20 after 08:30",
+  "research_only": true,
+  "source_only_scope": "CPI_DATA_ACQUISITION_PROVENANCE_QA",
+  "publication": {
+    "observation_month": "2026-10",
+    "release_jst": "2026-11-20 08:30",
+    "publisher": "Statistics Bureau of Japan",
+    "base_year": 2025,
+    "unit": "INDEX_2025_EQUALS_100",
+    "seasonal_adjustment": "NSA",
+    "decimal_places_published": 1
+  },
+  "official_links": [
+    "https://www.stat.go.jp/data/cpi/sokuhou/tsuki/index-z.htm?mod=article_inline",
+    "https://www.e-stat.go.jp/stat-search/file-download?fileKind=2&statInfId=000040525997",
+    "https://www.e-stat.go.jp/stat-search/files?cycle=1&data=1&layout=datalist&metadata=1&month=24101210&page=1&tclass1=000001243877&toukei=00200573&tstat=000001243876&year=20260"
+  ],
+  "target_series": [
+    {
+      "dataset_id": "JP_CPI_HEADLINE_2025_LINKED",
+      "prior_2026_09": 102.2,
+      "current_2026_10": 103.1,
+      "official_display_value_verified": true
+    },
+    {
+      "dataset_id": "JP_CPI_EX_RENT_2025_LINKED",
+      "prior_2026_09": 102.5,
+      "current_2026_10": 103.5,
+      "official_display_value_verified": true
+    }
+  ],
+  "private_local_csv": {
+    "filename": "K_Aito_Analytics_JP_CPI_202610_OFFICIAL_DISPLAY_DELTA.csv",
+    "file_bytes": 539,
+    "file_sha256": "1e108d25a3b21da33150a95ba5bd100ea6e120155efd9781aeb31f7588960a28",
+    "rows": 2,
+    "stored_in_github": false
+  },
+  "quality_gates": {
+    "official_html_release_and_headline": "CONFIRMED",
+    "official_estat_report_with_exrent": "CONFIRMED",
+    "original_official_CSV_download": "UNAVAILABLE_ENVIRONMENT",
+    "original_official_excel_download": "UNAVAILABLE_ENVIRONMENT",
+    "original_CSV_sha256": "NOT_VERIFIED",
+    "original_excel_sha256": "NOT_VERIFIED",
+    "pdf_snapshot_consistency": "UNRESOLVED_2026_09_SERVED_IN_SCREENSHOT_WHILE_LATEST_HTML_AND_ESTAT_SAY_2026_10",
+    "prior_stored_encrypted_dataset_decrypted": "NOT_DONE",
+    "whole_long_history_revalidated": "NOT_DONE",
+    "oct_2026_approved_for_canonical": "NO_DISPLAY_EXCERPT_ONLY",
+    "public_release_or_engine_integration": "NOT_APPROVED"
+  },
+  "acceptance": "PUBLISHED_INDEX_EXCERPT_CAPTURE_ONLY",
+  "remaining": [
+    "Obtain source byte-identical 2026-10 e-Stat XLS/official CSV and SHA256, verify correct 2025-base columns.",
+    "Confirm full prior 2026-09 private normalized source is authentic in owner-only environment.",
+    "Append 2026-10 to verified private longitudinal CPI only after byte and column mapping QA."
+  ],
+  "unrelated_assets_or_core_changed": false
+}
