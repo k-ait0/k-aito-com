@@ -142,22 +142,25 @@
     },
     {
       "category": "RATES",
-      "state": "BOJ_992_EXTRACTED_SAMPLE_36_OF_36_QA_PASS_FULL_RAW_PENDING_FED_LONG_UNACQUIRED",
+      "state": "BOJ_FULL_992_PRIVATE_WEB_EXTRACT_FED_376_PRIVATE_WEB_EXTRACTS_RAW_AUTH_PENDING",
       "records": [
         "BOJ uncollateralized overnight call rate (month-end, monthly average): 1985-07..2026-10 all 496 monthly periods transcribed from official rendered web table, 992 numeric rows, no duplicate month-series pairs, no missing months. NOT authenticated raw-byte original.",
         "New gap closed at transcription level: BOJ 1995-01..2025-02, 362 months x 2 series = 724 additional research rows, private CSV only.",
         "FRB H.15 federal funds effective rate monthly average and Treasury 10-year constant maturity monthly average: 2025-03..2026-10, 20 monthly rows each in prior research excerpt, full official time series not downloaded.",
         "2026-11-20 official BOJ displayed page independent partial recheck: 18 distributed months × 2 = 36 values, 36 exact matches with private 992-row CSV; source URL https://www.stat-search.boj.or.jp/ssi/mtshtml/fm02_m_1_en.html. Full original HTML file bytes NOT archived.",
-        "FRB H.15 official monthly series is available with FRED identifiers FEDFUNDS and GS10; the full 868/883-month raw CSV download was attempted but blocked in this environment; no new historical Fed observations accepted."
+        "FRB H.15 official monthly series is available with FRED identifiers FEDFUNDS and GS10; the full 868/883-month raw CSV download was attempted but blocked in this environment; no new historical Fed observations accepted.",
+        "FEDFUNDS and GS10: official FRED rendered web-table values 1966-01..1979-12, 168 months per series, 336 new observations extracted to private CSV; count/sequence QA PASS but raw source byte-authentication and independent 336-value crosscheck NOT DONE.",
+        "FED H.15 current 2025-03..2026-10 excerpt: all 20 months for each of 2 series exactly match Fed Board's own published official preview (40/40)."
       ],
-      "missing": "Full original BOJ HTML byte preservation and 992-value independent equality; FRED FEDFUNDS 848 older months and GS10 863 older months raw acquisition and source-byte SHA, 20-month crosswalk parity; private owner-local raw storage; source permissions.",
+      "missing": "FEDFUNDS 680 and GS10 695 published monthly observations not yet extracted (some before 1966 and 1980..2025-02); direct raw FRED CSV bytes and SHA256, independent 336-value reconciliation; BOJ 992-value official original bytes and full independent QA; economic rate inputs not bond total returns.",
       "receipt_path": "research/analytics/acquisition_deltas/2026-11-20_rates_aux_capture_receipt.json",
       "receipt_paths": [
         "research/analytics/acquisition_deltas/2026-11-20_rates_aux_capture_receipt.json",
         "research/analytics/acquisition_deltas/2026-11-20_boj_early_rates_receipt.json",
         "research/analytics/acquisition_deltas/2026-11-20_boj_complete_span_transcription_receipt.json"
       ],
-      "qa_receipt": "research/analytics/acquisition_deltas/2026-11-20_boj_source_sample_qa_receipt.json"
+      "qa_receipt": "research/analytics/acquisition_deltas/2026-11-20_boj_source_sample_qa_receipt.json",
+      "fred_web_extract_receipt": "research/analytics/acquisition_deltas/2026-11-20_fred_h15_1966_1979_web_extract_receipt.json"
     },
     {
       "category": "DIVIDENDS",
