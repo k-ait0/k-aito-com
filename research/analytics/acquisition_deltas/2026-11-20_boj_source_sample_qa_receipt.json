@@ -1,0 +1,76 @@
+{
+  "schema": "KAITO_ANALYTICS_BOJ_PARTIAL_SOURCE_CROSSCHECK_V1",
+  "date_jst": "2026-11-20",
+  "task_scope": "DATA_ACQUISITION_QA_ONLY",
+  "source_url": "https://www.stat-search.boj.or.jp/ssi/mtshtml/fm02_m_1_en.html",
+  "source_page_last_update_jst": "2026-11-20 09:00",
+  "source_series": [
+    "FM02'STRECLUCON",
+    "FM02'STRACLUCON"
+  ],
+  "combined_transcribed_dataset": {
+    "first": "1985-07",
+    "last": "2026-10",
+    "months": 496,
+    "rows": 992,
+    "private_file_name": "K_Aito_Analytics_BOJ_OVERNIGHT_RATES_198507_202610_COMBINED_RESEARCH.csv",
+    "private_file_sha256": "aa0213ba0e7629ee762a54c70a28f6477801da31785b0a820d061eb3e04038f8"
+  },
+  "local_qa": {
+    "exact_segment_union": "PASS",
+    "numeric_rows": 992,
+    "missing_months": 0,
+    "duplicate_month_series": 0,
+    "official_rendered_web_months_crosschecked": 18,
+    "official_rendered_web_values_crosschecked": 36,
+    "exact_matches": 36,
+    "mismatches": 0,
+    "sample_months": [
+      "1985-07",
+      "1994-12",
+      "1995-01",
+      "1999-10",
+      "2002-09",
+      "2005-10",
+      "2008-10",
+      "2014-09",
+      "2016-01",
+      "2016-02",
+      "2019-12",
+      "2020-03",
+      "2022-04",
+      "2024-03",
+      "2025-02",
+      "2025-03",
+      "2026-09",
+      "2026-10"
+    ],
+    "complete_independent_full_series_value_audit": false,
+    "source_html_byte_original_downloaded": false,
+    "original_html_sha256_verified": false
+  },
+  "private_qa_file": {
+    "name": "K_Aito_Analytics_BOJ_SOURCE_SAMPLE_QA_20261120.json",
+    "sha256": "01f5bd2b32fea6796f13007e5dd81b4252cdbba6bd91133b17e874d55efdf8b0"
+  },
+  "future_full_recovery": {
+    "acquisition_script_local_file": "acquire_analytics_rate_sources_v1.py",
+    "acquisition_script_sha256": "17b3b9a6ac375a62b4731cc17befde259136f58cdb6597d4079f84785a29c382",
+    "execution_status": "SCRIPT_PREPARED_LOCALLY_NOT_RUN_AGAINST_LIVE_RAW_SOURCES",
+    "reason": "Working execution environment cannot access official CSV/HTML raw bytes",
+    "fred_mirror_series": [
+      "FEDFUNDS",
+      "GS10"
+    ],
+    "official_fred_crosswalk_confirmed_from_board_and_fred_series_pages": true,
+    "fred_expected_complete_monthly_counts": [
+      868,
+      883
+    ],
+    "full_fred_raw_acquired": false,
+    "full_boj_original_bytes_acquired": false
+  },
+  "acceptance": "PARTIAL_WEB_SOURCE_RECHECK_PASS_NOT_OFFICIAL_RAW_OR_ALL_992_VERIFIED",
+  "no_market_values_published": true,
+  "no_analytics_core_or_ui_changes": true
+}
