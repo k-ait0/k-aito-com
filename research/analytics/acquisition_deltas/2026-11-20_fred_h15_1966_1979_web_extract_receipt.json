@@ -1,0 +1,74 @@
+{
+  "schema": "KAITO_ANALYTICS_FRED_H15_WEB_EXTRACT_RECEIPT_V1",
+  "recorded_date_jst": "2026-11-20",
+  "work_scope": "DATA_ACQUISITION_QA_ONLY",
+  "classification": "PRIVATE_RESEARCH_FRED_RENDERED_WEB_TABLE_TRANSCRIPTION_NOT_ORIGINAL_SOURCE_FILE",
+  "official_publisher": "Federal Reserve Bank of St Louis - underlying Board of Governors H.15",
+  "sources": [
+    {
+      "id": "FEDFUNDS",
+      "monthly_first": "1954-07",
+      "monthly_last": "2026-10",
+      "total_available_months": 868,
+      "official_url": "https://fred.stlouisfed.org/data/FEDFUNDS",
+      "legacy_board_id": "H15/H15/RIFSPFF_N.M"
+    },
+    {
+      "id": "GS10",
+      "monthly_first": "1953-04",
+      "monthly_last": "2026-10",
+      "total_available_months": 883,
+      "official_url": "https://fred.stlouisfed.org/data/GS10",
+      "legacy_board_id": "H15/H15/RIFLGFCY10_N.M"
+    }
+  ],
+  "new_web_table_excerpt": {
+    "first": "1966-01",
+    "last": "1979-12",
+    "months_per_series": 168,
+    "new_observations": 336,
+    "filename": "K_Aito_Analytics_FRED_H15_196601_197912_WEB_EXCERPT.csv",
+    "sha256": "dd8b9a842f29ea0f298c3b60a8bc549ef4ccf5ec90f6adafd1c174455789f4b2",
+    "bytes": 35729,
+    "unique_month_series_pairs": 336,
+    "missing_months": 0,
+    "duplicate_month_series_pairs": 0,
+    "all_finite_numbers": true
+  },
+  "prior_private_extract": {
+    "first": "2025-03",
+    "last": "2026-10",
+    "months_per_series": 20,
+    "observations": 40,
+    "exact_matches_with_fed_board_official_h15_html": 40,
+    "board_preview_urls": [
+      "https://www.federalreserve.gov/datadownload/Preview.aspx?pi=400&preview=H15%2FH15%2FRIFSPFF_N.M&rel=H15",
+      "https://www.federalreserve.gov/datadownload/Preview.aspx?pi=400&preview=H15%2FH15%2FRIFLGFCY10_N.M&rel=H15"
+    ]
+  },
+  "combined_extracted_not_contiguous": {
+    "FEDFUNDS": 188,
+    "GS10": 188,
+    "combined": 376,
+    "first_segment": "1966-01..1979-12",
+    "second_segment": "2025-03..2026-10"
+  },
+  "still_not_extracted_count": {
+    "FEDFUNDS": 680,
+    "GS10": 695,
+    "combined": 1375
+  },
+  "original_raw_csv_bytes_downloaded": false,
+  "original_raw_csv_sha256": null,
+  "live_http_get_attempts": "FAILED_NETWORK_DNS_FROM_CONTAINER_AND_CSV_UNSUPPORTED_VIA_WEB_READER",
+  "independent_double_entry_for_336": "NOT_PERFORMED",
+  "private_csv_published_to_github": false,
+  "changed_main_or_production": false,
+  "changed_analytics_engine_or_ui": false,
+  "source_vintage_or_index_tr_license": "NOT_CERTIFIED",
+  "next_actions": [
+    "Acquire byte-identical official FRED CSV sources to independently reconcile the 336 saved web-table values, preserving hashes and original bytes.",
+    "Continue 1980-01 through 2025-02 web-table capture while keeping 'unverified original' status.",
+    "Do not use yield/rate inputs as investable bond total returns."
+  ]
+}
