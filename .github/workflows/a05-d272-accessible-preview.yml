@@ -54,7 +54,7 @@ jobs:
       - name: Install disposable WebKit and axe
         run: |
           npm install --prefix /tmp/a05-d272-webkit --no-audit --no-fund --no-save playwright@1.56.1 axe-core@4.10.3
-          NODE_PATH=/tmp/a05-d272-webkit/node_modules /tmp/a05-d272-webkit/node_modules/.bin/playwright install --with-deps webkit
+          NODE_PATH=/tmp/a05-d272-webkit/node_modules /tmp/a05-d272-webkit/node_modules/.bin/playwright install webkit
       - name: Require WebKit WCAG A AA, keyboard tab and viewport acceptance
         env:
           NODE_PATH: /tmp/a05-d272-webkit/node_modules
