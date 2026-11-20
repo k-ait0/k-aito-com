@@ -1,0 +1,53 @@
+{
+  "schema": "KAITO_FRED_MONTHLY_2000_2025_WEB_TABLE_RESEARCH_V1",
+  "recorded_at_jst": "2026-11-20",
+  "scope": "DATA_ACQUISITION_ONLY",
+  "official_urls": {
+    "FEDFUNDS": "https://fred.stlouisfed.org/data/FEDFUNDS",
+    "GS10": "https://fred.stlouisfed.org/data/GS10"
+  },
+  "data_classification": "PUBLISHER_RENDERED_WEB_TABLE_TRANSCRIPTION_NOT_SOURCE_ORIGINAL",
+  "new_excerpt": {
+    "first": "2000-01",
+    "last": "2025-02",
+    "months_per_series": 302,
+    "observations": 604,
+    "filename": "K_Aito_Analytics_FRED_H15_200001_202502_WEB_EXCERPT.csv",
+    "bytes": 69545,
+    "sha256": "8636fc1fb603ae088679b9b84eaf387dc40672874619da60c1e4e34bc0c26923"
+  },
+  "combined_excerpt": {
+    "first": "1966-01",
+    "last": "2026-10",
+    "months_per_series": 730,
+    "observations": 1460,
+    "filename": "K_Aito_Analytics_FRED_H15_196601_202610_COMBINED_RESEARCH.csv",
+    "bytes": 168073,
+    "sha256": "c74973c6fa13786c314d86405a51827809061a34c655210596141b48d63afffb"
+  },
+  "quality": {
+    "month_continuity": "PASS",
+    "series_month_uniqueness": "PASS",
+    "values_numeric": "PASS",
+    "boundary_join": "PASS",
+    "source_original_bytes_downloaded": false,
+    "original_sha256_verified": false,
+    "independent_full_value_reconciliation": false,
+    "source_vintage_verified": false,
+    "eligible_for_canonical": false
+  },
+  "unextracted_pre1966": {
+    "FEDFUNDS": 138,
+    "GS10": 153,
+    "total": 291
+  },
+  "no_raw_values_in_public_repo": true,
+  "no_existing_canonical_original_modified": true,
+  "no_core_ui_or_production_modified": true,
+  "remaining": [
+    "Acquire exact provider-original CSV bytes and sha256 over unrestricted network",
+    "Reconcile all 1460 excerpted observations with provider originals",
+    "If desired capture 291 older published monthly observations before 1966",
+    "Do not confuse interest-rate inputs with total-return bond series"
+  ]
+}
