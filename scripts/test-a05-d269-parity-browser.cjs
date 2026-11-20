@@ -161,7 +161,7 @@ function compare(browser,server,label){
    manifests:128,scenarios:PATTERNS.length,baselineTests:tested,
    ynStatesPerScenario:7,ynTests:withYN,totalComparisons:tested+withYN,
    numericTolerance:1e-10,noNetwork:true,
-   30QScoringVersion:data.scoringVersion,ynVersion:data.ynClassificationVersion,
+   coreScoringVersion:data.scoringVersion,ynVersion:data.ynClassificationVersion,
    originalD262Untouched:true
   }));
   await context.close();
