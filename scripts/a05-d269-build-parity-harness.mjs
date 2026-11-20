@@ -8,8 +8,8 @@ import {resolve,dirname} from "node:path";
 import {fileURLToPath} from "node:url";
 const root=resolve(dirname(fileURLToPath(import.meta.url)),"..");
 const original=readFileSync(resolve(root,"research/a05/generated/d262-result-v22-preview.html"),"utf8");
-const match=' $("restart").addEventListener("click",start);\n })();';
-if(original.split(match).length!==2)throw Error("D269: browser source anchor drift; inspect D262 rather than changing it");
+const match=/\$\("restart"\)\.addEventListener\("click",start\);[\t\r\n ]*\}\)\(\);/g;
+if([...original.matchAll(match)].length!==1)throw Error("D269: browser source anchor drift; inspect D262 rather than changing it");
 if(!original.includes("A05-D255-YN-PROVISIONAL-CLASSIFIER-1")||
    !original.includes("A05-D262-RESULT-EVIDENCE-V2_2-1"))
  throw Error("D269: missing expected D255/D262 browser contract");
