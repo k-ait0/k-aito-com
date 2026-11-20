@@ -1,7 +1,7 @@
 {
   "schema": "KAITO_ANALYTICS_DATA_ACQUISITION_INVENTORY_V1",
   "inventory_date_jst": "2026-11-20",
-  "inventory_cutoff": "before 2026-11-20 08:30 JST CPI release",
+  "inventory_cutoff": "2026-11-20 after national CPI October publication",
   "research_only": true,
   "strict_scope": "DATA_ACQUISITION_SOURCE_AUTHENTICATION_NORMALIZATION_QA_AND_DATA_RIGHTS_ONLY",
   "excluded": "UI_CALCULATION_CORE_SIMULATION_PRODUCTION_RELEASE",
@@ -129,14 +129,16 @@
     },
     {
       "category": "CPI",
-      "state": "PRIVATE_CAPTURE_QA_AND_PROVENANCE_BLOCKED",
+      "state": "2026_10_JP_CPI_OFFICIAL_DISPLAY_CAPTURED_PRIVATE_ORIGINAL_QA_PENDING",
       "records": [
         "日本2025年基準CPI総合1970-01〜2026-09・681か月の旧取得QAあり",
         "日本・持家の帰属家賃を除く総合1946-08〜2026-09・962か月の旧取得QAあり",
         "米国CPI-U（NSA）1966-01〜2026-10・729か月の旧取得QAあり（2025-10公式欠測）",
-        "日本2025年基準公式参照CSV 2026-11-13取得、167310バイト、暗号化原本の整合性確認"
+        "日本2025年基準公式参照CSV 2026-11-13取得、167310バイト、暗号化原本の整合性確認",
+        "2026-10 national CPI: official displayed index HEADLINE=103.1, EX_RENT=103.5 (2025=100, NSA), e-Stat release 2026-11-20; 2 extracted values in private local CSV, original bytes not archived."
       ],
-      "missing": "日本2026-10（2026-11-20 08:30公表予定）、公式参照CSVの列マッピング、旧暗号化原本の本人PC復号・SHA認証、過去公表ビンテージ確証"
+      "missing": "Official raw 2026-10 Excel/CSV source byte/hash; raw-to-display 2025-base column map; owner-local decryption/authentication of older source archives; historical release vintage checks; US CPI 2025-10 official absence.",
+      "receipt_path": "research/analytics/acquisition_deltas/2026-11-20_jp_cpi_october_published_receipt.json"
     },
     {
       "category": "RATES",
