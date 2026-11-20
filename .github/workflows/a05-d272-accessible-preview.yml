@@ -42,6 +42,9 @@ jobs:
         run: node scripts/test-a05-d272-accessible-browser.cjs
   webkit:
     runs-on: ubuntu-24.04
+    container:
+      image: mcr.microsoft.com/playwright:v1.56.1-noble
+      options: --ipc=host
     timeout-minutes: 24
     steps:
       - uses: actions/checkout@v4
@@ -51,10 +54,11 @@ jobs:
         run: |
           node scripts/a05-d262-build-result-v22.mjs
           node scripts/a05-d272-build-accessible-candidate.mjs
-      - name: Install disposable WebKit and axe
+      - name: Use Playwright WebKit preinstalled in isolated official browser image
         run: |
           npm install --prefix /tmp/a05-d272-webkit --no-audit --no-fund --no-save playwright@1.56.1 axe-core@4.10.3
-          NODE_PATH=/tmp/a05-d272-webkit/node_modules /tmp/a05-d272-webkit/node_modules/.bin/playwright install webkit
+          test -d /ms-playwright
+          echo 'WebKit browser is preinstalled in this image'
       - name: Require WebKit WCAG A AA, keyboard tab and viewport acceptance
         env:
           NODE_PATH: /tmp/a05-d272-webkit/node_modules
