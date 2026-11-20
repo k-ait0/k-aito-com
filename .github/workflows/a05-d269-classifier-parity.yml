@@ -1,0 +1,64 @@
+name: A05 D269 128-manifest browser versus Node classifier parity
+on:
+  push:
+    branches:
+      - research/a05-d269-classifier-parity-20261120
+    paths:
+      - '.github/workflows/a05-d269-classifier-parity.yml'
+      - 'scripts/a05-d269-server-reference.mjs'
+      - 'scripts/a05-d269-build-parity-harness.mjs'
+      - 'scripts/test-a05-d269-parity-browser.cjs'
+      - 'docs/A05_D269_PARITY_TECHNICAL_ACCEPTANCE_20261120.md'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  browser-node-parity:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Protect existing live Pages and prior research preview
+        run: |
+          git fetch origin gh-pages
+          test "$(git show origin/gh-pages:index.html | sha256sum | cut -d' ' -f1)" = 'd4be3ac612c7bc1cad07bbbb385a7b6910614ac0356598ae6345d7ed5300d070'
+          test "$(git show origin/gh-pages:preview/yn/index.html | sha256sum | cut -d' ' -f1)" = '5cf61a5114e69c292080be803ae835c5e75d400f4a773a8e89fb2347547d11e1'
+          test "$(git show origin/gh-pages:preview/yn-v2/index.html | sha256sum | cut -d' ' -f1)" = '31d6ecf62393c24100604c51a1ba0ec280369f8780e37c2bc775b1913ba6dfc8'
+          test "$(git show origin/gh-pages:preview/yn-v21/index.html | sha256sum | cut -d' ' -f1)" = '39a07c893b1060b06f0a6050d2610510f494eb85801034c2b85ecee811164c0f'
+          test "$(git show origin/gh-pages:preview/yn-v22/index.html | sha256sum | cut -d' ' -f1)" = 'fa0919ce234aa01674f52a1ee999bea4fe0d92695ae9cc9e1924fd18ca9bdc61'
+          test "$(git show origin/gh-pages:preview/a05-analytics-d265/index.html | sha256sum | cut -d' ' -f1)" = '01669940e630341742521f561dde0ff5badceea2491595f01c15046109632650'
+      - name: Confirm 30Q and Y/N research engines' regression suite
+        run: |
+          node --test scripts/test-a05-d255-yn-provisional-classifier.mjs
+          node --test scripts/test-a05-d261-analytics-contract.mjs
+          node --test scripts/test-a05-d264-quality-rollups.mjs
+          node --check scripts/a05-d269-server-reference.mjs
+          node --check scripts/a05-d269-build-parity-harness.mjs
+          node --check scripts/test-a05-d269-parity-browser.cjs
+      - name: Build EXACT Ver2.2 source then inject a LOCAL-ONLY read-only test hook
+        run: |
+          node scripts/a05-d262-build-result-v22.mjs
+          node scripts/a05-d269-build-parity-harness.mjs
+          test -s research/a05/generated/d269-parity-local-only.html
+          git diff --exit-code -- research/a05/d262-result-parameters-v22-template.html scripts/a05-d255-yn-provisional-classifier.mjs
+      - name: Prepare browser runtime only for this ephemeral CI
+        run: |
+          npm install --prefix /tmp/a05-d269-playwright --no-audit --no-fund --no-save playwright@1.56.1
+          CHROME="$(command -v google-chrome-stable || command -v google-chrome || command -v chromium || true)"
+          test -n "$CHROME"
+          "$CHROME" --version
+          echo "A05_CHROME_PATH=$CHROME" >> "$GITHUB_ENV"
+      - name: Compare all 128 forms against actual D262 browser + D255 Y/N
+        env:
+          NODE_PATH: /tmp/a05-d269-playwright/node_modules
+        run: node scripts/test-a05-d269-parity-browser.cjs
+      - name: Prove test harness never enters gh-pages or live diagnosis UI
+        run: |
+          test ! -e preview/a05-d269
+          test ! -e research/a05/analytics/production_db_credentials
+          echo 'A05_D269_LOCAL_ONLY_BROWSER_NODE_PARITY_CI_PASS'
