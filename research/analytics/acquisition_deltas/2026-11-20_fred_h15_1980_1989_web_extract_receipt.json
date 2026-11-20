@@ -1,0 +1,84 @@
+{
+  "schema": "KAITO_ANALYTICS_FRED_H15_1980_1989_WEB_TABLE_EXTRACTION_RECEIPT_V1",
+  "verified_asof_jst": "2026-11-20",
+  "scope": "DATA_ACQUISITION_AND_QA_ONLY",
+  "official_sources": [
+    {
+      "id": "FEDFUNDS",
+      "url": "https://fred.stlouisfed.org/data/FEDFUNDS",
+      "displayed_page_lines": "344..463",
+      "frequency": "MONTHLY",
+      "kind": "FEDERAL_FUNDS_EFFECTIVE_RATE"
+    },
+    {
+      "id": "GS10",
+      "url": "https://fred.stlouisfed.org/data/GS10",
+      "displayed_page_lines": "345..464",
+      "frequency": "MONTHLY",
+      "kind": "10_YEAR_TREASURY_CONSTANT_MATURITY_YIELD"
+    }
+  ],
+  "new_private_excerpt": {
+    "period_first": "1980-01",
+    "period_last": "1989-12",
+    "months_per_series": 120,
+    "series": 2,
+    "observations": 240,
+    "filename": "K_Aito_Analytics_FRED_H15_198001_198912_WEB_EXCERPT.csv",
+    "bytes": 27790,
+    "sha256": "b248b6fa0efeddbfab3d30347a55053d2129d2d2941ef1d0e784c0bd75c0a6db"
+  },
+  "private_combined_contiguous_excerpt": {
+    "period_first": "1966-01",
+    "period_last": "1989-12",
+    "months_per_series": 288,
+    "observations": 576,
+    "filename": "K_Aito_Analytics_FRED_H15_196601_198912_COMBINED_RESEARCH.csv",
+    "bytes": 63434,
+    "sha256": "564fe918b59c88b410036334673c1225a5d39445dda3cb1a86cbcbf5eefa5040"
+  },
+  "prior_other_excerpt": "2025-03..2026-10 (20 months per series; 40 observations)",
+  "coverage": {
+    "official_published_monthly_observations": {
+      "FEDFUNDS": 868,
+      "GS10": 883,
+      "total": 1751
+    },
+    "extracted_web_table_observations": {
+      "FEDFUNDS": 308,
+      "GS10": 308,
+      "total": 616
+    },
+    "not_yet_extracted": {
+      "FEDFUNDS": 560,
+      "GS10": 575,
+      "total": 1135
+    },
+    "gaps": [
+      "FEDFUNDS 1954-07..1965-12",
+      "GS10 1953-04..1965-12",
+      "both 1990-01..2025-02"
+    ]
+  },
+  "qa": {
+    "source_class": "OFFICIAL_FRED_WEB_TABLE_TRANSCRIPTION_ONLY",
+    "source_raw_csv_bytes_downloaded": false,
+    "source_raw_csv_sha256": null,
+    "extract_order_and_calendar": "PASS",
+    "numeric_240": "PASS",
+    "unique_month_series_240": "PASS",
+    "continuity_1979_12_1980_01": "PASS",
+    "combined_contiguous_1966_01_1989_12": "PASS",
+    "independently_reconciled_all_240_values": "NO",
+    "historical_vintage": "NOT_CONFIRMED",
+    "usable_as_canonical_market_source": false
+  },
+  "rights": "PRIVATE_RESEARCH_ONLY_NO_RAW_NUMBERS_UPLOADED",
+  "site_main_analytics_engine_ui_modified": false,
+  "remaining": [
+    "Obtain and SHA256 official FRED CSV source bytes and independently reconcile 616 web-table observations.",
+    "Extract remaining 1990-01..2025-02 interval (422 months * 2 = 844 observations).",
+    "Optionally acquire pre-1966 FRED observations separately (138 + 153 = 291 observations).",
+    "Do not substitute quoted Treasury yields for investable US bond total returns."
+  ]
+}
