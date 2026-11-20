@@ -1,0 +1,77 @@
+{
+  "schema": "KAITO_ANALYTICS_FRED_H15_1990_1999_WEB_TABLE_EXTRACTION_RECEIPT_V1",
+  "asof_jst": "2026-11-20",
+  "scope": "DATA_ACQUISITION_AND_QUALITY_AUDIT_ONLY",
+  "official_sources": [
+    {
+      "series": "FEDFUNDS",
+      "url": "https://fred.stlouisfed.org/data/FEDFUNDS",
+      "displayed_rows": "1990-01..1999-12",
+      "underlying": "H.15 Board of Governors"
+    },
+    {
+      "series": "GS10",
+      "url": "https://fred.stlouisfed.org/data/GS10",
+      "displayed_rows": "1990-01..1999-12",
+      "underlying": "H.15 Board of Governors"
+    }
+  ],
+  "new_excerpt": {
+    "first": "1990-01",
+    "last": "1999-12",
+    "months_per_series": 120,
+    "series_count": 2,
+    "numeric_rows": 240,
+    "private_filename": "K_Aito_Analytics_FRED_H15_199001_199912_WEB_EXCERPT.csv",
+    "bytes": 27685,
+    "sha256": "4b15450597681c26162c3ff3a43e5f501ae992419829e8d305314baf102fac1f"
+  },
+  "merged_contiguous_web_excerpt": {
+    "first": "1966-01",
+    "last": "1999-12",
+    "months_per_series": 408,
+    "rows": 816,
+    "private_filename": "K_Aito_Analytics_FRED_H15_196601_199912_COMBINED_RESEARCH.csv",
+    "bytes": 91034,
+    "sha256": "fdd2a40ba9b7e78a4852b7d1c9522cd36c1640f0e00c9bf0321751bd113b5543"
+  },
+  "other_separate_2025_03_2026_10_excerpt": {
+    "series_count": 2,
+    "months_each": 20,
+    "rows": 40
+  },
+  "counts": {
+    "full_published_FEDFUNDS": 868,
+    "full_published_GS10": 883,
+    "published_total": 1751,
+    "currently_extracted_FEDFUNDS": 428,
+    "currently_extracted_GS10": 428,
+    "extracted_total": 856,
+    "not_yet_extracted_FEDFUNDS": 440,
+    "not_yet_extracted_GS10": 455,
+    "total_not_yet_extracted": 895,
+    "gap_2000_01_through_2025_02_each_series_months": 302,
+    "published_pre_1966_unextracted_FEDFUNDS_months": 138,
+    "published_pre_1966_unextracted_GS10_months": 153
+  },
+  "quality": {
+    "dataset_class": "OFFICIAL_FRED_RENDERED_HTML_TABLE_MANUALLY_TRANSCRIBED_RESEARCH_EXTRACT",
+    "all_rows_numeric": true,
+    "month_series_duplicate_count": 0,
+    "combined_contiguous_1966_1999": true,
+    "sample_1990_01_1994_12_1999_12_pass": true,
+    "full_independent_value_reconciliation_done": false,
+    "official_original_csv_raw_bytes_downloaded": false,
+    "official_original_sha256": null,
+    "publication_vintage_authenticated": false,
+    "eligible_for_canonical_series": false,
+    "no_gap_imputation": true
+  },
+  "restrictions": "RAW_DATA_NOT_UPLOADED_TO_PUBLIC_GITHUB; NOT_TREASURY_BOND_TOTAL_RETURN; RESEARCH_ONLY",
+  "no_analytics_ui_core_simulation_main_or_production_changes": true,
+  "next_actions": [
+    "Extract 2000-01..2025-02 302 months each from official sources, or obtain original CSV over a connected network and compare values directly.",
+    "Acquire pre-1966 138/153 months separately if useful.",
+    "Full raw publisher byte/SHA verification and 856-observation independent comparison required before canonical acceptance."
+  ]
+}
