@@ -1,0 +1,32 @@
+name: A05 D271 Chromium fast accessibility findings
+on:
+  push:
+    branches: [research/a05-d271-ux-acceptance-20261120]
+    paths:
+      - '.github/workflows/a05-d271-chromium-audit-quick.yml'
+      - 'scripts/test-a05-d271-ux-audit.cjs'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  chromium-audit-report:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Build unmodified research version
+        run: node scripts/a05-d262-build-result-v22.mjs
+      - name: Use installed Chrome for quick WCAG issues
+        run: |
+          npm install --prefix /tmp/a05-d271-quick --no-audit --no-fund --no-save playwright@1.56.1 axe-core@4.10.3
+          CHROME="$(command -v google-chrome-stable || command -v google-chrome || command -v chromium)"
+          test -n "$CHROME"
+          echo "A05_CHROME_PATH=$CHROME" >> "$GITHUB_ENV"
+      - name: Audit Chromium at six screen sizes
+        env:
+          NODE_PATH: /tmp/a05-d271-quick/node_modules
+          A05_D271_ENGINE: chromium
+        run: node scripts/test-a05-d271-ux-audit.cjs
