@@ -1,0 +1,876 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; base-uri 'none'; form-action 'none'">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<title>A05 Ver.2.2｜4軸の方向と判定根拠・Y/N補完型研究診断</title>
+<style>
+:root{font-family:system-ui,-apple-system,"Hiragino Kaku Gothic ProN",Meiryo,sans-serif;background:#f5f7fb;color:#1d2b44;line-height:1.6;color-scheme:light}
+*{box-sizing:border-box}
+body{margin:0;padding:0 16px 40px}
+main{max-width:760px;margin:0 auto}
+button{font:inherit;cursor:pointer}
+button:focus-visible,a:focus-visible{outline:3px solid #6495d4;outline-offset:3px}
+header{padding:24px 0 18px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{font-size:.82rem;font-weight:800;color:#33629d;letter-spacing:.1em}
+.pill{font-size:.72rem;display:inline-block;border:1px solid #e2cb8b;background:#fff9e7;color:#66512a;padding:4px 10px;border-radius:40px;font-weight:700}
+.card{background:#fff;border:1px solid #dfe5ee;border-radius:22px;box-shadow:0 8px 30px rgba(38,57,88,.055);padding:clamp(20px,4vw,40px)}
+h1{font-size:clamp(1.7rem,5vw,2.65rem);line-height:1.35;margin:8px 0 16px;letter-spacing:-.03em}
+h2{font-size:1.35rem;line-height:1.45;margin:12px 0}
+p{margin:8px 0 16px}
+.muted{color:#657187;font-size:.92rem}
+.minor{color:#68758a;font-size:.8rem}
+.point-list{display:flex;gap:8px;flex-wrap:wrap;margin:22px 0}
+.point-list span{background:#eff4fc;border-radius:20px;padding:6px 12px;color:#375681;font-size:.82rem}
+.primary{background:#245ea5;color:white;border:1px solid #245ea5;padding:14px 22px;border-radius:12px;font-weight:700;min-height:48px}
+.primary:disabled{background:#a6b3c6;border-color:#a6b3c6;cursor:not-allowed}
+.secondary{border:1px solid #ccd5e2;background:white;color:#40536f;border-radius:12px;padding:11px 14px;min-height:44px}
+.actions{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:20px;flex-wrap:wrap}
+.actions button{flex:1}
+.progress-line{height:9px;background:#e9edf4;border-radius:20px;overflow:hidden;margin:15px 0 26px}
+.progress-line>div{height:100%;background:#3478c4;width:0;transition:width .15s ease;border-radius:20px}
+.stephead{display:flex;align-items:center;justify-content:space-between;gap:12px;color:#526685;font-size:.9rem;font-weight:700}
+#qtext{font-size:clamp(1.2rem,4vw,1.48rem);font-weight:760;line-height:1.65;margin:16px 0 22px;min-height:105px}
+.poles{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.pole{background:#f1f5fb;border-radius:12px;padding:13px 14px;min-height:107px;font-weight:660;line-height:1.5}
+.pole:last-child{background:#fcf6ec}
+.pole small{display:block;font-size:.75rem;color:#69778d;font-weight:600;margin-bottom:6px}
+.scale{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px;margin:18px 0 5px}
+.scale button{height:58px;border:1px solid #c6d1e2;border-radius:12px;background:#fff;color:#304b72;font-weight:800;font-size:1.02rem;min-width:0;padding:0}
+.scale button:first-child{border-color:#83a6d9}
+.scale button:last-child{border-color:#cea975}
+.scale button[aria-pressed=true]{background:#245ea5;color:white;box-shadow:0 0 0 3px rgba(34,99,172,.17)}
+.scalehint{display:flex;justify-content:space-between;color:#748198;font-size:.75rem}
+.skip{margin-top:17px;width:100%;background:transparent;border:0;text-decoration:underline;color:#667790;padding:9px}
+.warning{border-top:1px solid #e6eaf0;margin-top:28px;padding-top:14px;color:#6c788b;font-size:.8rem;line-height:1.7}
+#intro,#question,#result{margin-top:4px}
+[hidden]{display:none!important}
+.eyebrow{text-transform:uppercase;font-size:.78rem;font-weight:800;letter-spacing:.08em;color:#4273b0}
+.result-hero{text-align:center;padding:24px 4px 16px;border-bottom:1px solid #e5eaf3;margin-bottom:20px}
+.result-icon{font-size:3.6rem;line-height:1.2}
+.result-name{font-size:clamp(1.7rem,5.5vw,2.5rem);font-weight:840;line-height:1.3;margin:9px 0}
+.result-badge{display:inline-block;border-radius:8px;padding:4px 12px;font-weight:700;background:#edf3fb;color:#285b96}
+.axisrow{padding:13px 0;border-bottom:1px solid #eff2f6}
+.axis-title{display:flex;justify-content:space-between;gap:12px;font-size:.88rem}
+.axis-title strong{font-size:.91rem}
+.track{height:10px;background:#e7ecf3;border-radius:20px;position:relative;margin:10px 0 4px}
+.track:after{content:"";position:absolute;left:50%;width:2px;top:-3px;bottom:-3px;background:#7e8da6}
+.track>span{display:block;height:100%;background:#377db9;border-radius:20px;width:50%;transition:width .2s}
+.notes{margin-top:18px;background:#f5f7fa;border-radius:12px;padding:12px 16px;font-size:.82rem;color:#5f6c80}
+.near-type-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin:14px 0 8px;text-align:left}
+.near-type-item{border:1px solid #dbe5f0;border-radius:13px;background:#f7faff;padding:12px 14px}
+.near-type-item strong{display:block;color:#244e80;font-size:1rem}
+.near-type-item p{font-size:.82rem;color:#5d6b7e;margin:6px 0 0}
+.result-complete{background:#f0f6f3;border:1px solid #d9e9df;border-radius:12px;padding:10px 14px;font-size:.86rem;color:#285340;margin:14px 0}
+.extra-note{font-size:.83rem;color:#657187;margin:10px 0 0}
+
+.linkish{background:transparent;border:0;text-decoration:underline;color:#5579a4;padding:12px 0}
+@media(max-width:480px){
+ body{padding:0 10px 24px}
+ header{padding:14px 6px}
+ .card{padding:20px 14px;border-radius:16px}
+ .scale{gap:4px}
+ .scale button{height:52px;border-radius:9px}
+ #qtext{min-height:0}
+ .pole{padding:12px 9px;font-size:.84rem}
+}
+.yn-question{font-size:clamp(1.2rem,3.5vw,1.5rem);font-weight:730;margin:20px 0}
+.yn-choices{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin:18px 0}
+.yn-choices button{border:1px solid #c6d1e2;background:#fff;padding:14px 8px;border-radius:10px;min-height:52px}
+.yn-choices button[aria-pressed=true]{background:#245ea5;color:#fff;border-color:#245ea5}
+@media(max-width:480px){.yn-choices{gap:5px}.yn-choices button{font-size:.87rem;padding:12px 4px}}
+
+/* D257 / Ver.2: single-viewport portrait questionnaire without a body scrollbar.
+   Intro and detailed results remain readable with normal vertical scrolling.
+   Very short displays/landscape keep normal scrolling instead of clipping content. */
+@media (max-width:600px) and (orientation:portrait) and (min-height:560px) {
+ body[data-screen="question"],body[data-screen="yn"] {
+  width:100%; height:100dvh; min-height:0; overflow:hidden;
+  padding:0 9px; overscroll-behavior:none;
+ }
+ body[data-screen="question"] main,body[data-screen="yn"] main {
+  height:100%;min-height:0;display:flex;flex-direction:column;
+ }
+ body[data-screen="question"] header,body[data-screen="yn"] header {
+  flex:0 0 auto;padding:5px 2px 5px;min-height:35px;gap:5px;
+ }
+ body[data-screen="question"] .brand,body[data-screen="yn"] .brand {
+  font-size:.7rem;letter-spacing:.04em;white-space:nowrap;
+ }
+ body[data-screen="question"] .pill,body[data-screen="yn"] .pill {
+  font-size:.62rem;padding:2px 7px;white-space:nowrap;
+ }
+ body[data-screen="question"] .warning,body[data-screen="yn"] .warning {display:none}
+ body[data-screen="question"] #question,body[data-screen="yn"] #yn {
+  flex:1 1 auto;min-height:0;margin:0;padding:10px 12px max(10px,env(safe-area-inset-bottom));
+  display:flex;flex-direction:column;border-radius:14px;box-shadow:none;
+ }
+ body[data-screen="question"] .stephead,body[data-screen="yn"] .stephead {
+  flex:0 0 auto;font-size:.78rem;line-height:1.3;gap:6px;
+ }
+ body[data-screen="question"] .progress-line {
+  flex:0 0 auto;margin:8px 0 10px;height:6px;
+ }
+ body[data-screen="question"] #qtext {
+  flex:0 1 auto;min-height:0;margin:5px 0 10px;
+  font-size:clamp(.94rem,3.75vw,1.12rem);
+  line-height:1.42;overflow-wrap:anywhere;
+ }
+ body[data-screen="question"] .poles {flex:0 1 auto;gap:7px}
+ body[data-screen="question"] .pole {
+  min-height:0;padding:7px 8px;line-height:1.35;
+  font-size:clamp(.74rem,2.95vw,.88rem);overflow-wrap:anywhere;
+ }
+ body[data-screen="question"] .pole small {
+  margin-bottom:2px;font-size:.67rem;line-height:1.2;
+ }
+ body[data-screen="question"] .scale {
+  flex:0 0 auto;gap:4px;margin:11px 0 3px;
+ }
+ body[data-screen="question"] .scale button {
+  height:48px;min-height:44px;border-radius:9px;font-size:1rem;
+  touch-action:manipulation;
+ }
+ body[data-screen="question"] .scalehint {
+  flex:0 0 auto;font-size:.66rem;line-height:1.3;gap:4px;
+ }
+ body[data-screen="question"] #skip {
+  flex:0 0 auto;margin-top:auto;min-height:44px;padding:8px 6px;
+  font-size:.83rem;text-decoration:none;background:#f7f9fc;
+  border:1px solid #cdd7e4;border-radius:10px;touch-action:manipulation;
+ }
+ body[data-screen="question"] #skip[aria-pressed="true"] {
+  border-color:#245ea5;background:#e7f0ff;color:#245ea5;font-weight:700;
+ }
+ body[data-screen="question"] .actions,
+ body[data-screen="yn"] .actions {
+  flex:0 0 auto;margin-top:7px;gap:7px;
+ }
+ body[data-screen="question"] .actions button,
+ body[data-screen="yn"] .actions button {
+  min-height:44px;padding:8px 8px;touch-action:manipulation;
+ }
+ body[data-screen="yn"] h2 {
+  flex:0 0 auto;margin:7px 0 4px;font-size:1.06rem;line-height:1.3;
+ }
+ body[data-screen="yn"] .muted {
+  flex:0 1 auto;margin:4px 0;font-size:.76rem;line-height:1.38;
+ }
+ body[data-screen="yn"] .yn-question {
+  flex:0 1 auto;margin:12px 0;
+  font-size:clamp(.98rem,3.8vw,1.24rem);line-height:1.42;
+  overflow-wrap:anywhere;
+ }
+ body[data-screen="yn"] .yn-choices {
+  flex:0 0 auto;gap:5px;margin:10px 0 6px;
+ }
+ body[data-screen="yn"] .yn-choices button {
+  min-height:52px;padding:8px 4px;touch-action:manipulation;
+ }
+ body[data-screen="yn"] .actions {margin-top:auto}
+ body[data-screen="yn"] #ynStop {
+  flex:0 0 auto;min-height:44px;padding:8px 6px;margin-top:7px;
+  font-size:.82rem;text-decoration:none;border:1px solid #cdd7e4;
+  border-radius:10px;background:#f7f9fc;
+ }
+}
+/* When user font scaling or an unusually short live viewport makes a single
+   screen physically impossible, expose scrolling instead of clipping text. */
+@media (max-width:600px) and (orientation:portrait) and (min-height:560px) {
+ body.mobile-safe-scroll[data-screen="question"],
+ body.mobile-safe-scroll[data-screen="yn"] {height:auto;min-height:100dvh;overflow-y:auto;overscroll-behavior:auto}
+ body.mobile-safe-scroll[data-screen="question"] main,
+ body.mobile-safe-scroll[data-screen="yn"] main {height:auto;min-height:100dvh}
+ body.mobile-safe-scroll[data-screen="question"] #question,
+ body.mobile-safe-scroll[data-screen="yn"] #yn {flex:0 0 auto;overflow:visible}
+}
+@media (max-width:600px) and (orientation:portrait) and (min-height:560px) and (max-height:650px) {
+ body[data-screen="question"] header,body[data-screen="yn"] header {min-height:30px;padding:3px 2px}
+ body[data-screen="question"] #question,body[data-screen="yn"] #yn {padding:7px 10px max(7px,env(safe-area-inset-bottom))}
+ body[data-screen="question"] #qtext {font-size:.94rem;line-height:1.33;margin:4px 0 7px}
+ body[data-screen="question"] .pole {font-size:.72rem;line-height:1.28;padding:5px 6px}
+ body[data-screen="question"] .progress-line {margin:5px 0 6px}
+ body[data-screen="question"] .scale {margin:7px 0 2px}
+ body[data-screen="question"] .scale button {height:44px}
+ body[data-screen="yn"] .yn-question {margin:6px 0;font-size:.98rem}
+ body[data-screen="yn"] .yn-choices {margin:6px 0 4px}
+ body[data-screen="yn"] .yn-choices button {min-height:46px}
+}
+
+/* D259 Ver.2.1: visible choices, compact two-reason skip, accessible result tabs */
+.skip-options {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;margin-top:12px}
+.skip-options .skip {
+ margin:0;min-height:44px;text-decoration:none;border:1px solid #cdd7e4;
+ border-radius:10px;background:#f7f9fc;padding:7px 4px;font-size:.86rem;
+ touch-action:manipulation;
+}
+.skip-options .skip[aria-pressed="true"]{border-color:#245ea5;background:#e7f0ff;color:#245ea5;font-weight:700}
+.result-tabs {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:5px;margin:16px 0 12px}
+.result-tabs button {min-width:0;min-height:44px;padding:7px 3px;border:1px solid #c8d5e6;border-radius:10px;background:#fff;color:#355577;font-size:.81rem}
+.result-tabs button[aria-selected="true"]{background:#245ea5;color:#fff;border-color:#245ea5;font-weight:700}
+.result-hero {padding-top:12px}
+.yn-progress-line{margin:9px 0 12px;height:6px}
+@media (max-width:600px) and (orientation:portrait) and (min-height:560px) {
+ body[data-screen="question"] .skip-options {
+  flex:0 0 auto;margin-top:auto;gap:6px;
+ }
+ body[data-screen="question"] .skip-options .skip{
+  min-height:44px;padding:7px 3px;font-size:.78rem;
+ }
+ body[data-screen="yn"] .yn-progress-line{
+  flex:0 0 auto;height:6px;margin:6px 0 6px;
+ }
+}
+@media (max-width:600px) and (orientation:portrait) and (min-height:560px) and (max-height:650px){
+ body[data-screen="yn"] .yn-progress-line{margin:3px 0}
+}
+
+/* D262 / Ver.2.2 - centered 7-point directional evidence; not a type probability */
+.type-evidence {font-size:.81rem;color:#365b83;background:#f1f6fc;border-radius:10px;padding:10px 12px;margin:12px 0 0;line-height:1.5}
+.axis-readme {background:#f6f8fc;padding:10px 12px;border-radius:9px;line-height:1.65}
+.axisrow {background:#fff;border:1px solid #e0e6ef;border-radius:13px;padding:14px 13px;margin:11px 0;box-shadow:0 2px 8px rgba(38,57,88,.025)}
+.axis-title {display:flex;justify-content:space-between;align-items:flex-start;gap:8px;font-size:.88rem;flex-wrap:wrap}
+.axis-title strong{font-size:.9rem}
+.axis-outcome {color:#254e7b;font-weight:750;overflow-wrap:anywhere}
+.axis-method {font-size:.78rem;color:#66788e;margin:6px 0 12px}
+.axis-score-labels {display:flex;justify-content:space-between;align-items:center;gap:5px;font-size:.69rem;color:#5f6d81}
+.axis-score-labels span:nth-child(2){font-weight:800;color:#576a85}
+.axis-score-track{height:18px;position:relative;background:linear-gradient(90deg,#e7f1fc,#f4f5f8 49.8%,#f7f0e9);border:1px solid #d9e3ef;border-radius:20px;margin:6px 6px 0}
+.axis-score-track:before{content:"";position:absolute;top:-4px;bottom:-4px;left:50%;width:2px;background:#8194ac;transform:translateX(-50%)}
+.axis-score-marker{position:absolute;top:50%;height:17px;width:17px;transform:translate(-50%,-50%);border-radius:50%;border:3px solid #fff;background:#245ea5;box-shadow:0 0 0 1px #245ea5;z-index:1}
+.axis-score-marker.is-reference {background:#8d9bad;box-shadow:0 0 0 1px #8d9bad}
+.axis-score-marker.is-tie {background:#fff;border:3px solid #8495aa;box-shadow:none}
+.axis-position-text{font-size:.75rem;color:#4e637c;margin:9px 0 6px;font-variant-numeric:tabular-nums}
+.axis-evidence{font-size:.77rem;color:#3e5874;margin:6px 0;line-height:1.55}
+.axis-detail{font-size:.75rem;color:#778399;margin:6px 0 0;line-height:1.55}
+@media(max-width:480px){
+ .axisrow {padding:12px 10px}
+ .axis-title{display:block}
+ .axis-outcome{display:block;margin-top:3px;font-size:.86rem}
+ .axis-score-labels {font-size:.66rem}
+ .axis-evidence{font-size:.72rem}
+}
+</style>
+<style id="a05-d272-accessibility">
+/* D272 research-only accessibility improvements. Injected into isolated HTML candidate. */
+/* WCAG AA target: stronger label, guidance and small supplementary text contrast. */
+.warning{color:#455369}
+.muted{color:#4e5b6d}
+.minor{color:#4d5b6f}
+.pole small{color:#45566b}
+.scalehint{color:#45576d}
+.skip,.skip-options .skip,#ynStop{color:#41526a}
+.axis-detail{color:#526176}
+.axis-method{color:#4e5d70}
+.axis-position-text{color:#4d5d72}
+.extra-note{color:#516076}
+.eyebrow{color:#365d8f}
+/* WebKit at 320px: allow both header labels to shrink/wrap instead of spilling. */
+@media (max-width:340px) and (orientation:portrait){
+ body[data-screen="question"] header .brand,
+ body[data-screen="yn"] header .brand{
+  flex:1 1 53%;min-width:0;white-space:normal;overflow-wrap:anywhere;
+  font-size:.64rem;line-height:1.15;letter-spacing:0;
+ }
+ body[data-screen="question"] header .pill,
+ body[data-screen="yn"] header .pill{
+  flex:1 1 47%;min-width:0;white-space:normal;overflow-wrap:anywhere;
+  font-size:.59rem;line-height:1.18;text-align:right;padding:2px 5px;
+ }
+ body[data-screen="question"] header,
+ body[data-screen="yn"] header{gap:3px}
+}
+</style>
+</head>
+<body>
+<main>
+<header><div class="brand">K. AITO · LIFE DESIGN LAB</div><span class="pill">Ver.2.2 · 結果分析プレビュー</span></header>
+<section id="intro" class="card">
+ <div class="eyebrow">A05 · Values Explorer</div>
+ <h1>あなたの価値観は、<br>どんなタイプ？</h1>
+ <p>最初の30問は7段階で回答し、必要な場合のみY/Nで補完します。スマホ縦画面では、回答中のスクロールは不要です。</p>
+ <div class="point-list"><span>最初の30問は7段階</span><span>31問目以降はY/N形式のみ（任意）</span><span>スマホ対応</span><span>回答の自動送信なし</span></div>
+ <button class="primary" id="start" style="width:100%">診断を始める</button>
+ <p class="muted" style="margin-top:14px">結果は1.5乗加点を使った研究用の参考表示です。設問・採点の心理測定上の妥当性は未検証で、正式な心理検査や適職判定ではありません。</p>
+</section>
+<section id="question" class="card" hidden>
+ <div class="stephead"><span id="counter">1 / 30</span><span id="axisLabel"></span></div>
+ <div class="progress-line" role="progressbar" aria-label="30問の回答進捗" aria-valuemin="0" aria-valuemax="30" aria-valuenow="1"><div id="progress"></div></div>
+ <div id="qtext" role="heading" aria-level="2"></div>
+ <div class="poles"><div class="pole"><small>1に近い</small><span id="left"></span></div><div class="pole"><small>7に近い</small><span id="right"></span></div></div>
+ <div class="scale" id="scale" role="group" aria-label="7段階の回答。1は左寄り、4は中間、7は右寄り"></div>
+ <div class="scalehint"><span>1：左を優先</span><span>4：中間</span><span>7：右を優先</span></div>
+ <div class="skip-options" role="group" aria-label="設問をスキップする理由"><button class="skip" id="skipUnknown" type="button" aria-pressed="false">判断できない</button><button class="skip" id="skipNA" type="button" aria-pressed="false">当てはまらない</button></div>
+ <div class="actions"><button class="secondary" id="prev">前の質問</button><button class="primary" id="next" disabled>次へ</button></div>
+</section>
+<section id="result" class="card" hidden>
+ <div class="eyebrow">YOUR VALUES · 未較正の研究用参考結果</div>
+ <div class="result-tabs" role="tablist" aria-label="診断結果の表示切替">
+  <button id="resultTabType" type="button" role="tab" aria-controls="resultPanelType" aria-selected="true">タイプ概要</button>
+  <button id="resultTabAxes" type="button" role="tab" aria-controls="resultPanelAxes" aria-selected="false">4軸の分析</button>
+  <button id="resultTabNotes" type="button" role="tab" aria-controls="resultPanelNotes" aria-selected="false">詳しい説明</button>
+ </div>
+ <div id="resultPanelType" role="tabpanel" aria-labelledby="resultTabType">
+  <div class="result-hero">
+   <div class="result-icon" id="typeIcon">✦</div>
+   <div class="result-name" id="typeName">集計中</div>
+   <div class="result-badge" id="typeBadge">参考タイプ</div>
+   <div id="typeEvidenceSummary" class="type-evidence" role="status"></div>
+   <p id="typeSummary" style="margin-top:18px"></p>
+   <div id="nearTypes" class="near-type-list" hidden></div>
+  </div>
+  <div class="result-complete" id="resultComplete" role="status">30問の回答手続きが終了しました。</div>
+ </div>
+ <div id="resultPanelAxes" role="tabpanel" aria-labelledby="resultTabAxes" hidden>
+  <h2>4軸の方向と判定根拠</h2>
+  <p class="minor axis-readme">左右の線は7段階の研究用得点位置（−1〜＋1）です。中央0は得点の相殺位置であり、信頼度・確率・人口割合ではありません。方向を示す回答がない軸には点を表示しません。</p>
+  <div id="axes"></div>
+ </div>
+ <div id="resultPanelNotes" role="tabpanel" aria-labelledby="resultTabNotes" hidden>
+  <h2>判定の根拠と注意事項</h2>
+  <div class="notes" id="resultNotice">参考表示です。</div>
+  <div id="ynSummary" class="notes" hidden aria-live="polite"></div>
+ </div>
+ <div class="actions"><button class="secondary" id="ynButton" hidden>Y/Nの補助質問（任意）</button><button class="secondary" id="restart">新しく診断する</button></div>
+ <p id="post30Note" class="extra-note">30問以降は任意のY/N形式のみです。</p>
+</section>
+<section id="yn" class="card" hidden>
+ <div class="eyebrow">Y/Nによる分類補完 · 未較正の研究用</div>
+ <h2 id="ynHeading">左右それぞれの重視度を確認</h2>
+ <p class="muted">YES/NOは左右それぞれ独立です。両方YES、両方NOも可能です。分類補完は未検証の研究仮説で、7段階の得点は変えません。</p>
+ <div class="stephead"><span id="ynCounter"></span><span id="ynStage"></span></div>
+ <div class="progress-line yn-progress-line" role="progressbar" aria-label="追加Y/Nの回答数（最大8問）" aria-valuemin="0" aria-valuemax="8" aria-valuenow="0"><div id="ynProgress"></div></div>
+ <div id="ynQuestion" class="yn-question"></div>
+ <div class="yn-choices" id="ynChoices" role="group" aria-label="補助質問の回答"></div>
+ <div class="actions"><button class="secondary" id="ynPrev">前へ</button><button class="primary" id="ynNext" disabled>次へ</button></div>
+ <button class="skip" id="ynStop">ここで終了して結果へ戻る</button>
+ <p class="muted">追加質問はY/N形式のみ・最大8問。回答により研究用の暫定候補が変わることがあります。途中終了は任意で、回答は端末から送信・保存されません。</p>
+</section>
+<p class="warning">A05研究用試作版（1.5乗加点・未較正）：本番診断の回答履歴とは連携していません。16タイプ名は開発途中のものです。回答はこの画面内でのみ処理し、サーバーへ送信・保存しません。画面を閉じると回答は失われます。</p>
+</main>
+<script id="data" type="application/json">{"schema":"A05-D219-UNVALIDATED-DEMO-1","ynVersion":"A05-D246-ISOLATED-Y-N-PREVIEW-1","ynClassificationVersion":"A05-D255-YN-PROVISIONAL-CLASSIFIER-1","mobileUiVersion":"A05-D257-ONE-SCREEN-MOBILE-V2-1","mobileUiRevision":"A05-D259-MOBILE-V2_1-1","resultUiVersion":"A05-D262-RESULT-EVIDENCE-V2_2-1","ynProbes":{"schema":"A05-D243-MIDPOINT-YN-PROBE-BANK-1","created":"2026-11-16","status":"RESEARCH_ONLY_NOT_HUMAN_VALIDATED","policy":{"triggerCombinedMidpointOrSkippedAtLeast":5,"holdAxisIfDirectionalResponsesBelow":4,"maxIndependentYNPerSession":8,"initialQuestionsPerTriggeredAxis":2,"optionalContextQuestionsPerAxis":2,"reasonsNonScoring":true,"ynOptions":["YES","NO","UNSURE"],"reasonOptions":["BOTH_STRONG","BOTH_WEAK","CONTEXT_DEPENDENT","BALANCED_MODERATE","WORDING_DIFFICULT","OTHER","PREFER_NOT"],"resultInterpretations":["BOTH_AFFIRMED","NEITHER_AFFIRMED","LEFT_ONLY","RIGHT_ONLY","UNRESOLVED","NOT_ASKED"],"typeScoreEffect":"NONE","noAdditionalQuestionsNeededIfNoTrigger":true,"stopAlwaysAllowed":true},"rationale":"A four is a valid midpoint response and cannot be treated as equivalent to skipped/null. The combined count determines whether an axis has enough directional evidence, not whether the person has an invalid profile. The Y/N probes distinguish independent importance and must not be converted to a signed 1-7 score.","reasonPrompt":"この軸の質問で『4』を選んだ理由に最も近いものは何ですか？（任意。『判断できない』が多い場合はその理由でも構いません）","axes":[{"axis":"A","left":"安定","right":"変化","initial":[{"id":"A05-D243-A-L","pole":"LEFT","prompt":"慣れた方法や大切な仕組みは、できるだけ維持したいと思いますか？"},{"id":"A05-D243-A-R","pole":"RIGHT","prompt":"より良くなる可能性があれば、慣れた方法でも変更したいと思いますか？"}],"context":[{"id":"A05-D243-A-C1","prompt":"今の方法が特に問題なく使えているときは、維持したいと思いますか？"},{"id":"A05-D243-A-C2","prompt":"変更に多少の手間があっても、改善できるなら試したいと思いますか？"}]},{"axis":"B","left":"自律","right":"つながり","initial":[{"id":"A05-D243-B-L","pole":"LEFT","prompt":"重要なことは、最終的には自分の基準で決めたいと思いますか？"},{"id":"A05-D243-B-R","pole":"RIGHT","prompt":"重要なことを決める前に、周囲の人と十分に相談したいと思いますか？"}],"context":[{"id":"A05-D243-B-C1","prompt":"人と十分相談していても、最終的な判断は自分で下したいと思いますか？"},{"id":"A05-D243-B-C2","prompt":"最終的な決定権が自分にあっても、判断する前に周囲の意見を聞きたいですか？"}]},{"axis":"C","left":"将来達成","right":"現在充実","initial":[{"id":"A05-D243-C-L","pole":"LEFT","prompt":"今の時間を使って、将来の選択肢や成果を増やしたいと思いますか？"},{"id":"A05-D243-C-R","pole":"RIGHT","prompt":"将来への準備とは別に、今この時間自体の充実を大切にしたいと思いますか？"}],"context":[{"id":"A05-D243-C-C1","prompt":"今すぐの満足が減っても、将来の目標のために準備したいですか？"},{"id":"A05-D243-C-C2","prompt":"将来の目標を持っていても、今日の時間を楽しむことを意識したいですか？"}]},{"axis":"D","left":"探索","right":"深耕","initial":[{"id":"A05-D243-D-L","pole":"LEFT","prompt":"一つの領域だけでなく、幅広い分野に触れたいと思いますか？"},{"id":"A05-D243-D-R","pole":"RIGHT","prompt":"関心を持った一つの分野を、時間をかけて深く学びたいと思いますか？"}],"context":[{"id":"A05-D243-D-C1","prompt":"新しい分野を知る機会があれば、今の専門から少し離れても試したいですか？"},{"id":"A05-D243-D-C2","prompt":"ほかに面白そうな分野があっても、選んだ一つを掘り下げる時間を確保したいですか？"}]}],"guardrails":["No Y/N or reason contributes to A/B/C/D scoring or the 16-type candidate set.","A05-D243 prompts are editorial drafts; do not silently replace or score D206 items.","A choice of 4 has numeric score zero but counts as a valid 7-point response, whereas null is skipped.","Do not infer a latent type from YES/YES, NO/NO, or UNSURE.","At most 8 Y/N extra items per whole session; ask at most two per step, optional and stop-friendly.","Context Y/N questions are optional when initial answers are unsure or the stated reason is context dependent; they cannot be treated as independent validated items.","No production UI, public D242 preview, or real respondent evidence is changed by this bank."]},"scoringVersion":"A05-D242-POWER-1_5-RESEARCH-PREVIEW-1","scoringPower":1.5,"scoringValidation":"RESEARCH_ONLY_NOT_PSYCHOMETRICALLY_VALIDATED","scoringBoundary":0.19245008972987523,"excludedCoreScoringIds":["A05-V1-31","A05-V1-32","A05-V1-36"],"bankVersion":"A05-D206-EDITORIAL-50-V1-2","bankDigest":"4d8c8fba3344565316fc5e1b7af8981bde0a09806b78ac2d64e6dedc9caace72","questions":[{"id":"A05-V1-01","axis":"A","stem":"費用・便利さ・周囲との関係が同じ住まいを選べるとき、今後の生活基盤としてどちらを好みますか？","left":"今の住まいを基盤に、必要な部分を整えながら暮らす","right":"別の住まいへ移り、暮らしの基盤を組み直す","family":"A_HOUSING_BASE"},{"id":"A05-V1-02","axis":"A","stem":"同じ活動を同じ負担で続けられるなら、定期的に使う活動場所をどう選びたいですか？","left":"使い慣れた同じ場所を活動の拠点にする","right":"一定の区切りごとに別の場所を活動の拠点にする","family":"A_ACTIVITY_SETTING"},{"id":"A05-V1-03","axis":"A","stem":"費用とサービス内容が同じなら、毎月利用する生活サービスをどう選びたいですか？","left":"長く使っている提供先を基本にし、必要な部分を調整する","right":"一定期間ごとに別の提供先へ切り替える","family":"A_SERVICE_PROVIDER"},{"id":"A05-V1-04","axis":"A","stem":"家事や用事を行う時間と負担が同じなら、普段の進め方はどちらを好みますか？","left":"慣れた手順を基本として必要なところを整える","right":"手順全体を別の組み立て方に変える","family":"A_ROUTINE_PATTERN"},{"id":"A05-V1-05","axis":"A","stem":"同じ趣味や任意の活動を、同じ仲間・内容・負担で続けられるとします。活動を支える運営の仕組みとして、どちらを好みますか？","left":"これまでの運営方法を土台に、必要な部分を整えて続ける","right":"一定の区切りで運営方法の土台を組み替える","family":"A_ACTIVITY_SETTING"},{"id":"A05-V1-06","axis":"A","stem":"便利さや必要な費用が同じなら、毎日使う生活用具の構成についてどちらを好みますか？","left":"今ある用具の構成を活かして調整する","right":"用具の組合せを定期的に組み直す","family":"A_MATERIAL_TOOLS"},{"id":"A05-V1-07","axis":"A","stem":"自分だけが管理する日々の予定や用事について、手間と正確さが同じならどちらの仕組みを使いたいですか？","left":"使い慣れた管理の仕組みを土台に調整する","right":"予定や用事を管理する仕組みを新しい方式へ替える","family":"A_PERSONAL_MANAGEMENT"},{"id":"A05-V1-08","axis":"A","stem":"毎年、自分で自由に決められる「節目の日」の過ごし方について、今年から選び直せるとします。どちらに魅力を感じますか？","left":"自分が馴染んだ過ごし方を受け継ぐ","right":"今年は別の過ごし方を作ってみる","family":"A_PERSONAL_RITUAL"},{"id":"A05-V1-09","axis":"A","stem":"愛用している日用品が、修理しても交換しても機能・費用・使いやすさが同じだとします。どちらを選びたいですか？","left":"今まで使ってきた品を手入れして使い続ける","right":"同じ役割の新しい品に入れ替える","family":"A_MATERIAL_TOOLS"},{"id":"A05-V1-10","axis":"A","stem":"個人的な記録を長く続けるとして、記録の安全性や使いやすさが同じならどちらの保存方法を好みますか？","left":"これまでの記録の残し方を活かして整理を続ける","right":"記録の残し方を新しい方式へ切り替える","family":"A_PERSONAL_MANAGEMENT"},{"id":"A05-V1-11","axis":"A","stem":"暮らしやすさに差がないなら、自宅の部屋や空間の使い分けをどうしたいですか？","left":"今の役割分担を基本として必要な部分を整える","right":"一定の区切りで各空間の役割を組み直す","family":"A_HOUSING_BASE"},{"id":"A05-V1-12","axis":"A","stem":"生活上の必要な用事と自由時間の総量が同じなら、毎週の過ごし方の基本的な型をどうしたいですか？","left":"馴染んだ一週間の流れを基本として維持する","right":"一定の時期ごとに一週間の流れを組み替える","family":"A_ROUTINE_PATTERN"},{"id":"A05-V1-13","axis":"B","stem":"自分と関係者の意見が違い、どちらの案でも成果や負担が同じなら、何をより優先しますか？","left":"自分が妥当だと思う案で決める","right":"関係者が納得する合意を優先する","family":"B_CONSENSUS_DECISION"},{"id":"A05-V1-14","axis":"B","stem":"結果と負担を自分だけが引き受ける将来の計画について、親しい人から異なる意見を聞いたとします。どちらをより重視したいですか？","left":"最後は自分が納得できる基準で決めること","right":"身近な人の考えも取り入れて決め方を組み立てること","family":"B_PERSONAL_DECISION"},{"id":"A05-V1-15","axis":"B","stem":"自分の生活上の大切な目標を選ぶとき、周囲に迷惑はかからず、どちらの決め方も実現可能だとします。より大切なのはどちらですか？","left":"自分自身で目標を定める自由があること","right":"大切な人と相談して目標を形にできること","family":"B_PERSONAL_DECISION"},{"id":"A05-V1-16","axis":"B","stem":"これから個人的な課題の解決方法を考えます。十分な情報があり、どちらでも同じ結論に達せるなら、どの過程を好みますか？","left":"まず自分の考えを一人で整理する過程","right":"信頼できる人と考えを出し合う過程","family":"B_THOUGHT_PROCESS"},{"id":"A05-V1-17","axis":"B","stem":"個人的な計画を見直す必要が生じ、必要な情報と所要時間は同じだとします。どの進め方をより好みますか？","left":"自分の中で判断を整理して修正案を決める","right":"身近な人と考えを共有しながら修正案を決める","family":"B_THOUGHT_PROCESS"},{"id":"A05-V1-18","axis":"B","stem":"一つの任意の活動を自分で始めます。一人でも二人でも成果・時間・負担が同程度なら、どちらの形を好みますか？","left":"活動の進め方を自分の裁量で組み立てる","right":"信頼する相手と役割や進め方を一緒に組み立てる","family":"B_TASK_OWNERSHIP"},{"id":"A05-V1-19","axis":"B","stem":"住む地域を選ぶとき、生活費や仕事上の条件が同じで、親しい人とは離れた場所でも連絡を取れるとします。より大切なのはどちらですか？","left":"自分の希望に合う地域で暮らすこと","right":"大切な人と日常的に会いやすい地域で暮らすこと","family":"B_RELATIONAL_PRIORITY"},{"id":"A05-V1-20","axis":"B","stem":"自由に使える休日の過ごし方を決めます。どちらでも同じ程度楽しめるとしたら、より大切なのはどちらですか？","left":"自分の希望どおりに時間を使えること","right":"親しい人と予定を合わせて時間を共有できること","family":"B_RELATIONAL_PRIORITY"},{"id":"A05-V1-21","axis":"B","stem":"難しい個人的な課題に取り組むとき、一人でも誰かと協力しても結果と所要時間が同じだとします。どちらが好みに近いですか？","left":"自分の裁量で最初から最後まで進める","right":"信頼する人と相談しながら一緒に進める","family":"B_TASK_OWNERSHIP"},{"id":"A05-V1-22","axis":"B","stem":"達成したい目標があり、単独でも共同でも成果や労力は同じだとします。達成するとき、どちらの充実感をより大切にしたいですか？","left":"自分の力で形にしたという納得感","right":"誰かと達成を分かち合える実感","family":"B_FULFILLMENT_SHARING"},{"id":"A05-V1-23","axis":"B","stem":"自分が楽しみにしている体験を選べます。内容と満足度が同じなら、どちらの価値に魅力を感じますか？","left":"自分のペースで体験を味わえること","right":"親しい人と同じ体験を共有できること","family":"B_FULFILLMENT_SHARING"},{"id":"A05-V1-24","axis":"B","stem":"同じ人数に同じ影響がある共通ルールを選ぶ際、意見が割れていてどちらにも合理性があるなら、どちらを重視しますか？","left":"自分の判断を最終的な基準にする","right":"参加者の合意を最終的な基準にする","family":"B_CONSENSUS_DECISION"},{"id":"A05-V1-25","axis":"C","stem":"今週自由に使える同じ時間を、将来と現在のどちらへ優先的に使いたいですか？","left":"数か月後の選択肢を増やすための活動","right":"今週の経験そのものを充実させる活動","family":"C_TIME_ALLOCATION"},{"id":"A05-V1-26","axis":"C","stem":"生活に必要な支出や休息が満たされ、予定外に自由に使える時間ができたら、どちらを優先したいですか？","left":"将来の目標に向けた準備に使う","right":"今の生活を充実させる体験に使う","family":"C_TIME_ALLOCATION"},{"id":"A05-V1-27","axis":"C","stem":"半年続ける自由参加の活動を選ぶとします。費用と時間が同じなら、次のうち何をより大切にしたいですか？","left":"半年後にできることや選択肢が増えること","right":"参加している毎回の時間を楽しめること","family":"C_PROCESS_VS_OUTCOME"},{"id":"A05-V1-28","axis":"C","stem":"自分の趣味の取り組み方を振り返るとき、どちらが『充実していた』と感じる主な理由に近いですか？","left":"最終的に以前よりできることが増えたこと","right":"取り組んでいる日々が心地よく過ごせたこと","family":"C_PROCESS_VS_OUTCOME"},{"id":"A05-V1-29","axis":"C","stem":"大きな目標を達成し、必要な休息も取れた後に自由な時間ができました。次により優先したいのはどちらですか？","left":"次の将来目標のための準備を始める","right":"目標を達成した今の時間を十分に味わう","family":"C_POST_GOAL"},{"id":"A05-V1-30","axis":"C","stem":"長く取り組んだ課題が一段落し、新しい義務はなく、休息も足りています。次の数週間でより魅力を感じるのはどちらですか？","left":"将来に向けた新しい計画に着手する","right":"次の目標を急がず今の生活の充実を深める","family":"C_POST_GOAL"},{"id":"A05-V1-31","axis":"C","stem":"同じ2時間で選べる二つの機会があります。将来に役立つ準備は来週もできますが、今楽しめる体験は今回限りです。どちらを優先しますか？","left":"来週にもできる将来の準備を今進める","right":"今回限りの現在の体験を選ぶ","family":"C_OPPORTUNITY_TIMING"},{"id":"A05-V1-32","axis":"C","stem":"将来に役立つ準備と現在を楽しむ体験がどちらも今週限りの機会で、所要時間が同じなら、どちらを選びたいですか？","left":"今週限りの将来の準備機会を選ぶ","right":"今週限りの現在の体験を選ぶ","family":"C_OPPORTUNITY_TIMING"},{"id":"A05-V1-33","axis":"C","stem":"同じ時間を使う二つの選択肢があります。将来の成果は得られるか不確実ですが、その準備自体にも意義を感じています。どちらをより重視しますか？","left":"成果が確実でなくても将来の可能性を広げること","right":"今の時間に確かな充実感を得ること","family":"C_FUTURE_UNCERTAINTY"},{"id":"A05-V1-34","axis":"C","stem":"将来の役立ち方がまだわからない学習と、今すぐ楽しめる活動を同じ時間だけ選べるとします。どちらに魅力を感じますか？","left":"役立つか未定でも将来につながる学習に取り組む","right":"その時間を今楽しめる活動に充てる","family":"C_FUTURE_UNCERTAINTY"},{"id":"A05-V1-35","axis":"C","stem":"この一年を振り返って「充実していた」と感じる理由として、どちらの見方がより近いですか？","left":"これからの選択肢や目標につながるものを得た","right":"その一年の日々を納得して過ごすことができた","family":"C_LIFE_EVALUATION"},{"id":"A05-V1-36","axis":"C","stem":"自分にとって『よい一年』とはどんな一年だったと感じるか考えます。どちらの充足をより重視しますか？","left":"その後の人生に役立つものを積み重ねられたこと","right":"一年を通して納得できる日々を過ごせたこと","family":"C_LIFE_EVALUATION"},{"id":"A05-V1-37","axis":"D","stem":"関心を持てる趣味や活動に同じ時間を使えるなら、どちらを選びたいですか？","left":"まだ取り組んだことのない活動を試す","right":"以前から取り組んでいる活動を掘り下げる","family":"D_ACTIVITY_BREADTH"},{"id":"A05-V1-38","axis":"D","stem":"関心がある分野を同じ時間で学べる場合、どちらをより好みますか？","left":"異なる複数分野の基本を学ぶ","right":"一つの分野をさらに詳しく学ぶ","family":"D_FIELD_LEARNING"},{"id":"A05-V1-39","axis":"D","stem":"興味がある一つの分野を学び始めて基礎を理解しました。別の分野にも同程度に興味がある場合、次にどちらへ進みたいですか？","left":"新しく関心を持った分野の基礎を知る","right":"最初の分野について専門的な部分へ進む","family":"D_STAGE_TRANSITION"},{"id":"A05-V1-40","axis":"D","stem":"創作やものづくりに同じ時間を使える場合、どちらをより好みますか？","left":"複数の異なる制作分野を試す","right":"一つの制作分野の表現を掘り下げる","family":"D_CREATIVE_OUTPUT"},{"id":"A05-V1-41","axis":"D","stem":"一つの疑問を理解するために同じ時間を使えるなら、どの調べ方に魅力を感じますか？","left":"異なる学問分野の見方を集めて疑問を考える","right":"一つの分野の理論や根拠を詳しく調べて疑問を考える","family":"D_INQUIRY_STRUCTURE"},{"id":"A05-V1-42","axis":"D","stem":"関心のあるテーマで当初の目標に到達し、次に同じ時間を使えるなら、どちらを選びたいですか？","left":"今まで触れなかった別分野へ進む","right":"今のテーマの応用を深める","family":"D_STAGE_TRANSITION"},{"id":"A05-V1-43","axis":"D","stem":"同じくらい気になる疑問がいくつかあり、自由に調べる時間を使えるなら、どちらの探究の進め方をより好みますか？","left":"異なる複数の疑問について、それぞれの背景を調べる","right":"一つの疑問を選び、その背景や根拠を詳しく調べる","family":"D_INQUIRY_STRUCTURE"},{"id":"A05-V1-44","axis":"D","stem":"未経験の分野に関心を持ったとき、同じ学習時間ならどちらを選びたいですか？","left":"複数の未経験分野を短く試す","right":"最初に選んだ一つの新分野を詳しく学ぶ","family":"D_ACTIVITY_BREADTH"},{"id":"A05-V1-45","axis":"D","stem":"趣味として一年間、同じ制作時間を自由に使えるとします。どちらの作品づくりを好みますか？","left":"異なる題材の小さな作品をいくつか完成させる","right":"一つの題材の作品を繰り返し作り込み表現を深める","family":"D_CREATIVE_OUTPUT"},{"id":"A05-V1-46","axis":"D","stem":"興味を持って調べた内容を、自分だけが後で読むノートにまとめるなら、どちらを好みますか？","left":"複数の異なる話題について概要をまとめる","right":"一つの話題について背景や根拠を詳しくまとめる","family":"D_KNOWLEDGE_ORGANIZATION"},{"id":"A05-V1-47","axis":"D","stem":"関心がある同じテーマを自由に調べるとき、同じ時間でどちらの進め方を好みますか？","left":"異なる種類の資料を複数読んで見方を広げる","right":"選んだ一つの資料の内容や背景を徹底して読み解く","family":"D_INFORMATION_SOURCES"},{"id":"A05-V1-48","axis":"D","stem":"半年の自由な学習期間に、同じ総学習時間を使えるとします。どちらの学び方に魅力を感じますか？","left":"それぞれ興味のある複数分野の入口を学ぶ","right":"特に興味がある一つの分野を体系的に学び進める","family":"D_FIELD_LEARNING"},{"id":"A05-V1-49","axis":"E","stem":"必要な生活費と休息を確保できている状態で、一つだけ増やせるとしたら、どちらを選びたいですか？","left":"毎月、自分で使えるお金が1万円増える","right":"毎月、自分で使える時間が8時間増える","family":"E"},{"id":"A05-V1-50","axis":"E","stem":"必要な休息と生活費を確保したうえで、追加収入の機会がある自由な半日なら、どちらを優先したいですか？","left":"追加活動をして自由に使えるお金を4,000円増やす","right":"その半日を自分の好きなことに使う","family":"E"}],"manifests":[{"ids":["A05-V1-06","A05-V1-18","A05-V1-44","A05-V1-30","A05-V1-22","A05-V1-02","A05-V1-41","A05-V1-25","A05-V1-10","A05-V1-29","A05-V1-50","A05-V1-37","A05-V1-20","A05-V1-48","A05-V1-08","A05-V1-15","A05-V1-26","A05-V1-12","A05-V1-27","A05-V1-49","A05-V1-13","A05-V1-47","A05-V1-35","A05-V1-05","A05-V1-40","A05-V1-19","A05-V1-11","A05-V1-16","A05-V1-39","A05-V1-34"],"seed":"D219-simple-000"},{"ids":["A05-V1-12","A05-V1-45","A05-V1-28","A05-V1-22","A05-V1-34","A05-V1-16","A05-V1-42","A05-V1-07","A05-V1-48","A05-V1-21","A05-V1-29","A05-V1-02","A05-V1-30","A05-V1-11","A05-V1-44","A05-V1-19","A05-V1-08","A05-V1-47","A05-V1-20","A05-V1-27","A05-V1-49","A05-V1-13","A05-V1-35","A05-V1-43","A05-V1-06","A05-V1-50","A05-V1-46","A05-V1-05","A05-V1-14","A05-V1-25"],"seed":"D219-simple-001"},{"ids":["A05-V1-29","A05-V1-17","A05-V1-01","A05-V1-43","A05-V1-04","A05-V1-15","A05-V1-34","A05-V1-48","A05-V1-49","A05-V1-41","A05-V1-03","A05-V1-30","A05-V1-19","A05-V1-46","A05-V1-22","A05-V1-50","A05-V1-33","A05-V1-09","A05-V1-25","A05-V1-44","A05-V1-02","A05-V1-24","A05-V1-26","A05-V1-20","A05-V1-40","A05-V1-08","A05-V1-39","A05-V1-18","A05-V1-28","A05-V1-10"],"seed":"D219-simple-002"},{"ids":["A05-V1-21","A05-V1-06","A05-V1-27","A05-V1-47","A05-V1-25","A05-V1-41","A05-V1-14","A05-V1-03","A05-V1-22","A05-V1-33","A05-V1-44","A05-V1-02","A05-V1-39","A05-V1-13","A05-V1-28","A05-V1-12","A05-V1-38","A05-V1-11","A05-V1-34","A05-V1-19","A05-V1-29","A05-V1-49","A05-V1-17","A05-V1-01","A05-V1-42","A05-V1-23","A05-V1-45","A05-V1-10","A05-V1-26","A05-V1-50"],"seed":"D219-simple-003"},{"ids":["A05-V1-18","A05-V1-35","A05-V1-01","A05-V1-41","A05-V1-49","A05-V1-13","A05-V1-38","A05-V1-34","A05-V1-07","A05-V1-14","A05-V1-26","A05-V1-05","A05-V1-37","A05-V1-50","A05-V1-23","A05-V1-27","A05-V1-12","A05-V1-43","A05-V1-22","A05-V1-33","A05-V1-04","A05-V1-45","A05-V1-17","A05-V1-09","A05-V1-42","A05-V1-25","A05-V1-47","A05-V1-28","A05-V1-02","A05-V1-19"],"seed":"D219-simple-004"},{"ids":["A05-V1-19","A05-V1-39","A05-V1-25","A05-V1-01","A05-V1-18","A05-V1-33","A05-V1-47","A05-V1-49","A05-V1-09","A05-V1-14","A05-V1-10","A05-V1-46","A05-V1-30","A05-V1-50","A05-V1-48","A05-V1-02","A05-V1-28","A05-V1-13","A05-V1-40","A05-V1-12","A05-V1-27","A05-V1-21","A05-V1-43","A05-V1-34","A05-V1-08","A05-V1-16","A05-V1-04","A05-V1-44","A05-V1-22","A05-V1-26"],"seed":"D219-simple-005"},{"ids":["A05-V1-40","A05-V1-27","A05-V1-17","A05-V1-09","A05-V1-48","A05-V1-49","A05-V1-12","A05-V1-22","A05-V1-30","A05-V1-44","A05-V1-29","A05-V1-14","A05-V1-03","A05-V1-50","A05-V1-25","A05-V1-07","A05-V1-24","A05-V1-41","A05-V1-16","A05-V1-37","A05-V1-05","A05-V1-34","A05-V1-11","A05-V1-42","A05-V1-21","A05-V1-26","A05-V1-38","A05-V1-08","A05-V1-20","A05-V1-28"],"seed":"D219-simple-006"},{"ids":["A05-V1-15","A05-V1-34","A05-V1-12","A05-V1-42","A05-V1-25","A05-V1-19","A05-V1-48","A05-V1-03","A05-V1-50","A05-V1-13","A05-V1-37","A05-V1-33","A05-V1-05","A05-V1-43","A05-V1-08","A05-V1-28","A05-V1-17","A05-V1-30","A05-V1-06","A05-V1-40","A05-V1-49","A05-V1-21","A05-V1-38","A05-V1-26","A05-V1-11","A05-V1-24","A05-V1-35","A05-V1-22","A05-V1-44","A05-V1-07"],"seed":"D219-simple-007"},{"ids":["A05-V1-15","A05-V1-01","A05-V1-29","A05-V1-41","A05-V1-27","A05-V1-04","A05-V1-22","A05-V1-39","A05-V1-03","A05-V1-49","A05-V1-28","A05-V1-43","A05-V1-21","A05-V1-25","A05-V1-37","A05-V1-16","A05-V1-05","A05-V1-50","A05-V1-46","A05-V1-19","A05-V1-33","A05-V1-11","A05-V1-24","A05-V1-06","A05-V1-40","A05-V1-35","A05-V1-38","A05-V1-26","A05-V1-10","A05-V1-13"],"seed":"D219-simple-008"},{"ids":["A05-V1-48","A05-V1-25","A05-V1-23","A05-V1-03","A05-V1-24","A05-V1-35","A05-V1-50","A05-V1-40","A05-V1-11","A05-V1-49","A05-V1-44","A05-V1-04","A05-V1-30","A05-V1-19","A05-V1-38","A05-V1-16","A05-V1-28","A05-V1-02","A05-V1-14","A05-V1-43","A05-V1-27","A05-V1-08","A05-V1-39","A05-V1-33","A05-V1-07","A05-V1-18","A05-V1-46","A05-V1-09","A05-V1-21","A05-V1-34"],"seed":"D219-simple-009"},{"ids":["A05-V1-07","A05-V1-47","A05-V1-35","A05-V1-22","A05-V1-37","A05-V1-21","A05-V1-05","A05-V1-49","A05-V1-26","A05-V1-38","A05-V1-15","A05-V1-10","A05-V1-34","A05-V1-39","A05-V1-19","A05-V1-30","A05-V1-50","A05-V1-06","A05-V1-24","A05-V1-12","A05-V1-40","A05-V1-29","A05-V1-04","A05-V1-28","A05-V1-43","A05-V1-17","A05-V1-25","A05-V1-45","A05-V1-11","A05-V1-23"],"seed":"D219-simple-010"},{"ids":["A05-V1-05","A05-V1-42","A05-V1-49","A05-V1-27","A05-V1-23","A05-V1-43","A05-V1-17","A05-V1-29","A05-V1-07","A05-V1-26","A05-V1-15","A05-V1-37","A05-V1-09","A05-V1-45","A05-V1-14","A05-V1-11","A05-V1-25","A05-V1-50","A05-V1-38","A05-V1-24","A05-V1-33","A05-V1-12","A05-V1-28","A05-V1-08","A05-V1-19","A05-V1-46","A05-V1-18","A05-V1-30","A05-V1-40","A05-V1-02"],"seed":"D219-simple-011"},{"ids":["A05-V1-06","A05-V1-26","A05-V1-37","A05-V1-24","A05-V1-27","A05-V1-11","A05-V1-42","A05-V1-22","A05-V1-08","A05-V1-15","A05-V1-49","A05-V1-30","A05-V1-41","A05-V1-29","A05-V1-43","A05-V1-03","A05-V1-14","A05-V1-34","A05-V1-18","A05-V1-48","A05-V1-10","A05-V1-38","A05-V1-02","A05-V1-35","A05-V1-50","A05-V1-20","A05-V1-04","A05-V1-45","A05-V1-33","A05-V1-16"],"seed":"D219-simple-012"},{"ids":["A05-V1-50","A05-V1-21","A05-V1-47","A05-V1-26","A05-V1-06","A05-V1-40","A05-V1-27","A05-V1-08","A05-V1-19","A05-V1-10","A05-V1-48","A05-V1-23","A05-V1-30","A05-V1-49","A05-V1-25","A05-V1-17","A05-V1-37","A05-V1-01","A05-V1-46","A05-V1-24","A05-V1-02","A05-V1-29","A05-V1-15","A05-V1-34","A05-V1-39","A05-V1-03","A05-V1-20","A05-V1-04","A05-V1-28","A05-V1-43"],"seed":"D219-simple-013"},{"ids":["A05-V1-33","A05-V1-24","A05-V1-03","A05-V1-45","A05-V1-35","A05-V1-39","A05-V1-10","A05-V1-22","A05-V1-26","A05-V1-49","A05-V1-17","A05-V1-37","A05-V1-12","A05-V1-18","A05-V1-29","A05-V1-43","A05-V1-08","A05-V1-50","A05-V1-27","A05-V1-38","A05-V1-11","A05-V1-15","A05-V1-28","A05-V1-14","A05-V1-05","A05-V1-46","A05-V1-06","A05-V1-34","A05-V1-47","A05-V1-20"],"seed":"D219-simple-014"},{"ids":["A05-V1-27","A05-V1-49","A05-V1-09","A05-V1-19","A05-V1-46","A05-V1-29","A05-V1-50","A05-V1-15","A05-V1-38","A05-V1-11","A05-V1-28","A05-V1-02","A05-V1-41","A05-V1-13","A05-V1-42","A05-V1-22","A05-V1-30","A05-V1-04","A05-V1-47","A05-V1-17","A05-V1-07","A05-V1-35","A05-V1-23","A05-V1-37","A05-V1-26","A05-V1-06","A05-V1-33","A05-V1-01","A05-V1-40","A05-V1-21"],"seed":"D219-simple-015"},{"ids":["A05-V1-35","A05-V1-23","A05-V1-11","A05-V1-38","A05-V1-16","A05-V1-29","A05-V1-10","A05-V1-44","A05-V1-24","A05-V1-48","A05-V1-08","A05-V1-26","A05-V1-39","A05-V1-14","A05-V1-09","A05-V1-30","A05-V1-45","A05-V1-27","A05-V1-02","A05-V1-50","A05-V1-21","A05-V1-12","A05-V1-20","A05-V1-33","A05-V1-43","A05-V1-18","A05-V1-41","A05-V1-34","A05-V1-03","A05-V1-49"],"seed":"D219-simple-016"},{"ids":["A05-V1-34","A05-V1-50","A05-V1-37","A05-V1-02","A05-V1-13","A05-V1-29","A05-V1-07","A05-V1-17","A05-V1-42","A05-V1-22","A05-V1-40","A05-V1-30","A05-V1-04","A05-V1-49","A05-V1-06","A05-V1-27","A05-V1-45","A05-V1-18","A05-V1-43","A05-V1-24","A05-V1-08","A05-V1-33","A05-V1-48","A05-V1-26","A05-V1-14","A05-V1-09","A05-V1-19","A05-V1-25","A05-V1-41","A05-V1-11"],"seed":"D219-simple-017"},{"ids":["A05-V1-16","A05-V1-09","A05-V1-35","A05-V1-39","A05-V1-23","A05-V1-01","A05-V1-45","A05-V1-49","A05-V1-29","A05-V1-14","A05-V1-44","A05-V1-07","A05-V1-27","A05-V1-05","A05-V1-28","A05-V1-21","A05-V1-38","A05-V1-50","A05-V1-46","A05-V1-26","A05-V1-19","A05-V1-06","A05-V1-41","A05-V1-33","A05-V1-08","A05-V1-13","A05-V1-40","A05-V1-22","A05-V1-25","A05-V1-04"],"seed":"D219-simple-018"},{"ids":["A05-V1-39","A05-V1-49","A05-V1-20","A05-V1-06","A05-V1-29","A05-V1-43","A05-V1-15","A05-V1-28","A05-V1-02","A05-V1-21","A05-V1-27","A05-V1-07","A05-V1-46","A05-V1-17","A05-V1-33","A05-V1-03","A05-V1-37","A05-V1-22","A05-V1-30","A05-V1-38","A05-V1-12","A05-V1-26","A05-V1-08","A05-V1-42","A05-V1-24","A05-V1-01","A05-V1-18","A05-V1-50","A05-V1-45","A05-V1-35"],"seed":"D219-simple-019"},{"ids":["A05-V1-16","A05-V1-07","A05-V1-38","A05-V1-25","A05-V1-49","A05-V1-03","A05-V1-19","A05-V1-37","A05-V1-28","A05-V1-20","A05-V1-48","A05-V1-27","A05-V1-02","A05-V1-42","A05-V1-22","A05-V1-04","A05-V1-35","A05-V1-50","A05-V1-40","A05-V1-29","A05-V1-11","A05-V1-14","A05-V1-09","A05-V1-43","A05-V1-13","A05-V1-33","A05-V1-47","A05-V1-30","A05-V1-12","A05-V1-21"],"seed":"D219-simple-020"},{"ids":["A05-V1-47","A05-V1-09","A05-V1-29","A05-V1-18","A05-V1-33","A05-V1-11","A05-V1-14","A05-V1-37","A05-V1-30","A05-V1-13","A05-V1-07","A05-V1-43","A05-V1-50","A05-V1-22","A05-V1-45","A05-V1-12","A05-V1-28","A05-V1-49","A05-V1-35","A05-V1-40","A05-V1-16","A05-V1-08","A05-V1-25","A05-V1-04","A05-V1-20","A05-V1-48","A05-V1-02","A05-V1-42","A05-V1-24","A05-V1-26"],"seed":"D219-simple-021"},{"ids":["A05-V1-28","A05-V1-38","A05-V1-09","A05-V1-20","A05-V1-49","A05-V1-18","A05-V1-26","A05-V1-43","A05-V1-11","A05-V1-14","A05-V1-27","A05-V1-40","A05-V1-03","A05-V1-23","A05-V1-10","A05-V1-34","A05-V1-47","A05-V1-13","A05-V1-42","A05-V1-25","A05-V1-12","A05-V1-50","A05-V1-02","A05-V1-16","A05-V1-33","A05-V1-39","A05-V1-35","A05-V1-22","A05-V1-44","A05-V1-08"],"seed":"D219-simple-022"},{"ids":["A05-V1-28","A05-V1-44","A05-V1-13","A05-V1-04","A05-V1-33","A05-V1-48","A05-V1-07","A05-V1-17","A05-V1-01","A05-V1-47","A05-V1-15","A05-V1-27","A05-V1-24","A05-V1-26","A05-V1-42","A05-V1-08","A05-V1-22","A05-V1-09","A05-V1-38","A05-V1-25","A05-V1-20","A05-V1-49","A05-V1-40","A05-V1-05","A05-V1-30","A05-V1-18","A05-V1-29","A05-V1-03","A05-V1-50","A05-V1-41"],"seed":"D219-simple-023"},{"ids":["A05-V1-26","A05-V1-20","A05-V1-37","A05-V1-10","A05-V1-50","A05-V1-47","A05-V1-13","A05-V1-07","A05-V1-27","A05-V1-09","A05-V1-17","A05-V1-25","A05-V1-42","A05-V1-22","A05-V1-01","A05-V1-39","A05-V1-29","A05-V1-05","A05-V1-34","A05-V1-48","A05-V1-21","A05-V1-41","A05-V1-24","A05-V1-28","A05-V1-11","A05-V1-49","A05-V1-40","A05-V1-33","A05-V1-14","A05-V1-04"],"seed":"D219-simple-024"},{"ids":["A05-V1-33","A05-V1-19","A05-V1-12","A05-V1-46","A05-V1-06","A05-V1-16","A05-V1-27","A05-V1-37","A05-V1-29","A05-V1-07","A05-V1-50","A05-V1-17","A05-V1-41","A05-V1-34","A05-V1-48","A05-V1-15","A05-V1-01","A05-V1-49","A05-V1-04","A05-V1-23","A05-V1-26","A05-V1-42","A05-V1-08","A05-V1-24","A05-V1-28","A05-V1-40","A05-V1-30","A05-V1-05","A05-V1-21","A05-V1-44"],"seed":"D219-simple-025"},{"ids":["A05-V1-33","A05-V1-46","A05-V1-15","A05-V1-07","A05-V1-26","A05-V1-47","A05-V1-14","A05-V1-49","A05-V1-03","A05-V1-20","A05-V1-39","A05-V1-34","A05-V1-09","A05-V1-28","A05-V1-44","A05-V1-12","A05-V1-16","A05-V1-35","A05-V1-48","A05-V1-22","A05-V1-08","A05-V1-45","A05-V1-01","A05-V1-29","A05-V1-21","A05-V1-02","A05-V1-50","A05-V1-25","A05-V1-24","A05-V1-41"],"seed":"D219-simple-026"},{"ids":["A05-V1-17","A05-V1-29","A05-V1-40","A05-V1-50","A05-V1-04","A05-V1-23","A05-V1-11","A05-V1-49","A05-V1-33","A05-V1-41","A05-V1-26","A05-V1-07","A05-V1-48","A05-V1-20","A05-V1-05","A05-V1-25","A05-V1-45","A05-V1-16","A05-V1-38","A05-V1-35","A05-V1-01","A05-V1-15","A05-V1-30","A05-V1-39","A05-V1-10","A05-V1-24","A05-V1-37","A05-V1-18","A05-V1-28","A05-V1-06"],"seed":"D219-simple-027"},{"ids":["A05-V1-10","A05-V1-42","A05-V1-23","A05-V1-34","A05-V1-06","A05-V1-17","A05-V1-50","A05-V1-48","A05-V1-28","A05-V1-05","A05-V1-35","A05-V1-24","A05-V1-44","A05-V1-30","A05-V1-37","A05-V1-13","A05-V1-11","A05-V1-40","A05-V1-15","A05-V1-25","A05-V1-08","A05-V1-39","A05-V1-49","A05-V1-04","A05-V1-19","A05-V1-33","A05-V1-03","A05-V1-29","A05-V1-18","A05-V1-43"],"seed":"D219-simple-028"},{"ids":["A05-V1-12","A05-V1-47","A05-V1-29","A05-V1-14","A05-V1-41","A05-V1-22","A05-V1-33","A05-V1-01","A05-V1-34","A05-V1-09","A05-V1-39","A05-V1-19","A05-V1-40","A05-V1-15","A05-V1-05","A05-V1-26","A05-V1-07","A05-V1-13","A05-V1-50","A05-V1-25","A05-V1-46","A05-V1-21","A05-V1-11","A05-V1-44","A05-V1-27","A05-V1-38","A05-V1-49","A05-V1-28","A05-V1-08","A05-V1-17"],"seed":"D219-simple-029"},{"ids":["A05-V1-26","A05-V1-40","A05-V1-01","A05-V1-17","A05-V1-10","A05-V1-24","A05-V1-50","A05-V1-48","A05-V1-29","A05-V1-21","A05-V1-12","A05-V1-47","A05-V1-35","A05-V1-07","A05-V1-18","A05-V1-27","A05-V1-37","A05-V1-05","A05-V1-22","A05-V1-30","A05-V1-49","A05-V1-41","A05-V1-15","A05-V1-25","A05-V1-38","A05-V1-04","A05-V1-20","A05-V1-42","A05-V1-33","A05-V1-06"],"seed":"D219-simple-030"},{"ids":["A05-V1-38","A05-V1-18","A05-V1-08","A05-V1-29","A05-V1-20","A05-V1-07","A05-V1-34","A05-V1-50","A05-V1-45","A05-V1-28","A05-V1-01","A05-V1-15","A05-V1-43","A05-V1-35","A05-V1-12","A05-V1-16","A05-V1-44","A05-V1-33","A05-V1-13","A05-V1-40","A05-V1-49","A05-V1-05","A05-V1-22","A05-V1-09","A05-V1-42","A05-V1-25","A05-V1-03","A05-V1-27","A05-V1-21","A05-V1-37"],"seed":"D219-simple-031"},{"ids":["A05-V1-34","A05-V1-18","A05-V1-11","A05-V1-37","A05-V1-10","A05-V1-48","A05-V1-15","A05-V1-28","A05-V1-43","A05-V1-17","A05-V1-25","A05-V1-01","A05-V1-41","A05-V1-08","A05-V1-35","A05-V1-24","A05-V1-30","A05-V1-49","A05-V1-22","A05-V1-46","A05-V1-12","A05-V1-50","A05-V1-02","A05-V1-40","A05-V1-33","A05-V1-13","A05-V1-06","A05-V1-27","A05-V1-39","A05-V1-19"],"seed":"D219-simple-032"},{"ids":["A05-V1-45","A05-V1-12","A05-V1-49","A05-V1-33","A05-V1-22","A05-V1-01","A05-V1-14","A05-V1-46","A05-V1-29","A05-V1-23","A05-V1-42","A05-V1-30","A05-V1-09","A05-V1-25","A05-V1-18","A05-V1-44","A05-V1-07","A05-V1-19","A05-V1-38","A05-V1-10","A05-V1-28","A05-V1-41","A05-V1-17","A05-V1-02","A05-V1-26","A05-V1-24","A05-V1-27","A05-V1-50","A05-V1-04","A05-V1-47"],"seed":"D219-simple-033"},{"ids":["A05-V1-39","A05-V1-23","A05-V1-29","A05-V1-10","A05-V1-40","A05-V1-05","A05-V1-28","A05-V1-17","A05-V1-50","A05-V1-43","A05-V1-11","A05-V1-35","A05-V1-13","A05-V1-49","A05-V1-27","A05-V1-42","A05-V1-16","A05-V1-09","A05-V1-48","A05-V1-07","A05-V1-34","A05-V1-20","A05-V1-46","A05-V1-03","A05-V1-33","A05-V1-14","A05-V1-26","A05-V1-04","A05-V1-21","A05-V1-44"],"seed":"D219-simple-034"},{"ids":["A05-V1-14","A05-V1-10","A05-V1-25","A05-V1-41","A05-V1-18","A05-V1-50","A05-V1-39","A05-V1-30","A05-V1-03","A05-V1-15","A05-V1-11","A05-V1-49","A05-V1-45","A05-V1-34","A05-V1-42","A05-V1-29","A05-V1-16","A05-V1-12","A05-V1-19","A05-V1-38","A05-V1-27","A05-V1-09","A05-V1-13","A05-V1-28","A05-V1-47","A05-V1-07","A05-V1-35","A05-V1-02","A05-V1-37","A05-V1-22"],"seed":"D219-simple-035"},{"ids":["A05-V1-02","A05-V1-35","A05-V1-43","A05-V1-15","A05-V1-39","A05-V1-20","A05-V1-29","A05-V1-10","A05-V1-48","A05-V1-06","A05-V1-30","A05-V1-16","A05-V1-25","A05-V1-47","A05-V1-22","A05-V1-05","A05-V1-14","A05-V1-04","A05-V1-40","A05-V1-33","A05-V1-24","A05-V1-12","A05-V1-50","A05-V1-27","A05-V1-42","A05-V1-49","A05-V1-01","A05-V1-37","A05-V1-26","A05-V1-18"],"seed":"D219-simple-036"},{"ids":["A05-V1-33","A05-V1-07","A05-V1-48","A05-V1-14","A05-V1-47","A05-V1-35","A05-V1-04","A05-V1-16","A05-V1-50","A05-V1-27","A05-V1-13","A05-V1-01","A05-V1-43","A05-V1-20","A05-V1-12","A05-V1-49","A05-V1-28","A05-V1-46","A05-V1-02","A05-V1-26","A05-V1-40","A05-V1-23","A05-V1-39","A05-V1-18","A05-V1-30","A05-V1-09","A05-V1-34","A05-V1-19","A05-V1-03","A05-V1-44"],"seed":"D219-simple-037"},{"ids":["A05-V1-15","A05-V1-04","A05-V1-48","A05-V1-33","A05-V1-49","A05-V1-46","A05-V1-20","A05-V1-07","A05-V1-30","A05-V1-40","A05-V1-25","A05-V1-02","A05-V1-14","A05-V1-39","A05-V1-01","A05-V1-28","A05-V1-23","A05-V1-37","A05-V1-29","A05-V1-09","A05-V1-21","A05-V1-06","A05-V1-35","A05-V1-42","A05-V1-24","A05-V1-50","A05-V1-34","A05-V1-17","A05-V1-43","A05-V1-03"],"seed":"D219-simple-038"},{"ids":["A05-V1-50","A05-V1-47","A05-V1-15","A05-V1-33","A05-V1-04","A05-V1-27","A05-V1-05","A05-V1-42","A05-V1-14","A05-V1-07","A05-V1-21","A05-V1-26","A05-V1-44","A05-V1-49","A05-V1-39","A05-V1-29","A05-V1-09","A05-V1-17","A05-V1-48","A05-V1-28","A05-V1-20","A05-V1-11","A05-V1-13","A05-V1-34","A05-V1-43","A05-V1-06","A05-V1-35","A05-V1-23","A05-V1-02","A05-V1-45"],"seed":"D219-simple-039"},{"ids":["A05-V1-29","A05-V1-41","A05-V1-12","A05-V1-15","A05-V1-10","A05-V1-17","A05-V1-47","A05-V1-27","A05-V1-42","A05-V1-05","A05-V1-22","A05-V1-34","A05-V1-50","A05-V1-33","A05-V1-44","A05-V1-11","A05-V1-24","A05-V1-25","A05-V1-18","A05-V1-37","A05-V1-09","A05-V1-49","A05-V1-20","A05-V1-28","A05-V1-48","A05-V1-04","A05-V1-45","A05-V1-01","A05-V1-19","A05-V1-35"],"seed":"D219-simple-040"},{"ids":["A05-V1-34","A05-V1-03","A05-V1-21","A05-V1-41","A05-V1-18","A05-V1-09","A05-V1-38","A05-V1-29","A05-V1-16","A05-V1-01","A05-V1-28","A05-V1-49","A05-V1-39","A05-V1-23","A05-V1-33","A05-V1-50","A05-V1-44","A05-V1-07","A05-V1-48","A05-V1-05","A05-V1-14","A05-V1-35","A05-V1-40","A05-V1-26","A05-V1-12","A05-V1-24","A05-V1-04","A05-V1-20","A05-V1-25","A05-V1-42"],"seed":"D219-simple-041"},{"ids":["A05-V1-30","A05-V1-39","A05-V1-09","A05-V1-16","A05-V1-29","A05-V1-20","A05-V1-49","A05-V1-42","A05-V1-05","A05-V1-45","A05-V1-03","A05-V1-14","A05-V1-28","A05-V1-04","A05-V1-27","A05-V1-24","A05-V1-50","A05-V1-38","A05-V1-08","A05-V1-37","A05-V1-26","A05-V1-15","A05-V1-11","A05-V1-34","A05-V1-40","A05-V1-21","A05-V1-07","A05-V1-33","A05-V1-23","A05-V1-43"],"seed":"D219-simple-042"},{"ids":["A05-V1-33","A05-V1-41","A05-V1-18","A05-V1-05","A05-V1-27","A05-V1-49","A05-V1-37","A05-V1-17","A05-V1-04","A05-V1-50","A05-V1-03","A05-V1-30","A05-V1-38","A05-V1-13","A05-V1-10","A05-V1-23","A05-V1-42","A05-V1-28","A05-V1-46","A05-V1-26","A05-V1-09","A05-V1-19","A05-V1-40","A05-V1-15","A05-V1-01","A05-V1-35","A05-V1-47","A05-V1-29","A05-V1-24","A05-V1-02"],"seed":"D219-simple-043"},{"ids":["A05-V1-10","A05-V1-22","A05-V1-30","A05-V1-50","A05-V1-38","A05-V1-17","A05-V1-41","A05-V1-26","A05-V1-01","A05-V1-27","A05-V1-06","A05-V1-14","A05-V1-42","A05-V1-29","A05-V1-47","A05-V1-19","A05-V1-12","A05-V1-49","A05-V1-24","A05-V1-25","A05-V1-04","A05-V1-37","A05-V1-08","A05-V1-35","A05-V1-21","A05-V1-48","A05-V1-05","A05-V1-33","A05-V1-20","A05-V1-40"],"seed":"D219-simple-044"},{"ids":["A05-V1-39","A05-V1-05","A05-V1-34","A05-V1-21","A05-V1-08","A05-V1-24","A05-V1-49","A05-V1-44","A05-V1-35","A05-V1-13","A05-V1-41","A05-V1-12","A05-V1-27","A05-V1-47","A05-V1-25","A05-V1-09","A05-V1-14","A05-V1-33","A05-V1-10","A05-V1-50","A05-V1-19","A05-V1-45","A05-V1-22","A05-V1-26","A05-V1-38","A05-V1-01","A05-V1-46","A05-V1-30","A05-V1-17","A05-V1-07"],"seed":"D219-simple-045"},{"ids":["A05-V1-04","A05-V1-27","A05-V1-23","A05-V1-44","A05-V1-02","A05-V1-21","A05-V1-42","A05-V1-49","A05-V1-35","A05-V1-03","A05-V1-28","A05-V1-17","A05-V1-43","A05-V1-50","A05-V1-47","A05-V1-19","A05-V1-33","A05-V1-01","A05-V1-48","A05-V1-10","A05-V1-13","A05-V1-25","A05-V1-09","A05-V1-26","A05-V1-46","A05-V1-14","A05-V1-45","A05-V1-29","A05-V1-20","A05-V1-08"],"seed":"D219-simple-046"},{"ids":["A05-V1-17","A05-V1-27","A05-V1-47","A05-V1-08","A05-V1-28","A05-V1-05","A05-V1-50","A05-V1-22","A05-V1-44","A05-V1-49","A05-V1-09","A05-V1-30","A05-V1-46","A05-V1-24","A05-V1-03","A05-V1-25","A05-V1-43","A05-V1-20","A05-V1-35","A05-V1-23","A05-V1-11","A05-V1-40","A05-V1-34","A05-V1-21","A05-V1-42","A05-V1-10","A05-V1-38","A05-V1-15","A05-V1-04","A05-V1-26"],"seed":"D219-simple-047"},{"ids":["A05-V1-13","A05-V1-48","A05-V1-08","A05-V1-29","A05-V1-45","A05-V1-15","A05-V1-01","A05-V1-35","A05-V1-43","A05-V1-25","A05-V1-21","A05-V1-06","A05-V1-30","A05-V1-40","A05-V1-19","A05-V1-12","A05-V1-26","A05-V1-03","A05-V1-44","A05-V1-14","A05-V1-50","A05-V1-07","A05-V1-27","A05-V1-47","A05-V1-17","A05-V1-49","A05-V1-23","A05-V1-02","A05-V1-34","A05-V1-39"],"seed":"D219-simple-048"},{"ids":["A05-V1-50","A05-V1-17","A05-V1-04","A05-V1-28","A05-V1-37","A05-V1-16","A05-V1-42","A05-V1-33","A05-V1-11","A05-V1-22","A05-V1-45","A05-V1-34","A05-V1-02","A05-V1-20","A05-V1-38","A05-V1-12","A05-V1-35","A05-V1-06","A05-V1-43","A05-V1-13","A05-V1-25","A05-V1-44","A05-V1-15","A05-V1-08","A05-V1-26","A05-V1-18","A05-V1-29","A05-V1-10","A05-V1-49","A05-V1-40"],"seed":"D219-simple-049"},{"ids":["A05-V1-16","A05-V1-35","A05-V1-39","A05-V1-12","A05-V1-13","A05-V1-03","A05-V1-25","A05-V1-45","A05-V1-30","A05-V1-07","A05-V1-21","A05-V1-46","A05-V1-23","A05-V1-11","A05-V1-49","A05-V1-28","A05-V1-38","A05-V1-33","A05-V1-47","A05-V1-20","A05-V1-02","A05-V1-17","A05-V1-09","A05-V1-29","A05-V1-43","A05-V1-50","A05-V1-01","A05-V1-34","A05-V1-15","A05-V1-37"],"seed":"D219-simple-050"},{"ids":["A05-V1-25","A05-V1-41","A05-V1-08","A05-V1-21","A05-V1-11","A05-V1-13","A05-V1-40","A05-V1-28","A05-V1-06","A05-V1-35","A05-V1-37","A05-V1-14","A05-V1-26","A05-V1-43","A05-V1-49","A05-V1-05","A05-V1-16","A05-V1-30","A05-V1-23","A05-V1-48","A05-V1-04","A05-V1-39","A05-V1-50","A05-V1-07","A05-V1-29","A05-V1-20","A05-V1-03","A05-V1-46","A05-V1-34","A05-V1-17"],"seed":"D219-simple-051"},{"ids":["A05-V1-10","A05-V1-19","A05-V1-41","A05-V1-33","A05-V1-13","A05-V1-29","A05-V1-50","A05-V1-02","A05-V1-44","A05-V1-04","A05-V1-18","A05-V1-39","A05-V1-27","A05-V1-48","A05-V1-25","A05-V1-17","A05-V1-09","A05-V1-34","A05-V1-05","A05-V1-46","A05-V1-16","A05-V1-49","A05-V1-08","A05-V1-47","A05-V1-28","A05-V1-14","A05-V1-40","A05-V1-22","A05-V1-01","A05-V1-35"],"seed":"D219-simple-052"},{"ids":["A05-V1-35","A05-V1-48","A05-V1-24","A05-V1-09","A05-V1-34","A05-V1-19","A05-V1-41","A05-V1-02","A05-V1-18","A05-V1-08","A05-V1-27","A05-V1-40","A05-V1-50","A05-V1-03","A05-V1-26","A05-V1-17","A05-V1-49","A05-V1-46","A05-V1-25","A05-V1-44","A05-V1-13","A05-V1-10","A05-V1-30","A05-V1-45","A05-V1-01","A05-V1-23","A05-V1-29","A05-V1-14","A05-V1-39","A05-V1-04"],"seed":"D219-simple-053"},{"ids":["A05-V1-04","A05-V1-24","A05-V1-41","A05-V1-25","A05-V1-18","A05-V1-50","A05-V1-26","A05-V1-44","A05-V1-07","A05-V1-47","A05-V1-14","A05-V1-11","A05-V1-34","A05-V1-02","A05-V1-19","A05-V1-35","A05-V1-49","A05-V1-39","A05-V1-30","A05-V1-40","A05-V1-20","A05-V1-03","A05-V1-29","A05-V1-01","A05-V1-46","A05-V1-17","A05-V1-48","A05-V1-23","A05-V1-06","A05-V1-33"],"seed":"D219-simple-054"},{"ids":["A05-V1-04","A05-V1-27","A05-V1-15","A05-V1-43","A05-V1-09","A05-V1-13","A05-V1-42","A05-V1-30","A05-V1-02","A05-V1-50","A05-V1-17","A05-V1-45","A05-V1-34","A05-V1-07","A05-V1-37","A05-V1-22","A05-V1-29","A05-V1-08","A05-V1-33","A05-V1-48","A05-V1-16","A05-V1-11","A05-V1-21","A05-V1-40","A05-V1-35","A05-V1-47","A05-V1-28","A05-V1-03","A05-V1-19","A05-V1-49"],"seed":"D219-simple-055"},{"ids":["A05-V1-50","A05-V1-22","A05-V1-26","A05-V1-41","A05-V1-03","A05-V1-16","A05-V1-37","A05-V1-08","A05-V1-33","A05-V1-04","A05-V1-49","A05-V1-24","A05-V1-38","A05-V1-29","A05-V1-01","A05-V1-34","A05-V1-42","A05-V1-13","A05-V1-47","A05-V1-21","A05-V1-09","A05-V1-27","A05-V1-05","A05-V1-40","A05-V1-28","A05-V1-20","A05-V1-10","A05-V1-39","A05-V1-15","A05-V1-30"],"seed":"D219-simple-056"},{"ids":["A05-V1-25","A05-V1-48","A05-V1-05","A05-V1-17","A05-V1-34","A05-V1-24","A05-V1-47","A05-V1-10","A05-V1-18","A05-V1-40","A05-V1-50","A05-V1-26","A05-V1-09","A05-V1-42","A05-V1-15","A05-V1-11","A05-V1-29","A05-V1-43","A05-V1-02","A05-V1-49","A05-V1-23","A05-V1-27","A05-V1-03","A05-V1-33","A05-V1-44","A05-V1-19","A05-V1-46","A05-V1-14","A05-V1-28","A05-V1-04"],"seed":"D219-simple-057"},{"ids":["A05-V1-28","A05-V1-12","A05-V1-14","A05-V1-42","A05-V1-23","A05-V1-46","A05-V1-07","A05-V1-34","A05-V1-47","A05-V1-18","A05-V1-03","A05-V1-27","A05-V1-49","A05-V1-09","A05-V1-45","A05-V1-29","A05-V1-24","A05-V1-35","A05-V1-15","A05-V1-41","A05-V1-11","A05-V1-20","A05-V1-38","A05-V1-08","A05-V1-25","A05-V1-17","A05-V1-02","A05-V1-50","A05-V1-26","A05-V1-37"],"seed":"D219-simple-058"},{"ids":["A05-V1-38","A05-V1-14","A05-V1-28","A05-V1-07","A05-V1-25","A05-V1-39","A05-V1-06","A05-V1-23","A05-V1-33","A05-V1-21","A05-V1-12","A05-V1-41","A05-V1-05","A05-V1-44","A05-V1-34","A05-V1-13","A05-V1-49","A05-V1-47","A05-V1-20","A05-V1-10","A05-V1-35","A05-V1-45","A05-V1-11","A05-V1-26","A05-V1-18","A05-V1-29","A05-V1-08","A05-V1-50","A05-V1-16","A05-V1-46"],"seed":"D219-simple-059"},{"ids":["A05-V1-19","A05-V1-44","A05-V1-25","A05-V1-10","A05-V1-24","A05-V1-28","A05-V1-40","A05-V1-08","A05-V1-15","A05-V1-04","A05-V1-38","A05-V1-30","A05-V1-39","A05-V1-27","A05-V1-02","A05-V1-16","A05-V1-50","A05-V1-03","A05-V1-37","A05-V1-18","A05-V1-34","A05-V1-22","A05-V1-29","A05-V1-49","A05-V1-11","A05-V1-47","A05-V1-33","A05-V1-09","A05-V1-23","A05-V1-41"],"seed":"D219-simple-060"},{"ids":["A05-V1-15","A05-V1-01","A05-V1-40","A05-V1-28","A05-V1-12","A05-V1-29","A05-V1-38","A05-V1-22","A05-V1-08","A05-V1-19","A05-V1-27","A05-V1-45","A05-V1-03","A05-V1-42","A05-V1-49","A05-V1-34","A05-V1-13","A05-V1-35","A05-V1-50","A05-V1-18","A05-V1-43","A05-V1-05","A05-V1-41","A05-V1-24","A05-V1-25","A05-V1-06","A05-V1-17","A05-V1-33","A05-V1-07","A05-V1-44"],"seed":"D219-simple-061"},{"ids":["A05-V1-16","A05-V1-40","A05-V1-50","A05-V1-11","A05-V1-26","A05-V1-13","A05-V1-49","A05-V1-48","A05-V1-29","A05-V1-06","A05-V1-34","A05-V1-07","A05-V1-20","A05-V1-38","A05-V1-22","A05-V1-35","A05-V1-45","A05-V1-05","A05-V1-33","A05-V1-09","A05-V1-24","A05-V1-37","A05-V1-03","A05-V1-39","A05-V1-15","A05-V1-30","A05-V1-04","A05-V1-21","A05-V1-25","A05-V1-41"],"seed":"D219-simple-062"},{"ids":["A05-V1-28","A05-V1-48","A05-V1-08","A05-V1-23","A05-V1-35","A05-V1-03","A05-V1-47","A05-V1-21","A05-V1-50","A05-V1-17","A05-V1-33","A05-V1-05","A05-V1-43","A05-V1-16","A05-V1-44","A05-V1-25","A05-V1-10","A05-V1-19","A05-V1-34","A05-V1-12","A05-V1-40","A05-V1-30","A05-V1-38","A05-V1-49","A05-V1-14","A05-V1-11","A05-V1-29","A05-V1-39","A05-V1-06","A05-V1-24"],"seed":"D219-simple-063"},{"ids":["A05-V1-28","A05-V1-09","A05-V1-49","A05-V1-21","A05-V1-45","A05-V1-23","A05-V1-46","A05-V1-07","A05-V1-29","A05-V1-24","A05-V1-06","A05-V1-25","A05-V1-37","A05-V1-02","A05-V1-40","A05-V1-18","A05-V1-26","A05-V1-48","A05-V1-30","A05-V1-05","A05-V1-17","A05-V1-34","A05-V1-15","A05-V1-42","A05-V1-01","A05-V1-41","A05-V1-50","A05-V1-04","A05-V1-19","A05-V1-35"],"seed":"D219-simple-064"},{"ids":["A05-V1-21","A05-V1-04","A05-V1-28","A05-V1-41","A05-V1-27","A05-V1-39","A05-V1-12","A05-V1-22","A05-V1-06","A05-V1-42","A05-V1-16","A05-V1-33","A05-V1-11","A05-V1-40","A05-V1-35","A05-V1-19","A05-V1-47","A05-V1-30","A05-V1-24","A05-V1-05","A05-V1-14","A05-V1-25","A05-V1-49","A05-V1-48","A05-V1-07","A05-V1-50","A05-V1-17","A05-V1-44","A05-V1-09","A05-V1-34"],"seed":"D219-simple-065"},{"ids":["A05-V1-16","A05-V1-04","A05-V1-39","A05-V1-50","A05-V1-27","A05-V1-22","A05-V1-09","A05-V1-29","A05-V1-43","A05-V1-08","A05-V1-40","A05-V1-20","A05-V1-25","A05-V1-24","A05-V1-03","A05-V1-47","A05-V1-35","A05-V1-38","A05-V1-26","A05-V1-23","A05-V1-11","A05-V1-37","A05-V1-18","A05-V1-49","A05-V1-02","A05-V1-34","A05-V1-41","A05-V1-14","A05-V1-30","A05-V1-10"],"seed":"D219-simple-066"},{"ids":["A05-V1-01","A05-V1-34","A05-V1-48","A05-V1-17","A05-V1-09","A05-V1-37","A05-V1-25","A05-V1-16","A05-V1-03","A05-V1-18","A05-V1-28","A05-V1-41","A05-V1-19","A05-V1-42","A05-V1-08","A05-V1-29","A05-V1-05","A05-V1-39","A05-V1-23","A05-V1-26","A05-V1-10","A05-V1-27","A05-V1-46","A05-V1-49","A05-V1-13","A05-V1-40","A05-V1-33","A05-V1-50","A05-V1-15","A05-V1-12"],"seed":"D219-simple-067"},{"ids":["A05-V1-13","A05-V1-26","A05-V1-11","A05-V1-46","A05-V1-19","A05-V1-39","A05-V1-03","A05-V1-50","A05-V1-35","A05-V1-18","A05-V1-34","A05-V1-10","A05-V1-37","A05-V1-17","A05-V1-48","A05-V1-27","A05-V1-49","A05-V1-12","A05-V1-40","A05-V1-09","A05-V1-15","A05-V1-29","A05-V1-47","A05-V1-14","A05-V1-33","A05-V1-05","A05-V1-30","A05-V1-04","A05-V1-22","A05-V1-43"],"seed":"D219-simple-068"},{"ids":["A05-V1-05","A05-V1-26","A05-V1-17","A05-V1-37","A05-V1-35","A05-V1-48","A05-V1-21","A05-V1-02","A05-V1-27","A05-V1-06","A05-V1-16","A05-V1-40","A05-V1-33","A05-V1-41","A05-V1-07","A05-V1-19","A05-V1-30","A05-V1-22","A05-V1-49","A05-V1-44","A05-V1-01","A05-V1-43","A05-V1-03","A05-V1-28","A05-V1-15","A05-V1-25","A05-V1-13","A05-V1-50","A05-V1-12","A05-V1-39"],"seed":"D219-simple-069"},{"ids":["A05-V1-06","A05-V1-28","A05-V1-22","A05-V1-38","A05-V1-15","A05-V1-35","A05-V1-47","A05-V1-05","A05-V1-39","A05-V1-03","A05-V1-19","A05-V1-26","A05-V1-10","A05-V1-46","A05-V1-13","A05-V1-33","A05-V1-50","A05-V1-40","A05-V1-09","A05-V1-30","A05-V1-18","A05-V1-44","A05-V1-23","A05-V1-12","A05-V1-25","A05-V1-11","A05-V1-29","A05-V1-17","A05-V1-49","A05-V1-41"],"seed":"D219-simple-070"},{"ids":["A05-V1-13","A05-V1-34","A05-V1-37","A05-V1-08","A05-V1-46","A05-V1-27","A05-V1-50","A05-V1-18","A05-V1-10","A05-V1-28","A05-V1-03","A05-V1-16","A05-V1-43","A05-V1-06","A05-V1-14","A05-V1-48","A05-V1-35","A05-V1-05","A05-V1-25","A05-V1-23","A05-V1-45","A05-V1-20","A05-V1-12","A05-V1-41","A05-V1-49","A05-V1-30","A05-V1-17","A05-V1-26","A05-V1-01","A05-V1-39"],"seed":"D219-simple-071"},{"ids":["A05-V1-05","A05-V1-38","A05-V1-15","A05-V1-29","A05-V1-49","A05-V1-04","A05-V1-37","A05-V1-25","A05-V1-24","A05-V1-09","A05-V1-26","A05-V1-22","A05-V1-50","A05-V1-43","A05-V1-27","A05-V1-07","A05-V1-45","A05-V1-20","A05-V1-42","A05-V1-12","A05-V1-28","A05-V1-23","A05-V1-35","A05-V1-47","A05-V1-16","A05-V1-11","A05-V1-44","A05-V1-06","A05-V1-18","A05-V1-34"],"seed":"D219-simple-072"},{"ids":["A05-V1-27","A05-V1-44","A05-V1-20","A05-V1-07","A05-V1-43","A05-V1-14","A05-V1-02","A05-V1-30","A05-V1-37","A05-V1-11","A05-V1-23","A05-V1-29","A05-V1-24","A05-V1-34","A05-V1-50","A05-V1-06","A05-V1-41","A05-V1-03","A05-V1-42","A05-V1-18","A05-V1-49","A05-V1-26","A05-V1-48","A05-V1-35","A05-V1-17","A05-V1-04","A05-V1-28","A05-V1-09","A05-V1-40","A05-V1-22"],"seed":"D219-simple-073"},{"ids":["A05-V1-27","A05-V1-12","A05-V1-21","A05-V1-46","A05-V1-49","A05-V1-48","A05-V1-25","A05-V1-01","A05-V1-24","A05-V1-08","A05-V1-20","A05-V1-28","A05-V1-39","A05-V1-02","A05-V1-14","A05-V1-34","A05-V1-43","A05-V1-07","A05-V1-37","A05-V1-22","A05-V1-35","A05-V1-06","A05-V1-16","A05-V1-47","A05-V1-29","A05-V1-50","A05-V1-33","A05-V1-40","A05-V1-03","A05-V1-19"],"seed":"D219-simple-074"},{"ids":["A05-V1-42","A05-V1-33","A05-V1-23","A05-V1-03","A05-V1-25","A05-V1-18","A05-V1-11","A05-V1-43","A05-V1-05","A05-V1-14","A05-V1-27","A05-V1-44","A05-V1-50","A05-V1-24","A05-V1-26","A05-V1-09","A05-V1-37","A05-V1-34","A05-V1-12","A05-V1-15","A05-V1-40","A05-V1-02","A05-V1-35","A05-V1-16","A05-V1-38","A05-V1-29","A05-V1-49","A05-V1-10","A05-V1-19","A05-V1-41"],"seed":"D219-simple-075"},{"ids":["A05-V1-35","A05-V1-50","A05-V1-08","A05-V1-13","A05-V1-41","A05-V1-34","A05-V1-46","A05-V1-15","A05-V1-03","A05-V1-25","A05-V1-49","A05-V1-05","A05-V1-45","A05-V1-17","A05-V1-28","A05-V1-24","A05-V1-06","A05-V1-47","A05-V1-26","A05-V1-18","A05-V1-37","A05-V1-01","A05-V1-29","A05-V1-10","A05-V1-23","A05-V1-48","A05-V1-12","A05-V1-19","A05-V1-42","A05-V1-27"],"seed":"D219-simple-076"},{"ids":["A05-V1-20","A05-V1-09","A05-V1-48","A05-V1-27","A05-V1-46","A05-V1-17","A05-V1-30","A05-V1-04","A05-V1-49","A05-V1-35","A05-V1-41","A05-V1-23","A05-V1-08","A05-V1-13","A05-V1-26","A05-V1-50","A05-V1-42","A05-V1-03","A05-V1-28","A05-V1-37","A05-V1-15","A05-V1-11","A05-V1-29","A05-V1-07","A05-V1-18","A05-V1-40","A05-V1-25","A05-V1-43","A05-V1-05","A05-V1-14"],"seed":"D219-simple-077"},{"ids":["A05-V1-09","A05-V1-24","A05-V1-37","A05-V1-28","A05-V1-03","A05-V1-25","A05-V1-19","A05-V1-42","A05-V1-35","A05-V1-38","A05-V1-18","A05-V1-05","A05-V1-23","A05-V1-48","A05-V1-11","A05-V1-30","A05-V1-43","A05-V1-50","A05-V1-15","A05-V1-34","A05-V1-08","A05-V1-17","A05-V1-26","A05-V1-07","A05-V1-44","A05-V1-16","A05-V1-12","A05-V1-40","A05-V1-29","A05-V1-49"],"seed":"D219-simple-078"},{"ids":["A05-V1-21","A05-V1-28","A05-V1-07","A05-V1-42","A05-V1-50","A05-V1-24","A05-V1-43","A05-V1-01","A05-V1-33","A05-V1-14","A05-V1-44","A05-V1-29","A05-V1-06","A05-V1-23","A05-V1-12","A05-V1-47","A05-V1-30","A05-V1-02","A05-V1-26","A05-V1-41","A05-V1-15","A05-V1-04","A05-V1-27","A05-V1-49","A05-V1-48","A05-V1-20","A05-V1-35","A05-V1-16","A05-V1-40","A05-V1-08"],"seed":"D219-simple-079"},{"ids":["A05-V1-35","A05-V1-21","A05-V1-37","A05-V1-07","A05-V1-15","A05-V1-38","A05-V1-29","A05-V1-09","A05-V1-33","A05-V1-42","A05-V1-13","A05-V1-01","A05-V1-23","A05-V1-44","A05-V1-50","A05-V1-28","A05-V1-08","A05-V1-16","A05-V1-03","A05-V1-40","A05-V1-25","A05-V1-24","A05-V1-43","A05-V1-04","A05-V1-30","A05-V1-49","A05-V1-45","A05-V1-20","A05-V1-02","A05-V1-27"],"seed":"D219-simple-080"},{"ids":["A05-V1-05","A05-V1-33","A05-V1-19","A05-V1-41","A05-V1-18","A05-V1-28","A05-V1-37","A05-V1-03","A05-V1-30","A05-V1-06","A05-V1-46","A05-V1-23","A05-V1-47","A05-V1-49","A05-V1-34","A05-V1-16","A05-V1-12","A05-V1-50","A05-V1-45","A05-V1-20","A05-V1-35","A05-V1-02","A05-V1-13","A05-V1-10","A05-V1-42","A05-V1-25","A05-V1-38","A05-V1-01","A05-V1-14","A05-V1-29"],"seed":"D219-simple-081"},{"ids":["A05-V1-48","A05-V1-18","A05-V1-02","A05-V1-35","A05-V1-17","A05-V1-27","A05-V1-09","A05-V1-37","A05-V1-20","A05-V1-42","A05-V1-33","A05-V1-08","A05-V1-28","A05-V1-15","A05-V1-50","A05-V1-45","A05-V1-11","A05-V1-47","A05-V1-14","A05-V1-25","A05-V1-06","A05-V1-29","A05-V1-04","A05-V1-24","A05-V1-46","A05-V1-49","A05-V1-26","A05-V1-10","A05-V1-43","A05-V1-23"],"seed":"D219-simple-082"},{"ids":["A05-V1-20","A05-V1-49","A05-V1-46","A05-V1-28","A05-V1-05","A05-V1-24","A05-V1-01","A05-V1-30","A05-V1-48","A05-V1-33","A05-V1-41","A05-V1-06","A05-V1-21","A05-V1-10","A05-V1-27","A05-V1-50","A05-V1-23","A05-V1-39","A05-V1-07","A05-V1-47","A05-V1-14","A05-V1-26","A05-V1-19","A05-V1-02","A05-V1-25","A05-V1-44","A05-V1-34","A05-V1-45","A05-V1-12","A05-V1-16"],"seed":"D219-simple-083"},{"ids":["A05-V1-33","A05-V1-45","A05-V1-09","A05-V1-50","A05-V1-13","A05-V1-05","A05-V1-20","A05-V1-48","A05-V1-30","A05-V1-04","A05-V1-19","A05-V1-34","A05-V1-46","A05-V1-26","A05-V1-42","A05-V1-16","A05-V1-01","A05-V1-22","A05-V1-07","A05-V1-28","A05-V1-43","A05-V1-49","A05-V1-21","A05-V1-02","A05-V1-39","A05-V1-27","A05-V1-44","A05-V1-11","A05-V1-35","A05-V1-14"],"seed":"D219-simple-084"},{"ids":["A05-V1-33","A05-V1-04","A05-V1-16","A05-V1-40","A05-V1-05","A05-V1-38","A05-V1-27","A05-V1-20","A05-V1-29","A05-V1-07","A05-V1-39","A05-V1-24","A05-V1-06","A05-V1-42","A05-V1-34","A05-V1-21","A05-V1-50","A05-V1-13","A05-V1-25","A05-V1-44","A05-V1-10","A05-V1-43","A05-V1-01","A05-V1-14","A05-V1-49","A05-V1-35","A05-V1-22","A05-V1-11","A05-V1-48","A05-V1-26"],"seed":"D219-simple-085"},{"ids":["A05-V1-27","A05-V1-15","A05-V1-08","A05-V1-46","A05-V1-49","A05-V1-13","A05-V1-12","A05-V1-47","A05-V1-25","A05-V1-41","A05-V1-34","A05-V1-19","A05-V1-03","A05-V1-33","A05-V1-05","A05-V1-16","A05-V1-44","A05-V1-10","A05-V1-48","A05-V1-35","A05-V1-21","A05-V1-09","A05-V1-22","A05-V1-26","A05-V1-45","A05-V1-50","A05-V1-14","A05-V1-11","A05-V1-29","A05-V1-42"],"seed":"D219-simple-086"},{"ids":["A05-V1-39","A05-V1-17","A05-V1-29","A05-V1-06","A05-V1-50","A05-V1-16","A05-V1-02","A05-V1-37","A05-V1-27","A05-V1-14","A05-V1-10","A05-V1-28","A05-V1-47","A05-V1-23","A05-V1-46","A05-V1-04","A05-V1-34","A05-V1-49","A05-V1-13","A05-V1-38","A05-V1-30","A05-V1-08","A05-V1-35","A05-V1-03","A05-V1-20","A05-V1-41","A05-V1-18","A05-V1-45","A05-V1-33","A05-V1-11"],"seed":"D219-simple-087"},{"ids":["A05-V1-09","A05-V1-25","A05-V1-39","A05-V1-19","A05-V1-38","A05-V1-35","A05-V1-18","A05-V1-04","A05-V1-33","A05-V1-01","A05-V1-50","A05-V1-44","A05-V1-17","A05-V1-10","A05-V1-13","A05-V1-30","A05-V1-40","A05-V1-23","A05-V1-48","A05-V1-03","A05-V1-28","A05-V1-49","A05-V1-14","A05-V1-45","A05-V1-11","A05-V1-26","A05-V1-05","A05-V1-41","A05-V1-34","A05-V1-24"],"seed":"D219-simple-088"},{"ids":["A05-V1-37","A05-V1-33","A05-V1-18","A05-V1-49","A05-V1-02","A05-V1-40","A05-V1-11","A05-V1-26","A05-V1-23","A05-V1-48","A05-V1-09","A05-V1-20","A05-V1-34","A05-V1-12","A05-V1-41","A05-V1-27","A05-V1-13","A05-V1-30","A05-V1-22","A05-V1-45","A05-V1-08","A05-V1-50","A05-V1-14","A05-V1-29","A05-V1-44","A05-V1-01","A05-V1-42","A05-V1-10","A05-V1-17","A05-V1-25"],"seed":"D219-simple-089"},{"ids":["A05-V1-34","A05-V1-47","A05-V1-21","A05-V1-07","A05-V1-30","A05-V1-11","A05-V1-17","A05-V1-45","A05-V1-05","A05-V1-41","A05-V1-28","A05-V1-24","A05-V1-35","A05-V1-08","A05-V1-49","A05-V1-14","A05-V1-48","A05-V1-02","A05-V1-46","A05-V1-23","A05-V1-25","A05-V1-50","A05-V1-26","A05-V1-06","A05-V1-19","A05-V1-39","A05-V1-04","A05-V1-27","A05-V1-18","A05-V1-37"],"seed":"D219-simple-090"},{"ids":["A05-V1-43","A05-V1-12","A05-V1-29","A05-V1-19","A05-V1-26","A05-V1-47","A05-V1-50","A05-V1-05","A05-V1-15","A05-V1-27","A05-V1-17","A05-V1-37","A05-V1-07","A05-V1-41","A05-V1-49","A05-V1-11","A05-V1-20","A05-V1-25","A05-V1-08","A05-V1-45","A05-V1-28","A05-V1-22","A05-V1-39","A05-V1-24","A05-V1-09","A05-V1-35","A05-V1-48","A05-V1-21","A05-V1-03","A05-V1-33"],"seed":"D219-simple-091"},{"ids":["A05-V1-29","A05-V1-15","A05-V1-12","A05-V1-40","A05-V1-16","A05-V1-45","A05-V1-05","A05-V1-35","A05-V1-18","A05-V1-49","A05-V1-34","A05-V1-42","A05-V1-06","A05-V1-46","A05-V1-28","A05-V1-04","A05-V1-22","A05-V1-37","A05-V1-19","A05-V1-02","A05-V1-50","A05-V1-30","A05-V1-13","A05-V1-26","A05-V1-01","A05-V1-43","A05-V1-10","A05-V1-27","A05-V1-48","A05-V1-21"],"seed":"D219-simple-092"},{"ids":["A05-V1-13","A05-V1-46","A05-V1-35","A05-V1-01","A05-V1-15","A05-V1-06","A05-V1-39","A05-V1-50","A05-V1-33","A05-V1-20","A05-V1-08","A05-V1-41","A05-V1-30","A05-V1-17","A05-V1-27","A05-V1-48","A05-V1-04","A05-V1-44","A05-V1-11","A05-V1-29","A05-V1-21","A05-V1-34","A05-V1-42","A05-V1-23","A05-V1-10","A05-V1-49","A05-V1-02","A05-V1-19","A05-V1-25","A05-V1-45"],"seed":"D219-simple-093"},{"ids":["A05-V1-49","A05-V1-23","A05-V1-46","A05-V1-11","A05-V1-25","A05-V1-42","A05-V1-30","A05-V1-15","A05-V1-06","A05-V1-28","A05-V1-43","A05-V1-13","A05-V1-02","A05-V1-26","A05-V1-10","A05-V1-22","A05-V1-44","A05-V1-17","A05-V1-03","A05-V1-38","A05-V1-27","A05-V1-08","A05-V1-19","A05-V1-40","A05-V1-35","A05-V1-12","A05-V1-34","A05-V1-41","A05-V1-21","A05-V1-50"],"seed":"D219-simple-094"},{"ids":["A05-V1-47","A05-V1-23","A05-V1-28","A05-V1-05","A05-V1-16","A05-V1-11","A05-V1-45","A05-V1-26","A05-V1-49","A05-V1-01","A05-V1-41","A05-V1-27","A05-V1-19","A05-V1-44","A05-V1-18","A05-V1-25","A05-V1-04","A05-V1-13","A05-V1-38","A05-V1-29","A05-V1-06","A05-V1-30","A05-V1-50","A05-V1-21","A05-V1-42","A05-V1-02","A05-V1-14","A05-V1-10","A05-V1-46","A05-V1-35"],"seed":"D219-simple-095"},{"ids":["A05-V1-14","A05-V1-33","A05-V1-38","A05-V1-03","A05-V1-49","A05-V1-28","A05-V1-15","A05-V1-10","A05-V1-43","A05-V1-04","A05-V1-45","A05-V1-22","A05-V1-29","A05-V1-50","A05-V1-25","A05-V1-16","A05-V1-06","A05-V1-44","A05-V1-02","A05-V1-42","A05-V1-24","A05-V1-35","A05-V1-46","A05-V1-26","A05-V1-21","A05-V1-11","A05-V1-20","A05-V1-27","A05-V1-47","A05-V1-08"],"seed":"D219-simple-096"},{"ids":["A05-V1-13","A05-V1-44","A05-V1-08","A05-V1-33","A05-V1-49","A05-V1-39","A05-V1-14","A05-V1-25","A05-V1-07","A05-V1-27","A05-V1-12","A05-V1-41","A05-V1-23","A05-V1-47","A05-V1-03","A05-V1-29","A05-V1-24","A05-V1-28","A05-V1-17","A05-V1-11","A05-V1-50","A05-V1-38","A05-V1-20","A05-V1-35","A05-V1-45","A05-V1-02","A05-V1-30","A05-V1-21","A05-V1-46","A05-V1-09"],"seed":"D219-simple-097"},{"ids":["A05-V1-37","A05-V1-17","A05-V1-28","A05-V1-02","A05-V1-14","A05-V1-01","A05-V1-26","A05-V1-43","A05-V1-07","A05-V1-23","A05-V1-47","A05-V1-27","A05-V1-04","A05-V1-29","A05-V1-19","A05-V1-38","A05-V1-16","A05-V1-11","A05-V1-49","A05-V1-45","A05-V1-30","A05-V1-46","A05-V1-06","A05-V1-35","A05-V1-24","A05-V1-42","A05-V1-18","A05-V1-03","A05-V1-34","A05-V1-50"],"seed":"D219-simple-098"},{"ids":["A05-V1-08","A05-V1-35","A05-V1-47","A05-V1-18","A05-V1-29","A05-V1-21","A05-V1-01","A05-V1-39","A05-V1-23","A05-V1-26","A05-V1-50","A05-V1-07","A05-V1-43","A05-V1-30","A05-V1-06","A05-V1-49","A05-V1-37","A05-V1-14","A05-V1-28","A05-V1-48","A05-V1-17","A05-V1-05","A05-V1-13","A05-V1-12","A05-V1-33","A05-V1-45","A05-V1-03","A05-V1-46","A05-V1-19","A05-V1-34"],"seed":"D219-simple-099"},{"ids":["A05-V1-46","A05-V1-13","A05-V1-04","A05-V1-25","A05-V1-38","A05-V1-35","A05-V1-09","A05-V1-50","A05-V1-24","A05-V1-49","A05-V1-06","A05-V1-23","A05-V1-48","A05-V1-34","A05-V1-45","A05-V1-16","A05-V1-30","A05-V1-01","A05-V1-21","A05-V1-02","A05-V1-41","A05-V1-28","A05-V1-44","A05-V1-20","A05-V1-07","A05-V1-26","A05-V1-15","A05-V1-08","A05-V1-42","A05-V1-33"],"seed":"D219-simple-100"},{"ids":["A05-V1-33","A05-V1-39","A05-V1-09","A05-V1-24","A05-V1-34","A05-V1-14","A05-V1-08","A05-V1-41","A05-V1-50","A05-V1-05","A05-V1-40","A05-V1-19","A05-V1-29","A05-V1-22","A05-V1-35","A05-V1-38","A05-V1-10","A05-V1-21","A05-V1-47","A05-V1-25","A05-V1-12","A05-V1-13","A05-V1-06","A05-V1-37","A05-V1-27","A05-V1-44","A05-V1-16","A05-V1-01","A05-V1-49","A05-V1-26"],"seed":"D219-simple-101"},{"ids":["A05-V1-04","A05-V1-30","A05-V1-43","A05-V1-20","A05-V1-01","A05-V1-28","A05-V1-41","A05-V1-23","A05-V1-49","A05-V1-03","A05-V1-35","A05-V1-38","A05-V1-17","A05-V1-40","A05-V1-14","A05-V1-10","A05-V1-26","A05-V1-50","A05-V1-27","A05-V1-47","A05-V1-09","A05-V1-16","A05-V1-08","A05-V1-24","A05-V1-29","A05-V1-37","A05-V1-25","A05-V1-18","A05-V1-39","A05-V1-05"],"seed":"D219-simple-102"},{"ids":["A05-V1-13","A05-V1-39","A05-V1-06","A05-V1-26","A05-V1-24","A05-V1-29","A05-V1-49","A05-V1-41","A05-V1-10","A05-V1-50","A05-V1-03","A05-V1-22","A05-V1-34","A05-V1-48","A05-V1-17","A05-V1-45","A05-V1-01","A05-V1-25","A05-V1-04","A05-V1-18","A05-V1-44","A05-V1-28","A05-V1-08","A05-V1-14","A05-V1-27","A05-V1-47","A05-V1-19","A05-V1-05","A05-V1-46","A05-V1-30"],"seed":"D219-simple-103"},{"ids":["A05-V1-09","A05-V1-25","A05-V1-49","A05-V1-21","A05-V1-43","A05-V1-28","A05-V1-15","A05-V1-05","A05-V1-39","A05-V1-33","A05-V1-13","A05-V1-11","A05-V1-46","A05-V1-10","A05-V1-18","A05-V1-26","A05-V1-48","A05-V1-35","A05-V1-44","A05-V1-06","A05-V1-23","A05-V1-04","A05-V1-20","A05-V1-40","A05-V1-50","A05-V1-29","A05-V1-16","A05-V1-47","A05-V1-08","A05-V1-34"],"seed":"D219-simple-104"},{"ids":["A05-V1-46","A05-V1-30","A05-V1-24","A05-V1-01","A05-V1-23","A05-V1-11","A05-V1-40","A05-V1-26","A05-V1-37","A05-V1-33","A05-V1-05","A05-V1-16","A05-V1-12","A05-V1-22","A05-V1-38","A05-V1-34","A05-V1-42","A05-V1-19","A05-V1-25","A05-V1-08","A05-V1-18","A05-V1-07","A05-V1-50","A05-V1-28","A05-V1-43","A05-V1-06","A05-V1-27","A05-V1-15","A05-V1-41","A05-V1-49"],"seed":"D219-simple-105"},{"ids":["A05-V1-42","A05-V1-21","A05-V1-29","A05-V1-10","A05-V1-39","A05-V1-23","A05-V1-08","A05-V1-50","A05-V1-30","A05-V1-18","A05-V1-37","A05-V1-01","A05-V1-26","A05-V1-40","A05-V1-04","A05-V1-17","A05-V1-28","A05-V1-43","A05-V1-03","A05-V1-35","A05-V1-24","A05-V1-49","A05-V1-48","A05-V1-06","A05-V1-20","A05-V1-27","A05-V1-41","A05-V1-14","A05-V1-05","A05-V1-34"],"seed":"D219-simple-106"},{"ids":["A05-V1-45","A05-V1-29","A05-V1-17","A05-V1-09","A05-V1-19","A05-V1-11","A05-V1-41","A05-V1-34","A05-V1-05","A05-V1-13","A05-V1-33","A05-V1-40","A05-V1-14","A05-V1-27","A05-V1-48","A05-V1-07","A05-V1-49","A05-V1-46","A05-V1-15","A05-V1-28","A05-V1-10","A05-V1-50","A05-V1-44","A05-V1-23","A05-V1-02","A05-V1-35","A05-V1-21","A05-V1-42","A05-V1-30","A05-V1-04"],"seed":"D219-simple-107"},{"ids":["A05-V1-12","A05-V1-19","A05-V1-41","A05-V1-25","A05-V1-04","A05-V1-27","A05-V1-17","A05-V1-47","A05-V1-16","A05-V1-28","A05-V1-50","A05-V1-45","A05-V1-05","A05-V1-18","A05-V1-35","A05-V1-06","A05-V1-39","A05-V1-14","A05-V1-44","A05-V1-34","A05-V1-07","A05-V1-48","A05-V1-02","A05-V1-29","A05-V1-24","A05-V1-49","A05-V1-01","A05-V1-33","A05-V1-23","A05-V1-42"],"seed":"D219-simple-108"},{"ids":["A05-V1-05","A05-V1-49","A05-V1-15","A05-V1-38","A05-V1-28","A05-V1-39","A05-V1-02","A05-V1-25","A05-V1-16","A05-V1-43","A05-V1-07","A05-V1-13","A05-V1-27","A05-V1-50","A05-V1-30","A05-V1-21","A05-V1-12","A05-V1-37","A05-V1-33","A05-V1-44","A05-V1-01","A05-V1-17","A05-V1-45","A05-V1-19","A05-V1-35","A05-V1-06","A05-V1-29","A05-V1-47","A05-V1-10","A05-V1-23"],"seed":"D219-simple-109"},{"ids":["A05-V1-17","A05-V1-46","A05-V1-10","A05-V1-35","A05-V1-48","A05-V1-28","A05-V1-21","A05-V1-12","A05-V1-42","A05-V1-01","A05-V1-34","A05-V1-24","A05-V1-49","A05-V1-05","A05-V1-19","A05-V1-25","A05-V1-38","A05-V1-26","A05-V1-43","A05-V1-08","A05-V1-15","A05-V1-27","A05-V1-03","A05-V1-37","A05-V1-18","A05-V1-06","A05-V1-30","A05-V1-50","A05-V1-23","A05-V1-40"],"seed":"D219-simple-110"},{"ids":["A05-V1-24","A05-V1-25","A05-V1-38","A05-V1-08","A05-V1-13","A05-V1-27","A05-V1-41","A05-V1-06","A05-V1-39","A05-V1-50","A05-V1-29","A05-V1-02","A05-V1-21","A05-V1-47","A05-V1-26","A05-V1-14","A05-V1-03","A05-V1-40","A05-V1-49","A05-V1-11","A05-V1-34","A05-V1-20","A05-V1-48","A05-V1-12","A05-V1-28","A05-V1-22","A05-V1-10","A05-V1-17","A05-V1-37","A05-V1-33"],"seed":"D219-simple-111"},{"ids":["A05-V1-06","A05-V1-48","A05-V1-28","A05-V1-19","A05-V1-49","A05-V1-25","A05-V1-13","A05-V1-01","A05-V1-42","A05-V1-15","A05-V1-47","A05-V1-34","A05-V1-08","A05-V1-18","A05-V1-03","A05-V1-29","A05-V1-45","A05-V1-10","A05-V1-50","A05-V1-41","A05-V1-33","A05-V1-20","A05-V1-12","A05-V1-23","A05-V1-46","A05-V1-30","A05-V1-37","A05-V1-35","A05-V1-02","A05-V1-17"],"seed":"D219-simple-112"},{"ids":["A05-V1-34","A05-V1-22","A05-V1-09","A05-V1-43","A05-V1-49","A05-V1-27","A05-V1-47","A05-V1-17","A05-V1-12","A05-V1-15","A05-V1-10","A05-V1-41","A05-V1-33","A05-V1-08","A05-V1-24","A05-V1-30","A05-V1-44","A05-V1-13","A05-V1-40","A05-V1-03","A05-V1-25","A05-V1-02","A05-V1-38","A05-V1-29","A05-V1-19","A05-V1-35","A05-V1-42","A05-V1-21","A05-V1-01","A05-V1-50"],"seed":"D219-simple-113"},{"ids":["A05-V1-22","A05-V1-47","A05-V1-28","A05-V1-04","A05-V1-49","A05-V1-02","A05-V1-14","A05-V1-25","A05-V1-48","A05-V1-29","A05-V1-44","A05-V1-01","A05-V1-21","A05-V1-09","A05-V1-15","A05-V1-26","A05-V1-41","A05-V1-50","A05-V1-03","A05-V1-24","A05-V1-30","A05-V1-42","A05-V1-07","A05-V1-46","A05-V1-17","A05-V1-35","A05-V1-06","A05-V1-40","A05-V1-34","A05-V1-19"],"seed":"D219-simple-114"},{"ids":["A05-V1-25","A05-V1-01","A05-V1-17","A05-V1-45","A05-V1-24","A05-V1-46","A05-V1-26","A05-V1-08","A05-V1-21","A05-V1-43","A05-V1-28","A05-V1-10","A05-V1-49","A05-V1-03","A05-V1-47","A05-V1-13","A05-V1-30","A05-V1-06","A05-V1-27","A05-V1-20","A05-V1-37","A05-V1-50","A05-V1-34","A05-V1-48","A05-V1-23","A05-V1-12","A05-V1-42","A05-V1-35","A05-V1-05","A05-V1-15"],"seed":"D219-simple-115"},{"ids":["A05-V1-12","A05-V1-16","A05-V1-42","A05-V1-30","A05-V1-40","A05-V1-28","A05-V1-20","A05-V1-08","A05-V1-23","A05-V1-01","A05-V1-29","A05-V1-45","A05-V1-49","A05-V1-38","A05-V1-03","A05-V1-14","A05-V1-33","A05-V1-47","A05-V1-15","A05-V1-50","A05-V1-26","A05-V1-02","A05-V1-25","A05-V1-18","A05-V1-37","A05-V1-10","A05-V1-41","A05-V1-06","A05-V1-24","A05-V1-34"],"seed":"D219-simple-116"},{"ids":["A05-V1-20","A05-V1-45","A05-V1-50","A05-V1-34","A05-V1-11","A05-V1-27","A05-V1-08","A05-V1-48","A05-V1-24","A05-V1-07","A05-V1-21","A05-V1-25","A05-V1-44","A05-V1-28","A05-V1-40","A05-V1-18","A05-V1-06","A05-V1-30","A05-V1-17","A05-V1-47","A05-V1-05","A05-V1-15","A05-V1-03","A05-V1-35","A05-V1-43","A05-V1-04","A05-V1-49","A05-V1-39","A05-V1-29","A05-V1-23"],"seed":"D219-simple-117"},{"ids":["A05-V1-03","A05-V1-13","A05-V1-42","A05-V1-50","A05-V1-34","A05-V1-18","A05-V1-47","A05-V1-25","A05-V1-11","A05-V1-14","A05-V1-45","A05-V1-29","A05-V1-10","A05-V1-49","A05-V1-21","A05-V1-04","A05-V1-30","A05-V1-43","A05-V1-17","A05-V1-26","A05-V1-44","A05-V1-01","A05-V1-23","A05-V1-33","A05-V1-05","A05-V1-41","A05-V1-20","A05-V1-38","A05-V1-09","A05-V1-28"],"seed":"D219-simple-118"},{"ids":["A05-V1-07","A05-V1-29","A05-V1-40","A05-V1-15","A05-V1-50","A05-V1-24","A05-V1-43","A05-V1-25","A05-V1-12","A05-V1-37","A05-V1-02","A05-V1-17","A05-V1-30","A05-V1-46","A05-V1-13","A05-V1-05","A05-V1-34","A05-V1-49","A05-V1-08","A05-V1-39","A05-V1-35","A05-V1-21","A05-V1-11","A05-V1-19","A05-V1-27","A05-V1-41","A05-V1-28","A05-V1-23","A05-V1-09","A05-V1-48"],"seed":"D219-simple-119"},{"ids":["A05-V1-38","A05-V1-34","A05-V1-20","A05-V1-06","A05-V1-27","A05-V1-12","A05-V1-23","A05-V1-47","A05-V1-35","A05-V1-18","A05-V1-43","A05-V1-04","A05-V1-50","A05-V1-30","A05-V1-49","A05-V1-01","A05-V1-13","A05-V1-45","A05-V1-33","A05-V1-03","A05-V1-16","A05-V1-44","A05-V1-29","A05-V1-05","A05-V1-14","A05-V1-40","A05-V1-10","A05-V1-42","A05-V1-21","A05-V1-25"],"seed":"D219-simple-120"},{"ids":["A05-V1-41","A05-V1-19","A05-V1-09","A05-V1-49","A05-V1-35","A05-V1-24","A05-V1-47","A05-V1-11","A05-V1-30","A05-V1-46","A05-V1-34","A05-V1-15","A05-V1-50","A05-V1-03","A05-V1-29","A05-V1-17","A05-V1-07","A05-V1-48","A05-V1-02","A05-V1-21","A05-V1-33","A05-V1-39","A05-V1-23","A05-V1-45","A05-V1-27","A05-V1-06","A05-V1-14","A05-V1-04","A05-V1-44","A05-V1-26"],"seed":"D219-simple-121"},{"ids":["A05-V1-46","A05-V1-12","A05-V1-25","A05-V1-14","A05-V1-33","A05-V1-18","A05-V1-10","A05-V1-49","A05-V1-40","A05-V1-07","A05-V1-38","A05-V1-15","A05-V1-34","A05-V1-50","A05-V1-02","A05-V1-17","A05-V1-43","A05-V1-30","A05-V1-04","A05-V1-35","A05-V1-20","A05-V1-47","A05-V1-13","A05-V1-44","A05-V1-27","A05-V1-11","A05-V1-29","A05-V1-39","A05-V1-22","A05-V1-09"],"seed":"D219-simple-122"},{"ids":["A05-V1-42","A05-V1-12","A05-V1-22","A05-V1-28","A05-V1-03","A05-V1-35","A05-V1-16","A05-V1-47","A05-V1-20","A05-V1-34","A05-V1-41","A05-V1-10","A05-V1-17","A05-V1-26","A05-V1-02","A05-V1-43","A05-V1-27","A05-V1-13","A05-V1-08","A05-V1-40","A05-V1-50","A05-V1-44","A05-V1-06","A05-V1-21","A05-V1-29","A05-V1-49","A05-V1-01","A05-V1-14","A05-V1-30","A05-V1-38"],"seed":"D219-simple-123"},{"ids":["A05-V1-44","A05-V1-11","A05-V1-27","A05-V1-22","A05-V1-07","A05-V1-16","A05-V1-42","A05-V1-33","A05-V1-08","A05-V1-43","A05-V1-15","A05-V1-34","A05-V1-46","A05-V1-09","A05-V1-30","A05-V1-14","A05-V1-26","A05-V1-40","A05-V1-04","A05-V1-19","A05-V1-25","A05-V1-50","A05-V1-03","A05-V1-18","A05-V1-37","A05-V1-13","A05-V1-02","A05-V1-38","A05-V1-49","A05-V1-28"],"seed":"D219-simple-124"},{"ids":["A05-V1-48","A05-V1-25","A05-V1-12","A05-V1-14","A05-V1-34","A05-V1-17","A05-V1-05","A05-V1-41","A05-V1-03","A05-V1-28","A05-V1-46","A05-V1-18","A05-V1-47","A05-V1-30","A05-V1-11","A05-V1-19","A05-V1-33","A05-V1-10","A05-V1-37","A05-V1-23","A05-V1-40","A05-V1-08","A05-V1-16","A05-V1-26","A05-V1-49","A05-V1-35","A05-V1-39","A05-V1-06","A05-V1-50","A05-V1-24"],"seed":"D219-simple-125"},{"ids":["A05-V1-09","A05-V1-27","A05-V1-48","A05-V1-19","A05-V1-35","A05-V1-37","A05-V1-07","A05-V1-21","A05-V1-47","A05-V1-30","A05-V1-24","A05-V1-10","A05-V1-50","A05-V1-14","A05-V1-34","A05-V1-45","A05-V1-11","A05-V1-49","A05-V1-33","A05-V1-39","A05-V1-04","A05-V1-22","A05-V1-29","A05-V1-02","A05-V1-40","A05-V1-13","A05-V1-08","A05-V1-16","A05-V1-43","A05-V1-25"],"seed":"D219-simple-126"},{"ids":["A05-V1-09","A05-V1-39","A05-V1-25","A05-V1-50","A05-V1-14","A05-V1-47","A05-V1-29","A05-V1-49","A05-V1-10","A05-V1-23","A05-V1-30","A05-V1-12","A05-V1-24","A05-V1-45","A05-V1-21","A05-V1-11","A05-V1-48","A05-V1-34","A05-V1-08","A05-V1-20","A05-V1-35","A05-V1-43","A05-V1-18","A05-V1-04","A05-V1-28","A05-V1-46","A05-V1-26","A05-V1-05","A05-V1-17","A05-V1-37"],"seed":"D219-simple-127"}],"types":[{"id":"T01","group":0,"name":"着実な開拓者","emoji":"🗺️","summary":"安心できる基盤から将来の選択肢を広げる","action":"新しく学びたいことを3つ考える"},{"id":"T02","group":0,"name":"静かな探究者","emoji":"📚","summary":"自分のペースで長期目標を深める","action":"深めたいテーマを一つ選ぶ"},{"id":"T03","group":0,"name":"マイペースな発見家","emoji":"🔎","summary":"落ち着いた暮らしで多様な体験を楽しむ","action":"新しい体験を一つ選ぶ"},{"id":"T04","group":0,"name":"暮らしの職人","emoji":"🪴","summary":"好きなことを日々丁寧に育てる","action":"大切な習慣を一つ決める"},{"id":"T05","group":1,"name":"未来を育む案内人","emoji":"🌳","summary":"大切な人と将来の可能性を広げる","action":"大切な人と将来の希望を話す"},{"id":"T06","group":1,"name":"絆を育てる設計者","emoji":"🏡","summary":"信頼関係と長期的な理想を育てる","action":"共有したい将来の姿を書き出す"},{"id":"T07","group":1,"name":"日常の発見家","emoji":"📷","summary":"身近な人と日々の発見を楽しむ","action":"誰かと楽しみたい体験を考える"},{"id":"T08","group":1,"name":"穏やかな愛好家","emoji":"🫖","summary":"親しい人と大切な日常を味わう","action":"続けたい習慣を整理する"},{"id":"T09","group":2,"name":"未来のフロンティア","emoji":"🚀","summary":"新しい環境へ進み将来を切り拓く","action":"今年の挑戦に優先順位をつける"},{"id":"T10","group":2,"name":"変革の探究者","emoji":"⚙️","summary":"変化を力に一つの理想を追求する","action":"長期目標を支える環境を考える"},{"id":"T11","group":2,"name":"自由な冒険者","emoji":"🧭","summary":"自分で道を選び新しい経験を楽しむ","action":"試したい体験を3つ挙げる"},{"id":"T12","group":2,"name":"自由な求道者","emoji":"🎨","summary":"自由な環境で情熱を深める","action":"集中できる環境を整える"},{"id":"T13","group":3,"name":"共創する開拓者","emoji":"🌍","summary":"人と協力して新しい未来を拓く","action":"一緒に実現したい計画を考える"},{"id":"T14","group":3,"name":"理想を育てる共創者","emoji":"✨","summary":"仲間と長期的な理想を形にする","action":"共有できる長期目標を整理する"},{"id":"T15","group":3,"name":"出会いを楽しむ旅人","emoji":"🎈","summary":"人との出会いと新しい経験を楽しむ","action":"新しい交流の場を探す"},{"id":"T16","group":3,"name":"情熱を分かち合う人","emoji":"🎭","summary":"好きなことの喜びを人と分かち合う","action":"好きな活動を誰と共有するか考える"}],"groups":[{"id":"G1","name":"基盤を築く人々","color":"#397fd0"},{"id":"G2","name":"暮らしを育む人々","color":"#259b6d"},{"id":"G3","name":"可能性を拓く人々","color":"#d85151"},{"id":"G4","name":"未来を共創する人々","color":"#f1c947"}],"axes":[{"id":"A","name":"安定 ↔ 変化","left":"安定","right":"変化"},{"id":"B","name":"自律 ↔ つながり","left":"自律","right":"つながり"},{"id":"C","name":"将来達成 ↔ 現在充実","left":"将来達成","right":"現在充実"},{"id":"D","name":"探索 ↔ 深耕","left":"探索","right":"深耕"}]}</script>
+<script id="d255-engine">/**
+ * A05 D255: exploratory post-30 Y/N directional classification.
+ * Deliberately does not rescore the 30-item seven-point engine.
+ * YES/NO contrast pairs can NARROW a provisional candidate set.
+ * NO PSYCHOMETRIC VALIDATION; not a production classifier.
+ * Pure module: the D246 builder embeds exactly this source in its offline HTML.
+ */
+const D255_VERSION="A05-D255-YN-PROVISIONAL-CLASSIFIER-1";
+const D255_AXES=["A","B","C","D"];
+const D255_ANSWERS=new Set(["YES","NO","UNSURE"]);
+const D255_REASON_CODES=new Set(["BOTH_STRONG","BOTH_WEAK","CONTEXT_DEPENDENT","BALANCED_MODERATE","WORDING_DIFFICULT","OTHER","PREFER_NOT"]);
+function d255SignPair(left,right){
+ if(left==="YES"&&right==="NO")return -1;
+ if(left==="NO"&&right==="YES")return 1;
+ return 0;
+}
+function d255TypeSigns(index){
+ const group=Math.floor(index/4),within=index%4;
+ return [group>=2?1:-1,group%2===1?1:-1,within>=2?1:-1,within%2===1?1:-1];
+}
+function d255Analyze(stats,state,probes){
+ if(!Array.isArray(stats)||stats.length!==4||!probes||!Array.isArray(probes.axes)||probes.axes.length!==4)
+  throw Error("D255 invalid axis/bank input");
+ const responses=state?.responses,reasons=state?.reasons;
+ if(!responses||!reasons||Array.isArray(responses)||Array.isArray(reasons)||typeof responses!=="object"||typeof reasons!=="object")
+  throw Error("D255 invalid Y/N state");
+ const itemOwner=new Map(probes.axes.flatMap(a=>[...a.initial,...a.context].map(q=>[q.id,a])));
+ if(Object.keys(responses).length>8)throw Error("D255 exceeded 8 Y/N answers");
+ for(const [id,value] of Object.entries(responses)){
+  const owner=itemOwner.get(id);
+  if(!owner||!D255_ANSWERS.has(value))throw Error("D255 unknown Y/N answer");
+  if(owner.context.some(q=>q.id===id)&&!owner.initial.every(q=>Object.hasOwn(responses,q.id)))
+   throw Error("D255 context without completed independent pair");
+ }
+ for(const [axis,reason] of Object.entries(reasons)){
+  if(!D255_AXES.includes(axis)||!D255_REASON_CODES.has(reason))
+   throw Error("D255 unknown reason");
+ }
+ const axes=D255_AXES.map((axis,index)=>{
+  const s=stats[index],def=probes.axes.find(x=>x.axis===axis);
+  if(!s||s.axis!==axis||!def||![7,8,9,10,11].includes(s.presented??7))
+   throw Error("D255 invalid source axis");
+  if(s.status==="clear"){
+   if(s.sign!==-1&&s.sign!==1)throw Error("D255 clear axis without direction");
+   return {axis,sign:s.sign,source:"BASE_30",reason:"30-item directional rule",ynAnswered:0};
+  }
+  const [left,right]=def.initial.map(q=>responses[q.id]);
+  const [contextLeft,contextRight]=def.context.map(q=>responses[q.id]);
+  const initialComplete=left!==undefined&&right!==undefined;
+  const contextComplete=contextLeft!==undefined&&contextRight!==undefined;
+  const first=initialComplete?d255SignPair(left,right):0;
+  const second=contextComplete?d255SignPair(contextLeft,contextRight):0;
+  const reason=reasons[axis];
+  const needsContext=["CONTEXT_DEPENDENT","WORDING_DIFFICULT"].includes(reason);
+  const hasPartial=left!==undefined||right!==undefined||contextLeft!==undefined||contextRight!==undefined;
+  if(!initialComplete)
+   return {axis,sign:0,source:"UNRESOLVED",reason:hasPartial?"INCOMPLETE_INITIAL":"NOT_ASKED",ynAnswered:Number(left!==undefined)+Number(right!==undefined)};
+  // A 2-item opposing pair is directional, but remains provisional and weaker than a scored core axis.
+  // Context dependence or difficult wording defers that decision until an independent context pair.
+  if(first!==0&&!needsContext){
+   if(contextComplete&&second!==0&&second!==first)
+    return {axis,sign:0,source:"UNRESOLVED",reason:"CONTRADICTORY_PAIRS",ynAnswered:4};
+   return {axis,sign:first,source:"YN_INITIAL_PROVISIONAL",reason:"OPPOSING_YN_PAIR",ynAnswered:2+Number(contextLeft!==undefined)+Number(contextRight!==undefined)};
+  }
+  if(contextComplete&&second!==0){
+   if(first!==0&&first!==second)
+    return {axis,sign:0,source:"UNRESOLVED",reason:"CONTRADICTORY_PAIRS",ynAnswered:4};
+   return {axis,sign:second,source:"YN_CONTEXT_PROVISIONAL",reason:"OPPOSING_CONTEXT_PAIR",ynAnswered:4};
+  }
+  return {axis,sign:0,source:"UNRESOLVED",
+   reason:contextComplete?"NO_DIRECTION_IN_PAIRS":needsContext?"CONTEXT_PENDING":"BOTH_OR_UNSURE",
+   ynAnswered:2+Number(contextLeft!==undefined)+Number(contextRight!==undefined)};
+ });
+ let candidateIds=[];
+ for(let i=0;i<16;i++){
+  const signs=d255TypeSigns(i);
+  if(axes.every((a,j)=>a.sign===0||a.sign===signs[j]))candidateIds.push("T"+String(i+1).padStart(2,"0"));
+ }
+ const determined=axes.filter(a=>a.sign!==0).length;
+ return {schema:D255_VERSION,scoringApproved:false,validated:false,
+  typeStatus:candidateIds.length===1?"SINGLE_EXPLORATORY":"INDETERMINATE",
+  candidateIds,numberOfCandidateTypes:candidateIds.length,
+  determinedAxes:determined,ynDeterminedAxes:axes.filter(a=>a.source.startsWith("YN_")).length,
+  axes,
+  caveat:"Y/N narrows only a research hypothesis; no score or validated type is established."};
+}
+/** Offer one first pair per unresolved axis before contextual follow-ups; total at most 8. */
+function d255NextBatch(stats,state,probes){
+ const result=d255Analyze(stats,state,probes);
+ const used=Object.keys(state.responses).length;
+ if(used>=8||result.numberOfCandidateTypes===1)return null;
+ const uncertain=stats.filter(s=>s.status!=="clear").slice().sort((a,b)=>{
+  const priority={few_directional:0,insufficient:1,tie:2,fragile:3,borderline:4};
+  const p=(priority[a.status]??5)-(priority[b.status]??5);
+  return p||(b.midpointOnInitial+b.skippedOnInitial)-(a.midpointOnInitial+a.skippedOnInitial)||
+   a.axis.localeCompare(b.axis);
+ });
+ for(const s of uncertain){
+  const def=probes.axes.find(a=>a.axis===s.axis);
+  const missing=def.initial.filter(q=>!Object.hasOwn(state.responses,q.id));
+  if(missing.length)
+   return {axis:s.axis,stage:"INDEPENDENT_POLES",questions:missing.slice(0,Math.min(2,8-used)),optional:true,scoreEffect:"RESEARCH_ONLY"};
+ }
+ for(const s of uncertain){
+  const status=result.axes.find(a=>a.axis===s.axis);
+  if(status.sign!==0)continue;
+  const def=probes.axes.find(a=>a.axis===s.axis);
+  if(state.reasons[s.axis]==="PREFER_NOT")continue;
+  const missing=def.context.filter(q=>!Object.hasOwn(state.responses,q.id));
+  if(missing.length)
+   return {axis:s.axis,stage:"OPTIONAL_CONTEXT",questions:missing.slice(0,Math.min(2,8-used)),optional:true,scoreEffect:"RESEARCH_ONLY"};
+ }
+ return null;
+}
+</script>
+<script>
+"use strict";
+(()=>{
+ const data=JSON.parse(document.getElementById("data").textContent);
+ const byId=new Map(data.questions.map(x=>[x.id,x]));
+ const $=id=>document.getElementById(id);
+ const axes=["A","B","C","D"];
+ const AXIS_MIN_VALID=5;
+ const POWER=1.5; // D226/D227 exploratory research choice, NOT psychometrically validated
+ const BORDERLINE_RATIO=Math.pow(1/3,POWER); // power-matched provisional reference, NOT confidence
+ let manifest=null,position=0,answers={},skipReasons={},initialCount=30;
+ let ynState={responses:{},reasons:{}},ynOffer=null,ynPosition=0;
+ function show(which){
+  for(const id of ["intro","question","result","yn"])$(id).hidden=id!==which;
+  document.body.dataset.screen=which;
+  document.body.classList.remove("mobile-safe-scroll");
+  requestAnimationFrame(checkMobileOverflow);
+  window.scrollTo({top:0,behavior:"instant"});
+ }
+ function checkMobileOverflow(){
+  const current=document.body.dataset.screen;
+  if(current!=="question"&&current!=="yn")return;
+  // Reconsider layout whenever answer length changes.
+  document.body.classList.remove("mobile-safe-scroll");
+  if(!matchMedia("(max-width:600px) and (orientation:portrait) and (min-height:560px)").matches)return;
+  const panel=$(current);
+  if(panel.scrollHeight>panel.clientHeight+2 ||
+     [...panel.querySelectorAll("button")].some(b=>{
+       if(b.offsetParent===null)return false;
+       const rect=b.getBoundingClientRect();
+       return rect.bottom>window.innerHeight+1||rect.top<0;
+     })){
+    document.body.classList.add("mobile-safe-scroll");
+  }
+ }
+ window.addEventListener("resize",()=>requestAnimationFrame(checkMobileOverflow));
+  function randomIndex(){
+  if(globalThis.crypto?.getRandomValues){
+   const n=new Uint32Array(1);crypto.getRandomValues(n);return n[0]%data.manifests.length;
+  }
+  return Math.floor(Math.random()*data.manifests.length);
+ }
+ function start(){
+  const selected=data.manifests[randomIndex()];
+  // The bundled manifest catalog is immutable; append follow-ups only to this user's session.
+  manifest={ids:selected.ids.slice(),seed:selected.seed};
+  initialCount=manifest.ids.length;position=0;answers={};skipReasons={};
+  ynState={responses:{},reasons:{}};ynOffer=null;ynPosition=0;
+  paintQuestion();show("question");
+ }
+ function answered(id){return Object.prototype.hasOwnProperty.call(answers,id);}
+ function paintQuestion(){
+  const q=byId.get(manifest.ids[position]);
+  $("counter").textContent=(position+1)+" / "+manifest.ids.length;
+  $("axisLabel").textContent=q.axis==="E"?"補助項目":q.axis+"軸";
+  $("progress").style.width=String((position+1)/manifest.ids.length*100)+"%";
+  $("progress").parentElement.setAttribute("aria-valuenow",String(position+1));
+  $("skipUnknown").setAttribute("aria-pressed",String(answers[q.id]===null&&skipReasons[q.id]==="UNKNOWN"));
+  $("skipNA").setAttribute("aria-pressed",String(answers[q.id]===null&&skipReasons[q.id]==="NOT_APPLICABLE"));
+  $("qtext").textContent=q.stem;$("left").textContent=q.left;$("right").textContent=q.right;
+  const holder=$("scale");holder.replaceChildren();
+  for(let i=1;i<=7;i++){
+   const b=document.createElement("button");b.type="button";b.textContent=String(i);
+   b.dataset.value=String(i);
+   b.setAttribute("aria-pressed",String(answers[q.id]===i));
+   b.setAttribute("aria-label",i===1?"1：左を強く優先":i===4?"4：中間":i===7?"7：右を強く優先":String(i)+"（7段階）");
+   b.addEventListener("click",()=>{answers[q.id]=i;delete skipReasons[q.id];paintQuestion();});
+   holder.append(b);
+  }
+  $("prev").disabled=position===0;
+  $("next").disabled=!answered(q.id);
+  $("next").textContent=position===manifest.ids.length-1?"結果を見る":"次へ";
+  requestAnimationFrame(checkMobileOverflow);
+ }
+ function step(delta){
+  if(!manifest)return;
+  if(delta>0&&!answered(manifest.ids[position]))return;
+  const next=position+delta;
+  if(next<0)return;
+  if(next>=manifest.ids.length){paintResult();show("result");return;}
+  position=next;paintQuestion();window.scrollTo({top:0,behavior:"instant"});
+ }
+ function scoreAnswer(x){
+  const d=(x-4)/3;
+  return d===0?0:Math.sign(d)*Math.pow(Math.abs(d),POWER);
+ }
+ function sumSign(x){return Math.abs(x)<=1e-12?0:Math.sign(x);}
+ function hash(s){
+  let h=2166136261;
+  for(let i=0;i<s.length;i++)h=Math.imul(h^s.charCodeAt(i),16777619);
+  return h>>>0;
+ }
+ function collectStats(){
+  return axes.map(axis=>{
+   const ids=manifest.ids.filter(id=>byId.get(id).axis===axis);
+   const scored=ids.filter(id=>Number.isInteger(answers[id])&&answers[id]>=1&&answers[id]<=7)
+    .map(id=>({id,family:byId.get(id).family,score:scoreAnswer(answers[id])}));
+   const n=scored.length;
+   const initial=manifest.ids.slice(0,initialCount).filter(id=>byId.get(id).axis===axis);
+   const midpointOnInitial=initial.filter(id=>answers[id]===4).length;
+   const skippedOnInitial=initial.filter(id=>answers[id]===null).length;
+   const directionalCurrent=scored.filter(q=>answers[q.id]!==4).length;
+   const total=scored.reduce((acc,q)=>acc+q.score,0);
+   const ratio=n?total/n:0;
+   const sign=sumSign(total);
+   const families=[...new Set(scored.map(q=>q.family))];
+   let itemFlipCount=0,familyFlipCount=0;
+   for(const q of scored)if(sumSign(total-q.score)!==sign)itemFlipCount++;
+   for(const family of families){
+    const subtotal=scored.filter(q=>q.family===family).reduce((acc,q)=>acc+q.score,0);
+    if(sumSign(total-subtotal)!==sign)familyFlipCount++;
+   }
+   const insufficient=n<AXIS_MIN_VALID||families.length<4;
+   const fragile=itemFlipCount>0||familyFlipCount>0;
+   const status=directionalCurrent<4?"few_directional":insufficient?"insufficient":sign===0?"tie":
+    Math.abs(ratio)<=BORDERLINE_RATIO+1e-12?"borderline":fragile?"fragile":"clear";
+   return {axis,n,presented:ids.length,total,ratio,sign,midpointOnInitial,skippedOnInitial,directionalCurrent,
+    distinctFamilies:families.length,itemFlipCount,familyFlipCount,status};
+  });
+ }
+ function candidateDirections(index){
+  const group=Math.floor(index/4),within=index%4;
+  return [group>=2?1:-1,group%2===1?1:-1,within>=2?1:-1,within%2===1?1:-1];
+ }
+ function candidateTypes(stats){
+  return data.types.filter((type,index)=>{
+   const signs=candidateDirections(index);
+   return stats.every((s,i)=>s.status!=="clear"||signs[i]===s.sign);
+  });
+ }
+ function addNearType(container,type){
+  const item=document.createElement("div");item.className="near-type-item";
+  const heading=document.createElement("strong");heading.textContent=type.emoji+" "+type.name;
+  const summary=document.createElement("p");summary.textContent=type.summary;
+  item.append(heading,summary);container.append(item);
+ }
+ function setResultTab(which){
+  const tabs={type:"Type",axes:"Axes",notes:"Notes"};
+  if(!Object.hasOwn(tabs,which))return;
+  for(const [key,suffix] of Object.entries(tabs)){
+   const active=key===which;
+   $("resultPanel"+suffix).hidden=!active;
+   $("resultTab"+suffix).setAttribute("aria-selected",String(active));
+   $("resultTab"+suffix).tabIndex=active?0:-1;
+  }
+ }
+ for(const name of ["type","axes","notes"]){
+  const suffix=name[0].toUpperCase()+name.slice(1);
+  $("resultTab"+suffix).addEventListener("click",()=>setResultTab(name));
+ }
+ function paintResult(){
+  const stats=collectStats(),baseCandidates=candidateTypes(stats);
+  const research=d255Analyze(stats,ynState,data.ynProbes);
+  const candidates=data.types.filter(type=>research.candidateIds.includes(type.id));
+  const rescued=candidates.length<baseCandidates.length;
+  const missingAll=stats.every(s=>s.n===0);
+  const midOnly=stats.every(s=>s.directionalCurrent===0)&&!missingAll;
+  const unresolved=stats.filter(s=>s.status!=="clear");
+  const near=$("nearTypes");near.replaceChildren();
+  if(candidates.length===1){
+   const type=candidates[0];
+   $("typeIcon").textContent=type.emoji;
+   $("typeName").textContent=type.name;
+   $("typeBadge").textContent=type.id+(rescued?" · Y/N補完の暫定参考タイプ":" · 30問の暫定参考タイプ");
+   $("typeSummary").textContent=type.summary+(rescued?" Y/Nで候補を絞った未検証の研究仮説です。":"");
+   near.hidden=true;
+  }else if(candidates.length<=4){
+   $("typeIcon").textContent="⚖️";
+   $("typeName").textContent="近い価値観が複数あります";
+   $("typeBadge").textContent=candidates.length+"タイプが参考候補";
+   $("typeSummary").textContent="価値観の方向が近い軸があります。無理に一つへ決めず、次の候補と4軸のバランスを参考にしてください。";
+   for(const type of candidates)addNearType(near,type);
+   near.hidden=false;
+  }else{
+   $("typeIcon").textContent="◇";
+   $("typeName").textContent=missingAll?"今回の回答からは判断できません":midOnly?"中間回答が多く、方向が未確定です":"タイプを十分に絞り込めません";
+   $("typeBadge").textContent="未確定 · "+candidates.length+"通りの組み合わせ";
+   $("typeSummary").textContent=missingAll?"30問すべてスキップされ、判定材料がありません。希望すればY/Nで追加確認できます。":midOnly?"中間回答はありますが、左右の方向は未確定です。":"方向が不明な軸があります。任意のY/Nで参考候補を減らせる場合があります。";
+   near.hidden=true;
+  }
+  const holder=$("axes");holder.replaceChildren();
+  for(const itemStat of stats){
+   const axis=data.axes.find(a=>a.id===itemStat.axis);
+   const resolution=research.axes.find(a=>a.axis===itemStat.axis);
+   const initial=manifest.ids.filter(id=>byId.get(id).axis===itemStat.axis);
+   const unknown=initial.filter(id=>answers[id]===null&&skipReasons[id]==="UNKNOWN").length;
+   const notApplicable=initial.filter(id=>answers[id]===null&&skipReasons[id]==="NOT_APPLICABLE").length;
+   const hasDirectionalScore=itemStat.directionalCurrent>0;
+   const isCoreDirection=resolution.source==="BASE_30";
+   const isYNSupplement=resolution.source.startsWith("YN_");
+   const isNoEvidence=itemStat.n===0;
+   const isMidpointOnly=!isNoEvidence&&!hasDirectionalScore;
+   const isTie=hasDirectionalScore&&itemStat.sign===0;
+   const source=isCoreDirection?"30問の参考方向"
+    :isYNSupplement?"Y/Nによる暫定方向":"方向の判定を保留";
+   const direction=(isCoreDirection||isYNSupplement)
+    ?(resolution.sign<0?axis.left:axis.right)+"寄り"
+    :isNoEvidence?"7段階の回答情報なし"
+    :isMidpointOnly?"中間の4だけ（方向は未確定）"
+    :isTie?"左右の回答が相殺（方向は未確定）"
+    :"得点があっても方向は未確定";
+   const card=document.createElement("section");card.className="axisrow";
+   card.dataset.axis=itemStat.axis;
+   card.dataset.evidence=resolution.source;
+   card.dataset.axisStatus=itemStat.status;
+   const heading=document.createElement("div");heading.className="axis-title";
+   const name=document.createElement("strong");name.textContent=itemStat.axis+"軸 · "+axis.name;
+   const outcome=document.createElement("span");outcome.className="axis-outcome";
+   outcome.textContent=direction;
+   heading.append(name,outcome);
+   const method=document.createElement("p");method.className="axis-method";
+   method.textContent=source+(isYNSupplement?"（30問の得点には未加算）":"");
+   const graph=document.createElement("div");graph.className="axis-score";
+   const poleLabels=document.createElement("div");poleLabels.className="axis-score-labels";
+   const left=document.createElement("span");left.textContent="−1 "+axis.left;
+   const center=document.createElement("span");center.textContent="0";
+   const right=document.createElement("span");right.textContent=axis.right+" ＋1";
+   poleLabels.append(left,center,right);
+   graph.append(poleLabels);
+   const bar=document.createElement("div");bar.className="axis-score-track";
+   bar.dataset.axis=itemStat.axis;
+   const marker=document.createElement("span");marker.className="axis-score-marker";
+   const validRatio=Number.isFinite(itemStat.ratio)&&itemStat.ratio>=-1&&itemStat.ratio<=1;
+   marker.hidden=!hasDirectionalScore||!validRatio;
+   if(!marker.hidden){
+    marker.style.left=((itemStat.ratio+1)*50)+"%";
+    marker.classList.toggle("is-reference",!isCoreDirection);
+    if(isTie)marker.classList.add("is-tie");
+   }
+   bar.append(marker);
+   if(isNoEvidence){
+    bar.hidden=true;
+    graph.setAttribute("aria-label",itemStat.axis+"軸：有効回答0件、得点位置なし");
+   }else if(isMidpointOnly){
+    bar.hidden=true;
+    graph.setAttribute("aria-label",itemStat.axis+"軸：中間回答のみ、方向得点位置なし");
+   }else if(validRatio){
+    const sign=itemStat.ratio>0?"+":"";
+    graph.setAttribute("aria-label",itemStat.axis+"軸：7段階の研究用参考位置 "+sign+itemStat.ratio.toFixed(2)+
+     (isTie?"。方向回答が相殺":!isCoreDirection?"。この位置は最終方向判定には採用していない":""));
+   }
+   graph.setAttribute("role","img");
+   graph.append(bar);
+   const position=document.createElement("p");position.className="axis-position-text";
+   if(isNoEvidence)position.textContent="7段階参考位置：回答がなく算出不可";
+   else if(isMidpointOnly)position.textContent="7段階参考位置：中間4のみ（方向なし）";
+   else if(validRatio)position.textContent="7段階参考位置："+(itemStat.ratio>0?"+":"")+itemStat.ratio.toFixed(2)+
+    (isCoreDirection?"":isTie?"（方向回答の相殺・参考値）":"（分類には不採用の参考値）");
+   else position.textContent="7段階参考位置：算出不可";
+   const evidence=document.createElement("p");evidence.className="axis-evidence";
+   evidence.textContent="方向回答 "+itemStat.directionalCurrent+"/7 · 中間4 "+
+    itemStat.midpointOnInitial+"/7 · 判断できない "+unknown+"/7 · 当てはまらない "+notApplicable+"/7";
+   const detail=document.createElement("p");detail.className="axis-detail";
+   detail.textContent="有効回答 "+itemStat.n+"/7 · "+
+    (itemStat.status==="clear"?"30問では方向が比較的安定しています"
+    :itemStat.status==="few_directional"?"方向を示す回答が4問未満です"
+    :itemStat.status==="insufficient"?"回答数または意味グループが不足しています"
+    :itemStat.status==="tie"?"方向回答はありますが、左右で得点が相殺しました"
+    :itemStat.status==="fragile"?"一部設問を除くと方向が変わるため保留します"
+    :itemStat.status==="borderline"?"得点が境界付近のため保留します"
+    :"方向は保留です");
+   card.append(heading,method,graph,position,evidence,detail);
+   holder.append(card);
+  }
+  const from30=research.axes.filter(a=>a.source==="BASE_30").length;
+  const fromYN=research.axes.filter(a=>a.source.startsWith("YN_")).length;
+  const remaining=4-from30-fromYN;
+  $("typeEvidenceSummary").textContent="判定の内訳：30問の参考方向 "+from30+"軸／Y/N暫定補完 "+
+   fromYN+"軸／保留 "+remaining+"軸";
+  const valid30=manifest.ids.filter(id=>answers[id]!==null).length;
+  const unknown30=manifest.ids.filter(id=>answers[id]===null&&skipReasons[id]==="UNKNOWN").length;
+  const na30=manifest.ids.filter(id=>answers[id]===null&&skipReasons[id]==="NOT_APPLICABLE").length;
+  $("resultComplete").textContent="30問終了：有効回答"+valid30+"問／判断できない"+unknown30+"問／当てはまらない"+na30+"問。追加はY/N形式のみです。";
+  $("resultNotice").textContent=(rescued&&research.numberOfCandidateTypes===1
+   ?"30問では未確定だった軸をY/Nで暫定補完しました。表示した1タイプは研究用の仮説で、確定判定ではありません。"
+   :unresolved.length?unresolved.map(s=>s.axis).join("・")+"軸の方向は未確定のままです。"
+   :"4軸とも今回の30問では比較的明確な方向が観察されました。")+
+   " 30問の1.5乗加点は維持。Y/Nによる候補の絞り込みは得点には混ぜない別の研究仮説です。心理測定としての信頼性・妥当性は未検証です。E補助2問は分類せず、C31・C32・C36は採点保留です。";
+  const ynNextOffer=planYN(stats);
+  $("ynButton").hidden=!ynNextOffer;
+  if(ynNextOffer)$("ynButton").textContent=ynNextOffer.axis+"軸をY/Nで追加確認（任意）";
+  const ynSummary=$("ynSummary");
+  const notes=data.ynProbes.axes.filter(x=>x.initial.some(q=>Object.hasOwn(ynState.responses,q.id)))
+   .map(axis=>{
+    const x=axis.initial.map(q=>ynState.responses[q.id]);
+    const resolved=research.axes.find(s=>s.axis===axis.axis);
+    const label=resolved.source==="YN_CONTEXT_PROVISIONAL"
+     ?"具体場面Y/Nで"+(resolved.sign<0?axis.left:axis.right)+"寄り（暫定）":
+     x.includes(undefined)||x.includes("UNSURE")?"判断できない・方向未確定":
+     x[0]==="YES"&&x[1]==="YES"?"両方を重視":
+     x[0]==="NO"&&x[1]==="NO"?"両方とも非重視":
+     x[0]==="YES"?"左側を重視":"右側を重視";
+    return axis.axis+"軸："+label;
+   });
+  ynSummary.hidden=notes.length===0;
+  ynSummary.textContent=notes.length?"Y/N回答の内容（未検証の参考情報）："+notes.join("／"):"";
+  $("post30Note").textContent=ynNextOffer
+   ?"31問目以降は任意のY/N形式のみ。回答から暫定候補を減らせる場合があります。"
+   :research.numberOfCandidateTypes===1?"4軸の暫定方向が揃いました。追加質問はありません。":"追加のY/Nは終了です。未確定な方向を無理に決めません。";
+  setResultTab("type");
+ }
+
+ function planYN(stats){return d255NextBatch(stats,ynState,data.ynProbes);}
+ function openYN(){
+  ynOffer=planYN(collectStats());
+  if(!ynOffer)return;
+  ynPosition=0;paintYN();show("yn");
+ }
+ function paintYN(){
+  if(!ynOffer)return;
+  const q=ynOffer.questions[ynPosition];
+  $("ynHeading").textContent=ynOffer.axis+"軸 · 左右それぞれの価値観";
+  const ynAnswered=Object.keys(ynState.responses).length;
+  $("ynStage").textContent=(ynOffer.stage==="INDEPENDENT_POLES"?"左右の確認":"具体的な場面")+
+   " · この組"+(ynPosition+1)+"/"+ynOffer.questions.length;
+  $("ynCounter").textContent="Y/N 回答済み "+ynAnswered+" / 上限8問";
+  $("ynProgress").style.width=(ynAnswered/8*100)+"%";
+  $("ynProgress").parentElement.setAttribute("aria-valuenow",String(ynAnswered));
+  $("ynQuestion").textContent=q.prompt;
+  $("ynChoices").replaceChildren();
+  for(const [value,label] of [["YES","YES"],["NO","NO"],["UNSURE","判断できない"]]){
+   const b=document.createElement("button");b.type="button";b.textContent=label;
+   b.setAttribute("aria-pressed",String(ynState.responses[q.id]===value));
+   b.addEventListener("click",()=>{ynState.responses[q.id]=value;paintYN();});
+   $("ynChoices").append(b);
+  }
+  $("ynPrev").disabled=ynPosition===0;
+  $("ynNext").disabled=!Object.hasOwn(ynState.responses,q.id);
+  $("ynNext").textContent=ynPosition===ynOffer.questions.length-1?"補助質問を続ける":"次の補助質問";
+  requestAnimationFrame(checkMobileOverflow);
+ }
+ function nextYN(){
+  if(!ynOffer||!Object.hasOwn(ynState.responses,ynOffer.questions[ynPosition].id))return;
+  if(ynPosition+1<ynOffer.questions.length){ynPosition++;paintYN();return;}
+  const next=planYN(collectStats());
+  if(next){ynOffer=next;ynPosition=0;paintYN();show("yn");}
+  else stopYN();
+ }
+ function stopYN(){ynOffer=null;paintResult();show("result");}
+ $("ynButton").addEventListener("click",openYN);
+ $("ynNext").addEventListener("click",nextYN);
+ $("ynPrev").addEventListener("click",()=>{if(ynPosition>0){ynPosition--;paintYN();}});
+ $("ynStop").addEventListener("click",stopYN);
+
+ $("start").addEventListener("click",start);
+ $("prev").addEventListener("click",()=>step(-1));
+ $("next").addEventListener("click",()=>step(1));
+ function chooseSkip(reason){
+  if(!manifest||!["UNKNOWN","NOT_APPLICABLE"].includes(reason))return;
+  const id=manifest.ids[position];
+  answers[id]=null;
+  skipReasons[id]=reason;
+  step(1);
+ }
+ $("skipUnknown").addEventListener("click",()=>chooseSkip("UNKNOWN"));
+ $("skipNA").addEventListener("click",()=>chooseSkip("NOT_APPLICABLE"));
+ $("restart").addEventListener("click",start);
+})();
+</script>
+<script id="a05-d272-keyboard-and-announcements">
+"use strict";
+(()=>{
+ const $=id=>document.getElementById(id);
+ const tablist=document.querySelector("#result .result-tabs");
+ const tabs=["resultTabType","resultTabAxes","resultTabNotes"].map($);
+ if(!tablist||tabs.some(t=>!t))throw Error("D272 tab structure drift");
+ // WAI-ARIA tabs: horizontal arrows, Home/End rotate active panel and focus.
+ tablist.addEventListener("keydown",event=>{
+  const i=tabs.indexOf(document.activeElement);
+  if(i===-1)return;
+  let j=null;
+  if(event.key==="ArrowRight")j=(i+1)%tabs.length;
+  if(event.key==="ArrowLeft")j=(i+tabs.length-1)%tabs.length;
+  if(event.key==="Home")j=0;
+  if(event.key==="End")j=tabs.length-1;
+  if(j===null)return;
+  event.preventDefault();
+  tabs[j].focus();
+  tabs[j].click();
+ });
+ // Screen-reader announcements: a change to the question is not silent.
+ $("qtext").setAttribute("aria-live","polite");
+ $("ynQuestion").setAttribute("role","heading");
+ $("ynQuestion").setAttribute("aria-level","3");
+ $("ynQuestion").setAttribute("aria-live","polite");
+ $("typeName").setAttribute("role","heading");
+ $("typeName").setAttribute("aria-level","2");
+ // Move focus from hidden previous-screen buttons to current heading.
+ let previous=document.body.dataset.screen||"intro";
+ const focusScreen=()=>{
+  const screen=document.body.dataset.screen;
+  if(screen===previous)return;
+  previous=screen;
+  const target=screen==="question"?$("qtext"):
+   screen==="yn"?$("ynHeading"):
+   screen==="result"?$("typeName"):screen==="intro"?$("start"):null;
+  if(!target)return;
+  target.tabIndex=-1;
+  requestAnimationFrame(()=>{
+   if(document.body.dataset.screen===screen)target.focus({preventScroll:true});
+  });
+ };
+ new MutationObserver(focusScreen).observe(document.body,
+  {attributes:true,attributeFilter:["data-screen"]});
+})();
+</script>
+</body>
+</html>
