@@ -36,17 +36,25 @@ jobs:
           node scripts/a05-d262-build-result-v22.mjs
           node --check scripts/test-a05-d271-ux-audit.cjs
           test -s research/a05/generated/d262-result-v22-preview.html
-      - name: Install disposable browser, WebKit and axe audit tooling
+      - name: Install disposable Chromium audit packages and locate system Chrome
         run: |
           npm install --prefix /tmp/a05-d271-qa --no-audit --no-fund --no-save playwright@1.56.1 axe-core@4.10.3
-          NODE_PATH=/tmp/a05-d271-qa/node_modules /tmp/a05-d271-qa/node_modules/.bin/playwright install --with-deps webkit
           CHROME="$(command -v google-chrome-stable || command -v google-chrome || command -v chromium || true)"
           test -n "$CHROME"
           "$CHROME" --version
           echo "A05_CHROME_PATH=$CHROME" >> "$GITHUB_ENV"
-      - name: Run Chromium and WebKit research UX audit (find defects, do not claim acceptance)
+      - name: Chromium initial UX and WCAG audit
         env:
           NODE_PATH: /tmp/a05-d271-qa/node_modules
+          A05_D271_ENGINE: chromium
+        run: node scripts/test-a05-d271-ux-audit.cjs
+      - name: Install WebKit engine and Linux dependencies for simulator-style tests
+        run: |
+          NODE_PATH=/tmp/a05-d271-qa/node_modules /tmp/a05-d271-qa/node_modules/.bin/playwright install --with-deps webkit
+      - name: WebKit UX and WCAG audit (not a physical iOS Safari test)
+        env:
+          NODE_PATH: /tmp/a05-d271-qa/node_modules
+          A05_D271_ENGINE: webkit
         run: node scripts/test-a05-d271-ux-audit.cjs
       - name: Declare QA scope accurately
         run: |
