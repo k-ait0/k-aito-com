@@ -1,0 +1,28 @@
+/* D272 research-only accessibility improvements. Injected into isolated HTML candidate. */
+/* WCAG AA target: stronger label, guidance and small supplementary text contrast. */
+.warning{color:#455369}
+.muted{color:#4e5b6d}
+.minor{color:#4d5b6f}
+.pole small{color:#45566b}
+.scalehint{color:#45576d}
+.skip,.skip-options .skip,#ynStop{color:#41526a}
+.axis-detail{color:#526176}
+.axis-method{color:#4e5d70}
+.axis-position-text{color:#4d5d72}
+.extra-note{color:#516076}
+.eyebrow{color:#365d8f}
+/* WebKit at 320px: allow both header labels to shrink/wrap instead of spilling. */
+@media (max-width:340px) and (orientation:portrait){
+ body[data-screen="question"] header .brand,
+ body[data-screen="yn"] header .brand{
+  flex:1 1 53%;min-width:0;white-space:normal;overflow-wrap:anywhere;
+  font-size:.64rem;line-height:1.15;letter-spacing:0;
+ }
+ body[data-screen="question"] header .pill,
+ body[data-screen="yn"] header .pill{
+  flex:1 1 47%;min-width:0;white-space:normal;overflow-wrap:anywhere;
+  font-size:.59rem;line-height:1.18;text-align:right;padding:2px 5px;
+ }
+ body[data-screen="question"] header,
+ body[data-screen="yn"] header{gap:3px}
+}
