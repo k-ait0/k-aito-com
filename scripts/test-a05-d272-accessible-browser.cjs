@@ -91,12 +91,15 @@ async function main(){
     await page.locator("#start").focus();
     await page.keyboard.press("Enter");
     assert.equal(await page.locator("#question").isVisible(),true);
-    const questionStart=await viewportCheck(page);
-    const question=await auditAxe(page,"question");
+    // Focus transition is deliberately asynchronous (MutationObserver + RAF).
+    // Verify it before injecting axe, which may temporarily alter/restore focus.
+    await page.waitForFunction(()=>document.activeElement?.id==="qtext",null,{timeout:3000});
     const focusAfterStart=await page.evaluate(()=>({
      id:document.activeElement?.id||"",
      hidden:document.activeElement?.closest("[hidden]")!==null
     }));
+    const questionStart=await viewportCheck(page);
+    const question=await auditAxe(page,"question");
     assert.equal(await page.locator("#next").isDisabled(),true);
     await page.locator("#skipUnknown").click();
     await page.locator("#skipNA").click();
