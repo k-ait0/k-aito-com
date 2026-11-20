@@ -1,0 +1,101 @@
+name: A05 D272 isolated accessible UX candidate and browser gates
+on:
+  push:
+    branches:
+      - research/a05-d272-ux-accessibility-patch-20261120
+    paths:
+      - '.github/workflows/a05-d272-accessible-preview.yml'
+      - 'research/a05/d272-accessibility-overlay.css'
+      - 'research/a05/d272-keyboard-and-announcements.js'
+      - 'scripts/a05-d272-build-accessible-candidate.mjs'
+      - 'scripts/test-a05-d272-accessible-browser.cjs'
+      - 'docs/A05_D272_ACCESSIBILITY_ACCEPTANCE_20261120.md'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  chromium:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 14
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - name: Rebuild Ver2.2 without editing the original and create D272 isolated candidate
+        run: |
+          node scripts/a05-d262-build-result-v22.mjs
+          node scripts/a05-d272-build-accessible-candidate.mjs
+          node --check scripts/test-a05-d272-accessible-browser.cjs
+          git diff --exit-code -- research/a05/d262-result-parameters-v22-template.html scripts/a05-d255-yn-provisional-classifier.mjs
+      - name: Install disposable Chrome QA dependencies
+        run: |
+          npm install --prefix /tmp/a05-d272-chromium --no-audit --no-fund --no-save playwright@1.56.1 axe-core@4.10.3
+          CHROME="$(command -v google-chrome-stable || command -v google-chrome || command -v chromium)"
+          test -n "$CHROME"
+          echo "A05_CHROME_PATH=$CHROME" >> "$GITHUB_ENV"
+      - name: Require Chromium WCAG A AA, keyboard tab and viewport acceptance
+        env:
+          NODE_PATH: /tmp/a05-d272-chromium/node_modules
+          A05_D272_ENGINE: chromium
+        run: node scripts/test-a05-d272-accessible-browser.cjs
+  webkit:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 24
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - name: Build isolated D272 candidate from unmodified Ver2.2
+        run: |
+          node scripts/a05-d262-build-result-v22.mjs
+          node scripts/a05-d272-build-accessible-candidate.mjs
+      - name: Install disposable WebKit and axe
+        run: |
+          npm install --prefix /tmp/a05-d272-webkit --no-audit --no-fund --no-save playwright@1.56.1 axe-core@4.10.3
+          NODE_PATH=/tmp/a05-d272-webkit/node_modules /tmp/a05-d272-webkit/node_modules/.bin/playwright install --with-deps webkit
+      - name: Require WebKit WCAG A AA, keyboard tab and viewport acceptance
+        env:
+          NODE_PATH: /tmp/a05-d272-webkit/node_modules
+          A05_D272_ENGINE: webkit
+        run: node scripts/test-a05-d272-accessible-browser.cjs
+  isolated-preview:
+    needs: [chromium, webkit]
+    if: success()
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - name: Rebuild exactly the tested D272 candidate
+        run: |
+          node scripts/a05-d262-build-result-v22.mjs
+          node scripts/a05-d272-build-accessible-candidate.mjs
+          cp research/a05/generated/d272-accessibility-candidate.html /tmp/d272-qa-approved.html
+      - name: Enforce unchanged public A05 versions and publish new preview path only
+        run: |
+          git fetch origin gh-pages
+          test "$(git show origin/gh-pages:index.html | sha256sum | cut -d' ' -f1)" = 'd4be3ac612c7bc1cad07bbbb385a7b6910614ac0356598ae6345d7ed5300d070'
+          test "$(git show origin/gh-pages:preview/yn/index.html | sha256sum | cut -d' ' -f1)" = '5cf61a5114e69c292080be803ae835c5e75d400f4a773a8e89fb2347547d11e1'
+          test "$(git show origin/gh-pages:preview/yn-v2/index.html | sha256sum | cut -d' ' -f1)" = '31d6ecf62393c24100604c51a1ba0ec280369f8780e37c2bc775b1913ba6dfc8'
+          test "$(git show origin/gh-pages:preview/yn-v21/index.html | sha256sum | cut -d' ' -f1)" = '39a07c893b1060b06f0a6050d2610510f494eb85801034c2b85ecee811164c0f'
+          test "$(git show origin/gh-pages:preview/yn-v22/index.html | sha256sum | cut -d' ' -f1)" = 'fa0919ce234aa01674f52a1ee999bea4fe0d92695ae9cc9e1924fd18ca9bdc61'
+          test "$(git show origin/gh-pages:preview/a05-analytics-d265/index.html | sha256sum | cut -d' ' -f1)" = '01669940e630341742521f561dde0ff5badceea2491595f01c15046109632650'
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -B gh-pages origin/gh-pages
+          mkdir -p preview/a05-yn-v22-a11y
+          cp /tmp/d272-qa-approved.html preview/a05-yn-v22-a11y/index.html
+          git add preview/a05-yn-v22-a11y/index.html
+          if ! git diff --cached --quiet; then
+            git commit -m "Publish isolated A05 D272 accessibility research preview only"
+            git push origin HEAD:refs/heads/gh-pages
+          fi
+          test "$(sha256sum /tmp/d272-qa-approved.html | cut -d' ' -f1)" = "$(git show HEAD:preview/a05-yn-v22-a11y/index.html | sha256sum | cut -d' ' -f1)"
+          echo 'A05_D272_RESEARCH_ACCESSIBILITY_PREVIEW_PUBLISHED_MATCHED'
