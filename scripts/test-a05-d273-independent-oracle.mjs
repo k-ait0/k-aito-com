@@ -204,9 +204,9 @@ test("D273-14 D269 adapter retains UNKNOWN and NOT_APPLICABLE as separate counts
   manifestIndex:0,values,skipKinds:reasons,ynState:{responses:{},reasons:{}}
  });
  assert.deepEqual(before.answerTotals,{answered:28,unknown:1,notApplicable:1});
- assert.equal(axis(before.stats,"B").n,5);
- assert.equal(axis(before.stats,"B").midpointOnInitial,1);
- assert.equal(axis(before.stats,"B").skippedOnInitial,2);
+ assert.equal(before.stats.find(x=>x.axis==="B").n,5);
+ assert.equal(before.stats.find(x=>x.axis==="B").midpointOnInitial,1);
+ assert.equal(before.stats.find(x=>x.axis==="B").skippedOnInitial,2);
  const reversed=reasons.map(v=>v==="UNKNOWN"?"NOT_APPLICABLE":
   v==="NOT_APPLICABLE"?"UNKNOWN":v);
  const after=d269ServerClassify({
