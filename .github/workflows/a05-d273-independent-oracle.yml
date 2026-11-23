@@ -1,0 +1,45 @@
+name: A05 D273 independent mathematical boundary oracle (research only)
+on:
+  push:
+    branches:
+      - research/a05-d273-independent-oracle-20261123
+    paths:
+      - '.github/workflows/a05-d273-independent-oracle.yml'
+      - 'scripts/test-a05-d273-independent-oracle.mjs'
+      - 'docs/A05_D273_INDEPENDENT_ORACLE_REVIEW_20261123.md'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  independent-oracle:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - name: Preserve source implementations and old public HTML
+        run: |
+          git fetch origin gh-pages
+          git diff --exit-code origin/research/a05-d272-ux-accessibility-patch-20261120 HEAD -- \
+            scripts/a05-d227-robust-intensity-scoring.mjs \
+            scripts/a05-d243-midpoint-yn-research.mjs \
+            scripts/a05-d255-yn-provisional-classifier.mjs \
+            scripts/a05-d269-server-reference.mjs \
+            scripts/a05-d270-classifier-db.mjs \
+            research/a05/d262-result-parameters-v22-template.html
+          test "$(git show origin/gh-pages:preview/yn-v22/index.html | sha256sum | cut -d' ' -f1)" = 'fa0919ce234aa01674f52a1ee999bea4fe0d92695ae9cc9e1924fd18ca9bdc61'
+          test "$(git show origin/gh-pages:preview/a05-yn-v22-a11y/index.html | sha256sum | cut -d' ' -f1)" = '6cd4c74ca2e0fe9eab3af7a031700302f256a1fefc0eed4cd0810474fd66d215'
+      - name: Check syntax and execute independent analytic contract fixtures
+        run: |
+          node --check scripts/test-a05-d273-independent-oracle.mjs
+          node --test scripts/test-a05-d273-independent-oracle.mjs
+      - name: Preserve D255 existing behavior regression
+        run: node --test scripts/test-a05-d255-yn-provisional-classifier.mjs
+      - name: Preserve D243 earlier descriptive-only version
+        run: node --test scripts/test-a05-d243-midpoint-yn-research.mjs
+      - name: Explicit completion boundary
+        run: |
+          echo 'A05_D273_INDEPENDENT_MATH_ORACLE_TECHNICAL_QA_PASS'
+          echo 'A05_D273_NO_PSYCHOMETRIC_VALIDATION_NO_REAL_USER_DATA_NO_PRODUCTION_CHANGE'
