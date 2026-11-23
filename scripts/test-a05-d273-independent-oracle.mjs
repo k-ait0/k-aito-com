@@ -113,7 +113,8 @@ test("D273-03 E auxiliary data never changes A-D scores or 16 candidate types",(
 test("D273-04 four directional answers vs three: independent D243 minimum-four boundary",()=>{
  const m=form("D219-simple-003"), qs=subset(m,"B");
  for(const [directional,expectedStatus,expectedYNOffer] of [
-  [3,"FEW_DIRECTIONAL",true],[4,"DIRECTIONAL",false]
+  [2,"FEW_DIRECTIONAL",true],[3,"FEW_DIRECTIONAL",false],
+  [4,"DIRECTIONAL",false]
  ]){
   const bag=all(m,7);
   for(let i=directional;i<7;i++)bag[qs[i].id]=4;
@@ -124,7 +125,7 @@ test("D273-04 four directional answers vs three: independent D243 minimum-four b
   assert.equal(axis(held,"B").status,expectedStatus);
   assert.equal(axis(held,"B").directionalCurrent,directional);
   assert.equal(axis(held,"B").independentYNRecommended,expectedYNOffer);
-  assert.deepEqual(held.possibleTypes,directional===3?["T12","T16"]:["T16"]);
+  assert.deepEqual(held.possibleTypes,directional<4?["T12","T16"]:["T16"]);
  }
 });
 test("D273-05 exact validity boundary: 4 valid answers is insufficient even with 4 families",()=>{
