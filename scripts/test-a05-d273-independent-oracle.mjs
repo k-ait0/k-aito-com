@@ -14,6 +14,7 @@ import {drawResearchHoldFilteredManifest} from "./a05-d224-hold-filtered-sampler
 import {scoreResearchForm} from "./a05-d227-robust-intensity-scoring.mjs";
 import {analyzeMidpointResearch,PROBES,summarizeYN} from "./a05-d243-midpoint-yn-research.mjs";
 import {d255Analyze,d255NextBatch} from "./a05-d255-yn-provisional-classifier.mjs";
+import {d269ServerClassify} from "./a05-d269-server-reference.mjs";
 
 const AXES=["A","B","C","D"];
 const LOW=0.19245008972987526; // exact analytic sqrt(1/27) rounded to IEEE double
@@ -171,7 +172,7 @@ test("D273-07 exact semantic-family deletion: duplicated +1 family masks 0 remai
  assert.equal(b.familyFlipCount,1);
  assert.equal(b.status,"FRAGILE");
 });
-test("D273-08 UNKNOWN versus NOT_APPLICABLE are distinct, neither counts as midpoint 4",()=>{
+test("D273-08 midpoint and skipped are distinct in D243, regardless of skip reason",()=>{
  const m=form("D219-simple-007"), qs=subset(m,"B");
  const bag=all(m,7);
  bag[qs[0].id]=4;
@@ -187,6 +188,37 @@ test("D273-08 UNKNOWN versus NOT_APPLICABLE are distinct, neither counts as midp
  assert.equal(b.combinedOnInitial,5);
  assert.equal(b.status,"FEW_DIRECTIONAL");
  assert.equal(b.independentYNRecommended,true);
+});
+test("D273-14 D269 adapter retains UNKNOWN and NOT_APPLICABLE as separate counts",()=>{
+ const m=form("D219-simple-000");
+ let b=0;
+ const values=m.questions.map(q=>{
+  if(q.axis!=="B")return 7;
+  b++;
+  return b===1||b===3?null:b===2?4:7;
+ });
+ const reasons=values.map((v,i)=>v===null?
+  (m.questions[i].axis==="B"&&m.questions.slice(0,i+1).filter(q=>q.axis==="B").length===1?
+   "UNKNOWN":"NOT_APPLICABLE"):null);
+ const before=d269ServerClassify({
+  manifestIndex:0,values,skipKinds:reasons,ynState:{responses:{},reasons:{}}
+ });
+ assert.deepEqual(before.answerTotals,{answered:28,unknown:1,notApplicable:1});
+ assert.equal(axis(before.stats,"B").n,5);
+ assert.equal(axis(before.stats,"B").midpointOnInitial,1);
+ assert.equal(axis(before.stats,"B").skippedOnInitial,2);
+ const reversed=reasons.map(v=>v==="UNKNOWN"?"NOT_APPLICABLE":
+  v==="NOT_APPLICABLE"?"UNKNOWN":v);
+ const after=d269ServerClassify({
+  manifestIndex:0,values,skipKinds:reversed,ynState:{responses:{},reasons:{}}
+ });
+ assert.deepEqual(after.answerTotals,{answered:28,unknown:1,notApplicable:1});
+ assert.deepEqual(before.stats,after.stats,
+  "Skip reasons have equal scoring absence but separate reporting semantics");
+ assert.throws(()=>d269ServerClassify({
+  manifestIndex:0,values,skipKinds:reasons.map(()=>null),
+  ynState:{responses:{},reasons:{}}
+ }),/skip reasons/);
 });
 test("D273-09 fixed 16-type sign truth table independent of implementation type mapper",()=>{
  const m=form("D219-simple-008");
