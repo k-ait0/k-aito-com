@@ -1,7 +1,7 @@
 {
   "schema": "KAITO_ANALYTICS_DATA_ACQUISITION_INVENTORY_V1",
   "inventory_date_jst": "2026-11-20",
-  "inventory_cutoff": "2026-11-25 JST (FRED and H10 update; other series retain last verified cutoff)",
+  "inventory_cutoff": "2026-11-25 JST (FRED H15/H10/CP updates; other series retain verified cutoff)",
   "research_only": true,
   "strict_scope": "DATA_ACQUISITION_SOURCE_AUTHENTICATION_NORMALIZATION_QA_AND_DATA_RIGHTS_ONLY",
   "excluded": "UI_CALCULATION_CORE_SIMULATION_PRODUCTION_RELEASE",
@@ -189,9 +189,13 @@
     },
     {
       "category": "CREDIT_SPREAD",
-      "state": "NOT_ACQUIRED",
-      "records": [],
-      "missing": "信用スプレッドの公式長期系列と定義"
+      "state": "PARTIAL_SHORT_TERM_CP_SPREAD_21_DERIVED_DAILY_VALUES_LONG_TERM_CREDIT_SERIES_PENDING",
+      "records": [
+        "2026-10: two Fed 30-day nonfinancial CP daily rate series, 42 source numeric values + two missing, 21 paired derived credit-rating spreads; private rendered-table extract only; raw publisher bytes not preserved.",
+        "Long-term BAA10YM/AAA10YM identified, Moody's rights unresolved; Fed GZ/EBP 1973 onward research CSV located but direct download failed; EBP not identical to total corporate credit spread."
+      ],
+      "missing": "Full paired CP historical daily data and original-file SHA/independent value QA; monthly long-term corporate bond spread source with permitted use and verified definitions; original EBP/GZ research file and revision metadata; Japan credit-spread source.",
+      "receipt_path": "research/analytics/acquisition_deltas/2026-11-25_us_cp_credit_spread_receipt.json"
     }
   ],
   "near_term_acceptance_sequence": [
