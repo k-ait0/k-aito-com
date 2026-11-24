@@ -1,7 +1,7 @@
 {
   "schema": "KAITO_ANALYTICS_DATA_ACQUISITION_INVENTORY_V1",
   "inventory_date_jst": "2026-11-20",
-  "inventory_cutoff": "2026-11-25 JST (JST R6 mirror annual JP/US extraction; previous cutoffs retained)",
+  "inventory_cutoff": "2026-11-25 JST (JST R6 18-country annual equity/bond panel; other series retain verified cutoff)",
   "research_only": true,
   "strict_scope": "DATA_ACQUISITION_SOURCE_AUTHENTICATION_NORMALIZATION_QA_AND_DATA_RIGHTS_ONLY",
   "excluded": "UI_CALCULATION_CORE_SIMULATION_PRODUCTION_RELEASE",
@@ -24,11 +24,12 @@
       "name": "日本株",
       "source": "JPX",
       "state": "PARTIAL_ANNUAL_JST_R6_MIRROR_PLUS_PRIOR_REFERENCE",
-      "missing_or_gates": "32 official TOPIX TR month-end values, noncontiguous 2019-12..2026-01; full monthly history not acquired; Russell/Nomura TR bulk candidate links confirmed but bytes blocked.; JST R6 third-party mirror: 1966..2020 annual eq_tr 55 values (research candidate, not official original or monthly benchmark); 2021 onward and official monthly benchmark remain separate.",
+      "missing_or_gates": "32 official TOPIX TR month-end values, noncontiguous 2019-12..2026-01; full monthly history not acquired; Russell/Nomura TR bulk candidate links confirmed but bytes blocked.; JST R6 third-party mirror: 1966..2020 annual eq_tr 55 values (research candidate, not official original or monthly benchmark); 2021 onward and official monthly benchmark remain separate.; JP/US equity and bond records also included in complete 16-country research panel; no duplicate new observations counted for JP/US.",
       "complete_60y_accepted": false,
       "receipt_path": "research/analytics/acquisition_deltas/2026-11-25_core_assets_priority_capture_receipt.json",
       "additional_receipt_paths": [
-        "research/analytics/acquisition_deltas/2026-11-25_jst_r6_jp_us_annual_mirror_receipt.json"
+        "research/analytics/acquisition_deltas/2026-11-25_jst_r6_jp_us_annual_mirror_receipt.json",
+        "research/analytics/acquisition_deltas/2026-11-25_jst_r6_18_country_equity_bond_annual_receipt.json"
       ]
     },
     {
@@ -36,11 +37,12 @@
       "name": "米国株",
       "source": "SPDJI;Shiller",
       "state": "PARTIAL_ANNUAL_JST_R6_MIRROR_PLUS_PRIOR_REFERENCE",
-      "missing_or_gates": "Existing Shiller 522-month candidate; 2025 Damodaran annual value independently rechecked; no new monthly values. Full monthly US equity TR history missing.; JST R6 third-party mirror: 1966..2020 annual eq_tr 55 values (research candidate, not official original or monthly benchmark); 2021 onward and official monthly benchmark remain separate.",
+      "missing_or_gates": "Existing Shiller 522-month candidate; 2025 Damodaran annual value independently rechecked; no new monthly values. Full monthly US equity TR history missing.; JST R6 third-party mirror: 1966..2020 annual eq_tr 55 values (research candidate, not official original or monthly benchmark); 2021 onward and official monthly benchmark remain separate.; JP/US equity and bond records also included in complete 16-country research panel; no duplicate new observations counted for JP/US.",
       "complete_60y_accepted": false,
       "receipt_path": "research/analytics/acquisition_deltas/2026-11-25_core_assets_priority_capture_receipt.json",
       "additional_receipt_paths": [
-        "research/analytics/acquisition_deltas/2026-11-25_jst_r6_jp_us_annual_mirror_receipt.json"
+        "research/analytics/acquisition_deltas/2026-11-25_jst_r6_jp_us_annual_mirror_receipt.json",
+        "research/analytics/acquisition_deltas/2026-11-25_jst_r6_18_country_equity_bond_annual_receipt.json"
       ]
     },
     {
@@ -48,20 +50,24 @@
       "name": "世界株",
       "source": "MSCI",
       "state": "PARTIAL_ANNUAL_FACTSHEET_REFERENCE_ONLY",
-      "missing_or_gates": "MSCI ACWI and World net USD annual 2012..2025 each 14 reference observations; monthly series not acquired, rights pending.",
+      "missing_or_gates": "MSCI ACWI and World net USD annual 2012..2025 each 14 reference observations; monthly series not acquired, rights pending.; JST R6 country-level annual candidate panel 1966..2020, 16 countries with complete equity and government bond returns. Not the target global equity/developed ex-US bond index; no aggregate created or accepted.",
       "complete_60y_accepted": false,
-      "receipt_path": "research/analytics/acquisition_deltas/2026-11-25_core_assets_priority_capture_receipt.json"
+      "receipt_path": "research/analytics/acquisition_deltas/2026-11-25_core_assets_priority_capture_receipt.json",
+      "additional_receipt_paths": [
+        "research/analytics/acquisition_deltas/2026-11-25_jst_r6_18_country_equity_bond_annual_receipt.json"
+      ]
     },
     {
       "id": "JP_BONDS",
       "name": "日本債券",
       "source": "NOMURA_BPI",
       "state": "PARTIAL_ANNUAL_JST_R6_MIRROR_PLUS_PRIOR_REFERENCE",
-      "missing_or_gates": "NOMURA BPI overall 2026-10 month-end level only; long monthly history not acquired.; JST R6 third-party mirror: 1966..2020 annual bond_tr 55 values (research candidate, not official original or monthly benchmark); 2021 onward and official monthly benchmark remain separate.",
+      "missing_or_gates": "NOMURA BPI overall 2026-10 month-end level only; long monthly history not acquired.; JST R6 third-party mirror: 1966..2020 annual bond_tr 55 values (research candidate, not official original or monthly benchmark); 2021 onward and official monthly benchmark remain separate.; JP/US equity and bond records also included in complete 16-country research panel; no duplicate new observations counted for JP/US.",
       "complete_60y_accepted": false,
       "receipt_path": "research/analytics/acquisition_deltas/2026-11-25_core_assets_priority_capture_receipt.json",
       "additional_receipt_paths": [
-        "research/analytics/acquisition_deltas/2026-11-25_jst_r6_jp_us_annual_mirror_receipt.json"
+        "research/analytics/acquisition_deltas/2026-11-25_jst_r6_jp_us_annual_mirror_receipt.json",
+        "research/analytics/acquisition_deltas/2026-11-25_jst_r6_18_country_equity_bond_annual_receipt.json"
       ]
     },
     {
@@ -69,11 +75,12 @@
       "name": "米国債券",
       "source": "BLOOMBERG_INDEX",
       "state": "PARTIAL_ANNUAL_JST_R6_MIRROR_PLUS_PRIOR_REFERENCE",
-      "missing_or_gates": "NASDAQ NCPAGT 16 month-end levels 2025-07..2026-10 (alternative not Bloomberg); existing Damodaran 2025 annual Treasury return rechecked; benchmark full history not acquired.; JST R6 third-party mirror: 1966..2020 annual bond_tr 55 values (research candidate, not official original or monthly benchmark); 2021 onward and official monthly benchmark remain separate.",
+      "missing_or_gates": "NASDAQ NCPAGT 16 month-end levels 2025-07..2026-10 (alternative not Bloomberg); existing Damodaran 2025 annual Treasury return rechecked; benchmark full history not acquired.; JST R6 third-party mirror: 1966..2020 annual bond_tr 55 values (research candidate, not official original or monthly benchmark); 2021 onward and official monthly benchmark remain separate.; JP/US equity and bond records also included in complete 16-country research panel; no duplicate new observations counted for JP/US.",
       "complete_60y_accepted": false,
       "receipt_path": "research/analytics/acquisition_deltas/2026-11-25_core_assets_priority_capture_receipt.json",
       "additional_receipt_paths": [
-        "research/analytics/acquisition_deltas/2026-11-25_jst_r6_jp_us_annual_mirror_receipt.json"
+        "research/analytics/acquisition_deltas/2026-11-25_jst_r6_jp_us_annual_mirror_receipt.json",
+        "research/analytics/acquisition_deltas/2026-11-25_jst_r6_18_country_equity_bond_annual_receipt.json"
       ]
     },
     {
@@ -114,8 +121,11 @@
       "name": "先進国債券（米国除く）",
       "source": "FTSE_RUSSELL",
       "state": "NO_LOCKED_INDEX_DATA",
-      "missing_or_gates": "FTSE Russell WGBI等の長期系列",
-      "complete_60y_accepted": false
+      "missing_or_gates": "FTSE Russell WGBI等の長期系列; JST R6 country-level annual candidate panel 1966..2020, 16 countries with complete equity and government bond returns. Not the target global equity/developed ex-US bond index; no aggregate created or accepted.",
+      "complete_60y_accepted": false,
+      "additional_receipt_paths": [
+        "research/analytics/acquisition_deltas/2026-11-25_jst_r6_18_country_equity_bond_annual_receipt.json"
+      ]
     },
     {
       "id": "EXGOLD_COMMODITY",
