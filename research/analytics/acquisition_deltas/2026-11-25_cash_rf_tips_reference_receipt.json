@@ -1,0 +1,72 @@
+{
+  "schema": "KAITO_CASH_RF_TIPS_REFERENCE_V1",
+  "date_jst": "2026-11-25",
+  "scope": "DATA_ACQUISITION_ONLY",
+  "cash": {
+    "classification": "US_ONE_MONTH_TBILL_MONTHLY_RF_ACADEMIC_MIRROR",
+    "official_definition": "https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/Data_Library/f-f_factors.html",
+    "mirror": "https://api.github.com/repos/anshhkrishna/factor-zoo-postpublication/git/blobs/c15aacfea2354efabe22d3a90150f6f54e09788c",
+    "source_vintage": "2026-06",
+    "first": "1926-07",
+    "last": "2026-06",
+    "new_values": 474,
+    "previous_values": 726,
+    "total_values": 1200,
+    "source_segments": [
+      {
+        "through": "2024-05",
+        "source": "Ibbotson"
+      },
+      {
+        "from": "2024-06",
+        "source": "ICE BofA US 1-Month Treasury Bill Index"
+      }
+    ],
+    "file": {
+      "filename": "K_Aito_Analytics_US_TBILL_RF_192607_202606_RESEARCH.csv",
+      "bytes": 26679,
+      "sha256": "e7f4f6e5fdb12c18d1bb8c5c871b43ee714b99934f973a9d9564ae2ec6578d4a"
+    },
+    "qa": {
+      "pre1966_transfer_fnv1a32": "f8e6c8c2",
+      "existing_726_values_fnv1a32": "cfad0928",
+      "all_values_fnv1a32": "ad03d2bf",
+      "all_match": true,
+      "monthly_continuity": true,
+      "official_zip_original_verified": false,
+      "rights_verified": false,
+      "canonical": false
+    }
+  },
+  "tips": {
+    "source": "https://saferate.com/treasury/indices/tips",
+    "series": "SR-UST-TR-TIPS",
+    "inception": "2008-09-30",
+    "backtested_before": "2026-09-30",
+    "classification": "PROVIDER_PUBLISHED_BACKTEST_ANNUAL_REFERENCE_NOT_OBSERVED_BENCHMARK",
+    "full_years": "2009..2025",
+    "full_year_values": 17,
+    "partial_periods": [
+      "2008-10..12",
+      "2026-01..10"
+    ],
+    "partial_values": 2,
+    "file": {
+      "filename": "K_Aito_Analytics_SAFERATE_TIPS_ANNUAL_REFERENCE_2008_2026.csv",
+      "rows": 19,
+      "bytes": 1912,
+      "sha256": "71e1ac85d4a3b40f2906b9f76be0db4d804d1e7a91d89d38bd73100f44c828a6"
+    },
+    "monthly_index_history_reported": 217,
+    "monthly_original_acquired": false,
+    "source_full_independent_verification": false,
+    "canonical": false
+  },
+  "new_values_total": 493,
+  "limits": [
+    "US short-term USD return is not JPY cash return; Japanese realized short-term series remains missing.",
+    "Safe Rate historical index is backtested, and 2008/2026 are partial periods; no interpolation or monthly reconstruction.",
+    "Source rights and original-file certification pending; no numeric CSV published."
+  ],
+  "main_engine_ui_production_changed": false
+}
