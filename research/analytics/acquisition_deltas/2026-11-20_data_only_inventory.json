@@ -1,7 +1,7 @@
 {
   "schema": "KAITO_ANALYTICS_DATA_ACQUISITION_INVENTORY_V1",
   "inventory_date_jst": "2026-11-20",
-  "inventory_cutoff": "2026-11-25 JST (archival Nareit/US bonds/EAFE monthly extraction; prior series retain verified cutoffs)",
+  "inventory_cutoff": "2026-11-25 JST (Swinkels JP/DE monthly research model and TIPS issuer reference; other cutoffs retained)",
   "research_only": true,
   "strict_scope": "DATA_ACQUISITION_SOURCE_AUTHENTICATION_NORMALIZATION_QA_AND_DATA_RIGHTS_ONLY",
   "excluded": "UI_CALCULATION_CORE_SIMULATION_PRODUCTION_RELEASE",
@@ -65,13 +65,14 @@
       "id": "JP_BONDS",
       "name": "日本債券",
       "source": "NOMURA_BPI",
-      "state": "PARTIAL_ANNUAL_JST_R6_MIRROR_PLUS_PRIOR_REFERENCE",
-      "missing_or_gates": "NOMURA BPI overall 2026-10 month-end level only; long monthly history not acquired.; JST R6 third-party mirror: 1966..2020 annual bond_tr 55 values (research candidate, not official original or monthly benchmark); 2021 onward and official monthly benchmark remain separate.; JP/US equity and bond records also included in complete 16-country research panel; no duplicate new observations counted for JP/US.",
+      "state": "PARTIAL_MONTHLY_ACADEMIC_MODEL_PLUS_ANNUAL_RESEARCH",
+      "missing_or_gates": "NOMURA BPI overall 2026-10 month-end level only; long monthly history not acquired.; JST R6 third-party mirror: 1966..2020 annual bond_tr 55 values (research candidate, not official original or monthly benchmark); 2021 onward and official monthly benchmark remain separate.; JP/US equity and bond records also included in complete 16-country research panel; no duplicate new observations counted for JP/US.; Swinkels 10-year Japan local-currency government bond return model 1974-10..2022-12 (579 months), third-party ODS mirror, source cached Return M rounded to 8 decimal places; not NOMURA-BPI or observed total-return benchmark.",
       "complete_60y_accepted": false,
       "receipt_path": "research/analytics/acquisition_deltas/2026-11-25_core_assets_priority_capture_receipt.json",
       "additional_receipt_paths": [
         "research/analytics/acquisition_deltas/2026-11-25_jst_r6_jp_us_annual_mirror_receipt.json",
-        "research/analytics/acquisition_deltas/2026-11-25_jst_r6_18_country_equity_bond_annual_receipt.json"
+        "research/analytics/acquisition_deltas/2026-11-25_jst_r6_18_country_equity_bond_annual_receipt.json",
+        "research/analytics/acquisition_deltas/2026-11-25_swinkels_jp_de_tips_receipt.json"
       ]
     },
     {
@@ -131,11 +132,12 @@
       "id": "DEV_EXUS_BONDS",
       "name": "先進国債券（米国除く）",
       "source": "FTSE_RUSSELL",
-      "state": "NO_LOCKED_INDEX_DATA",
-      "missing_or_gates": "FTSE Russell WGBI等の長期系列; JST R6 country-level annual candidate panel 1966..2020, 16 countries with complete equity and government bond returns. Not the target global equity/developed ex-US bond index; no aggregate created or accepted.",
+      "state": "PARTIAL_COUNTRY_MONTHLY_ACADEMIC_MODEL_NOT_AGGREGATE",
+      "missing_or_gates": "FTSE Russell WGBI等の長期系列; JST R6 country-level annual candidate panel 1966..2020, 16 countries with complete equity and government bond returns. Not the target global equity/developed ex-US bond index; no aggregate created or accepted.; Swinkels Germany 10-year government bond return model 1972-10..2022-12 (603 months), country-level local-currency model only, not FTSE WGBI aggregate; other seven sheets inspected, not saved.",
       "complete_60y_accepted": false,
       "additional_receipt_paths": [
-        "research/analytics/acquisition_deltas/2026-11-25_jst_r6_18_country_equity_bond_annual_receipt.json"
+        "research/analytics/acquisition_deltas/2026-11-25_jst_r6_18_country_equity_bond_annual_receipt.json",
+        "research/analytics/acquisition_deltas/2026-11-25_swinkels_jp_de_tips_receipt.json"
       ]
     },
     {
@@ -150,9 +152,12 @@
       "id": "INFLATION_LINKED",
       "name": "物価連動債",
       "source": "US_TREASURY",
-      "state": "NO_INVESTABLE_RETURN_SERIES",
-      "missing_or_gates": "米国Treasury TIPS利回りは運用TRではない。対応する収益系列は未取得",
-      "complete_60y_accepted": false
+      "state": "PARTIAL_ISSUER_ANNUAL_AND_ONE_MONTH_REFERENCE",
+      "missing_or_gates": "米国Treasury TIPS利回りは運用TRではない。対応する収益系列は未取得; iShares TIP NAV and issuer-reported benchmark total returns, 2021..2025 annual 10 values and 2026-09 monthly 2 values; actual issuer published reference, continuous monthly series still missing.",
+      "complete_60y_accepted": false,
+      "additional_receipt_paths": [
+        "research/analytics/acquisition_deltas/2026-11-25_swinkels_jp_de_tips_receipt.json"
+      ]
     }
   ],
   "auxiliary": [
