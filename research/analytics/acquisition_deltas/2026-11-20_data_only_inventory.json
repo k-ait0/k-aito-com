@@ -1,7 +1,7 @@
 {
   "schema": "KAITO_ANALYTICS_DATA_ACQUISITION_INVENTORY_V1",
   "inventory_date_jst": "2026-11-20",
-  "inventory_cutoff": "2026-11-25 JST (core assets priority research excerpts; previous auxiliary cutoff retained)",
+  "inventory_cutoff": "2026-11-25 JST (JST R6 mirror annual JP/US extraction; previous cutoffs retained)",
   "research_only": true,
   "strict_scope": "DATA_ACQUISITION_SOURCE_AUTHENTICATION_NORMALIZATION_QA_AND_DATA_RIGHTS_ONLY",
   "excluded": "UI_CALCULATION_CORE_SIMULATION_PRODUCTION_RELEASE",
@@ -23,19 +23,25 @@
       "id": "JP_EQUITY",
       "name": "日本株",
       "source": "JPX",
-      "state": "PARTIAL_OFFICIAL_TOPIX_TR_32_NONCONTIGUOUS_MONTH_END_REFERENCE_VALUES",
-      "missing_or_gates": "32 official TOPIX TR month-end values, noncontiguous 2019-12..2026-01; full monthly history not acquired; Russell/Nomura TR bulk candidate links confirmed but bytes blocked.",
+      "state": "PARTIAL_ANNUAL_JST_R6_MIRROR_PLUS_PRIOR_REFERENCE",
+      "missing_or_gates": "32 official TOPIX TR month-end values, noncontiguous 2019-12..2026-01; full monthly history not acquired; Russell/Nomura TR bulk candidate links confirmed but bytes blocked.; JST R6 third-party mirror: 1966..2020 annual eq_tr 55 values (research candidate, not official original or monthly benchmark); 2021 onward and official monthly benchmark remain separate.",
       "complete_60y_accepted": false,
-      "receipt_path": "research/analytics/acquisition_deltas/2026-11-25_core_assets_priority_capture_receipt.json"
+      "receipt_path": "research/analytics/acquisition_deltas/2026-11-25_core_assets_priority_capture_receipt.json",
+      "additional_receipt_paths": [
+        "research/analytics/acquisition_deltas/2026-11-25_jst_r6_jp_us_annual_mirror_receipt.json"
+      ]
     },
     {
       "id": "US_EQUITY",
       "name": "米国株",
       "source": "SPDJI;Shiller",
-      "state": "PARTIAL_RESEARCH_SOURCE",
-      "missing_or_gates": "Existing Shiller 522-month candidate; 2025 Damodaran annual value independently rechecked; no new monthly values. Full monthly US equity TR history missing.",
+      "state": "PARTIAL_ANNUAL_JST_R6_MIRROR_PLUS_PRIOR_REFERENCE",
+      "missing_or_gates": "Existing Shiller 522-month candidate; 2025 Damodaran annual value independently rechecked; no new monthly values. Full monthly US equity TR history missing.; JST R6 third-party mirror: 1966..2020 annual eq_tr 55 values (research candidate, not official original or monthly benchmark); 2021 onward and official monthly benchmark remain separate.",
       "complete_60y_accepted": false,
-      "receipt_path": "research/analytics/acquisition_deltas/2026-11-25_core_assets_priority_capture_receipt.json"
+      "receipt_path": "research/analytics/acquisition_deltas/2026-11-25_core_assets_priority_capture_receipt.json",
+      "additional_receipt_paths": [
+        "research/analytics/acquisition_deltas/2026-11-25_jst_r6_jp_us_annual_mirror_receipt.json"
+      ]
     },
     {
       "id": "GLOBAL_EQUITY",
@@ -50,19 +56,25 @@
       "id": "JP_BONDS",
       "name": "日本債券",
       "source": "NOMURA_BPI",
-      "state": "PARTIAL_OFFICIAL_MONTH_END_REFERENCE",
-      "missing_or_gates": "NOMURA BPI overall 2026-10 month-end level only; long monthly history not acquired.",
+      "state": "PARTIAL_ANNUAL_JST_R6_MIRROR_PLUS_PRIOR_REFERENCE",
+      "missing_or_gates": "NOMURA BPI overall 2026-10 month-end level only; long monthly history not acquired.; JST R6 third-party mirror: 1966..2020 annual bond_tr 55 values (research candidate, not official original or monthly benchmark); 2021 onward and official monthly benchmark remain separate.",
       "complete_60y_accepted": false,
-      "receipt_path": "research/analytics/acquisition_deltas/2026-11-25_core_assets_priority_capture_receipt.json"
+      "receipt_path": "research/analytics/acquisition_deltas/2026-11-25_core_assets_priority_capture_receipt.json",
+      "additional_receipt_paths": [
+        "research/analytics/acquisition_deltas/2026-11-25_jst_r6_jp_us_annual_mirror_receipt.json"
+      ]
     },
     {
       "id": "US_BONDS",
       "name": "米国債券",
       "source": "BLOOMBERG_INDEX",
-      "state": "PARTIAL_ALTERNATIVE_NASDAQ_MONTH_END_REFERENCE",
-      "missing_or_gates": "NASDAQ NCPAGT 16 month-end levels 2025-07..2026-10 (alternative not Bloomberg); existing Damodaran 2025 annual Treasury return rechecked; benchmark full history not acquired.",
+      "state": "PARTIAL_ANNUAL_JST_R6_MIRROR_PLUS_PRIOR_REFERENCE",
+      "missing_or_gates": "NASDAQ NCPAGT 16 month-end levels 2025-07..2026-10 (alternative not Bloomberg); existing Damodaran 2025 annual Treasury return rechecked; benchmark full history not acquired.; JST R6 third-party mirror: 1966..2020 annual bond_tr 55 values (research candidate, not official original or monthly benchmark); 2021 onward and official monthly benchmark remain separate.",
       "complete_60y_accepted": false,
-      "receipt_path": "research/analytics/acquisition_deltas/2026-11-25_core_assets_priority_capture_receipt.json"
+      "receipt_path": "research/analytics/acquisition_deltas/2026-11-25_core_assets_priority_capture_receipt.json",
+      "additional_receipt_paths": [
+        "research/analytics/acquisition_deltas/2026-11-25_jst_r6_jp_us_annual_mirror_receipt.json"
+      ]
     },
     {
       "id": "CASH_SHORT",
@@ -163,7 +175,8 @@
         "FRED H.15 FEDFUNDS/GS10 1990-01..1999-12 official web-table excerpt: +240 monthly numeric rows, 120 months per series. Contiguous private research web extract now 1966-01..1999-12 (408 months * 2 = 816 rows), plus 2025-03..2026-10 separate 20 months each.",
         "FRED H.15 FEDFUNDS/GS10 2000-01..2025-02, 302 months x 2 = 604 official HTML table transcription observations, privately saved; source-original CSV and double-entry QA not available.",
         "Combined 1966-01..2026-10, 730 months x 2 = 1460 continuous research observations; 291 earlier publisher observations pre-1966 still unextracted.",
-        "2026-11-25: added pre-1966 FRED 291 monthly web-table values, FEDFUNDS 138 and GS10 153. Combined 1751 values (868/883), full native monthly span, calendar/uniqueness/finite values PASS; prior 1460 excerpt hash matched. Original CSV download DNS blocked, independent all-value comparison pending."
+        "2026-11-25: added pre-1966 FRED 291 monthly web-table values, FEDFUNDS 138 and GS10 153. Combined 1751 values (868/883), full native monthly span, calendar/uniqueness/finite values PASS; prior 1460 excerpt hash matched. Original CSV download DNS blocked, independent all-value comparison pending.",
+        "JST R6 third-party mirror 1966..2020 annual bill_rate Japan and US 110 observations; official original equality unverified, private research only."
       ],
       "missing": "Full official FRED original CSV bytes and all-1751 independent reconciliation; BOJ official source original bytes and all-992 value comparison; revisions/vintage and rights. No missing months in published native spans at excerpt level. Rate inputs are not investable TR.",
       "receipt_path": "research/analytics/acquisition_deltas/2026-11-20_rates_aux_capture_receipt.json",
@@ -183,7 +196,8 @@
       "category": "DIVIDENDS",
       "state": "PARTIAL_RESEARCH_SOURCE",
       "records": [
-        "Shiller旧研究系列は配当近似を含む。公式SPDJI配当・総収益系列の正本未取得"
+        "Shiller旧研究系列は配当近似を含む。公式SPDJI配当・総収益系列の正本未取得",
+        "JST R6 third-party mirror 1966..2020 annual eq_div_rtn Japan and US 110 observations; official original equality unverified, private research only."
       ],
       "missing": "公式配当・利息の対応する継続系列と権利"
     },
