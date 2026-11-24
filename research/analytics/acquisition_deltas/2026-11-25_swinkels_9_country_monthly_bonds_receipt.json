@@ -1,0 +1,111 @@
+{
+  "schema": "KAITO_SWINKELS_9_COUNTRY_MONTHLY_BOND_RESEARCH_V1",
+  "date_jst": "2026-11-25",
+  "scope": "DATA_ACQUISITION_ONLY",
+  "source": {
+    "official_reference": "https://pure.eur.nl/en/datasets/historical-data-international-monthly-government-bond-returns/",
+    "mirror_repo": "ejroebuck2025/JST_data_analysis",
+    "mirror_path": "Data/International Monthly Government Bond Returns.ods",
+    "mirror_blob_sha": "3799809ededf4f600e94b64e5175bdb3e6d547db",
+    "ods_bytes_read": 913425,
+    "official_original_equality_verified": false
+  },
+  "classification": "AUTHOR_MODEL_ESTIMATED_LOCAL_CURRENCY_10Y_GOVERNMENT_BOND_RETURNS_NOT_OBSERVED_BENCHMARK_TR",
+  "previous_rows": 1182,
+  "new_rows": 5521,
+  "combined_rows": 6703,
+  "series": [
+    {
+      "iso": "AUS",
+      "first": "1969-08",
+      "last": "2022-12",
+      "rows": 641,
+      "transfer_fnv1a32": "163f0628"
+    },
+    {
+      "iso": "CAN",
+      "first": "1986-02",
+      "last": "2022-12",
+      "rows": 443,
+      "transfer_fnv1a32": "18fca3df"
+    },
+    {
+      "iso": "DEU",
+      "first": "1972-10",
+      "last": "2022-12",
+      "rows": 603,
+      "transfer_fnv1a32": "8e4ef709"
+    },
+    {
+      "iso": "FRA",
+      "first": "1987-02",
+      "last": "2022-12",
+      "rows": 431,
+      "transfer_fnv1a32": "2eca14c8"
+    },
+    {
+      "iso": "GBR",
+      "first": "1970-02",
+      "last": "2022-12",
+      "rows": 635,
+      "transfer_fnv1a32": "a56638a4"
+    },
+    {
+      "iso": "JPN",
+      "first": "1974-10",
+      "last": "2022-12",
+      "rows": 579,
+      "transfer_fnv1a32": "ebbc9f97"
+    },
+    {
+      "iso": "NOR",
+      "first": "1921-02",
+      "last": "2022-12",
+      "rows": 1223,
+      "transfer_fnv1a32": "09db09cf"
+    },
+    {
+      "iso": "SWE",
+      "first": "1920-01",
+      "last": "2022-12",
+      "rows": 1236,
+      "transfer_fnv1a32": "ca7c2c88"
+    },
+    {
+      "iso": "USA",
+      "first": "1947-01",
+      "last": "2022-12",
+      "rows": 912,
+      "transfer_fnv1a32": "4245fa44"
+    }
+  ],
+  "combined_file": {
+    "filename": "K_Aito_Analytics_SWINKELS_9_COUNTRIES_MONTHLY_BOND_RESEARCH.csv",
+    "rows": 6703,
+    "bytes": 491572,
+    "sha256": "3871d5fe90aa99269e4a206785bf93b56e2a29872bbf69f9023fe65df75110f7"
+  },
+  "private_manifest": {
+    "filename": "K_Aito_Analytics_SWINKELS_9_COUNTRIES_ACQUISITION_MANIFEST.json",
+    "sha256": "035330a6a04e5de70a0dadd939630fc87344494dc2086e278add8449c4a6ae6b"
+  },
+  "qa": {
+    "ods_content_xml_crc_pass": true,
+    "all_9_series_transfer_checksums_pass": true,
+    "monthly_continuity": true,
+    "unique_country_month": true,
+    "finite_numeric": true,
+    "sweden_transfer_count_mismatch_detected_and_reextracted": true,
+    "official_source_independent_reconciliation": false,
+    "canonical_approved": false
+  },
+  "precision": "Source cached author model returns rounded to eight decimal places; no new return calculation, no imputation",
+  "remaining": [
+    "Official original and rights verification",
+    "2023 onward data",
+    "NOMURA BPI / Bloomberg US Aggregate / FTSE WGBI observed benchmarks not replaced",
+    "No aggregate developed ex-US index created"
+  ],
+  "raw_numeric_csv_published": false,
+  "main_engine_ui_production_changed": false
+}
