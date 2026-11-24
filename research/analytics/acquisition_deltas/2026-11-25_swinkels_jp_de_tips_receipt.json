@@ -1,0 +1,99 @@
+{
+  "schema": "KAITO_BOND_RESEARCH_CAPTURE_V1",
+  "date_jst": "2026-11-25",
+  "scope": "DATA_ACQUISITION_ONLY",
+  "swinkels": {
+    "official_source": "https://pure.eur.nl/en/datasets/historical-data-international-monthly-government-bond-returns/",
+    "mirror_repo": "ejroebuck2025/JST_data_analysis",
+    "mirror_path": "Data/International Monthly Government Bond Returns.ods",
+    "mirror_blob_sha": "3799809ededf4f600e94b64e5175bdb3e6d547db",
+    "ods_bytes_read": 913425,
+    "mirror_ods_archived_locally": false,
+    "official_original_equality_verified": false,
+    "classification": "AUTHOR_MODEL_ESTIMATED_LOCAL_CURRENCY_10Y_GOVERNMENT_BOND_RETURN_NOT_OBSERVED_BENCHMARK_TR",
+    "file": {
+      "name": "K_Aito_Analytics_SWINKELS_JP_DE_MONTHLY_BOND_RESEARCH.csv",
+      "bytes": 86781,
+      "sha256": "f3d7f981583a6dff7b7eafc869ca061d8953c0c379c5f01e6680163eeb6417c9",
+      "observations": 1182,
+      "precision": "decimal return rounded to eight decimal places; max absolute rounding error <5e-9",
+      "series": [
+        {
+          "iso": "JPN",
+          "first": "1974-10",
+          "last": "2022-12",
+          "rows": 579,
+          "fnv1a32": "ebbc9f97"
+        },
+        {
+          "iso": "DEU",
+          "first": "1972-10",
+          "last": "2022-12",
+          "rows": 603,
+          "fnv1a32": "8e4ef709"
+        }
+      ]
+    },
+    "qa": {
+      "monthly_continuity": true,
+      "unique_country_month": true,
+      "transfer_checksum_match": true,
+      "official_source_reconciliation": false
+    },
+    "other_sheets_read_not_saved": [
+      {
+        "iso": "USA",
+        "months": 912
+      },
+      {
+        "iso": "FRA",
+        "months": 431
+      },
+      {
+        "iso": "GBR",
+        "months": 635
+      },
+      {
+        "iso": "AUS",
+        "months": 641
+      },
+      {
+        "iso": "CAN",
+        "months": 443
+      },
+      {
+        "iso": "NOR",
+        "months": 1223
+      },
+      {
+        "iso": "SWE",
+        "months": 1236
+      }
+    ]
+  },
+  "tips": {
+    "source": "https://www.ishares.com/us/products/239467/ishares-us-treasury-bond-etf",
+    "classification": "ISSUER_PUBLISHED_ETF_NAV_TOTAL_RETURN_AND_REPORTED_BENCHMARK_REFERENCE",
+    "file": {
+      "name": "K_Aito_Analytics_TIPS_ISSUER_RETURN_REFERENCES.csv",
+      "bytes": 1453,
+      "sha256": "50809ba9ba09bd081fb320051b51ecfe58b174143bc74fdc28f81fed5533ec88",
+      "rows": 12,
+      "annual_values": 10,
+      "annual_years": "2021..2025",
+      "monthly_values": 2,
+      "monthly_period": "2026-09"
+    },
+    "source_original_bytes_archived": false,
+    "continuous_monthly_series": false,
+    "full_independent_value_reconciliation": false
+  },
+  "limits": [
+    "Private research candidates only; no observed market benchmark equivalence; no canonical adoption.",
+    "Swinkels remaining 7 sheets parsed but no local CSV saved, not counted as acquired.",
+    "Official original direct network download remains blocked; source permissions and provenance remain pending.",
+    "TIPS issuer annual/one month reference only; monthly history still absent."
+  ],
+  "no_raw_numbers_uploaded": true,
+  "no_engine_ui_main_production_changes": true
+}
