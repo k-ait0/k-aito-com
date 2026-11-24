@@ -1,0 +1,75 @@
+name: A05 D276 final research candidate audit
+on:
+  push:
+    branches: [research/a05-d276-final-acceptance-20261125]
+    paths:
+      - '.github/workflows/a05-d276-release-audit.yml'
+      - 'scripts/test-a05-d276-release-audit.cjs'
+      - 'scripts/a05-d276-build-release-candidate.mjs'
+      - 'research/a05/d276-release-overlay.css'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  chromium:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - name: Verify frozen previews and build unchanged D272
+        run: |
+          git fetch origin gh-pages
+          test "$(git show origin/gh-pages:preview/yn-v22/index.html | sha256sum | cut -d' ' -f1)" = 'fa0919ce234aa01674f52a1ee999bea4fe0d92695ae9cc9e1924fd18ca9bdc61'
+          test "$(git show origin/gh-pages:preview/a05-yn-v22-a11y/index.html | sha256sum | cut -d' ' -f1)" = '6cd4c74ca2e0fe9eab3af7a031700302f256a1fefc0eed4cd0810474fd66d215'
+          node scripts/a05-d262-build-result-v22.mjs
+          node scripts/a05-d272-build-accessible-candidate.mjs
+          test "$(sha256sum research/a05/generated/d272-accessibility-candidate.html | cut -d' ' -f1)" = '6cd4c74ca2e0fe9eab3af7a031700302f256a1fefc0eed4cd0810474fd66d215'
+      - name: Independently fetch deployed preview (read only)
+        run: |
+          if curl --fail --location --max-time 30 --retry 1 --output /tmp/d272-live.html --write-out 'HTTP_STATUS=%{http_code} CONTENT_TYPE=%{content_type}\n' https://k-ait0.github.io/k-aito-com/preview/a05-yn-v22-a11y/; then
+            ACTUAL="$(sha256sum /tmp/d272-live.html | cut -d' ' -f1)"
+            echo "D276_HTTPS_SHA256=$ACTUAL"
+            if [ "$ACTUAL" = '6cd4c74ca2e0fe9eab3af7a031700302f256a1fefc0eed4cd0810474fd66d215' ]; then
+              echo D276_HTTPS_EXACT_MATCH
+            else
+              echo D276_HTTPS_HASH_MISMATCH
+            fi
+          else
+            echo D276_HTTPS_FETCH_UNAVAILABLE
+          fi
+      - name: Install disposable test dependencies
+        run: |
+          npm install --prefix /tmp/a05-d276 --no-audit --no-fund --no-save playwright@1.56.1
+          CHROME="$(command -v google-chrome-stable || command -v google-chrome || command -v chromium)"
+          test -n "$CHROME"
+          echo "A05_CHROME_PATH=$CHROME" >> "$GITHUB_ENV"
+      - name: Audit D272 (report defects, not an acceptance declaration)
+        env:
+          NODE_PATH: /tmp/a05-d276/node_modules
+          A05_D276_ENGINE: chromium
+        run: node scripts/test-a05-d276-release-audit.cjs
+  webkit:
+    runs-on: ubuntu-24.04
+    container:
+      image: mcr.microsoft.com/playwright:v1.56.1-noble
+      options: --ipc=host
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - name: Build unchanged D272
+        run: |
+          node scripts/a05-d262-build-result-v22.mjs
+          node scripts/a05-d272-build-accessible-candidate.mjs
+          test "$(sha256sum research/a05/generated/d272-accessibility-candidate.html | cut -d' ' -f1)" = '6cd4c74ca2e0fe9eab3af7a031700302f256a1fefc0eed4cd0810474fd66d215'
+      - name: Install disposable test dependencies
+        run: npm install --prefix /tmp/a05-d276 --no-audit --no-fund --no-save playwright@1.56.1
+      - name: Audit D272 (report defects, not an acceptance declaration)
+        env:
+          NODE_PATH: /tmp/a05-d276/node_modules
+          A05_D276_ENGINE: webkit
+        run: node scripts/test-a05-d276-release-audit.cjs
