@@ -1,0 +1,84 @@
+name: A05 D274 user-event E2E and independent type display acceptance
+on:
+  push:
+    branches:
+      - research/a05-d274-dom-e2e-20261125
+    paths:
+      - '.github/workflows/a05-d274-dom-e2e.yml'
+      - 'scripts/test-a05-d274-dom-e2e.cjs'
+      - 'docs/A05_D274_DOM_E2E_ACCEPTANCE_20261125.md'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  chromium:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 22
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - name: Assert research-only source unchanged, check original public hashes
+        run: |
+          git fetch origin gh-pages
+          git diff --exit-code origin/research/a05-d273-independent-oracle-20261123 HEAD -- \
+            research/a05/d262-result-parameters-v22-template.html \
+            research/a05/d272-accessibility-overlay.css \
+            research/a05/d272-keyboard-and-announcements.js \
+            scripts/a05-d227-robust-intensity-scoring.mjs \
+            scripts/a05-d243-midpoint-yn-research.mjs \
+            scripts/a05-d255-yn-provisional-classifier.mjs \
+            scripts/a05-d269-server-reference.mjs \
+            scripts/a05-d270-classifier-db.mjs
+          test "$(git show origin/gh-pages:preview/yn-v22/index.html | sha256sum | cut -d' ' -f1)" = 'fa0919ce234aa01674f52a1ee999bea4fe0d92695ae9cc9e1924fd18ca9bdc61'
+          test "$(git show origin/gh-pages:preview/a05-yn-v22-a11y/index.html | sha256sum | cut -d' ' -f1)" = '6cd4c74ca2e0fe9eab3af7a031700302f256a1fefc0eed4cd0810474fd66d215'
+      - name: Build exactly D272 research candidate locally (no deployment)
+        run: |
+          node scripts/a05-d262-build-result-v22.mjs
+          node scripts/a05-d272-build-accessible-candidate.mjs
+          test "$(sha256sum research/a05/generated/d272-accessibility-candidate.html | cut -d' ' -f1)" = '6cd4c74ca2e0fe9eab3af7a031700302f256a1fefc0eed4cd0810474fd66d215'
+          node --check scripts/test-a05-d274-dom-e2e.cjs
+      - name: Prepare disposable Chromium UI test environment
+        run: |
+          npm install --prefix /tmp/a05-d274-chromium --no-audit --no-fund --no-save playwright@1.56.1
+          CHROME="$(command -v google-chrome-stable || command -v google-chrome || command -v chromium)"
+          test -n "$CHROME"
+          echo "A05_CHROME_PATH=$CHROME" >> "$GITHUB_ENV"
+      - name: Actual DOM buttons 30-question and Y/N independent expected types (Chromium)
+        env:
+          NODE_PATH: /tmp/a05-d274-chromium/node_modules
+          A05_D274_ENGINE: chromium
+        run: node scripts/test-a05-d274-dom-e2e.cjs
+  webkit:
+    runs-on: ubuntu-24.04
+    container:
+      image: mcr.microsoft.com/playwright:v1.56.1-noble
+      options: --ipc=host
+    timeout-minutes: 22
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - name: Build unchanged D272 candidate and validate checksum
+        run: |
+          node scripts/a05-d262-build-result-v22.mjs
+          node scripts/a05-d272-build-accessible-candidate.mjs
+          test "$(sha256sum research/a05/generated/d272-accessibility-candidate.html | cut -d' ' -f1)" = '6cd4c74ca2e0fe9eab3af7a031700302f256a1fefc0eed4cd0810474fd66d215'
+      - name: Use isolated WebKit browser and Playwright
+        run: |
+          npm install --prefix /tmp/a05-d274-webkit --no-audit --no-fund --no-save playwright@1.56.1
+          test -d /ms-playwright
+      - name: Actual DOM buttons 30-question and Y/N independent expected types (WebKit)
+        env:
+          NODE_PATH: /tmp/a05-d274-webkit/node_modules
+          A05_D274_ENGINE: webkit
+        run: node scripts/test-a05-d274-dom-e2e.cjs
+  final:
+    needs: [chromium,webkit]
+    if: success()
+    runs-on: ubuntu-24.04
+    steps:
+      - run: |
+          echo 'A05_D274_30_SESSIONS_ACTUAL_UI_E2E_ACCEPTANCE_PASS'
+          echo 'A05_D274_RESEARCH_ONLY_NO_REAL_DATA_NO_DEPLOY_NO_CLASSIFIER_MUTATION'
