@@ -1,0 +1,54 @@
+{
+  "schema": "KAITO_JST_R6_ANNUAL_MIRROR_RESEARCH_V1",
+  "recorded_date_jst": "2026-11-25",
+  "scope": "DATA_ACQUISITION_ONLY",
+  "source": {
+    "publisher": "Jordà-Schularick-Taylor Macrohistory Database R6",
+    "official_url": "https://www.macrohistory.net/database/",
+    "mirror_url": "https://github.com/ejroebuck2025/JST_data_analysis/blob/main/Data/JSTdatasetR6.csv",
+    "mirror_git_blob_sha": "5cc3bb76e3907c77e8af53f9cad0fc651db16680",
+    "mirror_rows_read": 2718,
+    "mirror_wrong_column_count": 0,
+    "official_original_acquired": false,
+    "official_mirror_equality_verified": false
+  },
+  "file": {
+    "name": "K_Aito_Analytics_JST_R6_JP_US_1966_2020_MIRROR_RESEARCH.csv",
+    "bytes": 6166,
+    "sha256": "c2b9397b9f3b403073d83611577dc5a7ddf95f58c14ae3d4a31003c44bc1384d",
+    "fnv1a32": "abd8e2ba",
+    "extracted_records": 110,
+    "observations": 440,
+    "years": [
+      1966,
+      2020
+    ],
+    "countries": [
+      "JPN",
+      "USA"
+    ],
+    "fields": [
+      "eq_tr",
+      "bond_tr",
+      "bill_rate",
+      "eq_div_rtn"
+    ],
+    "observations_each_country_field": 55
+  },
+  "qa": {
+    "mirror_extraction_fnv1a32_matches_local_file": true,
+    "calendar": "PASS",
+    "finite_numeric": "PASS",
+    "unique_country_year": "PASS",
+    "official_original_independent_comparison": false,
+    "canonical": false
+  },
+  "classification": "ANNUAL_ACADEMIC_MIRROR_CANDIDATE_NOT_MONTHLY_OR_BENCHMARK_EQUIVALENT",
+  "rights": "Private noncommercial research only; original JST terms apply; no numeric values uploaded to public repository",
+  "remaining": [
+    "Obtain official JST R6 workbook and compare selected columns independently",
+    "Acquire 2021 onward and monthly benchmark series separately",
+    "Do not treat annual bill rate as realized cash total return or government bond return as aggregate bond index"
+  ],
+  "engine_ui_main_production_changed": false
+}
