@@ -1,0 +1,97 @@
+{
+  "schema": "KAITO_FF_MONTHLY_MARKET_MIRROR_V1",
+  "date_jst": "2026-11-25",
+  "scope": "DATA_ACQUISITION_ONLY",
+  "official_definition": "https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/data_library/f-f_3developed.html",
+  "official_library": "https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/data_library.html",
+  "file": {
+    "name": "K_Aito_Analytics_FF_MONTHLY_MARKET_RESEARCH_20261125.csv",
+    "bytes": 55310,
+    "sha256": "b3e69277b6a528bc11b896e261a6d3872f44f2db9bfbdb3eb17424919a3d351e",
+    "region_month_rows": 2036,
+    "source_numeric_fields": 4072,
+    "derived_market_returns": 2036
+  },
+  "series": [
+    {
+      "region": "US",
+      "first": "1966-01",
+      "last": "2026-06",
+      "months": 726,
+      "repo": "anshhkrishna/factor-zoo-postpublication",
+      "blob": "c15aacfea2354efabe22d3a90150f6f54e09788c",
+      "fnv1a32": "202d4858"
+    },
+    {
+      "region": "JP",
+      "first": "1990-07",
+      "last": "2026-07",
+      "months": 433,
+      "repo": "Akunthj/FRAM",
+      "blob": "e5451bfefa52ab711ea5804849371b2cc536a2fc",
+      "fnv1a32": "f48e3c82"
+    },
+    {
+      "region": "DEV",
+      "first": "1990-07",
+      "last": "2026-07",
+      "months": 433,
+      "repo": "Akunthj/FRAM",
+      "blob": "aa5e831f1e597728b7cacf69fd27c2163daee131",
+      "fnv1a32": "46e11464"
+    },
+    {
+      "region": "EM",
+      "first": "1989-07",
+      "last": "2026-06",
+      "months": 444,
+      "repo": "BuyRisk/buyrisk.github.io",
+      "blob": "f11d523574a5bf695a0a3681a990bf9d97dbdd98",
+      "fnv1a32": "9218af6b"
+    }
+  ],
+  "units": "monthly percent, USD; derived market return = source market excess return + source RF",
+  "quality": {
+    "all_source_to_csv_transfer_checksums_match": true,
+    "calendar_continuity": true,
+    "unique_region_month": true,
+    "decimal_arithmetic": true,
+    "official_zip_original_downloaded": false,
+    "official_original_equality_verified": false,
+    "commercial_rights_verified": false,
+    "canonical": false,
+    "other_mirror_comparison": [
+      {
+        "region": "JP",
+        "repo": "Risox/macro_finance",
+        "blob": "4ce31bb345fae19fd515c407898768df502031db",
+        "overlap_months": 417,
+        "equal_fields": 831,
+        "different_fields": 3,
+        "affected_months": [
+          "2024-09",
+          "2024-12",
+          "2025-03"
+        ]
+      },
+      {
+        "region": "DEV",
+        "repo": "mscmsc-ops/Big_data",
+        "blob": "f49bf6c2fc1169ea07dcee9a8fe6e16b707252b3",
+        "overlap_months": 426,
+        "equal_fields": 852,
+        "different_fields": 0
+      }
+    ],
+    "comparison_note": "Different release vintages, not independent official QA; retain selected mirror unchanged; differences unresolved."
+  },
+  "classification": "ACADEMIC_MONTHLY_MARKET_RETURN_RESEARCH_CANDIDATE_NOT_TARGET_BENCHMARK",
+  "no_raw_values_in_public_repo": true,
+  "engine_ui_main_production_changed": false,
+  "remaining": [
+    "Official ZIP original acquisition, independent equality and rights; latest months missing",
+    "Japan USD returns not local JPY TOPIX TR; Developed excludes emerging and not ACWI; EM not MSCI EM; US not SP500",
+    "Prior-to-1990/1989 coverage missing for international series; no synthetic fills",
+    "Monthly government and aggregate bond return data remain high priority"
+  ]
+}
