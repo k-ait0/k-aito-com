@@ -1,0 +1,93 @@
+{
+  "schema": "KAITO_ARCHIVAL_MONTHLY_TR_MIRROR_V1",
+  "date_jst": "2026-11-25",
+  "scope": "DATA_ACQUISITION_ONLY",
+  "source_repo": "braverock/PortfolioAnalytics",
+  "source_directory": "sandbox/paper_analysis/data/",
+  "private_file": {
+    "name": "K_Aito_Analytics_ARCHIVAL_MONTHLY_TR_20261125_RESEARCH.csv",
+    "bytes": 152628,
+    "sha256": "3c5b24d71278ebe71a6668f88e0cef312fa66d52cdd74d6502ef3b2d4842be31",
+    "index_levels": 1317,
+    "derived_returns": 1314
+  },
+  "series": [
+    {
+      "id": "NAREIT_ALL_REITS_TR_MIRROR",
+      "first": "1975-12",
+      "last": "2010-06",
+      "levels": 415,
+      "source_blob_sha": "38f3f6cf262f9e998e3f783cf9620516ca5607fe",
+      "source_file": "nareit.csv",
+      "transfer_fnv1a32": "212ac334"
+    },
+    {
+      "id": "ML_US_DOMESTIC_MASTER_TR_MIRROR",
+      "first": "1975-12",
+      "last": "2010-06",
+      "levels": 415,
+      "source_blob_sha": "b50225378148c7ea0e08830be35625e0042c890c",
+      "source_file": "MLDOMMASTERall.csv",
+      "transfer_fnv1a32": "a5fe9905"
+    },
+    {
+      "id": "MSCI_EAFE_TR_USD_MIRROR",
+      "first": "1969-12",
+      "last": "2010-06",
+      "levels": 487,
+      "source_blob_sha": "abe7afd1f660c1036ec0eeaa134fd5644793bc51",
+      "source_file": "EAFEall.csv",
+      "transfer_fnv1a32": "872688ef"
+    }
+  ],
+  "qa": {
+    "unique_series_month": true,
+    "positive_index_levels": true,
+    "monthly_continuity": true,
+    "source_to_saved_transfer_match": true,
+    "nareit_annual_text_comparison": {
+      "url": "https://www.reit.com/sites/default/files/reitwatch/RW1311.pdf",
+      "years": "1975..1995",
+      "matches": 21,
+      "compared": 21,
+      "pdf_screenshot": "FAILED_CACHE_MISS"
+    },
+    "original_publisher_bytes_verified": false,
+    "original_full_value_comparison": false,
+    "rights_verified": false,
+    "canonical": false
+  },
+  "classification": "THIRD_PARTY_ARCHIVAL_INDEX_RESEARCH_CANDIDATES",
+  "limits": [
+    "Nareit All REITs is US not JPX J-REIT; official full history download not obtained.",
+    "ML US Domestic Master is not Bloomberg US Aggregate; early reconstruction/flat values need investigation.",
+    "MSCI EAFE is developed ex-US/Canada, not ACWI; gross/net convention not verified.",
+    "Returns derived from index-level ratios; only 1317 source levels counted.",
+    "July 2010 omitted because archived daily observations end July 29.",
+    "No extrapolation, gap fill or index substitution."
+  ],
+  "additional_sources_located_not_saved": [
+    {
+      "source": "Swinkels international monthly government bond returns",
+      "url": "https://pure.eur.nl/en/datasets/historical-data-international-monthly-government-bond-returns/",
+      "status": "official academic dataset located, monthly Japan starts 1974 and US 1947, through 2022-12; source numeric file not acquired"
+    },
+    {
+      "source": "ReturnDataFiles",
+      "url": "https://github.com/birjusuketupatel/ReturnDataFiles",
+      "status": "4538 monthly estimated hedged-USD sovereign bond return rows read in connector; no Japanese series; not privately saved, not counted as acquired; not actual benchmark"
+    },
+    {
+      "source": "Nareit",
+      "url": "https://www.reit.com/data-research/reit-market-data/report/monthly-index-values-returns",
+      "status": "1972-2026 official workbook located; no original file downloaded"
+    },
+    {
+      "source": "US Treasury TIPS",
+      "url": "https://fiscaldata.treasury.gov/datasets/tips-cpi-data/",
+      "status": "reference CPI and index-ratio dataset, not a bond TR series; no observations acquired"
+    }
+  ],
+  "raw_numbers_uploaded_to_public_repo": false,
+  "main_engine_ui_production_changed": false
+}
