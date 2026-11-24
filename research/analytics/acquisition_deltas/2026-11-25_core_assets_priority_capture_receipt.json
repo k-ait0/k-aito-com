@@ -1,0 +1,103 @@
+{
+  "schema": "KAITO_CORE_ASSET_PRIORITY_RESEARCH_CAPTURE_V1",
+  "date_jst": "2026-11-25",
+  "scope": "DATA_ACQUISITION_ONLY",
+  "private_file": {
+    "name": "K_Aito_Analytics_CORE_ASSETS_20261125_RESEARCH_EXCERPTS.csv",
+    "bytes": 16506,
+    "sha256": "7cede4dfbd14cefaee7b24172c498149bf6efa26a06f8683ce24116d7353e341",
+    "rows": 93,
+    "new_reference_rows": 91,
+    "existing_annual_recheck_rows": 2
+  },
+  "series": [
+    {
+      "id": "TOPIX_TR",
+      "asset": "JP_EQUITY",
+      "rows": 32,
+      "frequency": "month_end",
+      "coverage": "2019-12..2026-01 noncontiguous",
+      "sources": [
+        "https://www.jpx.co.jp/markets/statistics-equities/monthly/nlsgeu000006c4e0-att/03_sisu2203.pdf",
+        "https://www.jpx.co.jp/markets/statistics-equities/monthly/t13vrt000000d42z-att/03_sisu2511.pdf",
+        "https://www.jpx.co.jp/english/markets/statistics-equities/monthly/vk0khi000000tz3r-att/03_sisu2601.pdf"
+      ]
+    },
+    {
+      "id": "NOMURA_BPI_OVERALL",
+      "asset": "JP_BONDS",
+      "rows": 1,
+      "frequency": "month_end",
+      "coverage": "2026-10",
+      "source": "https://www.nfrc.co.jp/SMI/QR/index/BPI/NOMURA_BPI_M_J.html"
+    },
+    {
+      "id": "NASDAQ_NCPAGT",
+      "asset": "US_BONDS",
+      "rows": 16,
+      "frequency": "last_published_trading_day_month",
+      "coverage": "2025-07..2026-10",
+      "source": "https://fred.stlouisfed.org/data/NASDAQNCPAGT",
+      "classification": "alternative_not_Bloomberg"
+    },
+    {
+      "ids": [
+        "MSCI_ACWI_NET_USD",
+        "MSCI_WORLD_NET_USD",
+        "MSCI_EM_NET_USD"
+      ],
+      "rows": 42,
+      "frequency": "annual",
+      "coverage": "2012..2025",
+      "source": "https://www.msci.com/documents/10199/a71b65b5-d0ea-4b5c-a709-24b1213bc3c5",
+      "classification": "factsheet_reference_only_rights_pending",
+      "source_note": "Rendered April 2026 text and June 2026 screenshot differed in report date but annual values matched"
+    },
+    {
+      "ids": [
+        "DAMODARAN_SP500_TR",
+        "DAMODARAN_10Y_TREASURY_TR"
+      ],
+      "rows": 2,
+      "frequency": "annual",
+      "coverage": "2025",
+      "source": "https://pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/histretSP.html?refid=refid",
+      "classification": "existing_annual_reference_recheck_not_new_monthly_data"
+    }
+  ],
+  "quality": {
+    "unique_series_period": true,
+    "finite_values": true,
+    "original_files_acquired": false,
+    "independent_full_value_audit": false,
+    "canonical": false,
+    "raw_values_in_public_git": false
+  },
+  "bulk_candidates": [
+    {
+      "source": "https://www.nfrc.co.jp/SMI/QR/FRCNRI/frnri_download_jn.html",
+      "files": [
+        "https://www.nfrc.co.jp/SMI/QR/FRCNRI/rn_mt.csv",
+        "https://www.nfrc.co.jp/SMI/QR/FRCNRI/rn_mtr.csv"
+      ],
+      "status": "official download links verified; web reader unsupported octet-stream; container DNS failed; no raw file acquired",
+      "definition": "Russell/Nomura Japan TR, alternative to TOPIX"
+    },
+    {
+      "source": "https://www.macrohistory.net/database/",
+      "file": "https://www.macrohistory.net/app/download/9834512569/JSTdatasetR6.xlsx?t=1763503850",
+      "status": "official workbook link verified; reader unsupported xlsx; not acquired",
+      "definition": "annual national equity and government bond total returns, noncommercial CC BY-NC-SA 4.0"
+    },
+    {
+      "source": "https://mba.tuck.dartmouth.edu/pages/faculty/Ken.French/data_library.html",
+      "status": "candidate identified, not acquired",
+      "definition": "academic market factor returns, not MSCI or TOPIX benchmarks"
+    },
+    {
+      "source": "https://www.econ.yale.edu/~shiller/data.htm",
+      "status": "source identified; updated monthly file not acquired"
+    }
+  ],
+  "constraints": "No engine/UI/main changes; no public raw numeric commits; no paid subscriptions or new workflow automation; private research and rights review remain separate."
+}
