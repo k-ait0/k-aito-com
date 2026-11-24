@@ -1,0 +1,65 @@
+{
+  "schema": "KAITO_CP_CREDIT_SPREAD_RESEARCH_V1",
+  "date_jst": "2026-11-25",
+  "scope": "DATA_ACQUISITION_AND_QA_ONLY",
+  "series": [
+    {
+      "id": "RIFSPPNA2P2D30NB",
+      "url": "https://fred.stlouisfed.org/data/RIFSPPNA2P2D30NB",
+      "type": "30-day A2/P2 nonfinancial CP daily rate"
+    },
+    {
+      "id": "DCPN30",
+      "url": "https://fred.stlouisfed.org/data/DCPN30",
+      "type": "30-day AA nonfinancial CP daily rate"
+    }
+  ],
+  "range": [
+    "2026-10-01",
+    "2026-10-30"
+  ],
+  "weekday_rows": 22,
+  "numeric_source_values": 42,
+  "missing_source_values": 2,
+  "missing_date": "2026-10-12",
+  "derived_daily_spreads": 21,
+  "formula": "(A2/P2 minus AA) x 100 bp",
+  "derived_mean_bp": 20.2857,
+  "minimum_bp": 16,
+  "maximum_bp": 26,
+  "csv": {
+    "filename": "K_Aito_Analytics_US_CP_CREDIT_SPREAD_202610_RESEARCH.csv",
+    "bytes": 1329,
+    "sha256": "b9feb30a417a64d2383ffda55746cc4e332f0cd3923c14103326bf538082ab92"
+  },
+  "qa": {
+    "weekday_calendar": "PASS",
+    "same_date_pairs": "PASS",
+    "missing_preserved": true,
+    "decimal_arithmetic": "PASS",
+    "publisher_original_bytes": false,
+    "independent_value_reconciliation": false,
+    "canonical_approved": false
+  },
+  "rights": "FRED public-domain citation requested; raw numeric CSV not committed",
+  "classification": "SHORT_TERM_CP_CREDIT_RATING_SPREAD_RESEARCH_DERIVATION_NOT_LONG_TERM_CORPORATE_BOND_SPREAD",
+  "other_candidates": [
+    {
+      "id": "BAA10YM",
+      "status": "SOURCE_FOUND_MOODYS_RIGHTS_PENDING",
+      "url": "https://fred.stlouisfed.org/series/BAA10YM"
+    },
+    {
+      "id": "AAA10YM",
+      "status": "SOURCE_FOUND_MOODYS_RIGHTS_PENDING",
+      "url": "https://fred.stlouisfed.org/series/AAA10YM"
+    },
+    {
+      "id": "GZ_EBP",
+      "status": "SOURCE_FOUND_CSV_DOWNLOAD_FAILED",
+      "url": "https://www.federalreserve.gov/econres/notes/feds-notes/ebp_csv.csv",
+      "note": "Monthly research series since 1973-01, revisable, not official statistical release; September 2026 source change; EBP is one component of corporate credit spread."
+    }
+  ],
+  "engine_ui_main_production_changed": false
+}
