@@ -1,7 +1,7 @@
 {
   "schema": "KAITO_ANALYTICS_DATA_ACQUISITION_INVENTORY_V1",
   "inventory_date_jst": "2026-11-20",
-  "inventory_cutoff": "2026-11-25 JST (FRED H15/H10/CP updates; other series retain verified cutoff)",
+  "inventory_cutoff": "2026-11-25 JST (core assets priority research excerpts; previous auxiliary cutoff retained)",
   "research_only": true,
   "strict_scope": "DATA_ACQUISITION_SOURCE_AUTHENTICATION_NORMALIZATION_QA_AND_DATA_RIGHTS_ONLY",
   "excluded": "UI_CALCULATION_CORE_SIMULATION_PRODUCTION_RELEASE",
@@ -23,41 +23,46 @@
       "id": "JP_EQUITY",
       "name": "日本株",
       "source": "JPX",
-      "state": "NO_LOCKED_INDEX_DATA",
-      "missing_or_gates": "TOPIX TR等の公式配当込み連続系列",
-      "complete_60y_accepted": false
+      "state": "PARTIAL_OFFICIAL_TOPIX_TR_32_NONCONTIGUOUS_MONTH_END_REFERENCE_VALUES",
+      "missing_or_gates": "32 official TOPIX TR month-end values, noncontiguous 2019-12..2026-01; full monthly history not acquired; Russell/Nomura TR bulk candidate links confirmed but bytes blocked.",
+      "complete_60y_accepted": false,
+      "receipt_path": "research/analytics/acquisition_deltas/2026-11-25_core_assets_priority_capture_receipt.json"
     },
     {
       "id": "US_EQUITY",
       "name": "米国株",
       "source": "SPDJI;Shiller",
       "state": "PARTIAL_RESEARCH_SOURCE",
-      "missing_or_gates": "Shiller研究系列1980-01〜2023-06・522か月。正式なS&P500 TRではない。対象外期間と公式TRが未取得",
-      "complete_60y_accepted": false
+      "missing_or_gates": "Existing Shiller 522-month candidate; 2025 Damodaran annual value independently rechecked; no new monthly values. Full monthly US equity TR history missing.",
+      "complete_60y_accepted": false,
+      "receipt_path": "research/analytics/acquisition_deltas/2026-11-25_core_assets_priority_capture_receipt.json"
     },
     {
       "id": "GLOBAL_EQUITY",
       "name": "世界株",
       "source": "MSCI",
-      "state": "NO_LOCKED_INDEX_DATA",
-      "missing_or_gates": "MSCI ACWI Net TR長期系列",
-      "complete_60y_accepted": false
+      "state": "PARTIAL_ANNUAL_FACTSHEET_REFERENCE_ONLY",
+      "missing_or_gates": "MSCI ACWI and World net USD annual 2012..2025 each 14 reference observations; monthly series not acquired, rights pending.",
+      "complete_60y_accepted": false,
+      "receipt_path": "research/analytics/acquisition_deltas/2026-11-25_core_assets_priority_capture_receipt.json"
     },
     {
       "id": "JP_BONDS",
       "name": "日本債券",
       "source": "NOMURA_BPI",
-      "state": "NO_LOCKED_INDEX_DATA",
-      "missing_or_gates": "野村BPI等の総合収益指数",
-      "complete_60y_accepted": false
+      "state": "PARTIAL_OFFICIAL_MONTH_END_REFERENCE",
+      "missing_or_gates": "NOMURA BPI overall 2026-10 month-end level only; long monthly history not acquired.",
+      "complete_60y_accepted": false,
+      "receipt_path": "research/analytics/acquisition_deltas/2026-11-25_core_assets_priority_capture_receipt.json"
     },
     {
       "id": "US_BONDS",
       "name": "米国債券",
       "source": "BLOOMBERG_INDEX",
-      "state": "NO_LOCKED_INDEX_DATA",
-      "missing_or_gates": "Bloomberg US Aggregate等の収益指数",
-      "complete_60y_accepted": false
+      "state": "PARTIAL_ALTERNATIVE_NASDAQ_MONTH_END_REFERENCE",
+      "missing_or_gates": "NASDAQ NCPAGT 16 month-end levels 2025-07..2026-10 (alternative not Bloomberg); existing Damodaran 2025 annual Treasury return rechecked; benchmark full history not acquired.",
+      "complete_60y_accepted": false,
+      "receipt_path": "research/analytics/acquisition_deltas/2026-11-25_core_assets_priority_capture_receipt.json"
     },
     {
       "id": "CASH_SHORT",
@@ -87,9 +92,10 @@
       "id": "EM_EQUITY",
       "name": "新興国株",
       "source": "MSCI",
-      "state": "NO_LOCKED_INDEX_DATA",
-      "missing_or_gates": "MSCI EM Net TR長期系列",
-      "complete_60y_accepted": false
+      "state": "PARTIAL_ANNUAL_FACTSHEET_REFERENCE_ONLY",
+      "missing_or_gates": "MSCI EM net USD 14 annual values 2012..2025 as factsheet reference, rights and monthly history pending.",
+      "complete_60y_accepted": false,
+      "receipt_path": "research/analytics/acquisition_deltas/2026-11-25_core_assets_priority_capture_receipt.json"
     },
     {
       "id": "DEV_EXUS_BONDS",
@@ -199,10 +205,9 @@
     }
   ],
   "near_term_acceptance_sequence": [
-    "Official published CPI October 2026: capture both specified nationwide CPI series only after release, then compare to September rows without assumptions.",
-    "Archive actual source byte hashes for Fed newly verified 5 daily observations; do not finalize November monthly rate early.",
-    "Owner-local verify encrypted backups and original CPI, Fed, Shiller bytes and exact normalization SHA; never upload private keys/plaintext.",
-    "Verify World Bank monthly 2026-11 XLS byte hash and per-column definitions/forecast flags; do not call this a new observed month until verified.",
-    "Acquire still-missing official long-history index series under their specific source and licensing gates."
+    "Priority bulk acquisition: Japan, US, global equity, Japan and US bond total return series; candidate annual sources separately",
+    "Original bytes and provenance independently recorded; do not wait for commercial review where private acquisition is permitted",
+    "QA and canonical acceptance separate; no synthetic monthly fill",
+    "No UI or core development"
   ]
 }
