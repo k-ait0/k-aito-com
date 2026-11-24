@@ -1,0 +1,67 @@
+{
+  "schema": "KAITO_JST_R6_18_COUNTRY_ANNUAL_EQUITY_BOND_MIRROR_V1",
+  "date_jst": "2026-11-25",
+  "scope": "DATA_ACQUISITION_ONLY",
+  "source": {
+    "official": "https://www.macrohistory.net/database/",
+    "mirror": "https://api.github.com/repos/ejroebuck2025/JST_data_analysis/git/blobs/5cc3bb76e3907c77e8af53f9cad0fc651db16680",
+    "mirror_blob_sha": "5cc3bb76e3907c77e8af53f9cad0fc651db16680",
+    "rows": 2718,
+    "official_original_verified": false,
+    "license": "CC BY-NC-SA 4.0, private noncommercial research"
+  },
+  "file": {
+    "name": "K_Aito_Analytics_JST_R6_18_COUNTRIES_1966_2020_EQUITY_BOND_ANNUAL_MIRROR.csv",
+    "bytes": 30652,
+    "sha256": "0befaf715cb924bad247e9da24f70ced50d9a32b6399921b7032e760e7f32cc5",
+    "country_year_rows": 990,
+    "fields": [
+      "eq_tr",
+      "bond_tr"
+    ],
+    "first": 1966,
+    "last": 2020,
+    "new_numeric_values": 1540,
+    "prior_values": 220,
+    "total_numeric_values": 1760,
+    "missing_values": 220,
+    "complete_countries": [
+      "AUS",
+      "BEL",
+      "CHE",
+      "DEU",
+      "DNK",
+      "ESP",
+      "FIN",
+      "FRA",
+      "GBR",
+      "ITA",
+      "JPN",
+      "NLD",
+      "NOR",
+      "PRT",
+      "SWE",
+      "USA"
+    ],
+    "missing_countries": [
+      "CAN",
+      "IRL"
+    ]
+  },
+  "qa": {
+    "normalized_11_decimal_fnv1a32": "efd778b2",
+    "mirror_vs_saved_normalized_checksum_match": true,
+    "transfer_checksum_14_countries_match": true,
+    "unique_country_year": true,
+    "missing_preserved": true,
+    "official_raw_original_reconciliation": false,
+    "canonical": false
+  },
+  "limits": [
+    "Annual national research series not official MSCI global stock index, not FTSE WGBI or aggregate bond index, not monthly returns.",
+    "Additional countries' bill and dividend fields inspected but not saved, no claim of acquisition.",
+    "2021 onward not covered; source method may include historical estimates."
+  ],
+  "raw_numeric_csv_published": false,
+  "engine_ui_main_production_changed": false
+}
