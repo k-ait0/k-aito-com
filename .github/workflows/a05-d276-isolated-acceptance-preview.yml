@@ -1,0 +1,84 @@
+name: A05 D276 publish isolated acceptance preview
+on:
+  push:
+    branches: [research/a05-d276-final-acceptance-20261125]
+    paths: ['.github/workflows/a05-d276-isolated-acceptance-preview.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: a05-d276-isolated-acceptance-preview
+  cancel-in-progress: false
+jobs:
+  isolated-preview:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    env:
+      APPROVED_SHA256: 25d70854ff3e4b0f3cc21623ea5ae3700f78abcde8fe402f67cd6f44814f6a05
+      OLD_V22_SHA256: fa0919ce234aa01674f52a1ee999bea4fe0d92695ae9cc9e1924fd18ca9bdc61
+      OLD_D272_SHA256: 6cd4c74ca2e0fe9eab3af7a031700302f256a1fefc0eed4cd0810474fd66d215
+      TARGET: preview/a05-d276-acceptance/index.html
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: 21cc40b9e7a41573514bac6d12855e57807e1fb8
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - name: Rebuild the exact candidate from the successful D276 CI commit
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = '21cc40b9e7a41573514bac6d12855e57807e1fb8'
+          node scripts/a05-d262-build-result-v22.mjs
+          node scripts/a05-d272-build-accessible-candidate.mjs
+          node scripts/a05-d276-build-release-candidate.mjs
+          cp research/a05/generated/d276-release-candidate.html /tmp/d276-approved.html
+          echo "$APPROVED_SHA256  /tmp/d276-approved.html" | sha256sum --check
+          grep -F "connect-src 'none'" /tmp/d276-approved.html >/dev/null
+          grep -F 'noindex,nofollow,noarchive' /tmp/d276-approved.html >/dev/null
+      - name: Add only a new research-preview path, never replace an existing page
+        run: |
+          set -euo pipefail
+          git fetch origin gh-pages
+          git worktree add --detach /tmp/d276-pages origin/gh-pages
+          cd /tmp/d276-pages
+          BEFORE=$(git rev-parse HEAD)
+          test "$(git show HEAD:preview/yn-v22/index.html | sha256sum | cut -d' ' -f1)" = "$OLD_V22_SHA256"
+          test "$(git show HEAD:preview/a05-yn-v22-a11y/index.html | sha256sum | cut -d' ' -f1)" = "$OLD_D272_SHA256"
+          if [ -e "$TARGET" ]; then
+            echo "$APPROVED_SHA256  $TARGET" | sha256sum --check
+            echo D276_PREVIEW_ALREADY_EXACT_NO_WRITE
+          else
+            mkdir -p "$(dirname "$TARGET")"
+            cp /tmp/d276-approved.html "$TARGET"
+            git add -- "$TARGET"
+            test "$(git diff --cached --name-status)" = "$(printf 'A\t%s' "$TARGET")"
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git commit -m "Add isolated D276 final research acceptance preview only"
+            test "$(git diff --name-status "$BEFORE" HEAD)" = "$(printf 'A\t%s' "$TARGET")"
+            git push origin HEAD:refs/heads/gh-pages
+          fi
+          git fetch origin gh-pages
+          test "$(git show origin/gh-pages:"$TARGET" | sha256sum | cut -d' ' -f1)" = "$APPROVED_SHA256"
+          test "$(git show origin/gh-pages:preview/yn-v22/index.html | sha256sum | cut -d' ' -f1)" = "$OLD_V22_SHA256"
+          test "$(git show origin/gh-pages:preview/a05-yn-v22-a11y/index.html | sha256sum | cut -d' ' -f1)" = "$OLD_D272_SHA256"
+          echo "D276_PAGES_COMMIT=$(git rev-parse origin/gh-pages)"
+          echo D276_GIT_PREVIEW_EXACT_MATCH_EXISTING_PAGES_PRESERVED
+      - name: Verify public HTTPS bytes independently (not a human acceptance)
+        run: |
+          set -euo pipefail
+          URL='https://k-ait0.github.io/k-aito-com/preview/a05-d276-acceptance/'
+          for attempt in 1 2 3 4 5 6; do
+            if curl --fail --location --max-time 15 --header 'Cache-Control: no-cache' --output /tmp/d276-live.html --write-out 'HTTP_STATUS=%{http_code} CONTENT_TYPE=%{content_type}\n' "$URL?qa=$APPROVED_SHA256"; then
+              if echo "$APPROVED_SHA256  /tmp/d276-live.html" | sha256sum --check; then
+                echo D276_PUBLIC_HTTPS_EXACT_MATCH
+                exit 0
+              fi
+            fi
+            if [ "$attempt" -lt 6 ]; then sleep 10; fi
+          done
+          echo D276_GIT_PREVIEW_PRESENT_BUT_HTTPS_NOT_YET_VERIFIED
+          exit 1
