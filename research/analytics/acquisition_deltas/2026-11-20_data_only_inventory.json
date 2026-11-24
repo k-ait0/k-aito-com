@@ -1,7 +1,7 @@
 {
   "schema": "KAITO_ANALYTICS_DATA_ACQUISITION_INVENTORY_V1",
   "inventory_date_jst": "2026-11-20",
-  "inventory_cutoff": "2026-11-20 after national CPI October publication",
+  "inventory_cutoff": "2026-11-25 JST (FRED and H10 update; other series retain last verified cutoff)",
   "research_only": true,
   "strict_scope": "DATA_ACQUISITION_SOURCE_AUTHENTICATION_NORMALIZATION_QA_AND_DATA_RIGHTS_ONLY",
   "excluded": "UI_CALCULATION_CORE_SIMULATION_PRODUCTION_RELEASE",
@@ -123,9 +123,11 @@
       "records": [
         "Fed H.10固定2000-01〜2026-10の月次322か月（旧取得QA、現在は原本再照合待ち）",
         "Fed DDP長期1971-01〜2026-10の月次670か月は取得元変更未承認の候補",
-        "2026-11-09〜11-13の日次5行はFed週次/履歴/DDPで照合、原本HTMLのバイト保全未完了"
+        "2026-11-09〜11-13の日次5行はFed週次/履歴/DDPで照合、原本HTMLのバイト保全未完了",
+        "2026-11-23 Fed H.10 release: Nov 16..20 5 numeric daily rows saved to private CSV, all 5 match weekly and historical tables; source raw HTML not archived. November monthly final not yet available."
       ],
-      "missing": "2026年11月月末確定値、旧正規化CSVの本人PC原本認証、1971年起点の正式採用"
+      "missing": "November monthly final observation, raw HTML and previous canonical source byte authentication, approval of 1971 DDP candidate.",
+      "receipt_path": "research/analytics/acquisition_deltas/2026-11-25_fred_full_history_and_fx_delta_receipt.json"
     },
     {
       "category": "CPI",
@@ -142,7 +144,7 @@
     },
     {
       "category": "RATES",
-      "state": "BOJ_992_PRIVATE_WEB_EXTRACT_FRED_1460_CONTIGUOUS_PRIVATE_WEB_EXTRACT_RAW_AUTH_PENDING",
+      "state": "BOJ_992_FRED_1751_FULL_NATIVE_MONTHLY_WEB_EXTRACTS_RAW_AUTH_PENDING",
       "records": [
         "BOJ uncollateralized overnight call rate (month-end, monthly average): 1985-07..2026-10 all 496 monthly periods transcribed from official rendered web table, 992 numeric rows, no duplicate month-series pairs, no missing months. NOT authenticated raw-byte original.",
         "New gap closed at transcription level: BOJ 1995-01..2025-02, 362 months x 2 series = 724 additional research rows, private CSV only.",
@@ -154,9 +156,10 @@
         "FRED FEDFUNDS and GS10 rendered monthly web table, 1980-01..1989-12, 120 months per series, +240 numeric observations in private CSV; full 1966-01..1989-12 merged web extract 288 months each (576 rows); direct publisher raw file SHA and full independent number check still NOT DONE.",
         "FRED H.15 FEDFUNDS/GS10 1990-01..1999-12 official web-table excerpt: +240 monthly numeric rows, 120 months per series. Contiguous private research web extract now 1966-01..1999-12 (408 months * 2 = 816 rows), plus 2025-03..2026-10 separate 20 months each.",
         "FRED H.15 FEDFUNDS/GS10 2000-01..2025-02, 302 months x 2 = 604 official HTML table transcription observations, privately saved; source-original CSV and double-entry QA not available.",
-        "Combined 1966-01..2026-10, 730 months x 2 = 1460 continuous research observations; 291 earlier publisher observations pre-1966 still unextracted."
+        "Combined 1966-01..2026-10, 730 months x 2 = 1460 continuous research observations; 291 earlier publisher observations pre-1966 still unextracted.",
+        "2026-11-25: added pre-1966 FRED 291 monthly web-table values, FEDFUNDS 138 and GS10 153. Combined 1751 values (868/883), full native monthly span, calendar/uniqueness/finite values PASS; prior 1460 excerpt hash matched. Original CSV download DNS blocked, independent all-value comparison pending."
       ],
-      "missing": "Official FRED source CSV raw bytes, SHA-256 and all-1460 original-data comparison; pre-1966 FEDFUNDS 138 and GS10 153 monthly observations; BOJ all-992 raw original comparison, data rights and revision vintage. Rate data are not bond total return.",
+      "missing": "Full official FRED original CSV bytes and all-1751 independent reconciliation; BOJ official source original bytes and all-992 value comparison; revisions/vintage and rights. No missing months in published native spans at excerpt level. Rate inputs are not investable TR.",
       "receipt_path": "research/analytics/acquisition_deltas/2026-11-20_rates_aux_capture_receipt.json",
       "receipt_paths": [
         "research/analytics/acquisition_deltas/2026-11-20_rates_aux_capture_receipt.json",
@@ -164,7 +167,8 @@
         "research/analytics/acquisition_deltas/2026-11-20_boj_complete_span_transcription_receipt.json",
         "research/analytics/acquisition_deltas/2026-11-20_fred_h15_1980_1989_web_extract_receipt.json",
         "research/analytics/acquisition_deltas/2026-11-20_fred_h15_1990_1999_web_extract_receipt.json",
-        "research/analytics/acquisition_deltas/2026-11-20_fred_h15_2000_2025_web_extract_receipt.json"
+        "research/analytics/acquisition_deltas/2026-11-20_fred_h15_2000_2025_web_extract_receipt.json",
+        "research/analytics/acquisition_deltas/2026-11-25_fred_full_history_and_fx_delta_receipt.json"
       ],
       "qa_receipt": "research/analytics/acquisition_deltas/2026-11-20_boj_source_sample_qa_receipt.json",
       "fred_web_extract_receipt": "research/analytics/acquisition_deltas/2026-11-20_fred_h15_1966_1979_web_extract_receipt.json"
