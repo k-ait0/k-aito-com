@@ -1,0 +1,68 @@
+{
+  "schema": "KAITO_ANALYTICS_ACQUISITION_RECEIPT_V1",
+  "date_jst": "2026-11-25",
+  "scope": "DATA_ACQUISITION_AND_QA_ONLY",
+  "fred": {
+    "sources": [
+      "https://fred.stlouisfed.org/data/FEDFUNDS",
+      "https://fred.stlouisfed.org/data/GS10"
+    ],
+    "new_excerpt": {
+      "first": "1953-04 (GS10); 1954-07 (FEDFUNDS)",
+      "last": "1965-12",
+      "rows": 291,
+      "filename": "K_Aito_Analytics_FRED_H15_PRE1966_WEB_EXCERPT.csv",
+      "bytes": 30871,
+      "sha256": "22a2624c342459016170077ba439f48d62abafb453818f55530798b18d0fdee3"
+    },
+    "combined": {
+      "filename": "K_Aito_Analytics_FRED_H15_FULL_PUBLISHED_SPAN_202610_RESEARCH.csv",
+      "rows": 1751,
+      "bytes": 198859,
+      "sha256": "cf528eca358abbc3bd1b2d81ec9c264a0d25250a35fad8ad95a449b321563f54",
+      "series": [
+        {
+          "id": "FEDFUNDS",
+          "first": "1954-07",
+          "last": "2026-10",
+          "rows": 868
+        },
+        {
+          "id": "GS10",
+          "first": "1953-04",
+          "last": "2026-10",
+          "rows": 883
+        }
+      ]
+    },
+    "qa": {
+      "monthly_continuity": true,
+      "unique_month_series": true,
+      "finite_values": true,
+      "prior_1460_csv_sha256_match": true,
+      "all_values_independent_comparison": false,
+      "raw_csv_original_archived": false,
+      "raw_csv_failure": "DNS resolution failure in execution environment",
+      "source_vintage_verified": false,
+      "canonical": false
+    }
+  },
+  "fx": {
+    "sources": [
+      "https://www.federalreserve.gov/releases/h10/current/",
+      "https://www.federalreserve.gov/releases/h10/hist/dat00_ja.htm"
+    ],
+    "release": "2026-11-23",
+    "first": "2026-11-16",
+    "last": "2026-11-20",
+    "observations": 5,
+    "weekly_history_match": 5,
+    "filename": "K_Aito_Analytics_FED_H10_USDJPY_20261116_20_WEB_DELTA.csv",
+    "bytes": 567,
+    "sha256": "1bbfe518d358a4b66b40435ef07e1c4c3a9f284ca5224e554eb8a0ba1024f2a6",
+    "raw_html_archived": false,
+    "monthly_finalized": false
+  },
+  "raw_numeric_csv_published": false,
+  "engine_ui_main_production_changed": false
+}
