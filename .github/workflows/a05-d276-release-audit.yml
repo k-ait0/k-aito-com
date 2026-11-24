@@ -51,6 +51,22 @@ jobs:
           NODE_PATH: /tmp/a05-d276/node_modules
           A05_D276_ENGINE: chromium
         run: node scripts/test-a05-d276-release-audit.cjs
+      - name: Build isolated D276 UI-only candidate
+        run: node scripts/a05-d276-build-release-candidate.mjs
+      - name: Strict D276 keyboard, responsive layout and partial Y/N audit
+        env:
+          NODE_PATH: /tmp/a05-d276/node_modules
+          A05_D276_ENGINE: chromium
+          A05_D276_CANDIDATE: research/a05/generated/d276-release-candidate.html
+          A05_D276_STRICT: '1'
+        run: node scripts/test-a05-d276-release-audit.cjs
+      - name: Repeat unchanged D274 independent DOM acceptance against D276
+        env:
+          NODE_PATH: /tmp/a05-d276/node_modules
+          A05_D274_ENGINE: chromium
+        run: |
+          sed 's/d272-accessibility-candidate.html/d276-release-candidate.html/g' scripts/test-a05-d274-dom-e2e.cjs > scripts/.d276-d274-regression.cjs
+          node scripts/.d276-d274-regression.cjs
   webkit:
     runs-on: ubuntu-24.04
     container:
@@ -73,3 +89,26 @@ jobs:
           NODE_PATH: /tmp/a05-d276/node_modules
           A05_D276_ENGINE: webkit
         run: node scripts/test-a05-d276-release-audit.cjs
+      - name: Build isolated D276 UI-only candidate
+        run: node scripts/a05-d276-build-release-candidate.mjs
+      - name: Strict D276 keyboard, responsive layout and partial Y/N audit
+        env:
+          NODE_PATH: /tmp/a05-d276/node_modules
+          A05_D276_ENGINE: webkit
+          A05_D276_CANDIDATE: research/a05/generated/d276-release-candidate.html
+          A05_D276_STRICT: '1'
+        run: node scripts/test-a05-d276-release-audit.cjs
+      - name: Repeat unchanged D274 independent DOM acceptance against D276
+        env:
+          NODE_PATH: /tmp/a05-d276/node_modules
+          A05_D274_ENGINE: webkit
+        run: |
+          sed 's/d272-accessibility-candidate.html/d276-release-candidate.html/g' scripts/test-a05-d274-dom-e2e.cjs > scripts/.d276-d274-regression.cjs
+          node scripts/.d276-d274-regression.cjs
+  final:
+    needs: [chromium, webkit]
+    runs-on: ubuntu-24.04
+    steps:
+      - run: |
+          echo D276_AUTOMATED_UI_ACCEPTANCE_PASS
+          echo D276_RESEARCH_ONLY_HUMAN_ACCEPTANCE_PENDING_NO_PUBLISH
