@@ -1,7 +1,7 @@
 {
   "schema": "KAITO_ANALYTICS_DATA_ACQUISITION_INVENTORY_V1",
   "inventory_date_jst": "2026-11-20",
-  "inventory_cutoff": "2026-11-25 JST (Swinkels nine-country research panel; prior series retain individual cutoffs)",
+  "inventory_cutoff": "2026-11-25 JST (US short-term RF and TIPS annual reference; prior cutoffs retained)",
   "research_only": true,
   "strict_scope": "DATA_ACQUISITION_SOURCE_AUTHENTICATION_NORMALIZATION_QA_AND_DATA_RIGHTS_ONLY",
   "excluded": "UI_CALCULATION_CORE_SIMULATION_PRODUCTION_RELEASE",
@@ -95,9 +95,12 @@
       "id": "CASH_SHORT",
       "name": "現金・短期資産",
       "source": "BOJ",
-      "state": "NO_LOCKED_SERIES",
-      "missing_or_gates": "日銀短期金利等の連続観測系列",
-      "complete_60y_accepted": false
+      "state": "PARTIAL_US_MONTHLY_RF_RESEARCH_MIRROR_JPY_RETURN_PENDING",
+      "missing_or_gates": "日銀短期金利等の連続観測系列; Fama/French US RF 1926-07..2026-06 1200 months, 474 new and 726 previously acquired values; USD one-month T-bill research candidate, source changes 2024-06, original and JPY cash return pending.",
+      "complete_60y_accepted": false,
+      "additional_receipt_paths": [
+        "research/analytics/acquisition_deltas/2026-11-25_cash_rf_tips_reference_receipt.json"
+      ]
     },
     {
       "id": "GOLD",
@@ -156,10 +159,11 @@
       "name": "物価連動債",
       "source": "US_TREASURY",
       "state": "PARTIAL_ISSUER_ANNUAL_AND_ONE_MONTH_REFERENCE",
-      "missing_or_gates": "米国Treasury TIPS利回りは運用TRではない。対応する収益系列は未取得; iShares TIP NAV and issuer-reported benchmark total returns, 2021..2025 annual 10 values and 2026-09 monthly 2 values; actual issuer published reference, continuous monthly series still missing.",
+      "missing_or_gates": "米国Treasury TIPS利回りは運用TRではない。対応する収益系列は未取得; iShares TIP NAV and issuer-reported benchmark total returns, 2021..2025 annual 10 values and 2026-09 monthly 2 values; actual issuer published reference, continuous monthly series still missing.; Safe Rate TIPS provider-published research index 2009..2025 annual 17 and two partial periods, 19 reference values; backtested history, 217 monthly rebalances reported but monthly CSV not obtained.",
       "complete_60y_accepted": false,
       "additional_receipt_paths": [
-        "research/analytics/acquisition_deltas/2026-11-25_swinkels_jp_de_tips_receipt.json"
+        "research/analytics/acquisition_deltas/2026-11-25_swinkels_jp_de_tips_receipt.json",
+        "research/analytics/acquisition_deltas/2026-11-25_cash_rf_tips_reference_receipt.json"
       ]
     }
   ],
