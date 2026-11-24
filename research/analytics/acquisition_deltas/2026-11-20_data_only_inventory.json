@@ -1,7 +1,7 @@
 {
   "schema": "KAITO_ANALYTICS_DATA_ACQUISITION_INVENTORY_V1",
   "inventory_date_jst": "2026-11-20",
-  "inventory_cutoff": "2026-11-25 JST (Fama/French monthly mirror 4-region acquisition; other series retain verified cutoffs)",
+  "inventory_cutoff": "2026-11-25 JST (archival Nareit/US bonds/EAFE monthly extraction; prior series retain verified cutoffs)",
   "research_only": true,
   "strict_scope": "DATA_ACQUISITION_SOURCE_AUTHENTICATION_NORMALIZATION_QA_AND_DATA_RIGHTS_ONLY",
   "excluded": "UI_CALCULATION_CORE_SIMULATION_PRODUCTION_RELEASE",
@@ -52,12 +52,13 @@
       "name": "世界株",
       "source": "MSCI",
       "state": "PARTIAL_MONTHLY_ACADEMIC_MIRROR_PLUS_PRIOR_REFERENCE",
-      "missing_or_gates": "MSCI ACWI and World net USD annual 2012..2025 each 14 reference observations; monthly series not acquired, rights pending.; JST R6 country-level annual candidate panel 1966..2020, 16 countries with complete equity and government bond returns. Not the target global equity/developed ex-US bond index; no aggregate created or accepted.; Fama/French DEV market excess/RF monthly mirror 1990-07..2026-07 433 months, USD academic research candidate, no canonical benchmark equivalence; official ZIP and vintage QA remain pending.",
+      "missing_or_gates": "MSCI ACWI and World net USD annual 2012..2025 each 14 reference observations; monthly series not acquired, rights pending.; JST R6 country-level annual candidate panel 1966..2020, 16 countries with complete equity and government bond returns. Not the target global equity/developed ex-US bond index; no aggregate created or accepted.; Fama/French DEV market excess/RF monthly mirror 1990-07..2026-07 433 months, USD academic research candidate, no canonical benchmark equivalence; official ZIP and vintage QA remain pending.; MSCI EAFE USD total-return archival mirror 1969-12..2010-06, 487 levels (486 derived monthly returns); not ACWI; gross/net convention, rights and official source verification pending.",
       "complete_60y_accepted": false,
       "receipt_path": "research/analytics/acquisition_deltas/2026-11-25_core_assets_priority_capture_receipt.json",
       "additional_receipt_paths": [
         "research/analytics/acquisition_deltas/2026-11-25_jst_r6_18_country_equity_bond_annual_receipt.json",
-        "research/analytics/acquisition_deltas/2026-11-25_ff_monthly_market_mirror_receipt.json"
+        "research/analytics/acquisition_deltas/2026-11-25_ff_monthly_market_mirror_receipt.json",
+        "research/analytics/acquisition_deltas/2026-11-25_archival_monthly_tr_reit_bond_eafe_receipt.json"
       ]
     },
     {
@@ -77,13 +78,14 @@
       "id": "US_BONDS",
       "name": "米国債券",
       "source": "BLOOMBERG_INDEX",
-      "state": "PARTIAL_ANNUAL_JST_R6_MIRROR_PLUS_PRIOR_REFERENCE",
-      "missing_or_gates": "NASDAQ NCPAGT 16 month-end levels 2025-07..2026-10 (alternative not Bloomberg); existing Damodaran 2025 annual Treasury return rechecked; benchmark full history not acquired.; JST R6 third-party mirror: 1966..2020 annual bond_tr 55 values (research candidate, not official original or monthly benchmark); 2021 onward and official monthly benchmark remain separate.; JP/US equity and bond records also included in complete 16-country research panel; no duplicate new observations counted for JP/US.",
+      "state": "PARTIAL_MONTHLY_ARCHIVAL_MIRROR_PLUS_ANNUAL_RESEARCH",
+      "missing_or_gates": "NASDAQ NCPAGT 16 month-end levels 2025-07..2026-10 (alternative not Bloomberg); existing Damodaran 2025 annual Treasury return rechecked; benchmark full history not acquired.; JST R6 third-party mirror: 1966..2020 annual bond_tr 55 values (research candidate, not official original or monthly benchmark); 2021 onward and official monthly benchmark remain separate.; JP/US equity and bond records also included in complete 16-country research panel; no duplicate new observations counted for JP/US.; ML US Domestic Master archival USD mirror 1975-12..2010-06, 415 levels (414 derived monthly returns); archive may contain reconstruction/early flat values; Bloomberg benchmark and original verification remain pending.",
       "complete_60y_accepted": false,
       "receipt_path": "research/analytics/acquisition_deltas/2026-11-25_core_assets_priority_capture_receipt.json",
       "additional_receipt_paths": [
         "research/analytics/acquisition_deltas/2026-11-25_jst_r6_jp_us_annual_mirror_receipt.json",
-        "research/analytics/acquisition_deltas/2026-11-25_jst_r6_18_country_equity_bond_annual_receipt.json"
+        "research/analytics/acquisition_deltas/2026-11-25_jst_r6_18_country_equity_bond_annual_receipt.json",
+        "research/analytics/acquisition_deltas/2026-11-25_archival_monthly_tr_reit_bond_eafe_receipt.json"
       ]
     },
     {
@@ -106,9 +108,12 @@
       "id": "REIT",
       "name": "REIT",
       "source": "JPX",
-      "state": "NO_LOCKED_INDEX_DATA",
-      "missing_or_gates": "J-REIT TR、指数開始前の60年実績は存在しない",
-      "complete_60y_accepted": false
+      "state": "PARTIAL_US_REIT_ARCHIVAL_MIRROR_JREIT_NOT_ACQUIRED",
+      "missing_or_gates": "J-REIT TR、指数開始前の60年実績は存在しない; FTSE Nareit All REITs USD archival mirror 1975-12..2010-06, 415 levels (414 derived monthly returns); 21 annual year-end index values match official report text; US research candidate only; JPX J-REIT TR still missing.",
+      "complete_60y_accepted": false,
+      "additional_receipt_paths": [
+        "research/analytics/acquisition_deltas/2026-11-25_archival_monthly_tr_reit_bond_eafe_receipt.json"
+      ]
     },
     {
       "id": "EM_EQUITY",
