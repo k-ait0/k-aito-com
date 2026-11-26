@@ -1,0 +1,85 @@
+{
+  "schema": "KAITO_TOPIX_TR_REFERENCE_DELTA_V1",
+  "date_jst": "2026-11-26",
+  "scope": "DATA_ACQUISITION_ONLY",
+  "classification": "PUBLISHER_RENDERED_REFERENCE",
+  "sources": [
+    {
+      "url": "https://www.jpx.co.jp/markets/statistics-equities/monthly/nlsgeu000005c1gc-att/2101.pdf",
+      "page_1_based": 21
+    },
+    {
+      "url": "https://www.jpx.co.jp/markets/statistics-equities/monthly/nlsgeu000006kynz-att/03_sisu2207.pdf",
+      "page_1_based": 1
+    },
+    {
+      "url": "https://www.jpx.co.jp/markets/statistics-equities/monthly/skc8fn0000002hyq-att/03_sisu2401.pdf",
+      "page_1_based": 1
+    },
+    {
+      "url": "https://www.jpx.co.jp/markets/statistics-equities/monthly/bkk2ed0000002mh7-att/03_sisu2310.pdf",
+      "page_1_based": 1
+    },
+    {
+      "url": "https://www.jpx.co.jp/markets/statistics-equities/monthly/um3qrc000001irkr-att/03_sisu2504.pdf",
+      "page_1_based": 1
+    },
+    {
+      "url": "https://www.jpx.co.jp/markets/statistics-equities/monthly/t13vrt00000178b0-att/03_sisu2604.pdf",
+      "page_1_based": 1
+    }
+  ],
+  "files": [
+    {
+      "name": "TOPIX_TR_JPX_20261126_delta04.csv",
+      "rows": 56,
+      "bytes": 8608,
+      "sha256": "9d1aa299adf50fbb04b271977ed853fb428acdcd5156da6d399c943ae1d61b7f"
+    },
+    {
+      "name": "TOPIX_TR_JPX_20261126_combined_140.csv",
+      "rows": 140,
+      "bytes": 21782,
+      "sha256": "1794a9231324d9ef795faaf1744449cce925d7d80e65b29ac4ae059667681e13"
+    }
+  ],
+  "storage": "conversation attachments; raw values not pushed to GitHub",
+  "new_by_year": {
+    "2020": 11,
+    "2022": 10,
+    "2023": 12,
+    "2024": 10,
+    "2025": 12,
+    "2026": 1
+  },
+  "qa": {
+    "prior_70_and_14_loaded": true,
+    "prior_unique_rows": 84,
+    "prior_overlap_unique_months": 13,
+    "new_crosscheck_unique_months": 14,
+    "conflicts": 0,
+    "unique_month": true,
+    "positive_levels": true,
+    "source_page_images_checked": true,
+    "initial_32_loaded": false,
+    "original_pdf_bytes_archived": false,
+    "canonical": false
+  },
+  "coverage": {
+    "start": "2014-12",
+    "end": "2026-10",
+    "expected_months": 143,
+    "observed": 139,
+    "missing": [
+      "2022-08",
+      "2022-09",
+      "2024-02",
+      "2024-03"
+    ],
+    "additional_2013_december": 1
+  },
+  "counting_note": "56 new relative to loaded 84 rows only; earlier 32 references not deduplicated, do not add to 140.",
+  "raw_values_published": false,
+  "rights_verified": false,
+  "main_engine_ui_production_changed": false
+}
