@@ -1,0 +1,50 @@
+{
+  "schema": "KAITO_NOMURA_BPI_PUBLISHED_LEVELS_V1",
+  "date_jst": "2026-11-26",
+  "scope": "DATA_ACQUISITION_ONLY",
+  "file": {
+    "name": "K_Aito_Analytics_NOMURA_BPI_202403_202607_RESEARCH.csv",
+    "bytes": 9576,
+    "sha256": "093780a55ae4e0041978f44d9e475fac73f557ff8751d0b1bca523b0a58e2b08",
+    "rows": 58
+  },
+  "series": [
+    {
+      "id": "NOMURA_BPI_OVERALL",
+      "months": 29,
+      "first": "2024-03",
+      "last": "2026-07"
+    },
+    {
+      "id": "NOMURA_BPI_GOVERNMENT",
+      "months": 29,
+      "first": "2024-03",
+      "last": "2026-07"
+    }
+  ],
+  "sources": [
+    "https://www.nfrc.co.jp/SMI/jp/bpi/docs/mon/BPI202504.pdf",
+    "https://www.nfrc.co.jp/SMI/jp/bpi/docs/mon/BPI202602.pdf",
+    "https://www.nfrc.co.jp/SMI/jp/bpi/docs/mon/BPI202607.pdf",
+    "https://www.nfrc.co.jp/SMI/QR/index/BPI/NOMURA_BPI_M_J.html"
+  ],
+  "qa": {
+    "cross_report_overlap_equal": 22,
+    "page_image_checked_values": 26,
+    "other_pdf_screenshots_failed": true,
+    "monthly_continuity": true,
+    "unique_series_month": true,
+    "positive_levels": true,
+    "official_original_bytes_archived": false,
+    "commercial_rights_verified": false,
+    "canonical": false
+  },
+  "limitations": [
+    "2026-07 official HTML snapshot was historical, not October; 2023 and 2026-08 onward gaps remain in this segment.",
+    "Publisher reported levels not Swinkels model estimates; no splice.",
+    "J-REIT and JPY cash long returns not acquired this turn.",
+    "Curvo mirror and Japanese bond ETF candidates inspected but not saved because currency or adjustment provenance not sufficiently established."
+  ],
+  "raw_numeric_csv_published": false,
+  "main_engine_ui_production_changed": false
+}
