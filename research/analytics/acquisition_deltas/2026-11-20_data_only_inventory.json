@@ -1,7 +1,7 @@
 {
   "schema": "KAITO_ANALYTICS_DATA_ACQUISITION_INVENTORY_V1",
   "inventory_date_jst": "2026-11-20",
-  "inventory_cutoff": "2026-11-26 JST (NOMURA-BPI published monthly levels; other series retain cutoffs)",
+  "inventory_cutoff": "2026-11-26 JST (Curvo mirror quarantined; BPI October rendered reference; previous cutoffs retained)",
   "research_only": true,
   "strict_scope": "DATA_ACQUISITION_SOURCE_AUTHENTICATION_NORMALIZATION_QA_AND_DATA_RIGHTS_ONLY",
   "excluded": "UI_CALCULATION_CORE_SIMULATION_PRODUCTION_RELEASE",
@@ -52,13 +52,14 @@
       "name": "世界株",
       "source": "MSCI",
       "state": "PARTIAL_MONTHLY_ACADEMIC_MIRROR_PLUS_PRIOR_REFERENCE",
-      "missing_or_gates": "MSCI ACWI and World net USD annual 2012..2025 each 14 reference observations; monthly series not acquired, rights pending.; JST R6 country-level annual candidate panel 1966..2020, 16 countries with complete equity and government bond returns. Not the target global equity/developed ex-US bond index; no aggregate created or accepted.; Fama/French DEV market excess/RF monthly mirror 1990-07..2026-07 433 months, USD academic research candidate, no canonical benchmark equivalence; official ZIP and vintage QA remain pending.; MSCI EAFE USD total-return archival mirror 1969-12..2010-06, 487 levels (486 derived monthly returns); not ACWI; gross/net convention, rights and official source verification pending.",
+      "missing_or_gates": "MSCI ACWI and World net USD annual 2012..2025 each 14 reference observations; monthly series not acquired, rights pending.; JST R6 country-level annual candidate panel 1966..2020, 16 countries with complete equity and government bond returns. Not the target global equity/developed ex-US bond index; no aggregate created or accepted.; Fama/French DEV market excess/RF monthly mirror 1990-07..2026-07 433 months, USD academic research candidate, no canonical benchmark equivalence; official ZIP and vintage QA remain pending.; MSCI EAFE USD total-return archival mirror 1969-12..2010-06, 487 levels (486 derived monthly returns); not ACWI; gross/net convention, rights and official source verification pending.; Curvo-labelled ACWI mirror 425 monthly levels 1987-12..2023-04, currency/return convention unconfirmed; annual comparison differs from official EUR net, quarantined.",
       "complete_60y_accepted": false,
       "receipt_path": "research/analytics/acquisition_deltas/2026-11-25_core_assets_priority_capture_receipt.json",
       "additional_receipt_paths": [
         "research/analytics/acquisition_deltas/2026-11-25_jst_r6_18_country_equity_bond_annual_receipt.json",
         "research/analytics/acquisition_deltas/2026-11-25_ff_monthly_market_mirror_receipt.json",
-        "research/analytics/acquisition_deltas/2026-11-25_archival_monthly_tr_reit_bond_eafe_receipt.json"
+        "research/analytics/acquisition_deltas/2026-11-25_archival_monthly_tr_reit_bond_eafe_receipt.json",
+        "research/analytics/acquisition_deltas/2026-11-26_curvo_quarantine_bpi_oct_reference_receipt.json"
       ]
     },
     {
@@ -66,7 +67,7 @@
       "name": "日本債券",
       "source": "NOMURA_BPI",
       "state": "PARTIAL_PUBLISHER_MONTHLY_BPI_PLUS_ACADEMIC_MODEL",
-      "missing_or_gates": "NOMURA BPI overall 2026-10 month-end level only; long monthly history not acquired.; JST R6 third-party mirror: 1966..2020 annual bond_tr 55 values (research candidate, not official original or monthly benchmark); 2021 onward and official monthly benchmark remain separate.; JP/US equity and bond records also included in complete 16-country research panel; no duplicate new observations counted for JP/US.; Swinkels 10-year Japan local-currency government bond return model 1974-10..2022-12 (579 months), third-party ODS mirror, source cached Return M rounded to 8 decimal places; not NOMURA-BPI or observed total-return benchmark.; Japan 579 values also included in the nine-country combined dataset (not counted again as new).; NFRC official published monthly overall and government levels 2024-03..2026-07 29 each, 58 values, overlapping reports 22 equal, 26 checked against page image; original bytes and rights pending, no splice.",
+      "missing_or_gates": "NOMURA BPI overall 2026-10 month-end level only; long monthly history not acquired.; JST R6 third-party mirror: 1966..2020 annual bond_tr 55 values (research candidate, not official original or monthly benchmark); 2021 onward and official monthly benchmark remain separate.; JP/US equity and bond records also included in complete 16-country research panel; no duplicate new observations counted for JP/US.; Swinkels 10-year Japan local-currency government bond return model 1974-10..2022-12 (579 months), third-party ODS mirror, source cached Return M rounded to 8 decimal places; not NOMURA-BPI or observed total-return benchmark.; Japan 579 values also included in the nine-country combined dataset (not counted again as new).; NFRC official published monthly overall and government levels 2024-03..2026-07 29 each, 58 values, overlapping reports 22 equal, 26 checked against page image; original bytes and rights pending, no splice.; Curvo-labelled FTSE Japan government bond mirror 460 levels 1985-01..2023-04 quarantined (currency/return convention unverified); BPI Oct 2026 overall/government two published reference levels, possible duplicate overall October reference; Aug/Sep missing.",
       "complete_60y_accepted": false,
       "receipt_path": "research/analytics/acquisition_deltas/2026-11-25_core_assets_priority_capture_receipt.json",
       "additional_receipt_paths": [
@@ -74,7 +75,8 @@
         "research/analytics/acquisition_deltas/2026-11-25_jst_r6_18_country_equity_bond_annual_receipt.json",
         "research/analytics/acquisition_deltas/2026-11-25_swinkels_jp_de_tips_receipt.json",
         "research/analytics/acquisition_deltas/2026-11-25_swinkels_9_country_monthly_bonds_receipt.json",
-        "research/analytics/acquisition_deltas/2026-11-26_nomura_bpi_monthly_published_levels_receipt.json"
+        "research/analytics/acquisition_deltas/2026-11-26_nomura_bpi_monthly_published_levels_receipt.json",
+        "research/analytics/acquisition_deltas/2026-11-26_curvo_quarantine_bpi_oct_reference_receipt.json"
       ]
     },
     {
@@ -141,12 +143,13 @@
       "name": "先進国債券（米国除く）",
       "source": "FTSE_RUSSELL",
       "state": "PARTIAL_8_COUNTRY_EX_US_MONTHLY_ACADEMIC_MODELS_NOT_AGGREGATE",
-      "missing_or_gates": "FTSE Russell WGBI等の長期系列; JST R6 country-level annual candidate panel 1966..2020, 16 countries with complete equity and government bond returns. Not the target global equity/developed ex-US bond index; no aggregate created or accepted.; Swinkels Germany 10-year government bond return model 1972-10..2022-12 (603 months), country-level local-currency model only, not FTSE WGBI aggregate; other seven sheets inspected, not saved.; Swinkels nine-country panel 6,703 values, including 8 ex-US countries (5,791 values), different native start dates, through 2022-12. Seven newly saved country series (5,521 values overall). Previously inspected sheets now saved. Not FTSE WGBI and no aggregate constructed.",
+      "missing_or_gates": "FTSE Russell WGBI等の長期系列; JST R6 country-level annual candidate panel 1966..2020, 16 countries with complete equity and government bond returns. Not the target global equity/developed ex-US bond index; no aggregate created or accepted.; Swinkels Germany 10-year government bond return model 1972-10..2022-12 (603 months), country-level local-currency model only, not FTSE WGBI aggregate; other seven sheets inspected, not saved.; Swinkels nine-country panel 6,703 values, including 8 ex-US countries (5,791 values), different native start dates, through 2022-12. Seven newly saved country series (5,521 values overall). Previously inspected sheets now saved. Not FTSE WGBI and no aggregate constructed.; Curvo-labelled FTSE WGBI Developed 460 levels 1985-01..2023-04 quarantined; includes US, not ex-US target, currency unverified.",
       "complete_60y_accepted": false,
       "additional_receipt_paths": [
         "research/analytics/acquisition_deltas/2026-11-25_jst_r6_18_country_equity_bond_annual_receipt.json",
         "research/analytics/acquisition_deltas/2026-11-25_swinkels_jp_de_tips_receipt.json",
-        "research/analytics/acquisition_deltas/2026-11-25_swinkels_9_country_monthly_bonds_receipt.json"
+        "research/analytics/acquisition_deltas/2026-11-25_swinkels_9_country_monthly_bonds_receipt.json",
+        "research/analytics/acquisition_deltas/2026-11-26_curvo_quarantine_bpi_oct_reference_receipt.json"
       ]
     },
     {
