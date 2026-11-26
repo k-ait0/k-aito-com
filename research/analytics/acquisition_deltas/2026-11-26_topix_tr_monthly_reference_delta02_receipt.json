@@ -1,0 +1,71 @@
+{
+  "schema": "KAITO_TOPIX_TR_REFERENCE_DELTA_V1",
+  "date_jst": "2026-11-26",
+  "scope": "DATA_ACQUISITION_ONLY",
+  "classification": "PUBLISHER_RENDERED_REFERENCE",
+  "sources": [
+    {
+      "url": "https://www.jpx.co.jp/markets/statistics-equities/monthly/nlsgeu000002f5j0-att/03_sisu1703.pdf",
+      "page": 1
+    },
+    {
+      "url": "https://www.jpx.co.jp/markets/statistics-equities/monthly/nlsgeu000003q66w-att/03_sisu1811.pdf",
+      "page": 1
+    },
+    {
+      "url": "https://www.jpx.co.jp/english/markets/statistics-equities/monthly/b5b4pj0000035xoz-att/03_sisu1910.pdf",
+      "page": 1
+    },
+    {
+      "url": "https://www.jpx.co.jp/markets/statistics-equities/monthly/nlsgeu000004alfg-att/03_sisu1908.pdf",
+      "page": 1
+    }
+  ],
+  "new_periods": [
+    "2014-12",
+    "2015-12",
+    "2016-03..2016-11",
+    "2017-01..2017-03",
+    "2017-11",
+    "2018-01",
+    "2019-03..2019-10"
+  ],
+  "files": [
+    {
+      "name": "TOPIX_TR_JPX_20261126_delta02.csv",
+      "rows": 24,
+      "bytes": 3821,
+      "sha256": "101bd5014488dfbd0bf4030d4d18165dd83c7cc9209094886eb50169d0e170ee"
+    },
+    {
+      "name": "TOPIX_TR_JPX_20261126_combined_48.csv",
+      "rows": 48,
+      "bytes": 7517,
+      "sha256": "d5c4bdb4d85f6e6829be93a8f7550161a916eca3109fb4e39483f53feaab490d"
+    }
+  ],
+  "storage": "conversation attachments; raw values not pushed to GitHub",
+  "qa": {
+    "previous_24_csv_loaded": true,
+    "previous_overlap_unique_months": 15,
+    "new_crosschecked_unique_months": 7,
+    "repeated_checks": 27,
+    "all_repeated_checks_match": true,
+    "unique_month": true,
+    "positive_levels": true,
+    "source_page_images_checked": true,
+    "older_32_rows_loaded": false,
+    "expected_total_levels": 80,
+    "original_pdf_bytes_archived": false,
+    "canonical": false
+  },
+  "missing": [
+    "2016-01..02",
+    "2017-04..10",
+    "2019-11",
+    "earlier monthly observations",
+    "2020 onward gaps in older 32-row record not individually verified"
+  ],
+  "raw_values_published": false,
+  "main_engine_ui_production_changed": false
+}
