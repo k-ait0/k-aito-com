@@ -1,0 +1,60 @@
+{
+  "schema": "KAITO_TOPIX_TR_REFERENCE_DELTA_V1",
+  "date_jst": "2026-11-26",
+  "scope": "DATA_ACQUISITION_ONLY",
+  "classification": "PUBLISHER_RENDERED_REFERENCE",
+  "sources": [
+    {
+      "url": "https://www.jpx.co.jp/markets/statistics-equities/monthly/nlsgeu000003w2ga-att/03_sisu1902.pdf",
+      "page": 1,
+      "months": "2016-12, 2017-12, 2018-02..2019-02",
+      "rows": 15
+    },
+    {
+      "url": "https://www.jpx.co.jp/markets/statistics-equities/monthly/t13vrt000002q5d1-att/03_sisu2610.pdf",
+      "page": 1,
+      "months": "2026-02..2026-10",
+      "rows": 9
+    }
+  ],
+  "file": {
+    "name": "TOPIX_TR_JPX_20261126_delta.csv",
+    "bytes": 3732,
+    "sha256": "30eef7325678775777d401a789f4aefa8c8a2459b3b638553b37b92300257947",
+    "rows": 24,
+    "storage": "conversation attachment; owner download required"
+  },
+  "qa": {
+    "page_image_vs_text": "24/24",
+    "unique_month": true,
+    "positive_levels": true,
+    "previous_inventory_date_range_nonoverlap": true,
+    "previous_raw_rows_independently_loaded": false,
+    "original_pdf_bytes_archived": false,
+    "canonical": false
+  },
+  "candidate_leads": [
+    {
+      "asset": "JP_EQUITY",
+      "url": "https://akihiko-noda.github.io/data-code/",
+      "period": "1924-06..2026-09",
+      "status": "repository private; no data obtained"
+    },
+    {
+      "asset": "US_EQUITY",
+      "url": "https://firenum.com/data/shiller-monthly.csv",
+      "status": "CSV unsupported by web reader; container DNS failed; no data obtained",
+      "classification": "Shiller monthly-average-price derived nominal returns, not official month-end SPDJI"
+    },
+    {
+      "asset": "REIT",
+      "url": "https://member.smtri.jp/market/jri_files/J-REIT_Index_j.xlsx",
+      "status": "XLSX unsupported by web reader; container DNS failed; no data obtained",
+      "source_terms": "https://member.smtri.jp/market/jreit_index/",
+      "period": "2001-09-10..2026-09; publisher states personal-only use does not require inquiry"
+    }
+  ],
+  "raw_values_published": false,
+  "rights_verified": false,
+  "main_engine_ui_production_changed": false
+}
