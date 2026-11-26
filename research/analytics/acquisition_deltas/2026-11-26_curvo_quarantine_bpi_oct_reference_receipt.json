@@ -1,0 +1,95 @@
+{
+  "schema": "KAITO_CURVO_QUARANTINE_BPI_OCT_V1",
+  "date_jst": "2026-11-26",
+  "scope": "DATA_ACQUISITION_ONLY",
+  "curvo": {
+    "source_repo": "NandayDev/MSCI-Historical-Data",
+    "classification": "QUARANTINE_MIRROR_UNCONFIRMED_CURRENCY_AND_RETURN_CONVENTION",
+    "file": {
+      "name": "K_Aito_Analytics_CURVO_3_SERIES_QUARANTINE_20261126.csv",
+      "bytes": 161669,
+      "sha256": "6170be2dddb07a21dd5fb6f185ac03420c1797729c207ae2f05e9e6d0d527ae0",
+      "rows": 1345
+    },
+    "series": [
+      {
+        "id": "ACWI",
+        "name": "MSCI ACWI",
+        "start": "1987-12",
+        "end": "2023-04",
+        "rows": 425,
+        "fnv1a32": "1cc490ee",
+        "blob_sha": "c6595e9c02b6068d11f3ad3d0fcbddf939d791de"
+      },
+      {
+        "id": "JPB",
+        "name": "FTSE Japanese Government Bond",
+        "start": "1985-01",
+        "end": "2023-04",
+        "rows": 460,
+        "fnv1a32": "26f1d22c",
+        "blob_sha": "1f4ce603885cb255abaee0d2686dd79c272b9d8e"
+      },
+      {
+        "id": "WGBI",
+        "name": "FTSE World Government Bond Developed Markets",
+        "start": "1985-01",
+        "end": "2023-04",
+        "rows": 460,
+        "fnv1a32": "2f9f8a68",
+        "blob_sha": "2d228c75643ed602bb242069fc003593a287abc8"
+      }
+    ],
+    "qa": {
+      "unique_series_month": true,
+      "positive_levels": true,
+      "monthly_continuity": true,
+      "rounded_transfer_fnv_match": true,
+      "rounding": "one decimal place; max absolute level error 0.05",
+      "official_original_verified": false,
+      "currency_verified": false,
+      "rights_verified": false,
+      "canonical": false,
+      "official_acwi_eur_net_comparison": {
+        "source": "https://www.msci.com/documents/10199/255599/msci-acwi-index-eur-net.pdf",
+        "annual_percent": [
+          {
+            "year": 2019,
+            "mirror": 29.74401232275923,
+            "official": 28.93
+          },
+          {
+            "year": 2020,
+            "mirror": 6.951299193045424,
+            "official": 6.65
+          },
+          {
+            "year": 2022,
+            "mirror": -12.884275856506022,
+            "official": -13.01
+          }
+        ],
+        "status": "DIFFERENT_NOT_ACCEPTED"
+      }
+    },
+    "limitations": "WGBI developed includes US; not ex-US. No splice or FX conversion. No canonical substitution."
+  },
+  "bpi": {
+    "source": "https://www.nfrc.co.jp/SMI/QR/index/BPI/NOMURA_BPI_M_J.html",
+    "date": "2026-10-30",
+    "file": {
+      "name": "K_Aito_Analytics_BPI_202610_PUBLISHED_DELTA.csv",
+      "bytes": 359,
+      "sha256": "67cbd91c3901c0ca42f0ef1cde465f69ee9a7fb8bcc20485e7eea8d8bd12baa2",
+      "rows": 2
+    },
+    "classification": "PUBLISHER_RENDERED_REFERENCE",
+    "original_bytes_archived": false,
+    "source_vintage_warning": "Search result explicitly dated Oct 30; opening same URL returned July 31 stale snapshot. Do not conflate vintages.",
+    "prior_oct_overall_reference_possible_duplicate": true,
+    "aug_sep_not_acquired": true,
+    "canonical": false
+  },
+  "raw_values_published": false,
+  "main_engine_ui_production_changed": false
+}
