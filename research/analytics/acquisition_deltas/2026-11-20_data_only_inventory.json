@@ -1,7 +1,7 @@
 {
   "schema": "KAITO_ANALYTICS_DATA_ACQUISITION_INVENTORY_V1",
   "inventory_date_jst": "2026-11-20",
-  "inventory_cutoff": "2026-11-26 JST (JP/US REIT published reference excerpts; prior series cutoffs retained)",
+  "inventory_cutoff": "2026-11-26 JST (TIP and VNQ adjusted price monthly research candidates; prior series cutoffs retained)",
   "research_only": true,
   "strict_scope": "DATA_ACQUISITION_SOURCE_AUTHENTICATION_NORMALIZATION_QA_AND_DATA_RIGHTS_ONLY",
   "excluded": "UI_CALCULATION_CORE_SIMULATION_PRODUCTION_RELEASE",
@@ -115,11 +115,12 @@
       "name": "REIT",
       "source": "JPX",
       "state": "PARTIAL_JP_AND_US_TR_PUBLISHED_REFERENCES_PLUS_ARCHIVAL_MIRROR",
-      "missing_or_gates": "J-REIT TR、指数開始前の60年実績は存在しない; FTSE Nareit All REITs USD archival mirror 1975-12..2010-06, 415 levels (414 derived monthly returns); 21 annual year-end index values match official report text; US research candidate only; JPX J-REIT TR still missing.; 2026-11-26: TSE REIT TR 26 month-end published reference levels (2024-06..2026-05, 2026-09/10); Nareit All REITs TR 13 levels (2021..2025 year-end, 2026-03..10 monthly). Japan PDF text only; Nareit rendered vintages differ and five overlapping year-end levels match. SMTRI alternative long history file located but download blocked.",
+      "missing_or_gates": "J-REIT TR、指数開始前の60年実績は存在しない; FTSE Nareit All REITs USD archival mirror 1975-12..2010-06, 415 levels (414 derived monthly returns); 21 annual year-end index values match official report text; US research candidate only; JPX J-REIT TR still missing.; 2026-11-26: TSE REIT TR 26 month-end published reference levels (2024-06..2026-05, 2026-09/10); Nareit All REITs TR 13 levels (2021..2025 year-end, 2026-03..10 monthly). Japan PDF text only; Nareit rendered vintages differ and five overlapping year-end levels match. SMTRI alternative long history file located but download blocked.; VNQ third-party USD adjusted-price monthly proxy 2004-09..2026-06 262 levels/261 derived returns, two-mirror comparison 89 returns; not Nareit benchmark or J-REIT; no splice.",
       "complete_60y_accepted": false,
       "additional_receipt_paths": [
         "research/analytics/acquisition_deltas/2026-11-25_archival_monthly_tr_reit_bond_eafe_receipt.json",
-        "research/analytics/acquisition_deltas/2026-11-26_reit_tr_reference_receipt.json"
+        "research/analytics/acquisition_deltas/2026-11-26_reit_tr_reference_receipt.json",
+        "research/analytics/acquisition_deltas/2026-11-26_tip_vnq_monthly_adjusted_price_receipt.json"
       ]
     },
     {
@@ -159,12 +160,13 @@
       "id": "INFLATION_LINKED",
       "name": "物価連動債",
       "source": "US_TREASURY",
-      "state": "PARTIAL_ISSUER_ANNUAL_AND_ONE_MONTH_REFERENCE",
-      "missing_or_gates": "米国Treasury TIPS利回りは運用TRではない。対応する収益系列は未取得; iShares TIP NAV and issuer-reported benchmark total returns, 2021..2025 annual 10 values and 2026-09 monthly 2 values; actual issuer published reference, continuous monthly series still missing.; Safe Rate TIPS provider-published research index 2009..2025 annual 17 and two partial periods, 19 reference values; backtested history, 217 monthly rebalances reported but monthly CSV not obtained.",
+      "state": "PARTIAL_MONTHLY_ETF_ADJUSTED_PRICE_PROXY_PLUS_ISSUER_REFERENCE",
+      "missing_or_gates": "米国Treasury TIPS利回りは運用TRではない。対応する収益系列は未取得; iShares TIP NAV and issuer-reported benchmark total returns, 2021..2025 annual 10 values and 2026-09 monthly 2 values; actual issuer published reference, continuous monthly series still missing.; Safe Rate TIPS provider-published research index 2009..2025 annual 17 and two partial periods, 19 reference values; backtested history, 217 monthly rebalances reported but monthly CSV not obtained.; TIP third-party USD adjusted-price monthly proxy 2003-12..2026-06 271 levels/270 derived returns, two-mirror comparison 89 returns; issuer NAV/official benchmark original and rights pending.",
       "complete_60y_accepted": false,
       "additional_receipt_paths": [
         "research/analytics/acquisition_deltas/2026-11-25_swinkels_jp_de_tips_receipt.json",
-        "research/analytics/acquisition_deltas/2026-11-25_cash_rf_tips_reference_receipt.json"
+        "research/analytics/acquisition_deltas/2026-11-25_cash_rf_tips_reference_receipt.json",
+        "research/analytics/acquisition_deltas/2026-11-26_tip_vnq_monthly_adjusted_price_receipt.json"
       ]
     }
   ],
