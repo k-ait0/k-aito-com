@@ -1,7 +1,7 @@
 {
   "schema": "KAITO_ANALYTICS_DATA_ACQUISITION_INVENTORY_V1",
   "inventory_date_jst": "2026-11-20",
-  "inventory_cutoff": "2026-11-25 JST (US short-term RF and TIPS annual reference; prior cutoffs retained)",
+  "inventory_cutoff": "2026-11-26 JST (JP/US REIT published reference excerpts; prior series cutoffs retained)",
   "research_only": true,
   "strict_scope": "DATA_ACQUISITION_SOURCE_AUTHENTICATION_NORMALIZATION_QA_AND_DATA_RIGHTS_ONLY",
   "excluded": "UI_CALCULATION_CORE_SIMULATION_PRODUCTION_RELEASE",
@@ -114,11 +114,12 @@
       "id": "REIT",
       "name": "REIT",
       "source": "JPX",
-      "state": "PARTIAL_US_REIT_ARCHIVAL_MIRROR_JREIT_NOT_ACQUIRED",
-      "missing_or_gates": "J-REIT TR、指数開始前の60年実績は存在しない; FTSE Nareit All REITs USD archival mirror 1975-12..2010-06, 415 levels (414 derived monthly returns); 21 annual year-end index values match official report text; US research candidate only; JPX J-REIT TR still missing.",
+      "state": "PARTIAL_JP_AND_US_TR_PUBLISHED_REFERENCES_PLUS_ARCHIVAL_MIRROR",
+      "missing_or_gates": "J-REIT TR、指数開始前の60年実績は存在しない; FTSE Nareit All REITs USD archival mirror 1975-12..2010-06, 415 levels (414 derived monthly returns); 21 annual year-end index values match official report text; US research candidate only; JPX J-REIT TR still missing.; 2026-11-26: TSE REIT TR 26 month-end published reference levels (2024-06..2026-05, 2026-09/10); Nareit All REITs TR 13 levels (2021..2025 year-end, 2026-03..10 monthly). Japan PDF text only; Nareit rendered vintages differ and five overlapping year-end levels match. SMTRI alternative long history file located but download blocked.",
       "complete_60y_accepted": false,
       "additional_receipt_paths": [
-        "research/analytics/acquisition_deltas/2026-11-25_archival_monthly_tr_reit_bond_eafe_receipt.json"
+        "research/analytics/acquisition_deltas/2026-11-25_archival_monthly_tr_reit_bond_eafe_receipt.json",
+        "research/analytics/acquisition_deltas/2026-11-26_reit_tr_reference_receipt.json"
       ]
     },
     {
