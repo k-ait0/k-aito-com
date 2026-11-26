@@ -1,0 +1,68 @@
+{
+  "schema": "KAITO_REIT_TR_REFERENCE_V1",
+  "date_jst": "2026-11-26",
+  "scope": "DATA_ACQUISITION_ONLY",
+  "file": {
+    "name": "K_Aito_Analytics_REIT_TR_20261126_REFERENCE.csv",
+    "bytes": 7120,
+    "sha256": "8a8401a5cdf731e3ebc949428d1de56a4f0bae13cd25ad2ea837859eeddb7243",
+    "rows": 39
+  },
+  "series": [
+    {
+      "id": "TSE_REIT_TR",
+      "currency": "JPY",
+      "rows": 26,
+      "continuous": "2024-06..2026-05",
+      "additional": [
+        "2026-09",
+        "2026-10"
+      ],
+      "missing": [
+        "2026-06",
+        "2026-07",
+        "2026-08"
+      ],
+      "sources": [
+        "https://www.nomura-am.co.jp/fund/annualreport/400060/R2400060_20250710.pdf",
+        "https://www.nomura-am.co.jp/fund/annualreport/400060/R2400060_20260710.pdf",
+        "https://www.jpx.co.jp/english/markets/statistics-equities/monthly/vk0khi000002qu3s-att/03_sisu2609.pdf",
+        "https://www.jpx.co.jp/markets/statistics-equities/monthly/t13vrt000002q5d1-att/03_sisu2610.pdf"
+      ],
+      "qa": "rendered text only; PDF screenshots failed; no official raw original archived"
+    },
+    {
+      "id": "FTSE_NAREIT_ALL_REITS_TR",
+      "currency": "USD",
+      "rows": 13,
+      "annual_year_end": 5,
+      "monthly": 8,
+      "continuous": "2026-03..2026-10",
+      "source": "https://www.reit.com/sites/default/files/returns/DomesticReturns.pdf",
+      "qa": "Rendered screenshot July 20 2026 and text November 12 2026 differ in vintage; overlapping 2021..2025 year-end levels agree 5/5; remaining monthly levels single rendered source; original bytes not acquired"
+    }
+  ],
+  "bulk_candidates": [
+    {
+      "url": "https://member.smtri.jp/market/jri_files/J-REIT_Index_j.xlsx",
+      "publisher_page": "https://member.smtri.jp/market/jreit_index/",
+      "status": "DNS failed in container and web binary fetch failed; 2001-09 onward alternative index; publisher states individual use without third-party display or provision requires no inquiry"
+    },
+    {
+      "url": "https://www.reit.com/data-research/reit-market-data/report/monthly-index-values-returns",
+      "status": "full workbook located, not acquired"
+    },
+    {
+      "url": "https://www.quotelinks.com/chart/tip.html",
+      "status": "monthly adjusted price returns candidate; full table not accessible, no numeric capture"
+    }
+  ],
+  "qa": {
+    "unique_series_month": true,
+    "positive_levels": true,
+    "canonical": false,
+    "original_bytes_archived": false
+  },
+  "raw_numbers_published": false,
+  "engine_ui_main_production_changed": false
+}
