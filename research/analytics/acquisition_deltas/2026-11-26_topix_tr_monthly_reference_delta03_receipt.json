@@ -1,0 +1,78 @@
+{
+  "schema": "KAITO_TOPIX_TR_REFERENCE_DELTA_V1",
+  "date_jst": "2026-11-26",
+  "scope": "DATA_ACQUISITION_ONLY",
+  "classification": "PUBLISHER_RENDERED_REFERENCE",
+  "sources": [
+    {
+      "url": "https://www.jpx.co.jp/english/markets/statistics-equities/monthly/b5b4pj000000wq1g-att/1601.pdf",
+      "page_1_based": 21
+    },
+    {
+      "url": "https://www.jpx.co.jp/markets/statistics-equities/monthly/nlsgeu000001j9rm-att/1602.pdf",
+      "page_1_based": 21
+    },
+    {
+      "url": "https://www.jpx.co.jp/english/markets/statistics-equities/monthly/b5b4pj000001w0vu-att/03_sisu1710.pdf",
+      "page_1_based": 1
+    },
+    {
+      "url": "https://www.jpx.co.jp/markets/statistics-equities/monthly/nlsgeu000004gkvw-att/03_sisu1911.pdf",
+      "page_1_based": 1
+    },
+    {
+      "url": "https://www.jpx.co.jp/english/markets/statistics-equities/monthly/b5b4pj000004o2nx-att/03_sisu2112.pdf",
+      "page_1_based": 1
+    }
+  ],
+  "new_periods": [
+    "2013-12",
+    "2015-01..11",
+    "2016-01..02",
+    "2017-04..10",
+    "2019-11"
+  ],
+  "files": [
+    {
+      "name": "TOPIX_TR_JPX_20261126_delta03.csv",
+      "rows": 22,
+      "bytes": 3511,
+      "sha256": "1448272afd5cfbf0ae97d6c55cb377a619065b9a56da5c40764f01fe8c87f2af"
+    },
+    {
+      "name": "TOPIX_TR_JPX_20261126_combined_70.csv",
+      "rows": 70,
+      "bytes": 10967,
+      "sha256": "802ae67bf48b7748899f5c9a9ee104aad8bf46c7e723428c730fdef2835621f2"
+    },
+    {
+      "name": "TOPIX_TR_JPX_20261126_2019_2021_recheck.csv",
+      "rows": 14,
+      "bytes": 2329,
+      "sha256": "9a8ff4891b280d71f4fed0c26967e5ef6ce73eb92ca8a71f4775d4394f43f984",
+      "periods": [
+        "2019-12",
+        "2020-12",
+        "2021-01..12"
+      ],
+      "counted_as_increment": false
+    }
+  ],
+  "storage": "conversation attachments; raw values not pushed to GitHub",
+  "qa": {
+    "previous_48_loaded": true,
+    "overlap_unique_months_matching": 18,
+    "conflicts": 0,
+    "unique_month": true,
+    "positive_levels": true,
+    "source_page_images_checked": true,
+    "initial_32_loaded": false,
+    "expected_total_excluding_recheck": 102,
+    "continuous_with_recheck": "2014-12..2019-12",
+    "original_pdf_bytes_archived": false,
+    "canonical": false
+  },
+  "raw_values_published": false,
+  "rights_verified": false,
+  "main_engine_ui_production_changed": false
+}
