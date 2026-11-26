@@ -1,7 +1,7 @@
 {
   "schema": "KAITO_ANALYTICS_DATA_ACQUISITION_INVENTORY_V1",
   "inventory_date_jst": "2026-11-20",
-  "inventory_cutoff": "2026-11-26 JST (TOPIX TR +24 publisher references; Curvo quarantine and prior cutoffs retained)",
+  "inventory_cutoff": "2026-11-26 JST (TOPIX TR delta01 +24 and delta02 +24; 48 merged, 80 expected total; prior cutoffs retained)",
   "research_only": true,
   "strict_scope": "DATA_ACQUISITION_SOURCE_AUTHENTICATION_NORMALIZATION_QA_AND_DATA_RIGHTS_ONLY",
   "excluded": "UI_CALCULATION_CORE_SIMULATION_PRODUCTION_RELEASE",
@@ -24,14 +24,15 @@
       "name": "日本株",
       "source": "JPX",
       "state": "PARTIAL_MONTHLY_ACADEMIC_MIRROR_PLUS_PRIOR_REFERENCE",
-      "missing_or_gates": "32 official TOPIX TR month-end values, noncontiguous 2019-12..2026-01; full monthly history not acquired; Russell/Nomura TR bulk candidate links confirmed but bytes blocked.; JST R6 third-party mirror: 1966..2020 annual eq_tr 55 values (research candidate, not official original or monthly benchmark); 2021 onward and official monthly benchmark remain separate.; JP/US equity and bond records also included in complete 16-country research panel; no duplicate new observations counted for JP/US.; Fama/French JP market excess/RF monthly mirror 1990-07..2026-07 433 months, USD academic research candidate, no canonical benchmark equivalence; official ZIP and vintage QA remain pending.; 2026-11-26 additional 24 publisher-rendered monthly/year-end levels outside prior recorded period (2016-12, 2017-12, 2018-02..2019-02, 2026-02..10), page image/text match 24/24. Expected 56 total distinct levels; prior raw rows not reloaded. Original PDF bytes and owner preservation of conversation CSV pending. Noda/Hirayama/Morimoto 1924-06..2026-09 candidate repository currently private.",
+      "missing_or_gates": "32 official TOPIX TR month-end values, noncontiguous 2019-12..2026-01; full monthly history not acquired; Russell/Nomura TR bulk candidate links confirmed but bytes blocked.; JST R6 third-party mirror: 1966..2020 annual eq_tr 55 values (research candidate, not official original or monthly benchmark); 2021 onward and official monthly benchmark remain separate.; JP/US equity and bond records also included in complete 16-country research panel; no duplicate new observations counted for JP/US.; Fama/French JP market excess/RF monthly mirror 1990-07..2026-07 433 months, USD academic research candidate, no canonical benchmark equivalence; official ZIP and vintage QA remain pending.; 2026-11-26 additional 24 publisher-rendered monthly/year-end levels outside prior recorded period (2016-12, 2017-12, 2018-02..2019-02, 2026-02..10), page image/text match 24/24. Expected 56 total distinct levels; prior raw rows not reloaded. Original PDF bytes and owner preservation of conversation CSV pending. Noda/Hirayama/Morimoto 1924-06..2026-09 candidate repository currently private.; 2026-11-26 delta02: 24 additional distinct pre-2019-12 monthly/year-end JPX rendered reference levels; prior delta01 CSV loaded and overlap 15 unique months all exact; 48-row combined CSV saved to conversation attachment, initial 32 rows not reloaded, 80 expected distinct total. Original PDF bytes and rights remain pending. No synthetic fill.",
       "complete_60y_accepted": false,
       "receipt_path": "research/analytics/acquisition_deltas/2026-11-25_core_assets_priority_capture_receipt.json",
       "additional_receipt_paths": [
         "research/analytics/acquisition_deltas/2026-11-25_jst_r6_jp_us_annual_mirror_receipt.json",
         "research/analytics/acquisition_deltas/2026-11-25_jst_r6_18_country_equity_bond_annual_receipt.json",
         "research/analytics/acquisition_deltas/2026-11-25_ff_monthly_market_mirror_receipt.json",
-        "research/analytics/acquisition_deltas/2026-11-26_topix_tr_monthly_reference_delta_receipt.json"
+        "research/analytics/acquisition_deltas/2026-11-26_topix_tr_monthly_reference_delta_receipt.json",
+        "research/analytics/acquisition_deltas/2026-11-26_topix_tr_monthly_reference_delta02_receipt.json"
       ]
     },
     {
