@@ -1,7 +1,7 @@
 {
   "schema": "KAITO_ANALYTICS_DATA_ACQUISITION_INVENTORY_V1",
   "inventory_date_jst": "2026-11-20",
-  "inventory_cutoff": "2026-11-26 JST (TIP and VNQ adjusted price monthly research candidates; prior series cutoffs retained)",
+  "inventory_cutoff": "2026-11-26 JST (NOMURA-BPI published monthly levels; other series retain cutoffs)",
   "research_only": true,
   "strict_scope": "DATA_ACQUISITION_SOURCE_AUTHENTICATION_NORMALIZATION_QA_AND_DATA_RIGHTS_ONLY",
   "excluded": "UI_CALCULATION_CORE_SIMULATION_PRODUCTION_RELEASE",
@@ -65,15 +65,16 @@
       "id": "JP_BONDS",
       "name": "日本債券",
       "source": "NOMURA_BPI",
-      "state": "PARTIAL_MONTHLY_ACADEMIC_MODEL_PLUS_ANNUAL_RESEARCH",
-      "missing_or_gates": "NOMURA BPI overall 2026-10 month-end level only; long monthly history not acquired.; JST R6 third-party mirror: 1966..2020 annual bond_tr 55 values (research candidate, not official original or monthly benchmark); 2021 onward and official monthly benchmark remain separate.; JP/US equity and bond records also included in complete 16-country research panel; no duplicate new observations counted for JP/US.; Swinkels 10-year Japan local-currency government bond return model 1974-10..2022-12 (579 months), third-party ODS mirror, source cached Return M rounded to 8 decimal places; not NOMURA-BPI or observed total-return benchmark.; Japan 579 values also included in the nine-country combined dataset (not counted again as new).",
+      "state": "PARTIAL_PUBLISHER_MONTHLY_BPI_PLUS_ACADEMIC_MODEL",
+      "missing_or_gates": "NOMURA BPI overall 2026-10 month-end level only; long monthly history not acquired.; JST R6 third-party mirror: 1966..2020 annual bond_tr 55 values (research candidate, not official original or monthly benchmark); 2021 onward and official monthly benchmark remain separate.; JP/US equity and bond records also included in complete 16-country research panel; no duplicate new observations counted for JP/US.; Swinkels 10-year Japan local-currency government bond return model 1974-10..2022-12 (579 months), third-party ODS mirror, source cached Return M rounded to 8 decimal places; not NOMURA-BPI or observed total-return benchmark.; Japan 579 values also included in the nine-country combined dataset (not counted again as new).; NFRC official published monthly overall and government levels 2024-03..2026-07 29 each, 58 values, overlapping reports 22 equal, 26 checked against page image; original bytes and rights pending, no splice.",
       "complete_60y_accepted": false,
       "receipt_path": "research/analytics/acquisition_deltas/2026-11-25_core_assets_priority_capture_receipt.json",
       "additional_receipt_paths": [
         "research/analytics/acquisition_deltas/2026-11-25_jst_r6_jp_us_annual_mirror_receipt.json",
         "research/analytics/acquisition_deltas/2026-11-25_jst_r6_18_country_equity_bond_annual_receipt.json",
         "research/analytics/acquisition_deltas/2026-11-25_swinkels_jp_de_tips_receipt.json",
-        "research/analytics/acquisition_deltas/2026-11-25_swinkels_9_country_monthly_bonds_receipt.json"
+        "research/analytics/acquisition_deltas/2026-11-25_swinkels_9_country_monthly_bonds_receipt.json",
+        "research/analytics/acquisition_deltas/2026-11-26_nomura_bpi_monthly_published_levels_receipt.json"
       ]
     },
     {
