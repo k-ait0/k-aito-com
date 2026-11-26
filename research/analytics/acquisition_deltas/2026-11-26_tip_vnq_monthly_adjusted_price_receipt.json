@@ -1,0 +1,71 @@
+{
+  "schema": "KAITO_TIP_VNQ_MONTHLY_ADJ_PRICE_RESEARCH_V1",
+  "date_jst": "2026-11-26",
+  "scope": "DATA_ACQUISITION_ONLY",
+  "file": {
+    "name": "K_Aito_Analytics_TIP_VNQ_MONTHLY_ADJ_PRICE_20261126_RESEARCH.csv",
+    "bytes": 106413,
+    "sha256": "8ebb1c129b89994cba85264f90a653069487f89eafaead5a152b7e942a8190e1",
+    "levels": 533,
+    "derived_returns": 531
+  },
+  "source_repo": "giacomomaggiore/margin-investing-etfs",
+  "series": [
+    {
+      "ticker": "TIP",
+      "first": "2003-12-31",
+      "last": "2026-06-30",
+      "levels": 271,
+      "derived_returns": 270,
+      "source_daily_rows": 5684,
+      "blob_sha": "be4dc16b152c0957f793bd07bdbb5da341b247bc",
+      "transfer_fnv1a32": "22ba7f4a"
+    },
+    {
+      "ticker": "VNQ",
+      "first": "2004-09-30",
+      "last": "2026-06-30",
+      "levels": 262,
+      "derived_returns": 261,
+      "source_daily_rows": 5480,
+      "blob_sha": "0035fa1d0085031a2f0ac9949a9bb05313331617",
+      "transfer_fnv1a32": "d476a833"
+    }
+  ],
+  "qa": {
+    "transfer_checksums_match": true,
+    "monthly_continuity": true,
+    "unique_ticker_month": true,
+    "positive_adjusted_prices": true,
+    "source_mirror_comparison": {
+      "repo": "fja05680/brownbear",
+      "period": "2019-01..2026-06",
+      "TIP": {
+        "blob": "1f7c2de2af500f72d601b7ff574af06713a14f24",
+        "returns_compared": 89,
+        "max_abs_diff_bp": 0.010694715688597256,
+        "date_mismatches": 0
+      },
+      "VNQ": {
+        "blob": "2c4c3b771c24d85dfebdb52420c39ef32c2d8d3d",
+        "returns_compared": 89,
+        "max_abs_diff_bp": 0.004718836115191749,
+        "date_mismatches": 0
+      },
+      "note": "Different adjustment vintages; compared raw source ratios rather than absolute price levels. Mirrors may share underlying vendor; not official independent certification."
+    },
+    "official_original_verified": false,
+    "rights_verified": false,
+    "canonical": false
+  },
+  "classification": "THIRD_PARTY_USD_ETF_ADJUSTED_PRICE_PROXY_NOT_OFFICIAL_INDEX_OR_NAV_TR",
+  "limits": [
+    "Excluded pre-inception observations and incomplete July 2026.",
+    "Source README documents possible synthetic extensions for some ETFs; vendor provenance not independently established.",
+    "Prices rounded to four decimals; returns are derived price ratios.",
+    "VNQ is not FTSE Nareit All REITs or J-REIT; no splicing.",
+    "Direct official downloads blocked by DNS; SMTRI historical file not acquired."
+  ],
+  "raw_values_in_public_repo": false,
+  "main_engine_ui_production_changed": false
+}
