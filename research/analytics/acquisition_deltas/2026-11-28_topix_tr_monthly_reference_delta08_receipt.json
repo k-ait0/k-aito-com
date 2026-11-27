@@ -1,0 +1,74 @@
+{
+  "schema": "KAITO_TOPIX_TR_REFERENCE_DELTA_V1",
+  "date_jst": "2026-11-28",
+  "scope": "DATA_ACQUISITION_ONLY",
+  "classification": "PUBLISHER_RENDERED_REFERENCE",
+  "sources": [
+    {
+      "url": "https://www.jpx.co.jp/files/tse/market/data/geppo/200902/03_sisu0902.pdf",
+      "page_1_based": 2
+    },
+    {
+      "url": "https://www.jpx.co.jp/files/tse/market/data/geppo/200803/03_sisu0803.pdf",
+      "page_1_based": 2
+    }
+  ],
+  "new_periods": [
+    "2005-12",
+    "2006-12",
+    "2007-03..11",
+    "2008-01..11"
+  ],
+  "files": [
+    {
+      "name": "TOPIX_TR_JPX_20261128_delta08.csv",
+      "rows": 22,
+      "bytes": 2965,
+      "sha256": "06f47782331df57c15a0a33f84d68ed5cfc7abd0c1ecabd274c31c9902542ba1"
+    },
+    {
+      "name": "TOPIX_TR_JPX_20261128_combined_238.csv",
+      "rows": 238,
+      "bytes": 35458,
+      "sha256": "bec1ac7bba37caf2a4d1070da07f3e83cd03451ad0ef5bcebc41eef460f11b14"
+    }
+  ],
+  "qa": {
+    "prior_216_hash_match": true,
+    "prior_overlap_unique_months": 4,
+    "new_crosscheck_unique_months": 3,
+    "source_overlap_unique_months": 4,
+    "conflicts": 0,
+    "unique_month": true,
+    "source_page_images_checked": true,
+    "continuous_start": "2007-03",
+    "continuous_end": "2026-10",
+    "expected_months": 236,
+    "observed": 236,
+    "additional_year_end": [
+      "2005-12",
+      "2006-12"
+    ],
+    "original_pdf_bytes_archived": false,
+    "canonical": false
+  },
+  "failed_sources": [
+    "https://www.jpx.co.jp/files/tse/market/data/geppo/200812/03_sisu0812.pdf",
+    "https://www.jpx.co.jp/files/tse/market/data/geppo/200712/03_sisu0712.pdf",
+    "https://www.jpx.co.jp/files/tse/market/data/geppo/200901/03_sisu0901.pdf",
+    "https://www.jpx.co.jp/files/tse/market/data/geppo/200802/03_sisu0802.pdf",
+    "https://www.jpx.co.jp/files/tse/market/data/geppo/200806/03_sisu0806.pdf",
+    "https://www.jpx.co.jp/files/tse/market/data/geppo/200801/03_sisu0801.pdf",
+    "https://www.jpx.co.jp/files/tse/market/data/geppo/200703/03_sisu0703.pdf",
+    "https://www.jpx.co.jp/files/tse/market/data/geppo/200702/03_sisu0702.pdf",
+    "https://www.jpx.co.jp/files/tse/market/data/geppo/200705/03_sisu0705.pdf",
+    "https://www.jpx.co.jp/files/tse/market/data/geppo/200704/03_sisu0704.pdf",
+    "https://www.jpx.co.jp/files/tse/market/data/geppo/200701/03_sisu0701.pdf",
+    "https://www.jpx.co.jp/files/tse/market/data/geppo/200612/03_sisu0612.pdf",
+    "https://www.jpx.co.jp/files/tse/market/data/geppo/200706/03_sisu0706.pdf"
+  ],
+  "storage": "conversation attachments; no raw values pushed",
+  "raw_values_published": false,
+  "rights_verified": false,
+  "main_engine_ui_production_changed": false
+}
