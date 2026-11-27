@@ -1,7 +1,7 @@
 {
   "schema": "KAITO_ANALYTICS_DATA_ACQUISITION_INVENTORY_V1",
   "inventory_date_jst": "2026-11-20",
-  "inventory_cutoff": "2026-11-28 JST (delta09: S&P 500 TR 142 filed reference levels and 70 rounded third-party monthly returns, six J-REIT annual references; TOPIX unchanged at 238)",
+  "inventory_cutoff": "2026-11-28 JST (delta10: 270 Cetera rounded US equity monthly references, including 158 previously uncovered months; cross-source QA passed; prior cutoffs retained)",
   "research_only": true,
   "strict_scope": "DATA_ACQUISITION_SOURCE_AUTHENTICATION_NORMALIZATION_QA_AND_DATA_RIGHTS_ONLY",
   "excluded": "UI_CALCULATION_CORE_SIMULATION_PRODUCTION_RELEASE",
@@ -47,14 +47,15 @@
       "name": "米国株",
       "source": "SPDJI;Shiller",
       "state": "PARTIAL_MONTHLY_ACADEMIC_MIRROR_PLUS_PRIOR_REFERENCE",
-      "missing_or_gates": "Existing Shiller 522-month candidate; 2025 Damodaran annual value independently rechecked; no new monthly values. Full monthly US equity TR history missing.; JST R6 third-party mirror: 1966..2020 annual eq_tr 55 values (research candidate, not official original or monthly benchmark); 2021 onward and official monthly benchmark remain separate.; JP/US equity and bond records also included in complete 16-country research panel; no duplicate new observations counted for JP/US.; Fama/French US market excess/RF monthly mirror 1966-01..2026-06 726 months, USD academic research candidate, no canonical benchmark equivalence; official ZIP and vintage QA remain pending.; 2026-11-28 delta09: 142 contiguous month-end S&P 500 TR levels 1996-01..2007-10 from two Merrill Lynch SEC filings, same issuer tables agree; PDF screenshot unavailable, independent level verification and rights pending. Separate 70 rounded monthly returns 2021-01..2026-10 from PortfoliosLab, third-party candidate only; no splicing. Shiller-based monthly average table located, not captured.",
+      "missing_or_gates": "Existing Shiller 522-month candidate; 2025 Damodaran annual value independently rechecked; no new monthly values. Full monthly US equity TR history missing.; JST R6 third-party mirror: 1966..2020 annual eq_tr 55 values (research candidate, not official original or monthly benchmark); 2021 onward and official monthly benchmark remain separate.; JP/US equity and bond records also included in complete 16-country research panel; no duplicate new observations counted for JP/US.; Fama/French US market excess/RF monthly mirror 1966-01..2026-06 726 months, USD academic research candidate, no canonical benchmark equivalence; official ZIP and vintage QA remain pending.; 2026-11-28 delta09: 142 contiguous month-end S&P 500 TR levels 1996-01..2007-10 from two Merrill Lynch SEC filings, same issuer tables agree; PDF screenshot unavailable, independent level verification and rights pending. Separate 70 rounded monthly returns 2021-01..2026-10 from PortfoliosLab, third-party candidate only; no splicing. Shiller-based monthly average table located, not captured.; 2026-11-28 delta10: Cetera report 270 rounded monthly S&P 500 TR references 2003-01..2025-06, 158 months in previously uncovered 2007-11..2020-12 interval. All 58 overlapping SEC implied monthly returns within 0.01 percentage points, all 54 overlapping PortfoliosLab returns exact; 23/23 annual/YTD checks consistent with rounding. No index levels reconstructed or merged; canonical official source bytes and rights pending.",
       "complete_60y_accepted": false,
       "receipt_path": "research/analytics/acquisition_deltas/2026-11-25_core_assets_priority_capture_receipt.json",
       "additional_receipt_paths": [
         "research/analytics/acquisition_deltas/2026-11-25_jst_r6_jp_us_annual_mirror_receipt.json",
         "research/analytics/acquisition_deltas/2026-11-25_jst_r6_18_country_equity_bond_annual_receipt.json",
         "research/analytics/acquisition_deltas/2026-11-25_ff_monthly_market_mirror_receipt.json",
-        "research/analytics/acquisition_deltas/2026-11-28_us_equity_reit_reference_delta09_receipt.json"
+        "research/analytics/acquisition_deltas/2026-11-28_us_equity_reit_reference_delta09_receipt.json",
+        "research/analytics/acquisition_deltas/2026-11-28_us_equity_cetera_reference_delta10_receipt.json"
       ]
     },
     {
