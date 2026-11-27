@@ -1,0 +1,83 @@
+{
+  "schema": "KAITO_US_EQUITY_MIRROR_DELTA_V1",
+  "date_jst": "2026-11-28",
+  "scope": "DATA_ACQUISITION_ONLY",
+  "source": {
+    "url": "https://github.com/vanexymx/sp500-historical-analysis/blob/main/data/SP500TR_monthly.json",
+    "blob_sha": "90d8a3fd8181eef9ec666bca49b9c2f11fb1b368",
+    "ticker": "^SP500TR",
+    "classification": "THIRD_PARTY_MIRROR_CANDIDATE",
+    "transfer_fnv1a32": "0ecad243",
+    "transfer_format": "month,close fixed 4 decimal places, LF; source-to-local match"
+  },
+  "coverage": {
+    "start": "1988-01",
+    "end": "2026-07",
+    "levels": 463,
+    "derived_returns": 462,
+    "missing": 0,
+    "new_pre1996_levels": 96,
+    "level_reference_months_outside_prior_142": 321
+  },
+  "files": [
+    {
+      "name": "SP500_TR_mirror_20261128_463_candidate.csv",
+      "rows": 463,
+      "bytes": 49703,
+      "sha256": "b5fa09f7dec030b4d480c0a9e106d41da4a525b065d0ab4482f6587e1b662c48"
+    },
+    {
+      "name": "SP500_TR_mirror_20261128_SEC_level_QA.csv",
+      "rows": 142,
+      "bytes": 19627,
+      "sha256": "31195130f09fb465d8ac3d09caeafeed58ce34e1f0fbd68fc1d5ca71a00d0d84"
+    },
+    {
+      "name": "SP500_TR_mirror_20261128_monthly_QA.csv",
+      "rows": 337,
+      "bytes": 18832,
+      "sha256": "9eeb9c04693bd0eddb83913c1d37a4f0a552ffb6f8b3044587276cdc6531c762"
+    },
+    {
+      "name": "SP500_TR_mirror_20261128_annual_QA.csv",
+      "rows": 37,
+      "bytes": 1758,
+      "sha256": "2b28aa8590f15098ce005658881040549f83a0013133e7d8fbfb7815f4800db1"
+    }
+  ],
+  "qa": {
+    "sec_levels": {
+      "n": 142,
+      "pass": 142,
+      "tolerance_index_points": 0.01,
+      "max_abs_error": 0.0001
+    },
+    "cetera_returns": {
+      "n": 270,
+      "pass": 270,
+      "tolerance_pp": 0.01,
+      "max_abs_error_pp": 0.00537794663012825
+    },
+    "portfolioslab_returns": {
+      "n": 67,
+      "pass": 66,
+      "tolerance_pp": 0.01,
+      "exception": "2026-07",
+      "difference_pp": 0.1001822567775989
+    },
+    "official_annual": {
+      "url": "https://www.spglobal.com/spdji/jp/documents/commentary/market-attributes-sp500-202601.pdf",
+      "page_1_based": 10,
+      "period": "1989..2025",
+      "n": 37,
+      "pass": 37,
+      "max_abs_error_pp": 0.00577004743414733,
+      "page_image_reviewed": true
+    }
+  },
+  "limitations": "Third-party mirror, no original index-provider data byte authentication or rights clearance. Annual checks do not independently establish every monthly value. July 2026 may be partial or vintage discrepancy; unresolved, not accepted. No splicing with other sources. 321 additional index-level months relative to prior SEC levels, not 321 new return months. Pre-1988 series still missing. J-REIT leads identified but no new observations saved.",
+  "storage": "conversation attachments; no raw data committed",
+  "canonical": false,
+  "raw_values_published": false,
+  "main_engine_ui_production_changed": false
+}
