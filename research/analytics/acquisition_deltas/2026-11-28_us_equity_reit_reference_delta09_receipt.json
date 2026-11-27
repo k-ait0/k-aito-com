@@ -1,0 +1,83 @@
+{
+  "schema": "KAITO_US_EQUITY_REIT_REFERENCE_DELTA_V1",
+  "date_jst": "2026-11-28",
+  "scope": "DATA_ACQUISITION_ONLY",
+  "files": [
+    {
+      "name": "SP500_TR_SEC_20261128_142_candidate.csv",
+      "rows": 142,
+      "bytes": 30028,
+      "sha256": "a0008014f78f1d5ef4550c8bb573eef200eff25aab0e7a70299cda4148b93b07",
+      "period": "1996-01..2007-10",
+      "classification": "SEC_FILED_ISSUER_REFERENCE_UNVERIFIED",
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/65100/000119312507259877/d424b3.htm",
+        "https://www.sec.gov/Archives/edgar/data/65100/000119312507245004/d424b3.htm"
+      ],
+      "qa": {
+        "same_issuer_table_visual_text_comparison": "142 values match",
+        "unique_month": true,
+        "continuous": true,
+        "positive": true,
+        "independent_level_check": false,
+        "pdf_screenshot_failed": "404",
+        "annual_comparison_damodaran": "sample annual differences observed; not proof of level error",
+        "canonical": false
+      }
+    },
+    {
+      "name": "SP500_TR_PortfoliosLab_20261128_70_candidate.csv",
+      "rows": 70,
+      "bytes": 7092,
+      "sha256": "928e22d911147b18f6a3ccf934cf90c1d31ffafff51af83f35716f7d9a2b3078",
+      "period": "2021-01..2026-10",
+      "classification": "THIRD_PARTY_ROUNDED_RETURN_UNVERIFIED",
+      "source": "https://portfolioslab.com/symbol/%5ESP500TR",
+      "limitations": "rounded monthly percentages, no independent value check, Nov incomplete excluded; no levels reconstructed"
+    },
+    {
+      "name": "JREIT_TR_JPX_interviews_20261128_annual_6.csv",
+      "rows": 6,
+      "bytes": 660,
+      "sha256": "2a6775e5ebdb9c4c326e435ff2b7525d9bd7de7bf42e6ec223cb9a4d7fada81a",
+      "years": [
+        2018,
+        2019,
+        2021,
+        2022,
+        2023,
+        2025
+      ],
+      "classification": "JPX_HOSTED_ANALYST_ANNUAL_REFERENCE",
+      "sources": [
+        "https://reit-if.jpx.co.jp/interview/analyst32.html",
+        "https://reit-if.jpx.co.jp/interview/analyst35.html",
+        "https://reit-if.jpx.co.jp/interview/analyst41.html",
+        "https://reit-if.jpx.co.jp/interview/analyst42.html",
+        "https://www.jpx.co.jp/reit-if/column/interview/044.html",
+        "https://www.jpx.co.jp/reit-if/column/interview/047.html"
+      ],
+      "limitations": "annual rounded returns only; not monthly levels; prior research overlap not exhaustively reconciled"
+    }
+  ],
+  "topix": {
+    "prior_238_hash_match": true,
+    "sha256": "bec1ac7bba37caf2a4d1070da07f3e83cd03451ad0ef5bcebc41eef460f11b14",
+    "new_rows": 0,
+    "missing": "2007-01..02 and older history",
+    "failed_urls": [
+      "https://www.jpx.co.jp/files/tse/english/market/data/geppo/200702/03_sisu0702.pdf",
+      "https://www.jpx.co.jp/files/tse/english/market/data/geppo/200712/03_sisu0712.pdf"
+    ]
+  },
+  "additional_lead": {
+    "url": "https://www.officialdata.org/us/stocks/s-p-500/1966/",
+    "classification": "Shiller-derived monthly average price with dividends, not official month-end index",
+    "saved": false
+  },
+  "original_bytes_archived": false,
+  "rights_verified": false,
+  "raw_values_published": false,
+  "storage": "conversation attachments",
+  "main_engine_ui_production_changed": false
+}
