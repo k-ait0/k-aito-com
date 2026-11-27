@@ -1,0 +1,94 @@
+{
+  "schema": "KAITO_TOPIX_TR_REFERENCE_DELTA_V1",
+  "date_jst": "2026-11-28",
+  "scope": "DATA_ACQUISITION_ONLY",
+  "classification": "PUBLISHER_RENDERED_REFERENCE",
+  "sources": [
+    {
+      "url": "https://www.jpx.co.jp/files/tse/market/data/geppo/200912/03_sisu0912.pdf",
+      "page_1_based": 2
+    },
+    {
+      "url": "https://www.jpx.co.jp/files/tse/market/data/geppo/201012/03_sisu1012.pdf",
+      "page_1_based": 2
+    },
+    {
+      "url": "https://www.jpx.co.jp/files/tse/market/data/geppo/201111/03_sisu1111.pdf",
+      "page_1_based": 2
+    },
+    {
+      "url": "https://www.jpx.co.jp/files/tse/market/data/geppo/b7gje60000031ryr-att/03_sisu1211.pdf",
+      "page_1_based": 2
+    },
+    {
+      "url": "https://www.jpx.co.jp/files/tse/market/data/geppo/b7gje6000003pfrx-att/03_sisu1307.pdf",
+      "page_1_based": 1
+    }
+  ],
+  "new_periods": [
+    "2007-12",
+    "2008-12",
+    "2009-01..2010-12",
+    "2011-01..11",
+    "2012-01..11"
+  ],
+  "files": [
+    {
+      "name": "TOPIX_TR_JPX_20261128_delta07.csv",
+      "rows": 48,
+      "bytes": 6538,
+      "sha256": "1f487a6db36e1db45cd0ff9d9408bee12d2990d8165e666711b4fbcc258366fd"
+    },
+    {
+      "name": "TOPIX_TR_JPX_20261128_combined_216.csv",
+      "rows": 216,
+      "bytes": 32554,
+      "sha256": "adc0983b8707b01f8becf3e87366e9000a8c3cc7cccfb7d2326081c0166e4927"
+    }
+  ],
+  "qa": {
+    "prior_168_hash_match": true,
+    "prior_overlap_unique_months": 9,
+    "new_overlap_unique_months": 10,
+    "conflicts": 0,
+    "unique_month": true,
+    "positive_levels": true,
+    "source_page_images_checked": true,
+    "continuous_start": "2008-12",
+    "continuous_end": "2026-10",
+    "expected_months": 215,
+    "observed": 215,
+    "additional_2007_december": 1,
+    "original_pdf_bytes_archived": false,
+    "canonical": false
+  },
+  "reit_candidate": {
+    "file": {
+      "name": "JREIT_TR_ARES_20261128_candidate_6.csv",
+      "rows": 6,
+      "bytes": 883,
+      "sha256": "4a859f69594b9062815911f49a9c3f525d16c2bd3b7024e2435ab85fc9cb5f7e"
+    },
+    "sources": [
+      "https://j-reit.jp/download/ares_jreitreport_201202_27.pdf",
+      "https://j-reit.jp/download/ares_jreitreport_201204_29.pdf",
+      "https://j-reit.jp/download/ares_jreitreport_201210_35.pdf",
+      "https://j-reit.jp/download/ares_jreitreport_201212_37.pdf",
+      "https://j-reit.jp/download/ares_jreitreport_201301_38.pdf"
+    ],
+    "periods": [
+      "2011-12",
+      "2012-01",
+      "2012-03",
+      "2012-09",
+      "2012-11",
+      "2012-12"
+    ],
+    "classification": "THIRD_PARTY_REPORT_TEXT_ONLY_PENDING_IMAGE_QA",
+    "limitations": "Four report screenshot requests redirected to maintenance page; fifth report cover accessible but numerical table not image verified. Not merged with publisher REIT references."
+  },
+  "storage": "conversation attachments only",
+  "raw_values_published": false,
+  "rights_verified": false,
+  "main_engine_ui_production_changed": false
+}
