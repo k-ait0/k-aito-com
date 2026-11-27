@@ -1,0 +1,71 @@
+{
+  "schema": "KAITO_TOPIX_TR_REFERENCE_DELTA_V1",
+  "date_jst": "2026-11-28",
+  "scope": "DATA_ACQUISITION_ONLY",
+  "classification": "PUBLISHER_RENDERED_REFERENCE",
+  "sources": [
+    {
+      "url": "https://www.jpx.co.jp/files/tse/market/data/geppo/b7gje60000047ssm-att/03_sisu1312.pdf",
+      "pages_1_based": [
+        1,
+        3
+      ]
+    },
+    {
+      "url": "https://www.jpx.co.jp/english/markets/statistics-equities/monthly/b5b4pj0000004mgs-att/03_sisu1501.pdf",
+      "page_1_based": 1
+    }
+  ],
+  "new_periods": [
+    "2011-12",
+    "2012-12",
+    "2013-01..11"
+  ],
+  "files": [
+    {
+      "name": "TOPIX_TR_JPX_20261128_delta06.csv",
+      "rows": 13,
+      "bytes": 1958,
+      "sha256": "bed2c4ff4b84aa5f254f754d43e02be23f09ca2f8d47e415ebba71cca213b487"
+    },
+    {
+      "name": "TOPIX_TR_JPX_20261128_combined_168.csv",
+      "rows": 168,
+      "bytes": 26077,
+      "sha256": "be28d3218b1ce2bd2bc9d934b70ac771ccea050f1861182d9b8404772adfcd69"
+    }
+  ],
+  "storage": "conversation attachments; raw values not pushed to GitHub",
+  "qa": {
+    "prior_155_hash_match": true,
+    "prior_overlap_unique_months": 14,
+    "conflicts": 0,
+    "new_source_page_images_checked": 13,
+    "new_crosscheck_2012_december": true,
+    "unique_month": true,
+    "positive_levels": true,
+    "continuous_start": "2012-12",
+    "continuous_end": "2026-10",
+    "expected_months": 167,
+    "observed": 167,
+    "missing_months": 0,
+    "additional_2011_december": 1,
+    "initial_32_loaded": false,
+    "original_pdf_bytes_archived": false,
+    "canonical": false
+  },
+  "next_missing": "2012-01..11 and earlier monthly observations",
+  "candidate_leads": [
+    {
+      "url": "https://j-reit.jp/download/ares_jreitreport_201112_25.pdf",
+      "classification": "third-party ARES report citing market data; not acquired or merged this round"
+    },
+    {
+      "url": "https://j-reit.jp/download/ares_jreitreport_201305_42.pdf",
+      "classification": "J-REIT candidate; not acquired this round"
+    }
+  ],
+  "raw_values_published": false,
+  "rights_verified": false,
+  "main_engine_ui_production_changed": false
+}
