@@ -1,0 +1,59 @@
+{
+  "schema": "KAITO_US_EQUITY_REFERENCE_DELTA_V1",
+  "date_jst": "2026-11-28",
+  "scope": "DATA_ACQUISITION_ONLY",
+  "source": {
+    "url": "https://cetera.com/files/market-insights/cimquarterlychartbook2025q3update.pdf",
+    "page_1_based": 12,
+    "as_of": "2025-06-30",
+    "attribution": "Cetera Investment Management, FactSet, Standard & Poor's",
+    "classification": "PUBLISHER_REPORT_ROUNDED_TR_REFERENCE"
+  },
+  "files": [
+    {
+      "name": "SP500_TR_Cetera_20261128_270_reference.csv",
+      "rows": 270,
+      "bytes": 37423,
+      "sha256": "14ef106e3a4c7b3e2ca3c1047ea112ace9d8624cb62d665ce9286f3fde68e40c"
+    },
+    {
+      "name": "SP500_TR_Cetera_20261128_annual_QA.csv",
+      "rows": 23,
+      "bytes": 996,
+      "sha256": "8b323d9289af880089cc4175a37f2eee16ac7ae327a62d2b2ac525f9d490bf73"
+    },
+    {
+      "name": "SP500_TR_Cetera_20261128_overlap_QA.csv",
+      "rows": 112,
+      "bytes": 7040,
+      "sha256": "dd0e26e1147c5ecc5dfa3c1662b9005ed489d2d52de72a87d1271cc603319572"
+    }
+  ],
+  "coverage": {
+    "start": "2003-01",
+    "end": "2025-06",
+    "months": 270,
+    "missing": 0,
+    "previous_gap_months_2007_11_to_2020_12": 158
+  },
+  "qa": {
+    "page_image_text_review": true,
+    "unique_months": true,
+    "annual_and_ytd_rounding_consistency": "23/23",
+    "max_annual_difference_pp": 0.027545,
+    "sec_implied_return_overlap": {
+      "months": 58,
+      "within_0_01_pp": 58,
+      "max_difference_pp": 0.004984211804712313
+    },
+    "portfolioslab_overlap": {
+      "months": 54,
+      "exact_matches": 54
+    }
+  },
+  "limitations": "Rounded published return observations, not original official index levels. No index reconstruction or splice. Cross-source agreement is not proof of independent underlying data generation. 158 months are new relative to previously saved S&P 500 TR level/rounded return references only; overlap with academic proxies not counted. Original PDF bytes and rights not authenticated.",
+  "canonical": false,
+  "raw_values_published": false,
+  "storage": "conversation attachments",
+  "main_engine_ui_production_changed": false
+}
