@@ -1,0 +1,54 @@
+{
+  "schema": "KAITO_IBBOTSON_MIRROR_DELTA_V1",
+  "date_jst": "2026-11-28",
+  "scope": "DATA_ACQUISITION_ONLY",
+  "source": {
+    "url": "https://github.com/alexjansenhome/GEM/blob/master/msci_all_gross.csv",
+    "blob_sha": "8a4e6d51f0f2d7f5318a1fc2340568455d09d148",
+    "column": "Large Caps",
+    "source_header": "Ibbottson",
+    "classification": "QUARANTINED_THIRD_PARTY_MIRROR",
+    "transfer_fnv1a32": "e410c00c",
+    "transfer_format": "month,original level string,LF",
+    "transfer_checksum_verified": true
+  },
+  "coverage": {
+    "start": "1969-12",
+    "end": "1987-12",
+    "levels": 217,
+    "derived_returns": 216,
+    "missing": 0
+  },
+  "files": [
+    {
+      "name": "Ibbotson_LargeCap_20261128_217_mirror_candidate.csv",
+      "rows": 217,
+      "bytes": 24977,
+      "sha256": "5963d10c8192ec0b89909c9f3b940375a2b215fa2da9bc74f66a1cdd4bbe31df"
+    },
+    {
+      "name": "Ibbotson_LargeCap_20261128_annual_QA.csv",
+      "rows": 18,
+      "bytes": 823,
+      "sha256": "0c661b63392cdfb8128c3dacd1b4d3892e16e030d72fd71aff857ee2edf6617c"
+    }
+  ],
+  "qa": {
+    "reference": "https://rpc.cfainstitute.org/-/media/documents/book/rf-publication/1989/rf-v1989-n3-sbbi-historical-returns.pdf",
+    "printed_page": 55,
+    "pdf_page_1_based": 75,
+    "page_image_reviewed": true,
+    "annual_checks": 18,
+    "within_0_01_pp": 3,
+    "exceptions": 15,
+    "max_abs_difference_pp": 0.43312080742848735,
+    "source_vintage_unknown": true
+  },
+  "limitations": "Not the S&P 500 TR series. No splice or official acceptance. Historical source allocates quarterly dividends monthly until 1976, uses realized dividends reinvested at month end from 1977. Mirror edition and original provider authentication unknown. 1966-1969 monthly returns not acquired. S&P 500 TR 466-level file unchanged. No new J-REIT rows.",
+  "additional_lead": "https://rpc.cfainstitute.org/research/foundation/2026/exponential-wealth-centuries-stocks-bond-returns",
+  "storage": "conversation attachments",
+  "canonical": false,
+  "raw_values_published": false,
+  "rights_verified": false,
+  "main_engine_ui_production_changed": false
+}
